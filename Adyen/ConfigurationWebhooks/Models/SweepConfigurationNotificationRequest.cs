@@ -286,6 +286,14 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class SweepConfigurationNotificationRequest.", nameof(data));
+
+            if (!environment.IsSet)
+                throw new ArgumentException("Property is required for class SweepConfigurationNotificationRequest.", nameof(environment));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class SweepConfigurationNotificationRequest.", nameof(type));
 
             return new SweepConfigurationNotificationRequest(data.Value!, environment.Value!, type.Value!.Value!, timestamp);
         }

@@ -277,6 +277,14 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class AccountHolderNotificationRequest.", nameof(data));
+
+            if (!environment.IsSet)
+                throw new ArgumentException("Property is required for class AccountHolderNotificationRequest.", nameof(environment));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class AccountHolderNotificationRequest.", nameof(type));
 
             return new AccountHolderNotificationRequest(data.Value!, environment.Value!, type.Value!.Value!, timestamp);
         }

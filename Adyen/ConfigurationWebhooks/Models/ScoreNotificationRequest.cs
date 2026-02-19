@@ -268,6 +268,14 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class ScoreNotificationRequest.", nameof(data));
+
+            if (!environment.IsSet)
+                throw new ArgumentException("Property is required for class ScoreNotificationRequest.", nameof(environment));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class ScoreNotificationRequest.", nameof(type));
 
             return new ScoreNotificationRequest(data.Value!, environment.Value!, type.Value!.Value!, timestamp);
         }

@@ -236,6 +236,11 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+            if (!address.IsSet)
+                throw new ArgumentException("Property is required for class DeliveryContact.", nameof(address));
+
+            if (!name.IsSet)
+                throw new ArgumentException("Property is required for class DeliveryContact.", nameof(name));
 
             return new DeliveryContact(address.Value!, name.Value!, company, email, fullPhoneNumber, phoneNumber, webAddress);
         }
