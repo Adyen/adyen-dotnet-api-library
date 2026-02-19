@@ -245,6 +245,8 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class AuthorisationDecisionResponse.", nameof(status));
 
             return new AuthorisationDecisionResponse(status.Value!.Value!, refusalReason);
         }
