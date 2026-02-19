@@ -162,6 +162,17 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class CreatePermitRequest.", nameof(merchantAccount));
+
+            if (!permits.IsSet)
+                throw new ArgumentException("Property is required for class CreatePermitRequest.", nameof(permits));
+
+            if (!recurringDetailReference.IsSet)
+                throw new ArgumentException("Property is required for class CreatePermitRequest.", nameof(recurringDetailReference));
+
+            if (!shopperReference.IsSet)
+                throw new ArgumentException("Property is required for class CreatePermitRequest.", nameof(shopperReference));
 
             return new CreatePermitRequest(merchantAccount.Value!, permits.Value!, recurringDetailReference.Value!, shopperReference.Value!);
         }

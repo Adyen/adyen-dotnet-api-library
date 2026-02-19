@@ -154,6 +154,11 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class RecurringDetailsRequest.", nameof(merchantAccount));
+
+            if (!shopperReference.IsSet)
+                throw new ArgumentException("Property is required for class RecurringDetailsRequest.", nameof(shopperReference));
 
             return new RecurringDetailsRequest(merchantAccount.Value!, shopperReference.Value!, recurring);
         }

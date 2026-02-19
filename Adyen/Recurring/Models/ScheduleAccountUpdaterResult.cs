@@ -134,6 +134,11 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+            if (!pspReference.IsSet)
+                throw new ArgumentException("Property is required for class ScheduleAccountUpdaterResult.", nameof(pspReference));
+
+            if (!result.IsSet)
+                throw new ArgumentException("Property is required for class ScheduleAccountUpdaterResult.", nameof(result));
 
             return new ScheduleAccountUpdaterResult(pspReference.Value!, result.Value!);
         }

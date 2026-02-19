@@ -134,6 +134,11 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class DisablePermitRequest.", nameof(merchantAccount));
+
+            if (!token.IsSet)
+                throw new ArgumentException("Property is required for class DisablePermitRequest.", nameof(token));
 
             return new DisablePermitRequest(merchantAccount.Value!, token.Value!);
         }

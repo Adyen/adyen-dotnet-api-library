@@ -217,6 +217,11 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class ScheduleAccountUpdaterRequest.", nameof(merchantAccount));
+
+            if (!reference.IsSet)
+                throw new ArgumentException("Property is required for class ScheduleAccountUpdaterRequest.", nameof(reference));
 
             return new ScheduleAccountUpdaterRequest(merchantAccount.Value!, reference.Value!, additionalData, card, selectedRecurringDetailReference, shopperReference);
         }
