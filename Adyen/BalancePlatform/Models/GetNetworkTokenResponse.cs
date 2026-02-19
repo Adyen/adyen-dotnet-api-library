@@ -119,6 +119,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!token.IsSet)
+                throw new ArgumentException("Property is required for class GetNetworkTokenResponse.", nameof(token));
 
             return new GetNetworkTokenResponse(token.Value!);
         }

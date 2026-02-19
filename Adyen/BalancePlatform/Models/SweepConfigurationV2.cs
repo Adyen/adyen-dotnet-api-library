@@ -1098,6 +1098,17 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!counterparty.IsSet)
+                throw new ArgumentException("Property is required for class SweepConfigurationV2.", nameof(counterparty));
+
+            if (!currency.IsSet)
+                throw new ArgumentException("Property is required for class SweepConfigurationV2.", nameof(currency));
+
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class SweepConfigurationV2.", nameof(id));
+
+            if (!schedule.IsSet)
+                throw new ArgumentException("Property is required for class SweepConfigurationV2.", nameof(schedule));
 
             return new SweepConfigurationV2(counterparty.Value!, currency.Value!, id.Value!, schedule.Value!, category, description, priorities, reason, reasonDetail, reference, referenceForBeneficiary, status, sweepAmount, targetAmount, triggerAmount, type);
         }

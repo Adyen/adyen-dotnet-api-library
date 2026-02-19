@@ -229,6 +229,11 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!accountNumber.IsSet)
+                throw new ArgumentException("Property is required for class NZLocalAccountIdentification.", nameof(accountNumber));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class NZLocalAccountIdentification.", nameof(type));
 
             return new NZLocalAccountIdentification(accountNumber.Value!, type.Value!.Value!);
         }

@@ -236,6 +236,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!content.IsSet)
+                throw new ArgumentException("Property is required for class GetTaxFormResponse.", nameof(content));
 
             return new GetTaxFormResponse(content.Value!, contentType);
         }

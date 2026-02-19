@@ -120,6 +120,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!sdkOutput.IsSet)
+                throw new ArgumentException("Property is required for class AssociationDelegatedAuthenticationData.", nameof(sdkOutput));
 
             return new AssociationDelegatedAuthenticationData(sdkOutput.Value!);
         }

@@ -140,6 +140,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!operation.IsSet)
+                throw new ArgumentException("Property is required for class SameAmountRestriction.", nameof(operation));
 
             return new SameAmountRestriction(operation.Value!, value);
         }

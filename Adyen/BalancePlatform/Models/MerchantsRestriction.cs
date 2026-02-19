@@ -141,6 +141,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!operation.IsSet)
+                throw new ArgumentException("Property is required for class MerchantsRestriction.", nameof(operation));
 
             return new MerchantsRestriction(operation.Value!, value);
         }

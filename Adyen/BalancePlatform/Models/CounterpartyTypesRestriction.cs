@@ -261,6 +261,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!operation.IsSet)
+                throw new ArgumentException("Property is required for class CounterpartyTypesRestriction.", nameof(operation));
 
             return new CounterpartyTypesRestriction(operation.Value!, value);
         }

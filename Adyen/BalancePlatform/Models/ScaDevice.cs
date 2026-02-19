@@ -149,6 +149,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class ScaDevice.", nameof(id));
+
+            if (!name.IsSet)
+                throw new ArgumentException("Property is required for class ScaDevice.", nameof(name));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class ScaDevice.", nameof(type));
 
             return new ScaDevice(id.Value!, name.Value!, type.Value!.Value!);
         }

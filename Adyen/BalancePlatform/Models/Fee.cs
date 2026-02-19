@@ -119,6 +119,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class Fee.", nameof(amount));
 
             return new Fee(amount.Value!);
         }

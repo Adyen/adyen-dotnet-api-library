@@ -141,6 +141,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!operation.IsSet)
+                throw new ArgumentException("Property is required for class MccsRestriction.", nameof(operation));
 
             return new MccsRestriction(operation.Value!, value);
         }

@@ -247,6 +247,11 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class Target.", nameof(id));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class Target.", nameof(type));
 
             return new Target(id.Value!, type.Value!.Value!);
         }

@@ -148,6 +148,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!hasNext.IsSet)
+                throw new ArgumentException("Property is required for class BalanceSweepConfigurationsResponse.", nameof(hasNext));
+
+            if (!hasPrevious.IsSet)
+                throw new ArgumentException("Property is required for class BalanceSweepConfigurationsResponse.", nameof(hasPrevious));
+
+            if (!sweeps.IsSet)
+                throw new ArgumentException("Property is required for class BalanceSweepConfigurationsResponse.", nameof(sweeps));
 
             return new BalanceSweepConfigurationsResponse(hasNext.Value!.Value!, hasPrevious.Value!.Value!, sweeps.Value!);
         }

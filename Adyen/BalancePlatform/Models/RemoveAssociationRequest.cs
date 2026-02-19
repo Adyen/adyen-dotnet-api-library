@@ -149,6 +149,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!entityId.IsSet)
+                throw new ArgumentException("Property is required for class RemoveAssociationRequest.", nameof(entityId));
+
+            if (!entityType.IsSet)
+                throw new ArgumentException("Property is required for class RemoveAssociationRequest.", nameof(entityType));
+
+            if (!scaDeviceIds.IsSet)
+                throw new ArgumentException("Property is required for class RemoveAssociationRequest.", nameof(scaDeviceIds));
 
             return new RemoveAssociationRequest(entityId.Value!, entityType.Value!.Value!, scaDeviceIds.Value!);
         }

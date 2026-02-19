@@ -134,6 +134,11 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!name.IsSet)
+                throw new ArgumentException("Property is required for class BeginScaDeviceRegistrationRequest.", nameof(name));
+
+            if (!sdkOutput.IsSet)
+                throw new ArgumentException("Property is required for class BeginScaDeviceRegistrationRequest.", nameof(sdkOutput));
 
             return new BeginScaDeviceRegistrationRequest(name.Value!, sdkOutput.Value!);
         }

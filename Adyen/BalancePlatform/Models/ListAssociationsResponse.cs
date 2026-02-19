@@ -163,6 +163,17 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!links.IsSet)
+                throw new ArgumentException("Property is required for class ListAssociationsResponse.", nameof(links));
+
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class ListAssociationsResponse.", nameof(data));
+
+            if (!itemsTotal.IsSet)
+                throw new ArgumentException("Property is required for class ListAssociationsResponse.", nameof(itemsTotal));
+
+            if (!pagesTotal.IsSet)
+                throw new ArgumentException("Property is required for class ListAssociationsResponse.", nameof(pagesTotal));
 
             return new ListAssociationsResponse(links.Value!, data.Value!, itemsTotal.Value!.Value!, pagesTotal.Value!.Value!);
         }

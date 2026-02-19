@@ -278,6 +278,17 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!accountNumber.IsSet)
+                throw new ArgumentException("Property is required for class BRLocalAccountIdentification.", nameof(accountNumber));
+
+            if (!bankCode.IsSet)
+                throw new ArgumentException("Property is required for class BRLocalAccountIdentification.", nameof(bankCode));
+
+            if (!branchNumber.IsSet)
+                throw new ArgumentException("Property is required for class BRLocalAccountIdentification.", nameof(branchNumber));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class BRLocalAccountIdentification.", nameof(type));
 
             return new BRLocalAccountIdentification(accountNumber.Value!, bankCode.Value!, branchNumber.Value!, ispb, type.Value!.Value!);
         }

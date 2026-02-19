@@ -120,6 +120,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!transferLimitIds.IsSet)
+                throw new ArgumentException("Property is required for class ApproveTransferLimitRequest.", nameof(transferLimitIds));
 
             return new ApproveTransferLimitRequest(transferLimitIds.Value!);
         }

@@ -148,6 +148,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!accountHolders.IsSet)
+                throw new ArgumentException("Property is required for class PaginatedAccountHoldersResponse.", nameof(accountHolders));
+
+            if (!hasNext.IsSet)
+                throw new ArgumentException("Property is required for class PaginatedAccountHoldersResponse.", nameof(hasNext));
+
+            if (!hasPrevious.IsSet)
+                throw new ArgumentException("Property is required for class PaginatedAccountHoldersResponse.", nameof(hasPrevious));
 
             return new PaginatedAccountHoldersResponse(accountHolders.Value!, hasNext.Value!.Value!, hasPrevious.Value!.Value!);
         }

@@ -134,6 +134,11 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!publicKey.IsSet)
+                throw new ArgumentException("Property is required for class PublicKeyResponse.", nameof(publicKey));
+
+            if (!publicKeyExpiryDate.IsSet)
+                throw new ArgumentException("Property is required for class PublicKeyResponse.", nameof(publicKeyExpiryDate));
 
             return new PublicKeyResponse(publicKey.Value!, publicKeyExpiryDate.Value!);
         }

@@ -266,6 +266,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!accountHolderId.IsSet)
+                throw new ArgumentException("Property is required for class BalanceAccountInfo.", nameof(accountHolderId));
 
             return new BalanceAccountInfo(accountHolderId.Value!, defaultCurrencyCode, description, metadata, migratedAccountCode, platformPaymentConfiguration, reference, timeZone);
         }

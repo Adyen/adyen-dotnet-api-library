@@ -464,6 +464,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!balancePlatform.IsSet)
+                throw new ArgumentException("Property is required for class TransferRouteRequest.", nameof(balancePlatform));
+
+            if (!category.IsSet)
+                throw new ArgumentException("Property is required for class TransferRouteRequest.", nameof(category));
+
+            if (!currency.IsSet)
+                throw new ArgumentException("Property is required for class TransferRouteRequest.", nameof(currency));
 
             return new TransferRouteRequest(balancePlatform.Value!, category.Value!.Value!, currency.Value!, balanceAccountId, counterparty, country, priorities);
         }

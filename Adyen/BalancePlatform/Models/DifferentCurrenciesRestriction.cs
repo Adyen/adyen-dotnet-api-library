@@ -141,6 +141,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!operation.IsSet)
+                throw new ArgumentException("Property is required for class DifferentCurrenciesRestriction.", nameof(operation));
 
             return new DifferentCurrenciesRestriction(operation.Value!, value);
         }

@@ -229,6 +229,11 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!ids.IsSet)
+                throw new ArgumentException("Property is required for class AssociationInitiateRequest.", nameof(ids));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class AssociationInitiateRequest.", nameof(type));
 
             return new AssociationInitiateRequest(ids.Value!, type.Value!.Value!);
         }

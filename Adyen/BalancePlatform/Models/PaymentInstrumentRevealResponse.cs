@@ -120,6 +120,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!encryptedData.IsSet)
+                throw new ArgumentException("Property is required for class PaymentInstrumentRevealResponse.", nameof(encryptedData));
 
             return new PaymentInstrumentRevealResponse(encryptedData.Value!);
         }

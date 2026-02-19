@@ -134,6 +134,11 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!encryptedPinBlock.IsSet)
+                throw new ArgumentException("Property is required for class RevealPinResponse.", nameof(encryptedPinBlock));
+
+            if (!token.IsSet)
+                throw new ArgumentException("Property is required for class RevealPinResponse.", nameof(token));
 
             return new RevealPinResponse(encryptedPinBlock.Value!, token.Value!);
         }

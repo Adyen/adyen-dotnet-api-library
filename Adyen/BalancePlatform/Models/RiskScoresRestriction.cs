@@ -140,6 +140,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!operation.IsSet)
+                throw new ArgumentException("Property is required for class RiskScoresRestriction.", nameof(operation));
 
             return new RiskScoresRestriction(operation.Value!, value);
         }
