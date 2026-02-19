@@ -51,8 +51,7 @@ For more information, refer to our [documentation](https://docs.adyen.com/) or t
 ## Prerequisites
 - [Adyen Test Account](https://docs.adyen.com/get-started-with-adyen)
 - [Adyen API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). For testing, your API credential needs to have the [API PCI Payments role](https://docs.adyen.com/development-resources/api-credentials#roles).
-- Adyen .NET API Library supports .NET Standard 2.0 and .NET 6.0
-- In order for Adyen .NET API Library to support local terminal api certificate validation the application should be set to .net core 2.1 and above or .net framework 4.6.1 and above
+- Adyen .NET API Library supports .NET Standard 2.0 and .NET 8.0  
 
 ## Installation
 Simply download and restore nuget packages https://www.nuget.org/packages/Adyen/
@@ -106,10 +105,9 @@ var request = new PaymentRequest(
     );
 
 var response = await paymentsService.PaymentsAsync(request);
-if (response.IsOk)
+if (response.TryDeserializeOkResponse(out var result);
 {
-    response.TryDeserializeOkResponse(out var result);
-    var resultCode = result?.ResultCode;
+    Console.WriteLine(result); // result.ResultCode 
 }
 ```
 Use the `RequestOptions` object to pass additional headers like the IdempotencyKey or other custom request header:
