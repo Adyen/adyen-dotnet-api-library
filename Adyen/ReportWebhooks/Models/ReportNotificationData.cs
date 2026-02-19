@@ -256,6 +256,14 @@ namespace Adyen.ReportWebhooks.Models
                 }
             }
             
+            if (!downloadUrl.IsSet)
+                throw new ArgumentException("Property is required for class ReportNotificationData.", nameof(downloadUrl));
+
+            if (!fileName.IsSet)
+                throw new ArgumentException("Property is required for class ReportNotificationData.", nameof(fileName));
+
+            if (!reportType.IsSet)
+                throw new ArgumentException("Property is required for class ReportNotificationData.", nameof(reportType));
 
             return new ReportNotificationData(downloadUrl.Value!, fileName.Value!, reportType.Value!, accountHolder, balanceAccount, balancePlatform, creationDate, id);
         }
