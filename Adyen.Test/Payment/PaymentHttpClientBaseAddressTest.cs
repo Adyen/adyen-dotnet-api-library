@@ -1,45 +1,41 @@
 ﻿using Adyen.Core.Options;
-using Adyen.Recurring.Client;
-using Adyen.Recurring.Models;
-using Adyen.Recurring.Extensions;
+using Adyen.Payment.Extensions;
+using Adyen.Payment.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Text.Json;
-using Adyen.Recurring.Services;
 
-namespace Adyen.Test.Recurring
+namespace Adyen.Test.Payment
 {
     [TestClass]
-    public class RecurringHttpClientBaseAddressTest
+    public class PaymentHttpClientBaseAddressTest
     {
         
-        
         [TestMethod]
-        public async Task RecurringService_TestUrl_IsCorrect()
+        public async Task CheckoutService_TestUrl_IsCorrect()
         {
             // Arrange with test configuration
             IHost host = Host.CreateDefaultBuilder()
-                .ConfigureRecurring((context, services, config) =>
+                .ConfigurePayment((context, services, config) =>
                 {
                     config.ConfigureAdyenOptions(options =>
                     {
                         options.Environment = AdyenEnvironment.Test;
                     });
-                    services.AddAllRecurringServices();
+                    services.AddAllPaymentServices();
                 })
                 .Build();
             
 
             // Act
-            var recurringService = host.Services.GetRequiredService<IRecurringService>();     
+            var paymentsService = host.Services.GetRequiredService<IPaymentsService>();     
             
             // Assert
-            Assert.IsNotNull(recurringService.HttpClient.BaseAddress);
-            var baseAddress = recurringService.HttpClient.BaseAddress.ToString();
+            Assert.IsNotNull(paymentsService.HttpClient.BaseAddress);
+            var baseAddress = paymentsService.HttpClient.BaseAddress.ToString();
 
             Assert.IsNotNull(baseAddress);
-            StringAssert.StartsWith(baseAddress, "https://paltokenization-test.adyen.com/paltokenization/servlet/Recurring/v");
+            StringAssert.StartsWith(baseAddress, "https://pal-test.adyen.com/pal/servlet/Payment/v");
         }        
 
         [TestMethod]
@@ -47,27 +43,28 @@ namespace Adyen.Test.Recurring
         {
             // Arrange with live configuration
             IHost host = Host.CreateDefaultBuilder()
-                .ConfigureRecurring((context, services, config) =>
+                .ConfigurePayment((context, services, config) =>
                 {
                     config.ConfigureAdyenOptions(options =>
                     {
                         options.Environment = AdyenEnvironment.Live;
                         options.LiveEndpointUrlPrefix = "mycompany";
                     });
-                    services.AddAllRecurringServices();
+                    services.AddAllPaymentServices();
                 })
                 .Build();
             
 
             // Act
-            var recurringService = host.Services.GetRequiredService<IRecurringService>();
+            var paymentsService = host.Services.GetRequiredService<IPaymentsService>();     
             
             // Assert
-            Assert.IsNotNull(recurringService.HttpClient.BaseAddress);
-            var baseAddress = recurringService.HttpClient.BaseAddress.ToString();
+            Assert.IsNotNull(paymentsService.HttpClient.BaseAddress);
+            var baseAddress = paymentsService.HttpClient.BaseAddress.ToString();
 
             Assert.IsNotNull(baseAddress);
-            StringAssert.StartsWith(baseAddress, "https://mycompany-paltokenization-live.adyenpayments.com/paltokenization/servlet/Recurring/v");
+            StringAssert.StartsWith(baseAddress, "https://mycompany-pal-live.adyenpayments.com/pal/servlet/Payment/v68");
+            
         }        
         
     }
