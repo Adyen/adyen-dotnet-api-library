@@ -119,6 +119,8 @@ namespace Adyen.Disputes.Models
                 }
             }
             
+            if (!disputeServiceResult.IsSet)
+                throw new ArgumentException("Property is required for class SupplyDefenseDocumentResponse.", nameof(disputeServiceResult));
 
             return new SupplyDefenseDocumentResponse(disputeServiceResult.Value!);
         }

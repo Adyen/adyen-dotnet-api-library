@@ -134,6 +134,11 @@ namespace Adyen.Disputes.Models
                 }
             }
             
+            if (!disputePspReference.IsSet)
+                throw new ArgumentException("Property is required for class AcceptDisputeRequest.", nameof(disputePspReference));
+
+            if (!merchantAccountCode.IsSet)
+                throw new ArgumentException("Property is required for class AcceptDisputeRequest.", nameof(merchantAccountCode));
 
             return new AcceptDisputeRequest(disputePspReference.Value!, merchantAccountCode.Value!);
         }

@@ -148,6 +148,14 @@ namespace Adyen.Disputes.Models
                 }
             }
             
+            if (!defenseDocuments.IsSet)
+                throw new ArgumentException("Property is required for class SupplyDefenseDocumentRequest.", nameof(defenseDocuments));
+
+            if (!disputePspReference.IsSet)
+                throw new ArgumentException("Property is required for class SupplyDefenseDocumentRequest.", nameof(disputePspReference));
+
+            if (!merchantAccountCode.IsSet)
+                throw new ArgumentException("Property is required for class SupplyDefenseDocumentRequest.", nameof(merchantAccountCode));
 
             return new SupplyDefenseDocumentRequest(defenseDocuments.Value!, disputePspReference.Value!, merchantAccountCode.Value!);
         }
