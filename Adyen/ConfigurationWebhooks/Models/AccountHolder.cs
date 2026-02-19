@@ -478,6 +478,11 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class AccountHolder.", nameof(id));
+
+            if (!legalEntityId.IsSet)
+                throw new ArgumentException("Property is required for class AccountHolder.", nameof(legalEntityId));
 
             return new AccountHolder(id.Value!, legalEntityId.Value!, balancePlatform, capabilities, contactDetails, description, metadata, migratedAccountHolderCode, primaryBalanceAccount, reference, status, timeZone, verificationDeadlines);
         }

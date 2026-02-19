@@ -277,6 +277,14 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class NetworkTokenNotificationRequest.", nameof(data));
+
+            if (!environment.IsSet)
+                throw new ArgumentException("Property is required for class NetworkTokenNotificationRequest.", nameof(environment));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class NetworkTokenNotificationRequest.", nameof(type));
 
             return new NetworkTokenNotificationRequest(data.Value!, environment.Value!, type.Value!.Value!, timestamp);
         }

@@ -272,6 +272,8 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class SweepSchedule.", nameof(type));
 
             return new SweepSchedule(type.Value!.Value!, cronExpression);
         }

@@ -167,6 +167,14 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+            if (!address.IsSet)
+                throw new ArgumentException("Property is required for class ContactDetails.", nameof(address));
+
+            if (!email.IsSet)
+                throw new ArgumentException("Property is required for class ContactDetails.", nameof(email));
+
+            if (!phone.IsSet)
+                throw new ArgumentException("Property is required for class ContactDetails.", nameof(phone));
 
             return new ContactDetails(address.Value!, email.Value!, phone.Value!, webAddress);
         }

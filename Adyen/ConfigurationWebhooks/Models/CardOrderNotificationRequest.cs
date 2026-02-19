@@ -277,6 +277,14 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class CardOrderNotificationRequest.", nameof(data));
+
+            if (!environment.IsSet)
+                throw new ArgumentException("Property is required for class CardOrderNotificationRequest.", nameof(environment));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class CardOrderNotificationRequest.", nameof(type));
 
             return new CardOrderNotificationRequest(data.Value!, environment.Value!, type.Value!.Value!, timestamp);
         }
