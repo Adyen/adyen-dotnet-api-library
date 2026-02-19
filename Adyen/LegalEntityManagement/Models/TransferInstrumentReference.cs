@@ -176,6 +176,11 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!accountIdentifier.IsSet)
+                throw new ArgumentException("Property is required for class TransferInstrumentReference.", nameof(accountIdentifier));
+
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class TransferInstrumentReference.", nameof(id));
 
             return new TransferInstrumentReference(accountIdentifier.Value!, id.Value!, realLastFour, trustedSource);
         }

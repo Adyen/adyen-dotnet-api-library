@@ -225,6 +225,8 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!country.IsSet)
+                throw new ArgumentException("Property is required for class Address.", nameof(country));
 
             return new Address(country.Value!, city, postalCode, stateOrProvince, street, street2);
         }

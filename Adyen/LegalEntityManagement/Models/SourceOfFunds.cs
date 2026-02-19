@@ -602,6 +602,8 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!adyenProcessedFunds.IsSet)
+                throw new ArgumentException("Property is required for class SourceOfFunds.", nameof(adyenProcessedFunds));
 
             return new SourceOfFunds(adyenProcessedFunds.Value!.Value!, amount, assetMonthsHeld, cryptocurrencyExchange, dateOfFundsReceived, dateOfSourceEvent, description, financiers, originatorLegalEntityId, purpose, relationship, type, website);
         }

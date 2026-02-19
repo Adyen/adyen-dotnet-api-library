@@ -162,6 +162,8 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!themes.IsSet)
+                throw new ArgumentException("Property is required for class OnboardingThemes.", nameof(themes));
 
             return new OnboardingThemes(themes.Value!, next, previous);
         }

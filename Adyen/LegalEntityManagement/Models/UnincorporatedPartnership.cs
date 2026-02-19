@@ -798,6 +798,14 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!countryOfGoverningLaw.IsSet)
+                throw new ArgumentException("Property is required for class UnincorporatedPartnership.", nameof(countryOfGoverningLaw));
+
+            if (!name.IsSet)
+                throw new ArgumentException("Property is required for class UnincorporatedPartnership.", nameof(name));
+
+            if (!registeredAddress.IsSet)
+                throw new ArgumentException("Property is required for class UnincorporatedPartnership.", nameof(registeredAddress));
 
             return new UnincorporatedPartnership(countryOfGoverningLaw.Value!, name.Value!, registeredAddress.Value!, dateOfIncorporation, description, doingBusinessAs, doingBusinessAsAbsent, principalPlaceOfBusiness, registrationNumber, taxInformation, type, vatAbsenceReason, vatNumber);
         }

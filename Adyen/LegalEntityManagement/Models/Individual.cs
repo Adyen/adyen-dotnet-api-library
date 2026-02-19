@@ -295,6 +295,11 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!name.IsSet)
+                throw new ArgumentException("Property is required for class Individual.", nameof(name));
+
+            if (!residentialAddress.IsSet)
+                throw new ArgumentException("Property is required for class Individual.", nameof(residentialAddress));
 
             return new Individual(name.Value!, residentialAddress.Value!, birthData, email, identificationData, nationality, phone, support, taxInformation, webData);
         }

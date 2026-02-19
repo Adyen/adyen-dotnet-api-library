@@ -642,6 +642,11 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!description.IsSet)
+                throw new ArgumentException("Property is required for class Document.", nameof(description));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class Document.", nameof(type));
 
             return new Document(description.Value!, type.Value!.Value!, attachment, attachments, creationDate, expiryDate, fileName, id, issuerCountry, issuerState, modificationDate, number, owner);
         }

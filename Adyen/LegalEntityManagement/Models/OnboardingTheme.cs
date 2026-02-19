@@ -200,6 +200,14 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!createdAt.IsSet)
+                throw new ArgumentException("Property is required for class OnboardingTheme.", nameof(createdAt));
+
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class OnboardingTheme.", nameof(id));
+
+            if (!properties.IsSet)
+                throw new ArgumentException("Property is required for class OnboardingTheme.", nameof(properties));
 
             return new OnboardingTheme(createdAt.Value!.Value!, id.Value!, properties.Value!, description, updatedAt);
         }
