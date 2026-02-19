@@ -343,6 +343,17 @@ namespace Adyen.BalanceControl.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class BalanceTransferRequest.", nameof(amount));
+
+            if (!fromMerchant.IsSet)
+                throw new ArgumentException("Property is required for class BalanceTransferRequest.", nameof(fromMerchant));
+
+            if (!toMerchant.IsSet)
+                throw new ArgumentException("Property is required for class BalanceTransferRequest.", nameof(toMerchant));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class BalanceTransferRequest.", nameof(type));
 
             return new BalanceTransferRequest(amount.Value!, fromMerchant.Value!, toMerchant.Value!, type.Value!.Value!, description, reference);
         }
