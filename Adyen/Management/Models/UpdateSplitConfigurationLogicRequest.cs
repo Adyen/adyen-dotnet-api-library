@@ -1928,6 +1928,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!commission.IsSet)
+                throw new ArgumentException("Property is required for class UpdateSplitConfigurationLogicRequest.", nameof(commission));
 
             return new UpdateSplitConfigurationLogicRequest(commission.Value!, acquiringFees, additionalCommission, adyenCommission, adyenFees, adyenMarkup, chargeback, chargebackCostAllocation, interchange, paymentFee, refund, refundCostAllocation, remainder, schemeFee, splitLogicId, surcharge, tip);
         }

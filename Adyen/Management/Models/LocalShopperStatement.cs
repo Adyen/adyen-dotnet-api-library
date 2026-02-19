@@ -134,6 +134,11 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!script.IsSet)
+                throw new ArgumentException("Property is required for class LocalShopperStatement.", nameof(script));
+
+            if (!value.IsSet)
+                throw new ArgumentException("Property is required for class LocalShopperStatement.", nameof(value));
 
             return new LocalShopperStatement(script.Value!, value.Value!);
         }

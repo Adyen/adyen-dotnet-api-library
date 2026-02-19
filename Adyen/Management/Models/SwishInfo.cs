@@ -120,6 +120,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!swishNumber.IsSet)
+                throw new ArgumentException("Property is required for class SwishInfo.", nameof(swishNumber));
 
             return new SwishInfo(swishNumber.Value!);
         }

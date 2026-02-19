@@ -148,6 +148,14 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!conecsId.IsSet)
+                throw new ArgumentException("Property is required for class MealVoucherFRInfo.", nameof(conecsId));
+
+            if (!siret.IsSet)
+                throw new ArgumentException("Property is required for class MealVoucherFRInfo.", nameof(siret));
+
+            if (!subTypes.IsSet)
+                throw new ArgumentException("Property is required for class MealVoucherFRInfo.", nameof(subTypes));
 
             return new MealVoucherFRInfo(conecsId.Value!, siret.Value!, subTypes.Value!);
         }

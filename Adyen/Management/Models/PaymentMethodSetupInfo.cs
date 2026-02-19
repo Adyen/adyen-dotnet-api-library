@@ -2570,6 +2570,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class PaymentMethodSetupInfo.", nameof(type));
 
             return new PaymentMethodSetupInfo(type.Value!.Value!, accel, affirm, afterpayTouch, alipayPlus, amex, applePay, bcmc, businessLineId, cartesBancaires, clearpay, countries, cup, currencies, customRoutingFlags, diners, discover, eftDirectdebitCA, eftposAustralia, girocard, givex, googlePay, ideal, interacCard, jcb, klarna, maestro, maestroUsa, mc, mealVoucherFR, nyce, paybybankPlaid, payme, paypal, payto, pulse, reference, sepadirectdebit, shopperInteraction, sodexo, sofort, star, storeIds, svs, swish, ticket, twint, valuelink, vipps, visa, wechatpay, wechatpayPos);
         }

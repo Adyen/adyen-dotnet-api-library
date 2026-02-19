@@ -185,6 +185,14 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!generateHmac.IsSet)
+                throw new ArgumentException("Property is required for class WebhookLinks.", nameof(generateHmac));
+
+            if (!self.IsSet)
+                throw new ArgumentException("Property is required for class WebhookLinks.", nameof(self));
+
+            if (!testWebhook.IsSet)
+                throw new ArgumentException("Property is required for class WebhookLinks.", nameof(testWebhook));
 
             return new WebhookLinks(generateHmac.Value!, self.Value!, testWebhook.Value!, company, merchant);
         }

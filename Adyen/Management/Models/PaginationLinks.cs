@@ -185,6 +185,14 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!first.IsSet)
+                throw new ArgumentException("Property is required for class PaginationLinks.", nameof(first));
+
+            if (!last.IsSet)
+                throw new ArgumentException("Property is required for class PaginationLinks.", nameof(last));
+
+            if (!self.IsSet)
+                throw new ArgumentException("Property is required for class PaginationLinks.", nameof(self));
 
             return new PaginationLinks(first.Value!, last.Value!, self.Value!, next, prev);
         }

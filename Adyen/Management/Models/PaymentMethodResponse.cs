@@ -1495,6 +1495,11 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!itemsTotal.IsSet)
+                throw new ArgumentException("Property is required for class PaymentMethodResponse.", nameof(itemsTotal));
+
+            if (!pagesTotal.IsSet)
+                throw new ArgumentException("Property is required for class PaymentMethodResponse.", nameof(pagesTotal));
 
             return new PaymentMethodResponse(itemsTotal.Value!.Value!, pagesTotal.Value!.Value!, links, data, typesWithErrors);
         }

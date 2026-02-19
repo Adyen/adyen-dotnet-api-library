@@ -179,6 +179,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!self.IsSet)
+                throw new ArgumentException("Property is required for class CompanyLinks.", nameof(self));
 
             return new CompanyLinks(self.Value!, apiCredentials, users, webhooks);
         }

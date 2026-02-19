@@ -162,6 +162,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!transferInstrumentId.IsSet)
+                throw new ArgumentException("Property is required for class PayoutSettingsRequest.", nameof(transferInstrumentId));
 
             return new PayoutSettingsRequest(transferInstrumentId.Value!, enabled, enabledFromDate);
         }

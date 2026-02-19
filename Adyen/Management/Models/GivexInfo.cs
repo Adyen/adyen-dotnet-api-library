@@ -266,6 +266,17 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!currencyCode.IsSet)
+                throw new ArgumentException("Property is required for class GivexInfo.", nameof(currencyCode));
+
+            if (!password.IsSet)
+                throw new ArgumentException("Property is required for class GivexInfo.", nameof(password));
+
+            if (!paymentFlow.IsSet)
+                throw new ArgumentException("Property is required for class GivexInfo.", nameof(paymentFlow));
+
+            if (!username.IsSet)
+                throw new ArgumentException("Property is required for class GivexInfo.", nameof(username));
 
             return new GivexInfo(currencyCode.Value!, password.Value!, paymentFlow.Value!.Value!, username.Value!);
         }

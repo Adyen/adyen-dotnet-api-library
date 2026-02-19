@@ -148,6 +148,14 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!displayName.IsSet)
+                throw new ArgumentException("Property is required for class PayMeInfo.", nameof(displayName));
+
+            if (!logo.IsSet)
+                throw new ArgumentException("Property is required for class PayMeInfo.", nameof(logo));
+
+            if (!supportEmail.IsSet)
+                throw new ArgumentException("Property is required for class PayMeInfo.", nameof(supportEmail));
 
             return new PayMeInfo(displayName.Value!, logo.Value!, supportEmail.Value!);
         }

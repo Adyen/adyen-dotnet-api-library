@@ -134,6 +134,11 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class File.", nameof(data));
+
+            if (!name.IsSet)
+                throw new ArgumentException("Property is required for class File.", nameof(name));
 
             return new File(data.Value!, name.Value!);
         }

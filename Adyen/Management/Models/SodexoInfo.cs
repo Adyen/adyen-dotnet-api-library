@@ -120,6 +120,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!merchantContactPhone.IsSet)
+                throw new ArgumentException("Property is required for class SodexoInfo.", nameof(merchantContactPhone));
 
             return new SodexoInfo(merchantContactPhone.Value!);
         }

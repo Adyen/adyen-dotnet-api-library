@@ -254,6 +254,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!supportEmail.IsSet)
+                throw new ArgumentException("Property is required for class AffirmInfo.", nameof(supportEmail));
 
             return new AffirmInfo(supportEmail.Value!, pricePlan);
         }

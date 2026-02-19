@@ -246,6 +246,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!companyId.IsSet)
+                throw new ArgumentException("Property is required for class CreateMerchantRequest.", nameof(companyId));
 
             return new CreateMerchantRequest(companyId.Value!, businessLineId, description, legalEntityId, pricingPlan, reference, salesChannels);
         }

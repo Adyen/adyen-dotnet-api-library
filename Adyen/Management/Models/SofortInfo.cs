@@ -134,6 +134,11 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!currencyCode.IsSet)
+                throw new ArgumentException("Property is required for class SofortInfo.", nameof(currencyCode));
+
+            if (!logo.IsSet)
+                throw new ArgumentException("Property is required for class SofortInfo.", nameof(logo));
 
             return new SofortInfo(currencyCode.Value!, logo.Value!);
         }

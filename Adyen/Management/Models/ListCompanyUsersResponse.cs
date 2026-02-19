@@ -175,6 +175,11 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!itemsTotal.IsSet)
+                throw new ArgumentException("Property is required for class ListCompanyUsersResponse.", nameof(itemsTotal));
+
+            if (!pagesTotal.IsSet)
+                throw new ArgumentException("Property is required for class ListCompanyUsersResponse.", nameof(pagesTotal));
 
             return new ListCompanyUsersResponse(itemsTotal.Value!.Value!, pagesTotal.Value!.Value!, links, data);
         }

@@ -619,6 +619,20 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!currency.IsSet)
+                throw new ArgumentException("Property is required for class SplitConfigurationRule.", nameof(currency));
+
+            if (!fundingSource.IsSet)
+                throw new ArgumentException("Property is required for class SplitConfigurationRule.", nameof(fundingSource));
+
+            if (!paymentMethod.IsSet)
+                throw new ArgumentException("Property is required for class SplitConfigurationRule.", nameof(paymentMethod));
+
+            if (!shopperInteraction.IsSet)
+                throw new ArgumentException("Property is required for class SplitConfigurationRule.", nameof(shopperInteraction));
+
+            if (!splitLogic.IsSet)
+                throw new ArgumentException("Property is required for class SplitConfigurationRule.", nameof(splitLogic));
 
             return new SplitConfigurationRule(currency.Value!, fundingSource.Value!.Value!, paymentMethod.Value!, shopperInteraction.Value!.Value!, splitLogic.Value!, cardRegion, ruleId);
         }

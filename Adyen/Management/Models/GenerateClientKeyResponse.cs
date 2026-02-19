@@ -120,6 +120,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!clientKey.IsSet)
+                throw new ArgumentException("Property is required for class GenerateClientKeyResponse.", nameof(clientKey));
 
             return new GenerateClientKeyResponse(clientKey.Value!);
         }

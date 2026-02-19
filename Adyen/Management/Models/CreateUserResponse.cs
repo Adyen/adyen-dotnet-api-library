@@ -279,6 +279,20 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!email.IsSet)
+                throw new ArgumentException("Property is required for class CreateUserResponse.", nameof(email));
+
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class CreateUserResponse.", nameof(id));
+
+            if (!roles.IsSet)
+                throw new ArgumentException("Property is required for class CreateUserResponse.", nameof(roles));
+
+            if (!timeZoneCode.IsSet)
+                throw new ArgumentException("Property is required for class CreateUserResponse.", nameof(timeZoneCode));
+
+            if (!username.IsSet)
+                throw new ArgumentException("Property is required for class CreateUserResponse.", nameof(username));
 
             return new CreateUserResponse(email.Value!, id.Value!, roles.Value!, timeZoneCode.Value!, username.Value!, links, accountGroups, active, apps, name);
         }

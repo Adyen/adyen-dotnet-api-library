@@ -134,6 +134,11 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!authorisationMid.IsSet)
+                throw new ArgumentException("Property is required for class SvsInfo.", nameof(authorisationMid));
+
+            if (!currencyCode.IsSet)
+                throw new ArgumentException("Property is required for class SvsInfo.", nameof(currencyCode));
 
             return new SvsInfo(authorisationMid.Value!, currencyCode.Value!);
         }

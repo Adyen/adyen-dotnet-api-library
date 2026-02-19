@@ -226,6 +226,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class TestOutput.", nameof(status));
 
             return new TestOutput(status.Value!, merchantId, output, requestSent, responseCode, responseTime);
         }

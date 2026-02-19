@@ -134,6 +134,11 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!contactPersonName.IsSet)
+                throw new ArgumentException("Property is required for class WeChatPayInfo.", nameof(contactPersonName));
+
+            if (!email.IsSet)
+                throw new ArgumentException("Property is required for class WeChatPayInfo.", nameof(email));
 
             return new WeChatPayInfo(contactPersonName.Value!, email.Value!);
         }

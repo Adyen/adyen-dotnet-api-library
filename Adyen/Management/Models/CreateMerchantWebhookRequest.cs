@@ -704,6 +704,17 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!active.IsSet)
+                throw new ArgumentException("Property is required for class CreateMerchantWebhookRequest.", nameof(active));
+
+            if (!communicationFormat.IsSet)
+                throw new ArgumentException("Property is required for class CreateMerchantWebhookRequest.", nameof(communicationFormat));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class CreateMerchantWebhookRequest.", nameof(type));
+
+            if (!url.IsSet)
+                throw new ArgumentException("Property is required for class CreateMerchantWebhookRequest.", nameof(url));
 
             return new CreateMerchantWebhookRequest(active.Value!.Value!, communicationFormat.Value!.Value!, type.Value!, url.Value!, acceptsExpiredCertificate, acceptsSelfSignedCertificate, acceptsUntrustedRootCertificate, additionalSettings, description, encryptionProtocol, networkType, password, populateSoapActionHeader, username);
         }

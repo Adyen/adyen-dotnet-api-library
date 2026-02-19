@@ -284,6 +284,17 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!address.IsSet)
+                throw new ArgumentException("Property is required for class StoreCreationRequest.", nameof(address));
+
+            if (!description.IsSet)
+                throw new ArgumentException("Property is required for class StoreCreationRequest.", nameof(description));
+
+            if (!phoneNumber.IsSet)
+                throw new ArgumentException("Property is required for class StoreCreationRequest.", nameof(phoneNumber));
+
+            if (!shopperStatement.IsSet)
+                throw new ArgumentException("Property is required for class StoreCreationRequest.", nameof(shopperStatement));
 
             return new StoreCreationRequest(address.Value!, description.Value!, phoneNumber.Value!, shopperStatement.Value!, businessLineIds, externalReferenceId, localizedInformation, reference, splitConfiguration, subMerchantData);
         }

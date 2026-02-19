@@ -141,6 +141,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!merchantId.IsSet)
+                throw new ArgumentException("Property is required for class GooglePayInfo.", nameof(merchantId));
 
             return new GooglePayInfo(merchantId.Value!, reuseMerchantId);
         }

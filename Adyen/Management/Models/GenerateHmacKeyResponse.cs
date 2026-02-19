@@ -120,6 +120,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!hmacKey.IsSet)
+                throw new ArgumentException("Property is required for class GenerateHmacKeyResponse.", nameof(hmacKey));
 
             return new GenerateHmacKeyResponse(hmacKey.Value!);
         }

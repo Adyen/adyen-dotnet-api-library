@@ -413,6 +413,11 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class AndroidApp.", nameof(id));
+
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class AndroidApp.", nameof(status));
 
             return new AndroidApp(id.Value!, status.Value!.Value!, description, errorCode, errors, label, packageName, versionCode, versionName);
         }

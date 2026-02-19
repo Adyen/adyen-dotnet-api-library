@@ -134,6 +134,11 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!merchantName.IsSet)
+                throw new ArgumentException("Property is required for class PayToInfo.", nameof(merchantName));
+
+            if (!payToPurpose.IsSet)
+                throw new ArgumentException("Property is required for class PayToInfo.", nameof(payToPurpose));
 
             return new PayToInfo(merchantName.Value!, payToPurpose.Value!);
         }

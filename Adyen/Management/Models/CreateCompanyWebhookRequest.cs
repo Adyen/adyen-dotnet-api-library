@@ -845,6 +845,23 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!active.IsSet)
+                throw new ArgumentException("Property is required for class CreateCompanyWebhookRequest.", nameof(active));
+
+            if (!communicationFormat.IsSet)
+                throw new ArgumentException("Property is required for class CreateCompanyWebhookRequest.", nameof(communicationFormat));
+
+            if (!filterMerchantAccountType.IsSet)
+                throw new ArgumentException("Property is required for class CreateCompanyWebhookRequest.", nameof(filterMerchantAccountType));
+
+            if (!filterMerchantAccounts.IsSet)
+                throw new ArgumentException("Property is required for class CreateCompanyWebhookRequest.", nameof(filterMerchantAccounts));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class CreateCompanyWebhookRequest.", nameof(type));
+
+            if (!url.IsSet)
+                throw new ArgumentException("Property is required for class CreateCompanyWebhookRequest.", nameof(url));
 
             return new CreateCompanyWebhookRequest(active.Value!.Value!, communicationFormat.Value!.Value!, filterMerchantAccountType.Value!.Value!, filterMerchantAccounts.Value!, type.Value!, url.Value!, acceptsExpiredCertificate, acceptsSelfSignedCertificate, acceptsUntrustedRootCertificate, additionalSettings, description, encryptionProtocol, networkType, password, populateSoapActionHeader, username);
         }
