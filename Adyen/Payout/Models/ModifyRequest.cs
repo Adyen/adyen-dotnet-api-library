@@ -155,6 +155,11 @@ namespace Adyen.Payout.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class ModifyRequest.", nameof(merchantAccount));
+
+            if (!originalReference.IsSet)
+                throw new ArgumentException("Property is required for class ModifyRequest.", nameof(originalReference));
 
             return new ModifyRequest(merchantAccount.Value!, originalReference.Value!, additionalData);
         }

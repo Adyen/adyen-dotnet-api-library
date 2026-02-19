@@ -495,6 +495,14 @@ namespace Adyen.Payout.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class PayoutRequest.", nameof(amount));
+
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class PayoutRequest.", nameof(merchantAccount));
+
+            if (!reference.IsSet)
+                throw new ArgumentException("Property is required for class PayoutRequest.", nameof(reference));
 
             return new PayoutRequest(amount.Value!, merchantAccount.Value!, reference.Value!, billingAddress, card, fraudOffset, fundSource, recurring, selectedRecurringDetailReference, shopperEmail, shopperInteraction, shopperName, shopperReference, telephoneNumber);
         }

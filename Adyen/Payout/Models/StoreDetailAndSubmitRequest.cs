@@ -545,6 +545,32 @@ namespace Adyen.Payout.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailAndSubmitRequest.", nameof(amount));
+
+            if (!dateOfBirth.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailAndSubmitRequest.", nameof(dateOfBirth));
+
+            if (!entityType.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailAndSubmitRequest.", nameof(entityType));
+
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailAndSubmitRequest.", nameof(merchantAccount));
+
+            if (!nationality.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailAndSubmitRequest.", nameof(nationality));
+
+            if (!recurring.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailAndSubmitRequest.", nameof(recurring));
+
+            if (!reference.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailAndSubmitRequest.", nameof(reference));
+
+            if (!shopperEmail.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailAndSubmitRequest.", nameof(shopperEmail));
+
+            if (!shopperReference.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailAndSubmitRequest.", nameof(shopperReference));
 
             return new StoreDetailAndSubmitRequest(amount.Value!, dateOfBirth.Value!.Value!, entityType.Value!.Value!, merchantAccount.Value!, nationality.Value!, recurring.Value!, reference.Value!, shopperEmail.Value!, shopperReference.Value!, additionalData, bank, billingAddress, card, fraudOffset, selectedBrand, shopperName, shopperStatement, socialSecurityNumber, telephoneNumber);
         }

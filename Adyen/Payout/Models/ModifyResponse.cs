@@ -155,6 +155,11 @@ namespace Adyen.Payout.Models
                 }
             }
             
+            if (!pspReference.IsSet)
+                throw new ArgumentException("Property is required for class ModifyResponse.", nameof(pspReference));
+
+            if (!response.IsSet)
+                throw new ArgumentException("Property is required for class ModifyResponse.", nameof(response));
 
             return new ModifyResponse(pspReference.Value!, response.Value!, additionalData);
         }

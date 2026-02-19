@@ -497,6 +497,26 @@ namespace Adyen.Payout.Models
                 }
             }
             
+            if (!dateOfBirth.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailRequest.", nameof(dateOfBirth));
+
+            if (!entityType.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailRequest.", nameof(entityType));
+
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailRequest.", nameof(merchantAccount));
+
+            if (!nationality.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailRequest.", nameof(nationality));
+
+            if (!recurring.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailRequest.", nameof(recurring));
+
+            if (!shopperEmail.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailRequest.", nameof(shopperEmail));
+
+            if (!shopperReference.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailRequest.", nameof(shopperReference));
 
             return new StoreDetailRequest(dateOfBirth.Value!.Value!, entityType.Value!.Value!, merchantAccount.Value!, nationality.Value!, recurring.Value!, shopperEmail.Value!, shopperReference.Value!, additionalData, bank, billingAddress, card, fraudOffset, selectedBrand, shopperName, socialSecurityNumber, telephoneNumber);
         }
