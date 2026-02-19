@@ -490,6 +490,17 @@ namespace Adyen.StoredValue.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class StoredValueLoadRequest.", nameof(amount));
+
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class StoredValueLoadRequest.", nameof(merchantAccount));
+
+            if (!paymentMethod.IsSet)
+                throw new ArgumentException("Property is required for class StoredValueLoadRequest.", nameof(paymentMethod));
+
+            if (!reference.IsSet)
+                throw new ArgumentException("Property is required for class StoredValueLoadRequest.", nameof(reference));
 
             return new StoredValueLoadRequest(amount.Value!, merchantAccount.Value!, paymentMethod.Value!, reference.Value!, loadType, recurringDetailReference, shopperInteraction, shopperReference, store);
         }

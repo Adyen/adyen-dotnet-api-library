@@ -386,6 +386,17 @@ namespace Adyen.StoredValue.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class StoredValueBalanceMergeRequest.", nameof(merchantAccount));
+
+            if (!paymentMethod.IsSet)
+                throw new ArgumentException("Property is required for class StoredValueBalanceMergeRequest.", nameof(paymentMethod));
+
+            if (!reference.IsSet)
+                throw new ArgumentException("Property is required for class StoredValueBalanceMergeRequest.", nameof(reference));
+
+            if (!sourcePaymentMethod.IsSet)
+                throw new ArgumentException("Property is required for class StoredValueBalanceMergeRequest.", nameof(sourcePaymentMethod));
 
             return new StoredValueBalanceMergeRequest(merchantAccount.Value!, paymentMethod.Value!, reference.Value!, sourcePaymentMethod.Value!, amount, recurringDetailReference, shopperInteraction, shopperReference, store);
         }
