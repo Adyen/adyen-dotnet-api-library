@@ -268,6 +268,14 @@ namespace Adyen.ReportWebhooks.Models
                 }
             }
             
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class ReportNotificationRequest.", nameof(data));
+
+            if (!environment.IsSet)
+                throw new ArgumentException("Property is required for class ReportNotificationRequest.", nameof(environment));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class ReportNotificationRequest.", nameof(type));
 
             return new ReportNotificationRequest(data.Value!, environment.Value!, type.Value!.Value!, timestamp);
         }
