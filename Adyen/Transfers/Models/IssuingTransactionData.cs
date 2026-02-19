@@ -236,6 +236,8 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class IssuingTransactionData.", nameof(type));
 
             return new IssuingTransactionData(captureCycleId, type.Value!.Value!);
         }

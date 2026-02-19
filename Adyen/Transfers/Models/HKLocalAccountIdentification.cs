@@ -243,6 +243,14 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+            if (!accountNumber.IsSet)
+                throw new ArgumentException("Property is required for class HKLocalAccountIdentification.", nameof(accountNumber));
+
+            if (!clearingCode.IsSet)
+                throw new ArgumentException("Property is required for class HKLocalAccountIdentification.", nameof(clearingCode));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class HKLocalAccountIdentification.", nameof(type));
 
             return new HKLocalAccountIdentification(accountNumber.Value!, clearingCode.Value!, type.Value!.Value!);
         }

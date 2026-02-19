@@ -382,6 +382,17 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+            if (!accountNumber.IsSet)
+                throw new ArgumentException("Property is required for class CALocalAccountIdentification.", nameof(accountNumber));
+
+            if (!institutionNumber.IsSet)
+                throw new ArgumentException("Property is required for class CALocalAccountIdentification.", nameof(institutionNumber));
+
+            if (!transitNumber.IsSet)
+                throw new ArgumentException("Property is required for class CALocalAccountIdentification.", nameof(transitNumber));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class CALocalAccountIdentification.", nameof(type));
 
             return new CALocalAccountIdentification(accountNumber.Value!, institutionNumber.Value!, transitNumber.Value!, accountType, type.Value!.Value!);
         }

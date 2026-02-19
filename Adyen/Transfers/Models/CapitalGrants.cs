@@ -120,6 +120,8 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+            if (!grants.IsSet)
+                throw new ArgumentException("Property is required for class CapitalGrants.", nameof(grants));
 
             return new CapitalGrants(grants.Value!);
         }

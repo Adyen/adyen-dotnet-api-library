@@ -449,6 +449,11 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class InternalReviewTrackingData.", nameof(status));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class InternalReviewTrackingData.", nameof(type));
 
             return new InternalReviewTrackingData(status.Value!.Value!, reason, type.Value!.Value!);
         }
