@@ -148,6 +148,14 @@ namespace Adyen.Disputes.Models
                 }
             }
             
+            if (!available.IsSet)
+                throw new ArgumentException("Property is required for class DefenseDocumentType.", nameof(available));
+
+            if (!defenseDocumentTypeCode.IsSet)
+                throw new ArgumentException("Property is required for class DefenseDocumentType.", nameof(defenseDocumentTypeCode));
+
+            if (!requirementLevel.IsSet)
+                throw new ArgumentException("Property is required for class DefenseDocumentType.", nameof(requirementLevel));
 
             return new DefenseDocumentType(available.Value!.Value!, defenseDocumentTypeCode.Value!, requirementLevel.Value!);
         }

@@ -148,6 +148,14 @@ namespace Adyen.Disputes.Models
                 }
             }
             
+            if (!defenseDocumentType.IsSet)
+                throw new ArgumentException("Property is required for class DeleteDefenseDocumentRequest.", nameof(defenseDocumentType));
+
+            if (!disputePspReference.IsSet)
+                throw new ArgumentException("Property is required for class DeleteDefenseDocumentRequest.", nameof(disputePspReference));
+
+            if (!merchantAccountCode.IsSet)
+                throw new ArgumentException("Property is required for class DeleteDefenseDocumentRequest.", nameof(merchantAccountCode));
 
             return new DeleteDefenseDocumentRequest(defenseDocumentType.Value!, disputePspReference.Value!, merchantAccountCode.Value!);
         }
