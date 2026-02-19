@@ -508,6 +508,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class CheckoutBankTransferAction.", nameof(type));
 
             return new CheckoutBankTransferAction(type.Value!.Value!, accountNumber, bankCode, beneficiary, bic, branchCode, downloadUrl, iban, paymentMethodType, reference, routingNumber, shopperEmail, sortCode, totalAmount, url);
         }

@@ -341,6 +341,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class CheckoutThreeDS2Action.", nameof(type));
 
             return new CheckoutThreeDS2Action(type.Value!.Value!, authorisationToken, paymentData, paymentMethodType, subtype, token, url);
         }

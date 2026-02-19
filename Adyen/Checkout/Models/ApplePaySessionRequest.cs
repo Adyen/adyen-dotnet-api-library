@@ -148,6 +148,14 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!displayName.IsSet)
+                throw new ArgumentException("Property is required for class ApplePaySessionRequest.", nameof(displayName));
+
+            if (!domainName.IsSet)
+                throw new ArgumentException("Property is required for class ApplePaySessionRequest.", nameof(domainName));
+
+            if (!merchantIdentifier.IsSet)
+                throw new ArgumentException("Property is required for class ApplePaySessionRequest.", nameof(merchantIdentifier));
 
             return new ApplePaySessionRequest(displayName.Value!, domainName.Value!, merchantIdentifier.Value!);
         }

@@ -518,6 +518,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class PayPalDetails.", nameof(type));
 
             return new PayPalDetails(checkoutAttemptId, orderID, payeePreferred, payerID, payerSelected, recurringDetailReference, sdkData, storedPaymentMethodId, subtype, type.Value!.Value!);
         }

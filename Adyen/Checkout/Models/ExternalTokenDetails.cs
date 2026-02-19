@@ -443,6 +443,14 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!storedPaymentMethodId.IsSet)
+                throw new ArgumentException("Property is required for class ExternalTokenDetails.", nameof(storedPaymentMethodId));
+
+            if (!subtype.IsSet)
+                throw new ArgumentException("Property is required for class ExternalTokenDetails.", nameof(subtype));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class ExternalTokenDetails.", nameof(type));
 
             return new ExternalTokenDetails(storedPaymentMethodId.Value!, subtype.Value!.Value!, checkoutAttemptId, expiryMonth, expiryYear, holderName, number, type.Value!.Value!);
         }

@@ -280,6 +280,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!issuer.IsSet)
+                throw new ArgumentException("Property is required for class MolPayDetails.", nameof(issuer));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class MolPayDetails.", nameof(type));
 
             return new MolPayDetails(issuer.Value!, type.Value!.Value!, checkoutAttemptId, sdkData);
         }

@@ -455,6 +455,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!samsungPayToken.IsSet)
+                throw new ArgumentException("Property is required for class SamsungPayDetails.", nameof(samsungPayToken));
 
             return new SamsungPayDetails(samsungPayToken.Value!, checkoutAttemptId, fundingSource, recurringDetailReference, sdkData, storedPaymentMethodId, type);
         }

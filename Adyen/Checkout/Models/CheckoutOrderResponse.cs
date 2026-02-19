@@ -223,6 +223,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!pspReference.IsSet)
+                throw new ArgumentException("Property is required for class CheckoutOrderResponse.", nameof(pspReference));
 
             return new CheckoutOrderResponse(pspReference.Value!, amount, expiresAt, orderData, reference, remainingAmount);
         }

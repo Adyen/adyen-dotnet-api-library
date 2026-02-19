@@ -319,6 +319,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!issuer.IsSet)
+                throw new ArgumentException("Property is required for class DragonpayDetails.", nameof(issuer));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class DragonpayDetails.", nameof(type));
 
             return new DragonpayDetails(issuer.Value!, type.Value!.Value!, checkoutAttemptId, sdkData, shopperEmail);
         }

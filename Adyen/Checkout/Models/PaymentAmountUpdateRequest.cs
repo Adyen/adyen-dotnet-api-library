@@ -370,6 +370,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class PaymentAmountUpdateRequest.", nameof(amount));
+
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class PaymentAmountUpdateRequest.", nameof(merchantAccount));
 
             return new PaymentAmountUpdateRequest(amount.Value!, merchantAccount.Value!, applicationInfo, enhancedSchemeData, industryUsage, lineItems, reference, splits);
         }

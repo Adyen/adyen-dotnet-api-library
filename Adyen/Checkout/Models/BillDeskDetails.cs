@@ -280,6 +280,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!issuer.IsSet)
+                throw new ArgumentException("Property is required for class BillDeskDetails.", nameof(issuer));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class BillDeskDetails.", nameof(type));
 
             return new BillDeskDetails(issuer.Value!, type.Value!.Value!, checkoutAttemptId, sdkData);
         }

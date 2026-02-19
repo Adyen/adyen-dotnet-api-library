@@ -193,6 +193,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class ValidateShopperIdRequest.", nameof(merchantAccount));
+
+            if (!paymentMethod.IsSet)
+                throw new ArgumentException("Property is required for class ValidateShopperIdRequest.", nameof(paymentMethod));
 
             return new ValidateShopperIdRequest(merchantAccount.Value!, paymentMethod.Value!, shopperEmail, shopperIP, shopperReference);
         }

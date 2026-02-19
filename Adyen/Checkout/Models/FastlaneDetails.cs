@@ -314,6 +314,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!fastlaneData.IsSet)
+                throw new ArgumentException("Property is required for class FastlaneDetails.", nameof(fastlaneData));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class FastlaneDetails.", nameof(type));
 
             return new FastlaneDetails(fastlaneData.Value!, checkoutAttemptId, recurringDetailReference, sdkData, storedPaymentMethodId, type.Value!.Value!);
         }

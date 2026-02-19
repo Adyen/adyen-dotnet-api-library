@@ -497,6 +497,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!googlePayToken.IsSet)
+                throw new ArgumentException("Property is required for class GooglePayDonations.", nameof(googlePayToken));
 
             return new GooglePayDonations(googlePayToken.Value!, checkoutAttemptId, fundingSource, googlePayCardNetwork, recurringDetailReference, sdkData, storedPaymentMethodId, threeDS2SdkVersion, type);
         }

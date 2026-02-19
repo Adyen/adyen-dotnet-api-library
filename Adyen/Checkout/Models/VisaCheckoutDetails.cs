@@ -412,6 +412,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!visaCheckoutCallId.IsSet)
+                throw new ArgumentException("Property is required for class VisaCheckoutDetails.", nameof(visaCheckoutCallId));
 
             return new VisaCheckoutDetails(visaCheckoutCallId.Value!, checkoutAttemptId, fundingSource, sdkData, type);
         }

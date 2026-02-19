@@ -453,6 +453,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class RivertyDetails.", nameof(type));
 
             return new RivertyDetails(billingAddress, checkoutAttemptId, deliveryAddress, deviceFingerprint, iban, personalDetails, recurringDetailReference, sdkData, storedPaymentMethodId, subtype, type.Value!.Value!);
         }

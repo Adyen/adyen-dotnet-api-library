@@ -412,6 +412,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!masterpassTransactionId.IsSet)
+                throw new ArgumentException("Property is required for class MasterpassDetails.", nameof(masterpassTransactionId));
 
             return new MasterpassDetails(masterpassTransactionId.Value!, checkoutAttemptId, fundingSource, sdkData, type);
         }

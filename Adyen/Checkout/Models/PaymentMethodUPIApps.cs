@@ -134,6 +134,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class PaymentMethodUPIApps.", nameof(id));
+
+            if (!name.IsSet)
+                throw new ArgumentException("Property is required for class PaymentMethodUPIApps.", nameof(name));
 
             return new PaymentMethodUPIApps(id.Value!, name.Value!);
         }

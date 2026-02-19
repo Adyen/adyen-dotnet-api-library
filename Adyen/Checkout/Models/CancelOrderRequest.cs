@@ -133,6 +133,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class CancelOrderRequest.", nameof(merchantAccount));
+
+            if (!order.IsSet)
+                throw new ArgumentException("Property is required for class CancelOrderRequest.", nameof(order));
 
             return new CancelOrderRequest(merchantAccount.Value!, order.Value!);
         }

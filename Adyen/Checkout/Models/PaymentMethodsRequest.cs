@@ -700,6 +700,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class PaymentMethodsRequest.", nameof(merchantAccount));
 
             return new PaymentMethodsRequest(merchantAccount.Value!, additionalData, allowedPaymentMethods, amount, blockedPaymentMethods, browserInfo, channel, countryCode, order, shopperConversionId, shopperEmail, shopperIP, shopperLocale, shopperReference, splitCardFundingSources, store, storeFiltrationMode, telephoneNumber);
         }

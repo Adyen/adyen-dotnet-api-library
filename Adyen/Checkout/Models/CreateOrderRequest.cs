@@ -168,6 +168,14 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class CreateOrderRequest.", nameof(amount));
+
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class CreateOrderRequest.", nameof(merchantAccount));
+
+            if (!reference.IsSet)
+                throw new ArgumentException("Property is required for class CreateOrderRequest.", nameof(reference));
 
             return new CreateOrderRequest(amount.Value!, merchantAccount.Value!, reference.Value!, expiresAt);
         }

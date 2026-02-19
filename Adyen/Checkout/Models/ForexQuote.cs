@@ -345,6 +345,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!basePoints.IsSet)
+                throw new ArgumentException("Property is required for class ForexQuote.", nameof(basePoints));
+
+            if (!validTill.IsSet)
+                throw new ArgumentException("Property is required for class ForexQuote.", nameof(validTill));
 
             return new ForexQuote(basePoints.Value!.Value!, validTill.Value!.Value!, account, accountType, baseAmount, buy, interbank, reference, sell, signature, source, type);
         }

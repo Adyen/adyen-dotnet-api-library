@@ -278,6 +278,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class PayByBankDetails.", nameof(type));
 
             return new PayByBankDetails(checkoutAttemptId, issuer, sdkData, type.Value!.Value!);
         }

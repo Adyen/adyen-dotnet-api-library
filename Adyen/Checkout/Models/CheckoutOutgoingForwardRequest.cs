@@ -310,6 +310,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!body.IsSet)
+                throw new ArgumentException("Property is required for class CheckoutOutgoingForwardRequest.", nameof(body));
+
+            if (!httpMethod.IsSet)
+                throw new ArgumentException("Property is required for class CheckoutOutgoingForwardRequest.", nameof(httpMethod));
 
             return new CheckoutOutgoingForwardRequest(body.Value!, httpMethod.Value!.Value!, credentials, headers, urlSuffix);
         }

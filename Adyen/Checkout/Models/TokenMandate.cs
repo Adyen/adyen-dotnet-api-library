@@ -761,6 +761,29 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class TokenMandate.", nameof(amount));
+
+            if (!currency.IsSet)
+                throw new ArgumentException("Property is required for class TokenMandate.", nameof(currency));
+
+            if (!endsAt.IsSet)
+                throw new ArgumentException("Property is required for class TokenMandate.", nameof(endsAt));
+
+            if (!frequency.IsSet)
+                throw new ArgumentException("Property is required for class TokenMandate.", nameof(frequency));
+
+            if (!mandateId.IsSet)
+                throw new ArgumentException("Property is required for class TokenMandate.", nameof(mandateId));
+
+            if (!providerId.IsSet)
+                throw new ArgumentException("Property is required for class TokenMandate.", nameof(providerId));
+
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class TokenMandate.", nameof(status));
+
+            if (!txVariant.IsSet)
+                throw new ArgumentException("Property is required for class TokenMandate.", nameof(txVariant));
 
             return new TokenMandate(amount.Value!, currency.Value!, endsAt.Value!, frequency.Value!.Value!, mandateId.Value!, providerId.Value!, status.Value!, txVariant.Value!, accountIdType, amountRule, billingAttemptsRule, billingDay, count, maskedAccountId, remarks, startsAt);
         }

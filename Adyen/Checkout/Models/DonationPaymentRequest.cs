@@ -1308,6 +1308,17 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class DonationPaymentRequest.", nameof(amount));
+
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class DonationPaymentRequest.", nameof(merchantAccount));
+
+            if (!reference.IsSet)
+                throw new ArgumentException("Property is required for class DonationPaymentRequest.", nameof(reference));
+
+            if (!returnUrl.IsSet)
+                throw new ArgumentException("Property is required for class DonationPaymentRequest.", nameof(returnUrl));
 
             return new DonationPaymentRequest(amount.Value!, merchantAccount.Value!, reference.Value!, returnUrl.Value!, accountInfo, additionalData, applicationInfo, authenticationData, billingAddress, browserInfo, channel, checkoutAttemptId, conversionId, countryCode, dateOfBirth, deliverAt, deliveryAddress, deviceFingerprint, donationAccount, donationCampaignId, donationOriginalPspReference, donationToken, lineItems, merchantRiskIndicator, metadata, mpiData, origin, paymentMethod, recurringProcessingModel, redirectFromIssuerMethod, redirectToIssuerMethod, sessionValidity, shopperEmail, shopperIP, shopperInteraction, shopperLocale, shopperName, shopperReference, socialSecurityNumber, telephoneNumber, threeDS2RequestData, threeDSAuthenticationOnly);
         }

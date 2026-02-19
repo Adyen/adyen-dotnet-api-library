@@ -363,6 +363,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class UpiCollectDetails.", nameof(type));
 
             return new UpiCollectDetails(billingSequenceNumber, checkoutAttemptId, recurringDetailReference, sdkData, shopperNotificationReference, storedPaymentMethodId, type.Value!.Value!, virtualPaymentAddress);
         }

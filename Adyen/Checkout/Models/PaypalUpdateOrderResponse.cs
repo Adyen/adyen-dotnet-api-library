@@ -238,6 +238,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!paymentData.IsSet)
+                throw new ArgumentException("Property is required for class PaypalUpdateOrderResponse.", nameof(paymentData));
+
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class PaypalUpdateOrderResponse.", nameof(status));
 
             return new PaypalUpdateOrderResponse(paymentData.Value!, status.Value!.Value!);
         }

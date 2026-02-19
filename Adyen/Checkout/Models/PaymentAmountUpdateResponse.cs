@@ -460,6 +460,23 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class PaymentAmountUpdateResponse.", nameof(amount));
+
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class PaymentAmountUpdateResponse.", nameof(merchantAccount));
+
+            if (!paymentPspReference.IsSet)
+                throw new ArgumentException("Property is required for class PaymentAmountUpdateResponse.", nameof(paymentPspReference));
+
+            if (!pspReference.IsSet)
+                throw new ArgumentException("Property is required for class PaymentAmountUpdateResponse.", nameof(pspReference));
+
+            if (!reference.IsSet)
+                throw new ArgumentException("Property is required for class PaymentAmountUpdateResponse.", nameof(reference));
+
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class PaymentAmountUpdateResponse.", nameof(status));
 
             return new PaymentAmountUpdateResponse(amount.Value!, merchantAccount.Value!, paymentPspReference.Value!, pspReference.Value!, reference.Value!, status.Value!.Value!, industryUsage, lineItems, splits);
         }

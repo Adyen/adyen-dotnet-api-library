@@ -182,6 +182,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!response.IsSet)
+                throw new ArgumentException("Property is required for class CheckoutForwardResponse.", nameof(response));
 
             return new CheckoutForwardResponse(response.Value!, merchantReference, pspReference, storedPaymentMethodId);
         }

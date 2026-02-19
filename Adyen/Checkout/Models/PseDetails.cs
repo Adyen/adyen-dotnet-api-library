@@ -320,6 +320,17 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!bank.IsSet)
+                throw new ArgumentException("Property is required for class PseDetails.", nameof(bank));
+
+            if (!clientType.IsSet)
+                throw new ArgumentException("Property is required for class PseDetails.", nameof(clientType));
+
+            if (!identification.IsSet)
+                throw new ArgumentException("Property is required for class PseDetails.", nameof(identification));
+
+            if (!identificationType.IsSet)
+                throw new ArgumentException("Property is required for class PseDetails.", nameof(identificationType));
 
             return new PseDetails(bank.Value!, clientType.Value!, identification.Value!, identificationType.Value!, checkoutAttemptId, sdkData, type);
         }

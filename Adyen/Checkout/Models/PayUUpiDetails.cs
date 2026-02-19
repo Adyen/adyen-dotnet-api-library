@@ -342,6 +342,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class PayUUpiDetails.", nameof(type));
 
             return new PayUUpiDetails(checkoutAttemptId, recurringDetailReference, sdkData, shopperNotificationReference, storedPaymentMethodId, type.Value!.Value!, virtualPaymentAddress);
         }

@@ -155,6 +155,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class PaymentMethodIssuer.", nameof(id));
+
+            if (!name.IsSet)
+                throw new ArgumentException("Property is required for class PaymentMethodIssuer.", nameof(name));
 
             return new PaymentMethodIssuer(id.Value!, name.Value!, disabled);
         }

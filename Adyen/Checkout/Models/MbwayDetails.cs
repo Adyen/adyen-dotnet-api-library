@@ -290,6 +290,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!shopperEmail.IsSet)
+                throw new ArgumentException("Property is required for class MbwayDetails.", nameof(shopperEmail));
+
+            if (!telephoneNumber.IsSet)
+                throw new ArgumentException("Property is required for class MbwayDetails.", nameof(telephoneNumber));
 
             return new MbwayDetails(shopperEmail.Value!, telephoneNumber.Value!, checkoutAttemptId, sdkData, type);
         }

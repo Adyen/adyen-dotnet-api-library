@@ -148,6 +148,14 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!accountScore.IsSet)
+                throw new ArgumentException("Property is required for class FraudCheckResult.", nameof(accountScore));
+
+            if (!checkId.IsSet)
+                throw new ArgumentException("Property is required for class FraudCheckResult.", nameof(checkId));
+
+            if (!name.IsSet)
+                throw new ArgumentException("Property is required for class FraudCheckResult.", nameof(name));
 
             return new FraudCheckResult(accountScore.Value!.Value!, checkId.Value!.Value!, name.Value!);
         }

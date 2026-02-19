@@ -181,6 +181,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class PaymentCancelRequest.", nameof(merchantAccount));
 
             return new PaymentCancelRequest(merchantAccount.Value!, applicationInfo, enhancedSchemeData, reference);
         }

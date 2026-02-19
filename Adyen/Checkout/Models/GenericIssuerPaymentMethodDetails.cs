@@ -350,6 +350,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!issuer.IsSet)
+                throw new ArgumentException("Property is required for class GenericIssuerPaymentMethodDetails.", nameof(issuer));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class GenericIssuerPaymentMethodDetails.", nameof(type));
 
             return new GenericIssuerPaymentMethodDetails(issuer.Value!, type.Value!.Value!, checkoutAttemptId, recurringDetailReference, sdkData, storedPaymentMethodId);
         }

@@ -155,6 +155,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!currency.IsSet)
+                throw new ArgumentException("Property is required for class DonationCampaignsRequest.", nameof(currency));
+
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class DonationCampaignsRequest.", nameof(merchantAccount));
 
             return new DonationCampaignsRequest(currency.Value!, merchantAccount.Value!, locale);
         }

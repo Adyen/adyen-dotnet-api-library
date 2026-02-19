@@ -120,6 +120,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!originDomains.IsSet)
+                throw new ArgumentException("Property is required for class UtilityRequest.", nameof(originDomains));
 
             return new UtilityRequest(originDomains.Value!);
         }

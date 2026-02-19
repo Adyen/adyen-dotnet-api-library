@@ -278,6 +278,17 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class StandalonePaymentCancelResponse.", nameof(merchantAccount));
+
+            if (!paymentReference.IsSet)
+                throw new ArgumentException("Property is required for class StandalonePaymentCancelResponse.", nameof(paymentReference));
+
+            if (!pspReference.IsSet)
+                throw new ArgumentException("Property is required for class StandalonePaymentCancelResponse.", nameof(pspReference));
+
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class StandalonePaymentCancelResponse.", nameof(status));
 
             return new StandalonePaymentCancelResponse(merchantAccount.Value!, paymentReference.Value!, pspReference.Value!, status.Value!.Value!, reference);
         }
