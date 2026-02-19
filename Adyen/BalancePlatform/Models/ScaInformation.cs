@@ -143,6 +143,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class ScaInformation.", nameof(status));
 
             return new ScaInformation(status.Value!.Value!, exemption);
         }

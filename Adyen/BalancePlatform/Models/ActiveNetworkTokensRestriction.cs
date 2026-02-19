@@ -141,6 +141,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!operation.IsSet)
+                throw new ArgumentException("Property is required for class ActiveNetworkTokensRestriction.", nameof(operation));
 
             return new ActiveNetworkTokensRestriction(operation.Value!, value);
         }

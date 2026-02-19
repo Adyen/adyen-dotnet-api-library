@@ -242,6 +242,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!ids.IsSet)
+                throw new ArgumentException("Property is required for class AssociationFinaliseRequest.", nameof(ids));
+
+            if (!strongCustomerAuthentication.IsSet)
+                throw new ArgumentException("Property is required for class AssociationFinaliseRequest.", nameof(strongCustomerAuthentication));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class AssociationFinaliseRequest.", nameof(type));
 
             return new AssociationFinaliseRequest(ids.Value!, strongCustomerAuthentication.Value!, type.Value!.Value!);
         }

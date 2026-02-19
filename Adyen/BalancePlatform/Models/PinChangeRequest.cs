@@ -162,6 +162,17 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!encryptedKey.IsSet)
+                throw new ArgumentException("Property is required for class PinChangeRequest.", nameof(encryptedKey));
+
+            if (!encryptedPinBlock.IsSet)
+                throw new ArgumentException("Property is required for class PinChangeRequest.", nameof(encryptedPinBlock));
+
+            if (!paymentInstrumentId.IsSet)
+                throw new ArgumentException("Property is required for class PinChangeRequest.", nameof(paymentInstrumentId));
+
+            if (!token.IsSet)
+                throw new ArgumentException("Property is required for class PinChangeRequest.", nameof(token));
 
             return new PinChangeRequest(encryptedKey.Value!, encryptedPinBlock.Value!, paymentInstrumentId.Value!, token.Value!);
         }

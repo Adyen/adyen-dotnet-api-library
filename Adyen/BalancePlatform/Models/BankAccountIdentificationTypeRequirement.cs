@@ -494,6 +494,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class BankAccountIdentificationTypeRequirement.", nameof(type));
 
             return new BankAccountIdentificationTypeRequirement(bankAccountIdentificationTypes, description, type.Value!.Value!);
         }

@@ -183,6 +183,17 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!available.IsSet)
+                throw new ArgumentException("Property is required for class Balance.", nameof(available));
+
+            if (!varBalance.IsSet)
+                throw new ArgumentException("Property is required for class Balance.", nameof(varBalance));
+
+            if (!currency.IsSet)
+                throw new ArgumentException("Property is required for class Balance.", nameof(currency));
+
+            if (!reserved.IsSet)
+                throw new ArgumentException("Property is required for class Balance.", nameof(reserved));
 
             return new Balance(available.Value!.Value!, varBalance.Value!.Value!, currency.Value!, reserved.Value!.Value!, pending);
         }

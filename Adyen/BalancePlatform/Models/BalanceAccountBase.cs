@@ -423,6 +423,11 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!accountHolderId.IsSet)
+                throw new ArgumentException("Property is required for class BalanceAccountBase.", nameof(accountHolderId));
+
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class BalanceAccountBase.", nameof(id));
 
             return new BalanceAccountBase(accountHolderId.Value!, id.Value!, defaultCurrencyCode, description, metadata, migratedAccountCode, platformPaymentConfiguration, reference, status, timeZone);
         }

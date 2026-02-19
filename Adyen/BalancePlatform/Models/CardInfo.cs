@@ -377,6 +377,17 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!brand.IsSet)
+                throw new ArgumentException("Property is required for class CardInfo.", nameof(brand));
+
+            if (!brandVariant.IsSet)
+                throw new ArgumentException("Property is required for class CardInfo.", nameof(brandVariant));
+
+            if (!cardholderName.IsSet)
+                throw new ArgumentException("Property is required for class CardInfo.", nameof(cardholderName));
+
+            if (!formFactor.IsSet)
+                throw new ArgumentException("Property is required for class CardInfo.", nameof(formFactor));
 
             return new CardInfo(brand.Value!, brandVariant.Value!, cardholderName.Value!, formFactor.Value!.Value!, authentication, configuration, deliveryContact, threeDSecure, usage);
         }

@@ -236,6 +236,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class USInternationalAchPriorityRequirement.", nameof(type));
 
             return new USInternationalAchPriorityRequirement(description, type.Value!.Value!);
         }

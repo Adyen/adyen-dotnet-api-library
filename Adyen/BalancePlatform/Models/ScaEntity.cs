@@ -136,6 +136,11 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class ScaEntity.", nameof(id));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class ScaEntity.", nameof(type));
 
             return new ScaEntity(id.Value!, type.Value!.Value!);
         }

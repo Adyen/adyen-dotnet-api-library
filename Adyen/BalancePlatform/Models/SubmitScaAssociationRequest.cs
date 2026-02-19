@@ -120,6 +120,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!entities.IsSet)
+                throw new ArgumentException("Property is required for class SubmitScaAssociationRequest.", nameof(entities));
 
             return new SubmitScaAssociationRequest(entities.Value!);
         }

@@ -162,6 +162,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class BalancePlatform.", nameof(id));
 
             return new BalancePlatform(id.Value!, description, status);
         }

@@ -120,6 +120,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class TaxFormSummaryResponse.", nameof(data));
 
             return new TaxFormSummaryResponse(data.Value!);
         }

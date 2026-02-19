@@ -134,6 +134,11 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!legalEntityId.IsSet)
+                throw new ArgumentException("Property is required for class Summary.", nameof(legalEntityId));
+
+            if (!taxYears.IsSet)
+                throw new ArgumentException("Property is required for class Summary.", nameof(taxYears));
 
             return new Summary(legalEntityId.Value!, taxYears.Value!);
         }

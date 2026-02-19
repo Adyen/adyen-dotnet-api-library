@@ -267,6 +267,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class BankAccountDetails.", nameof(type));
 
             return new BankAccountDetails(accountNumber, accountType, branchNumber, formFactor, iban, routingNumber, sortCode, type.Value!);
         }

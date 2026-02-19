@@ -297,6 +297,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!operation.IsSet)
+                throw new ArgumentException("Property is required for class ProcessingTypesRestriction.", nameof(operation));
 
             return new ProcessingTypesRestriction(operation.Value!, value);
         }

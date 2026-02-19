@@ -242,6 +242,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class CreateTransferLimitRequest.", nameof(amount));
+
+            if (!scope.IsSet)
+                throw new ArgumentException("Property is required for class CreateTransferLimitRequest.", nameof(scope));
+
+            if (!transferType.IsSet)
+                throw new ArgumentException("Property is required for class CreateTransferLimitRequest.", nameof(transferType));
 
             return new CreateTransferLimitRequest(amount.Value!, scope.Value!.Value!, transferType.Value!.Value!, endsAt, reference, scaInformation, startsAt);
         }

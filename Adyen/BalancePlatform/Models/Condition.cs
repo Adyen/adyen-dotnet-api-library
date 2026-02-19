@@ -392,6 +392,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!balanceType.IsSet)
+                throw new ArgumentException("Property is required for class Condition.", nameof(balanceType));
+
+            if (!conditionType.IsSet)
+                throw new ArgumentException("Property is required for class Condition.", nameof(conditionType));
+
+            if (!value.IsSet)
+                throw new ArgumentException("Property is required for class Condition.", nameof(value));
 
             return new Condition(balanceType.Value!.Value!, conditionType.Value!.Value!, value.Value!.Value!);
         }

@@ -381,6 +381,17 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!currency.IsSet)
+                throw new ArgumentException("Property is required for class BalanceWebhookSettingInfo.", nameof(currency));
+
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class BalanceWebhookSettingInfo.", nameof(status));
+
+            if (!target.IsSet)
+                throw new ArgumentException("Property is required for class BalanceWebhookSettingInfo.", nameof(target));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class BalanceWebhookSettingInfo.", nameof(type));
 
             return new BalanceWebhookSettingInfo(currency.Value!, status.Value!.Value!, target.Value!, type.Value!.Value!, conditions);
         }

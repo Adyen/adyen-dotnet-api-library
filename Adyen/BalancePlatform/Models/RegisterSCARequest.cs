@@ -154,6 +154,11 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!paymentInstrumentId.IsSet)
+                throw new ArgumentException("Property is required for class RegisterSCARequest.", nameof(paymentInstrumentId));
+
+            if (!strongCustomerAuthentication.IsSet)
+                throw new ArgumentException("Property is required for class RegisterSCARequest.", nameof(strongCustomerAuthentication));
 
             return new RegisterSCARequest(paymentInstrumentId.Value!, strongCustomerAuthentication.Value!, name);
         }

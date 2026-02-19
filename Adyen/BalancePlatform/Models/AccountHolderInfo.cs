@@ -288,6 +288,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!legalEntityId.IsSet)
+                throw new ArgumentException("Property is required for class AccountHolderInfo.", nameof(legalEntityId));
 
             return new AccountHolderInfo(legalEntityId.Value!, balancePlatform, capabilities, contactDetails, description, metadata, migratedAccountHolderCode, reference, timeZone);
         }

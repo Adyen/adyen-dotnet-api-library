@@ -257,6 +257,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class IbanAccountIdentificationRequirement.", nameof(type));
 
             return new IbanAccountIdentificationRequirement(description, ibanPrefixes, type.Value!.Value!);
         }

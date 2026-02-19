@@ -164,6 +164,17 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!entityId.IsSet)
+                throw new ArgumentException("Property is required for class ApproveAssociationRequest.", nameof(entityId));
+
+            if (!entityType.IsSet)
+                throw new ArgumentException("Property is required for class ApproveAssociationRequest.", nameof(entityType));
+
+            if (!scaDeviceIds.IsSet)
+                throw new ArgumentException("Property is required for class ApproveAssociationRequest.", nameof(scaDeviceIds));
+
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class ApproveAssociationRequest.", nameof(status));
 
             return new ApproveAssociationRequest(entityId.Value!, entityType.Value!.Value!, scaDeviceIds.Value!, status.Value!.Value!);
         }

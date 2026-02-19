@@ -147,6 +147,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!cvc.IsSet)
+                throw new ArgumentException("Property is required for class PaymentInstrumentRevealInfo.", nameof(cvc));
+
+            if (!expiration.IsSet)
+                throw new ArgumentException("Property is required for class PaymentInstrumentRevealInfo.", nameof(expiration));
+
+            if (!pan.IsSet)
+                throw new ArgumentException("Property is required for class PaymentInstrumentRevealInfo.", nameof(pan));
 
             return new PaymentInstrumentRevealInfo(cvc.Value!, expiration.Value!, pan.Value!);
         }

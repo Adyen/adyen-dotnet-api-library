@@ -141,6 +141,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!operation.IsSet)
+                throw new ArgumentException("Property is required for class MatchingTransactionsRestriction.", nameof(operation));
 
             return new MatchingTransactionsRestriction(operation.Value!, value);
         }

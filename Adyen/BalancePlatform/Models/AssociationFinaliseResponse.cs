@@ -257,6 +257,8 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class AssociationFinaliseResponse.", nameof(type));
 
             return new AssociationFinaliseResponse(type.Value!.Value!, deviceId, ids);
         }

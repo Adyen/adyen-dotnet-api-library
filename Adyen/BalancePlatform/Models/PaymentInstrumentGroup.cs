@@ -218,6 +218,11 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+            if (!balancePlatform.IsSet)
+                throw new ArgumentException("Property is required for class PaymentInstrumentGroup.", nameof(balancePlatform));
+
+            if (!txVariant.IsSet)
+                throw new ArgumentException("Property is required for class PaymentInstrumentGroup.", nameof(txVariant));
 
             return new PaymentInstrumentGroup(balancePlatform.Value!, txVariant.Value!, description, id, properties, reference);
         }
