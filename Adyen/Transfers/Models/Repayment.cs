@@ -160,6 +160,8 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+            if (!basisPoints.IsSet)
+                throw new ArgumentException("Property is required for class Repayment.", nameof(basisPoints));
 
             return new Repayment(basisPoints.Value!.Value!, term, threshold);
         }

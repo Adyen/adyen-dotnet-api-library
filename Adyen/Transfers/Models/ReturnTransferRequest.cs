@@ -140,6 +140,8 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class ReturnTransferRequest.", nameof(amount));
 
             return new ReturnTransferRequest(amount.Value!, reference);
         }

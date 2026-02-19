@@ -153,6 +153,11 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+            if (!accountHolder.IsSet)
+                throw new ArgumentException("Property is required for class BankAccountV3.", nameof(accountHolder));
+
+            if (!accountIdentification.IsSet)
+                throw new ArgumentException("Property is required for class BankAccountV3.", nameof(accountIdentification));
 
             return new BankAccountV3(accountHolder.Value!, accountIdentification.Value!, storedPaymentMethodId);
         }

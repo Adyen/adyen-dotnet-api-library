@@ -905,6 +905,14 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class TransferInfo.", nameof(amount));
+
+            if (!category.IsSet)
+                throw new ArgumentException("Property is required for class TransferInfo.", nameof(category));
+
+            if (!counterparty.IsSet)
+                throw new ArgumentException("Property is required for class TransferInfo.", nameof(counterparty));
 
             return new TransferInfo(amount.Value!, category.Value!.Value!, counterparty.Value!, balanceAccountId, description, executionDate, paymentInstrumentId, priorities, priority, reference, referenceForBeneficiary, review, type, ultimateParty);
         }

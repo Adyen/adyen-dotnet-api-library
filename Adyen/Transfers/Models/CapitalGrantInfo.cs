@@ -154,6 +154,11 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+            if (!grantAccountId.IsSet)
+                throw new ArgumentException("Property is required for class CapitalGrantInfo.", nameof(grantAccountId));
+
+            if (!grantOfferId.IsSet)
+                throw new ArgumentException("Property is required for class CapitalGrantInfo.", nameof(grantOfferId));
 
             return new CapitalGrantInfo(grantAccountId.Value!, grantOfferId.Value!, counterparty);
         }

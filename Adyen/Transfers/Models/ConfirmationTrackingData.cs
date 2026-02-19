@@ -333,6 +333,11 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class ConfirmationTrackingData.", nameof(status));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class ConfirmationTrackingData.", nameof(type));
 
             return new ConfirmationTrackingData(status.Value!.Value!, type.Value!.Value!);
         }

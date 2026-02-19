@@ -280,6 +280,20 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+            if (!detail.IsSet)
+                throw new ArgumentException("Property is required for class TransferServiceRestServiceError.", nameof(detail));
+
+            if (!errorCode.IsSet)
+                throw new ArgumentException("Property is required for class TransferServiceRestServiceError.", nameof(errorCode));
+
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class TransferServiceRestServiceError.", nameof(status));
+
+            if (!title.IsSet)
+                throw new ArgumentException("Property is required for class TransferServiceRestServiceError.", nameof(title));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class TransferServiceRestServiceError.", nameof(type));
 
             return new TransferServiceRestServiceError(detail.Value!, errorCode.Value!, status.Value!.Value!, title.Value!, type.Value!, instance, invalidFields, requestId, response, routingDetails);
         }
