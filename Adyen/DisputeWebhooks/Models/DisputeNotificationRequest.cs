@@ -237,6 +237,11 @@ namespace Adyen.DisputeWebhooks.Models
                 }
             }
             
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class DisputeNotificationRequest.", nameof(data));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class DisputeNotificationRequest.", nameof(type));
 
             return new DisputeNotificationRequest(data.Value!, type.Value!.Value!);
         }
