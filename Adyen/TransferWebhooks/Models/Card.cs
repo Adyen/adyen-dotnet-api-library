@@ -132,6 +132,11 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+            if (!cardHolder.IsSet)
+                throw new ArgumentException("Property is required for class Card.", nameof(cardHolder));
+
+            if (!cardIdentification.IsSet)
+                throw new ArgumentException("Property is required for class Card.", nameof(cardIdentification));
 
             return new Card(cardHolder.Value!, cardIdentification.Value!);
         }

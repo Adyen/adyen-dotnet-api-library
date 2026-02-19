@@ -2919,6 +2919,14 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class TransferData.", nameof(amount));
+
+            if (!category.IsSet)
+                throw new ArgumentException("Property is required for class TransferData.", nameof(category));
+
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class TransferData.", nameof(status));
 
             return new TransferData(amount.Value!, category.Value!.Value!, status.Value!.Value!, accountHolder, balanceAccount, balancePlatform, balances, categoryData, counterparty, createdAt, creationDate, description, directDebitInformation, direction, eventId, events, executionDate, externalReason, id, paymentInstrument, reason, reference, referenceForBeneficiary, review, sequenceNumber, tracking, transactionRulesResult, type, updatedAt);
         }
