@@ -169,6 +169,14 @@ namespace Adyen.Payout.Models
                 }
             }
             
+            if (!pspReference.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailResponse.", nameof(pspReference));
+
+            if (!recurringDetailReference.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailResponse.", nameof(recurringDetailReference));
+
+            if (!resultCode.IsSet)
+                throw new ArgumentException("Property is required for class StoreDetailResponse.", nameof(resultCode));
 
             return new StoreDetailResponse(pspReference.Value!, recurringDetailReference.Value!, resultCode.Value!, additionalData);
         }
