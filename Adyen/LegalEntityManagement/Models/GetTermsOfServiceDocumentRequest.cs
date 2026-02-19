@@ -331,6 +331,11 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!language.IsSet)
+                throw new ArgumentException("Property is required for class GetTermsOfServiceDocumentRequest.", nameof(language));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class GetTermsOfServiceDocumentRequest.", nameof(type));
 
             return new GetTermsOfServiceDocumentRequest(language.Value!, type.Value!.Value!, termsOfServiceDocumentFormat);
         }

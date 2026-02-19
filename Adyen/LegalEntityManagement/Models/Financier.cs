@@ -161,6 +161,17 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class Financier.", nameof(amount));
+
+            if (!firstName.IsSet)
+                throw new ArgumentException("Property is required for class Financier.", nameof(firstName));
+
+            if (!lastName.IsSet)
+                throw new ArgumentException("Property is required for class Financier.", nameof(lastName));
+
+            if (!location.IsSet)
+                throw new ArgumentException("Property is required for class Financier.", nameof(location));
 
             return new Financier(amount.Value!, firstName.Value!, lastName.Value!, location.Value!);
         }

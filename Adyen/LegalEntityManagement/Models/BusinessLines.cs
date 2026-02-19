@@ -120,6 +120,8 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!varBusinessLines.IsSet)
+                throw new ArgumentException("Property is required for class BusinessLines.", nameof(varBusinessLines));
 
             return new BusinessLines(varBusinessLines.Value!);
         }

@@ -229,6 +229,11 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!accountNumber.IsSet)
+                throw new ArgumentException("Property is required for class NOLocalAccountIdentification.", nameof(accountNumber));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class NOLocalAccountIdentification.", nameof(type));
 
             return new NOLocalAccountIdentification(accountNumber.Value!, type.Value!.Value!);
         }

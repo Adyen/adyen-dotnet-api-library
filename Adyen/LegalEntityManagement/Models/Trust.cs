@@ -731,6 +731,17 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!countryOfGoverningLaw.IsSet)
+                throw new ArgumentException("Property is required for class Trust.", nameof(countryOfGoverningLaw));
+
+            if (!name.IsSet)
+                throw new ArgumentException("Property is required for class Trust.", nameof(name));
+
+            if (!registeredAddress.IsSet)
+                throw new ArgumentException("Property is required for class Trust.", nameof(registeredAddress));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class Trust.", nameof(type));
 
             return new Trust(countryOfGoverningLaw.Value!, name.Value!, registeredAddress.Value!, type.Value!.Value!, dateOfIncorporation, description, doingBusinessAs, doingBusinessAsAbsent, principalPlaceOfBusiness, registrationNumber, taxInformation, undefinedBeneficiaryInfo, vatAbsenceReason, vatNumber);
         }

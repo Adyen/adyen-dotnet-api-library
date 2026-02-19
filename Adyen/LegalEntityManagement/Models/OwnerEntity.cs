@@ -134,6 +134,11 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class OwnerEntity.", nameof(id));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class OwnerEntity.", nameof(type));
 
             return new OwnerEntity(id.Value!, type.Value!);
         }

@@ -435,6 +435,8 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class LegalEntityInfoRequiredType.", nameof(type));
 
             return new LegalEntityInfoRequiredType(type.Value!.Value!, capabilities, entityAssociations, individual, organization, reference, soleProprietorship, trust, unincorporatedPartnership, verificationPlan);
         }

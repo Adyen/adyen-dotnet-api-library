@@ -251,6 +251,14 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!bankAccount.IsSet)
+                throw new ArgumentException("Property is required for class TransferInstrumentInfo.", nameof(bankAccount));
+
+            if (!legalEntityId.IsSet)
+                throw new ArgumentException("Property is required for class TransferInstrumentInfo.", nameof(legalEntityId));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class TransferInstrumentInfo.", nameof(type));
 
             return new TransferInstrumentInfo(bankAccount.Value!, legalEntityId.Value!, type.Value!.Value!);
         }

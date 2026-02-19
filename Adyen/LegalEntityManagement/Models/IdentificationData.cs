@@ -369,6 +369,8 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class IdentificationData.", nameof(type));
 
             return new IdentificationData(type.Value!.Value!, cardNumber, expiryDate, issuerCountry, issuerState, nationalIdExempt, number);
         }

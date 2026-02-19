@@ -141,6 +141,8 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!acceptedBy.IsSet)
+                throw new ArgumentException("Property is required for class AcceptTermsOfServiceRequest.", nameof(acceptedBy));
 
             return new AcceptTermsOfServiceRequest(acceptedBy.Value!, ipAddress);
         }

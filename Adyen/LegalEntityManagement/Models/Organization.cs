@@ -1278,6 +1278,11 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!legalName.IsSet)
+                throw new ArgumentException("Property is required for class Organization.", nameof(legalName));
+
+            if (!registeredAddress.IsSet)
+                throw new ArgumentException("Property is required for class Organization.", nameof(registeredAddress));
 
             return new Organization(legalName.Value!, registeredAddress.Value!, countryOfGoverningLaw, dateOfIncorporation, dateOfInitiationOfLegalProceeding, description, doingBusinessAs, doingBusinessAsAbsent, economicSector, email, financialReports, globalLegalEntityIdentifier, headOfficeIndicator, institutionalSector, legalForm, phone, principalPlaceOfBusiness, registrationNumber, registrationNumberAbsent, statusOfLegalProceeding, stockData, support, taxInformation, taxReportingClassification, type, vatAbsenceReason, vatNumber, webData);
         }

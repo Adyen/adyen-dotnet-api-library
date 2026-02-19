@@ -343,6 +343,14 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!industryCode.IsSet)
+                throw new ArgumentException("Property is required for class BusinessLineInfo.", nameof(industryCode));
+
+            if (!legalEntityId.IsSet)
+                throw new ArgumentException("Property is required for class BusinessLineInfo.", nameof(legalEntityId));
+
+            if (!service.IsSet)
+                throw new ArgumentException("Property is required for class BusinessLineInfo.", nameof(service));
 
             return new BusinessLineInfo(industryCode.Value!, legalEntityId.Value!, service.Value!.Value!, salesChannels, sourceOfFunds, webData, webDataExemption);
         }

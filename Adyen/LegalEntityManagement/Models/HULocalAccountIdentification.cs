@@ -229,6 +229,11 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!accountNumber.IsSet)
+                throw new ArgumentException("Property is required for class HULocalAccountIdentification.", nameof(accountNumber));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class HULocalAccountIdentification.", nameof(type));
 
             return new HULocalAccountIdentification(accountNumber.Value!, type.Value!.Value!);
         }

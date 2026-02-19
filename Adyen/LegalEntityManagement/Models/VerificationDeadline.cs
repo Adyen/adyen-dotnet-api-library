@@ -739,6 +739,11 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!capabilities.IsSet)
+                throw new ArgumentException("Property is required for class VerificationDeadline.", nameof(capabilities));
+
+            if (!expiresAt.IsSet)
+                throw new ArgumentException("Property is required for class VerificationDeadline.", nameof(expiresAt));
 
             return new VerificationDeadline(capabilities.Value!, expiresAt.Value!.Value!, entityIds);
         }

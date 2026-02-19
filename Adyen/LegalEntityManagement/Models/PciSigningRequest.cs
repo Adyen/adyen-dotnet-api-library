@@ -134,6 +134,11 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!pciTemplateReferences.IsSet)
+                throw new ArgumentException("Property is required for class PciSigningRequest.", nameof(pciTemplateReferences));
+
+            if (!signedBy.IsSet)
+                throw new ArgumentException("Property is required for class PciSigningRequest.", nameof(signedBy));
 
             return new PciSigningRequest(pciTemplateReferences.Value!, signedBy.Value!);
         }

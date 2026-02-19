@@ -206,6 +206,8 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!content.IsSet)
+                throw new ArgumentException("Property is required for class Attachment.", nameof(content));
 
             return new Attachment(content.Value!, contentType, filename, pageName, pageType);
         }

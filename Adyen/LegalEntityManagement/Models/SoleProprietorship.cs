@@ -460,6 +460,14 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+            if (!countryOfGoverningLaw.IsSet)
+                throw new ArgumentException("Property is required for class SoleProprietorship.", nameof(countryOfGoverningLaw));
+
+            if (!name.IsSet)
+                throw new ArgumentException("Property is required for class SoleProprietorship.", nameof(name));
+
+            if (!registeredAddress.IsSet)
+                throw new ArgumentException("Property is required for class SoleProprietorship.", nameof(registeredAddress));
 
             return new SoleProprietorship(countryOfGoverningLaw.Value!, name.Value!, registeredAddress.Value!, dateOfIncorporation, doingBusinessAs, doingBusinessAsAbsent, financialReports, principalPlaceOfBusiness, registrationNumber, taxAbsent, taxInformation, vatAbsenceReason, vatNumber);
         }
