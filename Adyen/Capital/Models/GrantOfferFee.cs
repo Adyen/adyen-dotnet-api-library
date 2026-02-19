@@ -140,6 +140,8 @@ namespace Adyen.Capital.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class GrantOfferFee.", nameof(amount));
 
             return new GrantOfferFee(amount.Value!, aprBasisPoints);
         }

@@ -120,6 +120,8 @@ namespace Adyen.Capital.Models
                 }
             }
             
+            if (!varDisbursements.IsSet)
+                throw new ArgumentException("Property is required for class Disbursements.", nameof(varDisbursements));
 
             return new Disbursements(varDisbursements.Value!);
         }

@@ -139,6 +139,14 @@ namespace Adyen.Capital.Models
                 }
             }
             
+            if (!accountNumber.IsSet)
+                throw new ArgumentException("Property is required for class AULocalAccountIdentification.", nameof(accountNumber));
+
+            if (!bsbCode.IsSet)
+                throw new ArgumentException("Property is required for class AULocalAccountIdentification.", nameof(bsbCode));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class AULocalAccountIdentification.", nameof(type));
 
             return new AULocalAccountIdentification(accountNumber.Value!, bsbCode.Value!);
         }

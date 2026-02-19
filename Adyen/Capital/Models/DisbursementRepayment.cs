@@ -133,6 +133,11 @@ namespace Adyen.Capital.Models
                 }
             }
             
+            if (!basisPoints.IsSet)
+                throw new ArgumentException("Property is required for class DisbursementRepayment.", nameof(basisPoints));
+
+            if (!updateDescription.IsSet)
+                throw new ArgumentException("Property is required for class DisbursementRepayment.", nameof(updateDescription));
 
             return new DisbursementRepayment(basisPoints.Value!.Value!, updateDescription.Value!);
         }

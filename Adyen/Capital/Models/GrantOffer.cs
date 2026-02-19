@@ -378,6 +378,8 @@ namespace Adyen.Capital.Models
                 }
             }
             
+            if (!accountHolderId.IsSet)
+                throw new ArgumentException("Property is required for class GrantOffer.", nameof(accountHolderId));
 
             return new GrantOffer(accountHolderId.Value!, amount, contractType, expiresAt, fee, id, repayment, startsAt);
         }
