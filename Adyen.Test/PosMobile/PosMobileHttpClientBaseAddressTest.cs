@@ -1,45 +1,41 @@
 ﻿using Adyen.Core.Options;
-using Adyen.Recurring.Client;
-using Adyen.Recurring.Models;
-using Adyen.Recurring.Extensions;
+using Adyen.PosMobile.Extensions;
+using Adyen.PosMobile.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Text.Json;
-using Adyen.Recurring.Services;
 
-namespace Adyen.Test.Recurring
+namespace Adyen.Test.PosMobile
 {
     [TestClass]
-    public class RecurringHttpClientBaseAddressTest
+    public class PosMobileHttpClientBaseAddressTest
     {
         
-        
         [TestMethod]
-        public async Task RecurringService_TestUrl_IsCorrect()
+        public async Task CheckoutService_TestUrl_IsCorrect()
         {
             // Arrange with test configuration
             IHost host = Host.CreateDefaultBuilder()
-                .ConfigureRecurring((context, services, config) =>
+                .ConfigurePosMobile((context, services, config) =>
                 {
                     config.ConfigureAdyenOptions(options =>
                     {
                         options.Environment = AdyenEnvironment.Test;
                     });
-                    services.AddAllRecurringServices();
+                    services.AddAllPosMobileServices();
                 })
                 .Build();
             
 
             // Act
-            var recurringService = host.Services.GetRequiredService<IRecurringService>();     
+            var posMobileService = host.Services.GetRequiredService<IPosMobileService>();     
             
             // Assert
-            Assert.IsNotNull(recurringService.HttpClient.BaseAddress);
-            var baseAddress = recurringService.HttpClient.BaseAddress.ToString();
+            Assert.IsNotNull(posMobileService.HttpClient.BaseAddress);
+            var baseAddress = posMobileService.HttpClient.BaseAddress.ToString();
 
             Assert.IsNotNull(baseAddress);
-            StringAssert.StartsWith(baseAddress, "https://paltokenization-test.adyen.com/paltokenization/servlet/Recurring/v");
+            StringAssert.StartsWith(baseAddress, "https://checkout-test.adyen.com/checkout/possdk/v");
         }        
 
         [TestMethod]
@@ -47,27 +43,28 @@ namespace Adyen.Test.Recurring
         {
             // Arrange with live configuration
             IHost host = Host.CreateDefaultBuilder()
-                .ConfigureRecurring((context, services, config) =>
+                .ConfigurePosMobile((context, services, config) =>
                 {
                     config.ConfigureAdyenOptions(options =>
                     {
                         options.Environment = AdyenEnvironment.Live;
                         options.LiveEndpointUrlPrefix = "mycompany";
                     });
-                    services.AddAllRecurringServices();
+                    services.AddAllPosMobileServices();
                 })
                 .Build();
             
 
             // Act
-            var recurringService = host.Services.GetRequiredService<IRecurringService>();
+            var posMobileService = host.Services.GetRequiredService<IPosMobileService>();     
             
             // Assert
-            Assert.IsNotNull(recurringService.HttpClient.BaseAddress);
-            var baseAddress = recurringService.HttpClient.BaseAddress.ToString();
+            Assert.IsNotNull(posMobileService.HttpClient.BaseAddress);
+            var baseAddress = posMobileService.HttpClient.BaseAddress.ToString();
 
             Assert.IsNotNull(baseAddress);
-            StringAssert.StartsWith(baseAddress, "https://mycompany-paltokenization-live.adyenpayments.com/paltokenization/servlet/Recurring/v");
+            StringAssert.StartsWith(baseAddress, "https://mycompany-checkout-live.adyenpayments.com/checkout/possdk/v");
+            
         }        
         
     }
