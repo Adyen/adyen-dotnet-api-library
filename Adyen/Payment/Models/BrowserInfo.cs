@@ -239,6 +239,29 @@ namespace Adyen.Payment.Models
                 }
             }
             
+            if (!acceptHeader.IsSet)
+                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(acceptHeader));
+
+            if (!colorDepth.IsSet)
+                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(colorDepth));
+
+            if (!javaEnabled.IsSet)
+                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(javaEnabled));
+
+            if (!language.IsSet)
+                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(language));
+
+            if (!screenHeight.IsSet)
+                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(screenHeight));
+
+            if (!screenWidth.IsSet)
+                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(screenWidth));
+
+            if (!timeZoneOffset.IsSet)
+                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(timeZoneOffset));
+
+            if (!userAgent.IsSet)
+                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(userAgent));
 
             return new BrowserInfo(acceptHeader.Value!, colorDepth.Value!.Value!, javaEnabled.Value!.Value!, language.Value!, screenHeight.Value!.Value!, screenWidth.Value!.Value!, timeZoneOffset.Value!.Value!, userAgent.Value!, javaScriptEnabled);
         }

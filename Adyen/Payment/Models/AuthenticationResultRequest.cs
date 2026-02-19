@@ -134,6 +134,11 @@ namespace Adyen.Payment.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class AuthenticationResultRequest.", nameof(merchantAccount));
+
+            if (!pspReference.IsSet)
+                throw new ArgumentException("Property is required for class AuthenticationResultRequest.", nameof(pspReference));
 
             return new AuthenticationResultRequest(merchantAccount.Value!, pspReference.Value!);
         }

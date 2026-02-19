@@ -340,6 +340,11 @@ namespace Adyen.Payment.Models
                 }
             }
             
+            if (!pspReference.IsSet)
+                throw new ArgumentException("Property is required for class ModificationResult.", nameof(pspReference));
+
+            if (!response.IsSet)
+                throw new ArgumentException("Property is required for class ModificationResult.", nameof(response));
 
             return new ModificationResult(pspReference.Value!, response.Value!.Value!, additionalData);
         }

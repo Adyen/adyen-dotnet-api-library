@@ -338,6 +338,8 @@ namespace Adyen.Payment.Models
                 }
             }
             
+            if (!value.IsSet)
+                throw new ArgumentException("Property is required for class Installments.", nameof(value));
 
             return new Installments(value.Value!.Value!, extra, plan);
         }
