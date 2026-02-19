@@ -225,6 +225,8 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+            if (!country.IsSet)
+                throw new ArgumentException("Property is required for class Address.", nameof(country));
 
             return new Address(country.Value!, city, line1, line2, postalCode, stateOrProvince);
         }

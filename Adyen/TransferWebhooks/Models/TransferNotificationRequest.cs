@@ -284,6 +284,11 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class TransferNotificationRequest.", nameof(data));
+
+            if (!environment.IsSet)
+                throw new ArgumentException("Property is required for class TransferNotificationRequest.", nameof(environment));
 
             return new TransferNotificationRequest(data.Value!, environment.Value!, timestamp, type);
         }
