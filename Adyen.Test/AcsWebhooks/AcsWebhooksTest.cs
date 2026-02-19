@@ -105,7 +105,7 @@ namespace Adyen.Test.AcsWebhooks
             Assert.AreEqual(DateTimeOffset.Parse("2022-12-22T15:49:03+01:00"), r.Data.Authentication.Challenge.LastInteraction);
         }
         
-        // [TestMethod] temp skip
+        [TestMethod]
         public void Given_AccountHolder_Webhook_When_Required_Fields_Are_Unspecified_Result_Should_Throw_ArgumentException()
         {
             // Arrange
