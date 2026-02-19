@@ -155,6 +155,11 @@ namespace Adyen.PosMobile.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class CreateSessionRequest.", nameof(merchantAccount));
+
+            if (!setupToken.IsSet)
+                throw new ArgumentException("Property is required for class CreateSessionRequest.", nameof(setupToken));
 
             return new CreateSessionRequest(merchantAccount.Value!, setupToken.Value!, store);
         }
