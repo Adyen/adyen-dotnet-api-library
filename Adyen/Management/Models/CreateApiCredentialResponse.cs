@@ -280,6 +280,29 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!active.IsSet)
+                throw new ArgumentException("Property is required for class CreateApiCredentialResponse.", nameof(active));
+
+            if (!allowedIpAddresses.IsSet)
+                throw new ArgumentException("Property is required for class CreateApiCredentialResponse.", nameof(allowedIpAddresses));
+
+            if (!apiKey.IsSet)
+                throw new ArgumentException("Property is required for class CreateApiCredentialResponse.", nameof(apiKey));
+
+            if (!clientKey.IsSet)
+                throw new ArgumentException("Property is required for class CreateApiCredentialResponse.", nameof(clientKey));
+
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class CreateApiCredentialResponse.", nameof(id));
+
+            if (!password.IsSet)
+                throw new ArgumentException("Property is required for class CreateApiCredentialResponse.", nameof(password));
+
+            if (!roles.IsSet)
+                throw new ArgumentException("Property is required for class CreateApiCredentialResponse.", nameof(roles));
+
+            if (!username.IsSet)
+                throw new ArgumentException("Property is required for class CreateApiCredentialResponse.", nameof(username));
 
             return new CreateApiCredentialResponse(active.Value!.Value!, allowedIpAddresses.Value!, apiKey.Value!, clientKey.Value!, id.Value!, password.Value!, roles.Value!, username.Value!, links, allowedOrigins, description);
         }

@@ -183,6 +183,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!currencyCode.IsSet)
+                throw new ArgumentException("Property is required for class Currency.", nameof(currencyCode));
 
             return new Currency(currencyCode.Value!, amount, maxAmount, percentage);
         }

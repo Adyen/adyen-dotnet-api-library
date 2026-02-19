@@ -141,6 +141,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!logo.IsSet)
+                throw new ArgumentException("Property is required for class VippsInfo.", nameof(logo));
 
             return new VippsInfo(logo.Value!, subscriptionCancelUrl);
         }

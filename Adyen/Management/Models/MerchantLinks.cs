@@ -179,6 +179,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!self.IsSet)
+                throw new ArgumentException("Property is required for class MerchantLinks.", nameof(self));
 
             return new MerchantLinks(self.Value!, apiCredentials, users, webhooks);
         }

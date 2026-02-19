@@ -155,6 +155,11 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!payerId.IsSet)
+                throw new ArgumentException("Property is required for class PayPalInfo.", nameof(payerId));
+
+            if (!subject.IsSet)
+                throw new ArgumentException("Property is required for class PayPalInfo.", nameof(subject));
 
             return new PayPalInfo(payerId.Value!, subject.Value!, directCapture);
         }

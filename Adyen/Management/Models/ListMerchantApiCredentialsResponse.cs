@@ -175,6 +175,11 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!itemsTotal.IsSet)
+                throw new ArgumentException("Property is required for class ListMerchantApiCredentialsResponse.", nameof(itemsTotal));
+
+            if (!pagesTotal.IsSet)
+                throw new ArgumentException("Property is required for class ListMerchantApiCredentialsResponse.", nameof(pagesTotal));
 
             return new ListMerchantApiCredentialsResponse(itemsTotal.Value!.Value!, pagesTotal.Value!.Value!, links, data);
         }

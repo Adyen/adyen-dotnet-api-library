@@ -162,6 +162,17 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!email.IsSet)
+                throw new ArgumentException("Property is required for class SubMerchantData.", nameof(email));
+
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class SubMerchantData.", nameof(id));
+
+            if (!mcc.IsSet)
+                throw new ArgumentException("Property is required for class SubMerchantData.", nameof(mcc));
+
+            if (!name.IsSet)
+                throw new ArgumentException("Property is required for class SubMerchantData.", nameof(name));
 
             return new SubMerchantData(email.Value!, id.Value!, mcc.Value!, name.Value!);
         }

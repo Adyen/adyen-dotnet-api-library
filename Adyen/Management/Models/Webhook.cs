@@ -984,6 +984,17 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!active.IsSet)
+                throw new ArgumentException("Property is required for class Webhook.", nameof(active));
+
+            if (!communicationFormat.IsSet)
+                throw new ArgumentException("Property is required for class Webhook.", nameof(communicationFormat));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class Webhook.", nameof(type));
+
+            if (!url.IsSet)
+                throw new ArgumentException("Property is required for class Webhook.", nameof(url));
 
             return new Webhook(active.Value!.Value!, communicationFormat.Value!.Value!, type.Value!, url.Value!, links, acceptsExpiredCertificate, acceptsSelfSignedCertificate, acceptsUntrustedRootCertificate, accountReference, additionalSettings, certificateAlias, description, encryptionProtocol, filterMerchantAccountType, filterMerchantAccounts, hasError, hasPassword, hmacKeyCheckValue, id, networkType, populateSoapActionHeader, username);
         }

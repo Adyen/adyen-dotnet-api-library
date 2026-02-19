@@ -120,6 +120,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!localShopperStatement.IsSet)
+                throw new ArgumentException("Property is required for class LocalizedInformation.", nameof(localShopperStatement));
 
             return new LocalizedInformation(localShopperStatement.Value!);
         }

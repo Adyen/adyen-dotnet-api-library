@@ -120,6 +120,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!logo.IsSet)
+                throw new ArgumentException("Property is required for class TwintInfo.", nameof(logo));
 
             return new TwintInfo(logo.Value!);
         }

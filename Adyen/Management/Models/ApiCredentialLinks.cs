@@ -219,6 +219,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!self.IsSet)
+                throw new ArgumentException("Property is required for class ApiCredentialLinks.", nameof(self));
 
             return new ApiCredentialLinks(self.Value!, allowedOrigins, company, generateApiKey, generateClientKey, merchant);
         }

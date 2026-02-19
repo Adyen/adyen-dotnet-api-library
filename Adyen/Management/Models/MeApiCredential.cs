@@ -273,6 +273,23 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!active.IsSet)
+                throw new ArgumentException("Property is required for class MeApiCredential.", nameof(active));
+
+            if (!allowedIpAddresses.IsSet)
+                throw new ArgumentException("Property is required for class MeApiCredential.", nameof(allowedIpAddresses));
+
+            if (!clientKey.IsSet)
+                throw new ArgumentException("Property is required for class MeApiCredential.", nameof(clientKey));
+
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class MeApiCredential.", nameof(id));
+
+            if (!roles.IsSet)
+                throw new ArgumentException("Property is required for class MeApiCredential.", nameof(roles));
+
+            if (!username.IsSet)
+                throw new ArgumentException("Property is required for class MeApiCredential.", nameof(username));
 
             return new MeApiCredential(active.Value!.Value!, allowedIpAddresses.Value!, clientKey.Value!, id.Value!, roles.Value!, username.Value!, links, allowedOrigins, companyName, description);
         }

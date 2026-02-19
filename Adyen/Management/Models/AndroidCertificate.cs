@@ -256,6 +256,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class AndroidCertificate.", nameof(id));
 
             return new AndroidCertificate(id.Value!, description, extension, name, notAfter, notBefore, status);
         }

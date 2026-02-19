@@ -155,6 +155,11 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!description.IsSet)
+                throw new ArgumentException("Property is required for class SplitConfiguration.", nameof(description));
+
+            if (!rules.IsSet)
+                throw new ArgumentException("Property is required for class SplitConfiguration.", nameof(rules));
 
             return new SplitConfiguration(description.Value!, rules.Value!, splitConfigurationId);
         }

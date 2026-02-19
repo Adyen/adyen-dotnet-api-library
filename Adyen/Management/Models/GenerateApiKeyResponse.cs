@@ -120,6 +120,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!apiKey.IsSet)
+                throw new ArgumentException("Property is required for class GenerateApiKeyResponse.", nameof(apiKey));
 
             return new GenerateApiKeyResponse(apiKey.Value!);
         }

@@ -140,6 +140,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!siret.IsSet)
+                throw new ArgumentException("Property is required for class CartesBancairesInfo.", nameof(siret));
 
             return new CartesBancairesInfo(siret.Value!, transactionDescription);
         }

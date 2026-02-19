@@ -246,6 +246,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!country.IsSet)
+                throw new ArgumentException("Property is required for class StoreLocation.", nameof(country));
 
             return new StoreLocation(country.Value!, city, line1, line2, line3, postalCode, stateOrProvince);
         }

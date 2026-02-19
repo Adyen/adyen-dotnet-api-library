@@ -286,6 +286,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!reuseMidNumber.IsSet)
+                throw new ArgumentException("Property is required for class DinersInfo.", nameof(reuseMidNumber));
 
             return new DinersInfo(midNumber, reuseMidNumber.Value!.Value!, serviceLevel, transactionDescription);
         }

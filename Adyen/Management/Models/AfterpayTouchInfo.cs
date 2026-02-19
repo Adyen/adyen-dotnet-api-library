@@ -141,6 +141,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!supportUrl.IsSet)
+                throw new ArgumentException("Property is required for class AfterpayTouchInfo.", nameof(supportUrl));
 
             return new AfterpayTouchInfo(supportUrl.Value!, supportEmail);
         }

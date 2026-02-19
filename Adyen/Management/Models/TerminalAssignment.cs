@@ -318,6 +318,11 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!companyId.IsSet)
+                throw new ArgumentException("Property is required for class TerminalAssignment.", nameof(companyId));
+
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class TerminalAssignment.", nameof(status));
 
             return new TerminalAssignment(companyId.Value!, status.Value!.Value!, merchantId, reassignmentTarget, storeId);
         }

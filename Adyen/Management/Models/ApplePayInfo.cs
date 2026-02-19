@@ -120,6 +120,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!domains.IsSet)
+                throw new ArgumentException("Property is required for class ApplePayInfo.", nameof(domains));
 
             return new ApplePayInfo(domains.Value!);
         }

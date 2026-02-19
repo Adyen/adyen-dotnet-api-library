@@ -279,6 +279,20 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!email.IsSet)
+                throw new ArgumentException("Property is required for class User.", nameof(email));
+
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class User.", nameof(id));
+
+            if (!roles.IsSet)
+                throw new ArgumentException("Property is required for class User.", nameof(roles));
+
+            if (!timeZoneCode.IsSet)
+                throw new ArgumentException("Property is required for class User.", nameof(timeZoneCode));
+
+            if (!username.IsSet)
+                throw new ArgumentException("Property is required for class User.", nameof(username));
 
             return new User(email.Value!, id.Value!, roles.Value!, timeZoneCode.Value!, username.Value!, links, accountGroups, active, apps, name);
         }

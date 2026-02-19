@@ -120,6 +120,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!supportUrl.IsSet)
+                throw new ArgumentException("Property is required for class ClearpayInfo.", nameof(supportUrl));
 
             return new ClearpayInfo(supportUrl.Value!);
         }

@@ -231,6 +231,14 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!email.IsSet)
+                throw new ArgumentException("Property is required for class CreateMerchantUserRequest.", nameof(email));
+
+            if (!name.IsSet)
+                throw new ArgumentException("Property is required for class CreateMerchantUserRequest.", nameof(name));
+
+            if (!username.IsSet)
+                throw new ArgumentException("Property is required for class CreateMerchantUserRequest.", nameof(username));
 
             return new CreateMerchantUserRequest(email.Value!, name.Value!, username.Value!, accountGroups, loginMethod, roles, timeZoneCode);
         }

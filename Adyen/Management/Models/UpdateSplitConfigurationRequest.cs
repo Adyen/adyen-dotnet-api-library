@@ -120,6 +120,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!description.IsSet)
+                throw new ArgumentException("Property is required for class UpdateSplitConfigurationRequest.", nameof(description));
 
             return new UpdateSplitConfigurationRequest(description.Value!);
         }

@@ -162,6 +162,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!domain.IsSet)
+                throw new ArgumentException("Property is required for class CreateAllowedOriginRequest.", nameof(domain));
 
             return new CreateAllowedOriginRequest(domain.Value!, links, id);
         }

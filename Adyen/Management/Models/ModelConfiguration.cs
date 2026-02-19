@@ -197,6 +197,11 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!brand.IsSet)
+                throw new ArgumentException("Property is required for class ModelConfiguration.", nameof(brand));
+
+            if (!currencies.IsSet)
+                throw new ArgumentException("Property is required for class ModelConfiguration.", nameof(currencies));
 
             return new ModelConfiguration(brand.Value!, currencies.Value!, commercial, country, sources);
         }

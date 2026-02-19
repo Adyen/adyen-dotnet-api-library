@@ -280,6 +280,11 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!authorisationMid.IsSet)
+                throw new ArgumentException("Property is required for class ValuelinkInfo.", nameof(authorisationMid));
+
+            if (!pinSupport.IsSet)
+                throw new ArgumentException("Property is required for class ValuelinkInfo.", nameof(pinSupport));
 
             return new ValuelinkInfo(authorisationMid.Value!, pinSupport.Value!.Value!, submitterId, terminalId);
         }

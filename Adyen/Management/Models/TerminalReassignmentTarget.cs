@@ -183,6 +183,8 @@ namespace Adyen.Management.Models
                 }
             }
             
+            if (!inventory.IsSet)
+                throw new ArgumentException("Property is required for class TerminalReassignmentTarget.", nameof(inventory));
 
             return new TerminalReassignmentTarget(inventory.Value!.Value!, companyId, merchantId, storeId);
         }
