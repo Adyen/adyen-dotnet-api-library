@@ -76,7 +76,7 @@ namespace Adyen.Test.BalancePlatform.BalanceAccountValidation
         }        
         
         [TestMethod]
-        public void Given_Serialize_When_IbanAccountIdentification()
+        public void Given_Serialize_When_IbanAccountIdentification_Is_Provided()
         {
             // Arrange
             IbanAccountIdentification ibanAccountIdentification = new IbanAccountIdentification(
@@ -96,7 +96,7 @@ namespace Adyen.Test.BalancePlatform.BalanceAccountValidation
         }        
         
         [TestMethod]
-        public void Given_Serialize_When_IbanAccountIdentification_Without_Type()
+        public void Given_Serialize_When_IbanAccountIdentification_Is_Provided_Without_Type()
         {
             // Arrange
             IbanAccountIdentification ibanAccountIdentification = new IbanAccountIdentification(
@@ -118,12 +118,12 @@ namespace Adyen.Test.BalancePlatform.BalanceAccountValidation
         }
         
         [TestMethod]
-        public void Given_Deserialize_When_IbanAccountIdentification_Without_Type_Throws_Exception()
+        public void Given_Deserialize_When_IbanAccountIdentification_Is_Provided_Without_Type_Throws_Exception()
         {
             
             string json =  TestUtilities.GetTestFileContent("mocks/balanceplatform/IbanAccountIdentificationWithoutType.json");
 
-            Assert.Throws<NullReferenceException>(() =>
+            Assert.Throws<ArgumentException>(() =>
             {
                 var response = JsonSerializer.Deserialize<IbanAccountIdentification>(json, _jsonSerializerOptionsProvider.Options);
             });
