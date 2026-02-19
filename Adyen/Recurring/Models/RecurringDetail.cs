@@ -449,6 +449,11 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+            if (!recurringDetailReference.IsSet)
+                throw new ArgumentException("Property is required for class RecurringDetail.", nameof(recurringDetailReference));
+
+            if (!variant.IsSet)
+                throw new ArgumentException("Property is required for class RecurringDetail.", nameof(variant));
 
             return new RecurringDetail(recurringDetailReference.Value!, variant.Value!, additionalData, alias, aliasType, bank, billingAddress, card, contractTypes, creationDate, firstPspReference, name, networkTxReference, paymentMethodVariant, shopperName, socialSecurityNumber, tokenDetails);
         }

@@ -266,6 +266,17 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class NotifyShopperRequest.", nameof(amount));
+
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class NotifyShopperRequest.", nameof(merchantAccount));
+
+            if (!reference.IsSet)
+                throw new ArgumentException("Property is required for class NotifyShopperRequest.", nameof(reference));
+
+            if (!shopperReference.IsSet)
+                throw new ArgumentException("Property is required for class NotifyShopperRequest.", nameof(shopperReference));
 
             return new NotifyShopperRequest(amount.Value!, merchantAccount.Value!, reference.Value!, shopperReference.Value!, billingDate, billingSequenceNumber, displayedReference, recurringDetailReference, storedPaymentMethodId);
         }
