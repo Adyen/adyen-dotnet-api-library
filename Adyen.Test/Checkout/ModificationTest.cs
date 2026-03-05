@@ -182,8 +182,8 @@ namespace Adyen.Test.Checkout
             Assert.IsNotEmpty(root.EnumerateObject().ToList());
             
             Assert.AreEqual("TestMerchant", root.GetProperty("merchantAccount").GetString());
-            Assert.IsNull(root.GetProperty("merchantRefundReason").GetString());
-            Assert.IsTrue(target.Contains("merchantRefundReason"));
+            Assert.IsTrue(root.TryGetProperty("merchantRefundReason", out var merchantRefundReasonProperty));
+            Assert.AreEqual(JsonValueKind.Null, merchantRefundReasonProperty.ValueKind);
         }        
     }
 }
