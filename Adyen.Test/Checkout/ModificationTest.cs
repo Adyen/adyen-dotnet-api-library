@@ -112,5 +112,78 @@ namespace Adyen.Test.Checkout
             Assert.AreEqual(PaymentAmountUpdateResponse.StatusEnum.Received, response.Status);
             Assert.AreEqual("my_reference", response.Reference);
         }
+        
+        [TestMethod]
+        public void Given_Serialize_When_PaymentRefundRequest_Result_MerchantRefundReason_Is_Fraud()
+        {
+            // Arrange
+            PaymentRefundRequest paymentRefundRequest = new PaymentRefundRequest
+            {
+                Amount = new Amount("USD", 10000),
+                MerchantAccount = "TestMerchant",
+                MerchantRefundReason = PaymentRefundRequest.MerchantRefundReasonEnum.FRAUD
+            };
+            
+            // Act
+            string target = JsonSerializer.Serialize(paymentRefundRequest, _jsonSerializerOptionsProvider.Options);
+            
+            
+            // Assert
+            using var jsonDoc = JsonDocument.Parse(target);
+            JsonElement root = jsonDoc.RootElement;
+            
+            Assert.IsNotEmpty(root.EnumerateObject().ToList());
+            
+            Assert.AreEqual("TestMerchant", root.GetProperty("merchantAccount").GetString());
+            Assert.AreEqual("FRAUD", root.GetProperty("merchantRefundReason").GetString());
+        }        
+        
+        [TestMethod]
+        public void Given_Serialize_When_PaymentRefundRequest_Without_MerchantRefundReason()
+        {
+            // Arrange
+            PaymentRefundRequest paymentRefundRequest = new PaymentRefundRequest
+            {
+                Amount = new Amount("USD", 10000),
+                MerchantAccount = "TestMerchant"
+            };
+            
+            // Act
+            string target = JsonSerializer.Serialize(paymentRefundRequest, _jsonSerializerOptionsProvider.Options);
+            
+            // Assert
+            using var jsonDoc = JsonDocument.Parse(target);
+            JsonElement root = jsonDoc.RootElement;
+            
+            Assert.IsNotEmpty(root.EnumerateObject().ToList());
+            
+            Assert.AreEqual("TestMerchant", root.GetProperty("merchantAccount").GetString());
+            Assert.IsFalse(target.Contains("merchantRefundReason"));
+        }        
+
+        [TestMethod]
+        public void Given_Serialize_When_PaymentRefundRequest_With_MerchantRefundReason_Is_Null()
+        {
+            // Arrange
+            PaymentRefundRequest paymentRefundRequest = new PaymentRefundRequest
+            {
+                Amount = new Amount("USD", 10000),
+                MerchantAccount = "TestMerchant",
+                MerchantRefundReason = null
+            };
+            
+            // Act
+            string target = JsonSerializer.Serialize(paymentRefundRequest, _jsonSerializerOptionsProvider.Options);
+            
+            // Assert
+            using var jsonDoc = JsonDocument.Parse(target);
+            JsonElement root = jsonDoc.RootElement;
+            
+            Assert.IsNotEmpty(root.EnumerateObject().ToList());
+            
+            Assert.AreEqual("TestMerchant", root.GetProperty("merchantAccount").GetString());
+            Assert.IsTrue(root.TryGetProperty("merchantRefundReason", out var merchantRefundReasonProperty));
+            Assert.AreEqual(JsonValueKind.Null, merchantRefundReasonProperty.ValueKind);
+        }        
     }
 }
