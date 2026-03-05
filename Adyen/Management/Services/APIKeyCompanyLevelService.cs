@@ -170,7 +170,7 @@ namespace Adyen.Management.Services
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger == null ? LoggerFactory.CreateLogger<APIKeyCompanyLevelService>() : logger;
+            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<APIKeyCompanyLevelService>.Instance;
             // Set BaseAddress if it's not set.
             if (httpClient.BaseAddress == null)
                 httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, BASE_URL));
