@@ -345,7 +345,8 @@ namespace Adyen.Model.Checkout
             return 
                 (
                     this.AuthenticationResponse == input.AuthenticationResponse ||
-                    this.AuthenticationResponse.Equals(input.AuthenticationResponse)
+                    (this.AuthenticationResponse != null &&
+                    this.AuthenticationResponse.Equals(input.AuthenticationResponse))
                 ) && 
                 (
                     this.Cavv == input.Cavv ||
@@ -359,11 +360,13 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.ChallengeCancel == input.ChallengeCancel ||
-                    this.ChallengeCancel.Equals(input.ChallengeCancel)
+                    (this.ChallengeCancel != null &&
+                    this.ChallengeCancel.Equals(input.ChallengeCancel))
                 ) && 
                 (
                     this.DirectoryResponse == input.DirectoryResponse ||
-                    this.DirectoryResponse.Equals(input.DirectoryResponse)
+                    (this.DirectoryResponse != null &&
+                    this.DirectoryResponse.Equals(input.DirectoryResponse))
                 ) && 
                 (
                     this.DsTransID == input.DsTransID ||
@@ -411,7 +414,10 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.AuthenticationResponse.GetHashCode();
+                if (this.AuthenticationResponse != null)
+                {
+                    hashCode = (hashCode * 59) + this.AuthenticationResponse.GetHashCode();
+                }
                 if (this.Cavv != null)
                 {
                     hashCode = (hashCode * 59) + this.Cavv.GetHashCode();
@@ -420,8 +426,14 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.CavvAlgorithm.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ChallengeCancel.GetHashCode();
-                hashCode = (hashCode * 59) + this.DirectoryResponse.GetHashCode();
+                if (this.ChallengeCancel != null)
+                {
+                    hashCode = (hashCode * 59) + this.ChallengeCancel.GetHashCode();
+                }
+                if (this.DirectoryResponse != null)
+                {
+                    hashCode = (hashCode * 59) + this.DirectoryResponse.GetHashCode();
+                }
                 if (this.DsTransID != null)
                 {
                     hashCode = (hashCode * 59) + this.DsTransID.GetHashCode();

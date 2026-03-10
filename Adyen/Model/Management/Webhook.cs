@@ -414,15 +414,18 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.AcceptsExpiredCertificate == input.AcceptsExpiredCertificate ||
-                    this.AcceptsExpiredCertificate.Equals(input.AcceptsExpiredCertificate)
+                    (this.AcceptsExpiredCertificate != null &&
+                    this.AcceptsExpiredCertificate.Equals(input.AcceptsExpiredCertificate))
                 ) && 
                 (
                     this.AcceptsSelfSignedCertificate == input.AcceptsSelfSignedCertificate ||
-                    this.AcceptsSelfSignedCertificate.Equals(input.AcceptsSelfSignedCertificate)
+                    (this.AcceptsSelfSignedCertificate != null &&
+                    this.AcceptsSelfSignedCertificate.Equals(input.AcceptsSelfSignedCertificate))
                 ) && 
                 (
                     this.AcceptsUntrustedRootCertificate == input.AcceptsUntrustedRootCertificate ||
-                    this.AcceptsUntrustedRootCertificate.Equals(input.AcceptsUntrustedRootCertificate)
+                    (this.AcceptsUntrustedRootCertificate != null &&
+                    this.AcceptsUntrustedRootCertificate.Equals(input.AcceptsUntrustedRootCertificate))
                 ) && 
                 (
                     this.AccountReference == input.AccountReference ||
@@ -431,7 +434,8 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Active == input.Active ||
-                    this.Active.Equals(input.Active)
+                    (this.Active != null &&
+                    this.Active.Equals(input.Active))
                 ) && 
                 (
                     this.AdditionalSettings == input.AdditionalSettings ||
@@ -445,7 +449,8 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.CommunicationFormat == input.CommunicationFormat ||
-                    this.CommunicationFormat.Equals(input.CommunicationFormat)
+                    (this.CommunicationFormat != null &&
+                    this.CommunicationFormat.Equals(input.CommunicationFormat))
                 ) && 
                 (
                     this.Description == input.Description ||
@@ -454,11 +459,13 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.EncryptionProtocol == input.EncryptionProtocol ||
-                    this.EncryptionProtocol.Equals(input.EncryptionProtocol)
+                    (this.EncryptionProtocol != null &&
+                    this.EncryptionProtocol.Equals(input.EncryptionProtocol))
                 ) && 
                 (
                     this.FilterMerchantAccountType == input.FilterMerchantAccountType ||
-                    this.FilterMerchantAccountType.Equals(input.FilterMerchantAccountType)
+                    (this.FilterMerchantAccountType != null &&
+                    this.FilterMerchantAccountType.Equals(input.FilterMerchantAccountType))
                 ) && 
                 (
                     this.FilterMerchantAccounts == input.FilterMerchantAccounts ||
@@ -468,11 +475,13 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.HasError == input.HasError ||
-                    this.HasError.Equals(input.HasError)
+                    (this.HasError != null &&
+                    this.HasError.Equals(input.HasError))
                 ) && 
                 (
                     this.HasPassword == input.HasPassword ||
-                    this.HasPassword.Equals(input.HasPassword)
+                    (this.HasPassword != null &&
+                    this.HasPassword.Equals(input.HasPassword))
                 ) && 
                 (
                     this.HmacKeyCheckValue == input.HmacKeyCheckValue ||
@@ -486,11 +495,13 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.NetworkType == input.NetworkType ||
-                    this.NetworkType.Equals(input.NetworkType)
+                    (this.NetworkType != null &&
+                    this.NetworkType.Equals(input.NetworkType))
                 ) && 
                 (
                     this.PopulateSoapActionHeader == input.PopulateSoapActionHeader ||
-                    this.PopulateSoapActionHeader.Equals(input.PopulateSoapActionHeader)
+                    (this.PopulateSoapActionHeader != null &&
+                    this.PopulateSoapActionHeader.Equals(input.PopulateSoapActionHeader))
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -522,14 +533,26 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.Links.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.AcceptsExpiredCertificate.GetHashCode();
-                hashCode = (hashCode * 59) + this.AcceptsSelfSignedCertificate.GetHashCode();
-                hashCode = (hashCode * 59) + this.AcceptsUntrustedRootCertificate.GetHashCode();
+                if (this.AcceptsExpiredCertificate != null)
+                {
+                    hashCode = (hashCode * 59) + this.AcceptsExpiredCertificate.GetHashCode();
+                }
+                if (this.AcceptsSelfSignedCertificate != null)
+                {
+                    hashCode = (hashCode * 59) + this.AcceptsSelfSignedCertificate.GetHashCode();
+                }
+                if (this.AcceptsUntrustedRootCertificate != null)
+                {
+                    hashCode = (hashCode * 59) + this.AcceptsUntrustedRootCertificate.GetHashCode();
+                }
                 if (this.AccountReference != null)
                 {
                     hashCode = (hashCode * 59) + this.AccountReference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Active.GetHashCode();
+                if (this.Active != null)
+                {
+                    hashCode = (hashCode * 59) + this.Active.GetHashCode();
+                }
                 if (this.AdditionalSettings != null)
                 {
                     hashCode = (hashCode * 59) + this.AdditionalSettings.GetHashCode();
@@ -538,19 +561,34 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.CertificateAlias.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.CommunicationFormat.GetHashCode();
+                if (this.CommunicationFormat != null)
+                {
+                    hashCode = (hashCode * 59) + this.CommunicationFormat.GetHashCode();
+                }
                 if (this.Description != null)
                 {
                     hashCode = (hashCode * 59) + this.Description.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.EncryptionProtocol.GetHashCode();
-                hashCode = (hashCode * 59) + this.FilterMerchantAccountType.GetHashCode();
+                if (this.EncryptionProtocol != null)
+                {
+                    hashCode = (hashCode * 59) + this.EncryptionProtocol.GetHashCode();
+                }
+                if (this.FilterMerchantAccountType != null)
+                {
+                    hashCode = (hashCode * 59) + this.FilterMerchantAccountType.GetHashCode();
+                }
                 if (this.FilterMerchantAccounts != null)
                 {
                     hashCode = (hashCode * 59) + this.FilterMerchantAccounts.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.HasError.GetHashCode();
-                hashCode = (hashCode * 59) + this.HasPassword.GetHashCode();
+                if (this.HasError != null)
+                {
+                    hashCode = (hashCode * 59) + this.HasError.GetHashCode();
+                }
+                if (this.HasPassword != null)
+                {
+                    hashCode = (hashCode * 59) + this.HasPassword.GetHashCode();
+                }
                 if (this.HmacKeyCheckValue != null)
                 {
                     hashCode = (hashCode * 59) + this.HmacKeyCheckValue.GetHashCode();
@@ -559,8 +597,14 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.NetworkType.GetHashCode();
-                hashCode = (hashCode * 59) + this.PopulateSoapActionHeader.GetHashCode();
+                if (this.NetworkType != null)
+                {
+                    hashCode = (hashCode * 59) + this.NetworkType.GetHashCode();
+                }
+                if (this.PopulateSoapActionHeader != null)
+                {
+                    hashCode = (hashCode * 59) + this.PopulateSoapActionHeader.GetHashCode();
+                }
                 if (this.Type != null)
                 {
                     hashCode = (hashCode * 59) + this.Type.GetHashCode();

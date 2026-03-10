@@ -247,7 +247,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.ResultCode == input.ResultCode ||
-                    this.ResultCode.Equals(input.ResultCode)
+                    (this.ResultCode != null &&
+                    this.ResultCode.Equals(input.ResultCode))
                 );
         }
 
@@ -296,7 +297,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.RemainingAmount.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ResultCode.GetHashCode();
+                if (this.ResultCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.ResultCode.GetHashCode();
+                }
                 return hashCode;
             }
         }

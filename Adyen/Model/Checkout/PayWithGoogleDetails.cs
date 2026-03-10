@@ -201,7 +201,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.FundingSource == input.FundingSource ||
-                    this.FundingSource.Equals(input.FundingSource)
+                    (this.FundingSource != null &&
+                    this.FundingSource.Equals(input.FundingSource))
                 ) && 
                 (
                     this.GooglePayToken == input.GooglePayToken ||
@@ -225,7 +226,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -242,7 +244,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.CheckoutAttemptId.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
+                if (this.FundingSource != null)
+                {
+                    hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
+                }
                 if (this.GooglePayToken != null)
                 {
                     hashCode = (hashCode * 59) + this.GooglePayToken.GetHashCode();
@@ -259,7 +264,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.ThreeDS2SdkVersion.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

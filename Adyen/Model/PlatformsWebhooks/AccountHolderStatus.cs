@@ -186,7 +186,8 @@ namespace Adyen.Model.PlatformsWebhooks
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.StatusReason == input.StatusReason ||
@@ -216,7 +217,10 @@ namespace Adyen.Model.PlatformsWebhooks
                 {
                     hashCode = (hashCode * 59) + this.ProcessingState.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.StatusReason != null)
                 {
                     hashCode = (hashCode * 59) + this.StatusReason.GetHashCode();

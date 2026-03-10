@@ -143,11 +143,13 @@ namespace Adyen.Model.BalancePlatform
             return 
                 (
                     this.Unit == input.Unit ||
-                    this.Unit.Equals(input.Unit)
+                    (this.Unit != null &&
+                    this.Unit.Equals(input.Unit))
                 ) && 
                 (
                     this.Value == input.Value ||
-                    this.Value.Equals(input.Value)
+                    (this.Value != null &&
+                    this.Value.Equals(input.Value))
                 );
         }
 
@@ -160,8 +162,14 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Unit.GetHashCode();
-                hashCode = (hashCode * 59) + this.Value.GetHashCode();
+                if (this.Unit != null)
+                {
+                    hashCode = (hashCode * 59) + this.Unit.GetHashCode();
+                }
+                if (this.Value != null)
+                {
+                    hashCode = (hashCode * 59) + this.Value.GetHashCode();
+                }
                 return hashCode;
             }
         }

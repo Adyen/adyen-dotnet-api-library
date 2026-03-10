@@ -129,7 +129,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.ContentType == input.ContentType ||
-                    this.ContentType.Equals(input.ContentType)
+                    (this.ContentType != null &&
+                    this.ContentType.Equals(input.ContentType))
                 );
         }
 
@@ -146,7 +147,10 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Content.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ContentType.GetHashCode();
+                if (this.ContentType != null)
+                {
+                    hashCode = (hashCode * 59) + this.ContentType.GetHashCode();
+                }
                 return hashCode;
             }
         }

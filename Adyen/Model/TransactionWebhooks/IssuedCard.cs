@@ -300,11 +300,13 @@ namespace Adyen.Model.TransactionWebhooks
                 ) && 
                 (
                     this.PanEntryMode == input.PanEntryMode ||
-                    this.PanEntryMode.Equals(input.PanEntryMode)
+                    (this.PanEntryMode != null &&
+                    this.PanEntryMode.Equals(input.PanEntryMode))
                 ) && 
                 (
                     this.ProcessingType == input.ProcessingType ||
-                    this.ProcessingType.Equals(input.ProcessingType)
+                    (this.ProcessingType != null &&
+                    this.ProcessingType.Equals(input.ProcessingType))
                 ) && 
                 (
                     this.RelayedAuthorisationData == input.RelayedAuthorisationData ||
@@ -328,7 +330,8 @@ namespace Adyen.Model.TransactionWebhooks
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 ) && 
                 (
                     this.ValidationFacts == input.ValidationFacts ||
@@ -351,8 +354,14 @@ namespace Adyen.Model.TransactionWebhooks
                 {
                     hashCode = (hashCode * 59) + this.AuthorisationType.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.PanEntryMode.GetHashCode();
-                hashCode = (hashCode * 59) + this.ProcessingType.GetHashCode();
+                if (this.PanEntryMode != null)
+                {
+                    hashCode = (hashCode * 59) + this.PanEntryMode.GetHashCode();
+                }
+                if (this.ProcessingType != null)
+                {
+                    hashCode = (hashCode * 59) + this.ProcessingType.GetHashCode();
+                }
                 if (this.RelayedAuthorisationData != null)
                 {
                     hashCode = (hashCode * 59) + this.RelayedAuthorisationData.GetHashCode();
@@ -369,7 +378,10 @@ namespace Adyen.Model.TransactionWebhooks
                 {
                     hashCode = (hashCode * 59) + this.ThreeDSecure.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 if (this.ValidationFacts != null)
                 {
                     hashCode = (hashCode * 59) + this.ValidationFacts.GetHashCode();

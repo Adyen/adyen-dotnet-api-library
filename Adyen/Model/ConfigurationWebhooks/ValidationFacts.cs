@@ -153,7 +153,8 @@ namespace Adyen.Model.ConfigurationWebhooks
                 ) && 
                 (
                     this.Result == input.Result ||
-                    this.Result.Equals(input.Result)
+                    (this.Result != null &&
+                    this.Result.Equals(input.Result))
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -175,7 +176,10 @@ namespace Adyen.Model.ConfigurationWebhooks
                 {
                     hashCode = (hashCode * 59) + this.Reasons.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Result.GetHashCode();
+                if (this.Result != null)
+                {
+                    hashCode = (hashCode * 59) + this.Result.GetHashCode();
+                }
                 if (this.Type != null)
                 {
                     hashCode = (hashCode * 59) + this.Type.GetHashCode();

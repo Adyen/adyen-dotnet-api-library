@@ -212,7 +212,8 @@ namespace Adyen.Model.StoredValue
                 ) && 
                 (
                     this.ResultCode == input.ResultCode ||
-                    this.ResultCode.Equals(input.ResultCode)
+                    (this.ResultCode != null &&
+                    this.ResultCode.Equals(input.ResultCode))
                 ) && 
                 (
                     this.ThirdPartyRefusalReason == input.ThirdPartyRefusalReason ||
@@ -250,7 +251,10 @@ namespace Adyen.Model.StoredValue
                 {
                     hashCode = (hashCode * 59) + this.RefusalReason.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ResultCode.GetHashCode();
+                if (this.ResultCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.ResultCode.GetHashCode();
+                }
                 if (this.ThirdPartyRefusalReason != null)
                 {
                     hashCode = (hashCode * 59) + this.ThirdPartyRefusalReason.GetHashCode();

@@ -119,11 +119,13 @@ namespace Adyen.Model.Management
             return 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 ) && 
                 (
                     this.UpdateAtFirstMaintenanceCall == input.UpdateAtFirstMaintenanceCall ||
-                    this.UpdateAtFirstMaintenanceCall.Equals(input.UpdateAtFirstMaintenanceCall)
+                    (this.UpdateAtFirstMaintenanceCall != null &&
+                    this.UpdateAtFirstMaintenanceCall.Equals(input.UpdateAtFirstMaintenanceCall))
                 );
         }
 
@@ -136,8 +138,14 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                hashCode = (hashCode * 59) + this.UpdateAtFirstMaintenanceCall.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
+                if (this.UpdateAtFirstMaintenanceCall != null)
+                {
+                    hashCode = (hashCode * 59) + this.UpdateAtFirstMaintenanceCall.GetHashCode();
+                }
                 return hashCode;
             }
         }

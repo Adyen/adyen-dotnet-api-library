@@ -298,7 +298,8 @@ namespace Adyen.Model.Checkout
             return 
                 (
                     this.AccountHolderType == input.AccountHolderType ||
-                    this.AccountHolderType.Equals(input.AccountHolderType)
+                    (this.AccountHolderType != null &&
+                    this.AccountHolderType.Equals(input.AccountHolderType))
                 ) && 
                 (
                     this.BankAccountNumber == input.BankAccountNumber ||
@@ -307,7 +308,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.BankAccountType == input.BankAccountType ||
-                    this.BankAccountType.Equals(input.BankAccountType)
+                    (this.BankAccountType != null &&
+                    this.BankAccountType.Equals(input.BankAccountType))
                 ) && 
                 (
                     this.BankLocationId == input.BankLocationId ||
@@ -351,7 +353,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -364,12 +367,18 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.AccountHolderType.GetHashCode();
+                if (this.AccountHolderType != null)
+                {
+                    hashCode = (hashCode * 59) + this.AccountHolderType.GetHashCode();
+                }
                 if (this.BankAccountNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.BankAccountNumber.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.BankAccountType.GetHashCode();
+                if (this.BankAccountType != null)
+                {
+                    hashCode = (hashCode * 59) + this.BankAccountType.GetHashCode();
+                }
                 if (this.BankLocationId != null)
                 {
                     hashCode = (hashCode * 59) + this.BankLocationId.GetHashCode();
@@ -402,7 +411,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.TransferInstrumentId.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

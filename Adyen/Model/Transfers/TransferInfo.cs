@@ -387,7 +387,8 @@ namespace Adyen.Model.Transfers
                 ) && 
                 (
                     this.Category == input.Category ||
-                    this.Category.Equals(input.Category)
+                    (this.Category != null &&
+                    this.Category.Equals(input.Category))
                 ) && 
                 (
                     this.Counterparty == input.Counterparty ||
@@ -410,7 +411,8 @@ namespace Adyen.Model.Transfers
                 ) && 
                 (
                     this.Priority == input.Priority ||
-                    this.Priority.Equals(input.Priority)
+                    (this.Priority != null &&
+                    this.Priority.Equals(input.Priority))
                 ) && 
                 (
                     this.Reference == input.Reference ||
@@ -429,7 +431,8 @@ namespace Adyen.Model.Transfers
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 ) && 
                 (
                     this.UltimateParty == input.UltimateParty ||
@@ -455,7 +458,10 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.BalanceAccountId.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Category.GetHashCode();
+                if (this.Category != null)
+                {
+                    hashCode = (hashCode * 59) + this.Category.GetHashCode();
+                }
                 if (this.Counterparty != null)
                 {
                     hashCode = (hashCode * 59) + this.Counterparty.GetHashCode();
@@ -468,8 +474,14 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.PaymentInstrumentId.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Priorities.GetHashCode();
-                hashCode = (hashCode * 59) + this.Priority.GetHashCode();
+                if (this.Priorities != null)
+                {
+                    hashCode = (hashCode * 59) + this.Priorities.GetHashCode();
+                }
+                if (this.Priority != null)
+                {
+                    hashCode = (hashCode * 59) + this.Priority.GetHashCode();
+                }
                 if (this.Reference != null)
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
@@ -482,7 +494,10 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.Review.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 if (this.UltimateParty != null)
                 {
                     hashCode = (hashCode * 59) + this.UltimateParty.GetHashCode();

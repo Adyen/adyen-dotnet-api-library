@@ -151,11 +151,13 @@ namespace Adyen.Model.TransferWebhooks
                 ) && 
                 (
                     this.AmountAdjustmentType == input.AmountAdjustmentType ||
-                    this.AmountAdjustmentType.Equals(input.AmountAdjustmentType)
+                    (this.AmountAdjustmentType != null &&
+                    this.AmountAdjustmentType.Equals(input.AmountAdjustmentType))
                 ) && 
                 (
                     this.Basepoints == input.Basepoints ||
-                    this.Basepoints.Equals(input.Basepoints)
+                    (this.Basepoints != null &&
+                    this.Basepoints.Equals(input.Basepoints))
                 );
         }
 
@@ -172,8 +174,14 @@ namespace Adyen.Model.TransferWebhooks
                 {
                     hashCode = (hashCode * 59) + this.Amount.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.AmountAdjustmentType.GetHashCode();
-                hashCode = (hashCode * 59) + this.Basepoints.GetHashCode();
+                if (this.AmountAdjustmentType != null)
+                {
+                    hashCode = (hashCode * 59) + this.AmountAdjustmentType.GetHashCode();
+                }
+                if (this.Basepoints != null)
+                {
+                    hashCode = (hashCode * 59) + this.Basepoints.GetHashCode();
+                }
                 return hashCode;
             }
         }

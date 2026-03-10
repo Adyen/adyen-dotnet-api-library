@@ -255,7 +255,8 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 ) && 
                 (
                     this.UnincorporatedPartnership == input.UnincorporatedPartnership ||
@@ -306,7 +307,10 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.Trust.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 if (this.UnincorporatedPartnership != null)
                 {
                     hashCode = (hashCode * 59) + this.UnincorporatedPartnership.GetHashCode();

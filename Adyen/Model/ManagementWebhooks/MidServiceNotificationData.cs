@@ -251,11 +251,13 @@ namespace Adyen.Model.ManagementWebhooks
             return 
                 (
                     this.Allowed == input.Allowed ||
-                    this.Allowed.Equals(input.Allowed)
+                    (this.Allowed != null &&
+                    this.Allowed.Equals(input.Allowed))
                 ) && 
                 (
                     this.Enabled == input.Enabled ||
-                    this.Enabled.Equals(input.Enabled)
+                    (this.Enabled != null &&
+                    this.Enabled.Equals(input.Enabled))
                 ) && 
                 (
                     this.Id == input.Id ||
@@ -274,7 +276,8 @@ namespace Adyen.Model.ManagementWebhooks
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.StoreId == input.StoreId ||
@@ -288,7 +291,8 @@ namespace Adyen.Model.ManagementWebhooks
                 ) && 
                 (
                     this.VerificationStatus == input.VerificationStatus ||
-                    this.VerificationStatus.Equals(input.VerificationStatus)
+                    (this.VerificationStatus != null &&
+                    this.VerificationStatus.Equals(input.VerificationStatus))
                 );
         }
 
@@ -301,8 +305,14 @@ namespace Adyen.Model.ManagementWebhooks
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Allowed.GetHashCode();
-                hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
+                if (this.Allowed != null)
+                {
+                    hashCode = (hashCode * 59) + this.Allowed.GetHashCode();
+                }
+                if (this.Enabled != null)
+                {
+                    hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
+                }
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
@@ -315,7 +325,10 @@ namespace Adyen.Model.ManagementWebhooks
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.StoreId != null)
                 {
                     hashCode = (hashCode * 59) + this.StoreId.GetHashCode();
@@ -324,7 +337,10 @@ namespace Adyen.Model.ManagementWebhooks
                 {
                     hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.VerificationStatus.GetHashCode();
+                if (this.VerificationStatus != null)
+                {
+                    hashCode = (hashCode * 59) + this.VerificationStatus.GetHashCode();
+                }
                 return hashCode;
             }
         }

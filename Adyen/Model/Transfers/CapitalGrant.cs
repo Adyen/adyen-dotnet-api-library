@@ -259,7 +259,8 @@ namespace Adyen.Model.Transfers
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 );
         }
 
@@ -304,7 +305,10 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.Repayment.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -308,11 +308,13 @@ namespace Adyen.Model.Payment
             return 
                 (
                     this.AddressMatch == input.AddressMatch ||
-                    this.AddressMatch.Equals(input.AddressMatch)
+                    (this.AddressMatch != null &&
+                    this.AddressMatch.Equals(input.AddressMatch))
                 ) && 
                 (
                     this.DeliveryAddressIndicator == input.DeliveryAddressIndicator ||
-                    this.DeliveryAddressIndicator.Equals(input.DeliveryAddressIndicator)
+                    (this.DeliveryAddressIndicator != null &&
+                    this.DeliveryAddressIndicator.Equals(input.DeliveryAddressIndicator))
                 ) && 
                 (
                     this.DeliveryEmail == input.DeliveryEmail ||
@@ -326,7 +328,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.DeliveryTimeframe == input.DeliveryTimeframe ||
-                    this.DeliveryTimeframe.Equals(input.DeliveryTimeframe)
+                    (this.DeliveryTimeframe != null &&
+                    this.DeliveryTimeframe.Equals(input.DeliveryTimeframe))
                 ) && 
                 (
                     this.GiftCardAmount == input.GiftCardAmount ||
@@ -335,7 +338,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.GiftCardCount == input.GiftCardCount ||
-                    this.GiftCardCount.Equals(input.GiftCardCount)
+                    (this.GiftCardCount != null &&
+                    this.GiftCardCount.Equals(input.GiftCardCount))
                 ) && 
                 (
                     this.GiftCardCurr == input.GiftCardCurr ||
@@ -349,7 +353,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.PreOrderPurchase == input.PreOrderPurchase ||
-                    this.PreOrderPurchase.Equals(input.PreOrderPurchase)
+                    (this.PreOrderPurchase != null &&
+                    this.PreOrderPurchase.Equals(input.PreOrderPurchase))
                 ) && 
                 (
                     this.PreOrderPurchaseInd == input.PreOrderPurchaseInd ||
@@ -358,7 +363,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.ReorderItems == input.ReorderItems ||
-                    this.ReorderItems.Equals(input.ReorderItems)
+                    (this.ReorderItems != null &&
+                    this.ReorderItems.Equals(input.ReorderItems))
                 ) && 
                 (
                     this.ReorderItemsInd == input.ReorderItemsInd ||
@@ -381,8 +387,14 @@ namespace Adyen.Model.Payment
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.AddressMatch.GetHashCode();
-                hashCode = (hashCode * 59) + this.DeliveryAddressIndicator.GetHashCode();
+                if (this.AddressMatch != null)
+                {
+                    hashCode = (hashCode * 59) + this.AddressMatch.GetHashCode();
+                }
+                if (this.DeliveryAddressIndicator != null)
+                {
+                    hashCode = (hashCode * 59) + this.DeliveryAddressIndicator.GetHashCode();
+                }
                 if (this.DeliveryEmail != null)
                 {
                     hashCode = (hashCode * 59) + this.DeliveryEmail.GetHashCode();
@@ -391,12 +403,18 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.DeliveryEmailAddress.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.DeliveryTimeframe.GetHashCode();
+                if (this.DeliveryTimeframe != null)
+                {
+                    hashCode = (hashCode * 59) + this.DeliveryTimeframe.GetHashCode();
+                }
                 if (this.GiftCardAmount != null)
                 {
                     hashCode = (hashCode * 59) + this.GiftCardAmount.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.GiftCardCount.GetHashCode();
+                if (this.GiftCardCount != null)
+                {
+                    hashCode = (hashCode * 59) + this.GiftCardCount.GetHashCode();
+                }
                 if (this.GiftCardCurr != null)
                 {
                     hashCode = (hashCode * 59) + this.GiftCardCurr.GetHashCode();
@@ -405,12 +423,18 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.PreOrderDate.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.PreOrderPurchase.GetHashCode();
+                if (this.PreOrderPurchase != null)
+                {
+                    hashCode = (hashCode * 59) + this.PreOrderPurchase.GetHashCode();
+                }
                 if (this.PreOrderPurchaseInd != null)
                 {
                     hashCode = (hashCode * 59) + this.PreOrderPurchaseInd.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ReorderItems.GetHashCode();
+                if (this.ReorderItems != null)
+                {
+                    hashCode = (hashCode * 59) + this.ReorderItems.GetHashCode();
+                }
                 if (this.ReorderItemsInd != null)
                 {
                     hashCode = (hashCode * 59) + this.ReorderItemsInd.GetHashCode();

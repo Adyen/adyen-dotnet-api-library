@@ -321,7 +321,8 @@ namespace Adyen.Model.PlatformsAccount
                 ) && 
                 (
                     this.PayoutSchedule == input.PayoutSchedule ||
-                    this.PayoutSchedule.Equals(input.PayoutSchedule)
+                    (this.PayoutSchedule != null &&
+                    this.PayoutSchedule.Equals(input.PayoutSchedule))
                 ) && 
                 (
                     this.PayoutScheduleReason == input.PayoutScheduleReason ||
@@ -330,7 +331,8 @@ namespace Adyen.Model.PlatformsAccount
                 ) && 
                 (
                     this.PayoutSpeed == input.PayoutSpeed ||
-                    this.PayoutSpeed.Equals(input.PayoutSpeed)
+                    (this.PayoutSpeed != null &&
+                    this.PayoutSpeed.Equals(input.PayoutSpeed))
                 );
         }
 
@@ -363,12 +365,18 @@ namespace Adyen.Model.PlatformsAccount
                 {
                     hashCode = (hashCode * 59) + this.PayoutMethodCode.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.PayoutSchedule.GetHashCode();
+                if (this.PayoutSchedule != null)
+                {
+                    hashCode = (hashCode * 59) + this.PayoutSchedule.GetHashCode();
+                }
                 if (this.PayoutScheduleReason != null)
                 {
                     hashCode = (hashCode * 59) + this.PayoutScheduleReason.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.PayoutSpeed.GetHashCode();
+                if (this.PayoutSpeed != null)
+                {
+                    hashCode = (hashCode * 59) + this.PayoutSpeed.GetHashCode();
+                }
                 return hashCode;
             }
         }

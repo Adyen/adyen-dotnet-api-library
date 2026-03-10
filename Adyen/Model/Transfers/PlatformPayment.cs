@@ -285,7 +285,8 @@ namespace Adyen.Model.Transfers
                 ) && 
                 (
                     this.PlatformPaymentType == input.PlatformPaymentType ||
-                    this.PlatformPaymentType.Equals(input.PlatformPaymentType)
+                    (this.PlatformPaymentType != null &&
+                    this.PlatformPaymentType.Equals(input.PlatformPaymentType))
                 ) && 
                 (
                     this.PspPaymentReference == input.PspPaymentReference ||
@@ -294,7 +295,8 @@ namespace Adyen.Model.Transfers
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -319,12 +321,18 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.PaymentMerchantReference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.PlatformPaymentType.GetHashCode();
+                if (this.PlatformPaymentType != null)
+                {
+                    hashCode = (hashCode * 59) + this.PlatformPaymentType.GetHashCode();
+                }
                 if (this.PspPaymentReference != null)
                 {
                     hashCode = (hashCode * 59) + this.PspPaymentReference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

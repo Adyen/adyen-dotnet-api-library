@@ -444,7 +444,8 @@ namespace Adyen.Model.PosTerminalManagement
                 ) && 
                 (
                     this.DhcpEnabled == input.DhcpEnabled ||
-                    this.DhcpEnabled.Equals(input.DhcpEnabled)
+                    (this.DhcpEnabled != null &&
+                    this.DhcpEnabled.Equals(input.DhcpEnabled))
                 ) && 
                 (
                     this.DisplayLabel == input.DisplayLabel ||
@@ -493,7 +494,8 @@ namespace Adyen.Model.PosTerminalManagement
                 ) && 
                 (
                     this.MerchantInventory == input.MerchantInventory ||
-                    this.MerchantInventory.Equals(input.MerchantInventory)
+                    (this.MerchantInventory != null &&
+                    this.MerchantInventory.Equals(input.MerchantInventory))
                 ) && 
                 (
                     this.PermanentTerminalId == input.PermanentTerminalId ||
@@ -527,7 +529,8 @@ namespace Adyen.Model.PosTerminalManagement
                 ) && 
                 (
                     this.TerminalStatus == input.TerminalStatus ||
-                    this.TerminalStatus.Equals(input.TerminalStatus)
+                    (this.TerminalStatus != null &&
+                    this.TerminalStatus.Equals(input.TerminalStatus))
                 ) && 
                 (
                     this.WifiIp == input.WifiIp ||
@@ -570,7 +573,10 @@ namespace Adyen.Model.PosTerminalManagement
                 {
                     hashCode = (hashCode * 59) + this.DeviceModel.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.DhcpEnabled.GetHashCode();
+                if (this.DhcpEnabled != null)
+                {
+                    hashCode = (hashCode * 59) + this.DhcpEnabled.GetHashCode();
+                }
                 if (this.DisplayLabel != null)
                 {
                     hashCode = (hashCode * 59) + this.DisplayLabel.GetHashCode();
@@ -607,7 +613,10 @@ namespace Adyen.Model.PosTerminalManagement
                 {
                     hashCode = (hashCode * 59) + this.MerchantAccount.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.MerchantInventory.GetHashCode();
+                if (this.MerchantInventory != null)
+                {
+                    hashCode = (hashCode * 59) + this.MerchantInventory.GetHashCode();
+                }
                 if (this.PermanentTerminalId != null)
                 {
                     hashCode = (hashCode * 59) + this.PermanentTerminalId.GetHashCode();
@@ -632,7 +641,10 @@ namespace Adyen.Model.PosTerminalManagement
                 {
                     hashCode = (hashCode * 59) + this.Terminal.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.TerminalStatus.GetHashCode();
+                if (this.TerminalStatus != null)
+                {
+                    hashCode = (hashCode * 59) + this.TerminalStatus.GetHashCode();
+                }
                 if (this.WifiIp != null)
                 {
                     hashCode = (hashCode * 59) + this.WifiIp.GetHashCode();

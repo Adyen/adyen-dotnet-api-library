@@ -151,7 +151,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.IdentificationType == input.IdentificationType ||
-                    this.IdentificationType.Equals(input.IdentificationType)
+                    (this.IdentificationType != null &&
+                    this.IdentificationType.Equals(input.IdentificationType))
                 );
         }
 
@@ -172,7 +173,10 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Identification.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.IdentificationType.GetHashCode();
+                if (this.IdentificationType != null)
+                {
+                    hashCode = (hashCode * 59) + this.IdentificationType.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -289,11 +289,13 @@ namespace Adyen.Model.PlatformsNotificationConfiguration
             return 
                 (
                     this.EventType == input.EventType ||
-                    this.EventType.Equals(input.EventType)
+                    (this.EventType != null &&
+                    this.EventType.Equals(input.EventType))
                 ) && 
                 (
                     this.IncludeMode == input.IncludeMode ||
-                    this.IncludeMode.Equals(input.IncludeMode)
+                    (this.IncludeMode != null &&
+                    this.IncludeMode.Equals(input.IncludeMode))
                 );
         }
 
@@ -306,8 +308,14 @@ namespace Adyen.Model.PlatformsNotificationConfiguration
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.EventType.GetHashCode();
-                hashCode = (hashCode * 59) + this.IncludeMode.GetHashCode();
+                if (this.EventType != null)
+                {
+                    hashCode = (hashCode * 59) + this.EventType.GetHashCode();
+                }
+                if (this.IncludeMode != null)
+                {
+                    hashCode = (hashCode * 59) + this.IncludeMode.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -169,11 +169,13 @@ namespace Adyen.Model.PlatformsAccount
                 ) && 
                 (
                     this.AccountStateType == input.AccountStateType ||
-                    this.AccountStateType.Equals(input.AccountStateType)
+                    (this.AccountStateType != null &&
+                    this.AccountStateType.Equals(input.AccountStateType))
                 ) && 
                 (
                     this.Tier == input.Tier ||
-                    this.Tier.Equals(input.Tier)
+                    (this.Tier != null &&
+                    this.Tier.Equals(input.Tier))
                 );
         }
 
@@ -190,8 +192,14 @@ namespace Adyen.Model.PlatformsAccount
                 {
                     hashCode = (hashCode * 59) + this.AccountHolderCode.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.AccountStateType.GetHashCode();
-                hashCode = (hashCode * 59) + this.Tier.GetHashCode();
+                if (this.AccountStateType != null)
+                {
+                    hashCode = (hashCode * 59) + this.AccountStateType.GetHashCode();
+                }
+                if (this.Tier != null)
+                {
+                    hashCode = (hashCode * 59) + this.Tier.GetHashCode();
+                }
                 return hashCode;
             }
         }

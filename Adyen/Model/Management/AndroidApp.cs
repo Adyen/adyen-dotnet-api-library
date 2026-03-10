@@ -250,11 +250,13 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.VersionCode == input.VersionCode ||
-                    this.VersionCode.Equals(input.VersionCode)
+                    (this.VersionCode != null &&
+                    this.VersionCode.Equals(input.VersionCode))
                 ) && 
                 (
                     this.VersionName == input.VersionName ||
@@ -296,8 +298,14 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.PackageName.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
-                hashCode = (hashCode * 59) + this.VersionCode.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
+                if (this.VersionCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.VersionCode.GetHashCode();
+                }
                 if (this.VersionName != null)
                 {
                     hashCode = (hashCode * 59) + this.VersionName.GetHashCode();

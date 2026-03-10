@@ -1231,7 +1231,8 @@ namespace Adyen.Model.TransferWebhooks
                 ) && 
                 (
                     this.Category == input.Category ||
-                    this.Category.Equals(input.Category)
+                    (this.Category != null &&
+                    this.Category.Equals(input.Category))
                 ) && 
                 (
                     this.CategoryData == input.CategoryData ||
@@ -1260,7 +1261,8 @@ namespace Adyen.Model.TransferWebhooks
                 ) && 
                 (
                     this.Direction == input.Direction ||
-                    this.Direction.Equals(input.Direction)
+                    (this.Direction != null &&
+                    this.Direction.Equals(input.Direction))
                 ) && 
                 (
                     this.EventId == input.EventId ||
@@ -1290,7 +1292,8 @@ namespace Adyen.Model.TransferWebhooks
                 ) && 
                 (
                     this.Reason == input.Reason ||
-                    this.Reason.Equals(input.Reason)
+                    (this.Reason != null &&
+                    this.Reason.Equals(input.Reason))
                 ) && 
                 (
                     this.Reference == input.Reference ||
@@ -1309,11 +1312,13 @@ namespace Adyen.Model.TransferWebhooks
                 ) && 
                 (
                     this.SequenceNumber == input.SequenceNumber ||
-                    this.SequenceNumber.Equals(input.SequenceNumber)
+                    (this.SequenceNumber != null &&
+                    this.SequenceNumber.Equals(input.SequenceNumber))
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.Tracking == input.Tracking ||
@@ -1327,7 +1332,8 @@ namespace Adyen.Model.TransferWebhooks
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -1360,7 +1366,10 @@ namespace Adyen.Model.TransferWebhooks
                 {
                     hashCode = (hashCode * 59) + this.Balances.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Category.GetHashCode();
+                if (this.Category != null)
+                {
+                    hashCode = (hashCode * 59) + this.Category.GetHashCode();
+                }
                 if (this.CategoryData != null)
                 {
                     hashCode = (hashCode * 59) + this.CategoryData.GetHashCode();
@@ -1381,7 +1390,10 @@ namespace Adyen.Model.TransferWebhooks
                 {
                     hashCode = (hashCode * 59) + this.DirectDebitInformation.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Direction.GetHashCode();
+                if (this.Direction != null)
+                {
+                    hashCode = (hashCode * 59) + this.Direction.GetHashCode();
+                }
                 if (this.EventId != null)
                 {
                     hashCode = (hashCode * 59) + this.EventId.GetHashCode();
@@ -1402,7 +1414,10 @@ namespace Adyen.Model.TransferWebhooks
                 {
                     hashCode = (hashCode * 59) + this.PaymentInstrument.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Reason.GetHashCode();
+                if (this.Reason != null)
+                {
+                    hashCode = (hashCode * 59) + this.Reason.GetHashCode();
+                }
                 if (this.Reference != null)
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
@@ -1415,8 +1430,14 @@ namespace Adyen.Model.TransferWebhooks
                 {
                     hashCode = (hashCode * 59) + this.Review.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.SequenceNumber.GetHashCode();
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.SequenceNumber != null)
+                {
+                    hashCode = (hashCode * 59) + this.SequenceNumber.GetHashCode();
+                }
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.Tracking != null)
                 {
                     hashCode = (hashCode * 59) + this.Tracking.GetHashCode();
@@ -1425,7 +1446,10 @@ namespace Adyen.Model.TransferWebhooks
                 {
                     hashCode = (hashCode * 59) + this.TransactionRulesResult.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

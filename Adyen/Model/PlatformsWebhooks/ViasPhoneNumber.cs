@@ -157,7 +157,8 @@ namespace Adyen.Model.PlatformsWebhooks
                 ) && 
                 (
                     this.PhoneType == input.PhoneType ||
-                    this.PhoneType.Equals(input.PhoneType)
+                    (this.PhoneType != null &&
+                    this.PhoneType.Equals(input.PhoneType))
                 );
         }
 
@@ -178,7 +179,10 @@ namespace Adyen.Model.PlatformsWebhooks
                 {
                     hashCode = (hashCode * 59) + this.PhoneNumber.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.PhoneType.GetHashCode();
+                if (this.PhoneType != null)
+                {
+                    hashCode = (hashCode * 59) + this.PhoneType.GetHashCode();
+                }
                 return hashCode;
             }
         }

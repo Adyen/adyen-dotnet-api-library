@@ -205,11 +205,13 @@ namespace Adyen.Model.PlatformsNotificationConfiguration
             return 
                 (
                     this.Active == input.Active ||
-                    this.Active.Equals(input.Active)
+                    (this.Active != null &&
+                    this.Active.Equals(input.Active))
                 ) && 
                 (
                     this.ApiVersion == input.ApiVersion ||
-                    this.ApiVersion.Equals(input.ApiVersion)
+                    (this.ApiVersion != null &&
+                    this.ApiVersion.Equals(input.ApiVersion))
                 ) && 
                 (
                     this.Description == input.Description ||
@@ -229,7 +231,8 @@ namespace Adyen.Model.PlatformsNotificationConfiguration
                 ) && 
                 (
                     this.NotificationId == input.NotificationId ||
-                    this.NotificationId.Equals(input.NotificationId)
+                    (this.NotificationId != null &&
+                    this.NotificationId.Equals(input.NotificationId))
                 ) && 
                 (
                     this.NotifyPassword == input.NotifyPassword ||
@@ -248,7 +251,8 @@ namespace Adyen.Model.PlatformsNotificationConfiguration
                 ) && 
                 (
                     this.SslProtocol == input.SslProtocol ||
-                    this.SslProtocol.Equals(input.SslProtocol)
+                    (this.SslProtocol != null &&
+                    this.SslProtocol.Equals(input.SslProtocol))
                 );
         }
 
@@ -261,8 +265,14 @@ namespace Adyen.Model.PlatformsNotificationConfiguration
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Active.GetHashCode();
-                hashCode = (hashCode * 59) + this.ApiVersion.GetHashCode();
+                if (this.Active != null)
+                {
+                    hashCode = (hashCode * 59) + this.Active.GetHashCode();
+                }
+                if (this.ApiVersion != null)
+                {
+                    hashCode = (hashCode * 59) + this.ApiVersion.GetHashCode();
+                }
                 if (this.Description != null)
                 {
                     hashCode = (hashCode * 59) + this.Description.GetHashCode();
@@ -275,7 +285,10 @@ namespace Adyen.Model.PlatformsNotificationConfiguration
                 {
                     hashCode = (hashCode * 59) + this.HmacSignatureKey.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.NotificationId.GetHashCode();
+                if (this.NotificationId != null)
+                {
+                    hashCode = (hashCode * 59) + this.NotificationId.GetHashCode();
+                }
                 if (this.NotifyPassword != null)
                 {
                     hashCode = (hashCode * 59) + this.NotifyPassword.GetHashCode();
@@ -288,7 +301,10 @@ namespace Adyen.Model.PlatformsNotificationConfiguration
                 {
                     hashCode = (hashCode * 59) + this.NotifyUsername.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.SslProtocol.GetHashCode();
+                if (this.SslProtocol != null)
+                {
+                    hashCode = (hashCode * 59) + this.SslProtocol.GetHashCode();
+                }
                 return hashCode;
             }
         }

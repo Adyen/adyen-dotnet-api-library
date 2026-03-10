@@ -137,7 +137,8 @@ namespace Adyen.Model.BalancePlatform
             return 
                 (
                     this.Operation == input.Operation ||
-                    this.Operation.Equals(input.Operation)
+                    (this.Operation != null &&
+                    this.Operation.Equals(input.Operation))
                 ) && 
                 (
                     this.Value == input.Value ||
@@ -155,7 +156,10 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Operation.GetHashCode();
+                if (this.Operation != null)
+                {
+                    hashCode = (hashCode * 59) + this.Operation.GetHashCode();
+                }
                 if (this.Value != null)
                 {
                     hashCode = (hashCode * 59) + this.Value.GetHashCode();

@@ -238,7 +238,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.FundingSource == input.FundingSource ||
-                    this.FundingSource.Equals(input.FundingSource)
+                    (this.FundingSource != null &&
+                    this.FundingSource.Equals(input.FundingSource))
                 ) && 
                 (
                     this.Group == input.Group ||
@@ -264,7 +265,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.Promoted == input.Promoted ||
-                    this.Promoted.Equals(input.Promoted)
+                    (this.Promoted != null &&
+                    this.Promoted.Equals(input.Promoted))
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -298,7 +300,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this._Configuration.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
+                if (this.FundingSource != null)
+                {
+                    hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
+                }
                 if (this.Group != null)
                 {
                     hashCode = (hashCode * 59) + this.Group.GetHashCode();
@@ -315,7 +320,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Promoted.GetHashCode();
+                if (this.Promoted != null)
+                {
+                    hashCode = (hashCode * 59) + this.Promoted.GetHashCode();
+                }
                 if (this.Type != null)
                 {
                     hashCode = (hashCode * 59) + this.Type.GetHashCode();

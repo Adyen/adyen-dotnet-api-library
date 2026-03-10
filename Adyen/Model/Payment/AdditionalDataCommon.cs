@@ -345,7 +345,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.IndustryUsage == input.IndustryUsage ||
-                    this.IndustryUsage.Equals(input.IndustryUsage)
+                    (this.IndustryUsage != null &&
+                    this.IndustryUsage.Equals(input.IndustryUsage))
                 ) && 
                 (
                     this.ManualCapture == input.ManualCapture ||
@@ -452,7 +453,10 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.CustomRoutingFlag.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.IndustryUsage.GetHashCode();
+                if (this.IndustryUsage != null)
+                {
+                    hashCode = (hashCode * 59) + this.IndustryUsage.GetHashCode();
+                }
                 if (this.ManualCapture != null)
                 {
                     hashCode = (hashCode * 59) + this.ManualCapture.GetHashCode();

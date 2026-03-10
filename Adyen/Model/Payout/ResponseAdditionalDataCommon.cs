@@ -940,11 +940,13 @@ namespace Adyen.Model.Payout
                 ) && 
                 (
                     this.FraudResultType == input.FraudResultType ||
-                    this.FraudResultType.Equals(input.FraudResultType)
+                    (this.FraudResultType != null &&
+                    this.FraudResultType.Equals(input.FraudResultType))
                 ) && 
                 (
                     this.FraudRiskLevel == input.FraudRiskLevel ||
-                    this.FraudRiskLevel.Equals(input.FraudRiskLevel)
+                    (this.FraudRiskLevel != null &&
+                    this.FraudRiskLevel.Equals(input.FraudRiskLevel))
                 ) && 
                 (
                     this.FundingSource == input.FundingSource ||
@@ -1053,7 +1055,8 @@ namespace Adyen.Model.Payout
                 ) && 
                 (
                     this.RecurringProcessingModel == input.RecurringProcessingModel ||
-                    this.RecurringProcessingModel.Equals(input.RecurringProcessingModel)
+                    (this.RecurringProcessingModel != null &&
+                    this.RecurringProcessingModel.Equals(input.RecurringProcessingModel))
                 ) && 
                 (
                     this.Referred == input.Referred ||
@@ -1122,7 +1125,8 @@ namespace Adyen.Model.Payout
                 ) && 
                 (
                     this.TokenizationStoreOperationType == input.TokenizationStoreOperationType ||
-                    this.TokenizationStoreOperationType.Equals(input.TokenizationStoreOperationType)
+                    (this.TokenizationStoreOperationType != null &&
+                    this.TokenizationStoreOperationType.Equals(input.TokenizationStoreOperationType))
                 ) && 
                 (
                     this.TokenizationStoredPaymentMethodId == input.TokenizationStoredPaymentMethodId ||
@@ -1238,8 +1242,14 @@ namespace Adyen.Model.Payout
                 {
                     hashCode = (hashCode * 59) + this.FraudManualReview.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.FraudResultType.GetHashCode();
-                hashCode = (hashCode * 59) + this.FraudRiskLevel.GetHashCode();
+                if (this.FraudResultType != null)
+                {
+                    hashCode = (hashCode * 59) + this.FraudResultType.GetHashCode();
+                }
+                if (this.FraudRiskLevel != null)
+                {
+                    hashCode = (hashCode * 59) + this.FraudRiskLevel.GetHashCode();
+                }
                 if (this.FundingSource != null)
                 {
                     hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
@@ -1324,7 +1334,10 @@ namespace Adyen.Model.Payout
                 {
                     hashCode = (hashCode * 59) + this.RecurringShopperReference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.RecurringProcessingModel.GetHashCode();
+                if (this.RecurringProcessingModel != null)
+                {
+                    hashCode = (hashCode * 59) + this.RecurringProcessingModel.GetHashCode();
+                }
                 if (this.Referred != null)
                 {
                     hashCode = (hashCode * 59) + this.Referred.GetHashCode();
@@ -1377,7 +1390,10 @@ namespace Adyen.Model.Payout
                 {
                     hashCode = (hashCode * 59) + this.TokenizationShopperReference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.TokenizationStoreOperationType.GetHashCode();
+                if (this.TokenizationStoreOperationType != null)
+                {
+                    hashCode = (hashCode * 59) + this.TokenizationStoreOperationType.GetHashCode();
+                }
                 if (this.TokenizationStoredPaymentMethodId != null)
                 {
                     hashCode = (hashCode * 59) + this.TokenizationStoredPaymentMethodId.GetHashCode();

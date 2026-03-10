@@ -194,7 +194,8 @@ namespace Adyen.Model.Payment
             return 
                 (
                     this.Contract == input.Contract ||
-                    this.Contract.Equals(input.Contract)
+                    (this.Contract != null &&
+                    this.Contract.Equals(input.Contract))
                 ) && 
                 (
                     this.RecurringDetailName == input.RecurringDetailName ||
@@ -213,7 +214,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.TokenService == input.TokenService ||
-                    this.TokenService.Equals(input.TokenService)
+                    (this.TokenService != null &&
+                    this.TokenService.Equals(input.TokenService))
                 );
         }
 
@@ -226,7 +228,10 @@ namespace Adyen.Model.Payment
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Contract.GetHashCode();
+                if (this.Contract != null)
+                {
+                    hashCode = (hashCode * 59) + this.Contract.GetHashCode();
+                }
                 if (this.RecurringDetailName != null)
                 {
                     hashCode = (hashCode * 59) + this.RecurringDetailName.GetHashCode();
@@ -239,7 +244,10 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.RecurringFrequency.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.TokenService.GetHashCode();
+                if (this.TokenService != null)
+                {
+                    hashCode = (hashCode * 59) + this.TokenService.GetHashCode();
+                }
                 return hashCode;
             }
         }

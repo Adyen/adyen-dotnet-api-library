@@ -149,15 +149,18 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Max == input.Max ||
-                    this.Max.Equals(input.Max)
+                    (this.Max != null &&
+                    this.Max.Equals(input.Max))
                 ) && 
                 (
                     this.Min == input.Min ||
-                    this.Min.Equals(input.Min)
+                    (this.Min != null &&
+                    this.Min.Equals(input.Min))
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -174,9 +177,18 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Description.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Max.GetHashCode();
-                hashCode = (hashCode * 59) + this.Min.GetHashCode();
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Max != null)
+                {
+                    hashCode = (hashCode * 59) + this.Max.GetHashCode();
+                }
+                if (this.Min != null)
+                {
+                    hashCode = (hashCode * 59) + this.Min.GetHashCode();
+                }
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

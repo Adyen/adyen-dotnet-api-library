@@ -219,11 +219,13 @@ namespace Adyen.Model.Management
             return 
                 (
                     this.Allowed == input.Allowed ||
-                    this.Allowed.Equals(input.Allowed)
+                    (this.Allowed != null &&
+                    this.Allowed.Equals(input.Allowed))
                 ) && 
                 (
                     this.Enabled == input.Enabled ||
-                    this.Enabled.Equals(input.Enabled)
+                    (this.Enabled != null &&
+                    this.Enabled.Equals(input.Enabled))
                 ) && 
                 (
                     this.EnabledFromDate == input.EnabledFromDate ||
@@ -237,7 +239,8 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Priority == input.Priority ||
-                    this.Priority.Equals(input.Priority)
+                    (this.Priority != null &&
+                    this.Priority.Equals(input.Priority))
                 ) && 
                 (
                     this.TransferInstrumentId == input.TransferInstrumentId ||
@@ -246,7 +249,8 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.VerificationStatus == input.VerificationStatus ||
-                    this.VerificationStatus.Equals(input.VerificationStatus)
+                    (this.VerificationStatus != null &&
+                    this.VerificationStatus.Equals(input.VerificationStatus))
                 );
         }
 
@@ -259,8 +263,14 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Allowed.GetHashCode();
-                hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
+                if (this.Allowed != null)
+                {
+                    hashCode = (hashCode * 59) + this.Allowed.GetHashCode();
+                }
+                if (this.Enabled != null)
+                {
+                    hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
+                }
                 if (this.EnabledFromDate != null)
                 {
                     hashCode = (hashCode * 59) + this.EnabledFromDate.GetHashCode();
@@ -269,12 +279,18 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Priority.GetHashCode();
+                if (this.Priority != null)
+                {
+                    hashCode = (hashCode * 59) + this.Priority.GetHashCode();
+                }
                 if (this.TransferInstrumentId != null)
                 {
                     hashCode = (hashCode * 59) + this.TransferInstrumentId.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.VerificationStatus.GetHashCode();
+                if (this.VerificationStatus != null)
+                {
+                    hashCode = (hashCode * 59) + this.VerificationStatus.GetHashCode();
+                }
                 return hashCode;
             }
         }

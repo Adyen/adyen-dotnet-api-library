@@ -166,7 +166,8 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.TermsOfServiceDocumentFormat == input.TermsOfServiceDocumentFormat ||
-                    this.TermsOfServiceDocumentFormat.Equals(input.TermsOfServiceDocumentFormat)
+                    (this.TermsOfServiceDocumentFormat != null &&
+                    this.TermsOfServiceDocumentFormat.Equals(input.TermsOfServiceDocumentFormat))
                 );
         }
 
@@ -191,7 +192,10 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.TermsOfServiceAcceptanceReference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.TermsOfServiceDocumentFormat.GetHashCode();
+                if (this.TermsOfServiceDocumentFormat != null)
+                {
+                    hashCode = (hashCode * 59) + this.TermsOfServiceDocumentFormat.GetHashCode();
+                }
                 return hashCode;
             }
         }

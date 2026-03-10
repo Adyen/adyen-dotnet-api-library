@@ -349,7 +349,8 @@ namespace Adyen.Model.PlatformsAccount
                 ) && 
                 (
                     this.LegalForm == input.LegalForm ||
-                    this.LegalForm.Equals(input.LegalForm)
+                    (this.LegalForm != null &&
+                    this.LegalForm.Equals(input.LegalForm))
                 ) && 
                 (
                     this.Name == input.Name ||
@@ -368,7 +369,8 @@ namespace Adyen.Model.PlatformsAccount
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -397,7 +399,10 @@ namespace Adyen.Model.PlatformsAccount
                 {
                     hashCode = (hashCode * 59) + this.LegalArrangementReference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.LegalForm.GetHashCode();
+                if (this.LegalForm != null)
+                {
+                    hashCode = (hashCode * 59) + this.LegalForm.GetHashCode();
+                }
                 if (this.Name != null)
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
@@ -410,7 +415,10 @@ namespace Adyen.Model.PlatformsAccount
                 {
                     hashCode = (hashCode * 59) + this.TaxNumber.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

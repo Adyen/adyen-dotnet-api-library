@@ -193,7 +193,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.Response == input.Response ||
-                    this.Response.Equals(input.Response)
+                    (this.Response != null &&
+                    this.Response.Equals(input.Response))
                 );
         }
 
@@ -214,7 +215,10 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.PspReference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Response.GetHashCode();
+                if (this.Response != null)
+                {
+                    hashCode = (hashCode * 59) + this.Response.GetHashCode();
+                }
                 return hashCode;
             }
         }

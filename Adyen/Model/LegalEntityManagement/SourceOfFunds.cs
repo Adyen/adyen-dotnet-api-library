@@ -319,7 +319,8 @@ namespace Adyen.Model.LegalEntityManagement
             return 
                 (
                     this.AdyenProcessedFunds == input.AdyenProcessedFunds ||
-                    this.AdyenProcessedFunds.Equals(input.AdyenProcessedFunds)
+                    (this.AdyenProcessedFunds != null &&
+                    this.AdyenProcessedFunds.Equals(input.AdyenProcessedFunds))
                 ) && 
                 (
                     this.Amount == input.Amount ||
@@ -328,7 +329,8 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.AssetMonthsHeld == input.AssetMonthsHeld ||
-                    this.AssetMonthsHeld.Equals(input.AssetMonthsHeld)
+                    (this.AssetMonthsHeld != null &&
+                    this.AssetMonthsHeld.Equals(input.AssetMonthsHeld))
                 ) && 
                 (
                     this.CryptocurrencyExchange == input.CryptocurrencyExchange ||
@@ -373,7 +375,8 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 ) && 
                 (
                     this.Website == input.Website ||
@@ -391,12 +394,18 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.AdyenProcessedFunds.GetHashCode();
+                if (this.AdyenProcessedFunds != null)
+                {
+                    hashCode = (hashCode * 59) + this.AdyenProcessedFunds.GetHashCode();
+                }
                 if (this.Amount != null)
                 {
                     hashCode = (hashCode * 59) + this.Amount.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.AssetMonthsHeld.GetHashCode();
+                if (this.AssetMonthsHeld != null)
+                {
+                    hashCode = (hashCode * 59) + this.AssetMonthsHeld.GetHashCode();
+                }
                 if (this.CryptocurrencyExchange != null)
                 {
                     hashCode = (hashCode * 59) + this.CryptocurrencyExchange.GetHashCode();
@@ -429,7 +438,10 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.Relationship.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 if (this.Website != null)
                 {
                     hashCode = (hashCode * 59) + this.Website.GetHashCode();

@@ -282,7 +282,8 @@ namespace Adyen.Model.PlatformsWebhooks
                 ) && 
                 (
                     this.Event == input.Event ||
-                    this.Event.Equals(input.Event)
+                    (this.Event != null &&
+                    this.Event.Equals(input.Event))
                 ) && 
                 (
                     this.ExecutionDate == input.ExecutionDate ||
@@ -309,7 +310,10 @@ namespace Adyen.Model.PlatformsWebhooks
                 {
                     hashCode = (hashCode * 59) + this.AccountHolderCode.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Event.GetHashCode();
+                if (this.Event != null)
+                {
+                    hashCode = (hashCode * 59) + this.Event.GetHashCode();
+                }
                 if (this.ExecutionDate != null)
                 {
                     hashCode = (hashCode * 59) + this.ExecutionDate.GetHashCode();

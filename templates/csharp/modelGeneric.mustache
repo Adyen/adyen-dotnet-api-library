@@ -324,13 +324,8 @@
             return {{#vars}}{{#parent}}base.Equals(input) && {{/parent}}{{^isContainer}}
                 (
                     this.{{name}} == input.{{name}} ||
-                    {{^vendorExtensions.x-is-value-type}}
                     (this.{{name}} != null &&
                     this.{{name}}.Equals(input.{{name}}))
-                    {{/vendorExtensions.x-is-value-type}}
-                    {{#vendorExtensions.x-is-value-type}}
-                    this.{{name}}.Equals(input.{{name}})
-                    {{/vendorExtensions.x-is-value-type}}
                 ){{^-last}} && {{/-last}}{{/isContainer}}{{#isContainer}}
                 (
                     this.{{name}} == input.{{name}} ||
@@ -359,15 +354,10 @@
                 int hashCode = 41;
                 {{/parent}}
                 {{#vars}}
-                {{^vendorExtensions.x-is-value-type}}
                 if (this.{{name}} != null)
                 {
                     hashCode = (hashCode * 59) + this.{{name}}.GetHashCode();
                 }
-                {{/vendorExtensions.x-is-value-type}}
-                {{#vendorExtensions.x-is-value-type}}
-                hashCode = (hashCode * 59) + this.{{name}}.GetHashCode();
-                {{/vendorExtensions.x-is-value-type}}
                 {{/vars}}
                 {{#isAdditionalPropertiesTrue}}
                 if (this.AdditionalProperties != null)

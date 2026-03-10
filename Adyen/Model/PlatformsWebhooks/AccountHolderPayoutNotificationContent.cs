@@ -350,11 +350,13 @@ namespace Adyen.Model.PlatformsWebhooks
                 ) && 
                 (
                     this.PayoutReference == input.PayoutReference ||
-                    this.PayoutReference.Equals(input.PayoutReference)
+                    (this.PayoutReference != null &&
+                    this.PayoutReference.Equals(input.PayoutReference))
                 ) && 
                 (
                     this.PayoutSpeed == input.PayoutSpeed ||
-                    this.PayoutSpeed.Equals(input.PayoutSpeed)
+                    (this.PayoutSpeed != null &&
+                    this.PayoutSpeed.Equals(input.PayoutSpeed))
                 ) && 
                 (
                     this.Status == input.Status ||
@@ -428,8 +430,14 @@ namespace Adyen.Model.PlatformsWebhooks
                 {
                     hashCode = (hashCode * 59) + this.PayoutBranchCode.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.PayoutReference.GetHashCode();
-                hashCode = (hashCode * 59) + this.PayoutSpeed.GetHashCode();
+                if (this.PayoutReference != null)
+                {
+                    hashCode = (hashCode * 59) + this.PayoutReference.GetHashCode();
+                }
+                if (this.PayoutSpeed != null)
+                {
+                    hashCode = (hashCode * 59) + this.PayoutSpeed.GetHashCode();
+                }
                 if (this.Status != null)
                 {
                     hashCode = (hashCode * 59) + this.Status.GetHashCode();

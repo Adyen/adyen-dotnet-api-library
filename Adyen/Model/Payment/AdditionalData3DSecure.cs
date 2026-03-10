@@ -188,7 +188,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.ChallengeWindowSize == input.ChallengeWindowSize ||
-                    this.ChallengeWindowSize.Equals(input.ChallengeWindowSize)
+                    (this.ChallengeWindowSize != null &&
+                    this.ChallengeWindowSize.Equals(input.ChallengeWindowSize))
                 ) && 
                 (
                     this.ExecuteThreeD == input.ExecuteThreeD ||
@@ -225,7 +226,10 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.Allow3DS2.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ChallengeWindowSize.GetHashCode();
+                if (this.ChallengeWindowSize != null)
+                {
+                    hashCode = (hashCode * 59) + this.ChallengeWindowSize.GetHashCode();
+                }
                 if (this.ExecuteThreeD != null)
                 {
                     hashCode = (hashCode * 59) + this.ExecuteThreeD.GetHashCode();

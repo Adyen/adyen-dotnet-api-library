@@ -487,7 +487,8 @@ namespace Adyen.Model.Payment
             return 
                 (
                     this.AccountAgeIndicator == input.AccountAgeIndicator ||
-                    this.AccountAgeIndicator.Equals(input.AccountAgeIndicator)
+                    (this.AccountAgeIndicator != null &&
+                    this.AccountAgeIndicator.Equals(input.AccountAgeIndicator))
                 ) && 
                 (
                     this.AccountChangeDate == input.AccountChangeDate ||
@@ -496,7 +497,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.AccountChangeIndicator == input.AccountChangeIndicator ||
-                    this.AccountChangeIndicator.Equals(input.AccountChangeIndicator)
+                    (this.AccountChangeIndicator != null &&
+                    this.AccountChangeIndicator.Equals(input.AccountChangeIndicator))
                 ) && 
                 (
                     this.AccountCreationDate == input.AccountCreationDate ||
@@ -505,11 +507,13 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.AccountType == input.AccountType ||
-                    this.AccountType.Equals(input.AccountType)
+                    (this.AccountType != null &&
+                    this.AccountType.Equals(input.AccountType))
                 ) && 
                 (
                     this.AddCardAttemptsDay == input.AddCardAttemptsDay ||
-                    this.AddCardAttemptsDay.Equals(input.AddCardAttemptsDay)
+                    (this.AddCardAttemptsDay != null &&
+                    this.AddCardAttemptsDay.Equals(input.AddCardAttemptsDay))
                 ) && 
                 (
                     this.DeliveryAddressUsageDate == input.DeliveryAddressUsageDate ||
@@ -518,7 +522,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.DeliveryAddressUsageIndicator == input.DeliveryAddressUsageIndicator ||
-                    this.DeliveryAddressUsageIndicator.Equals(input.DeliveryAddressUsageIndicator)
+                    (this.DeliveryAddressUsageIndicator != null &&
+                    this.DeliveryAddressUsageIndicator.Equals(input.DeliveryAddressUsageIndicator))
                 ) && 
                 (
                     this.HomePhone == input.HomePhone ||
@@ -537,15 +542,18 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.PasswordChangeIndicator == input.PasswordChangeIndicator ||
-                    this.PasswordChangeIndicator.Equals(input.PasswordChangeIndicator)
+                    (this.PasswordChangeIndicator != null &&
+                    this.PasswordChangeIndicator.Equals(input.PasswordChangeIndicator))
                 ) && 
                 (
                     this.PastTransactionsDay == input.PastTransactionsDay ||
-                    this.PastTransactionsDay.Equals(input.PastTransactionsDay)
+                    (this.PastTransactionsDay != null &&
+                    this.PastTransactionsDay.Equals(input.PastTransactionsDay))
                 ) && 
                 (
                     this.PastTransactionsYear == input.PastTransactionsYear ||
-                    this.PastTransactionsYear.Equals(input.PastTransactionsYear)
+                    (this.PastTransactionsYear != null &&
+                    this.PastTransactionsYear.Equals(input.PastTransactionsYear))
                 ) && 
                 (
                     this.PaymentAccountAge == input.PaymentAccountAge ||
@@ -554,7 +562,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.PaymentAccountIndicator == input.PaymentAccountIndicator ||
-                    this.PaymentAccountIndicator.Equals(input.PaymentAccountIndicator)
+                    (this.PaymentAccountIndicator != null &&
+                    this.PaymentAccountIndicator.Equals(input.PaymentAccountIndicator))
                 ) && 
                 (
                     this.PurchasesLast6Months == input.PurchasesLast6Months ||
@@ -562,7 +571,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.SuspiciousActivity == input.SuspiciousActivity ||
-                    this.SuspiciousActivity.Equals(input.SuspiciousActivity)
+                    (this.SuspiciousActivity != null &&
+                    this.SuspiciousActivity.Equals(input.SuspiciousActivity))
                 ) && 
                 (
                     this.WorkPhone == input.WorkPhone ||
@@ -580,23 +590,38 @@ namespace Adyen.Model.Payment
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.AccountAgeIndicator.GetHashCode();
+                if (this.AccountAgeIndicator != null)
+                {
+                    hashCode = (hashCode * 59) + this.AccountAgeIndicator.GetHashCode();
+                }
                 if (this.AccountChangeDate != null)
                 {
                     hashCode = (hashCode * 59) + this.AccountChangeDate.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.AccountChangeIndicator.GetHashCode();
+                if (this.AccountChangeIndicator != null)
+                {
+                    hashCode = (hashCode * 59) + this.AccountChangeIndicator.GetHashCode();
+                }
                 if (this.AccountCreationDate != null)
                 {
                     hashCode = (hashCode * 59) + this.AccountCreationDate.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
-                hashCode = (hashCode * 59) + this.AddCardAttemptsDay.GetHashCode();
+                if (this.AccountType != null)
+                {
+                    hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
+                }
+                if (this.AddCardAttemptsDay != null)
+                {
+                    hashCode = (hashCode * 59) + this.AddCardAttemptsDay.GetHashCode();
+                }
                 if (this.DeliveryAddressUsageDate != null)
                 {
                     hashCode = (hashCode * 59) + this.DeliveryAddressUsageDate.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.DeliveryAddressUsageIndicator.GetHashCode();
+                if (this.DeliveryAddressUsageIndicator != null)
+                {
+                    hashCode = (hashCode * 59) + this.DeliveryAddressUsageIndicator.GetHashCode();
+                }
                 if (this.HomePhone != null)
                 {
                     hashCode = (hashCode * 59) + this.HomePhone.GetHashCode();
@@ -609,16 +634,31 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.PasswordChangeDate.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.PasswordChangeIndicator.GetHashCode();
-                hashCode = (hashCode * 59) + this.PastTransactionsDay.GetHashCode();
-                hashCode = (hashCode * 59) + this.PastTransactionsYear.GetHashCode();
+                if (this.PasswordChangeIndicator != null)
+                {
+                    hashCode = (hashCode * 59) + this.PasswordChangeIndicator.GetHashCode();
+                }
+                if (this.PastTransactionsDay != null)
+                {
+                    hashCode = (hashCode * 59) + this.PastTransactionsDay.GetHashCode();
+                }
+                if (this.PastTransactionsYear != null)
+                {
+                    hashCode = (hashCode * 59) + this.PastTransactionsYear.GetHashCode();
+                }
                 if (this.PaymentAccountAge != null)
                 {
                     hashCode = (hashCode * 59) + this.PaymentAccountAge.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.PaymentAccountIndicator.GetHashCode();
+                if (this.PaymentAccountIndicator != null)
+                {
+                    hashCode = (hashCode * 59) + this.PaymentAccountIndicator.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.PurchasesLast6Months.GetHashCode();
-                hashCode = (hashCode * 59) + this.SuspiciousActivity.GetHashCode();
+                if (this.SuspiciousActivity != null)
+                {
+                    hashCode = (hashCode * 59) + this.SuspiciousActivity.GetHashCode();
+                }
                 if (this.WorkPhone != null)
                 {
                     hashCode = (hashCode * 59) + this.WorkPhone.GetHashCode();

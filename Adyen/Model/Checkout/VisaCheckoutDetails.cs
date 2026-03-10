@@ -170,11 +170,13 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.FundingSource == input.FundingSource ||
-                    this.FundingSource.Equals(input.FundingSource)
+                    (this.FundingSource != null &&
+                    this.FundingSource.Equals(input.FundingSource))
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 ) && 
                 (
                     this.VisaCheckoutCallId == input.VisaCheckoutCallId ||
@@ -196,8 +198,14 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.CheckoutAttemptId.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.FundingSource != null)
+                {
+                    hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
+                }
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 if (this.VisaCheckoutCallId != null)
                 {
                     hashCode = (hashCode * 59) + this.VisaCheckoutCallId.GetHashCode();

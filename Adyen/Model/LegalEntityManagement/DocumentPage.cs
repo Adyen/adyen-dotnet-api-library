@@ -142,11 +142,13 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.PageNumber == input.PageNumber ||
-                    this.PageNumber.Equals(input.PageNumber)
+                    (this.PageNumber != null &&
+                    this.PageNumber.Equals(input.PageNumber))
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -163,8 +165,14 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.PageName.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.PageNumber.GetHashCode();
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.PageNumber != null)
+                {
+                    hashCode = (hashCode * 59) + this.PageNumber.GetHashCode();
+                }
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

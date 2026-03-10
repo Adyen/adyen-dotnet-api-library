@@ -508,7 +508,8 @@ namespace Adyen.Model.BalancePlatform
             return 
                 (
                     this.Category == input.Category ||
-                    this.Category.Equals(input.Category)
+                    (this.Category != null &&
+                    this.Category.Equals(input.Category))
                 ) && 
                 (
                     this.Counterparty == input.Counterparty ||
@@ -536,7 +537,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Reason == input.Reason ||
-                    this.Reason.Equals(input.Reason)
+                    (this.Reason != null &&
+                    this.Reason.Equals(input.Reason))
                 ) && 
                 (
                     this.ReasonDetail == input.ReasonDetail ||
@@ -560,7 +562,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.SweepAmount == input.SweepAmount ||
@@ -579,7 +582,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -592,7 +596,10 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Category.GetHashCode();
+                if (this.Category != null)
+                {
+                    hashCode = (hashCode * 59) + this.Category.GetHashCode();
+                }
                 if (this.Counterparty != null)
                 {
                     hashCode = (hashCode * 59) + this.Counterparty.GetHashCode();
@@ -609,8 +616,14 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Priorities.GetHashCode();
-                hashCode = (hashCode * 59) + this.Reason.GetHashCode();
+                if (this.Priorities != null)
+                {
+                    hashCode = (hashCode * 59) + this.Priorities.GetHashCode();
+                }
+                if (this.Reason != null)
+                {
+                    hashCode = (hashCode * 59) + this.Reason.GetHashCode();
+                }
                 if (this.ReasonDetail != null)
                 {
                     hashCode = (hashCode * 59) + this.ReasonDetail.GetHashCode();
@@ -627,7 +640,10 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Schedule.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.SweepAmount != null)
                 {
                     hashCode = (hashCode * 59) + this.SweepAmount.GetHashCode();
@@ -640,7 +656,10 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.TriggerAmount.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

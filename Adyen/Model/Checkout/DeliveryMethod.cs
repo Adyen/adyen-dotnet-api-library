@@ -163,11 +163,13 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.Selected == input.Selected ||
-                    this.Selected.Equals(input.Selected)
+                    (this.Selected != null &&
+                    this.Selected.Equals(input.Selected))
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -192,8 +194,14 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Selected.GetHashCode();
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Selected != null)
+                {
+                    hashCode = (hashCode * 59) + this.Selected.GetHashCode();
+                }
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

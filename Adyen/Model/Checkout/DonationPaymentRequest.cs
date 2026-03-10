@@ -622,7 +622,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.Channel == input.Channel ||
-                    this.Channel.Equals(input.Channel)
+                    (this.Channel != null &&
+                    this.Channel.Equals(input.Channel))
                 ) && 
                 (
                     this.CheckoutAttemptId == input.CheckoutAttemptId ||
@@ -718,7 +719,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.RecurringProcessingModel == input.RecurringProcessingModel ||
-                    this.RecurringProcessingModel.Equals(input.RecurringProcessingModel)
+                    (this.RecurringProcessingModel != null &&
+                    this.RecurringProcessingModel.Equals(input.RecurringProcessingModel))
                 ) && 
                 (
                     this.RedirectFromIssuerMethod == input.RedirectFromIssuerMethod ||
@@ -757,7 +759,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.ShopperInteraction == input.ShopperInteraction ||
-                    this.ShopperInteraction.Equals(input.ShopperInteraction)
+                    (this.ShopperInteraction != null &&
+                    this.ShopperInteraction.Equals(input.ShopperInteraction))
                 ) && 
                 (
                     this.ShopperLocale == input.ShopperLocale ||
@@ -791,7 +794,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.ThreeDSAuthenticationOnly == input.ThreeDSAuthenticationOnly ||
-                    this.ThreeDSAuthenticationOnly.Equals(input.ThreeDSAuthenticationOnly)
+                    (this.ThreeDSAuthenticationOnly != null &&
+                    this.ThreeDSAuthenticationOnly.Equals(input.ThreeDSAuthenticationOnly))
                 );
         }
 
@@ -832,7 +836,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.BrowserInfo.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Channel.GetHashCode();
+                if (this.Channel != null)
+                {
+                    hashCode = (hashCode * 59) + this.Channel.GetHashCode();
+                }
                 if (this.CheckoutAttemptId != null)
                 {
                     hashCode = (hashCode * 59) + this.CheckoutAttemptId.GetHashCode();
@@ -905,7 +912,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.PaymentMethod.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.RecurringProcessingModel.GetHashCode();
+                if (this.RecurringProcessingModel != null)
+                {
+                    hashCode = (hashCode * 59) + this.RecurringProcessingModel.GetHashCode();
+                }
                 if (this.RedirectFromIssuerMethod != null)
                 {
                     hashCode = (hashCode * 59) + this.RedirectFromIssuerMethod.GetHashCode();
@@ -934,7 +944,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.ShopperIP.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                if (this.ShopperInteraction != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                }
                 if (this.ShopperLocale != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperLocale.GetHashCode();
@@ -959,7 +972,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.ThreeDS2RequestData.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ThreeDSAuthenticationOnly.GetHashCode();
+                if (this.ThreeDSAuthenticationOnly != null)
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSAuthenticationOnly.GetHashCode();
+                }
                 return hashCode;
             }
         }

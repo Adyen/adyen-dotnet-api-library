@@ -599,7 +599,8 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Allowed == input.Allowed ||
-                    this.Allowed.Equals(input.Allowed)
+                    (this.Allowed != null &&
+                    this.Allowed.Equals(input.Allowed))
                 ) && 
                 (
                     this.Amex == input.Amex ||
@@ -676,7 +677,8 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Enabled == input.Enabled ||
-                    this.Enabled.Equals(input.Enabled)
+                    (this.Enabled != null &&
+                    this.Enabled.Equals(input.Enabled))
                 ) && 
                 (
                     this.GiroPay == input.GiroPay ||
@@ -811,7 +813,8 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.VerificationStatus == input.VerificationStatus ||
-                    this.VerificationStatus.Equals(input.VerificationStatus)
+                    (this.VerificationStatus != null &&
+                    this.VerificationStatus.Equals(input.VerificationStatus))
                 ) && 
                 (
                     this.Vipps == input.Vipps ||
@@ -856,7 +859,10 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.AfterpayTouch.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Allowed.GetHashCode();
+                if (this.Allowed != null)
+                {
+                    hashCode = (hashCode * 59) + this.Allowed.GetHashCode();
+                }
                 if (this.Amex != null)
                 {
                     hashCode = (hashCode * 59) + this.Amex.GetHashCode();
@@ -913,7 +919,10 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.EftposAustralia.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
+                if (this.Enabled != null)
+                {
+                    hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
+                }
                 if (this.GiroPay != null)
                 {
                     hashCode = (hashCode * 59) + this.GiroPay.GetHashCode();
@@ -1018,7 +1027,10 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.VerificationStatus.GetHashCode();
+                if (this.VerificationStatus != null)
+                {
+                    hashCode = (hashCode * 59) + this.VerificationStatus.GetHashCode();
+                }
                 if (this.Vipps != null)
                 {
                     hashCode = (hashCode * 59) + this.Vipps.GetHashCode();

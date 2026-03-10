@@ -1143,7 +1143,8 @@ namespace Adyen.Model.Transfers
                 ) && 
                 (
                     this.Category == input.Category ||
-                    this.Category.Equals(input.Category)
+                    (this.Category != null &&
+                    this.Category.Equals(input.Category))
                 ) && 
                 (
                     this.CategoryData == input.CategoryData ||
@@ -1172,7 +1173,8 @@ namespace Adyen.Model.Transfers
                 ) && 
                 (
                     this.Direction == input.Direction ||
-                    this.Direction.Equals(input.Direction)
+                    (this.Direction != null &&
+                    this.Direction.Equals(input.Direction))
                 ) && 
                 (
                     this.Id == input.Id ||
@@ -1186,7 +1188,8 @@ namespace Adyen.Model.Transfers
                 ) && 
                 (
                     this.Reason == input.Reason ||
-                    this.Reason.Equals(input.Reason)
+                    (this.Reason != null &&
+                    this.Reason.Equals(input.Reason))
                 ) && 
                 (
                     this.Reference == input.Reference ||
@@ -1205,11 +1208,13 @@ namespace Adyen.Model.Transfers
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -1234,7 +1239,10 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.BalanceAccount.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Category.GetHashCode();
+                if (this.Category != null)
+                {
+                    hashCode = (hashCode * 59) + this.Category.GetHashCode();
+                }
                 if (this.CategoryData != null)
                 {
                     hashCode = (hashCode * 59) + this.CategoryData.GetHashCode();
@@ -1255,7 +1263,10 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.DirectDebitInformation.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Direction.GetHashCode();
+                if (this.Direction != null)
+                {
+                    hashCode = (hashCode * 59) + this.Direction.GetHashCode();
+                }
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
@@ -1264,7 +1275,10 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.PaymentInstrument.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Reason.GetHashCode();
+                if (this.Reason != null)
+                {
+                    hashCode = (hashCode * 59) + this.Reason.GetHashCode();
+                }
                 if (this.Reference != null)
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
@@ -1277,8 +1291,14 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.Review.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -922,11 +922,13 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.CaptureDelayHours == input.CaptureDelayHours ||
-                    this.CaptureDelayHours.Equals(input.CaptureDelayHours)
+                    (this.CaptureDelayHours != null &&
+                    this.CaptureDelayHours.Equals(input.CaptureDelayHours))
                 ) && 
                 (
                     this.Channel == input.Channel ||
-                    this.Channel.Equals(input.Channel)
+                    (this.Channel != null &&
+                    this.Channel.Equals(input.Channel))
                 ) && 
                 (
                     this.Company == input.Company ||
@@ -955,15 +957,18 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.EnableOneClick == input.EnableOneClick ||
-                    this.EnableOneClick.Equals(input.EnableOneClick)
+                    (this.EnableOneClick != null &&
+                    this.EnableOneClick.Equals(input.EnableOneClick))
                 ) && 
                 (
                     this.EnablePayOut == input.EnablePayOut ||
-                    this.EnablePayOut.Equals(input.EnablePayOut)
+                    (this.EnablePayOut != null &&
+                    this.EnablePayOut.Equals(input.EnablePayOut))
                 ) && 
                 (
                     this.EnableRecurring == input.EnableRecurring ||
-                    this.EnableRecurring.Equals(input.EnableRecurring)
+                    (this.EnableRecurring != null &&
+                    this.EnableRecurring.Equals(input.EnableRecurring))
                 ) && 
                 (
                     this.ExpiresAt == input.ExpiresAt ||
@@ -1025,7 +1030,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.Mode == input.Mode ||
-                    this.Mode.Equals(input.Mode)
+                    (this.Mode != null &&
+                    this.Mode.Equals(input.Mode))
                 ) && 
                 (
                     this.MpiData == input.MpiData ||
@@ -1049,7 +1055,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.RecurringProcessingModel == input.RecurringProcessingModel ||
-                    this.RecurringProcessingModel.Equals(input.RecurringProcessingModel)
+                    (this.RecurringProcessingModel != null &&
+                    this.RecurringProcessingModel.Equals(input.RecurringProcessingModel))
                 ) && 
                 (
                     this.RedirectFromIssuerMethod == input.RedirectFromIssuerMethod ||
@@ -1093,7 +1100,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.ShopperInteraction == input.ShopperInteraction ||
-                    this.ShopperInteraction.Equals(input.ShopperInteraction)
+                    (this.ShopperInteraction != null &&
+                    this.ShopperInteraction.Equals(input.ShopperInteraction))
                 ) && 
                 (
                     this.ShopperLocale == input.ShopperLocale ||
@@ -1117,11 +1125,13 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.ShowInstallmentAmount == input.ShowInstallmentAmount ||
-                    this.ShowInstallmentAmount.Equals(input.ShowInstallmentAmount)
+                    (this.ShowInstallmentAmount != null &&
+                    this.ShowInstallmentAmount.Equals(input.ShowInstallmentAmount))
                 ) && 
                 (
                     this.ShowRemovePaymentMethodButton == input.ShowRemovePaymentMethodButton ||
-                    this.ShowRemovePaymentMethodButton.Equals(input.ShowRemovePaymentMethodButton)
+                    (this.ShowRemovePaymentMethodButton != null &&
+                    this.ShowRemovePaymentMethodButton.Equals(input.ShowRemovePaymentMethodButton))
                 ) && 
                 (
                     this.SocialSecurityNumber == input.SocialSecurityNumber ||
@@ -1130,7 +1140,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.SplitCardFundingSources == input.SplitCardFundingSources ||
-                    this.SplitCardFundingSources.Equals(input.SplitCardFundingSources)
+                    (this.SplitCardFundingSources != null &&
+                    this.SplitCardFundingSources.Equals(input.SplitCardFundingSources))
                 ) && 
                 (
                     this.Splits == input.Splits ||
@@ -1145,15 +1156,18 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.StoreFiltrationMode == input.StoreFiltrationMode ||
-                    this.StoreFiltrationMode.Equals(input.StoreFiltrationMode)
+                    (this.StoreFiltrationMode != null &&
+                    this.StoreFiltrationMode.Equals(input.StoreFiltrationMode))
                 ) && 
                 (
                     this.StorePaymentMethod == input.StorePaymentMethod ||
-                    this.StorePaymentMethod.Equals(input.StorePaymentMethod)
+                    (this.StorePaymentMethod != null &&
+                    this.StorePaymentMethod.Equals(input.StorePaymentMethod))
                 ) && 
                 (
                     this.StorePaymentMethodMode == input.StorePaymentMethodMode ||
-                    this.StorePaymentMethodMode.Equals(input.StorePaymentMethodMode)
+                    (this.StorePaymentMethodMode != null &&
+                    this.StorePaymentMethodMode.Equals(input.StorePaymentMethodMode))
                 ) && 
                 (
                     this.TelephoneNumber == input.TelephoneNumber ||
@@ -1172,11 +1186,13 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.ThreeDSAuthenticationOnly == input.ThreeDSAuthenticationOnly ||
-                    this.ThreeDSAuthenticationOnly.Equals(input.ThreeDSAuthenticationOnly)
+                    (this.ThreeDSAuthenticationOnly != null &&
+                    this.ThreeDSAuthenticationOnly.Equals(input.ThreeDSAuthenticationOnly))
                 ) && 
                 (
                     this.TrustedShopper == input.TrustedShopper ||
-                    this.TrustedShopper.Equals(input.TrustedShopper)
+                    (this.TrustedShopper != null &&
+                    this.TrustedShopper.Equals(input.TrustedShopper))
                 ) && 
                 (
                     this.Url == input.Url ||
@@ -1230,8 +1246,14 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.BlockedPaymentMethods.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.CaptureDelayHours.GetHashCode();
-                hashCode = (hashCode * 59) + this.Channel.GetHashCode();
+                if (this.CaptureDelayHours != null)
+                {
+                    hashCode = (hashCode * 59) + this.CaptureDelayHours.GetHashCode();
+                }
+                if (this.Channel != null)
+                {
+                    hashCode = (hashCode * 59) + this.Channel.GetHashCode();
+                }
                 if (this.Company != null)
                 {
                     hashCode = (hashCode * 59) + this.Company.GetHashCode();
@@ -1252,9 +1274,18 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.DeliveryAddress.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.EnableOneClick.GetHashCode();
-                hashCode = (hashCode * 59) + this.EnablePayOut.GetHashCode();
-                hashCode = (hashCode * 59) + this.EnableRecurring.GetHashCode();
+                if (this.EnableOneClick != null)
+                {
+                    hashCode = (hashCode * 59) + this.EnableOneClick.GetHashCode();
+                }
+                if (this.EnablePayOut != null)
+                {
+                    hashCode = (hashCode * 59) + this.EnablePayOut.GetHashCode();
+                }
+                if (this.EnableRecurring != null)
+                {
+                    hashCode = (hashCode * 59) + this.EnableRecurring.GetHashCode();
+                }
                 if (this.ExpiresAt != null)
                 {
                     hashCode = (hashCode * 59) + this.ExpiresAt.GetHashCode();
@@ -1299,7 +1330,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Metadata.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Mode.GetHashCode();
+                if (this.Mode != null)
+                {
+                    hashCode = (hashCode * 59) + this.Mode.GetHashCode();
+                }
                 if (this.MpiData != null)
                 {
                     hashCode = (hashCode * 59) + this.MpiData.GetHashCode();
@@ -1316,7 +1350,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.RecurringFrequency.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.RecurringProcessingModel.GetHashCode();
+                if (this.RecurringProcessingModel != null)
+                {
+                    hashCode = (hashCode * 59) + this.RecurringProcessingModel.GetHashCode();
+                }
                 if (this.RedirectFromIssuerMethod != null)
                 {
                     hashCode = (hashCode * 59) + this.RedirectFromIssuerMethod.GetHashCode();
@@ -1349,7 +1386,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.ShopperIP.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                if (this.ShopperInteraction != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                }
                 if (this.ShopperLocale != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperLocale.GetHashCode();
@@ -1366,13 +1406,22 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.ShopperStatement.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ShowInstallmentAmount.GetHashCode();
-                hashCode = (hashCode * 59) + this.ShowRemovePaymentMethodButton.GetHashCode();
+                if (this.ShowInstallmentAmount != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShowInstallmentAmount.GetHashCode();
+                }
+                if (this.ShowRemovePaymentMethodButton != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShowRemovePaymentMethodButton.GetHashCode();
+                }
                 if (this.SocialSecurityNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.SocialSecurityNumber.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.SplitCardFundingSources.GetHashCode();
+                if (this.SplitCardFundingSources != null)
+                {
+                    hashCode = (hashCode * 59) + this.SplitCardFundingSources.GetHashCode();
+                }
                 if (this.Splits != null)
                 {
                     hashCode = (hashCode * 59) + this.Splits.GetHashCode();
@@ -1381,9 +1430,18 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Store.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.StoreFiltrationMode.GetHashCode();
-                hashCode = (hashCode * 59) + this.StorePaymentMethod.GetHashCode();
-                hashCode = (hashCode * 59) + this.StorePaymentMethodMode.GetHashCode();
+                if (this.StoreFiltrationMode != null)
+                {
+                    hashCode = (hashCode * 59) + this.StoreFiltrationMode.GetHashCode();
+                }
+                if (this.StorePaymentMethod != null)
+                {
+                    hashCode = (hashCode * 59) + this.StorePaymentMethod.GetHashCode();
+                }
+                if (this.StorePaymentMethodMode != null)
+                {
+                    hashCode = (hashCode * 59) + this.StorePaymentMethodMode.GetHashCode();
+                }
                 if (this.TelephoneNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.TelephoneNumber.GetHashCode();
@@ -1396,8 +1454,14 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.ThreeDS2RequestData.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ThreeDSAuthenticationOnly.GetHashCode();
-                hashCode = (hashCode * 59) + this.TrustedShopper.GetHashCode();
+                if (this.ThreeDSAuthenticationOnly != null)
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSAuthenticationOnly.GetHashCode();
+                }
+                if (this.TrustedShopper != null)
+                {
+                    hashCode = (hashCode * 59) + this.TrustedShopper.GetHashCode();
+                }
                 if (this.Url != null)
                 {
                     hashCode = (hashCode * 59) + this.Url.GetHashCode();

@@ -228,7 +228,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Category == input.Category ||
-                    this.Category.Equals(input.Category)
+                    (this.Category != null &&
+                    this.Category.Equals(input.Category))
                 ) && 
                 (
                     this.Counterparty == input.Counterparty ||
@@ -268,7 +269,10 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.BalancePlatform.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Category.GetHashCode();
+                if (this.Category != null)
+                {
+                    hashCode = (hashCode * 59) + this.Category.GetHashCode();
+                }
                 if (this.Counterparty != null)
                 {
                     hashCode = (hashCode * 59) + this.Counterparty.GetHashCode();
@@ -281,7 +285,10 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Currency.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Priorities.GetHashCode();
+                if (this.Priorities != null)
+                {
+                    hashCode = (hashCode * 59) + this.Priorities.GetHashCode();
+                }
                 return hashCode;
             }
         }

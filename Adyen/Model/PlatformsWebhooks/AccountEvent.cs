@@ -135,7 +135,8 @@ namespace Adyen.Model.PlatformsWebhooks
             return 
                 (
                     this.Event == input.Event ||
-                    this.Event.Equals(input.Event)
+                    (this.Event != null &&
+                    this.Event.Equals(input.Event))
                 ) && 
                 (
                     this.ExecutionDate == input.ExecutionDate ||
@@ -158,7 +159,10 @@ namespace Adyen.Model.PlatformsWebhooks
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Event.GetHashCode();
+                if (this.Event != null)
+                {
+                    hashCode = (hashCode * 59) + this.Event.GetHashCode();
+                }
                 if (this.ExecutionDate != null)
                 {
                     hashCode = (hashCode * 59) + this.ExecutionDate.GetHashCode();

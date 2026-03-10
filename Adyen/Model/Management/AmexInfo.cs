@@ -151,11 +151,13 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.ReuseMidNumber == input.ReuseMidNumber ||
-                    this.ReuseMidNumber.Equals(input.ReuseMidNumber)
+                    (this.ReuseMidNumber != null &&
+                    this.ReuseMidNumber.Equals(input.ReuseMidNumber))
                 ) && 
                 (
                     this.ServiceLevel == input.ServiceLevel ||
-                    this.ServiceLevel.Equals(input.ServiceLevel)
+                    (this.ServiceLevel != null &&
+                    this.ServiceLevel.Equals(input.ServiceLevel))
                 );
         }
 
@@ -172,8 +174,14 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.MidNumber.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ReuseMidNumber.GetHashCode();
-                hashCode = (hashCode * 59) + this.ServiceLevel.GetHashCode();
+                if (this.ReuseMidNumber != null)
+                {
+                    hashCode = (hashCode * 59) + this.ReuseMidNumber.GetHashCode();
+                }
+                if (this.ServiceLevel != null)
+                {
+                    hashCode = (hashCode * 59) + this.ServiceLevel.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -242,7 +242,8 @@ namespace Adyen.Model.BalancePlatform
             return 
                 (
                     this.Category == input.Category ||
-                    this.Category.Equals(input.Category)
+                    (this.Category != null &&
+                    this.Category.Equals(input.Category))
                 ) && 
                 (
                     this.Country == input.Country ||
@@ -256,7 +257,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Priority == input.Priority ||
-                    this.Priority.Equals(input.Priority)
+                    (this.Priority != null &&
+                    this.Priority.Equals(input.Priority))
                 ) && 
                 (
                     this.Requirements == input.Requirements ||
@@ -275,7 +277,10 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Category.GetHashCode();
+                if (this.Category != null)
+                {
+                    hashCode = (hashCode * 59) + this.Category.GetHashCode();
+                }
                 if (this.Country != null)
                 {
                     hashCode = (hashCode * 59) + this.Country.GetHashCode();
@@ -284,7 +289,10 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Currency.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Priority.GetHashCode();
+                if (this.Priority != null)
+                {
+                    hashCode = (hashCode * 59) + this.Priority.GetHashCode();
+                }
                 if (this.Requirements != null)
                 {
                     hashCode = (hashCode * 59) + this.Requirements.GetHashCode();

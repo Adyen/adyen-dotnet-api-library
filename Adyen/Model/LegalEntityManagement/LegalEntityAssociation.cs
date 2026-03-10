@@ -315,7 +315,8 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.Nominee == input.Nominee ||
-                    this.Nominee.Equals(input.Nominee)
+                    (this.Nominee != null &&
+                    this.Nominee.Equals(input.Nominee))
                 ) && 
                 (
                     this.Relationship == input.Relationship ||
@@ -330,7 +331,8 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -363,7 +365,10 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Nominee.GetHashCode();
+                if (this.Nominee != null)
+                {
+                    hashCode = (hashCode * 59) + this.Nominee.GetHashCode();
+                }
                 if (this.Relationship != null)
                 {
                     hashCode = (hashCode * 59) + this.Relationship.GetHashCode();
@@ -372,7 +377,10 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.SettlorExemptionReason.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

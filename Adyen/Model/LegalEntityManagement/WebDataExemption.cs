@@ -115,7 +115,8 @@ namespace Adyen.Model.LegalEntityManagement
             return 
                 (
                     this.Reason == input.Reason ||
-                    this.Reason.Equals(input.Reason)
+                    (this.Reason != null &&
+                    this.Reason.Equals(input.Reason))
                 );
         }
 
@@ -128,7 +129,10 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Reason.GetHashCode();
+                if (this.Reason != null)
+                {
+                    hashCode = (hashCode * 59) + this.Reason.GetHashCode();
+                }
                 return hashCode;
             }
         }

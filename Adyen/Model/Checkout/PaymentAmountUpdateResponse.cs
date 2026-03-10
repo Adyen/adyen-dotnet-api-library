@@ -225,7 +225,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.IndustryUsage == input.IndustryUsage ||
-                    this.IndustryUsage.Equals(input.IndustryUsage)
+                    (this.IndustryUsage != null &&
+                    this.IndustryUsage.Equals(input.IndustryUsage))
                 ) && 
                 (
                     this.LineItems == input.LineItems ||
@@ -261,7 +262,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 );
         }
 
@@ -278,7 +280,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Amount.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.IndustryUsage.GetHashCode();
+                if (this.IndustryUsage != null)
+                {
+                    hashCode = (hashCode * 59) + this.IndustryUsage.GetHashCode();
+                }
                 if (this.LineItems != null)
                 {
                     hashCode = (hashCode * 59) + this.LineItems.GetHashCode();
@@ -303,7 +308,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Splits.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -289,11 +289,13 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.AmountRule == input.AmountRule ||
-                    this.AmountRule.Equals(input.AmountRule)
+                    (this.AmountRule != null &&
+                    this.AmountRule.Equals(input.AmountRule))
                 ) && 
                 (
                     this.BillingAttemptsRule == input.BillingAttemptsRule ||
-                    this.BillingAttemptsRule.Equals(input.BillingAttemptsRule)
+                    (this.BillingAttemptsRule != null &&
+                    this.BillingAttemptsRule.Equals(input.BillingAttemptsRule))
                 ) && 
                 (
                     this.BillingDay == input.BillingDay ||
@@ -312,7 +314,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.Frequency == input.Frequency ||
-                    this.Frequency.Equals(input.Frequency)
+                    (this.Frequency != null &&
+                    this.Frequency.Equals(input.Frequency))
                 ) && 
                 (
                     this.Remarks == input.Remarks ||
@@ -339,8 +342,14 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.Amount.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.AmountRule.GetHashCode();
-                hashCode = (hashCode * 59) + this.BillingAttemptsRule.GetHashCode();
+                if (this.AmountRule != null)
+                {
+                    hashCode = (hashCode * 59) + this.AmountRule.GetHashCode();
+                }
+                if (this.BillingAttemptsRule != null)
+                {
+                    hashCode = (hashCode * 59) + this.BillingAttemptsRule.GetHashCode();
+                }
                 if (this.BillingDay != null)
                 {
                     hashCode = (hashCode * 59) + this.BillingDay.GetHashCode();
@@ -353,7 +362,10 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.EndsAt.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Frequency.GetHashCode();
+                if (this.Frequency != null)
+                {
+                    hashCode = (hashCode * 59) + this.Frequency.GetHashCode();
+                }
                 if (this.Remarks != null)
                 {
                     hashCode = (hashCode * 59) + this.Remarks.GetHashCode();

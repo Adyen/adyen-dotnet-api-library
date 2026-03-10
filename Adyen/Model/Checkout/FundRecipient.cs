@@ -294,7 +294,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.WalletPurpose == input.WalletPurpose ||
-                    this.WalletPurpose.Equals(input.WalletPurpose)
+                    (this.WalletPurpose != null &&
+                    this.WalletPurpose.Equals(input.WalletPurpose))
                 );
         }
 
@@ -351,7 +352,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.WalletOwnerTaxId.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.WalletPurpose.GetHashCode();
+                if (this.WalletPurpose != null)
+                {
+                    hashCode = (hashCode * 59) + this.WalletPurpose.GetHashCode();
+                }
                 return hashCode;
             }
         }

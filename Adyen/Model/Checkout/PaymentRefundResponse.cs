@@ -273,7 +273,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.MerchantRefundReason == input.MerchantRefundReason ||
-                    this.MerchantRefundReason.Equals(input.MerchantRefundReason)
+                    (this.MerchantRefundReason != null &&
+                    this.MerchantRefundReason.Equals(input.MerchantRefundReason))
                 ) && 
                 (
                     this.PaymentPspReference == input.PaymentPspReference ||
@@ -298,7 +299,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.Store == input.Store ||
@@ -332,7 +334,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.MerchantAccount.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.MerchantRefundReason.GetHashCode();
+                if (this.MerchantRefundReason != null)
+                {
+                    hashCode = (hashCode * 59) + this.MerchantRefundReason.GetHashCode();
+                }
                 if (this.PaymentPspReference != null)
                 {
                     hashCode = (hashCode * 59) + this.PaymentPspReference.GetHashCode();
@@ -349,7 +354,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Splits.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.Store != null)
                 {
                     hashCode = (hashCode * 59) + this.Store.GetHashCode();

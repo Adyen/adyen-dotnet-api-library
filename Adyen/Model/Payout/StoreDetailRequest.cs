@@ -292,11 +292,13 @@ namespace Adyen.Model.Payout
                 ) && 
                 (
                     this.EntityType == input.EntityType ||
-                    this.EntityType.Equals(input.EntityType)
+                    (this.EntityType != null &&
+                    this.EntityType.Equals(input.EntityType))
                 ) && 
                 (
                     this.FraudOffset == input.FraudOffset ||
-                    this.FraudOffset.Equals(input.FraudOffset)
+                    (this.FraudOffset != null &&
+                    this.FraudOffset.Equals(input.FraudOffset))
                 ) && 
                 (
                     this.MerchantAccount == input.MerchantAccount ||
@@ -374,8 +376,14 @@ namespace Adyen.Model.Payout
                 {
                     hashCode = (hashCode * 59) + this.DateOfBirth.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.EntityType.GetHashCode();
-                hashCode = (hashCode * 59) + this.FraudOffset.GetHashCode();
+                if (this.EntityType != null)
+                {
+                    hashCode = (hashCode * 59) + this.EntityType.GetHashCode();
+                }
+                if (this.FraudOffset != null)
+                {
+                    hashCode = (hashCode * 59) + this.FraudOffset.GetHashCode();
+                }
                 if (this.MerchantAccount != null)
                 {
                     hashCode = (hashCode * 59) + this.MerchantAccount.GetHashCode();

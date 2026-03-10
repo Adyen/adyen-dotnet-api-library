@@ -259,7 +259,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.TimeZone == input.TimeZone ||
@@ -315,7 +316,10 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.TimeZone != null)
                 {
                     hashCode = (hashCode * 59) + this.TimeZone.GetHashCode();

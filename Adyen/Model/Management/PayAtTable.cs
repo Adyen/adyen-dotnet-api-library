@@ -156,15 +156,18 @@ namespace Adyen.Model.Management
             return 
                 (
                     this.AuthenticationMethod == input.AuthenticationMethod ||
-                    this.AuthenticationMethod.Equals(input.AuthenticationMethod)
+                    (this.AuthenticationMethod != null &&
+                    this.AuthenticationMethod.Equals(input.AuthenticationMethod))
                 ) && 
                 (
                     this.EnablePayAtTable == input.EnablePayAtTable ||
-                    this.EnablePayAtTable.Equals(input.EnablePayAtTable)
+                    (this.EnablePayAtTable != null &&
+                    this.EnablePayAtTable.Equals(input.EnablePayAtTable))
                 ) && 
                 (
                     this.PaymentInstrument == input.PaymentInstrument ||
-                    this.PaymentInstrument.Equals(input.PaymentInstrument)
+                    (this.PaymentInstrument != null &&
+                    this.PaymentInstrument.Equals(input.PaymentInstrument))
                 );
         }
 
@@ -177,9 +180,18 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.AuthenticationMethod.GetHashCode();
-                hashCode = (hashCode * 59) + this.EnablePayAtTable.GetHashCode();
-                hashCode = (hashCode * 59) + this.PaymentInstrument.GetHashCode();
+                if (this.AuthenticationMethod != null)
+                {
+                    hashCode = (hashCode * 59) + this.AuthenticationMethod.GetHashCode();
+                }
+                if (this.EnablePayAtTable != null)
+                {
+                    hashCode = (hashCode * 59) + this.EnablePayAtTable.GetHashCode();
+                }
+                if (this.PaymentInstrument != null)
+                {
+                    hashCode = (hashCode * 59) + this.PaymentInstrument.GetHashCode();
+                }
                 return hashCode;
             }
         }

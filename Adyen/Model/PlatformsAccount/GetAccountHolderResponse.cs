@@ -291,7 +291,8 @@ namespace Adyen.Model.PlatformsAccount
                 ) && 
                 (
                     this.LegalEntity == input.LegalEntity ||
-                    this.LegalEntity.Equals(input.LegalEntity)
+                    (this.LegalEntity != null &&
+                    this.LegalEntity.Equals(input.LegalEntity))
                 ) && 
                 (
                     this.MigrationData == input.MigrationData ||
@@ -363,7 +364,10 @@ namespace Adyen.Model.PlatformsAccount
                 {
                     hashCode = (hashCode * 59) + this.InvalidFields.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.LegalEntity.GetHashCode();
+                if (this.LegalEntity != null)
+                {
+                    hashCode = (hashCode * 59) + this.LegalEntity.GetHashCode();
+                }
                 if (this.MigrationData != null)
                 {
                     hashCode = (hashCode * 59) + this.MigrationData.GetHashCode();

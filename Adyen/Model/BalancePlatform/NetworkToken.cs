@@ -221,7 +221,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.TokenLastFour == input.TokenLastFour ||
@@ -264,7 +265,10 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.PaymentInstrumentId.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.TokenLastFour != null)
                 {
                     hashCode = (hashCode * 59) + this.TokenLastFour.GetHashCode();

@@ -335,19 +335,23 @@ namespace Adyen.Model.Management
             return 
                 (
                     this.AcceptsExpiredCertificate == input.AcceptsExpiredCertificate ||
-                    this.AcceptsExpiredCertificate.Equals(input.AcceptsExpiredCertificate)
+                    (this.AcceptsExpiredCertificate != null &&
+                    this.AcceptsExpiredCertificate.Equals(input.AcceptsExpiredCertificate))
                 ) && 
                 (
                     this.AcceptsSelfSignedCertificate == input.AcceptsSelfSignedCertificate ||
-                    this.AcceptsSelfSignedCertificate.Equals(input.AcceptsSelfSignedCertificate)
+                    (this.AcceptsSelfSignedCertificate != null &&
+                    this.AcceptsSelfSignedCertificate.Equals(input.AcceptsSelfSignedCertificate))
                 ) && 
                 (
                     this.AcceptsUntrustedRootCertificate == input.AcceptsUntrustedRootCertificate ||
-                    this.AcceptsUntrustedRootCertificate.Equals(input.AcceptsUntrustedRootCertificate)
+                    (this.AcceptsUntrustedRootCertificate != null &&
+                    this.AcceptsUntrustedRootCertificate.Equals(input.AcceptsUntrustedRootCertificate))
                 ) && 
                 (
                     this.Active == input.Active ||
-                    this.Active.Equals(input.Active)
+                    (this.Active != null &&
+                    this.Active.Equals(input.Active))
                 ) && 
                 (
                     this.AdditionalSettings == input.AdditionalSettings ||
@@ -356,7 +360,8 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.CommunicationFormat == input.CommunicationFormat ||
-                    this.CommunicationFormat.Equals(input.CommunicationFormat)
+                    (this.CommunicationFormat != null &&
+                    this.CommunicationFormat.Equals(input.CommunicationFormat))
                 ) && 
                 (
                     this.Description == input.Description ||
@@ -365,11 +370,13 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.EncryptionProtocol == input.EncryptionProtocol ||
-                    this.EncryptionProtocol.Equals(input.EncryptionProtocol)
+                    (this.EncryptionProtocol != null &&
+                    this.EncryptionProtocol.Equals(input.EncryptionProtocol))
                 ) && 
                 (
                     this.FilterMerchantAccountType == input.FilterMerchantAccountType ||
-                    this.FilterMerchantAccountType.Equals(input.FilterMerchantAccountType)
+                    (this.FilterMerchantAccountType != null &&
+                    this.FilterMerchantAccountType.Equals(input.FilterMerchantAccountType))
                 ) && 
                 (
                     this.FilterMerchantAccounts == input.FilterMerchantAccounts ||
@@ -379,7 +386,8 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.NetworkType == input.NetworkType ||
-                    this.NetworkType.Equals(input.NetworkType)
+                    (this.NetworkType != null &&
+                    this.NetworkType.Equals(input.NetworkType))
                 ) && 
                 (
                     this.Password == input.Password ||
@@ -388,7 +396,8 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.PopulateSoapActionHeader == input.PopulateSoapActionHeader ||
-                    this.PopulateSoapActionHeader.Equals(input.PopulateSoapActionHeader)
+                    (this.PopulateSoapActionHeader != null &&
+                    this.PopulateSoapActionHeader.Equals(input.PopulateSoapActionHeader))
                 ) && 
                 (
                     this.Url == input.Url ||
@@ -411,31 +420,58 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.AcceptsExpiredCertificate.GetHashCode();
-                hashCode = (hashCode * 59) + this.AcceptsSelfSignedCertificate.GetHashCode();
-                hashCode = (hashCode * 59) + this.AcceptsUntrustedRootCertificate.GetHashCode();
-                hashCode = (hashCode * 59) + this.Active.GetHashCode();
+                if (this.AcceptsExpiredCertificate != null)
+                {
+                    hashCode = (hashCode * 59) + this.AcceptsExpiredCertificate.GetHashCode();
+                }
+                if (this.AcceptsSelfSignedCertificate != null)
+                {
+                    hashCode = (hashCode * 59) + this.AcceptsSelfSignedCertificate.GetHashCode();
+                }
+                if (this.AcceptsUntrustedRootCertificate != null)
+                {
+                    hashCode = (hashCode * 59) + this.AcceptsUntrustedRootCertificate.GetHashCode();
+                }
+                if (this.Active != null)
+                {
+                    hashCode = (hashCode * 59) + this.Active.GetHashCode();
+                }
                 if (this.AdditionalSettings != null)
                 {
                     hashCode = (hashCode * 59) + this.AdditionalSettings.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.CommunicationFormat.GetHashCode();
+                if (this.CommunicationFormat != null)
+                {
+                    hashCode = (hashCode * 59) + this.CommunicationFormat.GetHashCode();
+                }
                 if (this.Description != null)
                 {
                     hashCode = (hashCode * 59) + this.Description.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.EncryptionProtocol.GetHashCode();
-                hashCode = (hashCode * 59) + this.FilterMerchantAccountType.GetHashCode();
+                if (this.EncryptionProtocol != null)
+                {
+                    hashCode = (hashCode * 59) + this.EncryptionProtocol.GetHashCode();
+                }
+                if (this.FilterMerchantAccountType != null)
+                {
+                    hashCode = (hashCode * 59) + this.FilterMerchantAccountType.GetHashCode();
+                }
                 if (this.FilterMerchantAccounts != null)
                 {
                     hashCode = (hashCode * 59) + this.FilterMerchantAccounts.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.NetworkType.GetHashCode();
+                if (this.NetworkType != null)
+                {
+                    hashCode = (hashCode * 59) + this.NetworkType.GetHashCode();
+                }
                 if (this.Password != null)
                 {
                     hashCode = (hashCode * 59) + this.Password.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.PopulateSoapActionHeader.GetHashCode();
+                if (this.PopulateSoapActionHeader != null)
+                {
+                    hashCode = (hashCode * 59) + this.PopulateSoapActionHeader.GetHashCode();
+                }
                 if (this.Url != null)
                 {
                     hashCode = (hashCode * 59) + this.Url.GetHashCode();

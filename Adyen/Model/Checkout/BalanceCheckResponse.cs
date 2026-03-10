@@ -209,7 +209,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.ResultCode == input.ResultCode ||
-                    this.ResultCode.Equals(input.ResultCode)
+                    (this.ResultCode != null &&
+                    this.ResultCode.Equals(input.ResultCode))
                 ) && 
                 (
                     this.TransactionLimit == input.TransactionLimit ||
@@ -247,7 +248,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.RefusalReason.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ResultCode.GetHashCode();
+                if (this.ResultCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.ResultCode.GetHashCode();
+                }
                 if (this.TransactionLimit != null)
                 {
                     hashCode = (hashCode * 59) + this.TransactionLimit.GetHashCode();

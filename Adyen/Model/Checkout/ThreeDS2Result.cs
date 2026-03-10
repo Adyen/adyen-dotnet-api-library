@@ -363,7 +363,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.ChallengeCancel == input.ChallengeCancel ||
-                    this.ChallengeCancel.Equals(input.ChallengeCancel)
+                    (this.ChallengeCancel != null &&
+                    this.ChallengeCancel.Equals(input.ChallengeCancel))
                 ) && 
                 (
                     this.DsTransID == input.DsTransID ||
@@ -377,7 +378,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.ExemptionIndicator == input.ExemptionIndicator ||
-                    this.ExemptionIndicator.Equals(input.ExemptionIndicator)
+                    (this.ExemptionIndicator != null &&
+                    this.ExemptionIndicator.Equals(input.ExemptionIndicator))
                 ) && 
                 (
                     this.MessageVersion == input.MessageVersion ||
@@ -391,7 +393,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.ThreeDSRequestorChallengeInd == input.ThreeDSRequestorChallengeInd ||
-                    this.ThreeDSRequestorChallengeInd.Equals(input.ThreeDSRequestorChallengeInd)
+                    (this.ThreeDSRequestorChallengeInd != null &&
+                    this.ThreeDSRequestorChallengeInd.Equals(input.ThreeDSRequestorChallengeInd))
                 ) && 
                 (
                     this.ThreeDSServerTransID == input.ThreeDSServerTransID ||
@@ -437,7 +440,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.CavvAlgorithm.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ChallengeCancel.GetHashCode();
+                if (this.ChallengeCancel != null)
+                {
+                    hashCode = (hashCode * 59) + this.ChallengeCancel.GetHashCode();
+                }
                 if (this.DsTransID != null)
                 {
                     hashCode = (hashCode * 59) + this.DsTransID.GetHashCode();
@@ -446,7 +452,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Eci.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ExemptionIndicator.GetHashCode();
+                if (this.ExemptionIndicator != null)
+                {
+                    hashCode = (hashCode * 59) + this.ExemptionIndicator.GetHashCode();
+                }
                 if (this.MessageVersion != null)
                 {
                     hashCode = (hashCode * 59) + this.MessageVersion.GetHashCode();
@@ -455,7 +464,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.RiskScore.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ThreeDSRequestorChallengeInd.GetHashCode();
+                if (this.ThreeDSRequestorChallengeInd != null)
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSRequestorChallengeInd.GetHashCode();
+                }
                 if (this.ThreeDSServerTransID != null)
                 {
                     hashCode = (hashCode * 59) + this.ThreeDSServerTransID.GetHashCode();

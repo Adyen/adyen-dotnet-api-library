@@ -348,7 +348,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.Channel == input.Channel ||
-                    this.Channel.Equals(input.Channel)
+                    (this.Channel != null &&
+                    this.Channel.Equals(input.Channel))
                 ) && 
                 (
                     this.CountryCode == input.CountryCode ||
@@ -392,7 +393,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.SplitCardFundingSources == input.SplitCardFundingSources ||
-                    this.SplitCardFundingSources.Equals(input.SplitCardFundingSources)
+                    (this.SplitCardFundingSources != null &&
+                    this.SplitCardFundingSources.Equals(input.SplitCardFundingSources))
                 ) && 
                 (
                     this.Store == input.Store ||
@@ -401,7 +403,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.StoreFiltrationMode == input.StoreFiltrationMode ||
-                    this.StoreFiltrationMode.Equals(input.StoreFiltrationMode)
+                    (this.StoreFiltrationMode != null &&
+                    this.StoreFiltrationMode.Equals(input.StoreFiltrationMode))
                 ) && 
                 (
                     this.TelephoneNumber == input.TelephoneNumber ||
@@ -439,7 +442,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.BrowserInfo.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Channel.GetHashCode();
+                if (this.Channel != null)
+                {
+                    hashCode = (hashCode * 59) + this.Channel.GetHashCode();
+                }
                 if (this.CountryCode != null)
                 {
                     hashCode = (hashCode * 59) + this.CountryCode.GetHashCode();
@@ -472,12 +478,18 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.ShopperReference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.SplitCardFundingSources.GetHashCode();
+                if (this.SplitCardFundingSources != null)
+                {
+                    hashCode = (hashCode * 59) + this.SplitCardFundingSources.GetHashCode();
+                }
                 if (this.Store != null)
                 {
                     hashCode = (hashCode * 59) + this.Store.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.StoreFiltrationMode.GetHashCode();
+                if (this.StoreFiltrationMode != null)
+                {
+                    hashCode = (hashCode * 59) + this.StoreFiltrationMode.GetHashCode();
+                }
                 if (this.TelephoneNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.TelephoneNumber.GetHashCode();

@@ -170,7 +170,8 @@ namespace Adyen.Model.TransferWebhooks
                 ) && 
                 (
                     this.AccountType == input.AccountType ||
-                    this.AccountType.Equals(input.AccountType)
+                    (this.AccountType != null &&
+                    this.AccountType.Equals(input.AccountType))
                 ) && 
                 (
                     this.RoutingNumber == input.RoutingNumber ||
@@ -179,7 +180,8 @@ namespace Adyen.Model.TransferWebhooks
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -196,12 +198,18 @@ namespace Adyen.Model.TransferWebhooks
                 {
                     hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
+                if (this.AccountType != null)
+                {
+                    hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
+                }
                 if (this.RoutingNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.RoutingNumber.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

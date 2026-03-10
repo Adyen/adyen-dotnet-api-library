@@ -234,7 +234,8 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.FundingSource == input.FundingSource ||
-                    this.FundingSource.Equals(input.FundingSource)
+                    (this.FundingSource != null &&
+                    this.FundingSource.Equals(input.FundingSource))
                 ) && 
                 (
                     this.PaymentMethod == input.PaymentMethod ||
@@ -248,7 +249,8 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.ShopperInteraction == input.ShopperInteraction ||
-                    this.ShopperInteraction.Equals(input.ShopperInteraction)
+                    (this.ShopperInteraction != null &&
+                    this.ShopperInteraction.Equals(input.ShopperInteraction))
                 ) && 
                 (
                     this.SplitLogic == input.SplitLogic ||
@@ -270,7 +272,10 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.Currency.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
+                if (this.FundingSource != null)
+                {
+                    hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
+                }
                 if (this.PaymentMethod != null)
                 {
                     hashCode = (hashCode * 59) + this.PaymentMethod.GetHashCode();
@@ -279,7 +284,10 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.RuleId.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                if (this.ShopperInteraction != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                }
                 if (this.SplitLogic != null)
                 {
                     hashCode = (hashCode * 59) + this.SplitLogic.GetHashCode();

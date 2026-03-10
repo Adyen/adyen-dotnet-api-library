@@ -199,7 +199,8 @@ namespace Adyen.Model.AcsWebhooks
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 );
         }
 
@@ -232,7 +233,10 @@ namespace Adyen.Model.AcsWebhooks
                 {
                     hashCode = (hashCode * 59) + this.Purchase.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 return hashCode;
             }
         }

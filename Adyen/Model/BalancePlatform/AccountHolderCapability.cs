@@ -289,11 +289,13 @@ namespace Adyen.Model.BalancePlatform
             return 
                 (
                     this.Allowed == input.Allowed ||
-                    this.Allowed.Equals(input.Allowed)
+                    (this.Allowed != null &&
+                    this.Allowed.Equals(input.Allowed))
                 ) && 
                 (
                     this.AllowedLevel == input.AllowedLevel ||
-                    this.AllowedLevel.Equals(input.AllowedLevel)
+                    (this.AllowedLevel != null &&
+                    this.AllowedLevel.Equals(input.AllowedLevel))
                 ) && 
                 (
                     this.AllowedSettings == input.AllowedSettings ||
@@ -302,7 +304,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Enabled == input.Enabled ||
-                    this.Enabled.Equals(input.Enabled)
+                    (this.Enabled != null &&
+                    this.Enabled.Equals(input.Enabled))
                 ) && 
                 (
                     this.Problems == input.Problems ||
@@ -312,11 +315,13 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Requested == input.Requested ||
-                    this.Requested.Equals(input.Requested)
+                    (this.Requested != null &&
+                    this.Requested.Equals(input.Requested))
                 ) && 
                 (
                     this.RequestedLevel == input.RequestedLevel ||
-                    this.RequestedLevel.Equals(input.RequestedLevel)
+                    (this.RequestedLevel != null &&
+                    this.RequestedLevel.Equals(input.RequestedLevel))
                 ) && 
                 (
                     this.RequestedSettings == input.RequestedSettings ||
@@ -331,7 +336,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.VerificationStatus == input.VerificationStatus ||
-                    this.VerificationStatus.Equals(input.VerificationStatus)
+                    (this.VerificationStatus != null &&
+                    this.VerificationStatus.Equals(input.VerificationStatus))
                 );
         }
 
@@ -344,19 +350,34 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Allowed.GetHashCode();
-                hashCode = (hashCode * 59) + this.AllowedLevel.GetHashCode();
+                if (this.Allowed != null)
+                {
+                    hashCode = (hashCode * 59) + this.Allowed.GetHashCode();
+                }
+                if (this.AllowedLevel != null)
+                {
+                    hashCode = (hashCode * 59) + this.AllowedLevel.GetHashCode();
+                }
                 if (this.AllowedSettings != null)
                 {
                     hashCode = (hashCode * 59) + this.AllowedSettings.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
+                if (this.Enabled != null)
+                {
+                    hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
+                }
                 if (this.Problems != null)
                 {
                     hashCode = (hashCode * 59) + this.Problems.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Requested.GetHashCode();
-                hashCode = (hashCode * 59) + this.RequestedLevel.GetHashCode();
+                if (this.Requested != null)
+                {
+                    hashCode = (hashCode * 59) + this.Requested.GetHashCode();
+                }
+                if (this.RequestedLevel != null)
+                {
+                    hashCode = (hashCode * 59) + this.RequestedLevel.GetHashCode();
+                }
                 if (this.RequestedSettings != null)
                 {
                     hashCode = (hashCode * 59) + this.RequestedSettings.GetHashCode();
@@ -365,7 +386,10 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.TransferInstruments.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.VerificationStatus.GetHashCode();
+                if (this.VerificationStatus != null)
+                {
+                    hashCode = (hashCode * 59) + this.VerificationStatus.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -1100,7 +1100,8 @@ namespace Adyen.Model.PlatformsWebhooks
                 ) && 
                 (
                     this.FieldName == input.FieldName ||
-                    this.FieldName.Equals(input.FieldName)
+                    (this.FieldName != null &&
+                    this.FieldName.Equals(input.FieldName))
                 ) && 
                 (
                     this.ShareholderCode == input.ShareholderCode ||
@@ -1122,7 +1123,10 @@ namespace Adyen.Model.PlatformsWebhooks
                 {
                     hashCode = (hashCode * 59) + this.Field.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.FieldName.GetHashCode();
+                if (this.FieldName != null)
+                {
+                    hashCode = (hashCode * 59) + this.FieldName.GetHashCode();
+                }
                 if (this.ShareholderCode != null)
                 {
                     hashCode = (hashCode * 59) + this.ShareholderCode.GetHashCode();

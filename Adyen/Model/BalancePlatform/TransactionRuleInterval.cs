@@ -250,11 +250,13 @@ namespace Adyen.Model.BalancePlatform
             return 
                 (
                     this.DayOfMonth == input.DayOfMonth ||
-                    this.DayOfMonth.Equals(input.DayOfMonth)
+                    (this.DayOfMonth != null &&
+                    this.DayOfMonth.Equals(input.DayOfMonth))
                 ) && 
                 (
                     this.DayOfWeek == input.DayOfWeek ||
-                    this.DayOfWeek.Equals(input.DayOfWeek)
+                    (this.DayOfWeek != null &&
+                    this.DayOfWeek.Equals(input.DayOfWeek))
                 ) && 
                 (
                     this.Duration == input.Duration ||
@@ -273,7 +275,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -286,8 +289,14 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.DayOfMonth.GetHashCode();
-                hashCode = (hashCode * 59) + this.DayOfWeek.GetHashCode();
+                if (this.DayOfMonth != null)
+                {
+                    hashCode = (hashCode * 59) + this.DayOfMonth.GetHashCode();
+                }
+                if (this.DayOfWeek != null)
+                {
+                    hashCode = (hashCode * 59) + this.DayOfWeek.GetHashCode();
+                }
                 if (this.Duration != null)
                 {
                     hashCode = (hashCode * 59) + this.Duration.GetHashCode();
@@ -300,7 +309,10 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.TimeZone.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

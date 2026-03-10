@@ -141,7 +141,8 @@ namespace Adyen.Model.Payment
             return 
                 (
                     this.Behavior == input.Behavior ||
-                    this.Behavior.Equals(input.Behavior)
+                    (this.Behavior != null &&
+                    this.Behavior.Equals(input.Behavior))
                 ) && 
                 (
                     this.CostAllocationAccount == input.CostAllocationAccount ||
@@ -164,7 +165,10 @@ namespace Adyen.Model.Payment
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Behavior.GetHashCode();
+                if (this.Behavior != null)
+                {
+                    hashCode = (hashCode * 59) + this.Behavior.GetHashCode();
+                }
                 if (this.CostAllocationAccount != null)
                 {
                     hashCode = (hashCode * 59) + this.CostAllocationAccount.GetHashCode();

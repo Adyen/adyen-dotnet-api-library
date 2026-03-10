@@ -134,11 +134,13 @@ namespace Adyen.Model.Checkout
             return 
                 (
                     this.AttemptAuthentication == input.AttemptAuthentication ||
-                    this.AttemptAuthentication.Equals(input.AttemptAuthentication)
+                    (this.AttemptAuthentication != null &&
+                    this.AttemptAuthentication.Equals(input.AttemptAuthentication))
                 ) && 
                 (
                     this.AuthenticationOnly == input.AuthenticationOnly ||
-                    this.AuthenticationOnly.Equals(input.AuthenticationOnly)
+                    (this.AuthenticationOnly != null &&
+                    this.AuthenticationOnly.Equals(input.AuthenticationOnly))
                 ) && 
                 (
                     this.ThreeDSRequestData == input.ThreeDSRequestData ||
@@ -156,8 +158,14 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.AttemptAuthentication.GetHashCode();
-                hashCode = (hashCode * 59) + this.AuthenticationOnly.GetHashCode();
+                if (this.AttemptAuthentication != null)
+                {
+                    hashCode = (hashCode * 59) + this.AttemptAuthentication.GetHashCode();
+                }
+                if (this.AuthenticationOnly != null)
+                {
+                    hashCode = (hashCode * 59) + this.AuthenticationOnly.GetHashCode();
+                }
                 if (this.ThreeDSRequestData != null)
                 {
                     hashCode = (hashCode * 59) + this.ThreeDSRequestData.GetHashCode();

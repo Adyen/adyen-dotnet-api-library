@@ -241,7 +241,8 @@ namespace Adyen.Model.LegalEntityManagement
             return 
                 (
                     this.BusinessType == input.BusinessType ||
-                    this.BusinessType.Equals(input.BusinessType)
+                    (this.BusinessType != null &&
+                    this.BusinessType.Equals(input.BusinessType))
                 ) && 
                 (
                     this.FinancialInstitutionNumber == input.FinancialInstitutionNumber ||
@@ -250,11 +251,13 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.MainSourceOfIncome == input.MainSourceOfIncome ||
-                    this.MainSourceOfIncome.Equals(input.MainSourceOfIncome)
+                    (this.MainSourceOfIncome != null &&
+                    this.MainSourceOfIncome.Equals(input.MainSourceOfIncome))
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -267,13 +270,22 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.BusinessType.GetHashCode();
+                if (this.BusinessType != null)
+                {
+                    hashCode = (hashCode * 59) + this.BusinessType.GetHashCode();
+                }
                 if (this.FinancialInstitutionNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.FinancialInstitutionNumber.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.MainSourceOfIncome.GetHashCode();
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.MainSourceOfIncome != null)
+                {
+                    hashCode = (hashCode * 59) + this.MainSourceOfIncome.GetHashCode();
+                }
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -287,7 +287,8 @@ namespace Adyen.Model.PlatformsAccount
                 ) && 
                 (
                     this.DocumentType == input.DocumentType ||
-                    this.DocumentType.Equals(input.DocumentType)
+                    (this.DocumentType != null &&
+                    this.DocumentType.Equals(input.DocumentType))
                 ) && 
                 (
                     this.Filename == input.Filename ||
@@ -337,7 +338,10 @@ namespace Adyen.Model.PlatformsAccount
                 {
                     hashCode = (hashCode * 59) + this.Description.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.DocumentType.GetHashCode();
+                if (this.DocumentType != null)
+                {
+                    hashCode = (hashCode * 59) + this.DocumentType.GetHashCode();
+                }
                 if (this.Filename != null)
                 {
                     hashCode = (hashCode * 59) + this.Filename.GetHashCode();

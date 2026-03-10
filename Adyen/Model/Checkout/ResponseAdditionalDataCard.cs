@@ -279,7 +279,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.CardProductId == input.CardProductId ||
-                    this.CardProductId.Equals(input.CardProductId)
+                    (this.CardProductId != null &&
+                    this.CardProductId.Equals(input.CardProductId))
                 ) && 
                 (
                     this.CardSummary == input.CardSummary ||
@@ -326,7 +327,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.CardPaymentMethod.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.CardProductId.GetHashCode();
+                if (this.CardProductId != null)
+                {
+                    hashCode = (hashCode * 59) + this.CardProductId.GetHashCode();
+                }
                 if (this.CardSummary != null)
                 {
                     hashCode = (hashCode * 59) + this.CardSummary.GetHashCode();

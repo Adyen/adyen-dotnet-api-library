@@ -135,7 +135,8 @@ namespace Adyen.Model.Management
             return 
                 (
                     this.ProcessingType == input.ProcessingType ||
-                    this.ProcessingType.Equals(input.ProcessingType)
+                    (this.ProcessingType != null &&
+                    this.ProcessingType.Equals(input.ProcessingType))
                 ) && 
                 (
                     this.TransactionDescription == input.TransactionDescription ||
@@ -153,7 +154,10 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.ProcessingType.GetHashCode();
+                if (this.ProcessingType != null)
+                {
+                    hashCode = (hashCode * 59) + this.ProcessingType.GetHashCode();
+                }
                 if (this.TransactionDescription != null)
                 {
                     hashCode = (hashCode * 59) + this.TransactionDescription.GetHashCode();

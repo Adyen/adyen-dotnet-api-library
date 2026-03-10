@@ -332,7 +332,8 @@ namespace Adyen.Model.PlatformsAccount
                 ) && 
                 (
                     this.ShopperInteraction == input.ShopperInteraction ||
-                    this.ShopperInteraction.Equals(input.ShopperInteraction)
+                    (this.ShopperInteraction != null &&
+                    this.ShopperInteraction.Equals(input.ShopperInteraction))
                 ) && 
                 (
                     this.SplitConfigurationUUID == input.SplitConfigurationUUID ||
@@ -341,7 +342,8 @@ namespace Adyen.Model.PlatformsAccount
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.Store == input.Store ||
@@ -407,12 +409,18 @@ namespace Adyen.Model.PlatformsAccount
                 {
                     hashCode = (hashCode * 59) + this.PhoneNumber.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                if (this.ShopperInteraction != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                }
                 if (this.SplitConfigurationUUID != null)
                 {
                     hashCode = (hashCode * 59) + this.SplitConfigurationUUID.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.Store != null)
                 {
                     hashCode = (hashCode * 59) + this.Store.GetHashCode();

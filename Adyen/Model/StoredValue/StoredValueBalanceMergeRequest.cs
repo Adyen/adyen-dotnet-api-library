@@ -235,7 +235,8 @@ namespace Adyen.Model.StoredValue
                 ) && 
                 (
                     this.ShopperInteraction == input.ShopperInteraction ||
-                    this.ShopperInteraction.Equals(input.ShopperInteraction)
+                    (this.ShopperInteraction != null &&
+                    this.ShopperInteraction.Equals(input.ShopperInteraction))
                 ) && 
                 (
                     this.ShopperReference == input.ShopperReference ||
@@ -284,7 +285,10 @@ namespace Adyen.Model.StoredValue
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                if (this.ShopperInteraction != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                }
                 if (this.ShopperReference != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperReference.GetHashCode();

@@ -162,7 +162,8 @@ namespace Adyen.Model.Management
             return 
                 (
                     this.AutoCapture == input.AutoCapture ||
-                    this.AutoCapture.Equals(input.AutoCapture)
+                    (this.AutoCapture != null &&
+                    this.AutoCapture.Equals(input.AutoCapture))
                 ) && 
                 (
                     this.DisputeEmail == input.DisputeEmail ||
@@ -171,7 +172,8 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Region == input.Region ||
-                    this.Region.Equals(input.Region)
+                    (this.Region != null &&
+                    this.Region.Equals(input.Region))
                 ) && 
                 (
                     this.SupportEmail == input.SupportEmail ||
@@ -189,12 +191,18 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.AutoCapture.GetHashCode();
+                if (this.AutoCapture != null)
+                {
+                    hashCode = (hashCode * 59) + this.AutoCapture.GetHashCode();
+                }
                 if (this.DisputeEmail != null)
                 {
                     hashCode = (hashCode * 59) + this.DisputeEmail.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Region.GetHashCode();
+                if (this.Region != null)
+                {
+                    hashCode = (hashCode * 59) + this.Region.GetHashCode();
+                }
                 if (this.SupportEmail != null)
                 {
                     hashCode = (hashCode * 59) + this.SupportEmail.GetHashCode();

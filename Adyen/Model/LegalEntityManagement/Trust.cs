@@ -422,7 +422,8 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 ) && 
                 (
                     this.UndefinedBeneficiaryInfo == input.UndefinedBeneficiaryInfo ||
@@ -432,7 +433,8 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.VatAbsenceReason == input.VatAbsenceReason ||
-                    this.VatAbsenceReason.Equals(input.VatAbsenceReason)
+                    (this.VatAbsenceReason != null &&
+                    this.VatAbsenceReason.Equals(input.VatAbsenceReason))
                 ) && 
                 (
                     this.VatNumber == input.VatNumber ||
@@ -490,12 +492,18 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.TaxInformation.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 if (this.UndefinedBeneficiaryInfo != null)
                 {
                     hashCode = (hashCode * 59) + this.UndefinedBeneficiaryInfo.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.VatAbsenceReason.GetHashCode();
+                if (this.VatAbsenceReason != null)
+                {
+                    hashCode = (hashCode * 59) + this.VatAbsenceReason.GetHashCode();
+                }
                 if (this.VatNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.VatNumber.GetHashCode();

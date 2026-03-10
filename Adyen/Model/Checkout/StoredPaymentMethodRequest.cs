@@ -185,7 +185,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.RecurringProcessingModel == input.RecurringProcessingModel ||
-                    this.RecurringProcessingModel.Equals(input.RecurringProcessingModel)
+                    (this.RecurringProcessingModel != null &&
+                    this.RecurringProcessingModel.Equals(input.RecurringProcessingModel))
                 ) && 
                 (
                     this.ShopperEmail == input.ShopperEmail ||
@@ -221,7 +222,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.PaymentMethod.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.RecurringProcessingModel.GetHashCode();
+                if (this.RecurringProcessingModel != null)
+                {
+                    hashCode = (hashCode * 59) + this.RecurringProcessingModel.GetHashCode();
+                }
                 if (this.ShopperEmail != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperEmail.GetHashCode();

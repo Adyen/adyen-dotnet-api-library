@@ -695,7 +695,8 @@ namespace Adyen.Model.AcsWebhooks
                 ) && 
                 (
                     this.ChallengeIndicator == input.ChallengeIndicator ||
-                    this.ChallengeIndicator.Equals(input.ChallengeIndicator)
+                    (this.ChallengeIndicator != null &&
+                    this.ChallengeIndicator.Equals(input.ChallengeIndicator))
                 ) && 
                 (
                     this.CreatedAt == input.CreatedAt ||
@@ -704,7 +705,8 @@ namespace Adyen.Model.AcsWebhooks
                 ) && 
                 (
                     this.DeviceChannel == input.DeviceChannel ||
-                    this.DeviceChannel.Equals(input.DeviceChannel)
+                    (this.DeviceChannel != null &&
+                    this.DeviceChannel.Equals(input.DeviceChannel))
                 ) && 
                 (
                     this.DsTransID == input.DsTransID ||
@@ -713,7 +715,8 @@ namespace Adyen.Model.AcsWebhooks
                 ) && 
                 (
                     this.ExemptionIndicator == input.ExemptionIndicator ||
-                    this.ExemptionIndicator.Equals(input.ExemptionIndicator)
+                    (this.ExemptionIndicator != null &&
+                    this.ExemptionIndicator.Equals(input.ExemptionIndicator))
                 ) && 
                 (
                     this.InPSD2Scope == input.InPSD2Scope ||
@@ -721,7 +724,8 @@ namespace Adyen.Model.AcsWebhooks
                 ) && 
                 (
                     this.MessageCategory == input.MessageCategory ||
-                    this.MessageCategory.Equals(input.MessageCategory)
+                    (this.MessageCategory != null &&
+                    this.MessageCategory.Equals(input.MessageCategory))
                 ) && 
                 (
                     this.MessageVersion == input.MessageVersion ||
@@ -730,7 +734,8 @@ namespace Adyen.Model.AcsWebhooks
                 ) && 
                 (
                     this.RiskScore == input.RiskScore ||
-                    this.RiskScore.Equals(input.RiskScore)
+                    (this.RiskScore != null &&
+                    this.RiskScore.Equals(input.RiskScore))
                 ) && 
                 (
                     this.ThreeDSServerTransID == input.ThreeDSServerTransID ||
@@ -739,15 +744,18 @@ namespace Adyen.Model.AcsWebhooks
                 ) && 
                 (
                     this.TransStatus == input.TransStatus ||
-                    this.TransStatus.Equals(input.TransStatus)
+                    (this.TransStatus != null &&
+                    this.TransStatus.Equals(input.TransStatus))
                 ) && 
                 (
                     this.TransStatusReason == input.TransStatusReason ||
-                    this.TransStatusReason.Equals(input.TransStatusReason)
+                    (this.TransStatusReason != null &&
+                    this.TransStatusReason.Equals(input.TransStatusReason))
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -768,31 +776,55 @@ namespace Adyen.Model.AcsWebhooks
                 {
                     hashCode = (hashCode * 59) + this.Challenge.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ChallengeIndicator.GetHashCode();
+                if (this.ChallengeIndicator != null)
+                {
+                    hashCode = (hashCode * 59) + this.ChallengeIndicator.GetHashCode();
+                }
                 if (this.CreatedAt != null)
                 {
                     hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.DeviceChannel.GetHashCode();
+                if (this.DeviceChannel != null)
+                {
+                    hashCode = (hashCode * 59) + this.DeviceChannel.GetHashCode();
+                }
                 if (this.DsTransID != null)
                 {
                     hashCode = (hashCode * 59) + this.DsTransID.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ExemptionIndicator.GetHashCode();
+                if (this.ExemptionIndicator != null)
+                {
+                    hashCode = (hashCode * 59) + this.ExemptionIndicator.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.InPSD2Scope.GetHashCode();
-                hashCode = (hashCode * 59) + this.MessageCategory.GetHashCode();
+                if (this.MessageCategory != null)
+                {
+                    hashCode = (hashCode * 59) + this.MessageCategory.GetHashCode();
+                }
                 if (this.MessageVersion != null)
                 {
                     hashCode = (hashCode * 59) + this.MessageVersion.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.RiskScore.GetHashCode();
+                if (this.RiskScore != null)
+                {
+                    hashCode = (hashCode * 59) + this.RiskScore.GetHashCode();
+                }
                 if (this.ThreeDSServerTransID != null)
                 {
                     hashCode = (hashCode * 59) + this.ThreeDSServerTransID.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.TransStatus.GetHashCode();
-                hashCode = (hashCode * 59) + this.TransStatusReason.GetHashCode();
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.TransStatus != null)
+                {
+                    hashCode = (hashCode * 59) + this.TransStatus.GetHashCode();
+                }
+                if (this.TransStatusReason != null)
+                {
+                    hashCode = (hashCode * 59) + this.TransStatusReason.GetHashCode();
+                }
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

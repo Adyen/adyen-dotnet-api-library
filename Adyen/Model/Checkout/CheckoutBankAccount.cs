@@ -235,7 +235,8 @@ namespace Adyen.Model.Checkout
             return 
                 (
                     this.AccountType == input.AccountType ||
-                    this.AccountType.Equals(input.AccountType)
+                    (this.AccountType != null &&
+                    this.AccountType.Equals(input.AccountType))
                 ) && 
                 (
                     this.BankAccountNumber == input.BankAccountNumber ||
@@ -293,7 +294,10 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
+                if (this.AccountType != null)
+                {
+                    hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
+                }
                 if (this.BankAccountNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.BankAccountNumber.GetHashCode();

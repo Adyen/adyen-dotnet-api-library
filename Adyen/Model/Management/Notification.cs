@@ -161,7 +161,8 @@ namespace Adyen.Model.Management
             return 
                 (
                     this.Category == input.Category ||
-                    this.Category.Equals(input.Category)
+                    (this.Category != null &&
+                    this.Category.Equals(input.Category))
                 ) && 
                 (
                     this.Details == input.Details ||
@@ -170,11 +171,13 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Enabled == input.Enabled ||
-                    this.Enabled.Equals(input.Enabled)
+                    (this.Enabled != null &&
+                    this.Enabled.Equals(input.Enabled))
                 ) && 
                 (
                     this.ShowButton == input.ShowButton ||
-                    this.ShowButton.Equals(input.ShowButton)
+                    (this.ShowButton != null &&
+                    this.ShowButton.Equals(input.ShowButton))
                 ) && 
                 (
                     this.Title == input.Title ||
@@ -192,13 +195,22 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Category.GetHashCode();
+                if (this.Category != null)
+                {
+                    hashCode = (hashCode * 59) + this.Category.GetHashCode();
+                }
                 if (this.Details != null)
                 {
                     hashCode = (hashCode * 59) + this.Details.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
-                hashCode = (hashCode * 59) + this.ShowButton.GetHashCode();
+                if (this.Enabled != null)
+                {
+                    hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
+                }
+                if (this.ShowButton != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShowButton.GetHashCode();
+                }
                 if (this.Title != null)
                 {
                     hashCode = (hashCode * 59) + this.Title.GetHashCode();

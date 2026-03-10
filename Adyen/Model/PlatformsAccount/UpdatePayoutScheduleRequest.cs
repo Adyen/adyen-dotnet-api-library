@@ -245,7 +245,8 @@ namespace Adyen.Model.PlatformsAccount
             return 
                 (
                     this.Action == input.Action ||
-                    this.Action.Equals(input.Action)
+                    (this.Action != null &&
+                    this.Action.Equals(input.Action))
                 ) && 
                 (
                     this.Reason == input.Reason ||
@@ -254,7 +255,8 @@ namespace Adyen.Model.PlatformsAccount
                 ) && 
                 (
                     this.Schedule == input.Schedule ||
-                    this.Schedule.Equals(input.Schedule)
+                    (this.Schedule != null &&
+                    this.Schedule.Equals(input.Schedule))
                 );
         }
 
@@ -267,12 +269,18 @@ namespace Adyen.Model.PlatformsAccount
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Action.GetHashCode();
+                if (this.Action != null)
+                {
+                    hashCode = (hashCode * 59) + this.Action.GetHashCode();
+                }
                 if (this.Reason != null)
                 {
                     hashCode = (hashCode * 59) + this.Reason.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Schedule.GetHashCode();
+                if (this.Schedule != null)
+                {
+                    hashCode = (hashCode * 59) + this.Schedule.GetHashCode();
+                }
                 return hashCode;
             }
         }

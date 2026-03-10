@@ -170,7 +170,8 @@ namespace Adyen.Model.Payment
             return 
                 (
                     this.SdkInterface == input.SdkInterface ||
-                    this.SdkInterface.Equals(input.SdkInterface)
+                    (this.SdkInterface != null &&
+                    this.SdkInterface.Equals(input.SdkInterface))
                 ) && 
                 (
                     this.SdkUiType == input.SdkUiType ||
@@ -187,8 +188,14 @@ namespace Adyen.Model.Payment
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.SdkInterface.GetHashCode();
-                hashCode = (hashCode * 59) + this.SdkUiType.GetHashCode();
+                if (this.SdkInterface != null)
+                {
+                    hashCode = (hashCode * 59) + this.SdkInterface.GetHashCode();
+                }
+                if (this.SdkUiType != null)
+                {
+                    hashCode = (hashCode * 59) + this.SdkUiType.GetHashCode();
+                }
                 return hashCode;
             }
         }

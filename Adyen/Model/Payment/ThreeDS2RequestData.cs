@@ -682,7 +682,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.AcctType == input.AcctType ||
-                    this.AcctType.Equals(input.AcctType)
+                    (this.AcctType != null &&
+                    this.AcctType.Equals(input.AcctType))
                 ) && 
                 (
                     this.AcquirerBIN == input.AcquirerBIN ||
@@ -696,15 +697,18 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.AddrMatch == input.AddrMatch ||
-                    this.AddrMatch.Equals(input.AddrMatch)
+                    (this.AddrMatch != null &&
+                    this.AddrMatch.Equals(input.AddrMatch))
                 ) && 
                 (
                     this.AuthenticationOnly == input.AuthenticationOnly ||
-                    this.AuthenticationOnly.Equals(input.AuthenticationOnly)
+                    (this.AuthenticationOnly != null &&
+                    this.AuthenticationOnly.Equals(input.AuthenticationOnly))
                 ) && 
                 (
                     this.ChallengeIndicator == input.ChallengeIndicator ||
-                    this.ChallengeIndicator.Equals(input.ChallengeIndicator)
+                    (this.ChallengeIndicator != null &&
+                    this.ChallengeIndicator.Equals(input.ChallengeIndicator))
                 ) && 
                 (
                     this.DeviceChannel == input.DeviceChannel ||
@@ -748,7 +752,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.PayTokenInd == input.PayTokenInd ||
-                    this.PayTokenInd.Equals(input.PayTokenInd)
+                    (this.PayTokenInd != null &&
+                    this.PayTokenInd.Equals(input.PayTokenInd))
                 ) && 
                 (
                     this.PaymentAuthenticationUseCase == input.PaymentAuthenticationUseCase ||
@@ -787,7 +792,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.SdkMaxTimeout == input.SdkMaxTimeout ||
-                    this.SdkMaxTimeout.Equals(input.SdkMaxTimeout)
+                    (this.SdkMaxTimeout != null &&
+                    this.SdkMaxTimeout.Equals(input.SdkMaxTimeout))
                 ) && 
                 (
                     this.SdkReferenceNumber == input.SdkReferenceNumber ||
@@ -821,7 +827,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.ThreeDSRequestorChallengeInd == input.ThreeDSRequestorChallengeInd ||
-                    this.ThreeDSRequestorChallengeInd.Equals(input.ThreeDSRequestorChallengeInd)
+                    (this.ThreeDSRequestorChallengeInd != null &&
+                    this.ThreeDSRequestorChallengeInd.Equals(input.ThreeDSRequestorChallengeInd))
                 ) && 
                 (
                     this.ThreeDSRequestorID == input.ThreeDSRequestorID ||
@@ -845,11 +852,13 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.TransType == input.TransType ||
-                    this.TransType.Equals(input.TransType)
+                    (this.TransType != null &&
+                    this.TransType.Equals(input.TransType))
                 ) && 
                 (
                     this.TransactionType == input.TransactionType ||
-                    this.TransactionType.Equals(input.TransactionType)
+                    (this.TransactionType != null &&
+                    this.TransactionType.Equals(input.TransactionType))
                 ) && 
                 (
                     this.WhiteListStatus == input.WhiteListStatus ||
@@ -876,7 +885,10 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.AcctInfo.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.AcctType.GetHashCode();
+                if (this.AcctType != null)
+                {
+                    hashCode = (hashCode * 59) + this.AcctType.GetHashCode();
+                }
                 if (this.AcquirerBIN != null)
                 {
                     hashCode = (hashCode * 59) + this.AcquirerBIN.GetHashCode();
@@ -885,9 +897,18 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.AcquirerMerchantID.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.AddrMatch.GetHashCode();
-                hashCode = (hashCode * 59) + this.AuthenticationOnly.GetHashCode();
-                hashCode = (hashCode * 59) + this.ChallengeIndicator.GetHashCode();
+                if (this.AddrMatch != null)
+                {
+                    hashCode = (hashCode * 59) + this.AddrMatch.GetHashCode();
+                }
+                if (this.AuthenticationOnly != null)
+                {
+                    hashCode = (hashCode * 59) + this.AuthenticationOnly.GetHashCode();
+                }
+                if (this.ChallengeIndicator != null)
+                {
+                    hashCode = (hashCode * 59) + this.ChallengeIndicator.GetHashCode();
+                }
                 if (this.DeviceChannel != null)
                 {
                     hashCode = (hashCode * 59) + this.DeviceChannel.GetHashCode();
@@ -920,7 +941,10 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.NotificationURL.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.PayTokenInd.GetHashCode();
+                if (this.PayTokenInd != null)
+                {
+                    hashCode = (hashCode * 59) + this.PayTokenInd.GetHashCode();
+                }
                 if (this.PaymentAuthenticationUseCase != null)
                 {
                     hashCode = (hashCode * 59) + this.PaymentAuthenticationUseCase.GetHashCode();
@@ -949,7 +973,10 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.SdkEphemPubKey.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.SdkMaxTimeout.GetHashCode();
+                if (this.SdkMaxTimeout != null)
+                {
+                    hashCode = (hashCode * 59) + this.SdkMaxTimeout.GetHashCode();
+                }
                 if (this.SdkReferenceNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.SdkReferenceNumber.GetHashCode();
@@ -974,7 +1001,10 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.ThreeDSRequestorAuthenticationInfo.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ThreeDSRequestorChallengeInd.GetHashCode();
+                if (this.ThreeDSRequestorChallengeInd != null)
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSRequestorChallengeInd.GetHashCode();
+                }
                 if (this.ThreeDSRequestorID != null)
                 {
                     hashCode = (hashCode * 59) + this.ThreeDSRequestorID.GetHashCode();
@@ -991,8 +1021,14 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.ThreeDSRequestorURL.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.TransType.GetHashCode();
-                hashCode = (hashCode * 59) + this.TransactionType.GetHashCode();
+                if (this.TransType != null)
+                {
+                    hashCode = (hashCode * 59) + this.TransType.GetHashCode();
+                }
+                if (this.TransactionType != null)
+                {
+                    hashCode = (hashCode * 59) + this.TransactionType.GetHashCode();
+                }
                 if (this.WhiteListStatus != null)
                 {
                     hashCode = (hashCode * 59) + this.WhiteListStatus.GetHashCode();

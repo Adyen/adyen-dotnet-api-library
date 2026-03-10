@@ -176,7 +176,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.ThreeDSRequestorChallengeInd == input.ThreeDSRequestorChallengeInd ||
-                    this.ThreeDSRequestorChallengeInd.Equals(input.ThreeDSRequestorChallengeInd)
+                    (this.ThreeDSRequestorChallengeInd != null &&
+                    this.ThreeDSRequestorChallengeInd.Equals(input.ThreeDSRequestorChallengeInd))
                 ) && 
                 (
                     this.WorkPhone == input.WorkPhone ||
@@ -202,7 +203,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.MobilePhone.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ThreeDSRequestorChallengeInd.GetHashCode();
+                if (this.ThreeDSRequestorChallengeInd != null)
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSRequestorChallengeInd.GetHashCode();
+                }
                 if (this.WorkPhone != null)
                 {
                     hashCode = (hashCode * 59) + this.WorkPhone.GetHashCode();

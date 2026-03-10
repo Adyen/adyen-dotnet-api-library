@@ -239,7 +239,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.StatusComment == input.StatusComment ||
@@ -248,7 +249,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.StatusReason == input.StatusReason ||
-                    this.StatusReason.Equals(input.StatusReason)
+                    (this.StatusReason != null &&
+                    this.StatusReason.Equals(input.StatusReason))
                 );
         }
 
@@ -269,12 +271,18 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Card.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.StatusComment != null)
                 {
                     hashCode = (hashCode * 59) + this.StatusComment.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.StatusReason.GetHashCode();
+                if (this.StatusReason != null)
+                {
+                    hashCode = (hashCode * 59) + this.StatusReason.GetHashCode();
+                }
                 return hashCode;
             }
         }

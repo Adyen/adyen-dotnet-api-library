@@ -256,7 +256,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.MerchantRefundReason == input.MerchantRefundReason ||
-                    this.MerchantRefundReason.Equals(input.MerchantRefundReason)
+                    (this.MerchantRefundReason != null &&
+                    this.MerchantRefundReason.Equals(input.MerchantRefundReason))
                 ) && 
                 (
                     this.Reference == input.Reference ||
@@ -309,7 +310,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.MerchantAccount.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.MerchantRefundReason.GetHashCode();
+                if (this.MerchantRefundReason != null)
+                {
+                    hashCode = (hashCode * 59) + this.MerchantRefundReason.GetHashCode();
+                }
                 if (this.Reference != null)
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();

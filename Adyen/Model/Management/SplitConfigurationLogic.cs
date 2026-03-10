@@ -561,7 +561,8 @@ namespace Adyen.Model.Management
             return 
                 (
                     this.AcquiringFees == input.AcquiringFees ||
-                    this.AcquiringFees.Equals(input.AcquiringFees)
+                    (this.AcquiringFees != null &&
+                    this.AcquiringFees.Equals(input.AcquiringFees))
                 ) && 
                 (
                     this.AdditionalCommission == input.AdditionalCommission ||
@@ -570,23 +571,28 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.AdyenCommission == input.AdyenCommission ||
-                    this.AdyenCommission.Equals(input.AdyenCommission)
+                    (this.AdyenCommission != null &&
+                    this.AdyenCommission.Equals(input.AdyenCommission))
                 ) && 
                 (
                     this.AdyenFees == input.AdyenFees ||
-                    this.AdyenFees.Equals(input.AdyenFees)
+                    (this.AdyenFees != null &&
+                    this.AdyenFees.Equals(input.AdyenFees))
                 ) && 
                 (
                     this.AdyenMarkup == input.AdyenMarkup ||
-                    this.AdyenMarkup.Equals(input.AdyenMarkup)
+                    (this.AdyenMarkup != null &&
+                    this.AdyenMarkup.Equals(input.AdyenMarkup))
                 ) && 
                 (
                     this.Chargeback == input.Chargeback ||
-                    this.Chargeback.Equals(input.Chargeback)
+                    (this.Chargeback != null &&
+                    this.Chargeback.Equals(input.Chargeback))
                 ) && 
                 (
                     this.ChargebackCostAllocation == input.ChargebackCostAllocation ||
-                    this.ChargebackCostAllocation.Equals(input.ChargebackCostAllocation)
+                    (this.ChargebackCostAllocation != null &&
+                    this.ChargebackCostAllocation.Equals(input.ChargebackCostAllocation))
                 ) && 
                 (
                     this.Commission == input.Commission ||
@@ -595,27 +601,33 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Interchange == input.Interchange ||
-                    this.Interchange.Equals(input.Interchange)
+                    (this.Interchange != null &&
+                    this.Interchange.Equals(input.Interchange))
                 ) && 
                 (
                     this.PaymentFee == input.PaymentFee ||
-                    this.PaymentFee.Equals(input.PaymentFee)
+                    (this.PaymentFee != null &&
+                    this.PaymentFee.Equals(input.PaymentFee))
                 ) && 
                 (
                     this.Refund == input.Refund ||
-                    this.Refund.Equals(input.Refund)
+                    (this.Refund != null &&
+                    this.Refund.Equals(input.Refund))
                 ) && 
                 (
                     this.RefundCostAllocation == input.RefundCostAllocation ||
-                    this.RefundCostAllocation.Equals(input.RefundCostAllocation)
+                    (this.RefundCostAllocation != null &&
+                    this.RefundCostAllocation.Equals(input.RefundCostAllocation))
                 ) && 
                 (
                     this.Remainder == input.Remainder ||
-                    this.Remainder.Equals(input.Remainder)
+                    (this.Remainder != null &&
+                    this.Remainder.Equals(input.Remainder))
                 ) && 
                 (
                     this.SchemeFee == input.SchemeFee ||
-                    this.SchemeFee.Equals(input.SchemeFee)
+                    (this.SchemeFee != null &&
+                    this.SchemeFee.Equals(input.SchemeFee))
                 ) && 
                 (
                     this.SplitLogicId == input.SplitLogicId ||
@@ -624,11 +636,13 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Surcharge == input.Surcharge ||
-                    this.Surcharge.Equals(input.Surcharge)
+                    (this.Surcharge != null &&
+                    this.Surcharge.Equals(input.Surcharge))
                 ) && 
                 (
                     this.Tip == input.Tip ||
-                    this.Tip.Equals(input.Tip)
+                    (this.Tip != null &&
+                    this.Tip.Equals(input.Tip))
                 );
         }
 
@@ -641,32 +655,74 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.AcquiringFees.GetHashCode();
+                if (this.AcquiringFees != null)
+                {
+                    hashCode = (hashCode * 59) + this.AcquiringFees.GetHashCode();
+                }
                 if (this.AdditionalCommission != null)
                 {
                     hashCode = (hashCode * 59) + this.AdditionalCommission.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.AdyenCommission.GetHashCode();
-                hashCode = (hashCode * 59) + this.AdyenFees.GetHashCode();
-                hashCode = (hashCode * 59) + this.AdyenMarkup.GetHashCode();
-                hashCode = (hashCode * 59) + this.Chargeback.GetHashCode();
-                hashCode = (hashCode * 59) + this.ChargebackCostAllocation.GetHashCode();
+                if (this.AdyenCommission != null)
+                {
+                    hashCode = (hashCode * 59) + this.AdyenCommission.GetHashCode();
+                }
+                if (this.AdyenFees != null)
+                {
+                    hashCode = (hashCode * 59) + this.AdyenFees.GetHashCode();
+                }
+                if (this.AdyenMarkup != null)
+                {
+                    hashCode = (hashCode * 59) + this.AdyenMarkup.GetHashCode();
+                }
+                if (this.Chargeback != null)
+                {
+                    hashCode = (hashCode * 59) + this.Chargeback.GetHashCode();
+                }
+                if (this.ChargebackCostAllocation != null)
+                {
+                    hashCode = (hashCode * 59) + this.ChargebackCostAllocation.GetHashCode();
+                }
                 if (this.Commission != null)
                 {
                     hashCode = (hashCode * 59) + this.Commission.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Interchange.GetHashCode();
-                hashCode = (hashCode * 59) + this.PaymentFee.GetHashCode();
-                hashCode = (hashCode * 59) + this.Refund.GetHashCode();
-                hashCode = (hashCode * 59) + this.RefundCostAllocation.GetHashCode();
-                hashCode = (hashCode * 59) + this.Remainder.GetHashCode();
-                hashCode = (hashCode * 59) + this.SchemeFee.GetHashCode();
+                if (this.Interchange != null)
+                {
+                    hashCode = (hashCode * 59) + this.Interchange.GetHashCode();
+                }
+                if (this.PaymentFee != null)
+                {
+                    hashCode = (hashCode * 59) + this.PaymentFee.GetHashCode();
+                }
+                if (this.Refund != null)
+                {
+                    hashCode = (hashCode * 59) + this.Refund.GetHashCode();
+                }
+                if (this.RefundCostAllocation != null)
+                {
+                    hashCode = (hashCode * 59) + this.RefundCostAllocation.GetHashCode();
+                }
+                if (this.Remainder != null)
+                {
+                    hashCode = (hashCode * 59) + this.Remainder.GetHashCode();
+                }
+                if (this.SchemeFee != null)
+                {
+                    hashCode = (hashCode * 59) + this.SchemeFee.GetHashCode();
+                }
                 if (this.SplitLogicId != null)
                 {
                     hashCode = (hashCode * 59) + this.SplitLogicId.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Surcharge.GetHashCode();
-                hashCode = (hashCode * 59) + this.Tip.GetHashCode();
+                if (this.Surcharge != null)
+                {
+                    hashCode = (hashCode * 59) + this.Surcharge.GetHashCode();
+                }
+                if (this.Tip != null)
+                {
+                    hashCode = (hashCode * 59) + this.Tip.GetHashCode();
+                }
                 return hashCode;
             }
         }

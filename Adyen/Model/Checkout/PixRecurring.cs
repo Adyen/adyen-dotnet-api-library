@@ -226,7 +226,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.BusinessDayOnly == input.BusinessDayOnly ||
-                    this.BusinessDayOnly.Equals(input.BusinessDayOnly)
+                    (this.BusinessDayOnly != null &&
+                    this.BusinessDayOnly.Equals(input.BusinessDayOnly))
                 ) && 
                 (
                     this.EndsAt == input.EndsAt ||
@@ -235,7 +236,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.Frequency == input.Frequency ||
-                    this.Frequency.Equals(input.Frequency)
+                    (this.Frequency != null &&
+                    this.Frequency.Equals(input.Frequency))
                 ) && 
                 (
                     this.MinAmount == input.MinAmount ||
@@ -259,7 +261,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.RetryPolicy == input.RetryPolicy ||
-                    this.RetryPolicy.Equals(input.RetryPolicy)
+                    (this.RetryPolicy != null &&
+                    this.RetryPolicy.Equals(input.RetryPolicy))
                 ) && 
                 (
                     this.StartsAt == input.StartsAt ||
@@ -281,12 +284,18 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.BillingDate.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.BusinessDayOnly.GetHashCode();
+                if (this.BusinessDayOnly != null)
+                {
+                    hashCode = (hashCode * 59) + this.BusinessDayOnly.GetHashCode();
+                }
                 if (this.EndsAt != null)
                 {
                     hashCode = (hashCode * 59) + this.EndsAt.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Frequency.GetHashCode();
+                if (this.Frequency != null)
+                {
+                    hashCode = (hashCode * 59) + this.Frequency.GetHashCode();
+                }
                 if (this.MinAmount != null)
                 {
                     hashCode = (hashCode * 59) + this.MinAmount.GetHashCode();
@@ -303,7 +312,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.RecurringStatement.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.RetryPolicy.GetHashCode();
+                if (this.RetryPolicy != null)
+                {
+                    hashCode = (hashCode * 59) + this.RetryPolicy.GetHashCode();
+                }
                 if (this.StartsAt != null)
                 {
                     hashCode = (hashCode * 59) + this.StartsAt.GetHashCode();

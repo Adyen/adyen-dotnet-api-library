@@ -180,7 +180,8 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.AccountType == input.AccountType ||
-                    this.AccountType.Equals(input.AccountType)
+                    (this.AccountType != null &&
+                    this.AccountType.Equals(input.AccountType))
                 ) && 
                 (
                     this.InstitutionNumber == input.InstitutionNumber ||
@@ -194,7 +195,8 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -211,7 +213,10 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
+                if (this.AccountType != null)
+                {
+                    hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
+                }
                 if (this.InstitutionNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.InstitutionNumber.GetHashCode();
@@ -220,7 +225,10 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.TransitNumber.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

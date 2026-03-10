@@ -186,7 +186,8 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.StoreId == input.StoreId ||
@@ -216,7 +217,10 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.ReassignmentTarget.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.StoreId != null)
                 {
                     hashCode = (hashCode * 59) + this.StoreId.GetHashCode();

@@ -372,7 +372,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.ResultCode == input.ResultCode ||
-                    this.ResultCode.Equals(input.ResultCode)
+                    (this.ResultCode != null &&
+                    this.ResultCode.Equals(input.ResultCode))
                 ) && 
                 (
                     this.ShopperLocale == input.ShopperLocale ||
@@ -445,7 +446,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.RefusalReasonCode.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ResultCode.GetHashCode();
+                if (this.ResultCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.ResultCode.GetHashCode();
+                }
                 if (this.ShopperLocale != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperLocale.GetHashCode();

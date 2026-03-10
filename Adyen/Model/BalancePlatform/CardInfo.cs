@@ -223,7 +223,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.FormFactor == input.FormFactor ||
-                    this.FormFactor.Equals(input.FormFactor)
+                    (this.FormFactor != null &&
+                    this.FormFactor.Equals(input.FormFactor))
                 ) && 
                 (
                     this.ThreeDSecure == input.ThreeDSecure ||
@@ -265,7 +266,10 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.DeliveryContact.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
+                if (this.FormFactor != null)
+                {
+                    hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
+                }
                 if (this.ThreeDSecure != null)
                 {
                     hashCode = (hashCode * 59) + this.ThreeDSecure.GetHashCode();

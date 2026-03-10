@@ -591,7 +591,8 @@ namespace Adyen.Model.PlatformsFund
                 ) && 
                 (
                     this.TransactionStatus == input.TransactionStatus ||
-                    this.TransactionStatus.Equals(input.TransactionStatus)
+                    (this.TransactionStatus != null &&
+                    this.TransactionStatus.Equals(input.TransactionStatus))
                 ) && 
                 (
                     this.TransferCode == input.TransferCode ||
@@ -665,7 +666,10 @@ namespace Adyen.Model.PlatformsFund
                 {
                     hashCode = (hashCode * 59) + this.SourceAccountCode.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.TransactionStatus.GetHashCode();
+                if (this.TransactionStatus != null)
+                {
+                    hashCode = (hashCode * 59) + this.TransactionStatus.GetHashCode();
+                }
                 if (this.TransferCode != null)
                 {
                     hashCode = (hashCode * 59) + this.TransferCode.GetHashCode();

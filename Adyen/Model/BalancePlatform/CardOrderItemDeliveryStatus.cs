@@ -176,7 +176,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.TrackingNumber == input.TrackingNumber ||
@@ -198,7 +199,10 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.ErrorMessage.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.TrackingNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.TrackingNumber.GetHashCode();

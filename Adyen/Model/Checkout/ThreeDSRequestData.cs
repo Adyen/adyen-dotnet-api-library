@@ -226,19 +226,23 @@ namespace Adyen.Model.Checkout
             return 
                 (
                     this.ChallengeWindowSize == input.ChallengeWindowSize ||
-                    this.ChallengeWindowSize.Equals(input.ChallengeWindowSize)
+                    (this.ChallengeWindowSize != null &&
+                    this.ChallengeWindowSize.Equals(input.ChallengeWindowSize))
                 ) && 
                 (
                     this.DataOnly == input.DataOnly ||
-                    this.DataOnly.Equals(input.DataOnly)
+                    (this.DataOnly != null &&
+                    this.DataOnly.Equals(input.DataOnly))
                 ) && 
                 (
                     this.NativeThreeDS == input.NativeThreeDS ||
-                    this.NativeThreeDS.Equals(input.NativeThreeDS)
+                    (this.NativeThreeDS != null &&
+                    this.NativeThreeDS.Equals(input.NativeThreeDS))
                 ) && 
                 (
                     this.ThreeDSVersion == input.ThreeDSVersion ||
-                    this.ThreeDSVersion.Equals(input.ThreeDSVersion)
+                    (this.ThreeDSVersion != null &&
+                    this.ThreeDSVersion.Equals(input.ThreeDSVersion))
                 );
         }
 
@@ -251,10 +255,22 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.ChallengeWindowSize.GetHashCode();
-                hashCode = (hashCode * 59) + this.DataOnly.GetHashCode();
-                hashCode = (hashCode * 59) + this.NativeThreeDS.GetHashCode();
-                hashCode = (hashCode * 59) + this.ThreeDSVersion.GetHashCode();
+                if (this.ChallengeWindowSize != null)
+                {
+                    hashCode = (hashCode * 59) + this.ChallengeWindowSize.GetHashCode();
+                }
+                if (this.DataOnly != null)
+                {
+                    hashCode = (hashCode * 59) + this.DataOnly.GetHashCode();
+                }
+                if (this.NativeThreeDS != null)
+                {
+                    hashCode = (hashCode * 59) + this.NativeThreeDS.GetHashCode();
+                }
+                if (this.ThreeDSVersion != null)
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSVersion.GetHashCode();
+                }
                 return hashCode;
             }
         }

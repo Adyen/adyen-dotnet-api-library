@@ -253,15 +253,18 @@ namespace Adyen.Model.ConfigurationWebhooks
             return 
                 (
                     this.Allowed == input.Allowed ||
-                    this.Allowed.Equals(input.Allowed)
+                    (this.Allowed != null &&
+                    this.Allowed.Equals(input.Allowed))
                 ) && 
                 (
                     this.AllowedLevel == input.AllowedLevel ||
-                    this.AllowedLevel.Equals(input.AllowedLevel)
+                    (this.AllowedLevel != null &&
+                    this.AllowedLevel.Equals(input.AllowedLevel))
                 ) && 
                 (
                     this.Enabled == input.Enabled ||
-                    this.Enabled.Equals(input.Enabled)
+                    (this.Enabled != null &&
+                    this.Enabled.Equals(input.Enabled))
                 ) && 
                 (
                     this.Id == input.Id ||
@@ -270,15 +273,18 @@ namespace Adyen.Model.ConfigurationWebhooks
                 ) && 
                 (
                     this.Requested == input.Requested ||
-                    this.Requested.Equals(input.Requested)
+                    (this.Requested != null &&
+                    this.Requested.Equals(input.Requested))
                 ) && 
                 (
                     this.RequestedLevel == input.RequestedLevel ||
-                    this.RequestedLevel.Equals(input.RequestedLevel)
+                    (this.RequestedLevel != null &&
+                    this.RequestedLevel.Equals(input.RequestedLevel))
                 ) && 
                 (
                     this.VerificationStatus == input.VerificationStatus ||
-                    this.VerificationStatus.Equals(input.VerificationStatus)
+                    (this.VerificationStatus != null &&
+                    this.VerificationStatus.Equals(input.VerificationStatus))
                 );
         }
 
@@ -291,16 +297,34 @@ namespace Adyen.Model.ConfigurationWebhooks
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Allowed.GetHashCode();
-                hashCode = (hashCode * 59) + this.AllowedLevel.GetHashCode();
-                hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
+                if (this.Allowed != null)
+                {
+                    hashCode = (hashCode * 59) + this.Allowed.GetHashCode();
+                }
+                if (this.AllowedLevel != null)
+                {
+                    hashCode = (hashCode * 59) + this.AllowedLevel.GetHashCode();
+                }
+                if (this.Enabled != null)
+                {
+                    hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
+                }
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Requested.GetHashCode();
-                hashCode = (hashCode * 59) + this.RequestedLevel.GetHashCode();
-                hashCode = (hashCode * 59) + this.VerificationStatus.GetHashCode();
+                if (this.Requested != null)
+                {
+                    hashCode = (hashCode * 59) + this.Requested.GetHashCode();
+                }
+                if (this.RequestedLevel != null)
+                {
+                    hashCode = (hashCode * 59) + this.RequestedLevel.GetHashCode();
+                }
+                if (this.VerificationStatus != null)
+                {
+                    hashCode = (hashCode * 59) + this.VerificationStatus.GetHashCode();
+                }
                 return hashCode;
             }
         }

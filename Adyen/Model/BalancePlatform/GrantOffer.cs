@@ -197,7 +197,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.ContractType == input.ContractType ||
-                    this.ContractType.Equals(input.ContractType)
+                    (this.ContractType != null &&
+                    this.ContractType.Equals(input.ContractType))
                 ) && 
                 (
                     this.ExpiresAt == input.ExpiresAt ||
@@ -243,7 +244,10 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Amount.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ContractType.GetHashCode();
+                if (this.ContractType != null)
+                {
+                    hashCode = (hashCode * 59) + this.ContractType.GetHashCode();
+                }
                 if (this.ExpiresAt != null)
                 {
                     hashCode = (hashCode * 59) + this.ExpiresAt.GetHashCode();

@@ -218,7 +218,8 @@ namespace Adyen.Model.PlatformsAccount
                 ) && 
                 (
                     this.CreateDefaultAccount == input.CreateDefaultAccount ||
-                    this.CreateDefaultAccount.Equals(input.CreateDefaultAccount)
+                    (this.CreateDefaultAccount != null &&
+                    this.CreateDefaultAccount.Equals(input.CreateDefaultAccount))
                 ) && 
                 (
                     this.Description == input.Description ||
@@ -227,7 +228,8 @@ namespace Adyen.Model.PlatformsAccount
                 ) && 
                 (
                     this.LegalEntity == input.LegalEntity ||
-                    this.LegalEntity.Equals(input.LegalEntity)
+                    (this.LegalEntity != null &&
+                    this.LegalEntity.Equals(input.LegalEntity))
                 ) && 
                 (
                     this.PrimaryCurrency == input.PrimaryCurrency ||
@@ -236,7 +238,8 @@ namespace Adyen.Model.PlatformsAccount
                 ) && 
                 (
                     this.ProcessingTier == input.ProcessingTier ||
-                    this.ProcessingTier.Equals(input.ProcessingTier)
+                    (this.ProcessingTier != null &&
+                    this.ProcessingTier.Equals(input.ProcessingTier))
                 ) && 
                 (
                     this.VerificationProfile == input.VerificationProfile ||
@@ -262,17 +265,26 @@ namespace Adyen.Model.PlatformsAccount
                 {
                     hashCode = (hashCode * 59) + this.AccountHolderDetails.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.CreateDefaultAccount.GetHashCode();
+                if (this.CreateDefaultAccount != null)
+                {
+                    hashCode = (hashCode * 59) + this.CreateDefaultAccount.GetHashCode();
+                }
                 if (this.Description != null)
                 {
                     hashCode = (hashCode * 59) + this.Description.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.LegalEntity.GetHashCode();
+                if (this.LegalEntity != null)
+                {
+                    hashCode = (hashCode * 59) + this.LegalEntity.GetHashCode();
+                }
                 if (this.PrimaryCurrency != null)
                 {
                     hashCode = (hashCode * 59) + this.PrimaryCurrency.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ProcessingTier.GetHashCode();
+                if (this.ProcessingTier != null)
+                {
+                    hashCode = (hashCode * 59) + this.ProcessingTier.GetHashCode();
+                }
                 if (this.VerificationProfile != null)
                 {
                     hashCode = (hashCode * 59) + this.VerificationProfile.GetHashCode();

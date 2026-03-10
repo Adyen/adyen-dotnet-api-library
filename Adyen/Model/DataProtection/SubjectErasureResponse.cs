@@ -127,7 +127,8 @@ namespace Adyen.Model.DataProtection
             return 
                 (
                     this.Result == input.Result ||
-                    this.Result.Equals(input.Result)
+                    (this.Result != null &&
+                    this.Result.Equals(input.Result))
                 );
         }
 
@@ -140,7 +141,10 @@ namespace Adyen.Model.DataProtection
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Result.GetHashCode();
+                if (this.Result != null)
+                {
+                    hashCode = (hashCode * 59) + this.Result.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -156,7 +156,8 @@ namespace Adyen.Model.PlatformsWebhooks
                 ) && 
                 (
                     this.Gender == input.Gender ||
-                    this.Gender.Equals(input.Gender)
+                    (this.Gender != null &&
+                    this.Gender.Equals(input.Gender))
                 ) && 
                 (
                     this.Infix == input.Infix ||
@@ -183,7 +184,10 @@ namespace Adyen.Model.PlatformsWebhooks
                 {
                     hashCode = (hashCode * 59) + this.FirstName.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Gender.GetHashCode();
+                if (this.Gender != null)
+                {
+                    hashCode = (hashCode * 59) + this.Gender.GetHashCode();
+                }
                 if (this.Infix != null)
                 {
                     hashCode = (hashCode * 59) + this.Infix.GetHashCode();

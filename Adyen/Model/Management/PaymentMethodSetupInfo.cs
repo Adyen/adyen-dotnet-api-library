@@ -1183,7 +1183,8 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.ShopperInteraction == input.ShopperInteraction ||
-                    this.ShopperInteraction.Equals(input.ShopperInteraction)
+                    (this.ShopperInteraction != null &&
+                    this.ShopperInteraction.Equals(input.ShopperInteraction))
                 ) && 
                 (
                     this.Sodexo == input.Sodexo ||
@@ -1223,7 +1224,8 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 ) && 
                 (
                     this.Vipps == input.Vipps ||
@@ -1388,7 +1390,10 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                if (this.ShopperInteraction != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                }
                 if (this.Sodexo != null)
                 {
                     hashCode = (hashCode * 59) + this.Sodexo.GetHashCode();
@@ -1417,7 +1422,10 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.Twint.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 if (this.Vipps != null)
                 {
                     hashCode = (hashCode * 59) + this.Vipps.GetHashCode();

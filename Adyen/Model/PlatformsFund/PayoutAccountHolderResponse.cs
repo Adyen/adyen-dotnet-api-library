@@ -187,7 +187,8 @@ namespace Adyen.Model.PlatformsFund
                 ) && 
                 (
                     this.PayoutSpeed == input.PayoutSpeed ||
-                    this.PayoutSpeed.Equals(input.PayoutSpeed)
+                    (this.PayoutSpeed != null &&
+                    this.PayoutSpeed.Equals(input.PayoutSpeed))
                 ) && 
                 (
                     this.PspReference == input.PspReference ||
@@ -222,7 +223,10 @@ namespace Adyen.Model.PlatformsFund
                 {
                     hashCode = (hashCode * 59) + this.MerchantReference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.PayoutSpeed.GetHashCode();
+                if (this.PayoutSpeed != null)
+                {
+                    hashCode = (hashCode * 59) + this.PayoutSpeed.GetHashCode();
+                }
                 if (this.PspReference != null)
                 {
                     hashCode = (hashCode * 59) + this.PspReference.GetHashCode();

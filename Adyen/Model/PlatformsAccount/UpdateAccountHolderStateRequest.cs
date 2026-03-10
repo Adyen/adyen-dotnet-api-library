@@ -179,7 +179,8 @@ namespace Adyen.Model.PlatformsAccount
                 ) && 
                 (
                     this.Disable == input.Disable ||
-                    this.Disable.Equals(input.Disable)
+                    (this.Disable != null &&
+                    this.Disable.Equals(input.Disable))
                 ) && 
                 (
                     this.Reason == input.Reason ||
@@ -188,7 +189,8 @@ namespace Adyen.Model.PlatformsAccount
                 ) && 
                 (
                     this.StateType == input.StateType ||
-                    this.StateType.Equals(input.StateType)
+                    (this.StateType != null &&
+                    this.StateType.Equals(input.StateType))
                 );
         }
 
@@ -205,12 +207,18 @@ namespace Adyen.Model.PlatformsAccount
                 {
                     hashCode = (hashCode * 59) + this.AccountHolderCode.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Disable.GetHashCode();
+                if (this.Disable != null)
+                {
+                    hashCode = (hashCode * 59) + this.Disable.GetHashCode();
+                }
                 if (this.Reason != null)
                 {
                     hashCode = (hashCode * 59) + this.Reason.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.StateType.GetHashCode();
+                if (this.StateType != null)
+                {
+                    hashCode = (hashCode * 59) + this.StateType.GetHashCode();
+                }
                 return hashCode;
             }
         }

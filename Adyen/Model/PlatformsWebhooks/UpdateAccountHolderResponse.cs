@@ -257,7 +257,8 @@ namespace Adyen.Model.PlatformsWebhooks
                 ) && 
                 (
                     this.LegalEntity == input.LegalEntity ||
-                    this.LegalEntity.Equals(input.LegalEntity)
+                    (this.LegalEntity != null &&
+                    this.LegalEntity.Equals(input.LegalEntity))
                 ) && 
                 (
                     this.PrimaryCurrency == input.PrimaryCurrency ||
@@ -315,7 +316,10 @@ namespace Adyen.Model.PlatformsWebhooks
                 {
                     hashCode = (hashCode * 59) + this.InvalidFields.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.LegalEntity.GetHashCode();
+                if (this.LegalEntity != null)
+                {
+                    hashCode = (hashCode * 59) + this.LegalEntity.GetHashCode();
+                }
                 if (this.PrimaryCurrency != null)
                 {
                     hashCode = (hashCode * 59) + this.PrimaryCurrency.GetHashCode();

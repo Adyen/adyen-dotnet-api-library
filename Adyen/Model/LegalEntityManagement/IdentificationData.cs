@@ -213,7 +213,8 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.NationalIdExempt == input.NationalIdExempt ||
-                    this.NationalIdExempt.Equals(input.NationalIdExempt)
+                    (this.NationalIdExempt != null &&
+                    this.NationalIdExempt.Equals(input.NationalIdExempt))
                 ) && 
                 (
                     this.Number == input.Number ||
@@ -222,7 +223,8 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -251,12 +253,18 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.IssuerState.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.NationalIdExempt.GetHashCode();
+                if (this.NationalIdExempt != null)
+                {
+                    hashCode = (hashCode * 59) + this.NationalIdExempt.GetHashCode();
+                }
                 if (this.Number != null)
                 {
                     hashCode = (hashCode * 59) + this.Number.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

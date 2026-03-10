@@ -381,7 +381,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.StatusComment == input.StatusComment ||
@@ -390,11 +391,13 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.StatusReason == input.StatusReason ||
-                    this.StatusReason.Equals(input.StatusReason)
+                    (this.StatusReason != null &&
+                    this.StatusReason.Equals(input.StatusReason))
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -443,13 +446,22 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.StatusComment != null)
                 {
                     hashCode = (hashCode * 59) + this.StatusComment.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.StatusReason.GetHashCode();
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.StatusReason != null)
+                {
+                    hashCode = (hashCode * 59) + this.StatusReason.GetHashCode();
+                }
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

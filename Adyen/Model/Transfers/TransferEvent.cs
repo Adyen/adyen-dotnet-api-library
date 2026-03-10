@@ -902,11 +902,13 @@ namespace Adyen.Model.Transfers
                 ) && 
                 (
                     this.Reason == input.Reason ||
-                    this.Reason.Equals(input.Reason)
+                    (this.Reason != null &&
+                    this.Reason.Equals(input.Reason))
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.TrackingData == input.TrackingData ||
@@ -920,7 +922,8 @@ namespace Adyen.Model.Transfers
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 ) && 
                 (
                     this.UpdateDate == input.UpdateDate ||
@@ -987,8 +990,14 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.OriginalAmount.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Reason.GetHashCode();
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Reason != null)
+                {
+                    hashCode = (hashCode * 59) + this.Reason.GetHashCode();
+                }
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.TrackingData != null)
                 {
                     hashCode = (hashCode * 59) + this.TrackingData.GetHashCode();
@@ -997,7 +1006,10 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.TransactionId.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 if (this.UpdateDate != null)
                 {
                     hashCode = (hashCode * 59) + this.UpdateDate.GetHashCode();

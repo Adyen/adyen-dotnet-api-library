@@ -244,7 +244,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.SubMerchants == input.SubMerchants ||
@@ -295,7 +296,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Splits.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.SubMerchants != null)
                 {
                     hashCode = (hashCode * 59) + this.SubMerchants.GetHashCode();

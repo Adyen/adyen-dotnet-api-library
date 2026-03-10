@@ -258,7 +258,8 @@ namespace Adyen.Model.BinLookup
                 ) && 
                 (
                     this.ShopperInteraction == input.ShopperInteraction ||
-                    this.ShopperInteraction.Equals(input.ShopperInteraction)
+                    (this.ShopperInteraction != null &&
+                    this.ShopperInteraction.Equals(input.ShopperInteraction))
                 ) && 
                 (
                     this.ShopperReference == input.ShopperReference ||
@@ -308,7 +309,10 @@ namespace Adyen.Model.BinLookup
                 {
                     hashCode = (hashCode * 59) + this.SelectedRecurringDetailReference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                if (this.ShopperInteraction != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                }
                 if (this.ShopperReference != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperReference.GetHashCode();

@@ -262,7 +262,8 @@ namespace Adyen.Model.PlatformsAccount
                 ) && 
                 (
                     this.ShareholderType == input.ShareholderType ||
-                    this.ShareholderType.Equals(input.ShareholderType)
+                    (this.ShareholderType != null &&
+                    this.ShareholderType.Equals(input.ShareholderType))
                 ) && 
                 (
                     this.WebAddress == input.WebAddress ||
@@ -316,7 +317,10 @@ namespace Adyen.Model.PlatformsAccount
                 {
                     hashCode = (hashCode * 59) + this.ShareholderReference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ShareholderType.GetHashCode();
+                if (this.ShareholderType != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShareholderType.GetHashCode();
+                }
                 if (this.WebAddress != null)
                 {
                     hashCode = (hashCode * 59) + this.WebAddress.GetHashCode();

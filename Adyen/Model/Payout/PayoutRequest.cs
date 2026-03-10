@@ -271,7 +271,8 @@ namespace Adyen.Model.Payout
                 ) && 
                 (
                     this.FraudOffset == input.FraudOffset ||
-                    this.FraudOffset.Equals(input.FraudOffset)
+                    (this.FraudOffset != null &&
+                    this.FraudOffset.Equals(input.FraudOffset))
                 ) && 
                 (
                     this.FundSource == input.FundSource ||
@@ -305,7 +306,8 @@ namespace Adyen.Model.Payout
                 ) && 
                 (
                     this.ShopperInteraction == input.ShopperInteraction ||
-                    this.ShopperInteraction.Equals(input.ShopperInteraction)
+                    (this.ShopperInteraction != null &&
+                    this.ShopperInteraction.Equals(input.ShopperInteraction))
                 ) && 
                 (
                     this.ShopperName == input.ShopperName ||
@@ -345,7 +347,10 @@ namespace Adyen.Model.Payout
                 {
                     hashCode = (hashCode * 59) + this.Card.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.FraudOffset.GetHashCode();
+                if (this.FraudOffset != null)
+                {
+                    hashCode = (hashCode * 59) + this.FraudOffset.GetHashCode();
+                }
                 if (this.FundSource != null)
                 {
                     hashCode = (hashCode * 59) + this.FundSource.GetHashCode();
@@ -370,7 +375,10 @@ namespace Adyen.Model.Payout
                 {
                     hashCode = (hashCode * 59) + this.ShopperEmail.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                if (this.ShopperInteraction != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                }
                 if (this.ShopperName != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperName.GetHashCode();

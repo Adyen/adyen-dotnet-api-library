@@ -361,7 +361,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.OutcomeType == input.OutcomeType ||
-                    this.OutcomeType.Equals(input.OutcomeType)
+                    (this.OutcomeType != null &&
+                    this.OutcomeType.Equals(input.OutcomeType))
                 ) && 
                 (
                     this.Reference == input.Reference ||
@@ -370,7 +371,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.RequestType == input.RequestType ||
-                    this.RequestType.Equals(input.RequestType)
+                    (this.RequestType != null &&
+                    this.RequestType.Equals(input.RequestType))
                 ) && 
                 (
                     this.RuleRestrictions == input.RuleRestrictions ||
@@ -379,7 +381,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Score == input.Score ||
-                    this.Score.Equals(input.Score)
+                    (this.Score != null &&
+                    this.Score.Equals(input.Score))
                 ) && 
                 (
                     this.StartDate == input.StartDate ||
@@ -388,11 +391,13 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -425,23 +430,38 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Interval.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.OutcomeType.GetHashCode();
+                if (this.OutcomeType != null)
+                {
+                    hashCode = (hashCode * 59) + this.OutcomeType.GetHashCode();
+                }
                 if (this.Reference != null)
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.RequestType.GetHashCode();
+                if (this.RequestType != null)
+                {
+                    hashCode = (hashCode * 59) + this.RequestType.GetHashCode();
+                }
                 if (this.RuleRestrictions != null)
                 {
                     hashCode = (hashCode * 59) + this.RuleRestrictions.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Score.GetHashCode();
+                if (this.Score != null)
+                {
+                    hashCode = (hashCode * 59) + this.Score.GetHashCode();
+                }
                 if (this.StartDate != null)
                 {
                     hashCode = (hashCode * 59) + this.StartDate.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

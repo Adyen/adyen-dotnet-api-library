@@ -287,7 +287,8 @@ namespace Adyen.Model.ConfigurationWebhooks
                 ) && 
                 (
                     this.FormFactor == input.FormFactor ||
-                    this.FormFactor.Equals(input.FormFactor)
+                    (this.FormFactor != null &&
+                    this.FormFactor.Equals(input.FormFactor))
                 ) && 
                 (
                     this.LastFour == input.LastFour ||
@@ -351,7 +352,10 @@ namespace Adyen.Model.ConfigurationWebhooks
                 {
                     hashCode = (hashCode * 59) + this.Expiration.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
+                if (this.FormFactor != null)
+                {
+                    hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
+                }
                 if (this.LastFour != null)
                 {
                     hashCode = (hashCode * 59) + this.LastFour.GetHashCode();

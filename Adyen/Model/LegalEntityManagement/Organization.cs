@@ -623,11 +623,13 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.HeadOfficeIndicator == input.HeadOfficeIndicator ||
-                    this.HeadOfficeIndicator.Equals(input.HeadOfficeIndicator)
+                    (this.HeadOfficeIndicator != null &&
+                    this.HeadOfficeIndicator.Equals(input.HeadOfficeIndicator))
                 ) && 
                 (
                     this.InstitutionalSector == input.InstitutionalSector ||
-                    this.InstitutionalSector.Equals(input.InstitutionalSector)
+                    (this.InstitutionalSector != null &&
+                    this.InstitutionalSector.Equals(input.InstitutionalSector))
                 ) && 
                 (
                     this.LegalForm == input.LegalForm ||
@@ -666,7 +668,8 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.StatusOfLegalProceeding == input.StatusOfLegalProceeding ||
-                    this.StatusOfLegalProceeding.Equals(input.StatusOfLegalProceeding)
+                    (this.StatusOfLegalProceeding != null &&
+                    this.StatusOfLegalProceeding.Equals(input.StatusOfLegalProceeding))
                 ) && 
                 (
                     this.StockData == input.StockData ||
@@ -691,11 +694,13 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 ) && 
                 (
                     this.VatAbsenceReason == input.VatAbsenceReason ||
-                    this.VatAbsenceReason.Equals(input.VatAbsenceReason)
+                    (this.VatAbsenceReason != null &&
+                    this.VatAbsenceReason.Equals(input.VatAbsenceReason))
                 ) && 
                 (
                     this.VatNumber == input.VatNumber ||
@@ -758,8 +763,14 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.GlobalLegalEntityIdentifier.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.HeadOfficeIndicator.GetHashCode();
-                hashCode = (hashCode * 59) + this.InstitutionalSector.GetHashCode();
+                if (this.HeadOfficeIndicator != null)
+                {
+                    hashCode = (hashCode * 59) + this.HeadOfficeIndicator.GetHashCode();
+                }
+                if (this.InstitutionalSector != null)
+                {
+                    hashCode = (hashCode * 59) + this.InstitutionalSector.GetHashCode();
+                }
                 if (this.LegalForm != null)
                 {
                     hashCode = (hashCode * 59) + this.LegalForm.GetHashCode();
@@ -788,7 +799,10 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.RegistrationNumberAbsent.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.StatusOfLegalProceeding.GetHashCode();
+                if (this.StatusOfLegalProceeding != null)
+                {
+                    hashCode = (hashCode * 59) + this.StatusOfLegalProceeding.GetHashCode();
+                }
                 if (this.StockData != null)
                 {
                     hashCode = (hashCode * 59) + this.StockData.GetHashCode();
@@ -805,8 +819,14 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.TaxReportingClassification.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                hashCode = (hashCode * 59) + this.VatAbsenceReason.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
+                if (this.VatAbsenceReason != null)
+                {
+                    hashCode = (hashCode * 59) + this.VatAbsenceReason.GetHashCode();
+                }
                 if (this.VatNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.VatNumber.GetHashCode();

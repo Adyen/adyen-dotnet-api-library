@@ -285,7 +285,8 @@ namespace Adyen.Model.TransactionWebhooks
                 ) && 
                 (
                     this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.Transfer == input.Transfer ||
@@ -348,7 +349,10 @@ namespace Adyen.Model.TransactionWebhooks
                 {
                     hashCode = (hashCode * 59) + this.ReferenceForBeneficiary.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Status != null)
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.Transfer != null)
                 {
                     hashCode = (hashCode * 59) + this.Transfer.GetHashCode();

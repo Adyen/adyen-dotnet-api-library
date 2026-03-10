@@ -239,11 +239,13 @@ namespace Adyen.Model.AcsWebhooks
             return 
                 (
                     this.ChallengeCancel == input.ChallengeCancel ||
-                    this.ChallengeCancel.Equals(input.ChallengeCancel)
+                    (this.ChallengeCancel != null &&
+                    this.ChallengeCancel.Equals(input.ChallengeCancel))
                 ) && 
                 (
                     this.Flow == input.Flow ||
-                    this.Flow.Equals(input.Flow)
+                    (this.Flow != null &&
+                    this.Flow.Equals(input.Flow))
                 ) && 
                 (
                     this.LastInteraction == input.LastInteraction ||
@@ -257,11 +259,13 @@ namespace Adyen.Model.AcsWebhooks
                 ) && 
                 (
                     this.Resends == input.Resends ||
-                    this.Resends.Equals(input.Resends)
+                    (this.Resends != null &&
+                    this.Resends.Equals(input.Resends))
                 ) && 
                 (
                     this.Retries == input.Retries ||
-                    this.Retries.Equals(input.Retries)
+                    (this.Retries != null &&
+                    this.Retries.Equals(input.Retries))
                 );
         }
 
@@ -274,8 +278,14 @@ namespace Adyen.Model.AcsWebhooks
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.ChallengeCancel.GetHashCode();
-                hashCode = (hashCode * 59) + this.Flow.GetHashCode();
+                if (this.ChallengeCancel != null)
+                {
+                    hashCode = (hashCode * 59) + this.ChallengeCancel.GetHashCode();
+                }
+                if (this.Flow != null)
+                {
+                    hashCode = (hashCode * 59) + this.Flow.GetHashCode();
+                }
                 if (this.LastInteraction != null)
                 {
                     hashCode = (hashCode * 59) + this.LastInteraction.GetHashCode();
@@ -284,8 +294,14 @@ namespace Adyen.Model.AcsWebhooks
                 {
                     hashCode = (hashCode * 59) + this.PhoneNumber.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Resends.GetHashCode();
-                hashCode = (hashCode * 59) + this.Retries.GetHashCode();
+                if (this.Resends != null)
+                {
+                    hashCode = (hashCode * 59) + this.Resends.GetHashCode();
+                }
+                if (this.Retries != null)
+                {
+                    hashCode = (hashCode * 59) + this.Retries.GetHashCode();
+                }
                 return hashCode;
             }
         }

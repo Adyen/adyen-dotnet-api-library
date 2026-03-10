@@ -124,7 +124,8 @@ namespace Adyen.Model.Management
             return 
                 (
                     this.SimcardStatus == input.SimcardStatus ||
-                    this.SimcardStatus.Equals(input.SimcardStatus)
+                    (this.SimcardStatus != null &&
+                    this.SimcardStatus.Equals(input.SimcardStatus))
                 ) && 
                 (
                     this.TerminalIPAddressURL == input.TerminalIPAddressURL ||
@@ -142,7 +143,10 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.SimcardStatus.GetHashCode();
+                if (this.SimcardStatus != null)
+                {
+                    hashCode = (hashCode * 59) + this.SimcardStatus.GetHashCode();
+                }
                 if (this.TerminalIPAddressURL != null)
                 {
                     hashCode = (hashCode * 59) + this.TerminalIPAddressURL.GetHashCode();

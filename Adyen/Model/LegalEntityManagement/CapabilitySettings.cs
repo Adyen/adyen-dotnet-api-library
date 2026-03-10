@@ -193,7 +193,8 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.AuthorizedCardUsers == input.AuthorizedCardUsers ||
-                    this.AuthorizedCardUsers.Equals(input.AuthorizedCardUsers)
+                    (this.AuthorizedCardUsers != null &&
+                    this.AuthorizedCardUsers.Equals(input.AuthorizedCardUsers))
                 ) && 
                 (
                     this.FundingSource == input.FundingSource ||
@@ -201,7 +202,8 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.Interval == input.Interval ||
-                    this.Interval.Equals(input.Interval)
+                    (this.Interval != null &&
+                    this.Interval.Equals(input.Interval))
                 ) && 
                 (
                     this.MaxAmount == input.MaxAmount ||
@@ -223,9 +225,18 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.AmountPerIndustry.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.AuthorizedCardUsers.GetHashCode();
-                hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
-                hashCode = (hashCode * 59) + this.Interval.GetHashCode();
+                if (this.AuthorizedCardUsers != null)
+                {
+                    hashCode = (hashCode * 59) + this.AuthorizedCardUsers.GetHashCode();
+                }
+                if (this.FundingSource != null)
+                {
+                    hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
+                }
+                if (this.Interval != null)
+                {
+                    hashCode = (hashCode * 59) + this.Interval.GetHashCode();
+                }
                 if (this.MaxAmount != null)
                 {
                     hashCode = (hashCode * 59) + this.MaxAmount.GetHashCode();

@@ -121,7 +121,8 @@ namespace Adyen.Model.BalancePlatform
             return 
                 (
                     this.FormFactor == input.FormFactor ||
-                    this.FormFactor.Equals(input.FormFactor)
+                    (this.FormFactor != null &&
+                    this.FormFactor.Equals(input.FormFactor))
                 );
         }
 
@@ -134,7 +135,10 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
+                if (this.FormFactor != null)
+                {
+                    hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
+                }
                 return hashCode;
             }
         }

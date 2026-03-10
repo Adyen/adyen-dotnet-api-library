@@ -162,7 +162,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.ThreeDSReqPriorAuthMethod == input.ThreeDSReqPriorAuthMethod ||
-                    this.ThreeDSReqPriorAuthMethod.Equals(input.ThreeDSReqPriorAuthMethod)
+                    (this.ThreeDSReqPriorAuthMethod != null &&
+                    this.ThreeDSReqPriorAuthMethod.Equals(input.ThreeDSReqPriorAuthMethod))
                 ) && 
                 (
                     this.ThreeDSReqPriorAuthTimestamp == input.ThreeDSReqPriorAuthTimestamp ||
@@ -189,7 +190,10 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.ThreeDSReqPriorAuthData.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ThreeDSReqPriorAuthMethod.GetHashCode();
+                if (this.ThreeDSReqPriorAuthMethod != null)
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSReqPriorAuthMethod.GetHashCode();
+                }
                 if (this.ThreeDSReqPriorAuthTimestamp != null)
                 {
                     hashCode = (hashCode * 59) + this.ThreeDSReqPriorAuthTimestamp.GetHashCode();

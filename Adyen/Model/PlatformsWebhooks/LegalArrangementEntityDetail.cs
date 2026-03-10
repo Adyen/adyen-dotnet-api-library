@@ -320,7 +320,8 @@ namespace Adyen.Model.PlatformsWebhooks
                 ) && 
                 (
                     this.LegalEntityType == input.LegalEntityType ||
-                    this.LegalEntityType.Equals(input.LegalEntityType)
+                    (this.LegalEntityType != null &&
+                    this.LegalEntityType.Equals(input.LegalEntityType))
                 ) && 
                 (
                     this.PhoneNumber == input.PhoneNumber ||
@@ -375,7 +376,10 @@ namespace Adyen.Model.PlatformsWebhooks
                 {
                     hashCode = (hashCode * 59) + this.LegalArrangementMembers.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.LegalEntityType.GetHashCode();
+                if (this.LegalEntityType != null)
+                {
+                    hashCode = (hashCode * 59) + this.LegalEntityType.GetHashCode();
+                }
                 if (this.PhoneNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.PhoneNumber.GetHashCode();

@@ -131,11 +131,13 @@ namespace Adyen.Model.TransferWebhooks
             return 
                 (
                     this.NumberOfApprovalsRequired == input.NumberOfApprovalsRequired ||
-                    this.NumberOfApprovalsRequired.Equals(input.NumberOfApprovalsRequired)
+                    (this.NumberOfApprovalsRequired != null &&
+                    this.NumberOfApprovalsRequired.Equals(input.NumberOfApprovalsRequired))
                 ) && 
                 (
                     this.ScaOnApproval == input.ScaOnApproval ||
-                    this.ScaOnApproval.Equals(input.ScaOnApproval)
+                    (this.ScaOnApproval != null &&
+                    this.ScaOnApproval.Equals(input.ScaOnApproval))
                 );
         }
 
@@ -148,8 +150,14 @@ namespace Adyen.Model.TransferWebhooks
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.NumberOfApprovalsRequired.GetHashCode();
-                hashCode = (hashCode * 59) + this.ScaOnApproval.GetHashCode();
+                if (this.NumberOfApprovalsRequired != null)
+                {
+                    hashCode = (hashCode * 59) + this.NumberOfApprovalsRequired.GetHashCode();
+                }
+                if (this.ScaOnApproval != null)
+                {
+                    hashCode = (hashCode * 59) + this.ScaOnApproval.GetHashCode();
+                }
                 return hashCode;
             }
         }

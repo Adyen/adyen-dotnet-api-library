@@ -200,7 +200,8 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.Service == input.Service ||
-                    this.Service.Equals(input.Service)
+                    (this.Service != null &&
+                    this.Service.Equals(input.Service))
                 ) && 
                 (
                     this.SourceOfFunds == input.SourceOfFunds ||
@@ -241,7 +242,10 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.SalesChannels.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Service.GetHashCode();
+                if (this.Service != null)
+                {
+                    hashCode = (hashCode * 59) + this.Service.GetHashCode();
+                }
                 if (this.SourceOfFunds != null)
                 {
                     hashCode = (hashCode * 59) + this.SourceOfFunds.GetHashCode();

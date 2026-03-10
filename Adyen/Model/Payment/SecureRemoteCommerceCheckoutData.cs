@@ -185,7 +185,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.Scheme == input.Scheme ||
-                    this.Scheme.Equals(input.Scheme)
+                    (this.Scheme != null &&
+                    this.Scheme.Equals(input.Scheme))
                 ) && 
                 (
                     this.TokenReference == input.TokenReference ||
@@ -219,7 +220,10 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.DigitalCardId.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Scheme.GetHashCode();
+                if (this.Scheme != null)
+                {
+                    hashCode = (hashCode * 59) + this.Scheme.GetHashCode();
+                }
                 if (this.TokenReference != null)
                 {
                     hashCode = (hashCode * 59) + this.TokenReference.GetHashCode();

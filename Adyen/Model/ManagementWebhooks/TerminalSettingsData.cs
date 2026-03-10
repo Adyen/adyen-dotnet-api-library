@@ -190,7 +190,8 @@ namespace Adyen.Model.ManagementWebhooks
                 ) && 
                 (
                     this.UpdateSource == input.UpdateSource ||
-                    this.UpdateSource.Equals(input.UpdateSource)
+                    (this.UpdateSource != null &&
+                    this.UpdateSource.Equals(input.UpdateSource))
                 ) && 
                 (
                     this.User == input.User ||
@@ -224,7 +225,10 @@ namespace Adyen.Model.ManagementWebhooks
                 {
                     hashCode = (hashCode * 59) + this.TerminalId.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.UpdateSource.GetHashCode();
+                if (this.UpdateSource != null)
+                {
+                    hashCode = (hashCode * 59) + this.UpdateSource.GetHashCode();
+                }
                 if (this.User != null)
                 {
                     hashCode = (hashCode * 59) + this.User.GetHashCode();

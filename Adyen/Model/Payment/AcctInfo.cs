@@ -469,7 +469,8 @@ namespace Adyen.Model.Payment
             return 
                 (
                     this.ChAccAgeInd == input.ChAccAgeInd ||
-                    this.ChAccAgeInd.Equals(input.ChAccAgeInd)
+                    (this.ChAccAgeInd != null &&
+                    this.ChAccAgeInd.Equals(input.ChAccAgeInd))
                 ) && 
                 (
                     this.ChAccChange == input.ChAccChange ||
@@ -478,7 +479,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.ChAccChangeInd == input.ChAccChangeInd ||
-                    this.ChAccChangeInd.Equals(input.ChAccChangeInd)
+                    (this.ChAccChangeInd != null &&
+                    this.ChAccChangeInd.Equals(input.ChAccChangeInd))
                 ) && 
                 (
                     this.ChAccPwChange == input.ChAccPwChange ||
@@ -487,7 +489,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.ChAccPwChangeInd == input.ChAccPwChangeInd ||
-                    this.ChAccPwChangeInd.Equals(input.ChAccPwChangeInd)
+                    (this.ChAccPwChangeInd != null &&
+                    this.ChAccPwChangeInd.Equals(input.ChAccPwChangeInd))
                 ) && 
                 (
                     this.ChAccString == input.ChAccString ||
@@ -506,7 +509,8 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.PaymentAccInd == input.PaymentAccInd ||
-                    this.PaymentAccInd.Equals(input.PaymentAccInd)
+                    (this.PaymentAccInd != null &&
+                    this.PaymentAccInd.Equals(input.PaymentAccInd))
                 ) && 
                 (
                     this.ProvisionAttemptsDay == input.ProvisionAttemptsDay ||
@@ -520,15 +524,18 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.ShipAddressUsageInd == input.ShipAddressUsageInd ||
-                    this.ShipAddressUsageInd.Equals(input.ShipAddressUsageInd)
+                    (this.ShipAddressUsageInd != null &&
+                    this.ShipAddressUsageInd.Equals(input.ShipAddressUsageInd))
                 ) && 
                 (
                     this.ShipNameIndicator == input.ShipNameIndicator ||
-                    this.ShipNameIndicator.Equals(input.ShipNameIndicator)
+                    (this.ShipNameIndicator != null &&
+                    this.ShipNameIndicator.Equals(input.ShipNameIndicator))
                 ) && 
                 (
                     this.SuspiciousAccActivity == input.SuspiciousAccActivity ||
-                    this.SuspiciousAccActivity.Equals(input.SuspiciousAccActivity)
+                    (this.SuspiciousAccActivity != null &&
+                    this.SuspiciousAccActivity.Equals(input.SuspiciousAccActivity))
                 ) && 
                 (
                     this.TxnActivityDay == input.TxnActivityDay ||
@@ -551,17 +558,26 @@ namespace Adyen.Model.Payment
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.ChAccAgeInd.GetHashCode();
+                if (this.ChAccAgeInd != null)
+                {
+                    hashCode = (hashCode * 59) + this.ChAccAgeInd.GetHashCode();
+                }
                 if (this.ChAccChange != null)
                 {
                     hashCode = (hashCode * 59) + this.ChAccChange.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ChAccChangeInd.GetHashCode();
+                if (this.ChAccChangeInd != null)
+                {
+                    hashCode = (hashCode * 59) + this.ChAccChangeInd.GetHashCode();
+                }
                 if (this.ChAccPwChange != null)
                 {
                     hashCode = (hashCode * 59) + this.ChAccPwChange.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ChAccPwChangeInd.GetHashCode();
+                if (this.ChAccPwChangeInd != null)
+                {
+                    hashCode = (hashCode * 59) + this.ChAccPwChangeInd.GetHashCode();
+                }
                 if (this.ChAccString != null)
                 {
                     hashCode = (hashCode * 59) + this.ChAccString.GetHashCode();
@@ -574,7 +590,10 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.PaymentAccAge.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.PaymentAccInd.GetHashCode();
+                if (this.PaymentAccInd != null)
+                {
+                    hashCode = (hashCode * 59) + this.PaymentAccInd.GetHashCode();
+                }
                 if (this.ProvisionAttemptsDay != null)
                 {
                     hashCode = (hashCode * 59) + this.ProvisionAttemptsDay.GetHashCode();
@@ -583,9 +602,18 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.ShipAddressUsage.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ShipAddressUsageInd.GetHashCode();
-                hashCode = (hashCode * 59) + this.ShipNameIndicator.GetHashCode();
-                hashCode = (hashCode * 59) + this.SuspiciousAccActivity.GetHashCode();
+                if (this.ShipAddressUsageInd != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShipAddressUsageInd.GetHashCode();
+                }
+                if (this.ShipNameIndicator != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShipNameIndicator.GetHashCode();
+                }
+                if (this.SuspiciousAccActivity != null)
+                {
+                    hashCode = (hashCode * 59) + this.SuspiciousAccActivity.GetHashCode();
+                }
                 if (this.TxnActivityDay != null)
                 {
                     hashCode = (hashCode * 59) + this.TxnActivityDay.GetHashCode();

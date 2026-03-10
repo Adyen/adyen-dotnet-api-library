@@ -188,15 +188,18 @@ namespace Adyen.Model.Payment
             return 
                 (
                     this.Extra == input.Extra ||
-                    this.Extra.Equals(input.Extra)
+                    (this.Extra != null &&
+                    this.Extra.Equals(input.Extra))
                 ) && 
                 (
                     this.Plan == input.Plan ||
-                    this.Plan.Equals(input.Plan)
+                    (this.Plan != null &&
+                    this.Plan.Equals(input.Plan))
                 ) && 
                 (
                     this.Value == input.Value ||
-                    this.Value.Equals(input.Value)
+                    (this.Value != null &&
+                    this.Value.Equals(input.Value))
                 );
         }
 
@@ -209,9 +212,18 @@ namespace Adyen.Model.Payment
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Extra.GetHashCode();
-                hashCode = (hashCode * 59) + this.Plan.GetHashCode();
-                hashCode = (hashCode * 59) + this.Value.GetHashCode();
+                if (this.Extra != null)
+                {
+                    hashCode = (hashCode * 59) + this.Extra.GetHashCode();
+                }
+                if (this.Plan != null)
+                {
+                    hashCode = (hashCode * 59) + this.Plan.GetHashCode();
+                }
+                if (this.Value != null)
+                {
+                    hashCode = (hashCode * 59) + this.Value.GetHashCode();
+                }
                 return hashCode;
             }
         }

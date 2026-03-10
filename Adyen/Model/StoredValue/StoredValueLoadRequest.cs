@@ -235,7 +235,8 @@ namespace Adyen.Model.StoredValue
                 ) && 
                 (
                     this.LoadType == input.LoadType ||
-                    this.LoadType.Equals(input.LoadType)
+                    (this.LoadType != null &&
+                    this.LoadType.Equals(input.LoadType))
                 ) && 
                 (
                     this.MerchantAccount == input.MerchantAccount ||
@@ -260,7 +261,8 @@ namespace Adyen.Model.StoredValue
                 ) && 
                 (
                     this.ShopperInteraction == input.ShopperInteraction ||
-                    this.ShopperInteraction.Equals(input.ShopperInteraction)
+                    (this.ShopperInteraction != null &&
+                    this.ShopperInteraction.Equals(input.ShopperInteraction))
                 ) && 
                 (
                     this.ShopperReference == input.ShopperReference ||
@@ -287,7 +289,10 @@ namespace Adyen.Model.StoredValue
                 {
                     hashCode = (hashCode * 59) + this.Amount.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.LoadType.GetHashCode();
+                if (this.LoadType != null)
+                {
+                    hashCode = (hashCode * 59) + this.LoadType.GetHashCode();
+                }
                 if (this.MerchantAccount != null)
                 {
                     hashCode = (hashCode * 59) + this.MerchantAccount.GetHashCode();
@@ -304,7 +309,10 @@ namespace Adyen.Model.StoredValue
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                if (this.ShopperInteraction != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                }
                 if (this.ShopperReference != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperReference.GetHashCode();

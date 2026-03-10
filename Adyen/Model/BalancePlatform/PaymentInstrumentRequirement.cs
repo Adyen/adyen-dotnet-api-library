@@ -201,15 +201,18 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.OnlyForCrossBalancePlatform == input.OnlyForCrossBalancePlatform ||
-                    this.OnlyForCrossBalancePlatform.Equals(input.OnlyForCrossBalancePlatform)
+                    (this.OnlyForCrossBalancePlatform != null &&
+                    this.OnlyForCrossBalancePlatform.Equals(input.OnlyForCrossBalancePlatform))
                 ) && 
                 (
                     this.PaymentInstrumentType == input.PaymentInstrumentType ||
-                    this.PaymentInstrumentType.Equals(input.PaymentInstrumentType)
+                    (this.PaymentInstrumentType != null &&
+                    this.PaymentInstrumentType.Equals(input.PaymentInstrumentType))
                 ) && 
                 (
                     this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -234,9 +237,18 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.IssuingCountryCodes.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.OnlyForCrossBalancePlatform.GetHashCode();
-                hashCode = (hashCode * 59) + this.PaymentInstrumentType.GetHashCode();
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.OnlyForCrossBalancePlatform != null)
+                {
+                    hashCode = (hashCode * 59) + this.OnlyForCrossBalancePlatform.GetHashCode();
+                }
+                if (this.PaymentInstrumentType != null)
+                {
+                    hashCode = (hashCode * 59) + this.PaymentInstrumentType.GetHashCode();
+                }
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -614,7 +614,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.CaptureDelayHours == input.CaptureDelayHours ||
-                    this.CaptureDelayHours.Equals(input.CaptureDelayHours)
+                    (this.CaptureDelayHours != null &&
+                    this.CaptureDelayHours.Equals(input.CaptureDelayHours))
                 ) && 
                 (
                     this.DateOfBirth == input.DateOfBirth ||
@@ -643,7 +644,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.FraudOffset == input.FraudOffset ||
-                    this.FraudOffset.Equals(input.FraudOffset)
+                    (this.FraudOffset != null &&
+                    this.FraudOffset.Equals(input.FraudOffset))
                 ) && 
                 (
                     this.Installments == input.Installments ||
@@ -700,7 +702,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.RecurringProcessingModel == input.RecurringProcessingModel ||
-                    this.RecurringProcessingModel.Equals(input.RecurringProcessingModel)
+                    (this.RecurringProcessingModel != null &&
+                    this.RecurringProcessingModel.Equals(input.RecurringProcessingModel))
                 ) && 
                 (
                     this.Reference == input.Reference ||
@@ -734,7 +737,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.ShopperInteraction == input.ShopperInteraction ||
-                    this.ShopperInteraction.Equals(input.ShopperInteraction)
+                    (this.ShopperInteraction != null &&
+                    this.ShopperInteraction.Equals(input.ShopperInteraction))
                 ) && 
                 (
                     this.ShopperLocale == input.ShopperLocale ||
@@ -784,7 +788,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.ThreeDSAuthenticationOnly == input.ThreeDSAuthenticationOnly ||
-                    this.ThreeDSAuthenticationOnly.Equals(input.ThreeDSAuthenticationOnly)
+                    (this.ThreeDSAuthenticationOnly != null &&
+                    this.ThreeDSAuthenticationOnly.Equals(input.ThreeDSAuthenticationOnly))
                 ) && 
                 (
                     this.TotalsGroup == input.TotalsGroup ||
@@ -793,7 +798,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.TrustedShopper == input.TrustedShopper ||
-                    this.TrustedShopper.Equals(input.TrustedShopper)
+                    (this.TrustedShopper != null &&
+                    this.TrustedShopper.Equals(input.TrustedShopper))
                 );
         }
 
@@ -834,7 +840,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.BrowserInfo.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.CaptureDelayHours.GetHashCode();
+                if (this.CaptureDelayHours != null)
+                {
+                    hashCode = (hashCode * 59) + this.CaptureDelayHours.GetHashCode();
+                }
                 if (this.DateOfBirth != null)
                 {
                     hashCode = (hashCode * 59) + this.DateOfBirth.GetHashCode();
@@ -855,7 +864,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.DeviceFingerprint.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.FraudOffset.GetHashCode();
+                if (this.FraudOffset != null)
+                {
+                    hashCode = (hashCode * 59) + this.FraudOffset.GetHashCode();
+                }
                 if (this.Installments != null)
                 {
                     hashCode = (hashCode * 59) + this.Installments.GetHashCode();
@@ -896,7 +908,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Recurring.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.RecurringProcessingModel.GetHashCode();
+                if (this.RecurringProcessingModel != null)
+                {
+                    hashCode = (hashCode * 59) + this.RecurringProcessingModel.GetHashCode();
+                }
                 if (this.Reference != null)
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
@@ -921,7 +936,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.ShopperIP.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                if (this.ShopperInteraction != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                }
                 if (this.ShopperLocale != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperLocale.GetHashCode();
@@ -958,12 +976,18 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.ThreeDS2RequestData.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ThreeDSAuthenticationOnly.GetHashCode();
+                if (this.ThreeDSAuthenticationOnly != null)
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSAuthenticationOnly.GetHashCode();
+                }
                 if (this.TotalsGroup != null)
                 {
                     hashCode = (hashCode * 59) + this.TotalsGroup.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.TrustedShopper.GetHashCode();
+                if (this.TrustedShopper != null)
+                {
+                    hashCode = (hashCode * 59) + this.TrustedShopper.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -213,7 +213,8 @@ namespace Adyen.Model.PlatformsAccount
                 ) && 
                 (
                     this.Schedule == input.Schedule ||
-                    this.Schedule.Equals(input.Schedule)
+                    (this.Schedule != null &&
+                    this.Schedule.Equals(input.Schedule))
                 );
         }
 
@@ -230,7 +231,10 @@ namespace Adyen.Model.PlatformsAccount
                 {
                     hashCode = (hashCode * 59) + this.NextScheduledPayout.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Schedule.GetHashCode();
+                if (this.Schedule != null)
+                {
+                    hashCode = (hashCode * 59) + this.Schedule.GetHashCode();
+                }
                 return hashCode;
             }
         }
