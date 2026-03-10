@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**
         /// </summary>
         /// <value>The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum IndustryUsageEnum
         {
             /// <summary>
@@ -70,7 +70,7 @@ namespace Adyen.Model.Checkout
         /// The status of your request. This will always have the value **received**.
         /// </summary>
         /// <value>The status of your request. This will always have the value **received**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
@@ -87,7 +87,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The status of your request. This will always have the value **received**.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentAmountUpdateResponse" /> class.
         /// </summary>
@@ -105,7 +105,7 @@ namespace Adyen.Model.Checkout
         /// <param name="reference">Your reference for the amount update request. Maximum length: 80 characters. (required).</param>
         /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/process-payments) or [platforms](https://docs.adyen.com/platforms/process-payments)..</param>
         /// <param name="status">The status of your request. This will always have the value **received**. (required).</param>
-        public PaymentAmountUpdateResponse(Amount amount = default(Amount), IndustryUsageEnum? industryUsage = default(IndustryUsageEnum?), List<LineItem> lineItems = default(List<LineItem>), string merchantAccount = default(string), string paymentPspReference = default(string), string pspReference = default(string), string reference = default(string), List<Split> splits = default(List<Split>), StatusEnum status = default(StatusEnum))
+        public PaymentAmountUpdateResponse(Amount amount = default(Amount), IndustryUsageEnum? industryUsage = default(IndustryUsageEnum?), List<LineItem> lineItems = default(List<LineItem>), string merchantAccount = default(string), string paymentPspReference = default(string), string pspReference = default(string), string reference = default(string), List<Split> splits = default(List<Split>), StatusEnum? status = default(StatusEnum?))
         {
             this.Amount = amount;
             this.MerchantAccount = merchantAccount;

@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsFund
         /// Speed with which payouts for this account are processed. Permitted values: &#x60;STANDARD&#x60;, &#x60;SAME_DAY&#x60;.
         /// </summary>
         /// <value>Speed with which payouts for this account are processed. Permitted values: &#x60;STANDARD&#x60;, &#x60;SAME_DAY&#x60;.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum PayoutSpeedEnum
         {
             /// <summary>

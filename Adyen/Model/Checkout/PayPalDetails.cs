@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The type of flow to initiate.
         /// </summary>
         /// <value>The type of flow to initiate.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum SubtypeEnum
         {
             /// <summary>
@@ -70,7 +70,7 @@ namespace Adyen.Model.Checkout
         /// **paypal**
         /// </summary>
         /// <value>**paypal**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -87,7 +87,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**paypal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PayPalDetails" /> class.
         /// </summary>

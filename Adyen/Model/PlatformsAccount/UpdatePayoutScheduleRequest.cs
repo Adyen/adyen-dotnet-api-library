@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsAccount
         /// Direction on how to handle any payouts that have already been scheduled. Permitted values: * &#x60;CLOSE&#x60; will close the existing batch of payouts. * &#x60;UPDATE&#x60; will reschedule the existing batch to the new schedule. * &#x60;NOTHING&#x60; (**default**) will allow the payout to proceed.
         /// </summary>
         /// <value>Direction on how to handle any payouts that have already been scheduled. Permitted values: * &#x60;CLOSE&#x60; will close the existing batch of payouts. * &#x60;UPDATE&#x60; will reschedule the existing batch to the new schedule. * &#x60;NOTHING&#x60; (**default**) will allow the payout to proceed.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ActionEnum
         {
             /// <summary>
@@ -70,7 +70,7 @@ namespace Adyen.Model.PlatformsAccount
         /// The payout schedule to which the account is to be updated. Permitted values: &#x60;DAILY&#x60;, &#x60;DAILY_US&#x60;, &#x60;DAILY_EU&#x60;, &#x60;DAILY_AU&#x60;, &#x60;DAILY_SG&#x60;, &#x60;WEEKLY&#x60;, &#x60;WEEKLY_ON_TUE_FRI_MIDNIGHT&#x60;, &#x60;BIWEEKLY_ON_1ST_AND_15TH_AT_MIDNIGHT&#x60;, &#x60;MONTHLY&#x60;, &#x60;HOLD&#x60;. &#x60;HOLD&#x60; will prevent scheduled payouts from happening but will still allow manual payouts to occur.
         /// </summary>
         /// <value>The payout schedule to which the account is to be updated. Permitted values: &#x60;DAILY&#x60;, &#x60;DAILY_US&#x60;, &#x60;DAILY_EU&#x60;, &#x60;DAILY_AU&#x60;, &#x60;DAILY_SG&#x60;, &#x60;WEEKLY&#x60;, &#x60;WEEKLY_ON_TUE_FRI_MIDNIGHT&#x60;, &#x60;BIWEEKLY_ON_1ST_AND_15TH_AT_MIDNIGHT&#x60;, &#x60;MONTHLY&#x60;, &#x60;HOLD&#x60;. &#x60;HOLD&#x60; will prevent scheduled payouts from happening but will still allow manual payouts to occur.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ScheduleEnum
         {
             /// <summary>
@@ -171,7 +171,7 @@ namespace Adyen.Model.PlatformsAccount
         /// </summary>
         /// <value>The payout schedule to which the account is to be updated. Permitted values: &#x60;DAILY&#x60;, &#x60;DAILY_US&#x60;, &#x60;DAILY_EU&#x60;, &#x60;DAILY_AU&#x60;, &#x60;DAILY_SG&#x60;, &#x60;WEEKLY&#x60;, &#x60;WEEKLY_ON_TUE_FRI_MIDNIGHT&#x60;, &#x60;BIWEEKLY_ON_1ST_AND_15TH_AT_MIDNIGHT&#x60;, &#x60;MONTHLY&#x60;, &#x60;HOLD&#x60;. &#x60;HOLD&#x60; will prevent scheduled payouts from happening but will still allow manual payouts to occur.</value>
         [DataMember(Name = "schedule", IsRequired = false, EmitDefaultValue = false)]
-        public ScheduleEnum Schedule { get; set; }
+        public ScheduleEnum? Schedule { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdatePayoutScheduleRequest" /> class.
         /// </summary>
@@ -183,7 +183,7 @@ namespace Adyen.Model.PlatformsAccount
         /// <param name="action">Direction on how to handle any payouts that have already been scheduled. Permitted values: * &#x60;CLOSE&#x60; will close the existing batch of payouts. * &#x60;UPDATE&#x60; will reschedule the existing batch to the new schedule. * &#x60;NOTHING&#x60; (**default**) will allow the payout to proceed..</param>
         /// <param name="reason">The reason for the payout schedule update. &gt; This field is required when the &#x60;schedule&#x60; parameter is set to &#x60;HOLD&#x60;..</param>
         /// <param name="schedule">The payout schedule to which the account is to be updated. Permitted values: &#x60;DAILY&#x60;, &#x60;DAILY_US&#x60;, &#x60;DAILY_EU&#x60;, &#x60;DAILY_AU&#x60;, &#x60;DAILY_SG&#x60;, &#x60;WEEKLY&#x60;, &#x60;WEEKLY_ON_TUE_FRI_MIDNIGHT&#x60;, &#x60;BIWEEKLY_ON_1ST_AND_15TH_AT_MIDNIGHT&#x60;, &#x60;MONTHLY&#x60;, &#x60;HOLD&#x60;. &#x60;HOLD&#x60; will prevent scheduled payouts from happening but will still allow manual payouts to occur. (required).</param>
-        public UpdatePayoutScheduleRequest(ActionEnum? action = default(ActionEnum?), string reason = default(string), ScheduleEnum schedule = default(ScheduleEnum))
+        public UpdatePayoutScheduleRequest(ActionEnum? action = default(ActionEnum?), string reason = default(string), ScheduleEnum? schedule = default(ScheduleEnum?))
         {
             this.Schedule = schedule;
             this.Action = action;

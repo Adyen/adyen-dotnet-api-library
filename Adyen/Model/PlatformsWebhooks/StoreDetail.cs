@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsWebhooks
         /// The sales channel. Possible values: **Ecommerce**, **POS**.
         /// </summary>
         /// <value>The sales channel. Possible values: **Ecommerce**, **POS**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ShopperInteractionEnum
         {
             /// <summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.PlatformsWebhooks
         /// The status of the store. Possible values: **Pending**, **Active**, **Inactive**, **InactiveWithModifications**, **Closed**.
         /// </summary>
         /// <value>The status of the store. Possible values: **Pending**, **Active**, **Inactive**, **InactiveWithModifications**, **Closed**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>

@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// Your reason for the refund request.
         /// </summary>
         /// <value>Your reason for the refund request.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum MerchantRefundReasonEnum
         {
             /// <summary>
@@ -82,7 +82,7 @@ namespace Adyen.Model.Checkout
         /// The status of your request. This will always have the value **received**.
         /// </summary>
         /// <value>The status of your request. This will always have the value **received**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
@@ -99,7 +99,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The status of your request. This will always have the value **received**.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentRefundResponse" /> class.
         /// </summary>
@@ -119,7 +119,7 @@ namespace Adyen.Model.Checkout
         /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/)..</param>
         /// <param name="status">The status of your request. This will always have the value **received**. (required).</param>
         /// <param name="store">The online store or [physical store](https://docs.adyen.com/point-of-sale/design-your-integration/determine-account-structure/#create-stores) that is processing the refund. This must be the same as the store name configured in your Customer Area.  Otherwise, you get an error and the refund fails..</param>
-        public PaymentRefundResponse(Amount amount = default(Amount), string capturePspReference = default(string), List<LineItem> lineItems = default(List<LineItem>), string merchantAccount = default(string), MerchantRefundReasonEnum? merchantRefundReason = default(MerchantRefundReasonEnum?), string paymentPspReference = default(string), string pspReference = default(string), string reference = default(string), List<Split> splits = default(List<Split>), StatusEnum status = default(StatusEnum), string store = default(string))
+        public PaymentRefundResponse(Amount amount = default(Amount), string capturePspReference = default(string), List<LineItem> lineItems = default(List<LineItem>), string merchantAccount = default(string), MerchantRefundReasonEnum? merchantRefundReason = default(MerchantRefundReasonEnum?), string paymentPspReference = default(string), string pspReference = default(string), string reference = default(string), List<Split> splits = default(List<Split>), StatusEnum? status = default(StatusEnum?), string store = default(string))
         {
             this.Amount = amount;
             this.MerchantAccount = merchantAccount;

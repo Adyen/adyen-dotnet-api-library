@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsWebhooks
         /// The type of the phone number. &gt;The following values are permitted: &#x60;Landline&#x60;, &#x60;Mobile&#x60;, &#x60;SIP&#x60;, &#x60;Fax&#x60;.
         /// </summary>
         /// <value>The type of the phone number. &gt;The following values are permitted: &#x60;Landline&#x60;, &#x60;Mobile&#x60;, &#x60;SIP&#x60;, &#x60;Fax&#x60;.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum PhoneTypeEnum
         {
             /// <summary>

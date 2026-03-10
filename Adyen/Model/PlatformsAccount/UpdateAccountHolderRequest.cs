@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsAccount
         /// The legal entity type of the account holder. This determines the information that should be provided in the request.  Possible values: **Business**, **Individual**, or **NonProfit**.  * If set to **Business** or **NonProfit**, then &#x60;accountHolderDetails.businessDetails&#x60; must be provided, with at least one entry in the &#x60;accountHolderDetails.businessDetails.shareholders&#x60; list.  * If set to **Individual**, then &#x60;accountHolderDetails.individualDetails&#x60; must be provided.
         /// </summary>
         /// <value>The legal entity type of the account holder. This determines the information that should be provided in the request.  Possible values: **Business**, **Individual**, or **NonProfit**.  * If set to **Business** or **NonProfit**, then &#x60;accountHolderDetails.businessDetails&#x60; must be provided, with at least one entry in the &#x60;accountHolderDetails.businessDetails.shareholders&#x60; list.  * If set to **Individual**, then &#x60;accountHolderDetails.individualDetails&#x60; must be provided.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum LegalEntityEnum
         {
             /// <summary>

@@ -35,7 +35,7 @@ namespace Adyen.Model.PlatformsNotificationConfiguration
         /// <summary>
         /// Defines EventTypes
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum EventTypesEnum
         {
             /// <summary>

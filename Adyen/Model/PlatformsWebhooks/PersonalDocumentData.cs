@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsWebhooks
         /// The type of the document. Possible values: **ID**, **DRIVINGLICENSE**, **PASSPORT**, **SOCIALSECURITY**, **VISA**.  To delete an existing entry for a document &#x60;type&#x60;, send only the &#x60;type&#x60; field in your request. 
         /// </summary>
         /// <value>The type of the document. Possible values: **ID**, **DRIVINGLICENSE**, **PASSPORT**, **SOCIALSECURITY**, **VISA**.  To delete an existing entry for a document &#x60;type&#x60;, send only the &#x60;type&#x60; field in your request. </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -77,7 +77,7 @@ namespace Adyen.Model.PlatformsWebhooks
         /// </summary>
         /// <value>The type of the document. Possible values: **ID**, **DRIVINGLICENSE**, **PASSPORT**, **SOCIALSECURITY**, **VISA**.  To delete an existing entry for a document &#x60;type&#x60;, send only the &#x60;type&#x60; field in your request. </value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PersonalDocumentData" /> class.
         /// </summary>
@@ -91,7 +91,7 @@ namespace Adyen.Model.PlatformsWebhooks
         /// <param name="issuerState">The state where the document was issued (if applicable)..</param>
         /// <param name="number">The number in the document..</param>
         /// <param name="type">The type of the document. Possible values: **ID**, **DRIVINGLICENSE**, **PASSPORT**, **SOCIALSECURITY**, **VISA**.  To delete an existing entry for a document &#x60;type&#x60;, send only the &#x60;type&#x60; field in your request.  (required).</param>
-        public PersonalDocumentData(string expirationDate = default(string), string issuerCountry = default(string), string issuerState = default(string), string number = default(string), TypeEnum type = default(TypeEnum))
+        public PersonalDocumentData(string expirationDate = default(string), string issuerCountry = default(string), string issuerState = default(string), string number = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.Type = type;
             this.ExpirationDate = expirationDate;

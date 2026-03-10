@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsAccount
         /// The type of legal entity of the new account holder.
         /// </summary>
         /// <value>The type of legal entity of the new account holder.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum LegalEntityEnum
         {
             /// <summary>

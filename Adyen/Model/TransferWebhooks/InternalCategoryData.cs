@@ -36,7 +36,7 @@ namespace Adyen.Model.TransferWebhooks
         /// **internal**
         /// </summary>
         /// <value>**internal**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

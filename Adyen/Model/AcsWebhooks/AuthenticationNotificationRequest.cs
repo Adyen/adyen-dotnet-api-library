@@ -36,7 +36,7 @@ namespace Adyen.Model.AcsWebhooks
         /// Type of notification.
         /// </summary>
         /// <value>Type of notification.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.AcsWebhooks
         /// </summary>
         /// <value>Type of notification.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationNotificationRequest" /> class.
         /// </summary>
@@ -66,7 +66,7 @@ namespace Adyen.Model.AcsWebhooks
         /// <param name="environment">The environment from which the webhook originated.  Possible values: **test**, **live**. (required).</param>
         /// <param name="timestamp">When the event was queued..</param>
         /// <param name="type">Type of notification. (required).</param>
-        public AuthenticationNotificationRequest(AuthenticationNotificationData data = default(AuthenticationNotificationData), string environment = default(string), DateTime timestamp = default(DateTime), TypeEnum type = default(TypeEnum))
+        public AuthenticationNotificationRequest(AuthenticationNotificationData data = default(AuthenticationNotificationData), string environment = default(string), DateTime timestamp = default(DateTime), TypeEnum? type = default(TypeEnum?))
         {
             this.Data = data;
             this.Environment = environment;

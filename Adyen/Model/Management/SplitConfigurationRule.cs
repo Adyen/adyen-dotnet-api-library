@@ -36,7 +36,7 @@ namespace Adyen.Model.Management
         /// The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
         /// </summary>
         /// <value>The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum FundingSourceEnum
         {
             /// <summary>
@@ -87,7 +87,7 @@ namespace Adyen.Model.Management
         /// The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: Online transactions where the cardholder is present. * **ContAuth**: Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: Mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: Point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: All sales channels.
         /// </summary>
         /// <value>The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: Online transactions where the cardholder is present. * **ContAuth**: Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: Mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: Point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: All sales channels.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ShopperInteractionEnum
         {
             /// <summary>
@@ -128,7 +128,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: Online transactions where the cardholder is present. * **ContAuth**: Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: Mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: Point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: All sales channels.</value>
         [DataMember(Name = "shopperInteraction", IsRequired = false, EmitDefaultValue = false)]
-        public ShopperInteractionEnum ShopperInteraction { get; set; }
+        public ShopperInteractionEnum? ShopperInteraction { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SplitConfigurationRule" /> class.
         /// </summary>
@@ -142,7 +142,7 @@ namespace Adyen.Model.Management
         /// <param name="paymentMethod">The payment method condition that defines whether the split logic applies.  Possible values: * [Payment method variant](https://docs.adyen.com/development-resources/paymentmethodvariant): Apply the split logic for a specific payment method. * **ANY**: Apply the split logic for all available payment methods. (required).</param>
         /// <param name="shopperInteraction">The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: Online transactions where the cardholder is present. * **ContAuth**: Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: Mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: Point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: All sales channels. (required).</param>
         /// <param name="splitLogic">splitLogic (required).</param>
-        public SplitConfigurationRule(string currency = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string paymentMethod = default(string), ShopperInteractionEnum shopperInteraction = default(ShopperInteractionEnum), SplitConfigurationLogic splitLogic = default(SplitConfigurationLogic))
+        public SplitConfigurationRule(string currency = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string paymentMethod = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), SplitConfigurationLogic splitLogic = default(SplitConfigurationLogic))
         {
             this.Currency = currency;
             this.PaymentMethod = paymentMethod;

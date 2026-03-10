@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// The type of the phone number. Possible values: **Landline**, **Mobile**, **SIP**, **Fax**.
         /// </summary>
         /// <value>The type of the phone number. Possible values: **Landline**, **Mobile**, **SIP**, **Fax**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum PhoneTypeEnum
         {
             /// <summary>

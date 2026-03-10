@@ -36,7 +36,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The type of legal entity.   Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.
         /// </summary>
         /// <value>The type of legal entity.   Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -77,7 +77,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>The type of legal entity.   Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="LegalEntityInfoRequiredType" /> class.
         /// </summary>
@@ -96,7 +96,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="type">The type of legal entity.   Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**. (required).</param>
         /// <param name="unincorporatedPartnership">unincorporatedPartnership.</param>
         /// <param name="verificationPlan">A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/verification-overview/verification-types/#upfront-verification)..</param>
-        public LegalEntityInfoRequiredType(Dictionary<string, LegalEntityCapability> capabilities = default(Dictionary<string, LegalEntityCapability>), List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), Trust trust = default(Trust), TypeEnum type = default(TypeEnum), UnincorporatedPartnership unincorporatedPartnership = default(UnincorporatedPartnership), string verificationPlan = default(string))
+        public LegalEntityInfoRequiredType(Dictionary<string, LegalEntityCapability> capabilities = default(Dictionary<string, LegalEntityCapability>), List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), Trust trust = default(Trust), TypeEnum? type = default(TypeEnum?), UnincorporatedPartnership unincorporatedPartnership = default(UnincorporatedPartnership), string verificationPlan = default(string))
         {
             this.Type = type;
             this.Capabilities = capabilities;
