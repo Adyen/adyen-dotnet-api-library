@@ -35,7 +35,7 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Defines RequiredAddressFields
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum RequiredAddressFieldsEnum
         {
             /// <summary>
@@ -82,7 +82,7 @@ namespace Adyen.Model.BalancePlatform
         /// **addressRequirement**
         /// </summary>
         /// <value>**addressRequirement**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -99,7 +99,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>**addressRequirement**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AddressRequirement" /> class.
         /// </summary>

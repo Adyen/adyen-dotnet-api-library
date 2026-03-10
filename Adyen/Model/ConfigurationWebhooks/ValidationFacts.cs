@@ -36,7 +36,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// The evaluation result of the validation facts.  Possible values: **valid**, **invalid**, **notValidated**, **notApplicable**.
         /// </summary>
         /// <value>The evaluation result of the validation facts.  Possible values: **valid**, **invalid**, **notValidated**, **notApplicable**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ResultEnum
         {
             /// <summary>

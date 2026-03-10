@@ -36,7 +36,7 @@ namespace Adyen.Model.Transfers
         /// The reason for the transfer status.
         /// </summary>
         /// <value>The reason for the transfer status.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ReasonEnum
         {
             /// <summary>
@@ -196,7 +196,7 @@ namespace Adyen.Model.Transfers
         /// The status of the transfer event.
         /// </summary>
         /// <value>The status of the transfer event.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
@@ -614,7 +614,7 @@ namespace Adyen.Model.Transfers
         /// The type of the transfer event. Possible values: **accounting**, **tracking**.
         /// </summary>
         /// <value>The type of the transfer event. Possible values: **accounting**, **tracking**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

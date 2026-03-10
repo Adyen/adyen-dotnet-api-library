@@ -36,7 +36,7 @@ namespace Adyen.Model.DisputeWebhooks
         /// The type of dispute raised for the transaction.
         /// </summary>
         /// <value>The type of dispute raised for the transaction.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The type of the bank account.
         /// </summary>
         /// <value>The type of the bank account.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum AccountTypeEnum
         {
             /// <summary>

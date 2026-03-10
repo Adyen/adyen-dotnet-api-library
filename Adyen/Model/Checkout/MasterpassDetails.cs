@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
         /// </summary>
         /// <value>The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum FundingSourceEnum
         {
             /// <summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.Checkout
         /// **masterpass**
         /// </summary>
         /// <value>**masterpass**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

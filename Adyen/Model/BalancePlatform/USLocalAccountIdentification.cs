@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.
         /// </summary>
         /// <value>The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum AccountTypeEnum
         {
             /// <summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.BalancePlatform
         /// **usLocal**
         /// </summary>
         /// <value>**usLocal**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -81,7 +81,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>**usLocal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="USLocalAccountIdentification" /> class.
         /// </summary>

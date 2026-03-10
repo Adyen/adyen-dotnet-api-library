@@ -36,7 +36,7 @@ namespace Adyen.Model.TransferWebhooks
         /// The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.  - **topUp**: an incoming transfer initiated by your user to top up their balance account.
         /// </summary>
         /// <value>The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.  - **topUp**: an incoming transfer initiated by your user to top up their balance account.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum CategoryEnum
         {
             /// <summary>
@@ -83,12 +83,12 @@ namespace Adyen.Model.TransferWebhooks
         /// </summary>
         /// <value>The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.  - **topUp**: an incoming transfer initiated by your user to top up their balance account.</value>
         [DataMember(Name = "category", IsRequired = false, EmitDefaultValue = false)]
-        public CategoryEnum Category { get; set; }
+        public CategoryEnum? Category { get; set; }
         /// <summary>
         /// The direction of the transfer.  Possible values: **incoming**, **outgoing**.
         /// </summary>
         /// <value>The direction of the transfer.  Possible values: **incoming**, **outgoing**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum DirectionEnum
         {
             /// <summary>
@@ -116,7 +116,7 @@ namespace Adyen.Model.TransferWebhooks
         /// Additional information about the status of the transfer.
         /// </summary>
         /// <value>Additional information about the status of the transfer.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ReasonEnum
         {
             /// <summary>
@@ -276,7 +276,7 @@ namespace Adyen.Model.TransferWebhooks
         /// The result of the transfer.   For example, **authorised**, **refused**, or **error**.
         /// </summary>
         /// <value>The result of the transfer.   For example, **authorised**, **refused**, or **error**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
@@ -689,12 +689,12 @@ namespace Adyen.Model.TransferWebhooks
         /// </summary>
         /// <value>The result of the transfer.   For example, **authorised**, **refused**, or **error**.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**.
         /// </summary>
         /// <value>The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -968,7 +968,7 @@ namespace Adyen.Model.TransferWebhooks
         /// <param name="tracking">tracking.</param>
         /// <param name="transactionRulesResult">transactionRulesResult.</param>
         /// <param name="type">The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**..</param>
-        public TransferData(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), List<BalanceMutation> balances = default(List<BalanceMutation>), CategoryEnum category = default(CategoryEnum), TransferDataCategoryData categoryData = default(TransferDataCategoryData), TransferNotificationCounterParty counterparty = default(TransferNotificationCounterParty), DateTime creationDate = default(DateTime), string description = default(string), DirectDebitInformation directDebitInformation = default(DirectDebitInformation), DirectionEnum? direction = default(DirectionEnum?), string eventId = default(string), List<TransferEvent> events = default(List<TransferEvent>), ExternalReason externalReason = default(ExternalReason), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TransferReview review = default(TransferReview), int? sequenceNumber = default(int?), StatusEnum status = default(StatusEnum), TransferDataTracking tracking = default(TransferDataTracking), TransactionRulesResult transactionRulesResult = default(TransactionRulesResult), TypeEnum? type = default(TypeEnum?))
+        public TransferData(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), List<BalanceMutation> balances = default(List<BalanceMutation>), CategoryEnum? category = default(CategoryEnum?), TransferDataCategoryData categoryData = default(TransferDataCategoryData), TransferNotificationCounterParty counterparty = default(TransferNotificationCounterParty), DateTime creationDate = default(DateTime), string description = default(string), DirectDebitInformation directDebitInformation = default(DirectDebitInformation), DirectionEnum? direction = default(DirectionEnum?), string eventId = default(string), List<TransferEvent> events = default(List<TransferEvent>), ExternalReason externalReason = default(ExternalReason), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TransferReview review = default(TransferReview), int? sequenceNumber = default(int?), StatusEnum? status = default(StatusEnum?), TransferDataTracking tracking = default(TransferDataTracking), TransactionRulesResult transactionRulesResult = default(TransactionRulesResult), TypeEnum? type = default(TypeEnum?))
         {
             this.Amount = amount;
             this.Category = category;

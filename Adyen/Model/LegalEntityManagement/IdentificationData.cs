@@ -36,7 +36,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// Type of identity data. For individuals, the following types are supported. See our [onboarding guide](https://docs.adyen.com/platforms/onboard-users/onboarding-steps/?onboarding_type&#x3D;custom) for other supported countries.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**   - All other supported countries: **nationalIdNumber**
         /// </summary>
         /// <value>Type of identity data. For individuals, the following types are supported. See our [onboarding guide](https://docs.adyen.com/platforms/onboard-users/onboarding-steps/?onboarding_type&#x3D;custom) for other supported countries.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**   - All other supported countries: **nationalIdNumber**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -71,7 +71,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>Type of identity data. For individuals, the following types are supported. See our [onboarding guide](https://docs.adyen.com/platforms/onboard-users/onboarding-steps/?onboarding_type&#x3D;custom) for other supported countries.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**   - All other supported countries: **nationalIdNumber**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="IdentificationData" /> class.
         /// </summary>
@@ -87,7 +87,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="nationalIdExempt">Applies only to individuals in the US. Set to **true** if the individual does not have an SSN. To verify their identity, Adyen will require them to upload an ID document..</param>
         /// <param name="number">The number in the document..</param>
         /// <param name="type">Type of identity data. For individuals, the following types are supported. See our [onboarding guide](https://docs.adyen.com/platforms/onboard-users/onboarding-steps/?onboarding_type&#x3D;custom) for other supported countries.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**   - All other supported countries: **nationalIdNumber** (required).</param>
-        public IdentificationData(string cardNumber = default(string), string expiryDate = default(string), string issuerCountry = default(string), string issuerState = default(string), bool? nationalIdExempt = default(bool?), string number = default(string), TypeEnum type = default(TypeEnum))
+        public IdentificationData(string cardNumber = default(string), string expiryDate = default(string), string issuerCountry = default(string), string issuerState = default(string), bool? nationalIdExempt = default(bool?), string number = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.Type = type;
             this.CardNumber = cardNumber;

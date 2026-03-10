@@ -36,7 +36,7 @@ namespace Adyen.Model.Management
         /// Format or protocol for receiving webhooks. Possible values: * **soap** * **http** * **json** 
         /// </summary>
         /// <value>Format or protocol for receiving webhooks. Possible values: * **soap** * **http** * **json** </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum CommunicationFormatEnum
         {
             /// <summary>
@@ -65,12 +65,12 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>Format or protocol for receiving webhooks. Possible values: * **soap** * **http** * **json** </value>
         [DataMember(Name = "communicationFormat", IsRequired = false, EmitDefaultValue = false)]
-        public CommunicationFormatEnum CommunicationFormat { get; set; }
+        public CommunicationFormatEnum? CommunicationFormat { get; set; }
         /// <summary>
         /// SSL version to access the public webhook URL specified in the &#x60;url&#x60; field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use &#x60;sslVersion&#x60;: **TLSv1.2**.
         /// </summary>
         /// <value>SSL version to access the public webhook URL specified in the &#x60;url&#x60; field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use &#x60;sslVersion&#x60;: **TLSv1.2**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum EncryptionProtocolEnum
         {
             /// <summary>
@@ -104,7 +104,7 @@ namespace Adyen.Model.Management
         /// Network type for Terminal API notification webhooks. Possible values: * **public** * **local**  Default Value: **public**.
         /// </summary>
         /// <value>Network type for Terminal API notification webhooks. Possible values: * **public** * **local**  Default Value: **public**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum NetworkTypeEnum
         {
             /// <summary>
@@ -150,7 +150,7 @@ namespace Adyen.Model.Management
         /// <param name="type">The type of webhook that is being created. Possible values are:  - **standard** - **account-settings-notification** - **banktransfer-notification** - **boletobancario-notification** - **directdebit-notification** - **ach-notification-of-change-notification** - **pending-notification** - **ideal-notification** - **ideal-pending-notification** - **report-notification** - **rreq-notification** - **terminal-settings** - **terminal-boarding**  Find out more about [standard notification webhooks](https://docs.adyen.com/development-resources/webhooks/understand-notifications#event-codes) and [other types of notifications](https://docs.adyen.com/development-resources/webhooks/understand-notifications#other-notifications). (required).</param>
         /// <param name="url">Public URL where webhooks will be sent, for example **https://www.domain.com/webhook-endpoint**. (required).</param>
         /// <param name="username">Username to access the webhook URL..</param>
-        public CreateMerchantWebhookRequest(bool? acceptsExpiredCertificate = default(bool?), bool? acceptsSelfSignedCertificate = default(bool?), bool? acceptsUntrustedRootCertificate = default(bool?), bool? active = default(bool?), AdditionalSettings additionalSettings = default(AdditionalSettings), CommunicationFormatEnum communicationFormat = default(CommunicationFormatEnum), string description = default(string), EncryptionProtocolEnum? encryptionProtocol = default(EncryptionProtocolEnum?), NetworkTypeEnum? networkType = default(NetworkTypeEnum?), string password = default(string), bool? populateSoapActionHeader = default(bool?), string type = default(string), string url = default(string), string username = default(string))
+        public CreateMerchantWebhookRequest(bool? acceptsExpiredCertificate = default(bool?), bool? acceptsSelfSignedCertificate = default(bool?), bool? acceptsUntrustedRootCertificate = default(bool?), bool? active = default(bool?), AdditionalSettings additionalSettings = default(AdditionalSettings), CommunicationFormatEnum? communicationFormat = default(CommunicationFormatEnum?), string description = default(string), EncryptionProtocolEnum? encryptionProtocol = default(EncryptionProtocolEnum?), NetworkTypeEnum? networkType = default(NetworkTypeEnum?), string password = default(string), bool? populateSoapActionHeader = default(bool?), string type = default(string), string url = default(string), string username = default(string))
         {
             this.Active = active;
             this.CommunicationFormat = communicationFormat;

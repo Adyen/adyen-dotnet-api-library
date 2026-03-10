@@ -36,7 +36,7 @@ namespace Adyen.Model.Management
         /// Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**
         /// </summary>
         /// <value>Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum VerificationStatusEnum
         {
             /// <summary>

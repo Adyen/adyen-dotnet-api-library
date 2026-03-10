@@ -36,7 +36,7 @@ namespace Adyen.Model.Transfers
         /// **sgLocal**
         /// </summary>
         /// <value>**sgLocal**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

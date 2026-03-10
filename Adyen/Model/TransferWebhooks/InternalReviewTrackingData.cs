@@ -36,7 +36,7 @@ namespace Adyen.Model.TransferWebhooks
         /// The reason why the transfer failed Adyen&#39;s internal review.   Possible values:  - **refusedForRegulatoryReasons**: the transfer does not comply with Adyen&#39;s risk policy. For more information, [contact the Support Team](https://www.adyen.help/hc/en-us/requests/new). 
         /// </summary>
         /// <value>The reason why the transfer failed Adyen&#39;s internal review.   Possible values:  - **refusedForRegulatoryReasons**: the transfer does not comply with Adyen&#39;s risk policy. For more information, [contact the Support Team](https://www.adyen.help/hc/en-us/requests/new). </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ReasonEnum
         {
             /// <summary>
@@ -58,7 +58,7 @@ namespace Adyen.Model.TransferWebhooks
         /// The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review.  - **failed**: the transfer failed Adyen&#39;s internal review. For details, see &#x60;reason&#x60;.  
         /// </summary>
         /// <value>The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review.  - **failed**: the transfer failed Adyen&#39;s internal review. For details, see &#x60;reason&#x60;.  </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
@@ -81,12 +81,12 @@ namespace Adyen.Model.TransferWebhooks
         /// </summary>
         /// <value>The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review.  - **failed**: the transfer failed Adyen&#39;s internal review. For details, see &#x60;reason&#x60;.  </value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// The type of tracking event.   Possible values:    - **internalReview**: the transfer was flagged because it does not comply with Adyen&#39;s risk policy.
         /// </summary>
         /// <value>The type of tracking event.   Possible values:    - **internalReview**: the transfer was flagged because it does not comply with Adyen&#39;s risk policy.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -103,7 +103,7 @@ namespace Adyen.Model.TransferWebhooks
         /// </summary>
         /// <value>The type of tracking event.   Possible values:    - **internalReview**: the transfer was flagged because it does not comply with Adyen&#39;s risk policy.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="InternalReviewTrackingData" /> class.
         /// </summary>
@@ -115,7 +115,7 @@ namespace Adyen.Model.TransferWebhooks
         /// <param name="reason">The reason why the transfer failed Adyen&#39;s internal review.   Possible values:  - **refusedForRegulatoryReasons**: the transfer does not comply with Adyen&#39;s risk policy. For more information, [contact the Support Team](https://www.adyen.help/hc/en-us/requests/new). .</param>
         /// <param name="status">The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review.  - **failed**: the transfer failed Adyen&#39;s internal review. For details, see &#x60;reason&#x60;.   (required).</param>
         /// <param name="type">The type of tracking event.   Possible values:    - **internalReview**: the transfer was flagged because it does not comply with Adyen&#39;s risk policy. (required) (default to TypeEnum.InternalReview).</param>
-        public InternalReviewTrackingData(ReasonEnum? reason = default(ReasonEnum?), StatusEnum status = default(StatusEnum), TypeEnum type = TypeEnum.InternalReview)
+        public InternalReviewTrackingData(ReasonEnum? reason = default(ReasonEnum?), StatusEnum? status = default(StatusEnum?), TypeEnum type = TypeEnum.InternalReview)
         {
             this.Status = status;
             this.Type = type;

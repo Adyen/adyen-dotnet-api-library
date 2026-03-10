@@ -36,7 +36,7 @@ namespace Adyen.Model.Management
         /// Format or protocol for receiving webhooks. Possible values: * **soap** * **http** * **json** 
         /// </summary>
         /// <value>Format or protocol for receiving webhooks. Possible values: * **soap** * **http** * **json** </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum CommunicationFormatEnum
         {
             /// <summary>
@@ -70,7 +70,7 @@ namespace Adyen.Model.Management
         /// SSL version to access the public webhook URL specified in the &#x60;url&#x60; field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use &#x60;sslVersion&#x60;: **TLSv1.2**.
         /// </summary>
         /// <value>SSL version to access the public webhook URL specified in the &#x60;url&#x60; field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use &#x60;sslVersion&#x60;: **TLSv1.2**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum EncryptionProtocolEnum
         {
             /// <summary>
@@ -104,7 +104,7 @@ namespace Adyen.Model.Management
         /// Shows how merchant accounts are filtered when configuring the webhook. Possible values: * **includeAccounts**: The webhook is configured for the merchant accounts listed in &#x60;filterMerchantAccounts&#x60;. * **excludeAccounts**: The webhook is not configured for the merchant accounts listed in &#x60;filterMerchantAccounts&#x60;. * **allAccounts**: Includes all merchant accounts, and does not require specifying &#x60;filterMerchantAccounts&#x60;.
         /// </summary>
         /// <value>Shows how merchant accounts are filtered when configuring the webhook. Possible values: * **includeAccounts**: The webhook is configured for the merchant accounts listed in &#x60;filterMerchantAccounts&#x60;. * **excludeAccounts**: The webhook is not configured for the merchant accounts listed in &#x60;filterMerchantAccounts&#x60;. * **allAccounts**: Includes all merchant accounts, and does not require specifying &#x60;filterMerchantAccounts&#x60;.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum FilterMerchantAccountTypeEnum
         {
             /// <summary>
@@ -138,7 +138,7 @@ namespace Adyen.Model.Management
         /// Network type for Terminal API notification webhooks. Possible values: * **public** * **local**  Default Value: **public**.
         /// </summary>
         /// <value>Network type for Terminal API notification webhooks. Possible values: * **public** * **local**  Default Value: **public**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum NetworkTypeEnum
         {
             /// <summary>

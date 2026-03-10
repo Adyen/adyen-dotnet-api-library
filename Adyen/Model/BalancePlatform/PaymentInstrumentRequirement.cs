@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// The type of the payment instrument. For example, \&quot;BankAccount\&quot; or \&quot;Card\&quot;.
         /// </summary>
         /// <value>The type of the payment instrument. For example, \&quot;BankAccount\&quot; or \&quot;Card\&quot;.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum PaymentInstrumentTypeEnum
         {
             /// <summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.BalancePlatform
         /// **paymentInstrumentRequirement**
         /// </summary>
         /// <value>**paymentInstrumentRequirement**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -81,7 +81,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>**paymentInstrumentRequirement**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentInstrumentRequirement" /> class.
         /// </summary>

@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// The content type of the tax form.  Possible values: *  **application/pdf**  
         /// </summary>
         /// <value>The content type of the tax form.  Possible values: *  **application/pdf**  </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ContentTypeEnum
         {
             /// <summary>

@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// The form factor of the card. Possible values: **virtual**, **physical**.
         /// </summary>
         /// <value>The form factor of the card. Possible values: **virtual**, **physical**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum FormFactorEnum
         {
             /// <summary>
@@ -65,7 +65,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>The form factor of the card. Possible values: **virtual**, **physical**.</value>
         [DataMember(Name = "formFactor", IsRequired = false, EmitDefaultValue = false)]
-        public FormFactorEnum FormFactor { get; set; }
+        public FormFactorEnum? FormFactor { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Card" /> class.
         /// </summary>
@@ -86,7 +86,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="formFactor">The form factor of the card. Possible values: **virtual**, **physical**. (required).</param>
         /// <param name="lastFour">Last last four digits of the card number..</param>
         /// <param name="threeDSecure">Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt;Reach out to your Adyen contact to get the values relevant for your integration..</param>
-        public Card(Authentication authentication = default(Authentication), string bin = default(string), string brand = default(string), string brandVariant = default(string), string cardholderName = default(string), CardConfiguration configuration = default(CardConfiguration), string cvc = default(string), DeliveryContact deliveryContact = default(DeliveryContact), Expiry expiration = default(Expiry), FormFactorEnum formFactor = default(FormFactorEnum), string lastFour = default(string), string threeDSecure = default(string))
+        public Card(Authentication authentication = default(Authentication), string bin = default(string), string brand = default(string), string brandVariant = default(string), string cardholderName = default(string), CardConfiguration configuration = default(CardConfiguration), string cvc = default(string), DeliveryContact deliveryContact = default(DeliveryContact), Expiry expiration = default(Expiry), FormFactorEnum? formFactor = default(FormFactorEnum?), string lastFour = default(string), string threeDSecure = default(string))
         {
             this.Brand = brand;
             this.BrandVariant = brandVariant;

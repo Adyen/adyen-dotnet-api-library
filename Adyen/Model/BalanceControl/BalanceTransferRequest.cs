@@ -36,7 +36,7 @@ namespace Adyen.Model.BalanceControl
         /// The type of balance transfer. Possible values: **tax**, **fee**, **terminalSale**, **credit**, **debit**, and **adjustment**.
         /// </summary>
         /// <value>The type of balance transfer. Possible values: **tax**, **fee**, **terminalSale**, **credit**, **debit**, and **adjustment**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -83,7 +83,7 @@ namespace Adyen.Model.BalanceControl
         /// </summary>
         /// <value>The type of balance transfer. Possible values: **tax**, **fee**, **terminalSale**, **credit**, **debit**, and **adjustment**.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="BalanceTransferRequest" /> class.
         /// </summary>
@@ -98,7 +98,7 @@ namespace Adyen.Model.BalanceControl
         /// <param name="reference">A reference for the balance transfer. If you don&#39;t provide this in the request, Adyen generates a unique reference. Maximum length: 80 characters..</param>
         /// <param name="toMerchant">The unique identifier of the destination merchant account from which funds are transferred. (required).</param>
         /// <param name="type">The type of balance transfer. Possible values: **tax**, **fee**, **terminalSale**, **credit**, **debit**, and **adjustment**. (required).</param>
-        public BalanceTransferRequest(Amount amount = default(Amount), string description = default(string), string fromMerchant = default(string), string reference = default(string), string toMerchant = default(string), TypeEnum type = default(TypeEnum))
+        public BalanceTransferRequest(Amount amount = default(Amount), string description = default(string), string fromMerchant = default(string), string reference = default(string), string toMerchant = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.Amount = amount;
             this.FromMerchant = fromMerchant;

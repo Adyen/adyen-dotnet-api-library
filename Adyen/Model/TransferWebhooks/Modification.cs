@@ -36,7 +36,7 @@ namespace Adyen.Model.TransferWebhooks
         /// The status of the transfer event.
         /// </summary>
         /// <value>The status of the transfer event.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>

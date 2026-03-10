@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The fraud result properties of the payment.
         /// </summary>
         /// <value>The fraud result properties of the payment.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum FraudResultTypeEnum
         {
             /// <summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.Checkout
         /// The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are: * veryLow * low * medium * high * veryHigh 
         /// </summary>
         /// <value>The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are: * veryLow * low * medium * high * veryHigh </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum FraudRiskLevelEnum
         {
             /// <summary>
@@ -110,7 +110,7 @@ namespace Adyen.Model.Checkout
         /// The processing model used for the recurring transaction.
         /// </summary>
         /// <value>The processing model used for the recurring transaction.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum RecurringProcessingModelEnum
         {
             /// <summary>
@@ -144,7 +144,7 @@ namespace Adyen.Model.Checkout
         /// The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored. 
         /// </summary>
         /// <value>The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored. </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TokenizationStoreOperationTypeEnum
         {
             /// <summary>

@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// The type of the identification.  Possible values: **iban**, **routingNumber**, **sortCode**.
         /// </summary>
         /// <value>The type of the identification.  Possible values: **iban**, **routingNumber**, **sortCode**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum IdentificationTypeEnum
         {
             /// <summary>
