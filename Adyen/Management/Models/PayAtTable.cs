@@ -416,11 +416,13 @@ namespace Adyen.Management.Models
             if (payAtTable._EnablePayAtTableOption.IsSet)
                 writer.WriteBoolean("enablePayAtTable", payAtTable._EnablePayAtTableOption.Value!.Value);
 
-            var paymentInstrumentRawValue = PayAtTable.PaymentInstrumentEnum.ToJsonValue(payAtTable._PaymentInstrumentOption.Value!.Value);
-            if (paymentInstrumentRawValue != null)
-                writer.WriteString("paymentInstrument", paymentInstrumentRawValue);
-            else
-                writer.WriteNull("paymentInstrument");
+            if (payAtTable._PaymentInstrumentOption.IsSet) {
+                var paymentInstrumentRawValue = PayAtTable.PaymentInstrumentEnum.ToJsonValue(payAtTable._PaymentInstrumentOption.Value);
+                if (paymentInstrumentRawValue != null)
+                    writer.WriteString("paymentInstrument", paymentInstrumentRawValue);
+                else
+                    writer.WriteNull("paymentInstrument");
+            }
         }
     }
 }

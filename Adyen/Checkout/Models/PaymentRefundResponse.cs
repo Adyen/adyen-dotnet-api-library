@@ -597,12 +597,13 @@ namespace Adyen.Checkout.Models
                 writer.WritePropertyName("lineItems");
                 JsonSerializer.Serialize(writer, paymentRefundResponse.LineItems, jsonSerializerOptions);
             }
-            var merchantRefundReasonRawValue = PaymentRefundResponse.MerchantRefundReasonEnum.ToJsonValue(paymentRefundResponse._MerchantRefundReasonOption.Value!.Value);
-            if (merchantRefundReasonRawValue != null)
-                writer.WriteString("merchantRefundReason", merchantRefundReasonRawValue);
-            else
-                writer.WriteNull("merchantRefundReason");
-
+            if (paymentRefundResponse._MerchantRefundReasonOption.IsSet) {
+                var merchantRefundReasonRawValue = PaymentRefundResponse.MerchantRefundReasonEnum.ToJsonValue(paymentRefundResponse._MerchantRefundReasonOption.Value);
+                if (merchantRefundReasonRawValue != null)
+                    writer.WriteString("merchantRefundReason", merchantRefundReasonRawValue);
+                else
+                    writer.WriteNull("merchantRefundReason");
+            }
             if (paymentRefundResponse._ReferenceOption.IsSet)
                 if (paymentRefundResponse.Reference != null)
                     writer.WriteString("reference", paymentRefundResponse.Reference);

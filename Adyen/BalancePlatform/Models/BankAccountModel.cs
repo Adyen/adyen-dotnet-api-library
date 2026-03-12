@@ -270,11 +270,13 @@ namespace Adyen.BalancePlatform.Models
         public void WriteProperties(Utf8JsonWriter writer, BankAccountModel bankAccountModel, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            var formFactorRawValue = BankAccountModel.FormFactorEnum.ToJsonValue(bankAccountModel._FormFactorOption.Value!.Value);
-            if (formFactorRawValue != null)
-                writer.WriteString("formFactor", formFactorRawValue);
-            else
-                writer.WriteNull("formFactor");
+            if (bankAccountModel._FormFactorOption.IsSet) {
+                var formFactorRawValue = BankAccountModel.FormFactorEnum.ToJsonValue(bankAccountModel._FormFactorOption.Value);
+                if (formFactorRawValue != null)
+                    writer.WriteString("formFactor", formFactorRawValue);
+                else
+                    writer.WriteNull("formFactor");
+            }
         }
     }
 }
