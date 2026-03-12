@@ -165,5 +165,25 @@ namespace Adyen.Test
             var hashCode = result.GetHashCode();
             Assert.IsTrue(hashCode != 0, "GetHashCode should return a valid value");
         }
+
+        [TestMethod]
+        public void Given_RealModel_When_NullStatus_Compared_To_KnownStatus_ReturnsFalse()
+        {
+            // Verifies that Equals correctly returns false (and does not throw) when
+            // one object has a null Status (from an unknown enum value) and the other has a known Status.
+            // StatusEnum? is Nullable<StatusEnum> (a value type), so .Equals() on a null-valued
+            // nullable does NOT throw a NullReferenceException — it safely returns false.
+            var nullStatusJson = @"{""status"": ""unknownStatus""}";
+            var knownStatusJson = @"{""status"": ""authorised""}";
+            
+            var objectWithNullStatus = JsonConvert.DeserializeObject<Adyen.Model.TransferWebhooks.Modification>(nullStatusJson);
+            var objectWithKnownStatus = JsonConvert.DeserializeObject<Adyen.Model.TransferWebhooks.Modification>(knownStatusJson);
+            
+            Assert.IsNull(objectWithNullStatus.Status);
+            Assert.AreEqual(Adyen.Model.TransferWebhooks.Modification.StatusEnum.Authorised, objectWithKnownStatus.Status);
+            
+            var result = objectWithNullStatus.Equals(objectWithKnownStatus);
+            Assert.IsFalse(result);
+        }
     }
 }
