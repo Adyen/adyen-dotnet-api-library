@@ -35,7 +35,7 @@ namespace Adyen.Model.PlatformsFund
         /// <summary>
         /// Defines TransactionStatuses
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TransactionStatusesEnum
         {
             /// <summary>

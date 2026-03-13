@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsWebhooks
         /// The event name that will be trigger if no action is taken.
         /// </summary>
         /// <value>The event name that will be trigger if no action is taken.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum EventEnum
         {
             /// <summary>

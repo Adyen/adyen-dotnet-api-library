@@ -30,7 +30,7 @@ namespace Adyen.Model.BalancePlatform
     /// The type of exemption for Strong Customer Authentication (SCA). Possible values: * **lowerLimit**: the newly created limit is lower than the existing limit. * **notRegulated**: the limit is created in a country, region, or industry where it is not mandated by law to use SCA. * **setByPlatform**: you set a limit for one of your user&#39;s balance accounts, or for your balance platform. * **initialLimit**: there are no existing transfer limits set on the balance account or balance platform. * **alreadyPerformed**: you are confident about your user&#39;s identity and do not need to verify this using SCA.
     /// </summary>
     /// <value>The type of exemption for Strong Customer Authentication (SCA). Possible values: * **lowerLimit**: the newly created limit is lower than the existing limit. * **notRegulated**: the limit is created in a country, region, or industry where it is not mandated by law to use SCA. * **setByPlatform**: you set a limit for one of your user&#39;s balance accounts, or for your balance platform. * **initialLimit**: there are no existing transfer limits set on the balance account or balance platform. * **alreadyPerformed**: you are confident about your user&#39;s identity and do not need to verify this using SCA.</value>
-    [JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
     public enum ScaExemption
     {
         /// <summary>

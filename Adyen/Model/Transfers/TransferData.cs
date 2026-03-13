@@ -36,7 +36,7 @@ namespace Adyen.Model.Transfers
         /// The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.
         /// </summary>
         /// <value>The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum CategoryEnum
         {
             /// <summary>
@@ -83,12 +83,12 @@ namespace Adyen.Model.Transfers
         /// </summary>
         /// <value>The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.</value>
         [DataMember(Name = "category", IsRequired = false, EmitDefaultValue = false)]
-        public CategoryEnum Category { get; set; }
+        public CategoryEnum? Category { get; set; }
         /// <summary>
         /// The direction of the transfer.  Possible values: **incoming**, **outgoing**.
         /// </summary>
         /// <value>The direction of the transfer.  Possible values: **incoming**, **outgoing**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum DirectionEnum
         {
             /// <summary>
@@ -116,7 +116,7 @@ namespace Adyen.Model.Transfers
         /// Additional information about the status of the transfer.
         /// </summary>
         /// <value>Additional information about the status of the transfer.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ReasonEnum
         {
             /// <summary>
@@ -288,7 +288,7 @@ namespace Adyen.Model.Transfers
         /// The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Lack of funds in the balance account.   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user&#39;s balance account.  - **failed**: the transfer is rejected by the counterparty&#39;s bank. - **returned**: the transfer is returned by the counterparty&#39;s bank.
         /// </summary>
         /// <value>The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Lack of funds in the balance account.   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user&#39;s balance account.  - **failed**: the transfer is rejected by the counterparty&#39;s bank. - **returned**: the transfer is returned by the counterparty&#39;s bank.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
@@ -701,12 +701,12 @@ namespace Adyen.Model.Transfers
         /// </summary>
         /// <value>The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Lack of funds in the balance account.   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user&#39;s balance account.  - **failed**: the transfer is rejected by the counterparty&#39;s bank. - **returned**: the transfer is returned by the counterparty&#39;s bank.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**.
         /// </summary>
         /// <value>The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -983,7 +983,7 @@ namespace Adyen.Model.Transfers
         /// <param name="transactionRulesResult">transactionRulesResult.</param>
         /// <param name="type">The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**..</param>
         /// <param name="updatedAt">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**..</param>
-        public TransferData(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), List<BalanceMutation> balances = default(List<BalanceMutation>), CategoryEnum category = default(CategoryEnum), TransferCategoryData categoryData = default(TransferCategoryData), TransferNotificationCounterParty counterparty = default(TransferNotificationCounterParty), DateTime createdAt = default(DateTime), DateTime creationDate = default(DateTime), string description = default(string), DirectDebitInformation directDebitInformation = default(DirectDebitInformation), DirectionEnum? direction = default(DirectionEnum?), string eventId = default(string), List<TransferEvent> events = default(List<TransferEvent>), ExecutionDate executionDate = default(ExecutionDate), ExternalReason externalReason = default(ExternalReason), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TransferReview review = default(TransferReview), int? sequenceNumber = default(int?), StatusEnum status = default(StatusEnum), TransferDataTracking tracking = default(TransferDataTracking), TransactionRulesResult transactionRulesResult = default(TransactionRulesResult), TypeEnum? type = default(TypeEnum?), DateTime updatedAt = default(DateTime))
+        public TransferData(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), List<BalanceMutation> balances = default(List<BalanceMutation>), CategoryEnum? category = default(CategoryEnum?), TransferCategoryData categoryData = default(TransferCategoryData), TransferNotificationCounterParty counterparty = default(TransferNotificationCounterParty), DateTime createdAt = default(DateTime), DateTime creationDate = default(DateTime), string description = default(string), DirectDebitInformation directDebitInformation = default(DirectDebitInformation), DirectionEnum? direction = default(DirectionEnum?), string eventId = default(string), List<TransferEvent> events = default(List<TransferEvent>), ExecutionDate executionDate = default(ExecutionDate), ExternalReason externalReason = default(ExternalReason), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TransferReview review = default(TransferReview), int? sequenceNumber = default(int?), StatusEnum? status = default(StatusEnum?), TransferDataTracking tracking = default(TransferDataTracking), TransactionRulesResult transactionRulesResult = default(TransactionRulesResult), TypeEnum? type = default(TypeEnum?), DateTime updatedAt = default(DateTime))
         {
             this.Amount = amount;
             this.Category = category;

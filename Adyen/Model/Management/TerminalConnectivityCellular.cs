@@ -36,7 +36,7 @@ namespace Adyen.Model.Management
         /// On a terminal that supports 3G or 4G connectivity, indicates the status of the primary SIM card in the terminal.
         /// </summary>
         /// <value>On a terminal that supports 3G or 4G connectivity, indicates the status of the primary SIM card in the terminal.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>

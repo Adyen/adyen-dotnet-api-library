@@ -36,7 +36,7 @@ namespace Adyen.Model.TransferWebhooks
         /// The type of events data.   Possible values:    - **merchantPurchaseData**: merchant purchase data
         /// </summary>
         /// <value>The type of events data.   Possible values:    - **merchantPurchaseData**: merchant purchase data</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.TransferWebhooks
         /// </summary>
         /// <value>The type of events data.   Possible values:    - **merchantPurchaseData**: merchant purchase data</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="MerchantPurchaseData" /> class.
         /// </summary>

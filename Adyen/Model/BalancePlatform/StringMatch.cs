@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// The type of string matching operation. Possible values:  **startsWith**, **endsWith**, **isEqualTo**, **contains**,
         /// </summary>
         /// <value>The type of string matching operation. Possible values:  **startsWith**, **endsWith**, **isEqualTo**, **contains**,</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum OperationEnum
         {
             /// <summary>

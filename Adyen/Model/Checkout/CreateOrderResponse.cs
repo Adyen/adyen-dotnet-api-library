@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The result of the order creation request.  The value is always **Success**.
         /// </summary>
         /// <value>The result of the order creation request.  The value is always **Success**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ResultCodeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The result of the order creation request.  The value is always **Success**.</value>
         [DataMember(Name = "resultCode", IsRequired = false, EmitDefaultValue = false)]
-        public ResultCodeEnum ResultCode { get; set; }
+        public ResultCodeEnum? ResultCode { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateOrderResponse" /> class.
         /// </summary>
@@ -72,7 +72,7 @@ namespace Adyen.Model.Checkout
         /// <param name="refusalReason">If the payment&#39;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons)..</param>
         /// <param name="remainingAmount">remainingAmount (required).</param>
         /// <param name="resultCode">The result of the order creation request.  The value is always **Success**. (required).</param>
-        public CreateOrderResponse(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), string expiresAt = default(string), FraudResult fraudResult = default(FraudResult), string orderData = default(string), string pspReference = default(string), string reference = default(string), string refusalReason = default(string), Amount remainingAmount = default(Amount), ResultCodeEnum resultCode = default(ResultCodeEnum))
+        public CreateOrderResponse(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), string expiresAt = default(string), FraudResult fraudResult = default(FraudResult), string orderData = default(string), string pspReference = default(string), string reference = default(string), string refusalReason = default(string), Amount remainingAmount = default(Amount), ResultCodeEnum? resultCode = default(ResultCodeEnum?))
         {
             this.Amount = amount;
             this.ExpiresAt = expiresAt;

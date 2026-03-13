@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// **doku**
         /// </summary>
         /// <value>**doku**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -113,7 +113,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**doku**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="DokuDetails" /> class.
         /// </summary>
@@ -128,7 +128,7 @@ namespace Adyen.Model.Checkout
         /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK.</param>
         /// <param name="shopperEmail">The shopper&#39;s email. (required).</param>
         /// <param name="type">**doku** (required).</param>
-        public DokuDetails(string checkoutAttemptId = default(string), string firstName = default(string), string lastName = default(string), string sdkData = default(string), string shopperEmail = default(string), TypeEnum type = default(TypeEnum))
+        public DokuDetails(string checkoutAttemptId = default(string), string firstName = default(string), string lastName = default(string), string sdkData = default(string), string shopperEmail = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.FirstName = firstName;
             this.LastName = lastName;

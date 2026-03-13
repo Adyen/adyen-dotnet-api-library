@@ -36,7 +36,7 @@ namespace Adyen.Model.StoredValue
         /// Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * &#x60;Ecommerce&#x60; - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * &#x60;ContAuth&#x60; - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * &#x60;Moto&#x60; - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * &#x60;POS&#x60; - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.
         /// </summary>
         /// <value>Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * &#x60;Ecommerce&#x60; - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * &#x60;ContAuth&#x60; - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * &#x60;Moto&#x60; - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * &#x60;POS&#x60; - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ShopperInteractionEnum
         {
             /// <summary>
@@ -76,7 +76,7 @@ namespace Adyen.Model.StoredValue
         /// The status you want to change to
         /// </summary>
         /// <value>The status you want to change to</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
@@ -99,7 +99,7 @@ namespace Adyen.Model.StoredValue
         /// </summary>
         /// <value>The status you want to change to</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredValueStatusChangeRequest" /> class.
         /// </summary>
@@ -117,7 +117,7 @@ namespace Adyen.Model.StoredValue
         /// <param name="shopperReference">shopperReference.</param>
         /// <param name="status">The status you want to change to (required).</param>
         /// <param name="store">The physical store, for which this payment is processed..</param>
-        public StoredValueStatusChangeRequest(Amount amount = default(Amount), string merchantAccount = default(string), Dictionary<string, string> paymentMethod = default(Dictionary<string, string>), string recurringDetailReference = default(string), string reference = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperReference = default(string), StatusEnum status = default(StatusEnum), string store = default(string))
+        public StoredValueStatusChangeRequest(Amount amount = default(Amount), string merchantAccount = default(string), Dictionary<string, string> paymentMethod = default(Dictionary<string, string>), string recurringDetailReference = default(string), string reference = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperReference = default(string), StatusEnum? status = default(StatusEnum?), string store = default(string))
         {
             this.MerchantAccount = merchantAccount;
             this.PaymentMethod = paymentMethod;

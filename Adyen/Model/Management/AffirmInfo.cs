@@ -36,7 +36,7 @@ namespace Adyen.Model.Management
         /// Merchant price plan
         /// </summary>
         /// <value>Merchant price plan</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum PricePlanEnum
         {
             /// <summary>

@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The platform where a payment transaction takes place. This field can be used for filtering out payment methods that are only available on specific platforms. Possible values: * iOS * Android * Web
         /// </summary>
         /// <value>The platform where a payment transaction takes place. This field can be used for filtering out payment methods that are only available on specific platforms. Possible values: * iOS * Android * Web</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ChannelEnum
         {
             /// <summary>
@@ -70,7 +70,7 @@ namespace Adyen.Model.Checkout
         /// Specifies how payment methods should be filtered based on the &#x60;store&#x60; parameter:   - **exclusive**: Only payment methods belonging to the specified &#x60;store&#x60; are returned.   - **inclusive**: Payment methods from the &#x60;store&#x60; and those not associated with any other store are returned.
         /// </summary>
         /// <value>Specifies how payment methods should be filtered based on the &#x60;store&#x60; parameter:   - **exclusive**: Only payment methods belonging to the specified &#x60;store&#x60; are returned.   - **inclusive**: Payment methods from the &#x60;store&#x60; and those not associated with any other store are returned.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StoreFiltrationModeEnum
         {
             /// <summary>

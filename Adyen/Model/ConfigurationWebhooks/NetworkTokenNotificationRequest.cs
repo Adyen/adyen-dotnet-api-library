@@ -36,7 +36,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// The type of webhook.
         /// </summary>
         /// <value>The type of webhook.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -59,7 +59,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// </summary>
         /// <value>The type of webhook.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="NetworkTokenNotificationRequest" /> class.
         /// </summary>
@@ -72,7 +72,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <param name="environment">The environment from which the webhook originated.  Possible values: **test**, **live**. (required).</param>
         /// <param name="timestamp">When the event was queued..</param>
         /// <param name="type">The type of webhook. (required).</param>
-        public NetworkTokenNotificationRequest(NetworkTokenNotificationDataV2 data = default(NetworkTokenNotificationDataV2), string environment = default(string), DateTime timestamp = default(DateTime), TypeEnum type = default(TypeEnum))
+        public NetworkTokenNotificationRequest(NetworkTokenNotificationDataV2 data = default(NetworkTokenNotificationDataV2), string environment = default(string), DateTime timestamp = default(DateTime), TypeEnum? type = default(TypeEnum?))
         {
             this.Data = data;
             this.Environment = environment;

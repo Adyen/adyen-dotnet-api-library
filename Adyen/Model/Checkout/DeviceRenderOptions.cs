@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// Supported SDK interface types. Allowed values: * native * html * both
         /// </summary>
         /// <value>Supported SDK interface types. Allowed values: * native * html * both</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum SdkInterfaceEnum
         {
             /// <summary>
@@ -69,7 +69,7 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Defines SdkUiType
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum SdkUiTypeEnum
         {
             /// <summary>

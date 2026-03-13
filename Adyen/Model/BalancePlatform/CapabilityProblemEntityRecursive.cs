@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// Type of entity.   Possible values: **LegalEntity**, **BankAccount**, **Document**.
         /// </summary>
         /// <value>Type of entity.   Possible values: **LegalEntity**, **BankAccount**, **Document**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

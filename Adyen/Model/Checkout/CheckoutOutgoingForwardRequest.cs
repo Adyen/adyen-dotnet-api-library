@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The HTTP method to use for the request Adyen makes on your behalf to the third party.
         /// </summary>
         /// <value>The HTTP method to use for the request Adyen makes on your behalf to the third party.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum HttpMethodEnum
         {
             /// <summary>
@@ -65,7 +65,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The HTTP method to use for the request Adyen makes on your behalf to the third party.</value>
         [DataMember(Name = "httpMethod", IsRequired = false, EmitDefaultValue = false)]
-        public HttpMethodEnum HttpMethod { get; set; }
+        public HttpMethodEnum? HttpMethod { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutOutgoingForwardRequest" /> class.
         /// </summary>
@@ -79,7 +79,7 @@ namespace Adyen.Model.Checkout
         /// <param name="headers">The request headers that will be included in the request Adyen makes to the third party on your behalf. Supports the &#x60;{{credentials}}&#x60; [placeholder](https://docs.adyen.com/online-payments/tokenization/forward-payment-details#placeholders)..</param>
         /// <param name="httpMethod">The HTTP method to use for the request Adyen makes on your behalf to the third party. (required).</param>
         /// <param name="urlSuffix">The suffix that Adyen needs to append to the &#x60;baseUrl&#x60; to construct the destination URL that belongs to the third party. This is usually the endpoint name for the request, for example, **_/payments**..</param>
-        public CheckoutOutgoingForwardRequest(string body = default(string), string credentials = default(string), Dictionary<string, string> headers = default(Dictionary<string, string>), HttpMethodEnum httpMethod = default(HttpMethodEnum), string urlSuffix = default(string))
+        public CheckoutOutgoingForwardRequest(string body = default(string), string credentials = default(string), Dictionary<string, string> headers = default(Dictionary<string, string>), HttpMethodEnum? httpMethod = default(HttpMethodEnum?), string urlSuffix = default(string))
         {
             this.Body = body;
             this.HttpMethod = httpMethod;

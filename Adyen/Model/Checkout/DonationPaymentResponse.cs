@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The status of the donation transaction.  Possible values: * **completed** * **pending** * **refused**
         /// </summary>
         /// <value>The status of the donation transaction.  Possible values: * **completed** * **pending** * **refused**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>

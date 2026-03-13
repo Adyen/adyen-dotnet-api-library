@@ -35,7 +35,7 @@ namespace Adyen.Model.PlatformsAccount
         /// <summary>
         /// Defines LegalArrangementMembers
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum LegalArrangementMembersEnum
         {
             /// <summary>
@@ -86,7 +86,7 @@ namespace Adyen.Model.PlatformsAccount
         /// The legal entity type.  Possible values: **Business**, **Individual**, **NonProfit**, **PublicCompany**, or **Partnership**. 
         /// </summary>
         /// <value>The legal entity type.  Possible values: **Business**, **Individual**, **NonProfit**, **PublicCompany**, or **Partnership**. </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum LegalEntityTypeEnum
         {
             /// <summary>
