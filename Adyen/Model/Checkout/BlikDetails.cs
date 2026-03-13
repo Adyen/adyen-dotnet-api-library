@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// **blik**
         /// </summary>
         /// <value>**blik**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

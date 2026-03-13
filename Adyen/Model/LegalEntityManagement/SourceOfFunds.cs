@@ -36,7 +36,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The type of the source of funds.    Possible values: *  **business** *  **employment** *  **donations** *  **inheritance** *  **financialAid** *  **rentalIncome** *  **dividendIncome** *  **royaltyIncome** *  **thirdPartyFunding** *  **pensionIncome** *  **insuranceSettlement** *  **cryptocurrencyIncome** *  **assetSale** *  **loans** *  **gamblingWinnings**  
         /// </summary>
         /// <value>The type of the source of funds.    Possible values: *  **business** *  **employment** *  **donations** *  **inheritance** *  **financialAid** *  **rentalIncome** *  **dividendIncome** *  **royaltyIncome** *  **thirdPartyFunding** *  **pensionIncome** *  **insuranceSettlement** *  **cryptocurrencyIncome** *  **assetSale** *  **loans** *  **gamblingWinnings**  </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

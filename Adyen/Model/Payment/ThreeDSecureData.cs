@@ -36,7 +36,7 @@ namespace Adyen.Model.Payment
         /// In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter.  
         /// </summary>
         /// <value>In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter.  </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum AuthenticationResponseEnum
         {
             /// <summary>
@@ -76,7 +76,7 @@ namespace Adyen.Model.Payment
         /// Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata).
         /// </summary>
         /// <value>Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata).</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ChallengeCancelEnum
         {
             /// <summary>
@@ -134,7 +134,7 @@ namespace Adyen.Model.Payment
         /// In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;.  
         /// </summary>
         /// <value>In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;.  </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum DirectoryResponseEnum
         {
             /// <summary>

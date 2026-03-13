@@ -36,7 +36,7 @@ namespace Adyen.Model.Transfers
         /// The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.
         /// </summary>
         /// <value>The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum CategoryEnum
         {
             /// <summary>
@@ -83,11 +83,11 @@ namespace Adyen.Model.Transfers
         /// </summary>
         /// <value>The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.</value>
         [DataMember(Name = "category", IsRequired = false, EmitDefaultValue = false)]
-        public CategoryEnum Category { get; set; }
+        public CategoryEnum? Category { get; set; }
         /// <summary>
         /// Defines Priorities
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum PrioritiesEnum
         {
             /// <summary>
@@ -140,7 +140,7 @@ namespace Adyen.Model.Transfers
         /// The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: A faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: The fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: For instant funds transfers within the United States and in [SEPA locations](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: For high-value transfers to a recipient in a different country.  * **internal**: For transfers to an Adyen-issued business bank account (by bank account number/IBAN).
         /// </summary>
         /// <value>The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: A faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: The fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: For instant funds transfers within the United States and in [SEPA locations](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: For high-value transfers to a recipient in a different country.  * **internal**: For transfers to an Adyen-issued business bank account (by bank account number/IBAN).</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum PriorityEnum
         {
             /// <summary>
@@ -192,7 +192,7 @@ namespace Adyen.Model.Transfers
         /// The type of transfer.  Possible values:   - **bankTransfer**: for push transfers to a transfer instrument or a bank account. The &#x60;category&#x60; must be **bank**. - **internalTransfer**: for push transfers between balance accounts. The &#x60;category&#x60; must be **internal**. - **internalDirectDebit**: for pull transfers (direct debits) between balance accounts. The &#x60;category&#x60; must be **internal**.   
         /// </summary>
         /// <value>The type of transfer.  Possible values:   - **bankTransfer**: for push transfers to a transfer instrument or a bank account. The &#x60;category&#x60; must be **bank**. - **internalTransfer**: for push transfers between balance accounts. The &#x60;category&#x60; must be **internal**. - **internalDirectDebit**: for pull transfers (direct debits) between balance accounts. The &#x60;category&#x60; must be **internal**.   </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -244,7 +244,7 @@ namespace Adyen.Model.Transfers
         /// <param name="review">review.</param>
         /// <param name="type">The type of transfer.  Possible values:   - **bankTransfer**: for push transfers to a transfer instrument or a bank account. The &#x60;category&#x60; must be **bank**. - **internalTransfer**: for push transfers between balance accounts. The &#x60;category&#x60; must be **internal**. - **internalDirectDebit**: for pull transfers (direct debits) between balance accounts. The &#x60;category&#x60; must be **internal**.   .</param>
         /// <param name="ultimateParty">ultimateParty.</param>
-        public TransferInfo(Amount amount = default(Amount), string balanceAccountId = default(string), CategoryEnum category = default(CategoryEnum), CounterpartyInfoV3 counterparty = default(CounterpartyInfoV3), string description = default(string), ExecutionDate executionDate = default(ExecutionDate), string paymentInstrumentId = default(string), List<PrioritiesEnum> priorities = default(List<PrioritiesEnum>), PriorityEnum? priority = default(PriorityEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TransferRequestReview review = default(TransferRequestReview), TypeEnum? type = default(TypeEnum?), UltimatePartyIdentification ultimateParty = default(UltimatePartyIdentification))
+        public TransferInfo(Amount amount = default(Amount), string balanceAccountId = default(string), CategoryEnum? category = default(CategoryEnum?), CounterpartyInfoV3 counterparty = default(CounterpartyInfoV3), string description = default(string), ExecutionDate executionDate = default(ExecutionDate), string paymentInstrumentId = default(string), List<PrioritiesEnum> priorities = default(List<PrioritiesEnum>), PriorityEnum? priority = default(PriorityEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TransferRequestReview review = default(TransferRequestReview), TypeEnum? type = default(TypeEnum?), UltimatePartyIdentification ultimateParty = default(UltimatePartyIdentification))
         {
             this.Amount = amount;
             this.Category = category;

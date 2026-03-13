@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// **genericissuer**
         /// </summary>
         /// <value>**genericissuer**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -77,7 +77,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**genericissuer**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="GenericIssuerPaymentMethodDetails" /> class.
         /// </summary>
@@ -92,7 +92,7 @@ namespace Adyen.Model.Checkout
         /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK.</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**genericissuer** (required).</param>
-        public GenericIssuerPaymentMethodDetails(string checkoutAttemptId = default(string), string issuer = default(string), string recurringDetailReference = default(string), string sdkData = default(string), string storedPaymentMethodId = default(string), TypeEnum type = default(TypeEnum))
+        public GenericIssuerPaymentMethodDetails(string checkoutAttemptId = default(string), string issuer = default(string), string recurringDetailReference = default(string), string sdkData = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.Issuer = issuer;
             this.Type = type;

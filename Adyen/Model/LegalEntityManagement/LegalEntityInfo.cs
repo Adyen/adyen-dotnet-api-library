@@ -36,7 +36,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.
         /// </summary>
         /// <value>The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

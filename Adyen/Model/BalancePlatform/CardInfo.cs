@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// The form factor of the card. Possible values: **virtual**, **physical**.
         /// </summary>
         /// <value>The form factor of the card. Possible values: **virtual**, **physical**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum FormFactorEnum
         {
             /// <summary>
@@ -65,7 +65,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>The form factor of the card. Possible values: **virtual**, **physical**.</value>
         [DataMember(Name = "formFactor", IsRequired = false, EmitDefaultValue = false)]
-        public FormFactorEnum FormFactor { get; set; }
+        public FormFactorEnum? FormFactor { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CardInfo" /> class.
         /// </summary>
@@ -83,7 +83,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="formFactor">The form factor of the card. Possible values: **virtual**, **physical**. (required).</param>
         /// <param name="threeDSecure">The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt; Reach out to your Adyen contact to get the values relevant for your integration..</param>
         /// <param name="usage">Specifies how many times the card can be used. Possible values: **singleUse**, **multiUse**.  &gt; Reach out to your Adyen contact to determine the value relevant for your integration..</param>
-        public CardInfo(Authentication authentication = default(Authentication), string brand = default(string), string brandVariant = default(string), string cardholderName = default(string), CardConfiguration configuration = default(CardConfiguration), DeliveryContact deliveryContact = default(DeliveryContact), FormFactorEnum formFactor = default(FormFactorEnum), string threeDSecure = default(string), string usage = default(string))
+        public CardInfo(Authentication authentication = default(Authentication), string brand = default(string), string brandVariant = default(string), string cardholderName = default(string), CardConfiguration configuration = default(CardConfiguration), DeliveryContact deliveryContact = default(DeliveryContact), FormFactorEnum? formFactor = default(FormFactorEnum?), string threeDSecure = default(string), string usage = default(string))
         {
             this.Brand = brand;
             this.BrandVariant = brandVariant;

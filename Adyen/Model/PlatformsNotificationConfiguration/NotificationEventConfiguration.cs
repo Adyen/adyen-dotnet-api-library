@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsNotificationConfiguration
         /// The type of event.  Possible values: **ACCOUNT_CLOSED**, **ACCOUNT_CREATED**, **ACCOUNT_FUNDS_BELOW_THRESHOLD**, **ACCOUNT_HOLDER_CREATED**, **ACCOUNT_HOLDER_LIMIT_REACHED**, **ACCOUNT_HOLDER_PAYOUT**, **ACCOUNT_HOLDER_STATUS_CHANGE**, **ACCOUNT_HOLDER_STORE_STATUS_CHANGE**, **ACCOUNT_HOLDER_UPCOMING_DEADLINE**, **ACCOUNT_HOLDER_UPDATED**, **ACCOUNT_HOLDER_VERIFICATION**, **ACCOUNT_UPDATED**, **BENEFICIARY_SETUP**, **COMPENSATE_NEGATIVE_BALANCE**, **DIRECT_DEBIT_INITIATED**, **PAYMENT_FAILURE**, **REFUND_FUNDS_TRANSFER**, **REPORT_AVAILABLE**, **SCHEDULED_REFUNDS**, **TRANSFER_FUNDS**.
         /// </summary>
         /// <value>The type of event.  Possible values: **ACCOUNT_CLOSED**, **ACCOUNT_CREATED**, **ACCOUNT_FUNDS_BELOW_THRESHOLD**, **ACCOUNT_HOLDER_CREATED**, **ACCOUNT_HOLDER_LIMIT_REACHED**, **ACCOUNT_HOLDER_PAYOUT**, **ACCOUNT_HOLDER_STATUS_CHANGE**, **ACCOUNT_HOLDER_STORE_STATUS_CHANGE**, **ACCOUNT_HOLDER_UPCOMING_DEADLINE**, **ACCOUNT_HOLDER_UPDATED**, **ACCOUNT_HOLDER_VERIFICATION**, **ACCOUNT_UPDATED**, **BENEFICIARY_SETUP**, **COMPENSATE_NEGATIVE_BALANCE**, **DIRECT_DEBIT_INITIATED**, **PAYMENT_FAILURE**, **REFUND_FUNDS_TRANSFER**, **REPORT_AVAILABLE**, **SCHEDULED_REFUNDS**, **TRANSFER_FUNDS**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum EventTypeEnum
         {
             /// <summary>
@@ -197,12 +197,12 @@ namespace Adyen.Model.PlatformsNotificationConfiguration
         /// </summary>
         /// <value>The type of event.  Possible values: **ACCOUNT_CLOSED**, **ACCOUNT_CREATED**, **ACCOUNT_FUNDS_BELOW_THRESHOLD**, **ACCOUNT_HOLDER_CREATED**, **ACCOUNT_HOLDER_LIMIT_REACHED**, **ACCOUNT_HOLDER_PAYOUT**, **ACCOUNT_HOLDER_STATUS_CHANGE**, **ACCOUNT_HOLDER_STORE_STATUS_CHANGE**, **ACCOUNT_HOLDER_UPCOMING_DEADLINE**, **ACCOUNT_HOLDER_UPDATED**, **ACCOUNT_HOLDER_VERIFICATION**, **ACCOUNT_UPDATED**, **BENEFICIARY_SETUP**, **COMPENSATE_NEGATIVE_BALANCE**, **DIRECT_DEBIT_INITIATED**, **PAYMENT_FAILURE**, **REFUND_FUNDS_TRANSFER**, **REPORT_AVAILABLE**, **SCHEDULED_REFUNDS**, **TRANSFER_FUNDS**.</value>
         [DataMember(Name = "eventType", IsRequired = false, EmitDefaultValue = false)]
-        public EventTypeEnum EventType { get; set; }
+        public EventTypeEnum? EventType { get; set; }
         /// <summary>
         /// Indicates whether the specified &#x60;eventType&#x60; is sent to your webhook endpoint. Possible values: * **INCLUDE**: Send the specified &#x60;eventType&#x60;. * **EXCLUDE**: Send all event types except the specified &#x60;eventType&#x60; and other event types with the &#x60;includeMode&#x60; set to **EXCLUDE**.
         /// </summary>
         /// <value>Indicates whether the specified &#x60;eventType&#x60; is sent to your webhook endpoint. Possible values: * **INCLUDE**: Send the specified &#x60;eventType&#x60;. * **EXCLUDE**: Send all event types except the specified &#x60;eventType&#x60; and other event types with the &#x60;includeMode&#x60; set to **EXCLUDE**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum IncludeModeEnum
         {
             /// <summary>
@@ -225,7 +225,7 @@ namespace Adyen.Model.PlatformsNotificationConfiguration
         /// </summary>
         /// <value>Indicates whether the specified &#x60;eventType&#x60; is sent to your webhook endpoint. Possible values: * **INCLUDE**: Send the specified &#x60;eventType&#x60;. * **EXCLUDE**: Send all event types except the specified &#x60;eventType&#x60; and other event types with the &#x60;includeMode&#x60; set to **EXCLUDE**.</value>
         [DataMember(Name = "includeMode", IsRequired = false, EmitDefaultValue = false)]
-        public IncludeModeEnum IncludeMode { get; set; }
+        public IncludeModeEnum? IncludeMode { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="NotificationEventConfiguration" /> class.
         /// </summary>
@@ -236,7 +236,7 @@ namespace Adyen.Model.PlatformsNotificationConfiguration
         /// </summary>
         /// <param name="eventType">The type of event.  Possible values: **ACCOUNT_CLOSED**, **ACCOUNT_CREATED**, **ACCOUNT_FUNDS_BELOW_THRESHOLD**, **ACCOUNT_HOLDER_CREATED**, **ACCOUNT_HOLDER_LIMIT_REACHED**, **ACCOUNT_HOLDER_PAYOUT**, **ACCOUNT_HOLDER_STATUS_CHANGE**, **ACCOUNT_HOLDER_STORE_STATUS_CHANGE**, **ACCOUNT_HOLDER_UPCOMING_DEADLINE**, **ACCOUNT_HOLDER_UPDATED**, **ACCOUNT_HOLDER_VERIFICATION**, **ACCOUNT_UPDATED**, **BENEFICIARY_SETUP**, **COMPENSATE_NEGATIVE_BALANCE**, **DIRECT_DEBIT_INITIATED**, **PAYMENT_FAILURE**, **REFUND_FUNDS_TRANSFER**, **REPORT_AVAILABLE**, **SCHEDULED_REFUNDS**, **TRANSFER_FUNDS**. (required).</param>
         /// <param name="includeMode">Indicates whether the specified &#x60;eventType&#x60; is sent to your webhook endpoint. Possible values: * **INCLUDE**: Send the specified &#x60;eventType&#x60;. * **EXCLUDE**: Send all event types except the specified &#x60;eventType&#x60; and other event types with the &#x60;includeMode&#x60; set to **EXCLUDE**. (required).</param>
-        public NotificationEventConfiguration(EventTypeEnum eventType = default(EventTypeEnum), IncludeModeEnum includeMode = default(IncludeModeEnum))
+        public NotificationEventConfiguration(EventTypeEnum? eventType = default(EventTypeEnum?), IncludeModeEnum? includeMode = default(IncludeModeEnum?))
         {
             this.EventType = eventType;
             this.IncludeMode = includeMode;

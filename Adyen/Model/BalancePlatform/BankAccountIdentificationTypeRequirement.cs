@@ -35,7 +35,7 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Defines BankAccountIdentificationTypes
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum BankAccountIdentificationTypesEnum
         {
             /// <summary>
@@ -154,7 +154,7 @@ namespace Adyen.Model.BalancePlatform
         /// **bankAccountIdentificationTypeRequirement**
         /// </summary>
         /// <value>**bankAccountIdentificationTypeRequirement**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -171,7 +171,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>**bankAccountIdentificationTypeRequirement**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="BankAccountIdentificationTypeRequirement" /> class.
         /// </summary>

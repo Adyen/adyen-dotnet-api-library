@@ -36,7 +36,7 @@ namespace Adyen.Model.Transfers
         /// **noLocal**
         /// </summary>
         /// <value>**noLocal**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.Transfers
         /// </summary>
         /// <value>**noLocal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="NOLocalAccountIdentification" /> class.
         /// </summary>

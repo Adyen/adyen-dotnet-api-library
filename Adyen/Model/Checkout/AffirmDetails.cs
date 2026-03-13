@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// **affirm**
         /// </summary>
         /// <value>**affirm**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

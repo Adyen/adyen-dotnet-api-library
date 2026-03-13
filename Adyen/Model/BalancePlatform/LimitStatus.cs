@@ -30,7 +30,7 @@ namespace Adyen.Model.BalancePlatform
     /// The status of the transfer limit. Possible values:    * **active**: the limit is currently active. * **inactive**: the limit is currently inactive. * **pendingSCA**: the limit is pending until your user performs SCA. * **scheduled**: the limit is scheduled to become active at a future date.
     /// </summary>
     /// <value>The status of the transfer limit. Possible values:    * **active**: the limit is currently active. * **inactive**: the limit is currently inactive. * **pendingSCA**: the limit is pending until your user performs SCA. * **scheduled**: the limit is scheduled to become active at a future date.</value>
-    [JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
     public enum LimitStatus
     {
         /// <summary>

@@ -30,7 +30,7 @@ namespace Adyen.Model.BalancePlatform
     /// The scope to which the transfer limit applies. Possible values: * **perTransaction**: you set a maximum amount for each transfer made from the balance account or balance platform. * **perDay**: you set a maximum total amount for all transfers made from the balance account or balance platform in a day.
     /// </summary>
     /// <value>The scope to which the transfer limit applies. Possible values: * **perTransaction**: you set a maximum amount for each transfer made from the balance account or balance platform. * **perDay**: you set a maximum total amount for all transfers made from the balance account or balance platform in a day.</value>
-    [JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
     public enum Scope
     {
         /// <summary>

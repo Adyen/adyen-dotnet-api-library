@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsWebhooks
         /// The form of legal arrangement. Required if &#x60;type&#x60; is **Trust** or **Partnership**.  The possible values depend on the &#x60;type&#x60;.  - For &#x60;type&#x60; **Trust**:  **CashManagementTrust**, **CorporateUnitTrust**, **DeceasedEstate**, **DiscretionaryInvestmentTrust**, **DiscretionaryServicesManagementTrust**, **DiscretionaryTradingTrust**, **FirstHomeSaverAccountsTrust**, **FixedTrust**, **FixedUnitTrust**, **HybridTrust**, **ListedPublicUnitTrust**, **OtherTrust**, **PooledSuperannuationTrust**, **PublicTradingTrust**, or **UnlistedPublicUnitTrust**.  - For &#x60;type&#x60; **Partnership**: **LimitedPartnership**, **FamilyPartnership**, or **OtherPartnership**
         /// </summary>
         /// <value>The form of legal arrangement. Required if &#x60;type&#x60; is **Trust** or **Partnership**.  The possible values depend on the &#x60;type&#x60;.  - For &#x60;type&#x60; **Trust**:  **CashManagementTrust**, **CorporateUnitTrust**, **DeceasedEstate**, **DiscretionaryInvestmentTrust**, **DiscretionaryServicesManagementTrust**, **DiscretionaryTradingTrust**, **FirstHomeSaverAccountsTrust**, **FixedTrust**, **FixedUnitTrust**, **HybridTrust**, **ListedPublicUnitTrust**, **OtherTrust**, **PooledSuperannuationTrust**, **PublicTradingTrust**, or **UnlistedPublicUnitTrust**.  - For &#x60;type&#x60; **Partnership**: **LimitedPartnership**, **FamilyPartnership**, or **OtherPartnership**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum LegalFormEnum
         {
             /// <summary>
@@ -160,7 +160,7 @@ namespace Adyen.Model.PlatformsWebhooks
         /// The [type of legal arrangement](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/legal-arrangements#types-of-legal-arrangements).  Possible values:  - **Association**   - **Partnership**   - **SoleProprietorship**   - **Trust**   
         /// </summary>
         /// <value>The [type of legal arrangement](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/legal-arrangements#types-of-legal-arrangements).  Possible values:  - **Association**   - **Partnership**   - **SoleProprietorship**   - **Trust**   </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -195,7 +195,7 @@ namespace Adyen.Model.PlatformsWebhooks
         /// </summary>
         /// <value>The [type of legal arrangement](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/legal-arrangements#types-of-legal-arrangements).  Possible values:  - **Association**   - **Partnership**   - **SoleProprietorship**   - **Trust**   </value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="LegalArrangementDetail" /> class.
         /// </summary>
@@ -213,7 +213,7 @@ namespace Adyen.Model.PlatformsWebhooks
         /// <param name="registrationNumber">The registration number of the legal arrangement..</param>
         /// <param name="taxNumber">The tax identification number of the legal arrangement..</param>
         /// <param name="type">The [type of legal arrangement](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/legal-arrangements#types-of-legal-arrangements).  Possible values:  - **Association**   - **Partnership**   - **SoleProprietorship**   - **Trust**    (required).</param>
-        public LegalArrangementDetail(ViasAddress address = default(ViasAddress), string legalArrangementCode = default(string), List<LegalArrangementEntityDetail> legalArrangementEntities = default(List<LegalArrangementEntityDetail>), string legalArrangementReference = default(string), LegalFormEnum? legalForm = default(LegalFormEnum?), string name = default(string), string registrationNumber = default(string), string taxNumber = default(string), TypeEnum type = default(TypeEnum))
+        public LegalArrangementDetail(ViasAddress address = default(ViasAddress), string legalArrangementCode = default(string), List<LegalArrangementEntityDetail> legalArrangementEntities = default(List<LegalArrangementEntityDetail>), string legalArrangementReference = default(string), LegalFormEnum? legalForm = default(LegalFormEnum?), string name = default(string), string registrationNumber = default(string), string taxNumber = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.Address = address;
             this.Name = name;

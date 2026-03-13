@@ -35,7 +35,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <summary>
         /// Defines RecommendationReasons
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum RecommendationReasonsEnum
         {
             /// <summary>

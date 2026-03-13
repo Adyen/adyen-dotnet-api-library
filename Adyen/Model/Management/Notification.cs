@@ -36,7 +36,7 @@ namespace Adyen.Model.Management
         /// The type of event notification sent when you select the notification button.
         /// </summary>
         /// <value>The type of event notification sent when you select the notification button.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum CategoryEnum
         {
             /// <summary>

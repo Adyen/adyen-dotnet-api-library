@@ -36,7 +36,7 @@ namespace Adyen.Model.Management
         /// The sales channel used for the payment.
         /// </summary>
         /// <value>The sales channel used for the payment.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum PaymentFlowEnum
         {
             /// <summary>
@@ -59,7 +59,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The sales channel used for the payment.</value>
         [DataMember(Name = "paymentFlow", IsRequired = false, EmitDefaultValue = false)]
-        public PaymentFlowEnum PaymentFlow { get; set; }
+        public PaymentFlowEnum? PaymentFlow { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="GivexInfo" /> class.
         /// </summary>
@@ -72,7 +72,7 @@ namespace Adyen.Model.Management
         /// <param name="password">The password provided by the acquirer. (required).</param>
         /// <param name="paymentFlow">The sales channel used for the payment. (required).</param>
         /// <param name="username">The username provided by the acquirer. (required).</param>
-        public GivexInfo(string currencyCode = default(string), string password = default(string), PaymentFlowEnum paymentFlow = default(PaymentFlowEnum), string username = default(string))
+        public GivexInfo(string currencyCode = default(string), string password = default(string), PaymentFlowEnum? paymentFlow = default(PaymentFlowEnum?), string username = default(string))
         {
             this.CurrencyCode = currencyCode;
             this.Password = password;

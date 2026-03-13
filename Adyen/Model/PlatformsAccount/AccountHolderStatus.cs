@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsAccount
         /// The status of the account holder. &gt;Permitted values: &#x60;Active&#x60;, &#x60;Inactive&#x60;, &#x60;Suspended&#x60;, &#x60;Closed&#x60;.
         /// </summary>
         /// <value>The status of the account holder. &gt;Permitted values: &#x60;Active&#x60;, &#x60;Inactive&#x60;, &#x60;Suspended&#x60;, &#x60;Closed&#x60;.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
@@ -71,7 +71,7 @@ namespace Adyen.Model.PlatformsAccount
         /// </summary>
         /// <value>The status of the account holder. &gt;Permitted values: &#x60;Active&#x60;, &#x60;Inactive&#x60;, &#x60;Suspended&#x60;, &#x60;Closed&#x60;.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountHolderStatus" /> class.
         /// </summary>
@@ -85,7 +85,7 @@ namespace Adyen.Model.PlatformsAccount
         /// <param name="processingState">processingState.</param>
         /// <param name="status">The status of the account holder. &gt;Permitted values: &#x60;Active&#x60;, &#x60;Inactive&#x60;, &#x60;Suspended&#x60;, &#x60;Closed&#x60;. (required).</param>
         /// <param name="statusReason">The reason why the status was assigned to the account holder..</param>
-        public AccountHolderStatus(List<AccountEvent> events = default(List<AccountEvent>), AccountPayoutState payoutState = default(AccountPayoutState), AccountProcessingState processingState = default(AccountProcessingState), StatusEnum status = default(StatusEnum), string statusReason = default(string))
+        public AccountHolderStatus(List<AccountEvent> events = default(List<AccountEvent>), AccountPayoutState payoutState = default(AccountPayoutState), AccountProcessingState processingState = default(AccountProcessingState), StatusEnum? status = default(StatusEnum?), string statusReason = default(string))
         {
             this.Status = status;
             this.Events = events;

@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsAccount
         /// The legal entity type of the account holder. This determines the information that should be provided in the request.  Possible values: **Business**, **Individual**, or **NonProfit**.  * If set to **Business** or **NonProfit**, then &#x60;accountHolderDetails.businessDetails&#x60; must be provided, with at least one entry in the &#x60;accountHolderDetails.businessDetails.shareholders&#x60; list.  * If set to **Individual**, then &#x60;accountHolderDetails.individualDetails&#x60; must be provided.
         /// </summary>
         /// <value>The legal entity type of the account holder. This determines the information that should be provided in the request.  Possible values: **Business**, **Individual**, or **NonProfit**.  * If set to **Business** or **NonProfit**, then &#x60;accountHolderDetails.businessDetails&#x60; must be provided, with at least one entry in the &#x60;accountHolderDetails.businessDetails.shareholders&#x60; list.  * If set to **Individual**, then &#x60;accountHolderDetails.individualDetails&#x60; must be provided.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum LegalEntityEnum
         {
             /// <summary>
@@ -77,7 +77,7 @@ namespace Adyen.Model.PlatformsAccount
         /// </summary>
         /// <value>The legal entity type of the account holder. This determines the information that should be provided in the request.  Possible values: **Business**, **Individual**, or **NonProfit**.  * If set to **Business** or **NonProfit**, then &#x60;accountHolderDetails.businessDetails&#x60; must be provided, with at least one entry in the &#x60;accountHolderDetails.businessDetails.shareholders&#x60; list.  * If set to **Individual**, then &#x60;accountHolderDetails.individualDetails&#x60; must be provided.</value>
         [DataMember(Name = "legalEntity", IsRequired = false, EmitDefaultValue = false)]
-        public LegalEntityEnum LegalEntity { get; set; }
+        public LegalEntityEnum? LegalEntity { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateAccountHolderRequest" /> class.
         /// </summary>
@@ -94,7 +94,7 @@ namespace Adyen.Model.PlatformsAccount
         /// <param name="primaryCurrency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes), with which the prospective account holder primarily deals..</param>
         /// <param name="processingTier">The starting [processing tier](https://docs.adyen.com/marketplaces-and-platforms/classic/onboarding-and-verification/precheck-kyc-information) for the prospective account holder..</param>
         /// <param name="verificationProfile">The identifier of the profile that applies to this entity..</param>
-        public CreateAccountHolderRequest(string accountHolderCode = default(string), AccountHolderDetails accountHolderDetails = default(AccountHolderDetails), bool? createDefaultAccount = default(bool?), string description = default(string), LegalEntityEnum legalEntity = default(LegalEntityEnum), string primaryCurrency = default(string), int? processingTier = default(int?), string verificationProfile = default(string))
+        public CreateAccountHolderRequest(string accountHolderCode = default(string), AccountHolderDetails accountHolderDetails = default(AccountHolderDetails), bool? createDefaultAccount = default(bool?), string description = default(string), LegalEntityEnum? legalEntity = default(LegalEntityEnum?), string primaryCurrency = default(string), int? processingTier = default(int?), string verificationProfile = default(string))
         {
             this.AccountHolderCode = accountHolderCode;
             this.AccountHolderDetails = accountHolderDetails;

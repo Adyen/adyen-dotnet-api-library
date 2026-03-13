@@ -36,7 +36,7 @@ namespace Adyen.Model.Management
         /// PIN Support. For ecommerce, PIN is required.
         /// </summary>
         /// <value>PIN Support. For ecommerce, PIN is required.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum PinSupportEnum
         {
             /// <summary>
@@ -59,7 +59,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>PIN Support. For ecommerce, PIN is required.</value>
         [DataMember(Name = "pinSupport", IsRequired = false, EmitDefaultValue = false)]
-        public PinSupportEnum PinSupport { get; set; }
+        public PinSupportEnum? PinSupport { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ValuelinkInfo" /> class.
         /// </summary>
@@ -72,7 +72,7 @@ namespace Adyen.Model.Management
         /// <param name="pinSupport">PIN Support. For ecommerce, PIN is required. (required).</param>
         /// <param name="submitterId">Submitter ID.</param>
         /// <param name="terminalId">Terminal ID.</param>
-        public ValuelinkInfo(string authorisationMid = default(string), PinSupportEnum pinSupport = default(PinSupportEnum), string submitterId = default(string), string terminalId = default(string))
+        public ValuelinkInfo(string authorisationMid = default(string), PinSupportEnum? pinSupport = default(PinSupportEnum?), string submitterId = default(string), string terminalId = default(string))
         {
             this.AuthorisationMid = authorisationMid;
             this.PinSupport = pinSupport;

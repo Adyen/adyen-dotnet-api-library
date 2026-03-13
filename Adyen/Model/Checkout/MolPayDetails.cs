@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// **molpay**
         /// </summary>
         /// <value>**molpay**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -59,7 +59,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**molpay**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="MolPayDetails" /> class.
         /// </summary>
@@ -72,7 +72,7 @@ namespace Adyen.Model.Checkout
         /// <param name="issuer">The shopper&#39;s bank. Specify this with the issuer value that corresponds to this bank. (required).</param>
         /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK.</param>
         /// <param name="type">**molpay** (required).</param>
-        public MolPayDetails(string checkoutAttemptId = default(string), string issuer = default(string), string sdkData = default(string), TypeEnum type = default(TypeEnum))
+        public MolPayDetails(string checkoutAttemptId = default(string), string issuer = default(string), string sdkData = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.Issuer = issuer;
             this.Type = type;

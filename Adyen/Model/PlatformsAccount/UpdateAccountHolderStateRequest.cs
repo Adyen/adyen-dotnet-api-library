@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsAccount
         /// The state to be updated. &gt;Permitted values are: &#x60;Processing&#x60;, &#x60;Payout&#x60;
         /// </summary>
         /// <value>The state to be updated. &gt;Permitted values are: &#x60;Processing&#x60;, &#x60;Payout&#x60;</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StateTypeEnum
         {
             /// <summary>
@@ -83,7 +83,7 @@ namespace Adyen.Model.PlatformsAccount
         /// </summary>
         /// <value>The state to be updated. &gt;Permitted values are: &#x60;Processing&#x60;, &#x60;Payout&#x60;</value>
         [DataMember(Name = "stateType", IsRequired = false, EmitDefaultValue = false)]
-        public StateTypeEnum StateType { get; set; }
+        public StateTypeEnum? StateType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAccountHolderStateRequest" /> class.
         /// </summary>
@@ -96,7 +96,7 @@ namespace Adyen.Model.PlatformsAccount
         /// <param name="disable">If true, disable the requested state.  If false, enable the requested state. (required).</param>
         /// <param name="reason">The reason that the state is being updated. &gt;Required if the state is being disabled..</param>
         /// <param name="stateType">The state to be updated. &gt;Permitted values are: &#x60;Processing&#x60;, &#x60;Payout&#x60; (required).</param>
-        public UpdateAccountHolderStateRequest(string accountHolderCode = default(string), bool? disable = default(bool?), string reason = default(string), StateTypeEnum stateType = default(StateTypeEnum))
+        public UpdateAccountHolderStateRequest(string accountHolderCode = default(string), bool? disable = default(bool?), string reason = default(string), StateTypeEnum? stateType = default(StateTypeEnum?))
         {
             this.AccountHolderCode = accountHolderCode;
             this.Disable = disable;

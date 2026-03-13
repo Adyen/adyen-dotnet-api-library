@@ -35,7 +35,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Defines TermsOfServiceTypes
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TermsOfServiceTypesEnum
         {
             /// <summary>

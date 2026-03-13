@@ -36,7 +36,7 @@ namespace Adyen.Model.Management
         /// Type of terminal action: Force Reboot.
         /// </summary>
         /// <value>Type of terminal action: Force Reboot.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

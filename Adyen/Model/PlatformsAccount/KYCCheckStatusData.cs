@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsAccount
         /// The status of the check.  Possible values: **AWAITING_DATA** , **DATA_PROVIDED**, **FAILED**, **INVALID_DATA**, **PASSED**, **PENDING**, **RETRY_LIMIT_REACHED**.
         /// </summary>
         /// <value>The status of the check.  Possible values: **AWAITING_DATA** , **DATA_PROVIDED**, **FAILED**, **INVALID_DATA**, **PASSED**, **PENDING**, **RETRY_LIMIT_REACHED**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
@@ -101,12 +101,12 @@ namespace Adyen.Model.PlatformsAccount
         /// </summary>
         /// <value>The status of the check.  Possible values: **AWAITING_DATA** , **DATA_PROVIDED**, **FAILED**, **INVALID_DATA**, **PASSED**, **PENDING**, **RETRY_LIMIT_REACHED**.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// The type of check.  Possible values:   * **BANK_ACCOUNT_VERIFICATION**: Used in v5 and earlier. Replaced by **PAYOUT_METHOD_VERIFICATION** in v6 and later.   * **COMPANY_VERIFICATION**    * **CARD_VERIFICATION**  * **IDENTITY_VERIFICATION**  * **LEGAL_ARRANGEMENT_VERIFICATION**  * **NONPROFIT_VERIFICATION**   * **PASSPORT_VERIFICATION**  * **PAYOUT_METHOD_VERIFICATION**: Used in v6 and later.  * **PCI_VERIFICATION**
         /// </summary>
         /// <value>The type of check.  Possible values:   * **BANK_ACCOUNT_VERIFICATION**: Used in v5 and earlier. Replaced by **PAYOUT_METHOD_VERIFICATION** in v6 and later.   * **COMPANY_VERIFICATION**    * **CARD_VERIFICATION**  * **IDENTITY_VERIFICATION**  * **LEGAL_ARRANGEMENT_VERIFICATION**  * **NONPROFIT_VERIFICATION**   * **PASSPORT_VERIFICATION**  * **PAYOUT_METHOD_VERIFICATION**: Used in v6 and later.  * **PCI_VERIFICATION**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -171,7 +171,7 @@ namespace Adyen.Model.PlatformsAccount
         /// </summary>
         /// <value>The type of check.  Possible values:   * **BANK_ACCOUNT_VERIFICATION**: Used in v5 and earlier. Replaced by **PAYOUT_METHOD_VERIFICATION** in v6 and later.   * **COMPANY_VERIFICATION**    * **CARD_VERIFICATION**  * **IDENTITY_VERIFICATION**  * **LEGAL_ARRANGEMENT_VERIFICATION**  * **NONPROFIT_VERIFICATION**   * **PASSPORT_VERIFICATION**  * **PAYOUT_METHOD_VERIFICATION**: Used in v6 and later.  * **PCI_VERIFICATION**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="KYCCheckStatusData" /> class.
         /// </summary>
@@ -184,7 +184,7 @@ namespace Adyen.Model.PlatformsAccount
         /// <param name="status">The status of the check.  Possible values: **AWAITING_DATA** , **DATA_PROVIDED**, **FAILED**, **INVALID_DATA**, **PASSED**, **PENDING**, **RETRY_LIMIT_REACHED**. (required).</param>
         /// <param name="summary">summary.</param>
         /// <param name="type">The type of check.  Possible values:   * **BANK_ACCOUNT_VERIFICATION**: Used in v5 and earlier. Replaced by **PAYOUT_METHOD_VERIFICATION** in v6 and later.   * **COMPANY_VERIFICATION**    * **CARD_VERIFICATION**  * **IDENTITY_VERIFICATION**  * **LEGAL_ARRANGEMENT_VERIFICATION**  * **NONPROFIT_VERIFICATION**   * **PASSPORT_VERIFICATION**  * **PAYOUT_METHOD_VERIFICATION**: Used in v6 and later.  * **PCI_VERIFICATION** (required).</param>
-        public KYCCheckStatusData(List<string> requiredFields = default(List<string>), StatusEnum status = default(StatusEnum), KYCCheckSummary summary = default(KYCCheckSummary), TypeEnum type = default(TypeEnum))
+        public KYCCheckStatusData(List<string> requiredFields = default(List<string>), StatusEnum? status = default(StatusEnum?), KYCCheckSummary summary = default(KYCCheckSummary), TypeEnum? type = default(TypeEnum?))
         {
             this.Status = status;
             this.Type = type;

@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The purpose of a digital wallet transaction.
         /// </summary>
         /// <value>The purpose of a digital wallet transaction.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum WalletPurposeEnum
         {
             /// <summary>

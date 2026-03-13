@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsFund
         /// The type of split. Possible values: **Default**, **PaymentFee**, **VAT**, **Commission**, **MarketPlace**, **BalanceAccount**, **Remainder**, **Surcharge**, **Tip**.
         /// </summary>
         /// <value>The type of split. Possible values: **Default**, **PaymentFee**, **VAT**, **Commission**, **MarketPlace**, **BalanceAccount**, **Remainder**, **Surcharge**, **Tip**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -143,7 +143,7 @@ namespace Adyen.Model.PlatformsFund
         /// </summary>
         /// <value>The type of split. Possible values: **Default**, **PaymentFee**, **VAT**, **Commission**, **MarketPlace**, **BalanceAccount**, **Remainder**, **Surcharge**, **Tip**.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Split" /> class.
         /// </summary>
@@ -157,7 +157,7 @@ namespace Adyen.Model.PlatformsFund
         /// <param name="description">A description of this split..</param>
         /// <param name="reference">Your reference for the split, which you can use to link the split to other operations such as captures and refunds.  This is required if &#x60;type&#x60; is **MarketPlace** or **BalanceAccount**. For the other types, we also recommend sending a reference so you can reconcile the split and the associated payment in the transaction overview and in the reports. If the reference is not provided, the split is reported as part of the aggregated [TransferBalance record type](https://docs.adyen.com/reporting/marketpay-payments-accounting-report) in Adyen for Platforms..</param>
         /// <param name="type">The type of split. Possible values: **Default**, **PaymentFee**, **VAT**, **Commission**, **MarketPlace**, **BalanceAccount**, **Remainder**, **Surcharge**, **Tip**. (required).</param>
-        public Split(string account = default(string), SplitAmount amount = default(SplitAmount), string description = default(string), string reference = default(string), TypeEnum type = default(TypeEnum))
+        public Split(string account = default(string), SplitAmount amount = default(SplitAmount), string description = default(string), string reference = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.Amount = amount;
             this.Type = type;

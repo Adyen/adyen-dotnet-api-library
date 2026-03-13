@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The external service from which to fetch the token. Supported only for specific companies. Contact Adyen if you want to use this feature.
         /// </summary>
         /// <value>The external service from which to fetch the token. Supported only for specific companies. Contact Adyen if you want to use this feature.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum SubtypeEnum
         {
             /// <summary>
@@ -53,12 +53,12 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The external service from which to fetch the token. Supported only for specific companies. Contact Adyen if you want to use this feature.</value>
         [DataMember(Name = "subtype", IsRequired = false, EmitDefaultValue = false)]
-        public SubtypeEnum Subtype { get; set; }
+        public SubtypeEnum? Subtype { get; set; }
         /// <summary>
         /// The type of token. Allowed value: **externalToken**.
         /// </summary>
         /// <value>The type of token. Allowed value: **externalToken**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -75,7 +75,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The type of token. Allowed value: **externalToken**.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ExternalTokenDetails" /> class.
         /// </summary>
@@ -92,7 +92,7 @@ namespace Adyen.Model.Checkout
         /// <param name="storedPaymentMethodId">Identifier used to fetch the token from the external service (required).</param>
         /// <param name="subtype">The external service from which to fetch the token. Supported only for specific companies. Contact Adyen if you want to use this feature. (required).</param>
         /// <param name="type">The type of token. Allowed value: **externalToken**. (required) (default to TypeEnum.ExternalToken).</param>
-        public ExternalTokenDetails(string checkoutAttemptId = default(string), string expiryMonth = default(string), string expiryYear = default(string), string holderName = default(string), string number = default(string), string storedPaymentMethodId = default(string), SubtypeEnum subtype = default(SubtypeEnum), TypeEnum type = TypeEnum.ExternalToken)
+        public ExternalTokenDetails(string checkoutAttemptId = default(string), string expiryMonth = default(string), string expiryYear = default(string), string holderName = default(string), string number = default(string), string storedPaymentMethodId = default(string), SubtypeEnum? subtype = default(SubtypeEnum?), TypeEnum type = TypeEnum.ExternalToken)
         {
             this.StoredPaymentMethodId = storedPaymentMethodId;
             this.Subtype = subtype;

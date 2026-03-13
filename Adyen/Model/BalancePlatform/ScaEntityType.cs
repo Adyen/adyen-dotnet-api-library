@@ -29,7 +29,7 @@ namespace Adyen.Model.BalancePlatform
     /// <summary>
     /// Defines ScaEntityType
     /// </summary>
-    [JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
     public enum ScaEntityType
     {
         /// <summary>

@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// Informs you if the name validation was performed. Possible values:  **performed**, **notPerformed**, **notSupported**
         /// </summary>
         /// <value>Informs you if the name validation was performed. Possible values:  **performed**, **notPerformed**, **notSupported**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
