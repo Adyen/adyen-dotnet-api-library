@@ -27,39 +27,37 @@ using Adyen.Capital.Client;
 namespace Adyen.Capital.Models
 {
     /// <summary>
-    /// GrantOffer.
+    /// CalculatedGrantOffer.
     /// </summary>
-    public partial class GrantOffer
+    public partial class CalculatedGrantOffer
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GrantOffer" /> class.
+        /// Initializes a new instance of the <see cref="CalculatedGrantOffer" /> class.
         /// </summary>
-        /// <param name="accountHolderId">The unique identifier of the account holder to which the grant is offered.</param>
+        /// <param name="accountHolderId">The unique identifier of the account holder that the dynamic offer is for.</param>
         /// <param name="amount">amount</param>
         /// <param name="contractType">The contract type of the offer.  Possible values: * **loan** * **cashAdvance**</param>
         /// <param name="expiresAt">The expiration date and time of the offer validity period.</param>
         /// <param name="fee">fee</param>
-        /// <param name="id">The unique identifier of the offer.</param>
         /// <param name="repayment">repayment</param>
         /// <param name="startsAt">The starting date and time of the offer validity period.</param>
         [JsonConstructor]
-        public GrantOffer(string accountHolderId, Option<Amount?> amount = default, Option<ContractTypeEnum?> contractType = default, Option<DateTimeOffset?> expiresAt = default, Option<GrantOfferFee?> fee = default, Option<string?> id = default, Option<Repayment?> repayment = default, Option<DateTimeOffset?> startsAt = default)
+        public CalculatedGrantOffer(string accountHolderId, Amount amount, ContractTypeEnum contractType, DateTimeOffset expiresAt, GrantOfferFee fee, Repayment repayment, DateTimeOffset startsAt)
         {
             AccountHolderId = accountHolderId;
-            _AmountOption = amount;
-            _ContractTypeOption = contractType;
-            _ExpiresAtOption = expiresAt;
-            _FeeOption = fee;
-            _IdOption = id;
-            _RepaymentOption = repayment;
-            _StartsAtOption = startsAt;
+            Amount = amount;
+            ContractType = contractType;
+            ExpiresAt = expiresAt;
+            Fee = fee;
+            Repayment = repayment;
+            StartsAt = startsAt;
             OnCreated();
         }
         
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public GrantOffer()
+        public CalculatedGrantOffer()
         {
         }
 
@@ -169,106 +167,50 @@ namespace Adyen.Capital.Models
         }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="ContractType"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<ContractTypeEnum?> _ContractTypeOption { get; private set; }
-
-        /// <summary>
         /// The contract type of the offer.  Possible values: * **loan** * **cashAdvance**
         /// </summary>
         /// <value>The contract type of the offer.  Possible values: * **loan** * **cashAdvance**</value>
         [JsonPropertyName("contractType")]
-        public ContractTypeEnum? ContractType { get { return this._ContractTypeOption; } set { this._ContractTypeOption = new(value); } }
+        public ContractTypeEnum ContractType { get; set; }
 
         /// <summary>
-        /// The unique identifier of the account holder to which the grant is offered.
+        /// The unique identifier of the account holder that the dynamic offer is for.
         /// </summary>
-        /// <value>The unique identifier of the account holder to which the grant is offered.</value>
+        /// <value>The unique identifier of the account holder that the dynamic offer is for.</value>
         [JsonPropertyName("accountHolderId")]
         public string AccountHolderId { get; set; }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Amount?> _AmountOption { get; private set; }
 
         /// <summary>
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount? Amount { get { return this._AmountOption; } set { this._AmountOption = new(value); } }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="ExpiresAt"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<DateTimeOffset?> _ExpiresAtOption { get; private set; }
+        public Amount Amount { get; set; }
 
         /// <summary>
         /// The expiration date and time of the offer validity period.
         /// </summary>
         /// <value>The expiration date and time of the offer validity period.</value>
         [JsonPropertyName("expiresAt")]
-        public DateTimeOffset? ExpiresAt { get { return this._ExpiresAtOption; } set { this._ExpiresAtOption = new(value); } }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Fee"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<GrantOfferFee?> _FeeOption { get; private set; }
+        public DateTimeOffset ExpiresAt { get; set; }
 
         /// <summary>
         /// <see cref="Fee"/>.
         /// </summary>
         [JsonPropertyName("fee")]
-        public GrantOfferFee? Fee { get { return this._FeeOption; } set { this._FeeOption = new(value); } }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _IdOption { get; private set; }
-
-        /// <summary>
-        /// The unique identifier of the offer.
-        /// </summary>
-        /// <value>The unique identifier of the offer.</value>
-        [JsonPropertyName("id")]
-        public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Repayment"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Repayment?> _RepaymentOption { get; private set; }
+        public GrantOfferFee Fee { get; set; }
 
         /// <summary>
         /// <see cref="Repayment"/>.
         /// </summary>
         [JsonPropertyName("repayment")]
-        public Repayment? Repayment { get { return this._RepaymentOption; } set { this._RepaymentOption = new(value); } }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="StartsAt"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<DateTimeOffset?> _StartsAtOption { get; private set; }
+        public Repayment Repayment { get; set; }
 
         /// <summary>
         /// The starting date and time of the offer validity period.
         /// </summary>
         /// <value>The starting date and time of the offer validity period.</value>
         [JsonPropertyName("startsAt")]
-        public DateTimeOffset? StartsAt { get { return this._StartsAtOption; } set { this._StartsAtOption = new(value); } }
+        public DateTimeOffset StartsAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -277,13 +219,12 @@ namespace Adyen.Capital.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GrantOffer {\n");
+            sb.Append("class CalculatedGrantOffer {\n");
             sb.Append("  AccountHolderId: ").Append(AccountHolderId).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  ContractType: ").Append(ContractType).Append("\n");
             sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
             sb.Append("  Fee: ").Append(Fee).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Repayment: ").Append(Repayment).Append("\n");
             sb.Append("  StartsAt: ").Append(StartsAt).Append("\n");
             sb.Append("}\n");
@@ -292,9 +233,9 @@ namespace Adyen.Capital.Models
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="GrantOffer" />
+    /// A Json converter for type <see cref="CalculatedGrantOffer" />
     /// </summary>
-    public class GrantOfferJsonConverter : JsonConverter<GrantOffer>
+    public class CalculatedGrantOfferJsonConverter : JsonConverter<CalculatedGrantOffer>
     {
         /// <summary>
         /// The format to use to serialize ExpiresAt.
@@ -307,14 +248,14 @@ namespace Adyen.Capital.Models
         public static string StartsAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
-        /// Deserializes json to <see cref="GrantOffer"/>.
+        /// Deserializes json to <see cref="CalculatedGrantOffer"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="GrantOffer"/>.</returns>
+        /// <returns><see cref="CalculatedGrantOffer"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override GrantOffer Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override CalculatedGrantOffer Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -325,10 +266,9 @@ namespace Adyen.Capital.Models
 
             Option<string?> accountHolderId = default;
             Option<Amount?> amount = default;
-            Option<GrantOffer.ContractTypeEnum?> contractType = default;
+            Option<CalculatedGrantOffer.ContractTypeEnum?> contractType = default;
             Option<DateTimeOffset?> expiresAt = default;
             Option<GrantOfferFee?> fee = default;
-            Option<string?> id = default;
             Option<Repayment?> repayment = default;
             Option<DateTimeOffset?> startsAt = default;
 
@@ -355,16 +295,13 @@ namespace Adyen.Capital.Models
                             break;
                         case "contractType":
                             string? contractTypeRawValue = utf8JsonReader.GetString();
-                            contractType = new Option<GrantOffer.ContractTypeEnum?>(GrantOffer.ContractTypeEnum.FromStringOrDefault(contractTypeRawValue));
+                            contractType = new Option<CalculatedGrantOffer.ContractTypeEnum?>(CalculatedGrantOffer.ContractTypeEnum.FromStringOrDefault(contractTypeRawValue));
                             break;
                         case "expiresAt":
                             expiresAt = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "fee":
                             fee = new Option<GrantOfferFee?>(JsonSerializer.Deserialize<GrantOfferFee>(ref utf8JsonReader, jsonSerializerOptions)!);
-                            break;
-                        case "id":
-                            id = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "repayment":
                             repayment = new Option<Repayment?>(JsonSerializer.Deserialize<Repayment>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -379,70 +316,73 @@ namespace Adyen.Capital.Models
             }
             
             if (!accountHolderId.IsSet)
-                throw new ArgumentException("Property is required for class GrantOffer.", nameof(accountHolderId));
+                throw new ArgumentException("Property is required for class CalculatedGrantOffer.", nameof(accountHolderId));
 
-            return new GrantOffer(accountHolderId.Value!, amount, contractType, expiresAt, fee, id, repayment, startsAt);
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class CalculatedGrantOffer.", nameof(amount));
+
+            if (!contractType.IsSet)
+                throw new ArgumentException("Property is required for class CalculatedGrantOffer.", nameof(contractType));
+
+            if (!expiresAt.IsSet)
+                throw new ArgumentException("Property is required for class CalculatedGrantOffer.", nameof(expiresAt));
+
+            if (!fee.IsSet)
+                throw new ArgumentException("Property is required for class CalculatedGrantOffer.", nameof(fee));
+
+            if (!repayment.IsSet)
+                throw new ArgumentException("Property is required for class CalculatedGrantOffer.", nameof(repayment));
+
+            if (!startsAt.IsSet)
+                throw new ArgumentException("Property is required for class CalculatedGrantOffer.", nameof(startsAt));
+
+            return new CalculatedGrantOffer(accountHolderId.Value!, amount.Value!, contractType.Value!.Value!, expiresAt.Value!.Value!, fee.Value!, repayment.Value!, startsAt.Value!.Value!);
         }
 
         /// <summary>
-        /// Serializes a <see cref="GrantOffer"/>.
+        /// Serializes a <see cref="CalculatedGrantOffer"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="grantOffer"></param>
+        /// <param name="calculatedGrantOffer"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, GrantOffer grantOffer, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, CalculatedGrantOffer calculatedGrantOffer, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, grantOffer, jsonSerializerOptions);
+            WriteProperties(writer, calculatedGrantOffer, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="GrantOffer"/>.
+        /// Serializes the properties of <see cref="CalculatedGrantOffer"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="grantOffer"></param>
+        /// <param name="calculatedGrantOffer"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, GrantOffer grantOffer, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, CalculatedGrantOffer calculatedGrantOffer, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (grantOffer.AccountHolderId != null)
-                writer.WriteString("accountHolderId", grantOffer.AccountHolderId);
+            if (calculatedGrantOffer.AccountHolderId != null)
+                writer.WriteString("accountHolderId", calculatedGrantOffer.AccountHolderId);
 
-            if (grantOffer._AmountOption.IsSet)
+            writer.WritePropertyName("amount");
+            JsonSerializer.Serialize(writer, calculatedGrantOffer.Amount, jsonSerializerOptions);
+            if (calculatedGrantOffer.ContractType != null) 
             {
-                writer.WritePropertyName("amount");
-                JsonSerializer.Serialize(writer, grantOffer.Amount, jsonSerializerOptions);
-            }
-            if (grantOffer._ContractTypeOption.IsSet && grantOffer.ContractType != null) 
-            {
-                string? contractTypeRawValue = GrantOffer.ContractTypeEnum.ToJsonValue(grantOffer._ContractTypeOption.Value!.Value);
+                string? contractTypeRawValue = CalculatedGrantOffer.ContractTypeEnum.ToJsonValue(calculatedGrantOffer.ContractType);
                 writer.WriteString("contractType", contractTypeRawValue);
             }
             
-            if (grantOffer._ExpiresAtOption.IsSet)
-                writer.WriteString("expiresAt", grantOffer._ExpiresAtOption.Value!.Value.ToString(ExpiresAtFormat));
+            writer.WriteString("expiresAt", calculatedGrantOffer.ExpiresAt.ToString(ExpiresAtFormat));
 
-            if (grantOffer._FeeOption.IsSet)
-            {
-                writer.WritePropertyName("fee");
-                JsonSerializer.Serialize(writer, grantOffer.Fee, jsonSerializerOptions);
-            }
-            if (grantOffer._IdOption.IsSet)
-                if (grantOffer.Id != null)
-                    writer.WriteString("id", grantOffer.Id);
-
-            if (grantOffer._RepaymentOption.IsSet)
-            {
-                writer.WritePropertyName("repayment");
-                JsonSerializer.Serialize(writer, grantOffer.Repayment, jsonSerializerOptions);
-            }
-            if (grantOffer._StartsAtOption.IsSet)
-                writer.WriteString("startsAt", grantOffer._StartsAtOption.Value!.Value.ToString(StartsAtFormat));
+            writer.WritePropertyName("fee");
+            JsonSerializer.Serialize(writer, calculatedGrantOffer.Fee, jsonSerializerOptions);
+            writer.WritePropertyName("repayment");
+            JsonSerializer.Serialize(writer, calculatedGrantOffer.Repayment, jsonSerializerOptions);
+            writer.WriteString("startsAt", calculatedGrantOffer.StartsAt.ToString(StartsAtFormat));
         }
     }
 }
