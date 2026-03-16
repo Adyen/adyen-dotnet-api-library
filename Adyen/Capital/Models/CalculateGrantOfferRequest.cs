@@ -27,66 +27,35 @@ using Adyen.Capital.Client;
 namespace Adyen.Capital.Models
 {
     /// <summary>
-    /// Repayment.
+    /// CalculateGrantOfferRequest.
     /// </summary>
-    public partial class Repayment
+    public partial class CalculateGrantOfferRequest
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Repayment" /> class.
+        /// Initializes a new instance of the <see cref="CalculateGrantOfferRequest" /> class.
         /// </summary>
-        /// <param name="basisPoints">The percentage of your user&#39;s incoming net volume that is deducted for repaying the grant. The percentage expressed in [basis points](https://www.investopedia.com/terms/b/basispoint.asp).</param>
-        /// <param name="term">term</param>
-        /// <param name="threshold">threshold</param>
+        /// <param name="amount">amount</param>
         [JsonConstructor]
-        public Repayment(int basisPoints, Option<RepaymentTerm?> term = default, Option<ThresholdRepayment?> threshold = default)
+        public CalculateGrantOfferRequest(Amount amount)
         {
-            BasisPoints = basisPoints;
-            _TermOption = term;
-            _ThresholdOption = threshold;
+            Amount = amount;
             OnCreated();
         }
         
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public Repayment()
+        public CalculateGrantOfferRequest()
         {
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// The percentage of your user&#39;s incoming net volume that is deducted for repaying the grant. The percentage expressed in [basis points](https://www.investopedia.com/terms/b/basispoint.asp).
+        /// <see cref="Amount"/>.
         /// </summary>
-        /// <value>The percentage of your user's incoming net volume that is deducted for repaying the grant. The percentage expressed in [basis points](https://www.investopedia.com/terms/b/basispoint.asp).</value>
-        [JsonPropertyName("basisPoints")]
-        public int BasisPoints { get; set; }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Term"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<RepaymentTerm?> _TermOption { get; private set; }
-
-        /// <summary>
-        /// <see cref="Term"/>.
-        /// </summary>
-        [JsonPropertyName("term")]
-        public RepaymentTerm? Term { get { return this._TermOption; } set { this._TermOption = new(value); } }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Threshold"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<ThresholdRepayment?> _ThresholdOption { get; private set; }
-
-        /// <summary>
-        /// <see cref="Threshold"/>.
-        /// </summary>
-        [JsonPropertyName("threshold")]
-        public ThresholdRepayment? Threshold { get { return this._ThresholdOption; } set { this._ThresholdOption = new(value); } }
+        [JsonPropertyName("amount")]
+        public Amount Amount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -95,29 +64,27 @@ namespace Adyen.Capital.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Repayment {\n");
-            sb.Append("  BasisPoints: ").Append(BasisPoints).Append("\n");
-            sb.Append("  Term: ").Append(Term).Append("\n");
-            sb.Append("  Threshold: ").Append(Threshold).Append("\n");
+            sb.Append("class CalculateGrantOfferRequest {\n");
+            sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="Repayment" />
+    /// A Json converter for type <see cref="CalculateGrantOfferRequest" />
     /// </summary>
-    public class RepaymentJsonConverter : JsonConverter<Repayment>
+    public class CalculateGrantOfferRequestJsonConverter : JsonConverter<CalculateGrantOfferRequest>
     {
         /// <summary>
-        /// Deserializes json to <see cref="Repayment"/>.
+        /// Deserializes json to <see cref="CalculateGrantOfferRequest"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="Repayment"/>.</returns>
+        /// <returns><see cref="CalculateGrantOfferRequest"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override Repayment Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override CalculateGrantOfferRequest Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -126,9 +93,7 @@ namespace Adyen.Capital.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<int?> basisPoints = default;
-            Option<RepaymentTerm?> term = default;
-            Option<ThresholdRepayment?> threshold = default;
+            Option<Amount?> amount = default;
 
             while (utf8JsonReader.Read())
             {
@@ -145,14 +110,8 @@ namespace Adyen.Capital.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "basisPoints":
-                            basisPoints = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
-                            break;
-                        case "term":
-                            term = new Option<RepaymentTerm?>(JsonSerializer.Deserialize<RepaymentTerm>(ref utf8JsonReader, jsonSerializerOptions)!);
-                            break;
-                        case "threshold":
-                            threshold = new Option<ThresholdRepayment?>(JsonSerializer.Deserialize<ThresholdRepayment>(ref utf8JsonReader, jsonSerializerOptions)!);
+                        case "amount":
+                            amount = new Option<Amount?>(JsonSerializer.Deserialize<Amount>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         default:
                             break;
@@ -160,50 +119,40 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!basisPoints.IsSet)
-                throw new ArgumentException("Property is required for class Repayment.", nameof(basisPoints));
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class CalculateGrantOfferRequest.", nameof(amount));
 
-            return new Repayment(basisPoints.Value!.Value!, term, threshold);
+            return new CalculateGrantOfferRequest(amount.Value!);
         }
 
         /// <summary>
-        /// Serializes a <see cref="Repayment"/>.
+        /// Serializes a <see cref="CalculateGrantOfferRequest"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="repayment"></param>
+        /// <param name="calculateGrantOfferRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, Repayment repayment, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, CalculateGrantOfferRequest calculateGrantOfferRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, repayment, jsonSerializerOptions);
+            WriteProperties(writer, calculateGrantOfferRequest, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="Repayment"/>.
+        /// Serializes the properties of <see cref="CalculateGrantOfferRequest"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="repayment"></param>
+        /// <param name="calculateGrantOfferRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, Repayment repayment, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, CalculateGrantOfferRequest calculateGrantOfferRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            writer.WriteNumber("basisPoints", repayment.BasisPoints);
-
-            if (repayment._TermOption.IsSet)
-            {
-                writer.WritePropertyName("term");
-                JsonSerializer.Serialize(writer, repayment.Term, jsonSerializerOptions);
-            }
-            if (repayment._ThresholdOption.IsSet)
-            {
-                writer.WritePropertyName("threshold");
-                JsonSerializer.Serialize(writer, repayment.Threshold, jsonSerializerOptions);
-            }
+            writer.WritePropertyName("amount");
+            JsonSerializer.Serialize(writer, calculateGrantOfferRequest.Amount, jsonSerializerOptions);
         }
     }
 }
