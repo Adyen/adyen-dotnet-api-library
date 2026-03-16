@@ -39,6 +39,10 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
+
+  <!-- System.Net.Http is built into the runtime for net8.0+; only reference the NuGet package for older targets -->
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' Or '$(TargetFramework)' == 'netstandard2.0' ">
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>
   
