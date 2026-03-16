@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// **nativeRedirect**
         /// </summary>
         /// <value>**nativeRedirect**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**nativeRedirect**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutNativeRedirectAction" /> class.
         /// </summary>
@@ -68,7 +68,7 @@ namespace Adyen.Model.Checkout
         /// <param name="paymentMethodType">Specifies the payment method..</param>
         /// <param name="type">**nativeRedirect** (required).</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
-        public CheckoutNativeRedirectAction(Dictionary<string, string> data = default(Dictionary<string, string>), string method = default(string), string nativeRedirectData = default(string), string paymentMethodType = default(string), TypeEnum type = default(TypeEnum), string url = default(string))
+        public CheckoutNativeRedirectAction(Dictionary<string, string> data = default(Dictionary<string, string>), string method = default(string), string nativeRedirectData = default(string), string paymentMethodType = default(string), TypeEnum? type = default(TypeEnum?), string url = default(string))
         {
             this.Type = type;
             this.Data = data;

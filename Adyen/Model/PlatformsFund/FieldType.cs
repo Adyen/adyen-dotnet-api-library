@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsFund
         /// The type of the field.
         /// </summary>
         /// <value>The type of the field.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum FieldNameEnum
         {
             /// <summary>

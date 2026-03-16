@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsWebhooks
         /// The legal entity of the account holder.
         /// </summary>
         /// <value>The legal entity of the account holder.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum LegalEntityEnum
         {
             /// <summary>

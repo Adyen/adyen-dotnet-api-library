@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsWebhooks
         /// The new status of the account holder.
         /// </summary>
         /// <value>The new status of the account holder.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum NewStatusEnum
         {
             /// <summary>
@@ -77,12 +77,12 @@ namespace Adyen.Model.PlatformsWebhooks
         /// </summary>
         /// <value>The new status of the account holder.</value>
         [DataMember(Name = "newStatus", IsRequired = false, EmitDefaultValue = false)]
-        public NewStatusEnum NewStatus { get; set; }
+        public NewStatusEnum? NewStatus { get; set; }
         /// <summary>
         /// The former status of the account holder.
         /// </summary>
         /// <value>The former status of the account holder.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum OldStatusEnum
         {
             /// <summary>
@@ -123,7 +123,7 @@ namespace Adyen.Model.PlatformsWebhooks
         /// </summary>
         /// <value>The former status of the account holder.</value>
         [DataMember(Name = "oldStatus", IsRequired = false, EmitDefaultValue = false)]
-        public OldStatusEnum OldStatus { get; set; }
+        public OldStatusEnum? OldStatus { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountHolderStoreStatusChangeNotificationContent" /> class.
         /// </summary>
@@ -139,7 +139,7 @@ namespace Adyen.Model.PlatformsWebhooks
         /// <param name="reason">The reason for the status change..</param>
         /// <param name="store">Alphanumeric identifier of the store. (required).</param>
         /// <param name="storeReference">Store store reference. (required).</param>
-        public AccountHolderStoreStatusChangeNotificationContent(string accountHolderCode = default(string), List<ErrorFieldType> invalidFields = default(List<ErrorFieldType>), NewStatusEnum newStatus = default(NewStatusEnum), OldStatusEnum oldStatus = default(OldStatusEnum), string reason = default(string), string store = default(string), string storeReference = default(string))
+        public AccountHolderStoreStatusChangeNotificationContent(string accountHolderCode = default(string), List<ErrorFieldType> invalidFields = default(List<ErrorFieldType>), NewStatusEnum? newStatus = default(NewStatusEnum?), OldStatusEnum? oldStatus = default(OldStatusEnum?), string reason = default(string), string store = default(string), string storeReference = default(string))
         {
             this.AccountHolderCode = accountHolderCode;
             this.NewStatus = newStatus;

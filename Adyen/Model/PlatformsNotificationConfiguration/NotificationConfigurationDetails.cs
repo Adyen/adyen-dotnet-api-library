@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsNotificationConfiguration
         /// The SSL protocol employed by the endpoint. &gt;Permitted values: &#x60;TLSv12&#x60;, &#x60;TLSv13&#x60;.
         /// </summary>
         /// <value>The SSL protocol employed by the endpoint. &gt;Permitted values: &#x60;TLSv12&#x60;, &#x60;TLSv13&#x60;.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum SslProtocolEnum
         {
             /// <summary>

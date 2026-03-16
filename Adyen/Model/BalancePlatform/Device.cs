@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// The type of device.  Possible values: **ios**, **android**, **browser**.
         /// </summary>
         /// <value>The type of device.  Possible values: **ios**, **android**, **browser**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

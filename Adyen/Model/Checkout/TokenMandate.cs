@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The limitation rule of the billing amount.  Possible values:  * **max**: The transaction amount can not exceed the &#x60;amount&#x60;.   * **exact**: The transaction amount should be the same as the &#x60;amount&#x60;.  
         /// </summary>
         /// <value>The limitation rule of the billing amount.  Possible values:  * **max**: The transaction amount can not exceed the &#x60;amount&#x60;.   * **exact**: The transaction amount should be the same as the &#x60;amount&#x60;.  </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum AmountRuleEnum
         {
             /// <summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.Checkout
         /// The rule to specify the period, within which the recurring debit can happen, relative to the mandate recurring date.  Possible values:   * **on**: On a specific date.   * **before**:  Before and on a specific date.   * **after**: On and after a specific date.  
         /// </summary>
         /// <value>The rule to specify the period, within which the recurring debit can happen, relative to the mandate recurring date.  Possible values:   * **on**: On a specific date.   * **before**:  Before and on a specific date.   * **after**: On and after a specific date.  </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum BillingAttemptsRuleEnum
         {
             /// <summary>
@@ -98,7 +98,7 @@ namespace Adyen.Model.Checkout
         /// The frequency with which a shopper should be charged.  Possible values: **adhoc**, **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.
         /// </summary>
         /// <value>The frequency with which a shopper should be charged.  Possible values: **adhoc**, **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum FrequencyEnum
         {
             /// <summary>
@@ -157,7 +157,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The frequency with which a shopper should be charged.  Possible values: **adhoc**, **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.</value>
         [DataMember(Name = "frequency", IsRequired = false, EmitDefaultValue = false)]
-        public FrequencyEnum Frequency { get; set; }
+        public FrequencyEnum? Frequency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TokenMandate" /> class.
         /// </summary>
@@ -182,7 +182,7 @@ namespace Adyen.Model.Checkout
         /// <param name="startsAt">Start date of the billing plan, in YYYY-MM-DD format. By default, the transaction date..</param>
         /// <param name="status">The status of the mandate. Examples : active, revoked, completed, expired (required).</param>
         /// <param name="txVariant">The transaction variant used for this mandate. (required).</param>
-        public TokenMandate(string accountIdType = default(string), string amount = default(string), AmountRuleEnum? amountRule = default(AmountRuleEnum?), BillingAttemptsRuleEnum? billingAttemptsRule = default(BillingAttemptsRuleEnum?), string billingDay = default(string), string count = default(string), string currency = default(string), string endsAt = default(string), FrequencyEnum frequency = default(FrequencyEnum), string mandateId = default(string), string maskedAccountId = default(string), string providerId = default(string), string remarks = default(string), string startsAt = default(string), string status = default(string), string txVariant = default(string))
+        public TokenMandate(string accountIdType = default(string), string amount = default(string), AmountRuleEnum? amountRule = default(AmountRuleEnum?), BillingAttemptsRuleEnum? billingAttemptsRule = default(BillingAttemptsRuleEnum?), string billingDay = default(string), string count = default(string), string currency = default(string), string endsAt = default(string), FrequencyEnum? frequency = default(FrequencyEnum?), string mandateId = default(string), string maskedAccountId = default(string), string providerId = default(string), string remarks = default(string), string startsAt = default(string), string status = default(string), string txVariant = default(string))
         {
             this.Amount = amount;
             this.Currency = currency;

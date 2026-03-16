@@ -30,7 +30,7 @@ namespace Adyen.Model.BalancePlatform
     /// The type of transfer to which the limit applies. Possible values: * **instant**: the limit applies to transfers with an **instant** priority. * **all**: the limit applies to all transfers, regardless of priority.
     /// </summary>
     /// <value>The type of transfer to which the limit applies. Possible values: * **instant**: the limit applies to transfers with an **instant** priority. * **all**: the limit applies to all transfers, regardless of priority.</value>
-    [JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
     public enum TransferType
     {
         /// <summary>

@@ -36,7 +36,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// The status of the balance account, set to **active** by default.  
         /// </summary>
         /// <value>The status of the balance account, set to **active** by default.  </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>

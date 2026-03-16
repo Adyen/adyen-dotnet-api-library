@@ -36,7 +36,7 @@ namespace Adyen.Model.PlatformsAccount
         /// The state required for the account holder. &gt; Permitted values: &#x60;Processing&#x60;, &#x60;Payout&#x60;.
         /// </summary>
         /// <value>The state required for the account holder. &gt; Permitted values: &#x60;Processing&#x60;, &#x60;Payout&#x60;.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum AccountStateTypeEnum
         {
             /// <summary>
@@ -83,7 +83,7 @@ namespace Adyen.Model.PlatformsAccount
         /// </summary>
         /// <value>The state required for the account holder. &gt; Permitted values: &#x60;Processing&#x60;, &#x60;Payout&#x60;.</value>
         [DataMember(Name = "accountStateType", IsRequired = false, EmitDefaultValue = false)]
-        public AccountStateTypeEnum AccountStateType { get; set; }
+        public AccountStateTypeEnum? AccountStateType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PerformVerificationRequest" /> class.
         /// </summary>
@@ -95,7 +95,7 @@ namespace Adyen.Model.PlatformsAccount
         /// <param name="accountHolderCode">The code of the account holder to verify. (required).</param>
         /// <param name="accountStateType">The state required for the account holder. &gt; Permitted values: &#x60;Processing&#x60;, &#x60;Payout&#x60;. (required).</param>
         /// <param name="tier">The tier required for the account holder. (required).</param>
-        public PerformVerificationRequest(string accountHolderCode = default(string), AccountStateTypeEnum accountStateType = default(AccountStateTypeEnum), int? tier = default(int?))
+        public PerformVerificationRequest(string accountHolderCode = default(string), AccountStateTypeEnum? accountStateType = default(AccountStateTypeEnum?), int? tier = default(int?))
         {
             this.AccountHolderCode = accountHolderCode;
             this.AccountStateType = accountStateType;

@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// Default payment method details. Common for scheme payment methods, and for simple payment method details.
         /// </summary>
         /// <value>Default payment method details. Common for scheme payment methods, and for simple payment method details.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

@@ -35,7 +35,7 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Defines TypesWithErrors
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypesWithErrorsEnum
         {
             /// <summary>

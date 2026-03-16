@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The status of your request. This will always have the value **received**.
         /// </summary>
         /// <value>The status of your request. This will always have the value **received**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The status of your request. This will always have the value **received**.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentCaptureResponse" /> class.
         /// </summary>
@@ -72,7 +72,7 @@ namespace Adyen.Model.Checkout
         /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/)..</param>
         /// <param name="status">The status of your request. This will always have the value **received**. (required).</param>
         /// <param name="subMerchants">List of sub-merchants..</param>
-        public PaymentCaptureResponse(Amount amount = default(Amount), List<LineItem> lineItems = default(List<LineItem>), string merchantAccount = default(string), string paymentPspReference = default(string), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string pspReference = default(string), string reference = default(string), List<Split> splits = default(List<Split>), StatusEnum status = default(StatusEnum), List<SubMerchantInfo> subMerchants = default(List<SubMerchantInfo>))
+        public PaymentCaptureResponse(Amount amount = default(Amount), List<LineItem> lineItems = default(List<LineItem>), string merchantAccount = default(string), string paymentPspReference = default(string), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string pspReference = default(string), string reference = default(string), List<Split> splits = default(List<Split>), StatusEnum? status = default(StatusEnum?), List<SubMerchantInfo> subMerchants = default(List<SubMerchantInfo>))
         {
             this.Amount = amount;
             this.MerchantAccount = merchantAccount;

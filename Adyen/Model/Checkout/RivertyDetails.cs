@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// **riverty**
         /// </summary>
         /// <value>**riverty**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -71,7 +71,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**riverty**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="RivertyDetails" /> class.
         /// </summary>
