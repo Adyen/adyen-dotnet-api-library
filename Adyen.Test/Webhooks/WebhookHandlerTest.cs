@@ -15,6 +15,7 @@ namespace Adyen.Test.Webhooks
     [TestClass]
     public class WebhookHandlerTest : BaseTest
     {
+        private const string TestHmacKey = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
         private readonly IWebhooksHandler _webhooksHandler;
 
         public WebhookHandlerTest()
@@ -22,6 +23,7 @@ namespace Adyen.Test.Webhooks
             IHost host = Host.CreateDefaultBuilder()
                 .ConfigureWebhooks((context, services, config) =>
                 {
+                    config.ConfigureAdyenOptions(options => { options.AdyenHmacKey = TestHmacKey; });
                     services.AddWebhooksHandler();
                 })
                 .Build();
@@ -126,6 +128,48 @@ namespace Adyen.Test.Webhooks
             Assert.AreEqual("Insufficient balance on payment", notificationItem.Reason);
         }
 
+        [TestMethod]
+        public void TestIsValidHmacSignature()
+        {
+            var notificationItem = new Adyen.Webhooks.Models.NotificationRequestItem
+            {
+                PspReference = "pspReference",
+                OriginalReference = "originalReference",
+                MerchantAccountCode = "merchantAccount",
+                MerchantReference = "reference",
+                Amount = new Adyen.Webhooks.Models.Amount("EUR", 1000),
+                EventCode = "EVENT",
+                Success = true,
+                AdditionalData = new System.Collections.Generic.Dictionary<string, string>
+                {
+                    { "hmacSignature", "ipnxGCaUZ4l8TUW75a71/ghd2Fe5ffvX0pV4TLTntIc=" }
+                }
+            };
+
+            Assert.IsTrue(_webhooksHandler.IsValidHmacSignature(notificationItem));
+        }
+
+        [TestMethod]
+        public void TestIsNotValidHmacSignature()
+        {
+            var notificationItem = new Adyen.Webhooks.Models.NotificationRequestItem
+            {
+                PspReference = "pspReference",
+                OriginalReference = "originalReference",
+                MerchantAccountCode = "merchantAccount",
+                MerchantReference = "reference",
+                Amount = new Adyen.Webhooks.Models.Amount("EUR", 1000),
+                EventCode = "EVENT",
+                Success = true,
+                AdditionalData = new System.Collections.Generic.Dictionary<string, string>
+                {
+                    { "hmacSignature", "invalid" }
+                }
+            };
+
+            Assert.IsFalse(_webhooksHandler.IsValidHmacSignature(notificationItem));
+        }
+        
         [TestMethod]
         public void TestPOSDisplayNotification()
         {

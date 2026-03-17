@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Adyen.Core.Auth;
 using Adyen.Util;
 using Adyen.Webhooks.Client;
 using Adyen.Webhooks.Models;
@@ -23,12 +24,12 @@ namespace Adyen.Webhooks.Handlers
         NotificationRequest DeserializeNotificationRequest(string json);
 
         /// <summary>
-        /// Verifies the HMAC signature from a notification item using the provided HMAC key.
+        /// Verifies the HMAC signature of the webhook notification item.
         /// </summary>
         /// <param name="notificationRequestItem"><see cref="NotificationRequestItem"/> from the webhook payload.</param>
-        /// <param name="hmacKey">The HMAC key, retrieved from the Adyen Customer Area.</param>
         /// <returns>True if the HMAC signature is valid.</returns>
-        bool IsValidHmacSignature(NotificationRequestItem notificationRequestItem, string hmacKey);
+        /// <exception cref="InvalidOperationException">An error has occurred.</exception>
+        bool IsValidHmacSignature(NotificationRequestItem notificationRequestItem);
     }
 
     /// <summary>
@@ -36,6 +37,7 @@ namespace Adyen.Webhooks.Handlers
     /// </summary>
     public class WebhooksHandler : IWebhooksHandler
     {
+        private readonly string? _adyenHmacKey;
         private readonly IHmacValidator _hmacValidator;
 
         /// <inheritdoc/>
@@ -46,10 +48,12 @@ namespace Adyen.Webhooks.Handlers
         /// </summary>
         /// <param name="jsonSerializerOptionsProvider"><see cref="JsonSerializerOptionsProvider"/>.</param>
         /// <param name="hmacValidator"><see cref="IHmacValidator"/>.</param>
-        public WebhooksHandler(JsonSerializerOptionsProvider jsonSerializerOptionsProvider, IHmacValidator hmacValidator)
+        /// <param name="hmacKeyProvider"><see cref="ITokenProvider{HmacKeyToken}"/> which contains the HMAC key configured in <see cref="Adyen.Core.Options.AdyenOptions"/>.</param>
+        public WebhooksHandler(JsonSerializerOptionsProvider jsonSerializerOptionsProvider, IHmacValidator hmacValidator, ITokenProvider<HmacKeyToken>? hmacKeyProvider = null)
         {
             JsonSerializerOptionsProvider = jsonSerializerOptionsProvider;
             _hmacValidator = hmacValidator;
+            _adyenHmacKey = hmacKeyProvider?.Get().AdyenHmacKey;
         }
 
         /// <inheritdoc/>
@@ -59,9 +63,15 @@ namespace Adyen.Webhooks.Handlers
         }
 
         /// <inheritdoc/>
-        public bool IsValidHmacSignature(NotificationRequestItem notificationRequestItem, string hmacKey)
+        public bool IsValidHmacSignature(NotificationRequestItem notificationRequestItem)
         {
-            return _hmacValidator.IsValidHmac(notificationRequestItem, hmacKey);
+            if (string.IsNullOrWhiteSpace(_adyenHmacKey))
+            {
+                throw new InvalidOperationException(
+                    "HMAC validation failed because the ADYEN_HMAC_KEY is not configured.");
+            }
+
+            return _hmacValidator.IsValidHmac(notificationRequestItem, _adyenHmacKey);
         }
     }
 }
