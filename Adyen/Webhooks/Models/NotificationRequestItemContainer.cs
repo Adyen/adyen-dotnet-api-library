@@ -21,16 +21,14 @@
 //  */
 #endregion
 
-using Adyen.Util;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Adyen.Webhooks.Models
 {
-    using Newtonsoft.Json;
-
     public class NotificationRequestItemContainer
     {
-        [JsonProperty("NotificationRequestItem")]
+        [JsonPropertyName("NotificationRequestItem")]
         public NotificationRequestItem NotificationItem { get; set; }
 
         public override string ToString()
