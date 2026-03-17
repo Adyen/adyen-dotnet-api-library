@@ -30,6 +30,11 @@ namespace Adyen.Webhooks.Models
 {
     public class NotificationRequest
     {
+        private static readonly JsonSerializerOptions ToJsonSerializerOptions = new JsonSerializerOptions
+        {
+            WriteIndented = true
+        };
+
         [JsonPropertyName("live")]
         public string Live { get; set; }
 
@@ -57,7 +62,7 @@ namespace Adyen.Webhooks.Models
         /// <returns>JSON string presentation of the object.</returns>
         public string ToJson()
         {
-            return JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
+            return JsonSerializer.Serialize(this, ToJsonSerializerOptions);
         }
     }
 }

@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Adyen.Util;
 
 namespace Adyen.Webhooks.Extensions
 {
@@ -15,6 +16,7 @@ namespace Adyen.Webhooks.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddWebhooksHandler(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton)
         {
+            services.Add(new ServiceDescriptor(typeof(IHmacValidator), typeof(HmacValidator), serviceLifetime));
             services.Add(new ServiceDescriptor(typeof(Adyen.Webhooks.Handlers.IWebhooksHandler), typeof(Adyen.Webhooks.Handlers.WebhooksHandler), serviceLifetime));
             return services;
         }

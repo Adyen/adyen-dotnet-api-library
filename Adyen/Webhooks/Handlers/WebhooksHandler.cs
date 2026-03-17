@@ -36,6 +36,8 @@ namespace Adyen.Webhooks.Handlers
     /// </summary>
     public class WebhooksHandler : IWebhooksHandler
     {
+        private readonly IHmacValidator _hmacValidator;
+
         /// <inheritdoc/>
         public JsonSerializerOptionsProvider JsonSerializerOptionsProvider { get; }
 
@@ -43,9 +45,11 @@ namespace Adyen.Webhooks.Handlers
         /// Initializes the handler utility for deserializing classic webhooks.
         /// </summary>
         /// <param name="jsonSerializerOptionsProvider"><see cref="JsonSerializerOptionsProvider"/>.</param>
-        public WebhooksHandler(JsonSerializerOptionsProvider jsonSerializerOptionsProvider)
+        /// <param name="hmacValidator"><see cref="IHmacValidator"/>.</param>
+        public WebhooksHandler(JsonSerializerOptionsProvider jsonSerializerOptionsProvider, IHmacValidator hmacValidator)
         {
             JsonSerializerOptionsProvider = jsonSerializerOptionsProvider;
+            _hmacValidator = hmacValidator;
         }
 
         /// <inheritdoc/>
@@ -57,7 +61,7 @@ namespace Adyen.Webhooks.Handlers
         /// <inheritdoc/>
         public bool IsValidHmacSignature(NotificationRequestItem notificationRequestItem, string hmacKey)
         {
-            return new HmacValidator().IsValidHmac(notificationRequestItem, hmacKey);
+            return _hmacValidator.IsValidHmac(notificationRequestItem, hmacKey);
         }
     }
 }
