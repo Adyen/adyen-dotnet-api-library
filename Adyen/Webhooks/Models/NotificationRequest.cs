@@ -21,17 +21,24 @@
 //  */
 #endregion
 
-using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Adyen.Webhooks.Models
 {
     public class NotificationRequest
     {
+        private static readonly JsonSerializerOptions ToJsonSerializerOptions = new JsonSerializerOptions
+        {
+            WriteIndented = true
+        };
+
+        [JsonPropertyName("live")]
         public string Live { get; set; }
 
-        [JsonProperty("NotificationItems")]
+        [JsonPropertyName("notificationItems")]
         public List<NotificationRequestItemContainer> NotificationItemContainers { get; set; }
 
         /// <summary>
@@ -55,7 +62,7 @@ namespace Adyen.Webhooks.Models
         /// <returns>JSON string presentation of the object.</returns>
         public string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return JsonSerializer.Serialize(this, ToJsonSerializerOptions);
         }
     }
 }
