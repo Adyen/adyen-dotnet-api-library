@@ -6,7 +6,18 @@ using Adyen.Webhooks.Models;
 
 namespace Adyen.Util
 {
-    public class HmacValidator
+    public interface IHmacValidator
+    {
+        /// <summary>
+        /// Validates a regular webhook with the given <paramref name="hmacKey"/>.
+        /// </summary>
+        /// <param name="notificationRequestItem"><see cref="NotificationRequestItem"/>.</param>
+        /// <param name="hmacKey">The HMAC key, retrieved from the Adyen Customer Area.</param>
+        /// <returns>A return value indicates the HMAC validation succeeded.</returns>
+        bool IsValidHmac(NotificationRequestItem notificationRequestItem, string hmacKey);
+    }
+
+    public class HmacValidator : IHmacValidator
     {
         private const string HmacSignature = "hmacSignature";
 
