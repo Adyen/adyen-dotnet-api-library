@@ -1,8 +1,11 @@
 ﻿using Adyen.Util;
-using Adyen.Webhooks;
 using Adyen.Webhooks.Models;
 using Adyen.Util.TerminalApi;
+using Adyen.Webhooks.Extensions;
+using Adyen.Webhooks.Handlers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 
 namespace Adyen.Test.Webhooks
@@ -10,6 +13,20 @@ namespace Adyen.Test.Webhooks
     [TestClass]
     public class HmacValidatorTest : BaseTest
     {
+        private readonly IWebhooksHandler _webhooksHandler;
+
+        public HmacValidatorTest()
+        {
+            IHost host = Host.CreateDefaultBuilder()
+                .ConfigureWebhooks((context, services, config) =>
+                {
+                    services.AddWebhooksHandler();
+                })
+                .Build();
+
+            _webhooksHandler = host.Services.GetRequiredService<IWebhooksHandler>();
+        }
+
         [TestMethod]
         public void TestHmac()
         {
@@ -57,7 +74,7 @@ namespace Adyen.Test.Webhooks
             string mockPath = GetMockFilePath("mocks/notification-response-refund-fail.json");
             string response = MockFileToString(mockPath);
             var hmacValidator = new HmacValidator();
-            NotificationRequest notificationRequest = JsonConvert.DeserializeObject<NotificationRequest>(response);
+            NotificationRequest notificationRequest = _webhooksHandler.DeserializeNotificationRequest(response);
             NotificationRequestItem notificationItem = notificationRequest.NotificationItemContainers[0].NotificationItem;
             bool isValidHmac = hmacValidator.IsValidHmac(notificationItem, hmacKey);
             Assert.IsTrue(isValidHmac);
