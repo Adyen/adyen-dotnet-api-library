@@ -27,54 +27,43 @@ using Adyen.BalancePlatform.Client;
 namespace Adyen.BalancePlatform.Models
 {
     /// <summary>
-    /// InvalidField.
+    /// PatchableMandate.
     /// </summary>
-    public partial class InvalidField
+    public partial class PatchableMandate
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="InvalidField" /> class.
+        /// Initializes a new instance of the <see cref="PatchableMandate" /> class.
         /// </summary>
-        /// <param name="message">Description of the validation error.</param>
-        /// <param name="name">The field that has an invalid value.</param>
-        /// <param name="value">The invalid value.</param>
+        /// <param name="paymentInstrumentId">The unique identifier of the payment instrument linked to the mandate.</param>
         [JsonConstructor]
-        public InvalidField(string message, string name, string value)
+        public PatchableMandate(Option<Object?> paymentInstrumentId = default)
         {
-            Message = message;
-            Name = name;
-            Value = value;
+            _PaymentInstrumentIdOption = paymentInstrumentId;
             OnCreated();
         }
         
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public InvalidField()
+        public PatchableMandate()
         {
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Description of the validation error.
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentInstrumentId"/> will be populated.
         /// </summary>
-        /// <value>Description of the validation error.</value>
-        [JsonPropertyName("message")]
-        public string Message { get; set; }
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object?> _PaymentInstrumentIdOption { get; private set; }
 
         /// <summary>
-        /// The field that has an invalid value.
+        /// The unique identifier of the payment instrument linked to the mandate.
         /// </summary>
-        /// <value>The field that has an invalid value.</value>
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// The invalid value.
-        /// </summary>
-        /// <value>The invalid value.</value>
-        [JsonPropertyName("value")]
-        public string Value { get; set; }
+        /// <value>The unique identifier of the payment instrument linked to the mandate.</value>
+        [JsonPropertyName("paymentInstrumentId")]
+        public Object? PaymentInstrumentId { get { return this._PaymentInstrumentIdOption; } set { this._PaymentInstrumentIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -83,29 +72,27 @@ namespace Adyen.BalancePlatform.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class InvalidField {\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("class PatchableMandate {\n");
+            sb.Append("  PaymentInstrumentId: ").Append(PaymentInstrumentId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="InvalidField" />
+    /// A Json converter for type <see cref="PatchableMandate" />
     /// </summary>
-    public class InvalidFieldJsonConverter : JsonConverter<InvalidField>
+    public class PatchableMandateJsonConverter : JsonConverter<PatchableMandate>
     {
         /// <summary>
-        /// Deserializes json to <see cref="InvalidField"/>.
+        /// Deserializes json to <see cref="PatchableMandate"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="InvalidField"/>.</returns>
+        /// <returns><see cref="PatchableMandate"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override InvalidField Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override PatchableMandate Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -114,9 +101,7 @@ namespace Adyen.BalancePlatform.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> message = default;
-            Option<string?> name = default;
-            Option<string?> value = default;
+            Option<Object?> paymentInstrumentId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -133,14 +118,8 @@ namespace Adyen.BalancePlatform.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "message":
-                            message = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
-                        case "name":
-                            name = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
-                        case "value":
-                            value = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "paymentInstrumentId":
+                            paymentInstrumentId = new Option<Object?>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -148,52 +127,44 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!message.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(message));
 
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(name));
-
-            if (!value.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(value));
-
-            return new InvalidField(message.Value!, name.Value!, value.Value!);
+            return new PatchableMandate(paymentInstrumentId);
         }
 
         /// <summary>
-        /// Serializes a <see cref="InvalidField"/>.
+        /// Serializes a <see cref="PatchableMandate"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="invalidField"></param>
+        /// <param name="patchableMandate"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, InvalidField invalidField, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, PatchableMandate patchableMandate, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, invalidField, jsonSerializerOptions);
+            WriteProperties(writer, patchableMandate, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="InvalidField"/>.
+        /// Serializes the properties of <see cref="PatchableMandate"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="invalidField"></param>
+        /// <param name="patchableMandate"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, InvalidField invalidField, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, PatchableMandate patchableMandate, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (invalidField.Message != null)
-                writer.WriteString("message", invalidField.Message);
-
-            if (invalidField.Name != null)
-                writer.WriteString("name", invalidField.Name);
-
-            if (invalidField.Value != null)
-                writer.WriteString("value", invalidField.Value);
+            if (patchableMandate._PaymentInstrumentIdOption.IsSet)
+                if (patchableMandate._PaymentInstrumentIdOption.Value != null)
+                {
+                    writer.WritePropertyName("paymentInstrumentId");
+                    JsonSerializer.Serialize(writer, patchableMandate.PaymentInstrumentId, jsonSerializerOptions);
+                }
+                else
+                    writer.WriteNull("paymentInstrumentId");
         }
     }
 }
