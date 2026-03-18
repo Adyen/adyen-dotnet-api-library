@@ -153,6 +153,12 @@ namespace Adyen.ConfigurationWebhooks.Client
                 return Models.CardOrderNotificationRequest.TypeEnum.ToJsonValue(cardOrderNotificationRequestTypeEnum);
             if (obj is Models.IbanAccountIdentification.TypeEnum ibanAccountIdentificationTypeEnum)
                 return Models.IbanAccountIdentification.TypeEnum.ToJsonValue(ibanAccountIdentificationTypeEnum);
+            if (obj is Models.Mandate.StatusEnum mandateStatusEnum)
+                return Models.Mandate.StatusEnum.ToJsonValue(mandateStatusEnum);
+            if (obj is Models.Mandate.TypeEnum mandateTypeEnum)
+                return Models.Mandate.TypeEnum.ToJsonValue(mandateTypeEnum);
+            if (obj is Models.MandateNotificationRequest.TypeEnum mandateNotificationRequestTypeEnum)
+                return Models.MandateNotificationRequest.TypeEnum.ToJsonValue(mandateNotificationRequestTypeEnum);
             if (obj is Models.NetworkTokenNotificationRequest.TypeEnum networkTokenNotificationRequestTypeEnum)
                 return Models.NetworkTokenNotificationRequest.TypeEnum.ToJsonValue(networkTokenNotificationRequestTypeEnum);
             if (obj is Models.PaymentInstrument.TypeEnum paymentInstrumentTypeEnum)
@@ -183,6 +189,8 @@ namespace Adyen.ConfigurationWebhooks.Client
                 return Models.SweepConfigurationV2.TypeEnum.ToJsonValue(sweepConfigurationV2TypeEnum);
             if (obj is Models.SweepSchedule.TypeEnum sweepScheduleTypeEnum)
                 return Models.SweepSchedule.TypeEnum.ToJsonValue(sweepScheduleTypeEnum);
+            if (obj is Models.UKLocalMandateAccountIdentification.TypeEnum uKLocalMandateAccountIdentificationTypeEnum)
+                return Models.UKLocalMandateAccountIdentification.TypeEnum.ToJsonValue(uKLocalMandateAccountIdentificationTypeEnum);
             if (obj is Models.ValidationFacts.ResultEnum validationFactsResultEnum)
                 return Models.ValidationFacts.ResultEnum.ToJsonValue(validationFactsResultEnum);
             if (obj is Models.VerificationDeadline.CapabilitiesEnum verificationDeadlineCapabilitiesEnum)
