@@ -35,7 +35,7 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="PlatformPaymentConfiguration" /> class.
         /// </summary>
         /// <param name="salesDayClosingTime">Specifies at what time a sales day ends for this account.  Possible values: Time in **\&quot;HH:MM\&quot;** format. **HH** ranges from **00** to **07**. **MM** must be **00**.  Default value: **\&quot;00:00\&quot;**.</param>
-        /// <param name="settlementDelayDays">Specifies after how many business days the funds in a settlement batch are made available in this balance account.  Possible values: **1** to **20**, or **null**.  Default value: **null**.</param>
+        /// <param name="settlementDelayDays">Specifies after how many business days the funds in a settlement batch are made available in this balance account. Requires Custom Sales Day Payout to be enabled for your balance account. Contact your account manager or implementation manager to enable this.  Possible values: **1** to **20**, or **null**.  Default value: **null**.</param>
         [JsonConstructor]
         public PlatformPaymentConfiguration(Option<string?> salesDayClosingTime = default, Option<int?> settlementDelayDays = default)
         {
@@ -75,9 +75,9 @@ namespace Adyen.BalancePlatform.Models
         public Option<int?> _SettlementDelayDaysOption { get; private set; }
 
         /// <summary>
-        /// Specifies after how many business days the funds in a settlement batch are made available in this balance account.  Possible values: **1** to **20**, or **null**.  Default value: **null**.
+        /// Specifies after how many business days the funds in a settlement batch are made available in this balance account. Requires Custom Sales Day Payout to be enabled for your balance account. Contact your account manager or implementation manager to enable this.  Possible values: **1** to **20**, or **null**.  Default value: **null**.
         /// </summary>
-        /// <value>Specifies after how many business days the funds in a settlement batch are made available in this balance account.  Possible values: **1** to **20**, or **null**.  Default value: **null**.</value>
+        /// <value>Specifies after how many business days the funds in a settlement batch are made available in this balance account. Requires Custom Sales Day Payout to be enabled for your balance account. Contact your account manager or implementation manager to enable this.  Possible values: **1** to **20**, or **null**.  Default value: **null**.</value>
         [JsonPropertyName("settlementDelayDays")]
         public int? SettlementDelayDays { get { return this._SettlementDelayDaysOption; } set { this._SettlementDelayDaysOption = new(value); } }
 

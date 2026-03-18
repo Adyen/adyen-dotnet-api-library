@@ -243,6 +243,10 @@ namespace Adyen.BalancePlatform.Client
                 return Models.IbanAccountIdentificationRequirement.TypeEnum.ToJsonValue(ibanAccountIdentificationRequirementTypeEnum);
             if (obj is Models.LimitStatus limitStatus)
                 return LimitStatusValueConverter.ToJsonValue(limitStatus);
+            if (obj is Models.MandateStatus mandateStatus)
+                return MandateStatusValueConverter.ToJsonValue(mandateStatus);
+            if (obj is Models.MandateType mandateType)
+                return MandateTypeValueConverter.ToJsonValue(mandateType);
             if (obj is Models.MatchingValuesRestriction.ValueEnum matchingValuesRestrictionValueEnum)
                 return MatchingValuesRestriction.ValueEnum.ToJsonValue(matchingValuesRestrictionValueEnum);
             if (obj is Models.NOLocalAccountIdentification.TypeEnum nOLocalAccountIdentificationTypeEnum)
@@ -323,6 +327,8 @@ namespace Adyen.BalancePlatform.Client
                 return Models.TransactionRule.TypeEnum.ToJsonValue(transactionRuleTypeEnum);
             if (obj is Models.TransactionRule.OutcomeTypeEnum transactionRuleOutcomeTypeEnum)
                 return Models.TransactionRule.OutcomeTypeEnum.ToJsonValue(transactionRuleOutcomeTypeEnum);
+            if (obj is Models.TransactionRule.PurposeEnum transactionRulePurposeEnum)
+                return Models.TransactionRule.PurposeEnum.ToJsonValue(transactionRulePurposeEnum);
             if (obj is Models.TransactionRule.RequestTypeEnum transactionRuleRequestTypeEnum)
                 return Models.TransactionRule.RequestTypeEnum.ToJsonValue(transactionRuleRequestTypeEnum);
             if (obj is Models.TransactionRule.StatusEnum transactionRuleStatusEnum)
@@ -331,6 +337,8 @@ namespace Adyen.BalancePlatform.Client
                 return Models.TransactionRuleInfo.TypeEnum.ToJsonValue(transactionRuleInfoTypeEnum);
             if (obj is Models.TransactionRuleInfo.OutcomeTypeEnum transactionRuleInfoOutcomeTypeEnum)
                 return Models.TransactionRuleInfo.OutcomeTypeEnum.ToJsonValue(transactionRuleInfoOutcomeTypeEnum);
+            if (obj is Models.TransactionRuleInfo.PurposeEnum transactionRuleInfoPurposeEnum)
+                return Models.TransactionRuleInfo.PurposeEnum.ToJsonValue(transactionRuleInfoPurposeEnum);
             if (obj is Models.TransactionRuleInfo.RequestTypeEnum transactionRuleInfoRequestTypeEnum)
                 return Models.TransactionRuleInfo.RequestTypeEnum.ToJsonValue(transactionRuleInfoRequestTypeEnum);
             if (obj is Models.TransactionRuleInfo.StatusEnum transactionRuleInfoStatusEnum)

@@ -28,7 +28,7 @@ namespace Adyen.BalancePlatform.Extensions
 
         /// <summary>
         /// Add all BalancePlatform services using the extension methods in <see cref="ServiceCollectionExtensions"/> and configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
-        /// See: <see cref="AccountHoldersService"/>, <see cref="AuthorizedCardUsersService"/>, <see cref="BalanceAccountsService"/>, <see cref="BalancesService"/>, <see cref="BankAccountValidationService"/>, <see cref="CardOrdersService"/>, <see cref="GrantAccountsService"/>, <see cref="GrantOffersService"/>, <see cref="ManageCardPINService"/>, <see cref="ManageSCADevicesService"/>, <see cref="NetworkTokensService"/>, <see cref="PaymentInstrumentGroupsService"/>, <see cref="PaymentInstrumentsService"/>, <see cref="PlatformService"/>, <see cref="SCAAssociationManagementService"/>, <see cref="SCADeviceManagementService"/>, <see cref="TransactionRulesService"/>, <see cref="TransferLimitsBalanceAccountLevelService"/>, <see cref="TransferLimitsBalancePlatformLevelService"/>, <see cref="TransferRoutesService"/>, 
+        /// See: <see cref="AccountHoldersService"/>, <see cref="AuthorizedCardUsersService"/>, <see cref="BalanceAccountsService"/>, <see cref="BalancesService"/>, <see cref="BankAccountValidationService"/>, <see cref="CardOrdersService"/>, <see cref="DirectDebitMandatesService"/>, <see cref="GrantAccountsService"/>, <see cref="GrantOffersService"/>, <see cref="ManageCardPINService"/>, <see cref="ManageSCADevicesService"/>, <see cref="NetworkTokensService"/>, <see cref="PaymentInstrumentGroupsService"/>, <see cref="PaymentInstrumentsService"/>, <see cref="PlatformService"/>, <see cref="SCAAssociationManagementService"/>, <see cref="SCADeviceManagementService"/>, <see cref="TransactionRulesService"/>, <see cref="TransferLimitsBalanceAccountLevelService"/>, <see cref="TransferLimitsBalancePlatformLevelService"/>, <see cref="TransferRoutesService"/>, 
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/>.</param>
         /// <param name="serviceLifetime"><see cref="ServiceLifetime"/>.</param>
@@ -43,6 +43,7 @@ namespace Adyen.BalancePlatform.Extensions
             services.AddBalancesService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddBankAccountValidationService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddCardOrdersService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddDirectDebitMandatesService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddGrantAccountsService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddGrantOffersService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddManageCardPINService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
@@ -181,6 +182,27 @@ namespace Adyen.BalancePlatform.Extensions
             services.Add(new ServiceDescriptor(typeof(ICardOrdersService), typeof(CardOrdersService), serviceLifetime));
 
             IHttpClientBuilder builder = services.AddHttpClient<ICardOrdersService, CardOrdersService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="DirectDebitMandatesService"/> as the implementation of <see cref="IDirectDebitMandatesService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddDirectDebitMandatesService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<DirectDebitMandatesServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IDirectDebitMandatesService), typeof(DirectDebitMandatesService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IDirectDebitMandatesService, DirectDebitMandatesService>(httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
