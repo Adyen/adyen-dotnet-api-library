@@ -27,25 +27,23 @@ using Adyen.Checkout.Client;
 namespace Adyen.Checkout.Models
 {
     /// <summary>
-    /// RakutenPayDetails.
+    /// AlmaDetails.
     /// </summary>
-    public partial class RakutenPayDetails
+    public partial class AlmaDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RakutenPayDetails" /> class.
+        /// Initializes a new instance of the <see cref="AlmaDetails" /> class.
         /// </summary>
         /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
+        /// <param name="feeType">**Alma payment request fee type**</param>
         /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="type">**rakutenpay** (default to TypeEnum.Rakutenpay)</param>
+        /// <param name="type">The payment method type.</param>
         [JsonConstructor]
-        public RakutenPayDetails(Option<string?> checkoutAttemptId = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<TypeEnum?> type = default)
+        public AlmaDetails(Option<string?> checkoutAttemptId = default, Option<FeeTypeEnum?> feeType = default, Option<string?> sdkData = default, Option<TypeEnum?> type = default)
         {
             _CheckoutAttemptIdOption = checkoutAttemptId;
-            _RecurringDetailReferenceOption = recurringDetailReference;
+            _FeeTypeOption = feeType;
             _SdkDataOption = sdkData;
-            _StoredPaymentMethodIdOption = storedPaymentMethodId;
             _TypeOption = type;
             OnCreated();
         }
@@ -53,16 +51,133 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public RakutenPayDetails()
+        public AlmaDetails()
         {
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// **rakutenpay**
+        /// **Alma payment request fee type**
         /// </summary>
-        /// <value>**rakutenpay**</value>
+        /// <value>**Alma payment request fee type**</value>
+        [JsonConverter(typeof(FeeTypeEnumJsonConverter))]
+        public class FeeTypeEnum : IEnum
+        {
+            /// <summary>
+            /// Returns the value of the FeeTypeEnum.
+            /// </summary>
+            public string? Value { get; set; }
+
+            /// <summary>
+            /// FeeTypeEnum.MerchantPays - merchantPays
+            /// </summary>
+            public static readonly FeeTypeEnum MerchantPays = new("merchantPays");
+
+            /// <summary>
+            /// FeeTypeEnum.ShopperPays - shopperPays
+            /// </summary>
+            public static readonly FeeTypeEnum ShopperPays = new("shopperPays");
+        
+            private FeeTypeEnum(string? value)
+            {
+                Value = value;
+            }
+
+            /// <summary>
+            /// Converts a string to a <see cref="FeeTypeEnum"/> implicitly.
+            /// </summary>
+            /// <param name="value">The string value to convert. Defaults to null.</param>
+            /// <returns>A new <see cref="FeeTypeEnum"/> instance initialized with the string value.</returns>
+            public static implicit operator FeeTypeEnum?(string? value) => value == null ? null : new FeeTypeEnum(value);
+    
+            /// <summary>
+            /// Converts a <see cref="FeeTypeEnum"/> instance to a string implicitly.
+            /// </summary>
+            /// <param name="option">The <see cref="FeeTypeEnum"/> instance. Default to null.</param>
+            /// <returns>String value of the <see cref="FeeTypeEnum"/> instance./// </returns>
+            public static implicit operator string?(FeeTypeEnum? option) => option?.Value;
+        
+            public static bool operator ==(FeeTypeEnum? left, FeeTypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+    
+            public static bool operator !=(FeeTypeEnum? left, FeeTypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            public override bool Equals(object? obj) => obj is FeeTypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+    
+            public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+        
+            public override string ToString() => Value ?? string.Empty;
+        
+            /// <summary>
+            /// Returns a <see cref="FeeTypeEnum?"/>.
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns><see cref="FeeTypeEnum"/> or null.</returns>
+            public static FeeTypeEnum? FromStringOrDefault(string value)
+            {
+                return value switch {
+                    "merchantPays" => FeeTypeEnum.MerchantPays,
+                    "shopperPays" => FeeTypeEnum.ShopperPays,
+                    _ => null,
+                };
+            }
+    
+            /// <summary>
+            /// Converts the <see cref="FeeTypeEnum"/> to the json value.
+            /// </summary>
+            /// <param name="value"><see cref="FeeTypeEnum"/></param>
+            /// <returns>String value of the enum.</returns>
+            /// <exception cref="NotImplementedException"></exception>
+            public static string? ToJsonValue(FeeTypeEnum? value)
+            {
+                if (value == null)
+                    return null;
+            
+                if (value == FeeTypeEnum.MerchantPays)
+                    return "merchantPays";
+                
+                if (value == FeeTypeEnum.ShopperPays)
+                    return "shopperPays";
+                
+                return null;
+            }
+            
+            /// <summary>
+            /// JsonConverter for writing FeeTypeEnum.               
+            /// </summary>
+            public class FeeTypeEnumJsonConverter : JsonConverter<FeeTypeEnum>
+            {
+                public override FeeTypeEnum? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions jsonOptions)
+                {
+                    string value = reader.GetString();
+                    return value == null ? null : FeeTypeEnum.FromStringOrDefault(value) ?? new FeeTypeEnum(value);
+                }
+
+                public override void Write(Utf8JsonWriter writer, FeeTypeEnum value, JsonSerializerOptions jsonOptions)
+                {
+                    writer.WriteStringValue(FeeTypeEnum.ToJsonValue(value));
+                }
+            }
+        }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="FeeType"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<FeeTypeEnum?> _FeeTypeOption { get; private set; }
+
+        /// <summary>
+        /// **Alma payment request fee type**
+        /// </summary>
+        /// <value>**Alma payment request fee type**</value>
+        [JsonPropertyName("feeType")]
+        public FeeTypeEnum? FeeType { get { return this._FeeTypeOption; } set { this._FeeTypeOption = new(value); } }
+
+        /// <summary>
+        /// The payment method type.
+        /// </summary>
+        /// <value>The payment method type.</value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
         public class TypeEnum : IEnum
         {
@@ -72,9 +187,9 @@ namespace Adyen.Checkout.Models
             public string? Value { get; set; }
 
             /// <summary>
-            /// TypeEnum.Rakutenpay - rakutenpay
+            /// TypeEnum.Alma - alma
             /// </summary>
-            public static readonly TypeEnum Rakutenpay = new("rakutenpay");
+            public static readonly TypeEnum Alma = new("alma");
         
             private TypeEnum(string? value)
             {
@@ -113,7 +228,7 @@ namespace Adyen.Checkout.Models
             public static TypeEnum? FromStringOrDefault(string value)
             {
                 return value switch {
-                    "rakutenpay" => TypeEnum.Rakutenpay,
+                    "alma" => TypeEnum.Alma,
                     _ => null,
                 };
             }
@@ -129,8 +244,8 @@ namespace Adyen.Checkout.Models
                 if (value == null)
                     return null;
             
-                if (value == TypeEnum.Rakutenpay)
-                    return "rakutenpay";
+                if (value == TypeEnum.Alma)
+                    return "alma";
                 
                 return null;
             }
@@ -161,9 +276,9 @@ namespace Adyen.Checkout.Models
         public Option<TypeEnum?> _TypeOption { get; private set; }
 
         /// <summary>
-        /// **rakutenpay**
+        /// The payment method type.
         /// </summary>
-        /// <value>**rakutenpay**</value>
+        /// <value>The payment method type.</value>
         [JsonPropertyName("type")]
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
@@ -182,21 +297,6 @@ namespace Adyen.Checkout.Models
         public string? CheckoutAttemptId { get { return this._CheckoutAttemptIdOption; } set { this._CheckoutAttemptIdOption = new(value); } }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="RecurringDetailReference"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _RecurringDetailReferenceOption { get; private set; }
-
-        /// <summary>
-        /// This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.
-        /// </summary>
-        /// <value>This is the `recurringDetailReference` returned in the response when you created the token.</value>
-        [JsonPropertyName("recurringDetailReference")]
-        [Obsolete("Deprecated since Adyen Checkout API v49. Use `storedPaymentMethodId` instead.")]
-        public string? RecurringDetailReference { get { return this._RecurringDetailReferenceOption; } set { this._RecurringDetailReferenceOption = new(value); } }
-
-        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="SdkData"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -211,31 +311,16 @@ namespace Adyen.Checkout.Models
         public string? SdkData { get { return this._SdkDataOption; } set { this._SdkDataOption = new(value); } }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="StoredPaymentMethodId"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _StoredPaymentMethodIdOption { get; private set; }
-
-        /// <summary>
-        /// This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.
-        /// </summary>
-        /// <value>This is the `recurringDetailReference` returned in the response when you created the token.</value>
-        [JsonPropertyName("storedPaymentMethodId")]
-        public string? StoredPaymentMethodId { get { return this._StoredPaymentMethodIdOption; } set { this._StoredPaymentMethodIdOption = new(value); } }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RakutenPayDetails {\n");
+            sb.Append("class AlmaDetails {\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
-            sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
+            sb.Append("  FeeType: ").Append(FeeType).Append("\n");
             sb.Append("  SdkData: ").Append(SdkData).Append("\n");
-            sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -243,19 +328,19 @@ namespace Adyen.Checkout.Models
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="RakutenPayDetails" />
+    /// A Json converter for type <see cref="AlmaDetails" />
     /// </summary>
-    public class RakutenPayDetailsJsonConverter : JsonConverter<RakutenPayDetails>
+    public class AlmaDetailsJsonConverter : JsonConverter<AlmaDetails>
     {
         /// <summary>
-        /// Deserializes json to <see cref="RakutenPayDetails"/>.
+        /// Deserializes json to <see cref="AlmaDetails"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="RakutenPayDetails"/>.</returns>
+        /// <returns><see cref="AlmaDetails"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override RakutenPayDetails Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override AlmaDetails Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -265,10 +350,9 @@ namespace Adyen.Checkout.Models
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string?> checkoutAttemptId = default;
-            Option<string?> recurringDetailReference = default;
+            Option<AlmaDetails.FeeTypeEnum?> feeType = default;
             Option<string?> sdkData = default;
-            Option<string?> storedPaymentMethodId = default;
-            Option<RakutenPayDetails.TypeEnum?> type = default;
+            Option<AlmaDetails.TypeEnum?> type = default;
 
             while (utf8JsonReader.Read())
             {
@@ -288,18 +372,16 @@ namespace Adyen.Checkout.Models
                         case "checkoutAttemptId":
                             checkoutAttemptId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
-                        case "recurringDetailReference":
-                            recurringDetailReference = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "feeType":
+                            string? feeTypeRawValue = utf8JsonReader.GetString();
+                            feeType = new Option<AlmaDetails.FeeTypeEnum?>(AlmaDetails.FeeTypeEnum.FromStringOrDefault(feeTypeRawValue));
                             break;
                         case "sdkData":
                             sdkData = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
-                        case "storedPaymentMethodId":
-                            storedPaymentMethodId = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<RakutenPayDetails.TypeEnum?>(RakutenPayDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<AlmaDetails.TypeEnum?>(AlmaDetails.TypeEnum.FromStringOrDefault(typeRawValue));
                             break;
                         default:
                             break;
@@ -308,54 +390,52 @@ namespace Adyen.Checkout.Models
             }
             
 
-            return new RakutenPayDetails(checkoutAttemptId, recurringDetailReference, sdkData, storedPaymentMethodId, type);
+            return new AlmaDetails(checkoutAttemptId, feeType, sdkData, type);
         }
 
         /// <summary>
-        /// Serializes a <see cref="RakutenPayDetails"/>.
+        /// Serializes a <see cref="AlmaDetails"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="rakutenPayDetails"></param>
+        /// <param name="almaDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, RakutenPayDetails rakutenPayDetails, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, AlmaDetails almaDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, rakutenPayDetails, jsonSerializerOptions);
+            WriteProperties(writer, almaDetails, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="RakutenPayDetails"/>.
+        /// Serializes the properties of <see cref="AlmaDetails"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="rakutenPayDetails"></param>
+        /// <param name="almaDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, RakutenPayDetails rakutenPayDetails, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, AlmaDetails almaDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (rakutenPayDetails._CheckoutAttemptIdOption.IsSet)
-                if (rakutenPayDetails.CheckoutAttemptId != null)
-                    writer.WriteString("checkoutAttemptId", rakutenPayDetails.CheckoutAttemptId);
+            if (almaDetails._CheckoutAttemptIdOption.IsSet)
+                if (almaDetails.CheckoutAttemptId != null)
+                    writer.WriteString("checkoutAttemptId", almaDetails.CheckoutAttemptId);
 
-            if (rakutenPayDetails._RecurringDetailReferenceOption.IsSet)
-                if (rakutenPayDetails.RecurringDetailReference != null)
-                    writer.WriteString("recurringDetailReference", rakutenPayDetails.RecurringDetailReference);
-
-            if (rakutenPayDetails._SdkDataOption.IsSet)
-                if (rakutenPayDetails.SdkData != null)
-                    writer.WriteString("sdkData", rakutenPayDetails.SdkData);
-
-            if (rakutenPayDetails._StoredPaymentMethodIdOption.IsSet)
-                if (rakutenPayDetails.StoredPaymentMethodId != null)
-                    writer.WriteString("storedPaymentMethodId", rakutenPayDetails.StoredPaymentMethodId);
-
-            if (rakutenPayDetails._TypeOption.IsSet && rakutenPayDetails.Type != null) 
+            if (almaDetails._FeeTypeOption.IsSet && almaDetails.FeeType != null) 
             {
-                string? typeRawValue = RakutenPayDetails.TypeEnum.ToJsonValue(rakutenPayDetails._TypeOption.Value!.Value);
+                string? feeTypeRawValue = AlmaDetails.FeeTypeEnum.ToJsonValue(almaDetails._FeeTypeOption.Value!.Value);
+                writer.WriteString("feeType", feeTypeRawValue);
+            }
+            
+            if (almaDetails._SdkDataOption.IsSet)
+                if (almaDetails.SdkData != null)
+                    writer.WriteString("sdkData", almaDetails.SdkData);
+
+            if (almaDetails._TypeOption.IsSet && almaDetails.Type != null) 
+            {
+                string? typeRawValue = AlmaDetails.TypeEnum.ToJsonValue(almaDetails._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);
             }
         }

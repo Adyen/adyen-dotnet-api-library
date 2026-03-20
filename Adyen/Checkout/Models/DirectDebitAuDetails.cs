@@ -27,21 +27,25 @@ using Adyen.Checkout.Client;
 namespace Adyen.Checkout.Models
 {
     /// <summary>
-    /// RakutenPayDetails.
+    /// DirectDebitAuDetails.
     /// </summary>
-    public partial class RakutenPayDetails
+    public partial class DirectDebitAuDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RakutenPayDetails" /> class.
+        /// Initializes a new instance of the <see cref="DirectDebitAuDetails" /> class.
         /// </summary>
+        /// <param name="bankAccountNumber">The shopper&#39;s banking account number used to complete payment.</param>
+        /// <param name="bankBranchCode">The shopper&#39;s BSB (their bank&#39;s branch code) number used to complete payment.</param>
         /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
         /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="type">**rakutenpay** (default to TypeEnum.Rakutenpay)</param>
+        /// <param name="type">**directdebit_AU** (default to TypeEnum.DirectdebitAU)</param>
         [JsonConstructor]
-        public RakutenPayDetails(Option<string?> checkoutAttemptId = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<TypeEnum?> type = default)
+        public DirectDebitAuDetails(Option<string?> bankAccountNumber = default, Option<string?> bankBranchCode = default, Option<string?> checkoutAttemptId = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<TypeEnum?> type = default)
         {
+            _BankAccountNumberOption = bankAccountNumber;
+            _BankBranchCodeOption = bankBranchCode;
             _CheckoutAttemptIdOption = checkoutAttemptId;
             _RecurringDetailReferenceOption = recurringDetailReference;
             _SdkDataOption = sdkData;
@@ -53,16 +57,16 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public RakutenPayDetails()
+        public DirectDebitAuDetails()
         {
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// **rakutenpay**
+        /// **directdebit_AU**
         /// </summary>
-        /// <value>**rakutenpay**</value>
+        /// <value>**directdebit_AU**</value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
         public class TypeEnum : IEnum
         {
@@ -72,9 +76,9 @@ namespace Adyen.Checkout.Models
             public string? Value { get; set; }
 
             /// <summary>
-            /// TypeEnum.Rakutenpay - rakutenpay
+            /// TypeEnum.DirectdebitAU - directdebit_AU
             /// </summary>
-            public static readonly TypeEnum Rakutenpay = new("rakutenpay");
+            public static readonly TypeEnum DirectdebitAU = new("directdebit_AU");
         
             private TypeEnum(string? value)
             {
@@ -113,7 +117,7 @@ namespace Adyen.Checkout.Models
             public static TypeEnum? FromStringOrDefault(string value)
             {
                 return value switch {
-                    "rakutenpay" => TypeEnum.Rakutenpay,
+                    "directdebit_AU" => TypeEnum.DirectdebitAU,
                     _ => null,
                 };
             }
@@ -129,8 +133,8 @@ namespace Adyen.Checkout.Models
                 if (value == null)
                     return null;
             
-                if (value == TypeEnum.Rakutenpay)
-                    return "rakutenpay";
+                if (value == TypeEnum.DirectdebitAU)
+                    return "directdebit_AU";
                 
                 return null;
             }
@@ -161,11 +165,39 @@ namespace Adyen.Checkout.Models
         public Option<TypeEnum?> _TypeOption { get; private set; }
 
         /// <summary>
-        /// **rakutenpay**
+        /// **directdebit_AU**
         /// </summary>
-        /// <value>**rakutenpay**</value>
+        /// <value>**directdebit_AU**</value>
         [JsonPropertyName("type")]
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="BankAccountNumber"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _BankAccountNumberOption { get; private set; }
+
+        /// <summary>
+        /// The shopper&#39;s banking account number used to complete payment.
+        /// </summary>
+        /// <value>The shopper's banking account number used to complete payment.</value>
+        [JsonPropertyName("bankAccountNumber")]
+        public string? BankAccountNumber { get { return this._BankAccountNumberOption; } set { this._BankAccountNumberOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="BankBranchCode"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _BankBranchCodeOption { get; private set; }
+
+        /// <summary>
+        /// The shopper&#39;s BSB (their bank&#39;s branch code) number used to complete payment.
+        /// </summary>
+        /// <value>The shopper's BSB (their bank's branch code) number used to complete payment.</value>
+        [JsonPropertyName("bankBranchCode")]
+        public string? BankBranchCode { get { return this._BankBranchCodeOption; } set { this._BankBranchCodeOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
@@ -231,7 +263,9 @@ namespace Adyen.Checkout.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RakutenPayDetails {\n");
+            sb.Append("class DirectDebitAuDetails {\n");
+            sb.Append("  BankAccountNumber: ").Append(BankAccountNumber).Append("\n");
+            sb.Append("  BankBranchCode: ").Append(BankBranchCode).Append("\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  SdkData: ").Append(SdkData).Append("\n");
@@ -243,19 +277,19 @@ namespace Adyen.Checkout.Models
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="RakutenPayDetails" />
+    /// A Json converter for type <see cref="DirectDebitAuDetails" />
     /// </summary>
-    public class RakutenPayDetailsJsonConverter : JsonConverter<RakutenPayDetails>
+    public class DirectDebitAuDetailsJsonConverter : JsonConverter<DirectDebitAuDetails>
     {
         /// <summary>
-        /// Deserializes json to <see cref="RakutenPayDetails"/>.
+        /// Deserializes json to <see cref="DirectDebitAuDetails"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="RakutenPayDetails"/>.</returns>
+        /// <returns><see cref="DirectDebitAuDetails"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override RakutenPayDetails Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override DirectDebitAuDetails Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -264,11 +298,13 @@ namespace Adyen.Checkout.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<string?> bankAccountNumber = default;
+            Option<string?> bankBranchCode = default;
             Option<string?> checkoutAttemptId = default;
             Option<string?> recurringDetailReference = default;
             Option<string?> sdkData = default;
             Option<string?> storedPaymentMethodId = default;
-            Option<RakutenPayDetails.TypeEnum?> type = default;
+            Option<DirectDebitAuDetails.TypeEnum?> type = default;
 
             while (utf8JsonReader.Read())
             {
@@ -285,6 +321,12 @@ namespace Adyen.Checkout.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "bankAccountNumber":
+                            bankAccountNumber = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "bankBranchCode":
+                            bankBranchCode = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "checkoutAttemptId":
                             checkoutAttemptId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -299,7 +341,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<RakutenPayDetails.TypeEnum?>(RakutenPayDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<DirectDebitAuDetails.TypeEnum?>(DirectDebitAuDetails.TypeEnum.FromStringOrDefault(typeRawValue));
                             break;
                         default:
                             break;
@@ -308,54 +350,62 @@ namespace Adyen.Checkout.Models
             }
             
 
-            return new RakutenPayDetails(checkoutAttemptId, recurringDetailReference, sdkData, storedPaymentMethodId, type);
+            return new DirectDebitAuDetails(bankAccountNumber, bankBranchCode, checkoutAttemptId, recurringDetailReference, sdkData, storedPaymentMethodId, type);
         }
 
         /// <summary>
-        /// Serializes a <see cref="RakutenPayDetails"/>.
+        /// Serializes a <see cref="DirectDebitAuDetails"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="rakutenPayDetails"></param>
+        /// <param name="directDebitAuDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, RakutenPayDetails rakutenPayDetails, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, DirectDebitAuDetails directDebitAuDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, rakutenPayDetails, jsonSerializerOptions);
+            WriteProperties(writer, directDebitAuDetails, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="RakutenPayDetails"/>.
+        /// Serializes the properties of <see cref="DirectDebitAuDetails"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="rakutenPayDetails"></param>
+        /// <param name="directDebitAuDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, RakutenPayDetails rakutenPayDetails, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, DirectDebitAuDetails directDebitAuDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (rakutenPayDetails._CheckoutAttemptIdOption.IsSet)
-                if (rakutenPayDetails.CheckoutAttemptId != null)
-                    writer.WriteString("checkoutAttemptId", rakutenPayDetails.CheckoutAttemptId);
+            if (directDebitAuDetails._BankAccountNumberOption.IsSet)
+                if (directDebitAuDetails.BankAccountNumber != null)
+                    writer.WriteString("bankAccountNumber", directDebitAuDetails.BankAccountNumber);
 
-            if (rakutenPayDetails._RecurringDetailReferenceOption.IsSet)
-                if (rakutenPayDetails.RecurringDetailReference != null)
-                    writer.WriteString("recurringDetailReference", rakutenPayDetails.RecurringDetailReference);
+            if (directDebitAuDetails._BankBranchCodeOption.IsSet)
+                if (directDebitAuDetails.BankBranchCode != null)
+                    writer.WriteString("bankBranchCode", directDebitAuDetails.BankBranchCode);
 
-            if (rakutenPayDetails._SdkDataOption.IsSet)
-                if (rakutenPayDetails.SdkData != null)
-                    writer.WriteString("sdkData", rakutenPayDetails.SdkData);
+            if (directDebitAuDetails._CheckoutAttemptIdOption.IsSet)
+                if (directDebitAuDetails.CheckoutAttemptId != null)
+                    writer.WriteString("checkoutAttemptId", directDebitAuDetails.CheckoutAttemptId);
 
-            if (rakutenPayDetails._StoredPaymentMethodIdOption.IsSet)
-                if (rakutenPayDetails.StoredPaymentMethodId != null)
-                    writer.WriteString("storedPaymentMethodId", rakutenPayDetails.StoredPaymentMethodId);
+            if (directDebitAuDetails._RecurringDetailReferenceOption.IsSet)
+                if (directDebitAuDetails.RecurringDetailReference != null)
+                    writer.WriteString("recurringDetailReference", directDebitAuDetails.RecurringDetailReference);
 
-            if (rakutenPayDetails._TypeOption.IsSet && rakutenPayDetails.Type != null) 
+            if (directDebitAuDetails._SdkDataOption.IsSet)
+                if (directDebitAuDetails.SdkData != null)
+                    writer.WriteString("sdkData", directDebitAuDetails.SdkData);
+
+            if (directDebitAuDetails._StoredPaymentMethodIdOption.IsSet)
+                if (directDebitAuDetails.StoredPaymentMethodId != null)
+                    writer.WriteString("storedPaymentMethodId", directDebitAuDetails.StoredPaymentMethodId);
+
+            if (directDebitAuDetails._TypeOption.IsSet && directDebitAuDetails.Type != null) 
             {
-                string? typeRawValue = RakutenPayDetails.TypeEnum.ToJsonValue(rakutenPayDetails._TypeOption.Value!.Value);
+                string? typeRawValue = DirectDebitAuDetails.TypeEnum.ToJsonValue(directDebitAuDetails._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);
             }
         }

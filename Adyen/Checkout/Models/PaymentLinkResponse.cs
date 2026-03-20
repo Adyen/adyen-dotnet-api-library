@@ -2,9 +2,9 @@
 /*
  * Adyen Checkout API
  *
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v71/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v71/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=71) to find out what changed in this version!
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v72/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v72/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=72) to find out what changed in this version!
  *
- * The version of the OpenAPI document: 71
+ * The version of the OpenAPI document: 72
  * Generated by: https://github.com/openapitools/openapi-generator.git
  */
 
@@ -34,40 +34,40 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentLinkResponse" /> class.
         /// </summary>
-        /// <param name="amount">amount</param>
+        /// <param name="amount">The payment amount and currency.</param>
         /// <param name="id">A unique identifier of the payment link.</param>
         /// <param name="merchantAccount">The merchant account identifier for which the payment link is created.</param>
         /// <param name="reference">A reference that is used to uniquely identify the payment in future communications about the payment status.</param>
         /// <param name="status">Status of the payment link. Possible values: * **active**: The link can be used to make payments. * **expired**: The expiry date for the payment link has passed. Shoppers can no longer use the link to make payments. * **completed**: The shopper completed the payment. * **paymentPending**: The shopper is in the process of making the payment. Applies to payment methods with an asynchronous flow.</param>
         /// <param name="url">The URL at which the shopper can complete the payment.</param>
         /// <param name="allowedPaymentMethods">List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;applepay\&quot;]&#x60;</param>
-        /// <param name="applicationInfo">applicationInfo</param>
-        /// <param name="billingAddress">billingAddress</param>
+        /// <param name="applicationInfo">Information about your application. For more details, see [Building Adyen solutions](https://docs.adyen.com/development-resources/building-adyen-solutions).</param>
+        /// <param name="billingAddress">The address where to send the invoice.</param>
         /// <param name="blockedPaymentMethods">List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;applepay\&quot;]&#x60;</param>
         /// <param name="captureDelayHours">The delay between the authorisation and scheduled auto-capture, specified in hours.</param>
         /// <param name="countryCode">The shopper&#39;s two-letter country code.</param>
         /// <param name="dateOfBirth">The shopper&#39;s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD</param>
         /// <param name="deliverAt">The date and time when the purchased goods should be delivered.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.</param>
-        /// <param name="deliveryAddress">deliveryAddress</param>
+        /// <param name="deliveryAddress">The address where the purchased goods should be delivered.</param>
         /// <param name="description">A short description visible on the payment page. Maximum length: 280 characters.</param>
         /// <param name="expiresAt">The date when the payment link expires.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format with time zone offset: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.  The maximum expiry date is 70 days after the payment link is created.  If not provided, the payment link expires 24 hours after it was created.</param>
-        /// <param name="fundOrigin">fundOrigin</param>
-        /// <param name="fundRecipient">fundRecipient</param>
+        /// <param name="fundOrigin">The person or entity funding the money.</param>
+        /// <param name="fundRecipient">the person or entity receiving the money</param>
         /// <param name="installmentOptions">A set of key-value pairs that specifies the installment options available per payment method. The key must be a payment method name in lowercase. For example, **card** to specify installment options for all cards, or **visa** or **mc**. The value must be an object containing the installment options.</param>
         /// <param name="lineItems">Price and product information about the purchased items, to be included on the invoice sent to the shopper. &gt; This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty.</param>
         /// <param name="manualCapture">Indicates if the payment must be [captured manually](https://docs.adyen.com/online-payments/capture).</param>
         /// <param name="mcc">The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.</param>
         /// <param name="merchantOrderReference">This reference allows linking multiple transactions to each other for reporting purposes (for example, order auth-rate). The reference should be unique per billing cycle.</param>
         /// <param name="metadata">Metadata consists of entries, each of which includes a key and a value. Limitations: * Maximum 20 key-value pairs per request. Otherwise, error \&quot;177\&quot; occurs: \&quot;Metadata size exceeds limit\&quot; * Maximum 20 characters per key. Otherwise, error \&quot;178\&quot; occurs: \&quot;Metadata key size exceeds limit\&quot; * A key cannot have the name &#x60;checkout.linkId&#x60;. Any value that you provide with this key is going to be replaced by the real payment link ID.</param>
-        /// <param name="platformChargebackLogic">platformChargebackLogic</param>
+        /// <param name="platformChargebackLogic">Dictates the behavior of how a potential chargeback should be booked when using Adyen Platforms.</param>
         /// <param name="recurringProcessingModel">Defines a recurring payment type. Required when &#x60;storePaymentMethodMode&#x60; is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </param>
         /// <param name="requiredShopperFields">List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information).  Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper&#39;s email address. * **shopperName** – The shopper&#39;s full name. * **telephoneNumber** – The shopper&#39;s phone number. </param>
         /// <param name="returnUrl">Website URL used for redirection after payment is completed. If provided, a **Continue** button will be shown on the payment page. If shoppers select the button, they are redirected to the specified URL.</param>
         /// <param name="reusable">Indicates whether the payment link can be reused for multiple payments. If not provided, this defaults to **false** which means the link can be used for one successful payment only.</param>
-        /// <param name="riskData">riskData</param>
+        /// <param name="riskData">Any risk-related settings to apply to the payment.</param>
         /// <param name="shopperEmail">The shopper&#39;s email address.</param>
         /// <param name="shopperLocale">The language to be used in the payment page, specified by a combination of a language and country code. For example, &#x60;en-US&#x60;.  For a list of shopper locales that Pay by Link supports, refer to [Language and localization](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#language).</param>
-        /// <param name="shopperName">shopperName</param>
+        /// <param name="shopperName">The shopper&#39;s full name. This object is required for some payment methods such as AfterPay, Klarna, or if you&#39;re enrolled in the PayPal Seller Protection program.</param>
         /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.</param>
         /// <param name="shopperStatement">The text to be shown on the shopper&#39;s bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , &#39; _ - ? + * /_**.</param>
         /// <param name="showRemovePaymentMethodButton">Set to **false** to hide the button that lets the shopper remove a stored payment method. (default to true)</param>
@@ -78,7 +78,7 @@ namespace Adyen.Checkout.Models
         /// <param name="storePaymentMethodMode">Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the &#x60;shopperReference&#x60; is provided, the Drop-in/Component shows a checkbox where the shopper can select to store their payment details for card payments. * **enabled** – If the &#x60;shopperReference&#x60; is provided, the details will be stored without asking the shopper for consent.   When set to **askForConsent** or **enabled**, you must also include the &#x60;recurringProcessingModel&#x60; parameter.</param>
         /// <param name="telephoneNumber">The shopper&#39;s telephone number.  The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we do not submit it for authentication. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the &#x60;shopperEmail&#x60;.</param>
         /// <param name="themeId">A [theme](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#themes) to customize the appearance of the payment page. If not specified, the payment page is rendered according to the theme set as default in your Customer Area.</param>
-        /// <param name="threeDS2RequestData">threeDS2RequestData</param>
+        /// <param name="threeDS2RequestData">The cardholder phone number need to be part of the authentication message for payment data. It is a requirement for Visa Secure Authentication Data Field Mandate effective August 2024.</param>
         /// <param name="updatedAt">The date when the payment link status was updated.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.</param>
         [JsonConstructor]
         public PaymentLinkResponse(Amount amount, string id, string merchantAccount, string reference, StatusEnum status, string url, Option<List<string>?> allowedPaymentMethods = default, Option<ApplicationInfo?> applicationInfo = default, Option<Address?> billingAddress = default, Option<List<string>?> blockedPaymentMethods = default, Option<int?> captureDelayHours = default, Option<string?> countryCode = default, Option<DateOnly?> dateOfBirth = default, Option<DateTimeOffset?> deliverAt = default, Option<Address?> deliveryAddress = default, Option<string?> description = default, Option<DateTimeOffset?> expiresAt = default, Option<FundOrigin?> fundOrigin = default, Option<FundRecipient?> fundRecipient = default, Option<Dictionary<string, InstallmentOption>?> installmentOptions = default, Option<List<LineItem>?> lineItems = default, Option<bool?> manualCapture = default, Option<string?> mcc = default, Option<string?> merchantOrderReference = default, Option<Dictionary<string, string>?> metadata = default, Option<PlatformChargebackLogic?> platformChargebackLogic = default, Option<RecurringProcessingModelEnum?> recurringProcessingModel = default, Option<List<PaymentLinkResponse.RequiredShopperFieldsEnum>?> requiredShopperFields = default, Option<string?> returnUrl = default, Option<bool?> reusable = default, Option<RiskData?> riskData = default, Option<string?> shopperEmail = default, Option<string?> shopperLocale = default, Option<Name?> shopperName = default, Option<string?> shopperReference = default, Option<string?> shopperStatement = default, Option<bool?> showRemovePaymentMethodButton = default, Option<string?> socialSecurityNumber = default, Option<bool?> splitCardFundingSources = default, Option<List<Split>?> splits = default, Option<string?> store = default, Option<StorePaymentMethodModeEnum?> storePaymentMethodMode = default, Option<string?> telephoneNumber = default, Option<string?> themeId = default, Option<CheckoutSessionThreeDS2RequestData?> threeDS2RequestData = default, Option<DateTimeOffset?> updatedAt = default)
@@ -660,8 +660,9 @@ namespace Adyen.Checkout.Models
         public StorePaymentMethodModeEnum? StorePaymentMethodMode { get { return this._StorePaymentMethodModeOption; } set { this._StorePaymentMethodModeOption = new(value); } }
 
         /// <summary>
-        /// <see cref="Amount"/>.
+        /// The payment amount and currency.
         /// </summary>
+        /// <value>The payment amount and currency.</value>
         [JsonPropertyName("amount")]
         public Amount Amount { get; set; }
 
@@ -715,8 +716,9 @@ namespace Adyen.Checkout.Models
         public Option<ApplicationInfo?> _ApplicationInfoOption { get; private set; }
 
         /// <summary>
-        /// <see cref="ApplicationInfo"/>.
+        /// Information about your application. For more details, see [Building Adyen solutions](https://docs.adyen.com/development-resources/building-adyen-solutions).
         /// </summary>
+        /// <value>Information about your application. For more details, see [Building Adyen solutions](https://docs.adyen.com/development-resources/building-adyen-solutions).</value>
         [JsonPropertyName("applicationInfo")]
         public ApplicationInfo? ApplicationInfo { get { return this._ApplicationInfoOption; } set { this._ApplicationInfoOption = new(value); } }
 
@@ -728,8 +730,9 @@ namespace Adyen.Checkout.Models
         public Option<Address?> _BillingAddressOption { get; private set; }
 
         /// <summary>
-        /// <see cref="BillingAddress"/>.
+        /// The address where to send the invoice.
         /// </summary>
+        /// <value>The address where to send the invoice.</value>
         [JsonPropertyName("billingAddress")]
         public Address? BillingAddress { get { return this._BillingAddressOption; } set { this._BillingAddressOption = new(value); } }
 
@@ -811,8 +814,9 @@ namespace Adyen.Checkout.Models
         public Option<Address?> _DeliveryAddressOption { get; private set; }
 
         /// <summary>
-        /// <see cref="DeliveryAddress"/>.
+        /// The address where the purchased goods should be delivered.
         /// </summary>
+        /// <value>The address where the purchased goods should be delivered.</value>
         [JsonPropertyName("deliveryAddress")]
         public Address? DeliveryAddress { get { return this._DeliveryAddressOption; } set { this._DeliveryAddressOption = new(value); } }
 
@@ -852,8 +856,9 @@ namespace Adyen.Checkout.Models
         public Option<FundOrigin?> _FundOriginOption { get; private set; }
 
         /// <summary>
-        /// <see cref="FundOrigin"/>.
+        /// The person or entity funding the money.
         /// </summary>
+        /// <value>The person or entity funding the money.</value>
         [JsonPropertyName("fundOrigin")]
         public FundOrigin? FundOrigin { get { return this._FundOriginOption; } set { this._FundOriginOption = new(value); } }
 
@@ -865,8 +870,9 @@ namespace Adyen.Checkout.Models
         public Option<FundRecipient?> _FundRecipientOption { get; private set; }
 
         /// <summary>
-        /// <see cref="FundRecipient"/>.
+        /// the person or entity receiving the money
         /// </summary>
+        /// <value>the person or entity receiving the money</value>
         [JsonPropertyName("fundRecipient")]
         public FundRecipient? FundRecipient { get { return this._FundRecipientOption; } set { this._FundRecipientOption = new(value); } }
 
@@ -962,8 +968,9 @@ namespace Adyen.Checkout.Models
         public Option<PlatformChargebackLogic?> _PlatformChargebackLogicOption { get; private set; }
 
         /// <summary>
-        /// <see cref="PlatformChargebackLogic"/>.
+        /// Dictates the behavior of how a potential chargeback should be booked when using Adyen Platforms.
         /// </summary>
+        /// <value>Dictates the behavior of how a potential chargeback should be booked when using Adyen Platforms.</value>
         [JsonPropertyName("platformChargebackLogic")]
         public PlatformChargebackLogic? PlatformChargebackLogic { get { return this._PlatformChargebackLogicOption; } set { this._PlatformChargebackLogicOption = new(value); } }
 
@@ -1017,8 +1024,9 @@ namespace Adyen.Checkout.Models
         public Option<RiskData?> _RiskDataOption { get; private set; }
 
         /// <summary>
-        /// <see cref="RiskData"/>.
+        /// Any risk-related settings to apply to the payment.
         /// </summary>
+        /// <value>Any risk-related settings to apply to the payment.</value>
         [JsonPropertyName("riskData")]
         public RiskData? RiskData { get { return this._RiskDataOption; } set { this._RiskDataOption = new(value); } }
 
@@ -1058,8 +1066,9 @@ namespace Adyen.Checkout.Models
         public Option<Name?> _ShopperNameOption { get; private set; }
 
         /// <summary>
-        /// <see cref="ShopperName"/>.
+        /// The shopper&#39;s full name. This object is required for some payment methods such as AfterPay, Klarna, or if you&#39;re enrolled in the PayPal Seller Protection program.
         /// </summary>
+        /// <value>The shopper's full name. This object is required for some payment methods such as AfterPay, Klarna, or if you're enrolled in the PayPal Seller Protection program.</value>
         [JsonPropertyName("shopperName")]
         public Name? ShopperName { get { return this._ShopperNameOption; } set { this._ShopperNameOption = new(value); } }
 
@@ -1197,8 +1206,9 @@ namespace Adyen.Checkout.Models
         public Option<CheckoutSessionThreeDS2RequestData?> _ThreeDS2RequestDataOption { get; private set; }
 
         /// <summary>
-        /// <see cref="ThreeDS2RequestData"/>.
+        /// The cardholder phone number need to be part of the authentication message for payment data. It is a requirement for Visa Secure Authentication Data Field Mandate effective August 2024.
         /// </summary>
+        /// <value>The cardholder phone number need to be part of the authentication message for payment data. It is a requirement for Visa Secure Authentication Data Field Mandate effective August 2024.</value>
         [JsonPropertyName("threeDS2RequestData")]
         public CheckoutSessionThreeDS2RequestData? ThreeDS2RequestData { get { return this._ThreeDS2RequestDataOption; } set { this._ThreeDS2RequestDataOption = new(value); } }
 

@@ -2,9 +2,9 @@
 /*
  * Adyen Checkout API
  *
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v71/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v71/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=71) to find out what changed in this version!
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v72/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v72/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=72) to find out what changed in this version!
  *
- * The version of the OpenAPI document: 71
+ * The version of the OpenAPI document: 72
  * Generated by: https://github.com/openapitools/openapi-generator.git
  */
 
@@ -34,6 +34,8 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredPaymentMethodResource" /> class.
         /// </summary>
+        /// <param name="alias">The alias of the credit card number.  Applies only to recurring contracts storing credit card details</param>
+        /// <param name="aliasType">The alias type of the credit card number.  Applies only to recurring contracts storing credit card details.</param>
         /// <param name="brand">The brand of the card.</param>
         /// <param name="cardBin">The bank identification number (BIN) of the card.</param>
         /// <param name="expiryMonth">The month the card expires.</param>
@@ -45,7 +47,7 @@ namespace Adyen.Checkout.Models
         /// <param name="id">A unique identifier of this stored payment method.</param>
         /// <param name="issuerName">The name of the issuer of token or card.</param>
         /// <param name="lastFour">The last four digits of the PAN.</param>
-        /// <param name="mandate">mandate</param>
+        /// <param name="mandate">Mandate details for the stored payment method.</param>
         /// <param name="name">The display name of the stored payment method.</param>
         /// <param name="networkTxReference">Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID.</param>
         /// <param name="ownerName">The name of the bank account holder.</param>
@@ -54,8 +56,10 @@ namespace Adyen.Checkout.Models
         /// <param name="supportedRecurringProcessingModels">Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount.</param>
         /// <param name="type">The type of payment method.</param>
         [JsonConstructor]
-        public StoredPaymentMethodResource(Option<string?> brand = default, Option<string?> cardBin = default, Option<string?> expiryMonth = default, Option<string?> expiryYear = default, Option<string?> externalResponseCode = default, Option<string?> externalTokenReference = default, Option<string?> holderName = default, Option<string?> iban = default, Option<string?> id = default, Option<string?> issuerName = default, Option<string?> lastFour = default, Option<TokenMandate?> mandate = default, Option<string?> name = default, Option<string?> networkTxReference = default, Option<string?> ownerName = default, Option<string?> shopperEmail = default, Option<string?> shopperReference = default, Option<List<string>?> supportedRecurringProcessingModels = default, Option<string?> type = default)
+        public StoredPaymentMethodResource(Option<string?> alias = default, Option<string?> aliasType = default, Option<string?> brand = default, Option<string?> cardBin = default, Option<string?> expiryMonth = default, Option<string?> expiryYear = default, Option<string?> externalResponseCode = default, Option<string?> externalTokenReference = default, Option<string?> holderName = default, Option<string?> iban = default, Option<string?> id = default, Option<string?> issuerName = default, Option<string?> lastFour = default, Option<TokenMandate?> mandate = default, Option<string?> name = default, Option<string?> networkTxReference = default, Option<string?> ownerName = default, Option<string?> shopperEmail = default, Option<string?> shopperReference = default, Option<List<string>?> supportedRecurringProcessingModels = default, Option<string?> type = default)
         {
+            _AliasOption = alias;
+            _AliasTypeOption = aliasType;
             _BrandOption = brand;
             _CardBinOption = cardBin;
             _ExpiryMonthOption = expiryMonth;
@@ -86,6 +90,34 @@ namespace Adyen.Checkout.Models
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Alias"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _AliasOption { get; private set; }
+
+        /// <summary>
+        /// The alias of the credit card number.  Applies only to recurring contracts storing credit card details
+        /// </summary>
+        /// <value>The alias of the credit card number.  Applies only to recurring contracts storing credit card details</value>
+        [JsonPropertyName("alias")]
+        public string? Alias { get { return this._AliasOption; } set { this._AliasOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="AliasType"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _AliasTypeOption { get; private set; }
+
+        /// <summary>
+        /// The alias type of the credit card number.  Applies only to recurring contracts storing credit card details.
+        /// </summary>
+        /// <value>The alias type of the credit card number.  Applies only to recurring contracts storing credit card details.</value>
+        [JsonPropertyName("aliasType")]
+        public string? AliasType { get { return this._AliasTypeOption; } set { this._AliasTypeOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Brand"/> will be populated.
@@ -249,8 +281,9 @@ namespace Adyen.Checkout.Models
         public Option<TokenMandate?> _MandateOption { get; private set; }
 
         /// <summary>
-        /// <see cref="Mandate"/>.
+        /// Mandate details for the stored payment method.
         /// </summary>
+        /// <value>Mandate details for the stored payment method.</value>
         [JsonPropertyName("mandate")]
         public TokenMandate? Mandate { get { return this._MandateOption; } set { this._MandateOption = new(value); } }
 
@@ -360,6 +393,8 @@ namespace Adyen.Checkout.Models
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class StoredPaymentMethodResource {\n");
+            sb.Append("  Alias: ").Append(Alias).Append("\n");
+            sb.Append("  AliasType: ").Append(AliasType).Append("\n");
             sb.Append("  Brand: ").Append(Brand).Append("\n");
             sb.Append("  CardBin: ").Append(CardBin).Append("\n");
             sb.Append("  ExpiryMonth: ").Append(ExpiryMonth).Append("\n");
@@ -406,6 +441,8 @@ namespace Adyen.Checkout.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<string?> alias = default;
+            Option<string?> aliasType = default;
             Option<string?> brand = default;
             Option<string?> cardBin = default;
             Option<string?> expiryMonth = default;
@@ -441,6 +478,12 @@ namespace Adyen.Checkout.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "alias":
+                            alias = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "aliasType":
+                            aliasType = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "brand":
                             brand = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -505,7 +548,7 @@ namespace Adyen.Checkout.Models
             }
             
 
-            return new StoredPaymentMethodResource(brand, cardBin, expiryMonth, expiryYear, externalResponseCode, externalTokenReference, holderName, iban, id, issuerName, lastFour, mandate, name, networkTxReference, ownerName, shopperEmail, shopperReference, supportedRecurringProcessingModels, type);
+            return new StoredPaymentMethodResource(alias, aliasType, brand, cardBin, expiryMonth, expiryYear, externalResponseCode, externalTokenReference, holderName, iban, id, issuerName, lastFour, mandate, name, networkTxReference, ownerName, shopperEmail, shopperReference, supportedRecurringProcessingModels, type);
         }
 
         /// <summary>
@@ -534,6 +577,14 @@ namespace Adyen.Checkout.Models
         public void WriteProperties(Utf8JsonWriter writer, StoredPaymentMethodResource storedPaymentMethodResource, JsonSerializerOptions jsonSerializerOptions)
         {
             
+            if (storedPaymentMethodResource._AliasOption.IsSet)
+                if (storedPaymentMethodResource.Alias != null)
+                    writer.WriteString("alias", storedPaymentMethodResource.Alias);
+
+            if (storedPaymentMethodResource._AliasTypeOption.IsSet)
+                if (storedPaymentMethodResource.AliasType != null)
+                    writer.WriteString("aliasType", storedPaymentMethodResource.AliasType);
+
             if (storedPaymentMethodResource._BrandOption.IsSet)
                 if (storedPaymentMethodResource.Brand != null)
                     writer.WriteString("brand", storedPaymentMethodResource.Brand);

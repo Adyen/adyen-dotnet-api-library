@@ -2,9 +2,9 @@
 /*
  * Adyen Checkout API
  *
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v71/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v71/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=71) to find out what changed in this version!
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v72/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v72/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=72) to find out what changed in this version!
  *
- * The version of the OpenAPI document: 71
+ * The version of the OpenAPI document: 72
  * Generated by: https://github.com/openapitools/openapi-generator.git
  */
 
@@ -34,82 +34,81 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentRequest" /> class.
         /// </summary>
-        /// <param name="amount">amount</param>
+        /// <param name="amount">The amount information for the transaction (in [minor units](https://docs.adyen.com/development-resources/currency-codes)). For [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) requests, set amount to 0 (zero).</param>
         /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction.</param>
         /// <param name="paymentMethod">paymentMethod</param>
-        /// <param name="reference">The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.</param>
-        /// <param name="returnUrl">The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol &#x60;http://&#x60; or &#x60;https://&#x60;. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: &#x60;https://your-company.example.com/checkout?shopperOrder&#x3D;12xy&#x60; * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: &#x60;my-app://&#x60; * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: &#x60;my-app://your.package.name&#x60;  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value.  We strongly recommend that you use a maximum of 1024 characters.  &gt; The URL must not include personally identifiable information (PII), for example name or email address.</param>
-        /// <param name="accountInfo">accountInfo</param>
-        /// <param name="additionalAmount">additionalAmount</param>
+        /// <param name="reference">The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. To provide multiple references for one transaction, separate the reference values with the hyphen (&#x60;-&#x60;) character.We strongly recommend that you use a unique value for each transaction. Maximum length: 80 characters.</param>
+        /// <param name="returnUrl">The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol &#x60;http://&#x60; or &#x60;https://&#x60;. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: &#x60;https://your-company.example.com/checkout?shopperOrder&#x3D;12xy&#x60; * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: &#x60;my-app://&#x60; * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: &#x60;my-app://your.package.name&#x60;  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value. &gt; The URL must not include personally identifiable information (PII), for example name or email address.</param>
+        /// <param name="accountInfo">Shopper account information for 3D Secure 2. &gt; For 3D Secure 2 transactions, we recommend that you include this object to increase the chances of achieving a frictionless flow.</param>
+        /// <param name="additionalAmount">If you want a [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) request to use a non-zero value, assign this value to &#x60;additionalAmount&#x60; (while the amount must be still set to 0 to trigger BIN or card verification). Required to be in the same currency as the &#x60;amount&#x60;. </param>
         /// <param name="additionalData">This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value.</param>
-        /// <param name="applicationInfo">applicationInfo</param>
-        /// <param name="authenticationData">authenticationData</param>
-        /// <param name="bankAccount">bankAccount</param>
-        /// <param name="billingAddress">billingAddress</param>
-        /// <param name="browserInfo">browserInfo</param>
-        /// <param name="captureDelayHours">The delay between the authorisation and scheduled auto-capture, specified in hours.</param>
+        /// <param name="applicationInfo">Information about your application. For more details, see [Building Adyen solutions](https://docs.adyen.com/development-resources/building-adyen-solutions).</param>
+        /// <param name="authenticationData">Data for 3DS authentication.</param>
+        /// <param name="bankAccount">The details of the bank account, from which the payment should be made. &gt; Either &#x60;bankAccount&#x60; or &#x60;card&#x60; field must be provided in a payment request.</param>
+        /// <param name="billingAddress">The address where to send the invoice. &gt; The &#x60;billingAddress&#x60; object is required in the following scenarios. Include all of the fields within this object. &gt;* For 3D Secure 2 transactions in all browser-based and mobile implementations. &gt;* For cross-border payouts to and from Canada.</param>
+        /// <param name="browserInfo">The shopper&#39;s browser information. &gt; For 3D Secure, the full object is required for web integrations. For mobile app integrations, include the &#x60;userAgent&#x60; and &#x60;acceptHeader&#x60; fields to indicate  that your integration can support a redirect in case a payment is routed to 3D Secure 2 redirect.</param>
+        /// <param name="captureDelayHours">The [delay between the authorization and automatic capture](https://docs.adyen.com/online-payments/capture?tab&#x3D;delayed-individual_2#delayed-automatic-capture) of the payment, specified in hours.  Maximum value: **672** (28 days).</param>
         /// <param name="channel">The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the &#x60;sdkVersion&#x60; or &#x60;token&#x60;.  Possible values: * iOS * Android * Web</param>
         /// <param name="checkoutAttemptId">Checkout attempt ID that corresponds to the Id generated by the client SDK for tracking user payment journey.</param>
-        /// <param name="company">company</param>
-        /// <param name="conversionId">Conversion ID that corresponds to the Id generated by the client SDK for tracking user payment journey.</param>
-        /// <param name="countryCode">The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE</param>
+        /// <param name="company">Information regarding the company.</param>
+        /// <param name="countryCode">The shopper country code.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE</param>
         /// <param name="dateOfBirth">The shopper&#39;s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD</param>
-        /// <param name="dccQuote">dccQuote</param>
+        /// <param name="dccQuote">The forex quote as returned in the response of the forex service.</param>
         /// <param name="deliverAt">The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00</param>
-        /// <param name="deliveryAddress">deliveryAddress</param>
+        /// <param name="deliveryAddress">The address where the purchased goods should be delivered.</param>
         /// <param name="deliveryDate">The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00</param>
         /// <param name="deviceFingerprint">A string containing the shopper&#39;s device fingerprint. For more information, refer to [Device fingerprinting](https://docs.adyen.com/risk-management/device-fingerprinting).</param>
         /// <param name="enableOneClick">When true and &#x60;shopperReference&#x60; is provided, the shopper will be asked if the payment details should be stored for future [one-click payments](https://docs.adyen.com/get-started-with-adyen/payment-glossary/#one-click-payments-definition).</param>
         /// <param name="enablePayOut">When true and &#x60;shopperReference&#x60; is provided, the payment details will be tokenized for payouts.</param>
         /// <param name="enableRecurring">When true and &#x60;shopperReference&#x60; is provided, the payment details will be stored for [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types) where the shopper is not present, such as subscription or automatic top-up payments.</param>
-        /// <param name="enhancedSchemeData">enhancedSchemeData</param>
+        /// <param name="enhancedSchemeData">[Enhanced scheme data](https://docs.adyen.com/payment-methods/cards/enhanced-scheme-data/) that may be required for processing the payment and/or interchange savings can apply.</param>
         /// <param name="entityType">The type of the entity the payment is processed for.</param>
         /// <param name="fraudOffset">An integer value that is added to the normal fraud score. The value can be either positive or negative.</param>
-        /// <param name="fundOrigin">fundOrigin</param>
-        /// <param name="fundRecipient">fundRecipient</param>
+        /// <param name="fundOrigin">The person or entity funding the money.</param>
+        /// <param name="fundRecipient">the person or entity receiving the money</param>
         /// <param name="industryUsage">The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**</param>
-        /// <param name="installments">installments</param>
+        /// <param name="installments">Contains installment settings. For more information, refer to [Installments](https://docs.adyen.com/payment-methods/cards/credit-card-installments).</param>
         /// <param name="lineItems">Price and product information about the purchased items, to be included on the invoice sent to the shopper. &gt; This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty.</param>
         /// <param name="localizedShopperStatement">The &#x60;localizedShopperStatement&#x60; field lets you use dynamic values for your shopper statement in a local character set. If this parameter is left empty, not provided, or not applicable (in case of cross-border transactions), then **shopperStatement** is used.  Currently, &#x60;localizedShopperStatement&#x60; is only supported for payments with Visa, Mastercard, JCB, Diners, and Discover.  **Supported characters**: Hiragana, Katakana, Kanji, and alphanumeric.</param>
-        /// <param name="mandate">mandate</param>
+        /// <param name="mandate">The mandate details to initiate recurring transaction.</param>
         /// <param name="mcc">The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.</param>
-        /// <param name="merchantOrderReference">This reference allows linking multiple transactions to each other for reporting purposes (i.e. order auth-rate). The reference should be unique per billing cycle. The same merchant order reference should never be reused after the first authorised attempt. If used, this field should be supplied for all incoming authorisations. &gt; We strongly recommend you send the &#x60;merchantOrderReference&#x60; value to benefit from linking payment requests when authorisation retries take place. In addition, we recommend you provide &#x60;retry.orderAttemptNumber&#x60;, &#x60;retry.chainAttemptNumber&#x60;, and &#x60;retry.skipRetry&#x60; values in &#x60;PaymentRequest.additionalData&#x60;.</param>
-        /// <param name="merchantRiskIndicator">merchantRiskIndicator</param>
+        /// <param name="merchantOrderReference">You can use this reference to link multiple transactions to one another (for example, to track order authorization rate).For each billing cycle, this reference should be unique. After the first authorized payment attempt, do not reuse the reference. If you use this parameter, include it in all of the payment requests that you make.   We strongly recommend that you: * Always include this parameter, so that you can benefit from linking payment requests to one another, in case of authorization retries.  * Additionally include the following parameters in the &#x60;additionalData&#x60; object: [&#x60;retry.orderAttemptNumber&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-orderAttemptNumber), [&#x60;retry.chainAttemptNumber&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-chainAttemptNumber), and [&#x60;retry.skipRetry&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-skipRetry)</param>
+        /// <param name="merchantRiskIndicator">Additional risk fields for 3D Secure 2. &gt; For 3D Secure 2 transactions, we recommend that you include this object to increase the chances of achieving a frictionless flow.</param>
         /// <param name="metadata">Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. When exceeding, the \&quot;177\&quot; error occurs: \&quot;Metadata size exceeds limit\&quot;. * Maximum 20 characters per key. * Maximum 80 characters per value. </param>
-        /// <param name="mpiData">mpiData</param>
-        /// <param name="order">order</param>
+        /// <param name="mpiData">Authentication data produced by an MPI (Mastercard SecureCode, Visa Secure, or Cartes Bancaires).</param>
+        /// <param name="order">The order information required for partial payments.</param>
         /// <param name="orderReference">When you are doing multiple partial (gift card) payments, this is the &#x60;pspReference&#x60; of the first payment. We use this to link the multiple payments to each other. As your own reference for linking multiple payments, use the &#x60;merchantOrderReference&#x60;instead.</param>
         /// <param name="origin">&gt; Required for browser-based (&#x60;channel&#x60; **Web**) 3D Secure 2 transactions.Set this to the origin URL of the page where you are rendering the Drop-in/Component. Do not include subdirectories and a trailing slash.</param>
-        /// <param name="paymentValidations">paymentValidations</param>
-        /// <param name="platformChargebackLogic">platformChargebackLogic</param>
+        /// <param name="paymentValidations">The object that you can use to enable payment validations for a transaction.</param>
+        /// <param name="platformChargebackLogic">Defines how to book chargebacks when using [Adyen for Platforms](https://docs.adyen.com/adyen-for-platforms-model).</param>
         /// <param name="recurringExpiry">Date after which no further authorisations shall be performed. Only for 3D Secure 2.</param>
         /// <param name="recurringFrequency">Minimum number of days between authorisations. Only for 3D Secure 2.</param>
         /// <param name="recurringProcessingModel">Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </param>
         /// <param name="redirectFromIssuerMethod">Specifies the redirect method (GET or POST) when redirecting back from the issuer.</param>
         /// <param name="redirectToIssuerMethod">Specifies the redirect method (GET or POST) when redirecting to the issuer.</param>
-        /// <param name="riskData">riskData</param>
+        /// <param name="riskData">Contains risk data, such as client-side data, used to identify risk for a transaction.</param>
         /// <param name="sessionValidity">The date and time until when the session remains valid, in [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format.  For example: 2020-07-18T15:42:40.428+01:00</param>
         /// <param name="shopperConversionId">A unique ID that can be used to associate &#x60;/paymentMethods&#x60; and &#x60;/payments&#x60; requests with the same shopper transaction, offering insights into conversion rates.</param>
-        /// <param name="shopperEmail">The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication if you did not include the &#x60;telephoneNumber&#x60;.</param>
+        /// <param name="shopperEmail">The shopper&#39;s email address, in valid [RFC-5322](https://www.rfc-editor.org/rfc/rfc5322) format. We recommend that you provide this data, because it is used in velocity fraud checks. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication if you did not include the &#x60;telephoneNumber&#x60;.</param>
         /// <param name="shopperIP">The shopper&#39;s IP address. We recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks). &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication for all web and mobile integrations, if you did not include the &#x60;shopperEmail&#x60;. For native mobile integrations, the field is required to support cases where authentication is routed to the redirect flow. This field is also mandatory for some merchants depending on your business model. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).</param>
         /// <param name="shopperInteraction">Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * &#x60;Ecommerce&#x60; - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * &#x60;ContAuth&#x60; - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * &#x60;Moto&#x60; - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * &#x60;POS&#x60; - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.</param>
         /// <param name="shopperLocale">The combination of a language code and a country code to specify the language to be used in the payment.</param>
-        /// <param name="shopperName">shopperName</param>
+        /// <param name="shopperName">The shopper&#39;s full name.</param>
         /// <param name="shopperReference">Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
         /// <param name="shopperStatement">The text to be shown on the shopper&#39;s bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , &#39; _ - ? + * /_**.</param>
-        /// <param name="shopperTaxInfo">shopperTaxInfo</param>
+        /// <param name="shopperTaxInfo">The tax info of the shopper</param>
         /// <param name="socialSecurityNumber">The shopper&#39;s social security number.</param>
         /// <param name="splits">An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).</param>
         /// <param name="store">Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.</param>
         /// <param name="storePaymentMethod">When true and &#x60;shopperReference&#x60; is provided, the payment details will be stored for future [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types).</param>
         /// <param name="subMerchants">This field contains additional information on the submerchant, who is onboarded to an acquirer through a payment facilitator or aggregator</param>
-        /// <param name="surcharge">surcharge</param>
+        /// <param name="surcharge">The [surcharge](https://docs.adyen.com/online-payments/surcharge/) amount to apply to the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes). When you apply surcharge, include the surcharge in the &#x60;amount.value&#x60; field.  Review our [Surcharge compliance guide](https://docs.adyen.com/development-resources/surcharge-compliance/) to learn about how to comply with regulatory requirements when applying surcharge.</param>
         /// <param name="telephoneNumber">The shopper&#39;s telephone number.  The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we do not submit it for authentication. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the &#x60;shopperEmail&#x60;.</param>
-        /// <param name="threeDS2RequestData">threeDS2RequestData</param>
+        /// <param name="threeDS2RequestData">Request fields for 3D Secure 2. To check if any of the following fields are required for your integration, refer to [Online payments](https://docs.adyen.com/online-payments) or [Classic integration](https://docs.adyen.com/classic-integration) documentation.</param>
         /// <param name="threeDSAuthenticationOnly">Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorisation.Default: **false**. (default to false)</param>
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID.</param>
         [JsonConstructor]
-        public PaymentRequest(Amount amount, string merchantAccount, CheckoutPaymentMethod paymentMethod, string reference, string returnUrl, Option<AccountInfo?> accountInfo = default, Option<Amount?> additionalAmount = default, Option<Dictionary<string, string>?> additionalData = default, Option<ApplicationInfo?> applicationInfo = default, Option<AuthenticationData?> authenticationData = default, Option<CheckoutBankAccount?> bankAccount = default, Option<BillingAddress?> billingAddress = default, Option<BrowserInfo?> browserInfo = default, Option<int?> captureDelayHours = default, Option<ChannelEnum?> channel = default, Option<string?> checkoutAttemptId = default, Option<Company?> company = default, Option<string?> conversionId = default, Option<string?> countryCode = default, Option<DateTimeOffset?> dateOfBirth = default, Option<ForexQuote?> dccQuote = default, Option<DateTimeOffset?> deliverAt = default, Option<DeliveryAddress?> deliveryAddress = default, Option<DateTimeOffset?> deliveryDate = default, Option<string?> deviceFingerprint = default, Option<bool?> enableOneClick = default, Option<bool?> enablePayOut = default, Option<bool?> enableRecurring = default, Option<EnhancedSchemeData?> enhancedSchemeData = default, Option<EntityTypeEnum?> entityType = default, Option<int?> fraudOffset = default, Option<FundOrigin?> fundOrigin = default, Option<FundRecipient?> fundRecipient = default, Option<IndustryUsageEnum?> industryUsage = default, Option<Installments?> installments = default, Option<List<LineItem>?> lineItems = default, Option<Dictionary<string, string>?> localizedShopperStatement = default, Option<Mandate?> mandate = default, Option<string?> mcc = default, Option<string?> merchantOrderReference = default, Option<MerchantRiskIndicator?> merchantRiskIndicator = default, Option<Dictionary<string, string>?> metadata = default, Option<ThreeDSecureData?> mpiData = default, Option<EncryptedOrderData?> order = default, Option<string?> orderReference = default, Option<string?> origin = default, Option<PaymentValidations?> paymentValidations = default, Option<PlatformChargebackLogic?> platformChargebackLogic = default, Option<string?> recurringExpiry = default, Option<string?> recurringFrequency = default, Option<RecurringProcessingModelEnum?> recurringProcessingModel = default, Option<string?> redirectFromIssuerMethod = default, Option<string?> redirectToIssuerMethod = default, Option<RiskData?> riskData = default, Option<string?> sessionValidity = default, Option<string?> shopperConversionId = default, Option<string?> shopperEmail = default, Option<string?> shopperIP = default, Option<ShopperInteractionEnum?> shopperInteraction = default, Option<string?> shopperLocale = default, Option<ShopperName?> shopperName = default, Option<string?> shopperReference = default, Option<string?> shopperStatement = default, Option<ShopperTaxInfo?> shopperTaxInfo = default, Option<string?> socialSecurityNumber = default, Option<List<Split>?> splits = default, Option<string?> store = default, Option<bool?> storePaymentMethod = default, Option<List<SubMerchantInfo>?> subMerchants = default, Option<Surcharge?> surcharge = default, Option<string?> telephoneNumber = default, Option<ThreeDS2RequestFields?> threeDS2RequestData = default, Option<bool?> threeDSAuthenticationOnly = default, Option<bool?> trustedShopper = default)
+        public PaymentRequest(Amount amount, string merchantAccount, CheckoutPaymentMethod paymentMethod, string reference, string returnUrl, Option<AccountInfo?> accountInfo = default, Option<Amount?> additionalAmount = default, Option<Dictionary<string, string>?> additionalData = default, Option<ApplicationInfo?> applicationInfo = default, Option<AuthenticationData?> authenticationData = default, Option<CheckoutBankAccount?> bankAccount = default, Option<BillingAddress?> billingAddress = default, Option<BrowserInfo?> browserInfo = default, Option<int?> captureDelayHours = default, Option<ChannelEnum?> channel = default, Option<string?> checkoutAttemptId = default, Option<Company?> company = default, Option<string?> countryCode = default, Option<DateTimeOffset?> dateOfBirth = default, Option<ForexQuote?> dccQuote = default, Option<DateTimeOffset?> deliverAt = default, Option<DeliveryAddress?> deliveryAddress = default, Option<DateTimeOffset?> deliveryDate = default, Option<string?> deviceFingerprint = default, Option<bool?> enableOneClick = default, Option<bool?> enablePayOut = default, Option<bool?> enableRecurring = default, Option<EnhancedSchemeData?> enhancedSchemeData = default, Option<EntityTypeEnum?> entityType = default, Option<int?> fraudOffset = default, Option<FundOrigin?> fundOrigin = default, Option<FundRecipient?> fundRecipient = default, Option<IndustryUsageEnum?> industryUsage = default, Option<Installments?> installments = default, Option<List<LineItem>?> lineItems = default, Option<Dictionary<string, string>?> localizedShopperStatement = default, Option<Mandate?> mandate = default, Option<string?> mcc = default, Option<string?> merchantOrderReference = default, Option<MerchantRiskIndicator?> merchantRiskIndicator = default, Option<Dictionary<string, string>?> metadata = default, Option<ThreeDSecureData?> mpiData = default, Option<EncryptedOrderData?> order = default, Option<string?> orderReference = default, Option<string?> origin = default, Option<PaymentValidations?> paymentValidations = default, Option<PlatformChargebackLogic?> platformChargebackLogic = default, Option<string?> recurringExpiry = default, Option<string?> recurringFrequency = default, Option<RecurringProcessingModelEnum?> recurringProcessingModel = default, Option<string?> redirectFromIssuerMethod = default, Option<string?> redirectToIssuerMethod = default, Option<RiskData?> riskData = default, Option<string?> sessionValidity = default, Option<string?> shopperConversionId = default, Option<string?> shopperEmail = default, Option<string?> shopperIP = default, Option<ShopperInteractionEnum?> shopperInteraction = default, Option<string?> shopperLocale = default, Option<ShopperName?> shopperName = default, Option<string?> shopperReference = default, Option<string?> shopperStatement = default, Option<ShopperTaxInfo?> shopperTaxInfo = default, Option<string?> socialSecurityNumber = default, Option<List<Split>?> splits = default, Option<string?> store = default, Option<bool?> storePaymentMethod = default, Option<List<SubMerchantInfo>?> subMerchants = default, Option<Surcharge?> surcharge = default, Option<string?> telephoneNumber = default, Option<ThreeDS2RequestFields?> threeDS2RequestData = default, Option<bool?> threeDSAuthenticationOnly = default, Option<bool?> trustedShopper = default)
         {
             Amount = amount;
             MerchantAccount = merchantAccount;
@@ -128,7 +127,6 @@ namespace Adyen.Checkout.Models
             _ChannelOption = channel;
             _CheckoutAttemptIdOption = checkoutAttemptId;
             _CompanyOption = company;
-            _ConversionIdOption = conversionId;
             _CountryCodeOption = countryCode;
             _DateOfBirthOption = dateOfBirth;
             _DccQuoteOption = dccQuote;
@@ -828,8 +826,9 @@ namespace Adyen.Checkout.Models
         public ShopperInteractionEnum? ShopperInteraction { get { return this._ShopperInteractionOption; } set { this._ShopperInteractionOption = new(value); } }
 
         /// <summary>
-        /// <see cref="Amount"/>.
+        /// The amount information for the transaction (in [minor units](https://docs.adyen.com/development-resources/currency-codes)). For [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) requests, set amount to 0 (zero).
         /// </summary>
+        /// <value>The amount information for the transaction (in [minor units](https://docs.adyen.com/development-resources/currency-codes)). For [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) requests, set amount to 0 (zero).</value>
         [JsonPropertyName("amount")]
         public Amount Amount { get; set; }
 
@@ -847,16 +846,16 @@ namespace Adyen.Checkout.Models
         public CheckoutPaymentMethod PaymentMethod { get; set; }
 
         /// <summary>
-        /// The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.
+        /// The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. To provide multiple references for one transaction, separate the reference values with the hyphen (&#x60;-&#x60;) character.We strongly recommend that you use a unique value for each transaction. Maximum length: 80 characters.
         /// </summary>
-        /// <value>The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). Maximum length: 80 characters.</value>
+        /// <value>The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. To provide multiple references for one transaction, separate the reference values with the hyphen (`-`) character.We strongly recommend that you use a unique value for each transaction. Maximum length: 80 characters.</value>
         [JsonPropertyName("reference")]
         public string Reference { get; set; }
 
         /// <summary>
-        /// The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol &#x60;http://&#x60; or &#x60;https://&#x60;. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: &#x60;https://your-company.example.com/checkout?shopperOrder&#x3D;12xy&#x60; * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: &#x60;my-app://&#x60; * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: &#x60;my-app://your.package.name&#x60;  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value.  We strongly recommend that you use a maximum of 1024 characters.  &gt; The URL must not include personally identifiable information (PII), for example name or email address.
+        /// The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol &#x60;http://&#x60; or &#x60;https://&#x60;. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: &#x60;https://your-company.example.com/checkout?shopperOrder&#x3D;12xy&#x60; * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: &#x60;my-app://&#x60; * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: &#x60;my-app://your.package.name&#x60;  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value. &gt; The URL must not include personally identifiable information (PII), for example name or email address.
         /// </summary>
-        /// <value>The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol `http://` or `https://`. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: `https://your-company.example.com/checkout?shopperOrder=12xy` * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: `my-app://` * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: `my-app://your.package.name`  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value.  We strongly recommend that you use a maximum of 1024 characters.  > The URL must not include personally identifiable information (PII), for example name or email address.</value>
+        /// <value>The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol `http://` or `https://`. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: `https://your-company.example.com/checkout?shopperOrder=12xy` * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: `my-app://` * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: `my-app://your.package.name`  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value. > The URL must not include personally identifiable information (PII), for example name or email address.</value>
         [JsonPropertyName("returnUrl")]
         public string ReturnUrl { get; set; }
 
@@ -868,8 +867,9 @@ namespace Adyen.Checkout.Models
         public Option<AccountInfo?> _AccountInfoOption { get; private set; }
 
         /// <summary>
-        /// <see cref="AccountInfo"/>.
+        /// Shopper account information for 3D Secure 2. &gt; For 3D Secure 2 transactions, we recommend that you include this object to increase the chances of achieving a frictionless flow.
         /// </summary>
+        /// <value>Shopper account information for 3D Secure 2. > For 3D Secure 2 transactions, we recommend that you include this object to increase the chances of achieving a frictionless flow.</value>
         [JsonPropertyName("accountInfo")]
         public AccountInfo? AccountInfo { get { return this._AccountInfoOption; } set { this._AccountInfoOption = new(value); } }
 
@@ -881,8 +881,9 @@ namespace Adyen.Checkout.Models
         public Option<Amount?> _AdditionalAmountOption { get; private set; }
 
         /// <summary>
-        /// <see cref="AdditionalAmount"/>.
+        /// If you want a [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) request to use a non-zero value, assign this value to &#x60;additionalAmount&#x60; (while the amount must be still set to 0 to trigger BIN or card verification). Required to be in the same currency as the &#x60;amount&#x60;. 
         /// </summary>
+        /// <value>If you want a [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) request to use a non-zero value, assign this value to `additionalAmount` (while the amount must be still set to 0 to trigger BIN or card verification). Required to be in the same currency as the `amount`. </value>
         [JsonPropertyName("additionalAmount")]
         public Amount? AdditionalAmount { get { return this._AdditionalAmountOption; } set { this._AdditionalAmountOption = new(value); } }
 
@@ -908,8 +909,9 @@ namespace Adyen.Checkout.Models
         public Option<ApplicationInfo?> _ApplicationInfoOption { get; private set; }
 
         /// <summary>
-        /// <see cref="ApplicationInfo"/>.
+        /// Information about your application. For more details, see [Building Adyen solutions](https://docs.adyen.com/development-resources/building-adyen-solutions).
         /// </summary>
+        /// <value>Information about your application. For more details, see [Building Adyen solutions](https://docs.adyen.com/development-resources/building-adyen-solutions).</value>
         [JsonPropertyName("applicationInfo")]
         public ApplicationInfo? ApplicationInfo { get { return this._ApplicationInfoOption; } set { this._ApplicationInfoOption = new(value); } }
 
@@ -921,8 +923,9 @@ namespace Adyen.Checkout.Models
         public Option<AuthenticationData?> _AuthenticationDataOption { get; private set; }
 
         /// <summary>
-        /// <see cref="AuthenticationData"/>.
+        /// Data for 3DS authentication.
         /// </summary>
+        /// <value>Data for 3DS authentication.</value>
         [JsonPropertyName("authenticationData")]
         public AuthenticationData? AuthenticationData { get { return this._AuthenticationDataOption; } set { this._AuthenticationDataOption = new(value); } }
 
@@ -934,8 +937,9 @@ namespace Adyen.Checkout.Models
         public Option<CheckoutBankAccount?> _BankAccountOption { get; private set; }
 
         /// <summary>
-        /// <see cref="BankAccount"/>.
+        /// The details of the bank account, from which the payment should be made. &gt; Either &#x60;bankAccount&#x60; or &#x60;card&#x60; field must be provided in a payment request.
         /// </summary>
+        /// <value>The details of the bank account, from which the payment should be made. > Either `bankAccount` or `card` field must be provided in a payment request.</value>
         [JsonPropertyName("bankAccount")]
         public CheckoutBankAccount? BankAccount { get { return this._BankAccountOption; } set { this._BankAccountOption = new(value); } }
 
@@ -947,8 +951,9 @@ namespace Adyen.Checkout.Models
         public Option<BillingAddress?> _BillingAddressOption { get; private set; }
 
         /// <summary>
-        /// <see cref="BillingAddress"/>.
+        /// The address where to send the invoice. &gt; The &#x60;billingAddress&#x60; object is required in the following scenarios. Include all of the fields within this object. &gt;* For 3D Secure 2 transactions in all browser-based and mobile implementations. &gt;* For cross-border payouts to and from Canada.
         /// </summary>
+        /// <value>The address where to send the invoice. > The `billingAddress` object is required in the following scenarios. Include all of the fields within this object. >* For 3D Secure 2 transactions in all browser-based and mobile implementations. >* For cross-border payouts to and from Canada.</value>
         [JsonPropertyName("billingAddress")]
         public BillingAddress? BillingAddress { get { return this._BillingAddressOption; } set { this._BillingAddressOption = new(value); } }
 
@@ -960,8 +965,9 @@ namespace Adyen.Checkout.Models
         public Option<BrowserInfo?> _BrowserInfoOption { get; private set; }
 
         /// <summary>
-        /// <see cref="BrowserInfo"/>.
+        /// The shopper&#39;s browser information. &gt; For 3D Secure, the full object is required for web integrations. For mobile app integrations, include the &#x60;userAgent&#x60; and &#x60;acceptHeader&#x60; fields to indicate  that your integration can support a redirect in case a payment is routed to 3D Secure 2 redirect.
         /// </summary>
+        /// <value>The shopper's browser information. > For 3D Secure, the full object is required for web integrations. For mobile app integrations, include the `userAgent` and `acceptHeader` fields to indicate  that your integration can support a redirect in case a payment is routed to 3D Secure 2 redirect.</value>
         [JsonPropertyName("browserInfo")]
         public BrowserInfo? BrowserInfo { get { return this._BrowserInfoOption; } set { this._BrowserInfoOption = new(value); } }
 
@@ -973,9 +979,9 @@ namespace Adyen.Checkout.Models
         public Option<int?> _CaptureDelayHoursOption { get; private set; }
 
         /// <summary>
-        /// The delay between the authorisation and scheduled auto-capture, specified in hours.
+        /// The [delay between the authorization and automatic capture](https://docs.adyen.com/online-payments/capture?tab&#x3D;delayed-individual_2#delayed-automatic-capture) of the payment, specified in hours.  Maximum value: **672** (28 days).
         /// </summary>
-        /// <value>The delay between the authorisation and scheduled auto-capture, specified in hours.</value>
+        /// <value>The [delay between the authorization and automatic capture](https://docs.adyen.com/online-payments/capture?tab=delayed-individual_2#delayed-automatic-capture) of the payment, specified in hours.  Maximum value: **672** (28 days).</value>
         [JsonPropertyName("captureDelayHours")]
         public int? CaptureDelayHours { get { return this._CaptureDelayHoursOption; } set { this._CaptureDelayHoursOption = new(value); } }
 
@@ -1001,25 +1007,11 @@ namespace Adyen.Checkout.Models
         public Option<Company?> _CompanyOption { get; private set; }
 
         /// <summary>
-        /// <see cref="Company"/>.
+        /// Information regarding the company.
         /// </summary>
+        /// <value>Information regarding the company.</value>
         [JsonPropertyName("company")]
         public Company? Company { get { return this._CompanyOption; } set { this._CompanyOption = new(value); } }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="ConversionId"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _ConversionIdOption { get; private set; }
-
-        /// <summary>
-        /// Conversion ID that corresponds to the Id generated by the client SDK for tracking user payment journey.
-        /// </summary>
-        /// <value>Conversion ID that corresponds to the Id generated by the client SDK for tracking user payment journey.</value>
-        [JsonPropertyName("conversionId")]
-        [Obsolete("Deprecated since Adyen Checkout API v68. Use `checkoutAttemptId` instead")]
-        public string? ConversionId { get { return this._ConversionIdOption; } set { this._ConversionIdOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CountryCode"/> will be populated.
@@ -1029,9 +1021,9 @@ namespace Adyen.Checkout.Models
         public Option<string?> _CountryCodeOption { get; private set; }
 
         /// <summary>
-        /// The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE
+        /// The shopper country code.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE
         /// </summary>
-        /// <value>The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE</value>
+        /// <value>The shopper country code.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE</value>
         [JsonPropertyName("countryCode")]
         public string? CountryCode { get { return this._CountryCodeOption; } set { this._CountryCodeOption = new(value); } }
 
@@ -1057,8 +1049,9 @@ namespace Adyen.Checkout.Models
         public Option<ForexQuote?> _DccQuoteOption { get; private set; }
 
         /// <summary>
-        /// <see cref="DccQuote"/>.
+        /// The forex quote as returned in the response of the forex service.
         /// </summary>
+        /// <value>The forex quote as returned in the response of the forex service.</value>
         [JsonPropertyName("dccQuote")]
         public ForexQuote? DccQuote { get { return this._DccQuoteOption; } set { this._DccQuoteOption = new(value); } }
 
@@ -1084,8 +1077,9 @@ namespace Adyen.Checkout.Models
         public Option<DeliveryAddress?> _DeliveryAddressOption { get; private set; }
 
         /// <summary>
-        /// <see cref="DeliveryAddress"/>.
+        /// The address where the purchased goods should be delivered.
         /// </summary>
+        /// <value>The address where the purchased goods should be delivered.</value>
         [JsonPropertyName("deliveryAddress")]
         public DeliveryAddress? DeliveryAddress { get { return this._DeliveryAddressOption; } set { this._DeliveryAddressOption = new(value); } }
 
@@ -1168,8 +1162,9 @@ namespace Adyen.Checkout.Models
         public Option<EnhancedSchemeData?> _EnhancedSchemeDataOption { get; private set; }
 
         /// <summary>
-        /// <see cref="EnhancedSchemeData"/>.
+        /// [Enhanced scheme data](https://docs.adyen.com/payment-methods/cards/enhanced-scheme-data/) that may be required for processing the payment and/or interchange savings can apply.
         /// </summary>
+        /// <value>[Enhanced scheme data](https://docs.adyen.com/payment-methods/cards/enhanced-scheme-data/) that may be required for processing the payment and/or interchange savings can apply.</value>
         [JsonPropertyName("enhancedSchemeData")]
         public EnhancedSchemeData? EnhancedSchemeData { get { return this._EnhancedSchemeDataOption; } set { this._EnhancedSchemeDataOption = new(value); } }
 
@@ -1195,8 +1190,9 @@ namespace Adyen.Checkout.Models
         public Option<FundOrigin?> _FundOriginOption { get; private set; }
 
         /// <summary>
-        /// <see cref="FundOrigin"/>.
+        /// The person or entity funding the money.
         /// </summary>
+        /// <value>The person or entity funding the money.</value>
         [JsonPropertyName("fundOrigin")]
         public FundOrigin? FundOrigin { get { return this._FundOriginOption; } set { this._FundOriginOption = new(value); } }
 
@@ -1208,8 +1204,9 @@ namespace Adyen.Checkout.Models
         public Option<FundRecipient?> _FundRecipientOption { get; private set; }
 
         /// <summary>
-        /// <see cref="FundRecipient"/>.
+        /// the person or entity receiving the money
         /// </summary>
+        /// <value>the person or entity receiving the money</value>
         [JsonPropertyName("fundRecipient")]
         public FundRecipient? FundRecipient { get { return this._FundRecipientOption; } set { this._FundRecipientOption = new(value); } }
 
@@ -1221,8 +1218,9 @@ namespace Adyen.Checkout.Models
         public Option<Installments?> _InstallmentsOption { get; private set; }
 
         /// <summary>
-        /// <see cref="Installments"/>.
+        /// Contains installment settings. For more information, refer to [Installments](https://docs.adyen.com/payment-methods/cards/credit-card-installments).
         /// </summary>
+        /// <value>Contains installment settings. For more information, refer to [Installments](https://docs.adyen.com/payment-methods/cards/credit-card-installments).</value>
         [JsonPropertyName("installments")]
         public Installments? Installments { get { return this._InstallmentsOption; } set { this._InstallmentsOption = new(value); } }
 
@@ -1262,8 +1260,9 @@ namespace Adyen.Checkout.Models
         public Option<Mandate?> _MandateOption { get; private set; }
 
         /// <summary>
-        /// <see cref="Mandate"/>.
+        /// The mandate details to initiate recurring transaction.
         /// </summary>
+        /// <value>The mandate details to initiate recurring transaction.</value>
         [JsonPropertyName("mandate")]
         public Mandate? Mandate { get { return this._MandateOption; } set { this._MandateOption = new(value); } }
 
@@ -1289,9 +1288,9 @@ namespace Adyen.Checkout.Models
         public Option<string?> _MerchantOrderReferenceOption { get; private set; }
 
         /// <summary>
-        /// This reference allows linking multiple transactions to each other for reporting purposes (i.e. order auth-rate). The reference should be unique per billing cycle. The same merchant order reference should never be reused after the first authorised attempt. If used, this field should be supplied for all incoming authorisations. &gt; We strongly recommend you send the &#x60;merchantOrderReference&#x60; value to benefit from linking payment requests when authorisation retries take place. In addition, we recommend you provide &#x60;retry.orderAttemptNumber&#x60;, &#x60;retry.chainAttemptNumber&#x60;, and &#x60;retry.skipRetry&#x60; values in &#x60;PaymentRequest.additionalData&#x60;.
+        /// You can use this reference to link multiple transactions to one another (for example, to track order authorization rate).For each billing cycle, this reference should be unique. After the first authorized payment attempt, do not reuse the reference. If you use this parameter, include it in all of the payment requests that you make.   We strongly recommend that you: * Always include this parameter, so that you can benefit from linking payment requests to one another, in case of authorization retries.  * Additionally include the following parameters in the &#x60;additionalData&#x60; object: [&#x60;retry.orderAttemptNumber&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-orderAttemptNumber), [&#x60;retry.chainAttemptNumber&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-chainAttemptNumber), and [&#x60;retry.skipRetry&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-skipRetry)
         /// </summary>
-        /// <value>This reference allows linking multiple transactions to each other for reporting purposes (i.e. order auth-rate). The reference should be unique per billing cycle. The same merchant order reference should never be reused after the first authorised attempt. If used, this field should be supplied for all incoming authorisations. > We strongly recommend you send the `merchantOrderReference` value to benefit from linking payment requests when authorisation retries take place. In addition, we recommend you provide `retry.orderAttemptNumber`, `retry.chainAttemptNumber`, and `retry.skipRetry` values in `PaymentRequest.additionalData`.</value>
+        /// <value>You can use this reference to link multiple transactions to one another (for example, to track order authorization rate).For each billing cycle, this reference should be unique. After the first authorized payment attempt, do not reuse the reference. If you use this parameter, include it in all of the payment requests that you make.   We strongly recommend that you: * Always include this parameter, so that you can benefit from linking payment requests to one another, in case of authorization retries.  * Additionally include the following parameters in the `additionalData` object: [`retry.orderAttemptNumber`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-orderAttemptNumber), [`retry.chainAttemptNumber`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-chainAttemptNumber), and [`retry.skipRetry`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-skipRetry)</value>
         [JsonPropertyName("merchantOrderReference")]
         public string? MerchantOrderReference { get { return this._MerchantOrderReferenceOption; } set { this._MerchantOrderReferenceOption = new(value); } }
 
@@ -1303,8 +1302,9 @@ namespace Adyen.Checkout.Models
         public Option<MerchantRiskIndicator?> _MerchantRiskIndicatorOption { get; private set; }
 
         /// <summary>
-        /// <see cref="MerchantRiskIndicator"/>.
+        /// Additional risk fields for 3D Secure 2. &gt; For 3D Secure 2 transactions, we recommend that you include this object to increase the chances of achieving a frictionless flow.
         /// </summary>
+        /// <value>Additional risk fields for 3D Secure 2. > For 3D Secure 2 transactions, we recommend that you include this object to increase the chances of achieving a frictionless flow.</value>
         [JsonPropertyName("merchantRiskIndicator")]
         public MerchantRiskIndicator? MerchantRiskIndicator { get { return this._MerchantRiskIndicatorOption; } set { this._MerchantRiskIndicatorOption = new(value); } }
 
@@ -1330,8 +1330,9 @@ namespace Adyen.Checkout.Models
         public Option<ThreeDSecureData?> _MpiDataOption { get; private set; }
 
         /// <summary>
-        /// <see cref="MpiData"/>.
+        /// Authentication data produced by an MPI (Mastercard SecureCode, Visa Secure, or Cartes Bancaires).
         /// </summary>
+        /// <value>Authentication data produced by an MPI (Mastercard SecureCode, Visa Secure, or Cartes Bancaires).</value>
         [JsonPropertyName("mpiData")]
         public ThreeDSecureData? MpiData { get { return this._MpiDataOption; } set { this._MpiDataOption = new(value); } }
 
@@ -1343,8 +1344,9 @@ namespace Adyen.Checkout.Models
         public Option<EncryptedOrderData?> _OrderOption { get; private set; }
 
         /// <summary>
-        /// <see cref="Order"/>.
+        /// The order information required for partial payments.
         /// </summary>
+        /// <value>The order information required for partial payments.</value>
         [JsonPropertyName("order")]
         public EncryptedOrderData? Order { get { return this._OrderOption; } set { this._OrderOption = new(value); } }
 
@@ -1384,8 +1386,9 @@ namespace Adyen.Checkout.Models
         public Option<PaymentValidations?> _PaymentValidationsOption { get; private set; }
 
         /// <summary>
-        /// <see cref="PaymentValidations"/>.
+        /// The object that you can use to enable payment validations for a transaction.
         /// </summary>
+        /// <value>The object that you can use to enable payment validations for a transaction.</value>
         [JsonPropertyName("paymentValidations")]
         public PaymentValidations? PaymentValidations { get { return this._PaymentValidationsOption; } set { this._PaymentValidationsOption = new(value); } }
 
@@ -1397,8 +1400,9 @@ namespace Adyen.Checkout.Models
         public Option<PlatformChargebackLogic?> _PlatformChargebackLogicOption { get; private set; }
 
         /// <summary>
-        /// <see cref="PlatformChargebackLogic"/>.
+        /// Defines how to book chargebacks when using [Adyen for Platforms](https://docs.adyen.com/adyen-for-platforms-model).
         /// </summary>
+        /// <value>Defines how to book chargebacks when using [Adyen for Platforms](https://docs.adyen.com/adyen-for-platforms-model).</value>
         [JsonPropertyName("platformChargebackLogic")]
         public PlatformChargebackLogic? PlatformChargebackLogic { get { return this._PlatformChargebackLogicOption; } set { this._PlatformChargebackLogicOption = new(value); } }
 
@@ -1466,8 +1470,9 @@ namespace Adyen.Checkout.Models
         public Option<RiskData?> _RiskDataOption { get; private set; }
 
         /// <summary>
-        /// <see cref="RiskData"/>.
+        /// Contains risk data, such as client-side data, used to identify risk for a transaction.
         /// </summary>
+        /// <value>Contains risk data, such as client-side data, used to identify risk for a transaction.</value>
         [JsonPropertyName("riskData")]
         public RiskData? RiskData { get { return this._RiskDataOption; } set { this._RiskDataOption = new(value); } }
 
@@ -1507,9 +1512,9 @@ namespace Adyen.Checkout.Models
         public Option<string?> _ShopperEmailOption { get; private set; }
 
         /// <summary>
-        /// The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication if you did not include the &#x60;telephoneNumber&#x60;.
+        /// The shopper&#39;s email address, in valid [RFC-5322](https://www.rfc-editor.org/rfc/rfc5322) format. We recommend that you provide this data, because it is used in velocity fraud checks. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication if you did not include the &#x60;telephoneNumber&#x60;.
         /// </summary>
-        /// <value>The shopper's email address. We recommend that you provide this data, as it is used in velocity fraud checks. > Required for Visa and JCB transactions that require 3D Secure 2 authentication if you did not include the `telephoneNumber`.</value>
+        /// <value>The shopper's email address, in valid [RFC-5322](https://www.rfc-editor.org/rfc/rfc5322) format. We recommend that you provide this data, because it is used in velocity fraud checks. > Required for Visa and JCB transactions that require 3D Secure 2 authentication if you did not include the `telephoneNumber`.</value>
         [JsonPropertyName("shopperEmail")]
         public string? ShopperEmail { get { return this._ShopperEmailOption; } set { this._ShopperEmailOption = new(value); } }
 
@@ -1549,8 +1554,9 @@ namespace Adyen.Checkout.Models
         public Option<ShopperName?> _ShopperNameOption { get; private set; }
 
         /// <summary>
-        /// <see cref="ShopperName"/>.
+        /// The shopper&#39;s full name.
         /// </summary>
+        /// <value>The shopper's full name.</value>
         [JsonPropertyName("shopperName")]
         public ShopperName? ShopperName { get { return this._ShopperNameOption; } set { this._ShopperNameOption = new(value); } }
 
@@ -1590,8 +1596,9 @@ namespace Adyen.Checkout.Models
         public Option<ShopperTaxInfo?> _ShopperTaxInfoOption { get; private set; }
 
         /// <summary>
-        /// <see cref="ShopperTaxInfo"/>.
+        /// The tax info of the shopper
         /// </summary>
+        /// <value>The tax info of the shopper</value>
         [JsonPropertyName("shopperTaxInfo")]
         public ShopperTaxInfo? ShopperTaxInfo { get { return this._ShopperTaxInfoOption; } set { this._ShopperTaxInfoOption = new(value); } }
 
@@ -1673,8 +1680,9 @@ namespace Adyen.Checkout.Models
         public Option<Surcharge?> _SurchargeOption { get; private set; }
 
         /// <summary>
-        /// <see cref="Surcharge"/>.
+        /// The [surcharge](https://docs.adyen.com/online-payments/surcharge/) amount to apply to the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes). When you apply surcharge, include the surcharge in the &#x60;amount.value&#x60; field.  Review our [Surcharge compliance guide](https://docs.adyen.com/development-resources/surcharge-compliance/) to learn about how to comply with regulatory requirements when applying surcharge.
         /// </summary>
+        /// <value>The [surcharge](https://docs.adyen.com/online-payments/surcharge/) amount to apply to the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes). When you apply surcharge, include the surcharge in the `amount.value` field.  Review our [Surcharge compliance guide](https://docs.adyen.com/development-resources/surcharge-compliance/) to learn about how to comply with regulatory requirements when applying surcharge.</value>
         [JsonPropertyName("surcharge")]
         public Surcharge? Surcharge { get { return this._SurchargeOption; } set { this._SurchargeOption = new(value); } }
 
@@ -1700,8 +1708,9 @@ namespace Adyen.Checkout.Models
         public Option<ThreeDS2RequestFields?> _ThreeDS2RequestDataOption { get; private set; }
 
         /// <summary>
-        /// <see cref="ThreeDS2RequestData"/>.
+        /// Request fields for 3D Secure 2. To check if any of the following fields are required for your integration, refer to [Online payments](https://docs.adyen.com/online-payments) or [Classic integration](https://docs.adyen.com/classic-integration) documentation.
         /// </summary>
+        /// <value>Request fields for 3D Secure 2. To check if any of the following fields are required for your integration, refer to [Online payments](https://docs.adyen.com/online-payments) or [Classic integration](https://docs.adyen.com/classic-integration) documentation.</value>
         [JsonPropertyName("threeDS2RequestData")]
         public ThreeDS2RequestFields? ThreeDS2RequestData { get { return this._ThreeDS2RequestDataOption; } set { this._ThreeDS2RequestDataOption = new(value); } }
 
@@ -1759,7 +1768,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  Channel: ").Append(Channel).Append("\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
-            sb.Append("  ConversionId: ").Append(ConversionId).Append("\n");
             sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
             sb.Append("  DateOfBirth: ").Append(DateOfBirth).Append("\n");
             sb.Append("  DccQuote: ").Append(DccQuote).Append("\n");
@@ -1875,7 +1883,6 @@ namespace Adyen.Checkout.Models
             Option<PaymentRequest.ChannelEnum?> channel = default;
             Option<string?> checkoutAttemptId = default;
             Option<Company?> company = default;
-            Option<string?> conversionId = default;
             Option<string?> countryCode = default;
             Option<DateTimeOffset?> dateOfBirth = default;
             Option<ForexQuote?> dccQuote = default;
@@ -1999,9 +2006,6 @@ namespace Adyen.Checkout.Models
                             break;
                         case "company":
                             company = new Option<Company?>(JsonSerializer.Deserialize<Company>(ref utf8JsonReader, jsonSerializerOptions)!);
-                            break;
-                        case "conversionId":
-                            conversionId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "countryCode":
                             countryCode = new Option<string?>(utf8JsonReader.GetString()!);
@@ -2196,7 +2200,7 @@ namespace Adyen.Checkout.Models
             if (!returnUrl.IsSet)
                 throw new ArgumentException("Property is required for class PaymentRequest.", nameof(returnUrl));
 
-            return new PaymentRequest(amount.Value!, merchantAccount.Value!, paymentMethod.Value!, reference.Value!, returnUrl.Value!, accountInfo, additionalAmount, additionalData, applicationInfo, authenticationData, bankAccount, billingAddress, browserInfo, captureDelayHours, channel, checkoutAttemptId, company, conversionId, countryCode, dateOfBirth, dccQuote, deliverAt, deliveryAddress, deliveryDate, deviceFingerprint, enableOneClick, enablePayOut, enableRecurring, enhancedSchemeData, entityType, fraudOffset, fundOrigin, fundRecipient, industryUsage, installments, lineItems, localizedShopperStatement, mandate, mcc, merchantOrderReference, merchantRiskIndicator, metadata, mpiData, order, orderReference, origin, paymentValidations, platformChargebackLogic, recurringExpiry, recurringFrequency, recurringProcessingModel, redirectFromIssuerMethod, redirectToIssuerMethod, riskData, sessionValidity, shopperConversionId, shopperEmail, shopperIP, shopperInteraction, shopperLocale, shopperName, shopperReference, shopperStatement, shopperTaxInfo, socialSecurityNumber, splits, store, storePaymentMethod, subMerchants, surcharge, telephoneNumber, threeDS2RequestData, threeDSAuthenticationOnly, trustedShopper);
+            return new PaymentRequest(amount.Value!, merchantAccount.Value!, paymentMethod.Value!, reference.Value!, returnUrl.Value!, accountInfo, additionalAmount, additionalData, applicationInfo, authenticationData, bankAccount, billingAddress, browserInfo, captureDelayHours, channel, checkoutAttemptId, company, countryCode, dateOfBirth, dccQuote, deliverAt, deliveryAddress, deliveryDate, deviceFingerprint, enableOneClick, enablePayOut, enableRecurring, enhancedSchemeData, entityType, fraudOffset, fundOrigin, fundRecipient, industryUsage, installments, lineItems, localizedShopperStatement, mandate, mcc, merchantOrderReference, merchantRiskIndicator, metadata, mpiData, order, orderReference, origin, paymentValidations, platformChargebackLogic, recurringExpiry, recurringFrequency, recurringProcessingModel, redirectFromIssuerMethod, redirectToIssuerMethod, riskData, sessionValidity, shopperConversionId, shopperEmail, shopperIP, shopperInteraction, shopperLocale, shopperName, shopperReference, shopperStatement, shopperTaxInfo, socialSecurityNumber, splits, store, storePaymentMethod, subMerchants, surcharge, telephoneNumber, threeDS2RequestData, threeDSAuthenticationOnly, trustedShopper);
         }
 
         /// <summary>
@@ -2296,10 +2300,6 @@ namespace Adyen.Checkout.Models
                 writer.WritePropertyName("company");
                 JsonSerializer.Serialize(writer, paymentRequest.Company, jsonSerializerOptions);
             }
-            if (paymentRequest._ConversionIdOption.IsSet)
-                if (paymentRequest.ConversionId != null)
-                    writer.WriteString("conversionId", paymentRequest.ConversionId);
-
             if (paymentRequest._CountryCodeOption.IsSet)
                 if (paymentRequest.CountryCode != null)
                     writer.WriteString("countryCode", paymentRequest.CountryCode);

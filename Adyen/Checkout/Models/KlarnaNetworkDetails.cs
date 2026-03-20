@@ -27,42 +27,40 @@ using Adyen.Checkout.Client;
 namespace Adyen.Checkout.Models
 {
     /// <summary>
-    /// RakutenPayDetails.
+    /// KlarnaNetworkDetails.
     /// </summary>
-    public partial class RakutenPayDetails
+    public partial class KlarnaNetworkDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RakutenPayDetails" /> class.
+        /// Initializes a new instance of the <see cref="KlarnaNetworkDetails" /> class.
         /// </summary>
         /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
+        /// <param name="klarnaNetworkData">A string containing a structured JSON object. This is a passthrough field used to enable custom features or data exchange with Klarna.</param>
         /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="type">**rakutenpay** (default to TypeEnum.Rakutenpay)</param>
+        /// <param name="type">**klarna_network** (default to TypeEnum.KlarnaNetwork)</param>
         [JsonConstructor]
-        public RakutenPayDetails(Option<string?> checkoutAttemptId = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<TypeEnum?> type = default)
+        public KlarnaNetworkDetails(Option<string?> checkoutAttemptId = default, Option<string?> klarnaNetworkData = default, Option<string?> sdkData = default, TypeEnum type = default)
         {
             _CheckoutAttemptIdOption = checkoutAttemptId;
-            _RecurringDetailReferenceOption = recurringDetailReference;
+            _KlarnaNetworkDataOption = klarnaNetworkData;
             _SdkDataOption = sdkData;
-            _StoredPaymentMethodIdOption = storedPaymentMethodId;
-            _TypeOption = type;
+            Type = type;
             OnCreated();
         }
         
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public RakutenPayDetails()
+        public KlarnaNetworkDetails()
         {
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// **rakutenpay**
+        /// **klarna_network**
         /// </summary>
-        /// <value>**rakutenpay**</value>
+        /// <value>**klarna_network**</value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
         public class TypeEnum : IEnum
         {
@@ -72,9 +70,9 @@ namespace Adyen.Checkout.Models
             public string? Value { get; set; }
 
             /// <summary>
-            /// TypeEnum.Rakutenpay - rakutenpay
+            /// TypeEnum.KlarnaNetwork - klarna_network
             /// </summary>
-            public static readonly TypeEnum Rakutenpay = new("rakutenpay");
+            public static readonly TypeEnum KlarnaNetwork = new("klarna_network");
         
             private TypeEnum(string? value)
             {
@@ -113,7 +111,7 @@ namespace Adyen.Checkout.Models
             public static TypeEnum? FromStringOrDefault(string value)
             {
                 return value switch {
-                    "rakutenpay" => TypeEnum.Rakutenpay,
+                    "klarna_network" => TypeEnum.KlarnaNetwork,
                     _ => null,
                 };
             }
@@ -129,8 +127,8 @@ namespace Adyen.Checkout.Models
                 if (value == null)
                     return null;
             
-                if (value == TypeEnum.Rakutenpay)
-                    return "rakutenpay";
+                if (value == TypeEnum.KlarnaNetwork)
+                    return "klarna_network";
                 
                 return null;
             }
@@ -154,18 +152,11 @@ namespace Adyen.Checkout.Models
         }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// **klarna_network**
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<TypeEnum?> _TypeOption { get; private set; }
-
-        /// <summary>
-        /// **rakutenpay**
-        /// </summary>
-        /// <value>**rakutenpay**</value>
+        /// <value>**klarna_network**</value>
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
+        public TypeEnum Type { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
@@ -182,19 +173,18 @@ namespace Adyen.Checkout.Models
         public string? CheckoutAttemptId { get { return this._CheckoutAttemptIdOption; } set { this._CheckoutAttemptIdOption = new(value); } }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="RecurringDetailReference"/> will be populated.
+        /// This is used to track if an optional field is set. If set, <see cref="KlarnaNetworkData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _RecurringDetailReferenceOption { get; private set; }
+        public Option<string?> _KlarnaNetworkDataOption { get; private set; }
 
         /// <summary>
-        /// This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.
+        /// A string containing a structured JSON object. This is a passthrough field used to enable custom features or data exchange with Klarna.
         /// </summary>
-        /// <value>This is the `recurringDetailReference` returned in the response when you created the token.</value>
-        [JsonPropertyName("recurringDetailReference")]
-        [Obsolete("Deprecated since Adyen Checkout API v49. Use `storedPaymentMethodId` instead.")]
-        public string? RecurringDetailReference { get { return this._RecurringDetailReferenceOption; } set { this._RecurringDetailReferenceOption = new(value); } }
+        /// <value>A string containing a structured JSON object. This is a passthrough field used to enable custom features or data exchange with Klarna.</value>
+        [JsonPropertyName("klarnaNetworkData")]
+        public string? KlarnaNetworkData { get { return this._KlarnaNetworkDataOption; } set { this._KlarnaNetworkDataOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="SdkData"/> will be populated.
@@ -211,31 +201,16 @@ namespace Adyen.Checkout.Models
         public string? SdkData { get { return this._SdkDataOption; } set { this._SdkDataOption = new(value); } }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="StoredPaymentMethodId"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _StoredPaymentMethodIdOption { get; private set; }
-
-        /// <summary>
-        /// This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.
-        /// </summary>
-        /// <value>This is the `recurringDetailReference` returned in the response when you created the token.</value>
-        [JsonPropertyName("storedPaymentMethodId")]
-        public string? StoredPaymentMethodId { get { return this._StoredPaymentMethodIdOption; } set { this._StoredPaymentMethodIdOption = new(value); } }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RakutenPayDetails {\n");
+            sb.Append("class KlarnaNetworkDetails {\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
-            sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
+            sb.Append("  KlarnaNetworkData: ").Append(KlarnaNetworkData).Append("\n");
             sb.Append("  SdkData: ").Append(SdkData).Append("\n");
-            sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -243,19 +218,19 @@ namespace Adyen.Checkout.Models
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="RakutenPayDetails" />
+    /// A Json converter for type <see cref="KlarnaNetworkDetails" />
     /// </summary>
-    public class RakutenPayDetailsJsonConverter : JsonConverter<RakutenPayDetails>
+    public class KlarnaNetworkDetailsJsonConverter : JsonConverter<KlarnaNetworkDetails>
     {
         /// <summary>
-        /// Deserializes json to <see cref="RakutenPayDetails"/>.
+        /// Deserializes json to <see cref="KlarnaNetworkDetails"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="RakutenPayDetails"/>.</returns>
+        /// <returns><see cref="KlarnaNetworkDetails"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override RakutenPayDetails Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override KlarnaNetworkDetails Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -265,10 +240,9 @@ namespace Adyen.Checkout.Models
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string?> checkoutAttemptId = default;
-            Option<string?> recurringDetailReference = default;
+            Option<string?> klarnaNetworkData = default;
             Option<string?> sdkData = default;
-            Option<string?> storedPaymentMethodId = default;
-            Option<RakutenPayDetails.TypeEnum?> type = default;
+            Option<KlarnaNetworkDetails.TypeEnum?> type = default;
 
             while (utf8JsonReader.Read())
             {
@@ -288,18 +262,15 @@ namespace Adyen.Checkout.Models
                         case "checkoutAttemptId":
                             checkoutAttemptId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
-                        case "recurringDetailReference":
-                            recurringDetailReference = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "klarnaNetworkData":
+                            klarnaNetworkData = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "sdkData":
                             sdkData = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
-                        case "storedPaymentMethodId":
-                            storedPaymentMethodId = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<RakutenPayDetails.TypeEnum?>(RakutenPayDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<KlarnaNetworkDetails.TypeEnum?>(KlarnaNetworkDetails.TypeEnum.FromStringOrDefault(typeRawValue));
                             break;
                         default:
                             break;
@@ -307,55 +278,53 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class KlarnaNetworkDetails.", nameof(type));
 
-            return new RakutenPayDetails(checkoutAttemptId, recurringDetailReference, sdkData, storedPaymentMethodId, type);
+            return new KlarnaNetworkDetails(checkoutAttemptId, klarnaNetworkData, sdkData, type.Value!.Value!);
         }
 
         /// <summary>
-        /// Serializes a <see cref="RakutenPayDetails"/>.
+        /// Serializes a <see cref="KlarnaNetworkDetails"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="rakutenPayDetails"></param>
+        /// <param name="klarnaNetworkDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, RakutenPayDetails rakutenPayDetails, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, KlarnaNetworkDetails klarnaNetworkDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, rakutenPayDetails, jsonSerializerOptions);
+            WriteProperties(writer, klarnaNetworkDetails, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="RakutenPayDetails"/>.
+        /// Serializes the properties of <see cref="KlarnaNetworkDetails"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="rakutenPayDetails"></param>
+        /// <param name="klarnaNetworkDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, RakutenPayDetails rakutenPayDetails, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, KlarnaNetworkDetails klarnaNetworkDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (rakutenPayDetails._CheckoutAttemptIdOption.IsSet)
-                if (rakutenPayDetails.CheckoutAttemptId != null)
-                    writer.WriteString("checkoutAttemptId", rakutenPayDetails.CheckoutAttemptId);
+            if (klarnaNetworkDetails._CheckoutAttemptIdOption.IsSet)
+                if (klarnaNetworkDetails.CheckoutAttemptId != null)
+                    writer.WriteString("checkoutAttemptId", klarnaNetworkDetails.CheckoutAttemptId);
 
-            if (rakutenPayDetails._RecurringDetailReferenceOption.IsSet)
-                if (rakutenPayDetails.RecurringDetailReference != null)
-                    writer.WriteString("recurringDetailReference", rakutenPayDetails.RecurringDetailReference);
+            if (klarnaNetworkDetails._KlarnaNetworkDataOption.IsSet)
+                if (klarnaNetworkDetails.KlarnaNetworkData != null)
+                    writer.WriteString("klarnaNetworkData", klarnaNetworkDetails.KlarnaNetworkData);
 
-            if (rakutenPayDetails._SdkDataOption.IsSet)
-                if (rakutenPayDetails.SdkData != null)
-                    writer.WriteString("sdkData", rakutenPayDetails.SdkData);
+            if (klarnaNetworkDetails._SdkDataOption.IsSet)
+                if (klarnaNetworkDetails.SdkData != null)
+                    writer.WriteString("sdkData", klarnaNetworkDetails.SdkData);
 
-            if (rakutenPayDetails._StoredPaymentMethodIdOption.IsSet)
-                if (rakutenPayDetails.StoredPaymentMethodId != null)
-                    writer.WriteString("storedPaymentMethodId", rakutenPayDetails.StoredPaymentMethodId);
-
-            if (rakutenPayDetails._TypeOption.IsSet && rakutenPayDetails.Type != null) 
+            if (klarnaNetworkDetails.Type != null) 
             {
-                string? typeRawValue = RakutenPayDetails.TypeEnum.ToJsonValue(rakutenPayDetails._TypeOption.Value!.Value);
+                string? typeRawValue = KlarnaNetworkDetails.TypeEnum.ToJsonValue(klarnaNetworkDetails.Type);
                 writer.WriteString("type", typeRawValue);
             }
         }

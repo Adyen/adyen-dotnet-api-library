@@ -2,9 +2,9 @@
 /*
  * Adyen Checkout API
  *
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v71/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v71/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=71) to find out what changed in this version!
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v72/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v72/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=72) to find out what changed in this version!
  *
- * The version of the OpenAPI document: 71
+ * The version of the OpenAPI document: 72
  * Generated by: https://github.com/openapitools/openapi-generator.git
  */
 
@@ -34,6 +34,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataCard" /> class.
         /// </summary>
+        /// <param name="cardAltID">This is an ALT ID (alternate ID) mapped to the Card PAN.  &gt; Returned only in case of Ecommerce Card Payment in India</param>
         /// <param name="cardBin">The first six digits of the card number.  This is the [Bank Identification Number (BIN)](https://docs.adyen.com/get-started-with-adyen/payment-glossary#bank-identification-number-bin) for card numbers with a six-digit BIN.  Example: 521234</param>
         /// <param name="cardHolderName">The cardholder name passed in the payment request.</param>
         /// <param name="cardIssuingBank">The bank or the financial institution granting lines of credit through card association branded payment cards. This information can be included when available.</param>
@@ -44,8 +45,9 @@ namespace Adyen.Checkout.Models
         /// <param name="cardSummary">The last four digits of a card number.  &gt; Returned only in case of a card payment.</param>
         /// <param name="issuerBin">The first eight digits of the card number. Only returned if the card number is 16 digits or more.  This is the [Bank Identification Number (BIN)](https://docs.adyen.com/get-started-with-adyen/payment-glossary#bank-identification-number-bin) for card numbers with an eight-digit BIN.  Example: 52123423</param>
         [JsonConstructor]
-        public ResponseAdditionalDataCard(Option<string?> cardBin = default, Option<string?> cardHolderName = default, Option<string?> cardIssuingBank = default, Option<string?> cardIssuingCountry = default, Option<string?> cardIssuingCurrency = default, Option<string?> cardPaymentMethod = default, Option<CardProductIdEnum?> cardProductId = default, Option<string?> cardSummary = default, Option<string?> issuerBin = default)
+        public ResponseAdditionalDataCard(Option<string?> cardAltID = default, Option<string?> cardBin = default, Option<string?> cardHolderName = default, Option<string?> cardIssuingBank = default, Option<string?> cardIssuingCountry = default, Option<string?> cardIssuingCurrency = default, Option<string?> cardPaymentMethod = default, Option<CardProductIdEnum?> cardProductId = default, Option<string?> cardSummary = default, Option<string?> issuerBin = default)
         {
+            _CardAltIDOption = cardAltID;
             _CardBinOption = cardBin;
             _CardHolderNameOption = cardHolderName;
             _CardIssuingBankOption = cardIssuingBank;
@@ -266,6 +268,20 @@ namespace Adyen.Checkout.Models
         public CardProductIdEnum? CardProductId { get { return this._CardProductIdOption; } set { this._CardProductIdOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="CardAltID"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _CardAltIDOption { get; private set; }
+
+        /// <summary>
+        /// This is an ALT ID (alternate ID) mapped to the Card PAN.  &gt; Returned only in case of Ecommerce Card Payment in India
+        /// </summary>
+        /// <value>This is an ALT ID (alternate ID) mapped to the Card PAN.  > Returned only in case of Ecommerce Card Payment in India</value>
+        [JsonPropertyName("cardAltID")]
+        public string? CardAltID { get { return this._CardAltIDOption; } set { this._CardAltIDOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CardBin"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -378,6 +394,12 @@ namespace Adyen.Checkout.Models
         public string? IssuerBin { get { return this._IssuerBinOption; } set { this._IssuerBinOption = new(value); } }
 
         /// <summary>
+        /// Gets or sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -385,6 +407,7 @@ namespace Adyen.Checkout.Models
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class ResponseAdditionalDataCard {\n");
+            sb.Append("  CardAltID: ").Append(CardAltID).Append("\n");
             sb.Append("  CardBin: ").Append(CardBin).Append("\n");
             sb.Append("  CardHolderName: ").Append(CardHolderName).Append("\n");
             sb.Append("  CardIssuingBank: ").Append(CardIssuingBank).Append("\n");
@@ -394,6 +417,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  CardProductId: ").Append(CardProductId).Append("\n");
             sb.Append("  CardSummary: ").Append(CardSummary).Append("\n");
             sb.Append("  IssuerBin: ").Append(IssuerBin).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -421,6 +445,7 @@ namespace Adyen.Checkout.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<string?> cardAltID = default;
             Option<string?> cardBin = default;
             Option<string?> cardHolderName = default;
             Option<string?> cardIssuingBank = default;
@@ -446,6 +471,9 @@ namespace Adyen.Checkout.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "cardAltID":
+                            cardAltID = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "cardBin":
                             cardBin = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -481,7 +509,7 @@ namespace Adyen.Checkout.Models
             }
             
 
-            return new ResponseAdditionalDataCard(cardBin, cardHolderName, cardIssuingBank, cardIssuingCountry, cardIssuingCurrency, cardPaymentMethod, cardProductId, cardSummary, issuerBin);
+            return new ResponseAdditionalDataCard(cardAltID, cardBin, cardHolderName, cardIssuingBank, cardIssuingCountry, cardIssuingCurrency, cardPaymentMethod, cardProductId, cardSummary, issuerBin);
         }
 
         /// <summary>
@@ -510,6 +538,10 @@ namespace Adyen.Checkout.Models
         public void WriteProperties(Utf8JsonWriter writer, ResponseAdditionalDataCard responseAdditionalDataCard, JsonSerializerOptions jsonSerializerOptions)
         {
             
+            if (responseAdditionalDataCard._CardAltIDOption.IsSet)
+                if (responseAdditionalDataCard.CardAltID != null)
+                    writer.WriteString("cardAltID", responseAdditionalDataCard.CardAltID);
+
             if (responseAdditionalDataCard._CardBinOption.IsSet)
                 if (responseAdditionalDataCard.CardBin != null)
                     writer.WriteString("cardBin", responseAdditionalDataCard.CardBin);

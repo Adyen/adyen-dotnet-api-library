@@ -2,9 +2,9 @@
 /*
  * Adyen Checkout API
  *
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v71/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v71/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=71) to find out what changed in this version!
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v72/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v72/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=72) to find out what changed in this version!
  *
- * The version of the OpenAPI document: 71
+ * The version of the OpenAPI document: 72
  * Generated by: https://github.com/openapitools/openapi-generator.git
  */
 
@@ -51,8 +51,8 @@ namespace Adyen.Checkout.Services
         /// <param name="donationCampaignsRequest"></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IDonationCampaignsApiResponse"/>.</returns>
-        Task<IDonationCampaignsApiResponse> DonationCampaignsAsync(DonationCampaignsRequest donationCampaignsRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/> of <see cref="IPostDonationCampaignsApiResponse"/>.</returns>
+        Task<IPostDonationCampaignsApiResponse> PostDonationCampaignsAsync(DonationCampaignsRequest donationCampaignsRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Make a donation
@@ -65,15 +65,15 @@ namespace Adyen.Checkout.Services
         /// <param name="donationPaymentRequest"></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IDonationsApiResponse"/>.</returns>
-        Task<IDonationsApiResponse> DonationsAsync(DonationPaymentRequest donationPaymentRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/> of <see cref="IPostDonationsApiResponse"/>.</returns>
+        Task<IPostDonationsApiResponse> PostDonationsAsync(DonationPaymentRequest donationPaymentRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IDonationCampaignsApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.DonationCampaignsResponse"/>.
+    /// The <see cref="IPostDonationCampaignsApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.DonationCampaignsResponse"/>.
     /// </summary>
-    public interface IDonationCampaignsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.DonationCampaignsResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
+    public interface IPostDonationCampaignsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.DonationCampaignsResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -113,9 +113,9 @@ namespace Adyen.Checkout.Services
     }
 
     /// <summary>
-    /// The <see cref="IDonationsApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.DonationPaymentResponse"/>.
+    /// The <see cref="IPostDonationsApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.DonationPaymentResponse"/>.
     /// </summary>
-    public interface IDonationsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.DonationPaymentResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
+    public interface IPostDonationsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.DonationPaymentResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -162,41 +162,41 @@ namespace Adyen.Checkout.Services
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDonationCampaigns;
+        public event EventHandler<ApiResponseEventArgs>? OnPostDonationCampaigns;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDonationCampaigns;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostDonationCampaigns;
 
-        internal void ExecuteOnDonationCampaigns(DonationsService.DonationCampaignsApiResponse apiResponse)
+        internal void ExecuteOnPostDonationCampaigns(DonationsService.PostDonationCampaignsApiResponse apiResponse)
         {
-            OnDonationCampaigns?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostDonationCampaigns?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorDonationCampaigns(Exception exception)
+        internal void ExecuteOnErrorPostDonationCampaigns(Exception exception)
         {
-            OnErrorDonationCampaigns?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostDonationCampaigns?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDonations;
+        public event EventHandler<ApiResponseEventArgs>? OnPostDonations;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDonations;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostDonations;
 
-        internal void ExecuteOnDonations(DonationsService.DonationsApiResponse apiResponse)
+        internal void ExecuteOnPostDonations(DonationsService.PostDonationsApiResponse apiResponse)
         {
-            OnDonations?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostDonations?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorDonations(Exception exception)
+        internal void ExecuteOnErrorPostDonations(Exception exception)
         {
-            OnErrorDonations?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostDonations?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -210,7 +210,7 @@ namespace Adyen.Checkout.Services
         /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
         /// This value will be used to construct the URL in <see cref="System.Net.Http.HttpClient.BaseAddress"/> based on the Environment value set in <see cref="AdyenOptions.Environment"/>.
         /// </summary>
-        private const string BASE_URL = "https://checkout-test.adyen.com/v71";
+        private const string BASE_URL = "https://checkout-test.adyen.com/v72";
             
         private JsonSerializerOptions _jsonSerializerOptions;
 
@@ -263,8 +263,8 @@ namespace Adyen.Checkout.Services
         /// <param name="donationCampaignsRequest"><see cref="DonationCampaignsRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IDonationCampaignsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.DonationCampaignsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDonationCampaignsApiResponse> DonationCampaignsAsync(DonationCampaignsRequest donationCampaignsRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IPostDonationCampaignsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.DonationCampaignsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IPostDonationCampaignsApiResponse> PostDonationCampaignsAsync(DonationCampaignsRequest donationCampaignsRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -321,8 +321,8 @@ namespace Adyen.Checkout.Services
 
                     using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<DonationCampaignsApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<DonationCampaignsApiResponse>();
-                        DonationCampaignsApiResponse apiResponse;
+                        ILogger<PostDonationCampaignsApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<PostDonationCampaignsApiResponse>();
+                        PostDonationCampaignsApiResponse apiResponse;
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
@@ -338,30 +338,30 @@ namespace Adyen.Checkout.Services
                             }
                         }
                         
-                        Events?.ExecuteOnDonationCampaigns(apiResponse);
+                        Events?.ExecuteOnPostDonationCampaigns(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events?.ExecuteOnErrorDonationCampaigns(exception);
+                Events?.ExecuteOnErrorPostDonationCampaigns(exception);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="DonationCampaignsApiResponse"/>.
+        /// The <see cref="PostDonationCampaignsApiResponse"/>.
         /// </summary>
-        public partial class DonationCampaignsApiResponse : Adyen.Core.Client.ApiResponse, IDonationCampaignsApiResponse
+        public partial class PostDonationCampaignsApiResponse : Adyen.Core.Client.ApiResponse, IPostDonationCampaignsApiResponse
         {
             /// <summary>
-            /// The logger for <see cref="DonationCampaignsApiResponse"/>.
+            /// The logger for <see cref="PostDonationCampaignsApiResponse"/>.
             /// </summary>
-            public ILogger<DonationCampaignsApiResponse> Logger { get; }
+            public ILogger<PostDonationCampaignsApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="DonationCampaignsApiResponse"/>.
+            /// The <see cref="PostDonationCampaignsApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -370,14 +370,14 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public DonationCampaignsApiResponse(ILogger<DonationCampaignsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostDonationCampaignsApiResponse(ILogger<PostDonationCampaignsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="DonationCampaignsApiResponse"/>.
+            /// The <see cref="PostDonationCampaignsApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -386,7 +386,7 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public DonationCampaignsApiResponse(ILogger<DonationCampaignsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostDonationCampaignsApiResponse(ILogger<PostDonationCampaignsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -641,8 +641,8 @@ namespace Adyen.Checkout.Services
         /// <param name="donationPaymentRequest"><see cref="DonationPaymentRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IDonationsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.DonationPaymentResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDonationsApiResponse> DonationsAsync(DonationPaymentRequest donationPaymentRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IPostDonationsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.DonationPaymentResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IPostDonationsApiResponse> PostDonationsAsync(DonationPaymentRequest donationPaymentRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -699,8 +699,8 @@ namespace Adyen.Checkout.Services
 
                     using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<DonationsApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<DonationsApiResponse>();
-                        DonationsApiResponse apiResponse;
+                        ILogger<PostDonationsApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<PostDonationsApiResponse>();
+                        PostDonationsApiResponse apiResponse;
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
@@ -716,30 +716,30 @@ namespace Adyen.Checkout.Services
                             }
                         }
                         
-                        Events?.ExecuteOnDonations(apiResponse);
+                        Events?.ExecuteOnPostDonations(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events?.ExecuteOnErrorDonations(exception);
+                Events?.ExecuteOnErrorPostDonations(exception);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="DonationsApiResponse"/>.
+        /// The <see cref="PostDonationsApiResponse"/>.
         /// </summary>
-        public partial class DonationsApiResponse : Adyen.Core.Client.ApiResponse, IDonationsApiResponse
+        public partial class PostDonationsApiResponse : Adyen.Core.Client.ApiResponse, IPostDonationsApiResponse
         {
             /// <summary>
-            /// The logger for <see cref="DonationsApiResponse"/>.
+            /// The logger for <see cref="PostDonationsApiResponse"/>.
             /// </summary>
-            public ILogger<DonationsApiResponse> Logger { get; }
+            public ILogger<PostDonationsApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="DonationsApiResponse"/>.
+            /// The <see cref="PostDonationsApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -748,14 +748,14 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public DonationsApiResponse(ILogger<DonationsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostDonationsApiResponse(ILogger<PostDonationsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="DonationsApiResponse"/>.
+            /// The <see cref="PostDonationsApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -764,7 +764,7 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public DonationsApiResponse(ILogger<DonationsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostDonationsApiResponse(ILogger<PostDonationsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);

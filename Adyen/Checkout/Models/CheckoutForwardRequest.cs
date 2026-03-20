@@ -2,9 +2,9 @@
 /*
  * Adyen Checkout API
  *
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v71/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v71/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=71) to find out what changed in this version!
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v72/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v72/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=72) to find out what changed in this version!
  *
- * The version of the OpenAPI document: 71
+ * The version of the OpenAPI document: 72
  * Generated by: https://github.com/openapitools/openapi-generator.git
  */
 
@@ -36,19 +36,21 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="baseUrl">The base URL of the third party API, where Adyen will send the request to forward the payment details.</param>
         /// <param name="merchantAccount">Your merchant account.</param>
-        /// <param name="request">request</param>
+        /// <param name="request">The [details of the request](https://docs.adyen.com/online-payments/tokenization/forward-payment-details#request-to-adyen-card) that you want to forward to the third-party.</param>
         /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.</param>
+        /// <param name="amount">The amount of the forwarded payment.</param>
         /// <param name="merchantReference">Merchant defined payment reference.</param>
-        /// <param name="options">options</param>
-        /// <param name="paymentMethod">paymentMethod</param>
+        /// <param name="options">The customizations that can be applied when making a forward request.</param>
+        /// <param name="paymentMethod">The card details.</param>
         /// <param name="storedPaymentMethodId">The unique identifier of the token that you want to forward to the third party. This is the &#x60;storedPaymentMethodId&#x60; you received in the webhook after you created the token.</param>
         [JsonConstructor]
-        public CheckoutForwardRequest(string baseUrl, string merchantAccount, CheckoutOutgoingForwardRequest request, string shopperReference, Option<string?> merchantReference = default, Option<CheckoutForwardRequestOptions?> options = default, Option<CheckoutForwardRequestCard?> paymentMethod = default, Option<string?> storedPaymentMethodId = default)
+        public CheckoutForwardRequest(string baseUrl, string merchantAccount, CheckoutOutgoingForwardRequest request, string shopperReference, Option<Amount?> amount = default, Option<string?> merchantReference = default, Option<CheckoutForwardRequestOptions?> options = default, Option<CheckoutForwardRequestCard?> paymentMethod = default, Option<string?> storedPaymentMethodId = default)
         {
             BaseUrl = baseUrl;
             MerchantAccount = merchantAccount;
             Request = request;
             ShopperReference = shopperReference;
+            _AmountOption = amount;
             _MerchantReferenceOption = merchantReference;
             _OptionsOption = options;
             _PaymentMethodOption = paymentMethod;
@@ -80,8 +82,9 @@ namespace Adyen.Checkout.Models
         public string MerchantAccount { get; set; }
 
         /// <summary>
-        /// <see cref="Request"/>.
+        /// The [details of the request](https://docs.adyen.com/online-payments/tokenization/forward-payment-details#request-to-adyen-card) that you want to forward to the third-party.
         /// </summary>
+        /// <value>The [details of the request](https://docs.adyen.com/online-payments/tokenization/forward-payment-details#request-to-adyen-card) that you want to forward to the third-party.</value>
         [JsonPropertyName("request")]
         public CheckoutOutgoingForwardRequest Request { get; set; }
 
@@ -91,6 +94,20 @@ namespace Adyen.Checkout.Models
         /// <value>Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.</value>
         [JsonPropertyName("shopperReference")]
         public string ShopperReference { get; set; }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Amount?> _AmountOption { get; private set; }
+
+        /// <summary>
+        /// The amount of the forwarded payment.
+        /// </summary>
+        /// <value>The amount of the forwarded payment.</value>
+        [JsonPropertyName("amount")]
+        public Amount? Amount { get { return this._AmountOption; } set { this._AmountOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="MerchantReference"/> will be populated.
@@ -114,8 +131,9 @@ namespace Adyen.Checkout.Models
         public Option<CheckoutForwardRequestOptions?> _OptionsOption { get; private set; }
 
         /// <summary>
-        /// <see cref="Options"/>.
+        /// The customizations that can be applied when making a forward request.
         /// </summary>
+        /// <value>The customizations that can be applied when making a forward request.</value>
         [JsonPropertyName("options")]
         public CheckoutForwardRequestOptions? Options { get { return this._OptionsOption; } set { this._OptionsOption = new(value); } }
 
@@ -127,8 +145,9 @@ namespace Adyen.Checkout.Models
         public Option<CheckoutForwardRequestCard?> _PaymentMethodOption { get; private set; }
 
         /// <summary>
-        /// <see cref="PaymentMethod"/>.
+        /// The card details.
         /// </summary>
+        /// <value>The card details.</value>
         [JsonPropertyName("paymentMethod")]
         public CheckoutForwardRequestCard? PaymentMethod { get { return this._PaymentMethodOption; } set { this._PaymentMethodOption = new(value); } }
 
@@ -158,6 +177,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  Request: ").Append(Request).Append("\n");
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
+            sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
             sb.Append("  Options: ").Append(Options).Append("\n");
             sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
@@ -193,6 +213,7 @@ namespace Adyen.Checkout.Models
             Option<string?> merchantAccount = default;
             Option<CheckoutOutgoingForwardRequest?> request = default;
             Option<string?> shopperReference = default;
+            Option<Amount?> amount = default;
             Option<string?> merchantReference = default;
             Option<CheckoutForwardRequestOptions?> options = default;
             Option<CheckoutForwardRequestCard?> paymentMethod = default;
@@ -225,6 +246,9 @@ namespace Adyen.Checkout.Models
                         case "shopperReference":
                             shopperReference = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "amount":
+                            amount = new Option<Amount?>(JsonSerializer.Deserialize<Amount>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "merchantReference":
                             merchantReference = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -255,7 +279,7 @@ namespace Adyen.Checkout.Models
             if (!shopperReference.IsSet)
                 throw new ArgumentException("Property is required for class CheckoutForwardRequest.", nameof(shopperReference));
 
-            return new CheckoutForwardRequest(baseUrl.Value!, merchantAccount.Value!, request.Value!, shopperReference.Value!, merchantReference, options, paymentMethod, storedPaymentMethodId);
+            return new CheckoutForwardRequest(baseUrl.Value!, merchantAccount.Value!, request.Value!, shopperReference.Value!, amount, merchantReference, options, paymentMethod, storedPaymentMethodId);
         }
 
         /// <summary>
@@ -295,6 +319,11 @@ namespace Adyen.Checkout.Models
             if (checkoutForwardRequest.ShopperReference != null)
                 writer.WriteString("shopperReference", checkoutForwardRequest.ShopperReference);
 
+            if (checkoutForwardRequest._AmountOption.IsSet)
+            {
+                writer.WritePropertyName("amount");
+                JsonSerializer.Serialize(writer, checkoutForwardRequest.Amount, jsonSerializerOptions);
+            }
             if (checkoutForwardRequest._MerchantReferenceOption.IsSet)
                 if (checkoutForwardRequest.MerchantReference != null)
                     writer.WriteString("merchantReference", checkoutForwardRequest.MerchantReference);

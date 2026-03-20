@@ -2,9 +2,9 @@
 /*
  * Adyen Checkout API
  *
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v71/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v71/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=71) to find out what changed in this version!
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v72/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v72/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=72) to find out what changed in this version!
  *
- * The version of the OpenAPI document: 71
+ * The version of the OpenAPI document: 72
  * Generated by: https://github.com/openapitools/openapi-generator.git
  */
 
@@ -51,68 +51,8 @@ namespace Adyen.Checkout.Services
         /// <param name="standalonePaymentCancelRequest"></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICancelAuthorisedPaymentApiResponse"/>.</returns>
-        Task<ICancelAuthorisedPaymentApiResponse> CancelAuthorisedPaymentAsync(StandalonePaymentCancelRequest standalonePaymentCancelRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Cancel an authorised payment
-        /// </summary>
-        /// <remarks>
-        /// Cancels the authorisation on a payment that has not yet been [captured](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/captures), and returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**CANCELLATION** webhook](https://docs.adyen.com/online-payments/cancel#cancellation-webhook).  If you want to cancel a payment but don&#39;t have the [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference), use the [&#x60;/cancels&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/cancels) endpoint instead.  If you want to cancel a payment but are not sure whether it has been captured, use the [&#x60;/payments/{paymentPspReference}/reversals&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/reversals) endpoint instead.  For more information, refer to [Cancel](https://docs.adyen.com/online-payments/cancel).
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="paymentPspReference">The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to cancel. </param>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). - Pass this header parameter using <see cref="RequestOptions"/>.</param>
-        /// <param name="paymentCancelRequest"></param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICancelAuthorisedPaymentByPspReferenceApiResponse"/>.</returns>
-        Task<ICancelAuthorisedPaymentByPspReferenceApiResponse> CancelAuthorisedPaymentByPspReferenceAsync(string paymentPspReference, PaymentCancelRequest paymentCancelRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Capture an authorised payment
-        /// </summary>
-        /// <remarks>
-        ///  Captures an authorised payment and returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**CAPTURE** webhook](https://docs.adyen.com/online-payments/capture#capture-notification).  You can capture either the full authorised amount or a part of the authorised amount. By default, any unclaimed amount after a partial capture gets cancelled. This does not apply if you enabled multiple partial captures on your account and the payment method supports multiple partial captures.   [Automatic capture](https://docs.adyen.com/online-payments/capture#automatic-capture) is the default setting for most payment methods. In these cases, you don&#39;t need to make capture requests. However, making capture requests for payments that are captured automatically does not result in double charges.  For more information, refer to [Capture](https://docs.adyen.com/online-payments/capture).
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="paymentPspReference">The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to capture.</param>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). - Pass this header parameter using <see cref="RequestOptions"/>.</param>
-        /// <param name="paymentCaptureRequest"></param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICaptureAuthorisedPaymentApiResponse"/>.</returns>
-        Task<ICaptureAuthorisedPaymentApiResponse> CaptureAuthorisedPaymentAsync(string paymentPspReference, PaymentCaptureRequest paymentCaptureRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Refund a captured payment
-        /// </summary>
-        /// <remarks>
-        /// Refunds a payment that has been [captured](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/captures), and returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**REFUND** webhook](https://docs.adyen.com/online-payments/refund#refund-webhook).  You can refund either the full captured amount or a part of the captured amount. You can also perform multiple partial refunds, as long as their sum doesn&#39;t exceed the captured amount.  &gt; Some payment methods do not support partial refunds. To learn if a payment method supports partial refunds, refer to the payment method page such as [cards](https://docs.adyen.com/payment-methods/cards#supported-cards), [iDEAL](https://docs.adyen.com/payment-methods/ideal), or [Klarna](https://docs.adyen.com/payment-methods/klarna).   If you want to refund a payment but are not sure whether it has been captured, use the [&#x60;/payments/{paymentPspReference}/reversals&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/reversals) endpoint instead.  For more information, refer to [Refund](https://docs.adyen.com/online-payments/refund).
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="paymentPspReference">The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to refund.</param>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). - Pass this header parameter using <see cref="RequestOptions"/>.</param>
-        /// <param name="paymentRefundRequest"></param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IRefundCapturedPaymentApiResponse"/>.</returns>
-        Task<IRefundCapturedPaymentApiResponse> RefundCapturedPaymentAsync(string paymentPspReference, PaymentRefundRequest paymentRefundRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Refund or cancel a payment
-        /// </summary>
-        /// <remarks>
-        /// [Refunds](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/refunds) a payment if it has already been captured, and [cancels](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/cancels) a payment if it has not yet been captured. Returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**CANCEL_OR_REFUND** webhook](https://docs.adyen.com/online-payments/reversal/#cancel-or-refund-webhook).  The reversed amount is always the full payment amount. &gt; Do not use this request for payments that involve multiple partial captures.  For more information, refer to [Reversal](https://docs.adyen.com/online-payments/reversal).
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="paymentPspReference">The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to reverse. </param>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). - Pass this header parameter using <see cref="RequestOptions"/>.</param>
-        /// <param name="paymentReversalRequest"></param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IRefundOrCancelPaymentApiResponse"/>.</returns>
-        Task<IRefundOrCancelPaymentApiResponse> RefundOrCancelPaymentAsync(string paymentPspReference, PaymentReversalRequest paymentReversalRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/> of <see cref="IPostCancelsApiResponse"/>.</returns>
+        Task<IPostCancelsApiResponse> PostCancelsAsync(StandalonePaymentCancelRequest standalonePaymentCancelRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update an authorised amount
@@ -126,15 +66,75 @@ namespace Adyen.Checkout.Services
         /// <param name="paymentAmountUpdateRequest"></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdateAuthorisedAmountApiResponse"/>.</returns>
-        Task<IUpdateAuthorisedAmountApiResponse> UpdateAuthorisedAmountAsync(string paymentPspReference, PaymentAmountUpdateRequest paymentAmountUpdateRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/> of <see cref="IPostPaymentsPaymentPspReferenceAmountUpdatesApiResponse"/>.</returns>
+        Task<IPostPaymentsPaymentPspReferenceAmountUpdatesApiResponse> PostPaymentsPaymentPspReferenceAmountUpdatesAsync(string paymentPspReference, PaymentAmountUpdateRequest paymentAmountUpdateRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Cancel an authorised payment
+        /// </summary>
+        /// <remarks>
+        /// Cancels the authorisation on a payment that has not yet been [captured](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/captures), and returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**CANCELLATION** webhook](https://docs.adyen.com/online-payments/cancel#cancellation-webhook).  If you want to cancel a payment but don&#39;t have the [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference), use the [&#x60;/cancels&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/cancels) endpoint instead.  If you want to cancel a payment but are not sure whether it has been captured, use the [&#x60;/payments/{paymentPspReference}/reversals&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/reversals) endpoint instead.  For more information, refer to [Cancel](https://docs.adyen.com/online-payments/cancel).
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
+        /// <param name="paymentPspReference">The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to cancel. </param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). - Pass this header parameter using <see cref="RequestOptions"/>.</param>
+        /// <param name="paymentCancelRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> of <see cref="IPostPaymentsPaymentPspReferenceCancelsApiResponse"/>.</returns>
+        Task<IPostPaymentsPaymentPspReferenceCancelsApiResponse> PostPaymentsPaymentPspReferenceCancelsAsync(string paymentPspReference, PaymentCancelRequest paymentCancelRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Capture an authorised payment
+        /// </summary>
+        /// <remarks>
+        ///  Captures an authorised payment and returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**CAPTURE** webhook](https://docs.adyen.com/online-payments/capture#capture-notification).  You can capture either the full authorised amount or a part of the authorised amount. By default, any unclaimed amount after a partial capture gets cancelled. This does not apply if you enabled multiple partial captures on your account and the payment method supports multiple partial captures.   [Automatic capture](https://docs.adyen.com/online-payments/capture#automatic-capture) is the default setting for most payment methods. In these cases, you don&#39;t need to make capture requests. However, making capture requests for payments that are captured automatically does not result in double charges.  For more information, refer to [Capture](https://docs.adyen.com/online-payments/capture).
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
+        /// <param name="paymentPspReference">The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to capture.</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). - Pass this header parameter using <see cref="RequestOptions"/>.</param>
+        /// <param name="paymentCaptureRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> of <see cref="IPostPaymentsPaymentPspReferenceCapturesApiResponse"/>.</returns>
+        Task<IPostPaymentsPaymentPspReferenceCapturesApiResponse> PostPaymentsPaymentPspReferenceCapturesAsync(string paymentPspReference, PaymentCaptureRequest paymentCaptureRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Refund a captured payment
+        /// </summary>
+        /// <remarks>
+        /// Refunds a payment that has been [captured](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/captures), and returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**REFUND** webhook](https://docs.adyen.com/online-payments/refund#refund-webhook).  You can refund either the full captured amount or a part of the captured amount. You can also perform multiple partial refunds, as long as their sum doesn&#39;t exceed the captured amount.  &gt; Some payment methods do not support partial refunds. To learn if a payment method supports partial refunds, refer to the payment method page such as [cards](https://docs.adyen.com/payment-methods/cards#supported-cards), [iDEAL](https://docs.adyen.com/payment-methods/ideal), or [Klarna](https://docs.adyen.com/payment-methods/klarna).   If you want to refund a payment but are not sure whether it has been captured, use the [&#x60;/payments/{paymentPspReference}/reversals&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/reversals) endpoint instead.  For more information, refer to [Refund](https://docs.adyen.com/online-payments/refund).
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
+        /// <param name="paymentPspReference">The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to refund.</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). - Pass this header parameter using <see cref="RequestOptions"/>.</param>
+        /// <param name="paymentRefundRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> of <see cref="IPostPaymentsPaymentPspReferenceRefundsApiResponse"/>.</returns>
+        Task<IPostPaymentsPaymentPspReferenceRefundsApiResponse> PostPaymentsPaymentPspReferenceRefundsAsync(string paymentPspReference, PaymentRefundRequest paymentRefundRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Refund or cancel a payment
+        /// </summary>
+        /// <remarks>
+        /// [Refunds](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/refunds) a payment if it has already been captured, and [cancels](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/cancels) a payment if it has not yet been captured. Returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**CANCEL_OR_REFUND** webhook](https://docs.adyen.com/online-payments/reversal/#cancel-or-refund-webhook).  The reversed amount is always the full payment amount. &gt; Do not use this request for payments that involve multiple partial captures.  For more information, refer to [Reversal](https://docs.adyen.com/online-payments/reversal).
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
+        /// <param name="paymentPspReference">The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to reverse. </param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). - Pass this header parameter using <see cref="RequestOptions"/>.</param>
+        /// <param name="paymentReversalRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> of <see cref="IPostPaymentsPaymentPspReferenceReversalsApiResponse"/>.</returns>
+        Task<IPostPaymentsPaymentPspReferenceReversalsApiResponse> PostPaymentsPaymentPspReferenceReversalsAsync(string paymentPspReference, PaymentReversalRequest paymentReversalRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="ICancelAuthorisedPaymentApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.StandalonePaymentCancelResponse"/>.
+    /// The <see cref="IPostCancelsApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.StandalonePaymentCancelResponse"/>.
     /// </summary>
-    public interface ICancelAuthorisedPaymentApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.Checkout.Models.StandalonePaymentCancelResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
+    public interface IPostCancelsApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.Checkout.Models.StandalonePaymentCancelResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
     {
         /// <summary>
         /// Returns true if the response is 201 Created.
@@ -174,9 +174,9 @@ namespace Adyen.Checkout.Services
     }
 
     /// <summary>
-    /// The <see cref="ICancelAuthorisedPaymentByPspReferenceApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.PaymentCancelResponse"/>.
+    /// The <see cref="IPostPaymentsPaymentPspReferenceAmountUpdatesApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.PaymentAmountUpdateResponse"/>.
     /// </summary>
-    public interface ICancelAuthorisedPaymentByPspReferenceApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.Checkout.Models.PaymentCancelResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
+    public interface IPostPaymentsPaymentPspReferenceAmountUpdatesApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.Checkout.Models.PaymentAmountUpdateResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
     {
         /// <summary>
         /// Returns true if the response is 201 Created.
@@ -216,9 +216,9 @@ namespace Adyen.Checkout.Services
     }
 
     /// <summary>
-    /// The <see cref="ICaptureAuthorisedPaymentApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.PaymentCaptureResponse"/>.
+    /// The <see cref="IPostPaymentsPaymentPspReferenceCancelsApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.PaymentCancelResponse"/>.
     /// </summary>
-    public interface ICaptureAuthorisedPaymentApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.Checkout.Models.PaymentCaptureResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
+    public interface IPostPaymentsPaymentPspReferenceCancelsApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.Checkout.Models.PaymentCancelResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
     {
         /// <summary>
         /// Returns true if the response is 201 Created.
@@ -258,9 +258,9 @@ namespace Adyen.Checkout.Services
     }
 
     /// <summary>
-    /// The <see cref="IRefundCapturedPaymentApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.PaymentRefundResponse"/>.
+    /// The <see cref="IPostPaymentsPaymentPspReferenceCapturesApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.PaymentCaptureResponse"/>.
     /// </summary>
-    public interface IRefundCapturedPaymentApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.Checkout.Models.PaymentRefundResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
+    public interface IPostPaymentsPaymentPspReferenceCapturesApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.Checkout.Models.PaymentCaptureResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
     {
         /// <summary>
         /// Returns true if the response is 201 Created.
@@ -300,9 +300,9 @@ namespace Adyen.Checkout.Services
     }
 
     /// <summary>
-    /// The <see cref="IRefundOrCancelPaymentApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.PaymentReversalResponse"/>.
+    /// The <see cref="IPostPaymentsPaymentPspReferenceRefundsApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.PaymentRefundResponse"/>.
     /// </summary>
-    public interface IRefundOrCancelPaymentApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.Checkout.Models.PaymentReversalResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
+    public interface IPostPaymentsPaymentPspReferenceRefundsApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.Checkout.Models.PaymentRefundResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
     {
         /// <summary>
         /// Returns true if the response is 201 Created.
@@ -342,9 +342,9 @@ namespace Adyen.Checkout.Services
     }
 
     /// <summary>
-    /// The <see cref="IUpdateAuthorisedAmountApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.PaymentAmountUpdateResponse"/>.
+    /// The <see cref="IPostPaymentsPaymentPspReferenceReversalsApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.PaymentReversalResponse"/>.
     /// </summary>
-    public interface IUpdateAuthorisedAmountApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.Checkout.Models.PaymentAmountUpdateResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
+    public interface IPostPaymentsPaymentPspReferenceReversalsApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.Checkout.Models.PaymentReversalResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
     {
         /// <summary>
         /// Returns true if the response is 201 Created.
@@ -391,121 +391,121 @@ namespace Adyen.Checkout.Services
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCancelAuthorisedPayment;
+        public event EventHandler<ApiResponseEventArgs>? OnPostCancels;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCancelAuthorisedPayment;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostCancels;
 
-        internal void ExecuteOnCancelAuthorisedPayment(ModificationsService.CancelAuthorisedPaymentApiResponse apiResponse)
+        internal void ExecuteOnPostCancels(ModificationsService.PostCancelsApiResponse apiResponse)
         {
-            OnCancelAuthorisedPayment?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostCancels?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCancelAuthorisedPayment(Exception exception)
+        internal void ExecuteOnErrorPostCancels(Exception exception)
         {
-            OnErrorCancelAuthorisedPayment?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostCancels?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCancelAuthorisedPaymentByPspReference;
+        public event EventHandler<ApiResponseEventArgs>? OnPostPaymentsPaymentPspReferenceAmountUpdates;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCancelAuthorisedPaymentByPspReference;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostPaymentsPaymentPspReferenceAmountUpdates;
 
-        internal void ExecuteOnCancelAuthorisedPaymentByPspReference(ModificationsService.CancelAuthorisedPaymentByPspReferenceApiResponse apiResponse)
+        internal void ExecuteOnPostPaymentsPaymentPspReferenceAmountUpdates(ModificationsService.PostPaymentsPaymentPspReferenceAmountUpdatesApiResponse apiResponse)
         {
-            OnCancelAuthorisedPaymentByPspReference?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostPaymentsPaymentPspReferenceAmountUpdates?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCancelAuthorisedPaymentByPspReference(Exception exception)
+        internal void ExecuteOnErrorPostPaymentsPaymentPspReferenceAmountUpdates(Exception exception)
         {
-            OnErrorCancelAuthorisedPaymentByPspReference?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostPaymentsPaymentPspReferenceAmountUpdates?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCaptureAuthorisedPayment;
+        public event EventHandler<ApiResponseEventArgs>? OnPostPaymentsPaymentPspReferenceCancels;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCaptureAuthorisedPayment;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostPaymentsPaymentPspReferenceCancels;
 
-        internal void ExecuteOnCaptureAuthorisedPayment(ModificationsService.CaptureAuthorisedPaymentApiResponse apiResponse)
+        internal void ExecuteOnPostPaymentsPaymentPspReferenceCancels(ModificationsService.PostPaymentsPaymentPspReferenceCancelsApiResponse apiResponse)
         {
-            OnCaptureAuthorisedPayment?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostPaymentsPaymentPspReferenceCancels?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCaptureAuthorisedPayment(Exception exception)
+        internal void ExecuteOnErrorPostPaymentsPaymentPspReferenceCancels(Exception exception)
         {
-            OnErrorCaptureAuthorisedPayment?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostPaymentsPaymentPspReferenceCancels?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnRefundCapturedPayment;
+        public event EventHandler<ApiResponseEventArgs>? OnPostPaymentsPaymentPspReferenceCaptures;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorRefundCapturedPayment;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostPaymentsPaymentPspReferenceCaptures;
 
-        internal void ExecuteOnRefundCapturedPayment(ModificationsService.RefundCapturedPaymentApiResponse apiResponse)
+        internal void ExecuteOnPostPaymentsPaymentPspReferenceCaptures(ModificationsService.PostPaymentsPaymentPspReferenceCapturesApiResponse apiResponse)
         {
-            OnRefundCapturedPayment?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostPaymentsPaymentPspReferenceCaptures?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorRefundCapturedPayment(Exception exception)
+        internal void ExecuteOnErrorPostPaymentsPaymentPspReferenceCaptures(Exception exception)
         {
-            OnErrorRefundCapturedPayment?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostPaymentsPaymentPspReferenceCaptures?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnRefundOrCancelPayment;
+        public event EventHandler<ApiResponseEventArgs>? OnPostPaymentsPaymentPspReferenceRefunds;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorRefundOrCancelPayment;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostPaymentsPaymentPspReferenceRefunds;
 
-        internal void ExecuteOnRefundOrCancelPayment(ModificationsService.RefundOrCancelPaymentApiResponse apiResponse)
+        internal void ExecuteOnPostPaymentsPaymentPspReferenceRefunds(ModificationsService.PostPaymentsPaymentPspReferenceRefundsApiResponse apiResponse)
         {
-            OnRefundOrCancelPayment?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostPaymentsPaymentPspReferenceRefunds?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorRefundOrCancelPayment(Exception exception)
+        internal void ExecuteOnErrorPostPaymentsPaymentPspReferenceRefunds(Exception exception)
         {
-            OnErrorRefundOrCancelPayment?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostPaymentsPaymentPspReferenceRefunds?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateAuthorisedAmount;
+        public event EventHandler<ApiResponseEventArgs>? OnPostPaymentsPaymentPspReferenceReversals;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateAuthorisedAmount;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostPaymentsPaymentPspReferenceReversals;
 
-        internal void ExecuteOnUpdateAuthorisedAmount(ModificationsService.UpdateAuthorisedAmountApiResponse apiResponse)
+        internal void ExecuteOnPostPaymentsPaymentPspReferenceReversals(ModificationsService.PostPaymentsPaymentPspReferenceReversalsApiResponse apiResponse)
         {
-            OnUpdateAuthorisedAmount?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostPaymentsPaymentPspReferenceReversals?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateAuthorisedAmount(Exception exception)
+        internal void ExecuteOnErrorPostPaymentsPaymentPspReferenceReversals(Exception exception)
         {
-            OnErrorUpdateAuthorisedAmount?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostPaymentsPaymentPspReferenceReversals?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -519,7 +519,7 @@ namespace Adyen.Checkout.Services
         /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
         /// This value will be used to construct the URL in <see cref="System.Net.Http.HttpClient.BaseAddress"/> based on the Environment value set in <see cref="AdyenOptions.Environment"/>.
         /// </summary>
-        private const string BASE_URL = "https://checkout-test.adyen.com/v71";
+        private const string BASE_URL = "https://checkout-test.adyen.com/v72";
             
         private JsonSerializerOptions _jsonSerializerOptions;
 
@@ -572,8 +572,8 @@ namespace Adyen.Checkout.Services
         /// <param name="standalonePaymentCancelRequest"><see cref="StandalonePaymentCancelRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICancelAuthorisedPaymentApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.StandalonePaymentCancelResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICancelAuthorisedPaymentApiResponse> CancelAuthorisedPaymentAsync(StandalonePaymentCancelRequest standalonePaymentCancelRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IPostCancelsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.StandalonePaymentCancelResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IPostCancelsApiResponse> PostCancelsAsync(StandalonePaymentCancelRequest standalonePaymentCancelRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -630,8 +630,8 @@ namespace Adyen.Checkout.Services
 
                     using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<CancelAuthorisedPaymentApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<CancelAuthorisedPaymentApiResponse>();
-                        CancelAuthorisedPaymentApiResponse apiResponse;
+                        ILogger<PostCancelsApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<PostCancelsApiResponse>();
+                        PostCancelsApiResponse apiResponse;
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
@@ -647,30 +647,30 @@ namespace Adyen.Checkout.Services
                             }
                         }
                         
-                        Events?.ExecuteOnCancelAuthorisedPayment(apiResponse);
+                        Events?.ExecuteOnPostCancels(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events?.ExecuteOnErrorCancelAuthorisedPayment(exception);
+                Events?.ExecuteOnErrorPostCancels(exception);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="CancelAuthorisedPaymentApiResponse"/>.
+        /// The <see cref="PostCancelsApiResponse"/>.
         /// </summary>
-        public partial class CancelAuthorisedPaymentApiResponse : Adyen.Core.Client.ApiResponse, ICancelAuthorisedPaymentApiResponse
+        public partial class PostCancelsApiResponse : Adyen.Core.Client.ApiResponse, IPostCancelsApiResponse
         {
             /// <summary>
-            /// The logger for <see cref="CancelAuthorisedPaymentApiResponse"/>.
+            /// The logger for <see cref="PostCancelsApiResponse"/>.
             /// </summary>
-            public ILogger<CancelAuthorisedPaymentApiResponse> Logger { get; }
+            public ILogger<PostCancelsApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="CancelAuthorisedPaymentApiResponse"/>.
+            /// The <see cref="PostCancelsApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -679,14 +679,14 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public CancelAuthorisedPaymentApiResponse(ILogger<CancelAuthorisedPaymentApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostCancelsApiResponse(ILogger<PostCancelsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="CancelAuthorisedPaymentApiResponse"/>.
+            /// The <see cref="PostCancelsApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -695,7 +695,7 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public CancelAuthorisedPaymentApiResponse(ILogger<CancelAuthorisedPaymentApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostCancelsApiResponse(ILogger<PostCancelsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -943,6 +943,386 @@ namespace Adyen.Checkout.Services
         }
         
         /// <summary>
+        /// Update an authorised amount Increases or decreases the authorised payment amount and returns a unique reference for this request. You get the outcome of the request asynchronously, in an [**AUTHORISATION_ADJUSTMENT** webhook](https://docs.adyen.com/development-resources/webhooks/webhook-types/#event-codes).  You can only update authorised amounts that have not yet been [captured](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/captures).  The amount you specify in the request is the updated amount, which is larger or smaller than the initial authorised amount.  For more information, refer to [Authorisation adjustment](https://docs.adyen.com/online-payments/adjust-authorisation#use-cases).
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
+        /// <param name="paymentPspReference">The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment.</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). () Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="paymentAmountUpdateRequest"><see cref="PaymentAmountUpdateRequest"/> ()</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> of <see cref="IPostPaymentsPaymentPspReferenceAmountUpdatesApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.PaymentAmountUpdateResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IPostPaymentsPaymentPspReferenceAmountUpdatesApiResponse> PostPaymentsPaymentPspReferenceAmountUpdatesAsync(string paymentPspReference, PaymentAmountUpdateRequest paymentAmountUpdateRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilder = new UriBuilder();
+
+            try
+            {
+                using (HttpRequestMessage httpRequestMessage = new HttpRequestMessage())
+                {
+                    uriBuilder.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilder.Port = HttpClient.BaseAddress.Port;
+                    uriBuilder.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilder.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/payments/{paymentPspReference}/amountUpdates"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/payments/{paymentPspReference}/amountUpdates");
+                    uriBuilder.Path = uriBuilder.Path.Replace("%7BpaymentPspReference%7D", Uri.EscapeDataString(paymentPspReference.ToString()));
+
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+                    httpRequestMessage.Content = (paymentAmountUpdateRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(paymentAmountUpdateRequest, _jsonSerializerOptions));
+
+                    // Add authorization token to the HttpRequestMessage header
+                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
+                    
+                    httpRequestMessage.RequestUri = uriBuilder.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    httpRequestMessage.AddUserAgentToHeaders();
+                    httpRequestMessage.AddLibraryNameToHeader();
+                    httpRequestMessage.AddLibraryVersionToHeader();
+                    
+                    string? contentType = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentType != null && httpRequestMessage.Content != null)
+                        httpRequestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+
+                    string[] accepts = new string[] {
+                        "application/json"
+                    };
+
+                    string? accept = ClientUtils.SelectHeaderAccept(accepts);
+
+                    if (accept != null)
+                        httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
+                    httpRequestMessage.Method = HttpMethod.Post;
+#endif
+
+                    DateTime requestedAt = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<PostPaymentsPaymentPspReferenceAmountUpdatesApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<PostPaymentsPaymentPspReferenceAmountUpdatesApiResponse>();
+                        PostPaymentsPaymentPspReferenceAmountUpdatesApiResponse apiResponse;
+
+                        switch ((int)httpResponseMessage.StatusCode) {
+                            default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
+                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/payments/{paymentPspReference}/amountUpdates", requestedAt, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+                        
+                        Events?.ExecuteOnPostPaymentsPaymentPspReferenceAmountUpdates(apiResponse);
+                        return apiResponse;
+                    }
+                }
+            }
+            catch(Exception exception)
+            {
+                Events?.ExecuteOnErrorPostPaymentsPaymentPspReferenceAmountUpdates(exception);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostPaymentsPaymentPspReferenceAmountUpdatesApiResponse"/>.
+        /// </summary>
+        public partial class PostPaymentsPaymentPspReferenceAmountUpdatesApiResponse : Adyen.Core.Client.ApiResponse, IPostPaymentsPaymentPspReferenceAmountUpdatesApiResponse
+        {
+            /// <summary>
+            /// The logger for <see cref="PostPaymentsPaymentPspReferenceAmountUpdatesApiResponse"/>.
+            /// </summary>
+            public ILogger<PostPaymentsPaymentPspReferenceAmountUpdatesApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostPaymentsPaymentPspReferenceAmountUpdatesApiResponse"/>.
+            /// </summary>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
+            public PostPaymentsPaymentPspReferenceAmountUpdatesApiResponse(ILogger<PostPaymentsPaymentPspReferenceAmountUpdatesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostPaymentsPaymentPspReferenceAmountUpdatesApiResponse"/>.
+            /// </summary>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
+            public PostPaymentsPaymentPspReferenceAmountUpdatesApiResponse(ILogger<PostPaymentsPaymentPspReferenceAmountUpdatesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsCreated => 201 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 201 Created.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.PaymentAmountUpdateResponse? Created()
+            {
+                return IsCreated
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.PaymentAmountUpdateResponse>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 201 Created and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeCreatedResponse([NotNullWhen(true)]out Adyen.Checkout.Models.PaymentAmountUpdateResponse? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Created();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)201);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.ServiceError? BadRequest()
+            {
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeBadRequestResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 401 Unauthorized.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.ServiceError? Unauthorized()
+            {
+                return IsUnauthorized
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeUnauthorizedResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Unauthorized();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)401);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 403 Forbidden.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsForbidden => 403 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 403 Forbidden.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.ServiceError? Forbidden()
+            {
+                return IsForbidden
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 403 Forbidden and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeForbiddenResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Forbidden();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)403);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 422 UnprocessableContent.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnprocessableContent => 422 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 422 UnprocessableContent.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.ServiceError? UnprocessableContent()
+            {
+                return IsUnprocessableContent
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 422 UnprocessableContent and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeUnprocessableContentResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = UnprocessableContent();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)422);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 500 InternalServerError.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsInternalServerError => 500 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 500 InternalServerError.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.ServiceError? InternalServerError()
+            {
+                return IsInternalServerError
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 500 InternalServerError and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeInternalServerErrorResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = InternalServerError();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)500);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationError(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+        
+        /// <summary>
         /// Cancel an authorised payment Cancels the authorisation on a payment that has not yet been [captured](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/captures), and returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**CANCELLATION** webhook](https://docs.adyen.com/online-payments/cancel#cancellation-webhook).  If you want to cancel a payment but don&#39;t have the [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference), use the [&#x60;/cancels&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/cancels) endpoint instead.  If you want to cancel a payment but are not sure whether it has been captured, use the [&#x60;/payments/{paymentPspReference}/reversals&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/reversals) endpoint instead.  For more information, refer to [Cancel](https://docs.adyen.com/online-payments/cancel).
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
@@ -951,8 +1331,8 @@ namespace Adyen.Checkout.Services
         /// <param name="paymentCancelRequest"><see cref="PaymentCancelRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICancelAuthorisedPaymentByPspReferenceApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.PaymentCancelResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICancelAuthorisedPaymentByPspReferenceApiResponse> CancelAuthorisedPaymentByPspReferenceAsync(string paymentPspReference, PaymentCancelRequest paymentCancelRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IPostPaymentsPaymentPspReferenceCancelsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.PaymentCancelResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IPostPaymentsPaymentPspReferenceCancelsApiResponse> PostPaymentsPaymentPspReferenceCancelsAsync(string paymentPspReference, PaymentCancelRequest paymentCancelRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1010,8 +1390,8 @@ namespace Adyen.Checkout.Services
 
                     using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<CancelAuthorisedPaymentByPspReferenceApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<CancelAuthorisedPaymentByPspReferenceApiResponse>();
-                        CancelAuthorisedPaymentByPspReferenceApiResponse apiResponse;
+                        ILogger<PostPaymentsPaymentPspReferenceCancelsApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<PostPaymentsPaymentPspReferenceCancelsApiResponse>();
+                        PostPaymentsPaymentPspReferenceCancelsApiResponse apiResponse;
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
@@ -1027,30 +1407,30 @@ namespace Adyen.Checkout.Services
                             }
                         }
                         
-                        Events?.ExecuteOnCancelAuthorisedPaymentByPspReference(apiResponse);
+                        Events?.ExecuteOnPostPaymentsPaymentPspReferenceCancels(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events?.ExecuteOnErrorCancelAuthorisedPaymentByPspReference(exception);
+                Events?.ExecuteOnErrorPostPaymentsPaymentPspReferenceCancels(exception);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="CancelAuthorisedPaymentByPspReferenceApiResponse"/>.
+        /// The <see cref="PostPaymentsPaymentPspReferenceCancelsApiResponse"/>.
         /// </summary>
-        public partial class CancelAuthorisedPaymentByPspReferenceApiResponse : Adyen.Core.Client.ApiResponse, ICancelAuthorisedPaymentByPspReferenceApiResponse
+        public partial class PostPaymentsPaymentPspReferenceCancelsApiResponse : Adyen.Core.Client.ApiResponse, IPostPaymentsPaymentPspReferenceCancelsApiResponse
         {
             /// <summary>
-            /// The logger for <see cref="CancelAuthorisedPaymentByPspReferenceApiResponse"/>.
+            /// The logger for <see cref="PostPaymentsPaymentPspReferenceCancelsApiResponse"/>.
             /// </summary>
-            public ILogger<CancelAuthorisedPaymentByPspReferenceApiResponse> Logger { get; }
+            public ILogger<PostPaymentsPaymentPspReferenceCancelsApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="CancelAuthorisedPaymentByPspReferenceApiResponse"/>.
+            /// The <see cref="PostPaymentsPaymentPspReferenceCancelsApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -1059,14 +1439,14 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public CancelAuthorisedPaymentByPspReferenceApiResponse(ILogger<CancelAuthorisedPaymentByPspReferenceApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostPaymentsPaymentPspReferenceCancelsApiResponse(ILogger<PostPaymentsPaymentPspReferenceCancelsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="CancelAuthorisedPaymentByPspReferenceApiResponse"/>.
+            /// The <see cref="PostPaymentsPaymentPspReferenceCancelsApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -1075,7 +1455,7 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public CancelAuthorisedPaymentByPspReferenceApiResponse(ILogger<CancelAuthorisedPaymentByPspReferenceApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostPaymentsPaymentPspReferenceCancelsApiResponse(ILogger<PostPaymentsPaymentPspReferenceCancelsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1331,8 +1711,8 @@ namespace Adyen.Checkout.Services
         /// <param name="paymentCaptureRequest"><see cref="PaymentCaptureRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICaptureAuthorisedPaymentApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.PaymentCaptureResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICaptureAuthorisedPaymentApiResponse> CaptureAuthorisedPaymentAsync(string paymentPspReference, PaymentCaptureRequest paymentCaptureRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IPostPaymentsPaymentPspReferenceCapturesApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.PaymentCaptureResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IPostPaymentsPaymentPspReferenceCapturesApiResponse> PostPaymentsPaymentPspReferenceCapturesAsync(string paymentPspReference, PaymentCaptureRequest paymentCaptureRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1390,8 +1770,8 @@ namespace Adyen.Checkout.Services
 
                     using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<CaptureAuthorisedPaymentApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<CaptureAuthorisedPaymentApiResponse>();
-                        CaptureAuthorisedPaymentApiResponse apiResponse;
+                        ILogger<PostPaymentsPaymentPspReferenceCapturesApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<PostPaymentsPaymentPspReferenceCapturesApiResponse>();
+                        PostPaymentsPaymentPspReferenceCapturesApiResponse apiResponse;
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
@@ -1407,30 +1787,30 @@ namespace Adyen.Checkout.Services
                             }
                         }
                         
-                        Events?.ExecuteOnCaptureAuthorisedPayment(apiResponse);
+                        Events?.ExecuteOnPostPaymentsPaymentPspReferenceCaptures(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events?.ExecuteOnErrorCaptureAuthorisedPayment(exception);
+                Events?.ExecuteOnErrorPostPaymentsPaymentPspReferenceCaptures(exception);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="CaptureAuthorisedPaymentApiResponse"/>.
+        /// The <see cref="PostPaymentsPaymentPspReferenceCapturesApiResponse"/>.
         /// </summary>
-        public partial class CaptureAuthorisedPaymentApiResponse : Adyen.Core.Client.ApiResponse, ICaptureAuthorisedPaymentApiResponse
+        public partial class PostPaymentsPaymentPspReferenceCapturesApiResponse : Adyen.Core.Client.ApiResponse, IPostPaymentsPaymentPspReferenceCapturesApiResponse
         {
             /// <summary>
-            /// The logger for <see cref="CaptureAuthorisedPaymentApiResponse"/>.
+            /// The logger for <see cref="PostPaymentsPaymentPspReferenceCapturesApiResponse"/>.
             /// </summary>
-            public ILogger<CaptureAuthorisedPaymentApiResponse> Logger { get; }
+            public ILogger<PostPaymentsPaymentPspReferenceCapturesApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="CaptureAuthorisedPaymentApiResponse"/>.
+            /// The <see cref="PostPaymentsPaymentPspReferenceCapturesApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -1439,14 +1819,14 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public CaptureAuthorisedPaymentApiResponse(ILogger<CaptureAuthorisedPaymentApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostPaymentsPaymentPspReferenceCapturesApiResponse(ILogger<PostPaymentsPaymentPspReferenceCapturesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="CaptureAuthorisedPaymentApiResponse"/>.
+            /// The <see cref="PostPaymentsPaymentPspReferenceCapturesApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -1455,7 +1835,7 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public CaptureAuthorisedPaymentApiResponse(ILogger<CaptureAuthorisedPaymentApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostPaymentsPaymentPspReferenceCapturesApiResponse(ILogger<PostPaymentsPaymentPspReferenceCapturesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1711,8 +2091,8 @@ namespace Adyen.Checkout.Services
         /// <param name="paymentRefundRequest"><see cref="PaymentRefundRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IRefundCapturedPaymentApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.PaymentRefundResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IRefundCapturedPaymentApiResponse> RefundCapturedPaymentAsync(string paymentPspReference, PaymentRefundRequest paymentRefundRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IPostPaymentsPaymentPspReferenceRefundsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.PaymentRefundResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IPostPaymentsPaymentPspReferenceRefundsApiResponse> PostPaymentsPaymentPspReferenceRefundsAsync(string paymentPspReference, PaymentRefundRequest paymentRefundRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1770,8 +2150,8 @@ namespace Adyen.Checkout.Services
 
                     using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<RefundCapturedPaymentApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<RefundCapturedPaymentApiResponse>();
-                        RefundCapturedPaymentApiResponse apiResponse;
+                        ILogger<PostPaymentsPaymentPspReferenceRefundsApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<PostPaymentsPaymentPspReferenceRefundsApiResponse>();
+                        PostPaymentsPaymentPspReferenceRefundsApiResponse apiResponse;
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
@@ -1787,30 +2167,30 @@ namespace Adyen.Checkout.Services
                             }
                         }
                         
-                        Events?.ExecuteOnRefundCapturedPayment(apiResponse);
+                        Events?.ExecuteOnPostPaymentsPaymentPspReferenceRefunds(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events?.ExecuteOnErrorRefundCapturedPayment(exception);
+                Events?.ExecuteOnErrorPostPaymentsPaymentPspReferenceRefunds(exception);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="RefundCapturedPaymentApiResponse"/>.
+        /// The <see cref="PostPaymentsPaymentPspReferenceRefundsApiResponse"/>.
         /// </summary>
-        public partial class RefundCapturedPaymentApiResponse : Adyen.Core.Client.ApiResponse, IRefundCapturedPaymentApiResponse
+        public partial class PostPaymentsPaymentPspReferenceRefundsApiResponse : Adyen.Core.Client.ApiResponse, IPostPaymentsPaymentPspReferenceRefundsApiResponse
         {
             /// <summary>
-            /// The logger for <see cref="RefundCapturedPaymentApiResponse"/>.
+            /// The logger for <see cref="PostPaymentsPaymentPspReferenceRefundsApiResponse"/>.
             /// </summary>
-            public ILogger<RefundCapturedPaymentApiResponse> Logger { get; }
+            public ILogger<PostPaymentsPaymentPspReferenceRefundsApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="RefundCapturedPaymentApiResponse"/>.
+            /// The <see cref="PostPaymentsPaymentPspReferenceRefundsApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -1819,14 +2199,14 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public RefundCapturedPaymentApiResponse(ILogger<RefundCapturedPaymentApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostPaymentsPaymentPspReferenceRefundsApiResponse(ILogger<PostPaymentsPaymentPspReferenceRefundsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="RefundCapturedPaymentApiResponse"/>.
+            /// The <see cref="PostPaymentsPaymentPspReferenceRefundsApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -1835,7 +2215,7 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public RefundCapturedPaymentApiResponse(ILogger<RefundCapturedPaymentApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostPaymentsPaymentPspReferenceRefundsApiResponse(ILogger<PostPaymentsPaymentPspReferenceRefundsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2091,8 +2471,8 @@ namespace Adyen.Checkout.Services
         /// <param name="paymentReversalRequest"><see cref="PaymentReversalRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IRefundOrCancelPaymentApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.PaymentReversalResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IRefundOrCancelPaymentApiResponse> RefundOrCancelPaymentAsync(string paymentPspReference, PaymentReversalRequest paymentReversalRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IPostPaymentsPaymentPspReferenceReversalsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.PaymentReversalResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IPostPaymentsPaymentPspReferenceReversalsApiResponse> PostPaymentsPaymentPspReferenceReversalsAsync(string paymentPspReference, PaymentReversalRequest paymentReversalRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2150,8 +2530,8 @@ namespace Adyen.Checkout.Services
 
                     using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<RefundOrCancelPaymentApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<RefundOrCancelPaymentApiResponse>();
-                        RefundOrCancelPaymentApiResponse apiResponse;
+                        ILogger<PostPaymentsPaymentPspReferenceReversalsApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<PostPaymentsPaymentPspReferenceReversalsApiResponse>();
+                        PostPaymentsPaymentPspReferenceReversalsApiResponse apiResponse;
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
@@ -2167,30 +2547,30 @@ namespace Adyen.Checkout.Services
                             }
                         }
                         
-                        Events?.ExecuteOnRefundOrCancelPayment(apiResponse);
+                        Events?.ExecuteOnPostPaymentsPaymentPspReferenceReversals(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events?.ExecuteOnErrorRefundOrCancelPayment(exception);
+                Events?.ExecuteOnErrorPostPaymentsPaymentPspReferenceReversals(exception);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="RefundOrCancelPaymentApiResponse"/>.
+        /// The <see cref="PostPaymentsPaymentPspReferenceReversalsApiResponse"/>.
         /// </summary>
-        public partial class RefundOrCancelPaymentApiResponse : Adyen.Core.Client.ApiResponse, IRefundOrCancelPaymentApiResponse
+        public partial class PostPaymentsPaymentPspReferenceReversalsApiResponse : Adyen.Core.Client.ApiResponse, IPostPaymentsPaymentPspReferenceReversalsApiResponse
         {
             /// <summary>
-            /// The logger for <see cref="RefundOrCancelPaymentApiResponse"/>.
+            /// The logger for <see cref="PostPaymentsPaymentPspReferenceReversalsApiResponse"/>.
             /// </summary>
-            public ILogger<RefundOrCancelPaymentApiResponse> Logger { get; }
+            public ILogger<PostPaymentsPaymentPspReferenceReversalsApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="RefundOrCancelPaymentApiResponse"/>.
+            /// The <see cref="PostPaymentsPaymentPspReferenceReversalsApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -2199,14 +2579,14 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public RefundOrCancelPaymentApiResponse(ILogger<RefundOrCancelPaymentApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostPaymentsPaymentPspReferenceReversalsApiResponse(ILogger<PostPaymentsPaymentPspReferenceReversalsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="RefundOrCancelPaymentApiResponse"/>.
+            /// The <see cref="PostPaymentsPaymentPspReferenceReversalsApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -2215,7 +2595,7 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public RefundOrCancelPaymentApiResponse(ILogger<RefundOrCancelPaymentApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostPaymentsPaymentPspReferenceReversalsApiResponse(ILogger<PostPaymentsPaymentPspReferenceReversalsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2246,386 +2626,6 @@ namespace Adyen.Checkout.Services
             /// <param name="result"></param>
             /// <returns></returns>
             public bool TryDeserializeCreatedResponse([NotNullWhen(true)]out Adyen.Checkout.Models.PaymentReversalResponse? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Created();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)201);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 400 BadRequest.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsBadRequest => 400 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 400 BadRequest.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.Checkout.Models.ServiceError? BadRequest()
-            {
-                return IsBadRequest
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 400 BadRequest and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeBadRequestResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = BadRequest();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)400);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 401 Unauthorized.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsUnauthorized => 401 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 401 Unauthorized.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.Checkout.Models.ServiceError? Unauthorized()
-            {
-                return IsUnauthorized
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeUnauthorizedResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Unauthorized();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)401);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsForbidden => 403 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.Checkout.Models.ServiceError? Forbidden()
-            {
-                return IsForbidden
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeForbiddenResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Forbidden();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)403);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 422 UnprocessableContent.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsUnprocessableContent => 422 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 422 UnprocessableContent.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.Checkout.Models.ServiceError? UnprocessableContent()
-            {
-                return IsUnprocessableContent
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 422 UnprocessableContent and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeUnprocessableContentResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = UnprocessableContent();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)422);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 500 InternalServerError.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsInternalServerError => 500 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 500 InternalServerError.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.Checkout.Models.ServiceError? InternalServerError()
-            {
-                return IsInternalServerError
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 500 InternalServerError and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeInternalServerErrorResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = InternalServerError();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)500);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationError(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-        
-        /// <summary>
-        /// Update an authorised amount Increases or decreases the authorised payment amount and returns a unique reference for this request. You get the outcome of the request asynchronously, in an [**AUTHORISATION_ADJUSTMENT** webhook](https://docs.adyen.com/development-resources/webhooks/webhook-types/#event-codes).  You can only update authorised amounts that have not yet been [captured](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/captures).  The amount you specify in the request is the updated amount, which is larger or smaller than the initial authorised amount.  For more information, refer to [Authorisation adjustment](https://docs.adyen.com/online-payments/adjust-authorisation#use-cases).
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="paymentPspReference">The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment.</param>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). () Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="paymentAmountUpdateRequest"><see cref="PaymentAmountUpdateRequest"/> ()</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdateAuthorisedAmountApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.PaymentAmountUpdateResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateAuthorisedAmountApiResponse> UpdateAuthorisedAmountAsync(string paymentPspReference, PaymentAmountUpdateRequest paymentAmountUpdateRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilder = new UriBuilder();
-
-            try
-            {
-                using (HttpRequestMessage httpRequestMessage = new HttpRequestMessage())
-                {
-                    uriBuilder.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilder.Port = HttpClient.BaseAddress.Port;
-                    uriBuilder.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilder.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/payments/{paymentPspReference}/amountUpdates"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/payments/{paymentPspReference}/amountUpdates");
-                    uriBuilder.Path = uriBuilder.Path.Replace("%7BpaymentPspReference%7D", Uri.EscapeDataString(paymentPspReference.ToString()));
-
-                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
-                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    httpRequestMessage.Content = (paymentAmountUpdateRequest as object) is System.IO.Stream stream
-                        ? httpRequestMessage.Content = new StreamContent(stream)
-                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(paymentAmountUpdateRequest, _jsonSerializerOptions));
-
-                    // Add authorization token to the HttpRequestMessage header
-                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
-                    
-                    httpRequestMessage.RequestUri = uriBuilder.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    httpRequestMessage.AddUserAgentToHeaders();
-                    httpRequestMessage.AddLibraryNameToHeader();
-                    httpRequestMessage.AddLibraryVersionToHeader();
-                    
-                    string? contentType = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentType != null && httpRequestMessage.Content != null)
-                        httpRequestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
-
-                    string[] accepts = new string[] {
-                        "application/json"
-                    };
-
-                    string? accept = ClientUtils.SelectHeaderAccept(accepts);
-
-                    if (accept != null)
-                        httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-#if NET462 || NETSTANDARD2_0
-                    httpRequestMessage.Method = new HttpMethod("POST");
-#else
-                    httpRequestMessage.Method = HttpMethod.Post;
-#endif
-
-                    DateTime requestedAt = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
-                    {
-                        ILogger<UpdateAuthorisedAmountApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<UpdateAuthorisedAmountApiResponse>();
-                        UpdateAuthorisedAmountApiResponse apiResponse;
-
-                        switch ((int)httpResponseMessage.StatusCode) {
-                            default: {
-#if NET462 || NETSTANDARD2_0
-                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
-                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-#else
-                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-#endif
-                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/payments/{paymentPspReference}/amountUpdates", requestedAt, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-                        
-                        Events?.ExecuteOnUpdateAuthorisedAmount(apiResponse);
-                        return apiResponse;
-                    }
-                }
-            }
-            catch(Exception exception)
-            {
-                Events?.ExecuteOnErrorUpdateAuthorisedAmount(exception);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="UpdateAuthorisedAmountApiResponse"/>.
-        /// </summary>
-        public partial class UpdateAuthorisedAmountApiResponse : Adyen.Core.Client.ApiResponse, IUpdateAuthorisedAmountApiResponse
-        {
-            /// <summary>
-            /// The logger for <see cref="UpdateAuthorisedAmountApiResponse"/>.
-            /// </summary>
-            public ILogger<UpdateAuthorisedAmountApiResponse> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="UpdateAuthorisedAmountApiResponse"/>.
-            /// </summary>
-            /// <param name="logger"><see cref="ILogger"/>.</param>
-            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
-            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
-            /// <param name="rawContent">The raw data.</param>
-            /// <param name="path">The path used when making the request.</param>
-            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
-            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public UpdateAuthorisedAmountApiResponse(ILogger<UpdateAuthorisedAmountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="UpdateAuthorisedAmountApiResponse"/>.
-            /// </summary>
-            /// <param name="logger"><see cref="ILogger"/>.</param>
-            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
-            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
-            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
-            /// <param name="path">The path used when making the request.</param>
-            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
-            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public UpdateAuthorisedAmountApiResponse(ILogger<UpdateAuthorisedAmountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 201 Created.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsCreated => 201 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 201 Created.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.Checkout.Models.PaymentAmountUpdateResponse? Created()
-            {
-                return IsCreated
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.PaymentAmountUpdateResponse>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 201 Created and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeCreatedResponse([NotNullWhen(true)]out Adyen.Checkout.Models.PaymentAmountUpdateResponse? result)
             {
                 result = null;
 

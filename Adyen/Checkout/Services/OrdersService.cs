@@ -2,9 +2,9 @@
 /*
  * Adyen Checkout API
  *
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v71/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v71/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=71) to find out what changed in this version!
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v72/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v72/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=72) to find out what changed in this version!
  *
- * The version of the OpenAPI document: 71
+ * The version of the OpenAPI document: 72
  * Generated by: https://github.com/openapitools/openapi-generator.git
  */
 
@@ -41,6 +41,20 @@ namespace Adyen.Checkout.Services
         OrdersServiceEvents? Events { get; }
 
         /// <summary>
+        /// Create an order
+        /// </summary>
+        /// <remarks>
+        /// Creates an order to be used for partial payments. Make a POST &#x60;/orders&#x60; call before making a &#x60;/payments&#x60; call when processing payments with different payment methods.
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). - Pass this header parameter using <see cref="RequestOptions"/>.</param>
+        /// <param name="createOrderRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> of <see cref="IPostOrdersApiResponse"/>.</returns>
+        Task<IPostOrdersApiResponse> PostOrdersAsync(CreateOrderRequest createOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Cancel an order
         /// </summary>
         /// <remarks>
@@ -51,8 +65,8 @@ namespace Adyen.Checkout.Services
         /// <param name="cancelOrderRequest"></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICancelOrderApiResponse"/>.</returns>
-        Task<ICancelOrderApiResponse> CancelOrderAsync(CancelOrderRequest cancelOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/> of <see cref="IPostOrdersCancelApiResponse"/>.</returns>
+        Task<IPostOrdersCancelApiResponse> PostOrdersCancelAsync(CancelOrderRequest cancelOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get the balance of a gift card
@@ -65,29 +79,15 @@ namespace Adyen.Checkout.Services
         /// <param name="balanceCheckRequest"></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetBalanceOfGiftCardApiResponse"/>.</returns>
-        Task<IGetBalanceOfGiftCardApiResponse> GetBalanceOfGiftCardAsync(BalanceCheckRequest balanceCheckRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Create an order
-        /// </summary>
-        /// <remarks>
-        /// Creates an order to be used for partial payments. Make a POST &#x60;/orders&#x60; call before making a &#x60;/payments&#x60; call when processing payments with different payment methods.
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). - Pass this header parameter using <see cref="RequestOptions"/>.</param>
-        /// <param name="createOrderRequest"></param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IOrdersApiResponse"/>.</returns>
-        Task<IOrdersApiResponse> OrdersAsync(CreateOrderRequest createOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/> of <see cref="IPostPaymentMethodsBalanceApiResponse"/>.</returns>
+        Task<IPostPaymentMethodsBalanceApiResponse> PostPaymentMethodsBalanceAsync(BalanceCheckRequest balanceCheckRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="ICancelOrderApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.CancelOrderResponse"/>.
+    /// The <see cref="IPostOrdersApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.CreateOrderResponse"/>.
     /// </summary>
-    public interface ICancelOrderApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.CancelOrderResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
+    public interface IPostOrdersApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.CreateOrderResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -127,9 +127,9 @@ namespace Adyen.Checkout.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetBalanceOfGiftCardApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.BalanceCheckResponse"/>.
+    /// The <see cref="IPostOrdersCancelApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.CancelOrderResponse"/>.
     /// </summary>
-    public interface IGetBalanceOfGiftCardApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.BalanceCheckResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
+    public interface IPostOrdersCancelApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.CancelOrderResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -169,9 +169,9 @@ namespace Adyen.Checkout.Services
     }
 
     /// <summary>
-    /// The <see cref="IOrdersApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.CreateOrderResponse"/>.
+    /// The <see cref="IPostPaymentMethodsBalanceApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.BalanceCheckResponse"/>.
     /// </summary>
-    public interface IOrdersApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.CreateOrderResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
+    public interface IPostPaymentMethodsBalanceApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.BalanceCheckResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -218,61 +218,61 @@ namespace Adyen.Checkout.Services
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCancelOrder;
+        public event EventHandler<ApiResponseEventArgs>? OnPostOrders;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCancelOrder;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostOrders;
 
-        internal void ExecuteOnCancelOrder(OrdersService.CancelOrderApiResponse apiResponse)
+        internal void ExecuteOnPostOrders(OrdersService.PostOrdersApiResponse apiResponse)
         {
-            OnCancelOrder?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostOrders?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCancelOrder(Exception exception)
+        internal void ExecuteOnErrorPostOrders(Exception exception)
         {
-            OnErrorCancelOrder?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostOrders?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetBalanceOfGiftCard;
+        public event EventHandler<ApiResponseEventArgs>? OnPostOrdersCancel;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetBalanceOfGiftCard;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostOrdersCancel;
 
-        internal void ExecuteOnGetBalanceOfGiftCard(OrdersService.GetBalanceOfGiftCardApiResponse apiResponse)
+        internal void ExecuteOnPostOrdersCancel(OrdersService.PostOrdersCancelApiResponse apiResponse)
         {
-            OnGetBalanceOfGiftCard?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostOrdersCancel?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetBalanceOfGiftCard(Exception exception)
+        internal void ExecuteOnErrorPostOrdersCancel(Exception exception)
         {
-            OnErrorGetBalanceOfGiftCard?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostOrdersCancel?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnOrders;
+        public event EventHandler<ApiResponseEventArgs>? OnPostPaymentMethodsBalance;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorOrders;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostPaymentMethodsBalance;
 
-        internal void ExecuteOnOrders(OrdersService.OrdersApiResponse apiResponse)
+        internal void ExecuteOnPostPaymentMethodsBalance(OrdersService.PostPaymentMethodsBalanceApiResponse apiResponse)
         {
-            OnOrders?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostPaymentMethodsBalance?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorOrders(Exception exception)
+        internal void ExecuteOnErrorPostPaymentMethodsBalance(Exception exception)
         {
-            OnErrorOrders?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostPaymentMethodsBalance?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -286,7 +286,7 @@ namespace Adyen.Checkout.Services
         /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
         /// This value will be used to construct the URL in <see cref="System.Net.Http.HttpClient.BaseAddress"/> based on the Environment value set in <see cref="AdyenOptions.Environment"/>.
         /// </summary>
-        private const string BASE_URL = "https://checkout-test.adyen.com/v71";
+        private const string BASE_URL = "https://checkout-test.adyen.com/v72";
             
         private JsonSerializerOptions _jsonSerializerOptions;
 
@@ -332,6 +332,384 @@ namespace Adyen.Checkout.Services
         }
         
         /// <summary>
+        /// Create an order Creates an order to be used for partial payments. Make a POST &#x60;/orders&#x60; call before making a &#x60;/payments&#x60; call when processing payments with different payment methods.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). () Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="createOrderRequest"><see cref="CreateOrderRequest"/> ()</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> of <see cref="IPostOrdersApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.CreateOrderResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IPostOrdersApiResponse> PostOrdersAsync(CreateOrderRequest createOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilder = new UriBuilder();
+
+            try
+            {
+                using (HttpRequestMessage httpRequestMessage = new HttpRequestMessage())
+                {
+                    uriBuilder.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilder.Port = HttpClient.BaseAddress.Port;
+                    uriBuilder.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilder.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/orders"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/orders");
+
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+                    httpRequestMessage.Content = (createOrderRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createOrderRequest, _jsonSerializerOptions));
+
+                    // Add authorization token to the HttpRequestMessage header
+                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
+                    
+                    httpRequestMessage.RequestUri = uriBuilder.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    httpRequestMessage.AddUserAgentToHeaders();
+                    httpRequestMessage.AddLibraryNameToHeader();
+                    httpRequestMessage.AddLibraryVersionToHeader();
+                    
+                    string? contentType = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentType != null && httpRequestMessage.Content != null)
+                        httpRequestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+
+                    string[] accepts = new string[] {
+                        "application/json"
+                    };
+
+                    string? accept = ClientUtils.SelectHeaderAccept(accepts);
+
+                    if (accept != null)
+                        httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
+                    httpRequestMessage.Method = HttpMethod.Post;
+#endif
+
+                    DateTime requestedAt = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<PostOrdersApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<PostOrdersApiResponse>();
+                        PostOrdersApiResponse apiResponse;
+
+                        switch ((int)httpResponseMessage.StatusCode) {
+                            default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
+                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/orders", requestedAt, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+                        
+                        Events?.ExecuteOnPostOrders(apiResponse);
+                        return apiResponse;
+                    }
+                }
+            }
+            catch(Exception exception)
+            {
+                Events?.ExecuteOnErrorPostOrders(exception);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostOrdersApiResponse"/>.
+        /// </summary>
+        public partial class PostOrdersApiResponse : Adyen.Core.Client.ApiResponse, IPostOrdersApiResponse
+        {
+            /// <summary>
+            /// The logger for <see cref="PostOrdersApiResponse"/>.
+            /// </summary>
+            public ILogger<PostOrdersApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostOrdersApiResponse"/>.
+            /// </summary>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
+            public PostOrdersApiResponse(ILogger<PostOrdersApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostOrdersApiResponse"/>.
+            /// </summary>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
+            public PostOrdersApiResponse(ILogger<PostOrdersApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.CreateOrderResponse? Ok()
+            {
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.CreateOrderResponse>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.Checkout.Models.CreateOrderResponse? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.ServiceError? BadRequest()
+            {
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeBadRequestResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 401 Unauthorized.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.ServiceError? Unauthorized()
+            {
+                return IsUnauthorized
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeUnauthorizedResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Unauthorized();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)401);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 403 Forbidden.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsForbidden => 403 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 403 Forbidden.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.ServiceError? Forbidden()
+            {
+                return IsForbidden
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 403 Forbidden and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeForbiddenResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Forbidden();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)403);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 422 UnprocessableContent.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnprocessableContent => 422 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 422 UnprocessableContent.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.ServiceError? UnprocessableContent()
+            {
+                return IsUnprocessableContent
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 422 UnprocessableContent and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeUnprocessableContentResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = UnprocessableContent();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)422);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 500 InternalServerError.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsInternalServerError => 500 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 500 InternalServerError.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.ServiceError? InternalServerError()
+            {
+                return IsInternalServerError
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 500 InternalServerError and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeInternalServerErrorResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = InternalServerError();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)500);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationError(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+        
+        /// <summary>
         /// Cancel an order Cancels an order. Cancellation of an order results in an automatic rollback of all payments made in the order, either by canceling or refunding the payment, depending on the type of payment method.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
@@ -339,8 +717,8 @@ namespace Adyen.Checkout.Services
         /// <param name="cancelOrderRequest"><see cref="CancelOrderRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICancelOrderApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.CancelOrderResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICancelOrderApiResponse> CancelOrderAsync(CancelOrderRequest cancelOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IPostOrdersCancelApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.CancelOrderResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IPostOrdersCancelApiResponse> PostOrdersCancelAsync(CancelOrderRequest cancelOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -397,8 +775,8 @@ namespace Adyen.Checkout.Services
 
                     using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<CancelOrderApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<CancelOrderApiResponse>();
-                        CancelOrderApiResponse apiResponse;
+                        ILogger<PostOrdersCancelApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<PostOrdersCancelApiResponse>();
+                        PostOrdersCancelApiResponse apiResponse;
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
@@ -414,30 +792,30 @@ namespace Adyen.Checkout.Services
                             }
                         }
                         
-                        Events?.ExecuteOnCancelOrder(apiResponse);
+                        Events?.ExecuteOnPostOrdersCancel(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events?.ExecuteOnErrorCancelOrder(exception);
+                Events?.ExecuteOnErrorPostOrdersCancel(exception);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="CancelOrderApiResponse"/>.
+        /// The <see cref="PostOrdersCancelApiResponse"/>.
         /// </summary>
-        public partial class CancelOrderApiResponse : Adyen.Core.Client.ApiResponse, ICancelOrderApiResponse
+        public partial class PostOrdersCancelApiResponse : Adyen.Core.Client.ApiResponse, IPostOrdersCancelApiResponse
         {
             /// <summary>
-            /// The logger for <see cref="CancelOrderApiResponse"/>.
+            /// The logger for <see cref="PostOrdersCancelApiResponse"/>.
             /// </summary>
-            public ILogger<CancelOrderApiResponse> Logger { get; }
+            public ILogger<PostOrdersCancelApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="CancelOrderApiResponse"/>.
+            /// The <see cref="PostOrdersCancelApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -446,14 +824,14 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public CancelOrderApiResponse(ILogger<CancelOrderApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostOrdersCancelApiResponse(ILogger<PostOrdersCancelApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="CancelOrderApiResponse"/>.
+            /// The <see cref="PostOrdersCancelApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -462,7 +840,7 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public CancelOrderApiResponse(ILogger<CancelOrderApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostOrdersCancelApiResponse(ILogger<PostOrdersCancelApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -717,8 +1095,8 @@ namespace Adyen.Checkout.Services
         /// <param name="balanceCheckRequest"><see cref="BalanceCheckRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetBalanceOfGiftCardApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.BalanceCheckResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetBalanceOfGiftCardApiResponse> GetBalanceOfGiftCardAsync(BalanceCheckRequest balanceCheckRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IPostPaymentMethodsBalanceApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.BalanceCheckResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IPostPaymentMethodsBalanceApiResponse> PostPaymentMethodsBalanceAsync(BalanceCheckRequest balanceCheckRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -775,8 +1153,8 @@ namespace Adyen.Checkout.Services
 
                     using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<GetBalanceOfGiftCardApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<GetBalanceOfGiftCardApiResponse>();
-                        GetBalanceOfGiftCardApiResponse apiResponse;
+                        ILogger<PostPaymentMethodsBalanceApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<PostPaymentMethodsBalanceApiResponse>();
+                        PostPaymentMethodsBalanceApiResponse apiResponse;
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
@@ -792,30 +1170,30 @@ namespace Adyen.Checkout.Services
                             }
                         }
                         
-                        Events?.ExecuteOnGetBalanceOfGiftCard(apiResponse);
+                        Events?.ExecuteOnPostPaymentMethodsBalance(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events?.ExecuteOnErrorGetBalanceOfGiftCard(exception);
+                Events?.ExecuteOnErrorPostPaymentMethodsBalance(exception);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetBalanceOfGiftCardApiResponse"/>.
+        /// The <see cref="PostPaymentMethodsBalanceApiResponse"/>.
         /// </summary>
-        public partial class GetBalanceOfGiftCardApiResponse : Adyen.Core.Client.ApiResponse, IGetBalanceOfGiftCardApiResponse
+        public partial class PostPaymentMethodsBalanceApiResponse : Adyen.Core.Client.ApiResponse, IPostPaymentMethodsBalanceApiResponse
         {
             /// <summary>
-            /// The logger for <see cref="GetBalanceOfGiftCardApiResponse"/>.
+            /// The logger for <see cref="PostPaymentMethodsBalanceApiResponse"/>.
             /// </summary>
-            public ILogger<GetBalanceOfGiftCardApiResponse> Logger { get; }
+            public ILogger<PostPaymentMethodsBalanceApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetBalanceOfGiftCardApiResponse"/>.
+            /// The <see cref="PostPaymentMethodsBalanceApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -824,14 +1202,14 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public GetBalanceOfGiftCardApiResponse(ILogger<GetBalanceOfGiftCardApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostPaymentMethodsBalanceApiResponse(ILogger<PostPaymentMethodsBalanceApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetBalanceOfGiftCardApiResponse"/>.
+            /// The <see cref="PostPaymentMethodsBalanceApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -840,7 +1218,7 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public GetBalanceOfGiftCardApiResponse(ILogger<GetBalanceOfGiftCardApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostPaymentMethodsBalanceApiResponse(ILogger<PostPaymentMethodsBalanceApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -871,384 +1249,6 @@ namespace Adyen.Checkout.Services
             /// <param name="result"></param>
             /// <returns></returns>
             public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.Checkout.Models.BalanceCheckResponse? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 400 BadRequest.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsBadRequest => 400 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 400 BadRequest.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.Checkout.Models.ServiceError? BadRequest()
-            {
-                return IsBadRequest
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 400 BadRequest and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeBadRequestResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = BadRequest();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)400);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 401 Unauthorized.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsUnauthorized => 401 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 401 Unauthorized.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.Checkout.Models.ServiceError? Unauthorized()
-            {
-                return IsUnauthorized
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeUnauthorizedResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Unauthorized();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)401);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsForbidden => 403 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.Checkout.Models.ServiceError? Forbidden()
-            {
-                return IsForbidden
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeForbiddenResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Forbidden();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)403);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 422 UnprocessableContent.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsUnprocessableContent => 422 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 422 UnprocessableContent.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.Checkout.Models.ServiceError? UnprocessableContent()
-            {
-                return IsUnprocessableContent
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 422 UnprocessableContent and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeUnprocessableContentResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = UnprocessableContent();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)422);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 500 InternalServerError.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsInternalServerError => 500 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 500 InternalServerError.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.Checkout.Models.ServiceError? InternalServerError()
-            {
-                return IsInternalServerError
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.ServiceError>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 500 InternalServerError and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeInternalServerErrorResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ServiceError? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = InternalServerError();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)500);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationError(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-        
-        /// <summary>
-        /// Create an order Creates an order to be used for partial payments. Make a POST &#x60;/orders&#x60; call before making a &#x60;/payments&#x60; call when processing payments with different payment methods.
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). () Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="createOrderRequest"><see cref="CreateOrderRequest"/> ()</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IOrdersApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.CreateOrderResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IOrdersApiResponse> OrdersAsync(CreateOrderRequest createOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilder = new UriBuilder();
-
-            try
-            {
-                using (HttpRequestMessage httpRequestMessage = new HttpRequestMessage())
-                {
-                    uriBuilder.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilder.Port = HttpClient.BaseAddress.Port;
-                    uriBuilder.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilder.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/orders"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/orders");
-
-                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
-                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    httpRequestMessage.Content = (createOrderRequest as object) is System.IO.Stream stream
-                        ? httpRequestMessage.Content = new StreamContent(stream)
-                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createOrderRequest, _jsonSerializerOptions));
-
-                    // Add authorization token to the HttpRequestMessage header
-                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
-                    
-                    httpRequestMessage.RequestUri = uriBuilder.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    httpRequestMessage.AddUserAgentToHeaders();
-                    httpRequestMessage.AddLibraryNameToHeader();
-                    httpRequestMessage.AddLibraryVersionToHeader();
-                    
-                    string? contentType = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentType != null && httpRequestMessage.Content != null)
-                        httpRequestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
-
-                    string[] accepts = new string[] {
-                        "application/json"
-                    };
-
-                    string? accept = ClientUtils.SelectHeaderAccept(accepts);
-
-                    if (accept != null)
-                        httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-#if NET462 || NETSTANDARD2_0
-                    httpRequestMessage.Method = new HttpMethod("POST");
-#else
-                    httpRequestMessage.Method = HttpMethod.Post;
-#endif
-
-                    DateTime requestedAt = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
-                    {
-                        ILogger<OrdersApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<OrdersApiResponse>();
-                        OrdersApiResponse apiResponse;
-
-                        switch ((int)httpResponseMessage.StatusCode) {
-                            default: {
-#if NET462 || NETSTANDARD2_0
-                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
-                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-#else
-                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-#endif
-                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/orders", requestedAt, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-                        
-                        Events?.ExecuteOnOrders(apiResponse);
-                        return apiResponse;
-                    }
-                }
-            }
-            catch(Exception exception)
-            {
-                Events?.ExecuteOnErrorOrders(exception);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="OrdersApiResponse"/>.
-        /// </summary>
-        public partial class OrdersApiResponse : Adyen.Core.Client.ApiResponse, IOrdersApiResponse
-        {
-            /// <summary>
-            /// The logger for <see cref="OrdersApiResponse"/>.
-            /// </summary>
-            public ILogger<OrdersApiResponse> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="OrdersApiResponse"/>.
-            /// </summary>
-            /// <param name="logger"><see cref="ILogger"/>.</param>
-            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
-            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
-            /// <param name="rawContent">The raw data.</param>
-            /// <param name="path">The path used when making the request.</param>
-            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
-            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public OrdersApiResponse(ILogger<OrdersApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="OrdersApiResponse"/>.
-            /// </summary>
-            /// <param name="logger"><see cref="ILogger"/>.</param>
-            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
-            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
-            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
-            /// <param name="path">The path used when making the request.</param>
-            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
-            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public OrdersApiResponse(ILogger<OrdersApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.Checkout.Models.CreateOrderResponse? Ok()
-            {
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.CreateOrderResponse>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.Checkout.Models.CreateOrderResponse? result)
             {
                 result = null;
 

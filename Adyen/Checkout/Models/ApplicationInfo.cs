@@ -2,9 +2,9 @@
 /*
  * Adyen Checkout API
  *
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v71/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v71/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=71) to find out what changed in this version!
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v72/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v72/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=72) to find out what changed in this version!
  *
- * The version of the OpenAPI document: 71
+ * The version of the OpenAPI document: 72
  * Generated by: https://github.com/openapitools/openapi-generator.git
  */
 
@@ -34,12 +34,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationInfo" /> class.
         /// </summary>
-        /// <param name="adyenLibrary">adyenLibrary</param>
-        /// <param name="adyenPaymentSource">adyenPaymentSource</param>
-        /// <param name="externalPlatform">externalPlatform</param>
-        /// <param name="merchantApplication">merchantApplication</param>
-        /// <param name="merchantDevice">merchantDevice</param>
-        /// <param name="shopperInteractionDevice">shopperInteractionDevice</param>
+        /// <param name="adyenLibrary">Adyen-developed software, such as libraries and plugins, used to interact with the Adyen API. For example, Magento plugin, Java API library, etc.</param>
+        /// <param name="adyenPaymentSource">Adyen-developed software to get payment details. For example, Checkout SDK, Secured Fields SDK, etc.</param>
+        /// <param name="externalPlatform">Third-party developed platform used to initiate payment requests. For example, Magento, Zuora, etc.</param>
+        /// <param name="merchantApplication">Merchant developed software, such as cashier application, used to interact with the Adyen API.</param>
+        /// <param name="merchantDevice">Merchant device information.</param>
+        /// <param name="shopperInteractionDevice">Shopper interaction device, such as terminal, mobile device or web browser, to initiate payment requests.</param>
         [JsonConstructor]
         public ApplicationInfo(Option<CommonField?> adyenLibrary = default, Option<CommonField?> adyenPaymentSource = default, Option<ExternalPlatform?> externalPlatform = default, Option<CommonField?> merchantApplication = default, Option<MerchantDevice?> merchantDevice = default, Option<ShopperInteractionDevice?> shopperInteractionDevice = default)
         {
@@ -69,8 +69,9 @@ namespace Adyen.Checkout.Models
         public Option<CommonField?> _AdyenLibraryOption { get; private set; }
 
         /// <summary>
-        /// <see cref="AdyenLibrary"/>.
+        /// Adyen-developed software, such as libraries and plugins, used to interact with the Adyen API. For example, Magento plugin, Java API library, etc.
         /// </summary>
+        /// <value>Adyen-developed software, such as libraries and plugins, used to interact with the Adyen API. For example, Magento plugin, Java API library, etc.</value>
         [JsonPropertyName("adyenLibrary")]
         public CommonField? AdyenLibrary { get { return this._AdyenLibraryOption; } set { this._AdyenLibraryOption = new(value); } }
 
@@ -82,8 +83,9 @@ namespace Adyen.Checkout.Models
         public Option<CommonField?> _AdyenPaymentSourceOption { get; private set; }
 
         /// <summary>
-        /// <see cref="AdyenPaymentSource"/>.
+        /// Adyen-developed software to get payment details. For example, Checkout SDK, Secured Fields SDK, etc.
         /// </summary>
+        /// <value>Adyen-developed software to get payment details. For example, Checkout SDK, Secured Fields SDK, etc.</value>
         [JsonPropertyName("adyenPaymentSource")]
         public CommonField? AdyenPaymentSource { get { return this._AdyenPaymentSourceOption; } set { this._AdyenPaymentSourceOption = new(value); } }
 
@@ -95,8 +97,9 @@ namespace Adyen.Checkout.Models
         public Option<ExternalPlatform?> _ExternalPlatformOption { get; private set; }
 
         /// <summary>
-        /// <see cref="ExternalPlatform"/>.
+        /// Third-party developed platform used to initiate payment requests. For example, Magento, Zuora, etc.
         /// </summary>
+        /// <value>Third-party developed platform used to initiate payment requests. For example, Magento, Zuora, etc.</value>
         [JsonPropertyName("externalPlatform")]
         public ExternalPlatform? ExternalPlatform { get { return this._ExternalPlatformOption; } set { this._ExternalPlatformOption = new(value); } }
 
@@ -108,8 +111,9 @@ namespace Adyen.Checkout.Models
         public Option<CommonField?> _MerchantApplicationOption { get; private set; }
 
         /// <summary>
-        /// <see cref="MerchantApplication"/>.
+        /// Merchant developed software, such as cashier application, used to interact with the Adyen API.
         /// </summary>
+        /// <value>Merchant developed software, such as cashier application, used to interact with the Adyen API.</value>
         [JsonPropertyName("merchantApplication")]
         public CommonField? MerchantApplication { get { return this._MerchantApplicationOption; } set { this._MerchantApplicationOption = new(value); } }
 
@@ -121,8 +125,9 @@ namespace Adyen.Checkout.Models
         public Option<MerchantDevice?> _MerchantDeviceOption { get; private set; }
 
         /// <summary>
-        /// <see cref="MerchantDevice"/>.
+        /// Merchant device information.
         /// </summary>
+        /// <value>Merchant device information.</value>
         [JsonPropertyName("merchantDevice")]
         public MerchantDevice? MerchantDevice { get { return this._MerchantDeviceOption; } set { this._MerchantDeviceOption = new(value); } }
 
@@ -134,8 +139,9 @@ namespace Adyen.Checkout.Models
         public Option<ShopperInteractionDevice?> _ShopperInteractionDeviceOption { get; private set; }
 
         /// <summary>
-        /// <see cref="ShopperInteractionDevice"/>.
+        /// Shopper interaction device, such as terminal, mobile device or web browser, to initiate payment requests.
         /// </summary>
+        /// <value>Shopper interaction device, such as terminal, mobile device or web browser, to initiate payment requests.</value>
         [JsonPropertyName("shopperInteractionDevice")]
         public ShopperInteractionDevice? ShopperInteractionDevice { get { return this._ShopperInteractionDeviceOption; } set { this._ShopperInteractionDeviceOption = new(value); } }
 

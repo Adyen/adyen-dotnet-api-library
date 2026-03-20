@@ -2,9 +2,9 @@
 /*
  * Adyen Checkout API
  *
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v71/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v71/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=71) to find out what changed in this version!
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v72/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v72/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=72) to find out what changed in this version!
  *
- * The version of the OpenAPI document: 71
+ * The version of the OpenAPI document: 72
  * Generated by: https://github.com/openapitools/openapi-generator.git
  */
 
@@ -35,16 +35,16 @@ namespace Adyen.Checkout.Models
         /// Initializes a new instance of the <see cref="Donation" /> class.
         /// </summary>
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes/).</param>
-        /// <param name="donationType">The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donations amounts that the shopper can select from.</param>
         /// <param name="type">The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donation amounts that the shopper can select from.</param>
+        /// <param name="donationType">The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donations amounts that the shopper can select from.</param>
         /// <param name="maxRoundupAmount">The maximum amount a transaction can be rounded up to make a donation. This field is only present when &#x60;donationType&#x60; is **roundup**.</param>
         /// <param name="values">The fixed donation amounts in [minor units](https://docs.adyen.com/development-resources/currency-codes//#minor-units). This field is only present when &#x60;donationType&#x60; is **fixedAmounts**.</param>
         [JsonConstructor]
-        public Donation(string currency, string donationType, string type, Option<long?> maxRoundupAmount = default, Option<List<long>?> values = default)
+        public Donation(string currency, string type, Option<string?> donationType = default, Option<long?> maxRoundupAmount = default, Option<List<long>?> values = default)
         {
             Currency = currency;
-            DonationType = donationType;
             Type = type;
+            _DonationTypeOption = donationType;
             _MaxRoundupAmountOption = maxRoundupAmount;
             _ValuesOption = values;
             OnCreated();
@@ -67,18 +67,26 @@ namespace Adyen.Checkout.Models
         public string Currency { get; set; }
 
         /// <summary>
-        /// The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donations amounts that the shopper can select from.
-        /// </summary>
-        /// <value>The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donations amounts that the shopper can select from.</value>
-        [JsonPropertyName("donationType")]
-        public string DonationType { get; set; }
-
-        /// <summary>
         /// The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donation amounts that the shopper can select from.
         /// </summary>
         /// <value>The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donation amounts that the shopper can select from.</value>
         [JsonPropertyName("type")]
         public string Type { get; set; }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="DonationType"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _DonationTypeOption { get; private set; }
+
+        /// <summary>
+        /// The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donations amounts that the shopper can select from.
+        /// </summary>
+        /// <value>The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donations amounts that the shopper can select from.</value>
+        [JsonPropertyName("donationType")]
+        [Obsolete("Deprecated since Adyen Checkout API v72. Use `type` instead.")]
+        public string? DonationType { get { return this._DonationTypeOption; } set { this._DonationTypeOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="MaxRoundupAmount"/> will be populated.
@@ -117,8 +125,8 @@ namespace Adyen.Checkout.Models
             StringBuilder sb = new StringBuilder();
             sb.Append("class Donation {\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
-            sb.Append("  DonationType: ").Append(DonationType).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  DonationType: ").Append(DonationType).Append("\n");
             sb.Append("  MaxRoundupAmount: ").Append(MaxRoundupAmount).Append("\n");
             sb.Append("  Values: ").Append(Values).Append("\n");
             sb.Append("}\n");
@@ -149,8 +157,8 @@ namespace Adyen.Checkout.Models
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string?> currency = default;
-            Option<string?> donationType = default;
             Option<string?> type = default;
+            Option<string?> donationType = default;
             Option<long?> maxRoundupAmount = default;
             Option<List<long>?> values = default;
 
@@ -172,11 +180,11 @@ namespace Adyen.Checkout.Models
                         case "currency":
                             currency = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
-                        case "donationType":
-                            donationType = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
                         case "type":
                             type = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "donationType":
+                            donationType = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "maxRoundupAmount":
                             maxRoundupAmount = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
@@ -193,13 +201,10 @@ namespace Adyen.Checkout.Models
             if (!currency.IsSet)
                 throw new ArgumentException("Property is required for class Donation.", nameof(currency));
 
-            if (!donationType.IsSet)
-                throw new ArgumentException("Property is required for class Donation.", nameof(donationType));
-
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class Donation.", nameof(type));
 
-            return new Donation(currency.Value!, donationType.Value!, type.Value!, maxRoundupAmount, values);
+            return new Donation(currency.Value!, type.Value!, donationType, maxRoundupAmount, values);
         }
 
         /// <summary>
@@ -231,11 +236,12 @@ namespace Adyen.Checkout.Models
             if (donation.Currency != null)
                 writer.WriteString("currency", donation.Currency);
 
-            if (donation.DonationType != null)
-                writer.WriteString("donationType", donation.DonationType);
-
             if (donation.Type != null)
                 writer.WriteString("type", donation.Type);
+
+            if (donation._DonationTypeOption.IsSet)
+                if (donation.DonationType != null)
+                    writer.WriteString("donationType", donation.DonationType);
 
             if (donation._MaxRoundupAmountOption.IsSet)
                 writer.WriteNumber("maxRoundupAmount", donation._MaxRoundupAmountOption.Value!.Value);

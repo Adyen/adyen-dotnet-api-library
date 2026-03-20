@@ -2,9 +2,9 @@
 /*
  * Adyen Checkout API
  *
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v71/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v71/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=71) to find out what changed in this version!
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v72/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v72/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=72) to find out what changed in this version!
  *
- * The version of the OpenAPI document: 71
+ * The version of the OpenAPI document: 72
  * Generated by: https://github.com/openapitools/openapi-generator.git
  */
 
@@ -58,6 +58,16 @@ namespace Adyen.Checkout.Models
         public CheckoutPaymentMethod(AfterpayDetails afterpayDetails)
         {
             AfterpayDetails = afterpayDetails;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class.
+        /// </summary>
+        /// <param name="almaDetails"></param>
+        public CheckoutPaymentMethod(AlmaDetails almaDetails)
+        {
+            AlmaDetails = almaDetails;
             OnCreated();
         }
 
@@ -158,6 +168,16 @@ namespace Adyen.Checkout.Models
         public CheckoutPaymentMethod(CellulantDetails cellulantDetails)
         {
             CellulantDetails = cellulantDetails;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class.
+        /// </summary>
+        /// <param name="directDebitAuDetails"></param>
+        public CheckoutPaymentMethod(DirectDebitAuDetails directDebitAuDetails)
+        {
+            DirectDebitAuDetails = directDebitAuDetails;
             OnCreated();
         }
 
@@ -268,6 +288,16 @@ namespace Adyen.Checkout.Models
         public CheckoutPaymentMethod(KlarnaDetails klarnaDetails)
         {
             KlarnaDetails = klarnaDetails;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class.
+        /// </summary>
+        /// <param name="klarnaNetworkDetails"></param>
+        public CheckoutPaymentMethod(KlarnaNetworkDetails klarnaNetworkDetails)
+        {
+            KlarnaNetworkDetails = klarnaNetworkDetails;
             OnCreated();
         }
 
@@ -589,6 +619,11 @@ namespace Adyen.Checkout.Models
         public AfterpayDetails? AfterpayDetails { get; set; }
 
         /// <summary>
+        /// <see cref="AlmaDetails"/>..
+        /// </summary>
+        public AlmaDetails? AlmaDetails { get; set; }
+
+        /// <summary>
         /// <see cref="AmazonPayDetails"/>..
         /// </summary>
         public AmazonPayDetails? AmazonPayDetails { get; set; }
@@ -637,6 +672,11 @@ namespace Adyen.Checkout.Models
         /// <see cref="CellulantDetails"/>..
         /// </summary>
         public CellulantDetails? CellulantDetails { get; set; }
+
+        /// <summary>
+        /// <see cref="DirectDebitAuDetails"/>..
+        /// </summary>
+        public DirectDebitAuDetails? DirectDebitAuDetails { get; set; }
 
         /// <summary>
         /// <see cref="DokuDetails"/>..
@@ -692,6 +732,11 @@ namespace Adyen.Checkout.Models
         /// <see cref="KlarnaDetails"/>..
         /// </summary>
         public KlarnaDetails? KlarnaDetails { get; set; }
+
+        /// <summary>
+        /// <see cref="KlarnaNetworkDetails"/>..
+        /// </summary>
+        public KlarnaNetworkDetails? KlarnaNetworkDetails { get; set; }
 
         /// <summary>
         /// <see cref="MasterpassDetails"/>..
@@ -857,6 +902,8 @@ namespace Adyen.Checkout.Models
                 sb.Append(AffirmDetails.ToString().Replace("\n", "\n  "));
             if (this.AfterpayDetails != null)
                 sb.Append(AfterpayDetails.ToString().Replace("\n", "\n  "));
+            if (this.AlmaDetails != null)
+                sb.Append(AlmaDetails.ToString().Replace("\n", "\n  "));
             if (this.AmazonPayDetails != null)
                 sb.Append(AmazonPayDetails.ToString().Replace("\n", "\n  "));
             if (this.AncvDetails != null)
@@ -877,6 +924,8 @@ namespace Adyen.Checkout.Models
                 sb.Append(CashAppDetails.ToString().Replace("\n", "\n  "));
             if (this.CellulantDetails != null)
                 sb.Append(CellulantDetails.ToString().Replace("\n", "\n  "));
+            if (this.DirectDebitAuDetails != null)
+                sb.Append(DirectDebitAuDetails.ToString().Replace("\n", "\n  "));
             if (this.DokuDetails != null)
                 sb.Append(DokuDetails.ToString().Replace("\n", "\n  "));
             if (this.DragonpayDetails != null)
@@ -899,6 +948,8 @@ namespace Adyen.Checkout.Models
                 sb.Append(IdealDetails.ToString().Replace("\n", "\n  "));
             if (this.KlarnaDetails != null)
                 sb.Append(KlarnaDetails.ToString().Replace("\n", "\n  "));
+            if (this.KlarnaNetworkDetails != null)
+                sb.Append(KlarnaNetworkDetails.ToString().Replace("\n", "\n  "));
             if (this.MasterpassDetails != null)
                 sb.Append(MasterpassDetails.ToString().Replace("\n", "\n  "));
             if (this.MbwayDetails != null)
@@ -989,6 +1040,7 @@ namespace Adyen.Checkout.Models
             AchDetails? achDetails = default;
             AffirmDetails? affirmDetails = default;
             AfterpayDetails? afterpayDetails = default;
+            AlmaDetails? almaDetails = default;
             AmazonPayDetails? amazonPayDetails = default;
             AncvDetails? ancvDetails = default;
             AndroidPayDetails? androidPayDetails = default;
@@ -999,6 +1051,7 @@ namespace Adyen.Checkout.Models
             CardDetails? cardDetails = default;
             CashAppDetails? cashAppDetails = default;
             CellulantDetails? cellulantDetails = default;
+            DirectDebitAuDetails? directDebitAuDetails = default;
             DokuDetails? dokuDetails = default;
             DragonpayDetails? dragonpayDetails = default;
             EBankingFinlandDetails? eBankingFinlandDetails = default;
@@ -1010,6 +1063,7 @@ namespace Adyen.Checkout.Models
             GooglePayDetails? googlePayDetails = default;
             IdealDetails? idealDetails = default;
             KlarnaDetails? klarnaDetails = default;
+            KlarnaNetworkDetails? klarnaNetworkDetails = default;
             MasterpassDetails? masterpassDetails = default;
             MbwayDetails? mbwayDetails = default;
             MobilePayDetails? mobilePayDetails = default;
@@ -1061,6 +1115,9 @@ namespace Adyen.Checkout.Models
                     Utf8JsonReader utf8JsonReaderAfterpayDetails = utf8JsonReader;
                     ClientUtils.TryDeserialize<AfterpayDetails?>(ref utf8JsonReaderAfterpayDetails, jsonSerializerOptions, out afterpayDetails);
 
+                    Utf8JsonReader utf8JsonReaderAlmaDetails = utf8JsonReader;
+                    ClientUtils.TryDeserialize<AlmaDetails?>(ref utf8JsonReaderAlmaDetails, jsonSerializerOptions, out almaDetails);
+
                     Utf8JsonReader utf8JsonReaderAmazonPayDetails = utf8JsonReader;
                     ClientUtils.TryDeserialize<AmazonPayDetails?>(ref utf8JsonReaderAmazonPayDetails, jsonSerializerOptions, out amazonPayDetails);
 
@@ -1090,6 +1147,9 @@ namespace Adyen.Checkout.Models
 
                     Utf8JsonReader utf8JsonReaderCellulantDetails = utf8JsonReader;
                     ClientUtils.TryDeserialize<CellulantDetails?>(ref utf8JsonReaderCellulantDetails, jsonSerializerOptions, out cellulantDetails);
+
+                    Utf8JsonReader utf8JsonReaderDirectDebitAuDetails = utf8JsonReader;
+                    ClientUtils.TryDeserialize<DirectDebitAuDetails?>(ref utf8JsonReaderDirectDebitAuDetails, jsonSerializerOptions, out directDebitAuDetails);
 
                     Utf8JsonReader utf8JsonReaderDokuDetails = utf8JsonReader;
                     ClientUtils.TryDeserialize<DokuDetails?>(ref utf8JsonReaderDokuDetails, jsonSerializerOptions, out dokuDetails);
@@ -1123,6 +1183,9 @@ namespace Adyen.Checkout.Models
 
                     Utf8JsonReader utf8JsonReaderKlarnaDetails = utf8JsonReader;
                     ClientUtils.TryDeserialize<KlarnaDetails?>(ref utf8JsonReaderKlarnaDetails, jsonSerializerOptions, out klarnaDetails);
+
+                    Utf8JsonReader utf8JsonReaderKlarnaNetworkDetails = utf8JsonReader;
+                    ClientUtils.TryDeserialize<KlarnaNetworkDetails?>(ref utf8JsonReaderKlarnaNetworkDetails, jsonSerializerOptions, out klarnaNetworkDetails);
 
                     Utf8JsonReader utf8JsonReaderMasterpassDetails = utf8JsonReader;
                     ClientUtils.TryDeserialize<MasterpassDetails?>(ref utf8JsonReaderMasterpassDetails, jsonSerializerOptions, out masterpassDetails);
@@ -1246,6 +1309,9 @@ namespace Adyen.Checkout.Models
             if (afterpayDetails?.Type != null)
                 return new CheckoutPaymentMethod(afterpayDetails);
 
+            if (almaDetails?.Type != null)
+                return new CheckoutPaymentMethod(almaDetails);
+
             if (amazonPayDetails?.Type != null)
                 return new CheckoutPaymentMethod(amazonPayDetails);
 
@@ -1275,6 +1341,9 @@ namespace Adyen.Checkout.Models
 
             if (cellulantDetails?.Type != null)
                 return new CheckoutPaymentMethod(cellulantDetails);
+
+            if (directDebitAuDetails?.Type != null)
+                return new CheckoutPaymentMethod(directDebitAuDetails);
 
             if (dokuDetails?.Type != null)
                 return new CheckoutPaymentMethod(dokuDetails);
@@ -1308,6 +1377,9 @@ namespace Adyen.Checkout.Models
 
             if (klarnaDetails?.Type != null)
                 return new CheckoutPaymentMethod(klarnaDetails);
+
+            if (klarnaNetworkDetails?.Type != null)
+                return new CheckoutPaymentMethod(klarnaNetworkDetails);
 
             if (masterpassDetails?.Type != null)
                 return new CheckoutPaymentMethod(masterpassDetails);
@@ -1416,6 +1488,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.AffirmDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.AfterpayDetails != null)
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.AfterpayDetails, jsonSerializerOptions);
+            if (checkoutPaymentMethod.AlmaDetails != null)
+                JsonSerializer.Serialize(writer, checkoutPaymentMethod.AlmaDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.AmazonPayDetails != null)
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.AmazonPayDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.AncvDetails != null)
@@ -1436,6 +1510,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.CashAppDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.CellulantDetails != null)
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.CellulantDetails, jsonSerializerOptions);
+            if (checkoutPaymentMethod.DirectDebitAuDetails != null)
+                JsonSerializer.Serialize(writer, checkoutPaymentMethod.DirectDebitAuDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.DokuDetails != null)
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.DokuDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.DragonpayDetails != null)
@@ -1458,6 +1534,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.IdealDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.KlarnaDetails != null)
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.KlarnaDetails, jsonSerializerOptions);
+            if (checkoutPaymentMethod.KlarnaNetworkDetails != null)
+                JsonSerializer.Serialize(writer, checkoutPaymentMethod.KlarnaNetworkDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.MasterpassDetails != null)
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.MasterpassDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.MbwayDetails != null)

@@ -2,9 +2,9 @@
 /*
  * Adyen Checkout API
  *
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v71/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v71/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=71) to find out what changed in this version!
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v72/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v72/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=72) to find out what changed in this version!
  *
- * The version of the OpenAPI document: 71
+ * The version of the OpenAPI document: 72
  * Generated by: https://github.com/openapitools/openapi-generator.git
  */
 
@@ -51,8 +51,8 @@ namespace Adyen.Checkout.Services
         /// <param name="applePaySessionRequest"></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetApplePaySessionApiResponse"/>.</returns>
-        Task<IGetApplePaySessionApiResponse> GetApplePaySessionAsync(ApplePaySessionRequest applePaySessionRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/> of <see cref="IPostApplePaySessionsApiResponse"/>.</returns>
+        Task<IPostApplePaySessionsApiResponse> PostApplePaySessionsAsync(ApplePaySessionRequest applePaySessionRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create originKey values for domains
@@ -65,9 +65,9 @@ namespace Adyen.Checkout.Services
         /// <param name="utilityRequest"></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IOriginKeysApiResponse"/>.</returns>
+        /// <returns><see cref="Task"/> of <see cref="IPostOriginKeysApiResponse"/>.</returns>
         [Obsolete("Deprecated since Adyen Checkout API v67.")]
-        Task<IOriginKeysApiResponse> OriginKeysAsync(UtilityRequest utilityRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IPostOriginKeysApiResponse> PostOriginKeysAsync(UtilityRequest utilityRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Updates the order for PayPal Express Checkout
@@ -80,8 +80,8 @@ namespace Adyen.Checkout.Services
         /// <param name="paypalUpdateOrderRequest"></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdatesOrderForPaypalExpressCheckoutApiResponse"/>.</returns>
-        Task<IUpdatesOrderForPaypalExpressCheckoutApiResponse> UpdatesOrderForPaypalExpressCheckoutAsync(PaypalUpdateOrderRequest paypalUpdateOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/> of <see cref="IPostPaypalUpdateOrderApiResponse"/>.</returns>
+        Task<IPostPaypalUpdateOrderApiResponse> PostPaypalUpdateOrderAsync(PaypalUpdateOrderRequest paypalUpdateOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Validates shopper Id
@@ -93,15 +93,15 @@ namespace Adyen.Checkout.Services
         /// <param name="validateShopperIdRequest"></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IValidateShopperIdApiResponse"/>.</returns>
-        Task<IValidateShopperIdApiResponse> ValidateShopperIdAsync(ValidateShopperIdRequest validateShopperIdRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/> of <see cref="IPostValidateShopperIdApiResponse"/>.</returns>
+        Task<IPostValidateShopperIdApiResponse> PostValidateShopperIdAsync(ValidateShopperIdRequest validateShopperIdRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IGetApplePaySessionApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.ApplePaySessionResponse"/>.
+    /// The <see cref="IPostApplePaySessionsApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.ApplePaySessionResponse"/>.
     /// </summary>
-    public interface IGetApplePaySessionApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.ApplePaySessionResponse?>
+    public interface IPostApplePaySessionsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.ApplePaySessionResponse?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -111,51 +111,9 @@ namespace Adyen.Checkout.Services
     }
 
     /// <summary>
-    /// The <see cref="IOriginKeysApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.UtilityResponse"/>.
+    /// The <see cref="IPostOriginKeysApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.UtilityResponse"/>.
     /// </summary>
-    public interface IOriginKeysApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.UtilityResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok.
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-
-        /// <summary>
-        /// Returns true if the response is 400 BadRequest.
-        /// </summary>
-        /// <returns></returns>
-        bool IsBadRequest { get; }
-
-        /// <summary>
-        /// Returns true if the response is 401 Unauthorized.
-        /// </summary>
-        /// <returns></returns>
-        bool IsUnauthorized { get; }
-
-        /// <summary>
-        /// Returns true if the response is 403 Forbidden.
-        /// </summary>
-        /// <returns></returns>
-        bool IsForbidden { get; }
-
-        /// <summary>
-        /// Returns true if the response is 422 UnprocessableContent.
-        /// </summary>
-        /// <returns></returns>
-        bool IsUnprocessableContent { get; }
-
-        /// <summary>
-        /// Returns true if the response is 500 InternalServerError.
-        /// </summary>
-        /// <returns></returns>
-        bool IsInternalServerError { get; }
-    }
-
-    /// <summary>
-    /// The <see cref="IUpdatesOrderForPaypalExpressCheckoutApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.PaypalUpdateOrderResponse"/>.
-    /// </summary>
-    public interface IUpdatesOrderForPaypalExpressCheckoutApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.PaypalUpdateOrderResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
+    public interface IPostOriginKeysApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.UtilityResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -195,9 +153,51 @@ namespace Adyen.Checkout.Services
     }
 
     /// <summary>
-    /// The <see cref="IValidateShopperIdApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.ValidateShopperIdResponse"/>.
+    /// The <see cref="IPostPaypalUpdateOrderApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.PaypalUpdateOrderResponse"/>.
     /// </summary>
-    public interface IValidateShopperIdApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.ValidateShopperIdResponse?>, IBadRequest<Adyen.Checkout.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.Checkout.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.Checkout.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.Checkout.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.Checkout.Models.DefaultErrorResponseEntity?>
+    public interface IPostPaypalUpdateOrderApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.PaypalUpdateOrderResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok.
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest.
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized.
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 403 Forbidden.
+        /// </summary>
+        /// <returns></returns>
+        bool IsForbidden { get; }
+
+        /// <summary>
+        /// Returns true if the response is 422 UnprocessableContent.
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnprocessableContent { get; }
+
+        /// <summary>
+        /// Returns true if the response is 500 InternalServerError.
+        /// </summary>
+        /// <returns></returns>
+        bool IsInternalServerError { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IPostValidateShopperIdApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.ValidateShopperIdResponse"/>.
+    /// </summary>
+    public interface IPostValidateShopperIdApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.ValidateShopperIdResponse?>, IBadRequest<Adyen.Checkout.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.Checkout.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.Checkout.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.Checkout.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.Checkout.Models.DefaultErrorResponseEntity?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -244,81 +244,81 @@ namespace Adyen.Checkout.Services
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetApplePaySession;
+        public event EventHandler<ApiResponseEventArgs>? OnPostApplePaySessions;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetApplePaySession;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostApplePaySessions;
 
-        internal void ExecuteOnGetApplePaySession(UtilityService.GetApplePaySessionApiResponse apiResponse)
+        internal void ExecuteOnPostApplePaySessions(UtilityService.PostApplePaySessionsApiResponse apiResponse)
         {
-            OnGetApplePaySession?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostApplePaySessions?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetApplePaySession(Exception exception)
+        internal void ExecuteOnErrorPostApplePaySessions(Exception exception)
         {
-            OnErrorGetApplePaySession?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostApplePaySessions?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnOriginKeys;
+        public event EventHandler<ApiResponseEventArgs>? OnPostOriginKeys;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorOriginKeys;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostOriginKeys;
 
-        internal void ExecuteOnOriginKeys(UtilityService.OriginKeysApiResponse apiResponse)
+        internal void ExecuteOnPostOriginKeys(UtilityService.PostOriginKeysApiResponse apiResponse)
         {
-            OnOriginKeys?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostOriginKeys?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorOriginKeys(Exception exception)
+        internal void ExecuteOnErrorPostOriginKeys(Exception exception)
         {
-            OnErrorOriginKeys?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostOriginKeys?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdatesOrderForPaypalExpressCheckout;
+        public event EventHandler<ApiResponseEventArgs>? OnPostPaypalUpdateOrder;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdatesOrderForPaypalExpressCheckout;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostPaypalUpdateOrder;
 
-        internal void ExecuteOnUpdatesOrderForPaypalExpressCheckout(UtilityService.UpdatesOrderForPaypalExpressCheckoutApiResponse apiResponse)
+        internal void ExecuteOnPostPaypalUpdateOrder(UtilityService.PostPaypalUpdateOrderApiResponse apiResponse)
         {
-            OnUpdatesOrderForPaypalExpressCheckout?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostPaypalUpdateOrder?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdatesOrderForPaypalExpressCheckout(Exception exception)
+        internal void ExecuteOnErrorPostPaypalUpdateOrder(Exception exception)
         {
-            OnErrorUpdatesOrderForPaypalExpressCheckout?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostPaypalUpdateOrder?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnValidateShopperId;
+        public event EventHandler<ApiResponseEventArgs>? OnPostValidateShopperId;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorValidateShopperId;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostValidateShopperId;
 
-        internal void ExecuteOnValidateShopperId(UtilityService.ValidateShopperIdApiResponse apiResponse)
+        internal void ExecuteOnPostValidateShopperId(UtilityService.PostValidateShopperIdApiResponse apiResponse)
         {
-            OnValidateShopperId?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostValidateShopperId?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorValidateShopperId(Exception exception)
+        internal void ExecuteOnErrorPostValidateShopperId(Exception exception)
         {
-            OnErrorValidateShopperId?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostValidateShopperId?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -332,7 +332,7 @@ namespace Adyen.Checkout.Services
         /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
         /// This value will be used to construct the URL in <see cref="System.Net.Http.HttpClient.BaseAddress"/> based on the Environment value set in <see cref="AdyenOptions.Environment"/>.
         /// </summary>
-        private const string BASE_URL = "https://checkout-test.adyen.com/v71";
+        private const string BASE_URL = "https://checkout-test.adyen.com/v72";
             
         private JsonSerializerOptions _jsonSerializerOptions;
 
@@ -385,8 +385,8 @@ namespace Adyen.Checkout.Services
         /// <param name="applePaySessionRequest"><see cref="ApplePaySessionRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetApplePaySessionApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.ApplePaySessionResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetApplePaySessionApiResponse> GetApplePaySessionAsync(ApplePaySessionRequest applePaySessionRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IPostApplePaySessionsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.ApplePaySessionResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IPostApplePaySessionsApiResponse> PostApplePaySessionsAsync(ApplePaySessionRequest applePaySessionRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -443,8 +443,8 @@ namespace Adyen.Checkout.Services
 
                     using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<GetApplePaySessionApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<GetApplePaySessionApiResponse>();
-                        GetApplePaySessionApiResponse apiResponse;
+                        ILogger<PostApplePaySessionsApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<PostApplePaySessionsApiResponse>();
+                        PostApplePaySessionsApiResponse apiResponse;
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
@@ -460,30 +460,30 @@ namespace Adyen.Checkout.Services
                             }
                         }
                         
-                        Events?.ExecuteOnGetApplePaySession(apiResponse);
+                        Events?.ExecuteOnPostApplePaySessions(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events?.ExecuteOnErrorGetApplePaySession(exception);
+                Events?.ExecuteOnErrorPostApplePaySessions(exception);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetApplePaySessionApiResponse"/>.
+        /// The <see cref="PostApplePaySessionsApiResponse"/>.
         /// </summary>
-        public partial class GetApplePaySessionApiResponse : Adyen.Core.Client.ApiResponse, IGetApplePaySessionApiResponse
+        public partial class PostApplePaySessionsApiResponse : Adyen.Core.Client.ApiResponse, IPostApplePaySessionsApiResponse
         {
             /// <summary>
-            /// The logger for <see cref="GetApplePaySessionApiResponse"/>.
+            /// The logger for <see cref="PostApplePaySessionsApiResponse"/>.
             /// </summary>
-            public ILogger<GetApplePaySessionApiResponse> Logger { get; }
+            public ILogger<PostApplePaySessionsApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetApplePaySessionApiResponse"/>.
+            /// The <see cref="PostApplePaySessionsApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -492,14 +492,14 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public GetApplePaySessionApiResponse(ILogger<GetApplePaySessionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostApplePaySessionsApiResponse(ILogger<PostApplePaySessionsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetApplePaySessionApiResponse"/>.
+            /// The <see cref="PostApplePaySessionsApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -508,7 +508,7 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public GetApplePaySessionApiResponse(ILogger<GetApplePaySessionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostApplePaySessionsApiResponse(ILogger<PostApplePaySessionsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -573,8 +573,8 @@ namespace Adyen.Checkout.Services
         /// <param name="utilityRequest"><see cref="UtilityRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IOriginKeysApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.UtilityResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IOriginKeysApiResponse> OriginKeysAsync(UtilityRequest utilityRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IPostOriginKeysApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.UtilityResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IPostOriginKeysApiResponse> PostOriginKeysAsync(UtilityRequest utilityRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -631,8 +631,8 @@ namespace Adyen.Checkout.Services
 
                     using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<OriginKeysApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<OriginKeysApiResponse>();
-                        OriginKeysApiResponse apiResponse;
+                        ILogger<PostOriginKeysApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<PostOriginKeysApiResponse>();
+                        PostOriginKeysApiResponse apiResponse;
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
@@ -648,30 +648,30 @@ namespace Adyen.Checkout.Services
                             }
                         }
                         
-                        Events?.ExecuteOnOriginKeys(apiResponse);
+                        Events?.ExecuteOnPostOriginKeys(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events?.ExecuteOnErrorOriginKeys(exception);
+                Events?.ExecuteOnErrorPostOriginKeys(exception);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="OriginKeysApiResponse"/>.
+        /// The <see cref="PostOriginKeysApiResponse"/>.
         /// </summary>
-        public partial class OriginKeysApiResponse : Adyen.Core.Client.ApiResponse, IOriginKeysApiResponse
+        public partial class PostOriginKeysApiResponse : Adyen.Core.Client.ApiResponse, IPostOriginKeysApiResponse
         {
             /// <summary>
-            /// The logger for <see cref="OriginKeysApiResponse"/>.
+            /// The logger for <see cref="PostOriginKeysApiResponse"/>.
             /// </summary>
-            public ILogger<OriginKeysApiResponse> Logger { get; }
+            public ILogger<PostOriginKeysApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="OriginKeysApiResponse"/>.
+            /// The <see cref="PostOriginKeysApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -680,14 +680,14 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public OriginKeysApiResponse(ILogger<OriginKeysApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostOriginKeysApiResponse(ILogger<PostOriginKeysApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="OriginKeysApiResponse"/>.
+            /// The <see cref="PostOriginKeysApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -696,7 +696,7 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public OriginKeysApiResponse(ILogger<OriginKeysApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostOriginKeysApiResponse(ILogger<PostOriginKeysApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -951,8 +951,8 @@ namespace Adyen.Checkout.Services
         /// <param name="paypalUpdateOrderRequest"><see cref="PaypalUpdateOrderRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdatesOrderForPaypalExpressCheckoutApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.PaypalUpdateOrderResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdatesOrderForPaypalExpressCheckoutApiResponse> UpdatesOrderForPaypalExpressCheckoutAsync(PaypalUpdateOrderRequest paypalUpdateOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IPostPaypalUpdateOrderApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.PaypalUpdateOrderResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IPostPaypalUpdateOrderApiResponse> PostPaypalUpdateOrderAsync(PaypalUpdateOrderRequest paypalUpdateOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1009,8 +1009,8 @@ namespace Adyen.Checkout.Services
 
                     using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<UpdatesOrderForPaypalExpressCheckoutApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<UpdatesOrderForPaypalExpressCheckoutApiResponse>();
-                        UpdatesOrderForPaypalExpressCheckoutApiResponse apiResponse;
+                        ILogger<PostPaypalUpdateOrderApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<PostPaypalUpdateOrderApiResponse>();
+                        PostPaypalUpdateOrderApiResponse apiResponse;
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
@@ -1026,30 +1026,30 @@ namespace Adyen.Checkout.Services
                             }
                         }
                         
-                        Events?.ExecuteOnUpdatesOrderForPaypalExpressCheckout(apiResponse);
+                        Events?.ExecuteOnPostPaypalUpdateOrder(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events?.ExecuteOnErrorUpdatesOrderForPaypalExpressCheckout(exception);
+                Events?.ExecuteOnErrorPostPaypalUpdateOrder(exception);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdatesOrderForPaypalExpressCheckoutApiResponse"/>.
+        /// The <see cref="PostPaypalUpdateOrderApiResponse"/>.
         /// </summary>
-        public partial class UpdatesOrderForPaypalExpressCheckoutApiResponse : Adyen.Core.Client.ApiResponse, IUpdatesOrderForPaypalExpressCheckoutApiResponse
+        public partial class PostPaypalUpdateOrderApiResponse : Adyen.Core.Client.ApiResponse, IPostPaypalUpdateOrderApiResponse
         {
             /// <summary>
-            /// The logger for <see cref="UpdatesOrderForPaypalExpressCheckoutApiResponse"/>.
+            /// The logger for <see cref="PostPaypalUpdateOrderApiResponse"/>.
             /// </summary>
-            public ILogger<UpdatesOrderForPaypalExpressCheckoutApiResponse> Logger { get; }
+            public ILogger<PostPaypalUpdateOrderApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdatesOrderForPaypalExpressCheckoutApiResponse"/>.
+            /// The <see cref="PostPaypalUpdateOrderApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -1058,14 +1058,14 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public UpdatesOrderForPaypalExpressCheckoutApiResponse(ILogger<UpdatesOrderForPaypalExpressCheckoutApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostPaypalUpdateOrderApiResponse(ILogger<PostPaypalUpdateOrderApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdatesOrderForPaypalExpressCheckoutApiResponse"/>.
+            /// The <see cref="PostPaypalUpdateOrderApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -1074,7 +1074,7 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public UpdatesOrderForPaypalExpressCheckoutApiResponse(ILogger<UpdatesOrderForPaypalExpressCheckoutApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostPaypalUpdateOrderApiResponse(ILogger<PostPaypalUpdateOrderApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1328,8 +1328,8 @@ namespace Adyen.Checkout.Services
         /// <param name="validateShopperIdRequest"><see cref="ValidateShopperIdRequest"/></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IValidateShopperIdApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.ValidateShopperIdResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IValidateShopperIdApiResponse> ValidateShopperIdAsync(ValidateShopperIdRequest validateShopperIdRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IPostValidateShopperIdApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.ValidateShopperIdResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IPostValidateShopperIdApiResponse> PostValidateShopperIdAsync(ValidateShopperIdRequest validateShopperIdRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1382,8 +1382,8 @@ namespace Adyen.Checkout.Services
 
                     using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<ValidateShopperIdApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<ValidateShopperIdApiResponse>();
-                        ValidateShopperIdApiResponse apiResponse;
+                        ILogger<PostValidateShopperIdApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<PostValidateShopperIdApiResponse>();
+                        PostValidateShopperIdApiResponse apiResponse;
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
@@ -1399,30 +1399,30 @@ namespace Adyen.Checkout.Services
                             }
                         }
                         
-                        Events?.ExecuteOnValidateShopperId(apiResponse);
+                        Events?.ExecuteOnPostValidateShopperId(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events?.ExecuteOnErrorValidateShopperId(exception);
+                Events?.ExecuteOnErrorPostValidateShopperId(exception);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ValidateShopperIdApiResponse"/>.
+        /// The <see cref="PostValidateShopperIdApiResponse"/>.
         /// </summary>
-        public partial class ValidateShopperIdApiResponse : Adyen.Core.Client.ApiResponse, IValidateShopperIdApiResponse
+        public partial class PostValidateShopperIdApiResponse : Adyen.Core.Client.ApiResponse, IPostValidateShopperIdApiResponse
         {
             /// <summary>
-            /// The logger for <see cref="ValidateShopperIdApiResponse"/>.
+            /// The logger for <see cref="PostValidateShopperIdApiResponse"/>.
             /// </summary>
-            public ILogger<ValidateShopperIdApiResponse> Logger { get; }
+            public ILogger<PostValidateShopperIdApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ValidateShopperIdApiResponse"/>.
+            /// The <see cref="PostValidateShopperIdApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -1431,14 +1431,14 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public ValidateShopperIdApiResponse(ILogger<ValidateShopperIdApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostValidateShopperIdApiResponse(ILogger<PostValidateShopperIdApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ValidateShopperIdApiResponse"/>.
+            /// The <see cref="PostValidateShopperIdApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -1447,7 +1447,7 @@ namespace Adyen.Checkout.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public ValidateShopperIdApiResponse(ILogger<ValidateShopperIdApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostValidateShopperIdApiResponse(ILogger<PostValidateShopperIdApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
