@@ -690,5 +690,66 @@ namespace Adyen.Test.Checkout
             Assert.IsTrue(capturedRequestOptions.Headers.ContainsKey("X-Another-Custom-Header"));
             Assert.AreEqual("AnotherValue", capturedRequestOptions.Headers["X-Another-Custom-Header"]);
         }
+        
+        [TestMethod]
+        public async Task Given_SessionResultWithSpecialChars_When_GetResultOfPaymentSession_Then_QueryStringIsNotEncoded()
+        {
+            // Arrange
+            Uri capturedUri = null;
+            var mockHandler = new MockDelegatingHandler(request =>
+            {
+                capturedUri = request.RequestUri;
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StringContent("{\"id\":\"CS123\",\"status\":\"completed\"}", Encoding.UTF8, "application/json")
+                };
+            });
+            
+            IHost testHost = Host.CreateDefaultBuilder()
+                .ConfigureCheckout((context, services, config) =>
+                {
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.Environment = AdyenEnvironment.Test;
+                    });
+                    services.AddPaymentsService(httpClientBuilderOptions: builder =>
+                    {
+                        builder.AddHttpMessageHandler(() => mockHandler);
+                    });
+                })
+                .Build();
+            
+            // sessionResult includes various query parameters
+            var paymentsService = testHost.Services.GetRequiredService<IPaymentsService>();
+            string sessionResult = "AB1234+value/with!special=chars";
+
+            // Act
+            await paymentsService.GetResultOfPaymentSessionAsync("CS123", sessionResult);
+
+            // Assert
+            Assert.IsNotNull(capturedUri);
+            string query = capturedUri.Query;
+            Assert.IsTrue(query.Contains("+"), $"Expected '+' to not be encoded, but query was: {query}");
+            Assert.IsTrue(query.Contains("/"), $"Expected '/' to not be encoded, but query was: {query}");
+            Assert.IsTrue(query.Contains("!"), $"Expected '!' to not be encoded, but query was: {query}");
+            Assert.IsFalse(query.Contains("%2B"), $"Expected '+' to not be percent-encoded as %2B, but query was: {query}");
+            Assert.IsFalse(query.Contains("%2F"), $"Expected '/' to not be percent-encoded as %2F, but query was: {query}");
+            Assert.IsFalse(query.Contains("%21"), $"Expected '!' to not be percent-encoded as %21, but query was: {query}");
+        }
+        
+        private class MockDelegatingHandler : DelegatingHandler
+        {
+            private readonly Func<HttpRequestMessage, HttpResponseMessage> _handler;
+            
+            public MockDelegatingHandler(Func<HttpRequestMessage, HttpResponseMessage> handler)
+            {
+                _handler = handler;
+            }
+            
+            protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
+            {
+                return Task.FromResult(_handler(request));
+            }
+        }
     }
 }
