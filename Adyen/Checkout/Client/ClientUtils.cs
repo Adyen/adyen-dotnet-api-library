@@ -101,6 +101,8 @@ namespace Adyen.Checkout.Client
         /// <returns>Formatted string.</returns>
         public static string? ParameterToString(object? obj, string? format = ISO8601_DATETIME_FORMAT)
         {
+            if (obj is System.Collections.Specialized.NameValueCollection nameValueCollection)
+                return BuildQueryString(nameValueCollection);
             if (obj is DateTime dateTime)
                 // Return a formatted date string - Can be customized with Configuration.DateTimeFormat
                 // Defaults to an ISO 8601, using the known as a Round-trip date/time pattern ("o")
@@ -540,6 +542,27 @@ namespace Adyen.Checkout.Client
             }
 
             return Convert.ToString(obj, System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// Builds a query string from a <see cref="System.Collections.Specialized.NameValueCollection"/> without
+        /// percent-encoding the values. This avoids the encoding behaviour of
+        /// <see cref="System.Collections.Specialized.NameValueCollection.ToString()"/> (returned by
+        /// <see cref="System.Web.HttpUtility.ParseQueryString"/>) which encodes characters like +, / and !
+        /// that some Adyen APIs expect to receive unencoded.
+        /// </summary>
+        /// <param name="parameters">The query string parameters.</param>
+        /// <returns>A query string (without leading '?').</returns>
+        private static string BuildQueryString(System.Collections.Specialized.NameValueCollection parameters)
+        {
+            var parts = new List<string>();
+            foreach (string key in parameters.AllKeys)
+            {
+                var value = parameters[key];
+                if (value != null)
+                    parts.Add(key + "=" + value);
+            }
+            return string.Join("&", parts);
         }
 
         /// <summary>
