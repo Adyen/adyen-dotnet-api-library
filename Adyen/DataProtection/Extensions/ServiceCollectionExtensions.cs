@@ -56,7 +56,7 @@ namespace Adyen.DataProtection.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IDataProtectionService), typeof(DataProtectionService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IDataProtectionService, DataProtectionService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IDataProtectionService, DataProtectionService>(typeof(IDataProtectionService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });

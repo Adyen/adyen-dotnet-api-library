@@ -63,7 +63,7 @@ namespace Adyen.LegalEntityManagement.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IBusinessLinesService), typeof(BusinessLinesService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IBusinessLinesService, BusinessLinesService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IBusinessLinesService, BusinessLinesService>(typeof(IBusinessLinesService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -84,7 +84,7 @@ namespace Adyen.LegalEntityManagement.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IDocumentsService), typeof(DocumentsService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IDocumentsService, DocumentsService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IDocumentsService, DocumentsService>(typeof(IDocumentsService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -105,7 +105,7 @@ namespace Adyen.LegalEntityManagement.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IHostedOnboardingService), typeof(HostedOnboardingService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IHostedOnboardingService, HostedOnboardingService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IHostedOnboardingService, HostedOnboardingService>(typeof(IHostedOnboardingService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -126,7 +126,7 @@ namespace Adyen.LegalEntityManagement.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ILegalEntitiesService), typeof(LegalEntitiesService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ILegalEntitiesService, LegalEntitiesService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ILegalEntitiesService, LegalEntitiesService>(typeof(ILegalEntitiesService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -147,7 +147,7 @@ namespace Adyen.LegalEntityManagement.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IPCIQuestionnairesService), typeof(PCIQuestionnairesService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IPCIQuestionnairesService, PCIQuestionnairesService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IPCIQuestionnairesService, PCIQuestionnairesService>(typeof(IPCIQuestionnairesService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -168,7 +168,7 @@ namespace Adyen.LegalEntityManagement.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ITaxEDeliveryConsentService), typeof(TaxEDeliveryConsentService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ITaxEDeliveryConsentService, TaxEDeliveryConsentService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ITaxEDeliveryConsentService, TaxEDeliveryConsentService>(typeof(ITaxEDeliveryConsentService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -189,7 +189,7 @@ namespace Adyen.LegalEntityManagement.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ITermsOfServiceService), typeof(TermsOfServiceService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ITermsOfServiceService, TermsOfServiceService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ITermsOfServiceService, TermsOfServiceService>(typeof(ITermsOfServiceService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -210,7 +210,7 @@ namespace Adyen.LegalEntityManagement.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ITransferInstrumentsService), typeof(TransferInstrumentsService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ITransferInstrumentsService, TransferInstrumentsService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ITransferInstrumentsService, TransferInstrumentsService>(typeof(ITransferInstrumentsService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });

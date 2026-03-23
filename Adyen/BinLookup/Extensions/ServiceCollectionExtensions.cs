@@ -56,7 +56,7 @@ namespace Adyen.BinLookup.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IBinLookupService), typeof(BinLookupService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IBinLookupService, BinLookupService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IBinLookupService, BinLookupService>(typeof(IBinLookupService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });

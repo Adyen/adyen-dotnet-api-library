@@ -56,7 +56,7 @@ namespace Adyen.SessionAuthentication.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ISessionAuthenticationService), typeof(SessionAuthenticationService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ISessionAuthenticationService, SessionAuthenticationService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ISessionAuthenticationService, SessionAuthenticationService>(typeof(ISessionAuthenticationService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });

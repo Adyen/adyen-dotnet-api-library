@@ -56,7 +56,7 @@ namespace Adyen.BalanceControl.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IBalanceControlService), typeof(BalanceControlService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IBalanceControlService, BalanceControlService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IBalanceControlService, BalanceControlService>(typeof(IBalanceControlService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });

@@ -56,7 +56,7 @@ namespace Adyen.PaymentsApp.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IPaymentsAppService), typeof(PaymentsAppService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IPaymentsAppService, PaymentsAppService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IPaymentsAppService, PaymentsAppService>(typeof(IPaymentsAppService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });

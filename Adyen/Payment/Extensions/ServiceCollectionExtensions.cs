@@ -57,7 +57,7 @@ namespace Adyen.Payment.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IModificationsService), typeof(ModificationsService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IModificationsService, ModificationsService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IModificationsService, ModificationsService>(typeof(IModificationsService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -78,7 +78,7 @@ namespace Adyen.Payment.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IPaymentsService), typeof(PaymentsService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IPaymentsService, PaymentsService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IPaymentsService, PaymentsService>(typeof(IPaymentsService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });

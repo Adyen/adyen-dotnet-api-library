@@ -84,7 +84,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IAPICredentialsCompanyLevelService), typeof(APICredentialsCompanyLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IAPICredentialsCompanyLevelService, APICredentialsCompanyLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IAPICredentialsCompanyLevelService, APICredentialsCompanyLevelService>(typeof(IAPICredentialsCompanyLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -105,7 +105,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IAPICredentialsMerchantLevelService), typeof(APICredentialsMerchantLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IAPICredentialsMerchantLevelService, APICredentialsMerchantLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IAPICredentialsMerchantLevelService, APICredentialsMerchantLevelService>(typeof(IAPICredentialsMerchantLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -126,7 +126,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IAPIKeyCompanyLevelService), typeof(APIKeyCompanyLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IAPIKeyCompanyLevelService, APIKeyCompanyLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IAPIKeyCompanyLevelService, APIKeyCompanyLevelService>(typeof(IAPIKeyCompanyLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -147,7 +147,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IAPIKeyMerchantLevelService), typeof(APIKeyMerchantLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IAPIKeyMerchantLevelService, APIKeyMerchantLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IAPIKeyMerchantLevelService, APIKeyMerchantLevelService>(typeof(IAPIKeyMerchantLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -168,7 +168,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IAccountCompanyLevelService), typeof(AccountCompanyLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IAccountCompanyLevelService, AccountCompanyLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IAccountCompanyLevelService, AccountCompanyLevelService>(typeof(IAccountCompanyLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -189,7 +189,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IAccountMerchantLevelService), typeof(AccountMerchantLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IAccountMerchantLevelService, AccountMerchantLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IAccountMerchantLevelService, AccountMerchantLevelService>(typeof(IAccountMerchantLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -210,7 +210,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IAccountStoreLevelService), typeof(AccountStoreLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IAccountStoreLevelService, AccountStoreLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IAccountStoreLevelService, AccountStoreLevelService>(typeof(IAccountStoreLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -231,7 +231,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IAllowedOriginsCompanyLevelService), typeof(AllowedOriginsCompanyLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IAllowedOriginsCompanyLevelService, AllowedOriginsCompanyLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IAllowedOriginsCompanyLevelService, AllowedOriginsCompanyLevelService>(typeof(IAllowedOriginsCompanyLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -252,7 +252,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IAllowedOriginsMerchantLevelService), typeof(AllowedOriginsMerchantLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IAllowedOriginsMerchantLevelService, AllowedOriginsMerchantLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IAllowedOriginsMerchantLevelService, AllowedOriginsMerchantLevelService>(typeof(IAllowedOriginsMerchantLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -273,7 +273,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IAndroidFilesCompanyLevelService), typeof(AndroidFilesCompanyLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IAndroidFilesCompanyLevelService, AndroidFilesCompanyLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IAndroidFilesCompanyLevelService, AndroidFilesCompanyLevelService>(typeof(IAndroidFilesCompanyLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -294,7 +294,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IClientKeyCompanyLevelService), typeof(ClientKeyCompanyLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IClientKeyCompanyLevelService, ClientKeyCompanyLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IClientKeyCompanyLevelService, ClientKeyCompanyLevelService>(typeof(IClientKeyCompanyLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -315,7 +315,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IClientKeyMerchantLevelService), typeof(ClientKeyMerchantLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IClientKeyMerchantLevelService, ClientKeyMerchantLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IClientKeyMerchantLevelService, ClientKeyMerchantLevelService>(typeof(IClientKeyMerchantLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -336,7 +336,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IMyAPICredentialService), typeof(MyAPICredentialService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IMyAPICredentialService, MyAPICredentialService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IMyAPICredentialService, MyAPICredentialService>(typeof(IMyAPICredentialService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -357,7 +357,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IPaymentMethodsMerchantLevelService), typeof(PaymentMethodsMerchantLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IPaymentMethodsMerchantLevelService, PaymentMethodsMerchantLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IPaymentMethodsMerchantLevelService, PaymentMethodsMerchantLevelService>(typeof(IPaymentMethodsMerchantLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -378,7 +378,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IPayoutSettingsMerchantLevelService), typeof(PayoutSettingsMerchantLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IPayoutSettingsMerchantLevelService, PayoutSettingsMerchantLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IPayoutSettingsMerchantLevelService, PayoutSettingsMerchantLevelService>(typeof(IPayoutSettingsMerchantLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -399,7 +399,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ISplitConfigurationMerchantLevelService), typeof(SplitConfigurationMerchantLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ISplitConfigurationMerchantLevelService, SplitConfigurationMerchantLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ISplitConfigurationMerchantLevelService, SplitConfigurationMerchantLevelService>(typeof(ISplitConfigurationMerchantLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -420,7 +420,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ITerminalActionsCompanyLevelService), typeof(TerminalActionsCompanyLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ITerminalActionsCompanyLevelService, TerminalActionsCompanyLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ITerminalActionsCompanyLevelService, TerminalActionsCompanyLevelService>(typeof(ITerminalActionsCompanyLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -441,7 +441,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ITerminalActionsTerminalLevelService), typeof(TerminalActionsTerminalLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ITerminalActionsTerminalLevelService, TerminalActionsTerminalLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ITerminalActionsTerminalLevelService, TerminalActionsTerminalLevelService>(typeof(ITerminalActionsTerminalLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -462,7 +462,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ITerminalOrdersCompanyLevelService), typeof(TerminalOrdersCompanyLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ITerminalOrdersCompanyLevelService, TerminalOrdersCompanyLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ITerminalOrdersCompanyLevelService, TerminalOrdersCompanyLevelService>(typeof(ITerminalOrdersCompanyLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -483,7 +483,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ITerminalOrdersMerchantLevelService), typeof(TerminalOrdersMerchantLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ITerminalOrdersMerchantLevelService, TerminalOrdersMerchantLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ITerminalOrdersMerchantLevelService, TerminalOrdersMerchantLevelService>(typeof(ITerminalOrdersMerchantLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -504,7 +504,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ITerminalSettingsCompanyLevelService), typeof(TerminalSettingsCompanyLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ITerminalSettingsCompanyLevelService, TerminalSettingsCompanyLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ITerminalSettingsCompanyLevelService, TerminalSettingsCompanyLevelService>(typeof(ITerminalSettingsCompanyLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -525,7 +525,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ITerminalSettingsMerchantLevelService), typeof(TerminalSettingsMerchantLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ITerminalSettingsMerchantLevelService, TerminalSettingsMerchantLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ITerminalSettingsMerchantLevelService, TerminalSettingsMerchantLevelService>(typeof(ITerminalSettingsMerchantLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -546,7 +546,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ITerminalSettingsStoreLevelService), typeof(TerminalSettingsStoreLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ITerminalSettingsStoreLevelService, TerminalSettingsStoreLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ITerminalSettingsStoreLevelService, TerminalSettingsStoreLevelService>(typeof(ITerminalSettingsStoreLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -567,7 +567,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ITerminalSettingsTerminalLevelService), typeof(TerminalSettingsTerminalLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ITerminalSettingsTerminalLevelService, TerminalSettingsTerminalLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ITerminalSettingsTerminalLevelService, TerminalSettingsTerminalLevelService>(typeof(ITerminalSettingsTerminalLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -588,7 +588,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ITerminalsTerminalLevelService), typeof(TerminalsTerminalLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ITerminalsTerminalLevelService, TerminalsTerminalLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ITerminalsTerminalLevelService, TerminalsTerminalLevelService>(typeof(ITerminalsTerminalLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -609,7 +609,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IUsersCompanyLevelService), typeof(UsersCompanyLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IUsersCompanyLevelService, UsersCompanyLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IUsersCompanyLevelService, UsersCompanyLevelService>(typeof(IUsersCompanyLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -630,7 +630,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IUsersMerchantLevelService), typeof(UsersMerchantLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IUsersMerchantLevelService, UsersMerchantLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IUsersMerchantLevelService, UsersMerchantLevelService>(typeof(IUsersMerchantLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -651,7 +651,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IWebhooksCompanyLevelService), typeof(WebhooksCompanyLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IWebhooksCompanyLevelService, WebhooksCompanyLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IWebhooksCompanyLevelService, WebhooksCompanyLevelService>(typeof(IWebhooksCompanyLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -672,7 +672,7 @@ namespace Adyen.Management.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IWebhooksMerchantLevelService), typeof(WebhooksMerchantLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IWebhooksMerchantLevelService, WebhooksMerchantLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IWebhooksMerchantLevelService, WebhooksMerchantLevelService>(typeof(IWebhooksMerchantLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });

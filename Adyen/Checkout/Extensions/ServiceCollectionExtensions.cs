@@ -62,7 +62,7 @@ namespace Adyen.Checkout.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IDonationsService), typeof(DonationsService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IDonationsService, DonationsService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IDonationsService, DonationsService>(typeof(IDonationsService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -83,7 +83,7 @@ namespace Adyen.Checkout.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IModificationsService), typeof(ModificationsService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IModificationsService, ModificationsService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IModificationsService, ModificationsService>(typeof(IModificationsService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -104,7 +104,7 @@ namespace Adyen.Checkout.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IOrdersService), typeof(OrdersService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IOrdersService, OrdersService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IOrdersService, OrdersService>(typeof(IOrdersService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -125,7 +125,7 @@ namespace Adyen.Checkout.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IPaymentLinksService), typeof(PaymentLinksService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IPaymentLinksService, PaymentLinksService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IPaymentLinksService, PaymentLinksService>(typeof(IPaymentLinksService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -146,7 +146,7 @@ namespace Adyen.Checkout.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IPaymentsService), typeof(PaymentsService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IPaymentsService, PaymentsService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IPaymentsService, PaymentsService>(typeof(IPaymentsService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -167,7 +167,7 @@ namespace Adyen.Checkout.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IRecurringService), typeof(RecurringService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IRecurringService, RecurringService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IRecurringService, RecurringService>(typeof(IRecurringService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -188,7 +188,7 @@ namespace Adyen.Checkout.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IUtilityService), typeof(UtilityService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IUtilityService, UtilityService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IUtilityService, UtilityService>(typeof(IUtilityService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });

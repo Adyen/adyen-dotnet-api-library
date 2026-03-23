@@ -56,7 +56,7 @@ namespace Adyen.Recurring.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IRecurringService), typeof(RecurringService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IRecurringService, RecurringService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IRecurringService, RecurringService>(typeof(IRecurringService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });

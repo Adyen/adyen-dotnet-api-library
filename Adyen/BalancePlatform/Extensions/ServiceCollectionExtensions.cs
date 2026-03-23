@@ -75,7 +75,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IAccountHoldersService), typeof(AccountHoldersService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IAccountHoldersService, AccountHoldersService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IAccountHoldersService, AccountHoldersService>(typeof(IAccountHoldersService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -96,7 +96,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IAuthorizedCardUsersService), typeof(AuthorizedCardUsersService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IAuthorizedCardUsersService, AuthorizedCardUsersService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IAuthorizedCardUsersService, AuthorizedCardUsersService>(typeof(IAuthorizedCardUsersService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -117,7 +117,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IBalanceAccountsService), typeof(BalanceAccountsService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IBalanceAccountsService, BalanceAccountsService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IBalanceAccountsService, BalanceAccountsService>(typeof(IBalanceAccountsService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -138,7 +138,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IBalancesService), typeof(BalancesService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IBalancesService, BalancesService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IBalancesService, BalancesService>(typeof(IBalancesService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -159,7 +159,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IBankAccountValidationService), typeof(BankAccountValidationService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IBankAccountValidationService, BankAccountValidationService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IBankAccountValidationService, BankAccountValidationService>(typeof(IBankAccountValidationService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -180,7 +180,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ICardOrdersService), typeof(CardOrdersService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ICardOrdersService, CardOrdersService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ICardOrdersService, CardOrdersService>(typeof(ICardOrdersService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -201,7 +201,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IGrantAccountsService), typeof(GrantAccountsService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IGrantAccountsService, GrantAccountsService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IGrantAccountsService, GrantAccountsService>(typeof(IGrantAccountsService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -222,7 +222,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IGrantOffersService), typeof(GrantOffersService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IGrantOffersService, GrantOffersService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IGrantOffersService, GrantOffersService>(typeof(IGrantOffersService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -243,7 +243,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IManageCardPINService), typeof(ManageCardPINService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IManageCardPINService, ManageCardPINService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IManageCardPINService, ManageCardPINService>(typeof(IManageCardPINService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -264,7 +264,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IManageSCADevicesService), typeof(ManageSCADevicesService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IManageSCADevicesService, ManageSCADevicesService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IManageSCADevicesService, ManageSCADevicesService>(typeof(IManageSCADevicesService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -285,7 +285,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(INetworkTokensService), typeof(NetworkTokensService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<INetworkTokensService, NetworkTokensService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<INetworkTokensService, NetworkTokensService>(typeof(INetworkTokensService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -306,7 +306,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IPaymentInstrumentGroupsService), typeof(PaymentInstrumentGroupsService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IPaymentInstrumentGroupsService, PaymentInstrumentGroupsService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IPaymentInstrumentGroupsService, PaymentInstrumentGroupsService>(typeof(IPaymentInstrumentGroupsService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -327,7 +327,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IPaymentInstrumentsService), typeof(PaymentInstrumentsService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IPaymentInstrumentsService, PaymentInstrumentsService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IPaymentInstrumentsService, PaymentInstrumentsService>(typeof(IPaymentInstrumentsService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -348,7 +348,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IPlatformService), typeof(PlatformService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IPlatformService, PlatformService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IPlatformService, PlatformService>(typeof(IPlatformService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -369,7 +369,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ISCAAssociationManagementService), typeof(SCAAssociationManagementService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ISCAAssociationManagementService, SCAAssociationManagementService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ISCAAssociationManagementService, SCAAssociationManagementService>(typeof(ISCAAssociationManagementService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -390,7 +390,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ISCADeviceManagementService), typeof(SCADeviceManagementService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ISCADeviceManagementService, SCADeviceManagementService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ISCADeviceManagementService, SCADeviceManagementService>(typeof(ISCADeviceManagementService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -411,7 +411,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ITransactionRulesService), typeof(TransactionRulesService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ITransactionRulesService, TransactionRulesService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ITransactionRulesService, TransactionRulesService>(typeof(ITransactionRulesService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -432,7 +432,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ITransferLimitsBalanceAccountLevelService), typeof(TransferLimitsBalanceAccountLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ITransferLimitsBalanceAccountLevelService, TransferLimitsBalanceAccountLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ITransferLimitsBalanceAccountLevelService, TransferLimitsBalanceAccountLevelService>(typeof(ITransferLimitsBalanceAccountLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -453,7 +453,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ITransferLimitsBalancePlatformLevelService), typeof(TransferLimitsBalancePlatformLevelService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ITransferLimitsBalancePlatformLevelService, TransferLimitsBalancePlatformLevelService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ITransferLimitsBalancePlatformLevelService, TransferLimitsBalancePlatformLevelService>(typeof(ITransferLimitsBalancePlatformLevelService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -474,7 +474,7 @@ namespace Adyen.BalancePlatform.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ITransferRoutesService), typeof(TransferRoutesService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ITransferRoutesService, TransferRoutesService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ITransferRoutesService, TransferRoutesService>(typeof(ITransferRoutesService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
