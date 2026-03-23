@@ -58,7 +58,7 @@ namespace Adyen.Transfers.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ICapitalService), typeof(CapitalService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ICapitalService, CapitalService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ICapitalService, CapitalService>(typeof(ICapitalService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -79,7 +79,7 @@ namespace Adyen.Transfers.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ITransactionsService), typeof(TransactionsService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ITransactionsService, TransactionsService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ITransactionsService, TransactionsService>(typeof(ITransactionsService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -100,7 +100,7 @@ namespace Adyen.Transfers.Extensions
 
             services.Add(new ServiceDescriptor(typeof(ITransfersService), typeof(TransfersService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ITransfersService, TransfersService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ITransfersService, TransfersService>(typeof(ITransfersService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });

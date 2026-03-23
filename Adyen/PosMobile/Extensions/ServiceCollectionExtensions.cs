@@ -56,7 +56,7 @@ namespace Adyen.PosMobile.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IPosMobileService), typeof(PosMobileService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IPosMobileService, PosMobileService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IPosMobileService, PosMobileService>(typeof(IPosMobileService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });

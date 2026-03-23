@@ -56,7 +56,7 @@ namespace Adyen.Disputes.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IDisputesService), typeof(DisputesService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IDisputesService, DisputesService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IDisputesService, DisputesService>(typeof(IDisputesService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });

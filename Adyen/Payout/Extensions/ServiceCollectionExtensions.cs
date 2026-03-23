@@ -58,7 +58,7 @@ namespace Adyen.Payout.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IInitializationService), typeof(InitializationService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IInitializationService, InitializationService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IInitializationService, InitializationService>(typeof(IInitializationService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -79,7 +79,7 @@ namespace Adyen.Payout.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IInstantPayoutsService), typeof(InstantPayoutsService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IInstantPayoutsService, InstantPayoutsService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IInstantPayoutsService, InstantPayoutsService>(typeof(IInstantPayoutsService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -100,7 +100,7 @@ namespace Adyen.Payout.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IReviewingService), typeof(ReviewingService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IReviewingService, ReviewingService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IReviewingService, ReviewingService>(typeof(IReviewingService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });

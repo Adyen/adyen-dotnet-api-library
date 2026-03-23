@@ -56,7 +56,7 @@ namespace Adyen.StoredValue.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IStoredValueService), typeof(StoredValueService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IStoredValueService, StoredValueService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IStoredValueService, StoredValueService>(typeof(IStoredValueService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });

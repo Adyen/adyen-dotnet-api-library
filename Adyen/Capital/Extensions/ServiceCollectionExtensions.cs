@@ -58,7 +58,7 @@ namespace Adyen.Capital.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IGrantAccountsService), typeof(GrantAccountsService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IGrantAccountsService, GrantAccountsService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IGrantAccountsService, GrantAccountsService>(typeof(IGrantAccountsService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -79,7 +79,7 @@ namespace Adyen.Capital.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IGrantOffersService), typeof(GrantOffersService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IGrantOffersService, GrantOffersService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IGrantOffersService, GrantOffersService>(typeof(IGrantOffersService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
@@ -100,7 +100,7 @@ namespace Adyen.Capital.Extensions
 
             services.Add(new ServiceDescriptor(typeof(IGrantsService), typeof(GrantsService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<IGrantsService, GrantsService>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<IGrantsService, GrantsService>(typeof(IGrantsService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });

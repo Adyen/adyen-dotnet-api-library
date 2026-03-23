@@ -62,7 +62,7 @@ namespace {{packageName}}.{{apiName}}.Extensions
 
             services.Add(new ServiceDescriptor(typeof({{interfacePrefix}}{{classname}}), typeof({{classname}}), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<{{interfacePrefix}}{{classname}}, {{classname}}>(httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<{{interfacePrefix}}{{classname}}, {{classname}}>(typeof({{interfacePrefix}}{{classname}}).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
