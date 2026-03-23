@@ -736,6 +736,23 @@ namespace Adyen.Test.Checkout
             Assert.IsFalse(query.Contains("%2F"), $"Expected '/' to not be percent-encoded as %2F, but query was: {query}");
             Assert.IsFalse(query.Contains("%21"), $"Expected '!' to not be percent-encoded as %21, but query was: {query}");
         }
+
+        [TestMethod]
+        public void Given_NameValueCollectionWithNullValue_When_ParameterToString_Then_KeyIsPreserved()
+        {
+            // Arrange - add a key with an explicit null value to simulate a bare parameter
+            var nvc = new System.Collections.Specialized.NameValueCollection();
+            nvc.Add("param", null);
+            nvc.Add("key", "value");
+
+            // Act
+            var result = ClientUtils.ParameterToString(nvc);
+
+            // Assert - null-valued parameter should appear as 'param=' rather than being dropped
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Contains("param="), $"Expected 'param=' to be present, but result was: {result}");
+            Assert.IsTrue(result.Contains("key=value"), $"Expected 'key=value' to be present, but result was: {result}");
+        }
         
         private class MockDelegatingHandler : DelegatingHandler
         {

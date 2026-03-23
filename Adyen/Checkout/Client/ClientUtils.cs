@@ -559,8 +559,7 @@ namespace Adyen.Checkout.Client
             foreach (string key in parameters.AllKeys)
             {
                 var value = parameters[key];
-                if (value != null)
-                    parts.Add(key + "=" + value);
+                parts.Add(key + "=" + value);
             }
             return string.Join("&", parts);
         }
