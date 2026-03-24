@@ -306,7 +306,7 @@ namespace {{packageName}}.{{apiPackage}}
 
                     {{/required}}
                     {{#-last}}
-                    uriBuilder.Query = ClientUtils.ParameterToString(parseQueryString);
+                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
 
                     {{/-last}}
                     {{/queryParams}}

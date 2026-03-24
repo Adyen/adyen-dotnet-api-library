@@ -549,22 +549,8 @@ namespace Adyen.Checkout.Client
         /// using minimal percent-encoding that only escapes characters which would break query string
         /// structure, while leaving all other characters (including <c>+</c>, <c>/</c>, <c>!</c>) unencoded.
         /// <para>
-        /// This mirrors the behaviour of Java's <c>URIBuilder.addParameter</c> (Apache HttpClient),
-        /// which follows RFC 3986 and does not encode sub-delimiters or unreserved characters in
-        /// query values. .NET's <see cref="Uri.EscapeDataString"/> is more aggressive and would
-        /// percent-encode characters like <c>+</c>, <c>/</c> and <c>!</c>, which some Adyen APIs
-        /// (e.g. Checkout <c>sessionResult</c>) expect to receive unencoded.
-        /// </para>
-        /// <para>
-        /// Only the following characters are percent-encoded in values:
-        /// <list type="bullet">
-        ///   <item><c>&amp;</c> → <c>%26</c> (parameter separator)</item>
-        ///   <item><c>=</c> → <c>%3D</c> (key-value separator)</item>
-        ///   <item><c>#</c> → <c>%23</c> (fragment delimiter)</item>
-        ///   <item><c> </c> → <c>%20</c> (space)</item>
-        /// </list>
-        /// Keys are always encoded with <see cref="Uri.EscapeDataString"/> because they are controlled
-        /// by the SDK and are expected to be simple ASCII identifiers.
+        /// This follows RFC 3986 and does not encode sub-delimiters or unreserved characters in
+        /// query values.
         /// </para>
         /// </summary>
         /// <param name="parameters">The query string parameters.</param>
@@ -575,7 +561,9 @@ namespace Adyen.Checkout.Client
             foreach (string key in parameters.AllKeys)
             {
                 var value = parameters[key] ?? string.Empty;
+                // keys are always encoded (must be ASCII identifiers)
                 var encodedKey = Uri.EscapeDataString(key);
+                // only encode selected characters           
                 var encodedValue = value
                     .Replace("&", "%26")
                     .Replace("=", "%3D")
