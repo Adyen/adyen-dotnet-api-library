@@ -319,7 +319,7 @@ namespace Adyen.Checkout.Services
                     parseQueryString["shopperReference"] = ClientUtils.ParameterToString(shopperReference);
                     parseQueryString["merchantAccount"] = ClientUtils.ParameterToString(merchantAccount);
 
-                    uriBuilder.Query = ClientUtils.ParameterToString(parseQueryString);
+                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
@@ -648,7 +648,7 @@ namespace Adyen.Checkout.Services
                     if (merchantAccount.IsSet)
                         parseQueryString["merchantAccount"] = ClientUtils.ParameterToString(merchantAccount.Value);
 
-                    uriBuilder.Query = ClientUtils.ParameterToString(parseQueryString);
+                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
