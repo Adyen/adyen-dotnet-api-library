@@ -760,22 +760,27 @@ namespace Adyen.Test.Checkout
         }
 
         [TestMethod]
-        public void Given_NameValueCollectionWithSpecialChars_When_ParameterToString_Then_ValuesAreEncoded()
+        public void Given_NameValueCollectionWithSpecialChars_When_ParameterToString_Then_StructuralCharsAreEncoded()
         {
-            // Arrange - normal parameters should be percent-encoded via Uri.EscapeDataString
+            // Arrange - only structural characters (&, =, #, space) should be percent-encoded;
+            // other characters like +, /, ! must remain unencoded (minimal encoding approach,
+            // matching Java's URIBuilder.addParameter behaviour).
             var nvc = new System.Collections.Specialized.NameValueCollection();
-            nvc.Add("account", "test&merchant");
+            nvc.Add("account", "test&merchant=1");
             nvc.Add("ref", "order 123");
+            nvc.Add("token", "abc+def/ghi!jkl#end");
 
             // Act
             var result = ClientUtils.ParameterToString(nvc);
 
-            // Assert - & and space must be percent-encoded in normal parameter values
+            // Assert - & = # and space are percent-encoded
             Assert.IsNotNull(result);
-            Assert.IsTrue(result.Contains("account=" + Uri.EscapeDataString("test&merchant")),
-                $"Expected '&' to be percent-encoded in value, but result was: {result}");
-            Assert.IsTrue(result.Contains("ref=" + Uri.EscapeDataString("order 123")),
+            Assert.IsTrue(result.Contains("account=test%26merchant%3D1"),
+                $"Expected '&' and '=' to be percent-encoded in value, but result was: {result}");
+            Assert.IsTrue(result.Contains("ref=order%20123"),
                 $"Expected space to be percent-encoded in value, but result was: {result}");
+            Assert.IsTrue(result.Contains("token=abc+def/ghi!jkl%23end"),
+                $"Expected +, /, ! to remain unencoded and # to be encoded, but result was: {result}");
         }
         
         private class MockDelegatingHandler : DelegatingHandler
