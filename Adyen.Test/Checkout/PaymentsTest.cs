@@ -719,9 +719,10 @@ namespace Adyen.Test.Checkout
                 })
                 .Build();
             
-            // sessionResult includes various query parameters
+            // sessionResult includes special characters AND an ampersand to verify it
+            // does not split into two query params
             var paymentsService = testHost.Services.GetRequiredService<IPaymentsService>();
-            string sessionResult = "AB1234+value/with!special=chars";
+            string sessionResult = "AB1234+value/with!special=chars&extra";
 
             // Act
             await paymentsService.GetResultOfPaymentSessionAsync("CS123", sessionResult);
@@ -735,6 +736,10 @@ namespace Adyen.Test.Checkout
             Assert.IsFalse(query.Contains("%2B"), $"Expected '+' to not be percent-encoded as %2B, but query was: {query}");
             Assert.IsFalse(query.Contains("%2F"), $"Expected '/' to not be percent-encoded as %2F, but query was: {query}");
             Assert.IsFalse(query.Contains("%21"), $"Expected '!' to not be percent-encoded as %21, but query was: {query}");
+            // Verify & in the value does not create a second query parameter
+            var queryParams = System.Web.HttpUtility.ParseQueryString(query);
+            Assert.AreEqual(1, queryParams.Count, $"Expected exactly 1 query parameter, but found {queryParams.Count}. Query was: {query}");
+            Assert.AreEqual("sessionResult", queryParams.AllKeys[0], $"Expected the only query parameter to be 'sessionResult', but was: {queryParams.AllKeys[0]}");
         }
 
         [TestMethod]
@@ -752,6 +757,25 @@ namespace Adyen.Test.Checkout
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Contains("param="), $"Expected 'param=' to be present, but result was: {result}");
             Assert.IsTrue(result.Contains("key=value"), $"Expected 'key=value' to be present, but result was: {result}");
+        }
+
+        [TestMethod]
+        public void Given_NameValueCollectionWithSpecialChars_When_ParameterToString_Then_ValuesAreEncoded()
+        {
+            // Arrange - normal parameters should be percent-encoded via Uri.EscapeDataString
+            var nvc = new System.Collections.Specialized.NameValueCollection();
+            nvc.Add("account", "test&merchant");
+            nvc.Add("ref", "order 123");
+
+            // Act
+            var result = ClientUtils.ParameterToString(nvc);
+
+            // Assert - & and space must be percent-encoded in normal parameter values
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Contains("account=" + Uri.EscapeDataString("test&merchant")),
+                $"Expected '&' to be percent-encoded in value, but result was: {result}");
+            Assert.IsTrue(result.Contains("ref=" + Uri.EscapeDataString("order 123")),
+                $"Expected space to be percent-encoded in value, but result was: {result}");
         }
         
         private class MockDelegatingHandler : DelegatingHandler
