@@ -545,21 +545,43 @@ namespace Adyen.Checkout.Client
         }
 
         /// <summary>
-        /// Builds a query string from a <see cref="System.Collections.Specialized.NameValueCollection"/> without
-        /// percent-encoding the values. This avoids the encoding behaviour of
-        /// <see cref="System.Collections.Specialized.NameValueCollection.ToString()"/> (returned by
-        /// <see cref="System.Web.HttpUtility.ParseQueryString"/>) which encodes characters like +, / and !
-        /// that some Adyen APIs expect to receive unencoded.
+        /// Builds a query string from a <see cref="System.Collections.Specialized.NameValueCollection"/>
+        /// using minimal percent-encoding that only escapes characters which would break query string
+        /// structure, while leaving all other characters (including <c>+</c>, <c>/</c>, <c>!</c>) unencoded.
+        /// <para>
+        /// This mirrors the behaviour of Java's <c>URIBuilder.addParameter</c> (Apache HttpClient),
+        /// which follows RFC 3986 and does not encode sub-delimiters or unreserved characters in
+        /// query values. .NET's <see cref="Uri.EscapeDataString"/> is more aggressive and would
+        /// percent-encode characters like <c>+</c>, <c>/</c> and <c>!</c>, which some Adyen APIs
+        /// (e.g. Checkout <c>sessionResult</c>) expect to receive unencoded.
+        /// </para>
+        /// <para>
+        /// Only the following characters are percent-encoded in values:
+        /// <list type="bullet">
+        ///   <item><c>&amp;</c> → <c>%26</c> (parameter separator)</item>
+        ///   <item><c>=</c> → <c>%3D</c> (key-value separator)</item>
+        ///   <item><c>#</c> → <c>%23</c> (fragment delimiter)</item>
+        ///   <item><c> </c> → <c>%20</c> (space)</item>
+        /// </list>
+        /// Keys are always encoded with <see cref="Uri.EscapeDataString"/> because they are controlled
+        /// by the SDK and are expected to be simple ASCII identifiers.
+        /// </para>
         /// </summary>
         /// <param name="parameters">The query string parameters.</param>
         /// <returns>A query string (without leading '?').</returns>
-        private static string BuildQueryString(System.Collections.Specialized.NameValueCollection parameters)
+        internal static string BuildQueryString(System.Collections.Specialized.NameValueCollection parameters)
         {
             var parts = new List<string>();
             foreach (string key in parameters.AllKeys)
             {
-                var value = parameters[key];
-                parts.Add(key + "=" + value);
+                var value = parameters[key] ?? string.Empty;
+                var encodedKey = Uri.EscapeDataString(key);
+                var encodedValue = value
+                    .Replace("&", "%26")
+                    .Replace("=", "%3D")
+                    .Replace("#", "%23")
+                    .Replace(" ", "%20");
+                parts.Add(encodedKey + "=" + encodedValue);
             }
             return string.Join("&", parts);
         }

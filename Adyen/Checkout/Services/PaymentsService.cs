@@ -686,7 +686,7 @@ namespace Adyen.Checkout.Services
 
                     parseQueryString["sessionResult"] = ClientUtils.ParameterToString(sessionResult);
 
-                    uriBuilder.Query = ClientUtils.ParameterToString(parseQueryString);
+                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
