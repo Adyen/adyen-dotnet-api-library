@@ -782,7 +782,58 @@ namespace Adyen.Test.Checkout
             Assert.IsTrue(result.Contains("token=abc+def/ghi!jkl%23end"),
                 $"Expected +, /, ! to remain unencoded and # to be encoded, but result was: {result}");
         }
-        
+
+        [TestMethod]
+        public void Given_NameValueCollectionWithPercentEncoded_When_ParameterToString_Then_PercentIsPassedThrough()
+        {
+            // Arrange - values that already contain percent-encoded sequences (e.g. from opaque
+            // tokens) must not be double-encoded: %26 should stay as %26, not become %2526.
+            var nvc = new System.Collections.Specialized.NameValueCollection();
+            nvc.Add("token", "already%26encoded%20value");
+
+            // Act
+            var result = ClientUtils.ParameterToString(nvc);
+
+            // Assert - % is not encoded, so existing percent sequences pass through unchanged
+            Assert.IsNotNull(result);
+            Assert.AreEqual("token=already%26encoded%20value", result,
+                $"Expected percent-encoded sequences to pass through unchanged, but result was: {result}");
+        }
+
+        [TestMethod]
+        public void Given_NameValueCollectionWithEmptyValue_When_ParameterToString_Then_KeyIsPreservedWithEquals()
+        {
+            // Arrange - empty string value should produce "key=" in the query string
+            var nvc = new System.Collections.Specialized.NameValueCollection();
+            nvc.Add("emptyParam", "");
+            nvc.Add("normalParam", "hello");
+
+            // Act
+            var result = ClientUtils.ParameterToString(nvc);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("emptyParam=&normalParam=hello", result,
+                $"Expected 'emptyParam=' followed by 'normalParam=hello', but result was: {result}");
+        }
+
+        [TestMethod]
+        public void Given_NameValueCollectionWithMultipleValuesForSameKey_When_ParameterToString_Then_ValuesAreMerged()
+        {
+            // Arrange - NameValueCollection merges multiple values for the same key with commas
+            var nvc = new System.Collections.Specialized.NameValueCollection();
+            nvc.Add("status", "active");
+            nvc.Add("status", "pending");
+
+            // Act
+            var result = ClientUtils.ParameterToString(nvc);
+
+            // Assert - NameValueCollection joins multiple values with comma
+            Assert.IsNotNull(result);
+            Assert.AreEqual("status=active,pending", result,
+                $"Expected comma-separated values for duplicate key, but result was: {result}");
+        }
+
         private class MockDelegatingHandler : DelegatingHandler
         {
             private readonly Func<HttpRequestMessage, HttpResponseMessage> _handler;
