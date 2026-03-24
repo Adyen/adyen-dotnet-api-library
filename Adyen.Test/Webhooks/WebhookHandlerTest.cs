@@ -169,6 +169,37 @@ namespace Adyen.Test.Webhooks
 
             Assert.IsFalse(_webhooksHandler.IsValidHmacSignature(notificationItem));
         }
+
+        [TestMethod]
+        public void TestIsValidHmacSignatureThrowsWhenHmacKeyNotConfigured()
+        {
+            IHost hostWithoutHmacKey = Host.CreateDefaultBuilder()
+                .ConfigureWebhooks((context, services, config) =>
+                {
+                    services.AddWebhooksHandler();
+                })
+                .Build();
+
+            var webhooksHandlerWithoutHmacKey = hostWithoutHmacKey.Services.GetRequiredService<IWebhooksHandler>();
+            var notificationItem = new Adyen.Webhooks.Models.NotificationRequestItem
+            {
+                PspReference = "pspReference",
+                OriginalReference = "originalReference",
+                MerchantAccountCode = "merchantAccount",
+                MerchantReference = "reference",
+                Amount = new Adyen.Webhooks.Models.Amount("EUR", 1000),
+                EventCode = "EVENT",
+                Success = true,
+                AdditionalData = new System.Collections.Generic.Dictionary<string, string>
+                {
+                    { "hmacSignature", "ipnxGCaUZ4l8TUW75a71/ghd2Fe5ffvX0pV4TLTntIc=" }
+                }
+            };
+
+            var exception = Assert.Throws<InvalidOperationException>(() =>
+                webhooksHandlerWithoutHmacKey.IsValidHmacSignature(notificationItem));
+            Assert.AreEqual("HMAC validation failed because the ADYEN_HMAC_KEY is not configured.", exception.Message);
+        }
         
         [TestMethod]
         public void TestPOSDisplayNotification()
