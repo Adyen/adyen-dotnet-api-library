@@ -437,7 +437,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("documentType", airline.DocumentType);
 
             if (airline._FlightDateOption.IsSet)
-                writer.WriteString("flightDate", airline._FlightDateOption.Value!.Value.ToString(FlightDateFormat));
+                if (airline._FlightDateOption.Value != null)
+                    writer.WriteString("flightDate", airline._FlightDateOption.Value!.Value.ToString(FlightDateFormat));
 
             if (airline._LegsOption.IsSet)
             {

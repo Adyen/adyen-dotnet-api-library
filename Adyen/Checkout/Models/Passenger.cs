@@ -247,7 +247,8 @@ namespace Adyen.Checkout.Models
         {
             
             if (passenger._DateOfBirthOption.IsSet)
-                writer.WriteString("dateOfBirth", passenger._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
+                if (passenger._DateOfBirthOption.Value != null)
+                    writer.WriteString("dateOfBirth", passenger._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
 
             if (passenger._FirstNameOption.IsSet)
                 if (passenger.FirstName != null)

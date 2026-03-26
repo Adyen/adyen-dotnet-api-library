@@ -46,7 +46,6 @@ namespace Adyen.Test.Checkout
             Assert.IsFalse(json.Contains("countryCode"), "Null optional string should be omitted from JSON output.");
         }
 
-        // Fails: nullable value-type Option<bool?> with null value throws InvalidOperationException.
         [TestMethod]
         public void Given_PaymentLinkRequest_When_NullableBool_IsExplicitlyNull_Then_Serializes_Without_Error()
         {
@@ -63,7 +62,6 @@ namespace Adyen.Test.Checkout
             Assert.IsFalse(json.Contains("reusable"), "Null optional bool should be omitted from JSON output.");
         }
 
-        // Fails: nullable value-type Option<int?> with null value throws InvalidOperationException.
         [TestMethod]
         public void Given_PaymentLinkRequest_When_NullableInt_IsExplicitlyNull_Then_Serializes_Without_Error()
         {
@@ -78,6 +76,40 @@ namespace Adyen.Test.Checkout
 
             Assert.IsNotNull(json);
             Assert.IsFalse(json.Contains("captureDelayHours"), "Null optional int should be omitted from JSON output.");
+        }
+
+        [TestMethod]
+        public void Given_CreateCheckoutSessionRequest_When_NullableDate_IsExplicitlyNull_Then_Serializes_Without_Error()
+        {
+            var request = new CreateCheckoutSessionRequest(
+                amount: new Amount("EUR", 1000),
+                merchantAccount: "TestMerchant",
+                reference: "test-ref",
+                returnUrl: "https://example.com",
+                dateOfBirth: null
+            );
+
+            string json = JsonSerializer.Serialize(request, _jsonSerializerOptionsProvider.Options);
+
+            Assert.IsNotNull(json);
+            Assert.IsFalse(json.Contains("dateOfBirth"), "Null optional DateOnly? should be omitted from JSON output.");
+        }
+
+        [TestMethod]
+        public void Given_CreateCheckoutSessionRequest_When_NullableDateTime_IsExplicitlyNull_Then_Serializes_Without_Error()
+        {
+            var request = new CreateCheckoutSessionRequest(
+                amount: new Amount("EUR", 1000),
+                merchantAccount: "TestMerchant",
+                reference: "test-ref",
+                returnUrl: "https://example.com",
+                expiresAt: null
+            );
+
+            string json = JsonSerializer.Serialize(request, _jsonSerializerOptionsProvider.Options);
+
+            Assert.IsNotNull(json);
+            Assert.IsFalse(json.Contains("expiresAt"), "Null optional DateTimeOffset? should be omitted from JSON output.");
         }
     }
 }
