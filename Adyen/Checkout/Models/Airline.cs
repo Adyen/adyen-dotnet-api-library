@@ -413,7 +413,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, airline.Agency, jsonSerializerOptions);
             }
             if (airline._BoardingFeeOption.IsSet)
-                writer.WriteNumber("boardingFee", airline._BoardingFeeOption.Value!.Value);
+                if (airline._BoardingFeeOption.Value != null)
+                    writer.WriteNumber("boardingFee", airline._BoardingFeeOption.Value!.Value);
 
             if (airline._CodeOption.IsSet)
                 if (airline.Code != null)
@@ -436,7 +437,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("documentType", airline.DocumentType);
 
             if (airline._FlightDateOption.IsSet)
-                writer.WriteString("flightDate", airline._FlightDateOption.Value!.Value.ToString(FlightDateFormat));
+                if (airline._FlightDateOption.Value != null)
+                    writer.WriteString("flightDate", airline._FlightDateOption.Value!.Value.ToString(FlightDateFormat));
 
             if (airline._LegsOption.IsSet)
             {

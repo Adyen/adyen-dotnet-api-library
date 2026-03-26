@@ -480,7 +480,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("billingDate", pixRecurring.BillingDate);
 
             if (pixRecurring._BusinessDayOnlyOption.IsSet)
-                writer.WriteBoolean("businessDayOnly", pixRecurring._BusinessDayOnlyOption.Value!.Value);
+                if (pixRecurring._BusinessDayOnlyOption.Value != null)
+                    writer.WriteBoolean("businessDayOnly", pixRecurring._BusinessDayOnlyOption.Value!.Value);
 
             if (pixRecurring._EndsAtOption.IsSet)
                 if (pixRecurring.EndsAt != null)
@@ -511,7 +512,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("recurringStatement", pixRecurring.RecurringStatement);
 
             if (pixRecurring._RetryPolicyOption.IsSet)
-                writer.WriteBoolean("retryPolicy", pixRecurring._RetryPolicyOption.Value!.Value);
+                if (pixRecurring._RetryPolicyOption.Value != null)
+                    writer.WriteBoolean("retryPolicy", pixRecurring._RetryPolicyOption.Value!.Value);
 
             if (pixRecurring._StartsAtOption.IsSet)
                 if (pixRecurring.StartsAt != null)

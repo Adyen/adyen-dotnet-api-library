@@ -373,7 +373,8 @@ namespace Adyen.Checkout.Models
             writer.WriteNumber("value", installments.Value);
 
             if (installments._ExtraOption.IsSet)
-                writer.WriteNumber("extra", installments._ExtraOption.Value!.Value);
+                if (installments._ExtraOption.Value != null)
+                    writer.WriteNumber("extra", installments._ExtraOption.Value!.Value);
 
             if (installments._PlanOption.IsSet && installments.Plan != null) 
             {

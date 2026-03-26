@@ -510,7 +510,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("recurringDetailName", recurring.RecurringDetailName);
 
             if (recurring._RecurringExpiryOption.IsSet)
-                writer.WriteString("recurringExpiry", recurring._RecurringExpiryOption.Value!.Value.ToString(RecurringExpiryFormat));
+                if (recurring._RecurringExpiryOption.Value != null)
+                    writer.WriteString("recurringExpiry", recurring._RecurringExpiryOption.Value!.Value.ToString(RecurringExpiryFormat));
 
             if (recurring._RecurringFrequencyOption.IsSet)
                 if (recurring.RecurringFrequency != null)

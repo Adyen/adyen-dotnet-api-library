@@ -318,10 +318,12 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, levelTwoThree.Destination, jsonSerializerOptions);
             }
             if (levelTwoThree._DutyAmountOption.IsSet)
-                writer.WriteNumber("dutyAmount", levelTwoThree._DutyAmountOption.Value!.Value);
+                if (levelTwoThree._DutyAmountOption.Value != null)
+                    writer.WriteNumber("dutyAmount", levelTwoThree._DutyAmountOption.Value!.Value);
 
             if (levelTwoThree._FreightAmountOption.IsSet)
-                writer.WriteNumber("freightAmount", levelTwoThree._FreightAmountOption.Value!.Value);
+                if (levelTwoThree._FreightAmountOption.Value != null)
+                    writer.WriteNumber("freightAmount", levelTwoThree._FreightAmountOption.Value!.Value);
 
             if (levelTwoThree._ItemDetailLinesOption.IsSet)
             {
@@ -329,14 +331,16 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, levelTwoThree.ItemDetailLines, jsonSerializerOptions);
             }
             if (levelTwoThree._OrderDateOption.IsSet)
-                writer.WriteString("orderDate", levelTwoThree._OrderDateOption.Value!.Value.ToString(OrderDateFormat));
+                if (levelTwoThree._OrderDateOption.Value != null)
+                    writer.WriteString("orderDate", levelTwoThree._OrderDateOption.Value!.Value.ToString(OrderDateFormat));
 
             if (levelTwoThree._ShipFromPostalCodeOption.IsSet)
                 if (levelTwoThree.ShipFromPostalCode != null)
                     writer.WriteString("shipFromPostalCode", levelTwoThree.ShipFromPostalCode);
 
             if (levelTwoThree._TotalTaxAmountOption.IsSet)
-                writer.WriteNumber("totalTaxAmount", levelTwoThree._TotalTaxAmountOption.Value!.Value);
+                if (levelTwoThree._TotalTaxAmountOption.Value != null)
+                    writer.WriteNumber("totalTaxAmount", levelTwoThree._TotalTaxAmountOption.Value!.Value);
         }
     }
 }

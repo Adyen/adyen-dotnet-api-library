@@ -241,10 +241,12 @@ namespace Adyen.Checkout.Models
         {
             
             if (checkoutForwardRequestOptions._AccountUpdateOption.IsSet)
-                writer.WriteBoolean("accountUpdate", checkoutForwardRequestOptions._AccountUpdateOption.Value!.Value);
+                if (checkoutForwardRequestOptions._AccountUpdateOption.Value != null)
+                    writer.WriteBoolean("accountUpdate", checkoutForwardRequestOptions._AccountUpdateOption.Value!.Value);
 
             if (checkoutForwardRequestOptions._DryRunOption.IsSet)
-                writer.WriteBoolean("dryRun", checkoutForwardRequestOptions._DryRunOption.Value!.Value);
+                if (checkoutForwardRequestOptions._DryRunOption.Value != null)
+                    writer.WriteBoolean("dryRun", checkoutForwardRequestOptions._DryRunOption.Value!.Value);
 
             if (checkoutForwardRequestOptions._NetworkTokenOption.IsSet)
             {
@@ -257,7 +259,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, checkoutForwardRequestOptions.NetworkTxReferencePaths, jsonSerializerOptions);
             }
             if (checkoutForwardRequestOptions._TokenizeOption.IsSet)
-                writer.WriteBoolean("tokenize", checkoutForwardRequestOptions._TokenizeOption.Value!.Value);
+                if (checkoutForwardRequestOptions._TokenizeOption.Value != null)
+                    writer.WriteBoolean("tokenize", checkoutForwardRequestOptions._TokenizeOption.Value!.Value);
         }
     }
 }
