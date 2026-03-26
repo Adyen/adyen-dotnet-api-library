@@ -258,7 +258,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("scaExemptionRequested", responseAdditionalData3DSecure.ScaExemptionRequested);
 
             if (responseAdditionalData3DSecure._Threeds2CardEnrolledOption.IsSet)
-                writer.WriteBoolean("threeds2.cardEnrolled", responseAdditionalData3DSecure._Threeds2CardEnrolledOption.Value!.Value);
+                if (responseAdditionalData3DSecure._Threeds2CardEnrolledOption.Value != null)
+                    writer.WriteBoolean("threeds2.cardEnrolled", responseAdditionalData3DSecure._Threeds2CardEnrolledOption.Value!.Value);
         }
     }
 }

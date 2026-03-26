@@ -349,7 +349,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("reference", deliveryMethod.Reference);
 
             if (deliveryMethod._SelectedOption.IsSet)
-                writer.WriteBoolean("selected", deliveryMethod._SelectedOption.Value!.Value);
+                if (deliveryMethod._SelectedOption.Value != null)
+                    writer.WriteBoolean("selected", deliveryMethod._SelectedOption.Value!.Value);
 
             if (deliveryMethod._TypeOption.IsSet && deliveryMethod.Type != null) 
             {

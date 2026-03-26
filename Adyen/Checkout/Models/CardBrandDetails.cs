@@ -179,7 +179,8 @@ namespace Adyen.Checkout.Models
         {
             
             if (cardBrandDetails._SupportedOption.IsSet)
-                writer.WriteBoolean("supported", cardBrandDetails._SupportedOption.Value!.Value);
+                if (cardBrandDetails._SupportedOption.Value != null)
+                    writer.WriteBoolean("supported", cardBrandDetails._SupportedOption.Value!.Value);
 
             if (cardBrandDetails._TypeOption.IsSet)
                 if (cardBrandDetails.Type != null)

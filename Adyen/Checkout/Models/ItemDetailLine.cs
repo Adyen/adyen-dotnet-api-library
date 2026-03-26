@@ -313,24 +313,28 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("description", itemDetailLine.Description);
 
             if (itemDetailLine._DiscountAmountOption.IsSet)
-                writer.WriteNumber("discountAmount", itemDetailLine._DiscountAmountOption.Value!.Value);
+                if (itemDetailLine._DiscountAmountOption.Value != null)
+                    writer.WriteNumber("discountAmount", itemDetailLine._DiscountAmountOption.Value!.Value);
 
             if (itemDetailLine._ProductCodeOption.IsSet)
                 if (itemDetailLine.ProductCode != null)
                     writer.WriteString("productCode", itemDetailLine.ProductCode);
 
             if (itemDetailLine._QuantityOption.IsSet)
-                writer.WriteNumber("quantity", itemDetailLine._QuantityOption.Value!.Value);
+                if (itemDetailLine._QuantityOption.Value != null)
+                    writer.WriteNumber("quantity", itemDetailLine._QuantityOption.Value!.Value);
 
             if (itemDetailLine._TotalAmountOption.IsSet)
-                writer.WriteNumber("totalAmount", itemDetailLine._TotalAmountOption.Value!.Value);
+                if (itemDetailLine._TotalAmountOption.Value != null)
+                    writer.WriteNumber("totalAmount", itemDetailLine._TotalAmountOption.Value!.Value);
 
             if (itemDetailLine._UnitOfMeasureOption.IsSet)
                 if (itemDetailLine.UnitOfMeasure != null)
                     writer.WriteString("unitOfMeasure", itemDetailLine.UnitOfMeasure);
 
             if (itemDetailLine._UnitPriceOption.IsSet)
-                writer.WriteNumber("unitPrice", itemDetailLine._UnitPriceOption.Value!.Value);
+                if (itemDetailLine._UnitPriceOption.Value != null)
+                    writer.WriteNumber("unitPrice", itemDetailLine._UnitPriceOption.Value!.Value);
         }
     }
 }

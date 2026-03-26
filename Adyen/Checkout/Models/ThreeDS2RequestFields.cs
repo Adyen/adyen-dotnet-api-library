@@ -1653,7 +1653,8 @@ namespace Adyen.Checkout.Models
             }
             
             if (threeDS2RequestFields._AuthenticationOnlyOption.IsSet)
-                writer.WriteBoolean("authenticationOnly", threeDS2RequestFields._AuthenticationOnlyOption.Value!.Value);
+                if (threeDS2RequestFields._AuthenticationOnlyOption.Value != null)
+                    writer.WriteBoolean("authenticationOnly", threeDS2RequestFields._AuthenticationOnlyOption.Value!.Value);
 
             if (threeDS2RequestFields._ChallengeIndicatorOption.IsSet && threeDS2RequestFields.ChallengeIndicator != null) 
             {
@@ -1693,7 +1694,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("notificationURL", threeDS2RequestFields.NotificationURL);
 
             if (threeDS2RequestFields._PayTokenIndOption.IsSet)
-                writer.WriteBoolean("payTokenInd", threeDS2RequestFields._PayTokenIndOption.Value!.Value);
+                if (threeDS2RequestFields._PayTokenIndOption.Value != null)
+                    writer.WriteBoolean("payTokenInd", threeDS2RequestFields._PayTokenIndOption.Value!.Value);
 
             if (threeDS2RequestFields._PaymentAuthenticationUseCaseOption.IsSet)
                 if (threeDS2RequestFields.PaymentAuthenticationUseCase != null)
@@ -1721,7 +1723,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, threeDS2RequestFields.SdkEphemPubKey, jsonSerializerOptions);
             }
             if (threeDS2RequestFields._SdkMaxTimeoutOption.IsSet)
-                writer.WriteNumber("sdkMaxTimeout", threeDS2RequestFields._SdkMaxTimeoutOption.Value!.Value);
+                if (threeDS2RequestFields._SdkMaxTimeoutOption.Value != null)
+                    writer.WriteNumber("sdkMaxTimeout", threeDS2RequestFields._SdkMaxTimeoutOption.Value!.Value);
 
             if (threeDS2RequestFields._SdkReferenceNumberOption.IsSet)
                 if (threeDS2RequestFields.SdkReferenceNumber != null)

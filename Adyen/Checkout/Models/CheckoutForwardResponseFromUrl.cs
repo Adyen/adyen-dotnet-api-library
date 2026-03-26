@@ -209,7 +209,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, checkoutForwardResponseFromUrl.Headers, jsonSerializerOptions);
             }
             if (checkoutForwardResponseFromUrl._StatusOption.IsSet)
-                writer.WriteNumber("status", checkoutForwardResponseFromUrl._StatusOption.Value!.Value);
+                if (checkoutForwardResponseFromUrl._StatusOption.Value != null)
+                    writer.WriteNumber("status", checkoutForwardResponseFromUrl._StatusOption.Value!.Value);
         }
     }
 }

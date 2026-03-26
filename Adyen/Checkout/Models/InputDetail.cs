@@ -355,7 +355,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("key", inputDetail.Key);
 
             if (inputDetail._OptionalOption.IsSet)
-                writer.WriteBoolean("optional", inputDetail._OptionalOption.Value!.Value);
+                if (inputDetail._OptionalOption.Value != null)
+                    writer.WriteBoolean("optional", inputDetail._OptionalOption.Value!.Value);
 
             if (inputDetail._TypeOption.IsSet)
                 if (inputDetail.Type != null)

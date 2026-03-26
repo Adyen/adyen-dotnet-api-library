@@ -326,7 +326,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("requestId", defaultErrorResponseEntity.RequestId);
 
             if (defaultErrorResponseEntity._StatusOption.IsSet)
-                writer.WriteNumber("status", defaultErrorResponseEntity._StatusOption.Value!.Value);
+                if (defaultErrorResponseEntity._StatusOption.Value != null)
+                    writer.WriteNumber("status", defaultErrorResponseEntity._StatusOption.Value!.Value);
 
             if (defaultErrorResponseEntity._TitleOption.IsSet)
                 if (defaultErrorResponseEntity.Title != null)
