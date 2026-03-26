@@ -209,7 +209,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("issueAddress", ticket.IssueAddress);
 
             if (ticket._IssueDateOption.IsSet)
-                writer.WriteString("issueDate", ticket._IssueDateOption.Value!.Value.ToString(IssueDateFormat));
+                if (ticket._IssueDateOption.Value != null)
+                    writer.WriteString("issueDate", ticket._IssueDateOption.Value!.Value.ToString(IssueDateFormat));
 
             if (ticket._NumberOption.IsSet)
                 if (ticket.Number != null)

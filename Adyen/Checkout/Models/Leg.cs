@@ -339,7 +339,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("classOfTravel", leg.ClassOfTravel);
 
             if (leg._DateOfTravelOption.IsSet)
-                writer.WriteString("dateOfTravel", leg._DateOfTravelOption.Value!.Value.ToString(DateOfTravelFormat));
+                if (leg._DateOfTravelOption.Value != null)
+                    writer.WriteString("dateOfTravel", leg._DateOfTravelOption.Value!.Value.ToString(DateOfTravelFormat));
 
             if (leg._DepartureAirportCodeOption.IsSet)
                 if (leg.DepartureAirportCode != null)

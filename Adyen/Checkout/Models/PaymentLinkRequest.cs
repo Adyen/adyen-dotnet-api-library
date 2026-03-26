@@ -1402,10 +1402,12 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("countryCode", paymentLinkRequest.CountryCode);
 
             if (paymentLinkRequest._DateOfBirthOption.IsSet)
-                writer.WriteString("dateOfBirth", paymentLinkRequest._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
+                if (paymentLinkRequest._DateOfBirthOption.Value != null)
+                    writer.WriteString("dateOfBirth", paymentLinkRequest._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
 
             if (paymentLinkRequest._DeliverAtOption.IsSet)
-                writer.WriteString("deliverAt", paymentLinkRequest._DeliverAtOption.Value!.Value.ToString(DeliverAtFormat));
+                if (paymentLinkRequest._DeliverAtOption.Value != null)
+                    writer.WriteString("deliverAt", paymentLinkRequest._DeliverAtOption.Value!.Value.ToString(DeliverAtFormat));
 
             if (paymentLinkRequest._DeliveryAddressOption.IsSet)
             {
@@ -1417,7 +1419,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("description", paymentLinkRequest.Description);
 
             if (paymentLinkRequest._ExpiresAtOption.IsSet)
-                writer.WriteString("expiresAt", paymentLinkRequest._ExpiresAtOption.Value!.Value.ToString(ExpiresAtFormat));
+                if (paymentLinkRequest._ExpiresAtOption.Value != null)
+                    writer.WriteString("expiresAt", paymentLinkRequest._ExpiresAtOption.Value!.Value.ToString(ExpiresAtFormat));
 
             if (paymentLinkRequest._FundOriginOption.IsSet)
             {

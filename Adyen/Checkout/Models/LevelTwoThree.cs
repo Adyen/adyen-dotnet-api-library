@@ -331,7 +331,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, levelTwoThree.ItemDetailLines, jsonSerializerOptions);
             }
             if (levelTwoThree._OrderDateOption.IsSet)
-                writer.WriteString("orderDate", levelTwoThree._OrderDateOption.Value!.Value.ToString(OrderDateFormat));
+                if (levelTwoThree._OrderDateOption.Value != null)
+                    writer.WriteString("orderDate", levelTwoThree._OrderDateOption.Value!.Value.ToString(OrderDateFormat));
 
             if (levelTwoThree._ShipFromPostalCodeOption.IsSet)
                 if (levelTwoThree.ShipFromPostalCode != null)

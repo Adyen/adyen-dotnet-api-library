@@ -2209,10 +2209,12 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("countryCode", createCheckoutSessionResponse.CountryCode);
 
             if (createCheckoutSessionResponse._DateOfBirthOption.IsSet)
-                writer.WriteString("dateOfBirth", createCheckoutSessionResponse._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
+                if (createCheckoutSessionResponse._DateOfBirthOption.Value != null)
+                    writer.WriteString("dateOfBirth", createCheckoutSessionResponse._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
 
             if (createCheckoutSessionResponse._DeliverAtOption.IsSet)
-                writer.WriteString("deliverAt", createCheckoutSessionResponse._DeliverAtOption.Value!.Value.ToString(DeliverAtFormat));
+                if (createCheckoutSessionResponse._DeliverAtOption.Value != null)
+                    writer.WriteString("deliverAt", createCheckoutSessionResponse._DeliverAtOption.Value!.Value.ToString(DeliverAtFormat));
 
             if (createCheckoutSessionResponse._DeliveryAddressOption.IsSet)
             {

@@ -2306,7 +2306,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("countryCode", paymentRequest.CountryCode);
 
             if (paymentRequest._DateOfBirthOption.IsSet)
-                writer.WriteString("dateOfBirth", paymentRequest._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
+                if (paymentRequest._DateOfBirthOption.Value != null)
+                    writer.WriteString("dateOfBirth", paymentRequest._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
 
             if (paymentRequest._DccQuoteOption.IsSet)
             {
@@ -2314,7 +2315,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, paymentRequest.DccQuote, jsonSerializerOptions);
             }
             if (paymentRequest._DeliverAtOption.IsSet)
-                writer.WriteString("deliverAt", paymentRequest._DeliverAtOption.Value!.Value.ToString(DeliverAtFormat));
+                if (paymentRequest._DeliverAtOption.Value != null)
+                    writer.WriteString("deliverAt", paymentRequest._DeliverAtOption.Value!.Value.ToString(DeliverAtFormat));
 
             if (paymentRequest._DeliveryAddressOption.IsSet)
             {
@@ -2322,7 +2324,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, paymentRequest.DeliveryAddress, jsonSerializerOptions);
             }
             if (paymentRequest._DeliveryDateOption.IsSet)
-                writer.WriteString("deliveryDate", paymentRequest._DeliveryDateOption.Value!.Value.ToString(DeliveryDateFormat));
+                if (paymentRequest._DeliveryDateOption.Value != null)
+                    writer.WriteString("deliveryDate", paymentRequest._DeliveryDateOption.Value!.Value.ToString(DeliveryDateFormat));
 
             if (paymentRequest._DeviceFingerprintOption.IsSet)
                 if (paymentRequest.DeviceFingerprint != null)
