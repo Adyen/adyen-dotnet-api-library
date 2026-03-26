@@ -515,10 +515,12 @@ namespace Adyen.Checkout.Models
         {
             
             if (lineItem._AmountExcludingTaxOption.IsSet)
-                writer.WriteNumber("amountExcludingTax", lineItem._AmountExcludingTaxOption.Value!.Value);
+                if (lineItem._AmountExcludingTaxOption.Value != null)
+                    writer.WriteNumber("amountExcludingTax", lineItem._AmountExcludingTaxOption.Value!.Value);
 
             if (lineItem._AmountIncludingTaxOption.IsSet)
-                writer.WriteNumber("amountIncludingTax", lineItem._AmountIncludingTaxOption.Value!.Value);
+                if (lineItem._AmountIncludingTaxOption.Value != null)
+                    writer.WriteNumber("amountIncludingTax", lineItem._AmountIncludingTaxOption.Value!.Value);
 
             if (lineItem._BrandOption.IsSet)
                 if (lineItem.Brand != null)
@@ -557,7 +559,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("productUrl", lineItem.ProductUrl);
 
             if (lineItem._QuantityOption.IsSet)
-                writer.WriteNumber("quantity", lineItem._QuantityOption.Value!.Value);
+                if (lineItem._QuantityOption.Value != null)
+                    writer.WriteNumber("quantity", lineItem._QuantityOption.Value!.Value);
 
             if (lineItem._ReceiverEmailOption.IsSet)
                 if (lineItem.ReceiverEmail != null)
@@ -572,10 +575,12 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("sku", lineItem.Sku);
 
             if (lineItem._TaxAmountOption.IsSet)
-                writer.WriteNumber("taxAmount", lineItem._TaxAmountOption.Value!.Value);
+                if (lineItem._TaxAmountOption.Value != null)
+                    writer.WriteNumber("taxAmount", lineItem._TaxAmountOption.Value!.Value);
 
             if (lineItem._TaxPercentageOption.IsSet)
-                writer.WriteNumber("taxPercentage", lineItem._TaxPercentageOption.Value!.Value);
+                if (lineItem._TaxPercentageOption.Value != null)
+                    writer.WriteNumber("taxPercentage", lineItem._TaxPercentageOption.Value!.Value);
 
             if (lineItem._UpcOption.IsSet)
                 if (lineItem.Upc != null)

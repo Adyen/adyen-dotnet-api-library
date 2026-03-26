@@ -1614,7 +1614,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, paymentLinkResponse.BlockedPaymentMethods, jsonSerializerOptions);
             }
             if (paymentLinkResponse._CaptureDelayHoursOption.IsSet)
-                writer.WriteNumber("captureDelayHours", paymentLinkResponse._CaptureDelayHoursOption.Value!.Value);
+                if (paymentLinkResponse._CaptureDelayHoursOption.Value != null)
+                    writer.WriteNumber("captureDelayHours", paymentLinkResponse._CaptureDelayHoursOption.Value!.Value);
 
             if (paymentLinkResponse._CountryCodeOption.IsSet)
                 if (paymentLinkResponse.CountryCode != null)
@@ -1659,7 +1660,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, paymentLinkResponse.LineItems, jsonSerializerOptions);
             }
             if (paymentLinkResponse._ManualCaptureOption.IsSet)
-                writer.WriteBoolean("manualCapture", paymentLinkResponse._ManualCaptureOption.Value!.Value);
+                if (paymentLinkResponse._ManualCaptureOption.Value != null)
+                    writer.WriteBoolean("manualCapture", paymentLinkResponse._ManualCaptureOption.Value!.Value);
 
             if (paymentLinkResponse._MccOption.IsSet)
                 if (paymentLinkResponse.Mcc != null)
@@ -1695,7 +1697,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("returnUrl", paymentLinkResponse.ReturnUrl);
 
             if (paymentLinkResponse._ReusableOption.IsSet)
-                writer.WriteBoolean("reusable", paymentLinkResponse._ReusableOption.Value!.Value);
+                if (paymentLinkResponse._ReusableOption.Value != null)
+                    writer.WriteBoolean("reusable", paymentLinkResponse._ReusableOption.Value!.Value);
 
             if (paymentLinkResponse._RiskDataOption.IsSet)
             {
@@ -1724,14 +1727,16 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("shopperStatement", paymentLinkResponse.ShopperStatement);
 
             if (paymentLinkResponse._ShowRemovePaymentMethodButtonOption.IsSet)
-                writer.WriteBoolean("showRemovePaymentMethodButton", paymentLinkResponse._ShowRemovePaymentMethodButtonOption.Value!.Value);
+                if (paymentLinkResponse._ShowRemovePaymentMethodButtonOption.Value != null)
+                    writer.WriteBoolean("showRemovePaymentMethodButton", paymentLinkResponse._ShowRemovePaymentMethodButtonOption.Value!.Value);
 
             if (paymentLinkResponse._SocialSecurityNumberOption.IsSet)
                 if (paymentLinkResponse.SocialSecurityNumber != null)
                     writer.WriteString("socialSecurityNumber", paymentLinkResponse.SocialSecurityNumber);
 
             if (paymentLinkResponse._SplitCardFundingSourcesOption.IsSet)
-                writer.WriteBoolean("splitCardFundingSources", paymentLinkResponse._SplitCardFundingSourcesOption.Value!.Value);
+                if (paymentLinkResponse._SplitCardFundingSourcesOption.Value != null)
+                    writer.WriteBoolean("splitCardFundingSources", paymentLinkResponse._SplitCardFundingSourcesOption.Value!.Value);
 
             if (paymentLinkResponse._SplitsOption.IsSet)
             {

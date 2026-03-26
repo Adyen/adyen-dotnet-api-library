@@ -413,7 +413,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, airline.Agency, jsonSerializerOptions);
             }
             if (airline._BoardingFeeOption.IsSet)
-                writer.WriteNumber("boardingFee", airline._BoardingFeeOption.Value!.Value);
+                if (airline._BoardingFeeOption.Value != null)
+                    writer.WriteNumber("boardingFee", airline._BoardingFeeOption.Value!.Value);
 
             if (airline._CodeOption.IsSet)
                 if (airline.Code != null)

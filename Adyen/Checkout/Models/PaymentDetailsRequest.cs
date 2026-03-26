@@ -226,7 +226,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("paymentData", paymentDetailsRequest.PaymentData);
 
             if (paymentDetailsRequest._ThreeDSAuthenticationOnlyOption.IsSet)
-                writer.WriteBoolean("threeDSAuthenticationOnly", paymentDetailsRequest._ThreeDSAuthenticationOnlyOption.Value!.Value);
+                if (paymentDetailsRequest._ThreeDSAuthenticationOnlyOption.Value != null)
+                    writer.WriteBoolean("threeDSAuthenticationOnly", paymentDetailsRequest._ThreeDSAuthenticationOnlyOption.Value!.Value);
         }
     }
 }

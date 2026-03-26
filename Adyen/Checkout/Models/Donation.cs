@@ -238,7 +238,8 @@ namespace Adyen.Checkout.Models
                 writer.WriteString("type", donation.Type);
 
             if (donation._MaxRoundupAmountOption.IsSet)
-                writer.WriteNumber("maxRoundupAmount", donation._MaxRoundupAmountOption.Value!.Value);
+                if (donation._MaxRoundupAmountOption.Value != null)
+                    writer.WriteNumber("maxRoundupAmount", donation._MaxRoundupAmountOption.Value!.Value);
 
             if (donation._ValuesOption.IsSet)
             {

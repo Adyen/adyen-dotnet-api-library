@@ -379,7 +379,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, checkoutSessionInstallmentOption.Plans, jsonSerializerOptions);
             }
             if (checkoutSessionInstallmentOption._PreselectedValueOption.IsSet)
-                writer.WriteNumber("preselectedValue", checkoutSessionInstallmentOption._PreselectedValueOption.Value!.Value);
+                if (checkoutSessionInstallmentOption._PreselectedValueOption.Value != null)
+                    writer.WriteNumber("preselectedValue", checkoutSessionInstallmentOption._PreselectedValueOption.Value!.Value);
 
             if (checkoutSessionInstallmentOption._ValuesOption.IsSet)
             {

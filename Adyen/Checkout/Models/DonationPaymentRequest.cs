@@ -1527,7 +1527,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, donationPaymentRequest.ThreeDS2RequestData, jsonSerializerOptions);
             }
             if (donationPaymentRequest._ThreeDSAuthenticationOnlyOption.IsSet)
-                writer.WriteBoolean("threeDSAuthenticationOnly", donationPaymentRequest._ThreeDSAuthenticationOnlyOption.Value!.Value);
+                if (donationPaymentRequest._ThreeDSAuthenticationOnlyOption.Value != null)
+                    writer.WriteBoolean("threeDSAuthenticationOnly", donationPaymentRequest._ThreeDSAuthenticationOnlyOption.Value!.Value);
         }
     }
 }

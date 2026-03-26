@@ -796,7 +796,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("shopperReference", paymentMethodsRequest.ShopperReference);
 
             if (paymentMethodsRequest._SplitCardFundingSourcesOption.IsSet)
-                writer.WriteBoolean("splitCardFundingSources", paymentMethodsRequest._SplitCardFundingSourcesOption.Value!.Value);
+                if (paymentMethodsRequest._SplitCardFundingSourcesOption.Value != null)
+                    writer.WriteBoolean("splitCardFundingSources", paymentMethodsRequest._SplitCardFundingSourcesOption.Value!.Value);
 
             if (paymentMethodsRequest._StoreOption.IsSet)
                 if (paymentMethodsRequest.Store != null)

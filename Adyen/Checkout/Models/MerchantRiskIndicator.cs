@@ -707,7 +707,8 @@ namespace Adyen.Checkout.Models
         {
             
             if (merchantRiskIndicator._AddressMatchOption.IsSet)
-                writer.WriteBoolean("addressMatch", merchantRiskIndicator._AddressMatchOption.Value!.Value);
+                if (merchantRiskIndicator._AddressMatchOption.Value != null)
+                    writer.WriteBoolean("addressMatch", merchantRiskIndicator._AddressMatchOption.Value!.Value);
 
             if (merchantRiskIndicator._DeliveryAddressIndicatorOption.IsSet && merchantRiskIndicator.DeliveryAddressIndicator != null) 
             {
@@ -735,7 +736,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, merchantRiskIndicator.GiftCardAmount, jsonSerializerOptions);
             }
             if (merchantRiskIndicator._GiftCardCountOption.IsSet)
-                writer.WriteNumber("giftCardCount", merchantRiskIndicator._GiftCardCountOption.Value!.Value);
+                if (merchantRiskIndicator._GiftCardCountOption.Value != null)
+                    writer.WriteNumber("giftCardCount", merchantRiskIndicator._GiftCardCountOption.Value!.Value);
 
             if (merchantRiskIndicator._GiftCardCurrOption.IsSet)
                 if (merchantRiskIndicator.GiftCardCurr != null)
@@ -745,14 +747,16 @@ namespace Adyen.Checkout.Models
                 writer.WriteString("preOrderDate", merchantRiskIndicator._PreOrderDateOption.Value!.Value.ToString(PreOrderDateFormat));
 
             if (merchantRiskIndicator._PreOrderPurchaseOption.IsSet)
-                writer.WriteBoolean("preOrderPurchase", merchantRiskIndicator._PreOrderPurchaseOption.Value!.Value);
+                if (merchantRiskIndicator._PreOrderPurchaseOption.Value != null)
+                    writer.WriteBoolean("preOrderPurchase", merchantRiskIndicator._PreOrderPurchaseOption.Value!.Value);
 
             if (merchantRiskIndicator._PreOrderPurchaseIndOption.IsSet)
                 if (merchantRiskIndicator.PreOrderPurchaseInd != null)
                     writer.WriteString("preOrderPurchaseInd", merchantRiskIndicator.PreOrderPurchaseInd);
 
             if (merchantRiskIndicator._ReorderItemsOption.IsSet)
-                writer.WriteBoolean("reorderItems", merchantRiskIndicator._ReorderItemsOption.Value!.Value);
+                if (merchantRiskIndicator._ReorderItemsOption.Value != null)
+                    writer.WriteBoolean("reorderItems", merchantRiskIndicator._ReorderItemsOption.Value!.Value);
 
             if (merchantRiskIndicator._ReorderItemsIndOption.IsSet)
                 if (merchantRiskIndicator.ReorderItemsInd != null)

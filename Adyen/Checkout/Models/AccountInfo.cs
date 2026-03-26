@@ -1338,7 +1338,8 @@ namespace Adyen.Checkout.Models
             }
             
             if (accountInfo._AddCardAttemptsDayOption.IsSet)
-                writer.WriteNumber("addCardAttemptsDay", accountInfo._AddCardAttemptsDayOption.Value!.Value);
+                if (accountInfo._AddCardAttemptsDayOption.Value != null)
+                    writer.WriteNumber("addCardAttemptsDay", accountInfo._AddCardAttemptsDayOption.Value!.Value);
 
             if (accountInfo._DeliveryAddressUsageDateOption.IsSet)
                 writer.WriteString("deliveryAddressUsageDate", accountInfo._DeliveryAddressUsageDateOption.Value!.Value.ToString(DeliveryAddressUsageDateFormat));
@@ -1367,10 +1368,12 @@ namespace Adyen.Checkout.Models
             }
             
             if (accountInfo._PastTransactionsDayOption.IsSet)
-                writer.WriteNumber("pastTransactionsDay", accountInfo._PastTransactionsDayOption.Value!.Value);
+                if (accountInfo._PastTransactionsDayOption.Value != null)
+                    writer.WriteNumber("pastTransactionsDay", accountInfo._PastTransactionsDayOption.Value!.Value);
 
             if (accountInfo._PastTransactionsYearOption.IsSet)
-                writer.WriteNumber("pastTransactionsYear", accountInfo._PastTransactionsYearOption.Value!.Value);
+                if (accountInfo._PastTransactionsYearOption.Value != null)
+                    writer.WriteNumber("pastTransactionsYear", accountInfo._PastTransactionsYearOption.Value!.Value);
 
             if (accountInfo._PaymentAccountAgeOption.IsSet)
                 writer.WriteString("paymentAccountAge", accountInfo._PaymentAccountAgeOption.Value!.Value.ToString(PaymentAccountAgeFormat));
@@ -1382,10 +1385,12 @@ namespace Adyen.Checkout.Models
             }
             
             if (accountInfo._PurchasesLast6MonthsOption.IsSet)
-                writer.WriteNumber("purchasesLast6Months", accountInfo._PurchasesLast6MonthsOption.Value!.Value);
+                if (accountInfo._PurchasesLast6MonthsOption.Value != null)
+                    writer.WriteNumber("purchasesLast6Months", accountInfo._PurchasesLast6MonthsOption.Value!.Value);
 
             if (accountInfo._SuspiciousActivityOption.IsSet)
-                writer.WriteBoolean("suspiciousActivity", accountInfo._SuspiciousActivityOption.Value!.Value);
+                if (accountInfo._SuspiciousActivityOption.Value != null)
+                    writer.WriteBoolean("suspiciousActivity", accountInfo._SuspiciousActivityOption.Value!.Value);
 
             if (accountInfo._WorkPhoneOption.IsSet)
                 if (accountInfo.WorkPhone != null)

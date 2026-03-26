@@ -346,7 +346,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("departureAirportCode", leg.DepartureAirportCode);
 
             if (leg._DepartureTaxOption.IsSet)
-                writer.WriteNumber("departureTax", leg._DepartureTaxOption.Value!.Value);
+                if (leg._DepartureTaxOption.Value != null)
+                    writer.WriteNumber("departureTax", leg._DepartureTaxOption.Value!.Value);
 
             if (leg._DestinationAirportCodeOption.IsSet)
                 if (leg.DestinationAirportCode != null)

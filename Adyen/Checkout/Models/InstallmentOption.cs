@@ -395,7 +395,8 @@ namespace Adyen.Checkout.Models
         {
             
             if (installmentOption._MaxValueOption.IsSet)
-                writer.WriteNumber("maxValue", installmentOption._MaxValueOption.Value!.Value);
+                if (installmentOption._MaxValueOption.Value != null)
+                    writer.WriteNumber("maxValue", installmentOption._MaxValueOption.Value!.Value);
 
             if (installmentOption._PlansOption.IsSet)
             {
@@ -403,7 +404,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, installmentOption.Plans, jsonSerializerOptions);
             }
             if (installmentOption._PreselectedValueOption.IsSet)
-                writer.WriteNumber("preselectedValue", installmentOption._PreselectedValueOption.Value!.Value);
+                if (installmentOption._PreselectedValueOption.Value != null)
+                    writer.WriteNumber("preselectedValue", installmentOption._PreselectedValueOption.Value!.Value);
 
             if (installmentOption._ValuesOption.IsSet)
             {
