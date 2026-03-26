@@ -312,7 +312,8 @@ namespace Adyen.Checkout.Models
                 writer.WriteString("userAgent", browserInfo.UserAgent);
 
             if (browserInfo._JavaScriptEnabledOption.IsSet)
-                writer.WriteBoolean("javaScriptEnabled", browserInfo._JavaScriptEnabledOption.Value!.Value);
+                if (browserInfo._JavaScriptEnabledOption.Value != null)
+                    writer.WriteBoolean("javaScriptEnabled", browserInfo._JavaScriptEnabledOption.Value!.Value);
         }
     }
 }

@@ -197,7 +197,8 @@ namespace Adyen.Checkout.Models
                 writer.WriteString("name", paymentMethodIssuer.Name);
 
             if (paymentMethodIssuer._DisabledOption.IsSet)
-                writer.WriteBoolean("disabled", paymentMethodIssuer._DisabledOption.Value!.Value);
+                if (paymentMethodIssuer._DisabledOption.Value != null)
+                    writer.WriteBoolean("disabled", paymentMethodIssuer._DisabledOption.Value!.Value);
         }
     }
 }

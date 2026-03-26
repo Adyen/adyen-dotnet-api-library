@@ -309,7 +309,8 @@ namespace Adyen.Checkout.Models
             }
             
             if (authenticationData._AuthenticationOnlyOption.IsSet)
-                writer.WriteBoolean("authenticationOnly", authenticationData._AuthenticationOnlyOption.Value!.Value);
+                if (authenticationData._AuthenticationOnlyOption.Value != null)
+                    writer.WriteBoolean("authenticationOnly", authenticationData._AuthenticationOnlyOption.Value!.Value);
 
             if (authenticationData._ThreeDSRequestDataOption.IsSet)
             {

@@ -179,10 +179,12 @@ namespace Adyen.Checkout.Models
         {
             
             if (checkoutNetworkTokenOption._IncludeCryptogramOption.IsSet)
-                writer.WriteBoolean("includeCryptogram", checkoutNetworkTokenOption._IncludeCryptogramOption.Value!.Value);
+                if (checkoutNetworkTokenOption._IncludeCryptogramOption.Value != null)
+                    writer.WriteBoolean("includeCryptogram", checkoutNetworkTokenOption._IncludeCryptogramOption.Value!.Value);
 
             if (checkoutNetworkTokenOption._UseNetworkTokenOption.IsSet)
-                writer.WriteBoolean("useNetworkToken", checkoutNetworkTokenOption._UseNetworkTokenOption.Value!.Value);
+                if (checkoutNetworkTokenOption._UseNetworkTokenOption.Value != null)
+                    writer.WriteBoolean("useNetworkToken", checkoutNetworkTokenOption._UseNetworkTokenOption.Value!.Value);
         }
     }
 }

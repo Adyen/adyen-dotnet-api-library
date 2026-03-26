@@ -1318,7 +1318,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, balanceCheckRequest.BrowserInfo, jsonSerializerOptions);
             }
             if (balanceCheckRequest._CaptureDelayHoursOption.IsSet)
-                writer.WriteNumber("captureDelayHours", balanceCheckRequest._CaptureDelayHoursOption.Value!.Value);
+                if (balanceCheckRequest._CaptureDelayHoursOption.Value != null)
+                    writer.WriteNumber("captureDelayHours", balanceCheckRequest._CaptureDelayHoursOption.Value!.Value);
 
             if (balanceCheckRequest._DateOfBirthOption.IsSet)
                 writer.WriteString("dateOfBirth", balanceCheckRequest._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
@@ -1341,7 +1342,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("deviceFingerprint", balanceCheckRequest.DeviceFingerprint);
 
             if (balanceCheckRequest._FraudOffsetOption.IsSet)
-                writer.WriteNumber("fraudOffset", balanceCheckRequest._FraudOffsetOption.Value!.Value);
+                if (balanceCheckRequest._FraudOffsetOption.Value != null)
+                    writer.WriteNumber("fraudOffset", balanceCheckRequest._FraudOffsetOption.Value!.Value);
 
             if (balanceCheckRequest._InstallmentsOption.IsSet)
             {
@@ -1456,14 +1458,16 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, balanceCheckRequest.ThreeDS2RequestData, jsonSerializerOptions);
             }
             if (balanceCheckRequest._ThreeDSAuthenticationOnlyOption.IsSet)
-                writer.WriteBoolean("threeDSAuthenticationOnly", balanceCheckRequest._ThreeDSAuthenticationOnlyOption.Value!.Value);
+                if (balanceCheckRequest._ThreeDSAuthenticationOnlyOption.Value != null)
+                    writer.WriteBoolean("threeDSAuthenticationOnly", balanceCheckRequest._ThreeDSAuthenticationOnlyOption.Value!.Value);
 
             if (balanceCheckRequest._TotalsGroupOption.IsSet)
                 if (balanceCheckRequest.TotalsGroup != null)
                     writer.WriteString("totalsGroup", balanceCheckRequest.TotalsGroup);
 
             if (balanceCheckRequest._TrustedShopperOption.IsSet)
-                writer.WriteBoolean("trustedShopper", balanceCheckRequest._TrustedShopperOption.Value!.Value);
+                if (balanceCheckRequest._TrustedShopperOption.Value != null)
+                    writer.WriteBoolean("trustedShopper", balanceCheckRequest._TrustedShopperOption.Value!.Value);
         }
     }
 }

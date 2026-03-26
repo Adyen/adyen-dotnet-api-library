@@ -230,7 +230,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, riskData.CustomFields, jsonSerializerOptions);
             }
             if (riskData._FraudOffsetOption.IsSet)
-                writer.WriteNumber("fraudOffset", riskData._FraudOffsetOption.Value!.Value);
+                if (riskData._FraudOffsetOption.Value != null)
+                    writer.WriteNumber("fraudOffset", riskData._FraudOffsetOption.Value!.Value);
 
             if (riskData._ProfileReferenceOption.IsSet)
                 if (riskData.ProfileReference != null)
