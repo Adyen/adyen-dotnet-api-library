@@ -488,7 +488,8 @@
             {{/isEnum}}
             {{#isDate}}
             {{#lambda.copyText}}
-            writer.WriteString("{{baseName}}", {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{^required}}_{{/required}}{{name}}{{^required}}Option.Value{{#vendorExtensions.x-is-value-type}}{{nrt!}}.Value{{/vendorExtensions.x-is-value-type}}{{/required}}{{#required}}{{#isNullable}}.Value{{/isNullable}}{{/required}}.ToString({{name}}Format));
+            {{^required}}{{#vendorExtensions.x-is-value-type}}if ({{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}._{{name}}Option.Value != null)
+    writer.WriteString("{{baseName}}", {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}._{{name}}Option.Value{{nrt!}}.Value.ToString({{name}}Format));{{/vendorExtensions.x-is-value-type}}{{^vendorExtensions.x-is-value-type}}writer.WriteString("{{baseName}}", {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}._{{name}}Option.Value.ToString({{name}}Format));{{/vendorExtensions.x-is-value-type}}{{/required}}{{#required}}writer.WriteString("{{baseName}}", {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}{{#isNullable}}.Value{{/isNullable}}.ToString({{name}}Format));{{/required}}
             {{/lambda.copyText}}
             {{#lambda.indent3}}
             {{>WriteProperty}}{{! prevent indent}}
@@ -496,7 +497,8 @@
             {{/isDate}}
             {{#isDateTime}}
             {{#lambda.copyText}}
-            writer.WriteString("{{baseName}}", {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{^required}}_{{/required}}{{name}}{{^required}}Option.Value{{#vendorExtensions.x-is-value-type}}{{nrt!}}.Value{{/vendorExtensions.x-is-value-type}}{{/required}}{{#required}}{{#isNullable}}.Value{{/isNullable}}{{/required}}.ToString({{name}}Format));
+            {{^required}}{{#vendorExtensions.x-is-value-type}}if ({{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}._{{name}}Option.Value != null)
+    writer.WriteString("{{baseName}}", {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}._{{name}}Option.Value{{nrt!}}.Value.ToString({{name}}Format));{{/vendorExtensions.x-is-value-type}}{{^vendorExtensions.x-is-value-type}}writer.WriteString("{{baseName}}", {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}._{{name}}Option.Value.ToString({{name}}Format));{{/vendorExtensions.x-is-value-type}}{{/required}}{{#required}}writer.WriteString("{{baseName}}", {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}{{#isNullable}}.Value{{/isNullable}}.ToString({{name}}Format));{{/required}}
             {{/lambda.copyText}}
             {{#lambda.indent3}}
             {{>WriteProperty}}{{! prevent indent}}
