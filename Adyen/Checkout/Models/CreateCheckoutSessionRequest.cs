@@ -2149,10 +2149,12 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("countryCode", createCheckoutSessionRequest.CountryCode);
 
             if (createCheckoutSessionRequest._DateOfBirthOption.IsSet)
-                writer.WriteString("dateOfBirth", createCheckoutSessionRequest._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
+                if (createCheckoutSessionRequest._DateOfBirthOption.Value != null)
+                    writer.WriteString("dateOfBirth", createCheckoutSessionRequest._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
 
             if (createCheckoutSessionRequest._DeliverAtOption.IsSet)
-                writer.WriteString("deliverAt", createCheckoutSessionRequest._DeliverAtOption.Value!.Value.ToString(DeliverAtFormat));
+                if (createCheckoutSessionRequest._DeliverAtOption.Value != null)
+                    writer.WriteString("deliverAt", createCheckoutSessionRequest._DeliverAtOption.Value!.Value.ToString(DeliverAtFormat));
 
             if (createCheckoutSessionRequest._DeliveryAddressOption.IsSet)
             {
@@ -2172,7 +2174,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteBoolean("enableRecurring", createCheckoutSessionRequest._EnableRecurringOption.Value!.Value);
 
             if (createCheckoutSessionRequest._ExpiresAtOption.IsSet)
-                writer.WriteString("expiresAt", createCheckoutSessionRequest._ExpiresAtOption.Value!.Value.ToString(ExpiresAtFormat));
+                if (createCheckoutSessionRequest._ExpiresAtOption.Value != null)
+                    writer.WriteString("expiresAt", createCheckoutSessionRequest._ExpiresAtOption.Value!.Value.ToString(ExpiresAtFormat));
 
             if (createCheckoutSessionRequest._FundOriginOption.IsSet)
             {

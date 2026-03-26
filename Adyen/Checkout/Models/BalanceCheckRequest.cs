@@ -1322,7 +1322,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteNumber("captureDelayHours", balanceCheckRequest._CaptureDelayHoursOption.Value!.Value);
 
             if (balanceCheckRequest._DateOfBirthOption.IsSet)
-                writer.WriteString("dateOfBirth", balanceCheckRequest._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
+                if (balanceCheckRequest._DateOfBirthOption.Value != null)
+                    writer.WriteString("dateOfBirth", balanceCheckRequest._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
 
             if (balanceCheckRequest._DccQuoteOption.IsSet)
             {
@@ -1335,7 +1336,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, balanceCheckRequest.DeliveryAddress, jsonSerializerOptions);
             }
             if (balanceCheckRequest._DeliveryDateOption.IsSet)
-                writer.WriteString("deliveryDate", balanceCheckRequest._DeliveryDateOption.Value!.Value.ToString(DeliveryDateFormat));
+                if (balanceCheckRequest._DeliveryDateOption.Value != null)
+                    writer.WriteString("deliveryDate", balanceCheckRequest._DeliveryDateOption.Value!.Value.ToString(DeliveryDateFormat));
 
             if (balanceCheckRequest._DeviceFingerprintOption.IsSet)
                 if (balanceCheckRequest.DeviceFingerprint != null)

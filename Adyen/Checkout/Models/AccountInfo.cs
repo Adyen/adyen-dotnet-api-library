@@ -1320,7 +1320,8 @@ namespace Adyen.Checkout.Models
             }
             
             if (accountInfo._AccountChangeDateOption.IsSet)
-                writer.WriteString("accountChangeDate", accountInfo._AccountChangeDateOption.Value!.Value.ToString(AccountChangeDateFormat));
+                if (accountInfo._AccountChangeDateOption.Value != null)
+                    writer.WriteString("accountChangeDate", accountInfo._AccountChangeDateOption.Value!.Value.ToString(AccountChangeDateFormat));
 
             if (accountInfo._AccountChangeIndicatorOption.IsSet && accountInfo.AccountChangeIndicator != null) 
             {
@@ -1329,7 +1330,8 @@ namespace Adyen.Checkout.Models
             }
             
             if (accountInfo._AccountCreationDateOption.IsSet)
-                writer.WriteString("accountCreationDate", accountInfo._AccountCreationDateOption.Value!.Value.ToString(AccountCreationDateFormat));
+                if (accountInfo._AccountCreationDateOption.Value != null)
+                    writer.WriteString("accountCreationDate", accountInfo._AccountCreationDateOption.Value!.Value.ToString(AccountCreationDateFormat));
 
             if (accountInfo._AccountTypeOption.IsSet && accountInfo.AccountType != null) 
             {
@@ -1342,7 +1344,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteNumber("addCardAttemptsDay", accountInfo._AddCardAttemptsDayOption.Value!.Value);
 
             if (accountInfo._DeliveryAddressUsageDateOption.IsSet)
-                writer.WriteString("deliveryAddressUsageDate", accountInfo._DeliveryAddressUsageDateOption.Value!.Value.ToString(DeliveryAddressUsageDateFormat));
+                if (accountInfo._DeliveryAddressUsageDateOption.Value != null)
+                    writer.WriteString("deliveryAddressUsageDate", accountInfo._DeliveryAddressUsageDateOption.Value!.Value.ToString(DeliveryAddressUsageDateFormat));
 
             if (accountInfo._DeliveryAddressUsageIndicatorOption.IsSet && accountInfo.DeliveryAddressUsageIndicator != null) 
             {
@@ -1359,7 +1362,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("mobilePhone", accountInfo.MobilePhone);
 
             if (accountInfo._PasswordChangeDateOption.IsSet)
-                writer.WriteString("passwordChangeDate", accountInfo._PasswordChangeDateOption.Value!.Value.ToString(PasswordChangeDateFormat));
+                if (accountInfo._PasswordChangeDateOption.Value != null)
+                    writer.WriteString("passwordChangeDate", accountInfo._PasswordChangeDateOption.Value!.Value.ToString(PasswordChangeDateFormat));
 
             if (accountInfo._PasswordChangeIndicatorOption.IsSet && accountInfo.PasswordChangeIndicator != null) 
             {
@@ -1376,7 +1380,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteNumber("pastTransactionsYear", accountInfo._PastTransactionsYearOption.Value!.Value);
 
             if (accountInfo._PaymentAccountAgeOption.IsSet)
-                writer.WriteString("paymentAccountAge", accountInfo._PaymentAccountAgeOption.Value!.Value.ToString(PaymentAccountAgeFormat));
+                if (accountInfo._PaymentAccountAgeOption.Value != null)
+                    writer.WriteString("paymentAccountAge", accountInfo._PaymentAccountAgeOption.Value!.Value.ToString(PaymentAccountAgeFormat));
 
             if (accountInfo._PaymentAccountIndicatorOption.IsSet && accountInfo.PaymentAccountIndicator != null) 
             {

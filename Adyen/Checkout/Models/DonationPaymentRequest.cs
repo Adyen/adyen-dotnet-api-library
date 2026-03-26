@@ -1409,10 +1409,12 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("countryCode", donationPaymentRequest.CountryCode);
 
             if (donationPaymentRequest._DateOfBirthOption.IsSet)
-                writer.WriteString("dateOfBirth", donationPaymentRequest._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
+                if (donationPaymentRequest._DateOfBirthOption.Value != null)
+                    writer.WriteString("dateOfBirth", donationPaymentRequest._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
 
             if (donationPaymentRequest._DeliverAtOption.IsSet)
-                writer.WriteString("deliverAt", donationPaymentRequest._DeliverAtOption.Value!.Value.ToString(DeliverAtFormat));
+                if (donationPaymentRequest._DeliverAtOption.Value != null)
+                    writer.WriteString("deliverAt", donationPaymentRequest._DeliverAtOption.Value!.Value.ToString(DeliverAtFormat));
 
             if (donationPaymentRequest._DeliveryAddressOption.IsSet)
             {

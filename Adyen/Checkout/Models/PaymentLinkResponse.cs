@@ -1622,10 +1622,12 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("countryCode", paymentLinkResponse.CountryCode);
 
             if (paymentLinkResponse._DateOfBirthOption.IsSet)
-                writer.WriteString("dateOfBirth", paymentLinkResponse._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
+                if (paymentLinkResponse._DateOfBirthOption.Value != null)
+                    writer.WriteString("dateOfBirth", paymentLinkResponse._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
 
             if (paymentLinkResponse._DeliverAtOption.IsSet)
-                writer.WriteString("deliverAt", paymentLinkResponse._DeliverAtOption.Value!.Value.ToString(DeliverAtFormat));
+                if (paymentLinkResponse._DeliverAtOption.Value != null)
+                    writer.WriteString("deliverAt", paymentLinkResponse._DeliverAtOption.Value!.Value.ToString(DeliverAtFormat));
 
             if (paymentLinkResponse._DeliveryAddressOption.IsSet)
             {
@@ -1637,7 +1639,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("description", paymentLinkResponse.Description);
 
             if (paymentLinkResponse._ExpiresAtOption.IsSet)
-                writer.WriteString("expiresAt", paymentLinkResponse._ExpiresAtOption.Value!.Value.ToString(ExpiresAtFormat));
+                if (paymentLinkResponse._ExpiresAtOption.Value != null)
+                    writer.WriteString("expiresAt", paymentLinkResponse._ExpiresAtOption.Value!.Value.ToString(ExpiresAtFormat));
 
             if (paymentLinkResponse._FundOriginOption.IsSet)
             {
@@ -1767,7 +1770,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, paymentLinkResponse.ThreeDS2RequestData, jsonSerializerOptions);
             }
             if (paymentLinkResponse._UpdatedAtOption.IsSet)
-                writer.WriteString("updatedAt", paymentLinkResponse._UpdatedAtOption.Value!.Value.ToString(UpdatedAtFormat));
+                if (paymentLinkResponse._UpdatedAtOption.Value != null)
+                    writer.WriteString("updatedAt", paymentLinkResponse._UpdatedAtOption.Value!.Value.ToString(UpdatedAtFormat));
         }
     }
 }

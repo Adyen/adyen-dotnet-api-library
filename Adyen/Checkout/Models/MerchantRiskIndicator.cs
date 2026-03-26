@@ -744,7 +744,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("giftCardCurr", merchantRiskIndicator.GiftCardCurr);
 
             if (merchantRiskIndicator._PreOrderDateOption.IsSet)
-                writer.WriteString("preOrderDate", merchantRiskIndicator._PreOrderDateOption.Value!.Value.ToString(PreOrderDateFormat));
+                if (merchantRiskIndicator._PreOrderDateOption.Value != null)
+                    writer.WriteString("preOrderDate", merchantRiskIndicator._PreOrderDateOption.Value!.Value.ToString(PreOrderDateFormat));
 
             if (merchantRiskIndicator._PreOrderPurchaseOption.IsSet)
                 if (merchantRiskIndicator._PreOrderPurchaseOption.Value != null)
