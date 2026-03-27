@@ -50,6 +50,13 @@ namespace Adyen.ConfigurationWebhooks.Handlers
         CardOrderNotificationRequest? DeserializeCardOrderNotificationRequest(string json);
             
         /// <summary>
+        /// Uses <see cref="Adyen.ConfigurationWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="MandateNotificationRequest"/>.
+        /// </summary>
+        /// <param name="json">The full webhook payload.</param>
+        /// <exception cref="JsonException"></exception>
+        MandateNotificationRequest? DeserializeMandateNotificationRequest(string json);
+            
+        /// <summary>
         /// Uses <see cref="Adyen.ConfigurationWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="NetworkTokenNotificationRequest"/>.
         /// </summary>
         /// <param name="json">The full webhook payload.</param>
@@ -127,6 +134,12 @@ namespace Adyen.ConfigurationWebhooks.Handlers
         public CardOrderNotificationRequest? DeserializeCardOrderNotificationRequest(string json)
         {
             return JsonSerializer.Deserialize<CardOrderNotificationRequest>(json, JsonSerializerOptionsProvider.Options);
+        }
+
+        /// <inheritdoc/>
+        public MandateNotificationRequest? DeserializeMandateNotificationRequest(string json)
+        {
+            return JsonSerializer.Deserialize<MandateNotificationRequest>(json, JsonSerializerOptionsProvider.Options);
         }
 
         /// <inheritdoc/>
