@@ -968,7 +968,7 @@ namespace Adyen.Management.Services
                     if (versionCode.IsSet)
                         parseQueryString["versionCode"] = ClientUtils.ParameterToString(versionCode.Value);
 
-                    uriBuilder.Query = parseQueryString.ToString();
+                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
@@ -1346,7 +1346,7 @@ namespace Adyen.Management.Services
                     if (certificateName.IsSet)
                         parseQueryString["certificateName"] = ClientUtils.ParameterToString(certificateName.Value);
 
-                    uriBuilder.Query = parseQueryString.ToString();
+                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
