@@ -1267,7 +1267,7 @@ namespace Adyen.PaymentsApp.Services
                     if (offset.IsSet)
                         parseQueryString["offset"] = ClientUtils.ParameterToString(offset.Value);
 
-                    uriBuilder.Query = parseQueryString.ToString();
+                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
@@ -1643,7 +1643,7 @@ namespace Adyen.PaymentsApp.Services
                     if (offset.IsSet)
                         parseQueryString["offset"] = ClientUtils.ParameterToString(offset.Value);
 
-                    uriBuilder.Query = parseQueryString.ToString();
+                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
