@@ -108,6 +108,11 @@ namespace Adyen.Checkout.Models
             public static readonly TypeEnum Iris = new("iris");
 
             /// <summary>
+            /// TypeEnum.Wero - wero
+            /// </summary>
+            public static readonly TypeEnum Wero = new("wero");
+
+            /// <summary>
             /// TypeEnum.Trustly - trustly
             /// </summary>
             public static readonly TypeEnum Trustly = new("trustly");
@@ -246,11 +251,6 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.WalleyB2b - walley_b2b
             /// </summary>
             public static readonly TypeEnum WalleyB2b = new("walley_b2b");
-
-            /// <summary>
-            /// TypeEnum.Alma - alma
-            /// </summary>
-            public static readonly TypeEnum Alma = new("alma");
 
             /// <summary>
             /// TypeEnum.Paypo - paypo
@@ -547,6 +547,7 @@ namespace Adyen.Checkout.Models
                     "paynow" => TypeEnum.Paynow,
                     "affirm_pos" => TypeEnum.AffirmPos,
                     "iris" => TypeEnum.Iris,
+                    "wero" => TypeEnum.Wero,
                     "trustly" => TypeEnum.Trustly,
                     "trustlyvector" => TypeEnum.Trustlyvector,
                     "oney" => TypeEnum.Oney,
@@ -575,7 +576,6 @@ namespace Adyen.Checkout.Models
                     "bizum" => TypeEnum.Bizum,
                     "walley" => TypeEnum.Walley,
                     "walley_b2b" => TypeEnum.WalleyB2b,
-                    "alma" => TypeEnum.Alma,
                     "paypo" => TypeEnum.Paypo,
                     "scalapay" => TypeEnum.Scalapay,
                     "scalapay_3x" => TypeEnum.Scalapay3x,
@@ -665,6 +665,9 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Iris)
                     return "iris";
                 
+                if (value == TypeEnum.Wero)
+                    return "wero";
+                
                 if (value == TypeEnum.Trustly)
                     return "trustly";
                 
@@ -748,9 +751,6 @@ namespace Adyen.Checkout.Models
                 
                 if (value == TypeEnum.WalleyB2b)
                     return "walley_b2b";
-                
-                if (value == TypeEnum.Alma)
-                    return "alma";
                 
                 if (value == TypeEnum.Paypo)
                     return "paypo";

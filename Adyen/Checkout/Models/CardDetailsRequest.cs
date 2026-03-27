@@ -36,7 +36,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction.</param>
         /// <param name="cardNumber">A minimum of the first six digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the &#x60;encryptedCardNumber&#x60; field.</param>
-        /// <param name="countryCode">The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE</param>
+        /// <param name="countryCode">The shopper country code.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE</param>
         /// <param name="encryptedCardNumber">The encrypted card number.</param>
         /// <param name="supportedBrands">The card brands you support. This is the [&#x60;brands&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/paymentMethods#responses-200-paymentMethods-brands) array from your [&#x60;/paymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.   If not included, our API uses the ones configured for your merchant account and, if provided, the country code.</param>
         [JsonConstructor]
@@ -88,9 +88,9 @@ namespace Adyen.Checkout.Models
         public Option<string?> _CountryCodeOption { get; private set; }
 
         /// <summary>
-        /// The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE
+        /// The shopper country code.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE
         /// </summary>
-        /// <value>The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE</value>
+        /// <value>The shopper country code.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE</value>
         [JsonPropertyName("countryCode")]
         public string? CountryCode { get { return this._CountryCodeOption; } set { this._CountryCodeOption = new(value); } }
 

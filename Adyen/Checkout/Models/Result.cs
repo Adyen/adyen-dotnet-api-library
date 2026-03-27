@@ -44,7 +44,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Enum UNKNOWN for value: UNKNOWN
         /// </summary>
-        UNKNOWN = 3
+        UNKNOWN = 3,
+
+        /// <summary>
+        /// Enum NOTREQUIRED for value: NOT_REQUIRED
+        /// </summary>
+        NOTREQUIRED = 4
     }
 
     /// <summary>
@@ -68,6 +73,9 @@ namespace Adyen.Checkout.Models
             if (value.Equals("UNKNOWN"))
                 return Result.UNKNOWN;
 
+            if (value.Equals("NOT_REQUIRED"))
+                return Result.NOTREQUIRED;
+
             throw new NotImplementedException($"Could not convert value to type Result: '{value}'");
         }
 
@@ -86,6 +94,9 @@ namespace Adyen.Checkout.Models
 
             if (value.Equals("UNKNOWN"))
                 return Result.UNKNOWN;
+
+            if (value.Equals("NOT_REQUIRED"))
+                return Result.NOTREQUIRED;
 
             return null;
         }
@@ -106,6 +117,9 @@ namespace Adyen.Checkout.Models
 
             if (value == Result.UNKNOWN)
                 return "UNKNOWN";
+
+            if (value == Result.NOTREQUIRED)
+                return "NOT_REQUIRED";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }

@@ -38,17 +38,19 @@ namespace Adyen.Checkout.Models
         /// <param name="merchantAccount">Your merchant account.</param>
         /// <param name="request">request</param>
         /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.</param>
+        /// <param name="amount">amount</param>
         /// <param name="merchantReference">Merchant defined payment reference.</param>
         /// <param name="options">options</param>
         /// <param name="paymentMethod">paymentMethod</param>
         /// <param name="storedPaymentMethodId">The unique identifier of the token that you want to forward to the third party. This is the &#x60;storedPaymentMethodId&#x60; you received in the webhook after you created the token.</param>
         [JsonConstructor]
-        public CheckoutForwardRequest(string baseUrl, string merchantAccount, CheckoutOutgoingForwardRequest request, string shopperReference, Option<string?> merchantReference = default, Option<CheckoutForwardRequestOptions?> options = default, Option<CheckoutForwardRequestCard?> paymentMethod = default, Option<string?> storedPaymentMethodId = default)
+        public CheckoutForwardRequest(string baseUrl, string merchantAccount, CheckoutOutgoingForwardRequest request, string shopperReference, Option<Amount?> amount = default, Option<string?> merchantReference = default, Option<CheckoutForwardRequestOptions?> options = default, Option<CheckoutForwardRequestCard?> paymentMethod = default, Option<string?> storedPaymentMethodId = default)
         {
             BaseUrl = baseUrl;
             MerchantAccount = merchantAccount;
             Request = request;
             ShopperReference = shopperReference;
+            _AmountOption = amount;
             _MerchantReferenceOption = merchantReference;
             _OptionsOption = options;
             _PaymentMethodOption = paymentMethod;
@@ -91,6 +93,19 @@ namespace Adyen.Checkout.Models
         /// <value>Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.</value>
         [JsonPropertyName("shopperReference")]
         public string ShopperReference { get; set; }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Amount?> _AmountOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="Amount"/>.
+        /// </summary>
+        [JsonPropertyName("amount")]
+        public Amount? Amount { get { return this._AmountOption; } set { this._AmountOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="MerchantReference"/> will be populated.
@@ -158,6 +173,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  Request: ").Append(Request).Append("\n");
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
+            sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
             sb.Append("  Options: ").Append(Options).Append("\n");
             sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
@@ -193,6 +209,7 @@ namespace Adyen.Checkout.Models
             Option<string?> merchantAccount = default;
             Option<CheckoutOutgoingForwardRequest?> request = default;
             Option<string?> shopperReference = default;
+            Option<Amount?> amount = default;
             Option<string?> merchantReference = default;
             Option<CheckoutForwardRequestOptions?> options = default;
             Option<CheckoutForwardRequestCard?> paymentMethod = default;
@@ -225,6 +242,9 @@ namespace Adyen.Checkout.Models
                         case "shopperReference":
                             shopperReference = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "amount":
+                            amount = new Option<Amount?>(JsonSerializer.Deserialize<Amount>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "merchantReference":
                             merchantReference = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -255,7 +275,7 @@ namespace Adyen.Checkout.Models
             if (!shopperReference.IsSet)
                 throw new ArgumentException("Property is required for class CheckoutForwardRequest.", nameof(shopperReference));
 
-            return new CheckoutForwardRequest(baseUrl.Value!, merchantAccount.Value!, request.Value!, shopperReference.Value!, merchantReference, options, paymentMethod, storedPaymentMethodId);
+            return new CheckoutForwardRequest(baseUrl.Value!, merchantAccount.Value!, request.Value!, shopperReference.Value!, amount, merchantReference, options, paymentMethod, storedPaymentMethodId);
         }
 
         /// <summary>
@@ -295,6 +315,11 @@ namespace Adyen.Checkout.Models
             if (checkoutForwardRequest.ShopperReference != null)
                 writer.WriteString("shopperReference", checkoutForwardRequest.ShopperReference);
 
+            if (checkoutForwardRequest._AmountOption.IsSet)
+            {
+                writer.WritePropertyName("amount");
+                JsonSerializer.Serialize(writer, checkoutForwardRequest.Amount, jsonSerializerOptions);
+            }
             if (checkoutForwardRequest._MerchantReferenceOption.IsSet)
                 if (checkoutForwardRequest.MerchantReference != null)
                     writer.WriteString("merchantReference", checkoutForwardRequest.MerchantReference);

@@ -67,6 +67,7 @@ namespace Adyen.Checkout.Models
         /// <param name="mcBankNetReferenceNumber">The &#x60;mcBankNetReferenceNumber&#x60;, is a minimum of six characters and a maximum of nine characters long.  &gt; Contact Support Team to enable this field.</param>
         /// <param name="merchantAdviceCode">The Merchant Advice Code (MAC) can be returned by Mastercard issuers for refused payments. If present, the MAC contains information about why the payment failed, and whether it can be retried.  For more information see [Mastercard Merchant Advice Codes](https://docs.adyen.com/development-resources/raw-acquirer-responses#mastercard-merchant-advice-codes).</param>
         /// <param name="merchantReference">The reference provided for the transaction.</param>
+        /// <param name="networkProcessingMode">Indicates the processing flow.  Possible values: * **sale**: You do not need to separately capture the funds, because capture happens automatically as part of the transaction.  * **auth**: If you have not [configured automatic capture for the transaction](https://docs.adyen.com/online-payments/capture#types-of-capture), you must manually capture the funds.</param>
         /// <param name="networkTxReference">Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID.</param>
         /// <param name="ownerName">The owner name of a bank account.  Only relevant for SEPA Direct Debit transactions.</param>
         /// <param name="paymentAccountReference">The Payment Account Reference (PAR) value links a network token with the underlying primary account number (PAN). The PAR value consists of 29 uppercase alphanumeric characters.</param>
@@ -98,7 +99,7 @@ namespace Adyen.Checkout.Models
         /// <param name="visaTransactionId">The &#x60;visaTransactionId&#x60;, has a fixed length of 15 numeric characters.  &gt; Contact Support Team to enable this field.</param>
         /// <param name="xid">The 3DS transaction ID of the 3DS session sent in notifications. The value is Base64-encoded and is returned for transactions with directoryResponse &#39;N&#39; or &#39;Y&#39;.   Example: ODgxNDc2MDg2MDExODk5MAAAAAA&#x3D;</param>
         [JsonConstructor]
-        public ResponseAdditionalDataCommon(Option<string?> acquirerAccountCode = default, Option<string?> acquirerCode = default, Option<string?> acquirerReference = default, Option<string?> alias = default, Option<string?> aliasType = default, Option<string?> authCode = default, Option<string?> authorisationMid = default, Option<string?> authorisedAmountCurrency = default, Option<string?> authorisedAmountValue = default, Option<string?> avsResult = default, Option<string?> avsResultRaw = default, Option<string?> bic = default, Option<string?> coBrandedWith = default, Option<string?> cvcResult = default, Option<string?> cvcResultRaw = default, Option<string?> dsTransID = default, Option<string?> eci = default, Option<string?> expiryDate = default, Option<string?> extraCostsCurrency = default, Option<string?> extraCostsValue = default, Option<string?> fraudCheckItemNrFraudCheckname = default, Option<string?> fraudManualReview = default, Option<FraudResultTypeEnum?> fraudResultType = default, Option<FraudRiskLevelEnum?> fraudRiskLevel = default, Option<string?> fundingSource = default, Option<string?> fundsAvailability = default, Option<string?> inferredRefusalReason = default, Option<string?> isCardCommercial = default, Option<string?> issuerCountry = default, Option<string?> liabilityShift = default, Option<string?> mcBankNetReferenceNumber = default, Option<string?> merchantAdviceCode = default, Option<string?> merchantReference = default, Option<string?> networkTxReference = default, Option<string?> ownerName = default, Option<string?> paymentAccountReference = default, Option<string?> paymentMethod = default, Option<string?> paymentMethodVariant = default, Option<string?> payoutEligible = default, Option<string?> realtimeAccountUpdaterStatus = default, Option<string?> receiptFreeText = default, Option<string?> recurringContractTypes = default, Option<string?> recurringFirstPspReference = default, Option<string?> recurringRecurringDetailReference = default, Option<string?> recurringShopperReference = default, Option<RecurringProcessingModelEnum?> recurringProcessingModel = default, Option<string?> referred = default, Option<string?> refusalReasonRaw = default, Option<string?> requestAmount = default, Option<string?> requestCurrencyCode = default, Option<string?> shopperInteraction = default, Option<string?> shopperReference = default, Option<string?> terminalId = default, Option<string?> threeDAuthenticated = default, Option<string?> threeDAuthenticatedResponse = default, Option<string?> threeDOffered = default, Option<string?> threeDOfferedResponse = default, Option<string?> threeDSVersion = default, Option<string?> tokenizationShopperReference = default, Option<TokenizationStoreOperationTypeEnum?> tokenizationStoreOperationType = default, Option<string?> tokenizationStoredPaymentMethodId = default, Option<string?> visaTransactionId = default, Option<string?> xid = default)
+        public ResponseAdditionalDataCommon(Option<string?> acquirerAccountCode = default, Option<string?> acquirerCode = default, Option<string?> acquirerReference = default, Option<string?> alias = default, Option<string?> aliasType = default, Option<string?> authCode = default, Option<string?> authorisationMid = default, Option<string?> authorisedAmountCurrency = default, Option<string?> authorisedAmountValue = default, Option<string?> avsResult = default, Option<string?> avsResultRaw = default, Option<string?> bic = default, Option<string?> coBrandedWith = default, Option<string?> cvcResult = default, Option<string?> cvcResultRaw = default, Option<string?> dsTransID = default, Option<string?> eci = default, Option<string?> expiryDate = default, Option<string?> extraCostsCurrency = default, Option<string?> extraCostsValue = default, Option<string?> fraudCheckItemNrFraudCheckname = default, Option<string?> fraudManualReview = default, Option<FraudResultTypeEnum?> fraudResultType = default, Option<FraudRiskLevelEnum?> fraudRiskLevel = default, Option<string?> fundingSource = default, Option<string?> fundsAvailability = default, Option<string?> inferredRefusalReason = default, Option<string?> isCardCommercial = default, Option<string?> issuerCountry = default, Option<string?> liabilityShift = default, Option<string?> mcBankNetReferenceNumber = default, Option<string?> merchantAdviceCode = default, Option<string?> merchantReference = default, Option<string?> networkProcessingMode = default, Option<string?> networkTxReference = default, Option<string?> ownerName = default, Option<string?> paymentAccountReference = default, Option<string?> paymentMethod = default, Option<string?> paymentMethodVariant = default, Option<string?> payoutEligible = default, Option<string?> realtimeAccountUpdaterStatus = default, Option<string?> receiptFreeText = default, Option<string?> recurringContractTypes = default, Option<string?> recurringFirstPspReference = default, Option<string?> recurringRecurringDetailReference = default, Option<string?> recurringShopperReference = default, Option<RecurringProcessingModelEnum?> recurringProcessingModel = default, Option<string?> referred = default, Option<string?> refusalReasonRaw = default, Option<string?> requestAmount = default, Option<string?> requestCurrencyCode = default, Option<string?> shopperInteraction = default, Option<string?> shopperReference = default, Option<string?> terminalId = default, Option<string?> threeDAuthenticated = default, Option<string?> threeDAuthenticatedResponse = default, Option<string?> threeDOffered = default, Option<string?> threeDOfferedResponse = default, Option<string?> threeDSVersion = default, Option<string?> tokenizationShopperReference = default, Option<TokenizationStoreOperationTypeEnum?> tokenizationStoreOperationType = default, Option<string?> tokenizationStoredPaymentMethodId = default, Option<string?> visaTransactionId = default, Option<string?> xid = default)
         {
             _AcquirerAccountCodeOption = acquirerAccountCode;
             _AcquirerCodeOption = acquirerCode;
@@ -133,6 +134,7 @@ namespace Adyen.Checkout.Models
             _McBankNetReferenceNumberOption = mcBankNetReferenceNumber;
             _MerchantAdviceCodeOption = merchantAdviceCode;
             _MerchantReferenceOption = merchantReference;
+            _NetworkProcessingModeOption = networkProcessingMode;
             _NetworkTxReferenceOption = networkTxReference;
             _OwnerNameOption = ownerName;
             _PaymentAccountReferenceOption = paymentAccountReference;
@@ -1134,6 +1136,20 @@ namespace Adyen.Checkout.Models
         public string? MerchantReference { get { return this._MerchantReferenceOption; } set { this._MerchantReferenceOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="NetworkProcessingMode"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _NetworkProcessingModeOption { get; private set; }
+
+        /// <summary>
+        /// Indicates the processing flow.  Possible values: * **sale**: You do not need to separately capture the funds, because capture happens automatically as part of the transaction.  * **auth**: If you have not [configured automatic capture for the transaction](https://docs.adyen.com/online-payments/capture#types-of-capture), you must manually capture the funds.
+        /// </summary>
+        /// <value>Indicates the processing flow.  Possible values: * **sale**: You do not need to separately capture the funds, because capture happens automatically as part of the transaction.  * **auth**: If you have not [configured automatic capture for the transaction](https://docs.adyen.com/online-payments/capture#types-of-capture), you must manually capture the funds.</value>
+        [JsonPropertyName("networkProcessingMode")]
+        public string? NetworkProcessingMode { get { return this._NetworkProcessingModeOption; } set { this._NetworkProcessingModeOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="NetworkTxReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -1568,6 +1584,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  McBankNetReferenceNumber: ").Append(McBankNetReferenceNumber).Append("\n");
             sb.Append("  MerchantAdviceCode: ").Append(MerchantAdviceCode).Append("\n");
             sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
+            sb.Append("  NetworkProcessingMode: ").Append(NetworkProcessingMode).Append("\n");
             sb.Append("  NetworkTxReference: ").Append(NetworkTxReference).Append("\n");
             sb.Append("  OwnerName: ").Append(OwnerName).Append("\n");
             sb.Append("  PaymentAccountReference: ").Append(PaymentAccountReference).Append("\n");
@@ -1658,6 +1675,7 @@ namespace Adyen.Checkout.Models
             Option<string?> mcBankNetReferenceNumber = default;
             Option<string?> merchantAdviceCode = default;
             Option<string?> merchantReference = default;
+            Option<string?> networkProcessingMode = default;
             Option<string?> networkTxReference = default;
             Option<string?> ownerName = default;
             Option<string?> paymentAccountReference = default;
@@ -1805,6 +1823,9 @@ namespace Adyen.Checkout.Models
                         case "merchantReference":
                             merchantReference = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "networkProcessingMode":
+                            networkProcessingMode = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "networkTxReference":
                             networkTxReference = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -1904,7 +1925,7 @@ namespace Adyen.Checkout.Models
             }
             
 
-            return new ResponseAdditionalDataCommon(acquirerAccountCode, acquirerCode, acquirerReference, alias, aliasType, authCode, authorisationMid, authorisedAmountCurrency, authorisedAmountValue, avsResult, avsResultRaw, bic, coBrandedWith, cvcResult, cvcResultRaw, dsTransID, eci, expiryDate, extraCostsCurrency, extraCostsValue, fraudCheckItemNrFraudCheckname, fraudManualReview, fraudResultType, fraudRiskLevel, fundingSource, fundsAvailability, inferredRefusalReason, isCardCommercial, issuerCountry, liabilityShift, mcBankNetReferenceNumber, merchantAdviceCode, merchantReference, networkTxReference, ownerName, paymentAccountReference, paymentMethod, paymentMethodVariant, payoutEligible, realtimeAccountUpdaterStatus, receiptFreeText, recurringContractTypes, recurringFirstPspReference, recurringRecurringDetailReference, recurringShopperReference, recurringProcessingModel, referred, refusalReasonRaw, requestAmount, requestCurrencyCode, shopperInteraction, shopperReference, terminalId, threeDAuthenticated, threeDAuthenticatedResponse, threeDOffered, threeDOfferedResponse, threeDSVersion, tokenizationShopperReference, tokenizationStoreOperationType, tokenizationStoredPaymentMethodId, visaTransactionId, xid);
+            return new ResponseAdditionalDataCommon(acquirerAccountCode, acquirerCode, acquirerReference, alias, aliasType, authCode, authorisationMid, authorisedAmountCurrency, authorisedAmountValue, avsResult, avsResultRaw, bic, coBrandedWith, cvcResult, cvcResultRaw, dsTransID, eci, expiryDate, extraCostsCurrency, extraCostsValue, fraudCheckItemNrFraudCheckname, fraudManualReview, fraudResultType, fraudRiskLevel, fundingSource, fundsAvailability, inferredRefusalReason, isCardCommercial, issuerCountry, liabilityShift, mcBankNetReferenceNumber, merchantAdviceCode, merchantReference, networkProcessingMode, networkTxReference, ownerName, paymentAccountReference, paymentMethod, paymentMethodVariant, payoutEligible, realtimeAccountUpdaterStatus, receiptFreeText, recurringContractTypes, recurringFirstPspReference, recurringRecurringDetailReference, recurringShopperReference, recurringProcessingModel, referred, refusalReasonRaw, requestAmount, requestCurrencyCode, shopperInteraction, shopperReference, terminalId, threeDAuthenticated, threeDAuthenticatedResponse, threeDOffered, threeDOfferedResponse, threeDSVersion, tokenizationShopperReference, tokenizationStoreOperationType, tokenizationStoredPaymentMethodId, visaTransactionId, xid);
         }
 
         /// <summary>
@@ -2068,6 +2089,10 @@ namespace Adyen.Checkout.Models
             if (responseAdditionalDataCommon._MerchantReferenceOption.IsSet)
                 if (responseAdditionalDataCommon.MerchantReference != null)
                     writer.WriteString("merchantReference", responseAdditionalDataCommon.MerchantReference);
+
+            if (responseAdditionalDataCommon._NetworkProcessingModeOption.IsSet)
+                if (responseAdditionalDataCommon.NetworkProcessingMode != null)
+                    writer.WriteString("networkProcessingMode", responseAdditionalDataCommon.NetworkProcessingMode);
 
             if (responseAdditionalDataCommon._NetworkTxReferenceOption.IsSet)
                 if (responseAdditionalDataCommon.NetworkTxReference != null)
