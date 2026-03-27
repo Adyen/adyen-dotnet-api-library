@@ -68,6 +68,11 @@ namespace Adyen.Checkout.Models
             public string? Value { get; set; }
 
             /// <summary>
+            /// BehaviorEnum.DeductFromOneBalanceAccount - deductFromOneBalanceAccount
+            /// </summary>
+            public static readonly BehaviorEnum DeductFromOneBalanceAccount = new("deductFromOneBalanceAccount");
+
+            /// <summary>
             /// BehaviorEnum.DeductAccordingToSplitRatio - deductAccordingToSplitRatio
             /// </summary>
             public static readonly BehaviorEnum DeductAccordingToSplitRatio = new("deductAccordingToSplitRatio");
@@ -76,11 +81,6 @@ namespace Adyen.Checkout.Models
             /// BehaviorEnum.DeductFromLiableAccount - deductFromLiableAccount
             /// </summary>
             public static readonly BehaviorEnum DeductFromLiableAccount = new("deductFromLiableAccount");
-
-            /// <summary>
-            /// BehaviorEnum.DeductFromOneBalanceAccount - deductFromOneBalanceAccount
-            /// </summary>
-            public static readonly BehaviorEnum DeductFromOneBalanceAccount = new("deductFromOneBalanceAccount");
         
             private BehaviorEnum(string? value)
             {
@@ -119,9 +119,9 @@ namespace Adyen.Checkout.Models
             public static BehaviorEnum? FromStringOrDefault(string value)
             {
                 return value switch {
+                    "deductFromOneBalanceAccount" => BehaviorEnum.DeductFromOneBalanceAccount,
                     "deductAccordingToSplitRatio" => BehaviorEnum.DeductAccordingToSplitRatio,
                     "deductFromLiableAccount" => BehaviorEnum.DeductFromLiableAccount,
-                    "deductFromOneBalanceAccount" => BehaviorEnum.DeductFromOneBalanceAccount,
                     _ => null,
                 };
             }
@@ -137,14 +137,14 @@ namespace Adyen.Checkout.Models
                 if (value == null)
                     return null;
             
+                if (value == BehaviorEnum.DeductFromOneBalanceAccount)
+                    return "deductFromOneBalanceAccount";
+                
                 if (value == BehaviorEnum.DeductAccordingToSplitRatio)
                     return "deductAccordingToSplitRatio";
                 
                 if (value == BehaviorEnum.DeductFromLiableAccount)
                     return "deductFromLiableAccount";
-                
-                if (value == BehaviorEnum.DeductFromOneBalanceAccount)
-                    return "deductFromOneBalanceAccount";
                 
                 return null;
             }

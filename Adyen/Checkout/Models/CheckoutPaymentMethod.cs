@@ -64,6 +64,16 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class.
         /// </summary>
+        /// <param name="almaDetails"></param>
+        public CheckoutPaymentMethod(AlmaDetails almaDetails)
+        {
+            AlmaDetails = almaDetails;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class.
+        /// </summary>
         /// <param name="amazonPayDetails"></param>
         public CheckoutPaymentMethod(AmazonPayDetails amazonPayDetails)
         {
@@ -158,6 +168,16 @@ namespace Adyen.Checkout.Models
         public CheckoutPaymentMethod(CellulantDetails cellulantDetails)
         {
             CellulantDetails = cellulantDetails;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class.
+        /// </summary>
+        /// <param name="directDebitAuDetails"></param>
+        public CheckoutPaymentMethod(DirectDebitAuDetails directDebitAuDetails)
+        {
+            DirectDebitAuDetails = directDebitAuDetails;
             OnCreated();
         }
 
@@ -268,6 +288,16 @@ namespace Adyen.Checkout.Models
         public CheckoutPaymentMethod(KlarnaDetails klarnaDetails)
         {
             KlarnaDetails = klarnaDetails;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class.
+        /// </summary>
+        /// <param name="klarnaNetworkDetails"></param>
+        public CheckoutPaymentMethod(KlarnaNetworkDetails klarnaNetworkDetails)
+        {
+            KlarnaNetworkDetails = klarnaNetworkDetails;
             OnCreated();
         }
 
@@ -408,6 +438,16 @@ namespace Adyen.Checkout.Models
         public CheckoutPaymentMethod(PixDetails pixDetails)
         {
             PixDetails = pixDetails;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class.
+        /// </summary>
+        /// <param name="pixPayByBankDetails"></param>
+        public CheckoutPaymentMethod(PixPayByBankDetails pixPayByBankDetails)
+        {
+            PixPayByBankDetails = pixPayByBankDetails;
             OnCreated();
         }
 
@@ -589,6 +629,11 @@ namespace Adyen.Checkout.Models
         public AfterpayDetails? AfterpayDetails { get; set; }
 
         /// <summary>
+        /// <see cref="AlmaDetails"/>..
+        /// </summary>
+        public AlmaDetails? AlmaDetails { get; set; }
+
+        /// <summary>
         /// <see cref="AmazonPayDetails"/>..
         /// </summary>
         public AmazonPayDetails? AmazonPayDetails { get; set; }
@@ -637,6 +682,11 @@ namespace Adyen.Checkout.Models
         /// <see cref="CellulantDetails"/>..
         /// </summary>
         public CellulantDetails? CellulantDetails { get; set; }
+
+        /// <summary>
+        /// <see cref="DirectDebitAuDetails"/>..
+        /// </summary>
+        public DirectDebitAuDetails? DirectDebitAuDetails { get; set; }
 
         /// <summary>
         /// <see cref="DokuDetails"/>..
@@ -692,6 +742,11 @@ namespace Adyen.Checkout.Models
         /// <see cref="KlarnaDetails"/>..
         /// </summary>
         public KlarnaDetails? KlarnaDetails { get; set; }
+
+        /// <summary>
+        /// <see cref="KlarnaNetworkDetails"/>..
+        /// </summary>
+        public KlarnaNetworkDetails? KlarnaNetworkDetails { get; set; }
 
         /// <summary>
         /// <see cref="MasterpassDetails"/>..
@@ -762,6 +817,11 @@ namespace Adyen.Checkout.Models
         /// <see cref="PixDetails"/>..
         /// </summary>
         public PixDetails? PixDetails { get; set; }
+
+        /// <summary>
+        /// <see cref="PixPayByBankDetails"/>..
+        /// </summary>
+        public PixPayByBankDetails? PixPayByBankDetails { get; set; }
 
         /// <summary>
         /// <see cref="PseDetails"/>..
@@ -857,6 +917,8 @@ namespace Adyen.Checkout.Models
                 sb.Append(AffirmDetails.ToString().Replace("\n", "\n  "));
             if (this.AfterpayDetails != null)
                 sb.Append(AfterpayDetails.ToString().Replace("\n", "\n  "));
+            if (this.AlmaDetails != null)
+                sb.Append(AlmaDetails.ToString().Replace("\n", "\n  "));
             if (this.AmazonPayDetails != null)
                 sb.Append(AmazonPayDetails.ToString().Replace("\n", "\n  "));
             if (this.AncvDetails != null)
@@ -877,6 +939,8 @@ namespace Adyen.Checkout.Models
                 sb.Append(CashAppDetails.ToString().Replace("\n", "\n  "));
             if (this.CellulantDetails != null)
                 sb.Append(CellulantDetails.ToString().Replace("\n", "\n  "));
+            if (this.DirectDebitAuDetails != null)
+                sb.Append(DirectDebitAuDetails.ToString().Replace("\n", "\n  "));
             if (this.DokuDetails != null)
                 sb.Append(DokuDetails.ToString().Replace("\n", "\n  "));
             if (this.DragonpayDetails != null)
@@ -899,6 +963,8 @@ namespace Adyen.Checkout.Models
                 sb.Append(IdealDetails.ToString().Replace("\n", "\n  "));
             if (this.KlarnaDetails != null)
                 sb.Append(KlarnaDetails.ToString().Replace("\n", "\n  "));
+            if (this.KlarnaNetworkDetails != null)
+                sb.Append(KlarnaNetworkDetails.ToString().Replace("\n", "\n  "));
             if (this.MasterpassDetails != null)
                 sb.Append(MasterpassDetails.ToString().Replace("\n", "\n  "));
             if (this.MbwayDetails != null)
@@ -927,6 +993,8 @@ namespace Adyen.Checkout.Models
                 sb.Append(PaymentDetails.ToString().Replace("\n", "\n  "));
             if (this.PixDetails != null)
                 sb.Append(PixDetails.ToString().Replace("\n", "\n  "));
+            if (this.PixPayByBankDetails != null)
+                sb.Append(PixPayByBankDetails.ToString().Replace("\n", "\n  "));
             if (this.PseDetails != null)
                 sb.Append(PseDetails.ToString().Replace("\n", "\n  "));
             if (this.RakutenPayDetails != null)
@@ -989,6 +1057,7 @@ namespace Adyen.Checkout.Models
             AchDetails? achDetails = default;
             AffirmDetails? affirmDetails = default;
             AfterpayDetails? afterpayDetails = default;
+            AlmaDetails? almaDetails = default;
             AmazonPayDetails? amazonPayDetails = default;
             AncvDetails? ancvDetails = default;
             AndroidPayDetails? androidPayDetails = default;
@@ -999,6 +1068,7 @@ namespace Adyen.Checkout.Models
             CardDetails? cardDetails = default;
             CashAppDetails? cashAppDetails = default;
             CellulantDetails? cellulantDetails = default;
+            DirectDebitAuDetails? directDebitAuDetails = default;
             DokuDetails? dokuDetails = default;
             DragonpayDetails? dragonpayDetails = default;
             EBankingFinlandDetails? eBankingFinlandDetails = default;
@@ -1010,6 +1080,7 @@ namespace Adyen.Checkout.Models
             GooglePayDetails? googlePayDetails = default;
             IdealDetails? idealDetails = default;
             KlarnaDetails? klarnaDetails = default;
+            KlarnaNetworkDetails? klarnaNetworkDetails = default;
             MasterpassDetails? masterpassDetails = default;
             MbwayDetails? mbwayDetails = default;
             MobilePayDetails? mobilePayDetails = default;
@@ -1024,6 +1095,7 @@ namespace Adyen.Checkout.Models
             PayWithGoogleDetails? payWithGoogleDetails = default;
             PaymentDetails? paymentDetails = default;
             PixDetails? pixDetails = default;
+            PixPayByBankDetails? pixPayByBankDetails = default;
             PseDetails? pseDetails = default;
             RakutenPayDetails? rakutenPayDetails = default;
             RatepayDetails? ratepayDetails = default;
@@ -1061,6 +1133,9 @@ namespace Adyen.Checkout.Models
                     Utf8JsonReader utf8JsonReaderAfterpayDetails = utf8JsonReader;
                     ClientUtils.TryDeserialize<AfterpayDetails?>(ref utf8JsonReaderAfterpayDetails, jsonSerializerOptions, out afterpayDetails);
 
+                    Utf8JsonReader utf8JsonReaderAlmaDetails = utf8JsonReader;
+                    ClientUtils.TryDeserialize<AlmaDetails?>(ref utf8JsonReaderAlmaDetails, jsonSerializerOptions, out almaDetails);
+
                     Utf8JsonReader utf8JsonReaderAmazonPayDetails = utf8JsonReader;
                     ClientUtils.TryDeserialize<AmazonPayDetails?>(ref utf8JsonReaderAmazonPayDetails, jsonSerializerOptions, out amazonPayDetails);
 
@@ -1090,6 +1165,9 @@ namespace Adyen.Checkout.Models
 
                     Utf8JsonReader utf8JsonReaderCellulantDetails = utf8JsonReader;
                     ClientUtils.TryDeserialize<CellulantDetails?>(ref utf8JsonReaderCellulantDetails, jsonSerializerOptions, out cellulantDetails);
+
+                    Utf8JsonReader utf8JsonReaderDirectDebitAuDetails = utf8JsonReader;
+                    ClientUtils.TryDeserialize<DirectDebitAuDetails?>(ref utf8JsonReaderDirectDebitAuDetails, jsonSerializerOptions, out directDebitAuDetails);
 
                     Utf8JsonReader utf8JsonReaderDokuDetails = utf8JsonReader;
                     ClientUtils.TryDeserialize<DokuDetails?>(ref utf8JsonReaderDokuDetails, jsonSerializerOptions, out dokuDetails);
@@ -1123,6 +1201,9 @@ namespace Adyen.Checkout.Models
 
                     Utf8JsonReader utf8JsonReaderKlarnaDetails = utf8JsonReader;
                     ClientUtils.TryDeserialize<KlarnaDetails?>(ref utf8JsonReaderKlarnaDetails, jsonSerializerOptions, out klarnaDetails);
+
+                    Utf8JsonReader utf8JsonReaderKlarnaNetworkDetails = utf8JsonReader;
+                    ClientUtils.TryDeserialize<KlarnaNetworkDetails?>(ref utf8JsonReaderKlarnaNetworkDetails, jsonSerializerOptions, out klarnaNetworkDetails);
 
                     Utf8JsonReader utf8JsonReaderMasterpassDetails = utf8JsonReader;
                     ClientUtils.TryDeserialize<MasterpassDetails?>(ref utf8JsonReaderMasterpassDetails, jsonSerializerOptions, out masterpassDetails);
@@ -1165,6 +1246,9 @@ namespace Adyen.Checkout.Models
 
                     Utf8JsonReader utf8JsonReaderPixDetails = utf8JsonReader;
                     ClientUtils.TryDeserialize<PixDetails?>(ref utf8JsonReaderPixDetails, jsonSerializerOptions, out pixDetails);
+
+                    Utf8JsonReader utf8JsonReaderPixPayByBankDetails = utf8JsonReader;
+                    ClientUtils.TryDeserialize<PixPayByBankDetails?>(ref utf8JsonReaderPixPayByBankDetails, jsonSerializerOptions, out pixPayByBankDetails);
 
                     Utf8JsonReader utf8JsonReaderPseDetails = utf8JsonReader;
                     ClientUtils.TryDeserialize<PseDetails?>(ref utf8JsonReaderPseDetails, jsonSerializerOptions, out pseDetails);
@@ -1246,6 +1330,9 @@ namespace Adyen.Checkout.Models
             if (afterpayDetails?.Type != null)
                 return new CheckoutPaymentMethod(afterpayDetails);
 
+            if (almaDetails?.Type != null)
+                return new CheckoutPaymentMethod(almaDetails);
+
             if (amazonPayDetails?.Type != null)
                 return new CheckoutPaymentMethod(amazonPayDetails);
 
@@ -1275,6 +1362,9 @@ namespace Adyen.Checkout.Models
 
             if (cellulantDetails?.Type != null)
                 return new CheckoutPaymentMethod(cellulantDetails);
+
+            if (directDebitAuDetails?.Type != null)
+                return new CheckoutPaymentMethod(directDebitAuDetails);
 
             if (dokuDetails?.Type != null)
                 return new CheckoutPaymentMethod(dokuDetails);
@@ -1308,6 +1398,9 @@ namespace Adyen.Checkout.Models
 
             if (klarnaDetails?.Type != null)
                 return new CheckoutPaymentMethod(klarnaDetails);
+
+            if (klarnaNetworkDetails?.Type != null)
+                return new CheckoutPaymentMethod(klarnaNetworkDetails);
 
             if (masterpassDetails?.Type != null)
                 return new CheckoutPaymentMethod(masterpassDetails);
@@ -1350,6 +1443,9 @@ namespace Adyen.Checkout.Models
 
             if (pixDetails?.Type != null)
                 return new CheckoutPaymentMethod(pixDetails);
+
+            if (pixPayByBankDetails?.Type != null)
+                return new CheckoutPaymentMethod(pixPayByBankDetails);
 
             if (pseDetails?.Type != null)
                 return new CheckoutPaymentMethod(pseDetails);
@@ -1416,6 +1512,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.AffirmDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.AfterpayDetails != null)
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.AfterpayDetails, jsonSerializerOptions);
+            if (checkoutPaymentMethod.AlmaDetails != null)
+                JsonSerializer.Serialize(writer, checkoutPaymentMethod.AlmaDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.AmazonPayDetails != null)
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.AmazonPayDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.AncvDetails != null)
@@ -1436,6 +1534,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.CashAppDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.CellulantDetails != null)
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.CellulantDetails, jsonSerializerOptions);
+            if (checkoutPaymentMethod.DirectDebitAuDetails != null)
+                JsonSerializer.Serialize(writer, checkoutPaymentMethod.DirectDebitAuDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.DokuDetails != null)
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.DokuDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.DragonpayDetails != null)
@@ -1458,6 +1558,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.IdealDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.KlarnaDetails != null)
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.KlarnaDetails, jsonSerializerOptions);
+            if (checkoutPaymentMethod.KlarnaNetworkDetails != null)
+                JsonSerializer.Serialize(writer, checkoutPaymentMethod.KlarnaNetworkDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.MasterpassDetails != null)
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.MasterpassDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.MbwayDetails != null)
@@ -1486,6 +1588,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.PaymentDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.PixDetails != null)
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.PixDetails, jsonSerializerOptions);
+            if (checkoutPaymentMethod.PixPayByBankDetails != null)
+                JsonSerializer.Serialize(writer, checkoutPaymentMethod.PixPayByBankDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.PseDetails != null)
                 JsonSerializer.Serialize(writer, checkoutPaymentMethod.PseDetails, jsonSerializerOptions);
             if (checkoutPaymentMethod.RakutenPayDetails != null)

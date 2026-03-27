@@ -48,10 +48,14 @@ namespace Adyen.Checkout.Models
         /// <param name="billingDay">The number of the day, on which the recurring debit can happen. Should be within the same calendar month as the mandate recurring date.  Possible values: 1-31 based on the &#x60;frequency&#x60;.</param>
         /// <param name="count">The number of transactions that can be performed within the given frequency.</param>
         /// <param name="maskedAccountId">The masked account number associated with the mandate.</param>
+        /// <param name="minAmount">For a billing plan where the payment amounts are variable, the minimum amount to charge the shopper for each recurring payment. When a shopper approves the billing plan, they can also specify a maximum amount in their banking app.</param>
+        /// <param name="recurringAmount">For a billing plan where the payment amount is fixed, the amount the shopper will be charged for each recurring payment.</param>
+        /// <param name="recurringStatement">The text that will be shown on the shopper&#39;s bank statement for the recurring payments. We recommend to add a descriptive text about the subscription to let your shoppers recognize your recurring payments. Maximum length: 35 characters.</param>
         /// <param name="remarks">Additional remarks or notes about the mandate.</param>
+        /// <param name="retryPolicy">When set to true, you can retry for failed recurring payments. The default value is true.</param>
         /// <param name="startsAt">Start date of the billing plan, in YYYY-MM-DD format. By default, the transaction date.</param>
         [JsonConstructor]
-        public TokenMandate(string amount, string currency, string endsAt, FrequencyEnum frequency, string mandateId, string providerId, string status, string txVariant, Option<string?> accountIdType = default, Option<AmountRuleEnum?> amountRule = default, Option<BillingAttemptsRuleEnum?> billingAttemptsRule = default, Option<string?> billingDay = default, Option<string?> count = default, Option<string?> maskedAccountId = default, Option<string?> remarks = default, Option<string?> startsAt = default)
+        public TokenMandate(string amount, string currency, string endsAt, FrequencyEnum frequency, string mandateId, string providerId, string status, string txVariant, Option<string?> accountIdType = default, Option<AmountRuleEnum?> amountRule = default, Option<BillingAttemptsRuleEnum?> billingAttemptsRule = default, Option<string?> billingDay = default, Option<string?> count = default, Option<string?> maskedAccountId = default, Option<string?> minAmount = default, Option<string?> recurringAmount = default, Option<string?> recurringStatement = default, Option<string?> remarks = default, Option<RetryPolicyEnum?> retryPolicy = default, Option<string?> startsAt = default)
         {
             Amount = amount;
             Currency = currency;
@@ -67,7 +71,11 @@ namespace Adyen.Checkout.Models
             _BillingDayOption = billingDay;
             _CountOption = count;
             _MaskedAccountIdOption = maskedAccountId;
+            _MinAmountOption = minAmount;
+            _RecurringAmountOption = recurringAmount;
+            _RecurringStatementOption = recurringStatement;
             _RemarksOption = remarks;
+            _RetryPolicyOption = retryPolicy;
             _StartsAtOption = startsAt;
             OnCreated();
         }
@@ -489,6 +497,123 @@ namespace Adyen.Checkout.Models
         public BillingAttemptsRuleEnum? BillingAttemptsRule { get { return this._BillingAttemptsRuleOption; } set { this._BillingAttemptsRuleOption = new(value); } }
 
         /// <summary>
+        /// When set to true, you can retry for failed recurring payments. The default value is true.
+        /// </summary>
+        /// <value>When set to true, you can retry for failed recurring payments. The default value is true.</value>
+        [JsonConverter(typeof(RetryPolicyEnumJsonConverter))]
+        public class RetryPolicyEnum : IEnum
+        {
+            /// <summary>
+            /// Returns the value of the RetryPolicyEnum.
+            /// </summary>
+            public string? Value { get; set; }
+
+            /// <summary>
+            /// RetryPolicyEnum.True - true
+            /// </summary>
+            public static readonly RetryPolicyEnum True = new("true");
+
+            /// <summary>
+            /// RetryPolicyEnum.False - false
+            /// </summary>
+            public static readonly RetryPolicyEnum False = new("false");
+        
+            private RetryPolicyEnum(string? value)
+            {
+                Value = value;
+            }
+
+            /// <summary>
+            /// Converts a string to a <see cref="RetryPolicyEnum"/> implicitly.
+            /// </summary>
+            /// <param name="value">The string value to convert. Defaults to null.</param>
+            /// <returns>A new <see cref="RetryPolicyEnum"/> instance initialized with the string value.</returns>
+            public static implicit operator RetryPolicyEnum?(string? value) => value == null ? null : new RetryPolicyEnum(value);
+    
+            /// <summary>
+            /// Converts a <see cref="RetryPolicyEnum"/> instance to a string implicitly.
+            /// </summary>
+            /// <param name="option">The <see cref="RetryPolicyEnum"/> instance. Default to null.</param>
+            /// <returns>String value of the <see cref="RetryPolicyEnum"/> instance./// </returns>
+            public static implicit operator string?(RetryPolicyEnum? option) => option?.Value;
+        
+            public static bool operator ==(RetryPolicyEnum? left, RetryPolicyEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+    
+            public static bool operator !=(RetryPolicyEnum? left, RetryPolicyEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            public override bool Equals(object? obj) => obj is RetryPolicyEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+    
+            public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+        
+            public override string ToString() => Value ?? string.Empty;
+        
+            /// <summary>
+            /// Returns a <see cref="RetryPolicyEnum?"/>.
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns><see cref="RetryPolicyEnum"/> or null.</returns>
+            public static RetryPolicyEnum? FromStringOrDefault(string value)
+            {
+                return value switch {
+                    "true" => RetryPolicyEnum.True,
+                    "false" => RetryPolicyEnum.False,
+                    _ => null,
+                };
+            }
+    
+            /// <summary>
+            /// Converts the <see cref="RetryPolicyEnum"/> to the json value.
+            /// </summary>
+            /// <param name="value"><see cref="RetryPolicyEnum"/></param>
+            /// <returns>String value of the enum.</returns>
+            /// <exception cref="NotImplementedException"></exception>
+            public static string? ToJsonValue(RetryPolicyEnum? value)
+            {
+                if (value == null)
+                    return null;
+            
+                if (value == RetryPolicyEnum.True)
+                    return "true";
+                
+                if (value == RetryPolicyEnum.False)
+                    return "false";
+                
+                return null;
+            }
+            
+            /// <summary>
+            /// JsonConverter for writing RetryPolicyEnum.               
+            /// </summary>
+            public class RetryPolicyEnumJsonConverter : JsonConverter<RetryPolicyEnum>
+            {
+                public override RetryPolicyEnum? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions jsonOptions)
+                {
+                    string value = reader.GetString();
+                    return value == null ? null : RetryPolicyEnum.FromStringOrDefault(value) ?? new RetryPolicyEnum(value);
+                }
+
+                public override void Write(Utf8JsonWriter writer, RetryPolicyEnum value, JsonSerializerOptions jsonOptions)
+                {
+                    writer.WriteStringValue(RetryPolicyEnum.ToJsonValue(value));
+                }
+            }
+        }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="RetryPolicy"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<RetryPolicyEnum?> _RetryPolicyOption { get; private set; }
+
+        /// <summary>
+        /// When set to true, you can retry for failed recurring payments. The default value is true.
+        /// </summary>
+        /// <value>When set to true, you can retry for failed recurring payments. The default value is true.</value>
+        [JsonPropertyName("retryPolicy")]
+        public RetryPolicyEnum? RetryPolicy { get { return this._RetryPolicyOption; } set { this._RetryPolicyOption = new(value); } }
+
+        /// <summary>
         /// The billing amount (in minor units) of the recurring transactions.
         /// </summary>
         /// <value>The billing amount (in minor units) of the recurring transactions.</value>
@@ -594,6 +719,48 @@ namespace Adyen.Checkout.Models
         public string? MaskedAccountId { get { return this._MaskedAccountIdOption; } set { this._MaskedAccountIdOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="MinAmount"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _MinAmountOption { get; private set; }
+
+        /// <summary>
+        /// For a billing plan where the payment amounts are variable, the minimum amount to charge the shopper for each recurring payment. When a shopper approves the billing plan, they can also specify a maximum amount in their banking app.
+        /// </summary>
+        /// <value>For a billing plan where the payment amounts are variable, the minimum amount to charge the shopper for each recurring payment. When a shopper approves the billing plan, they can also specify a maximum amount in their banking app.</value>
+        [JsonPropertyName("minAmount")]
+        public string? MinAmount { get { return this._MinAmountOption; } set { this._MinAmountOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="RecurringAmount"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _RecurringAmountOption { get; private set; }
+
+        /// <summary>
+        /// For a billing plan where the payment amount is fixed, the amount the shopper will be charged for each recurring payment.
+        /// </summary>
+        /// <value>For a billing plan where the payment amount is fixed, the amount the shopper will be charged for each recurring payment.</value>
+        [JsonPropertyName("recurringAmount")]
+        public string? RecurringAmount { get { return this._RecurringAmountOption; } set { this._RecurringAmountOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="RecurringStatement"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _RecurringStatementOption { get; private set; }
+
+        /// <summary>
+        /// The text that will be shown on the shopper&#39;s bank statement for the recurring payments. We recommend to add a descriptive text about the subscription to let your shoppers recognize your recurring payments. Maximum length: 35 characters.
+        /// </summary>
+        /// <value>The text that will be shown on the shopper's bank statement for the recurring payments. We recommend to add a descriptive text about the subscription to let your shoppers recognize your recurring payments. Maximum length: 35 characters.</value>
+        [JsonPropertyName("recurringStatement")]
+        public string? RecurringStatement { get { return this._RecurringStatementOption; } set { this._RecurringStatementOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Remarks"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -643,7 +810,11 @@ namespace Adyen.Checkout.Models
             sb.Append("  BillingDay: ").Append(BillingDay).Append("\n");
             sb.Append("  Count: ").Append(Count).Append("\n");
             sb.Append("  MaskedAccountId: ").Append(MaskedAccountId).Append("\n");
+            sb.Append("  MinAmount: ").Append(MinAmount).Append("\n");
+            sb.Append("  RecurringAmount: ").Append(RecurringAmount).Append("\n");
+            sb.Append("  RecurringStatement: ").Append(RecurringStatement).Append("\n");
             sb.Append("  Remarks: ").Append(Remarks).Append("\n");
+            sb.Append("  RetryPolicy: ").Append(RetryPolicy).Append("\n");
             sb.Append("  StartsAt: ").Append(StartsAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -686,7 +857,11 @@ namespace Adyen.Checkout.Models
             Option<string?> billingDay = default;
             Option<string?> count = default;
             Option<string?> maskedAccountId = default;
+            Option<string?> minAmount = default;
+            Option<string?> recurringAmount = default;
+            Option<string?> recurringStatement = default;
             Option<string?> remarks = default;
+            Option<TokenMandate.RetryPolicyEnum?> retryPolicy = default;
             Option<string?> startsAt = default;
 
             while (utf8JsonReader.Read())
@@ -749,8 +924,21 @@ namespace Adyen.Checkout.Models
                         case "maskedAccountId":
                             maskedAccountId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "minAmount":
+                            minAmount = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "recurringAmount":
+                            recurringAmount = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "recurringStatement":
+                            recurringStatement = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "remarks":
                             remarks = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "retryPolicy":
+                            string? retryPolicyRawValue = utf8JsonReader.GetString();
+                            retryPolicy = new Option<TokenMandate.RetryPolicyEnum?>(TokenMandate.RetryPolicyEnum.FromStringOrDefault(retryPolicyRawValue));
                             break;
                         case "startsAt":
                             startsAt = new Option<string?>(utf8JsonReader.GetString()!);
@@ -785,7 +973,7 @@ namespace Adyen.Checkout.Models
             if (!txVariant.IsSet)
                 throw new ArgumentException("Property is required for class TokenMandate.", nameof(txVariant));
 
-            return new TokenMandate(amount.Value!, currency.Value!, endsAt.Value!, frequency.Value!.Value!, mandateId.Value!, providerId.Value!, status.Value!, txVariant.Value!, accountIdType, amountRule, billingAttemptsRule, billingDay, count, maskedAccountId, remarks, startsAt);
+            return new TokenMandate(amount.Value!, currency.Value!, endsAt.Value!, frequency.Value!.Value!, mandateId.Value!, providerId.Value!, status.Value!, txVariant.Value!, accountIdType, amountRule, billingAttemptsRule, billingDay, count, maskedAccountId, minAmount, recurringAmount, recurringStatement, remarks, retryPolicy, startsAt);
         }
 
         /// <summary>
@@ -869,10 +1057,28 @@ namespace Adyen.Checkout.Models
                 if (tokenMandate.MaskedAccountId != null)
                     writer.WriteString("maskedAccountId", tokenMandate.MaskedAccountId);
 
+            if (tokenMandate._MinAmountOption.IsSet)
+                if (tokenMandate.MinAmount != null)
+                    writer.WriteString("minAmount", tokenMandate.MinAmount);
+
+            if (tokenMandate._RecurringAmountOption.IsSet)
+                if (tokenMandate.RecurringAmount != null)
+                    writer.WriteString("recurringAmount", tokenMandate.RecurringAmount);
+
+            if (tokenMandate._RecurringStatementOption.IsSet)
+                if (tokenMandate.RecurringStatement != null)
+                    writer.WriteString("recurringStatement", tokenMandate.RecurringStatement);
+
             if (tokenMandate._RemarksOption.IsSet)
                 if (tokenMandate.Remarks != null)
                     writer.WriteString("remarks", tokenMandate.Remarks);
 
+            if (tokenMandate._RetryPolicyOption.IsSet && tokenMandate.RetryPolicy != null) 
+            {
+                string? retryPolicyRawValue = TokenMandate.RetryPolicyEnum.ToJsonValue(tokenMandate._RetryPolicyOption.Value!.Value);
+                writer.WriteString("retryPolicy", retryPolicyRawValue);
+            }
+            
             if (tokenMandate._StartsAtOption.IsSet)
                 if (tokenMandate.StartsAt != null)
                     writer.WriteString("startsAt", tokenMandate.StartsAt);

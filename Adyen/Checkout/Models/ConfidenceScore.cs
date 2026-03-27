@@ -27,45 +27,57 @@ using Adyen.Checkout.Client;
 namespace Adyen.Checkout.Models
 {
     /// <summary>
-    /// ShopperTaxInfo.
+    /// ConfidenceScore.
     /// </summary>
-    public partial class ShopperTaxInfo
+    public partial class ConfidenceScore
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ShopperTaxInfo" /> class.
+        /// Initializes a new instance of the <see cref="ConfidenceScore" /> class.
         /// </summary>
-        /// <param name="taxCountryCode">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code associated with the provided tax identification number. Currently used only for Indian PA-CB tax verification, when applicable.</param>
-        /// <param name="taxIdentificationNumber">The shopper’s tax identification number.</param>
+        /// <param name="errors">errors</param>
+        /// <param name="score">score</param>
         [JsonConstructor]
-        public ShopperTaxInfo(string taxCountryCode, string taxIdentificationNumber)
+        public ConfidenceScore(Option<List<string>?> errors = default, Option<double?> score = default)
         {
-            TaxCountryCode = taxCountryCode;
-            TaxIdentificationNumber = taxIdentificationNumber;
+            _ErrorsOption = errors;
+            _ScoreOption = score;
             OnCreated();
         }
         
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public ShopperTaxInfo()
+        public ConfidenceScore()
         {
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code associated with the provided tax identification number. Currently used only for Indian PA-CB tax verification, when applicable.
+        /// This is used to track if an optional field is set. If set, <see cref="Errors"/> will be populated.
         /// </summary>
-        /// <value>The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code associated with the provided tax identification number. Currently used only for Indian PA-CB tax verification, when applicable.</value>
-        [JsonPropertyName("taxCountryCode")]
-        public string TaxCountryCode { get; set; }
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<string>?> _ErrorsOption { get; private set; }
 
         /// <summary>
-        /// The shopper’s tax identification number.
+        /// <see cref="Errors"/>.
         /// </summary>
-        /// <value>The shopper’s tax identification number.</value>
-        [JsonPropertyName("taxIdentificationNumber")]
-        public string TaxIdentificationNumber { get; set; }
+        [JsonPropertyName("errors")]
+        public List<string>? Errors { get { return this._ErrorsOption; } set { this._ErrorsOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Score"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<double?> _ScoreOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="Score"/>.
+        /// </summary>
+        [JsonPropertyName("score")]
+        public double? Score { get { return this._ScoreOption; } set { this._ScoreOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -74,28 +86,28 @@ namespace Adyen.Checkout.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ShopperTaxInfo {\n");
-            sb.Append("  TaxCountryCode: ").Append(TaxCountryCode).Append("\n");
-            sb.Append("  TaxIdentificationNumber: ").Append(TaxIdentificationNumber).Append("\n");
+            sb.Append("class ConfidenceScore {\n");
+            sb.Append("  Errors: ").Append(Errors).Append("\n");
+            sb.Append("  Score: ").Append(Score).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="ShopperTaxInfo" />
+    /// A Json converter for type <see cref="ConfidenceScore" />
     /// </summary>
-    public class ShopperTaxInfoJsonConverter : JsonConverter<ShopperTaxInfo>
+    public class ConfidenceScoreJsonConverter : JsonConverter<ConfidenceScore>
     {
         /// <summary>
-        /// Deserializes json to <see cref="ShopperTaxInfo"/>.
+        /// Deserializes json to <see cref="ConfidenceScore"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="ShopperTaxInfo"/>.</returns>
+        /// <returns><see cref="ConfidenceScore"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override ShopperTaxInfo Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override ConfidenceScore Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -104,8 +116,8 @@ namespace Adyen.Checkout.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> taxCountryCode = default;
-            Option<string?> taxIdentificationNumber = default;
+            Option<List<string>?> errors = default;
+            Option<double?> score = default;
 
             while (utf8JsonReader.Read())
             {
@@ -122,11 +134,11 @@ namespace Adyen.Checkout.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "taxCountryCode":
-                            taxCountryCode = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "errors":
+                            errors = new Option<List<string>?>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
-                        case "taxIdentificationNumber":
-                            taxIdentificationNumber = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "score":
+                            score = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                             break;
                         default:
                             break;
@@ -134,46 +146,43 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!taxCountryCode.IsSet)
-                throw new ArgumentException("Property is required for class ShopperTaxInfo.", nameof(taxCountryCode));
 
-            if (!taxIdentificationNumber.IsSet)
-                throw new ArgumentException("Property is required for class ShopperTaxInfo.", nameof(taxIdentificationNumber));
-
-            return new ShopperTaxInfo(taxCountryCode.Value!, taxIdentificationNumber.Value!);
+            return new ConfidenceScore(errors, score);
         }
 
         /// <summary>
-        /// Serializes a <see cref="ShopperTaxInfo"/>.
+        /// Serializes a <see cref="ConfidenceScore"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="shopperTaxInfo"></param>
+        /// <param name="confidenceScore"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, ShopperTaxInfo shopperTaxInfo, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, ConfidenceScore confidenceScore, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, shopperTaxInfo, jsonSerializerOptions);
+            WriteProperties(writer, confidenceScore, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="ShopperTaxInfo"/>.
+        /// Serializes the properties of <see cref="ConfidenceScore"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="shopperTaxInfo"></param>
+        /// <param name="confidenceScore"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, ShopperTaxInfo shopperTaxInfo, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, ConfidenceScore confidenceScore, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (shopperTaxInfo.TaxCountryCode != null)
-                writer.WriteString("taxCountryCode", shopperTaxInfo.TaxCountryCode);
-
-            if (shopperTaxInfo.TaxIdentificationNumber != null)
-                writer.WriteString("taxIdentificationNumber", shopperTaxInfo.TaxIdentificationNumber);
+            if (confidenceScore._ErrorsOption.IsSet)
+            {
+                writer.WritePropertyName("errors");
+                JsonSerializer.Serialize(writer, confidenceScore.Errors, jsonSerializerOptions);
+            }
+            if (confidenceScore._ScoreOption.IsSet)
+                writer.WriteNumber("score", confidenceScore._ScoreOption.Value!.Value);
         }
     }
 }
