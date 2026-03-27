@@ -1388,7 +1388,7 @@ namespace Adyen.BalancePlatform.Services
                     if (limit.IsSet)
                         parseQueryString["limit"] = ClientUtils.ParameterToString(limit.Value);
 
-                    uriBuilder.Query = parseQueryString.ToString();
+                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
@@ -2127,7 +2127,7 @@ namespace Adyen.BalancePlatform.Services
                     if (legalEntityId.IsSet)
                         parseQueryString["legalEntityId"] = ClientUtils.ParameterToString(legalEntityId.Value);
 
-                    uriBuilder.Query = parseQueryString.ToString();
+                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
@@ -2534,7 +2534,7 @@ namespace Adyen.BalancePlatform.Services
 
                     parseQueryString["formType"] = ClientUtils.ParameterToString(formType);
 
-                    uriBuilder.Query = parseQueryString.ToString();
+                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);

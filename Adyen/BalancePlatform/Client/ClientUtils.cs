@@ -101,6 +101,8 @@ namespace Adyen.BalancePlatform.Client
         /// <returns>Formatted string.</returns>
         public static string? ParameterToString(object? obj, string? format = ISO8601_DATETIME_FORMAT)
         {
+            if (obj is System.Collections.Specialized.NameValueCollection nameValueCollection)
+                return BuildQueryString(nameValueCollection);
             if (obj is DateTime dateTime)
                 // Return a formatted date string - Can be customized with Configuration.DateTimeFormat
                 // Defaults to an ISO 8601, using the known as a Round-trip date/time pattern ("o")
@@ -243,6 +245,10 @@ namespace Adyen.BalancePlatform.Client
                 return Models.IbanAccountIdentificationRequirement.TypeEnum.ToJsonValue(ibanAccountIdentificationRequirementTypeEnum);
             if (obj is Models.LimitStatus limitStatus)
                 return LimitStatusValueConverter.ToJsonValue(limitStatus);
+            if (obj is Models.MandateStatus mandateStatus)
+                return MandateStatusValueConverter.ToJsonValue(mandateStatus);
+            if (obj is Models.MandateType mandateType)
+                return MandateTypeValueConverter.ToJsonValue(mandateType);
             if (obj is Models.MatchingValuesRestriction.ValueEnum matchingValuesRestrictionValueEnum)
                 return MatchingValuesRestriction.ValueEnum.ToJsonValue(matchingValuesRestrictionValueEnum);
             if (obj is Models.NOLocalAccountIdentification.TypeEnum nOLocalAccountIdentificationTypeEnum)
@@ -323,6 +329,8 @@ namespace Adyen.BalancePlatform.Client
                 return Models.TransactionRule.TypeEnum.ToJsonValue(transactionRuleTypeEnum);
             if (obj is Models.TransactionRule.OutcomeTypeEnum transactionRuleOutcomeTypeEnum)
                 return Models.TransactionRule.OutcomeTypeEnum.ToJsonValue(transactionRuleOutcomeTypeEnum);
+            if (obj is Models.TransactionRule.PurposeEnum transactionRulePurposeEnum)
+                return Models.TransactionRule.PurposeEnum.ToJsonValue(transactionRulePurposeEnum);
             if (obj is Models.TransactionRule.RequestTypeEnum transactionRuleRequestTypeEnum)
                 return Models.TransactionRule.RequestTypeEnum.ToJsonValue(transactionRuleRequestTypeEnum);
             if (obj is Models.TransactionRule.StatusEnum transactionRuleStatusEnum)
@@ -331,6 +339,8 @@ namespace Adyen.BalancePlatform.Client
                 return Models.TransactionRuleInfo.TypeEnum.ToJsonValue(transactionRuleInfoTypeEnum);
             if (obj is Models.TransactionRuleInfo.OutcomeTypeEnum transactionRuleInfoOutcomeTypeEnum)
                 return Models.TransactionRuleInfo.OutcomeTypeEnum.ToJsonValue(transactionRuleInfoOutcomeTypeEnum);
+            if (obj is Models.TransactionRuleInfo.PurposeEnum transactionRuleInfoPurposeEnum)
+                return Models.TransactionRuleInfo.PurposeEnum.ToJsonValue(transactionRuleInfoPurposeEnum);
             if (obj is Models.TransactionRuleInfo.RequestTypeEnum transactionRuleInfoRequestTypeEnum)
                 return Models.TransactionRuleInfo.RequestTypeEnum.ToJsonValue(transactionRuleInfoRequestTypeEnum);
             if (obj is Models.TransactionRuleInfo.StatusEnum transactionRuleInfoStatusEnum)
@@ -400,6 +410,36 @@ namespace Adyen.BalancePlatform.Client
             }
 
             return Convert.ToString(obj, System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// Builds a query string from a <see cref="System.Collections.Specialized.NameValueCollection"/>
+        /// using minimal percent-encoding that only escapes characters which would break query string
+        /// structure, while leaving all other characters (including <c>+</c>, <c>/</c>, <c>!</c>) unencoded.
+        /// <para>
+        /// This follows RFC 3986 and does not encode sub-delimiters or unreserved characters in
+        /// query values.
+        /// </para>
+        /// </summary>
+        /// <param name="parameters">The query string parameters.</param>
+        /// <returns>A query string (without leading '?').</returns>
+        internal static string BuildQueryString(System.Collections.Specialized.NameValueCollection parameters)
+        {
+            var parts = new List<string>();
+            foreach (string key in parameters.AllKeys)
+            {
+                var value = parameters[key] ?? string.Empty;
+                // keys are always encoded (must be ASCII identifiers)
+                var encodedKey = Uri.EscapeDataString(key);
+                // only encode selected characters           
+                var encodedValue = value
+                    .Replace("&", "%26")
+                    .Replace("=", "%3D")
+                    .Replace("#", "%23")
+                    .Replace(" ", "%20");
+                parts.Add(encodedKey + "=" + encodedValue);
+            }
+            return string.Join("&", parts);
         }
 
         /// <summary>
