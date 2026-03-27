@@ -27,54 +27,43 @@ using Adyen.BalancePlatform.Client;
 namespace Adyen.BalancePlatform.Models
 {
     /// <summary>
-    /// InvalidField.
+    /// MandatePartyIdentification.
     /// </summary>
-    public partial class InvalidField
+    public partial class MandatePartyIdentification
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="InvalidField" /> class.
+        /// Initializes a new instance of the <see cref="MandatePartyIdentification" /> class.
         /// </summary>
-        /// <param name="message">Description of the validation error.</param>
-        /// <param name="name">The field that has an invalid value.</param>
-        /// <param name="value">The invalid value.</param>
+        /// <param name="fullName">The full name of the entity that owns the bank account.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + &amp; ! ? @ ( ) \&quot; &#39; and space.</param>
         [JsonConstructor]
-        public InvalidField(string message, string name, string value)
+        public MandatePartyIdentification(Option<string?> fullName = default)
         {
-            Message = message;
-            Name = name;
-            Value = value;
+            _FullNameOption = fullName;
             OnCreated();
         }
         
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public InvalidField()
+        public MandatePartyIdentification()
         {
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Description of the validation error.
+        /// This is used to track if an optional field is set. If set, <see cref="FullName"/> will be populated.
         /// </summary>
-        /// <value>Description of the validation error.</value>
-        [JsonPropertyName("message")]
-        public string Message { get; set; }
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _FullNameOption { get; private set; }
 
         /// <summary>
-        /// The field that has an invalid value.
+        /// The full name of the entity that owns the bank account.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + &amp; ! ? @ ( ) \&quot; &#39; and space.
         /// </summary>
-        /// <value>The field that has an invalid value.</value>
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// The invalid value.
-        /// </summary>
-        /// <value>The invalid value.</value>
-        [JsonPropertyName("value")]
-        public string Value { get; set; }
+        /// <value>The full name of the entity that owns the bank account.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + & ! ? @ ( ) \" ' and space.</value>
+        [JsonPropertyName("fullName")]
+        public string? FullName { get { return this._FullNameOption; } set { this._FullNameOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -83,29 +72,27 @@ namespace Adyen.BalancePlatform.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class InvalidField {\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("class MandatePartyIdentification {\n");
+            sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="InvalidField" />
+    /// A Json converter for type <see cref="MandatePartyIdentification" />
     /// </summary>
-    public class InvalidFieldJsonConverter : JsonConverter<InvalidField>
+    public class MandatePartyIdentificationJsonConverter : JsonConverter<MandatePartyIdentification>
     {
         /// <summary>
-        /// Deserializes json to <see cref="InvalidField"/>.
+        /// Deserializes json to <see cref="MandatePartyIdentification"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="InvalidField"/>.</returns>
+        /// <returns><see cref="MandatePartyIdentification"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override InvalidField Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override MandatePartyIdentification Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -114,9 +101,7 @@ namespace Adyen.BalancePlatform.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> message = default;
-            Option<string?> name = default;
-            Option<string?> value = default;
+            Option<string?> fullName = default;
 
             while (utf8JsonReader.Read())
             {
@@ -133,14 +118,8 @@ namespace Adyen.BalancePlatform.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "message":
-                            message = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
-                        case "name":
-                            name = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
-                        case "value":
-                            value = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "fullName":
+                            fullName = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         default:
                             break;
@@ -148,52 +127,39 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!message.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(message));
 
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(name));
-
-            if (!value.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(value));
-
-            return new InvalidField(message.Value!, name.Value!, value.Value!);
+            return new MandatePartyIdentification(fullName);
         }
 
         /// <summary>
-        /// Serializes a <see cref="InvalidField"/>.
+        /// Serializes a <see cref="MandatePartyIdentification"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="invalidField"></param>
+        /// <param name="mandatePartyIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, InvalidField invalidField, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, MandatePartyIdentification mandatePartyIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, invalidField, jsonSerializerOptions);
+            WriteProperties(writer, mandatePartyIdentification, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="InvalidField"/>.
+        /// Serializes the properties of <see cref="MandatePartyIdentification"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="invalidField"></param>
+        /// <param name="mandatePartyIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, InvalidField invalidField, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, MandatePartyIdentification mandatePartyIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (invalidField.Message != null)
-                writer.WriteString("message", invalidField.Message);
-
-            if (invalidField.Name != null)
-                writer.WriteString("name", invalidField.Name);
-
-            if (invalidField.Value != null)
-                writer.WriteString("value", invalidField.Value);
+            if (mandatePartyIdentification._FullNameOption.IsSet)
+                if (mandatePartyIdentification.FullName != null)
+                    writer.WriteString("fullName", mandatePartyIdentification.FullName);
         }
     }
 }

@@ -27,54 +27,44 @@ using Adyen.BalancePlatform.Client;
 namespace Adyen.BalancePlatform.Models
 {
     /// <summary>
-    /// InvalidField.
+    /// ListMandatesResponse.
     /// </summary>
-    public partial class InvalidField
+    public partial class ListMandatesResponse
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="InvalidField" /> class.
+        /// Initializes a new instance of the <see cref="ListMandatesResponse" /> class.
         /// </summary>
-        /// <param name="message">Description of the validation error.</param>
-        /// <param name="name">The field that has an invalid value.</param>
-        /// <param name="value">The invalid value.</param>
+        /// <param name="link">link</param>
+        /// <param name="mandates">Contains a list of the mandates.</param>
         [JsonConstructor]
-        public InvalidField(string message, string name, string value)
+        public ListMandatesResponse(Link link, List<Mandate> mandates)
         {
-            Message = message;
-            Name = name;
-            Value = value;
+            Link = link;
+            Mandates = mandates;
             OnCreated();
         }
         
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public InvalidField()
+        public ListMandatesResponse()
         {
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Description of the validation error.
+        /// <see cref="Link"/>.
         /// </summary>
-        /// <value>Description of the validation error.</value>
-        [JsonPropertyName("message")]
-        public string Message { get; set; }
+        [JsonPropertyName("link")]
+        public Link Link { get; set; }
 
         /// <summary>
-        /// The field that has an invalid value.
+        /// Contains a list of the mandates.
         /// </summary>
-        /// <value>The field that has an invalid value.</value>
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// The invalid value.
-        /// </summary>
-        /// <value>The invalid value.</value>
-        [JsonPropertyName("value")]
-        public string Value { get; set; }
+        /// <value>Contains a list of the mandates.</value>
+        [JsonPropertyName("mandates")]
+        public List<Mandate> Mandates { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -83,29 +73,28 @@ namespace Adyen.BalancePlatform.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class InvalidField {\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("class ListMandatesResponse {\n");
+            sb.Append("  Link: ").Append(Link).Append("\n");
+            sb.Append("  Mandates: ").Append(Mandates).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="InvalidField" />
+    /// A Json converter for type <see cref="ListMandatesResponse" />
     /// </summary>
-    public class InvalidFieldJsonConverter : JsonConverter<InvalidField>
+    public class ListMandatesResponseJsonConverter : JsonConverter<ListMandatesResponse>
     {
         /// <summary>
-        /// Deserializes json to <see cref="InvalidField"/>.
+        /// Deserializes json to <see cref="ListMandatesResponse"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="InvalidField"/>.</returns>
+        /// <returns><see cref="ListMandatesResponse"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override InvalidField Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override ListMandatesResponse Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -114,9 +103,8 @@ namespace Adyen.BalancePlatform.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> message = default;
-            Option<string?> name = default;
-            Option<string?> value = default;
+            Option<Link?> link = default;
+            Option<List<Mandate>?> mandates = default;
 
             while (utf8JsonReader.Read())
             {
@@ -133,14 +121,11 @@ namespace Adyen.BalancePlatform.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "message":
-                            message = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "link":
+                            link = new Option<Link?>(JsonSerializer.Deserialize<Link>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
-                        case "name":
-                            name = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
-                        case "value":
-                            value = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "mandates":
+                            mandates = new Option<List<Mandate>?>(JsonSerializer.Deserialize<List<Mandate>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         default:
                             break;
@@ -148,52 +133,45 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!message.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(message));
+            if (!link.IsSet)
+                throw new ArgumentException("Property is required for class ListMandatesResponse.", nameof(link));
 
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(name));
+            if (!mandates.IsSet)
+                throw new ArgumentException("Property is required for class ListMandatesResponse.", nameof(mandates));
 
-            if (!value.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(value));
-
-            return new InvalidField(message.Value!, name.Value!, value.Value!);
+            return new ListMandatesResponse(link.Value!, mandates.Value!);
         }
 
         /// <summary>
-        /// Serializes a <see cref="InvalidField"/>.
+        /// Serializes a <see cref="ListMandatesResponse"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="invalidField"></param>
+        /// <param name="listMandatesResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, InvalidField invalidField, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, ListMandatesResponse listMandatesResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, invalidField, jsonSerializerOptions);
+            WriteProperties(writer, listMandatesResponse, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="InvalidField"/>.
+        /// Serializes the properties of <see cref="ListMandatesResponse"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="invalidField"></param>
+        /// <param name="listMandatesResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, InvalidField invalidField, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, ListMandatesResponse listMandatesResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (invalidField.Message != null)
-                writer.WriteString("message", invalidField.Message);
-
-            if (invalidField.Name != null)
-                writer.WriteString("name", invalidField.Name);
-
-            if (invalidField.Value != null)
-                writer.WriteString("value", invalidField.Value);
+            writer.WritePropertyName("link");
+            JsonSerializer.Serialize(writer, listMandatesResponse.Link, jsonSerializerOptions);
+            writer.WritePropertyName("mandates");
+            JsonSerializer.Serialize(writer, listMandatesResponse.Mandates, jsonSerializerOptions);
         }
     }
 }
