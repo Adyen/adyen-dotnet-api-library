@@ -1,7 +1,7 @@
 /*
  * Adyen Recurring API
  *
- * > The Recurring API is a legacy API for managing tokens. We strongly recommend to use [Checkout API recurring endpoints](https://docs.adyen.com/api-explorer/Checkout/71/post/storedPaymentMethods) instead when possible.  The Recurring API allows you to manage and remove your tokens or stored payment details. Tokens should be created with validation during a payment request.  For more information, refer to our [Tokenization documentation](https://docs.adyen.com/online-payments/tokenization). ## Authentication You need an [API credential](https://docs.adyen.com/development-resources/api-credentials) to authenticate to the API.  If using an API key, add an `X-API-Key` header with the API key as the value, for example:   ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ```  Alternatively, you can use the username and password to connect to the API using basic authentication, for example:  ``` curl -U \"ws@Company.YOUR_COMPANY_ACCOUNT\":\"YOUR_BASIC_AUTHENTICATION_PASSWORD\" \\ -H \"Content-Type: application/json\" \\ ... ```  ## Versioning Recurring API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://paltokenization-test.adyen.com/paltokenization/servlet/Recurring/v68/disable ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Recurring API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-0d1ef0da-f5a1-4004-b24a-c5152c51dc7b?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-0d1ef0da-f5a1-4004-b24a-c5152c51dc7b%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To authenticate to the live endpoints, you need an [API credential](https://docs.adyen.com/development-resources/api-credentials) from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account: ```  https://{PREFIX}-paltokenization-live.adyenpayments.com/paltokenization/servlet/Recurring/v68/disable ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.
+ * > The Recurring API is a legacy API for managing tokens. We strongly recommend to use [Checkout API recurring endpoints](https://docs.adyen.com/api-explorer/Checkout/71/post/storedPaymentMethods) instead when possible.  The Recurring API allows you to manage and remove your tokens or stored payment details. Tokens should be created with validation during a payment request.  For more information, refer to our [Tokenization documentation](https://docs.adyen.com/online-payments/tokenization). ## Authentication You need an [API credential](https://docs.adyen.com/development-resources/api-credentials) to authenticate to the API.  If using an API key, add an `X-API-Key` header with the API key as the value, for example:   ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ```  Alternatively, you can use the username and password to connect to the API using basic authentication, for example:  ``` curl -U \"ws@Company.YOUR_COMPANY_ACCOUNT\":\"YOUR_BASIC_AUTHENTICATION_PASSWORD\" \\ -H \"Content-Type: application/json\" \\ ... ```  ## Versioning Recurring API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://pal-test.adyen.com/pal/servlet/Recurring/v68/disable ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Recurring API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-0d1ef0da-f5a1-4004-b24a-c5152c51dc7b?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-0d1ef0da-f5a1-4004-b24a-c5152c51dc7b%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To authenticate to the live endpoints, you need an [API credential](https://docs.adyen.com/development-resources/api-credentials) from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account: ```  https://{PREFIX}-pal-live.adyenpayments.com/pal/servlet/Recurring/v68/disable ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.
  *
  * The version of the OpenAPI document: 68
  * Generated by: https://github.com/openapitools/openapi-generator.git
@@ -101,6 +101,8 @@ namespace Adyen.Recurring.Client
         /// <returns>Formatted string.</returns>
         public static string? ParameterToString(object? obj, string? format = ISO8601_DATETIME_FORMAT)
         {
+            if (obj is System.Collections.Specialized.NameValueCollection nameValueCollection)
+                return BuildQueryString(nameValueCollection);
             if (obj is DateTime dateTime)
                 // Return a formatted date string - Can be customized with Configuration.DateTimeFormat
                 // Defaults to an ISO 8601, using the known as a Round-trip date/time pattern ("o")
@@ -130,6 +132,36 @@ namespace Adyen.Recurring.Client
             }
 
             return Convert.ToString(obj, System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// Builds a query string from a <see cref="System.Collections.Specialized.NameValueCollection"/>
+        /// using minimal percent-encoding that only escapes characters which would break query string
+        /// structure, while leaving all other characters (including <c>+</c>, <c>/</c>, <c>!</c>) unencoded.
+        /// <para>
+        /// This follows RFC 3986 and does not encode sub-delimiters or unreserved characters in
+        /// query values.
+        /// </para>
+        /// </summary>
+        /// <param name="parameters">The query string parameters.</param>
+        /// <returns>A query string (without leading '?').</returns>
+        internal static string BuildQueryString(System.Collections.Specialized.NameValueCollection parameters)
+        {
+            var parts = new List<string>();
+            foreach (string key in parameters.AllKeys)
+            {
+                var value = parameters[key] ?? string.Empty;
+                // keys are always encoded (must be ASCII identifiers)
+                var encodedKey = Uri.EscapeDataString(key);
+                // only encode selected characters           
+                var encodedValue = value
+                    .Replace("&", "%26")
+                    .Replace("=", "%3D")
+                    .Replace("#", "%23")
+                    .Replace(" ", "%20");
+                parts.Add(encodedKey + "=" + encodedValue);
+            }
+            return string.Join("&", parts);
         }
 
         /// <summary>
