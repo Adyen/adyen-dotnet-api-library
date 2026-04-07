@@ -2190,7 +2190,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, createCheckoutSessionResponse.BlockedPaymentMethods, jsonSerializerOptions);
             }
             if (createCheckoutSessionResponse._CaptureDelayHoursOption.IsSet)
-                writer.WriteNumber("captureDelayHours", createCheckoutSessionResponse._CaptureDelayHoursOption.Value!.Value);
+                if (createCheckoutSessionResponse._CaptureDelayHoursOption.Value != null)
+                    writer.WriteNumber("captureDelayHours", createCheckoutSessionResponse._CaptureDelayHoursOption.Value!.Value);
 
             if (createCheckoutSessionResponse._ChannelOption.IsSet && createCheckoutSessionResponse.Channel != null) 
             {
@@ -2208,10 +2209,12 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("countryCode", createCheckoutSessionResponse.CountryCode);
 
             if (createCheckoutSessionResponse._DateOfBirthOption.IsSet)
-                writer.WriteString("dateOfBirth", createCheckoutSessionResponse._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
+                if (createCheckoutSessionResponse._DateOfBirthOption.Value != null)
+                    writer.WriteString("dateOfBirth", createCheckoutSessionResponse._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
 
             if (createCheckoutSessionResponse._DeliverAtOption.IsSet)
-                writer.WriteString("deliverAt", createCheckoutSessionResponse._DeliverAtOption.Value!.Value.ToString(DeliverAtFormat));
+                if (createCheckoutSessionResponse._DeliverAtOption.Value != null)
+                    writer.WriteString("deliverAt", createCheckoutSessionResponse._DeliverAtOption.Value!.Value.ToString(DeliverAtFormat));
 
             if (createCheckoutSessionResponse._DeliveryAddressOption.IsSet)
             {
@@ -2219,13 +2222,16 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, createCheckoutSessionResponse.DeliveryAddress, jsonSerializerOptions);
             }
             if (createCheckoutSessionResponse._EnableOneClickOption.IsSet)
-                writer.WriteBoolean("enableOneClick", createCheckoutSessionResponse._EnableOneClickOption.Value!.Value);
+                if (createCheckoutSessionResponse._EnableOneClickOption.Value != null)
+                    writer.WriteBoolean("enableOneClick", createCheckoutSessionResponse._EnableOneClickOption.Value!.Value);
 
             if (createCheckoutSessionResponse._EnablePayOutOption.IsSet)
-                writer.WriteBoolean("enablePayOut", createCheckoutSessionResponse._EnablePayOutOption.Value!.Value);
+                if (createCheckoutSessionResponse._EnablePayOutOption.Value != null)
+                    writer.WriteBoolean("enablePayOut", createCheckoutSessionResponse._EnablePayOutOption.Value!.Value);
 
             if (createCheckoutSessionResponse._EnableRecurringOption.IsSet)
-                writer.WriteBoolean("enableRecurring", createCheckoutSessionResponse._EnableRecurringOption.Value!.Value);
+                if (createCheckoutSessionResponse._EnableRecurringOption.Value != null)
+                    writer.WriteBoolean("enableRecurring", createCheckoutSessionResponse._EnableRecurringOption.Value!.Value);
 
             if (createCheckoutSessionResponse._FundOriginOption.IsSet)
             {
@@ -2344,17 +2350,20 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("shopperStatement", createCheckoutSessionResponse.ShopperStatement);
 
             if (createCheckoutSessionResponse._ShowInstallmentAmountOption.IsSet)
-                writer.WriteBoolean("showInstallmentAmount", createCheckoutSessionResponse._ShowInstallmentAmountOption.Value!.Value);
+                if (createCheckoutSessionResponse._ShowInstallmentAmountOption.Value != null)
+                    writer.WriteBoolean("showInstallmentAmount", createCheckoutSessionResponse._ShowInstallmentAmountOption.Value!.Value);
 
             if (createCheckoutSessionResponse._ShowRemovePaymentMethodButtonOption.IsSet)
-                writer.WriteBoolean("showRemovePaymentMethodButton", createCheckoutSessionResponse._ShowRemovePaymentMethodButtonOption.Value!.Value);
+                if (createCheckoutSessionResponse._ShowRemovePaymentMethodButtonOption.Value != null)
+                    writer.WriteBoolean("showRemovePaymentMethodButton", createCheckoutSessionResponse._ShowRemovePaymentMethodButtonOption.Value!.Value);
 
             if (createCheckoutSessionResponse._SocialSecurityNumberOption.IsSet)
                 if (createCheckoutSessionResponse.SocialSecurityNumber != null)
                     writer.WriteString("socialSecurityNumber", createCheckoutSessionResponse.SocialSecurityNumber);
 
             if (createCheckoutSessionResponse._SplitCardFundingSourcesOption.IsSet)
-                writer.WriteBoolean("splitCardFundingSources", createCheckoutSessionResponse._SplitCardFundingSourcesOption.Value!.Value);
+                if (createCheckoutSessionResponse._SplitCardFundingSourcesOption.Value != null)
+                    writer.WriteBoolean("splitCardFundingSources", createCheckoutSessionResponse._SplitCardFundingSourcesOption.Value!.Value);
 
             if (createCheckoutSessionResponse._SplitsOption.IsSet)
             {
@@ -2372,7 +2381,8 @@ namespace Adyen.Checkout.Models
             }
             
             if (createCheckoutSessionResponse._StorePaymentMethodOption.IsSet)
-                writer.WriteBoolean("storePaymentMethod", createCheckoutSessionResponse._StorePaymentMethodOption.Value!.Value);
+                if (createCheckoutSessionResponse._StorePaymentMethodOption.Value != null)
+                    writer.WriteBoolean("storePaymentMethod", createCheckoutSessionResponse._StorePaymentMethodOption.Value!.Value);
 
             if (createCheckoutSessionResponse._StorePaymentMethodModeOption.IsSet && createCheckoutSessionResponse.StorePaymentMethodMode != null) 
             {
@@ -2394,10 +2404,12 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, createCheckoutSessionResponse.ThreeDS2RequestData, jsonSerializerOptions);
             }
             if (createCheckoutSessionResponse._ThreeDSAuthenticationOnlyOption.IsSet)
-                writer.WriteBoolean("threeDSAuthenticationOnly", createCheckoutSessionResponse._ThreeDSAuthenticationOnlyOption.Value!.Value);
+                if (createCheckoutSessionResponse._ThreeDSAuthenticationOnlyOption.Value != null)
+                    writer.WriteBoolean("threeDSAuthenticationOnly", createCheckoutSessionResponse._ThreeDSAuthenticationOnlyOption.Value!.Value);
 
             if (createCheckoutSessionResponse._TrustedShopperOption.IsSet)
-                writer.WriteBoolean("trustedShopper", createCheckoutSessionResponse._TrustedShopperOption.Value!.Value);
+                if (createCheckoutSessionResponse._TrustedShopperOption.Value != null)
+                    writer.WriteBoolean("trustedShopper", createCheckoutSessionResponse._TrustedShopperOption.Value!.Value);
 
             if (createCheckoutSessionResponse._UrlOption.IsSet)
                 if (createCheckoutSessionResponse.Url != null)

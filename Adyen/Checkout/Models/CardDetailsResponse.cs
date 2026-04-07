@@ -230,7 +230,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("fundingSource", cardDetailsResponse.FundingSource);
 
             if (cardDetailsResponse._IsCardCommercialOption.IsSet)
-                writer.WriteBoolean("isCardCommercial", cardDetailsResponse._IsCardCommercialOption.Value!.Value);
+                if (cardDetailsResponse._IsCardCommercialOption.Value != null)
+                    writer.WriteBoolean("isCardCommercial", cardDetailsResponse._IsCardCommercialOption.Value!.Value);
 
             if (cardDetailsResponse._IssuingCountryCodeOption.IsSet)
                 if (cardDetailsResponse.IssuingCountryCode != null)

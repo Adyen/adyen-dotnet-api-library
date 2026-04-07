@@ -1409,10 +1409,12 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("countryCode", donationPaymentRequest.CountryCode);
 
             if (donationPaymentRequest._DateOfBirthOption.IsSet)
-                writer.WriteString("dateOfBirth", donationPaymentRequest._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
+                if (donationPaymentRequest._DateOfBirthOption.Value != null)
+                    writer.WriteString("dateOfBirth", donationPaymentRequest._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
 
             if (donationPaymentRequest._DeliverAtOption.IsSet)
-                writer.WriteString("deliverAt", donationPaymentRequest._DeliverAtOption.Value!.Value.ToString(DeliverAtFormat));
+                if (donationPaymentRequest._DeliverAtOption.Value != null)
+                    writer.WriteString("deliverAt", donationPaymentRequest._DeliverAtOption.Value!.Value.ToString(DeliverAtFormat));
 
             if (donationPaymentRequest._DeliveryAddressOption.IsSet)
             {
@@ -1527,7 +1529,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, donationPaymentRequest.ThreeDS2RequestData, jsonSerializerOptions);
             }
             if (donationPaymentRequest._ThreeDSAuthenticationOnlyOption.IsSet)
-                writer.WriteBoolean("threeDSAuthenticationOnly", donationPaymentRequest._ThreeDSAuthenticationOnlyOption.Value!.Value);
+                if (donationPaymentRequest._ThreeDSAuthenticationOnlyOption.Value != null)
+                    writer.WriteBoolean("threeDSAuthenticationOnly", donationPaymentRequest._ThreeDSAuthenticationOnlyOption.Value!.Value);
         }
     }
 }

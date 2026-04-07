@@ -1614,17 +1614,20 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, paymentLinkResponse.BlockedPaymentMethods, jsonSerializerOptions);
             }
             if (paymentLinkResponse._CaptureDelayHoursOption.IsSet)
-                writer.WriteNumber("captureDelayHours", paymentLinkResponse._CaptureDelayHoursOption.Value!.Value);
+                if (paymentLinkResponse._CaptureDelayHoursOption.Value != null)
+                    writer.WriteNumber("captureDelayHours", paymentLinkResponse._CaptureDelayHoursOption.Value!.Value);
 
             if (paymentLinkResponse._CountryCodeOption.IsSet)
                 if (paymentLinkResponse.CountryCode != null)
                     writer.WriteString("countryCode", paymentLinkResponse.CountryCode);
 
             if (paymentLinkResponse._DateOfBirthOption.IsSet)
-                writer.WriteString("dateOfBirth", paymentLinkResponse._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
+                if (paymentLinkResponse._DateOfBirthOption.Value != null)
+                    writer.WriteString("dateOfBirth", paymentLinkResponse._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
 
             if (paymentLinkResponse._DeliverAtOption.IsSet)
-                writer.WriteString("deliverAt", paymentLinkResponse._DeliverAtOption.Value!.Value.ToString(DeliverAtFormat));
+                if (paymentLinkResponse._DeliverAtOption.Value != null)
+                    writer.WriteString("deliverAt", paymentLinkResponse._DeliverAtOption.Value!.Value.ToString(DeliverAtFormat));
 
             if (paymentLinkResponse._DeliveryAddressOption.IsSet)
             {
@@ -1636,7 +1639,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("description", paymentLinkResponse.Description);
 
             if (paymentLinkResponse._ExpiresAtOption.IsSet)
-                writer.WriteString("expiresAt", paymentLinkResponse._ExpiresAtOption.Value!.Value.ToString(ExpiresAtFormat));
+                if (paymentLinkResponse._ExpiresAtOption.Value != null)
+                    writer.WriteString("expiresAt", paymentLinkResponse._ExpiresAtOption.Value!.Value.ToString(ExpiresAtFormat));
 
             if (paymentLinkResponse._FundOriginOption.IsSet)
             {
@@ -1659,7 +1663,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, paymentLinkResponse.LineItems, jsonSerializerOptions);
             }
             if (paymentLinkResponse._ManualCaptureOption.IsSet)
-                writer.WriteBoolean("manualCapture", paymentLinkResponse._ManualCaptureOption.Value!.Value);
+                if (paymentLinkResponse._ManualCaptureOption.Value != null)
+                    writer.WriteBoolean("manualCapture", paymentLinkResponse._ManualCaptureOption.Value!.Value);
 
             if (paymentLinkResponse._MccOption.IsSet)
                 if (paymentLinkResponse.Mcc != null)
@@ -1695,7 +1700,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("returnUrl", paymentLinkResponse.ReturnUrl);
 
             if (paymentLinkResponse._ReusableOption.IsSet)
-                writer.WriteBoolean("reusable", paymentLinkResponse._ReusableOption.Value!.Value);
+                if (paymentLinkResponse._ReusableOption.Value != null)
+                    writer.WriteBoolean("reusable", paymentLinkResponse._ReusableOption.Value!.Value);
 
             if (paymentLinkResponse._RiskDataOption.IsSet)
             {
@@ -1724,14 +1730,16 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("shopperStatement", paymentLinkResponse.ShopperStatement);
 
             if (paymentLinkResponse._ShowRemovePaymentMethodButtonOption.IsSet)
-                writer.WriteBoolean("showRemovePaymentMethodButton", paymentLinkResponse._ShowRemovePaymentMethodButtonOption.Value!.Value);
+                if (paymentLinkResponse._ShowRemovePaymentMethodButtonOption.Value != null)
+                    writer.WriteBoolean("showRemovePaymentMethodButton", paymentLinkResponse._ShowRemovePaymentMethodButtonOption.Value!.Value);
 
             if (paymentLinkResponse._SocialSecurityNumberOption.IsSet)
                 if (paymentLinkResponse.SocialSecurityNumber != null)
                     writer.WriteString("socialSecurityNumber", paymentLinkResponse.SocialSecurityNumber);
 
             if (paymentLinkResponse._SplitCardFundingSourcesOption.IsSet)
-                writer.WriteBoolean("splitCardFundingSources", paymentLinkResponse._SplitCardFundingSourcesOption.Value!.Value);
+                if (paymentLinkResponse._SplitCardFundingSourcesOption.Value != null)
+                    writer.WriteBoolean("splitCardFundingSources", paymentLinkResponse._SplitCardFundingSourcesOption.Value!.Value);
 
             if (paymentLinkResponse._SplitsOption.IsSet)
             {
@@ -1762,7 +1770,8 @@ namespace Adyen.Checkout.Models
                 JsonSerializer.Serialize(writer, paymentLinkResponse.ThreeDS2RequestData, jsonSerializerOptions);
             }
             if (paymentLinkResponse._UpdatedAtOption.IsSet)
-                writer.WriteString("updatedAt", paymentLinkResponse._UpdatedAtOption.Value!.Value.ToString(UpdatedAtFormat));
+                if (paymentLinkResponse._UpdatedAtOption.Value != null)
+                    writer.WriteString("updatedAt", paymentLinkResponse._UpdatedAtOption.Value!.Value.ToString(UpdatedAtFormat));
         }
     }
 }

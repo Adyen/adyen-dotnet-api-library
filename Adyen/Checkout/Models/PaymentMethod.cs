@@ -525,7 +525,8 @@ namespace Adyen.Checkout.Models
                     writer.WriteString("name", paymentMethod.Name);
 
             if (paymentMethod._PromotedOption.IsSet)
-                writer.WriteBoolean("promoted", paymentMethod._PromotedOption.Value!.Value);
+                if (paymentMethod._PromotedOption.Value != null)
+                    writer.WriteBoolean("promoted", paymentMethod._PromotedOption.Value!.Value);
 
             if (paymentMethod._TypeOption.IsSet)
                 if (paymentMethod.Type != null)
