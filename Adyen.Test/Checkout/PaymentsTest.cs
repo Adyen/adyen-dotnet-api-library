@@ -50,7 +50,74 @@ namespace Adyen.Test.Checkout
             Assert.IsNull(result.StoredPaymentMethods);
             Assert.AreEqual(29, result.PaymentMethods.Count);
         }
-        
+
+        /// <summary>
+        /// Regression test for GitHub issue #1474.
+        /// Verifies that <see cref="PaymentMethodsResponse"/> can be deserialized using default
+        /// <see cref="JsonSerializerOptions"/> without throwing <see cref="InvalidOperationException"/>.
+        /// The root cause was a <c>[JsonConstructor]</c> attribute on a constructor whose parameters
+        /// used <c>Option&lt;T&gt;</c> types that STJ could not bind to the plain <c>T</c> properties.
+        /// </summary>
+        [TestMethod]
+        public void Given_PaymentMethodsResponse_When_Deserialized_With_Default_Options_Then_Does_Not_Throw()
+        {
+            // Arrange - minimal repro from issue #1474
+            string json = "{\"paymentMethods\":[],\"storedPaymentMethods\":[]}";
+
+            // Act - previously threw InvalidOperationException about [JsonConstructor] parameter binding
+            PaymentMethodsResponse result = JsonSerializer.Deserialize<PaymentMethodsResponse>(json);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.PaymentMethods);
+            Assert.IsNotNull(result.StoredPaymentMethods);
+            Assert.AreEqual(0, result.PaymentMethods.Count);
+            Assert.AreEqual(0, result.StoredPaymentMethods.Count);
+        }
+
+        /// <summary>
+        /// Verifies that <see cref="PaymentMethodsResponse"/> with both payment methods and stored
+        /// payment methods deserializes all properties correctly using the SDK's <see cref="JsonSerializerOptions"/>.
+        /// </summary>
+        [TestMethod]
+        public void Given_PaymentMethodsResponse_With_StoredPaymentMethods_When_Deserialized_Then_All_Properties_Are_Populated()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/checkout/paymentmethods-storedpaymentmethods.json");
+
+            // Act
+            PaymentMethodsResponse result = JsonSerializer.Deserialize<PaymentMethodsResponse>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result.PaymentMethods);
+            Assert.IsNotNull(result.StoredPaymentMethods);
+            Assert.AreEqual(3, result.PaymentMethods.Count);
+            Assert.AreEqual(4, result.StoredPaymentMethods.Count);
+        }
+
+        /// <summary>
+        /// Regression test for GitHub issue #1474.
+        /// Verifies that <see cref="PaymentMethod"/> can be deserialized using default
+        /// <see cref="JsonSerializerOptions"/> without throwing. The <c>[JsonConstructor]</c> regression
+        /// affected all Checkout models with optional fields, not only <see cref="PaymentMethodsResponse"/>.
+        /// </summary>
+        [TestMethod]
+        public void Given_PaymentMethod_When_Deserialized_With_Default_Options_Then_Does_Not_Throw()
+        {
+            // Arrange
+            string json = "{\"name\":\"VISA\",\"type\":\"scheme\",\"brands\":[\"visa\",\"mc\"]}";
+
+            // Act
+            PaymentMethod result = JsonSerializer.Deserialize<PaymentMethod>(json);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("VISA", result.Name);
+            Assert.AreEqual("scheme", result.Type);
+            Assert.IsNotNull(result.Brands);
+            Assert.AreEqual(2, result.Brands.Count);
+        }
+
         [TestMethod]
         public async Task Given_CreateCheckoutSessionRequest_When_Serialize_Long__Result_Contains_Zeros()
         {
