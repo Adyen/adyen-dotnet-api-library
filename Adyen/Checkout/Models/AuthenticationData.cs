@@ -37,7 +37,6 @@ namespace Adyen.Checkout.Models
         /// <param name="attemptAuthentication">Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don&#39;t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined.</param>
         /// <param name="authenticationOnly">Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization. Default: **false**. (default to false)</param>
         /// <param name="threeDSRequestData">threeDSRequestData</param>
-        [JsonConstructor]
         public AuthenticationData(Option<AttemptAuthenticationEnum?> attemptAuthentication = default, Option<bool?> authenticationOnly = default, Option<ThreeDSRequestData?> threeDSRequestData = default)
         {
             _AttemptAuthenticationOption = attemptAuthentication;

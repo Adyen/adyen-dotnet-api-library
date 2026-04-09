@@ -37,7 +37,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="capabilities">The names of the capabilities to be disallowed.</param>
         /// <param name="expiresAt">The date that verification is due by before capabilities are disallowed.</param>
         /// <param name="entityIds">The unique identifiers of the bank account(s) that the deadline applies to</param>
-        [JsonConstructor]
         public VerificationDeadline(List<VerificationDeadline.CapabilitiesEnum> capabilities, DateTimeOffset expiresAt, Option<List<string>?> entityIds = default)
         {
             Capabilities = capabilities;

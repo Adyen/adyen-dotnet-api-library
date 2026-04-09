@@ -43,7 +43,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="nominee">Default value: **false** Set to **true** if the entity association &#x60;type&#x60; **director**, **secondaryPartner** or **shareholder** is also a nominee. Only applicable to New Zealand.</param>
         /// <param name="relationship">The individual&#39;s relationship to a legal representative if the &#x60;type&#x60; is **legalRepresentative**. Possible values: **parent**, **guardian**.</param>
         /// <param name="settlorExemptionReason">Defines the KYC exemption reason for a settlor associated with a trust. Only applicable to trusts in Australia.  For example, **professionalServiceProvider**, **deceased**, or **contributionBelowThreshold**.</param>
-        [JsonConstructor]
         public LegalEntityAssociation(string legalEntityId, TypeEnum type, Option<string?> associatorId = default, Option<string?> entityType = default, Option<string?> jobTitle = default, Option<string?> name = default, Option<bool?> nominee = default, Option<string?> relationship = default, Option<List<string>?> settlorExemptionReason = default)
         {
             LegalEntityId = legalEntityId;

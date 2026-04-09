@@ -40,7 +40,6 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
         /// <param name="fixedAmount">fixedAmount</param>
         /// <param name="floorAmount">floorAmount</param>
         /// <param name="limitAmount">limitAmount</param>
-        [JsonConstructor]
         public AmountAdjustment(Option<Amount?> amount = default, Option<AmountAdjustmentTypeEnum?> amountAdjustmentType = default, Option<int?> basepoints = default, Option<Amount?> fixedAmount = default, Option<Amount?> floorAmount = default, Option<Amount?> limitAmount = default)
         {
             _AmountOption = amount;

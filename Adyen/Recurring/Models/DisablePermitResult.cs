@@ -36,7 +36,6 @@ namespace Adyen.Recurring.Models
         /// </summary>
         /// <param name="pspReference">A unique reference associated with the request. This value is globally unique; quote it when communicating with us about this request.</param>
         /// <param name="status">Status of the disable request.</param>
-        [JsonConstructor]
         public DisablePermitResult(Option<string?> pspReference = default, Option<string?> status = default)
         {
             _PspReferenceOption = pspReference;

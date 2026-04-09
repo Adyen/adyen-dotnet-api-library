@@ -37,7 +37,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="createdAt">The date the questionnaire was created, in ISO 8601 extended format. For example, 2022-12-18T10:15:30+01:00</param>
         /// <param name="id">The unique identifier of the signed questionnaire.</param>
         /// <param name="validUntil">The expiration date of the questionnaire, in ISO 8601 extended format. For example, 2022-12-18T10:15:30+01:00</param>
-        [JsonConstructor]
         public PciDocumentInfo(Option<DateTimeOffset?> createdAt = default, Option<string?> id = default, Option<DateTimeOffset?> validUntil = default)
         {
             _CreatedAtOption = createdAt;

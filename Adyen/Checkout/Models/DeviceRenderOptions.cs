@@ -36,7 +36,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="sdkInterface">Supported SDK interface types. Allowed values: * native * html * both (default to SdkInterfaceEnum.Both)</param>
         /// <param name="sdkUiType">UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect</param>
-        [JsonConstructor]
         public DeviceRenderOptions(Option<SdkInterfaceEnum?> sdkInterface = default, Option<List<DeviceRenderOptions.SdkUiTypeEnum>?> sdkUiType = default)
         {
             _SdkInterfaceOption = sdkInterface;

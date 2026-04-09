@@ -37,7 +37,6 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
         /// <param name="authorisationDecision">authorisationDecision</param>
         /// <param name="metadata">Object that contains key-value pairs that you can use in your reporting or other business process.</param>
         /// <param name="reference">Reference of the payment.</param>
-        [JsonConstructor]
         public RelayedAuthorisationResponse(Option<AuthorisationDecisionResponse?> authorisationDecision = default, Option<Dictionary<string, string>?> metadata = default, Option<string?> reference = default)
         {
             _AuthorisationDecisionOption = authorisationDecision;

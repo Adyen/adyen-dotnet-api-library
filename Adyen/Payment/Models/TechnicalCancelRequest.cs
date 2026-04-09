@@ -44,7 +44,6 @@ namespace Adyen.Payment.Models
         /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to split payments for [platforms](https://docs.adyen.com/platforms/automatic-split-configuration/).</param>
         /// <param name="tenderReference">The transaction reference provided by the PED. For point-of-sale integrations only.</param>
         /// <param name="uniqueTerminalId">Unique terminal ID for the PED that originally processed the request. For point-of-sale integrations only.</param>
-        [JsonConstructor]
         public TechnicalCancelRequest(string merchantAccount, string originalMerchantReference, Option<Dictionary<string, string>?> additionalData = default, Option<Amount?> modificationAmount = default, Option<ThreeDSecureData?> mpiData = default, Option<PlatformChargebackLogic?> platformChargebackLogic = default, Option<string?> reference = default, Option<List<Split>?> splits = default, Option<string?> tenderReference = default, Option<string?> uniqueTerminalId = default)
         {
             MerchantAccount = merchantAccount;

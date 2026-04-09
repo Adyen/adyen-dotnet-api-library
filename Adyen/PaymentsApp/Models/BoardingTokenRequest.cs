@@ -35,7 +35,6 @@ namespace Adyen.PaymentsApp.Models
         /// Initializes a new instance of the <see cref="BoardingTokenRequest" /> class.
         /// </summary>
         /// <param name="boardingRequestToken">The boardingToken request token.</param>
-        [JsonConstructor]
         public BoardingTokenRequest(string boardingRequestToken)
         {
             BoardingRequestToken = boardingRequestToken;

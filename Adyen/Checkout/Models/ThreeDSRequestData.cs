@@ -38,7 +38,6 @@ namespace Adyen.Checkout.Models
         /// <param name="dataOnly">Required to trigger the [data-only flow](https://docs.adyen.com/online-payments/3d-secure/data-only/). When set to **true**, forces the 3D Secure 2 data-only flow for all transactions where it is possible. </param>
         /// <param name="nativeThreeDS">Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be triggered when available. Adyen can still select to fallback to the redirect flow to optimize authorization rates and improve the shopper&#39;s experience.  Possible values: * **preferred**: Use native 3D Secure authentication when available. * **disabled**: Use the redirect 3D Secure authentication flow.</param>
         /// <param name="threeDSVersion">The version of 3D Secure to use.  Possible values:  * **2.1.0** * **2.2.0**</param>
-        [JsonConstructor]
         public ThreeDSRequestData(Option<ChallengeWindowSizeEnum?> challengeWindowSize = default, Option<DataOnlyEnum?> dataOnly = default, Option<NativeThreeDSEnum?> nativeThreeDS = default, Option<ThreeDSVersionEnum?> threeDSVersion = default)
         {
             _ChallengeWindowSizeOption = challengeWindowSize;

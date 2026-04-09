@@ -39,7 +39,6 @@ namespace Adyen.Payment.Models
         /// <param name="cavvAlgorithm">The CAVV algorithm used.</param>
         /// <param name="scaExemptionRequested">Shows the [exemption type](https://docs.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that Adyen requested for the payment.   Possible values: * **lowValue**  * **secureCorporate**  * **trustedBeneficiary**  * **transactionRiskAnalysis** </param>
         /// <param name="threeds2CardEnrolled">Indicates whether a card is enrolled for 3D Secure 2.</param>
-        [JsonConstructor]
         public ResponseAdditionalData3DSecure(Option<string?> cardHolderInfo = default, Option<string?> cavv = default, Option<string?> cavvAlgorithm = default, Option<string?> scaExemptionRequested = default, Option<bool?> threeds2CardEnrolled = default)
         {
             _CardHolderInfoOption = cardHolderInfo;

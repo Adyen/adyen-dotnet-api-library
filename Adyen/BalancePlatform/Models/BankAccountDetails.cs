@@ -42,7 +42,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="routingNumber">The [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace.</param>
         /// <param name="sortCode">The [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.</param>
         /// <param name="type">**iban** or **usLocal** or **ukLocal** (default to &quot;iban&quot;)</param>
-        [JsonConstructor]
         public BankAccountDetails(Option<string?> accountNumber = default, Option<string?> accountType = default, Option<string?> branchNumber = default, Option<string?> formFactor = default, Option<string?> iban = default, Option<string?> routingNumber = default, Option<string?> sortCode = default, string type = @"iban")
         {
             _AccountNumberOption = accountNumber;

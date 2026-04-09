@@ -38,7 +38,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="max">Maximum amount.</param>
         /// <param name="min">Minimum amount.</param>
         /// <param name="type">**amountMinMaxRequirement** (default to TypeEnum.AmountMinMaxRequirement)</param>
-        [JsonConstructor]
         public AmountMinMaxRequirement(Option<string?> description = default, Option<long?> max = default, Option<long?> min = default, TypeEnum type = default)
         {
             _DescriptionOption = description;

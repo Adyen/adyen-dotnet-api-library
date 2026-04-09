@@ -35,7 +35,6 @@ namespace Adyen.SessionAuthentication.Models
         /// Initializes a new instance of the <see cref="LegalEntityResource" /> class.
         /// </summary>
         /// <param name="legalEntityId">The unique identifier of the resource connected to the component. For [Onboarding components](https://docs.adyen.com/platforms/onboard-users/components), this is the legal entity that has a contractual relationship with your platform and owns the [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments). For sole proprietorships, this is the legal entity of the individual owner.</param>
-        [JsonConstructor]
         public LegalEntityResource(string legalEntityId) : base()
         {
             LegalEntityId = legalEntityId;

@@ -41,7 +41,6 @@ namespace Adyen.Checkout.Models
         /// <param name="subtype">A subtype of the token.</param>
         /// <param name="token">A token to pass to the 3DS2 Component to get the fingerprint.</param>
         /// <param name="url">Specifies the URL to redirect to.</param>
-        [JsonConstructor]
         public CheckoutThreeDS2Action(TypeEnum type, Option<string?> authorisationToken = default, Option<string?> paymentData = default, Option<string?> paymentMethodType = default, Option<string?> subtype = default, Option<string?> token = default, Option<string?> url = default)
         {
             Type = type;

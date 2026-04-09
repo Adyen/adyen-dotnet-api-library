@@ -39,7 +39,6 @@ namespace Adyen.Checkout.Models
         /// <param name="pspReference">Adyen&#39;s 16-character reference associated with the cancel request.</param>
         /// <param name="status">The status of your request. This will always have the value **received**.</param>
         /// <param name="reference">Your reference for the cancel request.</param>
-        [JsonConstructor]
         public StandalonePaymentCancelResponse(string merchantAccount, string paymentReference, string pspReference, StatusEnum status, Option<string?> reference = default)
         {
             MerchantAccount = merchantAccount;

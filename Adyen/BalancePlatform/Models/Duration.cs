@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="unit">The unit of time. You can only use **minutes** and **hours** if the &#x60;interval.type&#x60; is **sliding**.  Possible values: **minutes**, **hours**, **days**, **weeks**, or **months**</param>
         /// <param name="value">The length of time by the unit. For example, 5 days.  The maximum duration is 90 days or an equivalent in other units. For example, 3 months.</param>
-        [JsonConstructor]
         public Duration(Option<UnitEnum?> unit = default, Option<int?> value = default)
         {
             _UnitOption = unit;

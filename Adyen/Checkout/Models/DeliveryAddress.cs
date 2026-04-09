@@ -42,7 +42,6 @@ namespace Adyen.Checkout.Models
         /// <param name="firstName">firstName</param>
         /// <param name="lastName">lastName</param>
         /// <param name="stateOrProvince">The two-character ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. &gt; Required for the US and Canada.</param>
-        [JsonConstructor]
         public DeliveryAddress(string city, string country, string houseNumberOrName, string postalCode, string street, Option<string?> firstName = default, Option<string?> lastName = default, Option<string?> stateOrProvince = default)
         {
             City = city;

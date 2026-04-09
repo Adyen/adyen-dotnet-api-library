@@ -36,7 +36,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// </summary>
         /// <param name="iban">The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.</param>
         /// <param name="type">**iban** (default to TypeEnum.Iban)</param>
-        [JsonConstructor]
         public IbanAccountIdentification(string iban, TypeEnum type = default)
         {
             Iban = iban;

@@ -37,7 +37,6 @@ namespace Adyen.SessionAuthentication.Models
         /// <param name="allowOrigin">The URL where the component will appear. In your live environment, you must protect the URL with an SSL certificate and ensure that it starts with &#x60;https://&#x60;.</param>
         /// <param name="policy">policy</param>
         /// <param name="product">product</param>
-        [JsonConstructor]
         public AuthenticationSessionRequest(string allowOrigin, Policy policy, ProductType product)
         {
             AllowOrigin = allowOrigin;

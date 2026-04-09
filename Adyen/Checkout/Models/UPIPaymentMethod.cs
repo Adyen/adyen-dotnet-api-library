@@ -35,7 +35,6 @@ namespace Adyen.Checkout.Models
         /// Initializes a new instance of the <see cref="UPIPaymentMethod" /> class.
         /// </summary>
         /// <param name="virtualPaymentAddress">virtualPaymentAddress</param>
-        [JsonConstructor]
         public UPIPaymentMethod(Option<string?> virtualPaymentAddress = default) : base()
         {
             _VirtualPaymentAddressOption = virtualPaymentAddress;

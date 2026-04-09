@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="operation">Defines how the condition must be evaluated.</param>
         /// <param name="value">The list of counterparty types to be evaluated.</param>
-        [JsonConstructor]
         public CounterpartyTypesRestriction(string operation, Option<List<CounterpartyTypesRestriction.ValueEnum>?> value = default)
         {
             Operation = operation;

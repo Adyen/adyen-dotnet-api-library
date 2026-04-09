@@ -54,7 +54,6 @@ namespace Adyen.Checkout.Models
         /// <param name="threeds2ChallengeResult">Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: &#x60;transStatus&#x60;.</param>
         /// <param name="threeds2Fingerprint">Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: &#x60;threeDSCompInd&#x60;.</param>
         /// <param name="vaultToken">PayPalv2-generated token for recurring payments.</param>
-        [JsonConstructor]
         public PaymentCompletionDetails(Option<string?> mD = default, Option<string?> paReq = default, Option<string?> paRes = default, Option<string?> authorizationToken = default, Option<string?> billingToken = default, Option<string?> cupsecureplusSmscode = default, Option<string?> facilitatorAccessToken = default, Option<string?> oneTimePasscode = default, Option<string?> orderID = default, Option<string?> payerID = default, Option<string?> payload = default, Option<string?> paymentID = default, Option<string?> paymentStatus = default, Option<string?> redirectResult = default, Option<string?> resultCode = default, Option<string?> returnUrlQueryString = default, Option<string?> threeDSResult = default, Option<string?> threeds2ChallengeResult = default, Option<string?> threeds2Fingerprint = default, Option<string?> vaultToken = default)
         {
             _MDOption = mD;

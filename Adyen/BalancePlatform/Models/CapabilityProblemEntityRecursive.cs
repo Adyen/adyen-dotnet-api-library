@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="documents">List of document IDs to which the verification errors related to the capabilities correspond to.</param>
         /// <param name="id">The ID of the entity.</param>
         /// <param name="type">Type of entity.   Possible values: **LegalEntity**, **BankAccount**, **Document**.</param>
-        [JsonConstructor]
         public CapabilityProblemEntityRecursive(Option<List<string>?> documents = default, Option<string?> id = default, Option<TypeEnum?> type = default)
         {
             _DocumentsOption = documents;

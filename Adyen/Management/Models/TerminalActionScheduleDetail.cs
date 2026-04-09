@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="id">The ID of the action on the specified terminal.</param>
         /// <param name="terminalId">The unique ID of the terminal that the action applies to.</param>
-        [JsonConstructor]
         public TerminalActionScheduleDetail(Option<string?> id = default, Option<string?> terminalId = default)
         {
             _IdOption = id;

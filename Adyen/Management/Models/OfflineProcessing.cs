@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="chipFloorLimit">The maximum offline transaction amount for chip cards, in the processing currency and specified in [minor units](https://docs.adyen.com/development-resources/currency-codes).</param>
         /// <param name="offlineSwipeLimits">The maximum offline transaction amount for swiped cards, in the specified currency.</param>
-        [JsonConstructor]
         public OfflineProcessing(Option<int?> chipFloorLimit = default, Option<List<MinorUnitsMonetaryValue>?> offlineSwipeLimits = default)
         {
             _ChipFloorLimitOption = chipFloorLimit;

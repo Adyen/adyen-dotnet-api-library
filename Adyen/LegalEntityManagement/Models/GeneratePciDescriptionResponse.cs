@@ -37,7 +37,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="content">The generated questionnaires in a base64 encoded format.</param>
         /// <param name="language">The two-letter [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code for the questionnaire. For example, **en**.</param>
         /// <param name="pciTemplateReferences">The array of Adyen-generated unique identifiers for the questionnaires. If empty, the user is not required to sign questionnaires.</param>
-        [JsonConstructor]
         public GeneratePciDescriptionResponse(Option<byte[]?> content = default, Option<string?> language = default, Option<List<string>?> pciTemplateReferences = default)
         {
             _ContentOption = content;

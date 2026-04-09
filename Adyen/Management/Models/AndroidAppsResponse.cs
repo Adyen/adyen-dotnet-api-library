@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="AndroidAppsResponse" /> class.
         /// </summary>
         /// <param name="data">Apps uploaded for Android payment terminals.</param>
-        [JsonConstructor]
         public AndroidAppsResponse(Option<List<AndroidApp>?> data = default)
         {
             _DataOption = data;

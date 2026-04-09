@@ -46,7 +46,6 @@ namespace Adyen.Payment.Models
         /// <param name="tokenAuthenticationVerificationValue">Network token authentication verification value (TAVV). The network token cryptogram.</param>
         /// <param name="transStatusReason">Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).</param>
         /// <param name="xid">Supported for 3D Secure 1. The transaction identifier (Base64-encoded, 20 bytes in a decoded form).</param>
-        [JsonConstructor]
         public ThreeDSecureData(Option<AuthenticationResponseEnum?> authenticationResponse = default, Option<byte[]?> cavv = default, Option<string?> cavvAlgorithm = default, Option<ChallengeCancelEnum?> challengeCancel = default, Option<DirectoryResponseEnum?> directoryResponse = default, Option<string?> dsTransID = default, Option<string?> eci = default, Option<string?> riskScore = default, Option<string?> threeDSVersion = default, Option<byte[]?> tokenAuthenticationVerificationValue = default, Option<string?> transStatusReason = default, Option<byte[]?> xid = default)
         {
             _AuthenticationResponseOption = authenticationResponse;

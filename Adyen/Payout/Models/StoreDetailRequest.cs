@@ -50,7 +50,6 @@ namespace Adyen.Payout.Models
         /// <param name="shopperName">shopperName</param>
         /// <param name="socialSecurityNumber">The shopper&#39;s social security number.</param>
         /// <param name="telephoneNumber">The shopper&#39;s phone number.</param>
-        [JsonConstructor]
         public StoreDetailRequest(DateOnly dateOfBirth, EntityTypeEnum entityType, string merchantAccount, string nationality, Recurring recurring, string shopperEmail, string shopperReference, Option<Dictionary<string, string>?> additionalData = default, Option<BankAccount?> bank = default, Option<Address?> billingAddress = default, Option<Card?> card = default, Option<int?> fraudOffset = default, Option<string?> selectedBrand = default, Option<Name?> shopperName = default, Option<string?> socialSecurityNumber = default, Option<string?> telephoneNumber = default)
         {
             DateOfBirth = dateOfBirth;

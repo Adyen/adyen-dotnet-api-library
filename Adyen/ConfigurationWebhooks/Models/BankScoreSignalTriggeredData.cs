@@ -43,7 +43,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="riskScore">The score of the identity resulting from the signal(s) that were triggered.</param>
         /// <param name="scoreSignalsTriggered">The name(s) of the score signals that were triggered.</param>
         /// <param name="signalSourceTypes">The type(s) of the score signals that were triggered.</param>
-        [JsonConstructor]
         public BankScoreSignalTriggeredData(Option<ResourceReference?> accountHolder = default, Option<string?> accountHolderStatus = default, Option<List<string>?> automatedActions = default, Option<string?> balancePlatform = default, Option<DateTimeOffset?> creationDate = default, Option<string?> id = default, Option<int?> riskScore = default, Option<List<string>?> scoreSignalsTriggered = default, Option<List<string>?> signalSourceTypes = default)
         {
             _AccountHolderOption = accountHolder;

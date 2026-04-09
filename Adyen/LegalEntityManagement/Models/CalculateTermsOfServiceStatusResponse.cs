@@ -35,7 +35,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// Initializes a new instance of the <see cref="CalculateTermsOfServiceStatusResponse" /> class.
         /// </summary>
         /// <param name="termsOfServiceTypes">The type of Terms of Service that the legal entity needs to accept. If empty, no Terms of Service needs to be accepted.</param>
-        [JsonConstructor]
         public CalculateTermsOfServiceStatusResponse(Option<List<CalculateTermsOfServiceStatusResponse.TermsOfServiceTypesEnum>?> termsOfServiceTypes = default)
         {
             _TermsOfServiceTypesOption = termsOfServiceTypes;

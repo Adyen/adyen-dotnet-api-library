@@ -44,7 +44,6 @@ namespace Adyen.DisputeWebhooks.Models
         /// <param name="statusDetail">Additional information about the status of the dispute, when available.</param>
         /// <param name="transactionId">The unique reference of the transaction for which the dispute is requested.</param>
         /// <param name="type">The type of dispute raised for the transaction.</param>
-        [JsonConstructor]
         public DisputeEventNotification(Option<string?> arn = default, Option<string?> balancePlatform = default, Option<DateTimeOffset?> creationDate = default, Option<string?> description = default, Option<Amount?> disputedAmount = default, Option<string?> id = default, Option<string?> status = default, Option<string?> statusDetail = default, Option<string?> transactionId = default, Option<TypeEnum?> type = default)
         {
             _ArnOption = arn;

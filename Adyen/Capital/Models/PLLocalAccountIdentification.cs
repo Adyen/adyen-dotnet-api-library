@@ -35,7 +35,6 @@ namespace Adyen.Capital.Models
         /// Initializes a new instance of the <see cref="PLLocalAccountIdentification" /> class.
         /// </summary>
         /// <param name="accountNumber">The 26-digit bank account number ([Numer rachunku](https://pl.wikipedia.org/wiki/Numer_Rachunku_Bankowego)), without separators or whitespace.</param>
-        [JsonConstructor]
         public PLLocalAccountIdentification(string accountNumber) : base()
         {
             AccountNumber = accountNumber;

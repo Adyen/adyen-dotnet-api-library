@@ -43,7 +43,6 @@ namespace Adyen.Capital.Models
         /// <param name="id">The unique identifier of the disbursement.</param>
         /// <param name="repayment">repayment</param>
         /// <param name="fundsCollections">Contains information about the accounts that Adyen uses to collect funds related to repayments.</param>
-        [JsonConstructor]
         public Disbursement(string accountHolderId, Amount amount, string balanceAccountId, Balance balances, Fee fee, string grantId, string id, DisbursementRepayment repayment, Option<List<FundsCollection>?> fundsCollections = default)
         {
             AccountHolderId = accountHolderId;

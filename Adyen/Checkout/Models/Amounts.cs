@@ -36,7 +36,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes/).</param>
         /// <param name="values">The amounts of the donation (in [minor units](https://docs.adyen.com/development-resources/currency-codes/)).</param>
-        [JsonConstructor]
         public Amounts(string currency, List<long> values)
         {
             Currency = currency;

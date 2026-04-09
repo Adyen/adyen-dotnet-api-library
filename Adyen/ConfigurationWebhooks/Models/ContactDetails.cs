@@ -38,7 +38,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="email">The email address of the account holder.</param>
         /// <param name="phone">phone</param>
         /// <param name="webAddress">The URL of the account holder&#39;s website.</param>
-        [JsonConstructor]
         public ContactDetails(Address address, string email, Phone phone, Option<string?> webAddress = default)
         {
             Address = address;

@@ -40,7 +40,6 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
         /// <param name="email">The email address of the contact.</param>
         /// <param name="phone">phone</param>
         /// <param name="webAddress">The URL of the contact&#39;s website.</param>
-        [JsonConstructor]
         public DeliveryContact(DeliveryAddress address, Name name, Option<string?> company = default, Option<string?> email = default, Option<Phone?> phone = default, Option<string?> webAddress = default)
         {
             Address = address;

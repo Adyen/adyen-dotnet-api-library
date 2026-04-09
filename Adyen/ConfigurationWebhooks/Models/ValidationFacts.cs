@@ -37,7 +37,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="reasons">The reason for the &#x60;result&#x60; of the validations.  This field is only sent for &#x60;validationFacts.type&#x60; **walletValidation**, when &#x60;validationFacts.result&#x60; is **invalid**.</param>
         /// <param name="result">The evaluation result of the validation facts.  Possible values: **valid**, **invalid**, **notValidated**, **notApplicable**.</param>
         /// <param name="type">The type of the validation fact.</param>
-        [JsonConstructor]
         public ValidationFacts(Option<List<string>?> reasons = default, Option<ResultEnum?> result = default, Option<string?> type = default)
         {
             _ReasonsOption = reasons;

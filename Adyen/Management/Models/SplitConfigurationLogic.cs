@@ -51,7 +51,6 @@ namespace Adyen.Management.Models
         /// <param name="splitLogicId">Unique identifier of the collection of split instructions that are applied when the rule conditions are met.</param>
         /// <param name="surcharge">Books the surcharge amount to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**</param>
         /// <param name="tip">Books the tips (gratuity) to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.</param>
-        [JsonConstructor]
         public SplitConfigurationLogic(Commission commission, Option<AcquiringFeesEnum?> acquiringFees = default, Option<AdditionalCommission?> additionalCommission = default, Option<AdyenCommissionEnum?> adyenCommission = default, Option<AdyenFeesEnum?> adyenFees = default, Option<AdyenMarkupEnum?> adyenMarkup = default, Option<ChargebackEnum?> chargeback = default, Option<ChargebackCostAllocationEnum?> chargebackCostAllocation = default, Option<InterchangeEnum?> interchange = default, Option<PaymentFeeEnum?> paymentFee = default, Option<RefundEnum?> refund = default, Option<RefundCostAllocationEnum?> refundCostAllocation = default, Option<RemainderEnum?> remainder = default, Option<SchemeFeeEnum?> schemeFee = default, Option<string?> splitLogicId = default, Option<SurchargeEnum?> surcharge = default, Option<TipEnum?> tip = default)
         {
             Commission = commission;

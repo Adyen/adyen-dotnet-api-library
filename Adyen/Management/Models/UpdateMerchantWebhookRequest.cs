@@ -47,7 +47,6 @@ namespace Adyen.Management.Models
         /// <param name="populateSoapActionHeader">Indicates if the SOAP action header needs to be populated. Default value: **false**.  Only applies if &#x60;communicationFormat&#x60;: **soap**.</param>
         /// <param name="url">Public URL where webhooks will be sent, for example **https://www.domain.com/webhook-endpoint**.</param>
         /// <param name="username">Username to access the webhook URL.</param>
-        [JsonConstructor]
         public UpdateMerchantWebhookRequest(Option<bool?> acceptsExpiredCertificate = default, Option<bool?> acceptsSelfSignedCertificate = default, Option<bool?> acceptsUntrustedRootCertificate = default, Option<bool?> active = default, Option<AdditionalSettings?> additionalSettings = default, Option<CommunicationFormatEnum?> communicationFormat = default, Option<string?> description = default, Option<EncryptionProtocolEnum?> encryptionProtocol = default, Option<NetworkTypeEnum?> networkType = default, Option<string?> password = default, Option<bool?> populateSoapActionHeader = default, Option<string?> url = default, Option<string?> username = default)
         {
             _AcceptsExpiredCertificateOption = acceptsExpiredCertificate;

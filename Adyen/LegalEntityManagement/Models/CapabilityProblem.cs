@@ -36,7 +36,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <param name="entity">entity</param>
         /// <param name="verificationErrors">verificationErrors</param>
-        [JsonConstructor]
         public CapabilityProblem(Option<CapabilityProblemEntity?> entity = default, Option<List<VerificationError>?> verificationErrors = default)
         {
             _EntityOption = entity;

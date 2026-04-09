@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="BcmcInfo" /> class.
         /// </summary>
         /// <param name="enableBcmcMobile">Indicates if [Bancontact mobile](https://docs.adyen.com/payment-methods/bancontact/bancontact-mobile) is enabled.</param>
-        [JsonConstructor]
         public BcmcInfo(Option<bool?> enableBcmcMobile = default)
         {
             _EnableBcmcMobileOption = enableBcmcMobile;

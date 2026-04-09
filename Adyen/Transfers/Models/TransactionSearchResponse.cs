@@ -36,7 +36,6 @@ namespace Adyen.Transfers.Models
         /// </summary>
         /// <param name="links">links</param>
         /// <param name="data">Contains the transactions that match the query parameters.</param>
-        [JsonConstructor]
         public TransactionSearchResponse(Option<Links?> links = default, Option<List<Transaction>?> data = default)
         {
             _LinksOption = links;

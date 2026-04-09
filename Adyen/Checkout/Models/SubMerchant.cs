@@ -39,7 +39,6 @@ namespace Adyen.Checkout.Models
         /// <param name="mcc">The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits</param>
         /// <param name="name">The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement  that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters</param>
         /// <param name="taxId">The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ</param>
-        [JsonConstructor]
         public SubMerchant(Option<string?> city = default, Option<string?> country = default, Option<string?> mcc = default, Option<string?> name = default, Option<string?> taxId = default)
         {
             _CityOption = city;

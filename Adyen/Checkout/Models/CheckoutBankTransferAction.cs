@@ -49,7 +49,6 @@ namespace Adyen.Checkout.Models
         /// <param name="sortCode">The sort code of the bank transfer.</param>
         /// <param name="totalAmount">totalAmount</param>
         /// <param name="url">Specifies the URL to redirect to.</param>
-        [JsonConstructor]
         public CheckoutBankTransferAction(TypeEnum type, Option<string?> accountNumber = default, Option<string?> bankCode = default, Option<string?> beneficiary = default, Option<string?> bic = default, Option<string?> branchCode = default, Option<string?> downloadUrl = default, Option<string?> iban = default, Option<string?> paymentMethodType = default, Option<string?> reference = default, Option<string?> routingNumber = default, Option<string?> shopperEmail = default, Option<string?> sortCode = default, Option<Amount?> totalAmount = default, Option<string?> url = default)
         {
             Type = type;

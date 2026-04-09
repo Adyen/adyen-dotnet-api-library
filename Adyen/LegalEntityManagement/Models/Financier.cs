@@ -38,7 +38,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="firstName">The financier&#39;s first name.</param>
         /// <param name="lastName">The financier&#39;s last name.</param>
         /// <param name="location">The city and country/region where the financier is currently located. For example: Chicago, USA</param>
-        [JsonConstructor]
         public Financier(Amount amount, string firstName, string lastName, string location)
         {
             Amount = amount;

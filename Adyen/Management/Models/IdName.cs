@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="id">The identifier of the terminal model.</param>
         /// <param name="name">The name of the terminal model.</param>
-        [JsonConstructor]
         public IdName(Option<string?> id = default, Option<string?> name = default)
         {
             _IdOption = id;

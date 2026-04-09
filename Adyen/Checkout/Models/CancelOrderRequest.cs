@@ -36,7 +36,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="merchantAccount">The merchant account identifier that orderData belongs to.</param>
         /// <param name="order">order</param>
-        [JsonConstructor]
         public CancelOrderRequest(string merchantAccount, EncryptedOrderData order)
         {
             MerchantAccount = merchantAccount;

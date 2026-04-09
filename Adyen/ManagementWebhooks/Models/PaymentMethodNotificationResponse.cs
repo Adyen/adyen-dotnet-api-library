@@ -35,7 +35,6 @@ namespace Adyen.ManagementWebhooks.Models
         /// Initializes a new instance of the <see cref="PaymentMethodNotificationResponse" /> class.
         /// </summary>
         /// <param name="notificationResponse">Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks/#accept-webhooks).</param>
-        [JsonConstructor]
         public PaymentMethodNotificationResponse(Option<string?> notificationResponse = default)
         {
             _NotificationResponseOption = notificationResponse;

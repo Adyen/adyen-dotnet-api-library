@@ -39,7 +39,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="target">target</param>
         /// <param name="type">The type of the webhook you are configuring. Set to **balance**.</param>
         /// <param name="conditions">The array of conditions a balance change must meet for Adyen to send the webhook.</param>
-        [JsonConstructor]
         public BalanceWebhookSettingInfo(string currency, StatusEnum status, Target target, TypeEnum type, Option<List<Condition>?> conditions = default)
         {
             Currency = currency;

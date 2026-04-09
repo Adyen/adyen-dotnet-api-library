@@ -45,7 +45,6 @@ namespace Adyen.Checkout.Models
         /// <param name="name">The displayable name of this payment method.</param>
         /// <param name="promoted">Indicates whether this payment method should be promoted or not.</param>
         /// <param name="type">The unique payment method code.</param>
-        [JsonConstructor]
         public PaymentMethod(Option<List<PaymentMethodUPIApps>?> apps = default, Option<string?> brand = default, Option<List<string>?> brands = default, Option<Dictionary<string, string>?> configuration = default, Option<FundingSourceEnum?> fundingSource = default, Option<PaymentMethodGroup?> group = default, Option<List<InputDetail>?> inputDetails = default, Option<List<PaymentMethodIssuer>?> issuers = default, Option<string?> name = default, Option<bool?> promoted = default, Option<string?> type = default)
         {
             _AppsOption = apps;

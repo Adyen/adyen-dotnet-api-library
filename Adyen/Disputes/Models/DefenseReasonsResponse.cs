@@ -36,7 +36,6 @@ namespace Adyen.Disputes.Models
         /// </summary>
         /// <param name="disputeServiceResult">disputeServiceResult</param>
         /// <param name="defenseReasons">The defense reasons that can be used to defend the dispute.</param>
-        [JsonConstructor]
         public DefenseReasonsResponse(DisputeServiceResult disputeServiceResult, Option<List<DefenseReason>?> defenseReasons = default)
         {
             DisputeServiceResult = disputeServiceResult;

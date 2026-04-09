@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="operation">Defines how the condition must be evaluated.</param>
         /// <param name="value">List of merchant category codes (MCCs).</param>
-        [JsonConstructor]
         public MccsRestriction(string operation, Option<List<string>?> value = default)
         {
             Operation = operation;

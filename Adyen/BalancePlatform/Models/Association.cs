@@ -38,7 +38,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="entityType">entityType</param>
         /// <param name="scaDeviceId">The unique identifier for the SCA device.</param>
         /// <param name="status">status</param>
-        [JsonConstructor]
         public Association(string entityId, ScaEntityType entityType, string scaDeviceId, AssociationStatus status)
         {
             EntityId = entityId;

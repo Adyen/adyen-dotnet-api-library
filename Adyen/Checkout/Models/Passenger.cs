@@ -39,7 +39,6 @@ namespace Adyen.Checkout.Models
         /// <param name="lastName">The passenger&#39;s last name. &gt; This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII</param>
         /// <param name="phoneNumber">The passenger&#39;s phone number, including country code. This is an alphanumeric field that can include the &#39;+&#39; and &#39;-&#39; signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters</param>
         /// <param name="travellerType">The IATA passenger type code (PTC). * Encoding: ASCII * minLength: 3 characters * maxLength: 6 characters</param>
-        [JsonConstructor]
         public Passenger(Option<DateOnly?> dateOfBirth = default, Option<string?> firstName = default, Option<string?> lastName = default, Option<string?> phoneNumber = default, Option<string?> travellerType = default)
         {
             _DateOfBirthOption = dateOfBirth;

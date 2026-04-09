@@ -51,7 +51,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="requirePciSignPos">Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **pos** sales channel type.</param>
         /// <param name="requirePciSignPosMoto">Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **posMoto** sales channel type.</param>
         /// <param name="transferInstrumentLimit">The maximum number of transfer instruments the user can create.</param>
-        [JsonConstructor]
         public OnboardingLinkSettings(Option<List<string>?> acceptedCountries = default, Option<bool?> allowBankAccountFormatSelection = default, Option<bool?> allowDebugUi = default, Option<bool?> allowIntraRegionCrossBorderPayout = default, Option<bool?> changeLegalEntityType = default, Option<bool?> editPrefilledCountry = default, Option<bool?> enforceLegalAge = default, Option<bool?> hideOnboardingIntroductionIndividual = default, Option<bool?> hideOnboardingIntroductionOrganization = default, Option<bool?> hideOnboardingIntroductionSoleProprietor = default, Option<bool?> hideOnboardingIntroductionTrust = default, Option<bool?> instantBankVerification = default, Option<bool?> requirePciSignEcomMoto = default, Option<bool?> requirePciSignEcommerce = default, Option<bool?> requirePciSignPos = default, Option<bool?> requirePciSignPosMoto = default, Option<int?> transferInstrumentLimit = default)
         {
             _AcceptedCountriesOption = acceptedCountries;

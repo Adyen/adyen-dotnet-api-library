@@ -40,7 +40,6 @@ namespace Adyen.Checkout.Models
         /// <param name="registryLocation">Registry location of the company.</param>
         /// <param name="taxId">Tax ID of the company.</param>
         /// <param name="type">The company type.</param>
-        [JsonConstructor]
         public Company(Option<string?> homepage = default, Option<string?> name = default, Option<string?> registrationNumber = default, Option<string?> registryLocation = default, Option<string?> taxId = default, Option<string?> type = default)
         {
             _HomepageOption = homepage;

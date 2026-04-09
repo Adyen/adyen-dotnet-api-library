@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="balanceAccountId">Unique identifier of the balance account to which the additional commission is booked.</param>
         /// <param name="fixedAmount">A fixed commission fee, in minor units.</param>
         /// <param name="variablePercentage">A variable commission fee, in basis points.</param>
-        [JsonConstructor]
         public AdditionalCommission(Option<string?> balanceAccountId = default, Option<long?> fixedAmount = default, Option<long?> variablePercentage = default)
         {
             _BalanceAccountIdOption = balanceAccountId;

@@ -37,7 +37,6 @@ namespace Adyen.Payment.Models
         /// <param name="locale">Locale on the shopper interaction device.</param>
         /// <param name="os">Operating system running on the shopper interaction device.</param>
         /// <param name="osVersion">Version of the operating system on the shopper interaction device.</param>
-        [JsonConstructor]
         public ShopperInteractionDevice(Option<string?> locale = default, Option<string?> os = default, Option<string?> osVersion = default)
         {
             _LocaleOption = locale;

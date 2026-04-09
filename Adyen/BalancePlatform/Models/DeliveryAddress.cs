@@ -41,7 +41,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="line3">Additional information about the delivery address.</param>
         /// <param name="postalCode">The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries.</param>
         /// <param name="stateOrProvince">The state or province code, maximum 3 characters. For example, **CA** for California in the US or **ON** for Ontario in Canada. &gt; Required for the US and Canada.</param>
-        [JsonConstructor]
         public DeliveryAddress(string country, Option<string?> city = default, Option<string?> line1 = default, Option<string?> line2 = default, Option<string?> line3 = default, Option<string?> postalCode = default, Option<string?> stateOrProvince = default)
         {
             Country = country;

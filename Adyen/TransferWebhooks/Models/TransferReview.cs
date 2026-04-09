@@ -36,7 +36,6 @@ namespace Adyen.TransferWebhooks.Models
         /// </summary>
         /// <param name="numberOfApprovalsRequired">Shows the number of [approvals](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers/approve) required to process the transfer.</param>
         /// <param name="scaOnApproval">Shows the status of the Strong Customer Authentication (SCA) process.  Possible values: **required**, **notApplicable**.</param>
-        [JsonConstructor]
         public TransferReview(Option<int?> numberOfApprovalsRequired = default, Option<ScaOnApprovalEnum?> scaOnApproval = default)
         {
             _NumberOfApprovalsRequiredOption = numberOfApprovalsRequired;

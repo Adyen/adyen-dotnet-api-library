@@ -51,7 +51,6 @@ namespace Adyen.Recurring.Models
         /// <param name="shopperName">shopperName</param>
         /// <param name="socialSecurityNumber">A shopper&#39;s social security number (only in countries where it is legal to collect).</param>
         /// <param name="tokenDetails">tokenDetails</param>
-        [JsonConstructor]
         public RecurringDetail(string recurringDetailReference, string variant, Option<Dictionary<string, string>?> additionalData = default, Option<string?> alias = default, Option<string?> aliasType = default, Option<BankAccount?> bank = default, Option<Address?> billingAddress = default, Option<Card?> card = default, Option<List<string>?> contractTypes = default, Option<DateTimeOffset?> creationDate = default, Option<string?> firstPspReference = default, Option<string?> name = default, Option<string?> networkTxReference = default, Option<string?> paymentMethodVariant = default, Option<Name?> shopperName = default, Option<string?> socialSecurityNumber = default, Option<TokenDetails?> tokenDetails = default)
         {
             RecurringDetailReference = recurringDetailReference;

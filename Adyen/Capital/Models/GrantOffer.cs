@@ -42,7 +42,6 @@ namespace Adyen.Capital.Models
         /// <param name="id">The unique identifier of the grant offer.</param>
         /// <param name="repayment">repayment</param>
         /// <param name="startsAt">The date when the grant offer becomes available.</param>
-        [JsonConstructor]
         public GrantOffer(string accountHolderId, Option<Amount?> amount = default, Option<ContractTypeEnum?> contractType = default, Option<DateTimeOffset?> expiresAt = default, Option<GrantOfferFee?> fee = default, Option<string?> id = default, Option<Repayment?> repayment = default, Option<DateTimeOffset?> startsAt = default)
         {
             AccountHolderId = accountHolderId;

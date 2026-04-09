@@ -40,7 +40,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="remediatingActions">Contains the actions that you can take to resolve the verification error.</param>
         /// <param name="subErrors">Contains more granular information about the verification error.</param>
         /// <param name="type">The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **dataReview**  </param>
-        [JsonConstructor]
         public VerificationError(Option<List<VerificationError.CapabilitiesEnum>?> capabilities = default, Option<string?> code = default, Option<string?> message = default, Option<List<RemediatingAction>?> remediatingActions = default, Option<List<VerificationErrorRecursive>?> subErrors = default, Option<TypeEnum?> type = default)
         {
             _CapabilitiesOption = capabilities;

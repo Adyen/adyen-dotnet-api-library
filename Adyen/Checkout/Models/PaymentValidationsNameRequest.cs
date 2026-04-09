@@ -35,7 +35,6 @@ namespace Adyen.Checkout.Models
         /// Initializes a new instance of the <see cref="PaymentValidationsNameRequest" /> class.
         /// </summary>
         /// <param name="status">Set to **requested** to request a [name validation](https://docs.adyen.com/payment-methods/cards/name-validation) to verify if the cardholder name provided by the shopper matches the cardholder name on file at the issuing bank.</param>
-        [JsonConstructor]
         public PaymentValidationsNameRequest(string status)
         {
             Status = status;

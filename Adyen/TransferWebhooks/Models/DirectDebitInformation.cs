@@ -38,7 +38,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="dueDate">The date when the funds are deducted from your user&#39;s balance account.</param>
         /// <param name="mandateId">Your unique identifier for the direct debit mandate.</param>
         /// <param name="sequenceType">Identifies the direct debit transfer&#39;s type. Possible values: **OneOff**, **First**, **Recurring**, **Final**.</param>
-        [JsonConstructor]
         public DirectDebitInformation(Option<DateTimeOffset?> dateOfSignature = default, Option<DateTimeOffset?> dueDate = default, Option<string?> mandateId = default, Option<string?> sequenceType = default)
         {
             _DateOfSignatureOption = dateOfSignature;

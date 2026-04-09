@@ -38,7 +38,6 @@ namespace Adyen.Checkout.Models
         /// <param name="threeDSReqPriorAuthMethod">Mechanism used by the Cardholder to previously authenticate to the 3DS Requestor. Allowed values: * **01** — Frictionless authentication occurred by ACS. * **02** — Cardholder challenge occurred by ACS. * **03** — AVS verified. * **04** — Other issuer methods.</param>
         /// <param name="threeDSReqPriorAuthTimestamp">Date and time in UTC of the prior cardholder authentication. Format: YYYYMMDDHHMM</param>
         /// <param name="threeDSReqPriorRef">This data element provides additional information to the ACS to determine the best approach for handing a request. This data element contains an ACS Transaction ID for a prior authenticated transaction. For example, the first recurring transaction that was authenticated with the cardholder. Length: 30 characters.</param>
-        [JsonConstructor]
         public ThreeDSRequestorPriorAuthenticationInfo(Option<string?> threeDSReqPriorAuthData = default, Option<ThreeDSReqPriorAuthMethodEnum?> threeDSReqPriorAuthMethod = default, Option<string?> threeDSReqPriorAuthTimestamp = default, Option<string?> threeDSReqPriorRef = default)
         {
             _ThreeDSReqPriorAuthDataOption = threeDSReqPriorAuthData;

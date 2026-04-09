@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="certificateId">The unique identifier of the certificate to be installed.</param>
         /// <param name="type">Type of terminal action: Install an Android certificate. (default to TypeEnum.InstallAndroidCertificate)</param>
-        [JsonConstructor]
         public InstallAndroidCertificateDetails(Option<string?> certificateId = default, Option<TypeEnum?> type = default)
         {
             _CertificateIdOption = certificateId;

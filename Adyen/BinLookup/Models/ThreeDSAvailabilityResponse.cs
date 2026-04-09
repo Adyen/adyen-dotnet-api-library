@@ -39,7 +39,6 @@ namespace Adyen.BinLookup.Models
         /// <param name="threeDS1Supported">Indicator if 3D Secure 1 is supported.</param>
         /// <param name="threeDS2CardRangeDetails">List of brand and card range pairs.</param>
         /// <param name="threeDS2supported">Indicator if 3D Secure 2 is supported.</param>
-        [JsonConstructor]
         public ThreeDSAvailabilityResponse(Option<BinDetail?> binDetails = default, Option<List<DSPublicKeyDetail>?> dsPublicKeys = default, Option<bool?> threeDS1Supported = default, Option<List<ThreeDS2CardRangeDetail>?> threeDS2CardRangeDetails = default, Option<bool?> threeDS2supported = default)
         {
             _BinDetailsOption = binDetails;

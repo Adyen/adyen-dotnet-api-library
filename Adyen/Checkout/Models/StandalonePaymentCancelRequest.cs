@@ -39,7 +39,6 @@ namespace Adyen.Checkout.Models
         /// <param name="applicationInfo">applicationInfo</param>
         /// <param name="enhancedSchemeData">enhancedSchemeData</param>
         /// <param name="reference">Your reference for the cancel request. Maximum length: 80 characters.</param>
-        [JsonConstructor]
         public StandalonePaymentCancelRequest(string merchantAccount, string paymentReference, Option<ApplicationInfo?> applicationInfo = default, Option<EnhancedSchemeData?> enhancedSchemeData = default, Option<string?> reference = default)
         {
             MerchantAccount = merchantAccount;

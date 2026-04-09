@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="domain">Domain of the allowed origin.</param>
         /// <param name="links">links</param>
         /// <param name="id">Unique identifier of the allowed origin.</param>
-        [JsonConstructor]
         public AllowedOrigin(string domain, Option<Links?> links = default, Option<string?> id = default)
         {
             Domain = domain;

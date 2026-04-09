@@ -38,7 +38,6 @@ namespace Adyen.Management.Models
         /// <param name="refundPin">The passcode for referenced and unreferenced refunds on standalone terminals.</param>
         /// <param name="screenLockPin">The passcode to unlock the terminal screen after a timeout.</param>
         /// <param name="txMenuPin">The passcode for the Transactions menu.</param>
-        [JsonConstructor]
         public Passcodes(Option<string?> adminMenuPin = default, Option<string?> refundPin = default, Option<string?> screenLockPin = default, Option<string?> txMenuPin = default)
         {
             _AdminMenuPinOption = adminMenuPin;

@@ -39,7 +39,6 @@ namespace Adyen.Management.Models
         /// <param name="self">self</param>
         /// <param name="next">next</param>
         /// <param name="prev">prev</param>
-        [JsonConstructor]
         public PaginationLinks(LinksElement first, LinksElement last, LinksElement self, Option<LinksElement?> next = default, Option<LinksElement?> prev = default)
         {
             First = first;

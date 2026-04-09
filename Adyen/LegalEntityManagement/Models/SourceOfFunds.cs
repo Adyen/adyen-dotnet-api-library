@@ -47,7 +47,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="relationship">Required if &#x60;type&#x60; is **donations** or **inheritance**. The relationship of the originator of the funds to the recipient.</param>
         /// <param name="type">The type of the source of funds.    Possible values: *  **business** *  **employment** *  **donations** *  **inheritance** *  **financialAid** *  **rentalIncome** *  **dividendIncome** *  **royaltyIncome** *  **thirdPartyFunding** *  **pensionIncome** *  **insuranceSettlement** *  **cryptocurrencyIncome** *  **assetSale** *  **loans** *  **gamblingWinnings**  </param>
         /// <param name="website">Required if &#x60;type&#x60; is **gamblingWinnings**. The location of the gambling site for the winnings.  For example, if the source of funds is online gambling, provide the website of the gambling company.</param>
-        [JsonConstructor]
         public SourceOfFunds(bool adyenProcessedFunds, Option<Amount?> amount = default, Option<int?> assetMonthsHeld = default, Option<string?> cryptocurrencyExchange = default, Option<DateOnly?> dateOfFundsReceived = default, Option<DateOnly?> dateOfSourceEvent = default, Option<string?> description = default, Option<List<Financier>?> financiers = default, Option<string?> originatorLegalEntityId = default, Option<string?> purpose = default, Option<string?> relationship = default, Option<TypeEnum?> type = default, Option<string?> website = default)
         {
             AdyenProcessedFunds = adyenProcessedFunds;

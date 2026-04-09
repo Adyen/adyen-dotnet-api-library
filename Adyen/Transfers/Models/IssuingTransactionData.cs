@@ -36,7 +36,6 @@ namespace Adyen.Transfers.Models
         /// </summary>
         /// <param name="captureCycleId">captureCycleId associated with transfer event.</param>
         /// <param name="type">The type of events data.   Possible values:    - **issuingTransactionData**: issuing transaction data (default to TypeEnum.IssuingTransactionData)</param>
-        [JsonConstructor]
         public IssuingTransactionData(Option<string?> captureCycleId = default, TypeEnum type = default)
         {
             _CaptureCycleIdOption = captureCycleId;

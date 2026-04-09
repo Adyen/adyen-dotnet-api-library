@@ -38,7 +38,6 @@ namespace Adyen.Payout.Models
         /// <param name="resultCode">The response:  * In case of success is payout-submit-received. * In case of an error, an informational message is returned.</param>
         /// <param name="additionalData">This field contains additional data, which may be returned in a particular response.</param>
         /// <param name="refusalReason">In case of refusal, an informational message for the reason.</param>
-        [JsonConstructor]
         public StoreDetailAndSubmitResponse(string pspReference, string resultCode, Option<Dictionary<string, string>?> additionalData = default, Option<string?> refusalReason = default)
         {
             PspReference = pspReference;

@@ -44,7 +44,6 @@ namespace Adyen.Management.Models
         /// <param name="active">Indicates whether this user is active.</param>
         /// <param name="apps">Set of apps available to this user</param>
         /// <param name="name">name</param>
-        [JsonConstructor]
         public User(string email, string id, List<string> roles, string timeZoneCode, string username, Option<Links?> links = default, Option<List<string>?> accountGroups = default, Option<bool?> active = default, Option<List<string>?> apps = default, Option<Name?> name = default)
         {
             Email = email;

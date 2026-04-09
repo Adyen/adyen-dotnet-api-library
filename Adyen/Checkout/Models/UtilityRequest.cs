@@ -35,7 +35,6 @@ namespace Adyen.Checkout.Models
         /// Initializes a new instance of the <see cref="UtilityRequest" /> class.
         /// </summary>
         /// <param name="originDomains">The list of origin domains, for which origin keys are requested.</param>
-        [JsonConstructor]
         public UtilityRequest(List<string> originDomains)
         {
             OriginDomains = originDomains;

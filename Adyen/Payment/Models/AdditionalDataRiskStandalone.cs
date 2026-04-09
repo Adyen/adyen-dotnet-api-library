@@ -49,7 +49,6 @@ namespace Adyen.Payment.Models
         /// <param name="threeDAuthenticated">A Boolean value indicating whether 3DS authentication was completed on this payment. Example: true</param>
         /// <param name="threeDOffered">A Boolean value indicating whether 3DS was offered for this payment. Example: true</param>
         /// <param name="tokenDataType">Required for PayPal payments only. The only supported value is: **paypal**.</param>
-        [JsonConstructor]
         public AdditionalDataRiskStandalone(Option<string?> payPalCountryCode = default, Option<string?> payPalEmailId = default, Option<string?> payPalFirstName = default, Option<string?> payPalLastName = default, Option<string?> payPalPayerId = default, Option<string?> payPalPhone = default, Option<string?> payPalProtectionEligibility = default, Option<string?> payPalTransactionId = default, Option<string?> avsResultRaw = default, Option<string?> bin = default, Option<string?> cvcResultRaw = default, Option<string?> riskToken = default, Option<string?> threeDAuthenticated = default, Option<string?> threeDOffered = default, Option<string?> tokenDataType = default)
         {
             _PayPalCountryCodeOption = payPalCountryCode;

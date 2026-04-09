@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="TransferLimitListResponse" /> class.
         /// </summary>
         /// <param name="transferLimits">List of available transfer limits.</param>
-        [JsonConstructor]
         public TransferLimitListResponse(List<TransferLimit> transferLimits)
         {
             TransferLimits = transferLimits;

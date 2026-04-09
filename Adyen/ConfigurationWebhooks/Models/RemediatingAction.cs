@@ -36,7 +36,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// </summary>
         /// <param name="code">The remediating action code.</param>
         /// <param name="message">A description of how you can resolve the verification error.</param>
-        [JsonConstructor]
         public RemediatingAction(Option<string?> code = default, Option<string?> message = default)
         {
             _CodeOption = code;

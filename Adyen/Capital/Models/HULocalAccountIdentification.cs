@@ -35,7 +35,6 @@ namespace Adyen.Capital.Models
         /// Initializes a new instance of the <see cref="HULocalAccountIdentification" /> class.
         /// </summary>
         /// <param name="accountNumber">The 24-digit bank account number, without separators or whitespace.</param>
-        [JsonConstructor]
         public HULocalAccountIdentification(string accountNumber) : base()
         {
             AccountNumber = accountNumber;

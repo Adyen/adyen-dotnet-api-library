@@ -35,7 +35,6 @@ namespace Adyen.BinLookup.Models
         /// Initializes a new instance of the <see cref="BinDetail" /> class.
         /// </summary>
         /// <param name="issuerCountry">The country where the card was issued.</param>
-        [JsonConstructor]
         public BinDetail(Option<string?> issuerCountry = default)
         {
             _IssuerCountryOption = issuerCountry;

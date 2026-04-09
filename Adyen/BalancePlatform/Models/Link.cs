@@ -39,7 +39,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="next">next</param>
         /// <param name="previous">previous</param>
         /// <param name="self">self</param>
-        [JsonConstructor]
         public Link(Option<Href?> first = default, Option<Href?> last = default, Option<Href?> next = default, Option<Href?> previous = default, Option<Href?> self = default)
         {
             _FirstOption = first;

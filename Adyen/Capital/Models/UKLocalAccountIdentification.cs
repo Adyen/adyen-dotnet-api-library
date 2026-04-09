@@ -36,7 +36,6 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <param name="accountNumber">The 8-digit bank account number, without separators or whitespace.</param>
         /// <param name="sortCode">The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.</param>
-        [JsonConstructor]
         public UKLocalAccountIdentification(string accountNumber, string sortCode) : base()
         {
             AccountNumber = accountNumber;

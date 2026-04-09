@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="SwishInfo" /> class.
         /// </summary>
         /// <param name="swishNumber">Swish number. Format: 10 digits without spaces. For example, **1231111111**.</param>
-        [JsonConstructor]
         public SwishInfo(string swishNumber)
         {
             SwishNumber = swishNumber;

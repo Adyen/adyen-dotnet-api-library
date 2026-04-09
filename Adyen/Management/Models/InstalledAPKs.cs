@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="confirmationDate">The date and time when the app was installed.</param>
         /// <param name="packageName">The package name of the app.</param>
         /// <param name="versionName">The version name of the app.</param>
-        [JsonConstructor]
         public InstalledAPKs(Option<DateTimeOffset?> confirmationDate = default, Option<string?> packageName = default, Option<string?> versionName = default)
         {
             _ConfirmationDateOption = confirmationDate;

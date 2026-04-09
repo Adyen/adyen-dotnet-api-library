@@ -59,7 +59,6 @@ namespace Adyen.Management.Models
         /// <param name="terminalInstructions">terminalInstructions</param>
         /// <param name="timeouts">timeouts</param>
         /// <param name="wifiProfiles">wifiProfiles</param>
-        [JsonConstructor]
         public TerminalSettings(Option<CardholderReceipt?> cardholderReceipt = default, Option<Connectivity?> connectivity = default, Option<List<Gratuity>?> gratuities = default, Option<Hardware?> hardware = default, Option<HomeScreenSettings?> homeScreen = default, Option<KioskModeSettings?> kioskMode = default, Option<Localization?> localization = default, Option<Moto?> moto = default, Option<Nexo?> nexo = default, Option<OfflineProcessing?> offlineProcessing = default, Option<Opi?> opi = default, Option<Passcodes?> passcodes = default, Option<PayAtTable?> payAtTable = default, Option<Payment?> payment = default, Option<ReceiptOptions?> receiptOptions = default, Option<ReceiptPrinting?> receiptPrinting = default, Option<Refunds?> refunds = default, Option<Signature?> signature = default, Option<Standalone?> standalone = default, Option<StoreAndForward?> storeAndForward = default, Option<Surcharge?> surcharge = default, Option<TapToPay?> tapToPay = default, Option<TerminalInstructions?> terminalInstructions = default, Option<Timeouts?> timeouts = default, Option<WifiProfiles?> wifiProfiles = default)
         {
             _CardholderReceiptOption = cardholderReceipt;

@@ -44,7 +44,6 @@ namespace Adyen.Management.Models
         /// <param name="allowedOrigins">List containing the [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) linked to the API credential.</param>
         /// <param name="associatedMerchantAccounts">List of merchant accounts that the API credential has explicit access to.   If the credential has access to a company, this implies access to all merchant accounts and no merchants for that company will be included.</param>
         /// <param name="description">Description of the API credential.</param>
-        [JsonConstructor]
         public CompanyApiCredential(bool active, List<string> allowedIpAddresses, string clientKey, string id, List<string> roles, string username, Option<ApiCredentialLinks?> links = default, Option<List<AllowedOrigin>?> allowedOrigins = default, Option<List<string>?> associatedMerchantAccounts = default, Option<string?> description = default)
         {
             Active = active;

@@ -38,7 +38,6 @@ namespace Adyen.Payout.Models
         /// <param name="recurringDetailReference">The token which you can use later on for submitting the payout.</param>
         /// <param name="resultCode">The result code of the transaction. &#x60;Success&#x60; indicates that the details were stored successfully.</param>
         /// <param name="additionalData">This field contains additional data, which may be returned in a particular response.</param>
-        [JsonConstructor]
         public StoreDetailResponse(string pspReference, string recurringDetailReference, string resultCode, Option<Dictionary<string, string>?> additionalData = default)
         {
             PspReference = pspReference;

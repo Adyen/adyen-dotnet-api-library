@@ -41,7 +41,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="merchantId">The unique identifier of the merchant.</param>
         /// <param name="name">The name of the merchant&#39;s shop or service.</param>
         /// <param name="postalCode">The postal code of the merchant.</param>
-        [JsonConstructor]
         public TransferNotificationMerchantData(Option<string?> acquirerId = default, Option<string?> city = default, Option<string?> country = default, Option<string?> mcc = default, Option<string?> merchantId = default, Option<string?> name = default, Option<string?> postalCode = default)
         {
             _AcquirerIdOption = acquirerId;

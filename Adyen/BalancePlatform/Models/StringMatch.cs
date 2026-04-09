@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="operation">The type of string matching operation. Possible values:  **startsWith**, **endsWith**, **isEqualTo**, **contains**,</param>
         /// <param name="value">The string to be matched.</param>
-        [JsonConstructor]
         public StringMatch(Option<OperationEnum?> operation = default, Option<string?> value = default)
         {
             _OperationOption = operation;

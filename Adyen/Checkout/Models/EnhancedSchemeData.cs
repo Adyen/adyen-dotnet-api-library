@@ -36,7 +36,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="airline">airline</param>
         /// <param name="levelTwoThree">levelTwoThree</param>
-        [JsonConstructor]
         public EnhancedSchemeData(Option<Airline?> airline = default, Option<LevelTwoThree?> levelTwoThree = default)
         {
             _AirlineOption = airline;

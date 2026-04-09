@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="legalEntityId">The unique identifier of the legal entity.</param>
         /// <param name="taxYears">The tax years for which the legal entity has a tax form.</param>
-        [JsonConstructor]
         public Summary(string legalEntityId, List<int> taxYears)
         {
             LegalEntityId = legalEntityId;

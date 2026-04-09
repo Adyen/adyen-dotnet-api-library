@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="AllowedOriginsResponse" /> class.
         /// </summary>
         /// <param name="data">List of allowed origins.</param>
-        [JsonConstructor]
         public AllowedOriginsResponse(Option<List<AllowedOrigin>?> data = default)
         {
             _DataOption = data;

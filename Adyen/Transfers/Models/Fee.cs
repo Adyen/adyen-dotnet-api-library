@@ -35,7 +35,6 @@ namespace Adyen.Transfers.Models
         /// Initializes a new instance of the <see cref="Fee" /> class.
         /// </summary>
         /// <param name="amount">amount</param>
-        [JsonConstructor]
         public Fee(Amount amount)
         {
             Amount = amount;

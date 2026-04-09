@@ -39,7 +39,6 @@ namespace Adyen.PosMobile.Models
         /// <param name="merchantAccount">The unique identifier of your merchant account.</param>
         /// <param name="sdkData">The data that the SDK uses to authenticate responses from the Adyen payments platform. Pass this value to your POS app.</param>
         /// <param name="store">The unique identifier of the store that you want to process transactions for.</param>
-        [JsonConstructor]
         public CreateSessionResponse(Option<string?> id = default, Option<string?> installationId = default, Option<string?> merchantAccount = default, Option<string?> sdkData = default, Option<string?> store = default)
         {
             _IdOption = id;

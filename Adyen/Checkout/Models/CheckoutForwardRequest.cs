@@ -42,7 +42,6 @@ namespace Adyen.Checkout.Models
         /// <param name="options">options</param>
         /// <param name="paymentMethod">paymentMethod</param>
         /// <param name="storedPaymentMethodId">The unique identifier of the token that you want to forward to the third party. This is the &#x60;storedPaymentMethodId&#x60; you received in the webhook after you created the token.</param>
-        [JsonConstructor]
         public CheckoutForwardRequest(string baseUrl, string merchantAccount, CheckoutOutgoingForwardRequest request, string shopperReference, Option<string?> merchantReference = default, Option<CheckoutForwardRequestOptions?> options = default, Option<CheckoutForwardRequestCard?> paymentMethod = default, Option<string?> storedPaymentMethodId = default)
         {
             BaseUrl = baseUrl;

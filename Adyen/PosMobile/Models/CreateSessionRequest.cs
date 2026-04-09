@@ -37,7 +37,6 @@ namespace Adyen.PosMobile.Models
         /// <param name="merchantAccount">The unique identifier of your merchant account.</param>
         /// <param name="setupToken">The setup token provided by the POS Mobile SDK.  - When using the Android POS Mobile SDK, obtain the token through the &#x60;AuthenticationService.authenticate(setupToken)&#x60; callback of &#x60;AuthenticationService&#x60;.  - When using the iOS POS Mobile SDK, obtain the token through the &#x60;PaymentServiceDelegate.register(with:)&#x60; callback of &#x60;PaymentServiceDelegate&#x60;.</param>
         /// <param name="store">The unique identifier of the store that you want to process transactions for.</param>
-        [JsonConstructor]
         public CreateSessionRequest(string merchantAccount, string setupToken, Option<string?> store = default)
         {
             MerchantAccount = merchantAccount;

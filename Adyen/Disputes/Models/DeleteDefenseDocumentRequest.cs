@@ -37,7 +37,6 @@ namespace Adyen.Disputes.Models
         /// <param name="defenseDocumentType">The document type code of the defense document.</param>
         /// <param name="disputePspReference">The PSP reference assigned to the dispute.</param>
         /// <param name="merchantAccountCode">The merchant account identifier, for which you want to process the dispute transaction.</param>
-        [JsonConstructor]
         public DeleteDefenseDocumentRequest(string defenseDocumentType, string disputePspReference, string merchantAccountCode)
         {
             DefenseDocumentType = defenseDocumentType;

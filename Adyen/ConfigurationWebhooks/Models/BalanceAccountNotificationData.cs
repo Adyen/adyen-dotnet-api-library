@@ -36,7 +36,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// </summary>
         /// <param name="balanceAccount">balanceAccount</param>
         /// <param name="balancePlatform">The unique identifier of the balance platform.</param>
-        [JsonConstructor]
         public BalanceAccountNotificationData(Option<BalanceAccount?> balanceAccount = default, Option<string?> balancePlatform = default)
         {
             _BalanceAccountOption = balanceAccount;

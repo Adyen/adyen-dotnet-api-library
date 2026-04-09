@@ -36,7 +36,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <param name="additionalSalesChannels">An array of additional sales channels to generate PCI questionnaires. Include the relevant sales channels if you need your user to sign PCI questionnaires. Not required if you [create stores](https://docs.adyen.com/platforms) and [add payment methods](https://docs.adyen.com/adyen-for-platforms-model) before you generate the questionnaires.  Possible values: *  **eCommerce** *  **pos** *  **ecomMoto** *  **posMoto**  </param>
         /// <param name="language">Sets the language of the PCI questionnaire. Its value is a two-character [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) language code, for example, **en**.</param>
-        [JsonConstructor]
         public GeneratePciDescriptionRequest(Option<List<GeneratePciDescriptionRequest.AdditionalSalesChannelsEnum>?> additionalSalesChannels = default, Option<string?> language = default)
         {
             _AdditionalSalesChannelsOption = additionalSalesChannels;

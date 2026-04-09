@@ -34,7 +34,6 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ShopperIdPaymentMethod" /> class.
         /// </summary>
-        [JsonConstructor]
         public ShopperIdPaymentMethod()
         {
             Type = this.GetType().Name;

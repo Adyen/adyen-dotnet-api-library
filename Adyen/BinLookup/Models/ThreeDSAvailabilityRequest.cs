@@ -40,7 +40,6 @@ namespace Adyen.BinLookup.Models
         /// <param name="cardNumber">Card number or BIN.</param>
         /// <param name="recurringDetailReference">A recurring detail reference corresponding to a card.</param>
         /// <param name="shopperReference">The shopper&#39;s reference to uniquely identify this shopper (e.g. user ID or account ID).</param>
-        [JsonConstructor]
         public ThreeDSAvailabilityRequest(string merchantAccount, Option<Dictionary<string, string>?> additionalData = default, Option<List<string>?> brands = default, Option<string?> cardNumber = default, Option<string?> recurringDetailReference = default, Option<string?> shopperReference = default)
         {
             MerchantAccount = merchantAccount;

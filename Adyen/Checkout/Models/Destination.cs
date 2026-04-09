@@ -37,7 +37,6 @@ namespace Adyen.Checkout.Models
         /// <param name="countryCode">The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or three-letter [ISO 3166-1 alpha-3 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) for the destination address.   * Encoding: ASCII    * Min length: 2 characters   * Max length: 3 characters</param>
         /// <param name="postalCode">The postal code of the destination address. * Encoding: ASCII * Max length: 10 characters * Must not start with a space. * For the US, it must be in five or nine digits format. For example, 10001 or 10001-0000. * For Canada, it must be in 6 digits format. For example, M4B 1G5.</param>
         /// <param name="stateOrProvince">The state or province code of the destination address. * Encoding: ASCII * Max length: 3 characters * Must not start with a space.</param>
-        [JsonConstructor]
         public Destination(Option<string?> countryCode = default, Option<string?> postalCode = default, Option<string?> stateOrProvince = default)
         {
             _CountryCodeOption = countryCode;

@@ -39,7 +39,6 @@ namespace Adyen.Management.Models
         /// <param name="eventUrls">eventUrls</param>
         /// <param name="nexoEventUrls">One or more URLs to send event messages to when using Terminal API.</param>
         /// <param name="notification">notification</param>
-        [JsonConstructor]
         public Nexo(Option<NotificationUrl?> displayUrls = default, Option<Key?> encryptionKey = default, Option<EventUrl?> eventUrls = default, Option<List<string>?> nexoEventUrls = default, Option<Notification?> notification = default)
         {
             _DisplayUrlsOption = displayUrls;

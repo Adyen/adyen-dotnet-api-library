@@ -35,7 +35,6 @@ namespace Adyen.Disputes.Models
         /// Initializes a new instance of the <see cref="DeleteDefenseDocumentResponse" /> class.
         /// </summary>
         /// <param name="disputeServiceResult">disputeServiceResult</param>
-        [JsonConstructor]
         public DeleteDefenseDocumentResponse(DisputeServiceResult disputeServiceResult)
         {
             DisputeServiceResult = disputeServiceResult;

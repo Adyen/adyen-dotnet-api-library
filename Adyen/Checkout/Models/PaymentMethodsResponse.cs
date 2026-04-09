@@ -36,7 +36,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="paymentMethods">Detailed list of payment methods required to generate payment forms.</param>
         /// <param name="storedPaymentMethods">List of all stored payment methods.</param>
-        [JsonConstructor]
         public PaymentMethodsResponse(Option<List<PaymentMethod>?> paymentMethods = default, Option<List<StoredPaymentMethod>?> storedPaymentMethods = default)
         {
             _PaymentMethodsOption = paymentMethods;

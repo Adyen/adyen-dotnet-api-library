@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="hideNavigationBar">Hide/show the navigation bar.</param>
         /// <param name="showPaymentsMenu">Show/hide the payments menu.</param>
         /// <param name="showSettingsMenu">Show/hide the settings menu.</param>
-        [JsonConstructor]
         public HomeScreenSettings(Option<bool?> hideNavigationBar = default, Option<bool?> showPaymentsMenu = default, Option<bool?> showSettingsMenu = default)
         {
             _HideNavigationBarOption = hideNavigationBar;

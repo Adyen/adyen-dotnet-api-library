@@ -36,7 +36,6 @@ namespace Adyen.TransferWebhooks.Models
         /// </summary>
         /// <param name="estimatedArrivalTime">The estimated time the beneficiary should have access to the funds.</param>
         /// <param name="type">The type of tracking event.   Possible values:   - **estimation**: the estimated date and time of when the funds will be credited has been determined. (default to TypeEnum.Estimation)</param>
-        [JsonConstructor]
         public EstimationTrackingData(DateTimeOffset estimatedArrivalTime, TypeEnum type = default)
         {
             EstimatedArrivalTime = estimatedArrivalTime;

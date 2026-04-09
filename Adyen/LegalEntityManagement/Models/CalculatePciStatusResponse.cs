@@ -35,7 +35,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// Initializes a new instance of the <see cref="CalculatePciStatusResponse" /> class.
         /// </summary>
         /// <param name="signingRequired">Indicates if the user is required to sign PCI questionnaires. If **false**, they do not need to sign any questionnaires.</param>
-        [JsonConstructor]
         public CalculatePciStatusResponse(Option<bool?> signingRequired = default)
         {
             _SigningRequiredOption = signingRequired;

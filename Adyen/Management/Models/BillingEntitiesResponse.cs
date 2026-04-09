@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="BillingEntitiesResponse" /> class.
         /// </summary>
         /// <param name="data">List of legal entities that can be used for the billing of orders.</param>
-        [JsonConstructor]
         public BillingEntitiesResponse(Option<List<BillingEntity>?> data = default)
         {
             _DataOption = data;

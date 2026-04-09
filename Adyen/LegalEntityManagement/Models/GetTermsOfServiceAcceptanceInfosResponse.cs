@@ -35,7 +35,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// Initializes a new instance of the <see cref="GetTermsOfServiceAcceptanceInfosResponse" /> class.
         /// </summary>
         /// <param name="data">The Terms of Service acceptance information.</param>
-        [JsonConstructor]
         public GetTermsOfServiceAcceptanceInfosResponse(Option<List<TermsOfServiceAcceptanceInfo>?> data = default)
         {
             _DataOption = data;

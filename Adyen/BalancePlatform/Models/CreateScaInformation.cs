@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="exemption">exemption</param>
         /// <param name="scaOnApproval">Indicates whether to initiate Strong Customer Authentication (SCA) later, during approval, or immediately after you submit this request. Possible values: * **true**: you can initiate SCA later, during approval, for all pending transfer limits. * **false** (default): you initiate SCA immediately after submitting the transfer limit request.</param>
-        [JsonConstructor]
         public CreateScaInformation(Option<ScaExemption?> exemption = default, Option<bool?> scaOnApproval = default)
         {
             _ExemptionOption = exemption;

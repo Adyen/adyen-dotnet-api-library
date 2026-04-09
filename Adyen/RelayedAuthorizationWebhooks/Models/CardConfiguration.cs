@@ -48,7 +48,6 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
         /// <param name="logoImageId">The unique identifier of the logo image. This image is printed on the partial front of the card, for example, a logo on the upper right corner.</param>
         /// <param name="pinMailer">The letter on which the PIN of the card is printed.  This field overrides the PIN mailer design ID defined in the card configuration profile.</param>
         /// <param name="shipmentMethod">The logistics company that ships the card.  This field overrides the logistics company defined in the card configuration profile.</param>
-        [JsonConstructor]
         public CardConfiguration(string configurationProfileId, Option<string?> activation = default, Option<string?> activationUrl = default, Option<BulkAddress?> bulkAddress = default, Option<string?> cardImageId = default, Option<string?> carrier = default, Option<string?> carrierImageId = default, Option<string?> currency = default, Option<string?> envelope = default, Option<string?> insert = default, Option<List<string>?> languages = default, Option<string?> logoImageId = default, Option<string?> pinMailer = default, Option<string?> shipmentMethod = default)
         {
             ConfigurationProfileId = configurationProfileId;

@@ -38,7 +38,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="id">The unique identifier of the resource.</param>
         /// <param name="reference">The reference for the resource.</param>
         /// <param name="tokenType">The type of wallet that the network token is associated with.</param>
-        [JsonConstructor]
         public PaymentInstrument(Option<string?> description = default, Option<string?> id = default, Option<string?> reference = default, Option<string?> tokenType = default)
         {
             _DescriptionOption = description;

@@ -42,7 +42,6 @@ namespace Adyen.Management.Models
         /// <param name="shippingLocation">shippingLocation</param>
         /// <param name="status">The processing status of the order.</param>
         /// <param name="trackingUrl">The URL, provided by the carrier company, where the shipment can be tracked.</param>
-        [JsonConstructor]
         public TerminalOrder(Option<BillingEntity?> billingEntity = default, Option<string?> customerOrderReference = default, Option<string?> id = default, Option<List<OrderItem>?> items = default, Option<string?> orderDate = default, Option<ShippingLocation?> shippingLocation = default, Option<string?> status = default, Option<string?> trackingUrl = default)
         {
             _BillingEntityOption = billingEntity;

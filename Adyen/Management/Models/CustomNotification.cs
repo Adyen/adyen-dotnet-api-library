@@ -41,7 +41,6 @@ namespace Adyen.Management.Models
         /// <param name="paymentMethod">The payment method for the payment that the notification is about. Possible values: * **amex** * **visa** * **mc** * **maestro** * **bcmc** * **paypal**  * **sms**  * **bankTransfer_NL** * **bankTransfer_DE** * **bankTransfer_BE** * **ideal** * **elv** * **sepadirectdebit** </param>
         /// <param name="reason">A description of what caused the notification.</param>
         /// <param name="success">The outcome of the event which the notification is about. Set to either **true** or **false**. </param>
-        [JsonConstructor]
         public CustomNotification(Option<Amount?> amount = default, Option<string?> eventCode = default, Option<DateTimeOffset?> eventDate = default, Option<string?> merchantReference = default, Option<string?> paymentMethod = default, Option<string?> reason = default, Option<bool?> success = default)
         {
             _AmountOption = amount;

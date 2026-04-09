@@ -43,7 +43,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="reference">A unique reference to identify the party or counterparty involved in the transfer. For example, your client&#39;s unique wallet or payee ID.  Required when you include &#x60;cardIdentification.storedPaymentMethodId&#x60;.</param>
         /// <param name="type">The type of entity that owns the bank account or card.  Possible values: **individual**, **organization**, or **unknown**.  Required when &#x60;category&#x60; is **card**. In this case, the value must be **individual**. (default to TypeEnum.Unknown)</param>
         /// <param name="url">The URL of the organization or individual. Maximum length: 255 characters.</param>
-        [JsonConstructor]
         public PartyIdentification(Option<Address?> address = default, Option<DateOnly?> dateOfBirth = default, Option<string?> email = default, Option<string?> firstName = default, Option<string?> fullName = default, Option<string?> lastName = default, Option<string?> reference = default, Option<TypeEnum?> type = default, Option<string?> url = default)
         {
             _AddressOption = address;

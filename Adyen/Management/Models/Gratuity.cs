@@ -38,7 +38,6 @@ namespace Adyen.Management.Models
         /// <param name="currency">The currency that the tipping settings apply to.</param>
         /// <param name="predefinedTipEntries">Tipping options the shopper can choose from if &#x60;usePredefinedTipEntries&#x60; is **true**. The maximum number of predefined options is four, or three plus the option to enter a custom tip. The options can be a mix of:  - A percentage of the transaction amount. Example: **5%** - A tip amount in [minor units](https://docs.adyen.com/development-resources/currency-codes). Example: **500** for a EUR 5 tip.</param>
         /// <param name="usePredefinedTipEntries">Indicates whether the terminal shows a prompt to enter a tip (**false**), or predefined tipping options to choose from (**true**).</param>
-        [JsonConstructor]
         public Gratuity(Option<bool?> allowCustomAmount = default, Option<string?> currency = default, Option<List<string>?> predefinedTipEntries = default, Option<bool?> usePredefinedTipEntries = default)
         {
             _AllowCustomAmountOption = allowCustomAmount;

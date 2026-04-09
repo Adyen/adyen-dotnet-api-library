@@ -39,7 +39,6 @@ namespace Adyen.BinLookup.Models
         /// <param name="recurringExpiry">Date after which no further authorisations shall be performed. Only for 3D Secure 2.</param>
         /// <param name="recurringFrequency">Minimum number of days between authorisations. Only for 3D Secure 2.</param>
         /// <param name="tokenService">The name of the token service.</param>
-        [JsonConstructor]
         public Recurring(Option<ContractEnum?> contract = default, Option<string?> recurringDetailName = default, Option<DateTimeOffset?> recurringExpiry = default, Option<string?> recurringFrequency = default, Option<TokenServiceEnum?> tokenService = default)
         {
             _ContractOption = contract;

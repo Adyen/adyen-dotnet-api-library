@@ -36,7 +36,6 @@ namespace Adyen.SessionAuthentication.Models
         /// </summary>
         /// <param name="resources">An object containing the type and the unique identifier of the user of the component.  For [Onboarding components](https://docs.adyen.com/platforms/onboard-users/components), this is the ID of the legal entity that has a contractual relationship with your platform. For sole proprietorships, use the ID of the legal entity of the individual owner.  For [Platform Experience components](https://docs.adyen.com/platforms/build-user-dashboards), this is the ID of the account holder that is associated with the balance account shown in the component.</param>
         /// <param name="roles">The name of the role required to use the component.</param>
-        [JsonConstructor]
         public Policy(Option<HashSet<Resource>?> resources = default, Option<HashSet<string>?> roles = default)
         {
             _ResourcesOption = resources;

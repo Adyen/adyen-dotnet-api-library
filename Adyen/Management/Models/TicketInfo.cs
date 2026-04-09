@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="TicketInfo" /> class.
         /// </summary>
         /// <param name="requestorId">Ticket requestorId</param>
-        [JsonConstructor]
         public TicketInfo(Option<string?> requestorId = default)
         {
             _RequestorIdOption = requestorId;

@@ -35,7 +35,6 @@ namespace Adyen.Checkout.Models
         /// Initializes a new instance of the <see cref="PayToPaymentMethod" /> class.
         /// </summary>
         /// <param name="shopperReference">shopperReference</param>
-        [JsonConstructor]
         public PayToPaymentMethod(Option<string?> shopperReference = default) : base()
         {
             _ShopperReferenceOption = shopperReference;

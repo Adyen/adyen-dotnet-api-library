@@ -35,7 +35,6 @@ namespace Adyen.SessionAuthentication.Models
         /// Initializes a new instance of the <see cref="BalanceAccountResource" /> class.
         /// </summary>
         /// <param name="balanceAccountId">balanceAccountId</param>
-        [JsonConstructor]
         public BalanceAccountResource(string balanceAccountId) : base()
         {
             BalanceAccountId = balanceAccountId;

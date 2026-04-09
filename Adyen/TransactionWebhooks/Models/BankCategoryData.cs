@@ -36,7 +36,6 @@ namespace Adyen.TransactionWebhooks.Models
         /// </summary>
         /// <param name="priority">The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: A faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: The fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: For instant funds transfers within the United States and in [SEPA locations](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: For high-value transfers to a recipient in a different country.  * **internal**: For transfers to an Adyen-issued business bank account (by bank account number/IBAN).</param>
         /// <param name="type">**bank** (default to TypeEnum.Bank)</param>
-        [JsonConstructor]
         public BankCategoryData(Option<PriorityEnum?> priority = default, Option<TypeEnum?> type = default)
         {
             _PriorityOption = priority;

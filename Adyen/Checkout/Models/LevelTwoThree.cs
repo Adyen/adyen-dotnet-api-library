@@ -42,7 +42,6 @@ namespace Adyen.Checkout.Models
         /// <param name="orderDate">The date of the order. * Min Length: 10 characters * Max Length: 10 characters * Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): yyyy-MM-dd</param>
         /// <param name="shipFromPostalCode">The postal code of the address where the item is shipped from. * Encoding: ASCII * Max length: 10 characters * For the US, it must be in five or nine digits format. For example, 10001 or 10001-0000. * For Canada, it must be in 6 digits format. For example, M4B 1G5.</param>
         /// <param name="totalTaxAmount">The amount of state or provincial [tax included in the total transaction amount](https://docs.adyen.com/payment-methods/cards/enhanced-scheme-data/l2-l3#requirements-to-send-level-2-3-esd), in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Encoding: Numeric * Max value: 10000000000 * For L2 data: must not be all zeroes.  * For L3 data: can be zero.</param>
-        [JsonConstructor]
         public LevelTwoThree(Option<string?> customerReferenceNumber = default, Option<Destination?> destination = default, Option<long?> dutyAmount = default, Option<long?> freightAmount = default, Option<List<ItemDetailLine>?> itemDetailLines = default, Option<DateOnly?> orderDate = default, Option<string?> shipFromPostalCode = default, Option<long?> totalTaxAmount = default)
         {
             _CustomerReferenceNumberOption = customerReferenceNumber;

@@ -45,7 +45,6 @@ namespace Adyen.Payment.Models
         /// <param name="subMerchant">subMerchant</param>
         /// <param name="telephoneNumber">the telephone number of the person</param>
         /// <param name="walletPurpose">The purpose of a digital wallet transaction.</param>
-        [JsonConstructor]
         public FundDestination(Option<string?> iBAN = default, Option<Dictionary<string, string>?> additionalData = default, Option<Address?> billingAddress = default, Option<Card?> card = default, Option<string?> selectedRecurringDetailReference = default, Option<string?> shopperEmail = default, Option<Name?> shopperName = default, Option<string?> shopperReference = default, Option<SubMerchant?> subMerchant = default, Option<string?> telephoneNumber = default, Option<string?> walletPurpose = default)
         {
             _IBANOption = iBAN;

@@ -39,7 +39,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="branchNumber">The bank account branch number, without separators or whitespace.</param>
         /// <param name="ispb">The 8-digit ISPB, with leading zeros.</param>
         /// <param name="type">**brLocal** (default to TypeEnum.BrLocal)</param>
-        [JsonConstructor]
         public BRLocalAccountIdentification(string accountNumber, string bankCode, string branchNumber, Option<string?> ispb = default, TypeEnum type = default)
         {
             AccountNumber = accountNumber;

@@ -35,7 +35,6 @@ namespace Adyen.Transfers.Models
         /// Initializes a new instance of the <see cref="CancelTransfersRequest" /> class.
         /// </summary>
         /// <param name="transferIds">Contains the unique identifiers of the transfers that you want to cancel.</param>
-        [JsonConstructor]
         public CancelTransfersRequest(Option<List<string>?> transferIds = default)
         {
             _TransferIdsOption = transferIds;

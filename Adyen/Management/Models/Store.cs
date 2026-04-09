@@ -48,7 +48,6 @@ namespace Adyen.Management.Models
         /// <param name="splitConfiguration">splitConfiguration</param>
         /// <param name="status">The status of the store. Possible values are:  - **active**. This value is assigned automatically when a store is created.  - **inactive**. The terminals under the store are blocked from accepting new transactions, but capturing outstanding transactions is still possible. - **closed**. This status is irreversible. The terminals under the store are reassigned to the merchant inventory.</param>
         /// <param name="subMerchantData">subMerchantData</param>
-        [JsonConstructor]
         public Store(Option<Links?> links = default, Option<StoreLocation?> address = default, Option<List<string>?> businessLineIds = default, Option<string?> description = default, Option<string?> externalReferenceId = default, Option<string?> id = default, Option<LocalizedInformation?> localizedInformation = default, Option<string?> merchantId = default, Option<string?> phoneNumber = default, Option<string?> reference = default, Option<string?> shopperStatement = default, Option<StoreSplitConfiguration?> splitConfiguration = default, Option<StatusEnum?> status = default, Option<SubMerchantData?> subMerchantData = default)
         {
             _LinksOption = links;

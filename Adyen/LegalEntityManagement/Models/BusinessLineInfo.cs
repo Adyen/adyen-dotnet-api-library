@@ -41,7 +41,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="sourceOfFunds">sourceOfFunds</param>
         /// <param name="webData">List of website URLs where your user&#39;s goods or services are sold. When this is required for a service but your user does not have an online presence, provide the reason in the &#x60;webDataExemption&#x60; object.</param>
         /// <param name="webDataExemption">webDataExemption</param>
-        [JsonConstructor]
         public BusinessLineInfo(string industryCode, string legalEntityId, ServiceEnum service, Option<List<string>?> salesChannels = default, Option<SourceOfFunds?> sourceOfFunds = default, Option<List<WebData>?> webData = default, Option<WebDataExemption?> webDataExemption = default)
         {
             IndustryCode = industryCode;

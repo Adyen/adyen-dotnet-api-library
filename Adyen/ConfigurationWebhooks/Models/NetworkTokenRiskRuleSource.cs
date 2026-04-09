@@ -36,7 +36,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// </summary>
         /// <param name="id">The unique identifier of the resource to which the transaction rule applies.</param>
         /// <param name="type">Indicates the type of resource for which the transaction rule is defined.  Possible values:   * **PaymentInstrumentGroup**  * **PaymentInstrument**  * **BalancePlatform**  * **EntityUsageConfiguration**  * **PlatformRule**: The transaction rule is a platform-wide rule imposed by Adyen.</param>
-        [JsonConstructor]
         public NetworkTokenRiskRuleSource(Option<string?> id = default, Option<string?> type = default)
         {
             _IdOption = id;

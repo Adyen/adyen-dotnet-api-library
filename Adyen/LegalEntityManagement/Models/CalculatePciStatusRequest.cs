@@ -35,7 +35,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// Initializes a new instance of the <see cref="CalculatePciStatusRequest" /> class.
         /// </summary>
         /// <param name="additionalSalesChannels">An array of additional sales channels to generate PCI questionnaires. Include the relevant sales channels if you need your user to sign PCI questionnaires. Not required if you [create stores](https://docs.adyen.com/platforms) and [add payment methods](https://docs.adyen.com/adyen-for-platforms-model) before you generate the questionnaires.  Possible values: *  **eCommerce** *  **pos** *  **ecomMoto** *  **posMoto**  </param>
-        [JsonConstructor]
         public CalculatePciStatusRequest(Option<List<CalculatePciStatusRequest.AdditionalSalesChannelsEnum>?> additionalSalesChannels = default)
         {
             _AdditionalSalesChannelsOption = additionalSalesChannels;

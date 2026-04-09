@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="basisPoints">The repayment that is deducted daily from incoming net volume, in [basis points](https://www.investopedia.com/terms/b/basispoint.asp).</param>
         /// <param name="term">term</param>
         /// <param name="threshold">threshold</param>
-        [JsonConstructor]
         public Repayment(int basisPoints, Option<RepaymentTerm?> term = default, Option<ThresholdRepayment?> threshold = default)
         {
             BasisPoints = basisPoints;

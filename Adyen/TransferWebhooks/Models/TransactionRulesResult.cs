@@ -38,7 +38,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="allHardBlockRulesPassed">Indicates whether the transaction passed the evaluation for all hardblock rules</param>
         /// <param name="score">The score of the Risk analysis.</param>
         /// <param name="triggeredTransactionRules">Array containing all the transaction rules that the transaction triggered.</param>
-        [JsonConstructor]
         public TransactionRulesResult(Option<string?> advice = default, Option<bool?> allHardBlockRulesPassed = default, Option<int?> score = default, Option<List<TransactionEventViolation>?> triggeredTransactionRules = default)
         {
             _AdviceOption = advice;

@@ -47,7 +47,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="type">Type of Partnership.  Possible values: *  **limitedPartnership** *  **generalPartnership** *  **familyPartnership** *  **commercialPartnership** *  **publicPartnership** *  **otherPartnership** *  **gbr** *  **gmbh** *  **kgaa** *  **cv** *  **vof** *  **maatschap** *  **privateFundLimitedPartnership** *  **businessTrustEntity** *  **businessPartnership** *  **limitedLiabilityPartnership** *  **eg** *  **cooperative** *  **vos** *  **comunidadDeBienes** *  **herenciaYacente** *  **comunidadDePropietarios** *  **sep** *  **sca** *  **bt** *  **kkt** *  **scs** *  **snc**  </param>
         /// <param name="vatAbsenceReason">The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**.</param>
         /// <param name="vatNumber">The VAT number.</param>
-        [JsonConstructor]
         public UnincorporatedPartnership(string countryOfGoverningLaw, string name, Address registeredAddress, Option<string?> dateOfIncorporation = default, Option<string?> description = default, Option<string?> doingBusinessAs = default, Option<bool?> doingBusinessAsAbsent = default, Option<Address?> principalPlaceOfBusiness = default, Option<string?> registrationNumber = default, Option<List<TaxInformation>?> taxInformation = default, Option<TypeEnum?> type = default, Option<VatAbsenceReasonEnum?> vatAbsenceReason = default, Option<string?> vatNumber = default)
         {
             CountryOfGoverningLaw = countryOfGoverningLaw;

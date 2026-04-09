@@ -36,7 +36,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <param name="currency">The type of currency. Must be EUR (or EUR equivalent)</param>
         /// <param name="value">Total value of amount. Must be &gt;&#x3D; 0</param>
-        [JsonConstructor]
         public Amount(Option<string?> currency = default, Option<long?> value = default)
         {
             _CurrencyOption = currency;

@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="profiles">List of remote Wi-Fi profiles.</param>
         /// <param name="settings">settings</param>
-        [JsonConstructor]
         public WifiProfiles(Option<List<Profile>?> profiles = default, Option<Settings?> settings = default)
         {
             _ProfilesOption = profiles;

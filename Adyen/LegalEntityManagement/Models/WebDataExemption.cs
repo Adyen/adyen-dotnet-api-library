@@ -35,7 +35,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// Initializes a new instance of the <see cref="WebDataExemption" /> class.
         /// </summary>
         /// <param name="reason">The reason why the web data was not provided. Possible value: **noOnlinePresence**.</param>
-        [JsonConstructor]
         public WebDataExemption(Option<ReasonEnum?> reason = default)
         {
             _ReasonOption = reason;

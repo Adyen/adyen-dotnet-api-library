@@ -36,7 +36,6 @@ namespace Adyen.Recurring.Models
         /// </summary>
         /// <param name="permitResultList">List of new permits.</param>
         /// <param name="pspReference">A unique reference associated with the request. This value is globally unique; quote it when communicating with us about this request.</param>
-        [JsonConstructor]
         public CreatePermitResult(Option<List<PermitResult>?> permitResultList = default, Option<string?> pspReference = default)
         {
             _PermitResultListOption = permitResultList;

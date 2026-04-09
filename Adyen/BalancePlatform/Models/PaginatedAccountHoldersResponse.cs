@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="accountHolders">List of account holders.</param>
         /// <param name="hasNext">Indicates whether there are more items on the next page.</param>
         /// <param name="hasPrevious">Indicates whether there are more items on the previous page.</param>
-        [JsonConstructor]
         public PaginatedAccountHoldersResponse(List<AccountHolder> accountHolders, bool hasNext, bool hasPrevious)
         {
             AccountHolders = accountHolders;

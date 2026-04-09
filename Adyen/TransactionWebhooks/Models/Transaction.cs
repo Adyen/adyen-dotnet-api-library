@@ -47,7 +47,6 @@ namespace Adyen.TransactionWebhooks.Models
         /// <param name="paymentInstrument">paymentInstrument</param>
         /// <param name="referenceForBeneficiary">The reference sent to or received from the counterparty.  * For outgoing funds, this is the [&#x60;referenceForBeneficiary&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__resParam_referenceForBeneficiary) from the  [&#x60;/transfers&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_referenceForBeneficiary) request.   * For incoming funds, this is the reference from the sender.</param>
         /// <param name="transfer">transfer</param>
-        [JsonConstructor]
         public Transaction(ResourceReference accountHolder, Amount amount, ResourceReference balanceAccount, string balancePlatform, DateTimeOffset bookingDate, string id, StatusEnum status, DateTimeOffset valueDate, Option<DateTimeOffset?> creationDate = default, Option<string?> description = default, Option<PaymentInstrument?> paymentInstrument = default, Option<string?> referenceForBeneficiary = default, Option<TransferView?> transfer = default)
         {
             AccountHolder = accountHolder;

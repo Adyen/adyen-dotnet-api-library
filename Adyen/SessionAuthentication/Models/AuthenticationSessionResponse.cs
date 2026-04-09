@@ -36,7 +36,6 @@ namespace Adyen.SessionAuthentication.Models
         /// </summary>
         /// <param name="id">The unique identifier of the session.</param>
         /// <param name="token">The session token created.</param>
-        [JsonConstructor]
         public AuthenticationSessionResponse(Option<string?> id = default, Option<string?> token = default)
         {
             _IdOption = id;

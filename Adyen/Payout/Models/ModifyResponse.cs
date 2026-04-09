@@ -37,7 +37,6 @@ namespace Adyen.Payout.Models
         /// <param name="pspReference">Adyen&#39;s 16-character string reference associated with the transaction. This value is globally unique; quote it when communicating with us about this response.</param>
         /// <param name="response">The response: * In case of success, it is either &#x60;payout-confirm-received&#x60; or &#x60;payout-decline-received&#x60;. * In case of an error, an informational message is returned.</param>
         /// <param name="additionalData">This field contains additional data, which may be returned in a particular response.</param>
-        [JsonConstructor]
         public ModifyResponse(string pspReference, string response, Option<Dictionary<string, string>?> additionalData = default)
         {
             PspReference = pspReference;

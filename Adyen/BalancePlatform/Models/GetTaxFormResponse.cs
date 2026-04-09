@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="content">The content of the tax form in Base64 format.</param>
         /// <param name="contentType">The content type of the tax form.  Possible values: *  **application/pdf**  </param>
-        [JsonConstructor]
         public GetTaxFormResponse(byte[] content, Option<ContentTypeEnum?> contentType = default)
         {
             Content = content;

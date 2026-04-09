@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="referenced">referenced</param>
         /// <param name="unreferenced">unreferenced</param>
-        [JsonConstructor]
         public Refunds(Option<Referenced?> referenced = default, Option<Unreferenced?> unreferenced = default)
         {
             _ReferencedOption = referenced;

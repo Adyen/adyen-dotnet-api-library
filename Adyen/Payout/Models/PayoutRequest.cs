@@ -48,7 +48,6 @@ namespace Adyen.Payout.Models
         /// <param name="shopperName">shopperName</param>
         /// <param name="shopperReference">Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.</param>
         /// <param name="telephoneNumber">The shopper&#39;s telephone number.  The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we do not submit it for authentication. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the &#x60;shopperEmail&#x60;.</param>
-        [JsonConstructor]
         public PayoutRequest(Amount amount, string merchantAccount, string reference, Option<Address?> billingAddress = default, Option<Card?> card = default, Option<int?> fraudOffset = default, Option<FundSource?> fundSource = default, Option<Recurring?> recurring = default, Option<string?> selectedRecurringDetailReference = default, Option<string?> shopperEmail = default, Option<ShopperInteractionEnum?> shopperInteraction = default, Option<Name?> shopperName = default, Option<string?> shopperReference = default, Option<string?> telephoneNumber = default)
         {
             Amount = amount;

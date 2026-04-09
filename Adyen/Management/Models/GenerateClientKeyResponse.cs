@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="GenerateClientKeyResponse" /> class.
         /// </summary>
         /// <param name="clientKey">Generated client key</param>
-        [JsonConstructor]
         public GenerateClientKeyResponse(string clientKey)
         {
             ClientKey = clientKey;

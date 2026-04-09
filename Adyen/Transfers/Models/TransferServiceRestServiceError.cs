@@ -44,7 +44,6 @@ namespace Adyen.Transfers.Models
         /// <param name="requestId">A unique reference for the request, essentially the same as &#x60;pspReference&#x60;.</param>
         /// <param name="response">response</param>
         /// <param name="routingDetails">Detailed explanation of each attempt to route the transfer with the priorities from the request.</param>
-        [JsonConstructor]
         public TransferServiceRestServiceError(string detail, string errorCode, int status, string title, string type, Option<string?> instance = default, Option<List<InvalidField>?> invalidFields = default, Option<string?> requestId = default, Option<Object?> response = default, Option<List<RoutingDetails>?> routingDetails = default)
         {
             Detail = detail;

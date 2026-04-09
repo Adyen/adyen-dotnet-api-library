@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="mastercard">Transaction risk score provided by Mastercard. Values provided by Mastercard range between 0 (lowest risk) to 998 (highest risk).</param>
         /// <param name="visa">Transaction risk score provided by Visa. Values provided by Visa range between 01 (lowest risk) to 99 (highest risk).</param>
-        [JsonConstructor]
         public RiskScores(Option<int?> mastercard = default, Option<int?> visa = default)
         {
             _MastercardOption = mastercard;

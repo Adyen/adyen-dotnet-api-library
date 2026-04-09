@@ -45,7 +45,6 @@ namespace Adyen.Management.Models
         /// <param name="reference">Your reference to recognize the store by. Also known as the store code.  Allowed characters: lowercase and uppercase letters without diacritics, numbers 0 through 9, hyphen (-), and underscore (_).  If you do not provide a reference in your POST request, it is populated with the Adyen-generated [id](https://docs.adyen.com/api-explorer/Management/latest/post/stores#responses-200-id).</param>
         /// <param name="splitConfiguration">splitConfiguration</param>
         /// <param name="subMerchantData">subMerchantData</param>
-        [JsonConstructor]
         public StoreCreationWithMerchantCodeRequest(StoreLocation address, string description, string merchantId, string phoneNumber, string shopperStatement, Option<List<string>?> businessLineIds = default, Option<string?> externalReferenceId = default, Option<LocalizedInformation?> localizedInformation = default, Option<string?> reference = default, Option<StoreSplitConfiguration?> splitConfiguration = default, Option<SubMerchantData?> subMerchantData = default)
         {
             Address = address;

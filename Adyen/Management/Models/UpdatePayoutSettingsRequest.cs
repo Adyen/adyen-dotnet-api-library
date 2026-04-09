@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="UpdatePayoutSettingsRequest" /> class.
         /// </summary>
         /// <param name="enabled">Indicates if payouts to this bank account are enabled. Default: **true**.  To receive payouts into this bank account, both &#x60;enabled&#x60; and &#x60;allowed&#x60; must be **true**.</param>
-        [JsonConstructor]
         public UpdatePayoutSettingsRequest(Option<bool?> enabled = default)
         {
             _EnabledOption = enabled;

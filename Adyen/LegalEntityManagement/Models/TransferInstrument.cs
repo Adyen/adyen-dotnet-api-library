@@ -41,7 +41,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="capabilities">List of capabilities for this transfer instrument.</param>
         /// <param name="documentDetails">List of documents uploaded for the transfer instrument.</param>
         /// <param name="problems">The verification errors related to capabilities for this transfer instrument.</param>
-        [JsonConstructor]
         public TransferInstrument(BankAccountInfo bankAccount, string id, string legalEntityId, TypeEnum type, Option<Dictionary<string, SupportingEntityCapability>?> capabilities = default, Option<List<DocumentReference>?> documentDetails = default, Option<List<CapabilityProblem>?> problems = default)
         {
             BankAccount = bankAccount;

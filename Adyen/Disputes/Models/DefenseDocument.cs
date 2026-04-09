@@ -37,7 +37,6 @@ namespace Adyen.Disputes.Models
         /// <param name="content">The content of the defense document.</param>
         /// <param name="contentType">The content type of the defense document.</param>
         /// <param name="defenseDocumentTypeCode">The document type code of the defense document.</param>
-        [JsonConstructor]
         public DefenseDocument(byte[] content, string contentType, string defenseDocumentTypeCode)
         {
             Content = content;

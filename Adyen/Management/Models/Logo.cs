@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="Logo" /> class.
         /// </summary>
         /// <param name="data">The image file, converted to a Base64-encoded string, of the logo to be shown on the terminal.</param>
-        [JsonConstructor]
         public Logo(Option<string?> data = default)
         {
             _DataOption = data;

@@ -35,7 +35,6 @@ namespace Adyen.Capital.Models
         /// Initializes a new instance of the <see cref="NOLocalAccountIdentification" /> class.
         /// </summary>
         /// <param name="accountNumber">The 11-digit bank account number, without separators or whitespace.</param>
-        [JsonConstructor]
         public NOLocalAccountIdentification(string accountNumber) : base()
         {
             AccountNumber = accountNumber;

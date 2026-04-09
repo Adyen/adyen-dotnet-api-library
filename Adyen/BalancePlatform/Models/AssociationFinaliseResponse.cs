@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="type">The type of resource that you associated with the SCA device.</param>
         /// <param name="deviceId">The unique identifier of the SCA device you associated with a resource.</param>
         /// <param name="ids">The list of unique identifiers of the resources that you associated with the SCA device.</param>
-        [JsonConstructor]
         public AssociationFinaliseResponse(TypeEnum type, Option<string?> deviceId = default, Option<List<string>?> ids = default)
         {
             Type = type;

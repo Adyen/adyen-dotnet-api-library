@@ -36,7 +36,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="reason">Reason for the result.</param>
         /// <param name="result">result</param>
-        [JsonConstructor]
         public ValidateShopperIdResponse(Option<string?> reason = default, Option<Result?> result = default)
         {
             _ReasonOption = reason;

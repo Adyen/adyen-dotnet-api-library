@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="hashedNumber">The hashed value of the phone number used to provision the network token.</param>
         /// <param name="lastFourDigits">The last four digits of the phone number used to provision the network token.</param>
         /// <param name="number">The full phone number of the device used to provision the network token.</param>
-        [JsonConstructor]
         public PhoneInfo(Option<string?> hashedNumber = default, Option<string?> lastFourDigits = default, Option<string?> number = default)
         {
             _HashedNumberOption = hashedNumber;

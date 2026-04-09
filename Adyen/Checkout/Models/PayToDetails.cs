@@ -40,7 +40,6 @@ namespace Adyen.Checkout.Models
         /// <param name="shopperAccountIdentifier">The shopper&#39;s banking details or payId reference, used to complete payment.</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
         /// <param name="type">**payto** (default to TypeEnum.Payto)</param>
-        [JsonConstructor]
         public PayToDetails(Option<string?> checkoutAttemptId = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> shopperAccountIdentifier = default, Option<string?> storedPaymentMethodId = default, Option<TypeEnum?> type = default)
         {
             _CheckoutAttemptIdOption = checkoutAttemptId;

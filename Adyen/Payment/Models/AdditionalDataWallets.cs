@@ -40,7 +40,6 @@ namespace Adyen.Payment.Models
         /// <param name="paywithgoogleToken">The Google Pay token retrieved from the SDK.</param>
         /// <param name="samsungpayToken">The Samsung Pay token retrieved from the SDK.</param>
         /// <param name="visacheckoutCallId">The Visa Checkout Call ID retrieved from the SDK.</param>
-        [JsonConstructor]
         public AdditionalDataWallets(Option<string?> androidpayToken = default, Option<string?> masterpassTransactionId = default, Option<string?> paymentToken = default, Option<string?> paywithgoogleToken = default, Option<string?> samsungpayToken = default, Option<string?> visacheckoutCallId = default)
         {
             _AndroidpayTokenOption = androidpayToken;

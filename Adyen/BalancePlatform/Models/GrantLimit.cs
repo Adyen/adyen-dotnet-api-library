@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="GrantLimit" /> class.
         /// </summary>
         /// <param name="amount">amount</param>
-        [JsonConstructor]
         public GrantLimit(Option<Amount?> amount = default)
         {
             _AmountOption = amount;

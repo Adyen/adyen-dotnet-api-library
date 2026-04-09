@@ -43,7 +43,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="invalidFields">Detailed explanation of each validation error, when applicable.</param>
         /// <param name="requestId">A unique reference for the request, essentially the same as &#x60;pspReference&#x60;.</param>
         /// <param name="response">response</param>
-        [JsonConstructor]
         public RestServiceError(string detail, string errorCode, int status, string title, string type, Option<string?> instance = default, Option<List<InvalidField>?> invalidFields = default, Option<string?> requestId = default, Option<Object?> response = default)
         {
             Detail = detail;

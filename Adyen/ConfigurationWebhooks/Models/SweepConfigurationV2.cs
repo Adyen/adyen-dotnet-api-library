@@ -50,7 +50,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="targetAmount">targetAmount</param>
         /// <param name="triggerAmount">triggerAmount</param>
         /// <param name="type">The direction of sweep, whether pushing out or pulling in funds to the balance account. If not provided, by default, this is set to **push**.  Possible values:   * **push**: _push out funds_ to a destination balance account or transfer instrument.   * **pull**: _pull in funds_ from a source merchant account, transfer instrument, or balance account. (default to TypeEnum.Push)</param>
-        [JsonConstructor]
         public SweepConfigurationV2(SweepCounterparty counterparty, string currency, string id, SweepSchedule schedule, Option<CategoryEnum?> category = default, Option<string?> description = default, Option<List<SweepConfigurationV2.PrioritiesEnum>?> priorities = default, Option<ReasonEnum?> reason = default, Option<string?> reasonDetail = default, Option<string?> reference = default, Option<string?> referenceForBeneficiary = default, Option<StatusEnum?> status = default, Option<Amount?> sweepAmount = default, Option<Amount?> targetAmount = default, Option<Amount?> triggerAmount = default, Option<TypeEnum?> type = default)
         {
             Counterparty = counterparty;

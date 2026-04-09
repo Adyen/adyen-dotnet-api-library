@@ -37,7 +37,6 @@ namespace Adyen.Capital.Models
         /// <param name="basisPoints">The percentage of your user&#39;s incoming net volume that is deducted for repaying the grant. The percentage expressed in [basis points](https://www.investopedia.com/terms/b/basispoint.asp).</param>
         /// <param name="term">term</param>
         /// <param name="threshold">threshold</param>
-        [JsonConstructor]
         public Repayment(int basisPoints, Option<RepaymentTerm?> term = default, Option<ThresholdRepayment?> threshold = default)
         {
             BasisPoints = basisPoints;

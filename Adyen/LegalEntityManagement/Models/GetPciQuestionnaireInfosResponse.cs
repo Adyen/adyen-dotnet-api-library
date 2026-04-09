@@ -35,7 +35,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// Initializes a new instance of the <see cref="GetPciQuestionnaireInfosResponse" /> class.
         /// </summary>
         /// <param name="data">Information about the signed PCI questionnaires.</param>
-        [JsonConstructor]
         public GetPciQuestionnaireInfosResponse(Option<List<PciDocumentInfo>?> data = default)
         {
             _DataOption = data;

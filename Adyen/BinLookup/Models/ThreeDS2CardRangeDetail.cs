@@ -40,7 +40,6 @@ namespace Adyen.BinLookup.Models
         /// <param name="startRange">BIN start range.</param>
         /// <param name="threeDS2Versions">Supported 3D Secure protocol versions</param>
         /// <param name="threeDSMethodURL">In a 3D Secure 2 browser-based flow, this is the URL where you should send the device fingerprint to.</param>
-        [JsonConstructor]
         public ThreeDS2CardRangeDetail(Option<List<string>?> acsInfoInd = default, Option<string?> brandCode = default, Option<string?> endRange = default, Option<string?> startRange = default, Option<List<string>?> threeDS2Versions = default, Option<string?> threeDSMethodURL = default)
         {
             _AcsInfoIndOption = acsInfoInd;

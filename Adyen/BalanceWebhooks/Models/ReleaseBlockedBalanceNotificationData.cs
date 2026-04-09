@@ -44,7 +44,6 @@ namespace Adyen.BalanceWebhooks.Models
         /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.</param>
         /// <param name="id">The ID of the resource.</param>
         /// <param name="valueDate">The date and time when the amount was released, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.</param>
-        [JsonConstructor]
         public ReleaseBlockedBalanceNotificationData(ResourceReference accountHolder, Amount amount, ResourceReference balanceAccount, Option<string?> balancePlatform = default, Option<string?> batchReference = default, Option<Amount?> blockedBalanceAfter = default, Option<Amount?> blockedBalanceBefore = default, Option<DateTimeOffset?> creationDate = default, Option<string?> id = default, Option<DateTimeOffset?> valueDate = default)
         {
             AccountHolder = accountHolder;

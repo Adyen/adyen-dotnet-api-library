@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="scaDevice">scaDevice</param>
         /// <param name="sdkInput">A string that you must pass to the authentication SDK to continue with the registration process.</param>
-        [JsonConstructor]
         public BeginScaDeviceRegistrationResponse(Option<ScaDevice?> scaDevice = default, Option<string?> sdkInput = default)
         {
             _ScaDeviceOption = scaDevice;

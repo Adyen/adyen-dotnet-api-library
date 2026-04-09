@@ -36,7 +36,6 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <param name="amount">amount</param>
         /// <param name="aprBasisPoints">Annual Percentage Rate (APR) of the offer. The percentage is expressed in [basis points](https://www.investopedia.com/terms/b/basispoint.asp).</param>
-        [JsonConstructor]
         public GrantOfferFee(Amount amount, Option<int?> aprBasisPoints = default)
         {
             Amount = amount;

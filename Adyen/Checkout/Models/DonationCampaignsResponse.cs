@@ -35,7 +35,6 @@ namespace Adyen.Checkout.Models
         /// Initializes a new instance of the <see cref="DonationCampaignsResponse" /> class.
         /// </summary>
         /// <param name="donationCampaigns">List of active donation campaigns for your merchant account.</param>
-        [JsonConstructor]
         public DonationCampaignsResponse(Option<List<DonationCampaign>?> donationCampaigns = default)
         {
             _DonationCampaignsOption = donationCampaigns;

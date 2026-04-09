@@ -41,7 +41,6 @@ namespace Adyen.Management.Models
         /// <param name="stateOrProvince">The state or province as defined in [ISO 3166-2](https://www.iso.org/standard/72483.html). For example, **ON** for Ontario, Canada.   Applicable for the following countries: - Australia - Brazil - Canada - India - Mexico - New Zealand - United States</param>
         /// <param name="streetAddress">The name of the street, and the house or building number.</param>
         /// <param name="streetAddress2">Additional address details, if any.</param>
-        [JsonConstructor]
         public Address(Option<string?> city = default, Option<string?> companyName = default, Option<string?> country = default, Option<string?> postalCode = default, Option<string?> stateOrProvince = default, Option<string?> streetAddress = default, Option<string?> streetAddress2 = default)
         {
             _CityOption = city;

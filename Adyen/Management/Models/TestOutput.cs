@@ -40,7 +40,6 @@ namespace Adyen.Management.Models
         /// <param name="requestSent">The [body of the notification webhook](https://docs.adyen.com/development-resources/webhooks/understand-notifications#notification-structure) that was sent to your server.</param>
         /// <param name="responseCode">The HTTP response code for your server&#39;s response to the test webhook.  You can use the value of this field together with the the [&#x60;output&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/webhooks/{id}/test__resParam_data-output) field value to troubleshoot failed test webhooks.</param>
         /// <param name="responseTime">The time between sending the test webhook and receiving the response from your server. You can use it as an indication of how long your server takes to process a webhook notification. Measured in milliseconds, for example **304 ms**.</param>
-        [JsonConstructor]
         public TestOutput(string status, Option<string?> merchantId = default, Option<string?> output = default, Option<string?> requestSent = default, Option<string?> responseCode = default, Option<string?> responseTime = default)
         {
             Status = status;

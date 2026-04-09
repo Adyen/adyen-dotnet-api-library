@@ -43,7 +43,6 @@ namespace Adyen.Checkout.Models
         /// <param name="reference">Your reference for the capture request. Maximum length: 80 characters.</param>
         /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/).</param>
         /// <param name="subMerchants">A List of sub-merchants.</param>
-        [JsonConstructor]
         public PaymentCaptureRequest(Amount amount, string merchantAccount, Option<ApplicationInfo?> applicationInfo = default, Option<EnhancedSchemeData?> enhancedSchemeData = default, Option<List<LineItem>?> lineItems = default, Option<PlatformChargebackLogic?> platformChargebackLogic = default, Option<string?> reference = default, Option<List<Split>?> splits = default, Option<List<SubMerchantInfo>?> subMerchants = default)
         {
             Amount = amount;

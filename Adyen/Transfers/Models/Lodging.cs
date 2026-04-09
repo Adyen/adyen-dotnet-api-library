@@ -36,7 +36,6 @@ namespace Adyen.Transfers.Models
         /// </summary>
         /// <param name="checkInDate">The check-in date.</param>
         /// <param name="numberOfNights">The total number of nights the room is booked for.</param>
-        [JsonConstructor]
         public Lodging(Option<string?> checkInDate = default, Option<int?> numberOfNights = default)
         {
             _CheckInDateOption = checkInDate;

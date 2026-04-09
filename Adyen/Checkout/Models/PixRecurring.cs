@@ -44,7 +44,6 @@ namespace Adyen.Checkout.Models
         /// <param name="recurringStatement">The text that that will be shown on the shopper&#39;s bank statement for the recurring payments. We recommend to add a descriptive text about the subscription to let your shoppers recognize your recurring payments. Maximum length: 35 characters.</param>
         /// <param name="retryPolicy">When set to true, you can retry for failed recurring payments. The default value is true.</param>
         /// <param name="startsAt">Start date of the billing plan, in YYYY-MM-DD format. The default value is the transaction date.</param>
-        [JsonConstructor]
         public PixRecurring(Option<string?> billingDate = default, Option<bool?> businessDayOnly = default, Option<string?> endsAt = default, Option<FrequencyEnum?> frequency = default, Option<Amount?> minAmount = default, Option<string?> originalPspReference = default, Option<Amount?> recurringAmount = default, Option<string?> recurringStatement = default, Option<bool?> retryPolicy = default, Option<string?> startsAt = default)
         {
             _BillingDateOption = billingDate;

@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="TransferRouteResponse" /> class.
         /// </summary>
         /// <param name="transferRoutes">List of available priorities for a transfer, along with requirements. Use this information to initiate a transfer.</param>
-        [JsonConstructor]
         public TransferRouteResponse(Option<List<TransferRoute>?> transferRoutes = default)
         {
             _TransferRoutesOption = transferRoutes;

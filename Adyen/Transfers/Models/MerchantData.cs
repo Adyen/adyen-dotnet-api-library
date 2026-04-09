@@ -39,7 +39,6 @@ namespace Adyen.Transfers.Models
         /// <param name="merchantId">The unique identifier of the merchant.</param>
         /// <param name="nameLocation">nameLocation</param>
         /// <param name="postalCode">The postal code of the merchant.</param>
-        [JsonConstructor]
         public MerchantData(Option<string?> acquirerId = default, Option<string?> mcc = default, Option<string?> merchantId = default, Option<NameLocation?> nameLocation = default, Option<string?> postalCode = default)
         {
             _AcquirerIdOption = acquirerId;

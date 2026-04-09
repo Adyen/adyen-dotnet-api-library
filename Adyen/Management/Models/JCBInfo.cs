@@ -38,7 +38,6 @@ namespace Adyen.Management.Models
         /// <param name="reuseMidNumber">Indicates whether the JCB Merchant ID is reused from a previously setup JCB payment method.  The default value is **false**.For merchants operating in Japan, this field is required and must be set to **true**. (default to false)</param>
         /// <param name="serviceLevel">Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB for merchants operating in Japan or American Express for merchants operating in Canada, Australia and New Zealand. * **gatewayContract**: JCB or American Express receives the settlement and handles disputes, then pays out to you or your sub-merchant directly. * **paymentDesignatorContract**: Available only for merchants operating in Canada, Australia and New Zealand. Adyen receives the settlement, and handles disputes and payouts.</param>
         /// <param name="transactionDescription">transactionDescription</param>
-        [JsonConstructor]
         public JCBInfo(Option<string?> midNumber = default, Option<bool?> reuseMidNumber = default, Option<ServiceLevelEnum?> serviceLevel = default, Option<TransactionDescriptionInfo?> transactionDescription = default)
         {
             _MidNumberOption = midNumber;

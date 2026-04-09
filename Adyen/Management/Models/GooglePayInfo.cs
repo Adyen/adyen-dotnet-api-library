@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="merchantId">Google Pay [Merchant ID](https://support.google.com/paymentscenter/answer/7163092?hl&#x3D;en). Character length and limitations: 16 alphanumeric characters or 20 numeric characters.</param>
         /// <param name="reuseMerchantId">Indicates whether the Google Pay Merchant ID is used for several merchant accounts. Default value: **false**.</param>
-        [JsonConstructor]
         public GooglePayInfo(string merchantId, Option<bool?> reuseMerchantId = default)
         {
             MerchantId = merchantId;

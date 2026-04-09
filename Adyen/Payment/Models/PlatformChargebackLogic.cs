@@ -37,7 +37,6 @@ namespace Adyen.Payment.Models
         /// <param name="behavior">The method of handling the chargeback.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**.</param>
         /// <param name="costAllocationAccount">The unique identifier of the balance account to which the chargeback fees are booked. By default, the chargeback fees are booked to your liable balance account.</param>
         /// <param name="targetAccount">The unique identifier of the balance account against which the disputed amount is booked.  Required if &#x60;behavior&#x60; is **deductFromOneBalanceAccount**.</param>
-        [JsonConstructor]
         public PlatformChargebackLogic(Option<BehaviorEnum?> behavior = default, Option<string?> costAllocationAccount = default, Option<string?> targetAccount = default)
         {
             _BehaviorOption = behavior;

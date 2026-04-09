@@ -40,7 +40,6 @@ namespace Adyen.Checkout.Models
         /// <param name="orderData">The encrypted order data.</param>
         /// <param name="reference">The merchant reference for the order.</param>
         /// <param name="remainingAmount">remainingAmount</param>
-        [JsonConstructor]
         public CheckoutOrderResponse(string pspReference, Option<Amount?> amount = default, Option<string?> expiresAt = default, Option<string?> orderData = default, Option<string?> reference = default, Option<Amount?> remainingAmount = default)
         {
             PspReference = pspReference;

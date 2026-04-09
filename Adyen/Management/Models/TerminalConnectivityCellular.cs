@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="iccid">The integrated circuit card identifier (ICCID) of the primary SIM card in the terminal.</param>
         /// <param name="iccid2">The integrated circuit card identifier (ICCID) of the secondary SIM card in the terminal, typically used for a [third-party SIM card](https://docs.adyen.com/point-of-sale/design-your-integration/network-and-connectivity/cellular-failover/#using-a-third-party-sim-card).</param>
         /// <param name="status">On a terminal that supports 3G or 4G connectivity, indicates the status of the primary SIM card in the terminal.</param>
-        [JsonConstructor]
         public TerminalConnectivityCellular(Option<string?> iccid = default, Option<string?> iccid2 = default, Option<StatusEnum?> status = default)
         {
             _IccidOption = iccid;

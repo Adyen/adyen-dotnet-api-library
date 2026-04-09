@@ -39,7 +39,6 @@ namespace Adyen.Management.Models
         /// <param name="associatedMerchantAccounts">List of merchant accounts that the API credential has access to.</param>
         /// <param name="description">Description of the API credential.</param>
         /// <param name="roles">List of [roles](https://docs.adyen.com/development-resources/api-credentials#roles-1) for the API credential. Only roles assigned to &#39;ws@Company.&lt;CompanyName&gt;&#39; can be assigned to other API credentials.</param>
-        [JsonConstructor]
         public UpdateCompanyApiCredentialRequest(Option<bool?> active = default, Option<List<string>?> allowedOrigins = default, Option<List<string>?> associatedMerchantAccounts = default, Option<string?> description = default, Option<List<string>?> roles = default)
         {
             _ActiveOption = active;

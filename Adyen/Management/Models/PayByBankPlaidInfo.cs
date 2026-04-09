@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="logo">Merchant logo (max. size 150kB). Format: Base64-encoded string.</param>
         /// <param name="transactionDescription">transactionDescription</param>
-        [JsonConstructor]
         public PayByBankPlaidInfo(Option<string?> logo = default, Option<TransactionDescriptionInfo?> transactionDescription = default)
         {
             _LogoOption = logo;

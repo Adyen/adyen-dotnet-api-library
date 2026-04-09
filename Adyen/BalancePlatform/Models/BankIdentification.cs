@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="country">Two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.</param>
         /// <param name="identification">The bank identification code.</param>
         /// <param name="identificationType">The type of the identification.  Possible values: **iban**, **routingNumber**, **sortCode**, **bic**.</param>
-        [JsonConstructor]
         public BankIdentification(Option<string?> country = default, Option<string?> identification = default, Option<IdentificationTypeEnum?> identificationType = default)
         {
             _CountryOption = country;

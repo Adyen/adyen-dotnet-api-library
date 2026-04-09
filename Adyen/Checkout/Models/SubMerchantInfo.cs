@@ -44,7 +44,6 @@ namespace Adyen.Checkout.Models
         /// <param name="registeredSince">registeredSince</param>
         /// <param name="taxId">Required for transactions performed by registered payment facilitators. The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ</param>
         /// <param name="url">Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s URL on the platform, i.e. the sub-merchant&#39;s shop.</param>
-        [JsonConstructor]
         public SubMerchantInfo(Option<BillingAddress?> address = default, Option<Amount?> amount = default, Option<string?> email = default, Option<string?> id = default, Option<string?> mcc = default, Option<string?> name = default, Option<string?> phoneNumber = default, Option<string?> registeredSince = default, Option<string?> taxId = default, Option<string?> url = default)
         {
             _AddressOption = address;

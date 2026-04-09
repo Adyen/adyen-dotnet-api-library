@@ -39,7 +39,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="message">The general error message.</param>
         /// <param name="type">The type of error.  Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **rejected** *  **dataReview**  </param>
         /// <param name="remediatingActions">An object containing possible solutions to fix a verification error.</param>
-        [JsonConstructor]
         public VerificationErrorRecursive(Option<List<VerificationErrorRecursive.CapabilitiesEnum>?> capabilities = default, Option<string?> code = default, Option<string?> message = default, Option<TypeEnum?> type = default, Option<List<RemediatingAction>?> remediatingActions = default)
         {
             _CapabilitiesOption = capabilities;

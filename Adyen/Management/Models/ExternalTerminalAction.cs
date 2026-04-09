@@ -42,7 +42,6 @@ namespace Adyen.Management.Models
         /// <param name="scheduledAt">The date and time when the action was scheduled to happen.</param>
         /// <param name="status">The status of the terminal action: **pending**, **successful**, **failed**, **cancelled**, or **tryLater**.</param>
         /// <param name="terminalId">The unique ID of the terminal that the action applies to.</param>
-        [JsonConstructor]
         public ExternalTerminalAction(Option<string?> actionType = default, Option<string?> config = default, Option<DateTimeOffset?> confirmedAt = default, Option<string?> id = default, Option<string?> result = default, Option<DateTimeOffset?> scheduledAt = default, Option<string?> status = default, Option<string?> terminalId = default)
         {
             _ActionTypeOption = actionType;

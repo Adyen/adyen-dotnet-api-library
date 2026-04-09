@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="displayMaximumBackLight">The brightness of the display when the terminal is being used, expressed as a percentage.</param>
         /// <param name="resetTotalsHour">The hour of the day when the terminal is set to reset the Totals report. By default, the reset hour is at 6:00 AM in the timezone of the terminal. Minimum value: 0, maximum value: 23.</param>
         /// <param name="restartHour">The hour of the day when the terminal is set to reboot to apply the configuration and software updates. By default, the restart hour is at 6:00 AM in the timezone of the terminal. Minimum value: 0, maximum value: 23.</param>
-        [JsonConstructor]
         public Hardware(Option<int?> displayMaximumBackLight = default, Option<int?> resetTotalsHour = default, Option<int?> restartHour = default)
         {
             _DisplayMaximumBackLightOption = displayMaximumBackLight;

@@ -37,7 +37,6 @@ namespace Adyen.Checkout.Models
         /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
         /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
         /// <param name="type">**mobilepay** (default to TypeEnum.Mobilepay)</param>
-        [JsonConstructor]
         public MobilePayDetails(Option<string?> checkoutAttemptId = default, Option<string?> sdkData = default, Option<TypeEnum?> type = default)
         {
             _CheckoutAttemptIdOption = checkoutAttemptId;

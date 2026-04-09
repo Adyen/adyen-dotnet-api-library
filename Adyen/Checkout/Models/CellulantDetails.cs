@@ -38,7 +38,6 @@ namespace Adyen.Checkout.Models
         /// <param name="issuer">The Cellulant issuer.</param>
         /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
         /// <param name="type">**Cellulant** (default to TypeEnum.Cellulant)</param>
-        [JsonConstructor]
         public CellulantDetails(Option<string?> checkoutAttemptId = default, Option<string?> issuer = default, Option<string?> sdkData = default, Option<TypeEnum?> type = default)
         {
             _CheckoutAttemptIdOption = checkoutAttemptId;

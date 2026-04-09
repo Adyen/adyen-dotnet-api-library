@@ -38,7 +38,6 @@ namespace Adyen.Management.Models
         /// <param name="installments">The number of installments for the specified product &#x60;id&#x60;.</param>
         /// <param name="name">The name of the product.</param>
         /// <param name="quantity">The number of items with the specified product &#x60;id&#x60; included in the order.</param>
-        [JsonConstructor]
         public OrderItem(Option<string?> id = default, Option<long?> installments = default, Option<string?> name = default, Option<int?> quantity = default)
         {
             _IdOption = id;

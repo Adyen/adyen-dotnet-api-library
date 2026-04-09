@@ -35,7 +35,6 @@ namespace Adyen.AcsWebhooks.Models
         /// Initializes a new instance of the <see cref="AuthenticationDecision" /> class.
         /// </summary>
         /// <param name="status">The status of the authentication.   Possible values:   * **refused**   * **proceed**   For more information, refer to [Authenticate cardholders using the Authentication SDK](https://docs.adyen.com/issuing/3d-secure/oob-auth-sdk/authenticate-cardholders/).</param>
-        [JsonConstructor]
         public AuthenticationDecision(StatusEnum status)
         {
             Status = status;

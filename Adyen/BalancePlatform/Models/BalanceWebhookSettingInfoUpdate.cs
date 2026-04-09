@@ -39,7 +39,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="status">The status of the webhook setting. Possible values:  * **active**: You receive a balance webhook if any of the conditions in this setting are met. * **inactive**: You do not receive a balance webhook even if the conditions in this settings are met.</param>
         /// <param name="target">target</param>
         /// <param name="type">The type of the webhook you are configuring. Set to **balance**.</param>
-        [JsonConstructor]
         public BalanceWebhookSettingInfoUpdate(Option<List<Condition>?> conditions = default, Option<string?> currency = default, Option<StatusEnum?> status = default, Option<TargetUpdate?> target = default, Option<TypeEnum?> type = default)
         {
             _ConditionsOption = conditions;

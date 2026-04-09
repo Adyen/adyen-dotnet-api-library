@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="TransactionRulesResponse" /> class.
         /// </summary>
         /// <param name="transactionRules">List of transaction rules.</param>
-        [JsonConstructor]
         public TransactionRulesResponse(Option<List<TransactionRule>?> transactionRules = default)
         {
             _TransactionRulesOption = transactionRules;

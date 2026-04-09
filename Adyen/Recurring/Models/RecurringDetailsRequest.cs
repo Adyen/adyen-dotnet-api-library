@@ -37,7 +37,6 @@ namespace Adyen.Recurring.Models
         /// <param name="merchantAccount">The merchant account identifier you want to process the (transaction) request with.</param>
         /// <param name="shopperReference">The reference you use to uniquely identify the shopper (e.g. user ID or account ID).</param>
         /// <param name="recurring">recurring</param>
-        [JsonConstructor]
         public RecurringDetailsRequest(string merchantAccount, string shopperReference, Option<Recurring?> recurring = default)
         {
             MerchantAccount = merchantAccount;

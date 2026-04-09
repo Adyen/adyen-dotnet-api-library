@@ -37,7 +37,6 @@ namespace Adyen.Capital.Models
         /// <param name="accountNumber">The bank account number, without separators or whitespace.</param>
         /// <param name="routingNumber">The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace.</param>
         /// <param name="accountType">accountType</param>
-        [JsonConstructor]
         public USLocalAccountIdentification(string accountNumber, string routingNumber, Option<USLocalBankAccountType?> accountType = default) : base()
         {
             AccountNumber = accountNumber;

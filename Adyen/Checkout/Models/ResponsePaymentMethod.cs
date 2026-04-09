@@ -36,7 +36,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="brand">The card brand that the shopper used to pay. Only returned if &#x60;paymentMethod.type&#x60; is **scheme**.</param>
         /// <param name="type">The &#x60;paymentMethod.type&#x60; value used in the request.</param>
-        [JsonConstructor]
         public ResponsePaymentMethod(Option<string?> brand = default, Option<string?> type = default)
         {
             _BrandOption = brand;

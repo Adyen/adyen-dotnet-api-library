@@ -42,7 +42,6 @@ namespace Adyen.Payment.Models
         /// <param name="ratepaydataDueDate">Date by which the customer must settle the payment.</param>
         /// <param name="ratepaydataInvoiceDate">Invoice date, defined by the merchant. If not included, the invoice date is set to the delivery date.</param>
         /// <param name="ratepaydataInvoiceId">Identification name or number for the invoice, defined by the merchant.</param>
-        [JsonConstructor]
         public AdditionalDataRatepay(Option<string?> ratepayInstallmentAmount = default, Option<string?> ratepayInterestRate = default, Option<string?> ratepayLastInstallmentAmount = default, Option<string?> ratepayPaymentFirstday = default, Option<string?> ratepaydataDeliveryDate = default, Option<string?> ratepaydataDueDate = default, Option<string?> ratepaydataInvoiceDate = default, Option<string?> ratepaydataInvoiceId = default)
         {
             _RatepayInstallmentAmountOption = ratepayInstallmentAmount;

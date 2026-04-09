@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="description">Your description for the split configuration.</param>
         /// <param name="rules">Array of rules that define the split configuration behavior.</param>
         /// <param name="splitConfigurationId">Unique identifier of the split configuration.</param>
-        [JsonConstructor]
         public SplitConfiguration(string description, List<SplitConfigurationRule> rules, Option<string?> splitConfigurationId = default)
         {
             Description = description;

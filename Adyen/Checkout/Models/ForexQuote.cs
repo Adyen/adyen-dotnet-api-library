@@ -46,7 +46,6 @@ namespace Adyen.Checkout.Models
         /// <param name="signature">The signature to validate the integrity.</param>
         /// <param name="source">The source of the forex quote.</param>
         /// <param name="type">The type of forex.</param>
-        [JsonConstructor]
         public ForexQuote(int basePoints, DateTimeOffset validTill, Option<string?> account = default, Option<string?> accountType = default, Option<Amount?> baseAmount = default, Option<Amount?> buy = default, Option<Amount?> interbank = default, Option<string?> reference = default, Option<Amount?> sell = default, Option<string?> signature = default, Option<string?> source = default, Option<string?> type = default)
         {
             BasePoints = basePoints;

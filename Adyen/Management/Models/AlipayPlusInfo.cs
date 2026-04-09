@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="AlipayPlusInfo" /> class.
         /// </summary>
         /// <param name="settlementCurrencyCode">The currency used for settlement. Defaults to USD.</param>
-        [JsonConstructor]
         public AlipayPlusInfo(Option<string?> settlementCurrencyCode = default)
         {
             _SettlementCurrencyCodeOption = settlementCurrencyCode;

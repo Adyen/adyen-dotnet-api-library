@@ -36,7 +36,6 @@ namespace Adyen.Transfers.Models
         /// </summary>
         /// <param name="estimatedDays">The estimated term for repaying the grant, in days.</param>
         /// <param name="maximumDays">The maximum term for repaying the grant, in days. Only applies when &#x60;contractType&#x60; is **loan**.</param>
-        [JsonConstructor]
         public RepaymentTerm(int estimatedDays, Option<int?> maximumDays = default)
         {
             EstimatedDays = estimatedDays;

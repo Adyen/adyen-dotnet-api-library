@@ -53,7 +53,6 @@ namespace Adyen.Checkout.Models
         /// <param name="purchasesLast6Months">Number of successful purchases in the last six months.</param>
         /// <param name="suspiciousActivity">Whether suspicious activity was recorded on this account.</param>
         /// <param name="workPhone">Shopper&#39;s work phone number (including the country code).</param>
-        [JsonConstructor]
         public AccountInfo(Option<AccountAgeIndicatorEnum?> accountAgeIndicator = default, Option<DateTimeOffset?> accountChangeDate = default, Option<AccountChangeIndicatorEnum?> accountChangeIndicator = default, Option<DateTimeOffset?> accountCreationDate = default, Option<AccountTypeEnum?> accountType = default, Option<int?> addCardAttemptsDay = default, Option<DateTimeOffset?> deliveryAddressUsageDate = default, Option<DeliveryAddressUsageIndicatorEnum?> deliveryAddressUsageIndicator = default, Option<string?> homePhone = default, Option<string?> mobilePhone = default, Option<DateTimeOffset?> passwordChangeDate = default, Option<PasswordChangeIndicatorEnum?> passwordChangeIndicator = default, Option<int?> pastTransactionsDay = default, Option<int?> pastTransactionsYear = default, Option<DateTimeOffset?> paymentAccountAge = default, Option<PaymentAccountIndicatorEnum?> paymentAccountIndicator = default, Option<int?> purchasesLast6Months = default, Option<bool?> suspiciousActivity = default, Option<string?> workPhone = default)
         {
             _AccountAgeIndicatorOption = accountAgeIndicator;

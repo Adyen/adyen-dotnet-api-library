@@ -37,7 +37,6 @@ namespace Adyen.Payout.Models
         /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction.</param>
         /// <param name="originalReference">The PSP reference received in the &#x60;/submitThirdParty&#x60; response.</param>
         /// <param name="additionalData">This field contains additional data, which may be required for a particular payout request.</param>
-        [JsonConstructor]
         public ModifyRequest(string merchantAccount, string originalReference, Option<Dictionary<string, string>?> additionalData = default)
         {
             MerchantAccount = merchantAccount;

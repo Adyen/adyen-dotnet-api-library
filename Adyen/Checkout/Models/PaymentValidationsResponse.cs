@@ -35,7 +35,6 @@ namespace Adyen.Checkout.Models
         /// Initializes a new instance of the <see cref="PaymentValidationsResponse" /> class.
         /// </summary>
         /// <param name="name">name</param>
-        [JsonConstructor]
         public PaymentValidationsResponse(Option<PaymentValidationsNameResponse?> name = default)
         {
             _NameOption = name;

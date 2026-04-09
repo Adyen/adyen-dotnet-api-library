@@ -41,7 +41,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="requested">Indicates whether the capability is requested. To check whether the account holder is permitted to use the capability, refer to the &#x60;allowed&#x60; field.</param>
         /// <param name="requestedLevel">The requested level of the capability. Some capabilities, such as those used in [card issuing](https://docs.adyen.com/issuing/add-capabilities#capability-levels), have different levels. Levels increase the capability, but also require additional checks and increased monitoring.  Possible values: **notApplicable**, **low**, **medium**, **high**.</param>
         /// <param name="verificationStatus">The status of the verification checks for the supporting entity capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. </param>
-        [JsonConstructor]
         public AccountSupportingEntityCapability(Option<bool?> allowed = default, Option<AllowedLevelEnum?> allowedLevel = default, Option<bool?> enabled = default, Option<string?> id = default, Option<bool?> requested = default, Option<RequestedLevelEnum?> requestedLevel = default, Option<VerificationStatusEnum?> verificationStatus = default)
         {
             _AllowedOption = allowed;

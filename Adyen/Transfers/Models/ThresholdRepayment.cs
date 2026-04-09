@@ -35,7 +35,6 @@ namespace Adyen.Transfers.Models
         /// Initializes a new instance of the <see cref="ThresholdRepayment" /> class.
         /// </summary>
         /// <param name="amount">amount</param>
-        [JsonConstructor]
         public ThresholdRepayment(Amount amount)
         {
             Amount = amount;

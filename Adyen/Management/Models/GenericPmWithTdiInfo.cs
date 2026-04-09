@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="GenericPmWithTdiInfo" /> class.
         /// </summary>
         /// <param name="transactionDescription">transactionDescription</param>
-        [JsonConstructor]
         public GenericPmWithTdiInfo(Option<TransactionDescriptionInfo?> transactionDescription = default)
         {
             _TransactionDescriptionOption = transactionDescription;

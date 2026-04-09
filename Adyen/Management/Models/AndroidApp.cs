@@ -43,7 +43,6 @@ namespace Adyen.Management.Models
         /// <param name="packageName">The package name that uniquely identifies the Android app.</param>
         /// <param name="versionCode">The version number of the app.</param>
         /// <param name="versionName">The app version number that is shown on the terminal.</param>
-        [JsonConstructor]
         public AndroidApp(string id, StatusEnum status, Option<string?> description = default, Option<string?> errorCode = default, Option<List<AndroidAppError>?> errors = default, Option<string?> label = default, Option<string?> packageName = default, Option<int?> versionCode = default, Option<string?> versionName = default)
         {
             Id = id;

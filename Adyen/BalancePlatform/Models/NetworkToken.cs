@@ -43,7 +43,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="tokenLastFour">The last four digits of the network token &#x60;id&#x60;.</param>
         /// <param name="tokenRequestor">tokenRequestor</param>
         /// <param name="type">The type of network token. For example, **wallet**, **cof**.</param>
-        [JsonConstructor]
         public NetworkToken(Option<string?> brandVariant = default, Option<DateTimeOffset?> creationDate = default, Option<DeviceInfo?> device = default, Option<string?> id = default, Option<string?> paymentInstrumentId = default, Option<StatusEnum?> status = default, Option<string?> tokenLastFour = default, Option<NetworkTokenRequestor?> tokenRequestor = default, Option<string?> type = default)
         {
             _BrandVariantOption = brandVariant;

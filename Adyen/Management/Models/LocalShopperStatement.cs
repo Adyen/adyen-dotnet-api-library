@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="script">The character set of the local shopper statement.  Possible values: **ja-Hani**, **ja-Kana**.</param>
         /// <param name="value">The text of the local shopper statement in the specified character set.</param>
-        [JsonConstructor]
         public LocalShopperStatement(string script, string value)
         {
             Script = script;

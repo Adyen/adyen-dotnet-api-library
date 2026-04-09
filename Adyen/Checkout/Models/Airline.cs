@@ -47,7 +47,6 @@ namespace Adyen.Checkout.Models
         /// <param name="passengers">passengers</param>
         /// <param name="ticket">ticket</param>
         /// <param name="travelAgency">travelAgency</param>
-        [JsonConstructor]
         public Airline(string passengerName, Option<Agency?> agency = default, Option<long?> boardingFee = default, Option<string?> code = default, Option<string?> computerizedReservationSystem = default, Option<string?> customerReferenceNumber = default, Option<string?> designatorCode = default, Option<string?> documentType = default, Option<DateTimeOffset?> flightDate = default, Option<List<Leg>?> legs = default, Option<List<Passenger>?> passengers = default, Option<Ticket?> ticket = default, Option<TravelAgency?> travelAgency = default)
         {
             PassengerName = passengerName;

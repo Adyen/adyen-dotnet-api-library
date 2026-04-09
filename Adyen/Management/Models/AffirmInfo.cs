@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="supportEmail">Merchant support email</param>
         /// <param name="pricePlan">Merchant price plan</param>
-        [JsonConstructor]
         public AffirmInfo(string supportEmail, Option<PricePlanEnum?> pricePlan = default)
         {
             SupportEmail = supportEmail;

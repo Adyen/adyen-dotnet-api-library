@@ -35,7 +35,6 @@ namespace Adyen.SessionAuthentication.Models
         /// Initializes a new instance of the <see cref="MerchantAccountResource" /> class.
         /// </summary>
         /// <param name="merchantAccountCode">merchantAccountCode</param>
-        [JsonConstructor]
         public MerchantAccountResource(Option<string?> merchantAccountCode = default) : base()
         {
             _MerchantAccountCodeOption = merchantAccountCode;

@@ -36,7 +36,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="includeCryptogram">Set to **true** to enable forwarding network token cryptograms.</param>
         /// <param name="useNetworkToken">Set to **true** to forward the network token for a card.</param>
-        [JsonConstructor]
         public CheckoutNetworkTokenOption(Option<bool?> includeCryptogram = default, Option<bool?> useNetworkToken = default)
         {
             _IncludeCryptogramOption = includeCryptogram;

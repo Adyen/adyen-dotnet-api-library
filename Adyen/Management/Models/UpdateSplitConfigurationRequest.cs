@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="UpdateSplitConfigurationRequest" /> class.
         /// </summary>
         /// <param name="description">Your description for the split configuration.</param>
-        [JsonConstructor]
         public UpdateSplitConfigurationRequest(string description)
         {
             Description = description;

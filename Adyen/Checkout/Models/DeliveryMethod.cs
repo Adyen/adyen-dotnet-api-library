@@ -39,7 +39,6 @@ namespace Adyen.Checkout.Models
         /// <param name="reference">The reference of the delivery method.</param>
         /// <param name="selected">If you display the PayPal lightbox with delivery methods, set to **true** for the delivery method that is selected. Only one delivery method can be selected at a time.</param>
         /// <param name="type">The type of the delivery method.</param>
-        [JsonConstructor]
         public DeliveryMethod(Option<Amount?> amount = default, Option<string?> description = default, Option<string?> reference = default, Option<bool?> selected = default, Option<TypeEnum?> type = default)
         {
             _AmountOption = amount;

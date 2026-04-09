@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="description">Specifies the allowed prefixes for the international bank account number as defined in the ISO-13616 standard.</param>
         /// <param name="ibanPrefixes">Contains the list of allowed prefixes for international bank accounts. For example: NL, US, UK.</param>
         /// <param name="type">**ibanAccountIdentificationRequirement** (default to TypeEnum.IbanAccountIdentificationRequirement)</param>
-        [JsonConstructor]
         public IbanAccountIdentificationRequirement(Option<string?> description = default, Option<List<string>?> ibanPrefixes = default, TypeEnum type = default)
         {
             _DescriptionOption = description;

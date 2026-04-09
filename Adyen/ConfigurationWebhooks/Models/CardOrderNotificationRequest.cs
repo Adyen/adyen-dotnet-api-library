@@ -38,7 +38,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="environment">The environment from which the webhook originated.  Possible values: **test**, **live**.</param>
         /// <param name="type">Type of webhook.</param>
         /// <param name="timestamp">When the event was queued.</param>
-        [JsonConstructor]
         public CardOrderNotificationRequest(CardOrderItem data, string environment, TypeEnum type, Option<DateTimeOffset?> timestamp = default)
         {
             Data = data;

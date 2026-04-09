@@ -37,7 +37,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="pageName">pageName</param>
         /// <param name="pageNumber">pageNumber</param>
         /// <param name="type">type</param>
-        [JsonConstructor]
         public DocumentPage(Option<string?> pageName = default, Option<int?> pageNumber = default, Option<TypeEnum?> type = default)
         {
             _PageNameOption = pageName;

@@ -35,7 +35,6 @@ namespace Adyen.TransactionWebhooks.Models
         /// Initializes a new instance of the <see cref="ThreeDSecure" /> class.
         /// </summary>
         /// <param name="acsTransactionId">The transaction identifier for the Access Control Server</param>
-        [JsonConstructor]
         public ThreeDSecure(Option<string?> acsTransactionId = default)
         {
             _AcsTransactionIdOption = acsTransactionId;

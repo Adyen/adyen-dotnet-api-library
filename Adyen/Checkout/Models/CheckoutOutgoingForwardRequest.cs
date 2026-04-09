@@ -39,7 +39,6 @@ namespace Adyen.Checkout.Models
         /// <param name="credentials">Your credentials that are needed to authenticate with the third party.</param>
         /// <param name="headers">The request headers that will be included in the request Adyen makes to the third party on your behalf. Supports the &#x60;{{credentials}}&#x60; [placeholder](https://docs.adyen.com/online-payments/tokenization/forward-payment-details#placeholders).</param>
         /// <param name="urlSuffix">The suffix that Adyen needs to append to the &#x60;baseUrl&#x60; to construct the destination URL that belongs to the third party. This is usually the endpoint name for the request, for example, **_/payments**.</param>
-        [JsonConstructor]
         public CheckoutOutgoingForwardRequest(string body, HttpMethodEnum httpMethod, Option<string?> credentials = default, Option<Dictionary<string, string>?> headers = default, Option<string?> urlSuffix = default)
         {
             Body = body;

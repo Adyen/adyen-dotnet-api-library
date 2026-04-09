@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="operation">Defines how the condition must be evaluated.</param>
         /// <param name="value">List of processing types.  Possible values: **atmWithdraw**, **balanceInquiry**, **ecommerce**, **moto**, **pos**, **recurring**, **token**.  </param>
-        [JsonConstructor]
         public ProcessingTypesRestriction(string operation, Option<List<ProcessingTypesRestriction.ValueEnum>?> value = default)
         {
             Operation = operation;

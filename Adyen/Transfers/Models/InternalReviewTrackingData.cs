@@ -37,7 +37,6 @@ namespace Adyen.Transfers.Models
         /// <param name="status">The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review by Adyen.  - **failed**: the transfer failed Adyen&#39;s internal review. For details, see &#x60;reason&#x60;.  </param>
         /// <param name="reason">The reason why the transfer failed Adyen&#39;s internal review.   Possible values:  - **refusedForRegulatoryReasons**: the transfer does not comply with Adyen&#39;s risk policy. For more information, [contact the Support Team](https://www.adyen.help/hc/en-us/requests/new). </param>
         /// <param name="type">The type of tracking event.   Possible values:    - **internalReview**: the transfer was flagged because it does not comply with Adyen&#39;s risk policy. (default to TypeEnum.InternalReview)</param>
-        [JsonConstructor]
         public InternalReviewTrackingData(StatusEnum status, Option<ReasonEnum?> reason = default, TypeEnum type = default)
         {
             Status = status;

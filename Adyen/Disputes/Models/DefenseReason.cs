@@ -37,7 +37,6 @@ namespace Adyen.Disputes.Models
         /// <param name="defenseReasonCode">The defense reason code that was selected to defend this dispute.</param>
         /// <param name="satisfied">Indicates if sufficient defense material has been supplied.</param>
         /// <param name="defenseDocumentTypes">Array of defense document types for a specific defense reason. Indicates the document types that you can submit to the schemes to defend this dispute, and whether they are required.</param>
-        [JsonConstructor]
         public DefenseReason(string defenseReasonCode, bool satisfied, Option<List<DefenseDocumentType>?> defenseDocumentTypes = default)
         {
             DefenseReasonCode = defenseReasonCode;

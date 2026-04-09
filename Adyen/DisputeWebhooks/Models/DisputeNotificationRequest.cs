@@ -36,7 +36,6 @@ namespace Adyen.DisputeWebhooks.Models
         /// </summary>
         /// <param name="data">data</param>
         /// <param name="type">Type of webhook.</param>
-        [JsonConstructor]
         public DisputeNotificationRequest(DisputeEventNotification data, TypeEnum type)
         {
             Data = data;

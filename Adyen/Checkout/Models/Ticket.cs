@@ -37,7 +37,6 @@ namespace Adyen.Checkout.Models
         /// <param name="issueAddress">The address of the organization that issued the ticket. * minLength: 0 characters * maxLength: 16 characters</param>
         /// <param name="issueDate">The date that the ticket was issued to the passenger. * minLength: 10 characters * maxLength: 10 characters * Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): yyyy-MM-dd</param>
         /// <param name="number">The ticket&#39;s unique identifier. * minLength: 1 character * maxLength: 15 characters * Must not start with a space or be all spaces. * Must not be all zeros.</param>
-        [JsonConstructor]
         public Ticket(Option<string?> issueAddress = default, Option<DateOnly?> issueDate = default, Option<string?> number = default)
         {
             _IssueAddressOption = issueAddress;

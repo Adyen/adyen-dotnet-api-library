@@ -44,7 +44,6 @@ namespace Adyen.Checkout.Models
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
         /// <param name="subtype">The type of flow to initiate.</param>
         /// <param name="type">**paypal** (default to TypeEnum.Paypal)</param>
-        [JsonConstructor]
         public PayPalDetails(Option<string?> checkoutAttemptId = default, Option<string?> orderID = default, Option<string?> payeePreferred = default, Option<string?> payerID = default, Option<string?> payerSelected = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<SubtypeEnum?> subtype = default, TypeEnum type = default)
         {
             _CheckoutAttemptIdOption = checkoutAttemptId;

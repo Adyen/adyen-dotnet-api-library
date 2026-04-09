@@ -36,7 +36,6 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <param name="estimatedDays">The estimated duration of the repayment term, in days.</param>
         /// <param name="maximumDays">The maximum duration of the repayment term, in days. Only applies when &#x60;contractType&#x60; is **loan**.</param>
-        [JsonConstructor]
         public RepaymentTerm(int estimatedDays, Option<int?> maximumDays = default)
         {
             EstimatedDays = estimatedDays;

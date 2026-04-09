@@ -36,7 +36,6 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
         /// </summary>
         /// <param name="result">The result of the check.  Possible values:  - **valid**: The validation was successful.  - **invalid**: The validation failed.  - **notValidated**: The validation was not performed because some services were unreachable or Adyen does not have the information needed to perform the check.  - **notApplicable**: The validation is not applicable.</param>
         /// <param name="type">Type of check.</param>
-        [JsonConstructor]
         public ValidationResult(Option<string?> result = default, Option<string?> type = default)
         {
             _ResultOption = result;

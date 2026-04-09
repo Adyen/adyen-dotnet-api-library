@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="paymentInstrumentId">The unique identifier of the payment instrument for which you are registering the SCA device.</param>
         /// <param name="strongCustomerAuthentication">strongCustomerAuthentication</param>
         /// <param name="name">The name of the SCA device that you are registering. You can use it to help your users identify the device.  If you do not specify a &#x60;name&#x60;, Adyen automatically generates one.</param>
-        [JsonConstructor]
         public RegisterSCARequest(string paymentInstrumentId, DelegatedAuthenticationData strongCustomerAuthentication, Option<string?> name = default)
         {
             PaymentInstrumentId = paymentInstrumentId;

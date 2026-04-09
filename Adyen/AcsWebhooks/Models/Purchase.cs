@@ -37,7 +37,6 @@ namespace Adyen.AcsWebhooks.Models
         /// <param name="date">The time of the purchase.</param>
         /// <param name="merchantName">The name of the merchant.</param>
         /// <param name="originalAmount">originalAmount</param>
-        [JsonConstructor]
         public Purchase(DateTimeOffset date, string merchantName, Amount originalAmount)
         {
             Date = date;

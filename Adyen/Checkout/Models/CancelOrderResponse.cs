@@ -36,7 +36,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="pspReference">A unique reference of the cancellation request.</param>
         /// <param name="resultCode">The result of the cancellation request.  Possible values:  * **Received** – Indicates the cancellation has successfully been received by Adyen, and will be processed.</param>
-        [JsonConstructor]
         public CancelOrderResponse(string pspReference, ResultCodeEnum resultCode)
         {
             PspReference = pspReference;

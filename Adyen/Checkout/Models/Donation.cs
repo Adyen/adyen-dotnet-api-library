@@ -39,7 +39,6 @@ namespace Adyen.Checkout.Models
         /// <param name="type">The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donation amounts that the shopper can select from.</param>
         /// <param name="maxRoundupAmount">The maximum amount a transaction can be rounded up to make a donation. This field is only present when &#x60;donationType&#x60; is **roundup**.</param>
         /// <param name="values">The fixed donation amounts in [minor units](https://docs.adyen.com/development-resources/currency-codes//#minor-units). This field is only present when &#x60;donationType&#x60; is **fixedAmounts**.</param>
-        [JsonConstructor]
         public Donation(string currency, string donationType, string type, Option<long?> maxRoundupAmount = default, Option<List<long>?> values = default)
         {
             Currency = currency;

@@ -36,7 +36,6 @@ namespace Adyen.Disputes.Models
         /// </summary>
         /// <param name="success">Indicates whether the request succeeded.</param>
         /// <param name="errorMessage">The general error message.</param>
-        [JsonConstructor]
         public DisputeServiceResult(bool success, Option<string?> errorMessage = default)
         {
             Success = success;

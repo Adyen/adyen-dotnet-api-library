@@ -39,7 +39,6 @@ namespace Adyen.Checkout.Models
         /// <param name="fundingSource">The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.</param>
         /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
         /// <param name="type">**masterpass** (default to TypeEnum.Masterpass)</param>
-        [JsonConstructor]
         public MasterpassDetails(string masterpassTransactionId, Option<string?> checkoutAttemptId = default, Option<FundingSourceEnum?> fundingSource = default, Option<string?> sdkData = default, Option<TypeEnum?> type = default)
         {
             MasterpassTransactionId = masterpassTransactionId;

@@ -38,7 +38,6 @@ namespace Adyen.Management.Models
         /// <param name="pagesTotal">Total number of pages.</param>
         /// <param name="links">links</param>
         /// <param name="data">The list of API credentials.</param>
-        [JsonConstructor]
         public ListMerchantApiCredentialsResponse(int itemsTotal, int pagesTotal, Option<PaginationLinks?> links = default, Option<List<ApiCredential>?> data = default)
         {
             ItemsTotal = itemsTotal;

@@ -56,7 +56,6 @@ namespace Adyen.Management.Models
         /// <param name="networkType">Network type for Terminal API details webhooks.</param>
         /// <param name="populateSoapActionHeader">Indicates if the SOAP action header needs to be populated. Default value: **false**.  Only applies if &#x60;communicationFormat&#x60;: **soap**.</param>
         /// <param name="username">Username to access the webhook URL.</param>
-        [JsonConstructor]
         public Webhook(bool active, CommunicationFormatEnum communicationFormat, string type, string url, Option<WebhookLinks?> links = default, Option<bool?> acceptsExpiredCertificate = default, Option<bool?> acceptsSelfSignedCertificate = default, Option<bool?> acceptsUntrustedRootCertificate = default, Option<string?> accountReference = default, Option<AdditionalSettingsResponse?> additionalSettings = default, Option<string?> certificateAlias = default, Option<string?> description = default, Option<EncryptionProtocolEnum?> encryptionProtocol = default, Option<FilterMerchantAccountTypeEnum?> filterMerchantAccountType = default, Option<List<string>?> filterMerchantAccounts = default, Option<bool?> hasError = default, Option<bool?> hasPassword = default, Option<string?> hmacKeyCheckValue = default, Option<string?> id = default, Option<NetworkTypeEnum?> networkType = default, Option<bool?> populateSoapActionHeader = default, Option<string?> username = default)
         {
             Active = active;

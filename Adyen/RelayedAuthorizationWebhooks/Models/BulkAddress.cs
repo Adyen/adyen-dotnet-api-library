@@ -47,7 +47,6 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
         /// <param name="postalCode">The postal code.  Maximum length:  * 5 digits for addresses in the US.  * 10 characters for all other countries.</param>
         /// <param name="stateOrProvince">The two-letter ISO 3166-2 state or province code.  Maximum length: 2 characters for addresses in the US.</param>
         /// <param name="street">The streetname of the house.</param>
-        [JsonConstructor]
         public BulkAddress(string country, Option<string?> city = default, Option<string?> company = default, Option<string?> email = default, Option<string?> houseNumberOrName = default, Option<string?> line1 = default, Option<string?> line2 = default, Option<string?> line3 = default, Option<string?> mobile = default, Option<string?> name = default, Option<string?> postalCode = default, Option<string?> stateOrProvince = default, Option<string?> street = default)
         {
             Country = country;

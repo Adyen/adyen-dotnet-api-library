@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="Referenced" /> class.
         /// </summary>
         /// <param name="enableStandaloneRefunds">Indicates whether referenced refunds are enabled on the standalone terminal.</param>
-        [JsonConstructor]
         public Referenced(Option<bool?> enableStandaloneRefunds = default)
         {
             _EnableStandaloneRefundsOption = enableStandaloneRefunds;

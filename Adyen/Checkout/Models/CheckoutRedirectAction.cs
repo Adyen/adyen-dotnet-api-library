@@ -39,7 +39,6 @@ namespace Adyen.Checkout.Models
         /// <param name="method">Specifies the HTTP method, for example GET or POST.</param>
         /// <param name="paymentMethodType">Specifies the payment method.</param>
         /// <param name="url">Specifies the URL to redirect to.</param>
-        [JsonConstructor]
         public CheckoutRedirectAction(TypeEnum type, Option<Dictionary<string, string>?> data = default, Option<string?> method = default, Option<string?> paymentMethodType = default, Option<string?> url = default)
         {
             Type = type;

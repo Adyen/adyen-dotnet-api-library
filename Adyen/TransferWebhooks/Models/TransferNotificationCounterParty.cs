@@ -39,7 +39,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="card">card</param>
         /// <param name="merchant">merchant</param>
         /// <param name="transferInstrumentId">The unique identifier of the counterparty [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id).</param>
-        [JsonConstructor]
         public TransferNotificationCounterParty(Option<string?> balanceAccountId = default, Option<BankAccountV3?> bankAccount = default, Option<Card?> card = default, Option<TransferNotificationMerchantData?> merchant = default, Option<string?> transferInstrumentId = default)
         {
             _BalanceAccountIdOption = balanceAccountId;

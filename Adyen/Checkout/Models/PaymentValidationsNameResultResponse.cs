@@ -38,7 +38,6 @@ namespace Adyen.Checkout.Models
         /// <param name="fullName">Informs you if the full name your shopper provided matches the cardholder name on file at the issuing bank. The full name is the only field that is validated for Mastercard. Possible values:  **match**, **partialMatch**, **noMatch** </param>
         /// <param name="lastName">Informs you if the last name your shopper provided matches the cardholder last name on file at the issuing bank. The last name is only validated for Visa. Possible values:  **match**, **partialMatch**, **noMatch**</param>
         /// <param name="middleName">Informs you if the middle name your shopper provided matches the cardholder middle name on file at the issuing bank. The middle name is only validated for Visa. Possible values:  **match**, **partialMatch**, **noMatch**</param>
-        [JsonConstructor]
         public PaymentValidationsNameResultResponse(Option<string?> firstName = default, Option<string?> fullName = default, Option<string?> lastName = default, Option<string?> middleName = default)
         {
             _FirstNameOption = firstName;

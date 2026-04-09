@@ -36,7 +36,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <param name="webAddress">The URL of the website or the app store URL.</param>
         /// <param name="webAddressId">The unique identifier of the web address.</param>
-        [JsonConstructor]
         public WebData(Option<string?> webAddress = default, Option<string?> webAddressId = default)
         {
             _WebAddressOption = webAddress;

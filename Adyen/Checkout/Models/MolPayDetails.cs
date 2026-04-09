@@ -38,7 +38,6 @@ namespace Adyen.Checkout.Models
         /// <param name="type">**molpay**</param>
         /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
         /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        [JsonConstructor]
         public MolPayDetails(string issuer, TypeEnum type, Option<string?> checkoutAttemptId = default, Option<string?> sdkData = default)
         {
             Issuer = issuer;

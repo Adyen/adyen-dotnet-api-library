@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="GenerateHmacKeyResponse" /> class.
         /// </summary>
         /// <param name="hmacKey">The HMAC key generated for this webhook.</param>
-        [JsonConstructor]
         public GenerateHmacKeyResponse(string hmacKey)
         {
             HmacKey = hmacKey;

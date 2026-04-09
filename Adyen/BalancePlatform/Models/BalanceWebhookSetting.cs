@@ -39,7 +39,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="status">status</param>
         /// <param name="target">target</param>
         /// <param name="conditions">The list of settings and criteria for triggering the [balance webhook](https://docs.adyen.com/api-explorer/balance-webhooks/latest/post/balanceAccount.balance.updated).</param>
-        [JsonConstructor]
         public BalanceWebhookSetting(string currency, string id, string status, Target target, Option<List<Condition>?> conditions = default) : base(currency, id, status, target)
         {
             _ConditionsOption = conditions;

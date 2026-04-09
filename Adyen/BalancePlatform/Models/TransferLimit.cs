@@ -43,7 +43,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="endsAt">The date and time when the transfer limit becomes inactive. If you do not specify an end date, the limit stays active until you override it with a new limit.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): **YYYY-MM-DDThh:mm:ss.sssTZD**</param>
         /// <param name="reference">Your reference for the transfer limit.</param>
         /// <param name="scaInformation">scaInformation</param>
-        [JsonConstructor]
         public TransferLimit(Amount amount, string id, LimitStatus limitStatus, Scope scope, DateTimeOffset startsAt, TransferType transferType, Option<DateTimeOffset?> endsAt = default, Option<string?> reference = default, Option<ScaInformation?> scaInformation = default)
         {
             Amount = amount;

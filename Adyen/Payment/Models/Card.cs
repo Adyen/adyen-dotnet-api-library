@@ -42,7 +42,6 @@ namespace Adyen.Payment.Models
         /// <param name="number">The card number (4-19 characters). Do not use any separators. When this value is returned in a response, only the last 4 digits of the card number are returned.</param>
         /// <param name="startMonth">The month component of the start date (for some UK debit cards only).</param>
         /// <param name="startYear">The year component of the start date (for some UK debit cards only).</param>
-        [JsonConstructor]
         public Card(Option<string?> cvc = default, Option<string?> expiryMonth = default, Option<string?> expiryYear = default, Option<string?> holderName = default, Option<string?> issueNumber = default, Option<string?> number = default, Option<string?> startMonth = default, Option<string?> startYear = default)
         {
             _CvcOption = cvc;

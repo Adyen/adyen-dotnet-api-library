@@ -44,7 +44,6 @@ namespace Adyen.Checkout.Models
         /// <param name="reference">Your reference for the refund request. Maximum length: 80 characters.</param>
         /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/).</param>
         /// <param name="store">The online store or [physical store](https://docs.adyen.com/point-of-sale/design-your-integration/determine-account-structure/#create-stores) that is processing the refund. This must be the same as the store name configured in your Customer Area.  Otherwise, you get an error and the refund fails.</param>
-        [JsonConstructor]
         public PaymentRefundRequest(Amount amount, string merchantAccount, Option<ApplicationInfo?> applicationInfo = default, Option<string?> capturePspReference = default, Option<EnhancedSchemeData?> enhancedSchemeData = default, Option<List<LineItem>?> lineItems = default, Option<MerchantRefundReasonEnum?> merchantRefundReason = default, Option<string?> reference = default, Option<List<Split>?> splits = default, Option<string?> store = default)
         {
             Amount = amount;

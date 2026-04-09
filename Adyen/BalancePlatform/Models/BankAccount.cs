@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="BankAccount" /> class.
         /// </summary>
         /// <param name="accountIdentification">accountIdentification</param>
-        [JsonConstructor]
         public BankAccount(BankAccountAccountIdentification accountIdentification)
         {
             AccountIdentification = accountIdentification;

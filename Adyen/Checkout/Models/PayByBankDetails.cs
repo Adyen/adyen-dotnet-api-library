@@ -38,7 +38,6 @@ namespace Adyen.Checkout.Models
         /// <param name="issuer">The PayByBank issuer value of the shopper&#39;s selected bank.</param>
         /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
         /// <param name="type">**paybybank** (default to TypeEnum.Paybybank)</param>
-        [JsonConstructor]
         public PayByBankDetails(Option<string?> checkoutAttemptId = default, Option<string?> issuer = default, Option<string?> sdkData = default, TypeEnum type = default)
         {
             _CheckoutAttemptIdOption = checkoutAttemptId;

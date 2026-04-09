@@ -35,7 +35,6 @@ namespace Adyen.Payout.Models
         /// Initializes a new instance of the <see cref="FraudCheckResultWrapper" /> class.
         /// </summary>
         /// <param name="fraudCheckResult">fraudCheckResult</param>
-        [JsonConstructor]
         public FraudCheckResultWrapper(Option<FraudCheckResult?> fraudCheckResult = default)
         {
             _FraudCheckResultOption = fraudCheckResult;

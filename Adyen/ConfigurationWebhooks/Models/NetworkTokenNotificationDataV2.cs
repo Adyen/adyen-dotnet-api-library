@@ -48,7 +48,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="type">The type of network token.  Possible values: **wallet**, **cof**.</param>
         /// <param name="validationFacts">The rules used to validate the request for provisioning the network token.</param>
         /// <param name="wallet">wallet</param>
-        [JsonConstructor]
         public NetworkTokenNotificationDataV2(Option<TokenAuthentication?> authentication = default, Option<bool?> authenticationApplied = default, Option<string?> balancePlatform = default, Option<string?> decision = default, Option<string?> id = default, Option<string?> paymentInstrumentId = default, Option<string?> schemeRiskScore = default, Option<string?> status = default, Option<string?> tokenLastFour = default, Option<NetworkTokenRequestor?> tokenRequestor = default, Option<NetworkTokenTransactionRulesResult?> transactionRulesResult = default, Option<string?> type = default, Option<List<ValidationFacts>?> validationFacts = default, Option<Wallet?> wallet = default)
         {
             _AuthenticationOption = authentication;

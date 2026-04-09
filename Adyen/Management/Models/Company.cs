@@ -41,7 +41,6 @@ namespace Adyen.Management.Models
         /// <param name="name">The legal or trading name of the company.</param>
         /// <param name="reference">Your reference to the account</param>
         /// <param name="status">The status of the company account.  Possible values:  * **Active**: Users can log in. Processing and payout capabilities depend on the status of the merchant account. * **Inactive**: Users can log in. Payment processing and payouts are disabled. * **Closed**: The company account is closed and this cannot be reversed. Users cannot log in. Payment processing and payouts are disabled.</param>
-        [JsonConstructor]
         public Company(Option<CompanyLinks?> links = default, Option<List<DataCenter>?> dataCenters = default, Option<string?> description = default, Option<string?> id = default, Option<string?> name = default, Option<string?> reference = default, Option<string?> status = default)
         {
             _LinksOption = links;

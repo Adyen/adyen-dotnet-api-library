@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="operation">Defines how the condition must be evaluated.</param>
         /// <param name="value">value</param>
-        [JsonConstructor]
         public MatchingValuesRestriction(string operation, Option<List<MatchingValuesRestriction.ValueEnum>?> value = default)
         {
             Operation = operation;

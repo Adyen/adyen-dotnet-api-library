@@ -36,7 +36,6 @@ namespace Adyen.TransactionWebhooks.Models
         /// </summary>
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.</param>
         /// <param name="value">The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).</param>
-        [JsonConstructor]
         public Amount(string currency, long value)
         {
             Currency = currency;

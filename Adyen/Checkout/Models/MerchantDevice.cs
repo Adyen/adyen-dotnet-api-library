@@ -37,7 +37,6 @@ namespace Adyen.Checkout.Models
         /// <param name="os">Operating system running on the merchant device.</param>
         /// <param name="osVersion">Version of the operating system on the merchant device.</param>
         /// <param name="reference">Merchant device reference.</param>
-        [JsonConstructor]
         public MerchantDevice(Option<string?> os = default, Option<string?> osVersion = default, Option<string?> reference = default)
         {
             _OsOption = os;

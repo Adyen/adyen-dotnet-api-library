@@ -39,7 +39,6 @@ namespace Adyen.Checkout.Models
         /// <param name="pspReference">Adyen&#39;s 16-character reference associated with the reversal request.</param>
         /// <param name="status">The status of your request. This will always have the value **received**.</param>
         /// <param name="reference">Your reference for the reversal request.</param>
-        [JsonConstructor]
         public PaymentReversalResponse(string merchantAccount, string paymentPspReference, string pspReference, StatusEnum status, Option<string?> reference = default)
         {
             MerchantAccount = merchantAccount;

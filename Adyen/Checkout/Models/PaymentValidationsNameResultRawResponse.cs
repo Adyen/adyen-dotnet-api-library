@@ -39,7 +39,6 @@ namespace Adyen.Checkout.Models
         /// <param name="lastName">The raw last name validation result that Adyen received from the scheme. Last name validation result is only returned for Visa.</param>
         /// <param name="middleName">The raw middle name validation result that Adyen received from the scheme. Middle name validation result is only returned for Visa.</param>
         /// <param name="status">The raw name validation status value that Adyen received from the scheme. Only returned for Visa.</param>
-        [JsonConstructor]
         public PaymentValidationsNameResultRawResponse(Option<string?> firstName = default, Option<string?> fullName = default, Option<string?> lastName = default, Option<string?> middleName = default, Option<string?> status = default)
         {
             _FirstNameOption = firstName;

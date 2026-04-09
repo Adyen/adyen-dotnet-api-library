@@ -36,7 +36,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// </summary>
         /// <param name="id">The unique identifier of the network token requestor.</param>
         /// <param name="name">The name of the network token requestor.</param>
-        [JsonConstructor]
         public NetworkTokenRequestor(Option<string?> id = default, Option<string?> name = default)
         {
             _IdOption = id;

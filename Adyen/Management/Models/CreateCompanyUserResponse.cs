@@ -45,7 +45,6 @@ namespace Adyen.Management.Models
         /// <param name="apps">Set of apps available to this user</param>
         /// <param name="associatedMerchantAccounts">The list of [merchant accounts](https://docs.adyen.com/account/account-structure#merchant-accounts) associated with this user.</param>
         /// <param name="name">name</param>
-        [JsonConstructor]
         public CreateCompanyUserResponse(string email, string id, List<string> roles, string timeZoneCode, string username, Option<Links?> links = default, Option<List<string>?> accountGroups = default, Option<bool?> active = default, Option<List<string>?> apps = default, Option<List<string>?> associatedMerchantAccounts = default, Option<Name?> name = default)
         {
             Email = email;

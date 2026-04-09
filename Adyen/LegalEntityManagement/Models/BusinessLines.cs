@@ -35,7 +35,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// Initializes a new instance of the <see cref="BusinessLines" /> class.
         /// </summary>
         /// <param name="varBusinessLines">List of business lines.</param>
-        [JsonConstructor]
         public BusinessLines(List<BusinessLine> varBusinessLines)
         {
             VarBusinessLines = varBusinessLines;

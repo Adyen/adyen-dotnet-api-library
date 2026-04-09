@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="currencyCode">Sofort currency code. For example, **EUR**.</param>
         /// <param name="logo">Sofort logo. Format: Base64-encoded string.</param>
-        [JsonConstructor]
         public SofortInfo(string currencyCode, string logo)
         {
             CurrencyCode = currencyCode;

@@ -36,7 +36,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <param name="pciTemplateReferences">The array of Adyen-generated unique identifiers for the questionnaires.</param>
         /// <param name="signedBy">The [legal entity ID](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) of the individual who signs the PCI questionnaire.</param>
-        [JsonConstructor]
         public PciSigningRequest(List<string> pciTemplateReferences, string signedBy)
         {
             PciTemplateReferences = pciTemplateReferences;

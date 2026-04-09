@@ -37,7 +37,6 @@ namespace Adyen.Transfers.Models
         /// <param name="accountHolder">accountHolder</param>
         /// <param name="accountIdentification">accountIdentification</param>
         /// <param name="storedPaymentMethodId">The unique token that identifies the stored bank account details of the counterparty for a payout.</param>
-        [JsonConstructor]
         public BankAccountV3(PartyIdentification accountHolder, BankAccountV3AccountIdentification accountIdentification, Option<string?> storedPaymentMethodId = default)
         {
             AccountHolder = accountHolder;

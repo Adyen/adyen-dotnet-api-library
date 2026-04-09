@@ -35,7 +35,6 @@ namespace Adyen.SessionAuthentication.Models
         /// Initializes a new instance of the <see cref="AccountHolderResource" /> class.
         /// </summary>
         /// <param name="accountHolderId">The unique identifier of the resource connected to the component. For [Platform Experience components](https://docs.adyen.com/platforms/build-user-dashboards), this is the account holder linked to the balance account shown in the component.</param>
-        [JsonConstructor]
         public AccountHolderResource(string accountHolderId) : base()
         {
             AccountHolderId = accountHolderId;

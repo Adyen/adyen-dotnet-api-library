@@ -36,7 +36,6 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <param name="balanceAccountId">The unique identifier of the balance account where the funds are disbursed. The balance account must belong to the specified account holder.</param>
         /// <param name="transferInstrumentId">The unique identifier of the transfer instrument where the funds are disbursed. The transfer instrument must belong to the legal entity of the specified account holder.</param>
-        [JsonConstructor]
         public GrantInfoCounterparty(Option<string?> balanceAccountId = default, Option<string?> transferInstrumentId = default)
         {
             _BalanceAccountIdOption = balanceAccountId;

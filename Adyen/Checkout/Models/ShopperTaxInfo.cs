@@ -36,7 +36,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="taxId">The tax-id of the shopper doing the transaction.</param>
         /// <param name="taxIdCountryCode">The country to which the tax-id belongs to.</param>
-        [JsonConstructor]
         public ShopperTaxInfo(string taxId, string taxIdCountryCode)
         {
             TaxId = taxId;

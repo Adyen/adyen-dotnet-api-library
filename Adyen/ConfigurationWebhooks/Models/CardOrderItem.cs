@@ -42,7 +42,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="paymentInstrumentId">The unique identifier of the payment instrument related to the card order item.</param>
         /// <param name="pin">pin</param>
         /// <param name="shippingMethod">The shipping method used to deliver the card or the PIN.</param>
-        [JsonConstructor]
         public CardOrderItem(Option<string?> balancePlatform = default, Option<CardOrderItemDeliveryStatus?> card = default, Option<string?> cardOrderItemId = default, Option<DateTimeOffset?> creationDate = default, Option<string?> id = default, Option<string?> paymentInstrumentId = default, Option<CardOrderItemDeliveryStatus?> pin = default, Option<string?> shippingMethod = default)
         {
             _BalancePlatformOption = balancePlatform;

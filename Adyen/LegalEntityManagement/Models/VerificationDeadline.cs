@@ -37,7 +37,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="capabilities">The list of capabilities that will be disallowed if information is not reviewed by the time of the deadline</param>
         /// <param name="expiresAt">The date that verification is due by before capabilities are disallowed.</param>
         /// <param name="entityIds">The unique identifiers of the legal entity or supporting entities that the deadline applies to</param>
-        [JsonConstructor]
         internal VerificationDeadline(List<VerificationDeadline.CapabilitiesEnum> capabilities, DateTimeOffset expiresAt, Option<List<string>?> entityIds = default)
         {
             Capabilities = capabilities;

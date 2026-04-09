@@ -38,7 +38,6 @@ namespace Adyen.Management.Models
         /// <param name="cellular">cellular</param>
         /// <param name="ethernet">ethernet</param>
         /// <param name="wifi">wifi</param>
-        [JsonConstructor]
         public TerminalConnectivity(Option<TerminalConnectivityBluetooth?> bluetooth = default, Option<TerminalConnectivityCellular?> cellular = default, Option<TerminalConnectivityEthernet?> ethernet = default, Option<TerminalConnectivityWifi?> wifi = default)
         {
             _BluetoothOption = bluetooth;

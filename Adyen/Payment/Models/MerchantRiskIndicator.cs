@@ -48,7 +48,6 @@ namespace Adyen.Payment.Models
         /// <param name="reorderItems">Indicator for whether the shopper has already purchased the same items in the past.</param>
         /// <param name="reorderItemsInd">Indicates whether the cardholder is reordering previously purchased merchandise.</param>
         /// <param name="shipIndicator">Indicates shipping method chosen for the transaction.</param>
-        [JsonConstructor]
         public MerchantRiskIndicator(Option<bool?> addressMatch = default, Option<DeliveryAddressIndicatorEnum?> deliveryAddressIndicator = default, Option<string?> deliveryEmail = default, Option<string?> deliveryEmailAddress = default, Option<DeliveryTimeframeEnum?> deliveryTimeframe = default, Option<Amount?> giftCardAmount = default, Option<int?> giftCardCount = default, Option<string?> giftCardCurr = default, Option<DateTimeOffset?> preOrderDate = default, Option<bool?> preOrderPurchase = default, Option<string?> preOrderPurchaseInd = default, Option<bool?> reorderItems = default, Option<string?> reorderItemsInd = default, Option<string?> shipIndicator = default)
         {
             _AddressMatchOption = addressMatch;

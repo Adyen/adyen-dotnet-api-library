@@ -38,7 +38,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="id">Supporting entity reference </param>
         /// <param name="requested">Indicates whether the supporting entity capability is requested. </param>
         /// <param name="verificationStatus">The status of the verification checks for the capability of the supporting entity.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. </param>
-        [JsonConstructor]
         internal SupportingEntityCapability(Option<bool?> allowed = default, Option<string?> id = default, Option<bool?> requested = default, Option<string?> verificationStatus = default)
         {
             _AllowedOption = allowed;

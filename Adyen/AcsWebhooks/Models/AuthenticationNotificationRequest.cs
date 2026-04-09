@@ -38,7 +38,6 @@ namespace Adyen.AcsWebhooks.Models
         /// <param name="environment">The environment from which the webhook originated.  Possible values: **test**, **live**.</param>
         /// <param name="type">Type of notification.</param>
         /// <param name="timestamp">When the event was queued.</param>
-        [JsonConstructor]
         public AuthenticationNotificationRequest(AuthenticationNotificationData data, string environment, TypeEnum type, Option<DateTimeOffset?> timestamp = default)
         {
             Data = data;

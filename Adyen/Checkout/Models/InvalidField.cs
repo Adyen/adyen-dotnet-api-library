@@ -37,7 +37,6 @@ namespace Adyen.Checkout.Models
         /// <param name="name">The field that has an invalid value.</param>
         /// <param name="value">The invalid value.</param>
         /// <param name="message">Description of the validation error.</param>
-        [JsonConstructor]
         public InvalidField(string name, string value, string message)
         {
             Name = name;

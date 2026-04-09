@@ -38,7 +38,6 @@ namespace Adyen.TokenizationWebhooks.Models
         /// <param name="shopperReference">Your unique shopper reference that is associated with the &#x60;storedPaymentMethodId&#x60;.</param>
         /// <param name="storedPaymentMethodId">The ID of the token.</param>
         /// <param name="type">The type of the payment method.</param>
-        [JsonConstructor]
         public RecurringToken(string merchantAccount, string shopperReference, string storedPaymentMethodId, string type)
         {
             MerchantAccount = merchantAccount;

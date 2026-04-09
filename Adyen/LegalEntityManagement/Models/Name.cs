@@ -37,7 +37,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="firstName">The individual&#39;s first name. Must not be blank.</param>
         /// <param name="lastName">The individual&#39;s last name. Must not be blank.</param>
         /// <param name="infix">The infix in the individual&#39;s name, if any.</param>
-        [JsonConstructor]
         public Name(string firstName, string lastName, Option<string?> infix = default)
         {
             FirstName = firstName;

@@ -37,7 +37,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="themes">List of onboarding themes.</param>
         /// <param name="next">The next page. Only present if there is a next page.</param>
         /// <param name="previous">The previous page. Only present if there is a previous page.</param>
-        [JsonConstructor]
         public OnboardingThemes(List<OnboardingTheme> themes, Option<string?> next = default, Option<string?> previous = default)
         {
             Themes = themes;

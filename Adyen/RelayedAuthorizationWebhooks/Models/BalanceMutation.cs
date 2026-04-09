@@ -39,7 +39,6 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).</param>
         /// <param name="mutationAmount">mutationAmount</param>
         /// <param name="type">The type of the mutation.</param>
-        [JsonConstructor]
         public BalanceMutation(Option<Amount?> balanceAfter = default, Option<Amount?> balanceBefore = default, Option<string?> currency = default, Option<Amount?> mutationAmount = default, Option<string?> type = default)
         {
             _BalanceAfterOption = balanceAfter;

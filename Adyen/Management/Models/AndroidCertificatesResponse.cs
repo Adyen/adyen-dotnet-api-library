@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="AndroidCertificatesResponse" /> class.
         /// </summary>
         /// <param name="data">Uploaded Android certificates for Android payment terminals.</param>
-        [JsonConstructor]
         public AndroidCertificatesResponse(Option<List<AndroidCertificate>?> data = default)
         {
             _DataOption = data;

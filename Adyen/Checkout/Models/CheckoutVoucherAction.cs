@@ -55,7 +55,6 @@ namespace Adyen.Checkout.Models
         /// <param name="surcharge">surcharge</param>
         /// <param name="totalAmount">totalAmount</param>
         /// <param name="url">Specifies the URL to redirect to.</param>
-        [JsonConstructor]
         public CheckoutVoucherAction(TypeEnum type, Option<string?> alternativeReference = default, Option<string?> collectionInstitutionNumber = default, Option<string?> downloadUrl = default, Option<string?> entity = default, Option<string?> expiresAt = default, Option<Amount?> initialAmount = default, Option<string?> instructionsUrl = default, Option<string?> issuer = default, Option<string?> maskedTelephoneNumber = default, Option<string?> merchantName = default, Option<string?> merchantReference = default, Option<string?> passCreationToken = default, Option<string?> paymentData = default, Option<string?> paymentMethodType = default, Option<string?> reference = default, Option<string?> shopperEmail = default, Option<string?> shopperName = default, Option<Amount?> surcharge = default, Option<Amount?> totalAmount = default, Option<string?> url = default)
         {
             Type = type;

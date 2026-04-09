@@ -38,7 +38,6 @@ namespace Adyen.Capital.Models
         /// <param name="institutionNumber">The 3-digit institution number, without separators or whitespace.</param>
         /// <param name="transitNumber">The 5-digit transit number, without separators or whitespace.</param>
         /// <param name="accountType">accountType</param>
-        [JsonConstructor]
         public CALocalAccountIdentification(string accountNumber, string institutionNumber, string transitNumber, Option<CALocalBankAccountType?> accountType = default) : base()
         {
             AccountNumber = accountNumber;

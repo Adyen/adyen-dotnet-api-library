@@ -38,7 +38,6 @@ namespace Adyen.Checkout.Models
         /// <param name="fundingSource">The funding source of the card, for example **DEBIT**, **CREDIT**, or **PREPAID**.</param>
         /// <param name="isCardCommercial">Indicates if this is a commercial card or a consumer card. If **true**, it is a commercial card. If **false**, it is a consumer card.</param>
         /// <param name="issuingCountryCode">The two-letter country code  of the country where the card was issued.</param>
-        [JsonConstructor]
         public CardDetailsResponse(Option<List<CardBrandDetails>?> brands = default, Option<string?> fundingSource = default, Option<bool?> isCardCommercial = default, Option<string?> issuingCountryCode = default)
         {
             _BrandsOption = brands;

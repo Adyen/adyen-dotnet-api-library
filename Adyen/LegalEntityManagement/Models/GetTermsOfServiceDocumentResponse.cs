@@ -40,7 +40,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="termsOfServiceDocumentFormat">The format of the Terms of Service document.</param>
         /// <param name="termsOfServiceDocumentId">The unique identifier of the Terms of Service document.</param>
         /// <param name="type">The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**  </param>
-        [JsonConstructor]
         public GetTermsOfServiceDocumentResponse(Option<byte[]?> document = default, Option<string?> id = default, Option<string?> language = default, Option<string?> termsOfServiceDocumentFormat = default, Option<string?> termsOfServiceDocumentId = default, Option<TypeEnum?> type = default)
         {
             _DocumentOption = document;

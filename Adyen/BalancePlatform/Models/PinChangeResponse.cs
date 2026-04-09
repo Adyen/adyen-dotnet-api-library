@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="PinChangeResponse" /> class.
         /// </summary>
         /// <param name="status">The status of the request for PIN change.  Possible values: **completed**, **pending**, **unavailable**.</param>
-        [JsonConstructor]
         public PinChangeResponse(StatusEnum status)
         {
             Status = status;

@@ -38,7 +38,6 @@ namespace Adyen.Management.Models
         /// <param name="region">The region of operation. For example, **NA**, **EU**, **CH**, **AU**.</param>
         /// <param name="supportEmail">The email address of merchant support.</param>
         /// <param name="autoCapture">Indicates the status of [Automatic capture](https://docs.adyen.com/online-payments/capture#automatic-capture). Default value: **false**.</param>
-        [JsonConstructor]
         public KlarnaInfo(string disputeEmail, RegionEnum region, string supportEmail, Option<bool?> autoCapture = default)
         {
             DisputeEmail = disputeEmail;

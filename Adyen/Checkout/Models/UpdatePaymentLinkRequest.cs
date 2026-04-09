@@ -35,7 +35,6 @@ namespace Adyen.Checkout.Models
         /// Initializes a new instance of the <see cref="UpdatePaymentLinkRequest" /> class.
         /// </summary>
         /// <param name="status">Status of the payment link. Possible values: * **expired**</param>
-        [JsonConstructor]
         public UpdatePaymentLinkRequest(StatusEnum status)
         {
             Status = status;

@@ -38,7 +38,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="redirectUrl">The URL where the user is redirected after they complete hosted onboarding.</param>
         /// <param name="settings">settings</param>
         /// <param name="themeId">The unique identifier of the hosted onboarding theme.</param>
-        [JsonConstructor]
         public OnboardingLinkInfo(Option<string?> locale = default, Option<string?> redirectUrl = default, Option<OnboardingLinkSettings?> settings = default, Option<string?> themeId = default)
         {
             _LocaleOption = locale;

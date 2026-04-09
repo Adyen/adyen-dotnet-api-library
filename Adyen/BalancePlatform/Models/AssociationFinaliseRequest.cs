@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="ids">The list of unique identifiers of the resources that you are associating with the SCA device.  Maximum: 5 strings.</param>
         /// <param name="strongCustomerAuthentication">strongCustomerAuthentication</param>
         /// <param name="type">The type of resource that you are associating with the SCA device.  Possible value: **PaymentInstrument**</param>
-        [JsonConstructor]
         public AssociationFinaliseRequest(List<string> ids, AssociationDelegatedAuthenticationData strongCustomerAuthentication, TypeEnum type)
         {
             Ids = ids;

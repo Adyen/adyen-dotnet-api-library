@@ -53,7 +53,6 @@ namespace Adyen.Checkout.Models
         /// <param name="threeDSServerTransID">threeDSServerTransID</param>
         /// <param name="transStatus">transStatus</param>
         /// <param name="transStatusReason">transStatusReason</param>
-        [JsonConstructor]
         public ThreeDS2ResponseData(Option<string?> acsChallengeMandated = default, Option<string?> acsOperatorID = default, Option<string?> acsReferenceNumber = default, Option<string?> acsSignedContent = default, Option<string?> acsTransID = default, Option<string?> acsURL = default, Option<string?> authenticationType = default, Option<string?> cardHolderInfo = default, Option<string?> cavvAlgorithm = default, Option<string?> challengeIndicator = default, Option<string?> dsReferenceNumber = default, Option<string?> dsTransID = default, Option<string?> exemptionIndicator = default, Option<string?> messageVersion = default, Option<string?> riskScore = default, Option<string?> sdkEphemPubKey = default, Option<string?> threeDSServerTransID = default, Option<string?> transStatus = default, Option<string?> transStatusReason = default)
         {
             _AcsChallengeMandatedOption = acsChallengeMandated;

@@ -44,7 +44,6 @@ namespace Adyen.Management.Models
         /// <param name="allowedOrigins">List containing the [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) linked to the API credential.</param>
         /// <param name="companyName">Name of the company linked to the API credential.</param>
         /// <param name="description">Description of the API credential.</param>
-        [JsonConstructor]
         public MeApiCredential(bool active, List<string> allowedIpAddresses, string clientKey, string id, List<string> roles, string username, Option<ApiCredentialLinks?> links = default, Option<List<AllowedOrigin>?> allowedOrigins = default, Option<string?> companyName = default, Option<string?> description = default)
         {
             Active = active;

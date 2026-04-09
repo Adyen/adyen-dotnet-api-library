@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="status">status</param>
         /// <param name="exemption">exemption</param>
-        [JsonConstructor]
         public ScaInformation(ScaStatus status, Option<ScaExemption?> exemption = default)
         {
             Status = status;

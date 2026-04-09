@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="AuthorisedCardUsers" /> class.
         /// </summary>
         /// <param name="legalEntityIds">The legal entity IDs of the authorized card users linked to the specified payment instrument.</param>
-        [JsonConstructor]
         public AuthorisedCardUsers(Option<List<string>?> legalEntityIds = default)
         {
             _LegalEntityIdsOption = legalEntityIds;

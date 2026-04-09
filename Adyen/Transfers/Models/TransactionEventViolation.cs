@@ -37,7 +37,6 @@ namespace Adyen.Transfers.Models
         /// <param name="reason">An explanation about why the transaction rule failed.</param>
         /// <param name="transactionRule">transactionRule</param>
         /// <param name="transactionRuleSource">transactionRuleSource</param>
-        [JsonConstructor]
         public TransactionEventViolation(Option<string?> reason = default, Option<TransactionRuleReference?> transactionRule = default, Option<TransactionRuleSource?> transactionRuleSource = default)
         {
             _ReasonOption = reason;

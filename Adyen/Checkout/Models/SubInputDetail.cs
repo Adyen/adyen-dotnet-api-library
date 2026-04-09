@@ -40,7 +40,6 @@ namespace Adyen.Checkout.Models
         /// <param name="optional">True if this input is optional to provide.</param>
         /// <param name="type">The type of the required input.</param>
         /// <param name="value">The value can be pre-filled, if available.</param>
-        [JsonConstructor]
         public SubInputDetail(Option<Dictionary<string, string>?> configuration = default, Option<List<Item>?> items = default, Option<string?> key = default, Option<bool?> optional = default, Option<string?> type = default, Option<string?> value = default)
         {
             _ConfigurationOption = configuration;

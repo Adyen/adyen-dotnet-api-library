@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="Href" /> class.
         /// </summary>
         /// <param name="varHref">varHref</param>
-        [JsonConstructor]
         public Href(Option<string?> varHref = default)
         {
             _VarHrefOption = varHref;

@@ -42,7 +42,6 @@ namespace Adyen.Management.Models
         /// <param name="name">name</param>
         /// <param name="roles">The list of [roles](https://docs.adyen.com/account/user-roles) for this user.</param>
         /// <param name="timeZoneCode">The [tz database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) of the time zone of the user. For example, **Europe/Amsterdam**.</param>
-        [JsonConstructor]
         public UpdateCompanyUserRequest(Option<List<string>?> accountGroups = default, Option<bool?> active = default, Option<List<string>?> associatedMerchantAccounts = default, Option<string?> email = default, Option<string?> loginMethod = default, Option<Name2?> name = default, Option<List<string>?> roles = default, Option<string?> timeZoneCode = default)
         {
             _AccountGroupsOption = accountGroups;

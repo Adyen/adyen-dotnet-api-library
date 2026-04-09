@@ -36,7 +36,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// </summary>
         /// <param name="method">The method used to complete the authentication process.  Possible values: **sms_OTP**, **email_OTP**.</param>
         /// <param name="result">The result of the authentication process.</param>
-        [JsonConstructor]
         public TokenAuthentication(Option<string?> method = default, Option<string?> result = default)
         {
             _MethodOption = method;

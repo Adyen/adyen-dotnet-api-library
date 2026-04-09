@@ -36,7 +36,6 @@ namespace Adyen.Transfers.Models
         /// </summary>
         /// <param name="result">The evaluation result of the validation fact.</param>
         /// <param name="type">The type of the validation fact.</param>
-        [JsonConstructor]
         public TransferNotificationValidationFact(Option<string?> result = default, Option<string?> type = default)
         {
             _ResultOption = result;

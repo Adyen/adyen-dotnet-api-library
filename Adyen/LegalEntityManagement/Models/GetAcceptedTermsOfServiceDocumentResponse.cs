@@ -38,7 +38,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="id">The unique identifier of the legal entity.</param>
         /// <param name="termsOfServiceAcceptanceReference">An Adyen-generated reference for the accepted Terms of Service.</param>
         /// <param name="termsOfServiceDocumentFormat">The format of the Terms of Service document.</param>
-        [JsonConstructor]
         public GetAcceptedTermsOfServiceDocumentResponse(Option<byte[]?> document = default, Option<string?> id = default, Option<string?> termsOfServiceAcceptanceReference = default, Option<TermsOfServiceDocumentFormatEnum?> termsOfServiceDocumentFormat = default)
         {
             _DocumentOption = document;

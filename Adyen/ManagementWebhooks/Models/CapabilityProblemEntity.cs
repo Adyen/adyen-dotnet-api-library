@@ -38,7 +38,6 @@ namespace Adyen.ManagementWebhooks.Models
         /// <param name="id">The ID of the entity.</param>
         /// <param name="owner">owner</param>
         /// <param name="type">The type of entity.  Possible values: **LegalEntity**, **BankAccount**, or **Document**.</param>
-        [JsonConstructor]
         public CapabilityProblemEntity(Option<List<string>?> documents = default, Option<string?> id = default, Option<CapabilityProblemEntityRecursive?> owner = default, Option<TypeEnum?> type = default)
         {
             _DocumentsOption = documents;

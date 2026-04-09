@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="appId">The unique identifier of the app to be uninstalled.</param>
         /// <param name="type">Type of terminal action: Uninstall an Android app. (default to TypeEnum.UninstallAndroidApp)</param>
-        [JsonConstructor]
         public UninstallAndroidAppDetails(Option<string?> appId = default, Option<TypeEnum?> type = default)
         {
             _AppIdOption = appId;

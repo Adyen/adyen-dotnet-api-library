@@ -40,7 +40,6 @@ namespace Adyen.Management.Models
         /// <param name="generateApiKey">generateApiKey</param>
         /// <param name="generateClientKey">generateClientKey</param>
         /// <param name="merchant">merchant</param>
-        [JsonConstructor]
         public ApiCredentialLinks(LinksElement self, Option<LinksElement?> allowedOrigins = default, Option<LinksElement?> company = default, Option<LinksElement?> generateApiKey = default, Option<LinksElement?> generateClientKey = default, Option<LinksElement?> merchant = default)
         {
             Self = self;

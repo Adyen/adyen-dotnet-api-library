@@ -36,7 +36,6 @@ namespace Adyen.Transfers.Models
         /// </summary>
         /// <param name="status">The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.- **accepted**: the request is accepted by the integration.</param>
         /// <param name="type">The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen&#39;s internal review. (default to TypeEnum.Confirmation)</param>
-        [JsonConstructor]
         public ConfirmationTrackingData(StatusEnum status, TypeEnum type = default)
         {
             Status = status;

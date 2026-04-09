@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="Unreferenced" /> class.
         /// </summary>
         /// <param name="enableUnreferencedRefunds">Indicates whether unreferenced refunds are enabled on the terminal.</param>
-        [JsonConstructor]
         public Unreferenced(Option<bool?> enableUnreferencedRefunds = default)
         {
             _EnableUnreferencedRefundsOption = enableUnreferencedRefunds;

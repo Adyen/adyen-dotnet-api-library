@@ -38,7 +38,6 @@ namespace Adyen.Transfers.Models
         /// <param name="bic">The bank&#39;s 8- or 11-character BIC or SWIFT code.</param>
         /// <param name="additionalBankIdentification">additionalBankIdentification</param>
         /// <param name="type">**numberAndBic** (default to TypeEnum.NumberAndBic)</param>
-        [JsonConstructor]
         public NumberAndBicAccountIdentification(string accountNumber, string bic, Option<AdditionalBankIdentification?> additionalBankIdentification = default, TypeEnum type = default)
         {
             AccountNumber = accountNumber;

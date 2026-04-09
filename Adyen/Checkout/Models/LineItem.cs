@@ -52,7 +52,6 @@ namespace Adyen.Checkout.Models
         /// <param name="taxAmount">Tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units).</param>
         /// <param name="taxPercentage">Tax percentage, represented as a [basis point](https://en.wikipedia.org/wiki/Basis_point) integer. For example:  - **530** for 5.3% (five point three percent)   - **2100** for 21% (twenty-one percent)</param>
         /// <param name="upc">Universal Product Code.</param>
-        [JsonConstructor]
         public LineItem(Option<long?> amountExcludingTax = default, Option<long?> amountIncludingTax = default, Option<string?> brand = default, Option<string?> color = default, Option<string?> description = default, Option<string?> id = default, Option<string?> imageUrl = default, Option<string?> itemCategory = default, Option<string?> manufacturer = default, Option<string?> marketplaceSellerId = default, Option<string?> productUrl = default, Option<long?> quantity = default, Option<string?> receiverEmail = default, Option<string?> size = default, Option<string?> sku = default, Option<long?> taxAmount = default, Option<long?> taxPercentage = default, Option<string?> upc = default)
         {
             _AmountExcludingTaxOption = amountExcludingTax;

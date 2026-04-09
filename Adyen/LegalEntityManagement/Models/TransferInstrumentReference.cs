@@ -38,7 +38,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="id">The unique identifier of the resource.</param>
         /// <param name="realLastFour">Four last digits of the bank account number. If the transfer instrument is created using [instant bank account verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote&#x3D;2023-05-08-hosted-onboarding), and it is a virtual bank account, these digits may be different from the last four digits of the masked account number.</param>
         /// <param name="trustedSource">Identifies if the bank account was created through [instant bank verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote&#x3D;2023-05-08-hosted-onboarding).</param>
-        [JsonConstructor]
         public TransferInstrumentReference(string accountIdentifier, string id, Option<string?> realLastFour = default, Option<bool?> trustedSource = default)
         {
             AccountIdentifier = accountIdentifier;

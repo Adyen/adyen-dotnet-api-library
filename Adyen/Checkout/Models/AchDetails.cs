@@ -47,7 +47,6 @@ namespace Adyen.Checkout.Models
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
         /// <param name="transferInstrumentId">The unique identifier of your user&#39;s verified transfer instrument, which you can use to top up their balance accounts.</param>
         /// <param name="type">**ach** (default to TypeEnum.Ach)</param>
-        [JsonConstructor]
         public AchDetails(Option<AccountHolderTypeEnum?> accountHolderType = default, Option<string?> bankAccountNumber = default, Option<BankAccountTypeEnum?> bankAccountType = default, Option<string?> bankLocationId = default, Option<string?> checkoutAttemptId = default, Option<string?> encryptedBankAccountNumber = default, Option<string?> encryptedBankLocationId = default, Option<string?> ownerName = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<string?> transferInstrumentId = default, Option<TypeEnum?> type = default)
         {
             _AccountHolderTypeOption = accountHolderType;

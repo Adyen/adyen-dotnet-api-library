@@ -36,7 +36,6 @@ namespace Adyen.Payment.Models
         /// </summary>
         /// <param name="merchantAccount">The merchant account identifier, with which the authentication was processed.</param>
         /// <param name="pspReference">The pspReference identifier for the transaction.</param>
-        [JsonConstructor]
         public AuthenticationResultRequest(string merchantAccount, string pspReference)
         {
             MerchantAccount = merchantAccount;

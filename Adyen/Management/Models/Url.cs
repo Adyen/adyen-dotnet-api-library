@@ -38,7 +38,6 @@ namespace Adyen.Management.Models
         /// <param name="password">The password for authentication of the notifications.</param>
         /// <param name="varUrl">The URL in the format: http(s)://domain.com.</param>
         /// <param name="username">The username for authentication of the notifications.</param>
-        [JsonConstructor]
         public Url(Option<bool?> encrypted = default, Option<string?> password = default, Option<string?> varUrl = default, Option<string?> username = default)
         {
             _EncryptedOption = encrypted;

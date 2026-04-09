@@ -35,7 +35,6 @@ namespace Adyen.Recurring.Models
         /// Initializes a new instance of the <see cref="DisableResult" /> class.
         /// </summary>
         /// <param name="response">Depending on whether a specific recurring detail was in the request, result is either [detail-successfully-disabled] or [all-details-successfully-disabled].</param>
-        [JsonConstructor]
         public DisableResult(Option<string?> response = default)
         {
             _ResponseOption = response;

@@ -39,7 +39,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="outcomeType">The outcome type of the transaction rule.</param>
         /// <param name="reference">The reference for the transaction rule.</param>
         /// <param name="score">The transaction score determined by the rule.</param>
-        [JsonConstructor]
         public NetworkTokenRiskRuleData(Option<string?> description = default, Option<string?> id = default, Option<string?> outcomeType = default, Option<string?> reference = default, Option<int?> score = default)
         {
             _DescriptionOption = description;

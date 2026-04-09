@@ -36,7 +36,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <param name="code">code</param>
         /// <param name="message">message</param>
-        [JsonConstructor]
         public RemediatingAction(Option<string?> code = default, Option<string?> message = default)
         {
             _CodeOption = code;

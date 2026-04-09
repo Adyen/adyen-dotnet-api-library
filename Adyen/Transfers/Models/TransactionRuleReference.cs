@@ -39,7 +39,6 @@ namespace Adyen.Transfers.Models
         /// <param name="outcomeType">The outcome type of the rule.</param>
         /// <param name="reference">The reference for the resource.</param>
         /// <param name="score">The transaction score determined by the rule. Returned only when &#x60;outcomeType&#x60; is **scoreBased**.</param>
-        [JsonConstructor]
         public TransactionRuleReference(Option<string?> description = default, Option<string?> id = default, Option<string?> outcomeType = default, Option<string?> reference = default, Option<int?> score = default)
         {
             _DescriptionOption = description;

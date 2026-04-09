@@ -50,7 +50,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="unincorporatedPartnership">unincorporatedPartnership</param>
         /// <param name="verificationDeadlines">List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.</param>
         /// <param name="verificationPlan">A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/verification-overview/verification-types/#upfront-verification).</param>
-        [JsonConstructor]
         public LegalEntity(string id, Option<Dictionary<string, LegalEntityCapability>?> capabilities = default, Option<List<DocumentReference>?> documentDetails = default, Option<List<EntityReference>?> documents = default, Option<List<LegalEntityAssociation>?> entityAssociations = default, Option<Individual?> individual = default, Option<Organization?> organization = default, Option<List<CapabilityProblem>?> problems = default, Option<string?> reference = default, Option<SoleProprietorship?> soleProprietorship = default, Option<List<TransferInstrumentReference>?> transferInstruments = default, Option<Trust?> trust = default, Option<TypeEnum?> type = default, Option<UnincorporatedPartnership?> unincorporatedPartnership = default, Option<List<VerificationDeadline>?> verificationDeadlines = default, Option<string?> verificationPlan = default)
         {
             Id = id;

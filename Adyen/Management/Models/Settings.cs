@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="band">The preferred Wi-Fi band, for use if the terminals support multiple bands. Possible values: All, 2.4GHz, 5GHz.</param>
         /// <param name="roaming">Indicates whether roaming is enabled on the terminals.</param>
         /// <param name="timeout">The connection time-out in seconds. Minimum value: 0.</param>
-        [JsonConstructor]
         public Settings(Option<string?> band = default, Option<bool?> roaming = default, Option<int?> timeout = default)
         {
             _BandOption = band;

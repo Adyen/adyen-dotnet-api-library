@@ -37,7 +37,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="reason">Explains why the transaction rule failed.</param>
         /// <param name="transactionRule">transactionRule</param>
         /// <param name="transactionRuleSource">transactionRuleSource</param>
-        [JsonConstructor]
         public NetworkTokenTriggeredRiskRule(Option<string?> reason = default, Option<NetworkTokenRiskRuleData?> transactionRule = default, Option<NetworkTokenRiskRuleSource?> transactionRuleSource = default)
         {
             _ReasonOption = reason;

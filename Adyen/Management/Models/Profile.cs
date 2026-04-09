@@ -53,7 +53,6 @@ namespace Adyen.Management.Models
         /// <param name="hiddenSsid">Indicates if the network doesn&#39;t broadcast its SSID. Mandatory for Android terminals, because these terminals rely on this setting to be able to connect to any network.</param>
         /// <param name="name">Your name for the Wi-Fi profile.</param>
         /// <param name="psk">For &#x60;authType&#x60; **wpa-psk or **wpa2-psk**. The password to the wireless network.</param>
-        [JsonConstructor]
         public Profile(string authType, string bssType, string ssid, string wsec, Option<bool?> autoWifi = default, Option<int?> channel = default, Option<bool?> defaultProfile = default, Option<string?> domainSuffix = default, Option<string?> eap = default, Option<File?> eapCaCert = default, Option<File?> eapClientCert = default, Option<File?> eapClientKey = default, Option<string?> eapClientPwd = default, Option<string?> eapIdentity = default, Option<File?> eapIntermediateCert = default, Option<string?> eapPwd = default, Option<bool?> hiddenSsid = default, Option<string?> name = default, Option<string?> psk = default)
         {
             AuthType = authType;

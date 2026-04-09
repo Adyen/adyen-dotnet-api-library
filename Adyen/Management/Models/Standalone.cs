@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="currencyCode">The default currency of the standalone payment terminal as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.</param>
         /// <param name="enableGratuities">Indicates whether the tipping options specified in &#x60;gratuities&#x60; are enabled on the standalone terminal.</param>
         /// <param name="enableStandalone">Enable standalone mode.</param>
-        [JsonConstructor]
         public Standalone(Option<string?> currencyCode = default, Option<bool?> enableGratuities = default, Option<bool?> enableStandalone = default)
         {
             _CurrencyCodeOption = currencyCode;

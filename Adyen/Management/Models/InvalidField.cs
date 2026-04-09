@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="message">Description of the validation error.</param>
         /// <param name="name">The field that has an invalid value.</param>
         /// <param name="value">The invalid value.</param>
-        [JsonConstructor]
         public InvalidField(string message, string name, string value)
         {
             Message = message;

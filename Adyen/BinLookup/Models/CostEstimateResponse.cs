@@ -38,7 +38,6 @@ namespace Adyen.BinLookup.Models
         /// <param name="costEstimateAmount">costEstimateAmount</param>
         /// <param name="costEstimateReference">Adyen&#39;s 16-character reference associated with the request.</param>
         /// <param name="resultCode">The result of the cost estimation.</param>
-        [JsonConstructor]
         public CostEstimateResponse(Option<CardBin?> cardBin = default, Option<Amount?> costEstimateAmount = default, Option<string?> costEstimateReference = default, Option<string?> resultCode = default)
         {
             _CardBinOption = cardBin;

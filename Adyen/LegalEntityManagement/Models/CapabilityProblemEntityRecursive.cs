@@ -37,7 +37,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="documents">List of document IDs corresponding to the verification errors from capabilities.</param>
         /// <param name="id">id</param>
         /// <param name="type">type</param>
-        [JsonConstructor]
         public CapabilityProblemEntityRecursive(Option<List<string>?> documents = default, Option<string?> id = default, Option<TypeEnum?> type = default)
         {
             _DocumentsOption = documents;

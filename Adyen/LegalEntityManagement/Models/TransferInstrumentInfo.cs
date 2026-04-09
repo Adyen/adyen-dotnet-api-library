@@ -37,7 +37,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="bankAccount">bankAccount</param>
         /// <param name="legalEntityId">The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) that owns the transfer instrument.</param>
         /// <param name="type">The type of transfer instrument.  Possible value: **bankAccount**.</param>
-        [JsonConstructor]
         public TransferInstrumentInfo(BankAccountInfo bankAccount, string legalEntityId, TypeEnum type)
         {
             BankAccount = bankAccount;

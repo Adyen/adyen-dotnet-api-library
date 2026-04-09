@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="Timeouts" /> class.
         /// </summary>
         /// <param name="fromActiveToSleep">Indicates the number of seconds of inactivity after which the terminal display goes into sleep mode.</param>
-        [JsonConstructor]
         public Timeouts(Option<int?> fromActiveToSleep = default)
         {
             _FromActiveToSleepOption = fromActiveToSleep;

@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="errorCode">The error code of the Android app with the &#x60;status&#x60; of either **error** or **invalid**.</param>
         /// <param name="terminalModels">The list of payment terminal models to which the returned &#x60;errorCode&#x60; applies.</param>
-        [JsonConstructor]
         public AndroidAppError(Option<string?> errorCode = default, Option<List<string>?> terminalModels = default)
         {
             _ErrorCodeOption = errorCode;

@@ -41,7 +41,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="scaDeviceType">scaDeviceType</param>
         /// <param name="status">status</param>
         /// <param name="scaDeviceName">The human-readable name for the SCA device that was registered.</param>
-        [JsonConstructor]
         public AssociationListing(DateTimeOffset createdAt, string entityId, ScaEntityType entityType, string scaDeviceId, ScaDeviceType scaDeviceType, AssociationStatus status, Option<string?> scaDeviceName = default)
         {
             CreatedAt = createdAt;

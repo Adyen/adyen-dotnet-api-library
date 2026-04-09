@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="excludeEventCodes">Object containing list of event codes for which the notification will not be sent. </param>
         /// <param name="includeEventCodes">Object containing list of event codes for which the notification will be sent. </param>
         /// <param name="properties">Object containing boolean key-value pairs. The key can be any [standard webhook additional setting](https://docs.adyen.com/development-resources/webhooks/additional-settings), and the value indicates if the setting is enabled. For example, &#x60;includeCaptureDelayHours&#x60;: **true** means the standard notifications you get will contain the number of hours remaining until the payment will be captured.</param>
-        [JsonConstructor]
         public AdditionalSettingsResponse(Option<List<string>?> excludeEventCodes = default, Option<List<string>?> includeEventCodes = default, Option<Dictionary<string, bool>?> properties = default)
         {
             _ExcludeEventCodesOption = excludeEventCodes;

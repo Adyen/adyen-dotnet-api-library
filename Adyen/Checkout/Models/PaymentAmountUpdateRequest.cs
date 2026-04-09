@@ -42,7 +42,6 @@ namespace Adyen.Checkout.Models
         /// <param name="lineItems">Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.</param>
         /// <param name="reference">Your reference for the amount update request. Maximum length: 80 characters.</param>
         /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/process-payments) or [platforms](https://docs.adyen.com/platforms/process-payments).</param>
-        [JsonConstructor]
         public PaymentAmountUpdateRequest(Amount amount, string merchantAccount, Option<ApplicationInfo?> applicationInfo = default, Option<EnhancedSchemeData?> enhancedSchemeData = default, Option<IndustryUsageEnum?> industryUsage = default, Option<List<LineItem>?> lineItems = default, Option<string?> reference = default, Option<List<Split>?> splits = default)
         {
             Amount = amount;

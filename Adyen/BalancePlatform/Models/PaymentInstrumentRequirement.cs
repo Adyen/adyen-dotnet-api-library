@@ -40,7 +40,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="onlyForCrossBalancePlatform">Specifies if the requirement only applies to transfers to another balance platform.</param>
         /// <param name="paymentInstrumentType">The type of the payment instrument. For example, \&quot;BankAccount\&quot; or \&quot;Card\&quot;.</param>
         /// <param name="type">**paymentInstrumentRequirement** (default to TypeEnum.PaymentInstrumentRequirement)</param>
-        [JsonConstructor]
         public PaymentInstrumentRequirement(Option<string?> description = default, Option<string?> issuingCountryCode = default, Option<List<string>?> issuingCountryCodes = default, Option<bool?> onlyForCrossBalancePlatform = default, Option<PaymentInstrumentTypeEnum?> paymentInstrumentType = default, TypeEnum type = default)
         {
             _DescriptionOption = description;

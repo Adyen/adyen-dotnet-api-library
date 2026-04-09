@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="enableMoto">Enable MOTO transactions.</param>
         /// <param name="maxAmount">The maximum amount for MOTO transactions. You need to set the currency for this amount using the [&#x60;standalone.currencyCode&#x60;](https://docs.adyen.com/api-explorer/Management/1/patch/companies/(companyId)/terminalSettings#request-standalone-currencyCode) parameter. Do not enable standalone, unless you are using a standalone solution.</param>
-        [JsonConstructor]
         public Moto(Option<bool?> enableMoto = default, Option<int?> maxAmount = default)
         {
             _EnableMotoOption = enableMoto;

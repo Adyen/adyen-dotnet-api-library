@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="UpdateNetworkTokenRequest" /> class.
         /// </summary>
         /// <param name="status">The new status of the network token. Possible values: **active**, **suspended**, **closed**. The **closed** status is final and cannot be changed.</param>
-        [JsonConstructor]
         public UpdateNetworkTokenRequest(Option<StatusEnum?> status = default)
         {
             _StatusOption = status;

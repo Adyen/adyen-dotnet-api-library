@@ -36,7 +36,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="id">The value to provide in the result.</param>
         /// <param name="name">The display name.</param>
-        [JsonConstructor]
         public Item(Option<string?> id = default, Option<string?> name = default)
         {
             _IdOption = id;

@@ -41,7 +41,6 @@ namespace Adyen.Checkout.Models
         /// <param name="payment">payment</param>
         /// <param name="reference">The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.</param>
         /// <param name="status">The status of the donation transaction.  Possible values: * **completed** * **pending** * **refused**</param>
-        [JsonConstructor]
         public DonationPaymentResponse(Option<Amount?> amount = default, Option<string?> donationAccount = default, Option<string?> id = default, Option<string?> merchantAccount = default, Option<PaymentResponse?> payment = default, Option<string?> reference = default, Option<StatusEnum?> status = default)
         {
             _AmountOption = amount;

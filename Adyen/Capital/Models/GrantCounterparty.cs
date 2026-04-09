@@ -37,7 +37,6 @@ namespace Adyen.Capital.Models
         /// <param name="accountHolderId">The unique identifier of the account holder that receives the grant.</param>
         /// <param name="balanceAccountId">The unique identifier of the balance account where the funds are disbursed. The balance account must belong to the specified account holder.</param>
         /// <param name="transferInstrumentId">The unique identifier of the transfer instrument where the funds are disbursed. The transfer instrument must belong to the legal entity of the specified account holder.</param>
-        [JsonConstructor]
         public GrantCounterparty(Option<string?> accountHolderId = default, Option<string?> balanceAccountId = default, Option<string?> transferInstrumentId = default)
         {
             _AccountHolderIdOption = accountHolderId;

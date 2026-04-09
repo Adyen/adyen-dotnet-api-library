@@ -36,7 +36,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="supported">Indicates if you support the card brand.</param>
         /// <param name="type">The name of the card brand.</param>
-        [JsonConstructor]
         public CardBrandDetails(Option<bool?> supported = default, Option<string?> type = default)
         {
             _SupportedOption = supported;

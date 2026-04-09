@@ -38,7 +38,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="financialInstitutionNumber">The Global Intermediary Identification Number (GIIN) required for FATCA. Only required if the organization is a US financial institution and the &#x60;businessType&#x60; is **financialInstitution**.</param>
         /// <param name="mainSourceOfIncome">The organization&#39;s main source of income. Only required if &#x60;businessType&#x60; is **other**.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.</param>
         /// <param name="type">The tax reporting classification type.  Possible values: **nonFinancialNonReportable**, **financialNonReportable**, **nonFinancialActive**, **nonFinancialPassive**.</param>
-        [JsonConstructor]
         public TaxReportingClassification(Option<BusinessTypeEnum?> businessType = default, Option<string?> financialInstitutionNumber = default, Option<MainSourceOfIncomeEnum?> mainSourceOfIncome = default, Option<TypeEnum?> type = default)
         {
             _BusinessTypeOption = businessType;

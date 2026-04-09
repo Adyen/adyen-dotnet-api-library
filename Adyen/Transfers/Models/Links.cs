@@ -36,7 +36,6 @@ namespace Adyen.Transfers.Models
         /// </summary>
         /// <param name="next">next</param>
         /// <param name="prev">prev</param>
-        [JsonConstructor]
         public Links(Option<Link?> next = default, Option<Link?> prev = default)
         {
             _NextOption = next;

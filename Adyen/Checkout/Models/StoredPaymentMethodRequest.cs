@@ -40,7 +40,6 @@ namespace Adyen.Checkout.Models
         /// <param name="shopperReference">A unique identifier for the shopper (for example, user ID or account ID).</param>
         /// <param name="shopperEmail">The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks.</param>
         /// <param name="shopperIP">The IP address of a shopper.</param>
-        [JsonConstructor]
         public StoredPaymentMethodRequest(string merchantAccount, PaymentMethodToStore paymentMethod, RecurringProcessingModelEnum recurringProcessingModel, string shopperReference, Option<string?> shopperEmail = default, Option<string?> shopperIP = default)
         {
             MerchantAccount = merchantAccount;

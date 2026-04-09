@@ -36,7 +36,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="id">The unique identifier of this app, to submit in requests to /payments.</param>
         /// <param name="name">A localized name of the app.</param>
-        [JsonConstructor]
         public PaymentMethodUPIApps(string id, string name)
         {
             Id = id;

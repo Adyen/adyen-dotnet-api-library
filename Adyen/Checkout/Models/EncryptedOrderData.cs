@@ -36,7 +36,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="orderData">The encrypted order data.</param>
         /// <param name="pspReference">The &#x60;pspReference&#x60; that belongs to the order.</param>
-        [JsonConstructor]
         public EncryptedOrderData(string orderData, string pspReference)
         {
             OrderData = orderData;

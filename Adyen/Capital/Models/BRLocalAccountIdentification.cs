@@ -38,7 +38,6 @@ namespace Adyen.Capital.Models
         /// <param name="bankCode">The 3-digit bank code, with leading zeros.</param>
         /// <param name="branchNumber">The bank account branch number, without separators or whitespace.</param>
         /// <param name="ispb">The 8-digit ISPB, with leading zeros.</param>
-        [JsonConstructor]
         public BRLocalAccountIdentification(string accountNumber, string bankCode, string branchNumber, Option<string?> ispb = default) : base()
         {
             AccountNumber = accountNumber;

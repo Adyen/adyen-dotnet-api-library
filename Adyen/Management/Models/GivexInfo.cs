@@ -38,7 +38,6 @@ namespace Adyen.Management.Models
         /// <param name="password">The password provided by the acquirer.</param>
         /// <param name="paymentFlow">The sales channel used for the payment.</param>
         /// <param name="username">The username provided by the acquirer.</param>
-        [JsonConstructor]
         public GivexInfo(string currencyCode, string password, PaymentFlowEnum paymentFlow, string username)
         {
             CurrencyCode = currencyCode;

@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="operation">Defines how the condition must be evaluated.</param>
         /// <param name="value">List of merchant ID and acquirer ID pairs.</param>
-        [JsonConstructor]
         public MerchantsRestriction(string operation, Option<List<MerchantAcquirerPair>?> value = default)
         {
             Operation = operation;

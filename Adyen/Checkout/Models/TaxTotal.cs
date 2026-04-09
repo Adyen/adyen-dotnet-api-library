@@ -35,7 +35,6 @@ namespace Adyen.Checkout.Models
         /// Initializes a new instance of the <see cref="TaxTotal" /> class.
         /// </summary>
         /// <param name="amount">amount</param>
-        [JsonConstructor]
         public TaxTotal(Option<Amount?> amount = default)
         {
             _AmountOption = amount;

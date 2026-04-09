@@ -39,7 +39,6 @@ namespace Adyen.Management.Models
         /// <param name="infix">The infix in the individual&#39;s name, if any.</param>
         /// <param name="lastName">The individual&#39;s last name.</param>
         /// <param name="phoneNumber">The individual&#39;s phone number, specified as 10-14 digits with an optional &#x60;+&#x60; prefix.</param>
-        [JsonConstructor]
         public Contact(Option<string?> email = default, Option<string?> firstName = default, Option<string?> infix = default, Option<string?> lastName = default, Option<string?> phoneNumber = default)
         {
             _EmailOption = email;

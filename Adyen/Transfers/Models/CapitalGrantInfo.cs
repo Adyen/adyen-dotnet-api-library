@@ -37,7 +37,6 @@ namespace Adyen.Transfers.Models
         /// <param name="grantAccountId">The identifier of the grant account used for the grant.</param>
         /// <param name="grantOfferId">The identifier of the grant offer that has been selected and from which the grant details will be used.</param>
         /// <param name="counterparty">counterparty</param>
-        [JsonConstructor]
         public CapitalGrantInfo(string grantAccountId, string grantOfferId, Option<GrantInfoCounterparty?> counterparty = default)
         {
             GrantAccountId = grantAccountId;

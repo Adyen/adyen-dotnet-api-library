@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="ipAddress">The terminal&#39;s ethernet IP address.</param>
         /// <param name="linkNegotiation">The ethernet link negotiation that the terminal uses.</param>
         /// <param name="macAddress">The terminal&#39;s ethernet MAC address.</param>
-        [JsonConstructor]
         public TerminalConnectivityEthernet(Option<string?> ipAddress = default, Option<string?> linkNegotiation = default, Option<string?> macAddress = default)
         {
             _IpAddressOption = ipAddress;

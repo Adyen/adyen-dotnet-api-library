@@ -37,7 +37,6 @@ namespace Adyen.Payment.Models
         /// <param name="threeDSReqAuthData">Data that documents and supports a specific authentication process. Maximum length: 2048 bytes.</param>
         /// <param name="threeDSReqAuthMethod">Mechanism used by the Cardholder to authenticate to the 3DS Requestor. Allowed values: * **01** — No 3DS Requestor authentication occurred (for example, cardholder “logged in” as guest). * **02** — Login to the cardholder account at the 3DS Requestor system using 3DS Requestor’s own credentials. * **03** — Login to the cardholder account at the 3DS Requestor system using federated ID. * **04** — Login to the cardholder account at the 3DS Requestor system using issuer credentials. * **05** — Login to the cardholder account at the 3DS Requestor system using third-party authentication. * **06** — Login to the cardholder account at the 3DS Requestor system using FIDO Authenticator.</param>
         /// <param name="threeDSReqAuthTimestamp">Date and time in UTC of the cardholder authentication. Format: YYYYMMDDHHMM</param>
-        [JsonConstructor]
         public ThreeDSRequestorAuthenticationInfo(Option<string?> threeDSReqAuthData = default, Option<ThreeDSReqAuthMethodEnum?> threeDSReqAuthMethod = default, Option<string?> threeDSReqAuthTimestamp = default)
         {
             _ThreeDSReqAuthDataOption = threeDSReqAuthData;

@@ -38,7 +38,6 @@ namespace Adyen.ManagementWebhooks.Models
         /// <param name="uniqueTerminalId">The unique identifier of the terminal.</param>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="storeId">The unique identifier of the store.</param>
-        [JsonConstructor]
         public TerminalBoardingData(string companyId, string uniqueTerminalId, Option<string?> merchantId = default, Option<string?> storeId = default)
         {
             CompanyId = companyId;

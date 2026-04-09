@@ -41,7 +41,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="modificationDate">The modification date of the document.</param>
         /// <param name="pages">List of document pages</param>
         /// <param name="type">Type of document, used when providing an ID number or uploading a document.</param>
-        [JsonConstructor]
         public DocumentReference(Option<bool?> active = default, Option<string?> description = default, Option<string?> fileName = default, Option<string?> id = default, Option<DateTimeOffset?> modificationDate = default, Option<List<DocumentPage>?> pages = default, Option<string?> type = default)
         {
             _ActiveOption = active;

@@ -40,7 +40,6 @@ namespace Adyen.TokenizationWebhooks.Models
         /// <param name="eventId">The PSP reference of the event that triggered the webhook.</param>
         /// <param name="type">The type of webhook.</param>
         /// <param name="version">The version of this entity.</param>
-        [JsonConstructor]
         public TokenizationUpdatedDetailsNotificationRequest(DateTimeOffset createdAt, RecurringTokenStoreOperation data, EnvironmentEnum environment, string eventId, TypeEnum type, Option<string?> version = default)
         {
             CreatedAt = createdAt;

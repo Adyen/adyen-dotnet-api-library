@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="id">The unique identifier of the SCA device you are registering.</param>
         /// <param name="name">The name of the SCA device that you are registering. You can use it to help your users identify the device.</param>
         /// <param name="type">type</param>
-        [JsonConstructor]
         public ScaDevice(string id, string name, ScaDeviceType type)
         {
             Id = id;

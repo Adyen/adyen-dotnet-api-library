@@ -43,7 +43,6 @@ namespace Adyen.Transfers.Models
         /// <param name="threeDSecure">threeDSecure</param>
         /// <param name="type">**issuedCard** (default to TypeEnum.IssuedCard)</param>
         /// <param name="validationFacts">The evaluation of the validation facts. See [validation checks](https://docs.adyen.com/issuing/validation-checks) for more information.</param>
-        [JsonConstructor]
         public IssuedCard(Option<string?> authorisationType = default, Option<PanEntryModeEnum?> panEntryMode = default, Option<ProcessingTypeEnum?> processingType = default, Option<RelayedAuthorisationData?> relayedAuthorisationData = default, Option<string?> schemeTraceId = default, Option<string?> schemeUniqueTransactionId = default, Option<ThreeDSecure?> threeDSecure = default, Option<TypeEnum?> type = default, Option<List<TransferNotificationValidationFact>?> validationFacts = default)
         {
             _AuthorisationTypeOption = authorisationType;

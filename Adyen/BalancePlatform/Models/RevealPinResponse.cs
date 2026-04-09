@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="encryptedPinBlock">The encrypted [PIN block](https://www.pcisecuritystandards.org/glossary/pin-block).</param>
         /// <param name="token">The 16-digit token that you need to extract the &#x60;encryptedPinBlock&#x60;.</param>
-        [JsonConstructor]
         public RevealPinResponse(string encryptedPinBlock, string token)
         {
             EncryptedPinBlock = encryptedPinBlock;

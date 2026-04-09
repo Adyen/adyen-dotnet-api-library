@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="description">Specifies the required address related fields for a particular route.</param>
         /// <param name="requiredAddressFields">List of address fields.</param>
         /// <param name="type">**addressRequirement** (default to TypeEnum.AddressRequirement)</param>
-        [JsonConstructor]
         public AddressRequirement(Option<string?> description = default, Option<List<AddressRequirement.RequiredAddressFieldsEnum>?> requiredAddressFields = default, TypeEnum type = default)
         {
             _DescriptionOption = description;

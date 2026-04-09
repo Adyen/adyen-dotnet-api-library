@@ -38,7 +38,6 @@ namespace Adyen.Management.Models
         /// <param name="contact">contact</param>
         /// <param name="id">The unique identifier of the shipping location, for use as &#x60;shippingLocationId&#x60; when creating an order.</param>
         /// <param name="name">The unique name of the shipping location.</param>
-        [JsonConstructor]
         public ShippingLocation(Option<Address?> address = default, Option<Contact?> contact = default, Option<string?> id = default, Option<string?> name = default)
         {
             _AddressOption = address;

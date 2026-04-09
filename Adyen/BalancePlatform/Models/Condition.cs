@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="balanceType">Define the type of balance about which you want to get notified. Possible values:  * **available**: the balance available for use.  * **balance**: the sum of transactions that have already been settled.  * **pending**: the sum of transactions that will be settled in the future.  * **reserved**: the balance currently held in reserve.</param>
         /// <param name="conditionType">Define when you want to get notified about a balance change. Possible values:  * **greaterThan**: the balance in the account(s) exceeds the specified &#x60;value&#x60;.  * **greaterThanOrEqual**: the balance in the account(s) reaches or exceeds the specified &#x60;value&#x60;.  * **lessThan**: the balance in the account(s) drops below the specified &#x60;value&#x60;.  * **lessThanOrEqual**: the balance in the account(s) reaches to drops below the specified &#x60;value&#x60;.</param>
         /// <param name="value">The value limit in the specified balance type and currency, in minor units.</param>
-        [JsonConstructor]
         public Condition(BalanceTypeEnum balanceType, ConditionTypeEnum conditionType, long value)
         {
             BalanceType = balanceType;

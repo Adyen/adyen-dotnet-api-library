@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="description">Specifies that you must provide a complete street address for International ACH (IAT) transactions.</param>
         /// <param name="type">**usInternationalAchAddressRequirement** (default to TypeEnum.UsInternationalAchAddressRequirement)</param>
-        [JsonConstructor]
         public USInternationalAchAddressRequirement(Option<string?> description = default, TypeEnum type = default)
         {
             _DescriptionOption = description;

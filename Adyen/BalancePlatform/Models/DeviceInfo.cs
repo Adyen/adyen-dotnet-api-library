@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="formFactor">The type of device used to provision the network token.</param>
         /// <param name="osName">The operating system of the device used to provision the network token.</param>
         /// <param name="phone">phone</param>
-        [JsonConstructor]
         public DeviceInfo(Option<string?> formFactor = default, Option<string?> osName = default, Option<PhoneInfo?> phone = default)
         {
             _FormFactorOption = formFactor;

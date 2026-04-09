@@ -35,7 +35,6 @@ namespace Adyen.Transfers.Models
         /// Initializes a new instance of the <see cref="CapitalGrants" /> class.
         /// </summary>
         /// <param name="grants">The unique identifier of the grant.</param>
-        [JsonConstructor]
         public CapitalGrants(List<CapitalGrant> grants)
         {
             Grants = grants;

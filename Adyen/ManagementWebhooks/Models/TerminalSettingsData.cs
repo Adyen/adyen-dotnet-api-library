@@ -40,7 +40,6 @@ namespace Adyen.ManagementWebhooks.Models
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="storeId">The unique identifier of the store.</param>
         /// <param name="terminalId">The unique identifier of the terminal.</param>
-        [JsonConstructor]
         public TerminalSettingsData(UpdateSourceEnum updateSource, string user, Option<string?> companyId = default, Option<string?> merchantId = default, Option<string?> storeId = default, Option<string?> terminalId = default)
         {
             UpdateSource = updateSource;

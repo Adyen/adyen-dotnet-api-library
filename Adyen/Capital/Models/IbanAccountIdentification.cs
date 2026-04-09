@@ -35,7 +35,6 @@ namespace Adyen.Capital.Models
         /// Initializes a new instance of the <see cref="IbanAccountIdentification" /> class.
         /// </summary>
         /// <param name="iban">The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.</param>
-        [JsonConstructor]
         public IbanAccountIdentification(string iban) : base()
         {
             Iban = iban;

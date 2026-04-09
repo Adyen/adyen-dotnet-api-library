@@ -39,7 +39,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="transitNumber">The 5-digit transit number, without separators or whitespace.</param>
         /// <param name="accountType">The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**. (default to AccountTypeEnum.Checking)</param>
         /// <param name="type">**caLocal** (default to TypeEnum.CaLocal)</param>
-        [JsonConstructor]
         public CALocalAccountIdentification(string accountNumber, string institutionNumber, string transitNumber, Option<AccountTypeEnum?> accountType = default, TypeEnum type = default)
         {
             AccountNumber = accountNumber;

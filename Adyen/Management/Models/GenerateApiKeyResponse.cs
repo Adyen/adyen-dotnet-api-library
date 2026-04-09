@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="GenerateApiKeyResponse" /> class.
         /// </summary>
         /// <param name="apiKey">The generated API key.</param>
-        [JsonConstructor]
         public GenerateApiKeyResponse(string apiKey)
         {
             ApiKey = apiKey;

@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="publicKey">The public key you need for encrypting a symmetric session key.</param>
         /// <param name="publicKeyExpiryDate">The expiry date of the public key.</param>
-        [JsonConstructor]
         public PublicKeyResponse(string publicKey, string publicKeyExpiryDate)
         {
             PublicKey = publicKey;

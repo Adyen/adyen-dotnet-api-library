@@ -37,7 +37,6 @@ namespace Adyen.Transfers.Models
         /// <param name="accountNumber">The 4-10 digits bank account number (Kontonummer) (without separators or whitespace).</param>
         /// <param name="bankCode">The 4-digit bank code (Registreringsnummer) (without separators or whitespace).</param>
         /// <param name="type">**dkLocal** (default to TypeEnum.DkLocal)</param>
-        [JsonConstructor]
         public DKLocalAccountIdentification(string accountNumber, string bankCode, TypeEnum type = default)
         {
             AccountNumber = accountNumber;
