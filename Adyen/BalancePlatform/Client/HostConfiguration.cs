@@ -161,7 +161,16 @@ namespace Adyen.BalancePlatform.Client
             _jsonOptions.Converters.Add(new LimitStatusNullableJsonConverter());
             _jsonOptions.Converters.Add(new LinkJsonConverter());
             _jsonOptions.Converters.Add(new ListAssociationsResponseJsonConverter());
+            _jsonOptions.Converters.Add(new ListMandatesResponseJsonConverter());
             _jsonOptions.Converters.Add(new ListNetworkTokensResponseJsonConverter());
+            _jsonOptions.Converters.Add(new MandateJsonConverter());
+            _jsonOptions.Converters.Add(new MandateAccountIdentificationJsonConverter());
+            _jsonOptions.Converters.Add(new MandateBankAccountJsonConverter());
+            _jsonOptions.Converters.Add(new MandatePartyIdentificationJsonConverter());
+            _jsonOptions.Converters.Add(new MandateStatusJsonConverter());
+            _jsonOptions.Converters.Add(new MandateStatusNullableJsonConverter());
+            _jsonOptions.Converters.Add(new MandateTypeJsonConverter());
+            _jsonOptions.Converters.Add(new MandateTypeNullableJsonConverter());
             _jsonOptions.Converters.Add(new MatchingTransactionsRestrictionJsonConverter());
             _jsonOptions.Converters.Add(new MatchingValuesRestrictionJsonConverter());
             _jsonOptions.Converters.Add(new MccsRestrictionJsonConverter());
@@ -182,6 +191,7 @@ namespace Adyen.BalancePlatform.Client
             _jsonOptions.Converters.Add(new PaginatedGetCardOrderItemResponseJsonConverter());
             _jsonOptions.Converters.Add(new PaginatedGetCardOrderResponseJsonConverter());
             _jsonOptions.Converters.Add(new PaginatedPaymentInstrumentsResponseJsonConverter());
+            _jsonOptions.Converters.Add(new PatchableMandateJsonConverter());
             _jsonOptions.Converters.Add(new PaymentInstrumentJsonConverter());
             _jsonOptions.Converters.Add(new PaymentInstrumentAdditionalBankAccountIdentificationsInnerJsonConverter());
             _jsonOptions.Converters.Add(new PaymentInstrumentGroupJsonConverter());
@@ -264,6 +274,7 @@ namespace Adyen.BalancePlatform.Client
             _jsonOptions.Converters.Add(new TransferTypeJsonConverter());
             _jsonOptions.Converters.Add(new TransferTypeNullableJsonConverter());
             _jsonOptions.Converters.Add(new UKLocalAccountIdentificationJsonConverter());
+            _jsonOptions.Converters.Add(new UKLocalMandateAccountIdentificationJsonConverter());
             _jsonOptions.Converters.Add(new USInstantPayoutAddressRequirementJsonConverter());
             _jsonOptions.Converters.Add(new USInternationalAchAddressRequirementJsonConverter());
             _jsonOptions.Converters.Add(new USInternationalAchPriorityRequirementJsonConverter());
