@@ -44,12 +44,13 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="endDate">The date when the rule will stop being evaluated, in ISO 8601 extended offset date-time format. For example, **2025-03-19T10:15:30+01:00**.  If not provided, the rule will be evaluated until the rule status is set to **inactive**.</param>
         /// <param name="id">The unique identifier of the transaction rule.</param>
         /// <param name="outcomeType">The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock** (default): the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined. This value is not allowed when &#x60;requestType&#x60; is **bankTransfer**.  * **enforceSCA**: your user is prompted to verify their identity using [3D Secure authentication](https://docs.adyen.com/issuing/3d-secure/). If the authentication fails or times out, the transaction is declined. This value is only allowed when &#x60;requestType&#x60; is **authentication**.</param>
+        /// <param name="purpose">Specifies the reason for creating the rule.  Possible values: * **fraud**: the rule is created to regulate fraudulent activity. * **policy**: the rule is created to ensure that the transaction adheres to your business&#39; policies. For example, if your business has policies about the Merchant Category Codes (MCCs) allowed on a transaction, you can create a rule to block transactions that have specific MCCs.</param>
         /// <param name="requestType">Indicates the type of request to which the rule applies. If not provided, by default, this is set to **authorization**.  Possible values: **authorization**, **authentication**, **tokenization**, **bankTransfer**.</param>
         /// <param name="score">A positive or negative score applied to the transaction if it meets the conditions of the rule. Required when &#x60;outcomeType&#x60; is **scoreBased**.  The value must be between **-100** and **100**.</param>
         /// <param name="startDate">The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2025-03-19T10:15:30+01:00**.  If not provided when creating a transaction rule, the &#x60;startDate&#x60; is set to the date when the rule status is set to **active**.   </param>
         /// <param name="status">The status of the transaction rule. If you provide a &#x60;startDate&#x60; in the request, the rule is automatically created  with an **active** status.   Possible values: **active**, **inactive**.</param>
         [JsonConstructor]
-        public TransactionRule(string description, TransactionRuleEntityKey entityKey, TransactionRuleInterval interval, string reference, TransactionRuleRestrictions ruleRestrictions, TypeEnum type, Option<string?> aggregationLevel = default, Option<string?> endDate = default, Option<string?> id = default, Option<OutcomeTypeEnum?> outcomeType = default, Option<RequestTypeEnum?> requestType = default, Option<int?> score = default, Option<string?> startDate = default, Option<StatusEnum?> status = default)
+        public TransactionRule(string description, TransactionRuleEntityKey entityKey, TransactionRuleInterval interval, string reference, TransactionRuleRestrictions ruleRestrictions, TypeEnum type, Option<string?> aggregationLevel = default, Option<string?> endDate = default, Option<string?> id = default, Option<OutcomeTypeEnum?> outcomeType = default, Option<PurposeEnum?> purpose = default, Option<RequestTypeEnum?> requestType = default, Option<int?> score = default, Option<string?> startDate = default, Option<StatusEnum?> status = default)
         {
             Description = description;
             EntityKey = entityKey;
@@ -61,6 +62,7 @@ namespace Adyen.BalancePlatform.Models
             _EndDateOption = endDate;
             _IdOption = id;
             _OutcomeTypeOption = outcomeType;
+            _PurposeOption = purpose;
             _RequestTypeOption = requestType;
             _ScoreOption = score;
             _StartDateOption = startDate;
@@ -339,6 +341,150 @@ namespace Adyen.BalancePlatform.Models
         /// <value>The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock** (default): the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined. This value is not allowed when &#x60;requestType&#x60; is **bankTransfer**.  * **enforceSCA**: your user is prompted to verify their identity using [3D Secure authentication](https://docs.adyen.com/issuing/3d-secure/). If the authentication fails or times out, the transaction is declined. This value is only allowed when &#x60;requestType&#x60; is **authentication**.</value>
         [JsonPropertyName("outcomeType")]
         public OutcomeTypeEnum? OutcomeType { get { return this._OutcomeTypeOption; } set { this._OutcomeTypeOption = new(value); } }
+
+        /// <summary>
+        /// Specifies the reason for creating the rule.  Possible values: * **fraud**: the rule is created to regulate fraudulent activity. * **policy**: the rule is created to ensure that the transaction adheres to your business' policies. For example, if your business has policies about the Merchant Category Codes (MCCs) allowed on a transaction, you can create a rule to block transactions that have specific MCCs.
+        /// </summary>
+        /// <value>Specifies the reason for creating the rule.  Possible values: * **fraud**: the rule is created to regulate fraudulent activity. * **policy**: the rule is created to ensure that the transaction adheres to your business&#39; policies. For example, if your business has policies about the Merchant Category Codes (MCCs) allowed on a transaction, you can create a rule to block transactions that have specific MCCs.</value>
+        [JsonConverter(typeof(PurposeEnumJsonConverter))]
+        public class PurposeEnum : IEnum
+        {
+            /// <summary>
+            /// Returns the value of the PurposeEnum.
+            /// </summary>
+            public string? Value { get; set; }
+
+            /// <summary>
+            /// PurposeEnum.Compliance - compliance
+            /// </summary>
+            public static readonly PurposeEnum Compliance = new("compliance");
+
+            /// <summary>
+            /// PurposeEnum.Fraud - fraud
+            /// </summary>
+            public static readonly PurposeEnum Fraud = new("fraud");
+
+            /// <summary>
+            /// PurposeEnum.InternalPolicy - internalPolicy
+            /// </summary>
+            public static readonly PurposeEnum InternalPolicy = new("internalPolicy");
+
+            /// <summary>
+            /// PurposeEnum.Policy - policy
+            /// </summary>
+            public static readonly PurposeEnum Policy = new("policy");
+
+            /// <summary>
+            /// PurposeEnum.System - system
+            /// </summary>
+            public static readonly PurposeEnum System = new("system");
+        
+            private PurposeEnum(string? value)
+            {
+                Value = value;
+            }
+
+            /// <summary>
+            /// Converts a string to a <see cref="PurposeEnum"/> implicitly.
+            /// </summary>
+            /// <param name="value">The string value to convert. Defaults to null.</param>
+            /// <returns>A new <see cref="PurposeEnum"/> instance initialized with the string value.</returns>
+            public static implicit operator PurposeEnum?(string? value) => value == null ? null : new PurposeEnum(value);
+    
+            /// <summary>
+            /// Converts a <see cref="PurposeEnum"/> instance to a string implicitly.
+            /// </summary>
+            /// <param name="option">The <see cref="PurposeEnum"/> instance. Default to null.</param>
+            /// <returns>String value of the <see cref="PurposeEnum"/> instance./// </returns>
+            public static implicit operator string?(PurposeEnum? option) => option?.Value;
+        
+            public static bool operator ==(PurposeEnum? left, PurposeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+    
+            public static bool operator !=(PurposeEnum? left, PurposeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            public override bool Equals(object? obj) => obj is PurposeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+    
+            public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+        
+            public override string ToString() => Value ?? string.Empty;
+        
+            /// <summary>
+            /// Returns a <see cref="PurposeEnum?"/>.
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns><see cref="PurposeEnum"/> or null.</returns>
+            public static PurposeEnum? FromStringOrDefault(string value)
+            {
+                return value switch {
+                    "compliance" => PurposeEnum.Compliance,
+                    "fraud" => PurposeEnum.Fraud,
+                    "internalPolicy" => PurposeEnum.InternalPolicy,
+                    "policy" => PurposeEnum.Policy,
+                    "system" => PurposeEnum.System,
+                    _ => null,
+                };
+            }
+    
+            /// <summary>
+            /// Converts the <see cref="PurposeEnum"/> to the json value.
+            /// </summary>
+            /// <param name="value"><see cref="PurposeEnum"/></param>
+            /// <returns>String value of the enum.</returns>
+            /// <exception cref="NotImplementedException"></exception>
+            public static string? ToJsonValue(PurposeEnum? value)
+            {
+                if (value == null)
+                    return null;
+            
+                if (value == PurposeEnum.Compliance)
+                    return "compliance";
+                
+                if (value == PurposeEnum.Fraud)
+                    return "fraud";
+                
+                if (value == PurposeEnum.InternalPolicy)
+                    return "internalPolicy";
+                
+                if (value == PurposeEnum.Policy)
+                    return "policy";
+                
+                if (value == PurposeEnum.System)
+                    return "system";
+                
+                return null;
+            }
+            
+            /// <summary>
+            /// JsonConverter for writing PurposeEnum.               
+            /// </summary>
+            public class PurposeEnumJsonConverter : JsonConverter<PurposeEnum>
+            {
+                public override PurposeEnum? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions jsonOptions)
+                {
+                    string value = reader.GetString();
+                    return value == null ? null : PurposeEnum.FromStringOrDefault(value) ?? new PurposeEnum(value);
+                }
+
+                public override void Write(Utf8JsonWriter writer, PurposeEnum value, JsonSerializerOptions jsonOptions)
+                {
+                    writer.WriteStringValue(PurposeEnum.ToJsonValue(value));
+                }
+            }
+        }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Purpose"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<PurposeEnum?> _PurposeOption { get; private set; }
+
+        /// <summary>
+        /// Specifies the reason for creating the rule.  Possible values: * **fraud**: the rule is created to regulate fraudulent activity. * **policy**: the rule is created to ensure that the transaction adheres to your business' policies. For example, if your business has policies about the Merchant Category Codes (MCCs) allowed on a transaction, you can create a rule to block transactions that have specific MCCs.
+        /// </summary>
+        /// <value>Specifies the reason for creating the rule.  Possible values: * **fraud**: the rule is created to regulate fraudulent activity. * **policy**: the rule is created to ensure that the transaction adheres to your business&#39; policies. For example, if your business has policies about the Merchant Category Codes (MCCs) allowed on a transaction, you can create a rule to block transactions that have specific MCCs.</value>
+        [JsonPropertyName("purpose")]
+        public PurposeEnum? Purpose { get { return this._PurposeOption; } set { this._PurposeOption = new(value); } }
 
         /// <summary>
         /// Indicates the type of request to which the rule applies. If not provided, by default, this is set to **authorization**.  Possible values: **authorization**, **authentication**, **tokenization**, **bankTransfer**.
@@ -712,6 +858,7 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  EndDate: ").Append(EndDate).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  OutcomeType: ").Append(OutcomeType).Append("\n");
+            sb.Append("  Purpose: ").Append(Purpose).Append("\n");
             sb.Append("  RequestType: ").Append(RequestType).Append("\n");
             sb.Append("  Score: ").Append(Score).Append("\n");
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
@@ -753,6 +900,7 @@ namespace Adyen.BalancePlatform.Models
             Option<string?> endDate = default;
             Option<string?> id = default;
             Option<TransactionRule.OutcomeTypeEnum?> outcomeType = default;
+            Option<TransactionRule.PurposeEnum?> purpose = default;
             Option<TransactionRule.RequestTypeEnum?> requestType = default;
             Option<int?> score = default;
             Option<string?> startDate = default;
@@ -805,6 +953,10 @@ namespace Adyen.BalancePlatform.Models
                             string? outcomeTypeRawValue = utf8JsonReader.GetString();
                             outcomeType = new Option<TransactionRule.OutcomeTypeEnum?>(TransactionRule.OutcomeTypeEnum.FromStringOrDefault(outcomeTypeRawValue));
                             break;
+                        case "purpose":
+                            string? purposeRawValue = utf8JsonReader.GetString();
+                            purpose = new Option<TransactionRule.PurposeEnum?>(TransactionRule.PurposeEnum.FromStringOrDefault(purposeRawValue));
+                            break;
                         case "requestType":
                             string? requestTypeRawValue = utf8JsonReader.GetString();
                             requestType = new Option<TransactionRule.RequestTypeEnum?>(TransactionRule.RequestTypeEnum.FromStringOrDefault(requestTypeRawValue));
@@ -843,7 +995,7 @@ namespace Adyen.BalancePlatform.Models
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class TransactionRule.", nameof(type));
 
-            return new TransactionRule(description.Value!, entityKey.Value!, interval.Value!, reference.Value!, ruleRestrictions.Value!, type.Value!.Value!, aggregationLevel, endDate, id, outcomeType, requestType, score, startDate, status);
+            return new TransactionRule(description.Value!, entityKey.Value!, interval.Value!, reference.Value!, ruleRestrictions.Value!, type.Value!.Value!, aggregationLevel, endDate, id, outcomeType, purpose, requestType, score, startDate, status);
         }
 
         /// <summary>
@@ -906,6 +1058,12 @@ namespace Adyen.BalancePlatform.Models
             {
                 string? outcomeTypeRawValue = TransactionRule.OutcomeTypeEnum.ToJsonValue(transactionRule._OutcomeTypeOption.Value!.Value);
                 writer.WriteString("outcomeType", outcomeTypeRawValue);
+            }
+            
+            if (transactionRule._PurposeOption.IsSet && transactionRule.Purpose != null) 
+            {
+                string? purposeRawValue = TransactionRule.PurposeEnum.ToJsonValue(transactionRule._PurposeOption.Value!.Value);
+                writer.WriteString("purpose", purposeRawValue);
             }
             
             if (transactionRule._RequestTypeOption.IsSet && transactionRule.RequestType != null) 

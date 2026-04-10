@@ -27,54 +27,45 @@ using Adyen.BalancePlatform.Client;
 namespace Adyen.BalancePlatform.Models
 {
     /// <summary>
-    /// InvalidField.
+    /// UKLocalMandateAccountIdentification.
     /// </summary>
-    public partial class InvalidField
+    public partial class UKLocalMandateAccountIdentification : MandateAccountIdentification
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="InvalidField" /> class.
+        /// Initializes a new instance of the <see cref="UKLocalMandateAccountIdentification" /> class.
         /// </summary>
-        /// <param name="message">Description of the validation error.</param>
-        /// <param name="name">The field that has an invalid value.</param>
-        /// <param name="value">The invalid value.</param>
+        /// <param name="accountNumber">The 8-digit bank account number, without separators or whitespace.</param>
+        /// <param name="sortCode">The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.</param>
         [JsonConstructor]
-        public InvalidField(string message, string name, string value)
+        public UKLocalMandateAccountIdentification(string accountNumber, string sortCode) : base()
         {
-            Message = message;
-            Name = name;
-            Value = value;
+            AccountNumber = accountNumber;
+            SortCode = sortCode;
             OnCreated();
         }
         
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public InvalidField()
+        public UKLocalMandateAccountIdentification()
         {
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Description of the validation error.
+        /// The 8-digit bank account number, without separators or whitespace.
         /// </summary>
-        /// <value>Description of the validation error.</value>
-        [JsonPropertyName("message")]
-        public string Message { get; set; }
+        /// <value>The 8-digit bank account number, without separators or whitespace.</value>
+        [JsonPropertyName("accountNumber")]
+        public string AccountNumber { get; set; }
 
         /// <summary>
-        /// The field that has an invalid value.
+        /// The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.
         /// </summary>
-        /// <value>The field that has an invalid value.</value>
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// The invalid value.
-        /// </summary>
-        /// <value>The invalid value.</value>
-        [JsonPropertyName("value")]
-        public string Value { get; set; }
+        /// <value>The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.</value>
+        [JsonPropertyName("sortCode")]
+        public string SortCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -83,29 +74,29 @@ namespace Adyen.BalancePlatform.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class InvalidField {\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("class UKLocalMandateAccountIdentification {\n");
+            sb.Append("  ").Append(base.ToString()?.Replace("\n", "\n  ")).Append("\n");
+            sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
+            sb.Append("  SortCode: ").Append(SortCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="InvalidField" />
+    /// A Json converter for type <see cref="UKLocalMandateAccountIdentification" />
     /// </summary>
-    public class InvalidFieldJsonConverter : JsonConverter<InvalidField>
+    public class UKLocalMandateAccountIdentificationJsonConverter : JsonConverter<UKLocalMandateAccountIdentification>
     {
         /// <summary>
-        /// Deserializes json to <see cref="InvalidField"/>.
+        /// Deserializes json to <see cref="UKLocalMandateAccountIdentification"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="InvalidField"/>.</returns>
+        /// <returns><see cref="UKLocalMandateAccountIdentification"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override InvalidField Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override UKLocalMandateAccountIdentification Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -114,9 +105,9 @@ namespace Adyen.BalancePlatform.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> message = default;
-            Option<string?> name = default;
-            Option<string?> value = default;
+            Option<string?> accountNumber = default;
+            Option<string?> sortCode = default;
+            Option<string?> type = default;
 
             while (utf8JsonReader.Read())
             {
@@ -133,14 +124,14 @@ namespace Adyen.BalancePlatform.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "message":
-                            message = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "accountNumber":
+                            accountNumber = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
-                        case "name":
-                            name = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "sortCode":
+                            sortCode = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
-                        case "value":
-                            value = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "type":
+                            type = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         default:
                             break;
@@ -148,52 +139,52 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!message.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(message));
+            if (!accountNumber.IsSet)
+                throw new ArgumentException("Property is required for class UKLocalMandateAccountIdentification.", nameof(accountNumber));
 
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(name));
+            if (!sortCode.IsSet)
+                throw new ArgumentException("Property is required for class UKLocalMandateAccountIdentification.", nameof(sortCode));
 
-            if (!value.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(value));
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class UKLocalMandateAccountIdentification.", nameof(type));
 
-            return new InvalidField(message.Value!, name.Value!, value.Value!);
+            return new UKLocalMandateAccountIdentification(accountNumber.Value!, sortCode.Value!);
         }
 
         /// <summary>
-        /// Serializes a <see cref="InvalidField"/>.
+        /// Serializes a <see cref="UKLocalMandateAccountIdentification"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="invalidField"></param>
+        /// <param name="uKLocalMandateAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, InvalidField invalidField, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, UKLocalMandateAccountIdentification uKLocalMandateAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, invalidField, jsonSerializerOptions);
+            WriteProperties(writer, uKLocalMandateAccountIdentification, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="InvalidField"/>.
+        /// Serializes the properties of <see cref="UKLocalMandateAccountIdentification"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="invalidField"></param>
+        /// <param name="uKLocalMandateAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, InvalidField invalidField, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, UKLocalMandateAccountIdentification uKLocalMandateAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (invalidField.Message != null)
-                writer.WriteString("message", invalidField.Message);
+            if (uKLocalMandateAccountIdentification.AccountNumber != null)
+                writer.WriteString("accountNumber", uKLocalMandateAccountIdentification.AccountNumber);
 
-            if (invalidField.Name != null)
-                writer.WriteString("name", invalidField.Name);
+            if (uKLocalMandateAccountIdentification.SortCode != null)
+                writer.WriteString("sortCode", uKLocalMandateAccountIdentification.SortCode);
 
-            if (invalidField.Value != null)
-                writer.WriteString("value", invalidField.Value);
+            if (uKLocalMandateAccountIdentification.Type != null)
+    writer.WriteString("type", uKLocalMandateAccountIdentification.Type);
         }
     }
 }
