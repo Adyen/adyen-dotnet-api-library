@@ -37,12 +37,14 @@ namespace Adyen.Checkout.Models
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes/).</param>
         /// <param name="merchantAccount">Your merchant account identifier.</param>
         /// <param name="locale">Locale on the shopper interaction device.</param>
+        /// <param name="store">Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.</param>
         [JsonConstructor]
-        public DonationCampaignsRequest(string currency, string merchantAccount, Option<string?> locale = default)
+        public DonationCampaignsRequest(string currency, string merchantAccount, Option<string?> locale = default, Option<string?> store = default)
         {
             Currency = currency;
             MerchantAccount = merchantAccount;
             _LocaleOption = locale;
+            _StoreOption = store;
             OnCreated();
         }
         
@@ -84,6 +86,20 @@ namespace Adyen.Checkout.Models
         public string? Locale { get { return this._LocaleOption; } set { this._LocaleOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Store"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _StoreOption { get; private set; }
+
+        /// <summary>
+        /// Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.
+        /// </summary>
+        /// <value>Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.</value>
+        [JsonPropertyName("store")]
+        public string? Store { get { return this._StoreOption; } set { this._StoreOption = new(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -94,6 +110,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  Locale: ").Append(Locale).Append("\n");
+            sb.Append("  Store: ").Append(Store).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -124,6 +141,7 @@ namespace Adyen.Checkout.Models
             Option<string?> currency = default;
             Option<string?> merchantAccount = default;
             Option<string?> locale = default;
+            Option<string?> store = default;
 
             while (utf8JsonReader.Read())
             {
@@ -149,6 +167,9 @@ namespace Adyen.Checkout.Models
                         case "locale":
                             locale = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "store":
+                            store = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         default:
                             break;
                     }
@@ -161,7 +182,7 @@ namespace Adyen.Checkout.Models
             if (!merchantAccount.IsSet)
                 throw new ArgumentException("Property is required for class DonationCampaignsRequest.", nameof(merchantAccount));
 
-            return new DonationCampaignsRequest(currency.Value!, merchantAccount.Value!, locale);
+            return new DonationCampaignsRequest(currency.Value!, merchantAccount.Value!, locale, store);
         }
 
         /// <summary>
@@ -199,6 +220,10 @@ namespace Adyen.Checkout.Models
             if (donationCampaignsRequest._LocaleOption.IsSet)
                 if (donationCampaignsRequest.Locale != null)
                     writer.WriteString("locale", donationCampaignsRequest.Locale);
+
+            if (donationCampaignsRequest._StoreOption.IsSet)
+                if (donationCampaignsRequest.Store != null)
+                    writer.WriteString("store", donationCampaignsRequest.Store);
         }
     }
 }

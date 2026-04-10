@@ -79,11 +79,13 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new AfterpayDetailsJsonConverter());
             _jsonOptions.Converters.Add(new AgencyJsonConverter());
             _jsonOptions.Converters.Add(new AirlineJsonConverter());
+            _jsonOptions.Converters.Add(new AlmaDetailsJsonConverter());
             _jsonOptions.Converters.Add(new AmazonPayDetailsJsonConverter());
             _jsonOptions.Converters.Add(new AmountJsonConverter());
             _jsonOptions.Converters.Add(new AmountsJsonConverter());
             _jsonOptions.Converters.Add(new AncvDetailsJsonConverter());
             _jsonOptions.Converters.Add(new AndroidPayDetailsJsonConverter());
+            _jsonOptions.Converters.Add(new AppIdentifierInfoJsonConverter());
             _jsonOptions.Converters.Add(new ApplePayDetailsJsonConverter());
             _jsonOptions.Converters.Add(new ApplePayDonationsJsonConverter());
             _jsonOptions.Converters.Add(new ApplePaySessionRequestJsonConverter());
@@ -129,6 +131,7 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new CheckoutVoucherActionJsonConverter());
             _jsonOptions.Converters.Add(new CommonFieldJsonConverter());
             _jsonOptions.Converters.Add(new CompanyJsonConverter());
+            _jsonOptions.Converters.Add(new ConfidenceScoreJsonConverter());
             _jsonOptions.Converters.Add(new CreateCheckoutSessionRequestJsonConverter());
             _jsonOptions.Converters.Add(new CreateCheckoutSessionResponseJsonConverter());
             _jsonOptions.Converters.Add(new CreateOrderRequestJsonConverter());
@@ -139,6 +142,7 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new DestinationJsonConverter());
             _jsonOptions.Converters.Add(new DetailsRequestAuthenticationDataJsonConverter());
             _jsonOptions.Converters.Add(new DeviceRenderOptionsJsonConverter());
+            _jsonOptions.Converters.Add(new DirectDebitAuDetailsJsonConverter());
             _jsonOptions.Converters.Add(new DokuDetailsJsonConverter());
             _jsonOptions.Converters.Add(new DonationJsonConverter());
             _jsonOptions.Converters.Add(new DonationCampaignJsonConverter());
@@ -173,6 +177,7 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new ItemJsonConverter());
             _jsonOptions.Converters.Add(new ItemDetailLineJsonConverter());
             _jsonOptions.Converters.Add(new KlarnaDetailsJsonConverter());
+            _jsonOptions.Converters.Add(new KlarnaNetworkDetailsJsonConverter());
             _jsonOptions.Converters.Add(new LegJsonConverter());
             _jsonOptions.Converters.Add(new LevelTwoThreeJsonConverter());
             _jsonOptions.Converters.Add(new LineItemJsonConverter());
@@ -233,6 +238,8 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new PaypalUpdateOrderResponseJsonConverter());
             _jsonOptions.Converters.Add(new PhoneJsonConverter());
             _jsonOptions.Converters.Add(new PixDetailsJsonConverter());
+            _jsonOptions.Converters.Add(new PixPayByBankDetailsJsonConverter());
+            _jsonOptions.Converters.Add(new PixPayByBankRiskSignalsJsonConverter());
             _jsonOptions.Converters.Add(new PixRecurringJsonConverter());
             _jsonOptions.Converters.Add(new PlatformChargebackLogicJsonConverter());
             _jsonOptions.Converters.Add(new PseDetailsJsonConverter());
@@ -256,6 +263,7 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new RivertyDetailsJsonConverter());
             _jsonOptions.Converters.Add(new SDKEphemPubKeyJsonConverter());
             _jsonOptions.Converters.Add(new SamsungPayDetailsJsonConverter());
+            _jsonOptions.Converters.Add(new ScreenDimensionsJsonConverter());
             _jsonOptions.Converters.Add(new SepaDirectDebitDetailsJsonConverter());
             _jsonOptions.Converters.Add(new ServiceErrorJsonConverter());
             _jsonOptions.Converters.Add(new SessionResultResponseJsonConverter());

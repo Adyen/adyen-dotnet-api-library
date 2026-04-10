@@ -159,6 +159,10 @@ namespace Adyen.Checkout.Client
                 return Models.AffirmDetails.TypeEnum.ToJsonValue(affirmDetailsTypeEnum);
             if (obj is Models.AfterpayDetails.TypeEnum afterpayDetailsTypeEnum)
                 return Models.AfterpayDetails.TypeEnum.ToJsonValue(afterpayDetailsTypeEnum);
+            if (obj is Models.AlmaDetails.FeeTypeEnum almaDetailsFeeTypeEnum)
+                return Models.AlmaDetails.FeeTypeEnum.ToJsonValue(almaDetailsFeeTypeEnum);
+            if (obj is Models.AlmaDetails.TypeEnum almaDetailsTypeEnum)
+                return Models.AlmaDetails.TypeEnum.ToJsonValue(almaDetailsTypeEnum);
             if (obj is Models.AmazonPayDetails.TypeEnum amazonPayDetailsTypeEnum)
                 return Models.AmazonPayDetails.TypeEnum.ToJsonValue(amazonPayDetailsTypeEnum);
             if (obj is Models.AncvDetails.TypeEnum ancvDetailsTypeEnum)
@@ -261,6 +265,8 @@ namespace Adyen.Checkout.Client
                 return Models.DeviceRenderOptions.SdkInterfaceEnum.ToJsonValue(deviceRenderOptionsSdkInterfaceEnum);
             if (obj is Models.DeviceRenderOptions.SdkUiTypeEnum deviceRenderOptionsSdkUiTypeEnum)
                 return DeviceRenderOptions.SdkUiTypeEnum.ToJsonValue(deviceRenderOptionsSdkUiTypeEnum);
+            if (obj is Models.DirectDebitAuDetails.TypeEnum directDebitAuDetailsTypeEnum)
+                return Models.DirectDebitAuDetails.TypeEnum.ToJsonValue(directDebitAuDetailsTypeEnum);
             if (obj is Models.DokuDetails.TypeEnum dokuDetailsTypeEnum)
                 return Models.DokuDetails.TypeEnum.ToJsonValue(dokuDetailsTypeEnum);
             if (obj is Models.DonationPaymentRequest.ChannelEnum donationPaymentRequestChannelEnum)
@@ -307,6 +313,8 @@ namespace Adyen.Checkout.Client
                 return Models.Installments.PlanEnum.ToJsonValue(installmentsPlanEnum);
             if (obj is Models.KlarnaDetails.TypeEnum klarnaDetailsTypeEnum)
                 return Models.KlarnaDetails.TypeEnum.ToJsonValue(klarnaDetailsTypeEnum);
+            if (obj is Models.KlarnaNetworkDetails.TypeEnum klarnaNetworkDetailsTypeEnum)
+                return Models.KlarnaNetworkDetails.TypeEnum.ToJsonValue(klarnaNetworkDetailsTypeEnum);
             if (obj is Models.Mandate.FrequencyEnum mandateFrequencyEnum)
                 return Models.Mandate.FrequencyEnum.ToJsonValue(mandateFrequencyEnum);
             if (obj is Models.Mandate.AmountRuleEnum mandateAmountRuleEnum)
@@ -413,6 +421,8 @@ namespace Adyen.Checkout.Client
                 return Models.PaypalUpdateOrderResponse.StatusEnum.ToJsonValue(paypalUpdateOrderResponseStatusEnum);
             if (obj is Models.PixDetails.TypeEnum pixDetailsTypeEnum)
                 return Models.PixDetails.TypeEnum.ToJsonValue(pixDetailsTypeEnum);
+            if (obj is Models.PixPayByBankDetails.TypeEnum pixPayByBankDetailsTypeEnum)
+                return Models.PixPayByBankDetails.TypeEnum.ToJsonValue(pixPayByBankDetailsTypeEnum);
             if (obj is Models.PixRecurring.FrequencyEnum pixRecurringFrequencyEnum)
                 return Models.PixRecurring.FrequencyEnum.ToJsonValue(pixRecurringFrequencyEnum);
             if (obj is Models.PlatformChargebackLogic.BehaviorEnum platformChargebackLogicBehaviorEnum)
@@ -511,6 +521,8 @@ namespace Adyen.Checkout.Client
                 return Models.TokenMandate.AmountRuleEnum.ToJsonValue(tokenMandateAmountRuleEnum);
             if (obj is Models.TokenMandate.BillingAttemptsRuleEnum tokenMandateBillingAttemptsRuleEnum)
                 return Models.TokenMandate.BillingAttemptsRuleEnum.ToJsonValue(tokenMandateBillingAttemptsRuleEnum);
+            if (obj is Models.TokenMandate.RetryPolicyEnum tokenMandateRetryPolicyEnum)
+                return Models.TokenMandate.RetryPolicyEnum.ToJsonValue(tokenMandateRetryPolicyEnum);
             if (obj is Models.TwintDetails.TypeEnum twintDetailsTypeEnum)
                 return Models.TwintDetails.TypeEnum.ToJsonValue(twintDetailsTypeEnum);
             if (obj is Models.UpdatePaymentLinkRequest.StatusEnum updatePaymentLinkRequestStatusEnum)

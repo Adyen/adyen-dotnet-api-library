@@ -34,6 +34,8 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredPaymentMethodResource" /> class.
         /// </summary>
+        /// <param name="alias">The alias of the credit card number.  Applies only to recurring contracts storing credit card details</param>
+        /// <param name="aliasType">The alias type of the credit card number.  Applies only to recurring contracts storing credit card details.</param>
         /// <param name="brand">The brand of the card.</param>
         /// <param name="cardBin">The bank identification number (BIN) of the card.</param>
         /// <param name="expiryMonth">The month the card expires.</param>
@@ -54,8 +56,10 @@ namespace Adyen.Checkout.Models
         /// <param name="supportedRecurringProcessingModels">Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount.</param>
         /// <param name="type">The type of payment method.</param>
         [JsonConstructor]
-        public StoredPaymentMethodResource(Option<string?> brand = default, Option<string?> cardBin = default, Option<string?> expiryMonth = default, Option<string?> expiryYear = default, Option<string?> externalResponseCode = default, Option<string?> externalTokenReference = default, Option<string?> holderName = default, Option<string?> iban = default, Option<string?> id = default, Option<string?> issuerName = default, Option<string?> lastFour = default, Option<TokenMandate?> mandate = default, Option<string?> name = default, Option<string?> networkTxReference = default, Option<string?> ownerName = default, Option<string?> shopperEmail = default, Option<string?> shopperReference = default, Option<List<string>?> supportedRecurringProcessingModels = default, Option<string?> type = default)
+        public StoredPaymentMethodResource(Option<string?> alias = default, Option<string?> aliasType = default, Option<string?> brand = default, Option<string?> cardBin = default, Option<string?> expiryMonth = default, Option<string?> expiryYear = default, Option<string?> externalResponseCode = default, Option<string?> externalTokenReference = default, Option<string?> holderName = default, Option<string?> iban = default, Option<string?> id = default, Option<string?> issuerName = default, Option<string?> lastFour = default, Option<TokenMandate?> mandate = default, Option<string?> name = default, Option<string?> networkTxReference = default, Option<string?> ownerName = default, Option<string?> shopperEmail = default, Option<string?> shopperReference = default, Option<List<string>?> supportedRecurringProcessingModels = default, Option<string?> type = default)
         {
+            _AliasOption = alias;
+            _AliasTypeOption = aliasType;
             _BrandOption = brand;
             _CardBinOption = cardBin;
             _ExpiryMonthOption = expiryMonth;
@@ -86,6 +90,34 @@ namespace Adyen.Checkout.Models
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Alias"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _AliasOption { get; private set; }
+
+        /// <summary>
+        /// The alias of the credit card number.  Applies only to recurring contracts storing credit card details
+        /// </summary>
+        /// <value>The alias of the credit card number.  Applies only to recurring contracts storing credit card details</value>
+        [JsonPropertyName("alias")]
+        public string? Alias { get { return this._AliasOption; } set { this._AliasOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="AliasType"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _AliasTypeOption { get; private set; }
+
+        /// <summary>
+        /// The alias type of the credit card number.  Applies only to recurring contracts storing credit card details.
+        /// </summary>
+        /// <value>The alias type of the credit card number.  Applies only to recurring contracts storing credit card details.</value>
+        [JsonPropertyName("aliasType")]
+        public string? AliasType { get { return this._AliasTypeOption; } set { this._AliasTypeOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Brand"/> will be populated.
@@ -360,6 +392,8 @@ namespace Adyen.Checkout.Models
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class StoredPaymentMethodResource {\n");
+            sb.Append("  Alias: ").Append(Alias).Append("\n");
+            sb.Append("  AliasType: ").Append(AliasType).Append("\n");
             sb.Append("  Brand: ").Append(Brand).Append("\n");
             sb.Append("  CardBin: ").Append(CardBin).Append("\n");
             sb.Append("  ExpiryMonth: ").Append(ExpiryMonth).Append("\n");
@@ -406,6 +440,8 @@ namespace Adyen.Checkout.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<string?> alias = default;
+            Option<string?> aliasType = default;
             Option<string?> brand = default;
             Option<string?> cardBin = default;
             Option<string?> expiryMonth = default;
@@ -441,6 +477,12 @@ namespace Adyen.Checkout.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "alias":
+                            alias = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "aliasType":
+                            aliasType = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "brand":
                             brand = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -505,7 +547,7 @@ namespace Adyen.Checkout.Models
             }
             
 
-            return new StoredPaymentMethodResource(brand, cardBin, expiryMonth, expiryYear, externalResponseCode, externalTokenReference, holderName, iban, id, issuerName, lastFour, mandate, name, networkTxReference, ownerName, shopperEmail, shopperReference, supportedRecurringProcessingModels, type);
+            return new StoredPaymentMethodResource(alias, aliasType, brand, cardBin, expiryMonth, expiryYear, externalResponseCode, externalTokenReference, holderName, iban, id, issuerName, lastFour, mandate, name, networkTxReference, ownerName, shopperEmail, shopperReference, supportedRecurringProcessingModels, type);
         }
 
         /// <summary>
@@ -534,6 +576,14 @@ namespace Adyen.Checkout.Models
         public void WriteProperties(Utf8JsonWriter writer, StoredPaymentMethodResource storedPaymentMethodResource, JsonSerializerOptions jsonSerializerOptions)
         {
             
+            if (storedPaymentMethodResource._AliasOption.IsSet)
+                if (storedPaymentMethodResource.Alias != null)
+                    writer.WriteString("alias", storedPaymentMethodResource.Alias);
+
+            if (storedPaymentMethodResource._AliasTypeOption.IsSet)
+                if (storedPaymentMethodResource.AliasType != null)
+                    writer.WriteString("aliasType", storedPaymentMethodResource.AliasType);
+
             if (storedPaymentMethodResource._BrandOption.IsSet)
                 if (storedPaymentMethodResource.Brand != null)
                     writer.WriteString("brand", storedPaymentMethodResource.Brand);
