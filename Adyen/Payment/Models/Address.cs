@@ -40,7 +40,6 @@ namespace Adyen.Payment.Models
         /// <param name="postalCode">A maximum of five digits for an address in the US, or a maximum of ten characters for an address in all other countries.</param>
         /// <param name="street">The name of the street. Maximum length: 3000 characters. &gt; The house number should not be included in this field; it should be separately provided via &#x60;houseNumberOrName&#x60;.</param>
         /// <param name="stateOrProvince">The two-character ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. &gt; Required for the US and Canada.</param>
-        [JsonConstructor]
         public Address(string city, string country, string houseNumberOrName, string postalCode, string street, Option<string?> stateOrProvince = default)
         {
             City = city;

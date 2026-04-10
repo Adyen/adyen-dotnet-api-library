@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="supportUrl">Support Url</param>
         /// <param name="supportEmail">Support Email</param>
-        [JsonConstructor]
         public AfterpayTouchInfo(string supportUrl, Option<string?> supportEmail = default)
         {
             SupportUrl = supportUrl;

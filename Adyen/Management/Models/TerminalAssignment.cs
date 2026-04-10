@@ -39,7 +39,6 @@ namespace Adyen.Management.Models
         /// <param name="merchantId">The unique identifier of the merchant account to which terminal is assigned.</param>
         /// <param name="reassignmentTarget">reassignmentTarget</param>
         /// <param name="storeId">The unique identifier of the store to which terminal is assigned.</param>
-        [JsonConstructor]
         public TerminalAssignment(string companyId, StatusEnum status, Option<string?> merchantId = default, Option<TerminalReassignmentTarget?> reassignmentTarget = default, Option<string?> storeId = default)
         {
             CompanyId = companyId;

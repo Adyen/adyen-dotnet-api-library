@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="amount">The transaction amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).</param>
         /// <param name="currencyCode">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).</param>
-        [JsonConstructor]
         public MinorUnitsMonetaryValue(Option<int?> amount = default, Option<string?> currencyCode = default)
         {
             _AmountOption = amount;

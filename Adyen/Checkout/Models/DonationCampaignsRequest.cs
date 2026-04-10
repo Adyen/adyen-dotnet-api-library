@@ -37,7 +37,6 @@ namespace Adyen.Checkout.Models
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes/).</param>
         /// <param name="merchantAccount">Your merchant account identifier.</param>
         /// <param name="locale">Locale on the shopper interaction device.</param>
-        [JsonConstructor]
         public DonationCampaignsRequest(string currency, string merchantAccount, Option<string?> locale = default)
         {
             Currency = currency;

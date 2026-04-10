@@ -35,7 +35,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// Initializes a new instance of the <see cref="CheckTaxElectronicDeliveryConsentResponse" /> class.
         /// </summary>
         /// <param name="uS1099k">Consent to electronically deliver tax form US1099-K.</param>
-        [JsonConstructor]
         public CheckTaxElectronicDeliveryConsentResponse(Option<bool?> uS1099k = default)
         {
             _US1099kOption = uS1099k;

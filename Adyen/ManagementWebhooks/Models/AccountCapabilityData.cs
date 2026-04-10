@@ -42,7 +42,6 @@ namespace Adyen.ManagementWebhooks.Models
         /// <param name="problems">List of entities that have problems with verification. The information includes the details of the errors and the actions that you can take to resolve them.</param>
         /// <param name="verificationDeadline">The verification deadline for the capability that will be disallowed if verification errors are not resolved.</param>
         /// <param name="verificationStatus">The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification was successful.  * **rejected**: Adyen checked the information and found reasons to not allow the capability. </param>
-        [JsonConstructor]
         public AccountCapabilityData(bool requested, string requestedLevel, Option<bool?> allowed = default, Option<string?> allowedLevel = default, Option<string?> capability = default, Option<List<CapabilityProblem>?> problems = default, Option<DateTimeOffset?> verificationDeadline = default, Option<string?> verificationStatus = default)
         {
             Requested = requested;

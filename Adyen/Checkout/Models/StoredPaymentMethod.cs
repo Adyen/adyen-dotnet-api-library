@@ -51,7 +51,6 @@ namespace Adyen.Checkout.Models
         /// <param name="supportedRecurringProcessingModels">The supported recurring processing models for this stored payment method.</param>
         /// <param name="supportedShopperInteractions">The supported shopper interactions for this stored payment method.</param>
         /// <param name="type">The type of payment method.</param>
-        [JsonConstructor]
         public StoredPaymentMethod(Option<string?> bankAccountNumber = default, Option<string?> bankLocationId = default, Option<string?> brand = default, Option<string?> expiryMonth = default, Option<string?> expiryYear = default, Option<string?> holderName = default, Option<string?> iban = default, Option<string?> id = default, Option<string?> label = default, Option<string?> lastFour = default, Option<string?> name = default, Option<string?> networkTxReference = default, Option<string?> ownerName = default, Option<string?> shopperEmail = default, Option<List<string>?> supportedRecurringProcessingModels = default, Option<List<string>?> supportedShopperInteractions = default, Option<string?> type = default)
         {
             _BankAccountNumberOption = bankAccountNumber;

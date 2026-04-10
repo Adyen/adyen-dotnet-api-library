@@ -44,7 +44,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="type">The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.</param>
         /// <param name="unincorporatedPartnership">unincorporatedPartnership</param>
         /// <param name="verificationPlan">A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/verification-overview/verification-types/#upfront-verification).</param>
-        [JsonConstructor]
         public LegalEntityInfo(Option<Dictionary<string, LegalEntityCapability>?> capabilities = default, Option<List<LegalEntityAssociation>?> entityAssociations = default, Option<Individual?> individual = default, Option<Organization?> organization = default, Option<string?> reference = default, Option<SoleProprietorship?> soleProprietorship = default, Option<Trust?> trust = default, Option<TypeEnum?> type = default, Option<UnincorporatedPartnership?> unincorporatedPartnership = default, Option<string?> verificationPlan = default)
         {
             _CapabilitiesOption = capabilities;

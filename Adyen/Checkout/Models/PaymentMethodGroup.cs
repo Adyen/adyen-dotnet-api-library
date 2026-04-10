@@ -37,7 +37,6 @@ namespace Adyen.Checkout.Models
         /// <param name="name">The name of the group.</param>
         /// <param name="paymentMethodData">Echo data to be used if the payment method is displayed as part of this group.</param>
         /// <param name="type">The unique code of the group.</param>
-        [JsonConstructor]
         public PaymentMethodGroup(Option<string?> name = default, Option<string?> paymentMethodData = default, Option<string?> type = default)
         {
             _NameOption = name;

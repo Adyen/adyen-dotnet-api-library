@@ -39,7 +39,6 @@ namespace Adyen.Transfers.Models
         /// <param name="message">A short explanation of the issue.</param>
         /// <param name="pspReference">The PSP reference of the payment.</param>
         /// <param name="status">The HTTP response status.</param>
-        [JsonConstructor]
         public ServiceError(Option<string?> errorCode = default, Option<string?> errorType = default, Option<string?> message = default, Option<string?> pspReference = default, Option<int?> status = default)
         {
             _ErrorCodeOption = errorCode;

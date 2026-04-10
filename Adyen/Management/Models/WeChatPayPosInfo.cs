@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="contactPersonName">The name of the contact person from merchant support.</param>
         /// <param name="email">The email address of merchant support.</param>
-        [JsonConstructor]
         public WeChatPayPosInfo(string contactPersonName, string email)
         {
             ContactPersonName = contactPersonName;

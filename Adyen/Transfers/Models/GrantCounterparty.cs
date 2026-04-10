@@ -37,7 +37,6 @@ namespace Adyen.Transfers.Models
         /// <param name="accountHolderId">The identifier of the receiving account holder.</param>
         /// <param name="balanceAccountId">The identifier of the balance account that belongs to the receiving account holder.</param>
         /// <param name="transferInstrumentId">The identifier of the transfer instrument that belongs to the legal entity of the account holder.</param>
-        [JsonConstructor]
         public GrantCounterparty(Option<string?> accountHolderId = default, Option<string?> balanceAccountId = default, Option<string?> transferInstrumentId = default)
         {
             _AccountHolderIdOption = accountHolderId;

@@ -40,7 +40,6 @@ namespace Adyen.Transfers.Models
         /// <param name="name">The name of the merchant&#39;s shop or service.</param>
         /// <param name="rawData">The raw data.</param>
         /// <param name="state">The state where the merchant is located.</param>
-        [JsonConstructor]
         public NameLocation(Option<string?> city = default, Option<string?> country = default, Option<string?> countryOfOrigin = default, Option<string?> name = default, Option<string?> rawData = default, Option<string?> state = default)
         {
             _CityOption = city;

@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="TerminalModelsResponse" /> class.
         /// </summary>
         /// <param name="data">The terminal models that the API credential has access to.</param>
-        [JsonConstructor]
         public TerminalModelsResponse(Option<List<IdName>?> data = default)
         {
             _DataOption = data;

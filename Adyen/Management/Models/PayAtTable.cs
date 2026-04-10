@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="authenticationMethod">Allowed authentication methods: Magswipe, Manual Entry.</param>
         /// <param name="enablePayAtTable">Enable Pay at table.</param>
         /// <param name="paymentInstrument">Sets the allowed payment instrument for Pay at table transactions.  Can be: **cash** or **card**. If not set, the terminal presents both options.</param>
-        [JsonConstructor]
         public PayAtTable(Option<AuthenticationMethodEnum?> authenticationMethod = default, Option<bool?> enablePayAtTable = default, Option<PaymentInstrumentEnum?> paymentInstrument = default)
         {
             _AuthenticationMethodOption = authenticationMethod;

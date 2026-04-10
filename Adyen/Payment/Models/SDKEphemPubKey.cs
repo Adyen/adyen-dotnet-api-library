@@ -38,7 +38,6 @@ namespace Adyen.Payment.Models
         /// <param name="kty">The &#x60;kty&#x60; value as received from the 3D Secure 2 SDK.</param>
         /// <param name="x">The &#x60;x&#x60; value as received from the 3D Secure 2 SDK.</param>
         /// <param name="y">The &#x60;y&#x60; value as received from the 3D Secure 2 SDK.</param>
-        [JsonConstructor]
         public SDKEphemPubKey(Option<string?> crv = default, Option<string?> kty = default, Option<string?> x = default, Option<string?> y = default)
         {
             _CrvOption = crv;

@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="TapToPay" /> class.
         /// </summary>
         /// <param name="merchantDisplayName">The text shown on the screen during the Tap to Pay transaction.</param>
-        [JsonConstructor]
         public TapToPay(Option<string?> merchantDisplayName = default)
         {
             _MerchantDisplayNameOption = merchantDisplayName;

@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="PayoutSettingsResponse" /> class.
         /// </summary>
         /// <param name="data">The list of payout accounts.</param>
-        [JsonConstructor]
         public PayoutSettingsResponse(Option<List<PayoutSettings>?> data = default)
         {
             _DataOption = data;

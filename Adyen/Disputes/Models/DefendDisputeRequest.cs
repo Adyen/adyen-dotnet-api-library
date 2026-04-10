@@ -37,7 +37,6 @@ namespace Adyen.Disputes.Models
         /// <param name="defenseReasonCode">The defense reason code that was selected to defend this dispute.</param>
         /// <param name="disputePspReference">The PSP reference assigned to the dispute.</param>
         /// <param name="merchantAccountCode">The merchant account identifier, for which you want to process the dispute transaction.</param>
-        [JsonConstructor]
         public DefendDisputeRequest(string defenseReasonCode, string disputePspReference, string merchantAccountCode)
         {
             DefenseReasonCode = defenseReasonCode;

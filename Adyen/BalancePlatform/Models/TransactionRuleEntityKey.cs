@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="entityReference">The unique identifier of the resource.</param>
         /// <param name="entityType">The type of resource.  Possible values: **balancePlatform**, **paymentInstrumentGroup**, **accountHolder**, **balanceAccount**, or **paymentInstrument**.</param>
-        [JsonConstructor]
         public TransactionRuleEntityKey(Option<string?> entityReference = default, Option<string?> entityType = default)
         {
             _EntityReferenceOption = entityReference;

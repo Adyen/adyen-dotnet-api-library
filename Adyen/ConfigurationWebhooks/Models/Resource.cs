@@ -37,7 +37,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="balancePlatform">The unique identifier of the balance platform.</param>
         /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.</param>
         /// <param name="id">The ID of the resource.</param>
-        [JsonConstructor]
         public Resource(Option<string?> balancePlatform = default, Option<DateTimeOffset?> creationDate = default, Option<string?> id = default)
         {
             _BalancePlatformOption = balancePlatform;

@@ -38,7 +38,6 @@ namespace Adyen.Management.Models
         /// <param name="pagesTotal">Total number of pages.</param>
         /// <param name="links">links</param>
         /// <param name="data">The list of terminals and their details.</param>
-        [JsonConstructor]
         public ListTerminalsResponse(int itemsTotal, int pagesTotal, Option<PaginationLinks?> links = default, Option<List<Terminal>?> data = default)
         {
             ItemsTotal = itemsTotal;

@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="appId">The unique identifier of the app to be installed.</param>
         /// <param name="type">Type of terminal action: Install an Android app. (default to TypeEnum.InstallAndroidApp)</param>
-        [JsonConstructor]
         public InstallAndroidAppDetails(Option<string?> appId = default, Option<TypeEnum?> type = default)
         {
             _AppIdOption = appId;

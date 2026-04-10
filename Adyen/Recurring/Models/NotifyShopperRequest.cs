@@ -43,7 +43,6 @@ namespace Adyen.Recurring.Models
         /// <param name="displayedReference">Reference of Pre-debit notification that is displayed to the shopper. Optional field. Maps to reference if missing</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        [JsonConstructor]
         public NotifyShopperRequest(Amount amount, string merchantAccount, string reference, string shopperReference, Option<string?> billingDate = default, Option<string?> billingSequenceNumber = default, Option<string?> displayedReference = default, Option<string?> recurringDetailReference = default, Option<string?> storedPaymentMethodId = default)
         {
             Amount = amount;

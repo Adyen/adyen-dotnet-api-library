@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="id">The unique identifier of the &#x60;target.type&#x60;. This can be the ID of your:  * balance platform * account holder * account holder&#39;s balance account</param>
         /// <param name="type">The resource for which you want to receive notifications. Possible values:  * **balancePlatform**: receive notifications about balance changes in your entire balance platform.  * **accountHolder**: receive notifications about balance changes of a specific user.  * **balanceAccount**: receive notifications about balance changes in a specific balance account.</param>
-        [JsonConstructor]
         public Target(string id, TypeEnum type)
         {
             Id = id;

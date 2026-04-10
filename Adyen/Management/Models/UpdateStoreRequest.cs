@@ -42,7 +42,6 @@ namespace Adyen.Management.Models
         /// <param name="splitConfiguration">splitConfiguration</param>
         /// <param name="status">The status of the store. Possible values are:  - **active**: This value is assigned automatically when a store is created.  - **inactive**: The maximum [transaction limits and number of Store-and-Forward transactions](https://docs.adyen.com/point-of-sale/determine-account-structure/configure-features#payment-features) for the store are set to 0. This blocks new transactions, but captures are still possible. - **closed**: The terminals of the store are reassigned to the merchant inventory, so they can&#39;t process payments.  You can change the status from **active** to **inactive**, and from **inactive** to **active** or **closed**.  Once **closed**, a store can&#39;t be reopened.</param>
         /// <param name="subMerchantData">subMerchantData</param>
-        [JsonConstructor]
         public UpdateStoreRequest(Option<UpdatableAddress?> address = default, Option<List<string>?> businessLineIds = default, Option<string?> description = default, Option<string?> externalReferenceId = default, Option<string?> phoneNumber = default, Option<StoreSplitConfiguration?> splitConfiguration = default, Option<StatusEnum?> status = default, Option<SubMerchantData?> subMerchantData = default)
         {
             _AddressOption = address;

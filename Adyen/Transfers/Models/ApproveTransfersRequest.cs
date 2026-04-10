@@ -35,7 +35,6 @@ namespace Adyen.Transfers.Models
         /// Initializes a new instance of the <see cref="ApproveTransfersRequest" /> class.
         /// </summary>
         /// <param name="transferIds">Contains the unique identifiers of the transfers that you want to approve.</param>
-        [JsonConstructor]
         public ApproveTransfersRequest(Option<List<string>?> transferIds = default)
         {
             _TransferIdsOption = transferIds;

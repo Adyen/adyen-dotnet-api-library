@@ -38,7 +38,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="environment">The environment from which the webhook originated.  Possible values: **test**, **live**.</param>
         /// <param name="timestamp">When the event was queued.</param>
         /// <param name="type">The type of webhook.</param>
-        [JsonConstructor]
         public TransferNotificationRequest(TransferData data, string environment, Option<DateTimeOffset?> timestamp = default, Option<TypeEnum?> type = default)
         {
             Data = data;

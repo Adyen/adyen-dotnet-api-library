@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="merchantName">Merchant name displayed to the shopper in the Agreements</param>
         /// <param name="payToPurpose">Represents the purpose of the Agreements created, it relates to the business type **Allowed values**: mortgage, utility, loan, gambling, retail, salary, personal, government, pension, tax, other</param>
-        [JsonConstructor]
         public PayToInfo(string merchantName, string payToPurpose)
         {
             MerchantName = merchantName;

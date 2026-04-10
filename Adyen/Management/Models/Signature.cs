@@ -38,7 +38,6 @@ namespace Adyen.Management.Models
         /// <param name="deviceName">Name that identifies the terminal.</param>
         /// <param name="deviceSlogan">Slogan shown on the start screen of the device.</param>
         /// <param name="skipSignature">Skip asking for a signature. This is possible because all global card schemes (American Express, Diners, Discover, JCB, MasterCard, VISA, and UnionPay) regard a signature as optional.</param>
-        [JsonConstructor]
         public Signature(Option<bool?> askSignatureOnScreen = default, Option<string?> deviceName = default, Option<string?> deviceSlogan = default, Option<bool?> skipSignature = default)
         {
             _AskSignatureOnScreenOption = askSignatureOnScreen;

@@ -42,7 +42,6 @@ namespace Adyen.SessionAuthentication.Models
         /// <param name="status">The HTTP status code.</param>
         /// <param name="title">A short, human-readable summary of the problem type.</param>
         /// <param name="type">A URI that identifies the validation error type. It points to human-readable documentation for the problem type.</param>
-        [JsonConstructor]
         public DefaultErrorResponseEntity(Option<string?> detail = default, Option<string?> errorCode = default, Option<string?> instance = default, Option<List<InvalidField>?> invalidFields = default, Option<string?> requestId = default, Option<int?> status = default, Option<string?> title = default, Option<string?> type = default)
         {
             _DetailOption = detail;

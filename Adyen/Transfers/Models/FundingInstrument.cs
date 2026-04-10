@@ -38,7 +38,6 @@ namespace Adyen.Transfers.Models
         /// <param name="networkPaymentReference">The unique reference assigned by the card network for the pay-in transaction.</param>
         /// <param name="reference">Your internal reference that identifies this funding instrument. Required if &#x60;sourceOfFunds&#x60; is **DEPOSIT_ACCOUNT**.</param>
         /// <param name="sourceOfFunds">Indicates where the funds used for the transfer originated. Possible values are: - **DEBIT** for card-to-card transfers. - **DEPOSIT_ACCOUNT** for wallet-to-card transfers.</param>
-        [JsonConstructor]
         public FundingInstrument(Option<CardIdentification?> cardIdentification = default, Option<string?> networkPaymentReference = default, Option<string?> reference = default, Option<SourceOfFundsEnum?> sourceOfFunds = default)
         {
             _CardIdentificationOption = cardIdentification;

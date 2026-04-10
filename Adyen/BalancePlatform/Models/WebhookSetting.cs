@@ -38,7 +38,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="id">The unique identifier of the webhook setting.</param>
         /// <param name="status">status</param>
         /// <param name="target">target</param>
-        [JsonConstructor]
         public WebhookSetting(string currency, string id, string status, Target target)
         {
             Currency = currency;

@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="operation">Defines how the condition must be evaluated.</param>
         /// <param name="value">List of two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes.</param>
-        [JsonConstructor]
         public CountriesRestriction(string operation, Option<List<string>?> value = default)
         {
             Operation = operation;

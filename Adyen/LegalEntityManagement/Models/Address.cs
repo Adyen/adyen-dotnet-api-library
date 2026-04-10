@@ -40,7 +40,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="stateOrProvince">The two-letter ISO 3166-2 state or province code. For example, **CA** in the US. Required for Australia and New Zealand.  If you specify the state or province, you must also send &#x60;city&#x60;, &#x60;postalCode&#x60;, and &#x60;street&#x60;.</param>
         /// <param name="street">The name of the street, and the house or building number. Required if &#x60;stateOrProvince&#x60; and/or &#x60;city&#x60; is provided.</param>
         /// <param name="street2">The apartment, unit, or suite number.</param>
-        [JsonConstructor]
         public Address(string country, Option<string?> city = default, Option<string?> postalCode = default, Option<string?> stateOrProvince = default, Option<string?> street = default, Option<string?> street2 = default)
         {
             Country = country;

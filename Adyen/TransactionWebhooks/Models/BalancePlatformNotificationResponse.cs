@@ -35,7 +35,6 @@ namespace Adyen.TransactionWebhooks.Models
         /// Initializes a new instance of the <see cref="BalancePlatformNotificationResponse" /> class.
         /// </summary>
         /// <param name="notificationResponse">Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks/#accept-webhooks).</param>
-        [JsonConstructor]
         public BalancePlatformNotificationResponse(Option<string?> notificationResponse = default)
         {
             _NotificationResponseOption = notificationResponse;

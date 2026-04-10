@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="operation">Defines how the condition must be evaluated.</param>
         /// <param name="value">List of days of the week.  Possible values: **monday**, **tuesday**, **wednesday**, **thursday**, **friday**, **saturday**, **sunday**.  </param>
-        [JsonConstructor]
         public DayOfWeekRestriction(string operation, Option<List<DayOfWeekRestriction.ValueEnum>?> value = default)
         {
             Operation = operation;

@@ -37,7 +37,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="modificationMerchantReference">The capture&#39;s merchant reference included in the transfer.</param>
         /// <param name="modificationPspReference">The capture reference included in the transfer.</param>
         /// <param name="type">**internal** (default to TypeEnum.Internal)</param>
-        [JsonConstructor]
         public InternalCategoryData(Option<string?> modificationMerchantReference = default, Option<string?> modificationPspReference = default, Option<TypeEnum?> type = default)
         {
             _ModificationMerchantReferenceOption = modificationMerchantReference;

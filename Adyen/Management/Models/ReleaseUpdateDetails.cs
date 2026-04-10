@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="type">Type of terminal action: Update Release. (default to TypeEnum.ReleaseUpdate)</param>
         /// <param name="updateAtFirstMaintenanceCall">Boolean flag that tells if the terminal should update at the first next maintenance call. If false, terminal will update on its configured reboot time.</param>
-        [JsonConstructor]
         public ReleaseUpdateDetails(Option<TypeEnum?> type = default, Option<bool?> updateAtFirstMaintenanceCall = default)
         {
             _TypeOption = type;

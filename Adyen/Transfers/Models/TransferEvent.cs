@@ -52,7 +52,6 @@ namespace Adyen.Transfers.Models
         /// <param name="type">The type of the transfer event. Possible values: **accounting**, **tracking**.</param>
         /// <param name="updateDate">The date when the tracking status was updated.</param>
         /// <param name="valueDate">The date when the funds are expected to be deducted from or credited to the balance account. This date can be in either the past or future.</param>
-        [JsonConstructor]
         public TransferEvent(Option<Amount?> amount = default, Option<List<AmountAdjustment>?> amountAdjustments = default, Option<string?> arn = default, Option<DateTimeOffset?> bookingDate = default, Option<DateTimeOffset?> estimatedArrivalTime = default, Option<List<TransferEventEventsDataInner>?> eventsData = default, Option<ExternalReason?> externalReason = default, Option<string?> id = default, Option<Modification?> modification = default, Option<List<BalanceMutation>?> mutations = default, Option<Amount?> originalAmount = default, Option<ReasonEnum?> reason = default, Option<StatusEnum?> status = default, Option<TransferEventTrackingData?> trackingData = default, Option<string?> transactionId = default, Option<TypeEnum?> type = default, Option<DateTimeOffset?> updateDate = default, Option<DateTimeOffset?> valueDate = default)
         {
             _AmountOption = amount;

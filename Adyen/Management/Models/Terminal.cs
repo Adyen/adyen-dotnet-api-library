@@ -44,7 +44,6 @@ namespace Adyen.Management.Models
         /// <param name="model">The model name of the terminal.</param>
         /// <param name="restartLocalTime">The exact time of the terminal reboot, in the timezone of the terminal in **HH:mm** format.</param>
         /// <param name="serialNumber">The serial number of the terminal.</param>
-        [JsonConstructor]
         public Terminal(Option<TerminalAssignment?> assignment = default, Option<TerminalConnectivity?> connectivity = default, Option<string?> firmwareVersion = default, Option<string?> id = default, Option<List<InstalledAPKs>?> installedAPKs = default, Option<DateTimeOffset?> lastActivityAt = default, Option<DateTimeOffset?> lastTransactionAt = default, Option<string?> model = default, Option<string?> restartLocalTime = default, Option<string?> serialNumber = default)
         {
             _AssignmentOption = assignment;

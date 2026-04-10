@@ -36,7 +36,6 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
         /// </summary>
         /// <param name="status">The status of the authorization.   Possible values:   * **Authorised**   * **Refused**   For more information, refer to [Use relayed authorization](https://docs.adyen.com/issuing/authorisation/relayed-authorisation/).</param>
         /// <param name="refusalReason">The reason for refusing the authorization.</param>
-        [JsonConstructor]
         public AuthorisationDecisionResponse(StatusEnum status, Option<string?> refusalReason = default)
         {
             Status = status;

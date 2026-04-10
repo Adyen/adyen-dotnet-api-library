@@ -37,7 +37,6 @@ namespace Adyen.Capital.Models
         /// <param name="accountNumber">The bank account number, without separators or whitespace. The length and format depends on the bank or country.</param>
         /// <param name="bic">The bank&#39;s 8- or 11-character BIC or SWIFT code.</param>
         /// <param name="additionalBankIdentification">additionalBankIdentification</param>
-        [JsonConstructor]
         public NumberAndBicAccountIdentification(string accountNumber, string bic, Option<AdditionalBankIdentification?> additionalBankIdentification = default) : base()
         {
             AccountNumber = accountNumber;

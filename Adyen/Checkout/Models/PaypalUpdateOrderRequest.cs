@@ -40,7 +40,6 @@ namespace Adyen.Checkout.Models
         /// <param name="pspReference">The original &#x60;pspReference&#x60; from the &#x60;/payments&#x60; response.</param>
         /// <param name="sessionId">The original &#x60;sessionId&#x60; from the &#x60;/sessions&#x60; response.</param>
         /// <param name="taxTotal">taxTotal</param>
-        [JsonConstructor]
         public PaypalUpdateOrderRequest(Option<Amount?> amount = default, Option<List<DeliveryMethod>?> deliveryMethods = default, Option<string?> paymentData = default, Option<string?> pspReference = default, Option<string?> sessionId = default, Option<TaxTotal?> taxTotal = default)
         {
             _AmountOption = amount;

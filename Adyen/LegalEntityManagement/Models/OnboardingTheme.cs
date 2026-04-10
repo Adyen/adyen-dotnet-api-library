@@ -39,7 +39,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="properties">The properties of the theme.</param>
         /// <param name="description">The description of the theme.</param>
         /// <param name="updatedAt">The date when the theme was last updated.</param>
-        [JsonConstructor]
         public OnboardingTheme(DateTimeOffset createdAt, string id, Dictionary<string, string> properties, Option<string?> description = default, Option<DateTimeOffset?> updatedAt = default)
         {
             CreatedAt = createdAt;

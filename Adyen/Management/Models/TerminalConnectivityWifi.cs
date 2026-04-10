@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="ipAddress">The terminal&#39;s IP address in the Wi-Fi network.</param>
         /// <param name="macAddress">The terminal&#39;s MAC address in the Wi-Fi network.</param>
         /// <param name="ssid">The SSID of the Wi-Fi network that the terminal is connected to.</param>
-        [JsonConstructor]
         public TerminalConnectivityWifi(Option<string?> ipAddress = default, Option<string?> macAddress = default, Option<string?> ssid = default)
         {
             _IpAddressOption = ipAddress;

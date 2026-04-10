@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="TestWebhookResponse" /> class.
         /// </summary>
         /// <param name="data">List with test results. Each test webhook we send has a list element with the result.</param>
-        [JsonConstructor]
         public TestWebhookResponse(Option<List<TestOutput>?> data = default)
         {
             _DataOption = data;

@@ -36,7 +36,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="name">Name of the field. For example, Name of External Platform.</param>
         /// <param name="version">Version of the field. For example, Version of External Platform.</param>
-        [JsonConstructor]
         public CommonField(Option<string?> name = default, Option<string?> version = default)
         {
             _NameOption = name;

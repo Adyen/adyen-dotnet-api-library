@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="description">Specifies for which routes the amount in a transfer request must have no non-zero decimal places, so the transfer can only be processed if the amount consists of round numbers.</param>
         /// <param name="type">**amountNonZeroDecimalsRequirement** (default to TypeEnum.AmountNonZeroDecimalsRequirement)</param>
-        [JsonConstructor]
         public AmountNonZeroDecimalsRequirement(Option<string?> description = default, TypeEnum type = default)
         {
             _DescriptionOption = description;

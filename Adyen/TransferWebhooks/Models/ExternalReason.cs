@@ -37,7 +37,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="code">The reason code.</param>
         /// <param name="description">The description of the reason code.</param>
         /// <param name="namespace">The namespace for the reason code.</param>
-        [JsonConstructor]
         public ExternalReason(Option<string?> code = default, Option<string?> description = default, Option<string?> @namespace = default)
         {
             _CodeOption = code;

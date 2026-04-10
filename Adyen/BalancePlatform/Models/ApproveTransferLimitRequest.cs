@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="ApproveTransferLimitRequest" /> class.
         /// </summary>
         /// <param name="transferLimitIds">A list that includes the &#x60;transferLimitId&#x60; of all the pending transfer limits you want to approve.</param>
-        [JsonConstructor]
         public ApproveTransferLimitRequest(List<string> transferLimitIds)
         {
             TransferLimitIds = transferLimitIds;

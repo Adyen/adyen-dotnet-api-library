@@ -39,7 +39,6 @@ namespace Adyen.Checkout.Models
         /// <param name="shopperName">shopperName</param>
         /// <param name="telephoneNumber">The phone number of the person funding the money.</param>
         /// <param name="walletIdentifier">The unique identifier of the wallet where the funds are coming from.</param>
-        [JsonConstructor]
         public FundOrigin(Option<Address?> billingAddress = default, Option<string?> shopperEmail = default, Option<Name?> shopperName = default, Option<string?> telephoneNumber = default, Option<string?> walletIdentifier = default)
         {
             _BillingAddressOption = billingAddress;

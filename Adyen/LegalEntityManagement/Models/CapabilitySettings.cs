@@ -39,7 +39,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="fundingSource">The funding source of the card, for example **debit**.</param>
         /// <param name="interval">The period when the rule conditions apply.</param>
         /// <param name="maxAmount">maxAmount</param>
-        [JsonConstructor]
         public CapabilitySettings(Option<Dictionary<string, Amount>?> amountPerIndustry = default, Option<bool?> authorizedCardUsers = default, Option<List<CapabilitySettings.FundingSourceEnum>?> fundingSource = default, Option<IntervalEnum?> interval = default, Option<Amount?> maxAmount = default)
         {
             _AmountPerIndustryOption = amountPerIndustry;

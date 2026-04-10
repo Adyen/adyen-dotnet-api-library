@@ -39,7 +39,6 @@ namespace Adyen.Management.Models
         /// <param name="id">The unique identifier of the billing entity, for use as &#x60;billingEntityId&#x60; when creating an order.</param>
         /// <param name="name">The unique name of the billing entity.</param>
         /// <param name="taxId">The tax number of the billing entity.</param>
-        [JsonConstructor]
         public BillingEntity(Option<Address?> address = default, Option<string?> email = default, Option<string?> id = default, Option<string?> name = default, Option<string?> taxId = default)
         {
             _AddressOption = address;

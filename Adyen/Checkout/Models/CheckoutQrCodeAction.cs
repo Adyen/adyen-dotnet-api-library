@@ -40,7 +40,6 @@ namespace Adyen.Checkout.Models
         /// <param name="paymentMethodType">Specifies the payment method.</param>
         /// <param name="qrCodeData">The contents of the QR code as a UTF8 string.</param>
         /// <param name="url">Specifies the URL to redirect to.</param>
-        [JsonConstructor]
         public CheckoutQrCodeAction(TypeEnum type, Option<string?> expiresAt = default, Option<string?> paymentData = default, Option<string?> paymentMethodType = default, Option<string?> qrCodeData = default, Option<string?> url = default)
         {
             Type = type;

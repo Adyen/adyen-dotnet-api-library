@@ -39,7 +39,6 @@ namespace Adyen.Management.Models
         /// <param name="deferredDebit">Set to **true** to accept cards that allow deferred debit.</param>
         /// <param name="prepaid">Set to **true** to accept prepaid cards.</param>
         /// <param name="unknown">Set to **true** to accept card types for which the terminal can&#39;t determine the funding source while offline.</param>
-        [JsonConstructor]
         public SupportedCardTypes(Option<bool?> credit = default, Option<bool?> debit = default, Option<bool?> deferredDebit = default, Option<bool?> prepaid = default, Option<bool?> unknown = default)
         {
             _CreditOption = credit;

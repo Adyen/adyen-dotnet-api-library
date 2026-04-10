@@ -42,7 +42,6 @@ namespace Adyen.Checkout.Models
         /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
         /// <param name="type">**openinvoice** (default to TypeEnum.Openinvoice)</param>
-        [JsonConstructor]
         public OpenInvoiceDetails(Option<string?> billingAddress = default, Option<string?> checkoutAttemptId = default, Option<string?> deliveryAddress = default, Option<string?> personalDetails = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<TypeEnum?> type = default)
         {
             _BillingAddressOption = billingAddress;

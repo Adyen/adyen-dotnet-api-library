@@ -37,7 +37,6 @@ namespace Adyen.Payment.Models
         /// <param name="pspReference">Adyen&#39;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.</param>
         /// <param name="response">Indicates if the modification request has been received for processing.</param>
         /// <param name="additionalData">This field contains additional data, which may be returned in a particular modification response.</param>
-        [JsonConstructor]
         public ModificationResult(string pspReference, ResponseEnum response, Option<Dictionary<string, string>?> additionalData = default)
         {
             PspReference = pspReference;

@@ -36,7 +36,6 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <param name="code">The code for the status of the grant. Possible values: - **Pending** - **Active** - **Repaid** - **WrittenOff** - **Failed** - **Revoked** - **Requested** - **Reviewing** - **Approved** - **Rejected** - **Cancelled**</param>
         /// <param name="actions">A list of actions that need to be completed to proceed with the grant. </param>
-        [JsonConstructor]
         public Status(CodeEnum code, Option<List<Action>?> actions = default)
         {
             Code = code;

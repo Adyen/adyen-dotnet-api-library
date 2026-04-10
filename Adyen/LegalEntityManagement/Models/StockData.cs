@@ -37,7 +37,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="marketIdentifier">The four-digit [Market Identifier Code](https://en.wikipedia.org/wiki/Market_Identifier_Code) of the stock market where the organization&#39;s stocks are traded.</param>
         /// <param name="stockNumber">The 12-digit International Securities Identification Number (ISIN) of the company, without dashes (-).</param>
         /// <param name="tickerSymbol">The stock ticker symbol.</param>
-        [JsonConstructor]
         public StockData(Option<string?> marketIdentifier = default, Option<string?> stockNumber = default, Option<string?> tickerSymbol = default)
         {
             _MarketIdentifierOption = marketIdentifier;

@@ -40,7 +40,6 @@ namespace Adyen.ManagementWebhooks.Models
         /// <param name="uniqueTerminalId">The unique identifier of the terminal.</param>
         /// <param name="assignedToStore">The store that the terminal is assigned to, identified by the store reference (also known as store code).</param>
         /// <param name="assignedToStoreId">The unique identifier of the store to which the terminal is assigned.</param>
-        [JsonConstructor]
         public TerminalAssignmentNotificationRequest(string assignedToAccount, string eventDate, string pspReference, string uniqueTerminalId, Option<string?> assignedToStore = default, Option<string?> assignedToStoreId = default)
         {
             AssignedToAccount = assignedToAccount;

@@ -44,7 +44,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="reference">Your reference for the balance account, maximum 150 characters.</param>
         /// <param name="status">The status of the balance account, set to **active** by default.  </param>
         /// <param name="timeZone">The time zone of the balance account. For example, **Europe/Amsterdam**. Defaults to the time zone of the account holder if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).</param>
-        [JsonConstructor]
         public BalanceAccountBase(string accountHolderId, string id, Option<string?> defaultCurrencyCode = default, Option<string?> description = default, Option<Dictionary<string, string>?> metadata = default, Option<string?> migratedAccountCode = default, Option<PlatformPaymentConfiguration?> platformPaymentConfiguration = default, Option<string?> reference = default, Option<StatusEnum?> status = default, Option<string?> timeZone = default)
         {
             AccountHolderId = accountHolderId;

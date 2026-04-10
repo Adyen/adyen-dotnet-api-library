@@ -40,7 +40,6 @@ namespace Adyen.AcsWebhooks.Models
         /// <param name="phoneNumber">The last four digits of the phone number used in the challenge.</param>
         /// <param name="resends">The number of times the one-time password (OTP) was resent during the challenge.</param>
         /// <param name="retries">The number of retries used in the challenge.</param>
-        [JsonConstructor]
         public ChallengeInfo(FlowEnum flow, DateTimeOffset lastInteraction, Option<ChallengeCancelEnum?> challengeCancel = default, Option<string?> phoneNumber = default, Option<int?> resends = default, Option<int?> retries = default)
         {
             Flow = flow;

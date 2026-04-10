@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="certificateId">The unique identifier of the certificate to be uninstalled.</param>
         /// <param name="type">Type of terminal action: Uninstall an Android certificate. (default to TypeEnum.UninstallAndroidCertificate)</param>
-        [JsonConstructor]
         public UninstallAndroidCertificateDetails(Option<string?> certificateId = default, Option<TypeEnum?> type = default)
         {
             _CertificateIdOption = certificateId;

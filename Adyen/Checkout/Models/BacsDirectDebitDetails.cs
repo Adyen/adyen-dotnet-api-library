@@ -43,7 +43,6 @@ namespace Adyen.Checkout.Models
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
         /// <param name="transferInstrumentId">The unique identifier of your user&#39;s verified transfer instrument, which you can use to top up their balance accounts.</param>
         /// <param name="type">**directdebit_GB** (default to TypeEnum.DirectdebitGB)</param>
-        [JsonConstructor]
         public BacsDirectDebitDetails(Option<string?> bankAccountNumber = default, Option<string?> bankLocationId = default, Option<string?> checkoutAttemptId = default, Option<string?> holderName = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<string?> transferInstrumentId = default, Option<TypeEnum?> type = default)
         {
             _BankAccountNumberOption = bankAccountNumber;

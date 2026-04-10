@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="allowedAppsInKioskMode">List of package names for apps allowed to run in kiosk mode.</param>
         /// <param name="kioskAppOnStartup">The package name of the app to launch on startup. This must be one of the apps included in &#x60;allowedAppsInKioskMode&#x60;.</param>
-        [JsonConstructor]
         public KioskModeSettings(Option<List<string>?> allowedAppsInKioskMode = default, Option<string?> kioskAppOnStartup = default)
         {
             _AllowedAppsInKioskModeOption = allowedAppsInKioskMode;

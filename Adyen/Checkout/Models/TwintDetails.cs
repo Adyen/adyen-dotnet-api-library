@@ -40,7 +40,6 @@ namespace Adyen.Checkout.Models
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
         /// <param name="subtype">The type of flow to initiate.</param>
         /// <param name="type">The payment method type.</param>
-        [JsonConstructor]
         public TwintDetails(Option<string?> checkoutAttemptId = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<string?> subtype = default, Option<TypeEnum?> type = default)
         {
             _CheckoutAttemptIdOption = checkoutAttemptId;

@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="description">Specifies that transactions deemed to be International ACH (IAT) per OFAC/NACHA rules cannot have fast priority.</param>
         /// <param name="type">**usInternationalAchPriorityRequirement** (default to TypeEnum.UsInternationalAchPriorityRequirement)</param>
-        [JsonConstructor]
         public USInternationalAchPriorityRequirement(Option<string?> description = default, TypeEnum type = default)
         {
             _DescriptionOption = description;

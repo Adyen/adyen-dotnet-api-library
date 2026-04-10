@@ -37,7 +37,6 @@ namespace Adyen.BalanceWebhooks.Models
         /// <param name="description">The description of the resource.</param>
         /// <param name="id">The unique identifier of the resource.</param>
         /// <param name="reference">The reference for the resource.</param>
-        [JsonConstructor]
         public ResourceReference(Option<string?> description = default, Option<string?> id = default, Option<string?> reference = default)
         {
             _DescriptionOption = description;

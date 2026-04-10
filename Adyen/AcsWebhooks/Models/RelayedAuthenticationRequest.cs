@@ -41,7 +41,6 @@ namespace Adyen.AcsWebhooks.Models
         /// <param name="type">Type of notification.</param>
         /// <param name="threeDSRequestorAppURL">URL for auto-switching to the threeDS Requestor App. If not present, the threeDS Requestor App doesn&#39;t support auto-switching.</param>
         /// <param name="timestamp">When the event was queued.</param>
-        [JsonConstructor]
         public RelayedAuthenticationRequest(string environment, string id, string paymentInstrumentId, Purchase purchase, TypeEnum type, Option<string?> threeDSRequestorAppURL = default, Option<DateTimeOffset?> timestamp = default)
         {
             Environment = environment;

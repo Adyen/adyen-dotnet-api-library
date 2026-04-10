@@ -38,7 +38,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="fee">Fee amount.</param>
         /// <param name="principal">Principal amount.</param>
         /// <param name="total">Total amount. A sum of principal amount and fee amount.</param>
-        [JsonConstructor]
         public CapitalBalance(string currency, long fee, long principal, long total)
         {
             Currency = currency;

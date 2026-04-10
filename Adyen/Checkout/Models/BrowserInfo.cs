@@ -43,7 +43,6 @@ namespace Adyen.Checkout.Models
         /// <param name="timeZoneOffset">Time difference between UTC time and the shopper&#39;s browser local time, in minutes.</param>
         /// <param name="userAgent">The user agent value of the shopper&#39;s browser.</param>
         /// <param name="javaScriptEnabled">Boolean value indicating if the shopper&#39;s browser is able to execute JavaScript. A default &#39;true&#39; value is assumed if the field is not present. (default to true)</param>
-        [JsonConstructor]
         public BrowserInfo(string acceptHeader, int colorDepth, bool javaEnabled, string language, int screenHeight, int screenWidth, int timeZoneOffset, string userAgent, Option<bool?> javaScriptEnabled = default)
         {
             AcceptHeader = acceptHeader;

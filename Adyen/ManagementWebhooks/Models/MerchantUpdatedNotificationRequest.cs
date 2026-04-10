@@ -38,7 +38,6 @@ namespace Adyen.ManagementWebhooks.Models
         /// <param name="data">data</param>
         /// <param name="environment">The environment from which the webhook originated.  Possible values: **test**, **live**.</param>
         /// <param name="type">Type of notification.</param>
-        [JsonConstructor]
         public MerchantUpdatedNotificationRequest(DateTimeOffset createdAt, AccountUpdateNotificationData data, string environment, TypeEnum type)
         {
             CreatedAt = createdAt;

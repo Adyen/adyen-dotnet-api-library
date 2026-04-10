@@ -35,7 +35,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// Initializes a new instance of the <see cref="BirthData" /> class.
         /// </summary>
         /// <param name="dateOfBirth">The individual&#39;s date of birth, in YYYY-MM-DD format.</param>
-        [JsonConstructor]
         public BirthData(Option<string?> dateOfBirth = default)
         {
             _DateOfBirthOption = dateOfBirth;

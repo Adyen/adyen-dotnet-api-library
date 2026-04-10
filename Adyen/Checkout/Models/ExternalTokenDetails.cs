@@ -42,7 +42,6 @@ namespace Adyen.Checkout.Models
         /// <param name="holderName">The name of the card holder.</param>
         /// <param name="number">The card number. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).</param>
         /// <param name="type">The type of token. Allowed value: **externalToken**. (default to TypeEnum.ExternalToken)</param>
-        [JsonConstructor]
         public ExternalTokenDetails(string storedPaymentMethodId, SubtypeEnum subtype, Option<string?> checkoutAttemptId = default, Option<string?> expiryMonth = default, Option<string?> expiryYear = default, Option<string?> holderName = default, Option<string?> number = default, TypeEnum type = default)
         {
             StoredPaymentMethodId = storedPaymentMethodId;

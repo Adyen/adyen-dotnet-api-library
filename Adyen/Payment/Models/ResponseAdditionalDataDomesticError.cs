@@ -36,7 +36,6 @@ namespace Adyen.Payment.Models
         /// </summary>
         /// <param name="domesticRefusalReasonRaw">The reason the transaction was declined, given by the local issuer.  Currently available for merchants in Japan.</param>
         /// <param name="domesticShopperAdvice">The action the shopper should take, in a local language.  Currently available in Japanese, for merchants in Japan.</param>
-        [JsonConstructor]
         public ResponseAdditionalDataDomesticError(Option<string?> domesticRefusalReasonRaw = default, Option<string?> domesticShopperAdvice = default)
         {
             _DomesticRefusalReasonRawOption = domesticRefusalReasonRaw;

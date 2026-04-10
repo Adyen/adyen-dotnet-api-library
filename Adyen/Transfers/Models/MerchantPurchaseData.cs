@@ -37,7 +37,6 @@ namespace Adyen.Transfers.Models
         /// <param name="airline">airline</param>
         /// <param name="lodging">Lodging information.</param>
         /// <param name="type">The type of events data.   Possible values:    - **merchantPurchaseData**: merchant purchase data (default to TypeEnum.MerchantPurchaseData)</param>
-        [JsonConstructor]
         public MerchantPurchaseData(Option<Airline?> airline = default, Option<List<Lodging>?> lodging = default, TypeEnum type = default)
         {
             _AirlineOption = airline;

@@ -36,7 +36,6 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
         /// </summary>
         /// <param name="type">The type of score.</param>
         /// <param name="value">The value of the score.</param>
-        [JsonConstructor]
         public TransactionScoring(Option<string?> type = default, Option<string?> value = default)
         {
             _TypeOption = type;

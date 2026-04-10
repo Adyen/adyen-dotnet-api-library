@@ -46,7 +46,6 @@ namespace Adyen.Checkout.Models
         /// <param name="walletIdentifier">The unique identifier for the wallet the funds are being transferred to. You can use the shopper reference or any other identifier.</param>
         /// <param name="walletOwnerTaxId">The tax identifier of the person receiving the funds.</param>
         /// <param name="walletPurpose">The purpose of a digital wallet transaction.</param>
-        [JsonConstructor]
         public FundRecipient(Option<string?> iBAN = default, Option<Address?> billingAddress = default, Option<CardDetails?> paymentMethod = default, Option<string?> shopperEmail = default, Option<Name?> shopperName = default, Option<string?> shopperReference = default, Option<string?> storedPaymentMethodId = default, Option<SubMerchant?> subMerchant = default, Option<string?> telephoneNumber = default, Option<string?> walletIdentifier = default, Option<string?> walletOwnerTaxId = default, Option<WalletPurposeEnum?> walletPurpose = default)
         {
             _IBANOption = iBAN;

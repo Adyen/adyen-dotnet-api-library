@@ -37,7 +37,6 @@ namespace Adyen.Checkout.Models
         /// <param name="integrator">External platform integrator.</param>
         /// <param name="name">Name of the field. For example, Name of External Platform.</param>
         /// <param name="version">Version of the field. For example, Version of External Platform.</param>
-        [JsonConstructor]
         public ExternalPlatform(Option<string?> integrator = default, Option<string?> name = default, Option<string?> version = default)
         {
             _IntegratorOption = integrator;

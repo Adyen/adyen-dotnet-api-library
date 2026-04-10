@@ -35,7 +35,6 @@ namespace Adyen.Capital.Models
         /// Initializes a new instance of the <see cref="NZLocalAccountIdentification" /> class.
         /// </summary>
         /// <param name="accountNumber">The 15-16 digit bank account number. The first 2 digits are the bank number, the next 4 digits are the branch number, the next 7 digits are the account number, and the final 2-3 digits are the suffix.</param>
-        [JsonConstructor]
         public NZLocalAccountIdentification(string accountNumber) : base()
         {
             AccountNumber = accountNumber;

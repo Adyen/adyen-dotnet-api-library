@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="askConfirmation">Show the surcharge details on the terminal, so the shopper can confirm.</param>
         /// <param name="configurations">Surcharge fees or percentages for specific cards, funding sources (credit or debit), and currencies.</param>
         /// <param name="excludeGratuityFromSurcharge">Exclude the tip amount from the surcharge calculation.</param>
-        [JsonConstructor]
         public Surcharge(Option<bool?> askConfirmation = default, Option<List<ModelConfiguration>?> configurations = default, Option<bool?> excludeGratuityFromSurcharge = default)
         {
             _AskConfirmationOption = askConfirmation;

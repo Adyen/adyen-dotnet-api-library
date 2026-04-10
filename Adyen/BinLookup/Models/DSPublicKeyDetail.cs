@@ -39,7 +39,6 @@ namespace Adyen.BinLookup.Models
         /// <param name="fromSDKVersion">The version of the mobile 3D Secure 2 SDK. For the possible values, refer to the versions in [Adyen 3DS2 Android](https://github.com/Adyen/adyen-3ds2-android/releases) and [Adyen 3DS2 iOS](https://github.com/Adyen/adyen-3ds2-ios/releases).</param>
         /// <param name="publicKey">Public key. The 3D Secure 2 SDK encrypts the device information by using the DS public key.</param>
         /// <param name="rootCertificates">Directory Server root certificates. The 3D Secure 2 SDK verifies the ACS signed content using the rootCertificates.</param>
-        [JsonConstructor]
         public DSPublicKeyDetail(Option<string?> brand = default, Option<string?> directoryServerId = default, Option<string?> fromSDKVersion = default, Option<byte[]?> publicKey = default, Option<string?> rootCertificates = default)
         {
             _BrandOption = brand;

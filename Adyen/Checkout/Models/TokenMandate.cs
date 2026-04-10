@@ -50,7 +50,6 @@ namespace Adyen.Checkout.Models
         /// <param name="maskedAccountId">The masked account number associated with the mandate.</param>
         /// <param name="remarks">Additional remarks or notes about the mandate.</param>
         /// <param name="startsAt">Start date of the billing plan, in YYYY-MM-DD format. By default, the transaction date.</param>
-        [JsonConstructor]
         public TokenMandate(string amount, string currency, string endsAt, FrequencyEnum frequency, string mandateId, string providerId, string status, string txVariant, Option<string?> accountIdType = default, Option<AmountRuleEnum?> amountRule = default, Option<BillingAttemptsRuleEnum?> billingAttemptsRule = default, Option<string?> billingDay = default, Option<string?> count = default, Option<string?> maskedAccountId = default, Option<string?> remarks = default, Option<string?> startsAt = default)
         {
             Amount = amount;

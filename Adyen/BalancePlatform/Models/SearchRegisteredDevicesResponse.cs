@@ -38,7 +38,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="itemsTotal">The total amount of registered SCA devices that match the query parameters.</param>
         /// <param name="link">link</param>
         /// <param name="pagesTotal">The total amount of list pages.</param>
-        [JsonConstructor]
         public SearchRegisteredDevicesResponse(Option<List<Device>?> data = default, Option<int?> itemsTotal = default, Option<Link?> link = default, Option<int?> pagesTotal = default)
         {
             _DataOption = data;

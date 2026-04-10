@@ -48,7 +48,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="undefinedBeneficiaryInfo">The undefined beneficiary information of the entity.</param>
         /// <param name="vatAbsenceReason">The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**.</param>
         /// <param name="vatNumber">The VAT number.</param>
-        [JsonConstructor]
         public Trust(string countryOfGoverningLaw, string name, Address registeredAddress, TypeEnum type, Option<string?> dateOfIncorporation = default, Option<string?> description = default, Option<string?> doingBusinessAs = default, Option<bool?> doingBusinessAsAbsent = default, Option<Address?> principalPlaceOfBusiness = default, Option<string?> registrationNumber = default, Option<List<TaxInformation>?> taxInformation = default, Option<List<UndefinedBeneficiary>?> undefinedBeneficiaryInfo = default, Option<VatAbsenceReasonEnum?> vatAbsenceReason = default, Option<string?> vatNumber = default)
         {
             CountryOfGoverningLaw = countryOfGoverningLaw;

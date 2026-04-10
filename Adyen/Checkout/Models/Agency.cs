@@ -36,7 +36,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="invoiceNumber">The reference number for the invoice, issued by the agency. * Encoding: ASCII * minLength: 1 character * maxLength: 6 characters</param>
         /// <param name="planName">The two-letter agency plan identifier. * Encoding: ASCII * minLength: 2 characters * maxLength: 2 characters</param>
-        [JsonConstructor]
         public Agency(Option<string?> invoiceNumber = default, Option<string?> planName = default)
         {
             _InvoiceNumberOption = invoiceNumber;

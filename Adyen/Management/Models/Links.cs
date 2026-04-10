@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="Links" /> class.
         /// </summary>
         /// <param name="self">self</param>
-        [JsonConstructor]
         public Links(LinksElement self)
         {
             Self = self;

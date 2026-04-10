@@ -41,7 +41,6 @@ namespace Adyen.Checkout.Models
         /// <param name="pspReference">Adyen&#39;s 16-character reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.</param>
         /// <param name="refusalReason">If the payment&#39;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).</param>
         /// <param name="transactionLimit">transactionLimit</param>
-        [JsonConstructor]
         public BalanceCheckResponse(Amount balance, ResultCodeEnum resultCode, Option<Dictionary<string, string>?> additionalData = default, Option<FraudResult?> fraudResult = default, Option<string?> pspReference = default, Option<string?> refusalReason = default, Option<Amount?> transactionLimit = default)
         {
             Balance = balance;

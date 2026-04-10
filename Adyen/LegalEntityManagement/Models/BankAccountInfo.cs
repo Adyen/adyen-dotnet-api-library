@@ -39,7 +39,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="bankName">The name of the banking institution where the bank account is held.</param>
         /// <param name="countryCode">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the bank account is registered. For example, **NL**.</param>
         /// <param name="trustedSource">Identifies if the bank account was created through [instant bank verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote&#x3D;2023-05-08-hosted-onboarding).</param>
-        [JsonConstructor]
         public BankAccountInfo(Option<BankAccountInfoAccountIdentification?> accountIdentification = default, Option<string?> accountType = default, Option<string?> bankName = default, Option<string?> countryCode = default, Option<bool?> trustedSource = default)
         {
             _AccountIdentificationOption = accountIdentification;

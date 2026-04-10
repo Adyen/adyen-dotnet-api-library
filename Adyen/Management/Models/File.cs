@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="data">The certificate content converted to a Base64-encoded string.</param>
         /// <param name="name">The name of the certificate. Must be unique across Wi-Fi profiles.</param>
-        [JsonConstructor]
         public File(string data, string name)
         {
             Data = data;

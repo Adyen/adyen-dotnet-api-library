@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="cvc">The CVC2 value of the card.</param>
         /// <param name="expiration">expiration</param>
         /// <param name="pan">The primary account number (PAN) of the card.</param>
-        [JsonConstructor]
         public PaymentInstrumentRevealInfo(string cvc, Expiry expiration, string pan)
         {
             Cvc = cvc;

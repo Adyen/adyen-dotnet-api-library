@@ -35,7 +35,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// Initializes a new instance of the <see cref="DataReviewConfirmationResponse" /> class.
         /// </summary>
         /// <param name="dataReviewedAt">Date when data review was confirmed.</param>
-        [JsonConstructor]
         public DataReviewConfirmationResponse(Option<string?> dataReviewedAt = default)
         {
             _DataReviewedAtOption = dataReviewedAt;

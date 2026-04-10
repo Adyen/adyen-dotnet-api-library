@@ -40,7 +40,6 @@ namespace Adyen.Checkout.Models
         /// <param name="nativeRedirectData">Native SDK&#39;s redirect data containing the direct issuer link and state data that must be submitted to the /v1/nativeRedirect/redirectResult.</param>
         /// <param name="paymentMethodType">Specifies the payment method.</param>
         /// <param name="url">Specifies the URL to redirect to.</param>
-        [JsonConstructor]
         public CheckoutNativeRedirectAction(TypeEnum type, Option<Dictionary<string, string>?> data = default, Option<string?> method = default, Option<string?> nativeRedirectData = default, Option<string?> paymentMethodType = default, Option<string?> url = default)
         {
             Type = type;

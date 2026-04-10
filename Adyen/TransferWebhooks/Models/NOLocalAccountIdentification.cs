@@ -36,7 +36,6 @@ namespace Adyen.TransferWebhooks.Models
         /// </summary>
         /// <param name="accountNumber">The 11-digit bank account number, without separators or whitespace.</param>
         /// <param name="type">**noLocal** (default to TypeEnum.NoLocal)</param>
-        [JsonConstructor]
         public NOLocalAccountIdentification(string accountNumber, TypeEnum type = default)
         {
             AccountNumber = accountNumber;

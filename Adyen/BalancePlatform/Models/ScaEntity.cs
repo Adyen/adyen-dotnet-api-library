@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="id">The unique identifier of the entity.</param>
         /// <param name="type">type</param>
-        [JsonConstructor]
         public ScaEntity(string id, ScaEntityType type)
         {
             Id = id;

@@ -42,7 +42,6 @@ namespace Adyen.Checkout.Models
         /// <param name="totalAmount">The total amount for the line item, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Encoding: Numeric * Max value: 10000000000  See [Amount requirements for level 2/3 ESD](https://docs.adyen.com//payment-methods/cards/enhanced-scheme-data/l2-l3#amount-requirements) to learn more about how to calculate the line item total.</param>
         /// <param name="unitOfMeasure">The unit of measurement for an item. * Encoding: ASCII * Max length: 3 characters</param>
         /// <param name="unitPrice">The unit price, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Encoding: Numeric * Max value: 10000000000</param>
-        [JsonConstructor]
         public ItemDetailLine(Option<string?> commodityCode = default, Option<string?> description = default, Option<long?> discountAmount = default, Option<string?> productCode = default, Option<long?> quantity = default, Option<long?> totalAmount = default, Option<string?> unitOfMeasure = default, Option<long?> unitPrice = default)
         {
             _CommodityCodeOption = commodityCode;

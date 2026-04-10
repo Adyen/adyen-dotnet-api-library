@@ -38,7 +38,6 @@ namespace Adyen.Checkout.Models
         /// <param name="applicationInfo">applicationInfo</param>
         /// <param name="enhancedSchemeData">enhancedSchemeData</param>
         /// <param name="reference">Your reference for the reversal request. Maximum length: 80 characters.</param>
-        [JsonConstructor]
         public PaymentReversalRequest(string merchantAccount, Option<ApplicationInfo?> applicationInfo = default, Option<EnhancedSchemeData?> enhancedSchemeData = default, Option<string?> reference = default)
         {
             MerchantAccount = merchantAccount;

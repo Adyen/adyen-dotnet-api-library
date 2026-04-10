@@ -36,7 +36,6 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <param name="actionCode">The code identifying the action that needs to be completed.</param>
         /// <param name="resolved">Indicates whether this action has been successfully completed.</param>
-        [JsonConstructor]
         public Action(string actionCode, bool resolved)
         {
             ActionCode = actionCode;

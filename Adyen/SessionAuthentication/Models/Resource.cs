@@ -34,7 +34,6 @@ namespace Adyen.SessionAuthentication.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Resource" /> class.
         /// </summary>
-        [JsonConstructor]
         public Resource()
         {
             Type = (ResourceType)Enum.Parse(typeof(ResourceType), this.GetType().Name);

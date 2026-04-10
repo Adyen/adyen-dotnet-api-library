@@ -35,7 +35,6 @@ namespace Adyen.Payment.Models
         /// Initializes a new instance of the <see cref="ThreeDS2ResultResponse" /> class.
         /// </summary>
         /// <param name="threeDS2Result">threeDS2Result</param>
-        [JsonConstructor]
         public ThreeDS2ResultResponse(Option<ThreeDS2Result?> threeDS2Result = default)
         {
             _ThreeDS2ResultOption = threeDS2Result;

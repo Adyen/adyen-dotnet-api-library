@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="ClearpayInfo" /> class.
         /// </summary>
         /// <param name="supportUrl">Support Url</param>
-        [JsonConstructor]
         public ClearpayInfo(string supportUrl)
         {
             SupportUrl = supportUrl;

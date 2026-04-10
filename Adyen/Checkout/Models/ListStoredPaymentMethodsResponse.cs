@@ -37,7 +37,6 @@ namespace Adyen.Checkout.Models
         /// <param name="merchantAccount">Your merchant account.</param>
         /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
         /// <param name="storedPaymentMethods">List of all stored payment methods.</param>
-        [JsonConstructor]
         public ListStoredPaymentMethodsResponse(Option<string?> merchantAccount = default, Option<string?> shopperReference = default, Option<List<StoredPaymentMethodResource>?> storedPaymentMethods = default)
         {
             _MerchantAccountOption = merchantAccount;

@@ -40,7 +40,6 @@ namespace Adyen.Payment.Models
         /// <param name="digitalCardId">A unique identifier that represents the token associated with a card enrolled. Required for scheme &#39;mc&#39;.</param>
         /// <param name="scheme">The Secure Remote Commerce scheme.</param>
         /// <param name="tokenReference">A unique identifier that represents the token associated with a card enrolled. Required for scheme &#39;visa&#39;.</param>
-        [JsonConstructor]
         public SecureRemoteCommerceCheckoutData(Option<string?> checkoutPayload = default, Option<string?> correlationId = default, Option<string?> cvc = default, Option<string?> digitalCardId = default, Option<SchemeEnum?> scheme = default, Option<string?> tokenReference = default)
         {
             _CheckoutPayloadOption = checkoutPayload;

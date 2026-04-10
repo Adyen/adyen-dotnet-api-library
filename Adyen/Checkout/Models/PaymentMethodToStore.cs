@@ -46,7 +46,6 @@ namespace Adyen.Checkout.Models
         /// <param name="holderName">The name of the card holder.</param>
         /// <param name="number">The card number. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).</param>
         /// <param name="type">Set to **scheme**.</param>
-        [JsonConstructor]
         public PaymentMethodToStore(Option<string?> brand = default, Option<string?> cvc = default, Option<string?> encryptedCard = default, Option<string?> encryptedCardNumber = default, Option<string?> encryptedExpiryMonth = default, Option<string?> encryptedExpiryYear = default, Option<string?> encryptedSecurityCode = default, Option<string?> expiryMonth = default, Option<string?> expiryYear = default, Option<string?> holderName = default, Option<string?> number = default, Option<string?> type = default)
         {
             _BrandOption = brand;

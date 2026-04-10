@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="accountNumber">The 8-digit bank account number, without separators or whitespace.</param>
         /// <param name="sortCode">The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.</param>
         /// <param name="type">**ukLocal** (default to TypeEnum.UkLocal)</param>
-        [JsonConstructor]
         public UKLocalAccountIdentification(string accountNumber, string sortCode, TypeEnum type = default)
         {
             AccountNumber = accountNumber;

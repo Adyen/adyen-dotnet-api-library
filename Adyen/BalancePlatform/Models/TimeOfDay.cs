@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="endTime">The end time in a time-only ISO-8601 extended offset format. For example: **08:00:00+02:00**, **22:30:00-03:00**.  </param>
         /// <param name="startTime">The start time in a time-only ISO-8601 extended offset format. For example: **08:00:00+02:00**, **22:30:00-03:00**.  </param>
-        [JsonConstructor]
         public TimeOfDay(Option<string?> endTime = default, Option<string?> startTime = default)
         {
             _EndTimeOption = endTime;

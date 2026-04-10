@@ -37,7 +37,6 @@ namespace Adyen.Checkout.Models
         /// <param name="body">The body of the response Adyen received from the third party, in string format.</param>
         /// <param name="headers">The HTTP headers of the response Adyen received from the third party.</param>
         /// <param name="status">The HTTP status of the response Adyen received from the third party.</param>
-        [JsonConstructor]
         public CheckoutForwardResponseFromUrl(Option<string?> body = default, Option<Dictionary<string, string>?> headers = default, Option<int?> status = default)
         {
             _BodyOption = body;

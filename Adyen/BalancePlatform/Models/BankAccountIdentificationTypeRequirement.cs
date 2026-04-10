@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="bankAccountIdentificationTypes">List of bank account identification types: eg.; [iban , numberAndBic]</param>
         /// <param name="description">Specifies the bank account details for a particular route per required field in this object depending on the country of the bank account and the currency of the transfer.</param>
         /// <param name="type">**bankAccountIdentificationTypeRequirement** (default to TypeEnum.BankAccountIdentificationTypeRequirement)</param>
-        [JsonConstructor]
         public BankAccountIdentificationTypeRequirement(Option<List<BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum>?> bankAccountIdentificationTypes = default, Option<string?> description = default, TypeEnum type = default)
         {
             _BankAccountIdentificationTypesOption = bankAccountIdentificationTypes;

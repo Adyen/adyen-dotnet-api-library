@@ -38,7 +38,6 @@ namespace Adyen.Recurring.Models
         /// <param name="details">Payment details stored for recurring payments.</param>
         /// <param name="lastKnownShopperEmail">The most recent email for this shopper (if available).</param>
         /// <param name="shopperReference">The reference you use to uniquely identify the shopper (e.g. user ID or account ID).</param>
-        [JsonConstructor]
         public RecurringDetailsResult(Option<DateTimeOffset?> creationDate = default, Option<List<RecurringDetailWrapper>?> details = default, Option<string?> lastKnownShopperEmail = default, Option<string?> shopperReference = default)
         {
             _CreationDateOption = creationDate;

@@ -39,7 +39,6 @@ namespace Adyen.Management.Models
         /// <param name="links">links</param>
         /// <param name="accountReference">Reference to the account.</param>
         /// <param name="data">The list of webhooks configured for this account.</param>
-        [JsonConstructor]
         public ListWebhooksResponse(int itemsTotal, int pagesTotal, Option<PaginationLinks?> links = default, Option<string?> accountReference = default, Option<List<Webhook>?> data = default)
         {
             ItemsTotal = itemsTotal;

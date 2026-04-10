@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="ShippingLocationsResponse" /> class.
         /// </summary>
         /// <param name="data">Physical locations where orders can be shipped to.</param>
-        [JsonConstructor]
         public ShippingLocationsResponse(Option<List<ShippingLocation>?> data = default)
         {
             _DataOption = data;

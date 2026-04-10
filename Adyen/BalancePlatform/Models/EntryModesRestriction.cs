@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="operation">Defines how the condition must be evaluated.</param>
         /// <param name="value">List of point-of-sale entry modes.  Possible values: **barcode**, **chip**, **cof**, **contactless**, **magstripe**, **manual**, **ocr**, **server**.  </param>
-        [JsonConstructor]
         public EntryModesRestriction(string operation, Option<List<EntryModesRestriction.ValueEnum>?> value = default)
         {
             Operation = operation;

@@ -49,7 +49,6 @@ namespace Adyen.AcsWebhooks.Models
         /// <param name="exemptionIndicator">Indicates the exemption type that was applied to the authentication by the issuer, if exemption applied. Possible values:  * **lowValue** * **secureCorporate** * **trustedBeneficiary** * **transactionRiskAnalysis** * **acquirerExemption** * **noExemptionApplied** * **visaDAFExemption** </param>
         /// <param name="riskScore">Risk score calculated from the transaction rules.</param>
         /// <param name="transStatusReason">Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).</param>
-        [JsonConstructor]
         public AuthenticationInfo(string acsTransId, ChallengeIndicatorEnum challengeIndicator, DateTimeOffset createdAt, DeviceChannelEnum deviceChannel, string dsTransID, bool inPSD2Scope, MessageCategoryEnum messageCategory, string messageVersion, string threeDSServerTransID, TransStatusEnum transStatus, TypeEnum type, Option<ChallengeInfo?> challenge = default, Option<ExemptionIndicatorEnum?> exemptionIndicator = default, Option<int?> riskScore = default, Option<TransStatusReasonEnum?> transStatusReason = default)
         {
             AcsTransId = acsTransId;

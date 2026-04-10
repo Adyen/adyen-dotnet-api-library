@@ -36,7 +36,6 @@ namespace Adyen.TransferWebhooks.Models
         /// </summary>
         /// <param name="metadata">Contains key-value pairs of your references and descriptions, for example, &#x60;customId&#x60;:&#x60;your-own-custom-field-12345&#x60;.</param>
         /// <param name="reference">Your reference for the relayed authorisation data.</param>
-        [JsonConstructor]
         public RelayedAuthorisationData(Option<Dictionary<string, string>?> metadata = default, Option<string?> reference = default)
         {
             _MetadataOption = metadata;

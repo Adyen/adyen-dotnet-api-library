@@ -38,7 +38,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="entityType">entityType</param>
         /// <param name="scaDeviceIds">List of device ids associated to the entity that will be approved.</param>
         /// <param name="status">status</param>
-        [JsonConstructor]
         public ApproveAssociationRequest(string entityId, ScaEntityType entityType, List<string> scaDeviceIds, AssociationStatus status)
         {
             EntityId = entityId;

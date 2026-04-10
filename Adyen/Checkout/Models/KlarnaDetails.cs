@@ -43,7 +43,6 @@ namespace Adyen.Checkout.Models
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
         /// <param name="subtype">The type of flow to initiate.</param>
         /// <param name="type">**klarna** (default to TypeEnum.Klarna)</param>
-        [JsonConstructor]
         public KlarnaDetails(Option<string?> billingAddress = default, Option<string?> checkoutAttemptId = default, Option<string?> deliveryAddress = default, Option<string?> personalDetails = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<string?> subtype = default, TypeEnum type = default)
         {
             _BillingAddressOption = billingAddress;

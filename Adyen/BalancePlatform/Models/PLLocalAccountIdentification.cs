@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="accountNumber">The 26-digit bank account number ([Numer rachunku](https://pl.wikipedia.org/wiki/Numer_Rachunku_Bankowego)), without separators or whitespace.</param>
         /// <param name="type">**plLocal** (default to TypeEnum.PlLocal)</param>
-        [JsonConstructor]
         public PLLocalAccountIdentification(string accountNumber, TypeEnum type = default)
         {
             AccountNumber = accountNumber;

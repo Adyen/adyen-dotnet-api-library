@@ -36,7 +36,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="paymentData">The updated paymentData.</param>
         /// <param name="status">The status of the request. This indicates whether the order was successfully updated with PayPal.</param>
-        [JsonConstructor]
         public PaypalUpdateOrderResponse(string paymentData, StatusEnum status)
         {
             PaymentData = paymentData;

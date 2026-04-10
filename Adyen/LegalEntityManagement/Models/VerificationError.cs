@@ -40,7 +40,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="remediatingActions">An object containing possible solutions to fix a verification error.</param>
         /// <param name="subErrors">An array containing more granular information about the cause of the verification error.</param>
         /// <param name="type">The type of error.  Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **rejected** *  **dataReview**  </param>
-        [JsonConstructor]
         public VerificationError(Option<List<VerificationError.CapabilitiesEnum>?> capabilities = default, Option<string?> code = default, Option<string?> message = default, Option<List<RemediatingAction>?> remediatingActions = default, Option<List<VerificationErrorRecursive>?> subErrors = default, Option<TypeEnum?> type = default)
         {
             _CapabilitiesOption = capabilities;

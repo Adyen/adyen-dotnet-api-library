@@ -43,7 +43,6 @@ namespace Adyen.Payment.Models
         /// <param name="enhancedSchemeDataTempStartDate">The billing period start date. * Format: ddMMyy * maxLength: 6</param>
         /// <param name="enhancedSchemeDataTempWeekEnding">The billing period end date. * Format: ddMMyy * maxLength: 6</param>
         /// <param name="enhancedSchemeDataTotalTaxAmount">The total tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). For example, 2000 means USD 20.00 * maxLength: 12</param>
-        [JsonConstructor]
         public AdditionalDataTemporaryServices(Option<string?> enhancedSchemeDataCustomerReference = default, Option<string?> enhancedSchemeDataEmployeeName = default, Option<string?> enhancedSchemeDataJobDescription = default, Option<string?> enhancedSchemeDataRegularHoursRate = default, Option<string?> enhancedSchemeDataRegularHoursWorked = default, Option<string?> enhancedSchemeDataRequestName = default, Option<string?> enhancedSchemeDataTempStartDate = default, Option<string?> enhancedSchemeDataTempWeekEnding = default, Option<string?> enhancedSchemeDataTotalTaxAmount = default)
         {
             _EnhancedSchemeDataCustomerReferenceOption = enhancedSchemeDataCustomerReference;

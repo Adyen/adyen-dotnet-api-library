@@ -41,7 +41,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="reference">Your reference for the transfer limit.</param>
         /// <param name="scaInformation">scaInformation</param>
         /// <param name="startsAt">The date and time when the transfer limit becomes active. If you specify a date in the future, we will schedule a transfer limit.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): **YYYY-MM-DDThh:mm:ss.sssTZD**</param>
-        [JsonConstructor]
         public CreateTransferLimitRequest(Amount amount, Scope scope, TransferType transferType, Option<DateTimeOffset?> endsAt = default, Option<string?> reference = default, Option<CreateScaInformation?> scaInformation = default, Option<DateTimeOffset?> startsAt = default)
         {
             Amount = amount;

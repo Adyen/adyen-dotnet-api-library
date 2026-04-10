@@ -36,7 +36,6 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <param name="code">The value of the additional bank identification.</param>
         /// <param name="type">type</param>
-        [JsonConstructor]
         public AdditionalBankIdentification(Option<string?> code = default, Option<AdditionalBankIdentificationTypes?> type = default)
         {
             _CodeOption = code;

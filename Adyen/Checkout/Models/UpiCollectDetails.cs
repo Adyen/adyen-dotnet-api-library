@@ -42,7 +42,6 @@ namespace Adyen.Checkout.Models
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
         /// <param name="type">**upi_collect** (default to TypeEnum.UpiCollect)</param>
         /// <param name="virtualPaymentAddress">The virtual payment address for UPI.</param>
-        [JsonConstructor]
         public UpiCollectDetails(Option<string?> billingSequenceNumber = default, Option<string?> checkoutAttemptId = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> shopperNotificationReference = default, Option<string?> storedPaymentMethodId = default, TypeEnum type = default, Option<string?> virtualPaymentAddress = default)
         {
             _BillingSequenceNumberOption = billingSequenceNumber;

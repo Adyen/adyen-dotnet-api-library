@@ -38,7 +38,6 @@ namespace Adyen.Management.Models
         /// <param name="amount">Surcharge amount per transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).</param>
         /// <param name="maxAmount">The maximum surcharge amount per transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).</param>
         /// <param name="percentage">Surcharge percentage per transaction. The maximum number of decimal places is two. For example, **1%** or **2.27%**.</param>
-        [JsonConstructor]
         public Currency(string currencyCode, Option<int?> amount = default, Option<int?> maxAmount = default, Option<double?> percentage = default)
         {
             CurrencyCode = currencyCode;

@@ -43,7 +43,6 @@ namespace Adyen.Payment.Models
         /// <param name="reference">Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.</param>
         /// <param name="tenderReference">The transaction reference provided by the PED. For point-of-sale integrations only.</param>
         /// <param name="uniqueTerminalId">Unique terminal ID for the PED that originally processed the request. For point-of-sale integrations only.</param>
-        [JsonConstructor]
         public CancelOrRefundRequest(string merchantAccount, string originalReference, Option<Dictionary<string, string>?> additionalData = default, Option<ThreeDSecureData?> mpiData = default, Option<string?> originalMerchantReference = default, Option<PlatformChargebackLogic?> platformChargebackLogic = default, Option<string?> reference = default, Option<string?> tenderReference = default, Option<string?> uniqueTerminalId = default)
         {
             MerchantAccount = merchantAccount;

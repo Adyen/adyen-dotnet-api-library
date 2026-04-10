@@ -41,7 +41,6 @@ namespace Adyen.Checkout.Models
         /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
         /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
         /// <param name="type">The payment method type.</param>
-        [JsonConstructor]
         public PseDetails(string bank, string clientType, string identification, string identificationType, Option<string?> checkoutAttemptId = default, Option<string?> sdkData = default, Option<TypeEnum?> type = default)
         {
             Bank = bank;

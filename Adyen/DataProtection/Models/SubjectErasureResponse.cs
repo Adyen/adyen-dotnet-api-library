@@ -35,7 +35,6 @@ namespace Adyen.DataProtection.Models
         /// Initializes a new instance of the <see cref="SubjectErasureResponse" /> class.
         /// </summary>
         /// <param name="result">The result of this operation.</param>
-        [JsonConstructor]
         public SubjectErasureResponse(Option<ResultEnum?> result = default)
         {
             _ResultOption = result;

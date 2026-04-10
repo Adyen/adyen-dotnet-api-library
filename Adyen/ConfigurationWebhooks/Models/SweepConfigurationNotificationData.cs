@@ -37,7 +37,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="accountId">The unique identifier of the balance account for which the sweep was configured.</param>
         /// <param name="balancePlatform">The unique identifier of the balance platform.</param>
         /// <param name="sweep">sweep</param>
-        [JsonConstructor]
         public SweepConfigurationNotificationData(Option<string?> accountId = default, Option<string?> balancePlatform = default, Option<SweepConfigurationV2?> sweep = default)
         {
             _AccountIdOption = accountId;

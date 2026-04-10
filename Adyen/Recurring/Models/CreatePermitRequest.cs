@@ -38,7 +38,6 @@ namespace Adyen.Recurring.Models
         /// <param name="permits">The permits to create for this recurring contract.</param>
         /// <param name="recurringDetailReference">The recurring contract the new permits will use.</param>
         /// <param name="shopperReference">The shopper&#39;s reference to uniquely identify this shopper (e.g. user ID or account ID).</param>
-        [JsonConstructor]
         public CreatePermitRequest(string merchantAccount, List<Permit> permits, string recurringDetailReference, string shopperReference)
         {
             MerchantAccount = merchantAccount;

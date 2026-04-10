@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="bankAccount">bankAccount</param>
         /// <param name="transferInstrumentId">The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).</param>
-        [JsonConstructor]
         public Counterparty(Option<BankAccount?> bankAccount = default, Option<string?> transferInstrumentId = default)
         {
             _BankAccountOption = bankAccount;

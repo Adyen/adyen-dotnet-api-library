@@ -40,7 +40,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="provisioningMethod">The method used for provisioning the network token.  Possible values: **push**, **manual**, **cof**, **unknown**.</param>
         /// <param name="recommendationReasons">A list of risk indicators triggered at the time of provisioning the network token.  Some example values of risk indicators are:  * **accountTooNewSinceLaunch** * **tooManyRecentAttempts** * **lowDeviceScore** * **lowAccountScore** </param>
         /// <param name="type">The type of wallet that the network token is associated with.  Possible values: **applePay**, **googlePay**, **garminPay**.</param>
-        [JsonConstructor]
         public Wallet(Option<string?> accountScore = default, Option<Device?> device = default, Option<string?> deviceScore = default, Option<string?> provisioningMethod = default, Option<List<Wallet.RecommendationReasonsEnum>?> recommendationReasons = default, Option<string?> type = default)
         {
             _AccountScoreOption = accountScore;

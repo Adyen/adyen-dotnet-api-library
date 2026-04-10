@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="FinishScaDeviceRegistrationResponse" /> class.
         /// </summary>
         /// <param name="scaDevice">scaDevice</param>
-        [JsonConstructor]
         public FinishScaDeviceRegistrationResponse(Option<ScaDevice?> scaDevice = default)
         {
             _ScaDeviceOption = scaDevice;

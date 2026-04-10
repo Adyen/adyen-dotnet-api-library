@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="TwintInfo" /> class.
         /// </summary>
         /// <param name="logo">Twint logo. Format: Base64-encoded string.</param>
-        [JsonConstructor]
         public TwintInfo(string logo)
         {
             Logo = logo;

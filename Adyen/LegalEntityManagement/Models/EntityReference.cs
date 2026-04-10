@@ -35,7 +35,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// Initializes a new instance of the <see cref="EntityReference" /> class.
         /// </summary>
         /// <param name="id">The unique identifier of the resource.</param>
-        [JsonConstructor]
         public EntityReference(Option<string?> id = default)
         {
             _IdOption = id;

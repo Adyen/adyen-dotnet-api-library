@@ -37,7 +37,6 @@ namespace Adyen.Transfers.Models
         /// <param name="accountNumber">The 4- to 19-digit bank account number, without separators or whitespace.</param>
         /// <param name="bic">The bank&#39;s 8- or 11-character BIC or SWIFT code.</param>
         /// <param name="type">**sgLocal** (default to TypeEnum.SgLocal)</param>
-        [JsonConstructor]
         public SGLocalAccountIdentification(string accountNumber, string bic, Option<TypeEnum?> type = default)
         {
             AccountNumber = accountNumber;

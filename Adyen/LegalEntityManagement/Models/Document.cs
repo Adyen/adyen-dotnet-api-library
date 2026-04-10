@@ -47,7 +47,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="modificationDate">The modification date of the document.</param>
         /// <param name="number">The number in the document.</param>
         /// <param name="owner">owner</param>
-        [JsonConstructor]
         public Document(string description, TypeEnum type, Option<Attachment?> attachment = default, Option<List<Attachment>?> attachments = default, Option<DateTimeOffset?> creationDate = default, Option<string?> expiryDate = default, Option<string?> fileName = default, Option<string?> id = default, Option<string?> issuerCountry = default, Option<string?> issuerState = default, Option<DateTimeOffset?> modificationDate = default, Option<string?> number = default, Option<OwnerEntity?> owner = default)
         {
             Description = description;

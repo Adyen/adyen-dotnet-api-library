@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="operation">Defines how the condition must be evaluated.</param>
         /// <param name="value">The list of counterparty bank institutions to be evaluated.</param>
-        [JsonConstructor]
         public CounterpartyBankRestriction(string operation, Option<List<BankIdentification>?> value = default)
         {
             Operation = operation;

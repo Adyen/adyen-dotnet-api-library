@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="SplitConfigurationList" /> class.
         /// </summary>
         /// <param name="data">List of split configurations applied to the stores under the merchant account.</param>
-        [JsonConstructor]
         public SplitConfigurationList(Option<List<SplitConfiguration>?> data = default)
         {
             _DataOption = data;

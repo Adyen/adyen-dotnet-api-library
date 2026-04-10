@@ -38,7 +38,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="number">The tax ID number (TIN) of the organization or individual.</param>
         /// <param name="numberAbsent">Set this to **true** if the legal entity or legal arrangement does not have a tax ID number (TIN). Only applicable in Australia.</param>
         /// <param name="type">The TIN type depending on the country where it was issued. Only provide if the country has multiple tax IDs: Singapore, Sweden, the UK, or the US. For example, provide **SSN**, **EIN**, or **ITIN** for the US.</param>
-        [JsonConstructor]
         public TaxInformation(Option<string?> country = default, Option<string?> number = default, Option<bool?> numberAbsent = default, Option<string?> type = default)
         {
             _CountryOption = country;

@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="CardholderReceipt" /> class.
         /// </summary>
         /// <param name="headerForAuthorizedReceipt">The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block.</param>
-        [JsonConstructor]
         public CardholderReceipt(Option<string?> headerForAuthorizedReceipt = default)
         {
             _HeaderForAuthorizedReceiptOption = headerForAuthorizedReceipt;

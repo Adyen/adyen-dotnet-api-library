@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="payerId">PayPal Merchant ID. Character length and limitations: 13 single-byte alphanumeric characters.</param>
         /// <param name="subject">Your business email address.</param>
         /// <param name="directCapture">Indicates if direct (immediate) capture for PayPal is enabled. If set to **true**, this setting overrides the [capture](https://docs.adyen.com/online-payments/capture) settings of your merchant account. Default value: **true**.</param>
-        [JsonConstructor]
         public PayPalInfo(string payerId, string subject, Option<bool?> directCapture = default)
         {
             PayerId = payerId;

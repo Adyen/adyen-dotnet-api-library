@@ -40,7 +40,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="duration">duration</param>
         /// <param name="timeOfDay">The time of day, in **hh:mm:ss** format, used when the &#x60;duration.unit&#x60; is **hours**. If not provided, by default, this is set to **00:00:00**.</param>
         /// <param name="timeZone">The [time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). For example, **Europe/Amsterdam**. By default, this is set to **UTC**.</param>
-        [JsonConstructor]
         public TransactionRuleInterval(TypeEnum type, Option<int?> dayOfMonth = default, Option<DayOfWeekEnum?> dayOfWeek = default, Option<Duration?> duration = default, Option<string?> timeOfDay = default, Option<string?> timeZone = default)
         {
             Type = type;

@@ -40,7 +40,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="id">The unique identifier of the payment instrument group.</param>
         /// <param name="properties">Properties of the payment instrument group.</param>
         /// <param name="reference">Your reference for the payment instrument group.</param>
-        [JsonConstructor]
         public PaymentInstrumentGroup(string balancePlatform, string txVariant, Option<string?> description = default, Option<string?> id = default, Option<Dictionary<string, string>?> properties = default, Option<string?> reference = default)
         {
             BalancePlatform = balancePlatform;

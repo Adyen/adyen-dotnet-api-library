@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="authorisationMid">The merchant ID (MID) that the acquirer recognizes you by.</param>
         /// <param name="currencyCode">The three-character ISO currency code, example **USD**</param>
-        [JsonConstructor]
         public SvsInfo(string authorisationMid, string currencyCode)
         {
             AuthorisationMid = authorisationMid;

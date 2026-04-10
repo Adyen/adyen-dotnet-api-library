@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="data">List of card order items in the card order batch.</param>
         /// <param name="hasNext">Indicates whether there are more items on the next page.</param>
         /// <param name="hasPrevious">Indicates whether there are more items on the previous page.</param>
-        [JsonConstructor]
         public PaginatedGetCardOrderItemResponse(List<CardOrderItem> data, bool hasNext, bool hasPrevious)
         {
             Data = data;

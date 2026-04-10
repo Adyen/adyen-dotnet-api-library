@@ -39,7 +39,6 @@ namespace Adyen.Payment.Models
         /// <param name="amount">amount</param>
         /// <param name="description">Your description for the split item.</param>
         /// <param name="reference">Your unique reference for the part of the payment booked to the specified &#x60;account&#x60;.  This is required if &#x60;type&#x60; is **MarketPlace** ([Classic Platforms integration](https://docs.adyen.com/classic-platforms)) or **BalanceAccount** ([Balance Platform](https://docs.adyen.com/adyen-for-platforms-model)).  For the other types, we also recommend providing a **unique** reference so you can reconcile the split and the associated payment in the transaction overview and in the reports.</param>
-        [JsonConstructor]
         public Split(TypeEnum type, Option<string?> account = default, Option<SplitAmount?> amount = default, Option<string?> description = default, Option<string?> reference = default)
         {
             Type = type;

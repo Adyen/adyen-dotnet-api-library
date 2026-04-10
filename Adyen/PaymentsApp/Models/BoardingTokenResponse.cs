@@ -36,7 +36,6 @@ namespace Adyen.PaymentsApp.Models
         /// </summary>
         /// <param name="boardingToken">The boarding token that allows the Payments App to board.</param>
         /// <param name="installationId">The unique identifier of the Payments App instance.</param>
-        [JsonConstructor]
         public BoardingTokenResponse(string boardingToken, string installationId)
         {
             BoardingToken = boardingToken;

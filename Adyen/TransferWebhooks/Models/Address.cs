@@ -40,7 +40,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="line2">The second line of the street address.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ |** and Space.  &gt; Required when the &#x60;category&#x60; is **card**. </param>
         /// <param name="postalCode">The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries.  Supported characters: **[a-z] [A-Z] [0-9]** and Space.  &gt; Required for addresses in the US. </param>
         /// <param name="stateOrProvince">   The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada.     &gt; Required for the US and Canada. </param>
-        [JsonConstructor]
         public Address(string country, Option<string?> city = default, Option<string?> line1 = default, Option<string?> line2 = default, Option<string?> postalCode = default, Option<string?> stateOrProvince = default)
         {
             Country = country;

@@ -39,7 +39,6 @@ namespace Adyen.Management.Models
         /// <param name="enabled">Enables sending event notifications either by pressing the Confirm key on terminals with a keypad or by tapping the event notification button on the terminal screen.</param>
         /// <param name="showButton">Shows or hides the event notification button on the screen of terminal models that have a keypad.</param>
         /// <param name="title">The name of the notification button on the terminal screen.</param>
-        [JsonConstructor]
         public Notification(Option<CategoryEnum?> category = default, Option<string?> details = default, Option<bool?> enabled = default, Option<bool?> showButton = default, Option<string?> title = default)
         {
             _CategoryOption = category;

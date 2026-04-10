@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="description">Specifies that you must provide complete street addresses for the party and counterParty for transactions greater than USD 3000.</param>
         /// <param name="type">**usInstantPayoutAddressRequirement** (default to TypeEnum.UsInstantPayoutAddressRequirement)</param>
-        [JsonConstructor]
         public USInstantPayoutAddressRequirement(Option<string?> description = default, TypeEnum type = default)
         {
             _DescriptionOption = description;

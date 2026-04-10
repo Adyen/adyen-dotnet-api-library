@@ -40,7 +40,6 @@ namespace Adyen.StoredValue.Models
         /// <param name="store">The physical store, for which this payment is processed.</param>
         /// <param name="tenderReference">The reference of the tender.</param>
         /// <param name="uniqueTerminalId">The unique ID of a POS terminal.</param>
-        [JsonConstructor]
         public StoredValueVoidRequest(string merchantAccount, string originalReference, Option<string?> reference = default, Option<string?> store = default, Option<string?> tenderReference = default, Option<string?> uniqueTerminalId = default)
         {
             MerchantAccount = merchantAccount;

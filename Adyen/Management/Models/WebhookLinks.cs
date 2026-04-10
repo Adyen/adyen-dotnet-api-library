@@ -39,7 +39,6 @@ namespace Adyen.Management.Models
         /// <param name="testWebhook">testWebhook</param>
         /// <param name="company">company</param>
         /// <param name="merchant">merchant</param>
-        [JsonConstructor]
         public WebhookLinks(LinksElement generateHmac, LinksElement self, LinksElement testWebhook, Option<LinksElement?> company = default, Option<LinksElement?> merchant = default)
         {
             GenerateHmac = generateHmac;

@@ -35,7 +35,6 @@ namespace Adyen.AcsWebhooks.Models
         /// Initializes a new instance of the <see cref="RelayedAuthenticationResponse" /> class.
         /// </summary>
         /// <param name="authenticationDecision">authenticationDecision</param>
-        [JsonConstructor]
         public RelayedAuthenticationResponse(AuthenticationDecision authenticationDecision)
         {
             AuthenticationDecision = authenticationDecision;

@@ -41,7 +41,6 @@ namespace Adyen.Management.Models
         /// <param name="legalEntityId">The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities).</param>
         /// <param name="pricingPlan">Partner pricing plan for the merchant, applicable for merchants under AfP managed company accounts.</param>
         /// <param name="reference">Your reference for the merchant account.</param>
-        [JsonConstructor]
         public CreateMerchantResponse(Option<string?> businessLineId = default, Option<string?> companyId = default, Option<string?> description = default, Option<string?> id = default, Option<string?> legalEntityId = default, Option<string?> pricingPlan = default, Option<string?> reference = default)
         {
             _BusinessLineIdOption = businessLineId;

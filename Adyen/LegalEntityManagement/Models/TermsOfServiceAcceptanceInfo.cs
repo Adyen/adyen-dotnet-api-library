@@ -40,7 +40,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="id">An Adyen-generated reference for the accepted Terms of Service.</param>
         /// <param name="type">The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**  </param>
         /// <param name="validTo">The expiration date for the Terms of Service acceptance, in ISO 8601 extended format. For example, 2022-12-18T00:00:00+01:00.</param>
-        [JsonConstructor]
         public TermsOfServiceAcceptanceInfo(Option<string?> acceptedBy = default, Option<string?> acceptedFor = default, Option<DateTimeOffset?> createdAt = default, Option<string?> id = default, Option<TypeEnum?> type = default, Option<DateTimeOffset?> validTo = default)
         {
             _AcceptedByOption = acceptedBy;

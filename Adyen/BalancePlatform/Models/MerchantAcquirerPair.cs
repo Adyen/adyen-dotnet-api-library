@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="acquirerId">The acquirer ID.</param>
         /// <param name="merchantId">The merchant identification number (MID).</param>
-        [JsonConstructor]
         public MerchantAcquirerPair(Option<string?> acquirerId = default, Option<string?> merchantId = default)
         {
             _AcquirerIdOption = acquirerId;

@@ -44,7 +44,6 @@ namespace Adyen.Checkout.Models
         /// <param name="holderName">The name of the cardholder.</param>
         /// <param name="number">The card number. Only collect raw card data if you are fully [PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide). Format: Do not use separators.</param>
         /// <param name="type">Default payment method details. Common for scheme payment methods, and for simple payment method details. (default to TypeEnum.Scheme)</param>
-        [JsonConstructor]
         public CheckoutForwardRequestCard(Option<string?> cvc = default, Option<string?> encryptedCardNumber = default, Option<string?> encryptedExpiryMonth = default, Option<string?> encryptedExpiryYear = default, Option<string?> encryptedSecurityCode = default, Option<string?> expiryMonth = default, Option<string?> expiryYear = default, Option<string?> holderName = default, Option<string?> number = default, Option<TypeEnum?> type = default)
         {
             _CvcOption = cvc;

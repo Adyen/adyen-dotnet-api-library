@@ -39,7 +39,6 @@ namespace Adyen.Checkout.Models
         /// <param name="paymentMethodType">Specifies the payment method.</param>
         /// <param name="sdkData">The data to pass to the SDK.</param>
         /// <param name="url">Specifies the URL to redirect to.</param>
-        [JsonConstructor]
         public CheckoutSDKAction(TypeEnum type, Option<string?> paymentData = default, Option<string?> paymentMethodType = default, Option<Dictionary<string, string>?> sdkData = default, Option<string?> url = default)
         {
             Type = type;

@@ -45,7 +45,6 @@ namespace Adyen.Checkout.Models
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
         /// <param name="subtype">The payment method subtype.</param>
         /// <param name="type">**riverty** (default to TypeEnum.Riverty)</param>
-        [JsonConstructor]
         public RivertyDetails(Option<string?> billingAddress = default, Option<string?> checkoutAttemptId = default, Option<string?> deliveryAddress = default, Option<string?> deviceFingerprint = default, Option<string?> iban = default, Option<string?> personalDetails = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<string?> subtype = default, TypeEnum type = default)
         {
             _BillingAddressOption = billingAddress;

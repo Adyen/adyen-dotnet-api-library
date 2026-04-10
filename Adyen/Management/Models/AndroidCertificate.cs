@@ -41,7 +41,6 @@ namespace Adyen.Management.Models
         /// <param name="notAfter">The date when the certificate stops to be valid.</param>
         /// <param name="notBefore">The date when the certificate starts to be valid.</param>
         /// <param name="status">The status of the certificate.</param>
-        [JsonConstructor]
         public AndroidCertificate(string id, Option<string?> description = default, Option<string?> extension = default, Option<string?> name = default, Option<DateTimeOffset?> notAfter = default, Option<DateTimeOffset?> notBefore = default, Option<string?> status = default)
         {
             Id = id;

@@ -35,7 +35,6 @@ namespace Adyen.Payment.Models
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataSwish" /> class.
         /// </summary>
         /// <param name="swishPayerAlias">A Swish shopper&#39;s telephone number.</param>
-        [JsonConstructor]
         public ResponseAdditionalDataSwish(Option<string?> swishPayerAlias = default)
         {
             _SwishPayerAliasOption = swishPayerAlias;

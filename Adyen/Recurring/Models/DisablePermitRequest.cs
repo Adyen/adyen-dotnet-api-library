@@ -36,7 +36,6 @@ namespace Adyen.Recurring.Models
         /// </summary>
         /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction.</param>
         /// <param name="token">The permit token to disable.</param>
-        [JsonConstructor]
         public DisablePermitRequest(string merchantAccount, string token)
         {
             MerchantAccount = merchantAccount;

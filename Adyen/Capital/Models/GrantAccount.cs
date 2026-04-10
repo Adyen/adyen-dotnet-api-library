@@ -38,7 +38,6 @@ namespace Adyen.Capital.Models
         /// <param name="fundingBalanceAccountId">The unique identifier of the balance account used to fund the grant.</param>
         /// <param name="id">The unique identifier of the grant account.</param>
         /// <param name="limits">Contains the maximum amount of funds that you can disburse for grants.</param>
-        [JsonConstructor]
         public GrantAccount(Option<List<Balance>?> balances = default, Option<string?> fundingBalanceAccountId = default, Option<string?> id = default, Option<List<GrantLimit>?> limits = default)
         {
             _BalancesOption = balances;

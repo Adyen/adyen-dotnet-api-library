@@ -40,7 +40,6 @@ namespace Adyen.Checkout.Models
         /// <param name="paymentMethodType">Specifies the payment method.</param>
         /// <param name="token">A token to pass to the delegatedAuthentication component.</param>
         /// <param name="url">Specifies the URL to redirect to.</param>
-        [JsonConstructor]
         public CheckoutDelegatedAuthenticationAction(TypeEnum type, Option<string?> authorisationToken = default, Option<string?> paymentData = default, Option<string?> paymentMethodType = default, Option<string?> token = default, Option<string?> url = default)
         {
             Type = type;

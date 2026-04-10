@@ -43,7 +43,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="migratedAccountHolderCode">The unique identifier of the migrated account holder in the classic integration.</param>
         /// <param name="reference">Your reference for the account holder.</param>
         /// <param name="timeZone">The time zone of the account holder. For example, **Europe/Amsterdam**. Defaults to the time zone of the balance platform if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).</param>
-        [JsonConstructor]
         public AccountHolderInfo(string legalEntityId, Option<string?> balancePlatform = default, Option<Dictionary<string, AccountHolderCapability>?> capabilities = default, Option<ContactDetails?> contactDetails = default, Option<string?> description = default, Option<Dictionary<string, string>?> metadata = default, Option<string?> migratedAccountHolderCode = default, Option<string?> reference = default, Option<string?> timeZone = default)
         {
             LegalEntityId = legalEntityId;

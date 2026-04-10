@@ -43,7 +43,6 @@ namespace Adyen.Checkout.Models
         /// <param name="fareBasisCode">The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 15 characters * Must not start with a space or be all spaces. * Must not be all zeros.</param>
         /// <param name="flightNumber">The flight identifier. * minLength: 1 character * maxLength: 5 characters * Must not start with a space or be all spaces. * Must not be all zeros.</param>
         /// <param name="stopOverCode">A one-letter code that indicates whether the passenger is entitled to make a stopover. Can be a space, O if the passenger is entitled to make a stopover, or X if they are not. * Encoding: ASCII * minLength: 1 character * maxLength: 1 character</param>
-        [JsonConstructor]
         public Leg(Option<string?> carrierCode = default, Option<string?> classOfTravel = default, Option<DateTimeOffset?> dateOfTravel = default, Option<string?> departureAirportCode = default, Option<long?> departureTax = default, Option<string?> destinationAirportCode = default, Option<string?> fareBasisCode = default, Option<string?> flightNumber = default, Option<string?> stopOverCode = default)
         {
             _CarrierCodeOption = carrierCode;

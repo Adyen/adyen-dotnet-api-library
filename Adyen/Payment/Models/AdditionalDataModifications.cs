@@ -35,7 +35,6 @@ namespace Adyen.Payment.Models
         /// Initializes a new instance of the <see cref="AdditionalDataModifications" /> class.
         /// </summary>
         /// <param name="installmentPaymentDataSelectedInstallmentOption">This is the installment option selected by the shopper. It is required only if specified by the user.</param>
-        [JsonConstructor]
         public AdditionalDataModifications(Option<string?> installmentPaymentDataSelectedInstallmentOption = default)
         {
             _InstallmentPaymentDataSelectedInstallmentOptionOption = installmentPaymentDataSelectedInstallmentOption;

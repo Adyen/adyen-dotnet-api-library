@@ -38,7 +38,6 @@ namespace Adyen.Checkout.Models
         /// <param name="merchantReference">Merchant defined payment reference.</param>
         /// <param name="pspReference">Adyen&#39;s 16-character reference associated with the transaction/request. This value is globally unique. Use this reference when you communicate with us about this request.</param>
         /// <param name="storedPaymentMethodId">The unique identifier of the token.</param>
-        [JsonConstructor]
         public CheckoutForwardResponse(CheckoutForwardResponseFromUrl response, Option<string?> merchantReference = default, Option<string?> pspReference = default, Option<string?> storedPaymentMethodId = default)
         {
             Response = response;

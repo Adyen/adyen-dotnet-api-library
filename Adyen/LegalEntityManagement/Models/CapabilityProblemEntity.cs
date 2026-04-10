@@ -38,7 +38,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="id">id</param>
         /// <param name="owner">owner</param>
         /// <param name="type">type</param>
-        [JsonConstructor]
         public CapabilityProblemEntity(Option<List<string>?> documents = default, Option<string?> id = default, Option<CapabilityProblemEntityRecursive?> owner = default, Option<TypeEnum?> type = default)
         {
             _DocumentsOption = documents;

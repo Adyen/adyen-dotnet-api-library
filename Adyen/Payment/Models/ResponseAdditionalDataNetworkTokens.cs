@@ -37,7 +37,6 @@ namespace Adyen.Payment.Models
         /// <param name="networkTokenAvailable">Indicates whether a network token is available for the specified card.</param>
         /// <param name="networkTokenBin">The Bank Identification Number of a tokenized card, which is the first six digits of a card number.</param>
         /// <param name="networkTokenTokenSummary">The last four digits of a network token.</param>
-        [JsonConstructor]
         public ResponseAdditionalDataNetworkTokens(Option<string?> networkTokenAvailable = default, Option<string?> networkTokenBin = default, Option<string?> networkTokenTokenSummary = default)
         {
             _NetworkTokenAvailableOption = networkTokenAvailable;

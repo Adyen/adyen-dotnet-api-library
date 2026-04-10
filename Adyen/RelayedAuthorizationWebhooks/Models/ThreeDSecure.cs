@@ -38,7 +38,6 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
         /// <param name="authenticationResult">The result from the performed authentication</param>
         /// <param name="authenticationType">The type of the performed authentication</param>
         /// <param name="dsTransactionId">The transaction identifier for the Directory server</param>
-        [JsonConstructor]
         public ThreeDSecure(Option<string?> acsTransactionId = default, Option<string?> authenticationResult = default, Option<string?> authenticationType = default, Option<string?> dsTransactionId = default)
         {
             _AcsTransactionIdOption = acsTransactionId;

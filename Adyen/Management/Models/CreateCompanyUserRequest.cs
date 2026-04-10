@@ -42,7 +42,6 @@ namespace Adyen.Management.Models
         /// <param name="loginMethod">The requested login method for the user. To use SSO, you must already have SSO configured with Adyen before creating the user.  Possible values: **Username &amp; account**, **Email**, or **SSO** </param>
         /// <param name="roles">The list of [roles](https://docs.adyen.com/account/user-roles) for this user.</param>
         /// <param name="timeZoneCode">The [tz database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) of the time zone of the user. For example, **Europe/Amsterdam**.</param>
-        [JsonConstructor]
         public CreateCompanyUserRequest(string email, Name name, string username, Option<List<string>?> accountGroups = default, Option<List<string>?> associatedMerchantAccounts = default, Option<string?> loginMethod = default, Option<List<string>?> roles = default, Option<string?> timeZoneCode = default)
         {
             Email = email;

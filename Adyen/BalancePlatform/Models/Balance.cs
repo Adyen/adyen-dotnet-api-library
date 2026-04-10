@@ -39,7 +39,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance.</param>
         /// <param name="reserved">The balance currently held in reserve.</param>
         /// <param name="pending">The sum of the transactions that will be settled in the future.</param>
-        [JsonConstructor]
         public Balance(long available, long varBalance, string currency, long reserved, Option<long?> pending = default)
         {
             Available = available;

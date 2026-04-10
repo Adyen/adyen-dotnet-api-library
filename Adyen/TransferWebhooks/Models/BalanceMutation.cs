@@ -38,7 +38,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).</param>
         /// <param name="received">The amount in the payment&#39;s currency that is debited or credited on the received accounting register.</param>
         /// <param name="reserved">The amount in the payment&#39;s currency that is debited or credited on the reserved accounting register.</param>
-        [JsonConstructor]
         public BalanceMutation(Option<long?> balance = default, Option<string?> currency = default, Option<long?> received = default, Option<long?> reserved = default)
         {
             _BalanceOption = balance;

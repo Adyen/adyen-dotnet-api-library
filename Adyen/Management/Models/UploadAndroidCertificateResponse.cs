@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="UploadAndroidCertificateResponse" /> class.
         /// </summary>
         /// <param name="id">The unique identifier of the uploaded Android certificate.</param>
-        [JsonConstructor]
         public UploadAndroidCertificateResponse(Option<string?> id = default)
         {
             _IdOption = id;

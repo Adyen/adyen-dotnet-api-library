@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="LinksElement" /> class.
         /// </summary>
         /// <param name="href">href</param>
-        [JsonConstructor]
         public LinksElement(Option<string?> href = default)
         {
             _HrefOption = href;

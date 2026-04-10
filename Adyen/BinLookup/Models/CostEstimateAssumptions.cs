@@ -37,7 +37,6 @@ namespace Adyen.BinLookup.Models
         /// <param name="assume3DSecureAuthenticated">If true, the cardholder is expected to successfully authorise via 3D Secure.</param>
         /// <param name="assumeLevel3Data">If true, the transaction is expected to have valid Level 3 data.</param>
         /// <param name="installments">If not zero, the number of installments.</param>
-        [JsonConstructor]
         public CostEstimateAssumptions(Option<bool?> assume3DSecureAuthenticated = default, Option<bool?> assumeLevel3Data = default, Option<int?> installments = default)
         {
             _Assume3DSecureAuthenticatedOption = assume3DSecureAuthenticated;

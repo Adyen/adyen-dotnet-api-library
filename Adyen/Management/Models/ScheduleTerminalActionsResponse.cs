@@ -41,7 +41,6 @@ namespace Adyen.Management.Models
         /// <param name="terminalsWithErrors">The validation errors that occurred in the list of terminals, and for each error the IDs of the terminals that the error applies to.</param>
         /// <param name="totalErrors">The number of terminals for which scheduling the action failed.</param>
         /// <param name="totalScheduled">The number of terminals for which the action was successfully scheduled. This doesn&#39;t mean the action has happened yet.</param>
-        [JsonConstructor]
         public ScheduleTerminalActionsResponse(Option<ScheduleTerminalActionsRequestActionDetails?> actionDetails = default, Option<List<TerminalActionScheduleDetail>?> items = default, Option<string?> scheduledAt = default, Option<string?> storeId = default, Option<Dictionary<string, List<string>>?> terminalsWithErrors = default, Option<int?> totalErrors = default, Option<int?> totalScheduled = default)
         {
             _ActionDetailsOption = actionDetails;

@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="ListNetworkTokensResponse" /> class.
         /// </summary>
         /// <param name="networkTokens">List of network tokens.</param>
-        [JsonConstructor]
         public ListNetworkTokensResponse(Option<List<NetworkToken>?> networkTokens = default)
         {
             _NetworkTokensOption = networkTokens;

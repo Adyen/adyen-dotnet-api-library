@@ -35,7 +35,6 @@ namespace Adyen.PaymentsApp.Models
         /// Initializes a new instance of the <see cref="PaymentsAppResponse" /> class.
         /// </summary>
         /// <param name="paymentsApps">List of Payments Apps.</param>
-        [JsonConstructor]
         public PaymentsAppResponse(List<PaymentsAppDto> paymentsApps)
         {
             PaymentsApps = paymentsApps;

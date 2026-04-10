@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="creditorId">Creditor id</param>
         /// <param name="transactionDescription">transactionDescription</param>
-        [JsonConstructor]
         public SepaDirectDebitInfo(Option<string?> creditorId = default, Option<TransactionDescriptionInfo?> transactionDescription = default)
         {
             _CreditorIdOption = creditorId;

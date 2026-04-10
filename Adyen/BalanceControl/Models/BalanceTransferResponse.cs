@@ -43,7 +43,6 @@ namespace Adyen.BalanceControl.Models
         /// <param name="type">The type of balance transfer. Possible values: **tax**, **fee**, **terminalSale**, **credit**, **debit**, and **adjustment**.</param>
         /// <param name="description">A human-readable description for the transfer. You can use alphanumeric characters and hyphens. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.</param>
         /// <param name="reference">A reference for the balance transfer. If you don&#39;t provide this in the request, Adyen generates a unique reference. Maximum length: 80 characters.</param>
-        [JsonConstructor]
         public BalanceTransferResponse(Amount amount, DateTimeOffset createdAt, string fromMerchant, string pspReference, StatusEnum status, string toMerchant, TypeEnum type, Option<string?> description = default, Option<string?> reference = default)
         {
             Amount = amount;

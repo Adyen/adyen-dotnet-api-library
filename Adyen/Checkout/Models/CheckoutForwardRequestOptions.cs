@@ -39,7 +39,6 @@ namespace Adyen.Checkout.Models
         /// <param name="networkToken">networkToken</param>
         /// <param name="networkTxReferencePaths">Set in tokenize:true case when forwarding PAN. Addresses to the possible location(s) of networkTxReference in the incoming 3rd party response</param>
         /// <param name="tokenize">Set to **true**, the payment details are [tokenized](https://docs.adyen.com/online-payments/tokenization).</param>
-        [JsonConstructor]
         public CheckoutForwardRequestOptions(Option<bool?> accountUpdate = default, Option<bool?> dryRun = default, Option<CheckoutNetworkTokenOption?> networkToken = default, Option<List<string>?> networkTxReferencePaths = default, Option<bool?> tokenize = default)
         {
             _AccountUpdateOption = accountUpdate;

@@ -35,7 +35,6 @@ namespace Adyen.Capital.Models
         /// Initializes a new instance of the <see cref="GrantOffers" /> class.
         /// </summary>
         /// <param name="varGrantOffers">Contains a list of available grant offers for the specified account holder.</param>
-        [JsonConstructor]
         public GrantOffers(List<GrantOffer> varGrantOffers)
         {
             VarGrantOffers = varGrantOffers;

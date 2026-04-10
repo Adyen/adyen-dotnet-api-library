@@ -36,7 +36,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <param name="email">The support email address of the legal entity. Required if you have a platform setup.</param>
         /// <param name="phone">phone</param>
-        [JsonConstructor]
         public Support(Option<string?> email = default, Option<PhoneNumber?> phone = default)
         {
             _EmailOption = email;

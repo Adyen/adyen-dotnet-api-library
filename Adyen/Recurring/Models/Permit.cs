@@ -39,7 +39,6 @@ namespace Adyen.Recurring.Models
         /// <param name="restriction">restriction</param>
         /// <param name="resultKey">The key to link permit requests to permit results.</param>
         /// <param name="validTillDate">The expiry date for this permit.</param>
-        [JsonConstructor]
         public Permit(Option<string?> partnerId = default, Option<string?> profileReference = default, Option<PermitRestriction?> restriction = default, Option<string?> resultKey = default, Option<DateTimeOffset?> validTillDate = default)
         {
             _PartnerIdOption = partnerId;

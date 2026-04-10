@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="ReprocessAndroidAppResponse" /> class.
         /// </summary>
         /// <param name="message">The result of the reprocess.</param>
-        [JsonConstructor]
         public ReprocessAndroidAppResponse(Option<string?> message = default)
         {
             _MessageOption = message;

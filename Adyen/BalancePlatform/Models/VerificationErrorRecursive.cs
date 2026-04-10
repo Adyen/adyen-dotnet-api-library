@@ -39,7 +39,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="message">A description of the error.</param>
         /// <param name="type">The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **dataReview**  </param>
         /// <param name="remediatingActions">Contains the actions that you can take to resolve the verification error.</param>
-        [JsonConstructor]
         public VerificationErrorRecursive(Option<List<VerificationErrorRecursive.CapabilitiesEnum>?> capabilities = default, Option<string?> code = default, Option<string?> message = default, Option<TypeEnum?> type = default, Option<List<RemediatingAction>?> remediatingActions = default)
         {
             _CapabilitiesOption = capabilities;

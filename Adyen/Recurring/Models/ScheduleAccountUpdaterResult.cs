@@ -36,7 +36,6 @@ namespace Adyen.Recurring.Models
         /// </summary>
         /// <param name="pspReference">Adyen&#39;s 16-character unique reference associated with the transaction. This value is globally unique; quote it when communicating with us about this request.</param>
         /// <param name="result">The result of scheduling an Account Updater. If scheduling was successful, this field returns **Success**; otherwise it contains the error message.</param>
-        [JsonConstructor]
         public ScheduleAccountUpdaterResult(string pspReference, string result)
         {
             PspReference = pspReference;

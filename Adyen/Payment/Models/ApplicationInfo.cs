@@ -40,7 +40,6 @@ namespace Adyen.Payment.Models
         /// <param name="merchantApplication">merchantApplication</param>
         /// <param name="merchantDevice">merchantDevice</param>
         /// <param name="shopperInteractionDevice">shopperInteractionDevice</param>
-        [JsonConstructor]
         public ApplicationInfo(Option<CommonField?> adyenLibrary = default, Option<CommonField?> adyenPaymentSource = default, Option<ExternalPlatform?> externalPlatform = default, Option<CommonField?> merchantApplication = default, Option<MerchantDevice?> merchantDevice = default, Option<ShopperInteractionDevice?> shopperInteractionDevice = default)
         {
             _AdyenLibraryOption = adyenLibrary;

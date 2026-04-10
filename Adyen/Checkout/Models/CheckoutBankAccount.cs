@@ -44,7 +44,6 @@ namespace Adyen.Checkout.Models
         /// <param name="iban">The [International Bank Account Number](https://en.wikipedia.org/wiki/International_Bank_Account_Number) (IBAN).</param>
         /// <param name="ownerName">The name of the bank account holder. If you submit a name with non-Latin characters, we automatically replace some of them with corresponding Latin characters to meet the FATF recommendations. For example: * χ12 is converted to ch12. * üA is converted to euA. * Peter Møller is converted to Peter Mller, because banks don&#39;t accept &#39;ø&#39;. After replacement, the ownerName must have at least three alphanumeric characters (A-Z, a-z, 0-9), and at least one of them must be a valid Latin character (A-Z, a-z). For example: * John17 - allowed. * J17 - allowed. * 171 - not allowed. * John-7 - allowed. &gt; If provided details don&#39;t match the required format, the response returns the error message: 203 &#39;Invalid bank account holder name&#39;.</param>
         /// <param name="taxId">The bank account holder&#39;s tax ID.</param>
-        [JsonConstructor]
         public CheckoutBankAccount(Option<AccountTypeEnum?> accountType = default, Option<string?> bankAccountNumber = default, Option<string?> bankCity = default, Option<string?> bankLocationId = default, Option<string?> bankName = default, Option<string?> bic = default, Option<string?> countryCode = default, Option<string?> iban = default, Option<string?> ownerName = default, Option<string?> taxId = default)
         {
             _AccountTypeOption = accountType;

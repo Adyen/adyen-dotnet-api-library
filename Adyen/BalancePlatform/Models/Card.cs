@@ -48,7 +48,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="number">The primary account number (PAN) of the card. &gt; The PAN is masked by default and returned only for single-use virtual cards.</param>
         /// <param name="threeDSecure">The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt; Reach out to your Adyen contact to get the values relevant for your integration.</param>
         /// <param name="usage">Specifies how many times the card can be used. Possible values: **singleUse**, **multiUse**.  &gt; Reach out to your Adyen contact to determine the value relevant for your integration.</param>
-        [JsonConstructor]
         public Card(string brand, string brandVariant, string cardholderName, FormFactorEnum formFactor, Option<Authentication?> authentication = default, Option<string?> bin = default, Option<CardConfiguration?> configuration = default, Option<string?> cvc = default, Option<DeliveryContact?> deliveryContact = default, Option<Expiry?> expiration = default, Option<string?> lastFour = default, Option<string?> number = default, Option<string?> threeDSecure = default, Option<string?> usage = default)
         {
             Brand = brand;

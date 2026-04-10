@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="ipAddress">The terminal&#39;s Bluetooth IP address.</param>
         /// <param name="macAddress">The terminal&#39;s Bluetooth MAC address.</param>
-        [JsonConstructor]
         public TerminalConnectivityBluetooth(Option<string?> ipAddress = default, Option<string?> macAddress = default)
         {
             _IpAddressOption = ipAddress;

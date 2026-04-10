@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="conecsId">Meal Voucher conecsId. Format: digits only</param>
         /// <param name="siret">Meal Voucher siret. Format: 14 digits.</param>
         /// <param name="subTypes">The list of additional payment methods. Allowed values: **mealVoucher_FR_edenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.</param>
-        [JsonConstructor]
         public MealVoucherFRInfo(string conecsId, string siret, List<string> subTypes)
         {
             ConecsId = conecsId;

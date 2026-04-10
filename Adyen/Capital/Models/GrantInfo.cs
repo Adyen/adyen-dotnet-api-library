@@ -37,7 +37,6 @@ namespace Adyen.Capital.Models
         /// <param name="grantAccountId">The unique identifier of the grant account that tracks this grant.</param>
         /// <param name="grantOfferId">The unique identifier of the selected grant offer. Adyen uses the details of the selected grant offer to create a grant.</param>
         /// <param name="counterparty">counterparty</param>
-        [JsonConstructor]
         public GrantInfo(string grantAccountId, string grantOfferId, Option<GrantInfoCounterparty?> counterparty = default)
         {
             GrantAccountId = grantAccountId;

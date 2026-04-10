@@ -39,7 +39,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="reference">Your reference for the modification, used internally within your platform.</param>
         /// <param name="status">The status of the transfer event.</param>
         /// <param name="type">The type of transfer modification.</param>
-        [JsonConstructor]
         public Modification(Option<string?> direction = default, Option<string?> id = default, Option<string?> reference = default, Option<StatusEnum?> status = default, Option<string?> type = default)
         {
             _DirectionOption = direction;

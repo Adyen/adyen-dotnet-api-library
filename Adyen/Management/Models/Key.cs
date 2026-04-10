@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="identifier">The unique identifier of the shared key.</param>
         /// <param name="passphrase">The secure passphrase to protect the shared key. Must consist of:   * At least 12 characters.  * At least 1 uppercase letter: &#x60;[A-Z]&#x60;.   * At least 1 lowercase letter: &#x60;[a-z]&#x60;.   * At least 1 digit: &#x60;[0-9]&#x60;.    * At least 1 special character. Limited to the following: &#x60;~&#x60;, &#x60;!&#x60;, &#x60;@&#x60;, &#x60;#&#x60;, &#x60;$&#x60;, &#x60;%&#x60;, &#x60;^&#x60;, &#x60;&amp;&#x60;, &#x60;*&#x60;, &#x60;(&#x60;, &#x60;)&#x60;, &#x60;_&#x60;, &#x60;+&#x60;, &#x60;&#x3D;&#x60;, &#x60;}&#x60;, &#x60;{&#x60;, &#x60;]&#x60;, &#x60;[&#x60;, &#x60;;&#x60;, &#x60;:&#x60;, &#x60;?&#x60;, &#x60;.&#x60;, &#x60;,&#x60;, &#x60;&gt;&#x60;, &#x60;&lt;&#x60;.    </param>
         /// <param name="version">The version number of the shared key.</param>
-        [JsonConstructor]
         public Key(Option<string?> identifier = default, Option<string?> passphrase = default, Option<int?> version = default)
         {
             _IdentifierOption = identifier;

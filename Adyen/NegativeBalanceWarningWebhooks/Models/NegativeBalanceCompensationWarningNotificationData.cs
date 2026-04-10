@@ -42,7 +42,6 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
         /// <param name="liableBalanceAccountId">The balance account ID of the account that will be used to compensate the balance account whose balance is negative.</param>
         /// <param name="negativeBalanceSince">The date the balance for the account became negative.</param>
         /// <param name="scheduledCompensationAt">The date when a compensation transfer to the account is scheduled to happen.</param>
-        [JsonConstructor]
         public NegativeBalanceCompensationWarningNotificationData(Option<ResourceReference?> accountHolder = default, Option<Amount?> amount = default, Option<string?> balancePlatform = default, Option<DateTimeOffset?> creationDate = default, Option<string?> id = default, Option<string?> liableBalanceAccountId = default, Option<DateTimeOffset?> negativeBalanceSince = default, Option<DateTimeOffset?> scheduledCompensationAt = default)
         {
             _AccountHolderOption = accountHolder;

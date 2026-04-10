@@ -38,7 +38,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="encryptedPinBlock">The encrypted [PIN block](https://www.pcisecuritystandards.org/glossary/pin-block).</param>
         /// <param name="paymentInstrumentId">The unique identifier of the payment instrument, which is the card for which you are managing the PIN.</param>
         /// <param name="token">The 16-digit token that you used to generate the &#x60;encryptedPinBlock&#x60;.</param>
-        [JsonConstructor]
         public PinChangeRequest(string encryptedKey, string encryptedPinBlock, string paymentInstrumentId, string token)
         {
             EncryptedKey = encryptedKey;

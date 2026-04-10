@@ -41,7 +41,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="startMonth">The month when the card was issued. Applies only to some UK debit cards.  Format: two digits. Add a leading zero for single-digit months. For example: * 03 &#x3D; March * 11 &#x3D; November</param>
         /// <param name="startYear">The year when the card was issued. Applies only to some UK debit cards.  Format: four digits. For example: 2020</param>
         /// <param name="storedPaymentMethodId">The unique [token](/payouts/payout-service/pay-out-to-cards/manage-card-information#save-card-details) created to identify the counterparty.  </param>
-        [JsonConstructor]
         public CardIdentification(Option<string?> expiryMonth = default, Option<string?> expiryYear = default, Option<string?> issueNumber = default, Option<string?> number = default, Option<string?> startMonth = default, Option<string?> startYear = default, Option<string?> storedPaymentMethodId = default)
         {
             _ExpiryMonthOption = expiryMonth;

@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="name">The name of the SCA device that you are registering. You can use it to help your users identify the device.</param>
         /// <param name="sdkOutput">A base64-encoded block with the data required to register the SCA device. You obtain this information by using Adyen&#39;s authentication SDK.</param>
-        [JsonConstructor]
         public BeginScaDeviceRegistrationRequest(string name, string sdkOutput)
         {
             Name = name;

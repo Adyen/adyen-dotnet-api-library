@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="maxAmount">The maximum amount that the terminal accepts for a single store-and-forward payment.</param>
         /// <param name="maxPayments">The maximum number of store-and-forward transactions per terminal that you can process while offline.</param>
         /// <param name="supportedCardTypes">supportedCardTypes</param>
-        [JsonConstructor]
         public StoreAndForward(Option<List<MinorUnitsMonetaryValue>?> maxAmount = default, Option<int?> maxPayments = default, Option<SupportedCardTypes?> supportedCardTypes = default)
         {
             _MaxAmountOption = maxAmount;

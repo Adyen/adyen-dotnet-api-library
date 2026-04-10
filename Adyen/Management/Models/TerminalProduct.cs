@@ -39,7 +39,6 @@ namespace Adyen.Management.Models
         /// <param name="itemsIncluded">A list of parts included in the terminal package.</param>
         /// <param name="name">The descriptive name of the product.</param>
         /// <param name="price">price</param>
-        [JsonConstructor]
         public TerminalProduct(Option<string?> description = default, Option<string?> id = default, Option<List<string>?> itemsIncluded = default, Option<string?> name = default, Option<TerminalProductPrice?> price = default)
         {
             _DescriptionOption = description;

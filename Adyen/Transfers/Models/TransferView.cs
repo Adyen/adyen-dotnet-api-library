@@ -37,7 +37,6 @@ namespace Adyen.Transfers.Models
         /// <param name="reference">The [&#x60;reference&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_reference) from the &#x60;/transfers&#x60; request. If you haven&#39;t provided any, Adyen generates a unique reference.</param>
         /// <param name="categoryData">categoryData</param>
         /// <param name="id">The ID of the resource.</param>
-        [JsonConstructor]
         public TransferView(string reference, Option<TransferCategoryData?> categoryData = default, Option<string?> id = default)
         {
             Reference = reference;

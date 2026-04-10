@@ -36,7 +36,6 @@ namespace Adyen.ManagementWebhooks.Models
         /// </summary>
         /// <param name="entity">entity</param>
         /// <param name="verificationErrors">List of verification errors.</param>
-        [JsonConstructor]
         public CapabilityProblem(Option<CapabilityProblemEntity?> entity = default, Option<List<VerificationError>?> verificationErrors = default)
         {
             _EntityOption = entity;

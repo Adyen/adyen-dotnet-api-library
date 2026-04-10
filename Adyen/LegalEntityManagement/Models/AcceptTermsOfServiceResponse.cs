@@ -40,7 +40,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="language">The language used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English or **fr** for French.  Note that French is only available for some integration types in certain countries/regions. Reach out to your Adyen contact for more information.</param>
         /// <param name="termsOfServiceDocumentId">The unique identifier of the Terms of Service document.</param>
         /// <param name="type">The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**  </param>
-        [JsonConstructor]
         public AcceptTermsOfServiceResponse(Option<string?> acceptedBy = default, Option<string?> id = default, Option<string?> ipAddress = default, Option<string?> language = default, Option<string?> termsOfServiceDocumentId = default, Option<TypeEnum?> type = default)
         {
             _AcceptedByOption = acceptedBy;

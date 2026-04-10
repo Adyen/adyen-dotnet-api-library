@@ -37,7 +37,6 @@ namespace Adyen.Transfers.Models
         /// <param name="accountNumber">The 7- to 10-digit bank account number ([Bankkontonummer](https://sv.wikipedia.org/wiki/Bankkonto)), without the clearing number, separators, or whitespace.</param>
         /// <param name="clearingNumber">The 4- to 5-digit clearing number ([Clearingnummer](https://sv.wikipedia.org/wiki/Clearingnummer)), without separators or whitespace.</param>
         /// <param name="type">**seLocal** (default to TypeEnum.SeLocal)</param>
-        [JsonConstructor]
         public SELocalAccountIdentification(string accountNumber, string clearingNumber, TypeEnum type = default)
         {
             AccountNumber = accountNumber;

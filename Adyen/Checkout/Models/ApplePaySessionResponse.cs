@@ -35,7 +35,6 @@ namespace Adyen.Checkout.Models
         /// Initializes a new instance of the <see cref="ApplePaySessionResponse" /> class.
         /// </summary>
         /// <param name="data">Base64 encoded data you need to [complete the Apple Pay merchant validation](https://docs.adyen.com/payment-methods/apple-pay/api-only?tab&#x3D;adyen-certificate-validation_1#complete-apple-pay-session-validation).</param>
-        [JsonConstructor]
         public ApplePaySessionResponse(string data)
         {
             Data = data;

@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="errorMessage">An error message.</param>
         /// <param name="status">The status of the PIN delivery.</param>
         /// <param name="trackingNumber">The tracking number of the PIN delivery.</param>
-        [JsonConstructor]
         public CardOrderItemDeliveryStatus(Option<string?> errorMessage = default, Option<StatusEnum?> status = default, Option<string?> trackingNumber = default)
         {
             _ErrorMessageOption = errorMessage;

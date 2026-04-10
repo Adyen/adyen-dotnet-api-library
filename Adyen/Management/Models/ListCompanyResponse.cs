@@ -38,7 +38,6 @@ namespace Adyen.Management.Models
         /// <param name="pagesTotal">Total number of pages.</param>
         /// <param name="links">links</param>
         /// <param name="data">The list of companies.</param>
-        [JsonConstructor]
         public ListCompanyResponse(int itemsTotal, int pagesTotal, Option<PaginationLinks?> links = default, Option<List<Company>?> data = default)
         {
             ItemsTotal = itemsTotal;

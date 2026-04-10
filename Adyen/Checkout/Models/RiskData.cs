@@ -38,7 +38,6 @@ namespace Adyen.Checkout.Models
         /// <param name="customFields">Any custom fields used as part of the input to configured risk rules.</param>
         /// <param name="fraudOffset">An integer value that is added to the normal fraud score. The value can be either positive or negative.</param>
         /// <param name="profileReference">The risk profile to assign to this payment. When left empty, the merchant-level account&#39;s default risk profile will be applied.</param>
-        [JsonConstructor]
         public RiskData(Option<string?> clientData = default, Option<Dictionary<string, string>?> customFields = default, Option<int?> fraudOffset = default, Option<string?> profileReference = default)
         {
             _ClientDataOption = clientData;

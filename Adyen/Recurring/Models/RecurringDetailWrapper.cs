@@ -35,7 +35,6 @@ namespace Adyen.Recurring.Models
         /// Initializes a new instance of the <see cref="RecurringDetailWrapper" /> class.
         /// </summary>
         /// <param name="recurringDetail">recurringDetail</param>
-        [JsonConstructor]
         public RecurringDetailWrapper(Option<RecurringDetail?> recurringDetail = default)
         {
             _RecurringDetailOption = recurringDetail;

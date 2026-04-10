@@ -35,7 +35,6 @@ namespace Adyen.Capital.Models
         /// Initializes a new instance of the <see cref="Disbursements" /> class.
         /// </summary>
         /// <param name="varDisbursements">Contains a list of all disbursements related to the specified grant.</param>
-        [JsonConstructor]
         public Disbursements(List<Disbursement> varDisbursements)
         {
             VarDisbursements = varDisbursements;

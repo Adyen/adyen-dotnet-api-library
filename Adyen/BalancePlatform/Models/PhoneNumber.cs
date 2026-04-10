@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="phoneCountryCode">The two-character ISO-3166-1 alpha-2 country code of the phone number. For example, **US** or **NL**.</param>
         /// <param name="varPhoneNumber">The phone number. The inclusion of the phone number country code is not necessary.</param>
         /// <param name="phoneType">The type of the phone number. Possible values: **Landline**, **Mobile**, **SIP**, **Fax**.</param>
-        [JsonConstructor]
         public PhoneNumber(Option<string?> phoneCountryCode = default, Option<string?> varPhoneNumber = default, Option<PhoneTypeEnum?> phoneType = default)
         {
             _PhoneCountryCodeOption = phoneCountryCode;

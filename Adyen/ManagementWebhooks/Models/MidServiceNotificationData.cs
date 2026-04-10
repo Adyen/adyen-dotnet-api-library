@@ -43,7 +43,6 @@ namespace Adyen.ManagementWebhooks.Models
         /// <param name="reference">Your reference for the payment method.</param>
         /// <param name="storeId">The unique identifier of the [store](https://docs.adyen.com/api-explorer/#/ManagementService/latest/post/merchants/{id}/paymentMethodSettings__reqParam_storeId), if any.</param>
         /// <param name="verificationStatus">Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**</param>
-        [JsonConstructor]
         public MidServiceNotificationData(string id, string merchantId, StatusEnum status, string type, Option<bool?> allowed = default, Option<bool?> enabled = default, Option<string?> reference = default, Option<string?> storeId = default, Option<VerificationStatusEnum?> verificationStatus = default)
         {
             Id = id;

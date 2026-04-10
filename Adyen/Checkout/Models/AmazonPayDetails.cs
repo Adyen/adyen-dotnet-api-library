@@ -39,7 +39,6 @@ namespace Adyen.Checkout.Models
         /// <param name="checkoutSessionId">The &#x60;checkoutSessionId&#x60; is used to identify the checkout session at the Amazon Pay side. This field is required only for drop-in and components integration, where it replaces the amazonPayToken.</param>
         /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
         /// <param name="type">**amazonpay** (default to TypeEnum.Amazonpay)</param>
-        [JsonConstructor]
         public AmazonPayDetails(Option<string?> amazonPayToken = default, Option<string?> checkoutAttemptId = default, Option<string?> checkoutSessionId = default, Option<string?> sdkData = default, Option<TypeEnum?> type = default)
         {
             _AmazonPayTokenOption = amazonPayToken;

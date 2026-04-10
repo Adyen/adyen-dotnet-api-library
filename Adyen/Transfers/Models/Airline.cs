@@ -36,7 +36,6 @@ namespace Adyen.Transfers.Models
         /// </summary>
         /// <param name="legs">Details about the flight legs for this ticket.</param>
         /// <param name="ticketNumber">The ticket&#39;s unique identifier</param>
-        [JsonConstructor]
         public Airline(Option<List<Leg>?> legs = default, Option<string?> ticketNumber = default)
         {
             _LegsOption = legs;

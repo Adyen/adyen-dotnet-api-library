@@ -38,7 +38,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="name">The name of the SCA device. You can show this name to your user to help them identify the device.</param>
         /// <param name="paymentInstrumentId">The unique identifier of the payment instrument that is associated with the SCA device.</param>
         /// <param name="type">The type of device.  Possible values: **ios**, **android**, **browser**.</param>
-        [JsonConstructor]
         public Device(Option<string?> id = default, Option<string?> name = default, Option<string?> paymentInstrumentId = default, Option<TypeEnum?> type = default)
         {
             _IdOption = id;

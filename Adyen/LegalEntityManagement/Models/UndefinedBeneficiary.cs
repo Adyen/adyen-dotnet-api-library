@@ -36,7 +36,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <param name="description">The details of the undefined beneficiary.</param>
         /// <param name="reference">The reference of the undefined beneficiary.</param>
-        [JsonConstructor]
         public UndefinedBeneficiary(Option<string?> description = default, Option<string?> reference = default)
         {
             _DescriptionOption = description;

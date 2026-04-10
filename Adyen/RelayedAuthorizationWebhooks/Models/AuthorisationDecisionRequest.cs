@@ -37,7 +37,6 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
         /// <param name="reasonCode">The reason of the authorization decision.</param>
         /// <param name="status">The status of the authorization decision. Possible values: **Authorised** or **Refused**.</param>
         /// <param name="statusCode">The code of the authorization decision.</param>
-        [JsonConstructor]
         public AuthorisationDecisionRequest(Option<string?> reasonCode = default, Option<string?> status = default, Option<string?> statusCode = default)
         {
             _ReasonCodeOption = reasonCode;

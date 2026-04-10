@@ -39,7 +39,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="fundingSource">fundingSource</param>
         /// <param name="interval">interval</param>
         /// <param name="maxAmount">maxAmount</param>
-        [JsonConstructor]
         public CapabilitySettings(Option<Dictionary<string, Amount>?> amountPerIndustry = default, Option<bool?> authorizedCardUsers = default, Option<List<CapabilitySettings.FundingSourceEnum>?> fundingSource = default, Option<IntervalEnum?> interval = default, Option<Amount?> maxAmount = default)
         {
             _AmountPerIndustryOption = amountPerIndustry;

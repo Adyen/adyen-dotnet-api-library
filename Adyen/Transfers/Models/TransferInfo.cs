@@ -48,7 +48,6 @@ namespace Adyen.Transfers.Models
         /// <param name="review">review</param>
         /// <param name="type">The type of transfer.  Possible values:   - **bankTransfer**: for push transfers to a transfer instrument or a bank account. The &#x60;category&#x60; must be **bank**. - **internalTransfer**: for push transfers between balance accounts. The &#x60;category&#x60; must be **internal**. - **internalDirectDebit**: for pull transfers (direct debits) between balance accounts. The &#x60;category&#x60; must be **internal**.   </param>
         /// <param name="ultimateParty">ultimateParty</param>
-        [JsonConstructor]
         public TransferInfo(Amount amount, CategoryEnum category, CounterpartyInfoV3 counterparty, Option<string?> balanceAccountId = default, Option<string?> description = default, Option<ExecutionDate?> executionDate = default, Option<string?> paymentInstrumentId = default, Option<List<TransferInfo.PrioritiesEnum>?> priorities = default, Option<PriorityEnum?> priority = default, Option<string?> reference = default, Option<string?> referenceForBeneficiary = default, Option<TransferRequestReview?> review = default, Option<TypeEnum?> type = default, Option<UltimatePartyIdentification?> ultimateParty = default)
         {
             Amount = amount;

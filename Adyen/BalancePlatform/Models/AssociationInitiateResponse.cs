@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="AssociationInitiateResponse" /> class.
         /// </summary>
         /// <param name="sdkInput">A string that you must pass to the authentication SDK to continue with the association process.</param>
-        [JsonConstructor]
         public AssociationInitiateResponse(Option<string?> sdkInput = default)
         {
             _SdkInputOption = sdkInput;

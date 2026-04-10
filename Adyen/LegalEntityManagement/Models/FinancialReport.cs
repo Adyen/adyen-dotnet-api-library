@@ -40,7 +40,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="dateOfFinancialData">The date the financial data were provided, in YYYY-MM-DD format.</param>
         /// <param name="employeeCount">The number of employees of the business.</param>
         /// <param name="netAssets">The net assets of the business.</param>
-        [JsonConstructor]
         public FinancialReport(Option<string?> annualTurnover = default, Option<string?> balanceSheetTotal = default, Option<string?> currencyOfFinancialData = default, Option<string?> dateOfFinancialData = default, Option<string?> employeeCount = default, Option<string?> netAssets = default)
         {
             _AnnualTurnoverOption = annualTurnover;

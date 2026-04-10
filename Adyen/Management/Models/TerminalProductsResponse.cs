@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="TerminalProductsResponse" /> class.
         /// </summary>
         /// <param name="data">Terminal products that can be ordered.</param>
-        [JsonConstructor]
         public TerminalProductsResponse(Option<List<TerminalProduct>?> data = default)
         {
             _DataOption = data;

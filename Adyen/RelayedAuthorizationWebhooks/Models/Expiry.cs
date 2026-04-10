@@ -36,7 +36,6 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
         /// </summary>
         /// <param name="month">The month in which the card will expire.</param>
         /// <param name="year">The year in which the card will expire.</param>
-        [JsonConstructor]
         public Expiry(Option<string?> month = default, Option<string?> year = default)
         {
             _MonthOption = month;

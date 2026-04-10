@@ -35,7 +35,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// Initializes a new instance of the <see cref="VerificationErrors" /> class.
         /// </summary>
         /// <param name="problems">List of the verification errors.</param>
-        [JsonConstructor]
         public VerificationErrors(Option<List<CapabilityProblem>?> problems = default)
         {
             _ProblemsOption = problems;

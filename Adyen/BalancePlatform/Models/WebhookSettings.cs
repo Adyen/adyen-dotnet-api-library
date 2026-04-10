@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="WebhookSettings" /> class.
         /// </summary>
         /// <param name="varWebhookSettings">The list of webhook settings.</param>
-        [JsonConstructor]
         public WebhookSettings(Option<List<WebhookSetting>?> varWebhookSettings = default)
         {
             _VarWebhookSettingsOption = varWebhookSettings;

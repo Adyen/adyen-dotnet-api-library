@@ -36,7 +36,6 @@ namespace Adyen.TransferWebhooks.Models
         /// </summary>
         /// <param name="cardHolder">cardHolder</param>
         /// <param name="cardIdentification">cardIdentification</param>
-        [JsonConstructor]
         public Card(PartyIdentification cardHolder, CardIdentification cardIdentification)
         {
             CardHolder = cardHolder;

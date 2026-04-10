@@ -48,7 +48,6 @@ namespace Adyen.Management.Models
         /// <param name="password">Password to access the webhook URL.</param>
         /// <param name="populateSoapActionHeader">Indicates if the SOAP action header needs to be populated. Default value: **false**.  Only applies if &#x60;communicationFormat&#x60;: **soap**.</param>
         /// <param name="username">Username to access the webhook URL.</param>
-        [JsonConstructor]
         public CreateMerchantWebhookRequest(bool active, CommunicationFormatEnum communicationFormat, string type, string url, Option<bool?> acceptsExpiredCertificate = default, Option<bool?> acceptsSelfSignedCertificate = default, Option<bool?> acceptsUntrustedRootCertificate = default, Option<AdditionalSettings?> additionalSettings = default, Option<string?> description = default, Option<EncryptionProtocolEnum?> encryptionProtocol = default, Option<NetworkTypeEnum?> networkType = default, Option<string?> password = default, Option<bool?> populateSoapActionHeader = default, Option<string?> username = default)
         {
             Active = active;

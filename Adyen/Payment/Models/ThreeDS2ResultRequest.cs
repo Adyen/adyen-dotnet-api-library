@@ -36,7 +36,6 @@ namespace Adyen.Payment.Models
         /// </summary>
         /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction.</param>
         /// <param name="pspReference">The pspReference returned in the /authorise call.</param>
-        [JsonConstructor]
         public ThreeDS2ResultRequest(string merchantAccount, string pspReference)
         {
             MerchantAccount = merchantAccount;

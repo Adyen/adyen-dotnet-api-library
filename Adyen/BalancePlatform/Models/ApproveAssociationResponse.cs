@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="ApproveAssociationResponse" /> class.
         /// </summary>
         /// <param name="scaAssociations">The list of associations.</param>
-        [JsonConstructor]
         public ApproveAssociationResponse(List<Association> scaAssociations)
         {
             ScaAssociations = scaAssociations;

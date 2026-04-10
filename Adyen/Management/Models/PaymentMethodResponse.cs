@@ -39,7 +39,6 @@ namespace Adyen.Management.Models
         /// <param name="links">links</param>
         /// <param name="data">The list of supported payment methods and their details.</param>
         /// <param name="typesWithErrors">The payment method types that were not successfully requested and their corresponding errors.</param>
-        [JsonConstructor]
         public PaymentMethodResponse(int itemsTotal, int pagesTotal, Option<PaginationLinks?> links = default, Option<List<PaymentMethod>?> data = default, Option<List<PaymentMethodResponse.TypesWithErrorsEnum>?> typesWithErrors = default)
         {
             ItemsTotal = itemsTotal;

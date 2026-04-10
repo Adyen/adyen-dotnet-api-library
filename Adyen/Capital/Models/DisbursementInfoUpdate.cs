@@ -35,7 +35,6 @@ namespace Adyen.Capital.Models
         /// Initializes a new instance of the <see cref="DisbursementInfoUpdate" /> class.
         /// </summary>
         /// <param name="repayment">repayment</param>
-        [JsonConstructor]
         public DisbursementInfoUpdate(Option<DisbursementRepaymentInfoUpdate?> repayment = default)
         {
             _RepaymentOption = repayment;

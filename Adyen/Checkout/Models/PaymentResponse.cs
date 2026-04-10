@@ -50,7 +50,6 @@ namespace Adyen.Checkout.Models
         /// <param name="threeDS2ResponseData">threeDS2ResponseData</param>
         /// <param name="threeDS2Result">threeDS2Result</param>
         /// <param name="threeDSPaymentData">When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint as &#x60;paymentData&#x60;.</param>
-        [JsonConstructor]
         public PaymentResponse(Option<PaymentResponseAction?> action = default, Option<Dictionary<string, string>?> additionalData = default, Option<Amount?> amount = default, Option<string?> donationToken = default, Option<FraudResult?> fraudResult = default, Option<string?> merchantReference = default, Option<CheckoutOrderResponse?> order = default, Option<ResponsePaymentMethod?> paymentMethod = default, Option<PaymentValidationsResponse?> paymentValidations = default, Option<string?> pspReference = default, Option<string?> refusalReason = default, Option<string?> refusalReasonCode = default, Option<ResultCodeEnum?> resultCode = default, Option<ThreeDS2ResponseData?> threeDS2ResponseData = default, Option<ThreeDS2Result?> threeDS2Result = default, Option<string?> threeDSPaymentData = default)
         {
             _ActionOption = action;

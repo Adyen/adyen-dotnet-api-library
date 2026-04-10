@@ -35,7 +35,6 @@ namespace Adyen.SessionAuthentication.Models
         /// Initializes a new instance of the <see cref="PaymentInstrumentResource" /> class.
         /// </summary>
         /// <param name="paymentInstrumentId">paymentInstrumentId</param>
-        [JsonConstructor]
         public PaymentInstrumentResource(string paymentInstrumentId) : base()
         {
             PaymentInstrumentId = paymentInstrumentId;

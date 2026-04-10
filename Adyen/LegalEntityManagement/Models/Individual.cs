@@ -44,7 +44,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="support">support</param>
         /// <param name="taxInformation">The tax information of the individual.</param>
         /// <param name="webData">webData</param>
-        [JsonConstructor]
         public Individual(Name name, Address residentialAddress, Option<BirthData?> birthData = default, Option<string?> email = default, Option<IdentificationData?> identificationData = default, Option<string?> nationality = default, Option<PhoneNumber?> phone = default, Option<Support?> support = default, Option<List<TaxInformation>?> taxInformation = default, Option<WebData?> webData = default)
         {
             Name = name;

@@ -42,7 +42,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="lockDate">The date when the card order processing begins.</param>
         /// <param name="serviceCenter">The service center.</param>
         /// <param name="status">The status of the card order.  Possible values: **Open**, **Closed**.</param>
-        [JsonConstructor]
         public CardOrder(Option<DateTimeOffset?> beginDate = default, Option<string?> cardManufacturingProfileId = default, Option<DateTimeOffset?> closedDate = default, Option<DateTimeOffset?> endDate = default, Option<string?> id = default, Option<DateTimeOffset?> lockDate = default, Option<string?> serviceCenter = default, Option<StatusEnum?> status = default)
         {
             _BeginDateOption = beginDate;

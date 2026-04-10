@@ -40,7 +40,6 @@ namespace Adyen.Checkout.Models
         /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
         /// <param name="type">**zip** (default to TypeEnum.Zip)</param>
-        [JsonConstructor]
         public ZipDetails(Option<string?> checkoutAttemptId = default, Option<string?> clickAndCollect = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<TypeEnum?> type = default)
         {
             _CheckoutAttemptIdOption = checkoutAttemptId;

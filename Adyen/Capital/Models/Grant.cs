@@ -40,7 +40,6 @@ namespace Adyen.Capital.Models
         /// <param name="id">The unique identifier of the grant reference.</param>
         /// <param name="status">status</param>
         /// <param name="counterparty">counterparty</param>
-        [JsonConstructor]
         public Grant(Balance balances, string grantAccountId, string grantOfferId, string id, Status status, Option<GrantCounterparty?> counterparty = default)
         {
             Balances = balances;

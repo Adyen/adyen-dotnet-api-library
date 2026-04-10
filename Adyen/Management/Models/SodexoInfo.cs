@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="SodexoInfo" /> class.
         /// </summary>
         /// <param name="merchantContactPhone">Sodexo merchantContactPhone</param>
-        [JsonConstructor]
         public SodexoInfo(string merchantContactPhone)
         {
             MerchantContactPhone = merchantContactPhone;

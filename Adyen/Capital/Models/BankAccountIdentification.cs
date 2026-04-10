@@ -34,7 +34,6 @@ namespace Adyen.Capital.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="BankAccountIdentification" /> class.
         /// </summary>
-        [JsonConstructor]
         public BankAccountIdentification()
         {
             Type = this.GetType().Name;

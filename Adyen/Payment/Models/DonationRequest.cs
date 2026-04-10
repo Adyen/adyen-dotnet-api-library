@@ -40,7 +40,6 @@ namespace Adyen.Payment.Models
         /// <param name="originalReference">The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  </param>
         /// <param name="platformChargebackLogic">platformChargebackLogic</param>
         /// <param name="reference">Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.</param>
-        [JsonConstructor]
         public DonationRequest(string donationAccount, string merchantAccount, Amount modificationAmount, Option<string?> originalReference = default, Option<PlatformChargebackLogic?> platformChargebackLogic = default, Option<string?> reference = default)
         {
             DonationAccount = donationAccount;

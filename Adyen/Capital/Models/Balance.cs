@@ -38,7 +38,6 @@ namespace Adyen.Capital.Models
         /// <param name="fee">The amount of the grant fee.</param>
         /// <param name="principal">The grant amount that is paid out to the user for business financing.</param>
         /// <param name="total">The total amount of the grant that the user must repay. It is the sum of the fee amount and the principal amount.</param>
-        [JsonConstructor]
         public Balance(string currency, long fee, long principal, long total)
         {
             Currency = currency;

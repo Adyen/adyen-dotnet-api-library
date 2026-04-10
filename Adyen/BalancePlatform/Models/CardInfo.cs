@@ -43,7 +43,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="deliveryContact">deliveryContact</param>
         /// <param name="threeDSecure">The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt; Reach out to your Adyen contact to get the values relevant for your integration.</param>
         /// <param name="usage">Specifies how many times the card can be used. Possible values: **singleUse**, **multiUse**.  &gt; Reach out to your Adyen contact to determine the value relevant for your integration.</param>
-        [JsonConstructor]
         public CardInfo(string brand, string brandVariant, string cardholderName, FormFactorEnum formFactor, Option<Authentication?> authentication = default, Option<CardConfiguration?> configuration = default, Option<DeliveryContact?> deliveryContact = default, Option<string?> threeDSecure = default, Option<string?> usage = default)
         {
             Brand = brand;

@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="operation">Defines how the condition must be evaluated.</param>
         /// <param name="value">value</param>
-        [JsonConstructor]
         public WalletProviderDeviceType(string operation, Option<List<WalletProviderDeviceType.ValueEnum>?> value = default)
         {
             Operation = operation;

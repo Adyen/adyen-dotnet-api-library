@@ -41,7 +41,6 @@ namespace Adyen.Checkout.Models
         /// <param name="type">**econtextvoucher**</param>
         /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
         /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        [JsonConstructor]
         public EcontextVoucherDetails(string firstName, string lastName, string shopperEmail, string telephoneNumber, TypeEnum type, Option<string?> checkoutAttemptId = default, Option<string?> sdkData = default)
         {
             FirstName = firstName;

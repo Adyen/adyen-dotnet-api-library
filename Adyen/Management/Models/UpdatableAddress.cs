@@ -40,7 +40,6 @@ namespace Adyen.Management.Models
         /// <param name="line3">Third address line.</param>
         /// <param name="postalCode">The postal code.</param>
         /// <param name="stateOrProvince">The state or province code as defined in [ISO 3166-2](https://www.iso.org/standard/72483.html). For example, **ON** for Ontario, Canada.  Required for the following countries:  - Australia - Brazil - Canada - India - Mexico - New Zealand - United States</param>
-        [JsonConstructor]
         public UpdatableAddress(Option<string?> city = default, Option<string?> line1 = default, Option<string?> line2 = default, Option<string?> line3 = default, Option<string?> postalCode = default, Option<string?> stateOrProvince = default)
         {
             _CityOption = city;

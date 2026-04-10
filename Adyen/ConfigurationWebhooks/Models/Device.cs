@@ -37,7 +37,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="deviceId">The unique identifier of the device used for provisioning the network token.</param>
         /// <param name="formFactor">The type of the device used for provisioning the network token.  For example, **phone**, **mobile_phone**, **watch**, **mobilephone_or_tablet**, etc</param>
         /// <param name="osName">The operating system of the device used for provisioning the network token.</param>
-        [JsonConstructor]
         public Device(Option<string?> deviceId = default, Option<string?> formFactor = default, Option<string?> osName = default)
         {
             _DeviceIdOption = deviceId;

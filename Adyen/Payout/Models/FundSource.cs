@@ -40,7 +40,6 @@ namespace Adyen.Payout.Models
         /// <param name="shopperEmail">Email address of the person.</param>
         /// <param name="shopperName">shopperName</param>
         /// <param name="telephoneNumber">Phone number of the person</param>
-        [JsonConstructor]
         public FundSource(Option<Dictionary<string, string>?> additionalData = default, Option<Address?> billingAddress = default, Option<Card?> card = default, Option<string?> shopperEmail = default, Option<Name?> shopperName = default, Option<string?> telephoneNumber = default)
         {
             _AdditionalDataOption = additionalData;

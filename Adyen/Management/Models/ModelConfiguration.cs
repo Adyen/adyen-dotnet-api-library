@@ -39,7 +39,6 @@ namespace Adyen.Management.Models
         /// <param name="commercial">Set to **true** to apply surcharges only to commercial/business cards.</param>
         /// <param name="country">The country/region of the card issuer. If used, the surcharge settings only apply to the card issued in that country/region.</param>
         /// <param name="sources">Funding source. Possible values: * **Credit** * **Debit**</param>
-        [JsonConstructor]
         public ModelConfiguration(string brand, List<Currency> currencies, Option<bool?> commercial = default, Option<List<string>?> country = default, Option<List<string>?> sources = default)
         {
             Brand = brand;

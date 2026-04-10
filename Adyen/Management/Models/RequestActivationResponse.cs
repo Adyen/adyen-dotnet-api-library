@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="merchantId">The unique identifier of the merchant account you requested to activate.</param>
-        [JsonConstructor]
         public RequestActivationResponse(Option<string?> companyId = default, Option<string?> merchantId = default)
         {
             _CompanyIdOption = companyId;

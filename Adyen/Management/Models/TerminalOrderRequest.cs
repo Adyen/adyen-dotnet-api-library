@@ -40,7 +40,6 @@ namespace Adyen.Management.Models
         /// <param name="orderType">Type of order</param>
         /// <param name="shippingLocationId">The identification of the shipping location to use for the order.</param>
         /// <param name="taxId">The tax number of the billing entity.</param>
-        [JsonConstructor]
         public TerminalOrderRequest(Option<string?> billingEntityId = default, Option<string?> customerOrderReference = default, Option<List<OrderItem>?> items = default, Option<string?> orderType = default, Option<string?> shippingLocationId = default, Option<string?> taxId = default)
         {
             _BillingEntityIdOption = billingEntityId;

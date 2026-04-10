@@ -40,7 +40,6 @@ namespace Adyen.AcsWebhooks.Models
         /// <param name="purchase">purchase</param>
         /// <param name="status">Outcome of the authentication. Allowed values: * authenticated * rejected * error</param>
         /// <param name="balancePlatform">The unique identifier of the balance platform.</param>
-        [JsonConstructor]
         public AuthenticationNotificationData(AuthenticationInfo authentication, string id, string paymentInstrumentId, PurchaseInfo purchase, StatusEnum status, Option<string?> balancePlatform = default)
         {
             Authentication = authentication;

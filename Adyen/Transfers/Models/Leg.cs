@@ -40,7 +40,6 @@ namespace Adyen.Transfers.Models
         /// <param name="departureAirportCode">The IATA three-letter airport code of the departure airport. This field is required if the airline data includes leg details</param>
         /// <param name="departureDate">The flight departure date.</param>
         /// <param name="flightNumber">The flight identifier.</param>
-        [JsonConstructor]
         public Leg(Option<string?> arrivalAirportCode = default, Option<string?> basicFareCode = default, Option<string?> carrierCode = default, Option<string?> departureAirportCode = default, Option<string?> departureDate = default, Option<string?> flightNumber = default)
         {
             _ArrivalAirportCodeOption = arrivalAirportCode;

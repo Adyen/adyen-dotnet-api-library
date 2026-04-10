@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="enablePayAtTable">Indicates if Pay at table is enabled.</param>
         /// <param name="payAtTableStoreNumber">The store number to use for Pay at Table.</param>
         /// <param name="payAtTableURL">The URL and port number used for Pay at Table communication.</param>
-        [JsonConstructor]
         public Opi(Option<bool?> enablePayAtTable = default, Option<string?> payAtTableStoreNumber = default, Option<string?> payAtTableURL = default)
         {
             _EnablePayAtTableOption = enablePayAtTable;

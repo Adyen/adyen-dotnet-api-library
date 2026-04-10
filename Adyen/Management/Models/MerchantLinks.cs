@@ -38,7 +38,6 @@ namespace Adyen.Management.Models
         /// <param name="apiCredentials">apiCredentials</param>
         /// <param name="users">users</param>
         /// <param name="webhooks">webhooks</param>
-        [JsonConstructor]
         public MerchantLinks(LinksElement self, Option<LinksElement?> apiCredentials = default, Option<LinksElement?> users = default, Option<LinksElement?> webhooks = default)
         {
             Self = self;

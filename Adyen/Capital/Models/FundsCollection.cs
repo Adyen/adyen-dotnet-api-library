@@ -36,7 +36,6 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <param name="accountIdentification">accountIdentification</param>
         /// <param name="fundsCollectionType">fundsCollectionType</param>
-        [JsonConstructor]
         public FundsCollection(Option<BankAccountIdentification?> accountIdentification = default, Option<FundsCollectionType?> fundsCollectionType = default)
         {
             _AccountIdentificationOption = accountIdentification;

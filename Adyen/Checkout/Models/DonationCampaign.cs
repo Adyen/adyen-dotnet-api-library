@@ -45,7 +45,6 @@ namespace Adyen.Checkout.Models
         /// <param name="nonprofitName">The name of the nonprofit organization that receives the donation.</param>
         /// <param name="nonprofitUrl">The website URL of the nonprofit.</param>
         /// <param name="termsAndConditionsUrl">The URL of the terms and conditions page of the nonprofit and the campaign.</param>
-        [JsonConstructor]
         public DonationCampaign(Option<Amounts?> amounts = default, Option<string?> bannerUrl = default, Option<string?> campaignName = default, Option<string?> causeName = default, Option<Donation?> donation = default, Option<string?> id = default, Option<string?> logoUrl = default, Option<string?> nonprofitDescription = default, Option<string?> nonprofitName = default, Option<string?> nonprofitUrl = default, Option<string?> termsAndConditionsUrl = default)
         {
             _AmountsOption = amounts;

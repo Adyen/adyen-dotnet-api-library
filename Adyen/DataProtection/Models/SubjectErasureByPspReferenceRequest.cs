@@ -37,7 +37,6 @@ namespace Adyen.DataProtection.Models
         /// <param name="forceErasure">Set this to **true** if you want to delete shopper-related data, even if the shopper has an existing recurring transaction. This only deletes the shopper-related data for the specific payment, but does not cancel the existing recurring transaction.</param>
         /// <param name="merchantAccount">Your merchant account</param>
         /// <param name="pspReference">The PSP reference of the payment. We will delete all shopper-related data for this payment.</param>
-        [JsonConstructor]
         public SubjectErasureByPspReferenceRequest(Option<bool?> forceErasure = default, Option<string?> merchantAccount = default, Option<string?> pspReference = default)
         {
             _ForceErasureOption = forceErasure;

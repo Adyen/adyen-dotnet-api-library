@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="ListExternalTerminalActionsResponse" /> class.
         /// </summary>
         /// <param name="data">The list of terminal actions.</param>
-        [JsonConstructor]
         public ListExternalTerminalActionsResponse(Option<List<ExternalTerminalAction>?> data = default)
         {
             _DataOption = data;

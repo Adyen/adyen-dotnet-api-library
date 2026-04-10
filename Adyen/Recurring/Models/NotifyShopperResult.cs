@@ -41,7 +41,6 @@ namespace Adyen.Recurring.Models
         /// <param name="resultCode">The code indicating the status of notification.</param>
         /// <param name="shopperNotificationReference">The unique reference for the request sent downstream.</param>
         /// <param name="storedPaymentMethodId">This is the recurringDetailReference returned in the response when token was created</param>
-        [JsonConstructor]
         public NotifyShopperResult(Option<string?> displayedReference = default, Option<string?> message = default, Option<string?> pspReference = default, Option<string?> reference = default, Option<string?> resultCode = default, Option<string?> shopperNotificationReference = default, Option<string?> storedPaymentMethodId = default)
         {
             _DisplayedReferenceOption = displayedReference;

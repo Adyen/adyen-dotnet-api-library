@@ -38,7 +38,6 @@ namespace Adyen.TransactionWebhooks.Models
         /// <param name="environment">The environment from which the webhook originated.  Possible values: **test**, **live**.</param>
         /// <param name="timestamp">When the event was queued.</param>
         /// <param name="type">Type of the webhook.</param>
-        [JsonConstructor]
         public TransactionNotificationRequestV4(Transaction data, string environment, Option<DateTimeOffset?> timestamp = default, Option<TypeEnum?> type = default)
         {
             Data = data;

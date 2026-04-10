@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="displayName">Merchant display name</param>
         /// <param name="logo">Merchant logo. Format: Base64-encoded string.</param>
         /// <param name="supportEmail">The email address of merchant support.</param>
-        [JsonConstructor]
         public PayMeInfo(string displayName, string logo, string supportEmail)
         {
             DisplayName = displayName;

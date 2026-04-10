@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="PaymentInstrumentRevealResponse" /> class.
         /// </summary>
         /// <param name="encryptedData">The data encrypted using the &#x60;encryptedKey&#x60;.</param>
-        [JsonConstructor]
         public PaymentInstrumentRevealResponse(string encryptedData)
         {
             EncryptedData = encryptedData;

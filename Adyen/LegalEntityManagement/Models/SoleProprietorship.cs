@@ -47,7 +47,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="taxInformation">The tax information of the entity.</param>
         /// <param name="vatAbsenceReason">The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**.</param>
         /// <param name="vatNumber">The VAT number.</param>
-        [JsonConstructor]
         public SoleProprietorship(string countryOfGoverningLaw, string name, Address registeredAddress, Option<string?> dateOfIncorporation = default, Option<string?> doingBusinessAs = default, Option<bool?> doingBusinessAsAbsent = default, Option<List<FinancialReport>?> financialReports = default, Option<Address?> principalPlaceOfBusiness = default, Option<string?> registrationNumber = default, Option<bool?> taxAbsent = default, Option<List<TaxInformation>?> taxInformation = default, Option<VatAbsenceReasonEnum?> vatAbsenceReason = default, Option<string?> vatNumber = default)
         {
             CountryOfGoverningLaw = countryOfGoverningLaw;

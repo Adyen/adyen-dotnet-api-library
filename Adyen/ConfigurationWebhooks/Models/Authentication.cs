@@ -37,7 +37,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="email">The email address where the one-time password (OTP) is sent.</param>
         /// <param name="password">The password used for 3D Secure password-based authentication. The value must be between 1 to 30 characters and must only contain the following supported characters.  * Characters between **a-z**, **A-Z**, and **0-9**  * Special characters: **äöüßÄÖÜ+-*_/ç%()&#x3D;?!~#&#39;\&quot;,;:$&amp;àùòâôûáúó**</param>
         /// <param name="phone">phone</param>
-        [JsonConstructor]
         public Authentication(Option<string?> email = default, Option<string?> password = default, Option<Phone?> phone = default)
         {
             _EmailOption = email;

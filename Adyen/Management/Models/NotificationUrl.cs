@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="localUrls">One or more local URLs to send notifications to when using Terminal API.</param>
         /// <param name="publicUrls">One or more public URLs to send notifications to when using Terminal API.</param>
-        [JsonConstructor]
         public NotificationUrl(Option<List<Url>?> localUrls = default, Option<List<Url>?> publicUrls = default)
         {
             _LocalUrlsOption = localUrls;

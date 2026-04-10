@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="TerminalInstructions" /> class.
         /// </summary>
         /// <param name="adyenAppRestart">Indicates whether the Adyen app on the payment terminal restarts automatically when the configuration is updated.</param>
-        [JsonConstructor]
         public TerminalInstructions(Option<bool?> adyenAppRestart = default)
         {
             _AdyenAppRestartOption = adyenAppRestart;

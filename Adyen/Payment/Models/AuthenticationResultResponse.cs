@@ -36,7 +36,6 @@ namespace Adyen.Payment.Models
         /// </summary>
         /// <param name="threeDS1Result">threeDS1Result</param>
         /// <param name="threeDS2Result">threeDS2Result</param>
-        [JsonConstructor]
         public AuthenticationResultResponse(Option<ThreeDS1Result?> threeDS1Result = default, Option<ThreeDS2Result?> threeDS2Result = default)
         {
             _ThreeDS1ResultOption = threeDS1Result;

@@ -50,7 +50,6 @@ namespace Adyen.Management.Models
         /// <param name="shopperRefundRefused">Print a shopper receipt when the refund is refused.</param>
         /// <param name="shopperRefused">Print a shopper receipt when the payment is refused.</param>
         /// <param name="shopperVoid">Print a shopper receipt when a previous transaction is voided.</param>
-        [JsonConstructor]
         public ReceiptPrinting(Option<bool?> merchantApproved = default, Option<bool?> merchantCancelled = default, Option<bool?> merchantCaptureApproved = default, Option<bool?> merchantCaptureRefused = default, Option<bool?> merchantRefundApproved = default, Option<bool?> merchantRefundRefused = default, Option<bool?> merchantRefused = default, Option<bool?> merchantVoid = default, Option<bool?> shopperApproved = default, Option<bool?> shopperCancelled = default, Option<bool?> shopperCaptureApproved = default, Option<bool?> shopperCaptureRefused = default, Option<bool?> shopperRefundApproved = default, Option<bool?> shopperRefundRefused = default, Option<bool?> shopperRefused = default, Option<bool?> shopperVoid = default)
         {
             _MerchantApprovedOption = merchantApproved;

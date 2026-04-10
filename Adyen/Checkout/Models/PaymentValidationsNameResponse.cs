@@ -37,7 +37,6 @@ namespace Adyen.Checkout.Models
         /// <param name="rawResponse">rawResponse</param>
         /// <param name="result">result</param>
         /// <param name="status">Informs you if the name validation was performed. Possible values:  **performed**, **notPerformed**, **notSupported**</param>
-        [JsonConstructor]
         public PaymentValidationsNameResponse(Option<PaymentValidationsNameResultRawResponse?> rawResponse = default, Option<PaymentValidationsNameResultResponse?> result = default, Option<StatusEnum?> status = default)
         {
             _RawResponseOption = rawResponse;

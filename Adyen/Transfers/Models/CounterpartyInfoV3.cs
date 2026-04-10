@@ -38,7 +38,6 @@ namespace Adyen.Transfers.Models
         /// <param name="bankAccount">bankAccount</param>
         /// <param name="card">card</param>
         /// <param name="transferInstrumentId">The unique identifier of the counterparty [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id).</param>
-        [JsonConstructor]
         public CounterpartyInfoV3(Option<string?> balanceAccountId = default, Option<BankAccountV3?> bankAccount = default, Option<Card?> card = default, Option<string?> transferInstrumentId = default)
         {
             _BalanceAccountIdOption = balanceAccountId;

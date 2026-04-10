@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="RegisterSCAFinalResponse" /> class.
         /// </summary>
         /// <param name="success">Specifies if the registration was initiated successfully.</param>
-        [JsonConstructor]
         public RegisterSCAFinalResponse(Option<bool?> success = default)
         {
             _SuccessOption = success;

@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="GetNetworkTokenResponse" /> class.
         /// </summary>
         /// <param name="token">token</param>
-        [JsonConstructor]
         public GetNetworkTokenResponse(NetworkToken token)
         {
             Token = token;

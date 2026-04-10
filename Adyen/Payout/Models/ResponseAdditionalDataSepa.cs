@@ -38,7 +38,6 @@ namespace Adyen.Payout.Models
         /// <param name="sepadirectdebitMandateId">Its value corresponds to the pspReference value of the transaction.</param>
         /// <param name="sepadirectdebitSepadirectdebitDueDate">The date that the the shopper&#39;s bank account is charged.</param>
         /// <param name="sepadirectdebitSequenceType">This field can take one of the following values: * OneOff: (OOFF) Direct debit instruction to initiate exactly one direct debit transaction.  * First: (FRST) Initial/first collection in a series of direct debit instructions. * Recurring: (RCUR) Direct debit instruction to carry out regular direct debit transactions initiated by the creditor. * Final: (FNAL) Last/final collection in a series of direct debit instructions.  Example: OOFF</param>
-        [JsonConstructor]
         public ResponseAdditionalDataSepa(Option<string?> sepadirectdebitDateOfSignature = default, Option<string?> sepadirectdebitMandateId = default, Option<string?> sepadirectdebitSepadirectdebitDueDate = default, Option<string?> sepadirectdebitSequenceType = default)
         {
             _SepadirectdebitDateOfSignatureOption = sepadirectdebitDateOfSignature;

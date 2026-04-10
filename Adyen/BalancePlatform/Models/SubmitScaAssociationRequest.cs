@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="SubmitScaAssociationRequest" /> class.
         /// </summary>
         /// <param name="entities">The list of entities to be associated.</param>
-        [JsonConstructor]
         public SubmitScaAssociationRequest(List<ScaEntity> entities)
         {
             Entities = entities;

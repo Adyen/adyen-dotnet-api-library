@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="siret">Cartes Bancaires SIRET. Format: 14 digits.</param>
         /// <param name="transactionDescription">transactionDescription</param>
-        [JsonConstructor]
         public CartesBancairesInfo(string siret, Option<TransactionDescriptionInfo?> transactionDescription = default)
         {
             Siret = siret;

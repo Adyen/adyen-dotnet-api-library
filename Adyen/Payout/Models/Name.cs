@@ -36,7 +36,6 @@ namespace Adyen.Payout.Models
         /// </summary>
         /// <param name="firstName">The first name.</param>
         /// <param name="lastName">The last name.</param>
-        [JsonConstructor]
         public Name(string firstName, string lastName)
         {
             FirstName = firstName;

@@ -37,7 +37,6 @@ namespace Adyen.Recurring.Models
         /// <param name="maxAmount">maxAmount</param>
         /// <param name="singleTransactionLimit">singleTransactionLimit</param>
         /// <param name="singleUse">Only a single payment can be made using this permit if set to true, otherwise multiple payments are allowed.</param>
-        [JsonConstructor]
         public PermitRestriction(Option<Amount?> maxAmount = default, Option<Amount?> singleTransactionLimit = default, Option<bool?> singleUse = default)
         {
             _MaxAmountOption = maxAmount;

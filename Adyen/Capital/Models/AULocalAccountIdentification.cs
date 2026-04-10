@@ -36,7 +36,6 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <param name="accountNumber">The bank account number, without separators or whitespace.</param>
         /// <param name="bsbCode">The 6-digit [Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or whitespace.</param>
-        [JsonConstructor]
         public AULocalAccountIdentification(string accountNumber, string bsbCode) : base()
         {
             AccountNumber = accountNumber;

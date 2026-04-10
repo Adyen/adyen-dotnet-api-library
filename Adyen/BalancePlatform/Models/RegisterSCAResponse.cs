@@ -38,7 +38,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="paymentInstrumentId">The unique identifier of the payment instrument for which you are registering the SCA device.</param>
         /// <param name="sdkInput">A string that you must pass to the authentication SDK to continue with the registration process.</param>
         /// <param name="success">Specifies if the registration was initiated successfully.</param>
-        [JsonConstructor]
         public RegisterSCAResponse(Option<string?> id = default, Option<string?> paymentInstrumentId = default, Option<string?> sdkInput = default, Option<bool?> success = default)
         {
             _IdOption = id;

@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="contactlessCurrency">The default currency for contactless payments on the payment terminal, in three-letter [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code format.  Contact Adyen before you update this setting for the first time. To enable you to change the contactless currency, we first need to check if you meet the compliance requirements.</param>
         /// <param name="hideMinorUnitsInCurrencies">Hides the minor units for the listed [ISO currency codes](https://en.wikipedia.org/wiki/ISO_4217).</param>
-        [JsonConstructor]
         public Payment(Option<string?> contactlessCurrency = default, Option<List<string>?> hideMinorUnitsInCurrencies = default)
         {
             _ContactlessCurrencyOption = contactlessCurrency;

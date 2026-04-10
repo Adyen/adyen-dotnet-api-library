@@ -38,7 +38,6 @@ namespace Adyen.Management.Models
         /// <param name="pinSupport">PIN Support. For ecommerce, PIN is required.</param>
         /// <param name="submitterId">Submitter ID</param>
         /// <param name="terminalId">Terminal ID</param>
-        [JsonConstructor]
         public ValuelinkInfo(string authorisationMid, PinSupportEnum pinSupport, Option<string?> submitterId = default, Option<string?> terminalId = default)
         {
             AuthorisationMid = authorisationMid;

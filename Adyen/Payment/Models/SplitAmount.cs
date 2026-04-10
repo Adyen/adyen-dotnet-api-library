@@ -36,7 +36,6 @@ namespace Adyen.Payment.Models
         /// </summary>
         /// <param name="value">The value of the split amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).</param>
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). By default, this is the original payment currency.</param>
-        [JsonConstructor]
         public SplitAmount(long value, Option<string?> currency = default)
         {
             Value = value;

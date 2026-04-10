@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="logo">Vipps logo. Format: Base64-encoded string.</param>
         /// <param name="subscriptionCancelUrl">Vipps subscription cancel url (required in case of [recurring payments](https://docs.adyen.com/online-payments/tokenization))</param>
-        [JsonConstructor]
         public VippsInfo(string logo, Option<string?> subscriptionCancelUrl = default)
         {
             Logo = logo;

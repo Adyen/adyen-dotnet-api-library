@@ -38,7 +38,6 @@ namespace Adyen.Management.Models
         /// <param name="id">A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant. * Format: Alphanumeric * Maximum length: 15 characters</param>
         /// <param name="mcc">The sub-merchant&#39;s 4-digit Merchant Category Code (MCC). * Format: Numeric * Fixed length: 4 digits</param>
         /// <param name="name">The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters</param>
-        [JsonConstructor]
         public SubMerchantData(string email, string id, string mcc, string name)
         {
             Email = email;

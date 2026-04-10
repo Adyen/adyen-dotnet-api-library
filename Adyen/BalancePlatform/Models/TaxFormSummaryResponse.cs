@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="TaxFormSummaryResponse" /> class.
         /// </summary>
         /// <param name="data">A list of tax form summaries, where each summary consists of the legal entity and the tax years in which the legal entity has a tax form.</param>
-        [JsonConstructor]
         public TaxFormSummaryResponse(List<Summary> data)
         {
             Data = data;

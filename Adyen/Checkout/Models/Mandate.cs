@@ -43,7 +43,6 @@ namespace Adyen.Checkout.Models
         /// <param name="count">The number of transactions that can be performed within the given frequency.</param>
         /// <param name="remarks">The message shown by UPI to the shopper on the approval screen.</param>
         /// <param name="startsAt">Start date of the billing plan, in YYYY-MM-DD format. By default, the transaction date.</param>
-        [JsonConstructor]
         public Mandate(string amount, string endsAt, FrequencyEnum frequency, Option<AmountRuleEnum?> amountRule = default, Option<BillingAttemptsRuleEnum?> billingAttemptsRule = default, Option<string?> billingDay = default, Option<string?> count = default, Option<string?> remarks = default, Option<string?> startsAt = default)
         {
             Amount = amount;

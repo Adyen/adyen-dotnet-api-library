@@ -37,7 +37,6 @@ namespace Adyen.Management.Models
         /// <param name="language">Language of the terminal.</param>
         /// <param name="secondaryLanguage">Secondary language of the terminal.</param>
         /// <param name="timezone">The time zone of the terminal.</param>
-        [JsonConstructor]
         public Localization(Option<string?> language = default, Option<string?> secondaryLanguage = default, Option<string?> timezone = default)
         {
             _LanguageOption = language;

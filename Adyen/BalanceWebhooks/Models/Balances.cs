@@ -38,7 +38,6 @@ namespace Adyen.BalanceWebhooks.Models
         /// <param name="balance">The sum of transactions that have already been settled.</param>
         /// <param name="pending">The sum of transactions that will be settled in the future.</param>
         /// <param name="reserved">The balance currently held in reserve.</param>
-        [JsonConstructor]
         public Balances(Option<long?> available = default, Option<long?> balance = default, Option<long?> pending = default, Option<long?> reserved = default)
         {
             _AvailableOption = available;

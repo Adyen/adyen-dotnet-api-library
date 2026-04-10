@@ -38,7 +38,6 @@ namespace Adyen.PaymentsApp.Models
         /// <param name="merchantAccountCode">The account code associated with the Payments App instance.</param>
         /// <param name="status">The status of the Payments App instance.</param>
         /// <param name="merchantStoreCode">The store code associated with the Payments App instance.</param>
-        [JsonConstructor]
         public PaymentsAppDto(string installationId, string merchantAccountCode, string status, Option<string?> merchantStoreCode = default)
         {
             InstallationId = installationId;

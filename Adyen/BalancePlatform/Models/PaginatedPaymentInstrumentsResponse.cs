@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="hasNext">Indicates whether there are more items on the next page.</param>
         /// <param name="hasPrevious">Indicates whether there are more items on the previous page.</param>
         /// <param name="paymentInstruments">List of payment instruments associated with the balance account.</param>
-        [JsonConstructor]
         public PaginatedPaymentInstrumentsResponse(bool hasNext, bool hasPrevious, List<PaymentInstrument> paymentInstruments)
         {
             HasNext = hasNext;

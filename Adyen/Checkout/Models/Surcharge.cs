@@ -35,7 +35,6 @@ namespace Adyen.Checkout.Models
         /// Initializes a new instance of the <see cref="Surcharge" /> class.
         /// </summary>
         /// <param name="value">The [surcharge](https://docs.adyen.com/online-payments/surcharge/) amount to apply to the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes). When you apply surcharge, include the surcharge in the &#x60;amount.value&#x60; field.  Review our [Surcharge compliance guide](https://docs.adyen.com/development-resources/surcharge-compliance/) to learn about how to comply with regulatory requirements when applying surcharge.</param>
-        [JsonConstructor]
         public Surcharge(long value)
         {
             Value = value;

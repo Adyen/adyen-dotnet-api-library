@@ -36,7 +36,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <param name="acceptedBy">The legal entity ID of the user accepting the Terms of Service.  For organizations, this must be the individual legal entity ID of an authorized signatory for the organization.  For sole proprietorships, this must be the individual legal entity ID of the owner.  For individuals, this must be the individual legal entity id of either the individual, parent, or guardian.  </param>
         /// <param name="ipAddress">The IP address of the user accepting the Terms of Service.</param>
-        [JsonConstructor]
         public AcceptTermsOfServiceRequest(string acceptedBy, Option<string?> ipAddress = default)
         {
             AcceptedBy = acceptedBy;

@@ -38,7 +38,6 @@ namespace Adyen.Checkout.Models
         /// <param name="mobilePhone">mobilePhone</param>
         /// <param name="threeDSRequestorChallengeInd">Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only</param>
         /// <param name="workPhone">workPhone</param>
-        [JsonConstructor]
         public CheckoutSessionThreeDS2RequestData(Option<Phone?> homePhone = default, Option<Phone?> mobilePhone = default, Option<ThreeDSRequestorChallengeIndEnum?> threeDSRequestorChallengeInd = default, Option<Phone?> workPhone = default)
         {
             _HomePhoneOption = homePhone;

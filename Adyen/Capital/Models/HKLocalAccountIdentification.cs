@@ -36,7 +36,6 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <param name="accountNumber">The 9- to 17-digit bank account number, without separators or whitespace. Starts with the 3-digit branch code.</param>
         /// <param name="clearingCode">The 3-digit clearing code, without separators or whitespace.</param>
-        [JsonConstructor]
         public HKLocalAccountIdentification(string accountNumber, string clearingCode) : base()
         {
             AccountNumber = accountNumber;

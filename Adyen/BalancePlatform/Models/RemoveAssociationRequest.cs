@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="entityId">The unique identifier of the entity.</param>
         /// <param name="entityType">entityType</param>
         /// <param name="scaDeviceIds">A list of device ids associated with the entity that should be removed.</param>
-        [JsonConstructor]
         public RemoveAssociationRequest(string entityId, ScaEntityType entityType, List<string> scaDeviceIds)
         {
             EntityId = entityId;

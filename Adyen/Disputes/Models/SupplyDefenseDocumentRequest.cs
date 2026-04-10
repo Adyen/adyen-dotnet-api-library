@@ -37,7 +37,6 @@ namespace Adyen.Disputes.Models
         /// <param name="defenseDocuments">An array containing a list of the defense documents.</param>
         /// <param name="disputePspReference">The PSP reference assigned to the dispute.</param>
         /// <param name="merchantAccountCode">The merchant account identifier, for which you want to process the dispute transaction.</param>
-        [JsonConstructor]
         public SupplyDefenseDocumentRequest(List<DefenseDocument> defenseDocuments, string disputePspReference, string merchantAccountCode)
         {
             DefenseDocuments = defenseDocuments;

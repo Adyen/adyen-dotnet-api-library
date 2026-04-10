@@ -40,7 +40,6 @@ namespace Adyen.Payment.Models
         /// <param name="billingAddressPostalCode">The billing address postal code passed in the payment request.  Example: 1011 DJ</param>
         /// <param name="billingAddressStateOrProvince">The billing address state or province passed in the payment request.  Example: NH</param>
         /// <param name="billingAddressStreet">The billing address street passed in the payment request.</param>
-        [JsonConstructor]
         public ResponseAdditionalDataBillingAddress(Option<string?> billingAddressCity = default, Option<string?> billingAddressCountry = default, Option<string?> billingAddressHouseNumberOrName = default, Option<string?> billingAddressPostalCode = default, Option<string?> billingAddressStateOrProvince = default, Option<string?> billingAddressStreet = default)
         {
             _BillingAddressCityOption = billingAddressCity;

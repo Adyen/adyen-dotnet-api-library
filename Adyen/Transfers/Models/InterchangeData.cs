@@ -37,7 +37,6 @@ namespace Adyen.Transfers.Models
         /// <param name="interchangeAmount">interchangeAmount</param>
         /// <param name="interchangeRateIndicator">A 3-character alphanumeric code assigned by Visa that identifies the specific interchange reimbursement program a transaction qualified for. The code is assigned based on the card type, entry mode, and security data provided.</param>
         /// <param name="type">The type of events data.   Possible values:    - **interchangeData**: information about the interchange fee applied to a transaction. (default to TypeEnum.InterchangeData)</param>
-        [JsonConstructor]
         public InterchangeData(Option<Amount?> interchangeAmount = default, Option<string?> interchangeRateIndicator = default, TypeEnum type = default)
         {
             _InterchangeAmountOption = interchangeAmount;

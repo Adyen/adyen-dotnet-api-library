@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="FinishScaDeviceRegistrationRequest" /> class.
         /// </summary>
         /// <param name="sdkOutput">A base64-encoded block with the data required to register the SCA device. You obtain this information by using Adyen&#39;s authentication SDK.</param>
-        [JsonConstructor]
         public FinishScaDeviceRegistrationRequest(string sdkOutput)
         {
             SdkOutput = sdkOutput;

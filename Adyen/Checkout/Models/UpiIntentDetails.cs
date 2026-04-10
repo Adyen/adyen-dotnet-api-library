@@ -42,7 +42,6 @@ namespace Adyen.Checkout.Models
         /// <param name="shopperNotificationReference">The &#x60;shopperNotificationReference&#x60; returned in the response when you requested to notify the shopper. Used for recurring payment only.</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
         /// <param name="type">**upi_intent** (default to TypeEnum.UpiIntent)</param>
-        [JsonConstructor]
         public UpiIntentDetails(Option<string?> appId = default, Option<string?> billingSequenceNumber = default, Option<string?> checkoutAttemptId = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> shopperNotificationReference = default, Option<string?> storedPaymentMethodId = default, TypeEnum type = default)
         {
             _AppIdOption = appId;

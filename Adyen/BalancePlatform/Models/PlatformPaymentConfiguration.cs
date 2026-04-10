@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="salesDayClosingTime">Specifies at what time a sales day ends for this account.  Possible values: Time in **\&quot;HH:MM\&quot;** format. **HH** ranges from **00** to **07**. **MM** must be **00**.  Default value: **\&quot;00:00\&quot;**.</param>
         /// <param name="settlementDelayDays">Specifies after how many business days the funds in a settlement batch are made available in this balance account.  Possible values: **1** to **20**, or **null**.  Default value: **null**.</param>
-        [JsonConstructor]
         public PlatformPaymentConfiguration(Option<string?> salesDayClosingTime = default, Option<int?> settlementDelayDays = default)
         {
             _SalesDayClosingTimeOption = salesDayClosingTime;

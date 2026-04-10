@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="LocalizedInformation" /> class.
         /// </summary>
         /// <param name="localShopperStatement">An array of local shopper statements. Card schemes use this in the bank statement.  For Japan local shopper statements in both ja-Hani and ja-Kana are required.</param>
-        [JsonConstructor]
         public LocalizedInformation(List<LocalShopperStatement> localShopperStatement)
         {
             LocalShopperStatement = localShopperStatement;

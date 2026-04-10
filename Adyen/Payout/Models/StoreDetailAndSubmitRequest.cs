@@ -53,7 +53,6 @@ namespace Adyen.Payout.Models
         /// <param name="shopperStatement">The description of this payout. This description is shown on the bank statement of the shopper (if this is supported by the chosen payment method).</param>
         /// <param name="socialSecurityNumber">The shopper&#39;s social security number.</param>
         /// <param name="telephoneNumber">The shopper&#39;s phone number.</param>
-        [JsonConstructor]
         public StoreDetailAndSubmitRequest(Amount amount, DateOnly dateOfBirth, EntityTypeEnum entityType, string merchantAccount, string nationality, Recurring recurring, string reference, string shopperEmail, string shopperReference, Option<Dictionary<string, string>?> additionalData = default, Option<BankAccount?> bank = default, Option<Address?> billingAddress = default, Option<Card?> card = default, Option<int?> fraudOffset = default, Option<string?> selectedBrand = default, Option<Name?> shopperName = default, Option<string?> shopperStatement = default, Option<string?> socialSecurityNumber = default, Option<string?> telephoneNumber = default)
         {
             Amount = amount;

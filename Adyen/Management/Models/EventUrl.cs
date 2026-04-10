@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="eventLocalUrls">One or more local URLs to send event notifications to when using Terminal API.</param>
         /// <param name="eventPublicUrls">One or more public URLs to send event notifications to when using Terminal API.</param>
-        [JsonConstructor]
         public EventUrl(Option<List<Url>?> eventLocalUrls = default, Option<List<Url>?> eventPublicUrls = default)
         {
             _EventLocalUrlsOption = eventLocalUrls;

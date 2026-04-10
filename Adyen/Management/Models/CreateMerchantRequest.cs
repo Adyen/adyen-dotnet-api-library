@@ -41,7 +41,6 @@ namespace Adyen.Management.Models
         /// <param name="pricingPlan">Sets the pricing plan for the merchant account. Required for an Adyen for Platforms Manage integration. Your Adyen contact will provide the values that you can use.</param>
         /// <param name="reference">Your reference for the merchant account. To make this reference the unique identifier of the merchant account, your Adyen contact can set up a template on your company account. The template can have 6 to 255 characters with upper- and lower-case letters, underscores, and numbers. When your company account has a template, then the &#x60;reference&#x60; is required and must be unique within the company account.</param>
         /// <param name="salesChannels">List of sales channels that the merchant will process payments with</param>
-        [JsonConstructor]
         public CreateMerchantRequest(string companyId, Option<string?> businessLineId = default, Option<string?> description = default, Option<string?> legalEntityId = default, Option<string?> pricingPlan = default, Option<string?> reference = default, Option<List<string>?> salesChannels = default)
         {
             CompanyId = companyId;

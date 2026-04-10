@@ -45,7 +45,6 @@ namespace Adyen.BinLookup.Models
         /// <param name="paymentMethod">The payment method associated with the card (e.g. visa, mc, or amex).</param>
         /// <param name="payoutEligible">Indicates whether a payout is eligible or not for this card.  Visa: * \&quot;Y\&quot; * \&quot;N\&quot;  Mastercard: * \&quot;Y\&quot; (domestic and cross-border) * \&quot;D\&quot; (only domestic) * \&quot;N\&quot; (no MoneySend) * \&quot;U\&quot; (unknown) &gt; Returned when you verify a card BIN or estimate costs, and only if &#x60;payoutEligible&#x60; is different from \&quot;N\&quot; or \&quot;U\&quot;.</param>
         /// <param name="summary">The last four digits of the card number.</param>
-        [JsonConstructor]
         public CardBin(Option<string?> bin = default, Option<bool?> commercial = default, Option<string?> fundingSource = default, Option<string?> fundsAvailability = default, Option<string?> issuerBin = default, Option<string?> issuingBank = default, Option<string?> issuingCountry = default, Option<string?> issuingCurrency = default, Option<string?> paymentMethod = default, Option<string?> payoutEligible = default, Option<string?> summary = default)
         {
             _BinOption = bin;

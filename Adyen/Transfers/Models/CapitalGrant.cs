@@ -43,7 +43,6 @@ namespace Adyen.Transfers.Models
         /// <param name="counterparty">counterparty</param>
         /// <param name="fee">fee</param>
         /// <param name="repayment">repayment</param>
-        [JsonConstructor]
         public CapitalGrant(CapitalBalance balances, string grantAccountId, string grantOfferId, string id, StatusEnum status, Option<Amount?> amount = default, Option<GrantCounterparty?> counterparty = default, Option<Fee?> fee = default, Option<Repayment?> repayment = default)
         {
             Balances = balances;

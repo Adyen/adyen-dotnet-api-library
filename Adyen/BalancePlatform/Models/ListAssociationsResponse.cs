@@ -38,7 +38,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="data">Contains a list of associations and their corresponding details.</param>
         /// <param name="itemsTotal">The total number of items available.</param>
         /// <param name="pagesTotal">The total number of pages available.</param>
-        [JsonConstructor]
         public ListAssociationsResponse(Link links, List<AssociationListing> data, int itemsTotal, int pagesTotal)
         {
             Links = links;

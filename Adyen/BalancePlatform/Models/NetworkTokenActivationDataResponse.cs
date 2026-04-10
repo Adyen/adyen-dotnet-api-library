@@ -35,7 +35,6 @@ namespace Adyen.BalancePlatform.Models
         /// Initializes a new instance of the <see cref="NetworkTokenActivationDataResponse" /> class.
         /// </summary>
         /// <param name="sdkInput">A block of data that contains the activation data for a network token. This &#x60;sdkInput&#x60; is required to initialize Adyen&#39;s SDK for network token provisioning.  For more information, see the repositories for Adyen&#39;s SDKs for network token provisioning: * [Adyen Apple Pay Provisioning SDK](https://github.com/Adyen/adyen-apple-pay-provisioning-ios). * [Adyen Google Wallet Provisioning SDK](https://github.com/Adyen/adyen-issuing-android)</param>
-        [JsonConstructor]
         public NetworkTokenActivationDataResponse(Option<string?> sdkInput = default)
         {
             _SdkInputOption = sdkInput;

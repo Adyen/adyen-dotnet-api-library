@@ -40,7 +40,6 @@ namespace Adyen.BinLookup.Models
         /// <param name="message">A short explanation of the issue.</param>
         /// <param name="pspReference">The PSP reference of the payment.</param>
         /// <param name="status">The HTTP response status.</param>
-        [JsonConstructor]
         public ServiceError(Option<Dictionary<string, string>?> additionalData = default, Option<string?> errorCode = default, Option<string?> errorType = default, Option<string?> message = default, Option<string?> pspReference = default, Option<int?> status = default)
         {
             _AdditionalDataOption = additionalData;

@@ -40,7 +40,6 @@ namespace Adyen.StoredValue.Models
         /// <param name="refusalReason">If the transaction is refused or an error occurs, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error.  When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.</param>
         /// <param name="resultCode">The result of the payment. Possible values:  * **Success** – The operation has been completed successfully.  * **Refused** – The operation was refused. The reason is given in the &#x60;refusalReason&#x60; field.  * **Error** – There was an error when the operation was processed. The reason is given in the &#x60;refusalReason&#x60; field.  * **NotEnoughBalance** – The amount on the payment method is lower than the amount given in the request. Only applicable to balance checks.  </param>
         /// <param name="thirdPartyRefusalReason">Raw refusal reason received from the third party, where available</param>
-        [JsonConstructor]
         public StoredValueLoadResponse(Option<string?> authCode = default, Option<Amount?> currentBalance = default, Option<string?> pspReference = default, Option<string?> refusalReason = default, Option<ResultCodeEnum?> resultCode = default, Option<string?> thirdPartyRefusalReason = default)
         {
             _AuthCodeOption = authCode;

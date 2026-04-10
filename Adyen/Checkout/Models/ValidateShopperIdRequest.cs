@@ -39,7 +39,6 @@ namespace Adyen.Checkout.Models
         /// <param name="shopperEmail">shopperEmail</param>
         /// <param name="shopperIP">shopperIP</param>
         /// <param name="shopperReference">shopperReference</param>
-        [JsonConstructor]
         public ValidateShopperIdRequest(string merchantAccount, ShopperIdPaymentMethod paymentMethod, Option<string?> shopperEmail = default, Option<string?> shopperIP = default, Option<string?> shopperReference = default)
         {
             MerchantAccount = merchantAccount;

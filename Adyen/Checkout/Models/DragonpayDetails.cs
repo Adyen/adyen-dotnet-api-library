@@ -39,7 +39,6 @@ namespace Adyen.Checkout.Models
         /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
         /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
         /// <param name="shopperEmail">The shopper’s email address.</param>
-        [JsonConstructor]
         public DragonpayDetails(string issuer, TypeEnum type, Option<string?> checkoutAttemptId = default, Option<string?> sdkData = default, Option<string?> shopperEmail = default)
         {
             Issuer = issuer;

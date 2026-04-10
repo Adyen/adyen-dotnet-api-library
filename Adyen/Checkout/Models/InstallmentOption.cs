@@ -38,7 +38,6 @@ namespace Adyen.Checkout.Models
         /// <param name="plans">Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving**</param>
         /// <param name="preselectedValue">Preselected number of installments offered for this payment method.</param>
         /// <param name="values">An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with &#x60;maxValue&#x60;.</param>
-        [JsonConstructor]
         public InstallmentOption(Option<int?> maxValue = default, Option<List<InstallmentOption.PlansEnum>?> plans = default, Option<int?> preselectedValue = default, Option<List<int>?> values = default)
         {
             _MaxValueOption = maxValue;

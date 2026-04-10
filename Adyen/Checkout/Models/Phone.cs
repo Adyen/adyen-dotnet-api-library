@@ -36,7 +36,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="cc">Country code. Length: 1–3 digits.</param>
         /// <param name="subscriber">Subscriber number. Length: 4-15  digits.</param>
-        [JsonConstructor]
         public Phone(Option<string?> cc = default, Option<string?> subscriber = default)
         {
             _CcOption = cc;

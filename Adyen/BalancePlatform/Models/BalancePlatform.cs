@@ -37,7 +37,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="id">The unique identifier of the balance platform.</param>
         /// <param name="description">Your description of the balance platform.</param>
         /// <param name="status">The status of the balance platform.  Possible values: **Active**, **Inactive**, **Closed**, **Suspended**.</param>
-        [JsonConstructor]
         public BalancePlatform(string id, Option<string?> description = default, Option<string?> status = default)
         {
             Id = id;

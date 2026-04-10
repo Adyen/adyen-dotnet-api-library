@@ -37,7 +37,6 @@ namespace Adyen.Transfers.Models
         /// <param name="amount">amount</param>
         /// <param name="amountAdjustmentType">The type of markup that is applied to an authorised payment.  Possible values: **exchange**, **forexMarkup**, **authHoldReserve**, **atmMarkup**.</param>
         /// <param name="basepoints">The basepoints associated with the applied markup.</param>
-        [JsonConstructor]
         public AmountAdjustment(Option<Amount?> amount = default, Option<AmountAdjustmentTypeEnum?> amountAdjustmentType = default, Option<int?> basepoints = default)
         {
             _AmountOption = amount;

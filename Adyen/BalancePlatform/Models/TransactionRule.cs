@@ -48,7 +48,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="score">A positive or negative score applied to the transaction if it meets the conditions of the rule. Required when &#x60;outcomeType&#x60; is **scoreBased**.  The value must be between **-100** and **100**.</param>
         /// <param name="startDate">The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2025-03-19T10:15:30+01:00**.  If not provided when creating a transaction rule, the &#x60;startDate&#x60; is set to the date when the rule status is set to **active**.   </param>
         /// <param name="status">The status of the transaction rule. If you provide a &#x60;startDate&#x60; in the request, the rule is automatically created  with an **active** status.   Possible values: **active**, **inactive**.</param>
-        [JsonConstructor]
         public TransactionRule(string description, TransactionRuleEntityKey entityKey, TransactionRuleInterval interval, string reference, TransactionRuleRestrictions ruleRestrictions, TypeEnum type, Option<string?> aggregationLevel = default, Option<string?> endDate = default, Option<string?> id = default, Option<OutcomeTypeEnum?> outcomeType = default, Option<RequestTypeEnum?> requestType = default, Option<int?> score = default, Option<string?> startDate = default, Option<StatusEnum?> status = default)
         {
             Description = description;

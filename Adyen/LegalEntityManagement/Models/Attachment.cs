@@ -39,7 +39,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="filename">The name of the file including the file extension.</param>
         /// <param name="pageName">The name of the file including the file extension.</param>
         /// <param name="pageType">Specifies which side of the ID card is uploaded.  * If the &#x60;type&#x60; is **driversLicense** or **identityCard**, you must set this to **front** or **back** and include both sides in the same API request.  * For any other types, when this is omitted, we infer the page number based on the order of attachments.</param>
-        [JsonConstructor]
         public Attachment(byte[] content, Option<string?> contentType = default, Option<string?> filename = default, Option<string?> pageName = default, Option<string?> pageType = default)
         {
             Content = content;

@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="UploadAndroidAppResponse" /> class.
         /// </summary>
         /// <param name="id">The unique identifier of the uploaded Android app.</param>
-        [JsonConstructor]
         public UploadAndroidAppResponse(Option<string?> id = default)
         {
             _IdOption = id;

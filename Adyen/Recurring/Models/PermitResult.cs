@@ -36,7 +36,6 @@ namespace Adyen.Recurring.Models
         /// </summary>
         /// <param name="resultKey">The key to link permit requests to permit results.</param>
         /// <param name="token">The permit token which is used to make payments by the partner company.</param>
-        [JsonConstructor]
         public PermitResult(Option<string?> resultKey = default, Option<string?> token = default)
         {
             _ResultKeyOption = resultKey;

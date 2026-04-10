@@ -36,7 +36,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <param name="accountNumber">The 24-digit bank account number, without separators or whitespace.</param>
         /// <param name="type">**huLocal** (default to TypeEnum.HuLocal)</param>
-        [JsonConstructor]
         public HULocalAccountIdentification(string accountNumber, TypeEnum type = default)
         {
             AccountNumber = accountNumber;

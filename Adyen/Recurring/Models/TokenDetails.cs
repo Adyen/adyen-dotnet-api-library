@@ -36,7 +36,6 @@ namespace Adyen.Recurring.Models
         /// </summary>
         /// <param name="tokenData">tokenData</param>
         /// <param name="tokenDataType">tokenDataType</param>
-        [JsonConstructor]
         public TokenDetails(Option<Dictionary<string, string>?> tokenData = default, Option<string?> tokenDataType = default)
         {
             _TokenDataOption = tokenData;

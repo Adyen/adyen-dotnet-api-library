@@ -41,7 +41,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="issuerState">The state or province where the document was issued (AU only).</param>
         /// <param name="nationalIdExempt">Applies only to individuals in the US. Set to **true** if the individual does not have an SSN. To verify their identity, Adyen will require them to upload an ID document.</param>
         /// <param name="number">The number in the document.</param>
-        [JsonConstructor]
         public IdentificationData(TypeEnum type, Option<string?> cardNumber = default, Option<string?> expiryDate = default, Option<string?> issuerCountry = default, Option<string?> issuerState = default, Option<bool?> nationalIdExempt = default, Option<string?> number = default)
         {
             Type = type;

@@ -36,7 +36,6 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
         /// </summary>
         /// <param name="number">The full phone number provided as a single string.  For example, **\&quot;0031 6 11 22 33 44\&quot;**, **\&quot;+316/1122-3344\&quot;**,    or **\&quot;(0031) 611223344\&quot;**.</param>
         /// <param name="type">Type of phone number. Possible values:  **Landline**, **Mobile**. </param>
-        [JsonConstructor]
         public Phone(string number, TypeEnum type)
         {
             Number = number;

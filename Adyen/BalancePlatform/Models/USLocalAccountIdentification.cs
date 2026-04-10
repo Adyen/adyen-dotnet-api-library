@@ -38,7 +38,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="routingNumber">The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace.</param>
         /// <param name="accountType">The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**. (default to AccountTypeEnum.Checking)</param>
         /// <param name="type">**usLocal** (default to TypeEnum.UsLocal)</param>
-        [JsonConstructor]
         public USLocalAccountIdentification(string accountNumber, string routingNumber, Option<AccountTypeEnum?> accountType = default, TypeEnum type = default)
         {
             AccountNumber = accountNumber;

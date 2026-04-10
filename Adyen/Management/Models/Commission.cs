@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="fixedAmount">A fixed commission fee, in minor units.</param>
         /// <param name="variablePercentage">A variable commission fee, in basis points.</param>
-        [JsonConstructor]
         public Commission(Option<long?> fixedAmount = default, Option<long?> variablePercentage = default)
         {
             _FixedAmountOption = fixedAmount;

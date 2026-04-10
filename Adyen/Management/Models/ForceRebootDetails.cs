@@ -35,7 +35,6 @@ namespace Adyen.Management.Models
         /// Initializes a new instance of the <see cref="ForceRebootDetails" /> class.
         /// </summary>
         /// <param name="type">The type of terminal action. The value **ForceReboot** triggers an immediate reboot of the specified terminal(s). (default to TypeEnum.ForceReboot)</param>
-        [JsonConstructor]
         public ForceRebootDetails(Option<TypeEnum?> type = default)
         {
             _TypeOption = type;

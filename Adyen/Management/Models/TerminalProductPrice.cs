@@ -36,7 +36,6 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).</param>
         /// <param name="value">The price of the item.</param>
-        [JsonConstructor]
         public TerminalProductPrice(Option<string?> currency = default, Option<double?> value = default)
         {
             _CurrencyOption = currency;

@@ -37,7 +37,6 @@ namespace Adyen.BinLookup.Models
         /// <param name="countryCode">2-letter ISO 3166 country code of the card acceptor location. &gt; This parameter is required for the merchants who don&#39;t use Adyen as the payment authorisation gateway.</param>
         /// <param name="enrolledIn3DSecure">If true, indicates that the merchant is enrolled in 3D Secure for the card network.</param>
         /// <param name="mcc">The merchant category code (MCC) is a four-digit number which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.  The list of MCCs can be found [here](https://en.wikipedia.org/wiki/Merchant_category_code).</param>
-        [JsonConstructor]
         public MerchantDetails(Option<string?> countryCode = default, Option<bool?> enrolledIn3DSecure = default, Option<string?> mcc = default)
         {
             _CountryCodeOption = countryCode;

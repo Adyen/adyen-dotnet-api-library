@@ -38,7 +38,6 @@ namespace Adyen.Transfers.Models
         /// <param name="reference">Your internal reference for the return.</param>
         /// <param name="status">The resulting status of the return.  Possible values: **Authorised**, **Declined**.</param>
         /// <param name="transferId">The unique identifier of the original transfer.</param>
-        [JsonConstructor]
         public ReturnTransferResponse(Option<string?> id = default, Option<string?> reference = default, Option<StatusEnum?> status = default, Option<string?> transferId = default)
         {
             _IdOption = id;

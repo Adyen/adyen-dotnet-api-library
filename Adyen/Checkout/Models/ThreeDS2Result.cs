@@ -48,7 +48,6 @@ namespace Adyen.Checkout.Models
         /// <param name="transStatus">The &#x60;transStatus&#x60; value as defined in the 3D Secure 2 specification.</param>
         /// <param name="transStatusReason">Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).</param>
         /// <param name="whiteListStatus">The &#x60;whiteListStatus&#x60; value as defined in the 3D Secure 2 specification.</param>
-        [JsonConstructor]
         public ThreeDS2Result(Option<string?> authenticationValue = default, Option<string?> cavvAlgorithm = default, Option<ChallengeCancelEnum?> challengeCancel = default, Option<string?> dsTransID = default, Option<string?> eci = default, Option<ExemptionIndicatorEnum?> exemptionIndicator = default, Option<string?> messageVersion = default, Option<string?> riskScore = default, Option<ThreeDSRequestorChallengeIndEnum?> threeDSRequestorChallengeInd = default, Option<string?> threeDSServerTransID = default, Option<string?> timestamp = default, Option<string?> transStatus = default, Option<string?> transStatusReason = default, Option<string?> whiteListStatus = default)
         {
             _AuthenticationValueOption = authenticationValue;

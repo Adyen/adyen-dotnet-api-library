@@ -36,7 +36,6 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="operation">Defines how the condition must be evaluated.</param>
         /// <param name="value">The list of source account types to be evaluated.</param>
-        [JsonConstructor]
         public SourceAccountTypesRestriction(string operation, Option<List<SourceAccountTypesRestriction.ValueEnum>?> value = default)
         {
             Operation = operation;
