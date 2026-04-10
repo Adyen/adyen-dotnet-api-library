@@ -378,7 +378,7 @@ namespace Adyen.Transfers.Services
                     if (counterpartyAccountHolderId.IsSet)
                         parseQueryString["counterpartyAccountHolderId"] = ClientUtils.ParameterToString(counterpartyAccountHolderId.Value);
 
-                    uriBuilder.Query = parseQueryString.ToString();
+                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
