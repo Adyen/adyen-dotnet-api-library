@@ -27,81 +27,81 @@ using Adyen.Capital.Client;
 namespace Adyen.Capital.Models
 {
     /// <summary>
-    /// Defines USLocalBankAccountType
+    /// Defines FinancingType
     /// </summary>
-    public enum USLocalBankAccountType
+    public enum FinancingType
     {
         /// <summary>
-        /// Enum Checking for value: checking
+        /// Enum HardwareFinancing for value: hardwareFinancing
         /// </summary>
-        Checking = 1,
+        HardwareFinancing = 1,
 
         /// <summary>
-        /// Enum Savings for value: savings
+        /// Enum BusinessFinancing for value: businessFinancing
         /// </summary>
-        Savings = 2
+        BusinessFinancing = 2
     }
 
     /// <summary>
-    /// Converts <see cref="USLocalBankAccountType"/> to and from the JSON value
+    /// Converts <see cref="FinancingType"/> to and from the JSON value
     /// </summary>
-    public static class USLocalBankAccountTypeValueConverter
+    public static class FinancingTypeValueConverter
     {
         /// <summary>
-        /// Parses a given value to <see cref="USLocalBankAccountType"/>
+        /// Parses a given value to <see cref="FinancingType"/>
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static USLocalBankAccountType FromString(string value)
+        public static FinancingType FromString(string value)
         {
-            if (value.Equals("checking"))
-                return USLocalBankAccountType.Checking;
+            if (value.Equals("hardwareFinancing"))
+                return FinancingType.HardwareFinancing;
 
-            if (value.Equals("savings"))
-                return USLocalBankAccountType.Savings;
+            if (value.Equals("businessFinancing"))
+                return FinancingType.BusinessFinancing;
 
-            throw new NotImplementedException($"Could not convert value to type USLocalBankAccountType: '{value}'");
+            throw new NotImplementedException($"Could not convert value to type FinancingType: '{value}'");
         }
 
         /// <summary>
-        /// Parses a given value to <see cref="USLocalBankAccountType"/>
+        /// Parses a given value to <see cref="FinancingType"/>
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static USLocalBankAccountType? FromStringOrDefault(string value)
+        public static FinancingType? FromStringOrDefault(string value)
         {
-            if (value.Equals("checking"))
-                return USLocalBankAccountType.Checking;
+            if (value.Equals("hardwareFinancing"))
+                return FinancingType.HardwareFinancing;
 
-            if (value.Equals("savings"))
-                return USLocalBankAccountType.Savings;
+            if (value.Equals("businessFinancing"))
+                return FinancingType.BusinessFinancing;
 
             return null;
         }
 
         /// <summary>
-        /// Converts the <see cref="USLocalBankAccountType"/> to the json value
+        /// Converts the <see cref="FinancingType"/> to the json value
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public static string ToJsonValue(USLocalBankAccountType value)
+        public static string ToJsonValue(FinancingType value)
         {
-            if (value == USLocalBankAccountType.Checking)
-                return "checking";
+            if (value == FinancingType.HardwareFinancing)
+                return "hardwareFinancing";
 
-            if (value == USLocalBankAccountType.Savings)
-                return "savings";
+            if (value == FinancingType.BusinessFinancing)
+                return "businessFinancing";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="USLocalBankAccountType"/>
+    /// A Json converter for type <see cref="FinancingType"/>
     /// </summary>
     /// <exception cref="NotImplementedException"></exception>
-    public class USLocalBankAccountTypeJsonConverter : JsonConverter<USLocalBankAccountType>
+    public class FinancingTypeJsonConverter : JsonConverter<FinancingType>
     {
         /// <summary>
         /// Returns a  from the Json object
@@ -110,13 +110,13 @@ namespace Adyen.Capital.Models
         /// <param name="typeToConvert"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public override USLocalBankAccountType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override FinancingType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             string? rawValue = reader.GetString();
 
-            USLocalBankAccountType? result = rawValue == null
+            FinancingType? result = rawValue == null
                 ? null
-                : USLocalBankAccountTypeValueConverter.FromStringOrDefault(rawValue);
+                : FinancingTypeValueConverter.FromStringOrDefault(rawValue);
 
             if (result != null)
                 return result.Value;
@@ -125,36 +125,36 @@ namespace Adyen.Capital.Models
         }
 
         /// <summary>
-        /// Writes the USLocalBankAccountType to the json writer
+        /// Writes the FinancingType to the json writer
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="uSLocalBankAccountType"></param>
+        /// <param name="financingType"></param>
         /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, USLocalBankAccountType uSLocalBankAccountType, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, FinancingType financingType, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(USLocalBankAccountTypeValueConverter.ToJsonValue(uSLocalBankAccountType).ToString());
+            writer.WriteStringValue(FinancingTypeValueConverter.ToJsonValue(financingType).ToString());
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="USLocalBankAccountType"/>
+    /// A Json converter for type <see cref="FinancingType"/>
     /// </summary>
-    public class USLocalBankAccountTypeNullableJsonConverter : JsonConverter<USLocalBankAccountType?>
+    public class FinancingTypeNullableJsonConverter : JsonConverter<FinancingType?>
     {
         /// <summary>
-        /// Returns a USLocalBankAccountType from the Json object
+        /// Returns a FinancingType from the Json object
         /// </summary>
         /// <param name="reader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public override USLocalBankAccountType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override FinancingType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             string? rawValue = reader.GetString();
 
-            USLocalBankAccountType? result = rawValue == null
+            FinancingType? result = rawValue == null
                 ? null
-                : USLocalBankAccountTypeValueConverter.FromStringOrDefault(rawValue);
+                : FinancingTypeValueConverter.FromStringOrDefault(rawValue);
 
             if (result != null)
                 return result.Value;
@@ -163,14 +163,14 @@ namespace Adyen.Capital.Models
         }
 
         /// <summary>
-        /// Writes the USLocalBankAccountType to the json writer
+        /// Writes the FinancingType to the json writer
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="uSLocalBankAccountType"></param>
+        /// <param name="financingType"></param>
         /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, USLocalBankAccountType? uSLocalBankAccountType, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, FinancingType? financingType, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(uSLocalBankAccountType.HasValue ? USLocalBankAccountTypeValueConverter.ToJsonValue(uSLocalBankAccountType.Value).ToString() : "null");
+            writer.WriteStringValue(financingType.HasValue ? FinancingTypeValueConverter.ToJsonValue(financingType.Value).ToString() : "null");
         }
     }
 }
