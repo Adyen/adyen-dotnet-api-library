@@ -101,6 +101,8 @@ namespace Adyen.ConfigurationWebhooks.Client
         /// <returns>Formatted string.</returns>
         public static string? ParameterToString(object? obj, string? format = ISO8601_DATETIME_FORMAT)
         {
+            if (obj is System.Collections.Specialized.NameValueCollection nameValueCollection)
+                return BuildQueryString(nameValueCollection);
             if (obj is DateTime dateTime)
                 // Return a formatted date string - Can be customized with Configuration.DateTimeFormat
                 // Defaults to an ISO 8601, using the known as a Round-trip date/time pattern ("o")
@@ -153,6 +155,12 @@ namespace Adyen.ConfigurationWebhooks.Client
                 return Models.CardOrderNotificationRequest.TypeEnum.ToJsonValue(cardOrderNotificationRequestTypeEnum);
             if (obj is Models.IbanAccountIdentification.TypeEnum ibanAccountIdentificationTypeEnum)
                 return Models.IbanAccountIdentification.TypeEnum.ToJsonValue(ibanAccountIdentificationTypeEnum);
+            if (obj is Models.Mandate.StatusEnum mandateStatusEnum)
+                return Models.Mandate.StatusEnum.ToJsonValue(mandateStatusEnum);
+            if (obj is Models.Mandate.TypeEnum mandateTypeEnum)
+                return Models.Mandate.TypeEnum.ToJsonValue(mandateTypeEnum);
+            if (obj is Models.MandateNotificationRequest.TypeEnum mandateNotificationRequestTypeEnum)
+                return Models.MandateNotificationRequest.TypeEnum.ToJsonValue(mandateNotificationRequestTypeEnum);
             if (obj is Models.NetworkTokenNotificationRequest.TypeEnum networkTokenNotificationRequestTypeEnum)
                 return Models.NetworkTokenNotificationRequest.TypeEnum.ToJsonValue(networkTokenNotificationRequestTypeEnum);
             if (obj is Models.PaymentInstrument.TypeEnum paymentInstrumentTypeEnum)
@@ -183,6 +191,8 @@ namespace Adyen.ConfigurationWebhooks.Client
                 return Models.SweepConfigurationV2.TypeEnum.ToJsonValue(sweepConfigurationV2TypeEnum);
             if (obj is Models.SweepSchedule.TypeEnum sweepScheduleTypeEnum)
                 return Models.SweepSchedule.TypeEnum.ToJsonValue(sweepScheduleTypeEnum);
+            if (obj is Models.UKLocalMandateAccountIdentification.TypeEnum uKLocalMandateAccountIdentificationTypeEnum)
+                return Models.UKLocalMandateAccountIdentification.TypeEnum.ToJsonValue(uKLocalMandateAccountIdentificationTypeEnum);
             if (obj is Models.ValidationFacts.ResultEnum validationFactsResultEnum)
                 return Models.ValidationFacts.ResultEnum.ToJsonValue(validationFactsResultEnum);
             if (obj is Models.VerificationDeadline.CapabilitiesEnum verificationDeadlineCapabilitiesEnum)
@@ -206,6 +216,36 @@ namespace Adyen.ConfigurationWebhooks.Client
             }
 
             return Convert.ToString(obj, System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// Builds a query string from a <see cref="System.Collections.Specialized.NameValueCollection"/>
+        /// using minimal percent-encoding that only escapes characters which would break query string
+        /// structure, while leaving all other characters (including <c>+</c>, <c>/</c>, <c>!</c>) unencoded.
+        /// <para>
+        /// This follows RFC 3986 and does not encode sub-delimiters or unreserved characters in
+        /// query values.
+        /// </para>
+        /// </summary>
+        /// <param name="parameters">The query string parameters.</param>
+        /// <returns>A query string (without leading '?').</returns>
+        internal static string BuildQueryString(System.Collections.Specialized.NameValueCollection parameters)
+        {
+            var parts = new List<string>();
+            foreach (string key in parameters.AllKeys)
+            {
+                var value = parameters[key] ?? string.Empty;
+                // keys are always encoded (must be ASCII identifiers)
+                var encodedKey = Uri.EscapeDataString(key);
+                // only encode selected characters           
+                var encodedValue = value
+                    .Replace("&", "%26")
+                    .Replace("=", "%3D")
+                    .Replace("#", "%23")
+                    .Replace(" ", "%20");
+                parts.Add(encodedKey + "=" + encodedValue);
+            }
+            return string.Join("&", parts);
         }
 
         /// <summary>
