@@ -36,11 +36,13 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <param name="id">The unique identifier of this app, to submit in requests to /payments.</param>
         /// <param name="name">A localized name of the app.</param>
+        /// <param name="appIdentifierInfo">appIdentifierInfo</param>
         [JsonConstructor]
-        public PaymentMethodUPIApps(string id, string name)
+        public PaymentMethodUPIApps(string id, string name, Option<AppIdentifierInfo?> appIdentifierInfo = default)
         {
             Id = id;
             Name = name;
+            _AppIdentifierInfoOption = appIdentifierInfo;
             OnCreated();
         }
         
@@ -68,6 +70,19 @@ namespace Adyen.Checkout.Models
         public string Name { get; set; }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="AppIdentifierInfo"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<AppIdentifierInfo?> _AppIdentifierInfoOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="AppIdentifierInfo"/>.
+        /// </summary>
+        [JsonPropertyName("appIdentifierInfo")]
+        public AppIdentifierInfo? AppIdentifierInfo { get { return this._AppIdentifierInfoOption; } set { this._AppIdentifierInfoOption = new(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -77,6 +92,7 @@ namespace Adyen.Checkout.Models
             sb.Append("class PaymentMethodUPIApps {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  AppIdentifierInfo: ").Append(AppIdentifierInfo).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -106,6 +122,7 @@ namespace Adyen.Checkout.Models
 
             Option<string?> id = default;
             Option<string?> name = default;
+            Option<AppIdentifierInfo?> appIdentifierInfo = default;
 
             while (utf8JsonReader.Read())
             {
@@ -128,6 +145,9 @@ namespace Adyen.Checkout.Models
                         case "name":
                             name = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "appIdentifierInfo":
+                            appIdentifierInfo = new Option<AppIdentifierInfo?>(JsonSerializer.Deserialize<AppIdentifierInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         default:
                             break;
                     }
@@ -140,7 +160,7 @@ namespace Adyen.Checkout.Models
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class PaymentMethodUPIApps.", nameof(name));
 
-            return new PaymentMethodUPIApps(id.Value!, name.Value!);
+            return new PaymentMethodUPIApps(id.Value!, name.Value!, appIdentifierInfo);
         }
 
         /// <summary>
@@ -174,6 +194,12 @@ namespace Adyen.Checkout.Models
 
             if (paymentMethodUPIApps.Name != null)
                 writer.WriteString("name", paymentMethodUPIApps.Name);
+
+            if (paymentMethodUPIApps._AppIdentifierInfoOption.IsSet)
+            {
+                writer.WritePropertyName("appIdentifierInfo");
+                JsonSerializer.Serialize(writer, paymentMethodUPIApps.AppIdentifierInfo, jsonSerializerOptions);
+            }
         }
     }
 }

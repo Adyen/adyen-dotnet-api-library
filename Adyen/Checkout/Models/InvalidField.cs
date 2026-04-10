@@ -34,15 +34,15 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="InvalidField" /> class.
         /// </summary>
+        /// <param name="message">Description of the validation error.</param>
         /// <param name="name">The field that has an invalid value.</param>
         /// <param name="value">The invalid value.</param>
-        /// <param name="message">Description of the validation error.</param>
         [JsonConstructor]
-        public InvalidField(string name, string value, string message)
+        public InvalidField(string message, string name, string value)
         {
+            Message = message;
             Name = name;
             Value = value;
-            Message = message;
             OnCreated();
         }
         
@@ -54,6 +54,13 @@ namespace Adyen.Checkout.Models
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// Description of the validation error.
+        /// </summary>
+        /// <value>Description of the validation error.</value>
+        [JsonPropertyName("message")]
+        public string Message { get; set; }
 
         /// <summary>
         /// The field that has an invalid value.
@@ -70,13 +77,6 @@ namespace Adyen.Checkout.Models
         public string Value { get; set; }
 
         /// <summary>
-        /// Description of the validation error.
-        /// </summary>
-        /// <value>Description of the validation error.</value>
-        [JsonPropertyName("message")]
-        public string Message { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -84,9 +84,9 @@ namespace Adyen.Checkout.Models
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class InvalidField {\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -114,9 +114,9 @@ namespace Adyen.Checkout.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<string?> message = default;
             Option<string?> name = default;
             Option<string?> value = default;
-            Option<string?> message = default;
 
             while (utf8JsonReader.Read())
             {
@@ -133,14 +133,14 @@ namespace Adyen.Checkout.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "message":
+                            message = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "name":
                             name = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "value":
                             value = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
-                        case "message":
-                            message = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         default:
                             break;
@@ -148,16 +148,16 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!message.IsSet)
+                throw new ArgumentException("Property is required for class InvalidField.", nameof(message));
+
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class InvalidField.", nameof(name));
 
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class InvalidField.", nameof(value));
 
-            if (!message.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(message));
-
-            return new InvalidField(name.Value!, value.Value!, message.Value!);
+            return new InvalidField(message.Value!, name.Value!, value.Value!);
         }
 
         /// <summary>
@@ -186,14 +186,14 @@ namespace Adyen.Checkout.Models
         public void WriteProperties(Utf8JsonWriter writer, InvalidField invalidField, JsonSerializerOptions jsonSerializerOptions)
         {
             
+            if (invalidField.Message != null)
+                writer.WriteString("message", invalidField.Message);
+
             if (invalidField.Name != null)
                 writer.WriteString("name", invalidField.Name);
 
             if (invalidField.Value != null)
                 writer.WriteString("value", invalidField.Value);
-
-            if (invalidField.Message != null)
-                writer.WriteString("message", invalidField.Message);
         }
     }
 }

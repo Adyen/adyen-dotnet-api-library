@@ -27,45 +27,59 @@ using Adyen.Checkout.Client;
 namespace Adyen.Checkout.Models
 {
     /// <summary>
-    /// ShopperTaxInfo.
+    /// AppIdentifierInfo.
     /// </summary>
-    public partial class ShopperTaxInfo
+    public partial class AppIdentifierInfo
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ShopperTaxInfo" /> class.
+        /// Initializes a new instance of the <see cref="AppIdentifierInfo" /> class.
         /// </summary>
-        /// <param name="taxCountryCode">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code associated with the provided tax identification number. Currently used only for Indian PA-CB tax verification, when applicable.</param>
-        /// <param name="taxIdentificationNumber">The shopper’s tax identification number.</param>
+        /// <param name="androidPackageId">The Android package identifier for this app.</param>
+        /// <param name="iosScheme">The iOS URL scheme for this app.</param>
         [JsonConstructor]
-        public ShopperTaxInfo(string taxCountryCode, string taxIdentificationNumber)
+        public AppIdentifierInfo(Option<string?> androidPackageId = default, Option<string?> iosScheme = default)
         {
-            TaxCountryCode = taxCountryCode;
-            TaxIdentificationNumber = taxIdentificationNumber;
+            _AndroidPackageIdOption = androidPackageId;
+            _IosSchemeOption = iosScheme;
             OnCreated();
         }
         
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public ShopperTaxInfo()
+        public AppIdentifierInfo()
         {
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code associated with the provided tax identification number. Currently used only for Indian PA-CB tax verification, when applicable.
+        /// This is used to track if an optional field is set. If set, <see cref="AndroidPackageId"/> will be populated.
         /// </summary>
-        /// <value>The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code associated with the provided tax identification number. Currently used only for Indian PA-CB tax verification, when applicable.</value>
-        [JsonPropertyName("taxCountryCode")]
-        public string TaxCountryCode { get; set; }
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _AndroidPackageIdOption { get; private set; }
 
         /// <summary>
-        /// The shopper’s tax identification number.
+        /// The Android package identifier for this app.
         /// </summary>
-        /// <value>The shopper’s tax identification number.</value>
-        [JsonPropertyName("taxIdentificationNumber")]
-        public string TaxIdentificationNumber { get; set; }
+        /// <value>The Android package identifier for this app.</value>
+        [JsonPropertyName("androidPackageId")]
+        public string? AndroidPackageId { get { return this._AndroidPackageIdOption; } set { this._AndroidPackageIdOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="IosScheme"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _IosSchemeOption { get; private set; }
+
+        /// <summary>
+        /// The iOS URL scheme for this app.
+        /// </summary>
+        /// <value>The iOS URL scheme for this app.</value>
+        [JsonPropertyName("iosScheme")]
+        public string? IosScheme { get { return this._IosSchemeOption; } set { this._IosSchemeOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -74,28 +88,28 @@ namespace Adyen.Checkout.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ShopperTaxInfo {\n");
-            sb.Append("  TaxCountryCode: ").Append(TaxCountryCode).Append("\n");
-            sb.Append("  TaxIdentificationNumber: ").Append(TaxIdentificationNumber).Append("\n");
+            sb.Append("class AppIdentifierInfo {\n");
+            sb.Append("  AndroidPackageId: ").Append(AndroidPackageId).Append("\n");
+            sb.Append("  IosScheme: ").Append(IosScheme).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="ShopperTaxInfo" />
+    /// A Json converter for type <see cref="AppIdentifierInfo" />
     /// </summary>
-    public class ShopperTaxInfoJsonConverter : JsonConverter<ShopperTaxInfo>
+    public class AppIdentifierInfoJsonConverter : JsonConverter<AppIdentifierInfo>
     {
         /// <summary>
-        /// Deserializes json to <see cref="ShopperTaxInfo"/>.
+        /// Deserializes json to <see cref="AppIdentifierInfo"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="ShopperTaxInfo"/>.</returns>
+        /// <returns><see cref="AppIdentifierInfo"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override ShopperTaxInfo Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override AppIdentifierInfo Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -104,8 +118,8 @@ namespace Adyen.Checkout.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> taxCountryCode = default;
-            Option<string?> taxIdentificationNumber = default;
+            Option<string?> androidPackageId = default;
+            Option<string?> iosScheme = default;
 
             while (utf8JsonReader.Read())
             {
@@ -122,11 +136,11 @@ namespace Adyen.Checkout.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "taxCountryCode":
-                            taxCountryCode = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "androidPackageId":
+                            androidPackageId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
-                        case "taxIdentificationNumber":
-                            taxIdentificationNumber = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "iosScheme":
+                            iosScheme = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         default:
                             break;
@@ -134,46 +148,43 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!taxCountryCode.IsSet)
-                throw new ArgumentException("Property is required for class ShopperTaxInfo.", nameof(taxCountryCode));
 
-            if (!taxIdentificationNumber.IsSet)
-                throw new ArgumentException("Property is required for class ShopperTaxInfo.", nameof(taxIdentificationNumber));
-
-            return new ShopperTaxInfo(taxCountryCode.Value!, taxIdentificationNumber.Value!);
+            return new AppIdentifierInfo(androidPackageId, iosScheme);
         }
 
         /// <summary>
-        /// Serializes a <see cref="ShopperTaxInfo"/>.
+        /// Serializes a <see cref="AppIdentifierInfo"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="shopperTaxInfo"></param>
+        /// <param name="appIdentifierInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, ShopperTaxInfo shopperTaxInfo, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, AppIdentifierInfo appIdentifierInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, shopperTaxInfo, jsonSerializerOptions);
+            WriteProperties(writer, appIdentifierInfo, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="ShopperTaxInfo"/>.
+        /// Serializes the properties of <see cref="AppIdentifierInfo"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="shopperTaxInfo"></param>
+        /// <param name="appIdentifierInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, ShopperTaxInfo shopperTaxInfo, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, AppIdentifierInfo appIdentifierInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (shopperTaxInfo.TaxCountryCode != null)
-                writer.WriteString("taxCountryCode", shopperTaxInfo.TaxCountryCode);
+            if (appIdentifierInfo._AndroidPackageIdOption.IsSet)
+                if (appIdentifierInfo.AndroidPackageId != null)
+                    writer.WriteString("androidPackageId", appIdentifierInfo.AndroidPackageId);
 
-            if (shopperTaxInfo.TaxIdentificationNumber != null)
-                writer.WriteString("taxIdentificationNumber", shopperTaxInfo.TaxIdentificationNumber);
+            if (appIdentifierInfo._IosSchemeOption.IsSet)
+                if (appIdentifierInfo.IosScheme != null)
+                    writer.WriteString("iosScheme", appIdentifierInfo.IosScheme);
         }
     }
 }

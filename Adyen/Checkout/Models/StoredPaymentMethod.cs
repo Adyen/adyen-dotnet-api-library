@@ -39,7 +39,7 @@ namespace Adyen.Checkout.Models
         /// <param name="brand">The brand of the card.</param>
         /// <param name="expiryMonth">The two-digit month when the card expires</param>
         /// <param name="expiryYear">The last two digits of the year the card expires. For example, **22** for the year 2022.</param>
-        /// <param name="holderName">The unique payment method code.</param>
+        /// <param name="holderName">The name of the payment method holder.</param>
         /// <param name="iban">The IBAN of the bank account.</param>
         /// <param name="id">A unique identifier of this stored payment method.</param>
         /// <param name="label">The shopper’s issuer account label</param>
@@ -161,9 +161,9 @@ namespace Adyen.Checkout.Models
         public Option<string?> _HolderNameOption { get; private set; }
 
         /// <summary>
-        /// The unique payment method code.
+        /// The name of the payment method holder.
         /// </summary>
-        /// <value>The unique payment method code.</value>
+        /// <value>The name of the payment method holder.</value>
         [JsonPropertyName("holderName")]
         public string? HolderName { get { return this._HolderNameOption; } set { this._HolderNameOption = new(value); } }
 
