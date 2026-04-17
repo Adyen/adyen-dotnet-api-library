@@ -332,61 +332,119 @@ AdditionalResponse additionalResponse = CardAcquisitionUtil.AdditionalResponse(j
 ```
 
 ### Parsing webhooks
-In order to parse webhooks, first validate the webhooks (recommended) by retrieving the hmac key from the webhook header.
-Please use the built-in webhook handlers:
+The library supports three categories of webhooks, each with a different handler and HMAC validation approach.
+
+#### 1. Payment webhooks
+Payment webhooks (classic notifications) use `IWebhooksHandler`. HMAC validation here takes a `NotificationRequestItem` object.
+```csharp
+using Adyen.Webhooks.Models;
+using Adyen.Webhooks.Handlers;
+using Adyen.Webhooks.Extensions;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+
+IHost host = Host.CreateDefaultBuilder()
+    .ConfigureWebhooks(
+        (context, services, config) =>
+        {
+            config.ConfigureAdyenOptions(options =>
+            {
+                options.AdyenHmacKey = context.Configuration["ADYEN_HMAC_KEY"];
+            });
+            services.AddWebhooksHandler();
+        })
+    .Build();
+
+var handler = host.Services.GetRequiredService<IWebhooksHandler>();
+NotificationRequest notificationRequest = handler.DeserializeNotificationRequest(json);
+
+foreach (NotificationRequestItem item in notificationRequest.NotificationItems)
+{
+    if (handler.IsValidHmacSignature(item))
+    {
+        // Your logic here based on the notification item
+    }
+}
+```
+
+#### 2. Platform webhooks
+Platform webhooks (e.g. Authentication, Configuration, Balance, Transfer, Tokenization webhooks) use dedicated handlers per webhook type. HMAC validation takes the **raw JSON string** — the same bytes as received in the HTTP request body.
+
+> **Important:** Do **not** use ASP.NET Core automatic model binding (e.g. `[FromBody] MyWebhookRequest`) for these endpoints. Re-serializing a deserialized object may produce different JSON and invalidate the signature. Read the raw request body manually instead:
+> ```csharp
+> [HttpPost("api/webhooks/tokenization")]
+> public async Task<IActionResult> ProcessTokenizationWebhook()
+> {
+>     using var reader = new StreamReader(Request.Body);
+>     string json = await reader.ReadToEndAsync();
+>
+>     if (!_handler.IsValidHmacSignature(json, Request.Headers["HmacSignature"]))
+>         return Unauthorized();
+>
+>     TokenizationDisabledDetailsNotificationRequest r =
+>         _handler.DeserializeTokenizationDisabledDetailsNotificationRequest(json);
+>     // Your logic here
+> }
+> ```
+
+Example using Authentication webhooks (`AcsWebhooks`):
 ```csharp
 using Adyen.AcsWebhooks.Models;
 using Adyen.AcsWebhooks.Handlers;
 using Adyen.AcsWebhooks.Extensions;
-using Adyen.Core.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using AdyenEnvironment = Adyen.Core.Model.Environment;
 
-// Setup the host to configure the AcsWebhooks handler with HMAC key
 IHost host = Host.CreateDefaultBuilder()
     .ConfigureAcsWebhooks(
         (context, services, config) =>
         {
             config.ConfigureAdyenOptions(options =>
             {
-                options.AdyenHmacKey = context.Configuration["ADYEN_HMAC_KEY"]; 
+                options.AdyenHmacKey = context.Configuration["ADYEN_HMAC_KEY"];
             });
             services.AddAcsWebhooksHandler();
         })
     .Build();
 
-// Retrieve the handler and validate the signature
 var handler = host.Services.GetRequiredService<IAcsWebhooksHandler>();
-bool isValid = handler.IsValidHmacSignature(webhookPayload, "hmacSignature from header");
 
-if (isValid) {
+// webhookPayload is the raw JSON string from the HTTP request body
+if (handler.IsValidHmacSignature(webhookPayload, "hmacSignature from header"))
+{
     AuthenticationNotificationRequest r = handler.DeserializeAuthenticationNotificationRequest(webhookPayload);
     // Your logic here based on the deserialized webhook
 }
 ```
-Validating management webhooks is identical to validating the balance platform webhooks. To parse the management webhooks, however, one calls the following handler:
+
+#### 3. Management webhooks
+Management webhooks follow the same raw-JSON HMAC validation approach as platform webhooks:
 ```csharp
 using Adyen.ManagementWebhooks.Extensions;
 using Adyen.ManagementWebhooks.Models;
 using Adyen.ManagementWebhooks.Handlers;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
 IHost host = Host.CreateDefaultBuilder()
-          .ConfigureManagementWebhooks(
-              (context, services, config) =>
-              {
-                  config.ConfigureAdyenOptions(options =>
-                  {
-                      options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
-                      options.Environment = AdyenEnvironment.Test;
-                  });
-              })
-          .Build();
-          
+    .ConfigureManagementWebhooks(
+        (context, services, config) =>
+        {
+            config.ConfigureAdyenOptions(options =>
+            {
+                options.AdyenHmacKey = context.Configuration["ADYEN_HMAC_KEY"];
+            });
+            services.AddManagementWebhooksHandler();
+        })
+    .Build();
+
 var handler = host.Services.GetRequiredService<IManagementWebhooksHandler>();
-if(handler.GetMerchantCreatedNotificationRequest(json_payload, out MerchantCreatedNotificationRequest webhook))
-{ 
-    // Your logic here using the passed through webhook variable
+
+// webhookPayload is the raw JSON string from the HTTP request body
+if (handler.IsValidHmacSignature(webhookPayload, "hmacSignature from header"))
+{
+    MerchantCreatedNotificationRequest r = handler.DeserializeMerchantCreatedNotificationRequest(webhookPayload);
+    // Your logic here based on the deserialized webhook
 }
 ```
 
