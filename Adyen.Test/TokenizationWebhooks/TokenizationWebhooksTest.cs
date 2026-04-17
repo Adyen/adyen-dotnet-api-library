@@ -1,3 +1,4 @@
+using System.Globalization;
 using Adyen.TokenizationWebhooks.Extensions;
 using Adyen.TokenizationWebhooks.Models;
 using Adyen.TokenizationWebhooks.Handlers;
@@ -10,13 +11,15 @@ namespace Adyen.Test.TokenizationWebhooks
     [TestClass]
     public class TokenizationWebhooksTest
     {
-        private readonly ITokenizationWebhooksHandler _tokenizationWebhooksHandler;
-        private const string TestHmacKey = "D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F"; // Test key
+        private static IHost _host;
+        private static ITokenizationWebhooksHandler _tokenizationWebhooksHandler;
+        private const string TestHmacKey = "D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F";
 
-        public TokenizationWebhooksTest()
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
         {
-            IHost host = Host.CreateDefaultBuilder()
-                .ConfigureTokenizationWebhooks((context, services, config) =>
+            _host = Host.CreateDefaultBuilder()
+                .ConfigureTokenizationWebhooks((ctx, services, config) =>
                 {
                     config.ConfigureAdyenOptions(options =>
                     {
@@ -26,7 +29,13 @@ namespace Adyen.Test.TokenizationWebhooks
                 })
                 .Build();
 
-            _tokenizationWebhooksHandler = host.Services.GetRequiredService<ITokenizationWebhooksHandler>();
+            _tokenizationWebhooksHandler = _host.Services.GetRequiredService<ITokenizationWebhooksHandler>();
+        }
+
+        [ClassCleanup]
+        public static void ClassCleanup()
+        {
+            _host?.Dispose();
         }
 
         [TestMethod]
@@ -43,7 +52,7 @@ namespace Adyen.Test.TokenizationWebhooks
             Assert.AreEqual(TokenizationCreatedDetailsNotificationRequest.TypeEnum.RecurringTokenCreated, r.Type);
             Assert.AreEqual(TokenizationCreatedDetailsNotificationRequest.EnvironmentEnum.Test, r.Environment);
             Assert.AreEqual("QBQQ9DLNRHHKGK38", r.EventId);
-            Assert.AreEqual(DateTimeOffset.Parse("2025-06-30T16:40:23+02:00"), r.CreatedAt);
+            Assert.AreEqual(DateTimeOffset.Parse("2025-06-30T16:40:23+02:00", CultureInfo.InvariantCulture), r.CreatedAt);
 
             Assert.IsNotNull(r.Data);
             Assert.AreEqual("YOUR_MERCHANT_ACCOUNT", r.Data.MerchantAccount);
@@ -67,7 +76,7 @@ namespace Adyen.Test.TokenizationWebhooks
             Assert.AreEqual(TokenizationUpdatedDetailsNotificationRequest.TypeEnum.RecurringTokenUpdated, r.Type);
             Assert.AreEqual(TokenizationUpdatedDetailsNotificationRequest.EnvironmentEnum.Test, r.Environment);
             Assert.AreEqual("QBQQ9DLNRHHKGK38", r.EventId);
-            Assert.AreEqual(DateTimeOffset.Parse("2025-06-30T16:40:23+02:00"), r.CreatedAt);
+            Assert.AreEqual(DateTimeOffset.Parse("2025-06-30T16:40:23+02:00", CultureInfo.InvariantCulture), r.CreatedAt);
 
             Assert.IsNotNull(r.Data);
             Assert.AreEqual("YOUR_MERCHANT_ACCOUNT", r.Data.MerchantAccount);
@@ -91,7 +100,7 @@ namespace Adyen.Test.TokenizationWebhooks
             Assert.AreEqual(TokenizationDisabledDetailsNotificationRequest.TypeEnum.RecurringTokenDisabled, r.Type);
             Assert.AreEqual(TokenizationDisabledDetailsNotificationRequest.EnvironmentEnum.Test, r.Environment);
             Assert.AreEqual("QBQQ9DLNRHHKGK38", r.EventId);
-            Assert.AreEqual(DateTimeOffset.Parse("2025-06-30T16:40:23+02:00"), r.CreatedAt);
+            Assert.AreEqual(DateTimeOffset.Parse("2025-06-30T16:40:23+02:00", CultureInfo.InvariantCulture), r.CreatedAt);
 
             Assert.IsNotNull(r.Data);
             Assert.AreEqual("YOUR_MERCHANT_ACCOUNT", r.Data.MerchantAccount);
@@ -114,7 +123,7 @@ namespace Adyen.Test.TokenizationWebhooks
             Assert.AreEqual(TokenizationAlreadyExistingDetailsNotificationRequest.TypeEnum.RecurringTokenAlreadyExisting, r.Type);
             Assert.AreEqual(TokenizationAlreadyExistingDetailsNotificationRequest.EnvironmentEnum.Test, r.Environment);
             Assert.AreEqual("QBQQ9DLNRHHKGK38", r.EventId);
-            Assert.AreEqual(DateTimeOffset.Parse("2025-06-30T16:40:23+02:00"), r.CreatedAt);
+            Assert.AreEqual(DateTimeOffset.Parse("2025-06-30T16:40:23+02:00", CultureInfo.InvariantCulture), r.CreatedAt);
 
             Assert.IsNotNull(r.Data);
             Assert.AreEqual("YOUR_MERCHANT_ACCOUNT", r.Data.MerchantAccount);
@@ -142,6 +151,8 @@ namespace Adyen.Test.TokenizationWebhooks
         public void Given_Webhook_When_HmacSignatureIsValid_Then_ReturnsTrue()
         {
             // Arrange
+            // The signature is computed from the same raw JSON string that IsValidHmacSignature receives,
+            // mirroring how Adyen generates and sends the HMAC header alongside the webhook payload.
             string json = TestUtilities.GetTestFileContent("mocks/tokenizationwebhooks/recurring.token.disabled.json");
             string hmacSignatureFromHeader = Adyen.Core.Utilities.HmacValidatorUtility.GenerateBase64Sha256HmacSignature(json, TestHmacKey);
 
