@@ -34,8 +34,8 @@ namespace Adyen.DisputeWebhooks.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Amount" /> class.
         /// </summary>
-        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes).</param>
-        /// <param name="value">The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).</param>
+        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.</param>
+        /// <param name="value">The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).</param>
         [JsonConstructor]
         public Amount(string currency, long value)
         {
@@ -54,16 +54,16 @@ namespace Adyen.DisputeWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes).
+        /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.
         /// </summary>
-        /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes).</value>
+        /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.</value>
         [JsonPropertyName("currency")]
         public string Currency { get; set; }
 
         /// <summary>
-        /// The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
+        /// The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
         /// </summary>
-        /// <value>The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).</value>
+        /// <value>The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).</value>
         [JsonPropertyName("value")]
         public long Value { get; set; }
 
