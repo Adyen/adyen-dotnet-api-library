@@ -114,9 +114,10 @@ Use the `RequestOptions` object to pass additional headers like the IdempotencyK
 ```csharp
 var response = await paymentsService.PaymentsAsync(request, new RequestOptions().AddIdempotencyKey(Guid.NewGuid().ToString()));
 ```
-### Deserializing JSON Strings
-In some setups you might need to deserialize JSON strings to request objects. For example, when using the libraries in combination with [Dropin/Components](https://github.com/Adyen/adyen-web). Please use the built-in deserialization functions:
-First, build the host and get the `JsonSerializerOptionsProvider` from the service container.
+### Serializing and Deserializing JSON Strings
+The library uses custom JSON converters for all model types (handling oneOf polymorphism, optional-field omission, enum mapping, etc.). These converters are registered in the `JsonSerializerOptionsProvider` that is set up by the DI host. **Always pass `jsonSerializerOptionsProvider.Options` when calling `JsonSerializer.Serialize` or `JsonSerializer.Deserialize`** — using the default options will produce incorrect JSON (e.g. nested action wrappers, unexpected null fields).
+
+A common use case is serializing or deserializing JSON strings when working with [Drop-in/Components](https://github.com/Adyen/adyen-web). First, build the host and resolve the `JsonSerializerOptionsProvider` from the service container:
 ~~~~ csharp
 using Adyen.Checkout.Client;
 using Microsoft.Extensions.DependencyInjection;
@@ -136,8 +137,14 @@ IHost host = Host.CreateDefaultBuilder()
               })
           .Build();
 
-// Deserialize using built-in function
+var jsonSerializerOptionsProvider = host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
+
+// Deserialize using the library's options
 PaymentRequest paymentRequest = JsonSerializer.Deserialize<PaymentRequest>("YOUR_JSON_STRING", jsonSerializerOptionsProvider.Options);
+
+// Serialize using the library's options
+PaymentResponse paymentResponse = ...; // e.g. received from paymentsService.PaymentsAsync(...)
+string json = JsonSerializer.Serialize(paymentResponse, jsonSerializerOptionsProvider.Options);
 ~~~~
 ### Logging response bodies
 Here's an example how you can log API responses using `{{classname}}Events`. Consider logging responses **only on TEST** to prevent logging confidential data. 
