@@ -140,11 +140,11 @@ IHost host = Host.CreateDefaultBuilder()
 var jsonSerializerOptionsProvider = host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
 
 // Deserialize using the library's options
-PaymentRequest paymentRequest = JsonSerializer.Deserialize<PaymentRequest>("YOUR_JSON_STRING", jsonSerializerOptionsProvider.Options);
+var paymentRequest = JsonSerializer.Deserialize<PaymentRequest>("YOUR_JSON_STRING", jsonSerializerOptionsProvider.Options);
 
 // Serialize using the library's options
-PaymentResponse paymentResponse = ...; // e.g. received from paymentsService.PaymentsAsync(...)
-string json = JsonSerializer.Serialize(paymentResponse, jsonSerializerOptionsProvider.Options);
+var paymentResponse = new PaymentResponse(); // Replace with your actual PaymentResponse object
+var json = JsonSerializer.Serialize(paymentResponse, jsonSerializerOptionsProvider.Options);
 ~~~~
 ### Logging response bodies
 Here's an example how you can log API responses using `{{classname}}Events`. Consider logging responses **only on TEST** to prevent logging confidential data. 
