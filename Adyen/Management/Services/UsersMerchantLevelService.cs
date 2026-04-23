@@ -503,7 +503,7 @@ namespace Adyen.Management.Services
                     if (username.IsSet)
                         parseQueryString["username"] = ClientUtils.ParameterToString(username.Value);
 
-                    uriBuilder.Query = parseQueryString.ToString();
+                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);

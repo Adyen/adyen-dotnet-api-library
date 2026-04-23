@@ -664,7 +664,7 @@ namespace Adyen.Management.Services
                     if (type.IsSet)
                         parseQueryString["type"] = ClientUtils.ParameterToString(type.Value);
 
-                    uriBuilder.Query = parseQueryString.ToString();
+                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
