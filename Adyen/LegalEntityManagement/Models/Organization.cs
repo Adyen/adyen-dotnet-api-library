@@ -45,7 +45,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="economicSector">The sector of the economy the legal entity operates within, represented by a 2-4 digit code that may include a \&quot;.\&quot;. Example: 45.11  You can locate economic sector codes for your area by referencing codes defined by the NACE (Nomenclature of Economic Activities) used in the European Union. </param>
         /// <param name="email">The email address of the legal entity.</param>
         /// <param name="financialReports">The financial report information of the organization.</param>
-        /// <param name="globalLegalEntityIdentifier">The global legal entity identifier for the organization.</param>
+        /// <param name="globalLegalEntityIdentifier">The global legal entity identifier for the organization.  This field is not required if the &#x60;registrationNumber&#x60; for the organization has been provided.</param>
         /// <param name="headOfficeIndicator">Indicates that the registered business address is also the company&#39;s headquarters.</param>
         /// <param name="institutionalSector">The institutional sector the organization operates within.</param>
         /// <param name="legalForm">The type of business entity as defined in the national legal system. Use a legal form listed within the accepted legal forms compiled by the Central Bank of Europe. </param>
@@ -909,9 +909,9 @@ namespace Adyen.LegalEntityManagement.Models
         public Option<string?> _GlobalLegalEntityIdentifierOption { get; private set; }
 
         /// <summary>
-        /// The global legal entity identifier for the organization.
+        /// The global legal entity identifier for the organization.  This field is not required if the &#x60;registrationNumber&#x60; for the organization has been provided.
         /// </summary>
-        /// <value>The global legal entity identifier for the organization.</value>
+        /// <value>The global legal entity identifier for the organization.  This field is not required if the `registrationNumber` for the organization has been provided.</value>
         [JsonPropertyName("globalLegalEntityIdentifier")]
         public string? GlobalLegalEntityIdentifier { get { return this._GlobalLegalEntityIdentifierOption; } set { this._GlobalLegalEntityIdentifierOption = new(value); } }
 
