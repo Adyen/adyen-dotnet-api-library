@@ -214,109 +214,81 @@ namespace Adyen.Checkout.Models
         /// <exception cref="JsonException"></exception>
         public override PaymentResponseAction Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
-            int currentDepth = utf8JsonReader.CurrentDepth;
-
             if (utf8JsonReader.TokenType != JsonTokenType.StartObject && utf8JsonReader.TokenType != JsonTokenType.StartArray)
                 throw new JsonException();
 
-            JsonTokenType startingTokenType = utf8JsonReader.TokenType;
+            using var jsonDocument = JsonDocument.ParseValue(ref utf8JsonReader);
+            var jsonObject = jsonDocument.RootElement;
+            var rawJson = jsonObject.GetRawText();
 
-            CheckoutAwaitAction? checkoutAwaitAction = default;
-            CheckoutBankTransferAction? checkoutBankTransferAction = default;
-            CheckoutDelegatedAuthenticationAction? checkoutDelegatedAuthenticationAction = default;
-            CheckoutNativeRedirectAction? checkoutNativeRedirectAction = default;
-            CheckoutQrCodeAction? checkoutQrCodeAction = default;
-            CheckoutRedirectAction? checkoutRedirectAction = default;
-            CheckoutSDKAction? checkoutSDKAction = default;
-            CheckoutThreeDS2Action? checkoutThreeDS2Action = default;
-            CheckoutVoucherAction? checkoutVoucherAction = default;
-
-            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
-            while (utf8JsonReaderOneOf.Read())
+            string? typeValue = null;
+            if (jsonObject.TryGetProperty("type", out var typeProp) && typeProp.ValueKind == JsonValueKind.String)
             {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
-                    break;
+                typeValue = typeProp.GetString();
+            }
 
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
-                    break;
-
-                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
+            if (typeValue != null)
+            {
+                switch (typeValue)
                 {
-                    Utf8JsonReader utf8JsonReaderCheckoutAwaitAction = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CheckoutAwaitAction?>(ref utf8JsonReaderCheckoutAwaitAction, jsonSerializerOptions, out checkoutAwaitAction);
-
-                    Utf8JsonReader utf8JsonReaderCheckoutBankTransferAction = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CheckoutBankTransferAction?>(ref utf8JsonReaderCheckoutBankTransferAction, jsonSerializerOptions, out checkoutBankTransferAction);
-
-                    Utf8JsonReader utf8JsonReaderCheckoutDelegatedAuthenticationAction = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CheckoutDelegatedAuthenticationAction?>(ref utf8JsonReaderCheckoutDelegatedAuthenticationAction, jsonSerializerOptions, out checkoutDelegatedAuthenticationAction);
-
-                    Utf8JsonReader utf8JsonReaderCheckoutNativeRedirectAction = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CheckoutNativeRedirectAction?>(ref utf8JsonReaderCheckoutNativeRedirectAction, jsonSerializerOptions, out checkoutNativeRedirectAction);
-
-                    Utf8JsonReader utf8JsonReaderCheckoutQrCodeAction = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CheckoutQrCodeAction?>(ref utf8JsonReaderCheckoutQrCodeAction, jsonSerializerOptions, out checkoutQrCodeAction);
-
-                    Utf8JsonReader utf8JsonReaderCheckoutRedirectAction = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CheckoutRedirectAction?>(ref utf8JsonReaderCheckoutRedirectAction, jsonSerializerOptions, out checkoutRedirectAction);
-
-                    Utf8JsonReader utf8JsonReaderCheckoutSDKAction = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CheckoutSDKAction?>(ref utf8JsonReaderCheckoutSDKAction, jsonSerializerOptions, out checkoutSDKAction);
-
-                    Utf8JsonReader utf8JsonReaderCheckoutThreeDS2Action = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CheckoutThreeDS2Action?>(ref utf8JsonReaderCheckoutThreeDS2Action, jsonSerializerOptions, out checkoutThreeDS2Action);
-
-                    Utf8JsonReader utf8JsonReaderCheckoutVoucherAction = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CheckoutVoucherAction?>(ref utf8JsonReaderCheckoutVoucherAction, jsonSerializerOptions, out checkoutVoucherAction);
+                    case "await":
+                        if (ClientUtils.TryDeserialize<CheckoutAwaitAction>(rawJson, jsonSerializerOptions, out var awaitAction) && awaitAction.Type != null)
+                            return new PaymentResponseAction(awaitAction);
+                        break;
+                    case "bankTransfer":
+                        if (ClientUtils.TryDeserialize<CheckoutBankTransferAction>(rawJson, jsonSerializerOptions, out var bankTransfer) && bankTransfer.Type != null)
+                            return new PaymentResponseAction(bankTransfer);
+                        break;
+                    case "delegatedAuthentication":
+                        if (ClientUtils.TryDeserialize<CheckoutDelegatedAuthenticationAction>(rawJson, jsonSerializerOptions, out var delegatedAuth) && delegatedAuth.Type != null)
+                            return new PaymentResponseAction(delegatedAuth);
+                        break;
+                    case "nativeRedirect":
+                        if (ClientUtils.TryDeserialize<CheckoutNativeRedirectAction>(rawJson, jsonSerializerOptions, out var nativeRedirect) && nativeRedirect.Type != null)
+                            return new PaymentResponseAction(nativeRedirect);
+                        break;
+                    case "qrCode":
+                        if (ClientUtils.TryDeserialize<CheckoutQrCodeAction>(rawJson, jsonSerializerOptions, out var qrCode) && qrCode.Type != null)
+                            return new PaymentResponseAction(qrCode);
+                        break;
+                    case "redirect":
+                        if (ClientUtils.TryDeserialize<CheckoutRedirectAction>(rawJson, jsonSerializerOptions, out var redirect) && redirect.Type != null)
+                            return new PaymentResponseAction(redirect);
+                        break;
+                    case "sdk":
+                    case "wechatpaySDK":
+                        if (ClientUtils.TryDeserialize<CheckoutSDKAction>(rawJson, jsonSerializerOptions, out var sdk) && sdk.Type != null)
+                            return new PaymentResponseAction(sdk);
+                        break;
+                    case "threeDS2":
+                        if (ClientUtils.TryDeserialize<CheckoutThreeDS2Action>(rawJson, jsonSerializerOptions, out var threeDS2) && threeDS2.Type != null)
+                            return new PaymentResponseAction(threeDS2);
+                        break;
+                    case "voucher":
+                        if (ClientUtils.TryDeserialize<CheckoutVoucherAction>(rawJson, jsonSerializerOptions, out var voucher) && voucher.Type != null)
+                            return new PaymentResponseAction(voucher);
+                        break;
                 }
             }
 
-            while (utf8JsonReader.Read())
-            {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReader.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReader.CurrentDepth)
-                    break;
-
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReader.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReader.CurrentDepth)
-                    break;
-
-                if (utf8JsonReader.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReader.CurrentDepth - 1)
-                {
-                    string? jsonPropertyName = utf8JsonReader.GetString();
-                    utf8JsonReader.Read();
-
-                    switch (jsonPropertyName)
-                    {
-                        default:
-                            break;
-                    }
-                }
-            }
-            
-            if (checkoutAwaitAction?.Type != null)
+            // Fallback: try all types
+            if (ClientUtils.TryDeserialize<CheckoutAwaitAction>(rawJson, jsonSerializerOptions, out var checkoutAwaitAction) && checkoutAwaitAction.Type != null)
                 return new PaymentResponseAction(checkoutAwaitAction);
-
-            if (checkoutBankTransferAction?.Type != null)
+            if (ClientUtils.TryDeserialize<CheckoutBankTransferAction>(rawJson, jsonSerializerOptions, out var checkoutBankTransferAction) && checkoutBankTransferAction.Type != null)
                 return new PaymentResponseAction(checkoutBankTransferAction);
-
-            if (checkoutDelegatedAuthenticationAction?.Type != null)
+            if (ClientUtils.TryDeserialize<CheckoutDelegatedAuthenticationAction>(rawJson, jsonSerializerOptions, out var checkoutDelegatedAuthenticationAction) && checkoutDelegatedAuthenticationAction.Type != null)
                 return new PaymentResponseAction(checkoutDelegatedAuthenticationAction);
-
-            if (checkoutNativeRedirectAction?.Type != null)
+            if (ClientUtils.TryDeserialize<CheckoutNativeRedirectAction>(rawJson, jsonSerializerOptions, out var checkoutNativeRedirectAction) && checkoutNativeRedirectAction.Type != null)
                 return new PaymentResponseAction(checkoutNativeRedirectAction);
-
-            if (checkoutQrCodeAction?.Type != null)
+            if (ClientUtils.TryDeserialize<CheckoutQrCodeAction>(rawJson, jsonSerializerOptions, out var checkoutQrCodeAction) && checkoutQrCodeAction.Type != null)
                 return new PaymentResponseAction(checkoutQrCodeAction);
-
-            if (checkoutRedirectAction?.Type != null)
+            if (ClientUtils.TryDeserialize<CheckoutRedirectAction>(rawJson, jsonSerializerOptions, out var checkoutRedirectAction) && checkoutRedirectAction.Type != null)
                 return new PaymentResponseAction(checkoutRedirectAction);
-
-            if (checkoutSDKAction?.Type != null)
+            if (ClientUtils.TryDeserialize<CheckoutSDKAction>(rawJson, jsonSerializerOptions, out var checkoutSDKAction) && checkoutSDKAction.Type != null)
                 return new PaymentResponseAction(checkoutSDKAction);
-
-            if (checkoutThreeDS2Action?.Type != null)
+            if (ClientUtils.TryDeserialize<CheckoutThreeDS2Action>(rawJson, jsonSerializerOptions, out var checkoutThreeDS2Action) && checkoutThreeDS2Action.Type != null)
                 return new PaymentResponseAction(checkoutThreeDS2Action);
-
-            if (checkoutVoucherAction?.Type != null)
+            if (ClientUtils.TryDeserialize<CheckoutVoucherAction>(rawJson, jsonSerializerOptions, out var checkoutVoucherAction) && checkoutVoucherAction.Type != null)
                 return new PaymentResponseAction(checkoutVoucherAction);
 
             throw new JsonException();

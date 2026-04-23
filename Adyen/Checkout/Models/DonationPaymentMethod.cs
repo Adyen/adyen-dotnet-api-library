@@ -146,81 +146,61 @@ namespace Adyen.Checkout.Models
         /// <exception cref="JsonException"></exception>
         public override DonationPaymentMethod Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
-            int currentDepth = utf8JsonReader.CurrentDepth;
-
             if (utf8JsonReader.TokenType != JsonTokenType.StartObject && utf8JsonReader.TokenType != JsonTokenType.StartArray)
                 throw new JsonException();
 
-            JsonTokenType startingTokenType = utf8JsonReader.TokenType;
+            using var jsonDocument = JsonDocument.ParseValue(ref utf8JsonReader);
+            var jsonObject = jsonDocument.RootElement;
+            var rawJson = jsonObject.GetRawText();
 
-            ApplePayDonations? applePayDonations = default;
-            CardDonations? cardDonations = default;
-            GooglePayDonations? googlePayDonations = default;
-            IdealDonations? idealDonations = default;
-            PayWithGoogleDonations? payWithGoogleDonations = default;
-
-            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
-            while (utf8JsonReaderOneOf.Read())
+            string? typeValue = null;
+            if (jsonObject.TryGetProperty("type", out var typeProp) && typeProp.ValueKind == JsonValueKind.String)
             {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
-                    break;
+                typeValue = typeProp.GetString();
+            }
 
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
-                    break;
-
-                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
+            if (typeValue != null)
+            {
+                switch (typeValue)
                 {
-                    Utf8JsonReader utf8JsonReaderApplePayDonations = utf8JsonReader;
-                    ClientUtils.TryDeserialize<ApplePayDonations?>(ref utf8JsonReaderApplePayDonations, jsonSerializerOptions, out applePayDonations);
-
-                    Utf8JsonReader utf8JsonReaderCardDonations = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CardDonations?>(ref utf8JsonReaderCardDonations, jsonSerializerOptions, out cardDonations);
-
-                    Utf8JsonReader utf8JsonReaderGooglePayDonations = utf8JsonReader;
-                    ClientUtils.TryDeserialize<GooglePayDonations?>(ref utf8JsonReaderGooglePayDonations, jsonSerializerOptions, out googlePayDonations);
-
-                    Utf8JsonReader utf8JsonReaderIdealDonations = utf8JsonReader;
-                    ClientUtils.TryDeserialize<IdealDonations?>(ref utf8JsonReaderIdealDonations, jsonSerializerOptions, out idealDonations);
-
-                    Utf8JsonReader utf8JsonReaderPayWithGoogleDonations = utf8JsonReader;
-                    ClientUtils.TryDeserialize<PayWithGoogleDonations?>(ref utf8JsonReaderPayWithGoogleDonations, jsonSerializerOptions, out payWithGoogleDonations);
+                    case "applepay":
+                        if (ClientUtils.TryDeserialize<ApplePayDonations>(rawJson, jsonSerializerOptions, out var applePay) && applePay.Type != null)
+                            return new DonationPaymentMethod(applePay);
+                        break;
+                    case "bcmc":
+                    case "scheme":
+                    case "networkToken":
+                    case "giftcard":
+                    case "card":
+                    case "clicktopay":
+                        if (ClientUtils.TryDeserialize<CardDonations>(rawJson, jsonSerializerOptions, out var card) && card.Type != null)
+                            return new DonationPaymentMethod(card);
+                        break;
+                    case "googlepay":
+                        if (ClientUtils.TryDeserialize<GooglePayDonations>(rawJson, jsonSerializerOptions, out var googlePay) && googlePay.Type != null)
+                            return new DonationPaymentMethod(googlePay);
+                        break;
+                    case "ideal":
+                        if (ClientUtils.TryDeserialize<IdealDonations>(rawJson, jsonSerializerOptions, out var ideal) && ideal.Type != null)
+                            return new DonationPaymentMethod(ideal);
+                        break;
+                    case "paywithgoogle":
+                        if (ClientUtils.TryDeserialize<PayWithGoogleDonations>(rawJson, jsonSerializerOptions, out var payWithGoogle) && payWithGoogle.Type != null)
+                            return new DonationPaymentMethod(payWithGoogle);
+                        break;
                 }
             }
 
-            while (utf8JsonReader.Read())
-            {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReader.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReader.CurrentDepth)
-                    break;
-
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReader.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReader.CurrentDepth)
-                    break;
-
-                if (utf8JsonReader.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReader.CurrentDepth - 1)
-                {
-                    string? jsonPropertyName = utf8JsonReader.GetString();
-                    utf8JsonReader.Read();
-
-                    switch (jsonPropertyName)
-                    {
-                        default:
-                            break;
-                    }
-                }
-            }
-            
-            if (applePayDonations?.Type != null)
+            // Fallback: try all types
+            if (ClientUtils.TryDeserialize<ApplePayDonations>(rawJson, jsonSerializerOptions, out var applePayDonations) && applePayDonations.Type != null)
                 return new DonationPaymentMethod(applePayDonations);
-
-            if (cardDonations?.Type != null)
+            if (ClientUtils.TryDeserialize<CardDonations>(rawJson, jsonSerializerOptions, out var cardDonations) && cardDonations.Type != null)
                 return new DonationPaymentMethod(cardDonations);
-
-            if (googlePayDonations?.Type != null)
+            if (ClientUtils.TryDeserialize<GooglePayDonations>(rawJson, jsonSerializerOptions, out var googlePayDonations) && googlePayDonations.Type != null)
                 return new DonationPaymentMethod(googlePayDonations);
-
-            if (idealDonations?.Type != null)
+            if (ClientUtils.TryDeserialize<IdealDonations>(rawJson, jsonSerializerOptions, out var idealDonations) && idealDonations.Type != null)
                 return new DonationPaymentMethod(idealDonations);
-
-            if (payWithGoogleDonations?.Type != null)
+            if (ClientUtils.TryDeserialize<PayWithGoogleDonations>(rawJson, jsonSerializerOptions, out var payWithGoogleDonations) && payWithGoogleDonations.Type != null)
                 return new DonationPaymentMethod(payWithGoogleDonations);
 
             throw new JsonException();

@@ -979,424 +979,307 @@ namespace Adyen.Checkout.Models
         /// <exception cref="JsonException"></exception>
         public override CheckoutPaymentMethod Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
-            int currentDepth = utf8JsonReader.CurrentDepth;
-
             if (utf8JsonReader.TokenType != JsonTokenType.StartObject && utf8JsonReader.TokenType != JsonTokenType.StartArray)
                 throw new JsonException();
 
-            JsonTokenType startingTokenType = utf8JsonReader.TokenType;
+            // Buffer the entire JSON object so we can read the discriminator then deserialize
+            using var jsonDocument = JsonDocument.ParseValue(ref utf8JsonReader);
+            var jsonObject = jsonDocument.RootElement;
+            var rawJson = jsonObject.GetRawText();
 
-            AchDetails? achDetails = default;
-            AffirmDetails? affirmDetails = default;
-            AfterpayDetails? afterpayDetails = default;
-            AmazonPayDetails? amazonPayDetails = default;
-            AncvDetails? ancvDetails = default;
-            AndroidPayDetails? androidPayDetails = default;
-            ApplePayDetails? applePayDetails = default;
-            BacsDirectDebitDetails? bacsDirectDebitDetails = default;
-            BillDeskDetails? billDeskDetails = default;
-            BlikDetails? blikDetails = default;
-            CardDetails? cardDetails = default;
-            CashAppDetails? cashAppDetails = default;
-            CellulantDetails? cellulantDetails = default;
-            DokuDetails? dokuDetails = default;
-            DragonpayDetails? dragonpayDetails = default;
-            EBankingFinlandDetails? eBankingFinlandDetails = default;
-            EcontextVoucherDetails? econtextVoucherDetails = default;
-            EftDetails? eftDetails = default;
-            ExternalTokenDetails? externalTokenDetails = default;
-            FastlaneDetails? fastlaneDetails = default;
-            GenericIssuerPaymentMethodDetails? genericIssuerPaymentMethodDetails = default;
-            GooglePayDetails? googlePayDetails = default;
-            IdealDetails? idealDetails = default;
-            KlarnaDetails? klarnaDetails = default;
-            MasterpassDetails? masterpassDetails = default;
-            MbwayDetails? mbwayDetails = default;
-            MobilePayDetails? mobilePayDetails = default;
-            MolPayDetails? molPayDetails = default;
-            OpenInvoiceDetails? openInvoiceDetails = default;
-            PayByBankAISDirectDebitDetails? payByBankAISDirectDebitDetails = default;
-            PayByBankDetails? payByBankDetails = default;
-            PayPalDetails? payPalDetails = default;
-            PayPayDetails? payPayDetails = default;
-            PayToDetails? payToDetails = default;
-            PayUUpiDetails? payUUpiDetails = default;
-            PayWithGoogleDetails? payWithGoogleDetails = default;
-            PaymentDetails? paymentDetails = default;
-            PixDetails? pixDetails = default;
-            PseDetails? pseDetails = default;
-            RakutenPayDetails? rakutenPayDetails = default;
-            RatepayDetails? ratepayDetails = default;
-            RivertyDetails? rivertyDetails = default;
-            SamsungPayDetails? samsungPayDetails = default;
-            SepaDirectDebitDetails? sepaDirectDebitDetails = default;
-            StoredPaymentMethodDetails? storedPaymentMethodDetails = default;
-            TwintDetails? twintDetails = default;
-            UpiCollectDetails? upiCollectDetails = default;
-            UpiIntentDetails? upiIntentDetails = default;
-            UpiQrDetails? upiQrDetails = default;
-            VippsDetails? vippsDetails = default;
-            VisaCheckoutDetails? visaCheckoutDetails = default;
-            WeChatPayDetails? weChatPayDetails = default;
-            WeChatPayMiniProgramDetails? weChatPayMiniProgramDetails = default;
-            ZipDetails? zipDetails = default;
-
-            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
-            while (utf8JsonReaderOneOf.Read())
+            // Read the "type" discriminator field
+            string? typeValue = null;
+            if (jsonObject.TryGetProperty("type", out var typeProp) && typeProp.ValueKind == JsonValueKind.String)
             {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
-                    break;
-
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
-                    break;
-
-                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
-                {
-                    Utf8JsonReader utf8JsonReaderAchDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<AchDetails?>(ref utf8JsonReaderAchDetails, jsonSerializerOptions, out achDetails);
-
-                    Utf8JsonReader utf8JsonReaderAffirmDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<AffirmDetails?>(ref utf8JsonReaderAffirmDetails, jsonSerializerOptions, out affirmDetails);
-
-                    Utf8JsonReader utf8JsonReaderAfterpayDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<AfterpayDetails?>(ref utf8JsonReaderAfterpayDetails, jsonSerializerOptions, out afterpayDetails);
-
-                    Utf8JsonReader utf8JsonReaderAmazonPayDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<AmazonPayDetails?>(ref utf8JsonReaderAmazonPayDetails, jsonSerializerOptions, out amazonPayDetails);
-
-                    Utf8JsonReader utf8JsonReaderAncvDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<AncvDetails?>(ref utf8JsonReaderAncvDetails, jsonSerializerOptions, out ancvDetails);
-
-                    Utf8JsonReader utf8JsonReaderAndroidPayDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<AndroidPayDetails?>(ref utf8JsonReaderAndroidPayDetails, jsonSerializerOptions, out androidPayDetails);
-
-                    Utf8JsonReader utf8JsonReaderApplePayDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<ApplePayDetails?>(ref utf8JsonReaderApplePayDetails, jsonSerializerOptions, out applePayDetails);
-
-                    Utf8JsonReader utf8JsonReaderBacsDirectDebitDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<BacsDirectDebitDetails?>(ref utf8JsonReaderBacsDirectDebitDetails, jsonSerializerOptions, out bacsDirectDebitDetails);
-
-                    Utf8JsonReader utf8JsonReaderBillDeskDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<BillDeskDetails?>(ref utf8JsonReaderBillDeskDetails, jsonSerializerOptions, out billDeskDetails);
-
-                    Utf8JsonReader utf8JsonReaderBlikDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<BlikDetails?>(ref utf8JsonReaderBlikDetails, jsonSerializerOptions, out blikDetails);
-
-                    Utf8JsonReader utf8JsonReaderCardDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CardDetails?>(ref utf8JsonReaderCardDetails, jsonSerializerOptions, out cardDetails);
-
-                    Utf8JsonReader utf8JsonReaderCashAppDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CashAppDetails?>(ref utf8JsonReaderCashAppDetails, jsonSerializerOptions, out cashAppDetails);
-
-                    Utf8JsonReader utf8JsonReaderCellulantDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CellulantDetails?>(ref utf8JsonReaderCellulantDetails, jsonSerializerOptions, out cellulantDetails);
-
-                    Utf8JsonReader utf8JsonReaderDokuDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<DokuDetails?>(ref utf8JsonReaderDokuDetails, jsonSerializerOptions, out dokuDetails);
-
-                    Utf8JsonReader utf8JsonReaderDragonpayDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<DragonpayDetails?>(ref utf8JsonReaderDragonpayDetails, jsonSerializerOptions, out dragonpayDetails);
-
-                    Utf8JsonReader utf8JsonReaderEBankingFinlandDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<EBankingFinlandDetails?>(ref utf8JsonReaderEBankingFinlandDetails, jsonSerializerOptions, out eBankingFinlandDetails);
-
-                    Utf8JsonReader utf8JsonReaderEcontextVoucherDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<EcontextVoucherDetails?>(ref utf8JsonReaderEcontextVoucherDetails, jsonSerializerOptions, out econtextVoucherDetails);
-
-                    Utf8JsonReader utf8JsonReaderEftDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<EftDetails?>(ref utf8JsonReaderEftDetails, jsonSerializerOptions, out eftDetails);
-
-                    Utf8JsonReader utf8JsonReaderExternalTokenDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<ExternalTokenDetails?>(ref utf8JsonReaderExternalTokenDetails, jsonSerializerOptions, out externalTokenDetails);
-
-                    Utf8JsonReader utf8JsonReaderFastlaneDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<FastlaneDetails?>(ref utf8JsonReaderFastlaneDetails, jsonSerializerOptions, out fastlaneDetails);
-
-                    Utf8JsonReader utf8JsonReaderGenericIssuerPaymentMethodDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<GenericIssuerPaymentMethodDetails?>(ref utf8JsonReaderGenericIssuerPaymentMethodDetails, jsonSerializerOptions, out genericIssuerPaymentMethodDetails);
-
-                    Utf8JsonReader utf8JsonReaderGooglePayDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<GooglePayDetails?>(ref utf8JsonReaderGooglePayDetails, jsonSerializerOptions, out googlePayDetails);
-
-                    Utf8JsonReader utf8JsonReaderIdealDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<IdealDetails?>(ref utf8JsonReaderIdealDetails, jsonSerializerOptions, out idealDetails);
-
-                    Utf8JsonReader utf8JsonReaderKlarnaDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<KlarnaDetails?>(ref utf8JsonReaderKlarnaDetails, jsonSerializerOptions, out klarnaDetails);
-
-                    Utf8JsonReader utf8JsonReaderMasterpassDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<MasterpassDetails?>(ref utf8JsonReaderMasterpassDetails, jsonSerializerOptions, out masterpassDetails);
-
-                    Utf8JsonReader utf8JsonReaderMbwayDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<MbwayDetails?>(ref utf8JsonReaderMbwayDetails, jsonSerializerOptions, out mbwayDetails);
-
-                    Utf8JsonReader utf8JsonReaderMobilePayDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<MobilePayDetails?>(ref utf8JsonReaderMobilePayDetails, jsonSerializerOptions, out mobilePayDetails);
-
-                    Utf8JsonReader utf8JsonReaderMolPayDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<MolPayDetails?>(ref utf8JsonReaderMolPayDetails, jsonSerializerOptions, out molPayDetails);
-
-                    Utf8JsonReader utf8JsonReaderOpenInvoiceDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<OpenInvoiceDetails?>(ref utf8JsonReaderOpenInvoiceDetails, jsonSerializerOptions, out openInvoiceDetails);
-
-                    Utf8JsonReader utf8JsonReaderPayByBankAISDirectDebitDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<PayByBankAISDirectDebitDetails?>(ref utf8JsonReaderPayByBankAISDirectDebitDetails, jsonSerializerOptions, out payByBankAISDirectDebitDetails);
-
-                    Utf8JsonReader utf8JsonReaderPayByBankDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<PayByBankDetails?>(ref utf8JsonReaderPayByBankDetails, jsonSerializerOptions, out payByBankDetails);
-
-                    Utf8JsonReader utf8JsonReaderPayPalDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<PayPalDetails?>(ref utf8JsonReaderPayPalDetails, jsonSerializerOptions, out payPalDetails);
-
-                    Utf8JsonReader utf8JsonReaderPayPayDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<PayPayDetails?>(ref utf8JsonReaderPayPayDetails, jsonSerializerOptions, out payPayDetails);
-
-                    Utf8JsonReader utf8JsonReaderPayToDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<PayToDetails?>(ref utf8JsonReaderPayToDetails, jsonSerializerOptions, out payToDetails);
-
-                    Utf8JsonReader utf8JsonReaderPayUUpiDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<PayUUpiDetails?>(ref utf8JsonReaderPayUUpiDetails, jsonSerializerOptions, out payUUpiDetails);
-
-                    Utf8JsonReader utf8JsonReaderPayWithGoogleDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<PayWithGoogleDetails?>(ref utf8JsonReaderPayWithGoogleDetails, jsonSerializerOptions, out payWithGoogleDetails);
-
-                    Utf8JsonReader utf8JsonReaderPaymentDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<PaymentDetails?>(ref utf8JsonReaderPaymentDetails, jsonSerializerOptions, out paymentDetails);
-
-                    Utf8JsonReader utf8JsonReaderPixDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<PixDetails?>(ref utf8JsonReaderPixDetails, jsonSerializerOptions, out pixDetails);
-
-                    Utf8JsonReader utf8JsonReaderPseDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<PseDetails?>(ref utf8JsonReaderPseDetails, jsonSerializerOptions, out pseDetails);
-
-                    Utf8JsonReader utf8JsonReaderRakutenPayDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<RakutenPayDetails?>(ref utf8JsonReaderRakutenPayDetails, jsonSerializerOptions, out rakutenPayDetails);
-
-                    Utf8JsonReader utf8JsonReaderRatepayDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<RatepayDetails?>(ref utf8JsonReaderRatepayDetails, jsonSerializerOptions, out ratepayDetails);
-
-                    Utf8JsonReader utf8JsonReaderRivertyDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<RivertyDetails?>(ref utf8JsonReaderRivertyDetails, jsonSerializerOptions, out rivertyDetails);
-
-                    Utf8JsonReader utf8JsonReaderSamsungPayDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<SamsungPayDetails?>(ref utf8JsonReaderSamsungPayDetails, jsonSerializerOptions, out samsungPayDetails);
-
-                    Utf8JsonReader utf8JsonReaderSepaDirectDebitDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<SepaDirectDebitDetails?>(ref utf8JsonReaderSepaDirectDebitDetails, jsonSerializerOptions, out sepaDirectDebitDetails);
-
-                    Utf8JsonReader utf8JsonReaderStoredPaymentMethodDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<StoredPaymentMethodDetails?>(ref utf8JsonReaderStoredPaymentMethodDetails, jsonSerializerOptions, out storedPaymentMethodDetails);
-
-                    Utf8JsonReader utf8JsonReaderTwintDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<TwintDetails?>(ref utf8JsonReaderTwintDetails, jsonSerializerOptions, out twintDetails);
-
-                    Utf8JsonReader utf8JsonReaderUpiCollectDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<UpiCollectDetails?>(ref utf8JsonReaderUpiCollectDetails, jsonSerializerOptions, out upiCollectDetails);
-
-                    Utf8JsonReader utf8JsonReaderUpiIntentDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<UpiIntentDetails?>(ref utf8JsonReaderUpiIntentDetails, jsonSerializerOptions, out upiIntentDetails);
-
-                    Utf8JsonReader utf8JsonReaderUpiQrDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<UpiQrDetails?>(ref utf8JsonReaderUpiQrDetails, jsonSerializerOptions, out upiQrDetails);
-
-                    Utf8JsonReader utf8JsonReaderVippsDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<VippsDetails?>(ref utf8JsonReaderVippsDetails, jsonSerializerOptions, out vippsDetails);
-
-                    Utf8JsonReader utf8JsonReaderVisaCheckoutDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<VisaCheckoutDetails?>(ref utf8JsonReaderVisaCheckoutDetails, jsonSerializerOptions, out visaCheckoutDetails);
-
-                    Utf8JsonReader utf8JsonReaderWeChatPayDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<WeChatPayDetails?>(ref utf8JsonReaderWeChatPayDetails, jsonSerializerOptions, out weChatPayDetails);
-
-                    Utf8JsonReader utf8JsonReaderWeChatPayMiniProgramDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<WeChatPayMiniProgramDetails?>(ref utf8JsonReaderWeChatPayMiniProgramDetails, jsonSerializerOptions, out weChatPayMiniProgramDetails);
-
-                    Utf8JsonReader utf8JsonReaderZipDetails = utf8JsonReader;
-                    ClientUtils.TryDeserialize<ZipDetails?>(ref utf8JsonReaderZipDetails, jsonSerializerOptions, out zipDetails);
-                }
+                typeValue = typeProp.GetString();
             }
 
-            while (utf8JsonReader.Read())
+            if (typeValue != null)
             {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReader.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReader.CurrentDepth)
-                    break;
-
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReader.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReader.CurrentDepth)
-                    break;
-
-                if (utf8JsonReader.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReader.CurrentDepth - 1)
-                {
-                    string? jsonPropertyName = utf8JsonReader.GetString();
-                    utf8JsonReader.Read();
-
-                    switch (jsonPropertyName)
-                    {
-                        default:
-                            break;
-                    }
-                }
+                // Use discriminator to deserialize only the matching type
+                var result = DeserializeByDiscriminator(typeValue, rawJson, jsonSerializerOptions);
+                if (result != null)
+                    return result;
             }
-            
-            if (achDetails?.Type != null)
+
+            // Fallback: try all types (preserves backward compatibility for unknown type values)
+            return DeserializeByTrialFallback(rawJson, jsonSerializerOptions);
+        }
+
+        private static CheckoutPaymentMethod? DeserializeByDiscriminator(string typeValue, string rawJson, JsonSerializerOptions jsonSerializerOptions)
+        {
+            switch (typeValue)
+            {
+                case "ach":
+                case "ach_plaid":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<AchDetails>(rawJson, jsonSerializerOptions, out var ach) ? ach : null, v => new CheckoutPaymentMethod(v));
+                case "affirm":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<AffirmDetails>(rawJson, jsonSerializerOptions, out var affirm) ? affirm : null, v => new CheckoutPaymentMethod(v));
+                case "afterpay_default":
+                case "afterpaytouch":
+                case "afterpay_b2b":
+                case "clearpay":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<AfterpayDetails>(rawJson, jsonSerializerOptions, out var afterpay) ? afterpay : null, v => new CheckoutPaymentMethod(v));
+                case "amazonpay":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<AmazonPayDetails>(rawJson, jsonSerializerOptions, out var amazonPay) ? amazonPay : null, v => new CheckoutPaymentMethod(v));
+                case "ancv":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<AncvDetails>(rawJson, jsonSerializerOptions, out var ancv) ? ancv : null, v => new CheckoutPaymentMethod(v));
+                case "androidpay":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<AndroidPayDetails>(rawJson, jsonSerializerOptions, out var androidPay) ? androidPay : null, v => new CheckoutPaymentMethod(v));
+                case "applepay":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<ApplePayDetails>(rawJson, jsonSerializerOptions, out var applePay) ? applePay : null, v => new CheckoutPaymentMethod(v));
+                case "directdebit_GB":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<BacsDirectDebitDetails>(rawJson, jsonSerializerOptions, out var bacs) ? bacs : null, v => new CheckoutPaymentMethod(v));
+                case "billdesk_online":
+                case "billdesk_wallet":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<BillDeskDetails>(rawJson, jsonSerializerOptions, out var billDesk) ? billDesk : null, v => new CheckoutPaymentMethod(v));
+                case "blik":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<BlikDetails>(rawJson, jsonSerializerOptions, out var blik) ? blik : null, v => new CheckoutPaymentMethod(v));
+                case "bcmc":
+                case "scheme":
+                case "networkToken":
+                case "giftcard":
+                case "card":
+                case "clicktopay":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<CardDetails>(rawJson, jsonSerializerOptions, out var card) ? card : null, v => new CheckoutPaymentMethod(v));
+                case "cashapp":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<CashAppDetails>(rawJson, jsonSerializerOptions, out var cashApp) ? cashApp : null, v => new CheckoutPaymentMethod(v));
+                case "cellulant":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<CellulantDetails>(rawJson, jsonSerializerOptions, out var cellulant) ? cellulant : null, v => new CheckoutPaymentMethod(v));
+                case "doku_mandiri_va":
+                case "doku_cimb_va":
+                case "doku_danamon_va":
+                case "doku_bni_va":
+                case "doku_permata_lite_atm":
+                case "doku_bri_va":
+                case "doku_bca_va":
+                case "doku_alfamart":
+                case "doku_indomaret":
+                case "doku_wallet":
+                case "doku_ovo":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<DokuDetails>(rawJson, jsonSerializerOptions, out var doku) ? doku : null, v => new CheckoutPaymentMethod(v));
+                case "dragonpay_ebanking":
+                case "dragonpay_otc_banking":
+                case "dragonpay_otc_non_banking":
+                case "dragonpay_otc_philippines":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<DragonpayDetails>(rawJson, jsonSerializerOptions, out var dragonpay) ? dragonpay : null, v => new CheckoutPaymentMethod(v));
+                case "ebanking_FI":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<EBankingFinlandDetails>(rawJson, jsonSerializerOptions, out var eBankingFinland) ? eBankingFinland : null, v => new CheckoutPaymentMethod(v));
+                case "econtext_seven_eleven":
+                case "econtext_online":
+                case "econtext":
+                case "econtext_stores":
+                case "econtext_atm":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<EcontextVoucherDetails>(rawJson, jsonSerializerOptions, out var econtext) ? econtext : null, v => new CheckoutPaymentMethod(v));
+                case "eft_directdebit_ZA":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<EftDetails>(rawJson, jsonSerializerOptions, out var eft) ? eft : null, v => new CheckoutPaymentMethod(v));
+                case "externalToken":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<ExternalTokenDetails>(rawJson, jsonSerializerOptions, out var externalToken) ? externalToken : null, v => new CheckoutPaymentMethod(v));
+                case "fastlane":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<FastlaneDetails>(rawJson, jsonSerializerOptions, out var fastlane) ? fastlane : null, v => new CheckoutPaymentMethod(v));
+                case "onlineBanking_PL":
+                case "eps":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<GenericIssuerPaymentMethodDetails>(rawJson, jsonSerializerOptions, out var genericIssuer) ? genericIssuer : null, v => new CheckoutPaymentMethod(v));
+                case "googlepay":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<GooglePayDetails>(rawJson, jsonSerializerOptions, out var googlePay) ? googlePay : null, v => new CheckoutPaymentMethod(v));
+                case "ideal":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<IdealDetails>(rawJson, jsonSerializerOptions, out var ideal) ? ideal : null, v => new CheckoutPaymentMethod(v));
+                case "klarna":
+                case "klarna_account":
+                case "klarna_b2b":
+                case "klarna_pay_now":
+                case "klarna_paynow":
+                case "klarna_billing_b2b":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<KlarnaDetails>(rawJson, jsonSerializerOptions, out var klarna) ? klarna : null, v => new CheckoutPaymentMethod(v));
+                case "masterpass":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<MasterpassDetails>(rawJson, jsonSerializerOptions, out var masterpass) ? masterpass : null, v => new CheckoutPaymentMethod(v));
+                case "mbway":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<MbwayDetails>(rawJson, jsonSerializerOptions, out var mbway) ? mbway : null, v => new CheckoutPaymentMethod(v));
+                case "mobilepay":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<MobilePayDetails>(rawJson, jsonSerializerOptions, out var mobilePay) ? mobilePay : null, v => new CheckoutPaymentMethod(v));
+                case "molpay_ebanking_fpx_MY":
+                case "molpay_ebanking_TH":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<MolPayDetails>(rawJson, jsonSerializerOptions, out var molPay) ? molPay : null, v => new CheckoutPaymentMethod(v));
+                case "openinvoice":
+                case "afterpay":
+                case "afterpay_directdebit":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<OpenInvoiceDetails>(rawJson, jsonSerializerOptions, out var openInvoice) ? openInvoice : null, v => new CheckoutPaymentMethod(v));
+                case "paybybank_AIS_DD":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<PayByBankAISDirectDebitDetails>(rawJson, jsonSerializerOptions, out var payByBankAIS) ? payByBankAIS : null, v => new CheckoutPaymentMethod(v));
+                case "paybybank":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<PayByBankDetails>(rawJson, jsonSerializerOptions, out var payByBank) ? payByBank : null, v => new CheckoutPaymentMethod(v));
+                case "paypal":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<PayPalDetails>(rawJson, jsonSerializerOptions, out var payPal) ? payPal : null, v => new CheckoutPaymentMethod(v));
+                case "paypay":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<PayPayDetails>(rawJson, jsonSerializerOptions, out var payPay) ? payPay : null, v => new CheckoutPaymentMethod(v));
+                case "payto":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<PayToDetails>(rawJson, jsonSerializerOptions, out var payTo) ? payTo : null, v => new CheckoutPaymentMethod(v));
+                case "payuinupi":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<PayUUpiDetails>(rawJson, jsonSerializerOptions, out var payUUpi) ? payUUpi : null, v => new CheckoutPaymentMethod(v));
+                case "paywithgoogle":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<PayWithGoogleDetails>(rawJson, jsonSerializerOptions, out var payWithGoogle) ? payWithGoogle : null, v => new CheckoutPaymentMethod(v));
+                case "pix":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<PixDetails>(rawJson, jsonSerializerOptions, out var pix) ? pix : null, v => new CheckoutPaymentMethod(v));
+                case "pse":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<PseDetails>(rawJson, jsonSerializerOptions, out var pse) ? pse : null, v => new CheckoutPaymentMethod(v));
+                case "rakuten_pay":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<RakutenPayDetails>(rawJson, jsonSerializerOptions, out var rakutenPay) ? rakutenPay : null, v => new CheckoutPaymentMethod(v));
+                case "ratepay":
+                case "ratepay_directdebit":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<RatepayDetails>(rawJson, jsonSerializerOptions, out var ratepay) ? ratepay : null, v => new CheckoutPaymentMethod(v));
+                case "riverty":
+                case "riverty_account":
+                case "riverty_installments":
+                case "sepadirectdebit_riverty":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<RivertyDetails>(rawJson, jsonSerializerOptions, out var riverty) ? riverty : null, v => new CheckoutPaymentMethod(v));
+                case "samsungpay":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<SamsungPayDetails>(rawJson, jsonSerializerOptions, out var samsungPay) ? samsungPay : null, v => new CheckoutPaymentMethod(v));
+                case "sepadirectdebit":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<SepaDirectDebitDetails>(rawJson, jsonSerializerOptions, out var sepa) ? sepa : null, v => new CheckoutPaymentMethod(v));
+                case "twint":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<TwintDetails>(rawJson, jsonSerializerOptions, out var twint) ? twint : null, v => new CheckoutPaymentMethod(v));
+                case "upi_collect":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<UpiCollectDetails>(rawJson, jsonSerializerOptions, out var upiCollect) ? upiCollect : null, v => new CheckoutPaymentMethod(v));
+                case "upi_intent":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<UpiIntentDetails>(rawJson, jsonSerializerOptions, out var upiIntent) ? upiIntent : null, v => new CheckoutPaymentMethod(v));
+                case "upi_qr":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<UpiQrDetails>(rawJson, jsonSerializerOptions, out var upiQr) ? upiQr : null, v => new CheckoutPaymentMethod(v));
+                case "vipps":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<VippsDetails>(rawJson, jsonSerializerOptions, out var vipps) ? vipps : null, v => new CheckoutPaymentMethod(v));
+                case "visacheckout":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<VisaCheckoutDetails>(rawJson, jsonSerializerOptions, out var visaCheckout) ? visaCheckout : null, v => new CheckoutPaymentMethod(v));
+                case "wechatpay":
+                case "wechatpay_pos":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<WeChatPayDetails>(rawJson, jsonSerializerOptions, out var weChatPay) ? weChatPay : null, v => new CheckoutPaymentMethod(v));
+                case "wechatpayMiniProgram":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<WeChatPayMiniProgramDetails>(rawJson, jsonSerializerOptions, out var weChatPayMini) ? weChatPayMini : null, v => new CheckoutPaymentMethod(v));
+                case "zip":
+                case "zip_pos":
+                    return WrapIfNotNull(ClientUtils.TryDeserialize<ZipDetails>(rawJson, jsonSerializerOptions, out var zip) ? zip : null, v => new CheckoutPaymentMethod(v));
+                default:
+                    // StoredPaymentMethodDetails and PaymentDetails have many type values; try them as part of discriminator
+                    if (ClientUtils.TryDeserialize<StoredPaymentMethodDetails>(rawJson, jsonSerializerOptions, out var stored) && stored.Type != null)
+                        return new CheckoutPaymentMethod(stored);
+                    if (ClientUtils.TryDeserialize<PaymentDetails>(rawJson, jsonSerializerOptions, out var payment) && payment.Type != null)
+                        return new CheckoutPaymentMethod(payment);
+                    return null;
+            }
+        }
+
+        private static CheckoutPaymentMethod? WrapIfNotNull<T>(T? value, Func<T, CheckoutPaymentMethod> wrapper) where T : class
+        {
+            return value != null ? wrapper(value) : null;
+        }
+
+        private static CheckoutPaymentMethod DeserializeByTrialFallback(string rawJson, JsonSerializerOptions jsonSerializerOptions)
+        {
+            if (ClientUtils.TryDeserialize<AchDetails>(rawJson, jsonSerializerOptions, out var achDetails) && achDetails.Type != null)
                 return new CheckoutPaymentMethod(achDetails);
-
-            if (affirmDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<AffirmDetails>(rawJson, jsonSerializerOptions, out var affirmDetails) && affirmDetails.Type != null)
                 return new CheckoutPaymentMethod(affirmDetails);
-
-            if (afterpayDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<AfterpayDetails>(rawJson, jsonSerializerOptions, out var afterpayDetails) && afterpayDetails.Type != null)
                 return new CheckoutPaymentMethod(afterpayDetails);
-
-            if (amazonPayDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<AmazonPayDetails>(rawJson, jsonSerializerOptions, out var amazonPayDetails) && amazonPayDetails.Type != null)
                 return new CheckoutPaymentMethod(amazonPayDetails);
-
-            if (ancvDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<AncvDetails>(rawJson, jsonSerializerOptions, out var ancvDetails) && ancvDetails.Type != null)
                 return new CheckoutPaymentMethod(ancvDetails);
-
-            if (androidPayDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<AndroidPayDetails>(rawJson, jsonSerializerOptions, out var androidPayDetails) && androidPayDetails.Type != null)
                 return new CheckoutPaymentMethod(androidPayDetails);
-
-            if (applePayDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<ApplePayDetails>(rawJson, jsonSerializerOptions, out var applePayDetails) && applePayDetails.Type != null)
                 return new CheckoutPaymentMethod(applePayDetails);
-
-            if (bacsDirectDebitDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<BacsDirectDebitDetails>(rawJson, jsonSerializerOptions, out var bacsDirectDebitDetails) && bacsDirectDebitDetails.Type != null)
                 return new CheckoutPaymentMethod(bacsDirectDebitDetails);
-
-            if (billDeskDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<BillDeskDetails>(rawJson, jsonSerializerOptions, out var billDeskDetails) && billDeskDetails.Type != null)
                 return new CheckoutPaymentMethod(billDeskDetails);
-
-            if (blikDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<BlikDetails>(rawJson, jsonSerializerOptions, out var blikDetails) && blikDetails.Type != null)
                 return new CheckoutPaymentMethod(blikDetails);
-
-            if (cardDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<CardDetails>(rawJson, jsonSerializerOptions, out var cardDetails) && cardDetails.Type != null)
                 return new CheckoutPaymentMethod(cardDetails);
-
-            if (cashAppDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<CashAppDetails>(rawJson, jsonSerializerOptions, out var cashAppDetails) && cashAppDetails.Type != null)
                 return new CheckoutPaymentMethod(cashAppDetails);
-
-            if (cellulantDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<CellulantDetails>(rawJson, jsonSerializerOptions, out var cellulantDetails) && cellulantDetails.Type != null)
                 return new CheckoutPaymentMethod(cellulantDetails);
-
-            if (dokuDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<DokuDetails>(rawJson, jsonSerializerOptions, out var dokuDetails) && dokuDetails.Type != null)
                 return new CheckoutPaymentMethod(dokuDetails);
-
-            if (dragonpayDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<DragonpayDetails>(rawJson, jsonSerializerOptions, out var dragonpayDetails) && dragonpayDetails.Type != null)
                 return new CheckoutPaymentMethod(dragonpayDetails);
-
-            if (eBankingFinlandDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<EBankingFinlandDetails>(rawJson, jsonSerializerOptions, out var eBankingFinlandDetails) && eBankingFinlandDetails.Type != null)
                 return new CheckoutPaymentMethod(eBankingFinlandDetails);
-
-            if (econtextVoucherDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<EcontextVoucherDetails>(rawJson, jsonSerializerOptions, out var econtextVoucherDetails) && econtextVoucherDetails.Type != null)
                 return new CheckoutPaymentMethod(econtextVoucherDetails);
-
-            if (eftDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<EftDetails>(rawJson, jsonSerializerOptions, out var eftDetails) && eftDetails.Type != null)
                 return new CheckoutPaymentMethod(eftDetails);
-
-            if (externalTokenDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<ExternalTokenDetails>(rawJson, jsonSerializerOptions, out var externalTokenDetails) && externalTokenDetails.Type != null)
                 return new CheckoutPaymentMethod(externalTokenDetails);
-
-            if (fastlaneDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<FastlaneDetails>(rawJson, jsonSerializerOptions, out var fastlaneDetails) && fastlaneDetails.Type != null)
                 return new CheckoutPaymentMethod(fastlaneDetails);
-
-            if (genericIssuerPaymentMethodDetails?.Type != null)
-                return new CheckoutPaymentMethod(genericIssuerPaymentMethodDetails);
-
-            if (googlePayDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<GenericIssuerPaymentMethodDetails>(rawJson, jsonSerializerOptions, out var genericIssuerDetails) && genericIssuerDetails.Type != null)
+                return new CheckoutPaymentMethod(genericIssuerDetails);
+            if (ClientUtils.TryDeserialize<GooglePayDetails>(rawJson, jsonSerializerOptions, out var googlePayDetails) && googlePayDetails.Type != null)
                 return new CheckoutPaymentMethod(googlePayDetails);
-
-            if (idealDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<IdealDetails>(rawJson, jsonSerializerOptions, out var idealDetails) && idealDetails.Type != null)
                 return new CheckoutPaymentMethod(idealDetails);
-
-            if (klarnaDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<KlarnaDetails>(rawJson, jsonSerializerOptions, out var klarnaDetails) && klarnaDetails.Type != null)
                 return new CheckoutPaymentMethod(klarnaDetails);
-
-            if (masterpassDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<MasterpassDetails>(rawJson, jsonSerializerOptions, out var masterpassDetails) && masterpassDetails.Type != null)
                 return new CheckoutPaymentMethod(masterpassDetails);
-
-            if (mbwayDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<MbwayDetails>(rawJson, jsonSerializerOptions, out var mbwayDetails) && mbwayDetails.Type != null)
                 return new CheckoutPaymentMethod(mbwayDetails);
-
-            if (mobilePayDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<MobilePayDetails>(rawJson, jsonSerializerOptions, out var mobilePayDetails) && mobilePayDetails.Type != null)
                 return new CheckoutPaymentMethod(mobilePayDetails);
-
-            if (molPayDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<MolPayDetails>(rawJson, jsonSerializerOptions, out var molPayDetails) && molPayDetails.Type != null)
                 return new CheckoutPaymentMethod(molPayDetails);
-
-            if (openInvoiceDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<OpenInvoiceDetails>(rawJson, jsonSerializerOptions, out var openInvoiceDetails) && openInvoiceDetails.Type != null)
                 return new CheckoutPaymentMethod(openInvoiceDetails);
-
-            if (payByBankAISDirectDebitDetails?.Type != null)
-                return new CheckoutPaymentMethod(payByBankAISDirectDebitDetails);
-
-            if (payByBankDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<PayByBankAISDirectDebitDetails>(rawJson, jsonSerializerOptions, out var payByBankAISDetails) && payByBankAISDetails.Type != null)
+                return new CheckoutPaymentMethod(payByBankAISDetails);
+            if (ClientUtils.TryDeserialize<PayByBankDetails>(rawJson, jsonSerializerOptions, out var payByBankDetails) && payByBankDetails.Type != null)
                 return new CheckoutPaymentMethod(payByBankDetails);
-
-            if (payPalDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<PayPalDetails>(rawJson, jsonSerializerOptions, out var payPalDetails) && payPalDetails.Type != null)
                 return new CheckoutPaymentMethod(payPalDetails);
-
-            if (payPayDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<PayPayDetails>(rawJson, jsonSerializerOptions, out var payPayDetails) && payPayDetails.Type != null)
                 return new CheckoutPaymentMethod(payPayDetails);
-
-            if (payToDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<PayToDetails>(rawJson, jsonSerializerOptions, out var payToDetails) && payToDetails.Type != null)
                 return new CheckoutPaymentMethod(payToDetails);
-
-            if (payUUpiDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<PayUUpiDetails>(rawJson, jsonSerializerOptions, out var payUUpiDetails) && payUUpiDetails.Type != null)
                 return new CheckoutPaymentMethod(payUUpiDetails);
-
-            if (payWithGoogleDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<PayWithGoogleDetails>(rawJson, jsonSerializerOptions, out var payWithGoogleDetails) && payWithGoogleDetails.Type != null)
                 return new CheckoutPaymentMethod(payWithGoogleDetails);
-
-            if (paymentDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<PaymentDetails>(rawJson, jsonSerializerOptions, out var paymentDetails) && paymentDetails.Type != null)
                 return new CheckoutPaymentMethod(paymentDetails);
-
-            if (pixDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<PixDetails>(rawJson, jsonSerializerOptions, out var pixDetails) && pixDetails.Type != null)
                 return new CheckoutPaymentMethod(pixDetails);
-
-            if (pseDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<PseDetails>(rawJson, jsonSerializerOptions, out var pseDetails) && pseDetails.Type != null)
                 return new CheckoutPaymentMethod(pseDetails);
-
-            if (rakutenPayDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<RakutenPayDetails>(rawJson, jsonSerializerOptions, out var rakutenPayDetails) && rakutenPayDetails.Type != null)
                 return new CheckoutPaymentMethod(rakutenPayDetails);
-
-            if (ratepayDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<RatepayDetails>(rawJson, jsonSerializerOptions, out var ratepayDetails) && ratepayDetails.Type != null)
                 return new CheckoutPaymentMethod(ratepayDetails);
-
-            if (rivertyDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<RivertyDetails>(rawJson, jsonSerializerOptions, out var rivertyDetails) && rivertyDetails.Type != null)
                 return new CheckoutPaymentMethod(rivertyDetails);
-
-            if (samsungPayDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<SamsungPayDetails>(rawJson, jsonSerializerOptions, out var samsungPayDetails) && samsungPayDetails.Type != null)
                 return new CheckoutPaymentMethod(samsungPayDetails);
-
-            if (sepaDirectDebitDetails?.Type != null)
-                return new CheckoutPaymentMethod(sepaDirectDebitDetails);
-
-            if (storedPaymentMethodDetails?.Type != null)
-                return new CheckoutPaymentMethod(storedPaymentMethodDetails);
-
-            if (twintDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<SepaDirectDebitDetails>(rawJson, jsonSerializerOptions, out var sepaDetails) && sepaDetails.Type != null)
+                return new CheckoutPaymentMethod(sepaDetails);
+            if (ClientUtils.TryDeserialize<StoredPaymentMethodDetails>(rawJson, jsonSerializerOptions, out var storedDetails) && storedDetails.Type != null)
+                return new CheckoutPaymentMethod(storedDetails);
+            if (ClientUtils.TryDeserialize<TwintDetails>(rawJson, jsonSerializerOptions, out var twintDetails) && twintDetails.Type != null)
                 return new CheckoutPaymentMethod(twintDetails);
-
-            if (upiCollectDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<UpiCollectDetails>(rawJson, jsonSerializerOptions, out var upiCollectDetails) && upiCollectDetails.Type != null)
                 return new CheckoutPaymentMethod(upiCollectDetails);
-
-            if (upiIntentDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<UpiIntentDetails>(rawJson, jsonSerializerOptions, out var upiIntentDetails) && upiIntentDetails.Type != null)
                 return new CheckoutPaymentMethod(upiIntentDetails);
-
-            if (upiQrDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<UpiQrDetails>(rawJson, jsonSerializerOptions, out var upiQrDetails) && upiQrDetails.Type != null)
                 return new CheckoutPaymentMethod(upiQrDetails);
-
-            if (vippsDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<VippsDetails>(rawJson, jsonSerializerOptions, out var vippsDetails) && vippsDetails.Type != null)
                 return new CheckoutPaymentMethod(vippsDetails);
-
-            if (visaCheckoutDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<VisaCheckoutDetails>(rawJson, jsonSerializerOptions, out var visaCheckoutDetails) && visaCheckoutDetails.Type != null)
                 return new CheckoutPaymentMethod(visaCheckoutDetails);
-
-            if (weChatPayDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<WeChatPayDetails>(rawJson, jsonSerializerOptions, out var weChatPayDetails) && weChatPayDetails.Type != null)
                 return new CheckoutPaymentMethod(weChatPayDetails);
-
-            if (weChatPayMiniProgramDetails?.Type != null)
-                return new CheckoutPaymentMethod(weChatPayMiniProgramDetails);
-
-            if (zipDetails?.Type != null)
+            if (ClientUtils.TryDeserialize<WeChatPayMiniProgramDetails>(rawJson, jsonSerializerOptions, out var weChatPayMiniDetails) && weChatPayMiniDetails.Type != null)
+                return new CheckoutPaymentMethod(weChatPayMiniDetails);
+            if (ClientUtils.TryDeserialize<ZipDetails>(rawJson, jsonSerializerOptions, out var zipDetails) && zipDetails.Type != null)
                 return new CheckoutPaymentMethod(zipDetails);
 
             throw new JsonException();
