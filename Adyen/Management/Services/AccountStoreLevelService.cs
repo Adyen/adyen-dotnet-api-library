@@ -2272,7 +2272,7 @@ namespace Adyen.Management.Services
                     if (merchantId.IsSet)
                         parseQueryString["merchantId"] = ClientUtils.ParameterToString(merchantId.Value);
 
-                    uriBuilder.Query = parseQueryString.ToString();
+                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
@@ -2650,7 +2650,7 @@ namespace Adyen.Management.Services
                     if (reference.IsSet)
                         parseQueryString["reference"] = ClientUtils.ParameterToString(reference.Value);
 
-                    uriBuilder.Query = parseQueryString.ToString();
+                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
