@@ -39,6 +39,7 @@ namespace Adyen.Webhooks.Models
         public string PspReference { get; set; }
         public string Reason { get; set; }
         [JsonConverter(typeof(BooleanFromStringJsonConverter))]
+        [Newtonsoft.Json.JsonConverter(typeof(NewtonsoftBooleanFromStringConverter))]
         public bool Success { get; set; }
         public string PaymentMethod { get; set; }
         public List<string> Operations { get; set; }
@@ -69,5 +70,25 @@ namespace Adyen.Webhooks.Models
         {
             writer.WriteBooleanValue(value);
         }
+    }
+
+    internal class NewtonsoftBooleanFromStringConverter : Newtonsoft.Json.JsonConverter<bool>
+    {
+        public override bool ReadJson(Newtonsoft.Json.JsonReader reader, Type objectType, bool existingValue,
+            bool hasExistingValue, Newtonsoft.Json.JsonSerializer serializer)
+        {
+            if (reader.TokenType == Newtonsoft.Json.JsonToken.Boolean)
+                return (bool)reader.Value;
+
+            if (reader.TokenType == Newtonsoft.Json.JsonToken.String &&
+                bool.TryParse((string)reader.Value, out bool result))
+                return result;
+
+            throw new Newtonsoft.Json.JsonSerializationException(
+                "Unable to convert the webhook success value to boolean.");
+        }
+
+        public override void WriteJson(Newtonsoft.Json.JsonWriter writer, bool value,
+            Newtonsoft.Json.JsonSerializer serializer) => writer.WriteValue(value);
     }
 }

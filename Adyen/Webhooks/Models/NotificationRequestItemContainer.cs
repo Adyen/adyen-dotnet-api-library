@@ -29,6 +29,7 @@ namespace Adyen.Webhooks.Models
     public class NotificationRequestItemContainer
     {
         [JsonPropertyName("NotificationRequestItem")]
+        [Newtonsoft.Json.JsonProperty("NotificationRequestItem")]
         public NotificationRequestItem NotificationItem { get; set; }
 
         public override string ToString()

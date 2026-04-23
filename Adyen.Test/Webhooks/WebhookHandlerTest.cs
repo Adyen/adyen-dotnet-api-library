@@ -201,6 +201,50 @@ namespace Adyen.Test.Webhooks
             Assert.AreEqual("HMAC validation failed because the ADYEN_HMAC_KEY is not configured.", exception.Message);
         }
         
+        /// <summary>
+        /// Regression test for GitHub issue #1473.
+        /// Verifies that <see cref="NotificationRequest"/> can be deserialized using Newtonsoft.Json,
+        /// confirming dual STJ/Newtonsoft compatibility on the classic webhook models.
+        /// </summary>
+        [TestMethod]
+        public void Given_WebhookPayload_When_DeserializedWithNewtonsoft_Then_AllPropertiesArePopulated()
+        {
+            var mockPath = GetMockFilePath("mocks/notification/capture-true.json");
+            var jsonRequest = MockFileToString(mockPath);
+
+            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<Adyen.Webhooks.Models.NotificationRequest>(jsonRequest);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("false", result.Live);
+            Assert.IsNotNull(result.NotificationItemContainers);
+            Assert.AreEqual(1, result.NotificationItemContainers.Count);
+
+            var item = result.NotificationItemContainers[0].NotificationItem;
+            Assert.IsNotNull(item);
+            Assert.AreEqual("CAPTURE", item.EventCode);
+            Assert.AreEqual("PSP_REFERENCE", item.PspReference);
+            Assert.AreEqual(23623, item.Amount.Value);
+            Assert.IsTrue(item.Success);
+        }
+
+        /// <summary>
+        /// Regression test for GitHub issue #1473.
+        /// Verifies that the <c>success</c> field sent as a JSON string ("true"/"false") by Adyen
+        /// is correctly deserialized to <see cref="bool"/> when using Newtonsoft.Json.
+        /// </summary>
+        [TestMethod]
+        public void Given_WebhookPayload_When_SuccessIsStringAndDeserializedWithNewtonsoft_Then_SuccessIsFalse()
+        {
+            var mockPath = GetMockFilePath("mocks/notification/capture-false.json");
+            var jsonRequest = MockFileToString(mockPath);
+
+            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<Adyen.Webhooks.Models.NotificationRequest>(jsonRequest);
+
+            Assert.IsNotNull(result);
+            var item = result.NotificationItemContainers[0].NotificationItem;
+            Assert.IsFalse(item.Success);
+        }
+
         [TestMethod]
         public void TestPOSDisplayNotification()
         {

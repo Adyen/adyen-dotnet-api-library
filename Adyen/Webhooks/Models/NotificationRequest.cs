@@ -36,9 +36,11 @@ namespace Adyen.Webhooks.Models
         };
 
         [JsonPropertyName("live")]
+        [Newtonsoft.Json.JsonProperty("live")]
         public string Live { get; set; }
 
         [JsonPropertyName("notificationItems")]
+        [Newtonsoft.Json.JsonProperty("notificationItems")]
         public List<NotificationRequestItemContainer> NotificationItemContainers { get; set; }
 
         /// <summary>
