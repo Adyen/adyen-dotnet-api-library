@@ -85,7 +85,7 @@ namespace Adyen.Webhooks.Models
                 return result;
 
             throw new Newtonsoft.Json.JsonSerializationException(
-                "Unable to convert the webhook success value to boolean.");
+                $"Unable to convert the webhook success value '{reader.Value}' to boolean.");
         }
 
         public override void WriteJson(Newtonsoft.Json.JsonWriter writer, bool value,
