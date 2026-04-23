@@ -767,7 +767,7 @@ namespace Adyen.LegalEntityManagement.Services
                     if (skipContent.IsSet)
                         parseQueryString["skipContent"] = ClientUtils.ParameterToString(skipContent.Value);
 
-                    uriBuilder.Query = parseQueryString.ToString();
+                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);

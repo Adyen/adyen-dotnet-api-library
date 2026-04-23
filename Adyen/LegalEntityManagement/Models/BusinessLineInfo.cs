@@ -37,16 +37,18 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="industryCode">A code that represents the industry of the legal entity for [marketplaces](https://docs.adyen.com/marketplaces/verification-requirements/reference-additional-products/#list-industry-codes) or [platforms](https://docs.adyen.com/platforms/verification-requirements/reference-additional-products/#list-industry-codes). For example, **4431A** for computer software stores.</param>
         /// <param name="legalEntityId">Unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the business line.</param>
         /// <param name="service">The service for which you are creating the business line.    Possible values: *  **paymentProcessing** *  **issuing** *  **banking**  </param>
+        /// <param name="industryCodeDescription">The description of the industry code.</param>
         /// <param name="salesChannels">A list of channels where goods or services are sold.  Possible values: **pos**, **posMoto**, **eCommerce**, **ecomMoto**, **payByLink**.  Required only in combination with the &#x60;service&#x60; **paymentProcessing**.</param>
         /// <param name="sourceOfFunds">sourceOfFunds</param>
         /// <param name="webData">List of website URLs where your user&#39;s goods or services are sold. When this is required for a service but your user does not have an online presence, provide the reason in the &#x60;webDataExemption&#x60; object.</param>
         /// <param name="webDataExemption">webDataExemption</param>
         [JsonConstructor]
-        public BusinessLineInfo(string industryCode, string legalEntityId, ServiceEnum service, Option<List<string>?> salesChannels = default, Option<SourceOfFunds?> sourceOfFunds = default, Option<List<WebData>?> webData = default, Option<WebDataExemption?> webDataExemption = default)
+        public BusinessLineInfo(string industryCode, string legalEntityId, ServiceEnum service, Option<string?> industryCodeDescription = default, Option<List<string>?> salesChannels = default, Option<SourceOfFunds?> sourceOfFunds = default, Option<List<WebData>?> webData = default, Option<WebDataExemption?> webDataExemption = default)
         {
             IndustryCode = industryCode;
             LegalEntityId = legalEntityId;
             Service = service;
+            _IndustryCodeDescriptionOption = industryCodeDescription;
             _SalesChannelsOption = salesChannels;
             _SourceOfFundsOption = sourceOfFunds;
             _WebDataOption = webData;
@@ -197,6 +199,20 @@ namespace Adyen.LegalEntityManagement.Models
         public string LegalEntityId { get; set; }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="IndustryCodeDescription"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _IndustryCodeDescriptionOption { get; }
+
+        /// <summary>
+        /// The description of the industry code.
+        /// </summary>
+        /// <value>The description of the industry code.</value>
+        [JsonPropertyName("industryCodeDescription")]
+        public string? IndustryCodeDescription { get { return this._IndustryCodeDescriptionOption; } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="SalesChannels"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -261,6 +277,7 @@ namespace Adyen.LegalEntityManagement.Models
             sb.Append("  IndustryCode: ").Append(IndustryCode).Append("\n");
             sb.Append("  LegalEntityId: ").Append(LegalEntityId).Append("\n");
             sb.Append("  Service: ").Append(Service).Append("\n");
+            sb.Append("  IndustryCodeDescription: ").Append(IndustryCodeDescription).Append("\n");
             sb.Append("  SalesChannels: ").Append(SalesChannels).Append("\n");
             sb.Append("  SourceOfFunds: ").Append(SourceOfFunds).Append("\n");
             sb.Append("  WebData: ").Append(WebData).Append("\n");
@@ -295,6 +312,7 @@ namespace Adyen.LegalEntityManagement.Models
             Option<string?> industryCode = default;
             Option<string?> legalEntityId = default;
             Option<BusinessLineInfo.ServiceEnum?> service = default;
+            Option<string?> industryCodeDescription = default;
             Option<List<string>?> salesChannels = default;
             Option<SourceOfFunds?> sourceOfFunds = default;
             Option<List<WebData>?> webData = default;
@@ -325,6 +343,9 @@ namespace Adyen.LegalEntityManagement.Models
                             string? serviceRawValue = utf8JsonReader.GetString();
                             service = new Option<BusinessLineInfo.ServiceEnum?>(BusinessLineInfo.ServiceEnum.FromStringOrDefault(serviceRawValue));
                             break;
+                        case "industryCodeDescription":
+                            industryCodeDescription = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "salesChannels":
                             salesChannels = new Option<List<string>?>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
@@ -352,7 +373,7 @@ namespace Adyen.LegalEntityManagement.Models
             if (!service.IsSet)
                 throw new ArgumentException("Property is required for class BusinessLineInfo.", nameof(service));
 
-            return new BusinessLineInfo(industryCode.Value!, legalEntityId.Value!, service.Value!.Value!, salesChannels, sourceOfFunds, webData, webDataExemption);
+            return new BusinessLineInfo(industryCode.Value!, legalEntityId.Value!, service.Value!.Value!, industryCodeDescription, salesChannels, sourceOfFunds, webData, webDataExemption);
         }
 
         /// <summary>
@@ -393,6 +414,10 @@ namespace Adyen.LegalEntityManagement.Models
                 writer.WriteString("service", serviceRawValue);
             }
             
+            if (businessLineInfo._IndustryCodeDescriptionOption.IsSet)
+                if (businessLineInfo.IndustryCodeDescription != null)
+                    writer.WriteString("industryCodeDescription", businessLineInfo.IndustryCodeDescription);
+
             if (businessLineInfo._SalesChannelsOption.IsSet)
             {
                 writer.WritePropertyName("salesChannels");
