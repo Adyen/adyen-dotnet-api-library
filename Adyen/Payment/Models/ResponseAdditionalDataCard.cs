@@ -34,6 +34,7 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataCard" /> class.
         /// </summary>
+        /// <param name="cardAltID">This is an ALT ID (alternate ID) mapped to the Card PAN.  &gt; Returned only in case of Ecommerce Card Payment in India</param>
         /// <param name="cardBin">The first six digits of the card number.  This is the [Bank Identification Number (BIN)](https://docs.adyen.com/get-started-with-adyen/payment-glossary#bank-identification-number-bin) for card numbers with a six-digit BIN.  Example: 521234</param>
         /// <param name="cardHolderName">The cardholder name passed in the payment request.</param>
         /// <param name="cardIssuingBank">The bank or the financial institution granting lines of credit through card association branded payment cards. This information can be included when available.</param>
@@ -44,8 +45,9 @@ namespace Adyen.Payment.Models
         /// <param name="cardSummary">The last four digits of a card number.  &gt; Returned only in case of a card payment.</param>
         /// <param name="issuerBin">The first eight digits of the card number. Only returned if the card number is 16 digits or more.  This is the [Bank Identification Number (BIN)](https://docs.adyen.com/get-started-with-adyen/payment-glossary#bank-identification-number-bin) for card numbers with an eight-digit BIN.  Example: 52123423</param>
         [JsonConstructor]
-        public ResponseAdditionalDataCard(Option<string?> cardBin = default, Option<string?> cardHolderName = default, Option<string?> cardIssuingBank = default, Option<string?> cardIssuingCountry = default, Option<string?> cardIssuingCurrency = default, Option<string?> cardPaymentMethod = default, Option<CardProductIdEnum?> cardProductId = default, Option<string?> cardSummary = default, Option<string?> issuerBin = default)
+        public ResponseAdditionalDataCard(Option<string?> cardAltID = default, Option<string?> cardBin = default, Option<string?> cardHolderName = default, Option<string?> cardIssuingBank = default, Option<string?> cardIssuingCountry = default, Option<string?> cardIssuingCurrency = default, Option<string?> cardPaymentMethod = default, Option<CardProductIdEnum?> cardProductId = default, Option<string?> cardSummary = default, Option<string?> issuerBin = default)
         {
+            _CardAltIDOption = cardAltID;
             _CardBinOption = cardBin;
             _CardHolderNameOption = cardHolderName;
             _CardIssuingBankOption = cardIssuingBank;
@@ -266,6 +268,20 @@ namespace Adyen.Payment.Models
         public CardProductIdEnum? CardProductId { get { return this._CardProductIdOption; } set { this._CardProductIdOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="CardAltID"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _CardAltIDOption { get; private set; }
+
+        /// <summary>
+        /// This is an ALT ID (alternate ID) mapped to the Card PAN.  &gt; Returned only in case of Ecommerce Card Payment in India
+        /// </summary>
+        /// <value>This is an ALT ID (alternate ID) mapped to the Card PAN.  > Returned only in case of Ecommerce Card Payment in India</value>
+        [JsonPropertyName("cardAltID")]
+        public string? CardAltID { get { return this._CardAltIDOption; } set { this._CardAltIDOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CardBin"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -385,6 +401,7 @@ namespace Adyen.Payment.Models
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class ResponseAdditionalDataCard {\n");
+            sb.Append("  CardAltID: ").Append(CardAltID).Append("\n");
             sb.Append("  CardBin: ").Append(CardBin).Append("\n");
             sb.Append("  CardHolderName: ").Append(CardHolderName).Append("\n");
             sb.Append("  CardIssuingBank: ").Append(CardIssuingBank).Append("\n");
@@ -421,6 +438,7 @@ namespace Adyen.Payment.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<string?> cardAltID = default;
             Option<string?> cardBin = default;
             Option<string?> cardHolderName = default;
             Option<string?> cardIssuingBank = default;
@@ -446,6 +464,9 @@ namespace Adyen.Payment.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "cardAltID":
+                            cardAltID = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "cardBin":
                             cardBin = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -481,7 +502,7 @@ namespace Adyen.Payment.Models
             }
             
 
-            return new ResponseAdditionalDataCard(cardBin, cardHolderName, cardIssuingBank, cardIssuingCountry, cardIssuingCurrency, cardPaymentMethod, cardProductId, cardSummary, issuerBin);
+            return new ResponseAdditionalDataCard(cardAltID, cardBin, cardHolderName, cardIssuingBank, cardIssuingCountry, cardIssuingCurrency, cardPaymentMethod, cardProductId, cardSummary, issuerBin);
         }
 
         /// <summary>
@@ -510,6 +531,10 @@ namespace Adyen.Payment.Models
         public void WriteProperties(Utf8JsonWriter writer, ResponseAdditionalDataCard responseAdditionalDataCard, JsonSerializerOptions jsonSerializerOptions)
         {
             
+            if (responseAdditionalDataCard._CardAltIDOption.IsSet)
+                if (responseAdditionalDataCard.CardAltID != null)
+                    writer.WriteString("cardAltID", responseAdditionalDataCard.CardAltID);
+
             if (responseAdditionalDataCard._CardBinOption.IsSet)
                 if (responseAdditionalDataCard.CardBin != null)
                     writer.WriteString("cardBin", responseAdditionalDataCard.CardBin);
