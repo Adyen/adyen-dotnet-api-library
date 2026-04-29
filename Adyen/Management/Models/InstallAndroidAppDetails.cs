@@ -40,7 +40,7 @@ namespace Adyen.Management.Models
         public InstallAndroidAppDetails(Option<string?> appId = default, Option<TypeEnum?> type = default)
         {
             _AppIdOption = appId;
-            _TypeOption = type;
+            _TypeOption = type.IsSet ? type : new Option<TypeEnum?>(TypeEnum.InstallAndroidApp);
             OnCreated();
         }
         
