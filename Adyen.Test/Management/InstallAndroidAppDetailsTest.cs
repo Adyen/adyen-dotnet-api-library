@@ -77,7 +77,7 @@ namespace Adyen.Test.Management
         }
 
         [TestMethod]
-        public void Given_DefaultConstructor_Then_TypeDefaultIsSet()
+        public void Given_DefaultConstructor_Then_TypeIsNull()
         {
             var details = new InstallAndroidAppDetails();
 
