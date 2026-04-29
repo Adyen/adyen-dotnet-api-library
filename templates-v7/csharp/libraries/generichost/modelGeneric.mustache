@@ -26,11 +26,11 @@
             {{#allVars}}
             {{^isDiscriminator}}
             {{^isInherited}}
-            {{name}}{{^required}}Option{{/required}} = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};
+            {{^required}}{{#isEnum}}{{#defaultValue}}{{name}}Option = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}}.IsSet ? {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}} : new Option<{{{datatypeWithEnum}}}{{>NullConditionalProperty}}>({{defaultValue}});{{/defaultValue}}{{^defaultValue}}{{name}}Option = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};{{/defaultValue}}{{/isEnum}}{{^isEnum}}{{name}}Option = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};{{/isEnum}}{{/required}}{{#required}}{{name}} = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};{{/required}}
             {{/isInherited}}
             {{#isInherited}}
             {{#isNew}}
-            {{name}}{{^required}}Option{{/required}} = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};
+            {{^required}}{{#isEnum}}{{#defaultValue}}{{name}}Option = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}}.IsSet ? {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}} : new Option<{{{datatypeWithEnum}}}{{>NullConditionalProperty}}>({{defaultValue}});{{/defaultValue}}{{^defaultValue}}{{name}}Option = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};{{/defaultValue}}{{/isEnum}}{{^isEnum}}{{name}}Option = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};{{/isEnum}}{{/required}}{{#required}}{{name}} = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};{{/required}}
             {{/isNew}}
             {{/isInherited}}
             {{/isDiscriminator}}
@@ -70,11 +70,11 @@
             {{#allVars}}
             {{^isDiscriminator}}
             {{^isInherited}}
-            {{^required}}_{{/required}}{{name}}{{^required}}Option{{/required}} = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};
+            {{^required}}{{#isEnum}}{{#defaultValue}}_{{name}}Option = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}}.IsSet ? {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}} : new Option<{{{datatypeWithEnum}}}{{>NullConditionalProperty}}>({{defaultValue}});{{/defaultValue}}{{^defaultValue}}_{{name}}Option = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};{{/defaultValue}}{{/isEnum}}{{^isEnum}}_{{name}}Option = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};{{/isEnum}}{{/required}}{{#required}}{{name}} = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};{{/required}}
             {{/isInherited}}
             {{#isInherited}}
             {{#isNew}}
-            {{^required}}_{{/required}}{{name}}{{^required}}Option{{/required}} = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};
+            {{^required}}{{#isEnum}}{{#defaultValue}}_{{name}}Option = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}}.IsSet ? {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}} : new Option<{{{datatypeWithEnum}}}{{>NullConditionalProperty}}>({{defaultValue}});{{/defaultValue}}{{^defaultValue}}_{{name}}Option = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};{{/defaultValue}}{{/isEnum}}{{^isEnum}}_{{name}}Option = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};{{/isEnum}}{{/required}}{{#required}}{{name}} = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};{{/required}}
             {{/isNew}}
             {{/isInherited}}
             {{/isDiscriminator}}
