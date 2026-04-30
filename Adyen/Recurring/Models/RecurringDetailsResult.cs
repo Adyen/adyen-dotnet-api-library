@@ -226,7 +226,8 @@ namespace Adyen.Recurring.Models
         {
             
             if (recurringDetailsResult._CreationDateOption.IsSet)
-                writer.WriteString("creationDate", recurringDetailsResult._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
+                if (recurringDetailsResult._CreationDateOption.Value != null)
+                    writer.WriteString("creationDate", recurringDetailsResult._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
 
             if (recurringDetailsResult._DetailsOption.IsSet)
             {

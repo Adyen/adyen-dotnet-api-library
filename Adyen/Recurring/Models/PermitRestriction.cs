@@ -208,7 +208,8 @@ namespace Adyen.Recurring.Models
                 JsonSerializer.Serialize(writer, permitRestriction.SingleTransactionLimit, jsonSerializerOptions);
             }
             if (permitRestriction._SingleUseOption.IsSet)
-                writer.WriteBoolean("singleUse", permitRestriction._SingleUseOption.Value!.Value);
+                if (permitRestriction._SingleUseOption.Value != null)
+                    writer.WriteBoolean("singleUse", permitRestriction._SingleUseOption.Value!.Value);
         }
     }
 }

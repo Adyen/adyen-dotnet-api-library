@@ -524,7 +524,8 @@ namespace Adyen.Recurring.Models
                 JsonSerializer.Serialize(writer, recurringDetail.ContractTypes, jsonSerializerOptions);
             }
             if (recurringDetail._CreationDateOption.IsSet)
-                writer.WriteString("creationDate", recurringDetail._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
+                if (recurringDetail._CreationDateOption.Value != null)
+                    writer.WriteString("creationDate", recurringDetail._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
 
             if (recurringDetail._FirstPspReferenceOption.IsSet)
                 if (recurringDetail.FirstPspReference != null)

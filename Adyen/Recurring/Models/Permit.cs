@@ -263,7 +263,8 @@ namespace Adyen.Recurring.Models
                     writer.WriteString("resultKey", permit.ResultKey);
 
             if (permit._ValidTillDateOption.IsSet)
-                writer.WriteString("validTillDate", permit._ValidTillDateOption.Value!.Value.ToString(ValidTillDateFormat));
+                if (permit._ValidTillDateOption.Value != null)
+                    writer.WriteString("validTillDate", permit._ValidTillDateOption.Value!.Value.ToString(ValidTillDateFormat));
         }
     }
 }
