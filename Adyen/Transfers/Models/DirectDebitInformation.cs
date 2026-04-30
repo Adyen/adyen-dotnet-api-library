@@ -231,10 +231,12 @@ namespace Adyen.Transfers.Models
         {
             
             if (directDebitInformation._DateOfSignatureOption.IsSet)
-                writer.WriteString("dateOfSignature", directDebitInformation._DateOfSignatureOption.Value!.Value.ToString(DateOfSignatureFormat));
+                if (directDebitInformation._DateOfSignatureOption.Value != null)
+                    writer.WriteString("dateOfSignature", directDebitInformation._DateOfSignatureOption.Value!.Value.ToString(DateOfSignatureFormat));
 
             if (directDebitInformation._DueDateOption.IsSet)
-                writer.WriteString("dueDate", directDebitInformation._DueDateOption.Value!.Value.ToString(DueDateFormat));
+                if (directDebitInformation._DueDateOption.Value != null)
+                    writer.WriteString("dueDate", directDebitInformation._DueDateOption.Value!.Value.ToString(DueDateFormat));
 
             if (directDebitInformation._MandateIdOption.IsSet)
                 if (directDebitInformation.MandateId != null)

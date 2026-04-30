@@ -54,8 +54,9 @@ namespace Adyen.Transfers.Models
         /// <param name="referenceForBeneficiary"> A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**.The maximum length depends on the &#x60;category&#x60;.   - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.</param>
         /// <param name="review">review</param>
         /// <param name="type">The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**.</param>
+        /// <param name="ultimateParty">ultimateParty</param>
         [JsonConstructor]
-        public Transfer(Amount amount, CategoryEnum category, CounterpartyV3 counterparty, StatusEnum status, Option<ResourceReference?> accountHolder = default, Option<ResourceReference?> balanceAccount = default, Option<TransferCategoryData?> categoryData = default, Option<DateTimeOffset?> createdAt = default, Option<DateTimeOffset?> creationDate = default, Option<string?> description = default, Option<DirectDebitInformation?> directDebitInformation = default, Option<DirectionEnum?> direction = default, Option<ExecutionDate?> executionDate = default, Option<string?> id = default, Option<PaymentInstrument?> paymentInstrument = default, Option<ReasonEnum?> reason = default, Option<string?> reference = default, Option<string?> referenceForBeneficiary = default, Option<TransferReview?> review = default, Option<TypeEnum?> type = default)
+        public Transfer(Amount amount, CategoryEnum category, CounterpartyV3 counterparty, StatusEnum status, Option<ResourceReference?> accountHolder = default, Option<ResourceReference?> balanceAccount = default, Option<TransferCategoryData?> categoryData = default, Option<DateTimeOffset?> createdAt = default, Option<DateTimeOffset?> creationDate = default, Option<string?> description = default, Option<DirectDebitInformation?> directDebitInformation = default, Option<DirectionEnum?> direction = default, Option<ExecutionDate?> executionDate = default, Option<string?> id = default, Option<PaymentInstrument?> paymentInstrument = default, Option<ReasonEnum?> reason = default, Option<string?> reference = default, Option<string?> referenceForBeneficiary = default, Option<TransferReview?> review = default, Option<TypeEnum?> type = default, Option<UltimatePartyIdentification?> ultimateParty = default)
         {
             Amount = amount;
             Category = category;
@@ -77,6 +78,7 @@ namespace Adyen.Transfers.Models
             _ReferenceForBeneficiaryOption = referenceForBeneficiary;
             _ReviewOption = review;
             _TypeOption = type;
+            _UltimatePartyOption = ultimateParty;
             OnCreated();
         }
         
@@ -508,6 +510,11 @@ namespace Adyen.Transfers.Models
             public static readonly StatusEnum PaymentCostPending = new("paymentCostPending");
 
             /// <summary>
+            /// StatusEnum.Pending - pending
+            /// </summary>
+            public static readonly StatusEnum Pending = new("pending");
+
+            /// <summary>
             /// StatusEnum.PendingApproval - pendingApproval
             /// </summary>
             public static readonly StatusEnum PendingApproval = new("pendingApproval");
@@ -571,6 +578,11 @@ namespace Adyen.Transfers.Models
             /// StatusEnum.Returned - returned
             /// </summary>
             public static readonly StatusEnum Returned = new("returned");
+
+            /// <summary>
+            /// StatusEnum.Reversed - reversed
+            /// </summary>
+            public static readonly StatusEnum Reversed = new("reversed");
 
             /// <summary>
             /// StatusEnum.SecondChargeback - secondChargeback
@@ -676,6 +688,7 @@ namespace Adyen.Transfers.Models
                     "miscCostPending" => StatusEnum.MiscCostPending,
                     "paymentCost" => StatusEnum.PaymentCost,
                     "paymentCostPending" => StatusEnum.PaymentCostPending,
+                    "pending" => StatusEnum.Pending,
                     "pendingApproval" => StatusEnum.PendingApproval,
                     "pendingExecution" => StatusEnum.PendingExecution,
                     "received" => StatusEnum.Received,
@@ -689,6 +702,7 @@ namespace Adyen.Transfers.Models
                     "reserveAdjustment" => StatusEnum.ReserveAdjustment,
                     "reserveAdjustmentPending" => StatusEnum.ReserveAdjustmentPending,
                     "returned" => StatusEnum.Returned,
+                    "reversed" => StatusEnum.Reversed,
                     "secondChargeback" => StatusEnum.SecondChargeback,
                     "secondChargebackPending" => StatusEnum.SecondChargebackPending,
                     "undefined" => StatusEnum.Undefined,
@@ -863,6 +877,9 @@ namespace Adyen.Transfers.Models
                 if (value == StatusEnum.PaymentCostPending)
                     return "paymentCostPending";
                 
+                if (value == StatusEnum.Pending)
+                    return "pending";
+                
                 if (value == StatusEnum.PendingApproval)
                     return "pendingApproval";
                 
@@ -901,6 +918,9 @@ namespace Adyen.Transfers.Models
                 
                 if (value == StatusEnum.Returned)
                     return "returned";
+                
+                if (value == StatusEnum.Reversed)
+                    return "reversed";
                 
                 if (value == StatusEnum.SecondChargeback)
                     return "secondChargeback";
@@ -2550,6 +2570,19 @@ namespace Adyen.Transfers.Models
         public TransferReview? Review { get { return this._ReviewOption; } set { this._ReviewOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="UltimateParty"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<UltimatePartyIdentification?> _UltimatePartyOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="UltimateParty"/>.
+        /// </summary>
+        [JsonPropertyName("ultimateParty")]
+        public UltimatePartyIdentification? UltimateParty { get { return this._UltimatePartyOption; } set { this._UltimatePartyOption = new(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -2577,6 +2610,7 @@ namespace Adyen.Transfers.Models
             sb.Append("  ReferenceForBeneficiary: ").Append(ReferenceForBeneficiary).Append("\n");
             sb.Append("  Review: ").Append(Review).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  UltimateParty: ").Append(UltimateParty).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -2634,6 +2668,7 @@ namespace Adyen.Transfers.Models
             Option<string?> referenceForBeneficiary = default;
             Option<TransferReview?> review = default;
             Option<Transfer.TypeEnum?> type = default;
+            Option<UltimatePartyIdentification?> ultimateParty = default;
 
             while (utf8JsonReader.Read())
             {
@@ -2715,6 +2750,9 @@ namespace Adyen.Transfers.Models
                             string? typeRawValue = utf8JsonReader.GetString();
                             type = new Option<Transfer.TypeEnum?>(Transfer.TypeEnum.FromStringOrDefault(typeRawValue));
                             break;
+                        case "ultimateParty":
+                            ultimateParty = new Option<UltimatePartyIdentification?>(JsonSerializer.Deserialize<UltimatePartyIdentification>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         default:
                             break;
                     }
@@ -2733,7 +2771,7 @@ namespace Adyen.Transfers.Models
             if (!status.IsSet)
                 throw new ArgumentException("Property is required for class Transfer.", nameof(status));
 
-            return new Transfer(amount.Value!, category.Value!.Value!, counterparty.Value!, status.Value!.Value!, accountHolder, balanceAccount, categoryData, createdAt, creationDate, description, directDebitInformation, direction, executionDate, id, paymentInstrument, reason, reference, referenceForBeneficiary, review, type);
+            return new Transfer(amount.Value!, category.Value!.Value!, counterparty.Value!, status.Value!.Value!, accountHolder, balanceAccount, categoryData, createdAt, creationDate, description, directDebitInformation, direction, executionDate, id, paymentInstrument, reason, reference, referenceForBeneficiary, review, type, ultimateParty);
         }
 
         /// <summary>
@@ -2794,10 +2832,12 @@ namespace Adyen.Transfers.Models
                 JsonSerializer.Serialize(writer, transfer.CategoryData, jsonSerializerOptions);
             }
             if (transfer._CreatedAtOption.IsSet)
-                writer.WriteString("createdAt", transfer._CreatedAtOption.Value!.Value.ToString(CreatedAtFormat));
+                if (transfer._CreatedAtOption.Value != null)
+                    writer.WriteString("createdAt", transfer._CreatedAtOption.Value!.Value.ToString(CreatedAtFormat));
 
             if (transfer._CreationDateOption.IsSet)
-                writer.WriteString("creationDate", transfer._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
+                if (transfer._CreationDateOption.Value != null)
+                    writer.WriteString("creationDate", transfer._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
 
             if (transfer._DescriptionOption.IsSet)
                 if (transfer.Description != null)
@@ -2851,6 +2891,12 @@ namespace Adyen.Transfers.Models
             {
                 string? typeRawValue = Transfer.TypeEnum.ToJsonValue(transfer._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);
+            }
+            
+            if (transfer._UltimatePartyOption.IsSet)
+            {
+                writer.WritePropertyName("ultimateParty");
+                JsonSerializer.Serialize(writer, transfer.UltimateParty, jsonSerializerOptions);
             }
         }
     }
