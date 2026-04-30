@@ -332,7 +332,8 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
                     writer.WriteString("balancePlatform", negativeBalanceCompensationWarningNotificationData.BalancePlatform);
 
             if (negativeBalanceCompensationWarningNotificationData._CreationDateOption.IsSet)
-                writer.WriteString("creationDate", negativeBalanceCompensationWarningNotificationData._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
+                if (negativeBalanceCompensationWarningNotificationData._CreationDateOption.Value != null)
+                    writer.WriteString("creationDate", negativeBalanceCompensationWarningNotificationData._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
 
             if (negativeBalanceCompensationWarningNotificationData._IdOption.IsSet)
                 if (negativeBalanceCompensationWarningNotificationData.Id != null)
@@ -343,10 +344,12 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
                     writer.WriteString("liableBalanceAccountId", negativeBalanceCompensationWarningNotificationData.LiableBalanceAccountId);
 
             if (negativeBalanceCompensationWarningNotificationData._NegativeBalanceSinceOption.IsSet)
-                writer.WriteString("negativeBalanceSince", negativeBalanceCompensationWarningNotificationData._NegativeBalanceSinceOption.Value!.Value.ToString(NegativeBalanceSinceFormat));
+                if (negativeBalanceCompensationWarningNotificationData._NegativeBalanceSinceOption.Value != null)
+                    writer.WriteString("negativeBalanceSince", negativeBalanceCompensationWarningNotificationData._NegativeBalanceSinceOption.Value!.Value.ToString(NegativeBalanceSinceFormat));
 
             if (negativeBalanceCompensationWarningNotificationData._ScheduledCompensationAtOption.IsSet)
-                writer.WriteString("scheduledCompensationAt", negativeBalanceCompensationWarningNotificationData._ScheduledCompensationAtOption.Value!.Value.ToString(ScheduledCompensationAtFormat));
+                if (negativeBalanceCompensationWarningNotificationData._ScheduledCompensationAtOption.Value != null)
+                    writer.WriteString("scheduledCompensationAt", negativeBalanceCompensationWarningNotificationData._ScheduledCompensationAtOption.Value!.Value.ToString(ScheduledCompensationAtFormat));
         }
     }
 }
