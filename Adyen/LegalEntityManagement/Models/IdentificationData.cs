@@ -424,7 +424,8 @@ namespace Adyen.LegalEntityManagement.Models
                     writer.WriteString("issuerState", identificationData.IssuerState);
 
             if (identificationData._NationalIdExemptOption.IsSet)
-                writer.WriteBoolean("nationalIdExempt", identificationData._NationalIdExemptOption.Value!.Value);
+                if (identificationData._NationalIdExemptOption.Value != null)
+                    writer.WriteBoolean("nationalIdExempt", identificationData._NationalIdExemptOption.Value!.Value);
 
             if (identificationData._NumberOption.IsSet)
                 if (identificationData.Number != null)

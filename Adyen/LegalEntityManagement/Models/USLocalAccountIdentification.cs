@@ -43,7 +43,7 @@ namespace Adyen.LegalEntityManagement.Models
         {
             AccountNumber = accountNumber;
             RoutingNumber = routingNumber;
-            _AccountTypeOption = accountType;
+            _AccountTypeOption = accountType.IsSet ? accountType : AccountTypeEnum.Checking;
             Type = type;
             OnCreated();
         }

@@ -499,52 +499,68 @@ namespace Adyen.LegalEntityManagement.Models
                 JsonSerializer.Serialize(writer, onboardingLinkSettings.AcceptedCountries, jsonSerializerOptions);
             }
             if (onboardingLinkSettings._AllowBankAccountFormatSelectionOption.IsSet)
-                writer.WriteBoolean("allowBankAccountFormatSelection", onboardingLinkSettings._AllowBankAccountFormatSelectionOption.Value!.Value);
+                if (onboardingLinkSettings._AllowBankAccountFormatSelectionOption.Value != null)
+                    writer.WriteBoolean("allowBankAccountFormatSelection", onboardingLinkSettings._AllowBankAccountFormatSelectionOption.Value!.Value);
 
             if (onboardingLinkSettings._AllowDebugUiOption.IsSet)
-                writer.WriteBoolean("allowDebugUi", onboardingLinkSettings._AllowDebugUiOption.Value!.Value);
+                if (onboardingLinkSettings._AllowDebugUiOption.Value != null)
+                    writer.WriteBoolean("allowDebugUi", onboardingLinkSettings._AllowDebugUiOption.Value!.Value);
 
             if (onboardingLinkSettings._AllowIntraRegionCrossBorderPayoutOption.IsSet)
-                writer.WriteBoolean("allowIntraRegionCrossBorderPayout", onboardingLinkSettings._AllowIntraRegionCrossBorderPayoutOption.Value!.Value);
+                if (onboardingLinkSettings._AllowIntraRegionCrossBorderPayoutOption.Value != null)
+                    writer.WriteBoolean("allowIntraRegionCrossBorderPayout", onboardingLinkSettings._AllowIntraRegionCrossBorderPayoutOption.Value!.Value);
 
             if (onboardingLinkSettings._ChangeLegalEntityTypeOption.IsSet)
-                writer.WriteBoolean("changeLegalEntityType", onboardingLinkSettings._ChangeLegalEntityTypeOption.Value!.Value);
+                if (onboardingLinkSettings._ChangeLegalEntityTypeOption.Value != null)
+                    writer.WriteBoolean("changeLegalEntityType", onboardingLinkSettings._ChangeLegalEntityTypeOption.Value!.Value);
 
             if (onboardingLinkSettings._EditPrefilledCountryOption.IsSet)
-                writer.WriteBoolean("editPrefilledCountry", onboardingLinkSettings._EditPrefilledCountryOption.Value!.Value);
+                if (onboardingLinkSettings._EditPrefilledCountryOption.Value != null)
+                    writer.WriteBoolean("editPrefilledCountry", onboardingLinkSettings._EditPrefilledCountryOption.Value!.Value);
 
             if (onboardingLinkSettings._EnforceLegalAgeOption.IsSet)
-                writer.WriteBoolean("enforceLegalAge", onboardingLinkSettings._EnforceLegalAgeOption.Value!.Value);
+                if (onboardingLinkSettings._EnforceLegalAgeOption.Value != null)
+                    writer.WriteBoolean("enforceLegalAge", onboardingLinkSettings._EnforceLegalAgeOption.Value!.Value);
 
             if (onboardingLinkSettings._HideOnboardingIntroductionIndividualOption.IsSet)
-                writer.WriteBoolean("hideOnboardingIntroductionIndividual", onboardingLinkSettings._HideOnboardingIntroductionIndividualOption.Value!.Value);
+                if (onboardingLinkSettings._HideOnboardingIntroductionIndividualOption.Value != null)
+                    writer.WriteBoolean("hideOnboardingIntroductionIndividual", onboardingLinkSettings._HideOnboardingIntroductionIndividualOption.Value!.Value);
 
             if (onboardingLinkSettings._HideOnboardingIntroductionOrganizationOption.IsSet)
-                writer.WriteBoolean("hideOnboardingIntroductionOrganization", onboardingLinkSettings._HideOnboardingIntroductionOrganizationOption.Value!.Value);
+                if (onboardingLinkSettings._HideOnboardingIntroductionOrganizationOption.Value != null)
+                    writer.WriteBoolean("hideOnboardingIntroductionOrganization", onboardingLinkSettings._HideOnboardingIntroductionOrganizationOption.Value!.Value);
 
             if (onboardingLinkSettings._HideOnboardingIntroductionSoleProprietorOption.IsSet)
-                writer.WriteBoolean("hideOnboardingIntroductionSoleProprietor", onboardingLinkSettings._HideOnboardingIntroductionSoleProprietorOption.Value!.Value);
+                if (onboardingLinkSettings._HideOnboardingIntroductionSoleProprietorOption.Value != null)
+                    writer.WriteBoolean("hideOnboardingIntroductionSoleProprietor", onboardingLinkSettings._HideOnboardingIntroductionSoleProprietorOption.Value!.Value);
 
             if (onboardingLinkSettings._HideOnboardingIntroductionTrustOption.IsSet)
-                writer.WriteBoolean("hideOnboardingIntroductionTrust", onboardingLinkSettings._HideOnboardingIntroductionTrustOption.Value!.Value);
+                if (onboardingLinkSettings._HideOnboardingIntroductionTrustOption.Value != null)
+                    writer.WriteBoolean("hideOnboardingIntroductionTrust", onboardingLinkSettings._HideOnboardingIntroductionTrustOption.Value!.Value);
 
             if (onboardingLinkSettings._InstantBankVerificationOption.IsSet)
-                writer.WriteBoolean("instantBankVerification", onboardingLinkSettings._InstantBankVerificationOption.Value!.Value);
+                if (onboardingLinkSettings._InstantBankVerificationOption.Value != null)
+                    writer.WriteBoolean("instantBankVerification", onboardingLinkSettings._InstantBankVerificationOption.Value!.Value);
 
             if (onboardingLinkSettings._RequirePciSignEcomMotoOption.IsSet)
-                writer.WriteBoolean("requirePciSignEcomMoto", onboardingLinkSettings._RequirePciSignEcomMotoOption.Value!.Value);
+                if (onboardingLinkSettings._RequirePciSignEcomMotoOption.Value != null)
+                    writer.WriteBoolean("requirePciSignEcomMoto", onboardingLinkSettings._RequirePciSignEcomMotoOption.Value!.Value);
 
             if (onboardingLinkSettings._RequirePciSignEcommerceOption.IsSet)
-                writer.WriteBoolean("requirePciSignEcommerce", onboardingLinkSettings._RequirePciSignEcommerceOption.Value!.Value);
+                if (onboardingLinkSettings._RequirePciSignEcommerceOption.Value != null)
+                    writer.WriteBoolean("requirePciSignEcommerce", onboardingLinkSettings._RequirePciSignEcommerceOption.Value!.Value);
 
             if (onboardingLinkSettings._RequirePciSignPosOption.IsSet)
-                writer.WriteBoolean("requirePciSignPos", onboardingLinkSettings._RequirePciSignPosOption.Value!.Value);
+                if (onboardingLinkSettings._RequirePciSignPosOption.Value != null)
+                    writer.WriteBoolean("requirePciSignPos", onboardingLinkSettings._RequirePciSignPosOption.Value!.Value);
 
             if (onboardingLinkSettings._RequirePciSignPosMotoOption.IsSet)
-                writer.WriteBoolean("requirePciSignPosMoto", onboardingLinkSettings._RequirePciSignPosMotoOption.Value!.Value);
+                if (onboardingLinkSettings._RequirePciSignPosMotoOption.Value != null)
+                    writer.WriteBoolean("requirePciSignPosMoto", onboardingLinkSettings._RequirePciSignPosMotoOption.Value!.Value);
 
             if (onboardingLinkSettings._TransferInstrumentLimitOption.IsSet)
-                writer.WriteNumber("transferInstrumentLimit", onboardingLinkSettings._TransferInstrumentLimitOption.Value!.Value);
+                if (onboardingLinkSettings._TransferInstrumentLimitOption.Value != null)
+                    writer.WriteNumber("transferInstrumentLimit", onboardingLinkSettings._TransferInstrumentLimitOption.Value!.Value);
         }
     }
 }

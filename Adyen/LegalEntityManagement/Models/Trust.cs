@@ -800,6 +800,7 @@ namespace Adyen.LegalEntityManagement.Models
 
             if (trust._DoingBusinessAsAbsentOption.IsSet)
                 if (trust._DoingBusinessAsAbsentOption.Value != null)
+                    if (trust._DoingBusinessAsAbsentOption.Value != null)
                     writer.WriteBoolean("doingBusinessAsAbsent", trust._DoingBusinessAsAbsentOption.Value!.Value);
                 else
                     writer.WriteNull("doingBusinessAsAbsent");

@@ -183,7 +183,8 @@ namespace Adyen.LegalEntityManagement.Models
                     writer.WriteString("currency", amount.Currency);
 
             if (amount._ValueOption.IsSet)
-                writer.WriteNumber("value", amount._ValueOption.Value!.Value);
+                if (amount._ValueOption.Value != null)
+                    writer.WriteNumber("value", amount._ValueOption.Value!.Value);
         }
     }
 }

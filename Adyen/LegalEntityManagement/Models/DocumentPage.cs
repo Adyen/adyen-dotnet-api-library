@@ -313,7 +313,8 @@ namespace Adyen.LegalEntityManagement.Models
                     writer.WriteString("pageName", documentPage.PageName);
 
             if (documentPage._PageNumberOption.IsSet)
-                writer.WriteNumber("pageNumber", documentPage._PageNumberOption.Value!.Value);
+                if (documentPage._PageNumberOption.Value != null)
+                    writer.WriteNumber("pageNumber", documentPage._PageNumberOption.Value!.Value);
 
             if (documentPage._TypeOption.IsSet && documentPage.Type != null) 
             {
