@@ -221,14 +221,16 @@ namespace Adyen.LegalEntityManagement.Models
         {
             
             if (supportingEntityCapability._AllowedOption.IsSet)
-                writer.WriteBoolean("allowed", supportingEntityCapability._AllowedOption.Value!.Value);
+                if (supportingEntityCapability._AllowedOption.Value != null)
+                    writer.WriteBoolean("allowed", supportingEntityCapability._AllowedOption.Value!.Value);
 
             if (supportingEntityCapability._IdOption.IsSet)
                 if (supportingEntityCapability.Id != null)
                     writer.WriteString("id", supportingEntityCapability.Id);
 
             if (supportingEntityCapability._RequestedOption.IsSet)
-                writer.WriteBoolean("requested", supportingEntityCapability._RequestedOption.Value!.Value);
+                if (supportingEntityCapability._RequestedOption.Value != null)
+                    writer.WriteBoolean("requested", supportingEntityCapability._RequestedOption.Value!.Value);
 
             if (supportingEntityCapability._VerificationStatusOption.IsSet)
                 if (supportingEntityCapability.VerificationStatus != null)

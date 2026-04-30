@@ -547,7 +547,8 @@ namespace Adyen.LegalEntityManagement.Models
         {
             
             if (legalEntityCapability._AllowedOption.IsSet)
-                writer.WriteBoolean("allowed", legalEntityCapability._AllowedOption.Value!.Value);
+                if (legalEntityCapability._AllowedOption.Value != null)
+                    writer.WriteBoolean("allowed", legalEntityCapability._AllowedOption.Value!.Value);
 
             if (legalEntityCapability._AllowedLevelOption.IsSet && legalEntityCapability.AllowedLevel != null) 
             {
@@ -561,7 +562,8 @@ namespace Adyen.LegalEntityManagement.Models
                 JsonSerializer.Serialize(writer, legalEntityCapability.AllowedSettings, jsonSerializerOptions);
             }
             if (legalEntityCapability._RequestedOption.IsSet)
-                writer.WriteBoolean("requested", legalEntityCapability._RequestedOption.Value!.Value);
+                if (legalEntityCapability._RequestedOption.Value != null)
+                    writer.WriteBoolean("requested", legalEntityCapability._RequestedOption.Value!.Value);
 
             if (legalEntityCapability._RequestedLevelOption.IsSet && legalEntityCapability.RequestedLevel != null) 
             {

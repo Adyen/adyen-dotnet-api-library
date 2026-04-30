@@ -590,7 +590,8 @@ namespace Adyen.LegalEntityManagement.Models
                     writer.WriteString("name", legalEntityAssociation.Name);
 
             if (legalEntityAssociation._NomineeOption.IsSet)
-                writer.WriteBoolean("nominee", legalEntityAssociation._NomineeOption.Value!.Value);
+                if (legalEntityAssociation._NomineeOption.Value != null)
+                    writer.WriteBoolean("nominee", legalEntityAssociation._NomineeOption.Value!.Value);
 
             if (legalEntityAssociation._RelationshipOption.IsSet)
                 if (legalEntityAssociation.Relationship != null)

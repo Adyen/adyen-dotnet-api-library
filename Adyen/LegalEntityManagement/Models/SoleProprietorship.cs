@@ -516,6 +516,7 @@ namespace Adyen.LegalEntityManagement.Models
 
             if (soleProprietorship._DoingBusinessAsAbsentOption.IsSet)
                 if (soleProprietorship._DoingBusinessAsAbsentOption.Value != null)
+                    if (soleProprietorship._DoingBusinessAsAbsentOption.Value != null)
                     writer.WriteBoolean("doingBusinessAsAbsent", soleProprietorship._DoingBusinessAsAbsentOption.Value!.Value);
                 else
                     writer.WriteNull("doingBusinessAsAbsent");
@@ -536,6 +537,7 @@ namespace Adyen.LegalEntityManagement.Models
 
             if (soleProprietorship._TaxAbsentOption.IsSet)
                 if (soleProprietorship._TaxAbsentOption.Value != null)
+                    if (soleProprietorship._TaxAbsentOption.Value != null)
                     writer.WriteBoolean("taxAbsent", soleProprietorship._TaxAbsentOption.Value!.Value);
                 else
                     writer.WriteNull("taxAbsent");

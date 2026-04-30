@@ -236,14 +236,16 @@ namespace Adyen.LegalEntityManagement.Models
                 JsonSerializer.Serialize(writer, getPciQuestionnaireResponse.Content, jsonSerializerOptions);
             }
             if (getPciQuestionnaireResponse._CreatedAtOption.IsSet)
-                writer.WriteString("createdAt", getPciQuestionnaireResponse._CreatedAtOption.Value!.Value.ToString(CreatedAtFormat));
+                if (getPciQuestionnaireResponse._CreatedAtOption.Value != null)
+                    writer.WriteString("createdAt", getPciQuestionnaireResponse._CreatedAtOption.Value!.Value.ToString(CreatedAtFormat));
 
             if (getPciQuestionnaireResponse._IdOption.IsSet)
                 if (getPciQuestionnaireResponse.Id != null)
                     writer.WriteString("id", getPciQuestionnaireResponse.Id);
 
             if (getPciQuestionnaireResponse._ValidUntilOption.IsSet)
-                writer.WriteString("validUntil", getPciQuestionnaireResponse._ValidUntilOption.Value!.Value.ToString(ValidUntilFormat));
+                if (getPciQuestionnaireResponse._ValidUntilOption.Value != null)
+                    writer.WriteString("validUntil", getPciQuestionnaireResponse._ValidUntilOption.Value!.Value.ToString(ValidUntilFormat));
         }
     }
 }

@@ -697,7 +697,8 @@ namespace Adyen.LegalEntityManagement.Models
                 JsonSerializer.Serialize(writer, document.Attachments, jsonSerializerOptions);
             }
             if (document._CreationDateOption.IsSet)
-                writer.WriteString("creationDate", document._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
+                if (document._CreationDateOption.Value != null)
+                    writer.WriteString("creationDate", document._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
 
             if (document._ExpiryDateOption.IsSet)
                 if (document.ExpiryDate != null)
@@ -720,7 +721,8 @@ namespace Adyen.LegalEntityManagement.Models
                     writer.WriteString("issuerState", document.IssuerState);
 
             if (document._ModificationDateOption.IsSet)
-                writer.WriteString("modificationDate", document._ModificationDateOption.Value!.Value.ToString(ModificationDateFormat));
+                if (document._ModificationDateOption.Value != null)
+                    writer.WriteString("modificationDate", document._ModificationDateOption.Value!.Value.ToString(ModificationDateFormat));
 
             if (document._NumberOption.IsSet)
                 if (document.Number != null)

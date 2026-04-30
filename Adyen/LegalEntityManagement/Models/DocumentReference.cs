@@ -289,7 +289,8 @@ namespace Adyen.LegalEntityManagement.Models
         {
             
             if (documentReference._ActiveOption.IsSet)
-                writer.WriteBoolean("active", documentReference._ActiveOption.Value!.Value);
+                if (documentReference._ActiveOption.Value != null)
+                    writer.WriteBoolean("active", documentReference._ActiveOption.Value!.Value);
 
             if (documentReference._DescriptionOption.IsSet)
                 if (documentReference.Description != null)
@@ -304,7 +305,8 @@ namespace Adyen.LegalEntityManagement.Models
                     writer.WriteString("id", documentReference.Id);
 
             if (documentReference._ModificationDateOption.IsSet)
-                writer.WriteString("modificationDate", documentReference._ModificationDateOption.Value!.Value.ToString(ModificationDateFormat));
+                if (documentReference._ModificationDateOption.Value != null)
+                    writer.WriteString("modificationDate", documentReference._ModificationDateOption.Value!.Value.ToString(ModificationDateFormat));
 
             if (documentReference._PagesOption.IsSet)
             {

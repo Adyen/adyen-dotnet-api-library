@@ -210,14 +210,16 @@ namespace Adyen.LegalEntityManagement.Models
         {
             
             if (pciDocumentInfo._CreatedAtOption.IsSet)
-                writer.WriteString("createdAt", pciDocumentInfo._CreatedAtOption.Value!.Value.ToString(CreatedAtFormat));
+                if (pciDocumentInfo._CreatedAtOption.Value != null)
+                    writer.WriteString("createdAt", pciDocumentInfo._CreatedAtOption.Value!.Value.ToString(CreatedAtFormat));
 
             if (pciDocumentInfo._IdOption.IsSet)
                 if (pciDocumentInfo.Id != null)
                     writer.WriteString("id", pciDocumentInfo.Id);
 
             if (pciDocumentInfo._ValidUntilOption.IsSet)
-                writer.WriteString("validUntil", pciDocumentInfo._ValidUntilOption.Value!.Value.ToString(ValidUntilFormat));
+                if (pciDocumentInfo._ValidUntilOption.Value != null)
+                    writer.WriteString("validUntil", pciDocumentInfo._ValidUntilOption.Value!.Value.ToString(ValidUntilFormat));
         }
     }
 }

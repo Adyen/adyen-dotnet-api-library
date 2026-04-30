@@ -158,7 +158,8 @@ namespace Adyen.LegalEntityManagement.Models
         {
             
             if (setTaxElectronicDeliveryConsentRequest._US1099kOption.IsSet)
-                writer.WriteBoolean("US1099k", setTaxElectronicDeliveryConsentRequest._US1099kOption.Value!.Value);
+                if (setTaxElectronicDeliveryConsentRequest._US1099kOption.Value != null)
+                    writer.WriteBoolean("US1099k", setTaxElectronicDeliveryConsentRequest._US1099kOption.Value!.Value);
         }
     }
 }

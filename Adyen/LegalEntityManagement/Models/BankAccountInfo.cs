@@ -259,7 +259,8 @@ namespace Adyen.LegalEntityManagement.Models
                     writer.WriteString("countryCode", bankAccountInfo.CountryCode);
 
             if (bankAccountInfo._TrustedSourceOption.IsSet)
-                writer.WriteBoolean("trustedSource", bankAccountInfo._TrustedSourceOption.Value!.Value);
+                if (bankAccountInfo._TrustedSourceOption.Value != null)
+                    writer.WriteBoolean("trustedSource", bankAccountInfo._TrustedSourceOption.Value!.Value);
         }
     }
 }

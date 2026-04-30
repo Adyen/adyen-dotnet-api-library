@@ -642,17 +642,20 @@ namespace Adyen.LegalEntityManagement.Models
                 JsonSerializer.Serialize(writer, sourceOfFunds.Amount, jsonSerializerOptions);
             }
             if (sourceOfFunds._AssetMonthsHeldOption.IsSet)
-                writer.WriteNumber("assetMonthsHeld", sourceOfFunds._AssetMonthsHeldOption.Value!.Value);
+                if (sourceOfFunds._AssetMonthsHeldOption.Value != null)
+                    writer.WriteNumber("assetMonthsHeld", sourceOfFunds._AssetMonthsHeldOption.Value!.Value);
 
             if (sourceOfFunds._CryptocurrencyExchangeOption.IsSet)
                 if (sourceOfFunds.CryptocurrencyExchange != null)
                     writer.WriteString("cryptocurrencyExchange", sourceOfFunds.CryptocurrencyExchange);
 
             if (sourceOfFunds._DateOfFundsReceivedOption.IsSet)
-                writer.WriteString("dateOfFundsReceived", sourceOfFunds._DateOfFundsReceivedOption.Value!.Value.ToString(DateOfFundsReceivedFormat));
+                if (sourceOfFunds._DateOfFundsReceivedOption.Value != null)
+                    writer.WriteString("dateOfFundsReceived", sourceOfFunds._DateOfFundsReceivedOption.Value!.Value.ToString(DateOfFundsReceivedFormat));
 
             if (sourceOfFunds._DateOfSourceEventOption.IsSet)
-                writer.WriteString("dateOfSourceEvent", sourceOfFunds._DateOfSourceEventOption.Value!.Value.ToString(DateOfSourceEventFormat));
+                if (sourceOfFunds._DateOfSourceEventOption.Value != null)
+                    writer.WriteString("dateOfSourceEvent", sourceOfFunds._DateOfSourceEventOption.Value!.Value.ToString(DateOfSourceEventFormat));
 
             if (sourceOfFunds._DescriptionOption.IsSet)
                 if (sourceOfFunds.Description != null)

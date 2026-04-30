@@ -858,6 +858,7 @@ namespace Adyen.LegalEntityManagement.Models
 
             if (unincorporatedPartnership._DoingBusinessAsAbsentOption.IsSet)
                 if (unincorporatedPartnership._DoingBusinessAsAbsentOption.Value != null)
+                    if (unincorporatedPartnership._DoingBusinessAsAbsentOption.Value != null)
                     writer.WriteBoolean("doingBusinessAsAbsent", unincorporatedPartnership._DoingBusinessAsAbsentOption.Value!.Value);
                 else
                     writer.WriteNull("doingBusinessAsAbsent");

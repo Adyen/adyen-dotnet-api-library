@@ -229,7 +229,8 @@ namespace Adyen.LegalEntityManagement.Models
                     writer.WriteString("number", taxInformation.Number);
 
             if (taxInformation._NumberAbsentOption.IsSet)
-                writer.WriteBoolean("numberAbsent", taxInformation._NumberAbsentOption.Value!.Value);
+                if (taxInformation._NumberAbsentOption.Value != null)
+                    writer.WriteBoolean("numberAbsent", taxInformation._NumberAbsentOption.Value!.Value);
 
             if (taxInformation._TypeOption.IsSet)
                 if (taxInformation.Type != null)

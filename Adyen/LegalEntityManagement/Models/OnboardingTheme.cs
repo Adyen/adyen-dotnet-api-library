@@ -250,7 +250,8 @@ namespace Adyen.LegalEntityManagement.Models
                     writer.WriteString("description", onboardingTheme.Description);
 
             if (onboardingTheme._UpdatedAtOption.IsSet)
-                writer.WriteString("updatedAt", onboardingTheme._UpdatedAtOption.Value!.Value.ToString(UpdatedAtFormat));
+                if (onboardingTheme._UpdatedAtOption.Value != null)
+                    writer.WriteString("updatedAt", onboardingTheme._UpdatedAtOption.Value!.Value.ToString(UpdatedAtFormat));
         }
     }
 }

@@ -457,7 +457,8 @@ namespace Adyen.LegalEntityManagement.Models
                     writer.WriteString("acceptedFor", termsOfServiceAcceptanceInfo.AcceptedFor);
 
             if (termsOfServiceAcceptanceInfo._CreatedAtOption.IsSet)
-                writer.WriteString("createdAt", termsOfServiceAcceptanceInfo._CreatedAtOption.Value!.Value.ToString(CreatedAtFormat));
+                if (termsOfServiceAcceptanceInfo._CreatedAtOption.Value != null)
+                    writer.WriteString("createdAt", termsOfServiceAcceptanceInfo._CreatedAtOption.Value!.Value.ToString(CreatedAtFormat));
 
             if (termsOfServiceAcceptanceInfo._IdOption.IsSet)
                 if (termsOfServiceAcceptanceInfo.Id != null)
@@ -470,7 +471,8 @@ namespace Adyen.LegalEntityManagement.Models
             }
             
             if (termsOfServiceAcceptanceInfo._ValidToOption.IsSet)
-                writer.WriteString("validTo", termsOfServiceAcceptanceInfo._ValidToOption.Value!.Value.ToString(ValidToFormat));
+                if (termsOfServiceAcceptanceInfo._ValidToOption.Value != null)
+                    writer.WriteString("validTo", termsOfServiceAcceptanceInfo._ValidToOption.Value!.Value.ToString(ValidToFormat));
         }
     }
 }

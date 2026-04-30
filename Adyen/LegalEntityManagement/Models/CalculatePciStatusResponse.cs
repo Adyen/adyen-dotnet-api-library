@@ -158,7 +158,8 @@ namespace Adyen.LegalEntityManagement.Models
         {
             
             if (calculatePciStatusResponse._SigningRequiredOption.IsSet)
-                writer.WriteBoolean("signingRequired", calculatePciStatusResponse._SigningRequiredOption.Value!.Value);
+                if (calculatePciStatusResponse._SigningRequiredOption.Value != null)
+                    writer.WriteBoolean("signingRequired", calculatePciStatusResponse._SigningRequiredOption.Value!.Value);
         }
     }
 }

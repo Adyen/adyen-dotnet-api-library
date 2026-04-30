@@ -222,7 +222,8 @@ namespace Adyen.LegalEntityManagement.Models
                     writer.WriteString("realLastFour", transferInstrumentReference.RealLastFour);
 
             if (transferInstrumentReference._TrustedSourceOption.IsSet)
-                writer.WriteBoolean("trustedSource", transferInstrumentReference._TrustedSourceOption.Value!.Value);
+                if (transferInstrumentReference._TrustedSourceOption.Value != null)
+                    writer.WriteBoolean("trustedSource", transferInstrumentReference._TrustedSourceOption.Value!.Value);
         }
     }
 }

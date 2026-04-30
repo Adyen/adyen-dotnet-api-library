@@ -1340,6 +1340,7 @@ namespace Adyen.LegalEntityManagement.Models
 
             if (organization._DoingBusinessAsAbsentOption.IsSet)
                 if (organization._DoingBusinessAsAbsentOption.Value != null)
+                    if (organization._DoingBusinessAsAbsentOption.Value != null)
                     writer.WriteBoolean("doingBusinessAsAbsent", organization._DoingBusinessAsAbsentOption.Value!.Value);
                 else
                     writer.WriteNull("doingBusinessAsAbsent");
@@ -1362,7 +1363,8 @@ namespace Adyen.LegalEntityManagement.Models
                     writer.WriteString("globalLegalEntityIdentifier", organization.GlobalLegalEntityIdentifier);
 
             if (organization._HeadOfficeIndicatorOption.IsSet)
-                writer.WriteBoolean("headOfficeIndicator", organization._HeadOfficeIndicatorOption.Value!.Value);
+                if (organization._HeadOfficeIndicatorOption.Value != null)
+                    writer.WriteBoolean("headOfficeIndicator", organization._HeadOfficeIndicatorOption.Value!.Value);
 
             if (organization._InstitutionalSectorOption.IsSet && organization.InstitutionalSector != null) 
             {
@@ -1390,6 +1392,7 @@ namespace Adyen.LegalEntityManagement.Models
 
             if (organization._RegistrationNumberAbsentOption.IsSet)
                 if (organization._RegistrationNumberAbsentOption.Value != null)
+                    if (organization._RegistrationNumberAbsentOption.Value != null)
                     writer.WriteBoolean("registrationNumberAbsent", organization._RegistrationNumberAbsentOption.Value!.Value);
                 else
                     writer.WriteNull("registrationNumberAbsent");
