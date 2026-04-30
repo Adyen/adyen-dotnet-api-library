@@ -306,7 +306,8 @@ namespace Adyen.ManagementWebhooks.Models
                 writer.WriteString("requestedLevel", accountCapabilityData.RequestedLevel);
 
             if (accountCapabilityData._AllowedOption.IsSet)
-                writer.WriteBoolean("allowed", accountCapabilityData._AllowedOption.Value!.Value);
+                if (accountCapabilityData._AllowedOption.Value != null)
+                    writer.WriteBoolean("allowed", accountCapabilityData._AllowedOption.Value!.Value);
 
             if (accountCapabilityData._AllowedLevelOption.IsSet)
                 if (accountCapabilityData.AllowedLevel != null)
@@ -322,7 +323,8 @@ namespace Adyen.ManagementWebhooks.Models
                 JsonSerializer.Serialize(writer, accountCapabilityData.Problems, jsonSerializerOptions);
             }
             if (accountCapabilityData._VerificationDeadlineOption.IsSet)
-                writer.WriteString("verificationDeadline", accountCapabilityData._VerificationDeadlineOption.Value!.Value.ToString(VerificationDeadlineFormat));
+                if (accountCapabilityData._VerificationDeadlineOption.Value != null)
+                    writer.WriteString("verificationDeadline", accountCapabilityData._VerificationDeadlineOption.Value!.Value.ToString(VerificationDeadlineFormat));
 
             if (accountCapabilityData._VerificationStatusOption.IsSet)
                 if (accountCapabilityData.VerificationStatus != null)
