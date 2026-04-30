@@ -1,8 +1,8 @@
 {
   "service": "balancewebhooks",
   "project": "dotnet",
-  "generatedAt": "2026-04-23T11:37:14Z",
-  "openapiCommitSha": "ae28b691b7da78d2abedb5fa8baff05c59b00ae0",
+  "generatedAt": "2026-04-30T10:00:39Z",
+  "openapiCommitSha": "d24c59897bc66d049db5fbc0f4823efe59964e67",
   "automationCommitSha": "4ad0c0c7e87bc0e5994a9a3350a991d0691350bb",
-  "libraryCommitSha": "9fb7e82517cad1094624fda220bc3ca05a40a5c3"
+  "libraryCommitSha": "58cf7ddd1ce25669b0591c0a37377e4d46d456ef"
 }

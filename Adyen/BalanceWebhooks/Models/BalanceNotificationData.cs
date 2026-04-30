@@ -285,7 +285,8 @@ namespace Adyen.BalanceWebhooks.Models
                     writer.WriteString("balancePlatform", balanceNotificationData.BalancePlatform);
 
             if (balanceNotificationData._CreationDateOption.IsSet)
-                writer.WriteString("creationDate", balanceNotificationData._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
+                if (balanceNotificationData._CreationDateOption.Value != null)
+                    writer.WriteString("creationDate", balanceNotificationData._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
 
             if (balanceNotificationData._IdOption.IsSet)
                 if (balanceNotificationData.Id != null)

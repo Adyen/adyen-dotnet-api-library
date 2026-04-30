@@ -363,14 +363,16 @@ namespace Adyen.BalanceWebhooks.Models
                 JsonSerializer.Serialize(writer, releaseBlockedBalanceNotificationData.BlockedBalanceBefore, jsonSerializerOptions);
             }
             if (releaseBlockedBalanceNotificationData._CreationDateOption.IsSet)
-                writer.WriteString("creationDate", releaseBlockedBalanceNotificationData._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
+                if (releaseBlockedBalanceNotificationData._CreationDateOption.Value != null)
+                    writer.WriteString("creationDate", releaseBlockedBalanceNotificationData._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
 
             if (releaseBlockedBalanceNotificationData._IdOption.IsSet)
                 if (releaseBlockedBalanceNotificationData.Id != null)
                     writer.WriteString("id", releaseBlockedBalanceNotificationData.Id);
 
             if (releaseBlockedBalanceNotificationData._ValueDateOption.IsSet)
-                writer.WriteString("valueDate", releaseBlockedBalanceNotificationData._ValueDateOption.Value!.Value.ToString(ValueDateFormat));
+                if (releaseBlockedBalanceNotificationData._ValueDateOption.Value != null)
+                    writer.WriteString("valueDate", releaseBlockedBalanceNotificationData._ValueDateOption.Value!.Value.ToString(ValueDateFormat));
         }
     }
 }
