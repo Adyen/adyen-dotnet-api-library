@@ -39,7 +39,7 @@ namespace Adyen.Payment.Models
         [JsonConstructor]
         public DeviceRenderOptions(Option<SdkInterfaceEnum?> sdkInterface = default, Option<List<DeviceRenderOptions.SdkUiTypeEnum>?> sdkUiType = default)
         {
-            _SdkInterfaceOption = sdkInterface;
+            _SdkInterfaceOption = sdkInterface.IsSet ? sdkInterface : SdkInterfaceEnum.Both;
             _SdkUiTypeOption = sdkUiType;
             OnCreated();
         }

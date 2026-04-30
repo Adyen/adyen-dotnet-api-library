@@ -1338,10 +1338,12 @@ namespace Adyen.Payment.Models
                 JsonSerializer.Serialize(writer, paymentRequest3ds2.BrowserInfo, jsonSerializerOptions);
             }
             if (paymentRequest3ds2._CaptureDelayHoursOption.IsSet)
-                writer.WriteNumber("captureDelayHours", paymentRequest3ds2._CaptureDelayHoursOption.Value!.Value);
+                if (paymentRequest3ds2._CaptureDelayHoursOption.Value != null)
+                    writer.WriteNumber("captureDelayHours", paymentRequest3ds2._CaptureDelayHoursOption.Value!.Value);
 
             if (paymentRequest3ds2._DateOfBirthOption.IsSet)
-                writer.WriteString("dateOfBirth", paymentRequest3ds2._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
+                if (paymentRequest3ds2._DateOfBirthOption.Value != null)
+                    writer.WriteString("dateOfBirth", paymentRequest3ds2._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
 
             if (paymentRequest3ds2._DccQuoteOption.IsSet)
             {
@@ -1354,14 +1356,16 @@ namespace Adyen.Payment.Models
                 JsonSerializer.Serialize(writer, paymentRequest3ds2.DeliveryAddress, jsonSerializerOptions);
             }
             if (paymentRequest3ds2._DeliveryDateOption.IsSet)
-                writer.WriteString("deliveryDate", paymentRequest3ds2._DeliveryDateOption.Value!.Value.ToString(DeliveryDateFormat));
+                if (paymentRequest3ds2._DeliveryDateOption.Value != null)
+                    writer.WriteString("deliveryDate", paymentRequest3ds2._DeliveryDateOption.Value!.Value.ToString(DeliveryDateFormat));
 
             if (paymentRequest3ds2._DeviceFingerprintOption.IsSet)
                 if (paymentRequest3ds2.DeviceFingerprint != null)
                     writer.WriteString("deviceFingerprint", paymentRequest3ds2.DeviceFingerprint);
 
             if (paymentRequest3ds2._FraudOffsetOption.IsSet)
-                writer.WriteNumber("fraudOffset", paymentRequest3ds2._FraudOffsetOption.Value!.Value);
+                if (paymentRequest3ds2._FraudOffsetOption.Value != null)
+                    writer.WriteNumber("fraudOffset", paymentRequest3ds2._FraudOffsetOption.Value!.Value);
 
             if (paymentRequest3ds2._InstallmentsOption.IsSet)
             {
@@ -1481,14 +1485,16 @@ namespace Adyen.Payment.Models
                     writer.WriteString("threeDS2Token", paymentRequest3ds2.ThreeDS2Token);
 
             if (paymentRequest3ds2._ThreeDSAuthenticationOnlyOption.IsSet)
-                writer.WriteBoolean("threeDSAuthenticationOnly", paymentRequest3ds2._ThreeDSAuthenticationOnlyOption.Value!.Value);
+                if (paymentRequest3ds2._ThreeDSAuthenticationOnlyOption.Value != null)
+                    writer.WriteBoolean("threeDSAuthenticationOnly", paymentRequest3ds2._ThreeDSAuthenticationOnlyOption.Value!.Value);
 
             if (paymentRequest3ds2._TotalsGroupOption.IsSet)
                 if (paymentRequest3ds2.TotalsGroup != null)
                     writer.WriteString("totalsGroup", paymentRequest3ds2.TotalsGroup);
 
             if (paymentRequest3ds2._TrustedShopperOption.IsSet)
-                writer.WriteBoolean("trustedShopper", paymentRequest3ds2._TrustedShopperOption.Value!.Value);
+                if (paymentRequest3ds2._TrustedShopperOption.Value != null)
+                    writer.WriteBoolean("trustedShopper", paymentRequest3ds2._TrustedShopperOption.Value!.Value);
         }
     }
 }
