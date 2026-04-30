@@ -577,10 +577,12 @@ namespace Adyen.ManagementWebhooks.Models
                 writer.WriteString("type", midServiceNotificationData.Type);
 
             if (midServiceNotificationData._AllowedOption.IsSet)
-                writer.WriteBoolean("allowed", midServiceNotificationData._AllowedOption.Value!.Value);
+                if (midServiceNotificationData._AllowedOption.Value != null)
+                    writer.WriteBoolean("allowed", midServiceNotificationData._AllowedOption.Value!.Value);
 
             if (midServiceNotificationData._EnabledOption.IsSet)
-                writer.WriteBoolean("enabled", midServiceNotificationData._EnabledOption.Value!.Value);
+                if (midServiceNotificationData._EnabledOption.Value != null)
+                    writer.WriteBoolean("enabled", midServiceNotificationData._EnabledOption.Value!.Value);
 
             if (midServiceNotificationData._ReferenceOption.IsSet)
                 if (midServiceNotificationData.Reference != null)
