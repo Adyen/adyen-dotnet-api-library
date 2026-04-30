@@ -204,7 +204,8 @@ namespace Adyen.BinLookup.Models
                     writer.WriteString("countryCode", merchantDetails.CountryCode);
 
             if (merchantDetails._EnrolledIn3DSecureOption.IsSet)
-                writer.WriteBoolean("enrolledIn3DSecure", merchantDetails._EnrolledIn3DSecureOption.Value!.Value);
+                if (merchantDetails._EnrolledIn3DSecureOption.Value != null)
+                    writer.WriteBoolean("enrolledIn3DSecure", merchantDetails._EnrolledIn3DSecureOption.Value!.Value);
 
             if (merchantDetails._MccOption.IsSet)
                 if (merchantDetails.Mcc != null)

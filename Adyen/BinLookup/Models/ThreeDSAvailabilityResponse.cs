@@ -251,7 +251,8 @@ namespace Adyen.BinLookup.Models
                 JsonSerializer.Serialize(writer, threeDSAvailabilityResponse.DsPublicKeys, jsonSerializerOptions);
             }
             if (threeDSAvailabilityResponse._ThreeDS1SupportedOption.IsSet)
-                writer.WriteBoolean("threeDS1Supported", threeDSAvailabilityResponse._ThreeDS1SupportedOption.Value!.Value);
+                if (threeDSAvailabilityResponse._ThreeDS1SupportedOption.Value != null)
+                    writer.WriteBoolean("threeDS1Supported", threeDSAvailabilityResponse._ThreeDS1SupportedOption.Value!.Value);
 
             if (threeDSAvailabilityResponse._ThreeDS2CardRangeDetailsOption.IsSet)
             {
@@ -259,7 +260,8 @@ namespace Adyen.BinLookup.Models
                 JsonSerializer.Serialize(writer, threeDSAvailabilityResponse.ThreeDS2CardRangeDetails, jsonSerializerOptions);
             }
             if (threeDSAvailabilityResponse._ThreeDS2supportedOption.IsSet)
-                writer.WriteBoolean("threeDS2supported", threeDSAvailabilityResponse._ThreeDS2supportedOption.Value!.Value);
+                if (threeDSAvailabilityResponse._ThreeDS2supportedOption.Value != null)
+                    writer.WriteBoolean("threeDS2supported", threeDSAvailabilityResponse._ThreeDS2supportedOption.Value!.Value);
         }
     }
 }
