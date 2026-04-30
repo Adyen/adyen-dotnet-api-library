@@ -481,7 +481,8 @@ namespace Adyen.DisputeWebhooks.Models
                     writer.WriteString("balancePlatform", disputeEventNotification.BalancePlatform);
 
             if (disputeEventNotification._CreationDateOption.IsSet)
-                writer.WriteString("creationDate", disputeEventNotification._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
+                if (disputeEventNotification._CreationDateOption.Value != null)
+                    writer.WriteString("creationDate", disputeEventNotification._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
 
             if (disputeEventNotification._DescriptionOption.IsSet)
                 if (disputeEventNotification.Description != null)
