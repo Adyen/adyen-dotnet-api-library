@@ -179,6 +179,40 @@ namespace Adyen.Test.ConfigurationWebhooks
         }
 
         [TestMethod]
+        public void Given_Deserialize_When_Event_Is_Mandate_Created()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/configurationwebhooks/mandate-notification.json");
+
+            // Act
+            var r = _configurationWebhooksHandler.DeserializeMandateNotificationRequest(json);
+
+            // Assert
+            Assert.IsNotNull(r);
+            Assert.AreEqual("test", r.Environment);
+            Assert.AreEqual(MandateNotificationRequest.TypeEnum.BalancePlatformMandateCreated, r.Type);
+            Assert.AreEqual(DateTimeOffset.Parse("2025-09-16T07:33:51.833Z"), r.Timestamp);
+
+            Assert.IsNotNull(r.Data);
+            Assert.AreEqual("AdyenPspService", r.Data.BalancePlatform);
+
+            Assert.IsNotNull(r.Data.Mandate);
+            Assert.AreEqual("AdyenBank-GBP-00001", r.Data.Mandate.BalanceAccountId);
+            Assert.AreEqual("MNDT6NB67H39C22252CRV22337R8", r.Data.Mandate.Id);
+            Assert.AreEqual("PI323FR223MHK85MKTGKDDJCZ", r.Data.Mandate.PaymentInstrumentId);
+            Assert.AreEqual(Mandate.StatusEnum.Approved, r.Data.Mandate.Status);
+            Assert.AreEqual(Mandate.TypeEnum.Bacs, r.Data.Mandate.Type);
+
+            Assert.IsNotNull(r.Data.Mandate.Counterparty);
+            Assert.IsNotNull(r.Data.Mandate.Counterparty.AccountHolder);
+            Assert.AreEqual("Creditor Name", r.Data.Mandate.Counterparty.AccountHolder.FullName);
+
+            Assert.IsNotNull(r.Data.Mandate.Counterparty.AccountIdentification);
+            Assert.AreEqual("10809699", r.Data.Mandate.Counterparty.AccountIdentification.AccountNumber);
+            Assert.AreEqual("405081", r.Data.Mandate.Counterparty.AccountIdentification.SortCode);
+        }
+
+        [TestMethod]
         public void Given_Deserialize_When_Event_Is_PaymentInstrument_Created()
         {
             // Arrange

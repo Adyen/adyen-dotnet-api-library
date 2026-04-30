@@ -1,0 +1,29 @@
+{
+  "data": {
+    "balancePlatform": "AdyenPspService",
+    "creationDate": "2025-09-16T09:33:50+02:00",
+    "id": "MNDT6NB67H39C22252CRV22337R8",
+    "mandate": {
+      "balanceAccountId": "AdyenBank-GBP-00001",
+      "counterparty": {
+        "accountHolder": {
+          "fullName": "Creditor Name"
+        },
+        "accountIdentification": {
+          "accountNumber": "10809699",
+          "sortCode": "405081",
+          "type": "ukLocal"
+        }
+      },
+      "createdAt": "2025-09-16T07:33:50.076Z",
+      "id": "MNDT6NB67H39C22252CRV22337R8",
+      "paymentInstrumentId": "PI323FR223MHK85MKTGKDDJCZ",
+      "status": "approved",
+      "type": "bacs",
+      "updatedAt": "2025-09-16T07:33:50.076Z"
+    }
+  },
+  "environment": "test",
+  "timestamp": "2025-09-16T07:33:51.833Z",
+  "type": "balancePlatform.mandate.created"
+}
