@@ -37,16 +37,18 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="acquirerId">The unique identifier of the merchant&#39;s acquirer.</param>
         /// <param name="city">The city where the merchant is located.</param>
         /// <param name="country">The country where the merchant is located.</param>
+        /// <param name="countryCode">The two-character country code of the merchant&#39;s location, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.</param>
         /// <param name="mcc">The merchant category code.</param>
         /// <param name="merchantId">The unique identifier of the merchant.</param>
         /// <param name="name">The name of the merchant&#39;s shop or service.</param>
         /// <param name="postalCode">The postal code of the merchant.</param>
         [JsonConstructor]
-        public TransferNotificationMerchantData(Option<string?> acquirerId = default, Option<string?> city = default, Option<string?> country = default, Option<string?> mcc = default, Option<string?> merchantId = default, Option<string?> name = default, Option<string?> postalCode = default)
+        public TransferNotificationMerchantData(Option<string?> acquirerId = default, Option<string?> city = default, Option<string?> country = default, Option<string?> countryCode = default, Option<string?> mcc = default, Option<string?> merchantId = default, Option<string?> name = default, Option<string?> postalCode = default)
         {
             _AcquirerIdOption = acquirerId;
             _CityOption = city;
             _CountryOption = country;
+            _CountryCodeOption = countryCode;
             _MccOption = mcc;
             _MerchantIdOption = merchantId;
             _NameOption = name;
@@ -104,6 +106,20 @@ namespace Adyen.TransferWebhooks.Models
         /// <value>The country where the merchant is located.</value>
         [JsonPropertyName("country")]
         public string? Country { get { return this._CountryOption; } set { this._CountryOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="CountryCode"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _CountryCodeOption { get; private set; }
+
+        /// <summary>
+        /// The two-character country code of the merchant&#39;s location, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+        /// </summary>
+        /// <value>The two-character country code of the merchant's location, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.</value>
+        [JsonPropertyName("countryCode")]
+        public string? CountryCode { get { return this._CountryCodeOption; } set { this._CountryCodeOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Mcc"/> will be populated.
@@ -172,6 +188,7 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("  AcquirerId: ").Append(AcquirerId).Append("\n");
             sb.Append("  City: ").Append(City).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
+            sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
             sb.Append("  Mcc: ").Append(Mcc).Append("\n");
             sb.Append("  MerchantId: ").Append(MerchantId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -206,6 +223,7 @@ namespace Adyen.TransferWebhooks.Models
             Option<string?> acquirerId = default;
             Option<string?> city = default;
             Option<string?> country = default;
+            Option<string?> countryCode = default;
             Option<string?> mcc = default;
             Option<string?> merchantId = default;
             Option<string?> name = default;
@@ -235,6 +253,9 @@ namespace Adyen.TransferWebhooks.Models
                         case "country":
                             country = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "countryCode":
+                            countryCode = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "mcc":
                             mcc = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -254,7 +275,7 @@ namespace Adyen.TransferWebhooks.Models
             }
             
 
-            return new TransferNotificationMerchantData(acquirerId, city, country, mcc, merchantId, name, postalCode);
+            return new TransferNotificationMerchantData(acquirerId, city, country, countryCode, mcc, merchantId, name, postalCode);
         }
 
         /// <summary>
@@ -294,6 +315,10 @@ namespace Adyen.TransferWebhooks.Models
             if (transferNotificationMerchantData._CountryOption.IsSet)
                 if (transferNotificationMerchantData.Country != null)
                     writer.WriteString("country", transferNotificationMerchantData.Country);
+
+            if (transferNotificationMerchantData._CountryCodeOption.IsSet)
+                if (transferNotificationMerchantData.CountryCode != null)
+                    writer.WriteString("countryCode", transferNotificationMerchantData.CountryCode);
 
             if (transferNotificationMerchantData._MccOption.IsSet)
                 if (transferNotificationMerchantData.Mcc != null)

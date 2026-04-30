@@ -1222,6 +1222,11 @@ namespace Adyen.TransferWebhooks.Models
             public static readonly StatusEnum PaymentCostPending = new("paymentCostPending");
 
             /// <summary>
+            /// StatusEnum.Pending - pending
+            /// </summary>
+            public static readonly StatusEnum Pending = new("pending");
+
+            /// <summary>
             /// StatusEnum.PendingApproval - pendingApproval
             /// </summary>
             public static readonly StatusEnum PendingApproval = new("pendingApproval");
@@ -1285,6 +1290,11 @@ namespace Adyen.TransferWebhooks.Models
             /// StatusEnum.Returned - returned
             /// </summary>
             public static readonly StatusEnum Returned = new("returned");
+
+            /// <summary>
+            /// StatusEnum.Reversed - reversed
+            /// </summary>
+            public static readonly StatusEnum Reversed = new("reversed");
 
             /// <summary>
             /// StatusEnum.SecondChargeback - secondChargeback
@@ -1390,6 +1400,7 @@ namespace Adyen.TransferWebhooks.Models
                     "miscCostPending" => StatusEnum.MiscCostPending,
                     "paymentCost" => StatusEnum.PaymentCost,
                     "paymentCostPending" => StatusEnum.PaymentCostPending,
+                    "pending" => StatusEnum.Pending,
                     "pendingApproval" => StatusEnum.PendingApproval,
                     "pendingExecution" => StatusEnum.PendingExecution,
                     "received" => StatusEnum.Received,
@@ -1403,6 +1414,7 @@ namespace Adyen.TransferWebhooks.Models
                     "reserveAdjustment" => StatusEnum.ReserveAdjustment,
                     "reserveAdjustmentPending" => StatusEnum.ReserveAdjustmentPending,
                     "returned" => StatusEnum.Returned,
+                    "reversed" => StatusEnum.Reversed,
                     "secondChargeback" => StatusEnum.SecondChargeback,
                     "secondChargebackPending" => StatusEnum.SecondChargebackPending,
                     "undefined" => StatusEnum.Undefined,
@@ -1577,6 +1589,9 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == StatusEnum.PaymentCostPending)
                     return "paymentCostPending";
                 
+                if (value == StatusEnum.Pending)
+                    return "pending";
+                
                 if (value == StatusEnum.PendingApproval)
                     return "pendingApproval";
                 
@@ -1615,6 +1630,9 @@ namespace Adyen.TransferWebhooks.Models
                 
                 if (value == StatusEnum.Returned)
                     return "returned";
+                
+                if (value == StatusEnum.Reversed)
+                    return "reversed";
                 
                 if (value == StatusEnum.SecondChargeback)
                     return "secondChargeback";
@@ -2206,10 +2224,12 @@ namespace Adyen.TransferWebhooks.Models
                     writer.WriteString("arn", transferEvent.Arn);
 
             if (transferEvent._BookingDateOption.IsSet)
-                writer.WriteString("bookingDate", transferEvent._BookingDateOption.Value!.Value.ToString(BookingDateFormat));
+                if (transferEvent._BookingDateOption.Value != null)
+                    writer.WriteString("bookingDate", transferEvent._BookingDateOption.Value!.Value.ToString(BookingDateFormat));
 
             if (transferEvent._EstimatedArrivalTimeOption.IsSet)
-                writer.WriteString("estimatedArrivalTime", transferEvent._EstimatedArrivalTimeOption.Value!.Value.ToString(EstimatedArrivalTimeFormat));
+                if (transferEvent._EstimatedArrivalTimeOption.Value != null)
+                    writer.WriteString("estimatedArrivalTime", transferEvent._EstimatedArrivalTimeOption.Value!.Value.ToString(EstimatedArrivalTimeFormat));
 
             if (transferEvent._EventsDataOption.IsSet)
             {
@@ -2268,10 +2288,12 @@ namespace Adyen.TransferWebhooks.Models
             }
             
             if (transferEvent._UpdateDateOption.IsSet)
-                writer.WriteString("updateDate", transferEvent._UpdateDateOption.Value!.Value.ToString(UpdateDateFormat));
+                if (transferEvent._UpdateDateOption.Value != null)
+                    writer.WriteString("updateDate", transferEvent._UpdateDateOption.Value!.Value.ToString(UpdateDateFormat));
 
             if (transferEvent._ValueDateOption.IsSet)
-                writer.WriteString("valueDate", transferEvent._ValueDateOption.Value!.Value.ToString(ValueDateFormat));
+                if (transferEvent._ValueDateOption.Value != null)
+                    writer.WriteString("valueDate", transferEvent._ValueDateOption.Value!.Value.ToString(ValueDateFormat));
         }
     }
 }

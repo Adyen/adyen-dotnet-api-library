@@ -79,6 +79,7 @@ namespace Adyen.TransferWebhooks.Client
             _jsonOptions.Converters.Add(new EstimationTrackingDataJsonConverter());
             _jsonOptions.Converters.Add(new ExecutionDateJsonConverter());
             _jsonOptions.Converters.Add(new ExternalReasonJsonConverter());
+            _jsonOptions.Converters.Add(new FundingInstrumentJsonConverter());
             _jsonOptions.Converters.Add(new HKLocalAccountIdentificationJsonConverter());
             _jsonOptions.Converters.Add(new HULocalAccountIdentificationJsonConverter());
             _jsonOptions.Converters.Add(new IbanAccountIdentificationJsonConverter());
@@ -123,6 +124,7 @@ namespace Adyen.TransferWebhooks.Client
             _jsonOptions.Converters.Add(new TransferReviewJsonConverter());
             _jsonOptions.Converters.Add(new UKLocalAccountIdentificationJsonConverter());
             _jsonOptions.Converters.Add(new USLocalAccountIdentificationJsonConverter());
+            _jsonOptions.Converters.Add(new UltimatePartyIdentificationJsonConverter());
             JsonSerializerOptionsProvider jsonSerializerOptionsProvider = new(_jsonOptions);
             _services.AddSingleton(jsonSerializerOptionsProvider);
         }

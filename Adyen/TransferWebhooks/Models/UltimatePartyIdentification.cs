@@ -27,30 +27,32 @@ using Adyen.TransferWebhooks.Client;
 namespace Adyen.TransferWebhooks.Models
 {
     /// <summary>
-    /// PartyIdentification.
+    /// UltimatePartyIdentification.
     /// </summary>
-    public partial class PartyIdentification
+    public partial class UltimatePartyIdentification
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PartyIdentification" /> class.
+        /// Initializes a new instance of the <see cref="UltimatePartyIdentification" /> class.
         /// </summary>
         /// <param name="address">address</param>
         /// <param name="dateOfBirth">The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**.  Allowed only when &#x60;type&#x60; is **individual**.</param>
         /// <param name="email">The email address of the organization or individual. Maximum length: 254 characters.</param>
         /// <param name="firstName">The first name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when &#x60;type&#x60; is **individual**. - Required when &#x60;category&#x60; is **card**.</param>
         /// <param name="fullName">The full name of the entity that owns the bank account or card.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + &amp; ! ? @ ( ) \&quot; &#39; and space.  Required when &#x60;category&#x60; is **bank**.</param>
+        /// <param name="fundingInstrument">fundingInstrument</param>
         /// <param name="lastName">The last name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when &#x60;type&#x60; is **individual**. - Required when &#x60;category&#x60; is **card**.</param>
         /// <param name="reference">A unique reference to identify the party or counterparty involved in the transfer. For example, your client&#39;s unique wallet or payee ID.  Required when you include &#x60;cardIdentification.storedPaymentMethodId&#x60;.</param>
         /// <param name="type">The type of entity that owns the bank account or card.  Possible values: **individual**, **organization**, or **unknown**.  Required when &#x60;category&#x60; is **card**. In this case, the value must be **individual**. (default to TypeEnum.Unknown)</param>
         /// <param name="url">The URL of the organization or individual. Maximum length: 255 characters.</param>
         [JsonConstructor]
-        public PartyIdentification(Option<Address?> address = default, Option<DateOnly?> dateOfBirth = default, Option<string?> email = default, Option<string?> firstName = default, Option<string?> fullName = default, Option<string?> lastName = default, Option<string?> reference = default, Option<TypeEnum?> type = default, Option<string?> url = default)
+        public UltimatePartyIdentification(Option<Address?> address = default, Option<DateOnly?> dateOfBirth = default, Option<string?> email = default, Option<string?> firstName = default, Option<string?> fullName = default, Option<FundingInstrument?> fundingInstrument = default, Option<string?> lastName = default, Option<string?> reference = default, Option<TypeEnum?> type = default, Option<string?> url = default)
         {
             _AddressOption = address;
             _DateOfBirthOption = dateOfBirth;
             _EmailOption = email;
             _FirstNameOption = firstName;
             _FullNameOption = fullName;
+            _FundingInstrumentOption = fundingInstrument;
             _LastNameOption = lastName;
             _ReferenceOption = reference;
             _TypeOption = type.IsSet ? type : TypeEnum.Unknown;
@@ -61,7 +63,7 @@ namespace Adyen.TransferWebhooks.Models
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public PartyIdentification()
+        public UltimatePartyIdentification()
         {
         }
 
@@ -263,6 +265,19 @@ namespace Adyen.TransferWebhooks.Models
         public string? FullName { get { return this._FullNameOption; } set { this._FullNameOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="FundingInstrument"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<FundingInstrument?> _FundingInstrumentOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="FundingInstrument"/>.
+        /// </summary>
+        [JsonPropertyName("fundingInstrument")]
+        public FundingInstrument? FundingInstrument { get { return this._FundingInstrumentOption; } set { this._FundingInstrumentOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="LastName"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -311,12 +326,13 @@ namespace Adyen.TransferWebhooks.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PartyIdentification {\n");
+            sb.Append("class UltimatePartyIdentification {\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  DateOfBirth: ").Append(DateOfBirth).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  FirstName: ").Append(FirstName).Append("\n");
             sb.Append("  FullName: ").Append(FullName).Append("\n");
+            sb.Append("  FundingInstrument: ").Append(FundingInstrument).Append("\n");
             sb.Append("  LastName: ").Append(LastName).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -327,9 +343,9 @@ namespace Adyen.TransferWebhooks.Models
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="PartyIdentification" />
+    /// A Json converter for type <see cref="UltimatePartyIdentification" />
     /// </summary>
-    public class PartyIdentificationJsonConverter : JsonConverter<PartyIdentification>
+    public class UltimatePartyIdentificationJsonConverter : JsonConverter<UltimatePartyIdentification>
     {
         /// <summary>
         /// The format to use to serialize DateOfBirth.
@@ -337,14 +353,14 @@ namespace Adyen.TransferWebhooks.Models
         public static string DateOfBirthFormat { get; set; } = "yyyy'-'MM'-'dd";
 
         /// <summary>
-        /// Deserializes json to <see cref="PartyIdentification"/>.
+        /// Deserializes json to <see cref="UltimatePartyIdentification"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="PartyIdentification"/>.</returns>
+        /// <returns><see cref="UltimatePartyIdentification"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override PartyIdentification Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override UltimatePartyIdentification Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -358,9 +374,10 @@ namespace Adyen.TransferWebhooks.Models
             Option<string?> email = default;
             Option<string?> firstName = default;
             Option<string?> fullName = default;
+            Option<FundingInstrument?> fundingInstrument = default;
             Option<string?> lastName = default;
             Option<string?> reference = default;
-            Option<PartyIdentification.TypeEnum?> type = default;
+            Option<UltimatePartyIdentification.TypeEnum?> type = default;
             Option<string?> url = default;
 
             while (utf8JsonReader.Read())
@@ -393,6 +410,9 @@ namespace Adyen.TransferWebhooks.Models
                         case "fullName":
                             fullName = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "fundingInstrument":
+                            fundingInstrument = new Option<FundingInstrument?>(JsonSerializer.Deserialize<FundingInstrument>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "lastName":
                             lastName = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -401,7 +421,7 @@ namespace Adyen.TransferWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PartyIdentification.TypeEnum?>(PartyIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<UltimatePartyIdentification.TypeEnum?>(UltimatePartyIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
                             break;
                         case "url":
                             url = new Option<string?>(utf8JsonReader.GetString()!);
@@ -413,73 +433,78 @@ namespace Adyen.TransferWebhooks.Models
             }
             
 
-            return new PartyIdentification(address, dateOfBirth, email, firstName, fullName, lastName, reference, type, url);
+            return new UltimatePartyIdentification(address, dateOfBirth, email, firstName, fullName, fundingInstrument, lastName, reference, type, url);
         }
 
         /// <summary>
-        /// Serializes a <see cref="PartyIdentification"/>.
+        /// Serializes a <see cref="UltimatePartyIdentification"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="partyIdentification"></param>
+        /// <param name="ultimatePartyIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, PartyIdentification partyIdentification, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, UltimatePartyIdentification ultimatePartyIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, partyIdentification, jsonSerializerOptions);
+            WriteProperties(writer, ultimatePartyIdentification, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="PartyIdentification"/>.
+        /// Serializes the properties of <see cref="UltimatePartyIdentification"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="partyIdentification"></param>
+        /// <param name="ultimatePartyIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, PartyIdentification partyIdentification, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, UltimatePartyIdentification ultimatePartyIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (partyIdentification._AddressOption.IsSet)
+            if (ultimatePartyIdentification._AddressOption.IsSet)
             {
                 writer.WritePropertyName("address");
-                JsonSerializer.Serialize(writer, partyIdentification.Address, jsonSerializerOptions);
+                JsonSerializer.Serialize(writer, ultimatePartyIdentification.Address, jsonSerializerOptions);
             }
-            if (partyIdentification._DateOfBirthOption.IsSet)
-                if (partyIdentification._DateOfBirthOption.Value != null)
-                    writer.WriteString("dateOfBirth", partyIdentification._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
+            if (ultimatePartyIdentification._DateOfBirthOption.IsSet)
+                if (ultimatePartyIdentification._DateOfBirthOption.Value != null)
+                    writer.WriteString("dateOfBirth", ultimatePartyIdentification._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
 
-            if (partyIdentification._EmailOption.IsSet)
-                if (partyIdentification.Email != null)
-                    writer.WriteString("email", partyIdentification.Email);
+            if (ultimatePartyIdentification._EmailOption.IsSet)
+                if (ultimatePartyIdentification.Email != null)
+                    writer.WriteString("email", ultimatePartyIdentification.Email);
 
-            if (partyIdentification._FirstNameOption.IsSet)
-                if (partyIdentification.FirstName != null)
-                    writer.WriteString("firstName", partyIdentification.FirstName);
+            if (ultimatePartyIdentification._FirstNameOption.IsSet)
+                if (ultimatePartyIdentification.FirstName != null)
+                    writer.WriteString("firstName", ultimatePartyIdentification.FirstName);
 
-            if (partyIdentification._FullNameOption.IsSet)
-                if (partyIdentification.FullName != null)
-                    writer.WriteString("fullName", partyIdentification.FullName);
+            if (ultimatePartyIdentification._FullNameOption.IsSet)
+                if (ultimatePartyIdentification.FullName != null)
+                    writer.WriteString("fullName", ultimatePartyIdentification.FullName);
 
-            if (partyIdentification._LastNameOption.IsSet)
-                if (partyIdentification.LastName != null)
-                    writer.WriteString("lastName", partyIdentification.LastName);
-
-            if (partyIdentification._ReferenceOption.IsSet)
-                if (partyIdentification.Reference != null)
-                    writer.WriteString("reference", partyIdentification.Reference);
-
-            if (partyIdentification._TypeOption.IsSet && partyIdentification.Type != null) 
+            if (ultimatePartyIdentification._FundingInstrumentOption.IsSet)
             {
-                string? typeRawValue = PartyIdentification.TypeEnum.ToJsonValue(partyIdentification._TypeOption.Value!.Value);
+                writer.WritePropertyName("fundingInstrument");
+                JsonSerializer.Serialize(writer, ultimatePartyIdentification.FundingInstrument, jsonSerializerOptions);
+            }
+            if (ultimatePartyIdentification._LastNameOption.IsSet)
+                if (ultimatePartyIdentification.LastName != null)
+                    writer.WriteString("lastName", ultimatePartyIdentification.LastName);
+
+            if (ultimatePartyIdentification._ReferenceOption.IsSet)
+                if (ultimatePartyIdentification.Reference != null)
+                    writer.WriteString("reference", ultimatePartyIdentification.Reference);
+
+            if (ultimatePartyIdentification._TypeOption.IsSet && ultimatePartyIdentification.Type != null) 
+            {
+                string? typeRawValue = UltimatePartyIdentification.TypeEnum.ToJsonValue(ultimatePartyIdentification._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);
             }
             
-            if (partyIdentification._UrlOption.IsSet)
-                if (partyIdentification.Url != null)
-                    writer.WriteString("url", partyIdentification.Url);
+            if (ultimatePartyIdentification._UrlOption.IsSet)
+                if (ultimatePartyIdentification.Url != null)
+                    writer.WriteString("url", ultimatePartyIdentification.Url);
         }
     }
 }
