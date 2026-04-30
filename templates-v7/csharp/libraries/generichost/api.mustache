@@ -67,7 +67,8 @@ namespace {{packageName}}.{{apiPackage}}
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="{{interfacePrefix}}{{operationId}}ApiResponse"/>.</returns>
         {{#isDeprecated}}
-        [Obsolete("{{#vendorExtensions.x-deprecatedInVersion}}Deprecated since {{#appName}}{{{.}}}{{/appName}} v{{#vendorExtensions.x-deprecatedInVersion}}{{.}}{{/vendorExtensions.x-deprecatedInVersion}}.{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedMessage}} {{{.}}}{{/vendorExtensions.x-deprecatedMessage}}")]
+        /* Deprecated{{#vendorExtensions.x-deprecatedInVersion}} since {{#appName}}{{{.}}}{{/appName}} v{{#vendorExtensions.x-deprecatedInVersion}}{{.}}{{/vendorExtensions.x-deprecatedInVersion}}{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedMessage}}: {{{.}}}{{/vendorExtensions.x-deprecatedMessage}} */
+        [Obsolete("{{#vendorExtensions.x-deprecatedInVersion}}Deprecated since {{#appName}}{{{.}}}{{/appName}} v{{#vendorExtensions.x-deprecatedInVersion}}{{.}}{{/vendorExtensions.x-deprecatedInVersion}}.{{/vendorExtensions.x-deprecatedInVersion}}")]
         {{/isDeprecated}}
         Task<{{interfacePrefix}}{{operationId}}ApiResponse> {{operationId}}Async({{>OperationSignature}});
 
