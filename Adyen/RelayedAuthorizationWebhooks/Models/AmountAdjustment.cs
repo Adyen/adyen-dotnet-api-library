@@ -392,7 +392,8 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
             }
             
             if (amountAdjustment._BasepointsOption.IsSet)
-                writer.WriteNumber("basepoints", amountAdjustment._BasepointsOption.Value!.Value);
+                if (amountAdjustment._BasepointsOption.Value != null)
+                    writer.WriteNumber("basepoints", amountAdjustment._BasepointsOption.Value!.Value);
 
             if (amountAdjustment._FixedAmountOption.IsSet)
             {

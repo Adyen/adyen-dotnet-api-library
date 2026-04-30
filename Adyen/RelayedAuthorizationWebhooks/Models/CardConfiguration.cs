@@ -47,9 +47,10 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
         /// <param name="languages">A list of two-letter [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes of the card. For example, **[en,es]**.</param>
         /// <param name="logoImageId">The unique identifier of the logo image. This image is printed on the partial front of the card, for example, a logo on the upper right corner.</param>
         /// <param name="pinMailer">The letter on which the PIN of the card is printed.  This field overrides the PIN mailer design ID defined in the card configuration profile.</param>
+        /// <param name="printLine">Print Line.  Text printed on the physical card below the cardholder name. You provide the value, which can be up to 26 characters.</param>
         /// <param name="shipmentMethod">The logistics company that ships the card.  This field overrides the logistics company defined in the card configuration profile.</param>
         [JsonConstructor]
-        public CardConfiguration(string configurationProfileId, Option<string?> activation = default, Option<string?> activationUrl = default, Option<BulkAddress?> bulkAddress = default, Option<string?> cardImageId = default, Option<string?> carrier = default, Option<string?> carrierImageId = default, Option<string?> currency = default, Option<string?> envelope = default, Option<string?> insert = default, Option<List<string>?> languages = default, Option<string?> logoImageId = default, Option<string?> pinMailer = default, Option<string?> shipmentMethod = default)
+        public CardConfiguration(string configurationProfileId, Option<string?> activation = default, Option<string?> activationUrl = default, Option<BulkAddress?> bulkAddress = default, Option<string?> cardImageId = default, Option<string?> carrier = default, Option<string?> carrierImageId = default, Option<string?> currency = default, Option<string?> envelope = default, Option<string?> insert = default, Option<List<string>?> languages = default, Option<string?> logoImageId = default, Option<string?> pinMailer = default, Option<string?> printLine = default, Option<string?> shipmentMethod = default)
         {
             ConfigurationProfileId = configurationProfileId;
             _ActivationOption = activation;
@@ -64,6 +65,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
             _LanguagesOption = languages;
             _LogoImageIdOption = logoImageId;
             _PinMailerOption = pinMailer;
+            _PrintLineOption = printLine;
             _ShipmentMethodOption = shipmentMethod;
             OnCreated();
         }
@@ -252,6 +254,20 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
         public string? PinMailer { get { return this._PinMailerOption; } set { this._PinMailerOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="PrintLine"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _PrintLineOption { get; private set; }
+
+        /// <summary>
+        /// Print Line.  Text printed on the physical card below the cardholder name. You provide the value, which can be up to 26 characters.
+        /// </summary>
+        /// <value>Print Line.  Text printed on the physical card below the cardholder name. You provide the value, which can be up to 26 characters.</value>
+        [JsonPropertyName("printLine")]
+        public string? PrintLine { get { return this._PrintLineOption; } set { this._PrintLineOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ShipmentMethod"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -286,6 +302,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
             sb.Append("  Languages: ").Append(Languages).Append("\n");
             sb.Append("  LogoImageId: ").Append(LogoImageId).Append("\n");
             sb.Append("  PinMailer: ").Append(PinMailer).Append("\n");
+            sb.Append("  PrintLine: ").Append(PrintLine).Append("\n");
             sb.Append("  ShipmentMethod: ").Append(ShipmentMethod).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -327,6 +344,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
             Option<List<string>?> languages = default;
             Option<string?> logoImageId = default;
             Option<string?> pinMailer = default;
+            Option<string?> printLine = default;
             Option<string?> shipmentMethod = default;
 
             while (utf8JsonReader.Read())
@@ -383,6 +401,9 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                         case "pinMailer":
                             pinMailer = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "printLine":
+                            printLine = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "shipmentMethod":
                             shipmentMethod = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -395,7 +416,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
             if (!configurationProfileId.IsSet)
                 throw new ArgumentException("Property is required for class CardConfiguration.", nameof(configurationProfileId));
 
-            return new CardConfiguration(configurationProfileId.Value!, activation, activationUrl, bulkAddress, cardImageId, carrier, carrierImageId, currency, envelope, insert, languages, logoImageId, pinMailer, shipmentMethod);
+            return new CardConfiguration(configurationProfileId.Value!, activation, activationUrl, bulkAddress, cardImageId, carrier, carrierImageId, currency, envelope, insert, languages, logoImageId, pinMailer, printLine, shipmentMethod);
         }
 
         /// <summary>
@@ -476,6 +497,10 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
             if (cardConfiguration._PinMailerOption.IsSet)
                 if (cardConfiguration.PinMailer != null)
                     writer.WriteString("pinMailer", cardConfiguration.PinMailer);
+
+            if (cardConfiguration._PrintLineOption.IsSet)
+                if (cardConfiguration.PrintLine != null)
+                    writer.WriteString("printLine", cardConfiguration.PrintLine);
 
             if (cardConfiguration._ShipmentMethodOption.IsSet)
                 if (cardConfiguration.ShipmentMethod != null)
