@@ -318,7 +318,8 @@ namespace Adyen.BalanceWebhooks.Models
             }
             
             if (releasedBlockedBalanceNotificationRequest._TimestampOption.IsSet)
-                writer.WriteString("timestamp", releasedBlockedBalanceNotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
+                if (releasedBlockedBalanceNotificationRequest._TimestampOption.Value != null)
+                    writer.WriteString("timestamp", releasedBlockedBalanceNotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
         }
     }
 }

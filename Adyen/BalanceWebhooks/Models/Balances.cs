@@ -221,16 +221,20 @@ namespace Adyen.BalanceWebhooks.Models
         {
             
             if (balances._AvailableOption.IsSet)
-                writer.WriteNumber("available", balances._AvailableOption.Value!.Value);
+                if (balances._AvailableOption.Value != null)
+                    writer.WriteNumber("available", balances._AvailableOption.Value!.Value);
 
             if (balances._BalanceOption.IsSet)
-                writer.WriteNumber("balance", balances._BalanceOption.Value!.Value);
+                if (balances._BalanceOption.Value != null)
+                    writer.WriteNumber("balance", balances._BalanceOption.Value!.Value);
 
             if (balances._PendingOption.IsSet)
-                writer.WriteNumber("pending", balances._PendingOption.Value!.Value);
+                if (balances._PendingOption.Value != null)
+                    writer.WriteNumber("pending", balances._PendingOption.Value!.Value);
 
             if (balances._ReservedOption.IsSet)
-                writer.WriteNumber("reserved", balances._ReservedOption.Value!.Value);
+                if (balances._ReservedOption.Value != null)
+                    writer.WriteNumber("reserved", balances._ReservedOption.Value!.Value);
         }
     }
 }
