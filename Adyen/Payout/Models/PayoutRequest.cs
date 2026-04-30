@@ -552,7 +552,8 @@ namespace Adyen.Payout.Models
                 JsonSerializer.Serialize(writer, payoutRequest.Card, jsonSerializerOptions);
             }
             if (payoutRequest._FraudOffsetOption.IsSet)
-                writer.WriteNumber("fraudOffset", payoutRequest._FraudOffsetOption.Value!.Value);
+                if (payoutRequest._FraudOffsetOption.Value != null)
+                    writer.WriteNumber("fraudOffset", payoutRequest._FraudOffsetOption.Value!.Value);
 
             if (payoutRequest._FundSourceOption.IsSet)
             {

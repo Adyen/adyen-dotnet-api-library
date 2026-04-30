@@ -553,7 +553,8 @@ namespace Adyen.Payout.Models
                 JsonSerializer.Serialize(writer, submitRequest.AdditionalData, jsonSerializerOptions);
             }
             if (submitRequest._DateOfBirthOption.IsSet)
-                writer.WriteString("dateOfBirth", submitRequest._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
+                if (submitRequest._DateOfBirthOption.Value != null)
+                    writer.WriteString("dateOfBirth", submitRequest._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
 
             if (submitRequest._EntityTypeOption.IsSet && submitRequest.EntityType != null) 
             {
@@ -562,7 +563,8 @@ namespace Adyen.Payout.Models
             }
             
             if (submitRequest._FraudOffsetOption.IsSet)
-                writer.WriteNumber("fraudOffset", submitRequest._FraudOffsetOption.Value!.Value);
+                if (submitRequest._FraudOffsetOption.Value != null)
+                    writer.WriteNumber("fraudOffset", submitRequest._FraudOffsetOption.Value!.Value);
 
             if (submitRequest._NationalityOption.IsSet)
                 if (submitRequest.Nationality != null)
