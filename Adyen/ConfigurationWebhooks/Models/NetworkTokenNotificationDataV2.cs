@@ -432,7 +432,8 @@ namespace Adyen.ConfigurationWebhooks.Models
                 JsonSerializer.Serialize(writer, networkTokenNotificationDataV2.Authentication, jsonSerializerOptions);
             }
             if (networkTokenNotificationDataV2._AuthenticationAppliedOption.IsSet)
-                writer.WriteBoolean("authenticationApplied", networkTokenNotificationDataV2._AuthenticationAppliedOption.Value!.Value);
+                if (networkTokenNotificationDataV2._AuthenticationAppliedOption.Value != null)
+                    writer.WriteBoolean("authenticationApplied", networkTokenNotificationDataV2._AuthenticationAppliedOption.Value!.Value);
 
             if (networkTokenNotificationDataV2._BalancePlatformOption.IsSet)
                 if (networkTokenNotificationDataV2.BalancePlatform != null)

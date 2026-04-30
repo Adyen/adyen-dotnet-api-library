@@ -87,6 +87,11 @@ namespace Adyen.ConfigurationWebhooks.Client
             _jsonOptions.Converters.Add(new DeviceJsonConverter());
             _jsonOptions.Converters.Add(new ExpiryJsonConverter());
             _jsonOptions.Converters.Add(new IbanAccountIdentificationJsonConverter());
+            _jsonOptions.Converters.Add(new MandateJsonConverter());
+            _jsonOptions.Converters.Add(new MandateBankAccountJsonConverter());
+            _jsonOptions.Converters.Add(new MandateNotificationDataJsonConverter());
+            _jsonOptions.Converters.Add(new MandateNotificationRequestJsonConverter());
+            _jsonOptions.Converters.Add(new MandatePartyIdentificationJsonConverter());
             _jsonOptions.Converters.Add(new NameJsonConverter());
             _jsonOptions.Converters.Add(new NetworkTokenNotificationDataV2JsonConverter());
             _jsonOptions.Converters.Add(new NetworkTokenNotificationRequestJsonConverter());
@@ -112,6 +117,7 @@ namespace Adyen.ConfigurationWebhooks.Client
             _jsonOptions.Converters.Add(new SweepCounterpartyJsonConverter());
             _jsonOptions.Converters.Add(new SweepScheduleJsonConverter());
             _jsonOptions.Converters.Add(new TokenAuthenticationJsonConverter());
+            _jsonOptions.Converters.Add(new UKLocalMandateAccountIdentificationJsonConverter());
             _jsonOptions.Converters.Add(new ValidationFactsJsonConverter());
             _jsonOptions.Converters.Add(new VerificationDeadlineJsonConverter());
             _jsonOptions.Converters.Add(new VerificationErrorJsonConverter());

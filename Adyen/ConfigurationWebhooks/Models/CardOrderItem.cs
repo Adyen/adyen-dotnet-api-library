@@ -321,7 +321,8 @@ namespace Adyen.ConfigurationWebhooks.Models
                     writer.WriteString("cardOrderItemId", cardOrderItem.CardOrderItemId);
 
             if (cardOrderItem._CreationDateOption.IsSet)
-                writer.WriteString("creationDate", cardOrderItem._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
+                if (cardOrderItem._CreationDateOption.Value != null)
+                    writer.WriteString("creationDate", cardOrderItem._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
 
             if (cardOrderItem._IdOption.IsSet)
                 if (cardOrderItem.Id != null)

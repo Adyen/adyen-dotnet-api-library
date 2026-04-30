@@ -225,10 +225,12 @@ namespace Adyen.ConfigurationWebhooks.Models
                     writer.WriteString("advice", networkTokenTransactionRulesResult.Advice);
 
             if (networkTokenTransactionRulesResult._AllHardBlockRulesPassedOption.IsSet)
-                writer.WriteBoolean("allHardBlockRulesPassed", networkTokenTransactionRulesResult._AllHardBlockRulesPassedOption.Value!.Value);
+                if (networkTokenTransactionRulesResult._AllHardBlockRulesPassedOption.Value != null)
+                    writer.WriteBoolean("allHardBlockRulesPassed", networkTokenTransactionRulesResult._AllHardBlockRulesPassedOption.Value!.Value);
 
             if (networkTokenTransactionRulesResult._ScoreOption.IsSet)
-                writer.WriteNumber("score", networkTokenTransactionRulesResult._ScoreOption.Value!.Value);
+                if (networkTokenTransactionRulesResult._ScoreOption.Value != null)
+                    writer.WriteNumber("score", networkTokenTransactionRulesResult._ScoreOption.Value!.Value);
 
             if (networkTokenTransactionRulesResult._TriggeredTransactionRulesOption.IsSet)
             {

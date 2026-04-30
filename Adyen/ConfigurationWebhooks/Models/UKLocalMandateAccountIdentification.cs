@@ -27,40 +27,38 @@ using Adyen.ConfigurationWebhooks.Client;
 namespace Adyen.ConfigurationWebhooks.Models
 {
     /// <summary>
-    /// SweepConfigurationNotificationRequest.
+    /// UKLocalMandateAccountIdentification.
     /// </summary>
-    public partial class SweepConfigurationNotificationRequest
+    public partial class UKLocalMandateAccountIdentification
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SweepConfigurationNotificationRequest" /> class.
+        /// Initializes a new instance of the <see cref="UKLocalMandateAccountIdentification" /> class.
         /// </summary>
-        /// <param name="data">data</param>
-        /// <param name="environment">The environment from which the webhook originated.  Possible values: **test**, **live**.</param>
-        /// <param name="type">Type of webhook.</param>
-        /// <param name="timestamp">When the event was queued.</param>
+        /// <param name="accountNumber">The 8-digit bank account number, without separators or whitespace.</param>
+        /// <param name="sortCode">The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.</param>
+        /// <param name="type">**ukLocal** (default to TypeEnum.UkLocal)</param>
         [JsonConstructor]
-        public SweepConfigurationNotificationRequest(SweepConfigurationNotificationData data, string environment, TypeEnum type, Option<DateTimeOffset?> timestamp = default)
+        public UKLocalMandateAccountIdentification(string accountNumber, string sortCode, TypeEnum type = default)
         {
-            Data = data;
-            Environment = environment;
+            AccountNumber = accountNumber;
+            SortCode = sortCode;
             Type = type;
-            _TimestampOption = timestamp;
             OnCreated();
         }
         
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public SweepConfigurationNotificationRequest()
+        public UKLocalMandateAccountIdentification()
         {
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Type of webhook.
+        /// **ukLocal**
         /// </summary>
-        /// <value>Type of webhook.</value>
+        /// <value>**ukLocal**</value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
         public class TypeEnum : IEnum
         {
@@ -70,19 +68,9 @@ namespace Adyen.ConfigurationWebhooks.Models
             public string? Value { get; set; }
 
             /// <summary>
-            /// TypeEnum.BalancePlatformBalanceAccountSweepCreated - balancePlatform.balanceAccountSweep.created
+            /// TypeEnum.UkLocal - ukLocal
             /// </summary>
-            public static readonly TypeEnum BalancePlatformBalanceAccountSweepCreated = new("balancePlatform.balanceAccountSweep.created");
-
-            /// <summary>
-            /// TypeEnum.BalancePlatformBalanceAccountSweepUpdated - balancePlatform.balanceAccountSweep.updated
-            /// </summary>
-            public static readonly TypeEnum BalancePlatformBalanceAccountSweepUpdated = new("balancePlatform.balanceAccountSweep.updated");
-
-            /// <summary>
-            /// TypeEnum.BalancePlatformBalanceAccountSweepDeleted - balancePlatform.balanceAccountSweep.deleted
-            /// </summary>
-            public static readonly TypeEnum BalancePlatformBalanceAccountSweepDeleted = new("balancePlatform.balanceAccountSweep.deleted");
+            public static readonly TypeEnum UkLocal = new("ukLocal");
         
             private TypeEnum(string? value)
             {
@@ -121,9 +109,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             public static TypeEnum? FromStringOrDefault(string value)
             {
                 return value switch {
-                    "balancePlatform.balanceAccountSweep.created" => TypeEnum.BalancePlatformBalanceAccountSweepCreated,
-                    "balancePlatform.balanceAccountSweep.updated" => TypeEnum.BalancePlatformBalanceAccountSweepUpdated,
-                    "balancePlatform.balanceAccountSweep.deleted" => TypeEnum.BalancePlatformBalanceAccountSweepDeleted,
+                    "ukLocal" => TypeEnum.UkLocal,
                     _ => null,
                 };
             }
@@ -139,14 +125,8 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == null)
                     return null;
             
-                if (value == TypeEnum.BalancePlatformBalanceAccountSweepCreated)
-                    return "balancePlatform.balanceAccountSweep.created";
-                
-                if (value == TypeEnum.BalancePlatformBalanceAccountSweepUpdated)
-                    return "balancePlatform.balanceAccountSweep.updated";
-                
-                if (value == TypeEnum.BalancePlatformBalanceAccountSweepDeleted)
-                    return "balancePlatform.balanceAccountSweep.deleted";
+                if (value == TypeEnum.UkLocal)
+                    return "ukLocal";
                 
                 return null;
             }
@@ -170,38 +150,25 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
 
         /// <summary>
-        /// Type of webhook.
+        /// **ukLocal**
         /// </summary>
-        /// <value>Type of webhook.</value>
+        /// <value>**ukLocal**</value>
         [JsonPropertyName("type")]
         public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// <see cref="Data"/>.
+        /// The 8-digit bank account number, without separators or whitespace.
         /// </summary>
-        [JsonPropertyName("data")]
-        public SweepConfigurationNotificationData Data { get; set; }
+        /// <value>The 8-digit bank account number, without separators or whitespace.</value>
+        [JsonPropertyName("accountNumber")]
+        public string AccountNumber { get; set; }
 
         /// <summary>
-        /// The environment from which the webhook originated.  Possible values: **test**, **live**.
+        /// The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.
         /// </summary>
-        /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
-        [JsonPropertyName("environment")]
-        public string Environment { get; set; }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Timestamp"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<DateTimeOffset?> _TimestampOption { get; private set; }
-
-        /// <summary>
-        /// When the event was queued.
-        /// </summary>
-        /// <value>When the event was queued.</value>
-        [JsonPropertyName("timestamp")]
-        public DateTimeOffset? Timestamp { get { return this._TimestampOption; } set { this._TimestampOption = new(value); } }
+        /// <value>The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.</value>
+        [JsonPropertyName("sortCode")]
+        public string SortCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -210,35 +177,29 @@ namespace Adyen.ConfigurationWebhooks.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SweepConfigurationNotificationRequest {\n");
-            sb.Append("  Data: ").Append(Data).Append("\n");
-            sb.Append("  Environment: ").Append(Environment).Append("\n");
+            sb.Append("class UKLocalMandateAccountIdentification {\n");
+            sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
+            sb.Append("  SortCode: ").Append(SortCode).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="SweepConfigurationNotificationRequest" />
+    /// A Json converter for type <see cref="UKLocalMandateAccountIdentification" />
     /// </summary>
-    public class SweepConfigurationNotificationRequestJsonConverter : JsonConverter<SweepConfigurationNotificationRequest>
+    public class UKLocalMandateAccountIdentificationJsonConverter : JsonConverter<UKLocalMandateAccountIdentification>
     {
         /// <summary>
-        /// The format to use to serialize Timestamp.
-        /// </summary>
-        public static string TimestampFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
-
-        /// <summary>
-        /// Deserializes json to <see cref="SweepConfigurationNotificationRequest"/>.
+        /// Deserializes json to <see cref="UKLocalMandateAccountIdentification"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="SweepConfigurationNotificationRequest"/>.</returns>
+        /// <returns><see cref="UKLocalMandateAccountIdentification"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override SweepConfigurationNotificationRequest Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override UKLocalMandateAccountIdentification Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -247,10 +208,9 @@ namespace Adyen.ConfigurationWebhooks.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<SweepConfigurationNotificationData?> data = default;
-            Option<string?> environment = default;
-            Option<SweepConfigurationNotificationRequest.TypeEnum?> type = default;
-            Option<DateTimeOffset?> timestamp = default;
+            Option<string?> accountNumber = default;
+            Option<string?> sortCode = default;
+            Option<UKLocalMandateAccountIdentification.TypeEnum?> type = default;
 
             while (utf8JsonReader.Read())
             {
@@ -267,18 +227,15 @@ namespace Adyen.ConfigurationWebhooks.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "data":
-                            data = new Option<SweepConfigurationNotificationData?>(JsonSerializer.Deserialize<SweepConfigurationNotificationData>(ref utf8JsonReader, jsonSerializerOptions)!);
+                        case "accountNumber":
+                            accountNumber = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
-                        case "environment":
-                            environment = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "sortCode":
+                            sortCode = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<SweepConfigurationNotificationRequest.TypeEnum?>(SweepConfigurationNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
-                            break;
-                        case "timestamp":
-                            timestamp = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
+                            type = new Option<UKLocalMandateAccountIdentification.TypeEnum?>(UKLocalMandateAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
                             break;
                         default:
                             break;
@@ -286,58 +243,55 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class SweepConfigurationNotificationRequest.", nameof(data));
+            if (!accountNumber.IsSet)
+                throw new ArgumentException("Property is required for class UKLocalMandateAccountIdentification.", nameof(accountNumber));
 
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class SweepConfigurationNotificationRequest.", nameof(environment));
+            if (!sortCode.IsSet)
+                throw new ArgumentException("Property is required for class UKLocalMandateAccountIdentification.", nameof(sortCode));
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class SweepConfigurationNotificationRequest.", nameof(type));
+                throw new ArgumentException("Property is required for class UKLocalMandateAccountIdentification.", nameof(type));
 
-            return new SweepConfigurationNotificationRequest(data.Value!, environment.Value!, type.Value!.Value!, timestamp);
+            return new UKLocalMandateAccountIdentification(accountNumber.Value!, sortCode.Value!, type.Value!.Value!);
         }
 
         /// <summary>
-        /// Serializes a <see cref="SweepConfigurationNotificationRequest"/>.
+        /// Serializes a <see cref="UKLocalMandateAccountIdentification"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="sweepConfigurationNotificationRequest"></param>
+        /// <param name="uKLocalMandateAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, SweepConfigurationNotificationRequest sweepConfigurationNotificationRequest, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, UKLocalMandateAccountIdentification uKLocalMandateAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, sweepConfigurationNotificationRequest, jsonSerializerOptions);
+            WriteProperties(writer, uKLocalMandateAccountIdentification, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="SweepConfigurationNotificationRequest"/>.
+        /// Serializes the properties of <see cref="UKLocalMandateAccountIdentification"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="sweepConfigurationNotificationRequest"></param>
+        /// <param name="uKLocalMandateAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, SweepConfigurationNotificationRequest sweepConfigurationNotificationRequest, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, UKLocalMandateAccountIdentification uKLocalMandateAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            writer.WritePropertyName("data");
-            JsonSerializer.Serialize(writer, sweepConfigurationNotificationRequest.Data, jsonSerializerOptions);
-            if (sweepConfigurationNotificationRequest.Environment != null)
-                writer.WriteString("environment", sweepConfigurationNotificationRequest.Environment);
+            if (uKLocalMandateAccountIdentification.AccountNumber != null)
+                writer.WriteString("accountNumber", uKLocalMandateAccountIdentification.AccountNumber);
 
-            if (sweepConfigurationNotificationRequest.Type != null) 
+            if (uKLocalMandateAccountIdentification.SortCode != null)
+                writer.WriteString("sortCode", uKLocalMandateAccountIdentification.SortCode);
+
+            if (uKLocalMandateAccountIdentification.Type != null) 
             {
-                string? typeRawValue = SweepConfigurationNotificationRequest.TypeEnum.ToJsonValue(sweepConfigurationNotificationRequest.Type);
+                string? typeRawValue = UKLocalMandateAccountIdentification.TypeEnum.ToJsonValue(uKLocalMandateAccountIdentification.Type);
                 writer.WriteString("type", typeRawValue);
             }
-            
-            if (sweepConfigurationNotificationRequest._TimestampOption.IsSet)
-                if (sweepConfigurationNotificationRequest._TimestampOption.Value != null)
-                    writer.WriteString("timestamp", sweepConfigurationNotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
         }
     }
 }

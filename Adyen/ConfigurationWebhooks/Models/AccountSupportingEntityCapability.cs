@@ -650,7 +650,8 @@ namespace Adyen.ConfigurationWebhooks.Models
         {
             
             if (accountSupportingEntityCapability._AllowedOption.IsSet)
-                writer.WriteBoolean("allowed", accountSupportingEntityCapability._AllowedOption.Value!.Value);
+                if (accountSupportingEntityCapability._AllowedOption.Value != null)
+                    writer.WriteBoolean("allowed", accountSupportingEntityCapability._AllowedOption.Value!.Value);
 
             if (accountSupportingEntityCapability._AllowedLevelOption.IsSet && accountSupportingEntityCapability.AllowedLevel != null) 
             {
@@ -659,14 +660,16 @@ namespace Adyen.ConfigurationWebhooks.Models
             }
             
             if (accountSupportingEntityCapability._EnabledOption.IsSet)
-                writer.WriteBoolean("enabled", accountSupportingEntityCapability._EnabledOption.Value!.Value);
+                if (accountSupportingEntityCapability._EnabledOption.Value != null)
+                    writer.WriteBoolean("enabled", accountSupportingEntityCapability._EnabledOption.Value!.Value);
 
             if (accountSupportingEntityCapability._IdOption.IsSet)
                 if (accountSupportingEntityCapability.Id != null)
                     writer.WriteString("id", accountSupportingEntityCapability.Id);
 
             if (accountSupportingEntityCapability._RequestedOption.IsSet)
-                writer.WriteBoolean("requested", accountSupportingEntityCapability._RequestedOption.Value!.Value);
+                if (accountSupportingEntityCapability._RequestedOption.Value != null)
+                    writer.WriteBoolean("requested", accountSupportingEntityCapability._RequestedOption.Value!.Value);
 
             if (accountSupportingEntityCapability._RequestedLevelOption.IsSet && accountSupportingEntityCapability.RequestedLevel != null) 
             {

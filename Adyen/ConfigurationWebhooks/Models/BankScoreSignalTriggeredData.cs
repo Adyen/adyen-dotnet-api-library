@@ -348,14 +348,16 @@ namespace Adyen.ConfigurationWebhooks.Models
                     writer.WriteString("balancePlatform", bankScoreSignalTriggeredData.BalancePlatform);
 
             if (bankScoreSignalTriggeredData._CreationDateOption.IsSet)
-                writer.WriteString("creationDate", bankScoreSignalTriggeredData._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
+                if (bankScoreSignalTriggeredData._CreationDateOption.Value != null)
+                    writer.WriteString("creationDate", bankScoreSignalTriggeredData._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
 
             if (bankScoreSignalTriggeredData._IdOption.IsSet)
                 if (bankScoreSignalTriggeredData.Id != null)
                     writer.WriteString("id", bankScoreSignalTriggeredData.Id);
 
             if (bankScoreSignalTriggeredData._RiskScoreOption.IsSet)
-                writer.WriteNumber("riskScore", bankScoreSignalTriggeredData._RiskScoreOption.Value!.Value);
+                if (bankScoreSignalTriggeredData._RiskScoreOption.Value != null)
+                    writer.WriteNumber("riskScore", bankScoreSignalTriggeredData._RiskScoreOption.Value!.Value);
 
             if (bankScoreSignalTriggeredData._ScoreSignalsTriggeredOption.IsSet)
             {
