@@ -209,7 +209,8 @@ namespace Adyen.TransactionWebhooks.Models
                     writer.WriteString("balancePlatform", resource.BalancePlatform);
 
             if (resource._CreationDateOption.IsSet)
-                writer.WriteString("creationDate", resource._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
+                if (resource._CreationDateOption.Value != null)
+                    writer.WriteString("creationDate", resource._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
 
             if (resource._IdOption.IsSet)
                 if (resource.Id != null)

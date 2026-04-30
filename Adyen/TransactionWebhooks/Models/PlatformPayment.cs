@@ -48,7 +48,7 @@ namespace Adyen.TransactionWebhooks.Models
             _PaymentMerchantReferenceOption = paymentMerchantReference;
             _PlatformPaymentTypeOption = platformPaymentType;
             _PspPaymentReferenceOption = pspPaymentReference;
-            _TypeOption = type;
+            _TypeOption = type.IsSet ? type : TypeEnum.PlatformPayment;
             OnCreated();
         }
         

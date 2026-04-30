@@ -316,7 +316,8 @@ namespace Adyen.TransactionWebhooks.Models
                 writer.WriteString("environment", transactionNotificationRequestV4.Environment);
 
             if (transactionNotificationRequestV4._TimestampOption.IsSet)
-                writer.WriteString("timestamp", transactionNotificationRequestV4._TimestampOption.Value!.Value.ToString(TimestampFormat));
+                if (transactionNotificationRequestV4._TimestampOption.Value != null)
+                    writer.WriteString("timestamp", transactionNotificationRequestV4._TimestampOption.Value!.Value.ToString(TimestampFormat));
 
             if (transactionNotificationRequestV4._TypeOption.IsSet && transactionNotificationRequestV4.Type != null) 
             {

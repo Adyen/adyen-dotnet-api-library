@@ -513,7 +513,8 @@ namespace Adyen.TransactionWebhooks.Models
             writer.WriteString("valueDate", transaction.ValueDate.ToString(ValueDateFormat));
 
             if (transaction._CreationDateOption.IsSet)
-                writer.WriteString("creationDate", transaction._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
+                if (transaction._CreationDateOption.Value != null)
+                    writer.WriteString("creationDate", transaction._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
 
             if (transaction._DescriptionOption.IsSet)
                 if (transaction.Description != null)
