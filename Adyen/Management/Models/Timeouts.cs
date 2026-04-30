@@ -158,7 +158,8 @@ namespace Adyen.Management.Models
         {
             
             if (timeouts._FromActiveToSleepOption.IsSet)
-                writer.WriteNumber("fromActiveToSleep", timeouts._FromActiveToSleepOption.Value!.Value);
+                if (timeouts._FromActiveToSleepOption.Value != null)
+                    writer.WriteNumber("fromActiveToSleep", timeouts._FromActiveToSleepOption.Value!.Value);
         }
     }
 }

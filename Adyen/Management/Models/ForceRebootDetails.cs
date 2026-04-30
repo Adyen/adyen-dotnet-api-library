@@ -38,7 +38,7 @@ namespace Adyen.Management.Models
         [JsonConstructor]
         public ForceRebootDetails(Option<TypeEnum?> type = default)
         {
-            _TypeOption = type;
+            _TypeOption = type.IsSet ? type : TypeEnum.ForceReboot;
             OnCreated();
         }
         

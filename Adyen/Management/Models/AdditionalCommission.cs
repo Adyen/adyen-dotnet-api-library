@@ -204,10 +204,12 @@ namespace Adyen.Management.Models
                     writer.WriteString("balanceAccountId", additionalCommission.BalanceAccountId);
 
             if (additionalCommission._FixedAmountOption.IsSet)
-                writer.WriteNumber("fixedAmount", additionalCommission._FixedAmountOption.Value!.Value);
+                if (additionalCommission._FixedAmountOption.Value != null)
+                    writer.WriteNumber("fixedAmount", additionalCommission._FixedAmountOption.Value!.Value);
 
             if (additionalCommission._VariablePercentageOption.IsSet)
-                writer.WriteNumber("variablePercentage", additionalCommission._VariablePercentageOption.Value!.Value);
+                if (additionalCommission._VariablePercentageOption.Value != null)
+                    writer.WriteNumber("variablePercentage", additionalCommission._VariablePercentageOption.Value!.Value);
         }
     }
 }

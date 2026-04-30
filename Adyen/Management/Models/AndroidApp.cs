@@ -479,7 +479,8 @@ namespace Adyen.Management.Models
                     writer.WriteString("packageName", androidApp.PackageName);
 
             if (androidApp._VersionCodeOption.IsSet)
-                writer.WriteNumber("versionCode", androidApp._VersionCodeOption.Value!.Value);
+                if (androidApp._VersionCodeOption.Value != null)
+                    writer.WriteNumber("versionCode", androidApp._VersionCodeOption.Value!.Value);
 
             if (androidApp._VersionNameOption.IsSet)
                 if (androidApp.VersionName != null)

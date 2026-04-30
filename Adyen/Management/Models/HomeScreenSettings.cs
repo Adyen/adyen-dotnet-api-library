@@ -200,13 +200,16 @@ namespace Adyen.Management.Models
         {
             
             if (homeScreenSettings._HideNavigationBarOption.IsSet)
-                writer.WriteBoolean("hideNavigationBar", homeScreenSettings._HideNavigationBarOption.Value!.Value);
+                if (homeScreenSettings._HideNavigationBarOption.Value != null)
+                    writer.WriteBoolean("hideNavigationBar", homeScreenSettings._HideNavigationBarOption.Value!.Value);
 
             if (homeScreenSettings._ShowPaymentsMenuOption.IsSet)
-                writer.WriteBoolean("showPaymentsMenu", homeScreenSettings._ShowPaymentsMenuOption.Value!.Value);
+                if (homeScreenSettings._ShowPaymentsMenuOption.Value != null)
+                    writer.WriteBoolean("showPaymentsMenu", homeScreenSettings._ShowPaymentsMenuOption.Value!.Value);
 
             if (homeScreenSettings._ShowSettingsMenuOption.IsSet)
-                writer.WriteBoolean("showSettingsMenu", homeScreenSettings._ShowSettingsMenuOption.Value!.Value);
+                if (homeScreenSettings._ShowSettingsMenuOption.Value != null)
+                    writer.WriteBoolean("showSettingsMenu", homeScreenSettings._ShowSettingsMenuOption.Value!.Value);
         }
     }
 }

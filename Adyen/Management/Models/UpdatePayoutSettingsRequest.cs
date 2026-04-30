@@ -158,7 +158,8 @@ namespace Adyen.Management.Models
         {
             
             if (updatePayoutSettingsRequest._EnabledOption.IsSet)
-                writer.WriteBoolean("enabled", updatePayoutSettingsRequest._EnabledOption.Value!.Value);
+                if (updatePayoutSettingsRequest._EnabledOption.Value != null)
+                    writer.WriteBoolean("enabled", updatePayoutSettingsRequest._EnabledOption.Value!.Value);
         }
     }
 }

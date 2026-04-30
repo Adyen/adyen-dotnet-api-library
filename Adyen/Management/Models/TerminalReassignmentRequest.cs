@@ -225,7 +225,8 @@ namespace Adyen.Management.Models
                     writer.WriteString("companyId", terminalReassignmentRequest.CompanyId);
 
             if (terminalReassignmentRequest._InventoryOption.IsSet)
-                writer.WriteBoolean("inventory", terminalReassignmentRequest._InventoryOption.Value!.Value);
+                if (terminalReassignmentRequest._InventoryOption.Value != null)
+                    writer.WriteBoolean("inventory", terminalReassignmentRequest._InventoryOption.Value!.Value);
 
             if (terminalReassignmentRequest._MerchantIdOption.IsSet)
                 if (terminalReassignmentRequest.MerchantId != null)

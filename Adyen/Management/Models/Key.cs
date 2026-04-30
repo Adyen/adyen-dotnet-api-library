@@ -208,7 +208,8 @@ namespace Adyen.Management.Models
                     writer.WriteString("passphrase", key.Passphrase);
 
             if (key._VersionOption.IsSet)
-                writer.WriteNumber("version", key._VersionOption.Value!.Value);
+                if (key._VersionOption.Value != null)
+                    writer.WriteNumber("version", key._VersionOption.Value!.Value);
         }
     }
 }

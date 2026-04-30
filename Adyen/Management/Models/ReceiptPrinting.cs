@@ -473,52 +473,68 @@ namespace Adyen.Management.Models
         {
             
             if (receiptPrinting._MerchantApprovedOption.IsSet)
-                writer.WriteBoolean("merchantApproved", receiptPrinting._MerchantApprovedOption.Value!.Value);
+                if (receiptPrinting._MerchantApprovedOption.Value != null)
+                    writer.WriteBoolean("merchantApproved", receiptPrinting._MerchantApprovedOption.Value!.Value);
 
             if (receiptPrinting._MerchantCancelledOption.IsSet)
-                writer.WriteBoolean("merchantCancelled", receiptPrinting._MerchantCancelledOption.Value!.Value);
+                if (receiptPrinting._MerchantCancelledOption.Value != null)
+                    writer.WriteBoolean("merchantCancelled", receiptPrinting._MerchantCancelledOption.Value!.Value);
 
             if (receiptPrinting._MerchantCaptureApprovedOption.IsSet)
-                writer.WriteBoolean("merchantCaptureApproved", receiptPrinting._MerchantCaptureApprovedOption.Value!.Value);
+                if (receiptPrinting._MerchantCaptureApprovedOption.Value != null)
+                    writer.WriteBoolean("merchantCaptureApproved", receiptPrinting._MerchantCaptureApprovedOption.Value!.Value);
 
             if (receiptPrinting._MerchantCaptureRefusedOption.IsSet)
-                writer.WriteBoolean("merchantCaptureRefused", receiptPrinting._MerchantCaptureRefusedOption.Value!.Value);
+                if (receiptPrinting._MerchantCaptureRefusedOption.Value != null)
+                    writer.WriteBoolean("merchantCaptureRefused", receiptPrinting._MerchantCaptureRefusedOption.Value!.Value);
 
             if (receiptPrinting._MerchantRefundApprovedOption.IsSet)
-                writer.WriteBoolean("merchantRefundApproved", receiptPrinting._MerchantRefundApprovedOption.Value!.Value);
+                if (receiptPrinting._MerchantRefundApprovedOption.Value != null)
+                    writer.WriteBoolean("merchantRefundApproved", receiptPrinting._MerchantRefundApprovedOption.Value!.Value);
 
             if (receiptPrinting._MerchantRefundRefusedOption.IsSet)
-                writer.WriteBoolean("merchantRefundRefused", receiptPrinting._MerchantRefundRefusedOption.Value!.Value);
+                if (receiptPrinting._MerchantRefundRefusedOption.Value != null)
+                    writer.WriteBoolean("merchantRefundRefused", receiptPrinting._MerchantRefundRefusedOption.Value!.Value);
 
             if (receiptPrinting._MerchantRefusedOption.IsSet)
-                writer.WriteBoolean("merchantRefused", receiptPrinting._MerchantRefusedOption.Value!.Value);
+                if (receiptPrinting._MerchantRefusedOption.Value != null)
+                    writer.WriteBoolean("merchantRefused", receiptPrinting._MerchantRefusedOption.Value!.Value);
 
             if (receiptPrinting._MerchantVoidOption.IsSet)
-                writer.WriteBoolean("merchantVoid", receiptPrinting._MerchantVoidOption.Value!.Value);
+                if (receiptPrinting._MerchantVoidOption.Value != null)
+                    writer.WriteBoolean("merchantVoid", receiptPrinting._MerchantVoidOption.Value!.Value);
 
             if (receiptPrinting._ShopperApprovedOption.IsSet)
-                writer.WriteBoolean("shopperApproved", receiptPrinting._ShopperApprovedOption.Value!.Value);
+                if (receiptPrinting._ShopperApprovedOption.Value != null)
+                    writer.WriteBoolean("shopperApproved", receiptPrinting._ShopperApprovedOption.Value!.Value);
 
             if (receiptPrinting._ShopperCancelledOption.IsSet)
-                writer.WriteBoolean("shopperCancelled", receiptPrinting._ShopperCancelledOption.Value!.Value);
+                if (receiptPrinting._ShopperCancelledOption.Value != null)
+                    writer.WriteBoolean("shopperCancelled", receiptPrinting._ShopperCancelledOption.Value!.Value);
 
             if (receiptPrinting._ShopperCaptureApprovedOption.IsSet)
-                writer.WriteBoolean("shopperCaptureApproved", receiptPrinting._ShopperCaptureApprovedOption.Value!.Value);
+                if (receiptPrinting._ShopperCaptureApprovedOption.Value != null)
+                    writer.WriteBoolean("shopperCaptureApproved", receiptPrinting._ShopperCaptureApprovedOption.Value!.Value);
 
             if (receiptPrinting._ShopperCaptureRefusedOption.IsSet)
-                writer.WriteBoolean("shopperCaptureRefused", receiptPrinting._ShopperCaptureRefusedOption.Value!.Value);
+                if (receiptPrinting._ShopperCaptureRefusedOption.Value != null)
+                    writer.WriteBoolean("shopperCaptureRefused", receiptPrinting._ShopperCaptureRefusedOption.Value!.Value);
 
             if (receiptPrinting._ShopperRefundApprovedOption.IsSet)
-                writer.WriteBoolean("shopperRefundApproved", receiptPrinting._ShopperRefundApprovedOption.Value!.Value);
+                if (receiptPrinting._ShopperRefundApprovedOption.Value != null)
+                    writer.WriteBoolean("shopperRefundApproved", receiptPrinting._ShopperRefundApprovedOption.Value!.Value);
 
             if (receiptPrinting._ShopperRefundRefusedOption.IsSet)
-                writer.WriteBoolean("shopperRefundRefused", receiptPrinting._ShopperRefundRefusedOption.Value!.Value);
+                if (receiptPrinting._ShopperRefundRefusedOption.Value != null)
+                    writer.WriteBoolean("shopperRefundRefused", receiptPrinting._ShopperRefundRefusedOption.Value!.Value);
 
             if (receiptPrinting._ShopperRefusedOption.IsSet)
-                writer.WriteBoolean("shopperRefused", receiptPrinting._ShopperRefusedOption.Value!.Value);
+                if (receiptPrinting._ShopperRefusedOption.Value != null)
+                    writer.WriteBoolean("shopperRefused", receiptPrinting._ShopperRefusedOption.Value!.Value);
 
             if (receiptPrinting._ShopperVoidOption.IsSet)
-                writer.WriteBoolean("shopperVoid", receiptPrinting._ShopperVoidOption.Value!.Value);
+                if (receiptPrinting._ShopperVoidOption.Value != null)
+                    writer.WriteBoolean("shopperVoid", receiptPrinting._ShopperVoidOption.Value!.Value);
         }
     }
 }

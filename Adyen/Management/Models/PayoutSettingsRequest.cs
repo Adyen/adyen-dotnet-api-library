@@ -198,7 +198,8 @@ namespace Adyen.Management.Models
                 writer.WriteString("transferInstrumentId", payoutSettingsRequest.TransferInstrumentId);
 
             if (payoutSettingsRequest._EnabledOption.IsSet)
-                writer.WriteBoolean("enabled", payoutSettingsRequest._EnabledOption.Value!.Value);
+                if (payoutSettingsRequest._EnabledOption.Value != null)
+                    writer.WriteBoolean("enabled", payoutSettingsRequest._EnabledOption.Value!.Value);
 
             if (payoutSettingsRequest._EnabledFromDateOption.IsSet)
                 if (payoutSettingsRequest.EnabledFromDate != null)

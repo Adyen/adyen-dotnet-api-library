@@ -742,16 +742,20 @@ namespace Adyen.Management.Models
         {
             
             if (updateMerchantWebhookRequest._AcceptsExpiredCertificateOption.IsSet)
-                writer.WriteBoolean("acceptsExpiredCertificate", updateMerchantWebhookRequest._AcceptsExpiredCertificateOption.Value!.Value);
+                if (updateMerchantWebhookRequest._AcceptsExpiredCertificateOption.Value != null)
+                    writer.WriteBoolean("acceptsExpiredCertificate", updateMerchantWebhookRequest._AcceptsExpiredCertificateOption.Value!.Value);
 
             if (updateMerchantWebhookRequest._AcceptsSelfSignedCertificateOption.IsSet)
-                writer.WriteBoolean("acceptsSelfSignedCertificate", updateMerchantWebhookRequest._AcceptsSelfSignedCertificateOption.Value!.Value);
+                if (updateMerchantWebhookRequest._AcceptsSelfSignedCertificateOption.Value != null)
+                    writer.WriteBoolean("acceptsSelfSignedCertificate", updateMerchantWebhookRequest._AcceptsSelfSignedCertificateOption.Value!.Value);
 
             if (updateMerchantWebhookRequest._AcceptsUntrustedRootCertificateOption.IsSet)
-                writer.WriteBoolean("acceptsUntrustedRootCertificate", updateMerchantWebhookRequest._AcceptsUntrustedRootCertificateOption.Value!.Value);
+                if (updateMerchantWebhookRequest._AcceptsUntrustedRootCertificateOption.Value != null)
+                    writer.WriteBoolean("acceptsUntrustedRootCertificate", updateMerchantWebhookRequest._AcceptsUntrustedRootCertificateOption.Value!.Value);
 
             if (updateMerchantWebhookRequest._ActiveOption.IsSet)
-                writer.WriteBoolean("active", updateMerchantWebhookRequest._ActiveOption.Value!.Value);
+                if (updateMerchantWebhookRequest._ActiveOption.Value != null)
+                    writer.WriteBoolean("active", updateMerchantWebhookRequest._ActiveOption.Value!.Value);
 
             if (updateMerchantWebhookRequest._AdditionalSettingsOption.IsSet)
             {
@@ -785,7 +789,8 @@ namespace Adyen.Management.Models
                     writer.WriteString("password", updateMerchantWebhookRequest.Password);
 
             if (updateMerchantWebhookRequest._PopulateSoapActionHeaderOption.IsSet)
-                writer.WriteBoolean("populateSoapActionHeader", updateMerchantWebhookRequest._PopulateSoapActionHeaderOption.Value!.Value);
+                if (updateMerchantWebhookRequest._PopulateSoapActionHeaderOption.Value != null)
+                    writer.WriteBoolean("populateSoapActionHeader", updateMerchantWebhookRequest._PopulateSoapActionHeaderOption.Value!.Value);
 
             if (updateMerchantWebhookRequest._UrlOption.IsSet)
                 if (updateMerchantWebhookRequest.Url != null)

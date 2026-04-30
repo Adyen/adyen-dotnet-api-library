@@ -221,7 +221,8 @@ namespace Adyen.Management.Models
         {
             
             if (url._EncryptedOption.IsSet)
-                writer.WriteBoolean("encrypted", url._EncryptedOption.Value!.Value);
+                if (url._EncryptedOption.Value != null)
+                    writer.WriteBoolean("encrypted", url._EncryptedOption.Value!.Value);
 
             if (url._PasswordOption.IsSet)
                 if (url.Password != null)

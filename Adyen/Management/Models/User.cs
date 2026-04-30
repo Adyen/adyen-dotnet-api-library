@@ -348,7 +348,8 @@ namespace Adyen.Management.Models
                 JsonSerializer.Serialize(writer, user.AccountGroups, jsonSerializerOptions);
             }
             if (user._ActiveOption.IsSet)
-                writer.WriteBoolean("active", user._ActiveOption.Value!.Value);
+                if (user._ActiveOption.Value != null)
+                    writer.WriteBoolean("active", user._ActiveOption.Value!.Value);
 
             if (user._AppsOption.IsSet)
             {

@@ -40,7 +40,7 @@ namespace Adyen.Management.Models
         public TransactionDescriptionInfo(Option<string?> doingBusinessAsName = default, Option<TypeEnum?> type = default)
         {
             _DoingBusinessAsNameOption = doingBusinessAsName;
-            _TypeOption = type;
+            _TypeOption = type.IsSet ? type : TypeEnum.Dynamic;
             OnCreated();
         }
         

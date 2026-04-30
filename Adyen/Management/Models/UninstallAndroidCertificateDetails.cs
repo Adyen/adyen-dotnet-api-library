@@ -40,7 +40,7 @@ namespace Adyen.Management.Models
         public UninstallAndroidCertificateDetails(Option<string?> certificateId = default, Option<TypeEnum?> type = default)
         {
             _CertificateIdOption = certificateId;
-            _TypeOption = type;
+            _TypeOption = type.IsSet ? type : TypeEnum.UninstallAndroidCertificate;
             OnCreated();
         }
         

@@ -242,19 +242,24 @@ namespace Adyen.Management.Models
         {
             
             if (supportedCardTypes._CreditOption.IsSet)
-                writer.WriteBoolean("credit", supportedCardTypes._CreditOption.Value!.Value);
+                if (supportedCardTypes._CreditOption.Value != null)
+                    writer.WriteBoolean("credit", supportedCardTypes._CreditOption.Value!.Value);
 
             if (supportedCardTypes._DebitOption.IsSet)
-                writer.WriteBoolean("debit", supportedCardTypes._DebitOption.Value!.Value);
+                if (supportedCardTypes._DebitOption.Value != null)
+                    writer.WriteBoolean("debit", supportedCardTypes._DebitOption.Value!.Value);
 
             if (supportedCardTypes._DeferredDebitOption.IsSet)
-                writer.WriteBoolean("deferredDebit", supportedCardTypes._DeferredDebitOption.Value!.Value);
+                if (supportedCardTypes._DeferredDebitOption.Value != null)
+                    writer.WriteBoolean("deferredDebit", supportedCardTypes._DeferredDebitOption.Value!.Value);
 
             if (supportedCardTypes._PrepaidOption.IsSet)
-                writer.WriteBoolean("prepaid", supportedCardTypes._PrepaidOption.Value!.Value);
+                if (supportedCardTypes._PrepaidOption.Value != null)
+                    writer.WriteBoolean("prepaid", supportedCardTypes._PrepaidOption.Value!.Value);
 
             if (supportedCardTypes._UnknownOption.IsSet)
-                writer.WriteBoolean("unknown", supportedCardTypes._UnknownOption.Value!.Value);
+                if (supportedCardTypes._UnknownOption.Value != null)
+                    writer.WriteBoolean("unknown", supportedCardTypes._UnknownOption.Value!.Value);
         }
     }
 }

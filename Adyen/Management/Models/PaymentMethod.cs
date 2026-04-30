@@ -1409,7 +1409,8 @@ namespace Adyen.Management.Models
                 JsonSerializer.Serialize(writer, paymentMethod.AlipayPlus, jsonSerializerOptions);
             }
             if (paymentMethod._AllowedOption.IsSet)
-                writer.WriteBoolean("allowed", paymentMethod._AllowedOption.Value!.Value);
+                if (paymentMethod._AllowedOption.Value != null)
+                    writer.WriteBoolean("allowed", paymentMethod._AllowedOption.Value!.Value);
 
             if (paymentMethod._AmexOption.IsSet)
             {
@@ -1481,7 +1482,8 @@ namespace Adyen.Management.Models
                 JsonSerializer.Serialize(writer, paymentMethod.EftposAustralia, jsonSerializerOptions);
             }
             if (paymentMethod._EnabledOption.IsSet)
-                writer.WriteBoolean("enabled", paymentMethod._EnabledOption.Value!.Value);
+                if (paymentMethod._EnabledOption.Value != null)
+                    writer.WriteBoolean("enabled", paymentMethod._EnabledOption.Value!.Value);
 
             if (paymentMethod._GirocardOption.IsSet)
             {

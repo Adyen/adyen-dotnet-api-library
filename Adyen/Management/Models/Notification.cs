@@ -365,10 +365,12 @@ namespace Adyen.Management.Models
                     writer.WriteString("details", notification.Details);
 
             if (notification._EnabledOption.IsSet)
-                writer.WriteBoolean("enabled", notification._EnabledOption.Value!.Value);
+                if (notification._EnabledOption.Value != null)
+                    writer.WriteBoolean("enabled", notification._EnabledOption.Value!.Value);
 
             if (notification._ShowButtonOption.IsSet)
-                writer.WriteBoolean("showButton", notification._ShowButtonOption.Value!.Value);
+                if (notification._ShowButtonOption.Value != null)
+                    writer.WriteBoolean("showButton", notification._ShowButtonOption.Value!.Value);
 
             if (notification._TitleOption.IsSet)
                 if (notification.Title != null)

@@ -179,10 +179,12 @@ namespace Adyen.Management.Models
         {
             
             if (moto._EnableMotoOption.IsSet)
-                writer.WriteBoolean("enableMoto", moto._EnableMotoOption.Value!.Value);
+                if (moto._EnableMotoOption.Value != null)
+                    writer.WriteBoolean("enableMoto", moto._EnableMotoOption.Value!.Value);
 
             if (moto._MaxAmountOption.IsSet)
-                writer.WriteNumber("maxAmount", moto._MaxAmountOption.Value!.Value);
+                if (moto._MaxAmountOption.Value != null)
+                    writer.WriteNumber("maxAmount", moto._MaxAmountOption.Value!.Value);
         }
     }
 }

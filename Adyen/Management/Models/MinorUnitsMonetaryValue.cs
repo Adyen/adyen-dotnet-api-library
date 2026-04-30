@@ -179,7 +179,8 @@ namespace Adyen.Management.Models
         {
             
             if (minorUnitsMonetaryValue._AmountOption.IsSet)
-                writer.WriteNumber("amount", minorUnitsMonetaryValue._AmountOption.Value!.Value);
+                if (minorUnitsMonetaryValue._AmountOption.Value != null)
+                    writer.WriteNumber("amount", minorUnitsMonetaryValue._AmountOption.Value!.Value);
 
             if (minorUnitsMonetaryValue._CurrencyCodeOption.IsSet)
                 if (minorUnitsMonetaryValue.CurrencyCode != null)

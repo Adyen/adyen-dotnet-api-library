@@ -337,7 +337,8 @@ namespace Adyen.Management.Models
                     writer.WriteString("midNumber", jCBInfo.MidNumber);
 
             if (jCBInfo._ReuseMidNumberOption.IsSet)
-                writer.WriteBoolean("reuseMidNumber", jCBInfo._ReuseMidNumberOption.Value!.Value);
+                if (jCBInfo._ReuseMidNumberOption.Value != null)
+                    writer.WriteBoolean("reuseMidNumber", jCBInfo._ReuseMidNumberOption.Value!.Value);
 
             if (jCBInfo._ServiceLevelOption.IsSet && jCBInfo.ServiceLevel != null) 
             {

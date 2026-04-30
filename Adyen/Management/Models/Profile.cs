@@ -527,13 +527,16 @@ namespace Adyen.Management.Models
                 writer.WriteString("wsec", profile.Wsec);
 
             if (profile._AutoWifiOption.IsSet)
-                writer.WriteBoolean("autoWifi", profile._AutoWifiOption.Value!.Value);
+                if (profile._AutoWifiOption.Value != null)
+                    writer.WriteBoolean("autoWifi", profile._AutoWifiOption.Value!.Value);
 
             if (profile._ChannelOption.IsSet)
-                writer.WriteNumber("channel", profile._ChannelOption.Value!.Value);
+                if (profile._ChannelOption.Value != null)
+                    writer.WriteNumber("channel", profile._ChannelOption.Value!.Value);
 
             if (profile._DefaultProfileOption.IsSet)
-                writer.WriteBoolean("defaultProfile", profile._DefaultProfileOption.Value!.Value);
+                if (profile._DefaultProfileOption.Value != null)
+                    writer.WriteBoolean("defaultProfile", profile._DefaultProfileOption.Value!.Value);
 
             if (profile._DomainSuffixOption.IsSet)
                 if (profile.DomainSuffix != null)
@@ -576,7 +579,8 @@ namespace Adyen.Management.Models
                     writer.WriteString("eapPwd", profile.EapPwd);
 
             if (profile._HiddenSsidOption.IsSet)
-                writer.WriteBoolean("hiddenSsid", profile._HiddenSsidOption.Value!.Value);
+                if (profile._HiddenSsidOption.Value != null)
+                    writer.WriteBoolean("hiddenSsid", profile._HiddenSsidOption.Value!.Value);
 
             if (profile._NameOption.IsSet)
                 if (profile.Name != null)

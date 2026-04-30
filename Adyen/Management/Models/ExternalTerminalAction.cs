@@ -323,7 +323,8 @@ namespace Adyen.Management.Models
                     writer.WriteString("config", externalTerminalAction.Config);
 
             if (externalTerminalAction._ConfirmedAtOption.IsSet)
-                writer.WriteString("confirmedAt", externalTerminalAction._ConfirmedAtOption.Value!.Value.ToString(ConfirmedAtFormat));
+                if (externalTerminalAction._ConfirmedAtOption.Value != null)
+                    writer.WriteString("confirmedAt", externalTerminalAction._ConfirmedAtOption.Value!.Value.ToString(ConfirmedAtFormat));
 
             if (externalTerminalAction._IdOption.IsSet)
                 if (externalTerminalAction.Id != null)
@@ -334,7 +335,8 @@ namespace Adyen.Management.Models
                     writer.WriteString("result", externalTerminalAction.Result);
 
             if (externalTerminalAction._ScheduledAtOption.IsSet)
-                writer.WriteString("scheduledAt", externalTerminalAction._ScheduledAtOption.Value!.Value.ToString(ScheduledAtFormat));
+                if (externalTerminalAction._ScheduledAtOption.Value != null)
+                    writer.WriteString("scheduledAt", externalTerminalAction._ScheduledAtOption.Value!.Value.ToString(ScheduledAtFormat));
 
             if (externalTerminalAction._StatusOption.IsSet)
                 if (externalTerminalAction.Status != null)

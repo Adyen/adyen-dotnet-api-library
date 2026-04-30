@@ -739,7 +739,8 @@ namespace Adyen.Management.Models
                 JsonSerializer.Serialize(writer, updatePaymentMethodInfo.EftposAustralia, jsonSerializerOptions);
             }
             if (updatePaymentMethodInfo._EnabledOption.IsSet)
-                writer.WriteBoolean("enabled", updatePaymentMethodInfo._EnabledOption.Value!.Value);
+                if (updatePaymentMethodInfo._EnabledOption.Value != null)
+                    writer.WriteBoolean("enabled", updatePaymentMethodInfo._EnabledOption.Value!.Value);
 
             if (updatePaymentMethodInfo._GirocardOption.IsSet)
             {

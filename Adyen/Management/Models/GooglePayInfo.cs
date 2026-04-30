@@ -177,7 +177,8 @@ namespace Adyen.Management.Models
                 writer.WriteString("merchantId", googlePayInfo.MerchantId);
 
             if (googlePayInfo._ReuseMerchantIdOption.IsSet)
-                writer.WriteBoolean("reuseMerchantId", googlePayInfo._ReuseMerchantIdOption.Value!.Value);
+                if (googlePayInfo._ReuseMerchantIdOption.Value != null)
+                    writer.WriteBoolean("reuseMerchantId", googlePayInfo._ReuseMerchantIdOption.Value!.Value);
         }
     }
 }

@@ -205,7 +205,8 @@ namespace Adyen.Management.Models
         {
             
             if (installedAPKs._ConfirmationDateOption.IsSet)
-                writer.WriteString("confirmationDate", installedAPKs._ConfirmationDateOption.Value!.Value.ToString(ConfirmationDateFormat));
+                if (installedAPKs._ConfirmationDateOption.Value != null)
+                    writer.WriteString("confirmationDate", installedAPKs._ConfirmationDateOption.Value!.Value.ToString(ConfirmationDateFormat));
 
             if (installedAPKs._PackageNameOption.IsSet)
                 if (installedAPKs.PackageName != null)

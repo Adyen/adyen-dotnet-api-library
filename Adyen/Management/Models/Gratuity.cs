@@ -221,7 +221,8 @@ namespace Adyen.Management.Models
         {
             
             if (gratuity._AllowCustomAmountOption.IsSet)
-                writer.WriteBoolean("allowCustomAmount", gratuity._AllowCustomAmountOption.Value!.Value);
+                if (gratuity._AllowCustomAmountOption.Value != null)
+                    writer.WriteBoolean("allowCustomAmount", gratuity._AllowCustomAmountOption.Value!.Value);
 
             if (gratuity._CurrencyOption.IsSet)
                 if (gratuity.Currency != null)
@@ -233,7 +234,8 @@ namespace Adyen.Management.Models
                 JsonSerializer.Serialize(writer, gratuity.PredefinedTipEntries, jsonSerializerOptions);
             }
             if (gratuity._UsePredefinedTipEntriesOption.IsSet)
-                writer.WriteBoolean("usePredefinedTipEntries", gratuity._UsePredefinedTipEntriesOption.Value!.Value);
+                if (gratuity._UsePredefinedTipEntriesOption.Value != null)
+                    writer.WriteBoolean("usePredefinedTipEntries", gratuity._UsePredefinedTipEntriesOption.Value!.Value);
         }
     }
 }

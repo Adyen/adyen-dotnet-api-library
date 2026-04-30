@@ -306,10 +306,12 @@ namespace Adyen.Management.Models
                 JsonSerializer.Serialize(writer, scheduleTerminalActionsResponse.TerminalsWithErrors, jsonSerializerOptions);
             }
             if (scheduleTerminalActionsResponse._TotalErrorsOption.IsSet)
-                writer.WriteNumber("totalErrors", scheduleTerminalActionsResponse._TotalErrorsOption.Value!.Value);
+                if (scheduleTerminalActionsResponse._TotalErrorsOption.Value != null)
+                    writer.WriteNumber("totalErrors", scheduleTerminalActionsResponse._TotalErrorsOption.Value!.Value);
 
             if (scheduleTerminalActionsResponse._TotalScheduledOption.IsSet)
-                writer.WriteNumber("totalScheduled", scheduleTerminalActionsResponse._TotalScheduledOption.Value!.Value);
+                if (scheduleTerminalActionsResponse._TotalScheduledOption.Value != null)
+                    writer.WriteNumber("totalScheduled", scheduleTerminalActionsResponse._TotalScheduledOption.Value!.Value);
         }
     }
 }

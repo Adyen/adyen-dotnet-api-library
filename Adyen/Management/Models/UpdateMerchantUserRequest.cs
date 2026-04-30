@@ -288,7 +288,8 @@ namespace Adyen.Management.Models
                 JsonSerializer.Serialize(writer, updateMerchantUserRequest.AccountGroups, jsonSerializerOptions);
             }
             if (updateMerchantUserRequest._ActiveOption.IsSet)
-                writer.WriteBoolean("active", updateMerchantUserRequest._ActiveOption.Value!.Value);
+                if (updateMerchantUserRequest._ActiveOption.Value != null)
+                    writer.WriteBoolean("active", updateMerchantUserRequest._ActiveOption.Value!.Value);
 
             if (updateMerchantUserRequest._EmailOption.IsSet)
                 if (updateMerchantUserRequest.Email != null)

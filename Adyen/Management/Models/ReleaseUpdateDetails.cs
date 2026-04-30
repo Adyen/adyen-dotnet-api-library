@@ -39,7 +39,7 @@ namespace Adyen.Management.Models
         [JsonConstructor]
         public ReleaseUpdateDetails(Option<TypeEnum?> type = default, Option<bool?> updateAtFirstMaintenanceCall = default)
         {
-            _TypeOption = type;
+            _TypeOption = type.IsSet ? type : TypeEnum.ReleaseUpdate;
             _UpdateAtFirstMaintenanceCallOption = updateAtFirstMaintenanceCall;
             OnCreated();
         }
@@ -280,7 +280,8 @@ namespace Adyen.Management.Models
             }
             
             if (releaseUpdateDetails._UpdateAtFirstMaintenanceCallOption.IsSet)
-                writer.WriteBoolean("updateAtFirstMaintenanceCall", releaseUpdateDetails._UpdateAtFirstMaintenanceCallOption.Value!.Value);
+                if (releaseUpdateDetails._UpdateAtFirstMaintenanceCallOption.Value != null)
+                    writer.WriteBoolean("updateAtFirstMaintenanceCall", releaseUpdateDetails._UpdateAtFirstMaintenanceCallOption.Value!.Value);
         }
     }
 }

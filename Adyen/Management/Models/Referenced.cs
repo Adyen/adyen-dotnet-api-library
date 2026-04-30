@@ -158,7 +158,8 @@ namespace Adyen.Management.Models
         {
             
             if (referenced._EnableStandaloneRefundsOption.IsSet)
-                writer.WriteBoolean("enableStandaloneRefunds", referenced._EnableStandaloneRefundsOption.Value!.Value);
+                if (referenced._EnableStandaloneRefundsOption.Value != null)
+                    writer.WriteBoolean("enableStandaloneRefunds", referenced._EnableStandaloneRefundsOption.Value!.Value);
         }
     }
 }

@@ -516,10 +516,12 @@ namespace Adyen.Management.Models
                 writer.WriteString("transferInstrumentId", payoutSettings.TransferInstrumentId);
 
             if (payoutSettings._AllowedOption.IsSet)
-                writer.WriteBoolean("allowed", payoutSettings._AllowedOption.Value!.Value);
+                if (payoutSettings._AllowedOption.Value != null)
+                    writer.WriteBoolean("allowed", payoutSettings._AllowedOption.Value!.Value);
 
             if (payoutSettings._EnabledOption.IsSet)
-                writer.WriteBoolean("enabled", payoutSettings._EnabledOption.Value!.Value);
+                if (payoutSettings._EnabledOption.Value != null)
+                    writer.WriteBoolean("enabled", payoutSettings._EnabledOption.Value!.Value);
 
             if (payoutSettings._EnabledFromDateOption.IsSet)
                 if (payoutSettings.EnabledFromDate != null)
