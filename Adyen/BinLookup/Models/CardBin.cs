@@ -372,7 +372,8 @@ namespace Adyen.BinLookup.Models
                     writer.WriteString("bin", cardBin.Bin);
 
             if (cardBin._CommercialOption.IsSet)
-                writer.WriteBoolean("commercial", cardBin._CommercialOption.Value!.Value);
+                if (cardBin._CommercialOption.Value != null)
+                    writer.WriteBoolean("commercial", cardBin._CommercialOption.Value!.Value);
 
             if (cardBin._FundingSourceOption.IsSet)
                 if (cardBin.FundingSource != null)

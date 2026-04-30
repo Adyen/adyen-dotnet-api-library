@@ -200,13 +200,16 @@ namespace Adyen.BinLookup.Models
         {
             
             if (costEstimateAssumptions._Assume3DSecureAuthenticatedOption.IsSet)
-                writer.WriteBoolean("assume3DSecureAuthenticated", costEstimateAssumptions._Assume3DSecureAuthenticatedOption.Value!.Value);
+                if (costEstimateAssumptions._Assume3DSecureAuthenticatedOption.Value != null)
+                    writer.WriteBoolean("assume3DSecureAuthenticated", costEstimateAssumptions._Assume3DSecureAuthenticatedOption.Value!.Value);
 
             if (costEstimateAssumptions._AssumeLevel3DataOption.IsSet)
-                writer.WriteBoolean("assumeLevel3Data", costEstimateAssumptions._AssumeLevel3DataOption.Value!.Value);
+                if (costEstimateAssumptions._AssumeLevel3DataOption.Value != null)
+                    writer.WriteBoolean("assumeLevel3Data", costEstimateAssumptions._AssumeLevel3DataOption.Value!.Value);
 
             if (costEstimateAssumptions._InstallmentsOption.IsSet)
-                writer.WriteNumber("installments", costEstimateAssumptions._InstallmentsOption.Value!.Value);
+                if (costEstimateAssumptions._InstallmentsOption.Value != null)
+                    writer.WriteNumber("installments", costEstimateAssumptions._InstallmentsOption.Value!.Value);
         }
     }
 }
