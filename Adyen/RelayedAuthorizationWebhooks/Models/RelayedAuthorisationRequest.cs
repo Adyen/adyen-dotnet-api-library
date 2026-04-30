@@ -825,7 +825,8 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                     writer.WriteString("reference", relayedAuthorisationRequest.Reference);
 
             if (relayedAuthorisationRequest._SchemeRiskScoreOption.IsSet)
-                writer.WriteNumber("schemeRiskScore", relayedAuthorisationRequest._SchemeRiskScoreOption.Value!.Value);
+                if (relayedAuthorisationRequest._SchemeRiskScoreOption.Value != null)
+                    writer.WriteNumber("schemeRiskScore", relayedAuthorisationRequest._SchemeRiskScoreOption.Value!.Value);
 
             if (relayedAuthorisationRequest._SchemeTraceIdOption.IsSet)
                 if (relayedAuthorisationRequest.SchemeTraceId != null)

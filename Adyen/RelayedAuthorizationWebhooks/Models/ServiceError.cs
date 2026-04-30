@@ -258,7 +258,8 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                     writer.WriteString("pspReference", serviceError.PspReference);
 
             if (serviceError._StatusOption.IsSet)
-                writer.WriteNumber("status", serviceError._StatusOption.Value!.Value);
+                if (serviceError._StatusOption.Value != null)
+                    writer.WriteNumber("status", serviceError._StatusOption.Value!.Value);
         }
     }
 }
