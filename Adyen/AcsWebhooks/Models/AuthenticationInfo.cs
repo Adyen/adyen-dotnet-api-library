@@ -1646,7 +1646,8 @@ namespace Adyen.AcsWebhooks.Models
             }
             
             if (authenticationInfo._RiskScoreOption.IsSet)
-                writer.WriteNumber("riskScore", authenticationInfo._RiskScoreOption.Value!.Value);
+                if (authenticationInfo._RiskScoreOption.Value != null)
+                    writer.WriteNumber("riskScore", authenticationInfo._RiskScoreOption.Value!.Value);
 
             if (authenticationInfo._TransStatusReasonOption.IsSet && authenticationInfo.TransStatusReason != null) 
             {

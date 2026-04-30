@@ -318,7 +318,8 @@ namespace Adyen.AcsWebhooks.Models
             }
             
             if (authenticationNotificationRequest._TimestampOption.IsSet)
-                writer.WriteString("timestamp", authenticationNotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
+                if (authenticationNotificationRequest._TimestampOption.Value != null)
+                    writer.WriteString("timestamp", authenticationNotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
         }
     }
 }

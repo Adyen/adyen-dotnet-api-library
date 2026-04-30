@@ -557,10 +557,12 @@ namespace Adyen.AcsWebhooks.Models
                     writer.WriteString("phoneNumber", challengeInfo.PhoneNumber);
 
             if (challengeInfo._ResendsOption.IsSet)
-                writer.WriteNumber("resends", challengeInfo._ResendsOption.Value!.Value);
+                if (challengeInfo._ResendsOption.Value != null)
+                    writer.WriteNumber("resends", challengeInfo._ResendsOption.Value!.Value);
 
             if (challengeInfo._RetriesOption.IsSet)
-                writer.WriteNumber("retries", challengeInfo._RetriesOption.Value!.Value);
+                if (challengeInfo._RetriesOption.Value != null)
+                    writer.WriteNumber("retries", challengeInfo._RetriesOption.Value!.Value);
         }
     }
 }
