@@ -383,7 +383,8 @@ namespace Adyen.AcsWebhooks.Models
                     writer.WriteString("threeDSRequestorAppURL", relayedAuthenticationRequest.ThreeDSRequestorAppURL);
 
             if (relayedAuthenticationRequest._TimestampOption.IsSet)
-                writer.WriteString("timestamp", relayedAuthenticationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
+                if (relayedAuthenticationRequest._TimestampOption.Value != null)
+                    writer.WriteString("timestamp", relayedAuthenticationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
         }
     }
 }
