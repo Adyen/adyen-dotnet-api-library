@@ -42,7 +42,7 @@ namespace Adyen.Transfers.Models
         {
             AccountNumber = accountNumber;
             Bic = bic;
-            _TypeOption = type;
+            _TypeOption = type.IsSet ? type : TypeEnum.SgLocal;
             OnCreated();
         }
         

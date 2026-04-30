@@ -36,7 +36,7 @@ namespace Adyen.Transfers.Models
         /// </summary>
         /// <param name="authorisationType">The authorisation type. For example, **defaultAuthorisation**, **preAuthorisation**, **finalAuthorisation**</param>
         /// <param name="panEntryMode">Indicates the method used for entering the PAN to initiate a transaction.  Possible values: **manual**, **chip**, **magstripe**, **contactless**, **cof**, **ecommerce**, **token**.</param>
-        /// <param name="processingType">Contains information about how the payment was processed. For example, **ecommerce** for online or **pos** for in-person payments.</param>
+        /// <param name="processingType">Contains information about how the payment was processed.  Possible values: **atmWithdraw**, **balanceInquiry**, **ecommerce**, **moto**, **pos**, **purchaseWithCashback**, **recurring**, **token**.</param>
         /// <param name="relayedAuthorisationData">relayedAuthorisationData</param>
         /// <param name="schemeTraceId">The identifier of the original payment. This ID is provided by the scheme and can be alphanumeric or numeric, depending on the scheme. The &#x60;schemeTraceID&#x60; should refer to an original &#x60;schemeUniqueTransactionID&#x60; provided in an earlier payment (not necessarily processed by Adyen). A &#x60;schemeTraceId&#x60; is typically available for authorization adjustments or recurring payments.</param>
         /// <param name="schemeUniqueTransactionId">The unique identifier created by the scheme. This ID can be alphanumeric or numeric depending on the scheme.</param>
@@ -53,7 +53,7 @@ namespace Adyen.Transfers.Models
             _SchemeTraceIdOption = schemeTraceId;
             _SchemeUniqueTransactionIdOption = schemeUniqueTransactionId;
             _ThreeDSecureOption = threeDSecure;
-            _TypeOption = type;
+            _TypeOption = type.IsSet ? type : TypeEnum.IssuedCard;
             _ValidationFactsOption = validationFacts;
             OnCreated();
         }
@@ -230,9 +230,9 @@ namespace Adyen.Transfers.Models
         public PanEntryModeEnum? PanEntryMode { get { return this._PanEntryModeOption; } set { this._PanEntryModeOption = new(value); } }
 
         /// <summary>
-        /// Contains information about how the payment was processed. For example, **ecommerce** for online or **pos** for in-person payments.
+        /// Contains information about how the payment was processed.  Possible values: **atmWithdraw**, **balanceInquiry**, **ecommerce**, **moto**, **pos**, **purchaseWithCashback**, **recurring**, **token**.
         /// </summary>
-        /// <value>Contains information about how the payment was processed. For example, **ecommerce** for online or **pos** for in-person payments.</value>
+        /// <value>Contains information about how the payment was processed.  Possible values: **atmWithdraw**, **balanceInquiry**, **ecommerce**, **moto**, **pos**, **purchaseWithCashback**, **recurring**, **token**.</value>
         [JsonConverter(typeof(ProcessingTypeEnumJsonConverter))]
         public class ProcessingTypeEnum : IEnum
         {
@@ -394,9 +394,9 @@ namespace Adyen.Transfers.Models
         public Option<ProcessingTypeEnum?> _ProcessingTypeOption { get; private set; }
 
         /// <summary>
-        /// Contains information about how the payment was processed. For example, **ecommerce** for online or **pos** for in-person payments.
+        /// Contains information about how the payment was processed.  Possible values: **atmWithdraw**, **balanceInquiry**, **ecommerce**, **moto**, **pos**, **purchaseWithCashback**, **recurring**, **token**.
         /// </summary>
-        /// <value>Contains information about how the payment was processed. For example, **ecommerce** for online or **pos** for in-person payments.</value>
+        /// <value>Contains information about how the payment was processed.  Possible values: **atmWithdraw**, **balanceInquiry**, **ecommerce**, **moto**, **pos**, **purchaseWithCashback**, **recurring**, **token**.</value>
         [JsonPropertyName("processingType")]
         public ProcessingTypeEnum? ProcessingType { get { return this._ProcessingTypeOption; } set { this._ProcessingTypeOption = new(value); } }
 

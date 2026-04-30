@@ -42,7 +42,7 @@ namespace Adyen.Transfers.Models
         {
             _ModificationMerchantReferenceOption = modificationMerchantReference;
             _ModificationPspReferenceOption = modificationPspReference;
-            _TypeOption = type;
+            _TypeOption = type.IsSet ? type : TypeEnum.Internal;
             OnCreated();
         }
         

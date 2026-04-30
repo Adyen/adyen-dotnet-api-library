@@ -83,7 +83,7 @@ namespace Adyen.Transfers.Services
         /// <param name="balanceAccountId">The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id).  Required if you don't provide an `accountHolderId` or `balancePlatform`.  If you provide an `accountHolderId`, the `balanceAccountId` must be related to the `accountHolderId`.</param>
         /// <param name="paymentInstrumentId">The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_).  To use this parameter, you must also provide a `balanceAccountId`, `accountHolderId`, or `balancePlatform`.  The `paymentInstrumentId` must be related to the `balanceAccountId` or `accountHolderId` that you provide.</param>
         /// <param name="reference">The reference you provided in the POST [/transfers](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers) request</param>
-        /// <param name="category">The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.</param>
+        /// <param name="category">The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.</param>
         /// <param name="sortOrder">Determines the sort order of the returned transfers. The sort order is based on the creation date of the transfers.  Possible values:   - **asc**: Ascending order, from oldest to most recent.  - **desc**: Descending order, from most recent to oldest.  Default value: **asc**.</param>
         /// <param name="cursor">The `cursor` returned in the links of the previous response.</param>
         /// <param name="limit">The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page.</param>
@@ -320,8 +320,14 @@ namespace Adyen.Transfers.Services
     /// <summary>
     /// The <see cref="ITransferFundsApiResponse"/>, wraps <see cref="Adyen.Transfers.Models.Transfer"/>.
     /// </summary>
-    public interface ITransferFundsApiResponse : Adyen.Core.Client.IApiResponse, IAccepted<Adyen.Transfers.Models.Transfer?>, IUnauthorized<Adyen.Transfers.Models.ServiceError?>, IForbidden<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IUnprocessableContent<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IInternalServerError<Adyen.Transfers.Models.TransferServiceRestServiceError?>
+    public interface ITransferFundsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Transfers.Models.Transfer?>, IAccepted<Adyen.Transfers.Models.Transfer?>, IUnauthorized<Adyen.Transfers.Models.ServiceError?>, IForbidden<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IUnprocessableContent<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IInternalServerError<Adyen.Transfers.Models.TransferServiceRestServiceError?>
     {
+        /// <summary>
+        /// Returns true if the response is 200 Ok.
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
         /// <summary>
         /// Returns true if the response is 202 Accepted.
         /// </summary>
@@ -1166,7 +1172,7 @@ namespace Adyen.Transfers.Services
         /// <param name="balanceAccountId">The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id).  Required if you don't provide an `accountHolderId` or `balancePlatform`.  If you provide an `accountHolderId`, the `balanceAccountId` must be related to the `accountHolderId`. ()</param>
         /// <param name="paymentInstrumentId">The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_).  To use this parameter, you must also provide a `balanceAccountId`, `accountHolderId`, or `balancePlatform`.  The `paymentInstrumentId` must be related to the `balanceAccountId` or `accountHolderId` that you provide. ()</param>
         /// <param name="reference">The reference you provided in the POST [/transfers](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers) request ()</param>
-        /// <param name="category">The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users. ()</param>
+        /// <param name="category">The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account. ()</param>
         /// <param name="sortOrder">Determines the sort order of the returned transfers. The sort order is based on the creation date of the transfers.  Possible values:   - **asc**: Ascending order, from oldest to most recent.  - **desc**: Descending order, from most recent to oldest.  Default value: **asc**. ()</param>
         /// <param name="cursor">The `cursor` returned in the links of the previous response. ()</param>
         /// <param name="limit">The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page. ()</param>
@@ -2333,6 +2339,44 @@ namespace Adyen.Transfers.Services
             }
 
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Transfers.Models.Transfer? Ok()
+            {
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Transfers.Models.Transfer>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.Transfers.Models.Transfer? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
 
             /// <summary>
             /// Returns true if the response is 202 Accepted.

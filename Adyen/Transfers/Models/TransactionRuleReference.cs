@@ -258,7 +258,8 @@ namespace Adyen.Transfers.Models
                     writer.WriteString("reference", transactionRuleReference.Reference);
 
             if (transactionRuleReference._ScoreOption.IsSet)
-                writer.WriteNumber("score", transactionRuleReference._ScoreOption.Value!.Value);
+                if (transactionRuleReference._ScoreOption.Value != null)
+                    writer.WriteNumber("score", transactionRuleReference._ScoreOption.Value!.Value);
         }
     }
 }

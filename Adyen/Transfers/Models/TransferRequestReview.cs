@@ -179,10 +179,12 @@ namespace Adyen.Transfers.Models
         {
             
             if (transferRequestReview._NumberOfApprovalsRequiredOption.IsSet)
-                writer.WriteNumber("numberOfApprovalsRequired", transferRequestReview._NumberOfApprovalsRequiredOption.Value!.Value);
+                if (transferRequestReview._NumberOfApprovalsRequiredOption.Value != null)
+                    writer.WriteNumber("numberOfApprovalsRequired", transferRequestReview._NumberOfApprovalsRequiredOption.Value!.Value);
 
             if (transferRequestReview._ScaOnApprovalOption.IsSet)
-                writer.WriteBoolean("scaOnApproval", transferRequestReview._ScaOnApprovalOption.Value!.Value);
+                if (transferRequestReview._ScaOnApprovalOption.Value != null)
+                    writer.WriteBoolean("scaOnApproval", transferRequestReview._ScaOnApprovalOption.Value!.Value);
         }
     }
 }

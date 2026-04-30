@@ -225,10 +225,12 @@ namespace Adyen.Transfers.Models
                     writer.WriteString("advice", transactionRulesResult.Advice);
 
             if (transactionRulesResult._AllHardBlockRulesPassedOption.IsSet)
-                writer.WriteBoolean("allHardBlockRulesPassed", transactionRulesResult._AllHardBlockRulesPassedOption.Value!.Value);
+                if (transactionRulesResult._AllHardBlockRulesPassedOption.Value != null)
+                    writer.WriteBoolean("allHardBlockRulesPassed", transactionRulesResult._AllHardBlockRulesPassedOption.Value!.Value);
 
             if (transactionRulesResult._ScoreOption.IsSet)
-                writer.WriteNumber("score", transactionRulesResult._ScoreOption.Value!.Value);
+                if (transactionRulesResult._ScoreOption.Value != null)
+                    writer.WriteNumber("score", transactionRulesResult._ScoreOption.Value!.Value);
 
             if (transactionRulesResult._TriggeredTransactionRulesOption.IsSet)
             {

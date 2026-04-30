@@ -53,7 +53,7 @@ namespace Adyen.Transfers.Models
             _FullNameOption = fullName;
             _LastNameOption = lastName;
             _ReferenceOption = reference;
-            _TypeOption = type;
+            _TypeOption = type.IsSet ? type : TypeEnum.Unknown;
             _UrlOption = url;
             OnCreated();
         }
@@ -448,7 +448,8 @@ namespace Adyen.Transfers.Models
                 JsonSerializer.Serialize(writer, partyIdentification.Address, jsonSerializerOptions);
             }
             if (partyIdentification._DateOfBirthOption.IsSet)
-                writer.WriteString("dateOfBirth", partyIdentification._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
+                if (partyIdentification._DateOfBirthOption.Value != null)
+                    writer.WriteString("dateOfBirth", partyIdentification._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
 
             if (partyIdentification._EmailOption.IsSet)
                 if (partyIdentification.Email != null)

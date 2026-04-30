@@ -176,7 +176,8 @@ namespace Adyen.Transfers.Models
             writer.WriteNumber("estimatedDays", repaymentTerm.EstimatedDays);
 
             if (repaymentTerm._MaximumDaysOption.IsSet)
-                writer.WriteNumber("maximumDays", repaymentTerm._MaximumDaysOption.Value!.Value);
+                if (repaymentTerm._MaximumDaysOption.Value != null)
+                    writer.WriteNumber("maximumDays", repaymentTerm._MaximumDaysOption.Value!.Value);
         }
     }
 }

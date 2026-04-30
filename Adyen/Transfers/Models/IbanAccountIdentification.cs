@@ -35,11 +35,13 @@ namespace Adyen.Transfers.Models
         /// Initializes a new instance of the <see cref="IbanAccountIdentification" /> class.
         /// </summary>
         /// <param name="iban">The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.</param>
+        /// <param name="bic">The bank&#39;s 8- or 11-character BIC or SWIFT code.</param>
         /// <param name="type">**iban** (default to TypeEnum.Iban)</param>
         [JsonConstructor]
-        public IbanAccountIdentification(string iban, TypeEnum type = default)
+        public IbanAccountIdentification(string iban, Option<string?> bic = default, TypeEnum type = default)
         {
             Iban = iban;
+            _BicOption = bic;
             Type = type;
             OnCreated();
         }
@@ -162,6 +164,20 @@ namespace Adyen.Transfers.Models
         public string Iban { get; set; }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Bic"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _BicOption { get; private set; }
+
+        /// <summary>
+        /// The bank&#39;s 8- or 11-character BIC or SWIFT code.
+        /// </summary>
+        /// <value>The bank's 8- or 11-character BIC or SWIFT code.</value>
+        [JsonPropertyName("bic")]
+        public string? Bic { get { return this._BicOption; } set { this._BicOption = new(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -170,6 +186,7 @@ namespace Adyen.Transfers.Models
             StringBuilder sb = new StringBuilder();
             sb.Append("class IbanAccountIdentification {\n");
             sb.Append("  Iban: ").Append(Iban).Append("\n");
+            sb.Append("  Bic: ").Append(Bic).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -199,6 +216,7 @@ namespace Adyen.Transfers.Models
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string?> iban = default;
+            Option<string?> bic = default;
             Option<IbanAccountIdentification.TypeEnum?> type = default;
 
             while (utf8JsonReader.Read())
@@ -219,6 +237,9 @@ namespace Adyen.Transfers.Models
                         case "iban":
                             iban = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "bic":
+                            bic = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             type = new Option<IbanAccountIdentification.TypeEnum?>(IbanAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
@@ -235,7 +256,7 @@ namespace Adyen.Transfers.Models
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class IbanAccountIdentification.", nameof(type));
 
-            return new IbanAccountIdentification(iban.Value!, type.Value!.Value!);
+            return new IbanAccountIdentification(iban.Value!, bic, type.Value!.Value!);
         }
 
         /// <summary>
@@ -266,6 +287,10 @@ namespace Adyen.Transfers.Models
             
             if (ibanAccountIdentification.Iban != null)
                 writer.WriteString("iban", ibanAccountIdentification.Iban);
+
+            if (ibanAccountIdentification._BicOption.IsSet)
+                if (ibanAccountIdentification.Bic != null)
+                    writer.WriteString("bic", ibanAccountIdentification.Bic);
 
             if (ibanAccountIdentification.Type != null) 
             {

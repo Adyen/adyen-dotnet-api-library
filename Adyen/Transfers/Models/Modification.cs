@@ -332,6 +332,11 @@ namespace Adyen.Transfers.Models
             public static readonly StatusEnum PaymentCostPending = new("paymentCostPending");
 
             /// <summary>
+            /// StatusEnum.Pending - pending
+            /// </summary>
+            public static readonly StatusEnum Pending = new("pending");
+
+            /// <summary>
             /// StatusEnum.PendingApproval - pendingApproval
             /// </summary>
             public static readonly StatusEnum PendingApproval = new("pendingApproval");
@@ -395,6 +400,11 @@ namespace Adyen.Transfers.Models
             /// StatusEnum.Returned - returned
             /// </summary>
             public static readonly StatusEnum Returned = new("returned");
+
+            /// <summary>
+            /// StatusEnum.Reversed - reversed
+            /// </summary>
+            public static readonly StatusEnum Reversed = new("reversed");
 
             /// <summary>
             /// StatusEnum.SecondChargeback - secondChargeback
@@ -500,6 +510,7 @@ namespace Adyen.Transfers.Models
                     "miscCostPending" => StatusEnum.MiscCostPending,
                     "paymentCost" => StatusEnum.PaymentCost,
                     "paymentCostPending" => StatusEnum.PaymentCostPending,
+                    "pending" => StatusEnum.Pending,
                     "pendingApproval" => StatusEnum.PendingApproval,
                     "pendingExecution" => StatusEnum.PendingExecution,
                     "received" => StatusEnum.Received,
@@ -513,6 +524,7 @@ namespace Adyen.Transfers.Models
                     "reserveAdjustment" => StatusEnum.ReserveAdjustment,
                     "reserveAdjustmentPending" => StatusEnum.ReserveAdjustmentPending,
                     "returned" => StatusEnum.Returned,
+                    "reversed" => StatusEnum.Reversed,
                     "secondChargeback" => StatusEnum.SecondChargeback,
                     "secondChargebackPending" => StatusEnum.SecondChargebackPending,
                     "undefined" => StatusEnum.Undefined,
@@ -687,6 +699,9 @@ namespace Adyen.Transfers.Models
                 if (value == StatusEnum.PaymentCostPending)
                     return "paymentCostPending";
                 
+                if (value == StatusEnum.Pending)
+                    return "pending";
+                
                 if (value == StatusEnum.PendingApproval)
                     return "pendingApproval";
                 
@@ -725,6 +740,9 @@ namespace Adyen.Transfers.Models
                 
                 if (value == StatusEnum.Returned)
                     return "returned";
+                
+                if (value == StatusEnum.Reversed)
+                    return "reversed";
                 
                 if (value == StatusEnum.SecondChargeback)
                     return "secondChargeback";
