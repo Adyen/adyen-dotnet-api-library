@@ -27,29 +27,27 @@ using Adyen.ConfigurationWebhooks.Client;
 namespace Adyen.ConfigurationWebhooks.Models
 {
     /// <summary>
-    /// Resource.
+    /// MandateNotificationData.
     /// </summary>
-    public partial class Resource
+    public partial class MandateNotificationData
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Resource" /> class.
+        /// Initializes a new instance of the <see cref="MandateNotificationData" /> class.
         /// </summary>
         /// <param name="balancePlatform">The unique identifier of the balance platform.</param>
-        /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.</param>
-        /// <param name="id">The ID of the resource.</param>
+        /// <param name="mandate">mandate</param>
         [JsonConstructor]
-        public Resource(Option<string?> balancePlatform = default, Option<DateTimeOffset?> creationDate = default, Option<string?> id = default)
+        public MandateNotificationData(Option<string?> balancePlatform = default, Option<Mandate?> mandate = default)
         {
             _BalancePlatformOption = balancePlatform;
-            _CreationDateOption = creationDate;
-            _IdOption = id;
+            _MandateOption = mandate;
             OnCreated();
         }
         
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public Resource()
+        public MandateNotificationData()
         {
         }
 
@@ -70,32 +68,17 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? BalancePlatform { get { return this._BalancePlatformOption; } set { this._BalancePlatformOption = new(value); } }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="CreationDate"/> will be populated.
+        /// This is used to track if an optional field is set. If set, <see cref="Mandate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<DateTimeOffset?> _CreationDateOption { get; private set; }
+        public Option<Mandate?> _MandateOption { get; private set; }
 
         /// <summary>
-        /// The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.
+        /// <see cref="Mandate"/>.
         /// </summary>
-        /// <value>The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.</value>
-        [JsonPropertyName("creationDate")]
-        public DateTimeOffset? CreationDate { get { return this._CreationDateOption; } set { this._CreationDateOption = new(value); } }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _IdOption { get; private set; }
-
-        /// <summary>
-        /// The ID of the resource.
-        /// </summary>
-        /// <value>The ID of the resource.</value>
-        [JsonPropertyName("id")]
-        public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
+        [JsonPropertyName("mandate")]
+        public Mandate? Mandate { get { return this._MandateOption; } set { this._MandateOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -104,34 +87,28 @@ namespace Adyen.ConfigurationWebhooks.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Resource {\n");
+            sb.Append("class MandateNotificationData {\n");
             sb.Append("  BalancePlatform: ").Append(BalancePlatform).Append("\n");
-            sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Mandate: ").Append(Mandate).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="Resource" />
+    /// A Json converter for type <see cref="MandateNotificationData" />
     /// </summary>
-    public class ResourceJsonConverter : JsonConverter<Resource>
+    public class MandateNotificationDataJsonConverter : JsonConverter<MandateNotificationData>
     {
         /// <summary>
-        /// The format to use to serialize CreationDate.
-        /// </summary>
-        public static string CreationDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
-
-        /// <summary>
-        /// Deserializes json to <see cref="Resource"/>.
+        /// Deserializes json to <see cref="MandateNotificationData"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="Resource"/>.</returns>
+        /// <returns><see cref="MandateNotificationData"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override Resource Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override MandateNotificationData Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -141,8 +118,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string?> balancePlatform = default;
-            Option<DateTimeOffset?> creationDate = default;
-            Option<string?> id = default;
+            Option<Mandate?> mandate = default;
 
             while (utf8JsonReader.Read())
             {
@@ -162,11 +138,8 @@ namespace Adyen.ConfigurationWebhooks.Models
                         case "balancePlatform":
                             balancePlatform = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
-                        case "creationDate":
-                            creationDate = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "id":
-                            id = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "mandate":
+                            mandate = new Option<Mandate?>(JsonSerializer.Deserialize<Mandate>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         default:
                             break;
@@ -175,46 +148,44 @@ namespace Adyen.ConfigurationWebhooks.Models
             }
             
 
-            return new Resource(balancePlatform, creationDate, id);
+            return new MandateNotificationData(balancePlatform, mandate);
         }
 
         /// <summary>
-        /// Serializes a <see cref="Resource"/>.
+        /// Serializes a <see cref="MandateNotificationData"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="resource"></param>
+        /// <param name="mandateNotificationData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, Resource resource, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, MandateNotificationData mandateNotificationData, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, resource, jsonSerializerOptions);
+            WriteProperties(writer, mandateNotificationData, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="Resource"/>.
+        /// Serializes the properties of <see cref="MandateNotificationData"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="resource"></param>
+        /// <param name="mandateNotificationData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, Resource resource, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, MandateNotificationData mandateNotificationData, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (resource._BalancePlatformOption.IsSet)
-                if (resource.BalancePlatform != null)
-                    writer.WriteString("balancePlatform", resource.BalancePlatform);
+            if (mandateNotificationData._BalancePlatformOption.IsSet)
+                if (mandateNotificationData.BalancePlatform != null)
+                    writer.WriteString("balancePlatform", mandateNotificationData.BalancePlatform);
 
-            if (resource._CreationDateOption.IsSet)
-                if (resource._CreationDateOption.Value != null)
-                    writer.WriteString("creationDate", resource._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
-
-            if (resource._IdOption.IsSet)
-                if (resource.Id != null)
-                    writer.WriteString("id", resource.Id);
+            if (mandateNotificationData._MandateOption.IsSet)
+            {
+                writer.WritePropertyName("mandate");
+                JsonSerializer.Serialize(writer, mandateNotificationData.Mandate, jsonSerializerOptions);
+            }
         }
     }
 }

@@ -27,19 +27,19 @@ using Adyen.ConfigurationWebhooks.Client;
 namespace Adyen.ConfigurationWebhooks.Models
 {
     /// <summary>
-    /// SweepConfigurationNotificationRequest.
+    /// MandateNotificationRequest.
     /// </summary>
-    public partial class SweepConfigurationNotificationRequest
+    public partial class MandateNotificationRequest
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SweepConfigurationNotificationRequest" /> class.
+        /// Initializes a new instance of the <see cref="MandateNotificationRequest" /> class.
         /// </summary>
         /// <param name="data">data</param>
         /// <param name="environment">The environment from which the webhook originated.  Possible values: **test**, **live**.</param>
         /// <param name="type">Type of webhook.</param>
         /// <param name="timestamp">When the event was queued.</param>
         [JsonConstructor]
-        public SweepConfigurationNotificationRequest(SweepConfigurationNotificationData data, string environment, TypeEnum type, Option<DateTimeOffset?> timestamp = default)
+        public MandateNotificationRequest(MandateNotificationData data, string environment, TypeEnum type, Option<DateTimeOffset?> timestamp = default)
         {
             Data = data;
             Environment = environment;
@@ -51,7 +51,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public SweepConfigurationNotificationRequest()
+        public MandateNotificationRequest()
         {
         }
 
@@ -70,19 +70,14 @@ namespace Adyen.ConfigurationWebhooks.Models
             public string? Value { get; set; }
 
             /// <summary>
-            /// TypeEnum.BalancePlatformBalanceAccountSweepCreated - balancePlatform.balanceAccountSweep.created
+            /// TypeEnum.BalancePlatformMandateCreated - balancePlatform.mandate.created
             /// </summary>
-            public static readonly TypeEnum BalancePlatformBalanceAccountSweepCreated = new("balancePlatform.balanceAccountSweep.created");
+            public static readonly TypeEnum BalancePlatformMandateCreated = new("balancePlatform.mandate.created");
 
             /// <summary>
-            /// TypeEnum.BalancePlatformBalanceAccountSweepUpdated - balancePlatform.balanceAccountSweep.updated
+            /// TypeEnum.BalancePlatformMandateUpdated - balancePlatform.mandate.updated
             /// </summary>
-            public static readonly TypeEnum BalancePlatformBalanceAccountSweepUpdated = new("balancePlatform.balanceAccountSweep.updated");
-
-            /// <summary>
-            /// TypeEnum.BalancePlatformBalanceAccountSweepDeleted - balancePlatform.balanceAccountSweep.deleted
-            /// </summary>
-            public static readonly TypeEnum BalancePlatformBalanceAccountSweepDeleted = new("balancePlatform.balanceAccountSweep.deleted");
+            public static readonly TypeEnum BalancePlatformMandateUpdated = new("balancePlatform.mandate.updated");
         
             private TypeEnum(string? value)
             {
@@ -121,9 +116,8 @@ namespace Adyen.ConfigurationWebhooks.Models
             public static TypeEnum? FromStringOrDefault(string value)
             {
                 return value switch {
-                    "balancePlatform.balanceAccountSweep.created" => TypeEnum.BalancePlatformBalanceAccountSweepCreated,
-                    "balancePlatform.balanceAccountSweep.updated" => TypeEnum.BalancePlatformBalanceAccountSweepUpdated,
-                    "balancePlatform.balanceAccountSweep.deleted" => TypeEnum.BalancePlatformBalanceAccountSweepDeleted,
+                    "balancePlatform.mandate.created" => TypeEnum.BalancePlatformMandateCreated,
+                    "balancePlatform.mandate.updated" => TypeEnum.BalancePlatformMandateUpdated,
                     _ => null,
                 };
             }
@@ -139,14 +133,11 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == null)
                     return null;
             
-                if (value == TypeEnum.BalancePlatformBalanceAccountSweepCreated)
-                    return "balancePlatform.balanceAccountSweep.created";
+                if (value == TypeEnum.BalancePlatformMandateCreated)
+                    return "balancePlatform.mandate.created";
                 
-                if (value == TypeEnum.BalancePlatformBalanceAccountSweepUpdated)
-                    return "balancePlatform.balanceAccountSweep.updated";
-                
-                if (value == TypeEnum.BalancePlatformBalanceAccountSweepDeleted)
-                    return "balancePlatform.balanceAccountSweep.deleted";
+                if (value == TypeEnum.BalancePlatformMandateUpdated)
+                    return "balancePlatform.mandate.updated";
                 
                 return null;
             }
@@ -180,7 +171,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public SweepConfigurationNotificationData Data { get; set; }
+        public MandateNotificationData Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
@@ -210,7 +201,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SweepConfigurationNotificationRequest {\n");
+            sb.Append("class MandateNotificationRequest {\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  Environment: ").Append(Environment).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -221,9 +212,9 @@ namespace Adyen.ConfigurationWebhooks.Models
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="SweepConfigurationNotificationRequest" />
+    /// A Json converter for type <see cref="MandateNotificationRequest" />
     /// </summary>
-    public class SweepConfigurationNotificationRequestJsonConverter : JsonConverter<SweepConfigurationNotificationRequest>
+    public class MandateNotificationRequestJsonConverter : JsonConverter<MandateNotificationRequest>
     {
         /// <summary>
         /// The format to use to serialize Timestamp.
@@ -231,14 +222,14 @@ namespace Adyen.ConfigurationWebhooks.Models
         public static string TimestampFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
-        /// Deserializes json to <see cref="SweepConfigurationNotificationRequest"/>.
+        /// Deserializes json to <see cref="MandateNotificationRequest"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="SweepConfigurationNotificationRequest"/>.</returns>
+        /// <returns><see cref="MandateNotificationRequest"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override SweepConfigurationNotificationRequest Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override MandateNotificationRequest Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -247,9 +238,9 @@ namespace Adyen.ConfigurationWebhooks.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<SweepConfigurationNotificationData?> data = default;
+            Option<MandateNotificationData?> data = default;
             Option<string?> environment = default;
-            Option<SweepConfigurationNotificationRequest.TypeEnum?> type = default;
+            Option<MandateNotificationRequest.TypeEnum?> type = default;
             Option<DateTimeOffset?> timestamp = default;
 
             while (utf8JsonReader.Read())
@@ -268,14 +259,14 @@ namespace Adyen.ConfigurationWebhooks.Models
                     switch (jsonPropertyName)
                     {
                         case "data":
-                            data = new Option<SweepConfigurationNotificationData?>(JsonSerializer.Deserialize<SweepConfigurationNotificationData>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            data = new Option<MandateNotificationData?>(JsonSerializer.Deserialize<MandateNotificationData>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "environment":
                             environment = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<SweepConfigurationNotificationRequest.TypeEnum?>(SweepConfigurationNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<MandateNotificationRequest.TypeEnum?>(MandateNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
                             break;
                         case "timestamp":
                             timestamp = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -287,57 +278,57 @@ namespace Adyen.ConfigurationWebhooks.Models
             }
             
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class SweepConfigurationNotificationRequest.", nameof(data));
+                throw new ArgumentException("Property is required for class MandateNotificationRequest.", nameof(data));
 
             if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class SweepConfigurationNotificationRequest.", nameof(environment));
+                throw new ArgumentException("Property is required for class MandateNotificationRequest.", nameof(environment));
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class SweepConfigurationNotificationRequest.", nameof(type));
+                throw new ArgumentException("Property is required for class MandateNotificationRequest.", nameof(type));
 
-            return new SweepConfigurationNotificationRequest(data.Value!, environment.Value!, type.Value!.Value!, timestamp);
+            return new MandateNotificationRequest(data.Value!, environment.Value!, type.Value!.Value!, timestamp);
         }
 
         /// <summary>
-        /// Serializes a <see cref="SweepConfigurationNotificationRequest"/>.
+        /// Serializes a <see cref="MandateNotificationRequest"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="sweepConfigurationNotificationRequest"></param>
+        /// <param name="mandateNotificationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, SweepConfigurationNotificationRequest sweepConfigurationNotificationRequest, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, MandateNotificationRequest mandateNotificationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, sweepConfigurationNotificationRequest, jsonSerializerOptions);
+            WriteProperties(writer, mandateNotificationRequest, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="SweepConfigurationNotificationRequest"/>.
+        /// Serializes the properties of <see cref="MandateNotificationRequest"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="sweepConfigurationNotificationRequest"></param>
+        /// <param name="mandateNotificationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, SweepConfigurationNotificationRequest sweepConfigurationNotificationRequest, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, MandateNotificationRequest mandateNotificationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WritePropertyName("data");
-            JsonSerializer.Serialize(writer, sweepConfigurationNotificationRequest.Data, jsonSerializerOptions);
-            if (sweepConfigurationNotificationRequest.Environment != null)
-                writer.WriteString("environment", sweepConfigurationNotificationRequest.Environment);
+            JsonSerializer.Serialize(writer, mandateNotificationRequest.Data, jsonSerializerOptions);
+            if (mandateNotificationRequest.Environment != null)
+                writer.WriteString("environment", mandateNotificationRequest.Environment);
 
-            if (sweepConfigurationNotificationRequest.Type != null) 
+            if (mandateNotificationRequest.Type != null) 
             {
-                string? typeRawValue = SweepConfigurationNotificationRequest.TypeEnum.ToJsonValue(sweepConfigurationNotificationRequest.Type);
+                string? typeRawValue = MandateNotificationRequest.TypeEnum.ToJsonValue(mandateNotificationRequest.Type);
                 writer.WriteString("type", typeRawValue);
             }
             
-            if (sweepConfigurationNotificationRequest._TimestampOption.IsSet)
-                if (sweepConfigurationNotificationRequest._TimestampOption.Value != null)
-                    writer.WriteString("timestamp", sweepConfigurationNotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
+            if (mandateNotificationRequest._TimestampOption.IsSet)
+                if (mandateNotificationRequest._TimestampOption.Value != null)
+                    writer.WriteString("timestamp", mandateNotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
         }
     }
 }

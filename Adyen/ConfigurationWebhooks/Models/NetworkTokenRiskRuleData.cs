@@ -258,7 +258,8 @@ namespace Adyen.ConfigurationWebhooks.Models
                     writer.WriteString("reference", networkTokenRiskRuleData.Reference);
 
             if (networkTokenRiskRuleData._ScoreOption.IsSet)
-                writer.WriteNumber("score", networkTokenRiskRuleData._ScoreOption.Value!.Value);
+                if (networkTokenRiskRuleData._ScoreOption.Value != null)
+                    writer.WriteNumber("score", networkTokenRiskRuleData._ScoreOption.Value!.Value);
         }
     }
 }

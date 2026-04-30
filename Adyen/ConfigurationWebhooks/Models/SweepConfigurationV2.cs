@@ -68,7 +68,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             _SweepAmountOption = sweepAmount;
             _TargetAmountOption = targetAmount;
             _TriggerAmountOption = triggerAmount;
-            _TypeOption = type;
+            _TypeOption = type.IsSet ? type : TypeEnum.Push;
             OnCreated();
         }
         

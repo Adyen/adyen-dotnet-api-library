@@ -465,7 +465,8 @@ namespace Adyen.ConfigurationWebhooks.Models
                 JsonSerializer.Serialize(writer, capabilitySettings.AmountPerIndustry, jsonSerializerOptions);
             }
             if (capabilitySettings._AuthorizedCardUsersOption.IsSet)
-                writer.WriteBoolean("authorizedCardUsers", capabilitySettings._AuthorizedCardUsersOption.Value!.Value);
+                if (capabilitySettings._AuthorizedCardUsersOption.Value != null)
+                    writer.WriteBoolean("authorizedCardUsers", capabilitySettings._AuthorizedCardUsersOption.Value!.Value);
 
             if (capabilitySettings._FundingSourceOption.IsSet)
             {

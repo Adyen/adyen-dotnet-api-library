@@ -234,7 +234,8 @@ namespace Adyen.ConfigurationWebhooks.Models
             writer.WriteNumber("reserved", balance.Reserved);
 
             if (balance._PendingOption.IsSet)
-                writer.WriteNumber("pending", balance._PendingOption.Value!.Value);
+                if (balance._PendingOption.Value != null)
+                    writer.WriteNumber("pending", balance._PendingOption.Value!.Value);
         }
     }
 }

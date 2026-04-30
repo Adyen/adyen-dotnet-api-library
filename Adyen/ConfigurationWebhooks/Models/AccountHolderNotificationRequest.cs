@@ -327,7 +327,8 @@ namespace Adyen.ConfigurationWebhooks.Models
             }
             
             if (accountHolderNotificationRequest._TimestampOption.IsSet)
-                writer.WriteString("timestamp", accountHolderNotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
+                if (accountHolderNotificationRequest._TimestampOption.Value != null)
+                    writer.WriteString("timestamp", accountHolderNotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
         }
     }
 }

@@ -1,0 +1,8 @@
+{
+  "service": "configurationwebhooks",
+  "project": "dotnet",
+  "generatedAt": "2026-04-30T10:00:09Z",
+  "openapiCommitSha": "d24c59897bc66d049db5fbc0f4823efe59964e67",
+  "automationCommitSha": "4ad0c0c7e87bc0e5994a9a3350a991d0691350bb",
+  "libraryCommitSha": "58cf7ddd1ce25669b0591c0a37377e4d46d456ef"
+}

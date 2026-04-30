@@ -327,7 +327,8 @@ namespace Adyen.ConfigurationWebhooks.Models
             }
             
             if (paymentNotificationRequest._TimestampOption.IsSet)
-                writer.WriteString("timestamp", paymentNotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
+                if (paymentNotificationRequest._TimestampOption.Value != null)
+                    writer.WriteString("timestamp", paymentNotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
         }
     }
 }

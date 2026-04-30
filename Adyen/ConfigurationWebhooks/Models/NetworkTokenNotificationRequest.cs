@@ -327,7 +327,8 @@ namespace Adyen.ConfigurationWebhooks.Models
             }
             
             if (networkTokenNotificationRequest._TimestampOption.IsSet)
-                writer.WriteString("timestamp", networkTokenNotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
+                if (networkTokenNotificationRequest._TimestampOption.Value != null)
+                    writer.WriteString("timestamp", networkTokenNotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
         }
     }
 }

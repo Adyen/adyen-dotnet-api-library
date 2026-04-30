@@ -711,7 +711,8 @@ namespace Adyen.ConfigurationWebhooks.Models
         {
             
             if (accountHolderCapability._AllowedOption.IsSet)
-                writer.WriteBoolean("allowed", accountHolderCapability._AllowedOption.Value!.Value);
+                if (accountHolderCapability._AllowedOption.Value != null)
+                    writer.WriteBoolean("allowed", accountHolderCapability._AllowedOption.Value!.Value);
 
             if (accountHolderCapability._AllowedLevelOption.IsSet && accountHolderCapability.AllowedLevel != null) 
             {
@@ -725,7 +726,8 @@ namespace Adyen.ConfigurationWebhooks.Models
                 JsonSerializer.Serialize(writer, accountHolderCapability.AllowedSettings, jsonSerializerOptions);
             }
             if (accountHolderCapability._EnabledOption.IsSet)
-                writer.WriteBoolean("enabled", accountHolderCapability._EnabledOption.Value!.Value);
+                if (accountHolderCapability._EnabledOption.Value != null)
+                    writer.WriteBoolean("enabled", accountHolderCapability._EnabledOption.Value!.Value);
 
             if (accountHolderCapability._ProblemsOption.IsSet)
             {
@@ -733,7 +735,8 @@ namespace Adyen.ConfigurationWebhooks.Models
                 JsonSerializer.Serialize(writer, accountHolderCapability.Problems, jsonSerializerOptions);
             }
             if (accountHolderCapability._RequestedOption.IsSet)
-                writer.WriteBoolean("requested", accountHolderCapability._RequestedOption.Value!.Value);
+                if (accountHolderCapability._RequestedOption.Value != null)
+                    writer.WriteBoolean("requested", accountHolderCapability._RequestedOption.Value!.Value);
 
             if (accountHolderCapability._RequestedLevelOption.IsSet && accountHolderCapability.RequestedLevel != null) 
             {
