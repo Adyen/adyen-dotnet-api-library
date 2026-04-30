@@ -292,7 +292,8 @@ namespace Adyen.TransferWebhooks.Models
         {
             
             if (transferReview._NumberOfApprovalsRequiredOption.IsSet)
-                writer.WriteNumber("numberOfApprovalsRequired", transferReview._NumberOfApprovalsRequiredOption.Value!.Value);
+                if (transferReview._NumberOfApprovalsRequiredOption.Value != null)
+                    writer.WriteNumber("numberOfApprovalsRequired", transferReview._NumberOfApprovalsRequiredOption.Value!.Value);
 
             if (transferReview._ScaOnApprovalOption.IsSet && transferReview.ScaOnApproval != null) 
             {

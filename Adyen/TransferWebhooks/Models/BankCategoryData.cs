@@ -40,7 +40,7 @@ namespace Adyen.TransferWebhooks.Models
         public BankCategoryData(Option<PriorityEnum?> priority = default, Option<TypeEnum?> type = default)
         {
             _PriorityOption = priority;
-            _TypeOption = type;
+            _TypeOption = type.IsSet ? type : TypeEnum.Bank;
             OnCreated();
         }
         

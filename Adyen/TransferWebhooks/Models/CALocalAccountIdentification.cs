@@ -45,7 +45,7 @@ namespace Adyen.TransferWebhooks.Models
             AccountNumber = accountNumber;
             InstitutionNumber = institutionNumber;
             TransitNumber = transitNumber;
-            _AccountTypeOption = accountType;
+            _AccountTypeOption = accountType.IsSet ? accountType : AccountTypeEnum.Checking;
             Type = type;
             OnCreated();
         }

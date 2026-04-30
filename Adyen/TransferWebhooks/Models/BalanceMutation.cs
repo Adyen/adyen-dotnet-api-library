@@ -221,17 +221,20 @@ namespace Adyen.TransferWebhooks.Models
         {
             
             if (balanceMutation._BalanceOption.IsSet)
-                writer.WriteNumber("balance", balanceMutation._BalanceOption.Value!.Value);
+                if (balanceMutation._BalanceOption.Value != null)
+                    writer.WriteNumber("balance", balanceMutation._BalanceOption.Value!.Value);
 
             if (balanceMutation._CurrencyOption.IsSet)
                 if (balanceMutation.Currency != null)
                     writer.WriteString("currency", balanceMutation.Currency);
 
             if (balanceMutation._ReceivedOption.IsSet)
-                writer.WriteNumber("received", balanceMutation._ReceivedOption.Value!.Value);
+                if (balanceMutation._ReceivedOption.Value != null)
+                    writer.WriteNumber("received", balanceMutation._ReceivedOption.Value!.Value);
 
             if (balanceMutation._ReservedOption.IsSet)
-                writer.WriteNumber("reserved", balanceMutation._ReservedOption.Value!.Value);
+                if (balanceMutation._ReservedOption.Value != null)
+                    writer.WriteNumber("reserved", balanceMutation._ReservedOption.Value!.Value);
         }
     }
 }

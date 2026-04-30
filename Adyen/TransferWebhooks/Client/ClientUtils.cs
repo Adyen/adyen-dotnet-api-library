@@ -145,6 +145,8 @@ namespace Adyen.TransferWebhooks.Client
                 return Models.DKLocalAccountIdentification.TypeEnum.ToJsonValue(dKLocalAccountIdentificationTypeEnum);
             if (obj is Models.EstimationTrackingData.TypeEnum estimationTrackingDataTypeEnum)
                 return Models.EstimationTrackingData.TypeEnum.ToJsonValue(estimationTrackingDataTypeEnum);
+            if (obj is Models.FundingInstrument.SourceOfFundsEnum fundingInstrumentSourceOfFundsEnum)
+                return Models.FundingInstrument.SourceOfFundsEnum.ToJsonValue(fundingInstrumentSourceOfFundsEnum);
             if (obj is Models.HKLocalAccountIdentification.TypeEnum hKLocalAccountIdentificationTypeEnum)
                 return Models.HKLocalAccountIdentification.TypeEnum.ToJsonValue(hKLocalAccountIdentificationTypeEnum);
             if (obj is Models.HULocalAccountIdentification.TypeEnum hULocalAccountIdentificationTypeEnum)
@@ -217,6 +219,8 @@ namespace Adyen.TransferWebhooks.Client
                 return Models.USLocalAccountIdentification.AccountTypeEnum.ToJsonValue(uSLocalAccountIdentificationAccountTypeEnum);
             if (obj is Models.USLocalAccountIdentification.TypeEnum uSLocalAccountIdentificationTypeEnum)
                 return Models.USLocalAccountIdentification.TypeEnum.ToJsonValue(uSLocalAccountIdentificationTypeEnum);
+            if (obj is Models.UltimatePartyIdentification.TypeEnum ultimatePartyIdentificationTypeEnum)
+                return Models.UltimatePartyIdentification.TypeEnum.ToJsonValue(ultimatePartyIdentificationTypeEnum);
             if (obj is ICollection collection)
             {
                 List<string?> entries = new();

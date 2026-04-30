@@ -325,7 +325,8 @@ namespace Adyen.TransferWebhooks.Models
                 writer.WriteString("environment", transferNotificationRequest.Environment);
 
             if (transferNotificationRequest._TimestampOption.IsSet)
-                writer.WriteString("timestamp", transferNotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
+                if (transferNotificationRequest._TimestampOption.Value != null)
+                    writer.WriteString("timestamp", transferNotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
 
             if (transferNotificationRequest._TypeOption.IsSet && transferNotificationRequest.Type != null) 
             {

@@ -184,7 +184,8 @@ namespace Adyen.TransferWebhooks.Models
         {
             
             if (executionDate._DateOption.IsSet)
-                writer.WriteString("date", executionDate._DateOption.Value!.Value.ToString(DateFormat));
+                if (executionDate._DateOption.Value != null)
+                    writer.WriteString("date", executionDate._DateOption.Value!.Value.ToString(DateFormat));
 
             if (executionDate._TimezoneOption.IsSet)
                 if (executionDate.Timezone != null)

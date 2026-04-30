@@ -183,7 +183,8 @@ namespace Adyen.TransferWebhooks.Models
                     writer.WriteString("checkInDate", lodging.CheckInDate);
 
             if (lodging._NumberOfNightsOption.IsSet)
-                writer.WriteNumber("numberOfNights", lodging._NumberOfNightsOption.Value!.Value);
+                if (lodging._NumberOfNightsOption.Value != null)
+                    writer.WriteNumber("numberOfNights", lodging._NumberOfNightsOption.Value!.Value);
         }
     }
 }
