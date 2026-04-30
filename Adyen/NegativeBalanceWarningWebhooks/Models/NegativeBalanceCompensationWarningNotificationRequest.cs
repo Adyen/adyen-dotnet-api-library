@@ -318,7 +318,8 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
             }
             
             if (negativeBalanceCompensationWarningNotificationRequest._TimestampOption.IsSet)
-                writer.WriteString("timestamp", negativeBalanceCompensationWarningNotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
+                if (negativeBalanceCompensationWarningNotificationRequest._TimestampOption.Value != null)
+                    writer.WriteString("timestamp", negativeBalanceCompensationWarningNotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
         }
     }
 }
