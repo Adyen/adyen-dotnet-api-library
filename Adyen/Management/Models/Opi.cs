@@ -200,7 +200,8 @@ namespace Adyen.Management.Models
         {
             
             if (opi._EnablePayAtTableOption.IsSet)
-                writer.WriteBoolean("enablePayAtTable", opi._EnablePayAtTableOption.Value!.Value);
+                if (opi._EnablePayAtTableOption.Value != null)
+                    writer.WriteBoolean("enablePayAtTable", opi._EnablePayAtTableOption.Value!.Value);
 
             if (opi._PayAtTableStoreNumberOption.IsSet)
                 if (opi.PayAtTableStoreNumber != null)

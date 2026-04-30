@@ -200,7 +200,8 @@ namespace Adyen.Management.Models
         {
             
             if (surcharge._AskConfirmationOption.IsSet)
-                writer.WriteBoolean("askConfirmation", surcharge._AskConfirmationOption.Value!.Value);
+                if (surcharge._AskConfirmationOption.Value != null)
+                    writer.WriteBoolean("askConfirmation", surcharge._AskConfirmationOption.Value!.Value);
 
             if (surcharge._ConfigurationsOption.IsSet)
             {
@@ -208,7 +209,8 @@ namespace Adyen.Management.Models
                 JsonSerializer.Serialize(writer, surcharge.Configurations, jsonSerializerOptions);
             }
             if (surcharge._ExcludeGratuityFromSurchargeOption.IsSet)
-                writer.WriteBoolean("excludeGratuityFromSurcharge", surcharge._ExcludeGratuityFromSurchargeOption.Value!.Value);
+                if (surcharge._ExcludeGratuityFromSurchargeOption.Value != null)
+                    writer.WriteBoolean("excludeGratuityFromSurcharge", surcharge._ExcludeGratuityFromSurchargeOption.Value!.Value);
         }
     }
 }

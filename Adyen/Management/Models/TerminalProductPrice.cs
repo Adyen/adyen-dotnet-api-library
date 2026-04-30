@@ -183,7 +183,8 @@ namespace Adyen.Management.Models
                     writer.WriteString("currency", terminalProductPrice.Currency);
 
             if (terminalProductPrice._ValueOption.IsSet)
-                writer.WriteNumber("value", terminalProductPrice._ValueOption.Value!.Value);
+                if (terminalProductPrice._ValueOption.Value != null)
+                    writer.WriteNumber("value", terminalProductPrice._ValueOption.Value!.Value);
         }
     }
 }

@@ -204,7 +204,8 @@ namespace Adyen.Management.Models
                     writer.WriteString("logo", receiptOptions.Logo);
 
             if (receiptOptions._PromptBeforePrintingOption.IsSet)
-                writer.WriteBoolean("promptBeforePrinting", receiptOptions._PromptBeforePrintingOption.Value!.Value);
+                if (receiptOptions._PromptBeforePrintingOption.Value != null)
+                    writer.WriteBoolean("promptBeforePrinting", receiptOptions._PromptBeforePrintingOption.Value!.Value);
 
             if (receiptOptions._QrCodeDataOption.IsSet)
                 if (receiptOptions.QrCodeData != null)

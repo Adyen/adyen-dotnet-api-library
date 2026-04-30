@@ -225,14 +225,16 @@ namespace Adyen.Management.Models
                     writer.WriteString("id", orderItem.Id);
 
             if (orderItem._InstallmentsOption.IsSet)
-                writer.WriteNumber("installments", orderItem._InstallmentsOption.Value!.Value);
+                if (orderItem._InstallmentsOption.Value != null)
+                    writer.WriteNumber("installments", orderItem._InstallmentsOption.Value!.Value);
 
             if (orderItem._NameOption.IsSet)
                 if (orderItem.Name != null)
                     writer.WriteString("name", orderItem.Name);
 
             if (orderItem._QuantityOption.IsSet)
-                writer.WriteNumber("quantity", orderItem._QuantityOption.Value!.Value);
+                if (orderItem._QuantityOption.Value != null)
+                    writer.WriteNumber("quantity", orderItem._QuantityOption.Value!.Value);
         }
     }
 }

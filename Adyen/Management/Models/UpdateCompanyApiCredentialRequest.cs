@@ -242,7 +242,8 @@ namespace Adyen.Management.Models
         {
             
             if (updateCompanyApiCredentialRequest._ActiveOption.IsSet)
-                writer.WriteBoolean("active", updateCompanyApiCredentialRequest._ActiveOption.Value!.Value);
+                if (updateCompanyApiCredentialRequest._ActiveOption.Value != null)
+                    writer.WriteBoolean("active", updateCompanyApiCredentialRequest._ActiveOption.Value!.Value);
 
             if (updateCompanyApiCredentialRequest._AllowedOriginsOption.IsSet)
             {

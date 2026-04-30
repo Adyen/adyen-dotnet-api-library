@@ -158,7 +158,8 @@ namespace Adyen.Management.Models
         {
             
             if (bcmcInfo._EnableBcmcMobileOption.IsSet)
-                writer.WriteBoolean("enableBcmcMobile", bcmcInfo._EnableBcmcMobileOption.Value!.Value);
+                if (bcmcInfo._EnableBcmcMobileOption.Value != null)
+                    writer.WriteBoolean("enableBcmcMobile", bcmcInfo._EnableBcmcMobileOption.Value!.Value);
         }
     }
 }

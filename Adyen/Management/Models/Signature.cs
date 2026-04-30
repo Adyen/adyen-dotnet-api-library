@@ -221,7 +221,8 @@ namespace Adyen.Management.Models
         {
             
             if (signature._AskSignatureOnScreenOption.IsSet)
-                writer.WriteBoolean("askSignatureOnScreen", signature._AskSignatureOnScreenOption.Value!.Value);
+                if (signature._AskSignatureOnScreenOption.Value != null)
+                    writer.WriteBoolean("askSignatureOnScreen", signature._AskSignatureOnScreenOption.Value!.Value);
 
             if (signature._DeviceNameOption.IsSet)
                 if (signature.DeviceName != null)
@@ -232,7 +233,8 @@ namespace Adyen.Management.Models
                     writer.WriteString("deviceSlogan", signature.DeviceSlogan);
 
             if (signature._SkipSignatureOption.IsSet)
-                writer.WriteBoolean("skipSignature", signature._SkipSignatureOption.Value!.Value);
+                if (signature._SkipSignatureOption.Value != null)
+                    writer.WriteBoolean("skipSignature", signature._SkipSignatureOption.Value!.Value);
         }
     }
 }

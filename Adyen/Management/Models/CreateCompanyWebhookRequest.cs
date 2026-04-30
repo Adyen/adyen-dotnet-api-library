@@ -915,13 +915,16 @@ namespace Adyen.Management.Models
                 writer.WriteString("url", createCompanyWebhookRequest.Url);
 
             if (createCompanyWebhookRequest._AcceptsExpiredCertificateOption.IsSet)
-                writer.WriteBoolean("acceptsExpiredCertificate", createCompanyWebhookRequest._AcceptsExpiredCertificateOption.Value!.Value);
+                if (createCompanyWebhookRequest._AcceptsExpiredCertificateOption.Value != null)
+                    writer.WriteBoolean("acceptsExpiredCertificate", createCompanyWebhookRequest._AcceptsExpiredCertificateOption.Value!.Value);
 
             if (createCompanyWebhookRequest._AcceptsSelfSignedCertificateOption.IsSet)
-                writer.WriteBoolean("acceptsSelfSignedCertificate", createCompanyWebhookRequest._AcceptsSelfSignedCertificateOption.Value!.Value);
+                if (createCompanyWebhookRequest._AcceptsSelfSignedCertificateOption.Value != null)
+                    writer.WriteBoolean("acceptsSelfSignedCertificate", createCompanyWebhookRequest._AcceptsSelfSignedCertificateOption.Value!.Value);
 
             if (createCompanyWebhookRequest._AcceptsUntrustedRootCertificateOption.IsSet)
-                writer.WriteBoolean("acceptsUntrustedRootCertificate", createCompanyWebhookRequest._AcceptsUntrustedRootCertificateOption.Value!.Value);
+                if (createCompanyWebhookRequest._AcceptsUntrustedRootCertificateOption.Value != null)
+                    writer.WriteBoolean("acceptsUntrustedRootCertificate", createCompanyWebhookRequest._AcceptsUntrustedRootCertificateOption.Value!.Value);
 
             if (createCompanyWebhookRequest._AdditionalSettingsOption.IsSet)
             {
@@ -949,7 +952,8 @@ namespace Adyen.Management.Models
                     writer.WriteString("password", createCompanyWebhookRequest.Password);
 
             if (createCompanyWebhookRequest._PopulateSoapActionHeaderOption.IsSet)
-                writer.WriteBoolean("populateSoapActionHeader", createCompanyWebhookRequest._PopulateSoapActionHeaderOption.Value!.Value);
+                if (createCompanyWebhookRequest._PopulateSoapActionHeaderOption.Value != null)
+                    writer.WriteBoolean("populateSoapActionHeader", createCompanyWebhookRequest._PopulateSoapActionHeaderOption.Value!.Value);
 
             if (createCompanyWebhookRequest._UsernameOption.IsSet)
                 if (createCompanyWebhookRequest.Username != null)

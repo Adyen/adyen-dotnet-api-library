@@ -204,10 +204,12 @@ namespace Adyen.Management.Models
                     writer.WriteString("band", settings.Band);
 
             if (settings._RoamingOption.IsSet)
-                writer.WriteBoolean("roaming", settings._RoamingOption.Value!.Value);
+                if (settings._RoamingOption.Value != null)
+                    writer.WriteBoolean("roaming", settings._RoamingOption.Value!.Value);
 
             if (settings._TimeoutOption.IsSet)
-                writer.WriteNumber("timeout", settings._TimeoutOption.Value!.Value);
+                if (settings._TimeoutOption.Value != null)
+                    writer.WriteNumber("timeout", settings._TimeoutOption.Value!.Value);
         }
     }
 }

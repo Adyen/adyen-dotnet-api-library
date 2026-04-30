@@ -897,16 +897,20 @@ namespace Adyen.Management.Models
         {
             
             if (updateCompanyWebhookRequest._AcceptsExpiredCertificateOption.IsSet)
-                writer.WriteBoolean("acceptsExpiredCertificate", updateCompanyWebhookRequest._AcceptsExpiredCertificateOption.Value!.Value);
+                if (updateCompanyWebhookRequest._AcceptsExpiredCertificateOption.Value != null)
+                    writer.WriteBoolean("acceptsExpiredCertificate", updateCompanyWebhookRequest._AcceptsExpiredCertificateOption.Value!.Value);
 
             if (updateCompanyWebhookRequest._AcceptsSelfSignedCertificateOption.IsSet)
-                writer.WriteBoolean("acceptsSelfSignedCertificate", updateCompanyWebhookRequest._AcceptsSelfSignedCertificateOption.Value!.Value);
+                if (updateCompanyWebhookRequest._AcceptsSelfSignedCertificateOption.Value != null)
+                    writer.WriteBoolean("acceptsSelfSignedCertificate", updateCompanyWebhookRequest._AcceptsSelfSignedCertificateOption.Value!.Value);
 
             if (updateCompanyWebhookRequest._AcceptsUntrustedRootCertificateOption.IsSet)
-                writer.WriteBoolean("acceptsUntrustedRootCertificate", updateCompanyWebhookRequest._AcceptsUntrustedRootCertificateOption.Value!.Value);
+                if (updateCompanyWebhookRequest._AcceptsUntrustedRootCertificateOption.Value != null)
+                    writer.WriteBoolean("acceptsUntrustedRootCertificate", updateCompanyWebhookRequest._AcceptsUntrustedRootCertificateOption.Value!.Value);
 
             if (updateCompanyWebhookRequest._ActiveOption.IsSet)
-                writer.WriteBoolean("active", updateCompanyWebhookRequest._ActiveOption.Value!.Value);
+                if (updateCompanyWebhookRequest._ActiveOption.Value != null)
+                    writer.WriteBoolean("active", updateCompanyWebhookRequest._ActiveOption.Value!.Value);
 
             if (updateCompanyWebhookRequest._AdditionalSettingsOption.IsSet)
             {
@@ -951,7 +955,8 @@ namespace Adyen.Management.Models
                     writer.WriteString("password", updateCompanyWebhookRequest.Password);
 
             if (updateCompanyWebhookRequest._PopulateSoapActionHeaderOption.IsSet)
-                writer.WriteBoolean("populateSoapActionHeader", updateCompanyWebhookRequest._PopulateSoapActionHeaderOption.Value!.Value);
+                if (updateCompanyWebhookRequest._PopulateSoapActionHeaderOption.Value != null)
+                    writer.WriteBoolean("populateSoapActionHeader", updateCompanyWebhookRequest._PopulateSoapActionHeaderOption.Value!.Value);
 
             if (updateCompanyWebhookRequest._UrlOption.IsSet)
                 if (updateCompanyWebhookRequest.Url != null)

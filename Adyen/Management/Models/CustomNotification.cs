@@ -297,7 +297,8 @@ namespace Adyen.Management.Models
                     writer.WriteString("eventCode", customNotification.EventCode);
 
             if (customNotification._EventDateOption.IsSet)
-                writer.WriteString("eventDate", customNotification._EventDateOption.Value!.Value.ToString(EventDateFormat));
+                if (customNotification._EventDateOption.Value != null)
+                    writer.WriteString("eventDate", customNotification._EventDateOption.Value!.Value.ToString(EventDateFormat));
 
             if (customNotification._MerchantReferenceOption.IsSet)
                 if (customNotification.MerchantReference != null)
@@ -312,7 +313,8 @@ namespace Adyen.Management.Models
                     writer.WriteString("reason", customNotification.Reason);
 
             if (customNotification._SuccessOption.IsSet)
-                writer.WriteBoolean("success", customNotification._SuccessOption.Value!.Value);
+                if (customNotification._SuccessOption.Value != null)
+                    writer.WriteBoolean("success", customNotification._SuccessOption.Value!.Value);
         }
     }
 }

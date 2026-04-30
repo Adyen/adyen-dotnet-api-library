@@ -342,7 +342,8 @@ namespace Adyen.Management.Models
                 writer.WriteString("supportEmail", klarnaInfo.SupportEmail);
 
             if (klarnaInfo._AutoCaptureOption.IsSet)
-                writer.WriteBoolean("autoCapture", klarnaInfo._AutoCaptureOption.Value!.Value);
+                if (klarnaInfo._AutoCaptureOption.Value != null)
+                    writer.WriteBoolean("autoCapture", klarnaInfo._AutoCaptureOption.Value!.Value);
         }
     }
 }

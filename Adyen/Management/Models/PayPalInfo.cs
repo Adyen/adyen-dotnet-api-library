@@ -197,7 +197,8 @@ namespace Adyen.Management.Models
                 writer.WriteString("subject", payPalInfo.Subject);
 
             if (payPalInfo._DirectCaptureOption.IsSet)
-                writer.WriteBoolean("directCapture", payPalInfo._DirectCaptureOption.Value!.Value);
+                if (payPalInfo._DirectCaptureOption.Value != null)
+                    writer.WriteBoolean("directCapture", payPalInfo._DirectCaptureOption.Value!.Value);
         }
     }
 }

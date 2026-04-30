@@ -1045,13 +1045,16 @@ namespace Adyen.Management.Models
                 JsonSerializer.Serialize(writer, webhook.Links, jsonSerializerOptions);
             }
             if (webhook._AcceptsExpiredCertificateOption.IsSet)
-                writer.WriteBoolean("acceptsExpiredCertificate", webhook._AcceptsExpiredCertificateOption.Value!.Value);
+                if (webhook._AcceptsExpiredCertificateOption.Value != null)
+                    writer.WriteBoolean("acceptsExpiredCertificate", webhook._AcceptsExpiredCertificateOption.Value!.Value);
 
             if (webhook._AcceptsSelfSignedCertificateOption.IsSet)
-                writer.WriteBoolean("acceptsSelfSignedCertificate", webhook._AcceptsSelfSignedCertificateOption.Value!.Value);
+                if (webhook._AcceptsSelfSignedCertificateOption.Value != null)
+                    writer.WriteBoolean("acceptsSelfSignedCertificate", webhook._AcceptsSelfSignedCertificateOption.Value!.Value);
 
             if (webhook._AcceptsUntrustedRootCertificateOption.IsSet)
-                writer.WriteBoolean("acceptsUntrustedRootCertificate", webhook._AcceptsUntrustedRootCertificateOption.Value!.Value);
+                if (webhook._AcceptsUntrustedRootCertificateOption.Value != null)
+                    writer.WriteBoolean("acceptsUntrustedRootCertificate", webhook._AcceptsUntrustedRootCertificateOption.Value!.Value);
 
             if (webhook._AccountReferenceOption.IsSet)
                 if (webhook.AccountReference != null)
@@ -1088,10 +1091,12 @@ namespace Adyen.Management.Models
                 JsonSerializer.Serialize(writer, webhook.FilterMerchantAccounts, jsonSerializerOptions);
             }
             if (webhook._HasErrorOption.IsSet)
-                writer.WriteBoolean("hasError", webhook._HasErrorOption.Value!.Value);
+                if (webhook._HasErrorOption.Value != null)
+                    writer.WriteBoolean("hasError", webhook._HasErrorOption.Value!.Value);
 
             if (webhook._HasPasswordOption.IsSet)
-                writer.WriteBoolean("hasPassword", webhook._HasPasswordOption.Value!.Value);
+                if (webhook._HasPasswordOption.Value != null)
+                    writer.WriteBoolean("hasPassword", webhook._HasPasswordOption.Value!.Value);
 
             if (webhook._HmacKeyCheckValueOption.IsSet)
                 if (webhook.HmacKeyCheckValue != null)
@@ -1108,7 +1113,8 @@ namespace Adyen.Management.Models
             }
             
             if (webhook._PopulateSoapActionHeaderOption.IsSet)
-                writer.WriteBoolean("populateSoapActionHeader", webhook._PopulateSoapActionHeaderOption.Value!.Value);
+                if (webhook._PopulateSoapActionHeaderOption.Value != null)
+                    writer.WriteBoolean("populateSoapActionHeader", webhook._PopulateSoapActionHeaderOption.Value!.Value);
 
             if (webhook._UsernameOption.IsSet)
                 if (webhook.Username != null)

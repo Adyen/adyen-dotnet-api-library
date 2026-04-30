@@ -414,7 +414,8 @@ namespace Adyen.Management.Models
             }
             
             if (payAtTable._EnablePayAtTableOption.IsSet)
-                writer.WriteBoolean("enablePayAtTable", payAtTable._EnablePayAtTableOption.Value!.Value);
+                if (payAtTable._EnablePayAtTableOption.Value != null)
+                    writer.WriteBoolean("enablePayAtTable", payAtTable._EnablePayAtTableOption.Value!.Value);
 
             if (payAtTable._PaymentInstrumentOption.IsSet) {
                 var paymentInstrumentRawValue = PayAtTable.PaymentInstrumentEnum.ToJsonValue(payAtTable._PaymentInstrumentOption.Value);

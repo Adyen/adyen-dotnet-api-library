@@ -221,7 +221,8 @@ namespace Adyen.Management.Models
         {
             
             if (updateMerchantApiCredentialRequest._ActiveOption.IsSet)
-                writer.WriteBoolean("active", updateMerchantApiCredentialRequest._ActiveOption.Value!.Value);
+                if (updateMerchantApiCredentialRequest._ActiveOption.Value != null)
+                    writer.WriteBoolean("active", updateMerchantApiCredentialRequest._ActiveOption.Value!.Value);
 
             if (updateMerchantApiCredentialRequest._AllowedOriginsOption.IsSet)
             {

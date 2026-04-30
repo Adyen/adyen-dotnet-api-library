@@ -204,7 +204,8 @@ namespace Adyen.Management.Models
                 JsonSerializer.Serialize(writer, storeAndForward.MaxAmount, jsonSerializerOptions);
             }
             if (storeAndForward._MaxPaymentsOption.IsSet)
-                writer.WriteNumber("maxPayments", storeAndForward._MaxPaymentsOption.Value!.Value);
+                if (storeAndForward._MaxPaymentsOption.Value != null)
+                    writer.WriteNumber("maxPayments", storeAndForward._MaxPaymentsOption.Value!.Value);
 
             if (storeAndForward._SupportedCardTypesOption.IsSet)
             {

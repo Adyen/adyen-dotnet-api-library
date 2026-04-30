@@ -760,13 +760,16 @@ namespace Adyen.Management.Models
                 writer.WriteString("url", createMerchantWebhookRequest.Url);
 
             if (createMerchantWebhookRequest._AcceptsExpiredCertificateOption.IsSet)
-                writer.WriteBoolean("acceptsExpiredCertificate", createMerchantWebhookRequest._AcceptsExpiredCertificateOption.Value!.Value);
+                if (createMerchantWebhookRequest._AcceptsExpiredCertificateOption.Value != null)
+                    writer.WriteBoolean("acceptsExpiredCertificate", createMerchantWebhookRequest._AcceptsExpiredCertificateOption.Value!.Value);
 
             if (createMerchantWebhookRequest._AcceptsSelfSignedCertificateOption.IsSet)
-                writer.WriteBoolean("acceptsSelfSignedCertificate", createMerchantWebhookRequest._AcceptsSelfSignedCertificateOption.Value!.Value);
+                if (createMerchantWebhookRequest._AcceptsSelfSignedCertificateOption.Value != null)
+                    writer.WriteBoolean("acceptsSelfSignedCertificate", createMerchantWebhookRequest._AcceptsSelfSignedCertificateOption.Value!.Value);
 
             if (createMerchantWebhookRequest._AcceptsUntrustedRootCertificateOption.IsSet)
-                writer.WriteBoolean("acceptsUntrustedRootCertificate", createMerchantWebhookRequest._AcceptsUntrustedRootCertificateOption.Value!.Value);
+                if (createMerchantWebhookRequest._AcceptsUntrustedRootCertificateOption.Value != null)
+                    writer.WriteBoolean("acceptsUntrustedRootCertificate", createMerchantWebhookRequest._AcceptsUntrustedRootCertificateOption.Value!.Value);
 
             if (createMerchantWebhookRequest._AdditionalSettingsOption.IsSet)
             {
@@ -794,7 +797,8 @@ namespace Adyen.Management.Models
                     writer.WriteString("password", createMerchantWebhookRequest.Password);
 
             if (createMerchantWebhookRequest._PopulateSoapActionHeaderOption.IsSet)
-                writer.WriteBoolean("populateSoapActionHeader", createMerchantWebhookRequest._PopulateSoapActionHeaderOption.Value!.Value);
+                if (createMerchantWebhookRequest._PopulateSoapActionHeaderOption.Value != null)
+                    writer.WriteBoolean("populateSoapActionHeader", createMerchantWebhookRequest._PopulateSoapActionHeaderOption.Value!.Value);
 
             if (createMerchantWebhookRequest._UsernameOption.IsSet)
                 if (createMerchantWebhookRequest.Username != null)

@@ -179,7 +179,8 @@ namespace Adyen.Management.Models
         {
             
             if (offlineProcessing._ChipFloorLimitOption.IsSet)
-                writer.WriteNumber("chipFloorLimit", offlineProcessing._ChipFloorLimitOption.Value!.Value);
+                if (offlineProcessing._ChipFloorLimitOption.Value != null)
+                    writer.WriteNumber("chipFloorLimit", offlineProcessing._ChipFloorLimitOption.Value!.Value);
 
             if (offlineProcessing._OfflineSwipeLimitsOption.IsSet)
             {

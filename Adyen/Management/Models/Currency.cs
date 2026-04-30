@@ -219,13 +219,16 @@ namespace Adyen.Management.Models
                 writer.WriteString("currencyCode", currency.CurrencyCode);
 
             if (currency._AmountOption.IsSet)
-                writer.WriteNumber("amount", currency._AmountOption.Value!.Value);
+                if (currency._AmountOption.Value != null)
+                    writer.WriteNumber("amount", currency._AmountOption.Value!.Value);
 
             if (currency._MaxAmountOption.IsSet)
-                writer.WriteNumber("maxAmount", currency._MaxAmountOption.Value!.Value);
+                if (currency._MaxAmountOption.Value != null)
+                    writer.WriteNumber("maxAmount", currency._MaxAmountOption.Value!.Value);
 
             if (currency._PercentageOption.IsSet)
-                writer.WriteNumber("percentage", currency._PercentageOption.Value!.Value);
+                if (currency._PercentageOption.Value != null)
+                    writer.WriteNumber("percentage", currency._PercentageOption.Value!.Value);
         }
     }
 }

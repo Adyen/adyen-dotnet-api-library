@@ -318,7 +318,8 @@ namespace Adyen.Management.Models
                     writer.WriteString("midNumber", amexInfo.MidNumber);
 
             if (amexInfo._ReuseMidNumberOption.IsSet)
-                writer.WriteBoolean("reuseMidNumber", amexInfo._ReuseMidNumberOption.Value!.Value);
+                if (amexInfo._ReuseMidNumberOption.Value != null)
+                    writer.WriteBoolean("reuseMidNumber", amexInfo._ReuseMidNumberOption.Value!.Value);
         }
     }
 }

@@ -304,10 +304,12 @@ namespace Adyen.Management.Models
                     writer.WriteString("name", androidCertificate.Name);
 
             if (androidCertificate._NotAfterOption.IsSet)
-                writer.WriteString("notAfter", androidCertificate._NotAfterOption.Value!.Value.ToString(NotAfterFormat));
+                if (androidCertificate._NotAfterOption.Value != null)
+                    writer.WriteString("notAfter", androidCertificate._NotAfterOption.Value!.Value.ToString(NotAfterFormat));
 
             if (androidCertificate._NotBeforeOption.IsSet)
-                writer.WriteString("notBefore", androidCertificate._NotBeforeOption.Value!.Value.ToString(NotBeforeFormat));
+                if (androidCertificate._NotBeforeOption.Value != null)
+                    writer.WriteString("notBefore", androidCertificate._NotBeforeOption.Value!.Value.ToString(NotBeforeFormat));
 
             if (androidCertificate._StatusOption.IsSet)
                 if (androidCertificate.Status != null)

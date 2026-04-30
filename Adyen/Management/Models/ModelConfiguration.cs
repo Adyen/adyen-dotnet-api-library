@@ -238,7 +238,8 @@ namespace Adyen.Management.Models
             writer.WritePropertyName("currencies");
             JsonSerializer.Serialize(writer, modelConfiguration.Currencies, jsonSerializerOptions);
             if (modelConfiguration._CommercialOption.IsSet)
-                writer.WriteBoolean("commercial", modelConfiguration._CommercialOption.Value!.Value);
+                if (modelConfiguration._CommercialOption.Value != null)
+                    writer.WriteBoolean("commercial", modelConfiguration._CommercialOption.Value!.Value);
 
             if (modelConfiguration._CountryOption.IsSet)
             {

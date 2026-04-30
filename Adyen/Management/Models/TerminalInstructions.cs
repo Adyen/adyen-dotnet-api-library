@@ -158,7 +158,8 @@ namespace Adyen.Management.Models
         {
             
             if (terminalInstructions._AdyenAppRestartOption.IsSet)
-                writer.WriteBoolean("adyenAppRestart", terminalInstructions._AdyenAppRestartOption.Value!.Value);
+                if (terminalInstructions._AdyenAppRestartOption.Value != null)
+                    writer.WriteBoolean("adyenAppRestart", terminalInstructions._AdyenAppRestartOption.Value!.Value);
         }
     }
 }

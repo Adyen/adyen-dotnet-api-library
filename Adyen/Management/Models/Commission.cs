@@ -179,10 +179,12 @@ namespace Adyen.Management.Models
         {
             
             if (commission._FixedAmountOption.IsSet)
-                writer.WriteNumber("fixedAmount", commission._FixedAmountOption.Value!.Value);
+                if (commission._FixedAmountOption.Value != null)
+                    writer.WriteNumber("fixedAmount", commission._FixedAmountOption.Value!.Value);
 
             if (commission._VariablePercentageOption.IsSet)
-                writer.WriteNumber("variablePercentage", commission._VariablePercentageOption.Value!.Value);
+                if (commission._VariablePercentageOption.Value != null)
+                    writer.WriteNumber("variablePercentage", commission._VariablePercentageOption.Value!.Value);
         }
     }
 }

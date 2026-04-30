@@ -200,13 +200,16 @@ namespace Adyen.Management.Models
         {
             
             if (hardware._DisplayMaximumBackLightOption.IsSet)
-                writer.WriteNumber("displayMaximumBackLight", hardware._DisplayMaximumBackLightOption.Value!.Value);
+                if (hardware._DisplayMaximumBackLightOption.Value != null)
+                    writer.WriteNumber("displayMaximumBackLight", hardware._DisplayMaximumBackLightOption.Value!.Value);
 
             if (hardware._ResetTotalsHourOption.IsSet)
-                writer.WriteNumber("resetTotalsHour", hardware._ResetTotalsHourOption.Value!.Value);
+                if (hardware._ResetTotalsHourOption.Value != null)
+                    writer.WriteNumber("resetTotalsHour", hardware._ResetTotalsHourOption.Value!.Value);
 
             if (hardware._RestartHourOption.IsSet)
-                writer.WriteNumber("restartHour", hardware._RestartHourOption.Value!.Value);
+                if (hardware._RestartHourOption.Value != null)
+                    writer.WriteNumber("restartHour", hardware._RestartHourOption.Value!.Value);
         }
     }
 }

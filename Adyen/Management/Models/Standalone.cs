@@ -204,10 +204,12 @@ namespace Adyen.Management.Models
                     writer.WriteString("currencyCode", standalone.CurrencyCode);
 
             if (standalone._EnableGratuitiesOption.IsSet)
-                writer.WriteBoolean("enableGratuities", standalone._EnableGratuitiesOption.Value!.Value);
+                if (standalone._EnableGratuitiesOption.Value != null)
+                    writer.WriteBoolean("enableGratuities", standalone._EnableGratuitiesOption.Value!.Value);
 
             if (standalone._EnableStandaloneOption.IsSet)
-                writer.WriteBoolean("enableStandalone", standalone._EnableStandaloneOption.Value!.Value);
+                if (standalone._EnableStandaloneOption.Value != null)
+                    writer.WriteBoolean("enableStandalone", standalone._EnableStandaloneOption.Value!.Value);
         }
     }
 }

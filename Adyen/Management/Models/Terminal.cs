@@ -378,10 +378,12 @@ namespace Adyen.Management.Models
                 JsonSerializer.Serialize(writer, terminal.InstalledAPKs, jsonSerializerOptions);
             }
             if (terminal._LastActivityAtOption.IsSet)
-                writer.WriteString("lastActivityAt", terminal._LastActivityAtOption.Value!.Value.ToString(LastActivityAtFormat));
+                if (terminal._LastActivityAtOption.Value != null)
+                    writer.WriteString("lastActivityAt", terminal._LastActivityAtOption.Value!.Value.ToString(LastActivityAtFormat));
 
             if (terminal._LastTransactionAtOption.IsSet)
-                writer.WriteString("lastTransactionAt", terminal._LastTransactionAtOption.Value!.Value.ToString(LastTransactionAtFormat));
+                if (terminal._LastTransactionAtOption.Value != null)
+                    writer.WriteString("lastTransactionAt", terminal._LastTransactionAtOption.Value!.Value.ToString(LastTransactionAtFormat));
 
             if (terminal._ModelOption.IsSet)
                 if (terminal.Model != null)
