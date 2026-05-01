@@ -1,0 +1,27 @@
+{
+  "id": "1W1UG35U8A9J5ZLG",
+  "accountHolder": {
+    "description": "Your account holder description",
+    "id": "AH3227C223222C5GXQXF658WB",
+    "reference": "Your account holder reference"
+  },
+  "amount": {
+    "currency": "EUR",
+    "value": 10000
+  },
+  "balanceAccount": {
+    "description": "Your balance account description",
+    "id": "BAB8B2C3D4E5F6G7H8D9J6GD4",
+    "reference": "Your balance account reference"
+  },
+  "category": "internal",
+  "counterparty": {
+    "balanceAccountId": "BA32272223222B5LPRFDW7J9G"
+  },
+  "referenceForBeneficiary": "Your-reference-sent-to-the-beneficiary",
+  "reference": "Your internal reference for the transfer",
+  "description": "Your description for the transfer",
+  "direction": "outgoing",
+  "reason": "approved",
+  "status": "authorised"
+}
