@@ -950,6 +950,156 @@ namespace Adyen.Test.Checkout
                 "action must not be present when not set");
         }
 
+        /// <summary>
+        /// Regression test for GitHub issue #1474.
+        /// Verifies that <see cref="PaymentMethodsResponse"/> can be deserialized using default
+        /// <see cref="JsonSerializerOptions"/> without throwing <see cref="InvalidOperationException"/>.
+        /// The root cause was a <c>[JsonConstructor]</c> attribute on a constructor whose parameters
+        /// used <c>Option&lt;T&gt;</c> types that STJ could not bind to the plain <c>T</c> properties.
+        /// </summary>
+        [TestMethod]
+        public void Given_PaymentMethodsResponse_When_Deserialized_With_Default_Options_Then_Does_Not_Throw()
+        {
+            // Arrange - minimal repro from issue #1474
+            string json = "{\"paymentMethods\":[],\"storedPaymentMethods\":[]}";
+
+            // Act - previously threw InvalidOperationException about [JsonConstructor] parameter binding
+            PaymentMethodsResponse result = JsonSerializer.Deserialize<PaymentMethodsResponse>(json);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.PaymentMethods);
+            Assert.IsNotNull(result.StoredPaymentMethods);
+            Assert.AreEqual(0, result.PaymentMethods.Count);
+            Assert.AreEqual(0, result.StoredPaymentMethods.Count);
+        }
+
+        /// <summary>
+        /// Verifies that <see cref="PaymentMethodsResponse"/> with both payment methods and stored
+        /// payment methods deserializes all properties correctly using the SDK's <see cref="JsonSerializerOptions"/>.
+        /// </summary>
+        [TestMethod]
+        public void Given_PaymentMethodsResponse_With_StoredPaymentMethods_When_Deserialized_Then_All_Properties_Are_Populated()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/checkout/paymentmethods-storedpaymentmethods.json");
+
+            // Act
+            PaymentMethodsResponse result = JsonSerializer.Deserialize<PaymentMethodsResponse>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result.PaymentMethods);
+            Assert.IsNotNull(result.StoredPaymentMethods);
+            Assert.AreEqual(3, result.PaymentMethods.Count);
+            Assert.AreEqual(4, result.StoredPaymentMethods.Count);
+        }
+
+        /// <summary>
+        /// Regression test for GitHub issue #1474.
+        /// Verifies that <see cref="PaymentMethod"/> can be deserialized using default
+        /// <see cref="JsonSerializerOptions"/> without throwing. The <c>[JsonConstructor]</c> regression
+        /// affected all Checkout models with optional fields, not only <see cref="PaymentMethodsResponse"/>.
+        /// </summary>
+        [TestMethod]
+        public void Given_PaymentMethod_When_Deserialized_With_Default_Options_Then_Does_Not_Throw()
+        {
+            // Arrange
+            string json = "{\"name\":\"VISA\",\"type\":\"scheme\",\"brands\":[\"visa\",\"mc\"]}";
+
+            // Act
+            PaymentMethod result = JsonSerializer.Deserialize<PaymentMethod>(json);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("VISA", result.Name);
+            Assert.AreEqual("scheme", result.Type);
+            Assert.IsNotNull(result.Brands);
+            Assert.AreEqual(2, result.Brands.Count);
+        }
+
+        /// <summary>
+        /// Verifies that an optional field absent from JSON has <c>Option&lt;T&gt;.IsSet = false</c>,
+        /// meaning it is omitted when the object is re-serialized with the SDK's custom converter.
+        /// This proves that the property-setter path (used when deserializing without the SDK's
+        /// registered converters) correctly tracks which fields were present in the source JSON.
+        /// </summary>
+        [TestMethod]
+        public void Given_PaymentMethodsResponse_When_OptionalFieldAbsent_With_Default_Options_Then_Field_Is_Omitted_On_Reserialize()
+        {
+            // Arrange - storedPaymentMethods intentionally absent
+            string json = "{\"paymentMethods\":[]}";
+
+            // Act - deserialize with default options (no custom converter), then re-serialize with SDK options
+            PaymentMethodsResponse result = JsonSerializer.Deserialize<PaymentMethodsResponse>(json);
+            string reserialized = JsonSerializer.Serialize(result, _jsonSerializerOptionsProvider.Options);
+
+            // Assert - absent field must not appear in the re-serialized output
+            using var doc = JsonDocument.Parse(reserialized);
+            Assert.IsFalse(doc.RootElement.TryGetProperty("storedPaymentMethods", out _),
+                "storedPaymentMethods must be omitted when it was absent in the source JSON");
+        }
+
+        /// <summary>
+        /// Verifies that an optional field present in JSON has <c>Option&lt;T&gt;.IsSet = true</c>,
+        /// meaning it is preserved when the object is re-serialized with the SDK's custom converter.
+        /// </summary>
+        [TestMethod]
+        public void Given_PaymentMethodsResponse_When_OptionalFieldPresent_With_Default_Options_Then_Field_Is_Preserved_On_Reserialize()
+        {
+            // Arrange - storedPaymentMethods explicitly present as empty array
+            string json = "{\"paymentMethods\":[],\"storedPaymentMethods\":[]}";
+
+            // Act - deserialize with default options, then re-serialize with SDK options
+            PaymentMethodsResponse result = JsonSerializer.Deserialize<PaymentMethodsResponse>(json);
+            string reserialized = JsonSerializer.Serialize(result, _jsonSerializerOptionsProvider.Options);
+
+            // Assert - present field must appear in the re-serialized output
+            using var doc = JsonDocument.Parse(reserialized);
+            Assert.IsTrue(doc.RootElement.TryGetProperty("storedPaymentMethods", out _),
+                "storedPaymentMethods must be present when it was in the source JSON");
+        }
+
+        /// <summary>
+        /// Verifies that an optional field set to JSON <c>null</c> does not throw and yields a
+        /// null property value. The property setter must be called (not skipped) for null values.
+        /// </summary>
+        [TestMethod]
+        public void Given_PaymentMethodsResponse_When_OptionalFieldIsExplicitNull_With_Default_Options_Then_Does_Not_Throw()
+        {
+            // Arrange
+            string json = "{\"paymentMethods\":[],\"storedPaymentMethods\":null}";
+
+            // Act
+            PaymentMethodsResponse result = JsonSerializer.Deserialize<PaymentMethodsResponse>(json);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsNull(result.StoredPaymentMethods);
+        }
+
+        /// <summary>
+        /// Regression test for GitHub issue #1474 applied to a non-Checkout namespace.
+        /// Verifies that <see cref="Adyen.AcsWebhooks.Models.ServiceError"/>, which has all-optional
+        /// fields, can be deserialized using default <see cref="JsonSerializerOptions"/> without throwing.
+        /// The <c>[JsonConstructor]</c> regression affected every generated model across all namespaces.
+        /// </summary>
+        [TestMethod]
+        public void Given_ServiceError_When_Deserialized_With_Default_Options_Then_Does_Not_Throw()
+        {
+            // Arrange
+            string json = "{\"errorCode\":\"000\",\"message\":\"test error\",\"status\":422}";
+
+            // Act
+            Adyen.AcsWebhooks.Models.ServiceError result =
+                JsonSerializer.Deserialize<Adyen.AcsWebhooks.Models.ServiceError>(json);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("000", result.ErrorCode);
+            Assert.AreEqual("test error", result.Message);
+            Assert.AreEqual(422, result.Status);
+        }
+
         [TestMethod]
         public void Given_PaymentResponse_When_RoundTrip_ThreeDS2_Then_ActionIsFlatAndNullFieldsAreOmitted()
         {
