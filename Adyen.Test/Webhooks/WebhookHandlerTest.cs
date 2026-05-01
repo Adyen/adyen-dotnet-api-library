@@ -245,6 +245,73 @@ namespace Adyen.Test.Webhooks
             Assert.IsFalse(item.Success);
         }
 
+        /// <summary>
+        /// Regression test for GitHub issue #1514.
+        /// Verifies that <see cref="Adyen.Webhooks.Models.NotificationRequestItem"/> properties are populated
+        /// when deserializing with default <see cref="JsonSerializerOptions"/> (no PropertyNameCaseInsensitive).
+        /// Without [JsonPropertyName] attributes all inner properties silently resolve to null/default.
+        /// </summary>
+        [TestMethod]
+        public void Given_WebhookPayload_When_DeserializedWithDefaultSystemTextJsonOptions_Then_NotificationItemPropertiesArePopulated()
+        {
+            var mockPath = GetMockFilePath("mocks/notification/authorisation-default-stj-options.json");
+            var json = MockFileToString(mockPath);
+
+            var result = JsonSerializer.Deserialize<Adyen.Webhooks.Models.NotificationRequest>(json);
+
+            Assert.IsNotNull(result);
+            var item = result.NotificationItemContainers[0].NotificationItem;
+            Assert.IsNotNull(item);
+            Assert.AreEqual("AUTHORISATION", item.EventCode);
+            Assert.AreEqual("2021-01-01T01:00:00+01:00", item.EventDate);
+            Assert.AreEqual("QFQTPCQ8HXSKGK82", item.PspReference);
+            Assert.AreEqual("YOUR_MERCHANT_REFERENCE", item.MerchantReference);
+            Assert.AreEqual("YOUR_MERCHANT_ACCOUNT", item.MerchantAccountCode);
+            Assert.AreEqual("ach", item.PaymentMethod);
+            Assert.AreEqual("null", item.Reason);
+            Assert.IsTrue(item.Success);
+            Assert.IsNotNull(item.Amount);
+            Assert.AreEqual(1000, item.Amount.Value);
+            Assert.AreEqual("EUR", item.Amount.Currency);
+            CollectionAssert.AreEqual(new[] { "CANCEL", "CAPTURE", "REFUND" }, item.Operations);
+            Assert.AreEqual("YOUR_SHOPPER_REFERENCE", item.AdditionalData["tokenization.shopperReference"]);
+            Assert.AreEqual("M5N7TQ4TG5PFWR50", item.AdditionalData["tokenization.storedPaymentMethodId"]);
+            Assert.AreEqual("created", item.AdditionalData["tokenization.store.operationType"]);
+        }
+
+        /// <summary>
+        /// Regression test for GitHub issue #1514.
+        /// Verifies that <see cref="Adyen.Webhooks.Models.NotificationRequestItem"/> properties are populated
+        /// when deserializing with Newtonsoft.Json, exercising the new [Newtonsoft.Json.JsonProperty] attributes.
+        /// </summary>
+        [TestMethod]
+        public void Given_WebhookPayload_When_DeserializedWithNewtonsoftDefaultOptions_Then_NotificationItemPropertiesArePopulated()
+        {
+            var mockPath = GetMockFilePath("mocks/notification/authorisation-default-stj-options.json");
+            var json = MockFileToString(mockPath);
+
+            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<Adyen.Webhooks.Models.NotificationRequest>(json);
+
+            Assert.IsNotNull(result);
+            var item = result.NotificationItemContainers[0].NotificationItem;
+            Assert.IsNotNull(item);
+            Assert.AreEqual("AUTHORISATION", item.EventCode);
+            Assert.AreEqual("2021-01-01T01:00:00+01:00", item.EventDate);
+            Assert.AreEqual("QFQTPCQ8HXSKGK82", item.PspReference);
+            Assert.AreEqual("YOUR_MERCHANT_REFERENCE", item.MerchantReference);
+            Assert.AreEqual("YOUR_MERCHANT_ACCOUNT", item.MerchantAccountCode);
+            Assert.AreEqual("ach", item.PaymentMethod);
+            Assert.AreEqual("null", item.Reason);
+            Assert.IsTrue(item.Success);
+            Assert.IsNotNull(item.Amount);
+            Assert.AreEqual(1000, item.Amount.Value);
+            Assert.AreEqual("EUR", item.Amount.Currency);
+            CollectionAssert.AreEqual(new[] { "CANCEL", "CAPTURE", "REFUND" }, item.Operations);
+            Assert.AreEqual("YOUR_SHOPPER_REFERENCE", item.AdditionalData["tokenization.shopperReference"]);
+            Assert.AreEqual("M5N7TQ4TG5PFWR50", item.AdditionalData["tokenization.storedPaymentMethodId"]);
+            Assert.AreEqual("created", item.AdditionalData["tokenization.store.operationType"]);
+        }
+
         [TestMethod]
         public void TestPOSDisplayNotification()
         {

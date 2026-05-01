@@ -30,19 +30,54 @@ namespace Adyen.Webhooks.Models
 {
     public class NotificationRequestItem
     {
+        [JsonPropertyName("amount")]
+        [Newtonsoft.Json.JsonProperty("amount")]
         public Amount Amount { get; set; }
+
+        [JsonPropertyName("eventCode")]
+        [Newtonsoft.Json.JsonProperty("eventCode")]
         public string EventCode { get; set; }
+
+        [JsonPropertyName("eventDate")]
+        [Newtonsoft.Json.JsonProperty("eventDate")]
         public string EventDate { get; set; }
-        public string MerchantAccountCode  { get; set; }
+
+        [JsonPropertyName("merchantAccountCode")]
+        [Newtonsoft.Json.JsonProperty("merchantAccountCode")]
+        public string MerchantAccountCode { get; set; }
+
+        [JsonPropertyName("merchantReference")]
+        [Newtonsoft.Json.JsonProperty("merchantReference")]
         public string MerchantReference { get; set; }
+
+        [JsonPropertyName("originalReference")]
+        [Newtonsoft.Json.JsonProperty("originalReference")]
         public string OriginalReference { get; set; }
+
+        [JsonPropertyName("pspReference")]
+        [Newtonsoft.Json.JsonProperty("pspReference")]
         public string PspReference { get; set; }
+
+        [JsonPropertyName("reason")]
+        [Newtonsoft.Json.JsonProperty("reason")]
         public string Reason { get; set; }
+
+        [JsonPropertyName("success")]
+        [Newtonsoft.Json.JsonProperty("success")]
         [JsonConverter(typeof(BooleanFromStringJsonConverter))]
         [Newtonsoft.Json.JsonConverter(typeof(NewtonsoftBooleanFromStringConverter))]
         public bool Success { get; set; }
+
+        [JsonPropertyName("paymentMethod")]
+        [Newtonsoft.Json.JsonProperty("paymentMethod")]
         public string PaymentMethod { get; set; }
+
+        [JsonPropertyName("operations")]
+        [Newtonsoft.Json.JsonProperty("operations")]
         public List<string> Operations { get; set; }
+
+        [JsonPropertyName("additionalData")]
+        [Newtonsoft.Json.JsonProperty("additionalData")]
         public Dictionary<string, string> AdditionalData { get; set; }
     }
 
