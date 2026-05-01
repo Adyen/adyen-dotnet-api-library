@@ -21,6 +21,8 @@ namespace Adyen.Webhooks.Models
         [Newtonsoft.Json.JsonProperty("value")]
         public long? Value { get; set; }
 
+        public Amount() { }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Amount"/> class for webhooks.
         /// </summary>
