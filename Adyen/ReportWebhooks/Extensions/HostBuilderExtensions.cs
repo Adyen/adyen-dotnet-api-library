@@ -31,9 +31,7 @@ namespace Adyen.ReportWebhooks.Extensions
         /// </summary>
         /// <param name="hostBuilder"><see cref="IHostBuilder"/>.</param>
         /// <param name="hostConfigurationOptions">Configures the <see cref="HostBuilderContext"/>, <see cref="IServiceCollection"/>, and <see cref="HostConfiguration"/>.</param>
-        /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
-        /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
-        public static IHostBuilder ConfigureReportWebhooks(this IHostBuilder hostBuilder, Action<HostBuilderContext, IServiceCollection, HostConfiguration> hostConfigurationOptions, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        public static IHostBuilder ConfigureReportWebhooks(this IHostBuilder hostBuilder, Action<HostBuilderContext, IServiceCollection, HostConfiguration> hostConfigurationOptions)
         {
             hostBuilder.ConfigureServices((context, services) => 
             {
@@ -47,14 +45,12 @@ namespace Adyen.ReportWebhooks.Extensions
     
         /// <summary>
         /// Initializes the <see cref="HostConfiguration"/> *and* adds the ReportWebhooks API services defaults to the <see cref="IServiceCollection"/>.
-        /// You can (optionally) configure the <see cref="ServiceLifetime"/>, the <see cref="System.Net.Http.HttpClient"/> (timeouts) and <see cref="IHttpClientBuilder"/>.
+        /// You can (optionally) configure the <see cref="ServiceLifetime"/>.
         /// </summary>
         /// <param name="hostBuilder"><see cref="IHostBuilder"/>.</param>
         /// <param name="hostConfigurationOptions">Configures the <see cref="HostBuilderContext"/>, <see cref="IServiceCollection"/>, and <see cref="HostConfiguration"/>.</param>
         /// <param name="serviceLifetime"><see cref="ServiceLifetime"/>.</param>
-        /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
-        /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
-        public static IHostBuilder ConfigureReportWebhooksDefaults(this IHostBuilder hostBuilder, Action<HostBuilderContext, IServiceCollection, HostConfiguration> hostConfigurationOptions, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        public static IHostBuilder ConfigureReportWebhooksDefaults(this IHostBuilder hostBuilder, Action<HostBuilderContext, IServiceCollection, HostConfiguration> hostConfigurationOptions, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton)
         {
             hostBuilder.ConfigureServices((context, services) => 
             {

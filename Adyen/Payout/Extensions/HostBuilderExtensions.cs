@@ -28,9 +28,7 @@ namespace Adyen.Payout.Extensions
         /// </summary>
         /// <param name="hostBuilder"><see cref="IHostBuilder"/>.</param>
         /// <param name="hostConfigurationOptions">Configures the <see cref="HostBuilderContext"/>, <see cref="IServiceCollection"/>, and <see cref="HostConfiguration"/>.</param>
-        /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
-        /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
-        public static IHostBuilder ConfigurePayout(this IHostBuilder hostBuilder, Action<HostBuilderContext, IServiceCollection, HostConfiguration> hostConfigurationOptions, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        public static IHostBuilder ConfigurePayout(this IHostBuilder hostBuilder, Action<HostBuilderContext, IServiceCollection, HostConfiguration> hostConfigurationOptions)
         {
             hostBuilder.ConfigureServices((context, services) => 
             {
