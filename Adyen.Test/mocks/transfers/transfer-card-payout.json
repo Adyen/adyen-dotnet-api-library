@@ -1,0 +1,45 @@
+{
+  "creationDate": "2023-12-28T15:26:06+01:00",
+  "id": "48POP561F0ZWWLNW",
+  "accountHolder": {
+    "description": "Your description for the account holder",
+    "id": "AH00000000000000000000001"
+  },
+  "amount": {
+    "currency": "USD",
+    "value": 10000
+  },
+  "balanceAccount": {
+    "description": "Your description for the balance account",
+    "id": "BA00000000000000000000001"
+  },
+  "category": "card",
+  "counterparty": {
+    "card": {
+      "cardHolder": {
+        "address": {
+          "city": "San Francisco",
+          "country": "US",
+          "postalCode": "94107",
+          "stateOrProvince": "CA",
+          "line1": "274",
+          "line2": "Brannan St"
+        },
+        "firstName": "Albert",
+        "lastName": "Klaassen",
+        "type": "individual"
+      },
+      "cardIdentification": {
+        "expiryMonth": "03",
+        "expiryYear": "2030",
+        "number": "432112******8765"
+      }
+    }
+  },
+  "description": "Your internal description of the transfer",
+  "direction": "outgoing",
+  "reason": "approved",
+  "reference": "Your internal reference for the transfer",
+  "status": "authorised",
+  "type": "cardTransfer"
+}

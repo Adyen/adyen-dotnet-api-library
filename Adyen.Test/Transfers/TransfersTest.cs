@@ -70,6 +70,68 @@ namespace Adyen.Test.Transfers
             Assert.AreEqual(response.Category, Transfer.CategoryEnum.Bank);
         }
         
+        [TestMethod]
+        public async Task Given_Deserialize_When_FindTransfersResponse_Returns_Not_Null()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/transfers/get-all-transfers.json");
+            
+            // Act
+            var response = JsonSerializer.Deserialize<FindTransfersResponse>(json, _jsonSerializerOptionsProvider.Options);
+            
+            // Assert
+            Assert.IsNotNull(response.Data);
+            Assert.AreEqual(2, response.Data.Count);
+            Assert.AreEqual("1W1UG35QQEBJLHZ8", response.Data[0].Id);
+            Assert.AreEqual(TransferData.CategoryEnum.Internal, response.Data[0].Category);
+            Assert.IsNotNull(response.Links?.Next?.Href);
+        }
+        
+        [TestMethod]
+        public async Task Given_Deserialize_When_TransferInternalCategory_Returns_Not_Null()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/transfers/transfer-internal.json");
+            
+            // Act
+            var response = JsonSerializer.Deserialize<Transfer>(json, _jsonSerializerOptionsProvider.Options);
+            
+            // Assert
+            Assert.AreEqual(Transfer.StatusEnum.Authorised, response.Status);
+            Assert.AreEqual(Transfer.CategoryEnum.Internal, response.Category);
+            Assert.AreEqual("1W1UG35U8A9J5ZLG", response.Id);
+        }
+        
+        [TestMethod]
+        public async Task Given_Deserialize_When_TransferCardPayout_Returns_Not_Null()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/transfers/transfer-card-payout.json");
+            
+            // Act
+            var response = JsonSerializer.Deserialize<Transfer>(json, _jsonSerializerOptionsProvider.Options);
+            
+            // Assert
+            Assert.AreEqual(Transfer.StatusEnum.Authorised, response.Status);
+            Assert.AreEqual(Transfer.CategoryEnum.Card, response.Category);
+            Assert.AreEqual("48POP561F0ZWWLNW", response.Id);
+        }
+        
+        [TestMethod]
+        public async Task Given_Deserialize_When_ReturnTransferResponse_Returns_Not_Null()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/transfers/return-transfer.json");
+            
+            // Act
+            var response = JsonSerializer.Deserialize<ReturnTransferResponse>(json, _jsonSerializerOptionsProvider.Options);
+            
+            // Assert
+            Assert.AreEqual(ReturnTransferResponse.StatusEnum.Authorised, response.Status);
+            Assert.AreEqual("1W1UG35QQEBJLHZ8", response.Id);
+            Assert.AreEqual("1W1UG35U8A9J5ZLG", response.TransferId);
+        }
+        
         #region Grants
         
         [TestMethod]
