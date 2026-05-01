@@ -1,8 +1,8 @@
 {
   "service": "reportwebhooks",
   "project": "dotnet",
-  "generatedAt": "2026-04-23T11:37:09Z",
-  "openapiCommitSha": "ae28b691b7da78d2abedb5fa8baff05c59b00ae0",
-  "automationCommitSha": "4ad0c0c7e87bc0e5994a9a3350a991d0691350bb",
-  "libraryCommitSha": "9fb7e82517cad1094624fda220bc3ca05a40a5c3"
+  "generatedAt": "2026-05-01T15:05:41Z",
+  "openapiCommitSha": "7824ebf60ac8c780120e550d6495a8f02e409859",
+  "automationCommitSha": "4c065f4314ebb286f05dc38fd80f19058281c63c",
+  "libraryCommitSha": "d3ff24c0bad9b1b3e9279a30551a85190128b590"
 }
