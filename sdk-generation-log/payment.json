@@ -1,8 +1,8 @@
 {
   "service": "payment",
   "project": "dotnet",
-  "generatedAt": "2026-04-30T12:37:48Z",
-  "openapiCommitSha": "4a7f5eba2b0bf7e413290f4654020f32cd9ecee5",
-  "automationCommitSha": "4ad0c0c7e87bc0e5994a9a3350a991d0691350bb",
-  "libraryCommitSha": "747fef21213fddfbbb9999254b7c94e90a37f7f1"
+  "generatedAt": "2026-05-01T15:05:40Z",
+  "openapiCommitSha": "7824ebf60ac8c780120e550d6495a8f02e409859",
+  "automationCommitSha": "4c065f4314ebb286f05dc38fd80f19058281c63c",
+  "libraryCommitSha": "d3ff24c0bad9b1b3e9279a30551a85190128b590"
 }
