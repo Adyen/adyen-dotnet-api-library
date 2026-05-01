@@ -10,11 +10,11 @@ using System.Text.Json;
 namespace Adyen.Test.Checkout
 {
     [TestClass]
-    public class UtilityServiceTest
+    public class UtilityTest
     {
         private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
 
-        public UtilityServiceTest()
+        public UtilityTest()
         {
             IHost host = Host.CreateDefaultBuilder()
                 .ConfigureCheckout((context, services, config) =>
