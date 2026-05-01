@@ -200,7 +200,8 @@ namespace Adyen.DataProtection.Models
         {
             
             if (subjectErasureByPspReferenceRequest._ForceErasureOption.IsSet)
-                writer.WriteBoolean("forceErasure", subjectErasureByPspReferenceRequest._ForceErasureOption.Value!.Value);
+                if (subjectErasureByPspReferenceRequest._ForceErasureOption.Value != null)
+                    writer.WriteBoolean("forceErasure", subjectErasureByPspReferenceRequest._ForceErasureOption.Value!.Value);
 
             if (subjectErasureByPspReferenceRequest._MerchantAccountOption.IsSet)
                 if (subjectErasureByPspReferenceRequest.MerchantAccount != null)
