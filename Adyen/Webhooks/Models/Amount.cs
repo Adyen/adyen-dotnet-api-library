@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Adyen.Webhooks.Models
 {
     /// <summary>
@@ -8,11 +10,15 @@ namespace Adyen.Webhooks.Models
         /// <summary>
         /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes).
         /// </summary>
+        [JsonPropertyName("currency")]
+        [Newtonsoft.Json.JsonProperty("currency")]
         public string Currency { get; set; }
 
         /// <summary>
         /// The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
         /// </summary>
+        [JsonPropertyName("value")]
+        [Newtonsoft.Json.JsonProperty("value")]
         public long? Value { get; set; }
 
         /// <summary>
