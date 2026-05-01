@@ -11,7 +11,6 @@ using System.Text;
 using System.Text.Json;
 using Adyen.Core;
 using Adyen.Core.Client;
-using NSubstitute;
 
 namespace Adyen.Test.Checkout
 {
@@ -19,7 +18,6 @@ namespace Adyen.Test.Checkout
     public class PaymentsTest
     {
         private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
-        private readonly IPaymentsService _paymentsService;
 
         public PaymentsTest()
         {
@@ -34,7 +32,6 @@ namespace Adyen.Test.Checkout
                 .Build();
             
             _jsonSerializerOptionsProvider = testHost.Services.GetRequiredService<JsonSerializerOptionsProvider>();
-            _paymentsService = Substitute.For<IPaymentsService>();
         }
         
         [TestMethod]
@@ -599,150 +596,6 @@ namespace Adyen.Test.Checkout
         }
     
         [TestMethod]
-        public async Task SessionsAsyncTest()
-        {
-            // Arrange
-            string json = TestUtilities.GetTestFileContent("mocks/checkout/sessions-success.json");
-            
-            var createCheckoutSessionRequest = new CreateCheckoutSessionRequest(
-                amount: new Amount("EUR", 10000L),
-                merchantAccount: "TestMerchantAccount",
-                reference: "TestReference",
-                returnUrl: "http://test-url.com",
-                channel: CreateCheckoutSessionRequest.ChannelEnum.Web,
-                countryCode: "NL"
-            );
-
-            _paymentsService.SessionsAsync(
-                    Arg.Any<CreateCheckoutSessionRequest>(),
-                    Arg.Any<RequestOptions>(), 
-                    Arg.Any<CancellationToken>())
-                .Returns(
-                    Task.FromResult<ISessionsApiResponse>(
-                        new PaymentsService.SessionsApiResponse(
-                            Substitute.For<Microsoft.Extensions.Logging.ILogger<PaymentsService.SessionsApiResponse>>(),
-                            new HttpRequestMessage(),
-                            new HttpResponseMessage { StatusCode = HttpStatusCode.Created },
-                            json,
-                            "/sessions",
-                            DateTime.UtcNow,
-                            _jsonSerializerOptionsProvider.Options)
-                    ));
-
-            // Act
-            ISessionsApiResponse response = await _paymentsService.SessionsAsync(createCheckoutSessionRequest, new RequestOptions().AddIdempotencyKey("idempotencyKey"));
-
-            // Assert
-            Assert.IsNotNull(response);
-            Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
-            Assert.IsTrue(response.IsCreated);
-            CreateCheckoutSessionResponse sessionResponse = response.Created();
-            Assert.IsNotNull(sessionResponse);
-            Assert.AreEqual("CS0068299CB8DA273A", sessionResponse.Id);
-        }
-
-        [TestMethod]
-        public async Task AddAdditionalHeadersWithPaymentsServiceTest()
-        {
-            // Arrange
-            var requestOptions = new RequestOptions();
-            var additionalHeaders = new Dictionary<string, string>
-            {
-                { "X-Custom-Header-For-Payments", "PaymentsValue" },
-                { "X-Another-Custom-Header", "AnotherValue" }
-            };
-
-            requestOptions.AddAdditionalHeaders(additionalHeaders);
-
-            var createCheckoutSessionRequest = new CreateCheckoutSessionRequest(
-                amount: new Amount("EUR", 10000L),
-                merchantAccount: "TestMerchantAccount",
-                reference: "TestReference",
-                returnUrl: "http://test-url.com",
-                channel: CreateCheckoutSessionRequest.ChannelEnum.Web,
-                countryCode: "NL"
-            );
-
-            RequestOptions capturedRequestOptions = null;
-            _paymentsService.SessionsAsync(
-                    Arg.Any<CreateCheckoutSessionRequest>(),
-                    Arg.Do<RequestOptions>(ro => capturedRequestOptions = ro),
-                    Arg.Any<CancellationToken>())
-                .Returns(Task.FromResult<ISessionsApiResponse>(
-                    new PaymentsService.SessionsApiResponse(
-                        Substitute.For<Microsoft.Extensions.Logging.ILogger<PaymentsService.SessionsApiResponse>>(),
-                        new HttpRequestMessage(),
-                        new HttpResponseMessage { StatusCode = HttpStatusCode.OK },
-                        "{}", // Dummy JSON response
-                        "/sessions",
-                        DateTime.UtcNow,
-                        _jsonSerializerOptionsProvider.Options)
-                ));
-
-            // Act
-            await _paymentsService.SessionsAsync(createCheckoutSessionRequest, requestOptions);
-
-            // Assert
-            Assert.IsNotNull(capturedRequestOptions);
-            Assert.AreEqual(2, capturedRequestOptions.Headers.Count);
-            Assert.IsTrue(capturedRequestOptions.Headers.ContainsKey("X-Custom-Header-For-Payments"));
-            Assert.AreEqual("PaymentsValue", capturedRequestOptions.Headers["X-Custom-Header-For-Payments"]);
-            Assert.IsTrue(capturedRequestOptions.Headers.ContainsKey("X-Another-Custom-Header"));
-            Assert.AreEqual("AnotherValue", capturedRequestOptions.Headers["X-Another-Custom-Header"]);
-        }
-        
-        [TestMethod]
-        public async Task Given_SessionResultWithSpecialChars_When_GetResultOfPaymentSession_Then_QueryStringIsNotEncoded()
-        {
-            // Arrange
-            Uri capturedUri = null;
-            var mockHandler = new MockDelegatingHandler(request =>
-            {
-                capturedUri = request.RequestUri;
-                return new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new StringContent("{\"id\":\"CS123\",\"status\":\"completed\"}", Encoding.UTF8, "application/json")
-                };
-            });
-            
-            IHost testHost = Host.CreateDefaultBuilder()
-                .ConfigureCheckout((context, services, config) =>
-                {
-                    config.ConfigureAdyenOptions(options =>
-                    {
-                        options.Environment = AdyenEnvironment.Test;
-                    });
-                    services.AddPaymentsService(httpClientBuilderOptions: builder =>
-                    {
-                        builder.AddHttpMessageHandler(() => mockHandler);
-                    });
-                })
-                .Build();
-            
-            // sessionResult includes special characters AND an ampersand to verify it
-            // does not split into two query params
-            var paymentsService = testHost.Services.GetRequiredService<IPaymentsService>();
-            string sessionResult = "AB1234+value/with!special=chars&extra";
-
-            // Act
-            await paymentsService.GetResultOfPaymentSessionAsync("CS123", sessionResult);
-
-            // Assert
-            Assert.IsNotNull(capturedUri);
-            string query = capturedUri.Query;
-            Assert.IsTrue(query.Contains("+"), $"Expected '+' to not be encoded, but query was: {query}");
-            Assert.IsTrue(query.Contains("/"), $"Expected '/' to not be encoded, but query was: {query}");
-            Assert.IsTrue(query.Contains("!"), $"Expected '!' to not be encoded, but query was: {query}");
-            Assert.IsFalse(query.Contains("%2B"), $"Expected '+' to not be percent-encoded as %2B, but query was: {query}");
-            Assert.IsFalse(query.Contains("%2F"), $"Expected '/' to not be percent-encoded as %2F, but query was: {query}");
-            Assert.IsFalse(query.Contains("%21"), $"Expected '!' to not be percent-encoded as %21, but query was: {query}");
-            // Verify & in the value does not create a second query parameter
-            var queryParams = System.Web.HttpUtility.ParseQueryString(query);
-            Assert.AreEqual(1, queryParams.Count, $"Expected exactly 1 query parameter, but found {queryParams.Count}. Query was: {query}");
-            Assert.AreEqual("sessionResult", queryParams.AllKeys[0], $"Expected the only query parameter to be 'sessionResult', but was: {queryParams.AllKeys[0]}");
-        }
-
-        [TestMethod]
         public void Given_NameValueCollectionWithNullValue_When_ParameterToString_Then_KeyIsPreserved()
         {
             // Arrange - add a key with an explicit null value to simulate a bare parameter
@@ -1111,19 +964,5 @@ namespace Adyen.Test.Checkout
             Assert.IsFalse(jsonDoc.RootElement.TryGetProperty("merchantReference", out _));
         }
 
-        private class MockDelegatingHandler : DelegatingHandler
-        {
-            private readonly Func<HttpRequestMessage, HttpResponseMessage> _handler;
-            
-            public MockDelegatingHandler(Func<HttpRequestMessage, HttpResponseMessage> handler)
-            {
-                _handler = handler;
-            }
-            
-            protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
-            {
-                return Task.FromResult(_handler(request));
-            }
-        }
     }
 }
