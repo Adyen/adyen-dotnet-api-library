@@ -45,14 +45,15 @@ namespace Adyen.Test.Checkout
                 .Build();
 
             var paymentsService = testHost.Services.GetRequiredService<IPaymentsService>();
-            var createCheckoutSessionRequest = new CreateCheckoutSessionRequest(
-                amount: new Amount("EUR", 10000L),
-                merchantAccount: "TestMerchantAccount",
-                reference: "TestReference",
-                returnUrl: "http://test-url.com",
-                channel: CreateCheckoutSessionRequest.ChannelEnum.Web,
-                countryCode: "NL"
-            );
+            var createCheckoutSessionRequest = new CreateCheckoutSessionRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 10000L },
+                MerchantAccount = "TestMerchantAccount",
+                Reference = "TestReference",
+                ReturnUrl = "http://test-url.com",
+                Channel = CreateCheckoutSessionRequest.ChannelEnum.Web,
+                CountryCode = "NL",
+            };
 
             // Act
             ISessionsApiResponse response = await paymentsService.SessionsAsync(createCheckoutSessionRequest, new RequestOptions().AddIdempotencyKey("idempotencyKey"));
@@ -99,14 +100,15 @@ namespace Adyen.Test.Checkout
                 .Build();
 
             var paymentsService = testHost.Services.GetRequiredService<IPaymentsService>();
-            var createCheckoutSessionRequest = new CreateCheckoutSessionRequest(
-                amount: new Amount("EUR", 10000L),
-                merchantAccount: "TestMerchantAccount",
-                reference: "TestReference",
-                returnUrl: "http://test-url.com",
-                channel: CreateCheckoutSessionRequest.ChannelEnum.Web,
-                countryCode: "NL"
-            );
+            var createCheckoutSessionRequest = new CreateCheckoutSessionRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 10000L },
+                MerchantAccount = "TestMerchantAccount",
+                Reference = "TestReference",
+                ReturnUrl = "http://test-url.com",
+                Channel = CreateCheckoutSessionRequest.ChannelEnum.Web,
+                CountryCode = "NL",
+            };
 
             var requestOptions = new RequestOptions();
             requestOptions.AddAdditionalHeaders(new Dictionary<string, string>

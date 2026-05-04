@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="MobilePayDetails" /> class.
         /// </summary>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="type">**mobilepay** (default to TypeEnum.Mobilepay)</param>
-        [JsonConstructor]
-        public MobilePayDetails(Option<string?> checkoutAttemptId = default, Option<string?> sdkData = default, Option<TypeEnum?> type = default)
-        {
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _SdkDataOption = sdkData;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public MobilePayDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -71,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.Mobilepay - mobilepay
             /// </summary>
             public static readonly TypeEnum Mobilepay = new("mobilepay");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -83,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -113,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -124,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Mobilepay)
                     return "mobilepay";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -263,9 +248,16 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new MobilePayDetails(checkoutAttemptId, sdkData, type);
+
+            var result = new MobilePayDetails();
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -276,13 +268,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, MobilePayDetails mobilePayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, mobilePayDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -293,7 +285,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, MobilePayDetails mobilePayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (mobilePayDetails._CheckoutAttemptIdOption.IsSet)
                 if (mobilePayDetails.CheckoutAttemptId != null)
                     writer.WriteString("checkoutAttemptId", mobilePayDetails.CheckoutAttemptId);
@@ -302,7 +294,7 @@ namespace Adyen.Checkout.Models
                 if (mobilePayDetails.SdkData != null)
                     writer.WriteString("sdkData", mobilePayDetails.SdkData);
 
-            if (mobilePayDetails._TypeOption.IsSet && mobilePayDetails.Type != null) 
+            if (mobilePayDetails._TypeOption.IsSet && mobilePayDetails.Type != null)
             {
                 string? typeRawValue = MobilePayDetails.TypeEnum.ToJsonValue(mobilePayDetails._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);

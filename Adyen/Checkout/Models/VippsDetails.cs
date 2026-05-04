@@ -34,31 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="VippsDetails" /> class.
         /// </summary>
-        /// <param name="telephoneNumber">telephoneNumber</param>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="type">**vipps** (default to TypeEnum.Vipps)</param>
-        [JsonConstructor]
-        public VippsDetails(string telephoneNumber, Option<string?> checkoutAttemptId = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<TypeEnum?> type = default)
-        {
-            TelephoneNumber = telephoneNumber;
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _RecurringDetailReferenceOption = recurringDetailReference;
-            _SdkDataOption = sdkData;
-            _StoredPaymentMethodIdOption = storedPaymentMethodId;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public VippsDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -77,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.Vipps - vipps
             /// </summary>
             public static readonly TypeEnum Vipps = new("vipps");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -89,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -119,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -130,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Vipps)
                     return "vipps";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -319,11 +298,23 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!telephoneNumber.IsSet)
                 throw new ArgumentException("Property is required for class VippsDetails.", nameof(telephoneNumber));
 
-            return new VippsDetails(telephoneNumber.Value!, checkoutAttemptId, recurringDetailReference, sdkData, storedPaymentMethodId, type);
+            var result = new VippsDetails();
+            result.TelephoneNumber = telephoneNumber.Value!;
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (recurringDetailReference.IsSet)
+                result.RecurringDetailReference = recurringDetailReference.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (storedPaymentMethodId.IsSet)
+                result.StoredPaymentMethodId = storedPaymentMethodId.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -334,13 +325,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, VippsDetails vippsDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, vippsDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -351,7 +342,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, VippsDetails vippsDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (vippsDetails.TelephoneNumber != null)
                 writer.WriteString("telephoneNumber", vippsDetails.TelephoneNumber);
 
@@ -371,7 +362,7 @@ namespace Adyen.Checkout.Models
                 if (vippsDetails.StoredPaymentMethodId != null)
                     writer.WriteString("storedPaymentMethodId", vippsDetails.StoredPaymentMethodId);
 
-            if (vippsDetails._TypeOption.IsSet && vippsDetails.Type != null) 
+            if (vippsDetails._TypeOption.IsSet && vippsDetails.Type != null)
             {
                 string? typeRawValue = VippsDetails.TypeEnum.ToJsonValue(vippsDetails._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);

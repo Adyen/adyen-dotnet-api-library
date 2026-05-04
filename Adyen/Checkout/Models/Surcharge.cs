@@ -34,21 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Surcharge" /> class.
         /// </summary>
-        /// <param name="value">The [surcharge](https://docs.adyen.com/online-payments/surcharge/) amount to apply to the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes). When you apply surcharge, include the surcharge in the &#x60;amount.value&#x60; field.  Review our [Surcharge compliance guide](https://docs.adyen.com/development-resources/surcharge-compliance/) to learn about how to comply with regulatory requirements when applying surcharge.</param>
-        [JsonConstructor]
-        public Surcharge(long value)
-        {
-            Value = value;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public Surcharge()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -119,11 +108,13 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class Surcharge.", nameof(value));
 
-            return new Surcharge(value.Value!.Value!);
+            var result = new Surcharge();
+            result.Value = value.Value!.Value!;
+            return result;
         }
 
         /// <summary>
@@ -134,13 +125,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, Surcharge surcharge, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, surcharge, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -151,7 +142,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, Surcharge surcharge, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteNumber("value", surcharge.Value);
         }
     }

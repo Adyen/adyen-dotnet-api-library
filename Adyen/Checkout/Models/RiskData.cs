@@ -34,27 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="RiskData" /> class.
         /// </summary>
-        /// <param name="clientData">Contains client-side data, like the device fingerprint, cookies, and specific browser settings.</param>
-        /// <param name="customFields">Any custom fields used as part of the input to configured risk rules.</param>
-        /// <param name="fraudOffset">An integer value that is added to the normal fraud score. The value can be either positive or negative.</param>
-        /// <param name="profileReference">The risk profile to assign to this payment. When left empty, the merchant-level account&#39;s default risk profile will be applied.</param>
-        [JsonConstructor]
-        public RiskData(Option<string?> clientData = default, Option<Dictionary<string, string>?> customFields = default, Option<int?> fraudOffset = default, Option<string?> profileReference = default)
-        {
-            _ClientDataOption = clientData;
-            _CustomFieldsOption = customFields;
-            _FraudOffsetOption = fraudOffset;
-            _ProfileReferenceOption = profileReference;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public RiskData()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -189,9 +172,18 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new RiskData(clientData, customFields, fraudOffset, profileReference);
+
+            var result = new RiskData();
+            if (clientData.IsSet)
+                result.ClientData = clientData.Value;
+            if (customFields.IsSet)
+                result.CustomFields = customFields.Value;
+            if (fraudOffset.IsSet)
+                result.FraudOffset = fraudOffset.Value;
+            if (profileReference.IsSet)
+                result.ProfileReference = profileReference.Value;
+            return result;
         }
 
         /// <summary>
@@ -202,13 +194,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, RiskData riskData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, riskData, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -219,7 +211,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, RiskData riskData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (riskData._ClientDataOption.IsSet)
                 if (riskData.ClientData != null)
                     writer.WriteString("clientData", riskData.ClientData);

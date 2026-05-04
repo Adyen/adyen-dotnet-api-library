@@ -34,39 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentCaptureResponse" /> class.
         /// </summary>
-        /// <param name="amount">amount</param>
-        /// <param name="merchantAccount">The merchant account that is used to process the payment.</param>
-        /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to capture. </param>
-        /// <param name="pspReference">Adyen&#39;s 16-character reference associated with the capture request.</param>
-        /// <param name="status">The status of your request. This will always have the value **received**.</param>
-        /// <param name="lineItems">Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.</param>
-        /// <param name="platformChargebackLogic">platformChargebackLogic</param>
-        /// <param name="reference">Your reference for the capture request.</param>
-        /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/).</param>
-        /// <param name="subMerchants">List of sub-merchants.</param>
-        [JsonConstructor]
-        public PaymentCaptureResponse(Amount amount, string merchantAccount, string paymentPspReference, string pspReference, StatusEnum status, Option<List<LineItem>?> lineItems = default, Option<PlatformChargebackLogic?> platformChargebackLogic = default, Option<string?> reference = default, Option<List<Split>?> splits = default, Option<List<SubMerchantInfo>?> subMerchants = default)
-        {
-            Amount = amount;
-            MerchantAccount = merchantAccount;
-            PaymentPspReference = paymentPspReference;
-            PspReference = pspReference;
-            Status = status;
-            _LineItemsOption = lineItems;
-            _PlatformChargebackLogicOption = platformChargebackLogic;
-            _ReferenceOption = reference;
-            _SplitsOption = splits;
-            _SubMerchantsOption = subMerchants;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentCaptureResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -85,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// StatusEnum.Received - received
             /// </summary>
             public static readonly StatusEnum Received = new("received");
-        
+
             private StatusEnum(string? value)
             {
                 Value = value;
@@ -97,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="StatusEnum"/> instance initialized with the string value.</returns>
             public static implicit operator StatusEnum?(string? value) => value == null ? null : new StatusEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="StatusEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="StatusEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="StatusEnum"/> instance./// </returns>
             public static implicit operator string?(StatusEnum? option) => option?.Value;
-        
+
             public static bool operator ==(StatusEnum? left, StatusEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(StatusEnum? left, StatusEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is StatusEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="StatusEnum?"/>.
             /// </summary>
@@ -127,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="StatusEnum"/> to the json value.
             /// </summary>
@@ -138,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == StatusEnum.Received)
                     return "received";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing StatusEnum.               
+            /// JsonConverter for writing StatusEnum.
             /// </summary>
             public class StatusEnumJsonConverter : JsonConverter<StatusEnum>
             {
@@ -184,7 +155,7 @@ namespace Adyen.Checkout.Models
         public string MerchantAccount { get; set; }
 
         /// <summary>
-        /// The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to capture. 
+        /// The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to capture.
         /// </summary>
         /// <value>The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to capture. </value>
         [JsonPropertyName("paymentPspReference")]
@@ -373,7 +344,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!amount.IsSet)
                 throw new ArgumentException("Property is required for class PaymentCaptureResponse.", nameof(amount));
 
@@ -389,7 +360,23 @@ namespace Adyen.Checkout.Models
             if (!status.IsSet)
                 throw new ArgumentException("Property is required for class PaymentCaptureResponse.", nameof(status));
 
-            return new PaymentCaptureResponse(amount.Value!, merchantAccount.Value!, paymentPspReference.Value!, pspReference.Value!, status.Value!.Value!, lineItems, platformChargebackLogic, reference, splits, subMerchants);
+            var result = new PaymentCaptureResponse();
+            result.Amount = amount.Value!;
+            result.MerchantAccount = merchantAccount.Value!;
+            result.PaymentPspReference = paymentPspReference.Value!;
+            result.PspReference = pspReference.Value!;
+            result.Status = status.Value!.Value!;
+            if (lineItems.IsSet)
+                result.LineItems = lineItems.Value;
+            if (platformChargebackLogic.IsSet)
+                result.PlatformChargebackLogic = platformChargebackLogic.Value;
+            if (reference.IsSet)
+                result.Reference = reference.Value;
+            if (splits.IsSet)
+                result.Splits = splits.Value;
+            if (subMerchants.IsSet)
+                result.SubMerchants = subMerchants.Value;
+            return result;
         }
 
         /// <summary>
@@ -400,13 +387,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentCaptureResponse paymentCaptureResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentCaptureResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -417,7 +404,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentCaptureResponse paymentCaptureResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WritePropertyName("amount");
             JsonSerializer.Serialize(writer, paymentCaptureResponse.Amount, jsonSerializerOptions);
             if (paymentCaptureResponse.MerchantAccount != null)
@@ -429,12 +416,12 @@ namespace Adyen.Checkout.Models
             if (paymentCaptureResponse.PspReference != null)
                 writer.WriteString("pspReference", paymentCaptureResponse.PspReference);
 
-            if (paymentCaptureResponse.Status != null) 
+            if (paymentCaptureResponse.Status != null)
             {
                 string? statusRawValue = PaymentCaptureResponse.StatusEnum.ToJsonValue(paymentCaptureResponse.Status);
                 writer.WriteString("status", statusRawValue);
             }
-            
+
             if (paymentCaptureResponse._LineItemsOption.IsSet)
             {
                 writer.WritePropertyName("lineItems");

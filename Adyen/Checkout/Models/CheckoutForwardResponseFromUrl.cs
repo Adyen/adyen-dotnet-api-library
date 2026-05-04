@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutForwardResponseFromUrl" /> class.
         /// </summary>
-        /// <param name="body">The body of the response Adyen received from the third party, in string format.</param>
-        /// <param name="headers">The HTTP headers of the response Adyen received from the third party.</param>
-        /// <param name="status">The HTTP status of the response Adyen received from the third party.</param>
-        [JsonConstructor]
-        public CheckoutForwardResponseFromUrl(Option<string?> body = default, Option<Dictionary<string, string>?> headers = default, Option<int?> status = default)
-        {
-            _BodyOption = body;
-            _HeadersOption = headers;
-            _StatusOption = status;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CheckoutForwardResponseFromUrl()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -168,9 +153,16 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new CheckoutForwardResponseFromUrl(body, headers, status);
+
+            var result = new CheckoutForwardResponseFromUrl();
+            if (body.IsSet)
+                result.Body = body.Value;
+            if (headers.IsSet)
+                result.Headers = headers.Value;
+            if (status.IsSet)
+                result.Status = status.Value;
+            return result;
         }
 
         /// <summary>
@@ -181,13 +173,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CheckoutForwardResponseFromUrl checkoutForwardResponseFromUrl, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, checkoutForwardResponseFromUrl, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -198,7 +190,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CheckoutForwardResponseFromUrl checkoutForwardResponseFromUrl, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (checkoutForwardResponseFromUrl._BodyOption.IsSet)
                 if (checkoutForwardResponseFromUrl.Body != null)
                     writer.WriteString("body", checkoutForwardResponseFromUrl.Body);

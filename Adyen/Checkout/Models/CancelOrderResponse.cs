@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CancelOrderResponse" /> class.
         /// </summary>
-        /// <param name="pspReference">A unique reference of the cancellation request.</param>
-        /// <param name="resultCode">The result of the cancellation request.  Possible values:  * **Received** – Indicates the cancellation has successfully been received by Adyen, and will be processed.</param>
-        [JsonConstructor]
-        public CancelOrderResponse(string pspReference, ResultCodeEnum resultCode)
-        {
-            PspReference = pspReference;
-            ResultCode = resultCode;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CancelOrderResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -69,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// ResultCodeEnum.Received - Received
             /// </summary>
             public static readonly ResultCodeEnum Received = new("Received");
-        
+
             private ResultCodeEnum(string? value)
             {
                 Value = value;
@@ -81,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ResultCodeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ResultCodeEnum?(string? value) => value == null ? null : new ResultCodeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ResultCodeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ResultCodeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ResultCodeEnum"/> instance./// </returns>
             public static implicit operator string?(ResultCodeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ResultCodeEnum? left, ResultCodeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ResultCodeEnum? left, ResultCodeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ResultCodeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ResultCodeEnum?"/>.
             /// </summary>
@@ -111,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ResultCodeEnum"/> to the json value.
             /// </summary>
@@ -122,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ResultCodeEnum.Received)
                     return "Received";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ResultCodeEnum.               
+            /// JsonConverter for writing ResultCodeEnum.
             /// </summary>
             public class ResultCodeEnumJsonConverter : JsonConverter<ResultCodeEnum>
             {
@@ -228,14 +215,17 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!pspReference.IsSet)
                 throw new ArgumentException("Property is required for class CancelOrderResponse.", nameof(pspReference));
 
             if (!resultCode.IsSet)
                 throw new ArgumentException("Property is required for class CancelOrderResponse.", nameof(resultCode));
 
-            return new CancelOrderResponse(pspReference.Value!, resultCode.Value!.Value!);
+            var result = new CancelOrderResponse();
+            result.PspReference = pspReference.Value!;
+            result.ResultCode = resultCode.Value!.Value!;
+            return result;
         }
 
         /// <summary>
@@ -246,13 +236,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CancelOrderResponse cancelOrderResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, cancelOrderResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -263,11 +253,11 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CancelOrderResponse cancelOrderResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (cancelOrderResponse.PspReference != null)
                 writer.WriteString("pspReference", cancelOrderResponse.PspReference);
 
-            if (cancelOrderResponse.ResultCode != null) 
+            if (cancelOrderResponse.ResultCode != null)
             {
                 string? resultCodeRawValue = CancelOrderResponse.ResultCodeEnum.ToJsonValue(cancelOrderResponse.ResultCode);
                 writer.WriteString("resultCode", resultCodeRawValue);

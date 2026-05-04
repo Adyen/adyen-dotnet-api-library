@@ -34,97 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDS2RequestData" /> class.
         /// </summary>
-        /// <param name="deviceChannel">The environment of the shopper. Allowed values: * &#x60;app&#x60; * &#x60;browser&#x60;</param>
-        /// <param name="acctInfo">acctInfo</param>
-        /// <param name="acctType">Indicates the type of account. For example, for a multi-account card product. Length: 2 characters. Allowed values: * **01** — Not applicable * **02** — Credit * **03** — Debit</param>
-        /// <param name="acquirerBIN">Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The acquiring BIN enrolled for 3D Secure 2. This string should match the value that you will use in the authorisation. Use 123456 on the Test platform.</param>
-        /// <param name="acquirerMerchantID">Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The merchantId that is enrolled for 3D Secure 2 by the merchant&#39;s acquirer. This string should match the value that you will use in the authorisation. Use 123456 on the Test platform.</param>
-        /// <param name="addrMatch">Indicates whether the cardholder shipping address and cardholder billing address are the same. Allowed values: * **Y** — Shipping address matches billing address. * **N** — Shipping address does not match billing address.</param>
-        /// <param name="authenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. (default to false)</param>
-        /// <param name="challengeIndicator">Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * &#x60;noPreference&#x60; * &#x60;requestNoChallenge&#x60; * &#x60;requestChallenge&#x60; * &#x60;requestChallengeAsMandate&#x60; </param>
-        /// <param name="deviceRenderOptions">deviceRenderOptions</param>
-        /// <param name="homePhone">homePhone</param>
-        /// <param name="mcc">Required for merchants that have been enrolled for 3D Secure 2 by another party than Adyen, mostly [authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The &#x60;mcc&#x60; is a four-digit code with which the previously given &#x60;acquirerMerchantID&#x60; is registered at the scheme.</param>
-        /// <param name="merchantName">Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The merchant name that the issuer presents to the shopper if they get a challenge. We recommend to use the same value that you will use in the authorization. Maximum length is 40 characters. &gt; Optional for a [full 3D Secure 2 integration](https://docs.adyen.com/online-payments/3d-secure/native-3ds2/api-integration). Use this field if you are enrolled for 3D Secure 2 with us and want to override the merchant name already configured on your account.</param>
-        /// <param name="messageVersion">The &#x60;messageVersion&#x60; value indicating the 3D Secure 2 protocol version.</param>
-        /// <param name="mobilePhone">mobilePhone</param>
-        /// <param name="notificationURL">URL to where the issuer should send the &#x60;CRes&#x60;. Required if you are not using components for &#x60;channel&#x60; **Web** or if you are using classic integration &#x60;deviceChannel&#x60; **browser**.</param>
-        /// <param name="payTokenInd">Value **true** indicates that the transaction was de-tokenised prior to being received by the ACS.</param>
-        /// <param name="paymentAuthenticationUseCase">Indicates the type of payment for which an authentication is requested (message extension)</param>
-        /// <param name="purchaseInstalData">Indicates the maximum number of authorisations permitted for instalment payments. Length: 1–3 characters.</param>
-        /// <param name="recurringExpiry">Date after which no further authorisations shall be performed. Format: YYYYMMDD</param>
-        /// <param name="recurringFrequency">Indicates the minimum number of days between authorisations. Maximum length: 4 characters.</param>
-        /// <param name="sdkAppID">The &#x60;sdkAppID&#x60; value as received from the 3D Secure 2 SDK. Required for &#x60;deviceChannel&#x60; set to **app**.</param>
-        /// <param name="sdkEncData">The &#x60;sdkEncData&#x60; value as received from the 3D Secure 2 SDK. Required for &#x60;deviceChannel&#x60; set to **app**.</param>
-        /// <param name="sdkEphemPubKey">sdkEphemPubKey</param>
-        /// <param name="sdkMaxTimeout">The maximum amount of time in minutes for the 3D Secure 2 authentication process. Optional and only for &#x60;deviceChannel&#x60; set to **app**. Defaults to **60** minutes. (default to 60)</param>
-        /// <param name="sdkReferenceNumber">The &#x60;sdkReferenceNumber&#x60; value as received from the 3D Secure 2 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.</param>
-        /// <param name="sdkTransID">The &#x60;sdkTransID&#x60; value as received from the 3D Secure 2 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.</param>
-        /// <param name="sdkVersion">Version of the 3D Secure 2 mobile SDK.  Only for &#x60;deviceChannel&#x60; set to **app**.</param>
-        /// <param name="threeDSCompInd">Completion indicator for the device fingerprinting.</param>
-        /// <param name="threeDSRequestorAuthenticationInd">Indicates the type of Authentication request.</param>
-        /// <param name="threeDSRequestorAuthenticationInfo">threeDSRequestorAuthenticationInfo</param>
-        /// <param name="threeDSRequestorChallengeInd">Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only</param>
-        /// <param name="threeDSRequestorID">Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor identifier assigned by the Directory Server when you enrol for 3D Secure 2.</param>
-        /// <param name="threeDSRequestorName">Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor name assigned by the Directory Server when you enrol for 3D Secure 2.</param>
-        /// <param name="threeDSRequestorPriorAuthenticationInfo">threeDSRequestorPriorAuthenticationInfo</param>
-        /// <param name="threeDSRequestorURL">URL of the (customer service) website that will be shown to the shopper in case of technical errors during the 3D Secure 2 process.</param>
-        /// <param name="transType">Identifies the type of transaction being authenticated. Length: 2 characters. Allowed values: * **01** — Goods/Service Purchase * **03** — Check Acceptance * **10** — Account Funding * **11** — Quasi-Cash Transaction * **28** — Prepaid Activation and Load</param>
-        /// <param name="transactionType">Identify the type of the transaction being authenticated.</param>
-        /// <param name="whiteListStatus">The &#x60;whiteListStatus&#x60; value returned from a previous 3D Secure 2 transaction, only applicable for 3D Secure 2 protocol version 2.2.0.</param>
-        /// <param name="workPhone">workPhone</param>
-        [JsonConstructor]
-        public ThreeDS2RequestData(string deviceChannel, Option<AcctInfo?> acctInfo = default, Option<AcctTypeEnum?> acctType = default, Option<string?> acquirerBIN = default, Option<string?> acquirerMerchantID = default, Option<AddrMatchEnum?> addrMatch = default, Option<bool?> authenticationOnly = default, Option<ChallengeIndicatorEnum?> challengeIndicator = default, Option<DeviceRenderOptions?> deviceRenderOptions = default, Option<Phone?> homePhone = default, Option<string?> mcc = default, Option<string?> merchantName = default, Option<string?> messageVersion = default, Option<Phone?> mobilePhone = default, Option<string?> notificationURL = default, Option<bool?> payTokenInd = default, Option<string?> paymentAuthenticationUseCase = default, Option<string?> purchaseInstalData = default, Option<string?> recurringExpiry = default, Option<string?> recurringFrequency = default, Option<string?> sdkAppID = default, Option<string?> sdkEncData = default, Option<SDKEphemPubKey?> sdkEphemPubKey = default, Option<int?> sdkMaxTimeout = default, Option<string?> sdkReferenceNumber = default, Option<string?> sdkTransID = default, Option<string?> sdkVersion = default, Option<string?> threeDSCompInd = default, Option<string?> threeDSRequestorAuthenticationInd = default, Option<ThreeDSRequestorAuthenticationInfo?> threeDSRequestorAuthenticationInfo = default, Option<ThreeDSRequestorChallengeIndEnum?> threeDSRequestorChallengeInd = default, Option<string?> threeDSRequestorID = default, Option<string?> threeDSRequestorName = default, Option<ThreeDSRequestorPriorAuthenticationInfo?> threeDSRequestorPriorAuthenticationInfo = default, Option<string?> threeDSRequestorURL = default, Option<TransTypeEnum?> transType = default, Option<TransactionTypeEnum?> transactionType = default, Option<string?> whiteListStatus = default, Option<Phone?> workPhone = default)
-        {
-            DeviceChannel = deviceChannel;
-            _AcctInfoOption = acctInfo;
-            _AcctTypeOption = acctType;
-            _AcquirerBINOption = acquirerBIN;
-            _AcquirerMerchantIDOption = acquirerMerchantID;
-            _AddrMatchOption = addrMatch;
-            _AuthenticationOnlyOption = authenticationOnly;
-            _ChallengeIndicatorOption = challengeIndicator;
-            _DeviceRenderOptionsOption = deviceRenderOptions;
-            _HomePhoneOption = homePhone;
-            _MccOption = mcc;
-            _MerchantNameOption = merchantName;
-            _MessageVersionOption = messageVersion;
-            _MobilePhoneOption = mobilePhone;
-            _NotificationURLOption = notificationURL;
-            _PayTokenIndOption = payTokenInd;
-            _PaymentAuthenticationUseCaseOption = paymentAuthenticationUseCase;
-            _PurchaseInstalDataOption = purchaseInstalData;
-            _RecurringExpiryOption = recurringExpiry;
-            _RecurringFrequencyOption = recurringFrequency;
-            _SdkAppIDOption = sdkAppID;
-            _SdkEncDataOption = sdkEncData;
-            _SdkEphemPubKeyOption = sdkEphemPubKey;
-            _SdkMaxTimeoutOption = sdkMaxTimeout;
-            _SdkReferenceNumberOption = sdkReferenceNumber;
-            _SdkTransIDOption = sdkTransID;
-            _SdkVersionOption = sdkVersion;
-            _ThreeDSCompIndOption = threeDSCompInd;
-            _ThreeDSRequestorAuthenticationIndOption = threeDSRequestorAuthenticationInd;
-            _ThreeDSRequestorAuthenticationInfoOption = threeDSRequestorAuthenticationInfo;
-            _ThreeDSRequestorChallengeIndOption = threeDSRequestorChallengeInd;
-            _ThreeDSRequestorIDOption = threeDSRequestorID;
-            _ThreeDSRequestorNameOption = threeDSRequestorName;
-            _ThreeDSRequestorPriorAuthenticationInfoOption = threeDSRequestorPriorAuthenticationInfo;
-            _ThreeDSRequestorURLOption = threeDSRequestorURL;
-            _TransTypeOption = transType;
-            _TransactionTypeOption = transactionType;
-            _WhiteListStatusOption = whiteListStatus;
-            _WorkPhoneOption = workPhone;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ThreeDS2RequestData()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -153,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// AcctTypeEnum._03 - 03
             /// </summary>
             public static readonly AcctTypeEnum _03 = new("03");
-        
+
             private AcctTypeEnum(string? value)
             {
                 Value = value;
@@ -165,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="AcctTypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator AcctTypeEnum?(string? value) => value == null ? null : new AcctTypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="AcctTypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="AcctTypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="AcctTypeEnum"/> instance./// </returns>
             public static implicit operator string?(AcctTypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(AcctTypeEnum? left, AcctTypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(AcctTypeEnum? left, AcctTypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is AcctTypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="AcctTypeEnum?"/>.
             /// </summary>
@@ -197,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="AcctTypeEnum"/> to the json value.
             /// </summary>
@@ -208,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == AcctTypeEnum._01)
                     return "01";
-                
+
                 if (value == AcctTypeEnum._02)
                     return "02";
-                
+
                 if (value == AcctTypeEnum._03)
                     return "03";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing AcctTypeEnum.               
+            /// JsonConverter for writing AcctTypeEnum.
             /// </summary>
             public class AcctTypeEnumJsonConverter : JsonConverter<AcctTypeEnum>
             {
@@ -274,7 +187,7 @@ namespace Adyen.Checkout.Models
             /// AddrMatchEnum.N - N
             /// </summary>
             public static readonly AddrMatchEnum N = new("N");
-        
+
             private AddrMatchEnum(string? value)
             {
                 Value = value;
@@ -286,24 +199,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="AddrMatchEnum"/> instance initialized with the string value.</returns>
             public static implicit operator AddrMatchEnum?(string? value) => value == null ? null : new AddrMatchEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="AddrMatchEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="AddrMatchEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="AddrMatchEnum"/> instance./// </returns>
             public static implicit operator string?(AddrMatchEnum? option) => option?.Value;
-        
+
             public static bool operator ==(AddrMatchEnum? left, AddrMatchEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(AddrMatchEnum? left, AddrMatchEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is AddrMatchEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="AddrMatchEnum?"/>.
             /// </summary>
@@ -317,7 +230,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="AddrMatchEnum"/> to the json value.
             /// </summary>
@@ -328,18 +241,18 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == AddrMatchEnum.Y)
                     return "Y";
-                
+
                 if (value == AddrMatchEnum.N)
                     return "N";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing AddrMatchEnum.               
+            /// JsonConverter for writing AddrMatchEnum.
             /// </summary>
             public class AddrMatchEnumJsonConverter : JsonConverter<AddrMatchEnum>
             {
@@ -371,7 +284,7 @@ namespace Adyen.Checkout.Models
         public AddrMatchEnum? AddrMatch { get { return this._AddrMatchOption; } set { this._AddrMatchOption = new(value); } }
 
         /// <summary>
-        /// Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * `noPreference` * `requestNoChallenge` * `requestChallenge` * `requestChallengeAsMandate` 
+        /// Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * `noPreference` * `requestNoChallenge` * `requestChallenge` * `requestChallengeAsMandate`
         /// </summary>
         /// <value>Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * &#x60;noPreference&#x60; * &#x60;requestNoChallenge&#x60; * &#x60;requestChallenge&#x60; * &#x60;requestChallengeAsMandate&#x60; </value>
         [JsonConverter(typeof(ChallengeIndicatorEnumJsonConverter))]
@@ -401,7 +314,7 @@ namespace Adyen.Checkout.Models
             /// ChallengeIndicatorEnum.RequestChallengeAsMandate - requestChallengeAsMandate
             /// </summary>
             public static readonly ChallengeIndicatorEnum RequestChallengeAsMandate = new("requestChallengeAsMandate");
-        
+
             private ChallengeIndicatorEnum(string? value)
             {
                 Value = value;
@@ -413,24 +326,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ChallengeIndicatorEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ChallengeIndicatorEnum?(string? value) => value == null ? null : new ChallengeIndicatorEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ChallengeIndicatorEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ChallengeIndicatorEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ChallengeIndicatorEnum"/> instance./// </returns>
             public static implicit operator string?(ChallengeIndicatorEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ChallengeIndicatorEnum? left, ChallengeIndicatorEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ChallengeIndicatorEnum? left, ChallengeIndicatorEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ChallengeIndicatorEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ChallengeIndicatorEnum?"/>.
             /// </summary>
@@ -446,7 +359,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ChallengeIndicatorEnum"/> to the json value.
             /// </summary>
@@ -457,24 +370,24 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ChallengeIndicatorEnum.NoPreference)
                     return "noPreference";
-                
+
                 if (value == ChallengeIndicatorEnum.RequestNoChallenge)
                     return "requestNoChallenge";
-                
+
                 if (value == ChallengeIndicatorEnum.RequestChallenge)
                     return "requestChallenge";
-                
+
                 if (value == ChallengeIndicatorEnum.RequestChallengeAsMandate)
                     return "requestChallengeAsMandate";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ChallengeIndicatorEnum.               
+            /// JsonConverter for writing ChallengeIndicatorEnum.
             /// </summary>
             public class ChallengeIndicatorEnumJsonConverter : JsonConverter<ChallengeIndicatorEnum>
             {
@@ -499,7 +412,7 @@ namespace Adyen.Checkout.Models
         public Option<ChallengeIndicatorEnum?> _ChallengeIndicatorOption { get; private set; }
 
         /// <summary>
-        /// Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * `noPreference` * `requestNoChallenge` * `requestChallenge` * `requestChallengeAsMandate` 
+        /// Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * `noPreference` * `requestNoChallenge` * `requestChallenge` * `requestChallengeAsMandate`
         /// </summary>
         /// <value>Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * &#x60;noPreference&#x60; * &#x60;requestNoChallenge&#x60; * &#x60;requestChallenge&#x60; * &#x60;requestChallengeAsMandate&#x60; </value>
         [JsonPropertyName("challengeIndicator")]
@@ -547,7 +460,7 @@ namespace Adyen.Checkout.Models
             /// ThreeDSRequestorChallengeIndEnum._06 - 06
             /// </summary>
             public static readonly ThreeDSRequestorChallengeIndEnum _06 = new("06");
-        
+
             private ThreeDSRequestorChallengeIndEnum(string? value)
             {
                 Value = value;
@@ -559,24 +472,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ThreeDSRequestorChallengeIndEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ThreeDSRequestorChallengeIndEnum?(string? value) => value == null ? null : new ThreeDSRequestorChallengeIndEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ThreeDSRequestorChallengeIndEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ThreeDSRequestorChallengeIndEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ThreeDSRequestorChallengeIndEnum"/> instance./// </returns>
             public static implicit operator string?(ThreeDSRequestorChallengeIndEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ThreeDSRequestorChallengeIndEnum? left, ThreeDSRequestorChallengeIndEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ThreeDSRequestorChallengeIndEnum? left, ThreeDSRequestorChallengeIndEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ThreeDSRequestorChallengeIndEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ThreeDSRequestorChallengeIndEnum?"/>.
             /// </summary>
@@ -594,7 +507,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ThreeDSRequestorChallengeIndEnum"/> to the json value.
             /// </summary>
@@ -605,30 +518,30 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ThreeDSRequestorChallengeIndEnum._01)
                     return "01";
-                
+
                 if (value == ThreeDSRequestorChallengeIndEnum._02)
                     return "02";
-                
+
                 if (value == ThreeDSRequestorChallengeIndEnum._03)
                     return "03";
-                
+
                 if (value == ThreeDSRequestorChallengeIndEnum._04)
                     return "04";
-                
+
                 if (value == ThreeDSRequestorChallengeIndEnum._05)
                     return "05";
-                
+
                 if (value == ThreeDSRequestorChallengeIndEnum._06)
                     return "06";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ThreeDSRequestorChallengeIndEnum.               
+            /// JsonConverter for writing ThreeDSRequestorChallengeIndEnum.
             /// </summary>
             public class ThreeDSRequestorChallengeIndEnumJsonConverter : JsonConverter<ThreeDSRequestorChallengeIndEnum>
             {
@@ -695,7 +608,7 @@ namespace Adyen.Checkout.Models
             /// TransTypeEnum._28 - 28
             /// </summary>
             public static readonly TransTypeEnum _28 = new("28");
-        
+
             private TransTypeEnum(string? value)
             {
                 Value = value;
@@ -707,24 +620,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TransTypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TransTypeEnum?(string? value) => value == null ? null : new TransTypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TransTypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TransTypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TransTypeEnum"/> instance./// </returns>
             public static implicit operator string?(TransTypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TransTypeEnum? left, TransTypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TransTypeEnum? left, TransTypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TransTypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TransTypeEnum?"/>.
             /// </summary>
@@ -741,7 +654,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TransTypeEnum"/> to the json value.
             /// </summary>
@@ -752,27 +665,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TransTypeEnum._01)
                     return "01";
-                
+
                 if (value == TransTypeEnum._03)
                     return "03";
-                
+
                 if (value == TransTypeEnum._10)
                     return "10";
-                
+
                 if (value == TransTypeEnum._11)
                     return "11";
-                
+
                 if (value == TransTypeEnum._28)
                     return "28";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TransTypeEnum.               
+            /// JsonConverter for writing TransTypeEnum.
             /// </summary>
             public class TransTypeEnumJsonConverter : JsonConverter<TransTypeEnum>
             {
@@ -839,7 +752,7 @@ namespace Adyen.Checkout.Models
             /// TransactionTypeEnum.PrepaidActivationAndLoad - prepaidActivationAndLoad
             /// </summary>
             public static readonly TransactionTypeEnum PrepaidActivationAndLoad = new("prepaidActivationAndLoad");
-        
+
             private TransactionTypeEnum(string? value)
             {
                 Value = value;
@@ -851,24 +764,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TransactionTypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TransactionTypeEnum?(string? value) => value == null ? null : new TransactionTypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TransactionTypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TransactionTypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TransactionTypeEnum"/> instance./// </returns>
             public static implicit operator string?(TransactionTypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TransactionTypeEnum? left, TransactionTypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TransactionTypeEnum? left, TransactionTypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TransactionTypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TransactionTypeEnum?"/>.
             /// </summary>
@@ -885,7 +798,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TransactionTypeEnum"/> to the json value.
             /// </summary>
@@ -896,27 +809,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TransactionTypeEnum.GoodsOrServicePurchase)
                     return "goodsOrServicePurchase";
-                
+
                 if (value == TransactionTypeEnum.CheckAcceptance)
                     return "checkAcceptance";
-                
+
                 if (value == TransactionTypeEnum.AccountFunding)
                     return "accountFunding";
-                
+
                 if (value == TransactionTypeEnum.QuasiCashTransaction)
                     return "quasiCashTransaction";
-                
+
                 if (value == TransactionTypeEnum.PrepaidActivationAndLoad)
                     return "prepaidActivationAndLoad";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TransactionTypeEnum.               
+            /// JsonConverter for writing TransactionTypeEnum.
             /// </summary>
             public class TransactionTypeEnumJsonConverter : JsonConverter<TransactionTypeEnum>
             {
@@ -1652,11 +1565,89 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!deviceChannel.IsSet)
                 throw new ArgumentException("Property is required for class ThreeDS2RequestData.", nameof(deviceChannel));
 
-            return new ThreeDS2RequestData(deviceChannel.Value!, acctInfo, acctType, acquirerBIN, acquirerMerchantID, addrMatch, authenticationOnly, challengeIndicator, deviceRenderOptions, homePhone, mcc, merchantName, messageVersion, mobilePhone, notificationURL, payTokenInd, paymentAuthenticationUseCase, purchaseInstalData, recurringExpiry, recurringFrequency, sdkAppID, sdkEncData, sdkEphemPubKey, sdkMaxTimeout, sdkReferenceNumber, sdkTransID, sdkVersion, threeDSCompInd, threeDSRequestorAuthenticationInd, threeDSRequestorAuthenticationInfo, threeDSRequestorChallengeInd, threeDSRequestorID, threeDSRequestorName, threeDSRequestorPriorAuthenticationInfo, threeDSRequestorURL, transType, transactionType, whiteListStatus, workPhone);
+            var result = new ThreeDS2RequestData();
+            result.DeviceChannel = deviceChannel.Value!;
+            if (acctInfo.IsSet)
+                result.AcctInfo = acctInfo.Value;
+            if (acctType.IsSet)
+                result.AcctType = acctType.Value;
+            if (acquirerBIN.IsSet)
+                result.AcquirerBIN = acquirerBIN.Value;
+            if (acquirerMerchantID.IsSet)
+                result.AcquirerMerchantID = acquirerMerchantID.Value;
+            if (addrMatch.IsSet)
+                result.AddrMatch = addrMatch.Value;
+            if (authenticationOnly.IsSet)
+                result.AuthenticationOnly = authenticationOnly.Value;
+            if (challengeIndicator.IsSet)
+                result.ChallengeIndicator = challengeIndicator.Value;
+            if (deviceRenderOptions.IsSet)
+                result.DeviceRenderOptions = deviceRenderOptions.Value;
+            if (homePhone.IsSet)
+                result.HomePhone = homePhone.Value;
+            if (mcc.IsSet)
+                result.Mcc = mcc.Value;
+            if (merchantName.IsSet)
+                result.MerchantName = merchantName.Value;
+            if (messageVersion.IsSet)
+                result.MessageVersion = messageVersion.Value;
+            if (mobilePhone.IsSet)
+                result.MobilePhone = mobilePhone.Value;
+            if (notificationURL.IsSet)
+                result.NotificationURL = notificationURL.Value;
+            if (payTokenInd.IsSet)
+                result.PayTokenInd = payTokenInd.Value;
+            if (paymentAuthenticationUseCase.IsSet)
+                result.PaymentAuthenticationUseCase = paymentAuthenticationUseCase.Value;
+            if (purchaseInstalData.IsSet)
+                result.PurchaseInstalData = purchaseInstalData.Value;
+            if (recurringExpiry.IsSet)
+                result.RecurringExpiry = recurringExpiry.Value;
+            if (recurringFrequency.IsSet)
+                result.RecurringFrequency = recurringFrequency.Value;
+            if (sdkAppID.IsSet)
+                result.SdkAppID = sdkAppID.Value;
+            if (sdkEncData.IsSet)
+                result.SdkEncData = sdkEncData.Value;
+            if (sdkEphemPubKey.IsSet)
+                result.SdkEphemPubKey = sdkEphemPubKey.Value;
+            if (sdkMaxTimeout.IsSet)
+                result.SdkMaxTimeout = sdkMaxTimeout.Value;
+            if (sdkReferenceNumber.IsSet)
+                result.SdkReferenceNumber = sdkReferenceNumber.Value;
+            if (sdkTransID.IsSet)
+                result.SdkTransID = sdkTransID.Value;
+            if (sdkVersion.IsSet)
+                result.SdkVersion = sdkVersion.Value;
+            if (threeDSCompInd.IsSet)
+                result.ThreeDSCompInd = threeDSCompInd.Value;
+            if (threeDSRequestorAuthenticationInd.IsSet)
+                result.ThreeDSRequestorAuthenticationInd = threeDSRequestorAuthenticationInd.Value;
+            if (threeDSRequestorAuthenticationInfo.IsSet)
+                result.ThreeDSRequestorAuthenticationInfo = threeDSRequestorAuthenticationInfo.Value;
+            if (threeDSRequestorChallengeInd.IsSet)
+                result.ThreeDSRequestorChallengeInd = threeDSRequestorChallengeInd.Value;
+            if (threeDSRequestorID.IsSet)
+                result.ThreeDSRequestorID = threeDSRequestorID.Value;
+            if (threeDSRequestorName.IsSet)
+                result.ThreeDSRequestorName = threeDSRequestorName.Value;
+            if (threeDSRequestorPriorAuthenticationInfo.IsSet)
+                result.ThreeDSRequestorPriorAuthenticationInfo = threeDSRequestorPriorAuthenticationInfo.Value;
+            if (threeDSRequestorURL.IsSet)
+                result.ThreeDSRequestorURL = threeDSRequestorURL.Value;
+            if (transType.IsSet)
+                result.TransType = transType.Value;
+            if (transactionType.IsSet)
+                result.TransactionType = transactionType.Value;
+            if (whiteListStatus.IsSet)
+                result.WhiteListStatus = whiteListStatus.Value;
+            if (workPhone.IsSet)
+                result.WorkPhone = workPhone.Value;
+            return result;
         }
 
         /// <summary>
@@ -1667,13 +1658,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ThreeDS2RequestData threeDS2RequestData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, threeDS2RequestData, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -1684,7 +1675,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ThreeDS2RequestData threeDS2RequestData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (threeDS2RequestData.DeviceChannel != null)
                 writer.WriteString("deviceChannel", threeDS2RequestData.DeviceChannel);
 
@@ -1693,12 +1684,12 @@ namespace Adyen.Checkout.Models
                 writer.WritePropertyName("acctInfo");
                 JsonSerializer.Serialize(writer, threeDS2RequestData.AcctInfo, jsonSerializerOptions);
             }
-            if (threeDS2RequestData._AcctTypeOption.IsSet && threeDS2RequestData.AcctType != null) 
+            if (threeDS2RequestData._AcctTypeOption.IsSet && threeDS2RequestData.AcctType != null)
             {
                 string? acctTypeRawValue = ThreeDS2RequestData.AcctTypeEnum.ToJsonValue(threeDS2RequestData._AcctTypeOption.Value!.Value);
                 writer.WriteString("acctType", acctTypeRawValue);
             }
-            
+
             if (threeDS2RequestData._AcquirerBINOption.IsSet)
                 if (threeDS2RequestData.AcquirerBIN != null)
                     writer.WriteString("acquirerBIN", threeDS2RequestData.AcquirerBIN);
@@ -1707,22 +1698,22 @@ namespace Adyen.Checkout.Models
                 if (threeDS2RequestData.AcquirerMerchantID != null)
                     writer.WriteString("acquirerMerchantID", threeDS2RequestData.AcquirerMerchantID);
 
-            if (threeDS2RequestData._AddrMatchOption.IsSet && threeDS2RequestData.AddrMatch != null) 
+            if (threeDS2RequestData._AddrMatchOption.IsSet && threeDS2RequestData.AddrMatch != null)
             {
                 string? addrMatchRawValue = ThreeDS2RequestData.AddrMatchEnum.ToJsonValue(threeDS2RequestData._AddrMatchOption.Value!.Value);
                 writer.WriteString("addrMatch", addrMatchRawValue);
             }
-            
+
             if (threeDS2RequestData._AuthenticationOnlyOption.IsSet)
                 if (threeDS2RequestData._AuthenticationOnlyOption.Value != null)
                     writer.WriteBoolean("authenticationOnly", threeDS2RequestData._AuthenticationOnlyOption.Value!.Value);
 
-            if (threeDS2RequestData._ChallengeIndicatorOption.IsSet && threeDS2RequestData.ChallengeIndicator != null) 
+            if (threeDS2RequestData._ChallengeIndicatorOption.IsSet && threeDS2RequestData.ChallengeIndicator != null)
             {
                 string? challengeIndicatorRawValue = ThreeDS2RequestData.ChallengeIndicatorEnum.ToJsonValue(threeDS2RequestData._ChallengeIndicatorOption.Value!.Value);
                 writer.WriteString("challengeIndicator", challengeIndicatorRawValue);
             }
-            
+
             if (threeDS2RequestData._DeviceRenderOptionsOption.IsSet)
             {
                 writer.WritePropertyName("deviceRenderOptions");
@@ -1816,12 +1807,12 @@ namespace Adyen.Checkout.Models
                 writer.WritePropertyName("threeDSRequestorAuthenticationInfo");
                 JsonSerializer.Serialize(writer, threeDS2RequestData.ThreeDSRequestorAuthenticationInfo, jsonSerializerOptions);
             }
-            if (threeDS2RequestData._ThreeDSRequestorChallengeIndOption.IsSet && threeDS2RequestData.ThreeDSRequestorChallengeInd != null) 
+            if (threeDS2RequestData._ThreeDSRequestorChallengeIndOption.IsSet && threeDS2RequestData.ThreeDSRequestorChallengeInd != null)
             {
                 string? threeDSRequestorChallengeIndRawValue = ThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum.ToJsonValue(threeDS2RequestData._ThreeDSRequestorChallengeIndOption.Value!.Value);
                 writer.WriteString("threeDSRequestorChallengeInd", threeDSRequestorChallengeIndRawValue);
             }
-            
+
             if (threeDS2RequestData._ThreeDSRequestorIDOption.IsSet)
                 if (threeDS2RequestData.ThreeDSRequestorID != null)
                     writer.WriteString("threeDSRequestorID", threeDS2RequestData.ThreeDSRequestorID);
@@ -1839,18 +1830,18 @@ namespace Adyen.Checkout.Models
                 if (threeDS2RequestData.ThreeDSRequestorURL != null)
                     writer.WriteString("threeDSRequestorURL", threeDS2RequestData.ThreeDSRequestorURL);
 
-            if (threeDS2RequestData._TransTypeOption.IsSet && threeDS2RequestData.TransType != null) 
+            if (threeDS2RequestData._TransTypeOption.IsSet && threeDS2RequestData.TransType != null)
             {
                 string? transTypeRawValue = ThreeDS2RequestData.TransTypeEnum.ToJsonValue(threeDS2RequestData._TransTypeOption.Value!.Value);
                 writer.WriteString("transType", transTypeRawValue);
             }
-            
-            if (threeDS2RequestData._TransactionTypeOption.IsSet && threeDS2RequestData.TransactionType != null) 
+
+            if (threeDS2RequestData._TransactionTypeOption.IsSet && threeDS2RequestData.TransactionType != null)
             {
                 string? transactionTypeRawValue = ThreeDS2RequestData.TransactionTypeEnum.ToJsonValue(threeDS2RequestData._TransactionTypeOption.Value!.Value);
                 writer.WriteString("transactionType", transactionTypeRawValue);
             }
-            
+
             if (threeDS2RequestData._WhiteListStatusOption.IsSet)
                 if (threeDS2RequestData.WhiteListStatus != null)
                     writer.WriteString("whiteListStatus", threeDS2RequestData.WhiteListStatus);

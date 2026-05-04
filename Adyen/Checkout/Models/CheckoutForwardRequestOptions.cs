@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutForwardRequestOptions" /> class.
         /// </summary>
-        /// <param name="accountUpdate">Whether to check for a card account update (true) or not (false)</param>
-        /// <param name="dryRun">Set to **true** to receive a copy of the request Adyen is making to the third party in the response. Any sensitive information will be masked in the response you receive. This functionality is only available in the test environment.</param>
-        /// <param name="networkToken">networkToken</param>
-        /// <param name="networkTxReferencePaths">Set in tokenize:true case when forwarding PAN. Addresses to the possible location(s) of networkTxReference in the incoming 3rd party response</param>
-        /// <param name="tokenize">Set to **true**, the payment details are [tokenized](https://docs.adyen.com/online-payments/tokenization).</param>
-        [JsonConstructor]
-        public CheckoutForwardRequestOptions(Option<bool?> accountUpdate = default, Option<bool?> dryRun = default, Option<CheckoutNetworkTokenOption?> networkToken = default, Option<List<string>?> networkTxReferencePaths = default, Option<bool?> tokenize = default)
-        {
-            _AccountUpdateOption = accountUpdate;
-            _DryRunOption = dryRun;
-            _NetworkTokenOption = networkToken;
-            _NetworkTxReferencePathsOption = networkTxReferencePaths;
-            _TokenizeOption = tokenize;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CheckoutForwardRequestOptions()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -209,9 +190,20 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new CheckoutForwardRequestOptions(accountUpdate, dryRun, networkToken, networkTxReferencePaths, tokenize);
+
+            var result = new CheckoutForwardRequestOptions();
+            if (accountUpdate.IsSet)
+                result.AccountUpdate = accountUpdate.Value;
+            if (dryRun.IsSet)
+                result.DryRun = dryRun.Value;
+            if (networkToken.IsSet)
+                result.NetworkToken = networkToken.Value;
+            if (networkTxReferencePaths.IsSet)
+                result.NetworkTxReferencePaths = networkTxReferencePaths.Value;
+            if (tokenize.IsSet)
+                result.Tokenize = tokenize.Value;
+            return result;
         }
 
         /// <summary>
@@ -222,13 +214,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CheckoutForwardRequestOptions checkoutForwardRequestOptions, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, checkoutForwardRequestOptions, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -239,7 +231,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CheckoutForwardRequestOptions checkoutForwardRequestOptions, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (checkoutForwardRequestOptions._AccountUpdateOption.IsSet)
                 if (checkoutForwardRequestOptions._AccountUpdateOption.Value != null)
                     writer.WriteBoolean("accountUpdate", checkoutForwardRequestOptions._AccountUpdateOption.Value!.Value);

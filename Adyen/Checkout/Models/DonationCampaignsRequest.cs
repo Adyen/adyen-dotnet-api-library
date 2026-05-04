@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="DonationCampaignsRequest" /> class.
         /// </summary>
-        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes/).</param>
-        /// <param name="merchantAccount">Your merchant account identifier.</param>
-        /// <param name="locale">Locale on the shopper interaction device.</param>
-        [JsonConstructor]
-        public DonationCampaignsRequest(string currency, string merchantAccount, Option<string?> locale = default)
-        {
-            Currency = currency;
-            MerchantAccount = merchantAccount;
-            _LocaleOption = locale;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public DonationCampaignsRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -154,14 +139,19 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!currency.IsSet)
                 throw new ArgumentException("Property is required for class DonationCampaignsRequest.", nameof(currency));
 
             if (!merchantAccount.IsSet)
                 throw new ArgumentException("Property is required for class DonationCampaignsRequest.", nameof(merchantAccount));
 
-            return new DonationCampaignsRequest(currency.Value!, merchantAccount.Value!, locale);
+            var result = new DonationCampaignsRequest();
+            result.Currency = currency.Value!;
+            result.MerchantAccount = merchantAccount.Value!;
+            if (locale.IsSet)
+                result.Locale = locale.Value;
+            return result;
         }
 
         /// <summary>
@@ -172,13 +162,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, DonationCampaignsRequest donationCampaignsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, donationCampaignsRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -189,7 +179,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, DonationCampaignsRequest donationCampaignsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (donationCampaignsRequest.Currency != null)
                 writer.WriteString("currency", donationCampaignsRequest.Currency);
 

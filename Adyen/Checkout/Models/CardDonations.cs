@@ -34,75 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CardDonations" /> class.
         /// </summary>
-        /// <param name="billingSequenceNumber">The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.</param>
-        /// <param name="brand">Secondary brand of the card. For example: **plastix**, **hmclub**.</param>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="cupsecureplusSmscode">cupsecureplusSmscode</param>
-        /// <param name="cvc">The card verification code. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).</param>
-        /// <param name="encryptedCard">Only include this for JSON Web Encryption (JWE) implementations. The JWE-encrypted card details.</param>
-        /// <param name="encryptedCardNumber">The encrypted card number.</param>
-        /// <param name="encryptedExpiryMonth">The encrypted card expiry month.</param>
-        /// <param name="encryptedExpiryYear">The encrypted card expiry year.</param>
-        /// <param name="encryptedPassword">This field contains an encrypted, one-time password or an authentication code provided by the cardholder.</param>
-        /// <param name="encryptedSecurityCode">The encrypted card verification code.</param>
-        /// <param name="expiryMonth">The card expiry month. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).</param>
-        /// <param name="expiryYear">The card expiry year. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).</param>
-        /// <param name="fastlaneData">The encoded fastlane data blob</param>
-        /// <param name="fundingSource">The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.</param>
-        /// <param name="holderName">The name of the card holder.</param>
-        /// <param name="networkPaymentReference">The transaction identifier from card schemes. This is the [&#x60;networkTxReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-additionalData-ResponseAdditionalDataCommon-networkTxReference) from the response to the first payment.</param>
-        /// <param name="number">The card number. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).</param>
-        /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="shopperNotificationReference">The &#x60;shopperNotificationReference&#x60; returned in the response when you requested to notify the shopper. Used only for recurring payments in India.</param>
-        /// <param name="srcCorrelationId">An identifier used for the Click to Pay transaction.</param>
-        /// <param name="srcDigitalCardId">The SRC reference for the Click to Pay token.</param>
-        /// <param name="srcScheme">The scheme that is being used for Click to Pay.</param>
-        /// <param name="srcTokenReference">The reference for the Click to Pay token.</param>
-        /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="threeDS2SdkVersion">Required for mobile integrations. Version of the 3D Secure 2 mobile SDK.</param>
-        /// <param name="type">Default payment method details. Common for scheme payment methods, and for simple payment method details. (default to TypeEnum.Scheme)</param>
-        [JsonConstructor]
-        public CardDonations(Option<string?> billingSequenceNumber = default, Option<string?> brand = default, Option<string?> checkoutAttemptId = default, Option<string?> cupsecureplusSmscode = default, Option<string?> cvc = default, Option<string?> encryptedCard = default, Option<string?> encryptedCardNumber = default, Option<string?> encryptedExpiryMonth = default, Option<string?> encryptedExpiryYear = default, Option<string?> encryptedPassword = default, Option<string?> encryptedSecurityCode = default, Option<string?> expiryMonth = default, Option<string?> expiryYear = default, Option<string?> fastlaneData = default, Option<FundingSourceEnum?> fundingSource = default, Option<string?> holderName = default, Option<string?> networkPaymentReference = default, Option<string?> number = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> shopperNotificationReference = default, Option<string?> srcCorrelationId = default, Option<string?> srcDigitalCardId = default, Option<string?> srcScheme = default, Option<string?> srcTokenReference = default, Option<string?> storedPaymentMethodId = default, Option<string?> threeDS2SdkVersion = default, Option<TypeEnum?> type = default)
-        {
-            _BillingSequenceNumberOption = billingSequenceNumber;
-            _BrandOption = brand;
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _CupsecureplusSmscodeOption = cupsecureplusSmscode;
-            _CvcOption = cvc;
-            _EncryptedCardOption = encryptedCard;
-            _EncryptedCardNumberOption = encryptedCardNumber;
-            _EncryptedExpiryMonthOption = encryptedExpiryMonth;
-            _EncryptedExpiryYearOption = encryptedExpiryYear;
-            _EncryptedPasswordOption = encryptedPassword;
-            _EncryptedSecurityCodeOption = encryptedSecurityCode;
-            _ExpiryMonthOption = expiryMonth;
-            _ExpiryYearOption = expiryYear;
-            _FastlaneDataOption = fastlaneData;
-            _FundingSourceOption = fundingSource;
-            _HolderNameOption = holderName;
-            _NetworkPaymentReferenceOption = networkPaymentReference;
-            _NumberOption = number;
-            _RecurringDetailReferenceOption = recurringDetailReference;
-            _SdkDataOption = sdkData;
-            _ShopperNotificationReferenceOption = shopperNotificationReference;
-            _SrcCorrelationIdOption = srcCorrelationId;
-            _SrcDigitalCardIdOption = srcDigitalCardId;
-            _SrcSchemeOption = srcScheme;
-            _SrcTokenReferenceOption = srcTokenReference;
-            _StoredPaymentMethodIdOption = storedPaymentMethodId;
-            _ThreeDS2SdkVersionOption = threeDS2SdkVersion;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CardDonations()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -131,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// FundingSourceEnum.Prepaid - prepaid
             /// </summary>
             public static readonly FundingSourceEnum Prepaid = new("prepaid");
-        
+
             private FundingSourceEnum(string? value)
             {
                 Value = value;
@@ -143,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="FundingSourceEnum"/> instance initialized with the string value.</returns>
             public static implicit operator FundingSourceEnum?(string? value) => value == null ? null : new FundingSourceEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="FundingSourceEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="FundingSourceEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="FundingSourceEnum"/> instance./// </returns>
             public static implicit operator string?(FundingSourceEnum? option) => option?.Value;
-        
+
             public static bool operator ==(FundingSourceEnum? left, FundingSourceEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(FundingSourceEnum? left, FundingSourceEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is FundingSourceEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="FundingSourceEnum?"/>.
             /// </summary>
@@ -175,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="FundingSourceEnum"/> to the json value.
             /// </summary>
@@ -186,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == FundingSourceEnum.Credit)
                     return "credit";
-                
+
                 if (value == FundingSourceEnum.Debit)
                     return "debit";
-                
+
                 if (value == FundingSourceEnum.Prepaid)
                     return "prepaid";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing FundingSourceEnum.               
+            /// JsonConverter for writing FundingSourceEnum.
             /// </summary>
             public class FundingSourceEnumJsonConverter : JsonConverter<FundingSourceEnum>
             {
@@ -272,7 +207,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.Clicktopay - clicktopay
             /// </summary>
             public static readonly TypeEnum Clicktopay = new("clicktopay");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -284,24 +219,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -319,7 +254,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -330,30 +265,30 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Bcmc)
                     return "bcmc";
-                
+
                 if (value == TypeEnum.Scheme)
                     return "scheme";
-                
+
                 if (value == TypeEnum.NetworkToken)
                     return "networkToken";
-                
+
                 if (value == TypeEnum.Giftcard)
                     return "giftcard";
-                
+
                 if (value == TypeEnum.Card)
                     return "card";
-                
+
                 if (value == TypeEnum.Clicktopay)
                     return "clicktopay";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -947,9 +882,66 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new CardDonations(billingSequenceNumber, brand, checkoutAttemptId, cupsecureplusSmscode, cvc, encryptedCard, encryptedCardNumber, encryptedExpiryMonth, encryptedExpiryYear, encryptedPassword, encryptedSecurityCode, expiryMonth, expiryYear, fastlaneData, fundingSource, holderName, networkPaymentReference, number, recurringDetailReference, sdkData, shopperNotificationReference, srcCorrelationId, srcDigitalCardId, srcScheme, srcTokenReference, storedPaymentMethodId, threeDS2SdkVersion, type);
+
+            var result = new CardDonations();
+            if (billingSequenceNumber.IsSet)
+                result.BillingSequenceNumber = billingSequenceNumber.Value;
+            if (brand.IsSet)
+                result.Brand = brand.Value;
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (cupsecureplusSmscode.IsSet)
+                result.CupsecureplusSmscode = cupsecureplusSmscode.Value;
+            if (cvc.IsSet)
+                result.Cvc = cvc.Value;
+            if (encryptedCard.IsSet)
+                result.EncryptedCard = encryptedCard.Value;
+            if (encryptedCardNumber.IsSet)
+                result.EncryptedCardNumber = encryptedCardNumber.Value;
+            if (encryptedExpiryMonth.IsSet)
+                result.EncryptedExpiryMonth = encryptedExpiryMonth.Value;
+            if (encryptedExpiryYear.IsSet)
+                result.EncryptedExpiryYear = encryptedExpiryYear.Value;
+            if (encryptedPassword.IsSet)
+                result.EncryptedPassword = encryptedPassword.Value;
+            if (encryptedSecurityCode.IsSet)
+                result.EncryptedSecurityCode = encryptedSecurityCode.Value;
+            if (expiryMonth.IsSet)
+                result.ExpiryMonth = expiryMonth.Value;
+            if (expiryYear.IsSet)
+                result.ExpiryYear = expiryYear.Value;
+            if (fastlaneData.IsSet)
+                result.FastlaneData = fastlaneData.Value;
+            if (fundingSource.IsSet)
+                result.FundingSource = fundingSource.Value;
+            if (holderName.IsSet)
+                result.HolderName = holderName.Value;
+            if (networkPaymentReference.IsSet)
+                result.NetworkPaymentReference = networkPaymentReference.Value;
+            if (number.IsSet)
+                result.Number = number.Value;
+            if (recurringDetailReference.IsSet)
+                result.RecurringDetailReference = recurringDetailReference.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (shopperNotificationReference.IsSet)
+                result.ShopperNotificationReference = shopperNotificationReference.Value;
+            if (srcCorrelationId.IsSet)
+                result.SrcCorrelationId = srcCorrelationId.Value;
+            if (srcDigitalCardId.IsSet)
+                result.SrcDigitalCardId = srcDigitalCardId.Value;
+            if (srcScheme.IsSet)
+                result.SrcScheme = srcScheme.Value;
+            if (srcTokenReference.IsSet)
+                result.SrcTokenReference = srcTokenReference.Value;
+            if (storedPaymentMethodId.IsSet)
+                result.StoredPaymentMethodId = storedPaymentMethodId.Value;
+            if (threeDS2SdkVersion.IsSet)
+                result.ThreeDS2SdkVersion = threeDS2SdkVersion.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -960,13 +952,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CardDonations cardDonations, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, cardDonations, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -977,7 +969,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CardDonations cardDonations, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (cardDonations._BillingSequenceNumberOption.IsSet)
                 if (cardDonations.BillingSequenceNumber != null)
                     writer.WriteString("billingSequenceNumber", cardDonations.BillingSequenceNumber);
@@ -1034,12 +1026,12 @@ namespace Adyen.Checkout.Models
                 if (cardDonations.FastlaneData != null)
                     writer.WriteString("fastlaneData", cardDonations.FastlaneData);
 
-            if (cardDonations._FundingSourceOption.IsSet && cardDonations.FundingSource != null) 
+            if (cardDonations._FundingSourceOption.IsSet && cardDonations.FundingSource != null)
             {
                 string? fundingSourceRawValue = CardDonations.FundingSourceEnum.ToJsonValue(cardDonations._FundingSourceOption.Value!.Value);
                 writer.WriteString("fundingSource", fundingSourceRawValue);
             }
-            
+
             if (cardDonations._HolderNameOption.IsSet)
                 if (cardDonations.HolderName != null)
                     writer.WriteString("holderName", cardDonations.HolderName);
@@ -1088,7 +1080,7 @@ namespace Adyen.Checkout.Models
                 if (cardDonations.ThreeDS2SdkVersion != null)
                     writer.WriteString("threeDS2SdkVersion", cardDonations.ThreeDS2SdkVersion);
 
-            if (cardDonations._TypeOption.IsSet && cardDonations.Type != null) 
+            if (cardDonations._TypeOption.IsSet && cardDonations.Type != null)
             {
                 string? typeRawValue = CardDonations.TypeEnum.ToJsonValue(cardDonations._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);

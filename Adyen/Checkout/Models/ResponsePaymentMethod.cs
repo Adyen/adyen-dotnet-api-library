@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponsePaymentMethod" /> class.
         /// </summary>
-        /// <param name="brand">The card brand that the shopper used to pay. Only returned if &#x60;paymentMethod.type&#x60; is **scheme**.</param>
-        /// <param name="type">The &#x60;paymentMethod.type&#x60; value used in the request.</param>
-        [JsonConstructor]
-        public ResponsePaymentMethod(Option<string?> brand = default, Option<string?> type = default)
-        {
-            _BrandOption = brand;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ResponsePaymentMethod()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -147,9 +134,14 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ResponsePaymentMethod(brand, type);
+
+            var result = new ResponsePaymentMethod();
+            if (brand.IsSet)
+                result.Brand = brand.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -160,13 +152,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ResponsePaymentMethod responsePaymentMethod, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, responsePaymentMethod, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -177,7 +169,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ResponsePaymentMethod responsePaymentMethod, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (responsePaymentMethod._BrandOption.IsSet)
                 if (responsePaymentMethod.Brand != null)
                     writer.WriteString("brand", responsePaymentMethod.Brand);

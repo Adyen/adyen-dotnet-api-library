@@ -119,7 +119,7 @@ namespace Adyen.Test.Checkout
             // Arrange
             PaymentRefundRequest paymentRefundRequest = new PaymentRefundRequest
             {
-                Amount = new Amount("USD", 10000),
+                Amount = new Amount { Currency = "USD", Value = 10000 },
                 MerchantAccount = "TestMerchant",
                 MerchantRefundReason = PaymentRefundRequest.MerchantRefundReasonEnum.FRAUD
             };
@@ -144,7 +144,7 @@ namespace Adyen.Test.Checkout
             // Arrange
             PaymentRefundRequest paymentRefundRequest = new PaymentRefundRequest
             {
-                Amount = new Amount("USD", 10000),
+                Amount = new Amount { Currency = "USD", Value = 10000 },
                 MerchantAccount = "TestMerchant"
             };
             
@@ -167,7 +167,7 @@ namespace Adyen.Test.Checkout
             // Arrange
             PaymentRefundRequest paymentRefundRequest = new PaymentRefundRequest
             {
-                Amount = new Amount("USD", 10000),
+                Amount = new Amount { Currency = "USD", Value = 10000 },
                 MerchantAccount = "TestMerchant",
                 MerchantRefundReason = null
             };

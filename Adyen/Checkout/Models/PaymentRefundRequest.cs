@@ -34,43 +34,14 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentRefundRequest" /> class.
         /// </summary>
-        /// <param name="amount">amount</param>
-        /// <param name="merchantAccount">The merchant account that is used to process the payment.</param>
-        /// <param name="applicationInfo">applicationInfo</param>
-        /// <param name="capturePspReference">This is only available for PayPal refunds. The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the specific capture to refund.</param>
-        /// <param name="enhancedSchemeData">enhancedSchemeData</param>
-        /// <param name="lineItems">Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.</param>
-        /// <param name="merchantRefundReason">The reason for the refund request.  Possible values:  * **FRAUD**  * **CUSTOMER REQUEST**  * **RETURN**  * **DUPLICATE**  * **OTHER**  </param>
-        /// <param name="reference">Your reference for the refund request. Maximum length: 80 characters.</param>
-        /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/).</param>
-        /// <param name="store">The online store or [physical store](https://docs.adyen.com/point-of-sale/design-your-integration/determine-account-structure/#create-stores) that is processing the refund. This must be the same as the store name configured in your Customer Area.  Otherwise, you get an error and the refund fails.</param>
-        [JsonConstructor]
-        public PaymentRefundRequest(Amount amount, string merchantAccount, Option<ApplicationInfo?> applicationInfo = default, Option<string?> capturePspReference = default, Option<EnhancedSchemeData?> enhancedSchemeData = default, Option<List<LineItem>?> lineItems = default, Option<MerchantRefundReasonEnum?> merchantRefundReason = default, Option<string?> reference = default, Option<List<Split>?> splits = default, Option<string?> store = default)
-        {
-            Amount = amount;
-            MerchantAccount = merchantAccount;
-            _ApplicationInfoOption = applicationInfo;
-            _CapturePspReferenceOption = capturePspReference;
-            _EnhancedSchemeDataOption = enhancedSchemeData;
-            _LineItemsOption = lineItems;
-            _MerchantRefundReasonOption = merchantRefundReason;
-            _ReferenceOption = reference;
-            _SplitsOption = splits;
-            _StoreOption = store;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentRefundRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
-        /// The reason for the refund request.  Possible values:  * **FRAUD**  * **CUSTOMER REQUEST**  * **RETURN**  * **DUPLICATE**  * **OTHER**  
+        /// The reason for the refund request.  Possible values:  * **FRAUD**  * **CUSTOMER REQUEST**  * **RETURN**  * **DUPLICATE**  * **OTHER**
         /// </summary>
         /// <value>The reason for the refund request.  Possible values:  * **FRAUD**  * **CUSTOMER REQUEST**  * **RETURN**  * **DUPLICATE**  * **OTHER**  </value>
         [JsonConverter(typeof(MerchantRefundReasonEnumJsonConverter))]
@@ -105,7 +76,7 @@ namespace Adyen.Checkout.Models
             /// MerchantRefundReasonEnum.OTHER - OTHER
             /// </summary>
             public static readonly MerchantRefundReasonEnum OTHER = new("OTHER");
-        
+
             private MerchantRefundReasonEnum(string? value)
             {
                 Value = value;
@@ -117,24 +88,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="MerchantRefundReasonEnum"/> instance initialized with the string value.</returns>
             public static implicit operator MerchantRefundReasonEnum?(string? value) => value == null ? null : new MerchantRefundReasonEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="MerchantRefundReasonEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="MerchantRefundReasonEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="MerchantRefundReasonEnum"/> instance./// </returns>
             public static implicit operator string?(MerchantRefundReasonEnum? option) => option?.Value;
-        
+
             public static bool operator ==(MerchantRefundReasonEnum? left, MerchantRefundReasonEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(MerchantRefundReasonEnum? left, MerchantRefundReasonEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is MerchantRefundReasonEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="MerchantRefundReasonEnum?"/>.
             /// </summary>
@@ -151,7 +122,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="MerchantRefundReasonEnum"/> to the json value.
             /// </summary>
@@ -162,27 +133,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == MerchantRefundReasonEnum.FRAUD)
                     return "FRAUD";
-                
+
                 if (value == MerchantRefundReasonEnum.CUSTOMERREQUEST)
                     return "CUSTOMER REQUEST";
-                
+
                 if (value == MerchantRefundReasonEnum.RETURN)
                     return "RETURN";
-                
+
                 if (value == MerchantRefundReasonEnum.DUPLICATE)
                     return "DUPLICATE";
-                
+
                 if (value == MerchantRefundReasonEnum.OTHER)
                     return "OTHER";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing MerchantRefundReasonEnum.               
+            /// JsonConverter for writing MerchantRefundReasonEnum.
             /// </summary>
             public class MerchantRefundReasonEnumJsonConverter : JsonConverter<MerchantRefundReasonEnum>
             {
@@ -207,7 +178,7 @@ namespace Adyen.Checkout.Models
         public Option<MerchantRefundReasonEnum?> _MerchantRefundReasonOption { get; private set; }
 
         /// <summary>
-        /// The reason for the refund request.  Possible values:  * **FRAUD**  * **CUSTOMER REQUEST**  * **RETURN**  * **DUPLICATE**  * **OTHER**  
+        /// The reason for the refund request.  Possible values:  * **FRAUD**  * **CUSTOMER REQUEST**  * **RETURN**  * **DUPLICATE**  * **OTHER**
         /// </summary>
         /// <value>The reason for the refund request.  Possible values:  * **FRAUD**  * **CUSTOMER REQUEST**  * **RETURN**  * **DUPLICATE**  * **OTHER**  </value>
         [JsonPropertyName("merchantRefundReason")]
@@ -429,14 +400,33 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!amount.IsSet)
                 throw new ArgumentException("Property is required for class PaymentRefundRequest.", nameof(amount));
 
             if (!merchantAccount.IsSet)
                 throw new ArgumentException("Property is required for class PaymentRefundRequest.", nameof(merchantAccount));
 
-            return new PaymentRefundRequest(amount.Value!, merchantAccount.Value!, applicationInfo, capturePspReference, enhancedSchemeData, lineItems, merchantRefundReason, reference, splits, store);
+            var result = new PaymentRefundRequest();
+            result.Amount = amount.Value!;
+            result.MerchantAccount = merchantAccount.Value!;
+            if (applicationInfo.IsSet)
+                result.ApplicationInfo = applicationInfo.Value;
+            if (capturePspReference.IsSet)
+                result.CapturePspReference = capturePspReference.Value;
+            if (enhancedSchemeData.IsSet)
+                result.EnhancedSchemeData = enhancedSchemeData.Value;
+            if (lineItems.IsSet)
+                result.LineItems = lineItems.Value;
+            if (merchantRefundReason.IsSet)
+                result.MerchantRefundReason = merchantRefundReason.Value;
+            if (reference.IsSet)
+                result.Reference = reference.Value;
+            if (splits.IsSet)
+                result.Splits = splits.Value;
+            if (store.IsSet)
+                result.Store = store.Value;
+            return result;
         }
 
         /// <summary>
@@ -447,13 +437,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentRefundRequest paymentRefundRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentRefundRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -464,7 +454,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentRefundRequest paymentRefundRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WritePropertyName("amount");
             JsonSerializer.Serialize(writer, paymentRefundRequest.Amount, jsonSerializerOptions);
             if (paymentRefundRequest.MerchantAccount != null)

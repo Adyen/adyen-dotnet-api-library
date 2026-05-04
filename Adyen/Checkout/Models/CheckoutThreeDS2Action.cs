@@ -34,33 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutThreeDS2Action" /> class.
         /// </summary>
-        /// <param name="type">**threeDS2**</param>
-        /// <param name="authorisationToken">A token needed to authorise a payment.</param>
-        /// <param name="paymentData">Encoded payment data.</param>
-        /// <param name="paymentMethodType">Specifies the payment method.</param>
-        /// <param name="subtype">A subtype of the token.</param>
-        /// <param name="token">A token to pass to the 3DS2 Component to get the fingerprint.</param>
-        /// <param name="url">Specifies the URL to redirect to.</param>
-        [JsonConstructor]
-        public CheckoutThreeDS2Action(TypeEnum type, Option<string?> authorisationToken = default, Option<string?> paymentData = default, Option<string?> paymentMethodType = default, Option<string?> subtype = default, Option<string?> token = default, Option<string?> url = default)
-        {
-            Type = type;
-            _AuthorisationTokenOption = authorisationToken;
-            _PaymentDataOption = paymentData;
-            _PaymentMethodTypeOption = paymentMethodType;
-            _SubtypeOption = subtype;
-            _TokenOption = token;
-            _UrlOption = url;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CheckoutThreeDS2Action()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -79,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.ThreeDS2 - threeDS2
             /// </summary>
             public static readonly TypeEnum ThreeDS2 = new("threeDS2");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -91,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -121,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -132,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.ThreeDS2)
                     return "threeDS2";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -340,11 +317,25 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class CheckoutThreeDS2Action.", nameof(type));
 
-            return new CheckoutThreeDS2Action(type.Value!.Value!, authorisationToken, paymentData, paymentMethodType, subtype, token, url);
+            var result = new CheckoutThreeDS2Action();
+            result.Type = type.Value!.Value!;
+            if (authorisationToken.IsSet)
+                result.AuthorisationToken = authorisationToken.Value;
+            if (paymentData.IsSet)
+                result.PaymentData = paymentData.Value;
+            if (paymentMethodType.IsSet)
+                result.PaymentMethodType = paymentMethodType.Value;
+            if (subtype.IsSet)
+                result.Subtype = subtype.Value;
+            if (token.IsSet)
+                result.Token = token.Value;
+            if (url.IsSet)
+                result.Url = url.Value;
+            return result;
         }
 
         /// <summary>
@@ -355,13 +346,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CheckoutThreeDS2Action checkoutThreeDS2Action, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, checkoutThreeDS2Action, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -372,13 +363,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CheckoutThreeDS2Action checkoutThreeDS2Action, JsonSerializerOptions jsonSerializerOptions)
         {
-            
-            if (checkoutThreeDS2Action.Type != null) 
+
+            if (checkoutThreeDS2Action.Type != null)
             {
                 string? typeRawValue = CheckoutThreeDS2Action.TypeEnum.ToJsonValue(checkoutThreeDS2Action.Type);
                 writer.WriteString("type", typeRawValue);
             }
-            
+
             if (checkoutThreeDS2Action._AuthorisationTokenOption.IsSet)
                 if (checkoutThreeDS2Action.AuthorisationToken != null)
                     writer.WriteString("authorisationToken", checkoutThreeDS2Action.AuthorisationToken);

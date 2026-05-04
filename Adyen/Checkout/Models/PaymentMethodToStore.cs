@@ -34,43 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodToStore" /> class.
         /// </summary>
-        /// <param name="brand">Secondary brand of the card. For example: **plastix**, **hmclub**.</param>
-        /// <param name="cvc">The card verification code. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).</param>
-        /// <param name="encryptedCard">The encrypted card.</param>
-        /// <param name="encryptedCardNumber">The encrypted card number.</param>
-        /// <param name="encryptedExpiryMonth">The encrypted card expiry month.</param>
-        /// <param name="encryptedExpiryYear">The encrypted card expiry year.</param>
-        /// <param name="encryptedSecurityCode">The encrypted card verification code.</param>
-        /// <param name="expiryMonth">The card expiry month. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).</param>
-        /// <param name="expiryYear">The card expiry year. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).</param>
-        /// <param name="holderName">The name of the card holder.</param>
-        /// <param name="number">The card number. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).</param>
-        /// <param name="type">Set to **scheme**.</param>
-        [JsonConstructor]
-        public PaymentMethodToStore(Option<string?> brand = default, Option<string?> cvc = default, Option<string?> encryptedCard = default, Option<string?> encryptedCardNumber = default, Option<string?> encryptedExpiryMonth = default, Option<string?> encryptedExpiryYear = default, Option<string?> encryptedSecurityCode = default, Option<string?> expiryMonth = default, Option<string?> expiryYear = default, Option<string?> holderName = default, Option<string?> number = default, Option<string?> type = default)
-        {
-            _BrandOption = brand;
-            _CvcOption = cvc;
-            _EncryptedCardOption = encryptedCard;
-            _EncryptedCardNumberOption = encryptedCardNumber;
-            _EncryptedExpiryMonthOption = encryptedExpiryMonth;
-            _EncryptedExpiryYearOption = encryptedExpiryYear;
-            _EncryptedSecurityCodeOption = encryptedSecurityCode;
-            _ExpiryMonthOption = expiryMonth;
-            _ExpiryYearOption = expiryYear;
-            _HolderNameOption = holderName;
-            _NumberOption = number;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentMethodToStore()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -357,9 +324,34 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new PaymentMethodToStore(brand, cvc, encryptedCard, encryptedCardNumber, encryptedExpiryMonth, encryptedExpiryYear, encryptedSecurityCode, expiryMonth, expiryYear, holderName, number, type);
+
+            var result = new PaymentMethodToStore();
+            if (brand.IsSet)
+                result.Brand = brand.Value;
+            if (cvc.IsSet)
+                result.Cvc = cvc.Value;
+            if (encryptedCard.IsSet)
+                result.EncryptedCard = encryptedCard.Value;
+            if (encryptedCardNumber.IsSet)
+                result.EncryptedCardNumber = encryptedCardNumber.Value;
+            if (encryptedExpiryMonth.IsSet)
+                result.EncryptedExpiryMonth = encryptedExpiryMonth.Value;
+            if (encryptedExpiryYear.IsSet)
+                result.EncryptedExpiryYear = encryptedExpiryYear.Value;
+            if (encryptedSecurityCode.IsSet)
+                result.EncryptedSecurityCode = encryptedSecurityCode.Value;
+            if (expiryMonth.IsSet)
+                result.ExpiryMonth = expiryMonth.Value;
+            if (expiryYear.IsSet)
+                result.ExpiryYear = expiryYear.Value;
+            if (holderName.IsSet)
+                result.HolderName = holderName.Value;
+            if (number.IsSet)
+                result.Number = number.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -370,13 +362,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentMethodToStore paymentMethodToStore, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentMethodToStore, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -387,7 +379,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentMethodToStore paymentMethodToStore, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paymentMethodToStore._BrandOption.IsSet)
                 if (paymentMethodToStore.Brand != null)
                     writer.WriteString("brand", paymentMethodToStore.Brand);

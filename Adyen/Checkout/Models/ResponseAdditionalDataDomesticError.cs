@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataDomesticError" /> class.
         /// </summary>
-        /// <param name="domesticRefusalReasonRaw">The reason the transaction was declined, given by the local issuer.  Currently available for merchants in Japan.</param>
-        /// <param name="domesticShopperAdvice">The action the shopper should take, in a local language.  Currently available in Japanese, for merchants in Japan.</param>
-        [JsonConstructor]
-        public ResponseAdditionalDataDomesticError(Option<string?> domesticRefusalReasonRaw = default, Option<string?> domesticShopperAdvice = default)
-        {
-            _DomesticRefusalReasonRawOption = domesticRefusalReasonRaw;
-            _DomesticShopperAdviceOption = domesticShopperAdvice;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ResponseAdditionalDataDomesticError()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -147,9 +134,14 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ResponseAdditionalDataDomesticError(domesticRefusalReasonRaw, domesticShopperAdvice);
+
+            var result = new ResponseAdditionalDataDomesticError();
+            if (domesticRefusalReasonRaw.IsSet)
+                result.DomesticRefusalReasonRaw = domesticRefusalReasonRaw.Value;
+            if (domesticShopperAdvice.IsSet)
+                result.DomesticShopperAdvice = domesticShopperAdvice.Value;
+            return result;
         }
 
         /// <summary>
@@ -160,13 +152,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ResponseAdditionalDataDomesticError responseAdditionalDataDomesticError, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, responseAdditionalDataDomesticError, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -177,7 +169,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ResponseAdditionalDataDomesticError responseAdditionalDataDomesticError, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (responseAdditionalDataDomesticError._DomesticRefusalReasonRawOption.IsSet)
                 if (responseAdditionalDataDomesticError.DomesticRefusalReasonRaw != null)
                     writer.WriteString("domesticRefusalReasonRaw", responseAdditionalDataDomesticError.DomesticRefusalReasonRaw);

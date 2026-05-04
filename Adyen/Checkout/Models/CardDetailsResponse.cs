@@ -34,27 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CardDetailsResponse" /> class.
         /// </summary>
-        /// <param name="brands">The list of brands identified for the card.</param>
-        /// <param name="fundingSource">The funding source of the card, for example **DEBIT**, **CREDIT**, or **PREPAID**.</param>
-        /// <param name="isCardCommercial">Indicates if this is a commercial card or a consumer card. If **true**, it is a commercial card. If **false**, it is a consumer card.</param>
-        /// <param name="issuingCountryCode">The two-letter country code  of the country where the card was issued.</param>
-        [JsonConstructor]
-        public CardDetailsResponse(Option<List<CardBrandDetails>?> brands = default, Option<string?> fundingSource = default, Option<bool?> isCardCommercial = default, Option<string?> issuingCountryCode = default)
-        {
-            _BrandsOption = brands;
-            _FundingSourceOption = fundingSource;
-            _IsCardCommercialOption = isCardCommercial;
-            _IssuingCountryCodeOption = issuingCountryCode;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CardDetailsResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -189,9 +172,18 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new CardDetailsResponse(brands, fundingSource, isCardCommercial, issuingCountryCode);
+
+            var result = new CardDetailsResponse();
+            if (brands.IsSet)
+                result.Brands = brands.Value;
+            if (fundingSource.IsSet)
+                result.FundingSource = fundingSource.Value;
+            if (isCardCommercial.IsSet)
+                result.IsCardCommercial = isCardCommercial.Value;
+            if (issuingCountryCode.IsSet)
+                result.IssuingCountryCode = issuingCountryCode.Value;
+            return result;
         }
 
         /// <summary>
@@ -202,13 +194,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CardDetailsResponse cardDetailsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, cardDetailsResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -219,7 +211,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CardDetailsResponse cardDetailsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (cardDetailsResponse._BrandsOption.IsSet)
             {
                 writer.WritePropertyName("brands");

@@ -34,59 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentCompletionDetails" /> class.
         /// </summary>
-        /// <param name="mD">A payment session identifier returned by the card issuer.</param>
-        /// <param name="paReq">(3D) Payment Authentication Request data for the card issuer.</param>
-        /// <param name="paRes">(3D) Payment Authentication Response data by the card issuer.</param>
-        /// <param name="authorizationToken">authorizationToken</param>
-        /// <param name="billingToken">PayPal-generated token for recurring payments.</param>
-        /// <param name="cupsecureplusSmscode">The SMS verification code collected from the shopper.</param>
-        /// <param name="facilitatorAccessToken">PayPal-generated third party access token.</param>
-        /// <param name="oneTimePasscode">A random number sent to the mobile phone number of the shopper to verify the payment.</param>
-        /// <param name="orderID">PayPal-assigned ID for the order.</param>
-        /// <param name="payerID">PayPal-assigned ID for the payer (shopper).</param>
-        /// <param name="payload">Payload appended to the &#x60;returnURL&#x60; as a result of the redirect.</param>
-        /// <param name="paymentID">PayPal-generated ID for the payment.</param>
-        /// <param name="paymentStatus">Value passed from the WeChat MiniProgram &#x60;wx.requestPayment&#x60; **complete** callback. Possible values: any value starting with &#x60;requestPayment:&#x60;.</param>
-        /// <param name="redirectResult">The result of the redirect as appended to the &#x60;returnURL&#x60;.</param>
-        /// <param name="resultCode">Value you received from the WeChat Pay SDK.</param>
-        /// <param name="returnUrlQueryString">The query string as appended to the &#x60;returnURL&#x60; when using direct issuer links .</param>
-        /// <param name="threeDSResult">Base64-encoded string returned by the Component after the challenge flow. It contains the following parameters: &#x60;transStatus&#x60;, &#x60;authorisationToken&#x60;.</param>
-        /// <param name="threeds2ChallengeResult">Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: &#x60;transStatus&#x60;.</param>
-        /// <param name="threeds2Fingerprint">Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: &#x60;threeDSCompInd&#x60;.</param>
-        /// <param name="vaultToken">PayPalv2-generated token for recurring payments.</param>
-        [JsonConstructor]
-        public PaymentCompletionDetails(Option<string?> mD = default, Option<string?> paReq = default, Option<string?> paRes = default, Option<string?> authorizationToken = default, Option<string?> billingToken = default, Option<string?> cupsecureplusSmscode = default, Option<string?> facilitatorAccessToken = default, Option<string?> oneTimePasscode = default, Option<string?> orderID = default, Option<string?> payerID = default, Option<string?> payload = default, Option<string?> paymentID = default, Option<string?> paymentStatus = default, Option<string?> redirectResult = default, Option<string?> resultCode = default, Option<string?> returnUrlQueryString = default, Option<string?> threeDSResult = default, Option<string?> threeds2ChallengeResult = default, Option<string?> threeds2Fingerprint = default, Option<string?> vaultToken = default)
-        {
-            _MDOption = mD;
-            _PaReqOption = paReq;
-            _PaResOption = paRes;
-            _AuthorizationTokenOption = authorizationToken;
-            _BillingTokenOption = billingToken;
-            _CupsecureplusSmscodeOption = cupsecureplusSmscode;
-            _FacilitatorAccessTokenOption = facilitatorAccessToken;
-            _OneTimePasscodeOption = oneTimePasscode;
-            _OrderIDOption = orderID;
-            _PayerIDOption = payerID;
-            _PayloadOption = payload;
-            _PaymentIDOption = paymentID;
-            _PaymentStatusOption = paymentStatus;
-            _RedirectResultOption = redirectResult;
-            _ResultCodeOption = resultCode;
-            _ReturnUrlQueryStringOption = returnUrlQueryString;
-            _ThreeDSResultOption = threeDSResult;
-            _Threeds2ChallengeResultOption = threeds2ChallengeResult;
-            _Threeds2FingerprintOption = threeds2Fingerprint;
-            _VaultTokenOption = vaultToken;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentCompletionDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -524,9 +475,50 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new PaymentCompletionDetails(mD, paReq, paRes, authorizationToken, billingToken, cupsecureplusSmscode, facilitatorAccessToken, oneTimePasscode, orderID, payerID, payload, paymentID, paymentStatus, redirectResult, resultCode, returnUrlQueryString, threeDSResult, threeds2ChallengeResult, threeds2Fingerprint, vaultToken);
+
+            var result = new PaymentCompletionDetails();
+            if (mD.IsSet)
+                result.MD = mD.Value;
+            if (paReq.IsSet)
+                result.PaReq = paReq.Value;
+            if (paRes.IsSet)
+                result.PaRes = paRes.Value;
+            if (authorizationToken.IsSet)
+                result.AuthorizationToken = authorizationToken.Value;
+            if (billingToken.IsSet)
+                result.BillingToken = billingToken.Value;
+            if (cupsecureplusSmscode.IsSet)
+                result.CupsecureplusSmscode = cupsecureplusSmscode.Value;
+            if (facilitatorAccessToken.IsSet)
+                result.FacilitatorAccessToken = facilitatorAccessToken.Value;
+            if (oneTimePasscode.IsSet)
+                result.OneTimePasscode = oneTimePasscode.Value;
+            if (orderID.IsSet)
+                result.OrderID = orderID.Value;
+            if (payerID.IsSet)
+                result.PayerID = payerID.Value;
+            if (payload.IsSet)
+                result.Payload = payload.Value;
+            if (paymentID.IsSet)
+                result.PaymentID = paymentID.Value;
+            if (paymentStatus.IsSet)
+                result.PaymentStatus = paymentStatus.Value;
+            if (redirectResult.IsSet)
+                result.RedirectResult = redirectResult.Value;
+            if (resultCode.IsSet)
+                result.ResultCode = resultCode.Value;
+            if (returnUrlQueryString.IsSet)
+                result.ReturnUrlQueryString = returnUrlQueryString.Value;
+            if (threeDSResult.IsSet)
+                result.ThreeDSResult = threeDSResult.Value;
+            if (threeds2ChallengeResult.IsSet)
+                result.Threeds2ChallengeResult = threeds2ChallengeResult.Value;
+            if (threeds2Fingerprint.IsSet)
+                result.Threeds2Fingerprint = threeds2Fingerprint.Value;
+            if (vaultToken.IsSet)
+                result.VaultToken = vaultToken.Value;
+            return result;
         }
 
         /// <summary>
@@ -537,13 +529,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentCompletionDetails paymentCompletionDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentCompletionDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -554,7 +546,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentCompletionDetails paymentCompletionDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paymentCompletionDetails._MDOption.IsSet)
                 if (paymentCompletionDetails.MD != null)
                     writer.WriteString("MD", paymentCompletionDetails.MD);

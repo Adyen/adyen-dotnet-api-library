@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalData3DSecure" /> class.
         /// </summary>
-        /// <param name="cardHolderInfo">Information provided by the issuer to the cardholder. If this field is present, you need to display this information to the cardholder. </param>
-        /// <param name="cavv">The Cardholder Authentication Verification Value (CAVV) for the 3D Secure authentication session, as a Base64-encoded 20-byte array.</param>
-        /// <param name="cavvAlgorithm">The CAVV algorithm used.</param>
-        /// <param name="scaExemptionRequested">Shows the [exemption type](https://docs.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that Adyen requested for the payment.   Possible values: * **lowValue**  * **secureCorporate**  * **trustedBeneficiary**  * **transactionRiskAnalysis** </param>
-        /// <param name="threeds2CardEnrolled">Indicates whether a card is enrolled for 3D Secure 2.</param>
-        [JsonConstructor]
-        public ResponseAdditionalData3DSecure(Option<string?> cardHolderInfo = default, Option<string?> cavv = default, Option<string?> cavvAlgorithm = default, Option<string?> scaExemptionRequested = default, Option<bool?> threeds2CardEnrolled = default)
-        {
-            _CardHolderInfoOption = cardHolderInfo;
-            _CavvOption = cavv;
-            _CavvAlgorithmOption = cavvAlgorithm;
-            _ScaExemptionRequestedOption = scaExemptionRequested;
-            _Threeds2CardEnrolledOption = threeds2CardEnrolled;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ResponseAdditionalData3DSecure()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -67,7 +48,7 @@ namespace Adyen.Checkout.Models
         public Option<string?> _CardHolderInfoOption { get; private set; }
 
         /// <summary>
-        /// Information provided by the issuer to the cardholder. If this field is present, you need to display this information to the cardholder. 
+        /// Information provided by the issuer to the cardholder. If this field is present, you need to display this information to the cardholder.
         /// </summary>
         /// <value>Information provided by the issuer to the cardholder. If this field is present, you need to display this information to the cardholder. </value>
         [JsonPropertyName("cardHolderInfo")]
@@ -109,7 +90,7 @@ namespace Adyen.Checkout.Models
         public Option<string?> _ScaExemptionRequestedOption { get; private set; }
 
         /// <summary>
-        /// Shows the [exemption type](https://docs.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that Adyen requested for the payment.   Possible values: * **lowValue**  * **secureCorporate**  * **trustedBeneficiary**  * **transactionRiskAnalysis** 
+        /// Shows the [exemption type](https://docs.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that Adyen requested for the payment.   Possible values: * **lowValue**  * **secureCorporate**  * **trustedBeneficiary**  * **transactionRiskAnalysis**
         /// </summary>
         /// <value>Shows the [exemption type](https://docs.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that Adyen requested for the payment.   Possible values: * **lowValue**  * **secureCorporate**  * **trustedBeneficiary**  * **transactionRiskAnalysis** </value>
         [JsonPropertyName("scaExemptionRequested")]
@@ -210,9 +191,20 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ResponseAdditionalData3DSecure(cardHolderInfo, cavv, cavvAlgorithm, scaExemptionRequested, threeds2CardEnrolled);
+
+            var result = new ResponseAdditionalData3DSecure();
+            if (cardHolderInfo.IsSet)
+                result.CardHolderInfo = cardHolderInfo.Value;
+            if (cavv.IsSet)
+                result.Cavv = cavv.Value;
+            if (cavvAlgorithm.IsSet)
+                result.CavvAlgorithm = cavvAlgorithm.Value;
+            if (scaExemptionRequested.IsSet)
+                result.ScaExemptionRequested = scaExemptionRequested.Value;
+            if (threeds2CardEnrolled.IsSet)
+                result.Threeds2CardEnrolled = threeds2CardEnrolled.Value;
+            return result;
         }
 
         /// <summary>
@@ -223,13 +215,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ResponseAdditionalData3DSecure responseAdditionalData3DSecure, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, responseAdditionalData3DSecure, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -240,7 +232,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ResponseAdditionalData3DSecure responseAdditionalData3DSecure, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (responseAdditionalData3DSecure._CardHolderInfoOption.IsSet)
                 if (responseAdditionalData3DSecure.CardHolderInfo != null)
                     writer.WriteString("cardHolderInfo", responseAdditionalData3DSecure.CardHolderInfo);

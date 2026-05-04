@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodIssuer" /> class.
         /// </summary>
-        /// <param name="id">The unique identifier of this issuer, to submit in requests to /payments.</param>
-        /// <param name="name">A localized name of the issuer.</param>
-        /// <param name="disabled">A boolean value indicating whether this issuer is unavailable. Can be &#x60;true&#x60; whenever the issuer is offline. (default to false)</param>
-        [JsonConstructor]
-        public PaymentMethodIssuer(string id, string name, Option<bool?> disabled = default)
-        {
-            Id = id;
-            Name = name;
-            _DisabledOption = disabled;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentMethodIssuer()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -154,14 +139,19 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!id.IsSet)
                 throw new ArgumentException("Property is required for class PaymentMethodIssuer.", nameof(id));
 
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class PaymentMethodIssuer.", nameof(name));
 
-            return new PaymentMethodIssuer(id.Value!, name.Value!, disabled);
+            var result = new PaymentMethodIssuer();
+            result.Id = id.Value!;
+            result.Name = name.Value!;
+            if (disabled.IsSet)
+                result.Disabled = disabled.Value;
+            return result;
         }
 
         /// <summary>
@@ -172,13 +162,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentMethodIssuer paymentMethodIssuer, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentMethodIssuer, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -189,7 +179,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentMethodIssuer paymentMethodIssuer, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paymentMethodIssuer.Id != null)
                 writer.WriteString("id", paymentMethodIssuer.Id);
 

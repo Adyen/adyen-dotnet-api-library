@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="StandalonePaymentCancelRequest" /> class.
         /// </summary>
-        /// <param name="merchantAccount">The merchant account that is used to process the payment.</param>
-        /// <param name="paymentReference">The [&#x60;reference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_reference) of the payment that you want to cancel.</param>
-        /// <param name="applicationInfo">applicationInfo</param>
-        /// <param name="enhancedSchemeData">enhancedSchemeData</param>
-        /// <param name="reference">Your reference for the cancel request. Maximum length: 80 characters.</param>
-        [JsonConstructor]
-        public StandalonePaymentCancelRequest(string merchantAccount, string paymentReference, Option<ApplicationInfo?> applicationInfo = default, Option<EnhancedSchemeData?> enhancedSchemeData = default, Option<string?> reference = default)
-        {
-            MerchantAccount = merchantAccount;
-            PaymentReference = paymentReference;
-            _ApplicationInfoOption = applicationInfo;
-            _EnhancedSchemeDataOption = enhancedSchemeData;
-            _ReferenceOption = reference;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public StandalonePaymentCancelRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -194,14 +175,23 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!merchantAccount.IsSet)
                 throw new ArgumentException("Property is required for class StandalonePaymentCancelRequest.", nameof(merchantAccount));
 
             if (!paymentReference.IsSet)
                 throw new ArgumentException("Property is required for class StandalonePaymentCancelRequest.", nameof(paymentReference));
 
-            return new StandalonePaymentCancelRequest(merchantAccount.Value!, paymentReference.Value!, applicationInfo, enhancedSchemeData, reference);
+            var result = new StandalonePaymentCancelRequest();
+            result.MerchantAccount = merchantAccount.Value!;
+            result.PaymentReference = paymentReference.Value!;
+            if (applicationInfo.IsSet)
+                result.ApplicationInfo = applicationInfo.Value;
+            if (enhancedSchemeData.IsSet)
+                result.EnhancedSchemeData = enhancedSchemeData.Value;
+            if (reference.IsSet)
+                result.Reference = reference.Value;
+            return result;
         }
 
         /// <summary>
@@ -212,13 +202,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, StandalonePaymentCancelRequest standalonePaymentCancelRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, standalonePaymentCancelRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -229,7 +219,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, StandalonePaymentCancelRequest standalonePaymentCancelRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (standalonePaymentCancelRequest.MerchantAccount != null)
                 writer.WriteString("merchantAccount", standalonePaymentCancelRequest.MerchantAccount);
 

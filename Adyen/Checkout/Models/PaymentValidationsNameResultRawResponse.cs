@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentValidationsNameResultRawResponse" /> class.
         /// </summary>
-        /// <param name="firstName">The raw first name validation result that Adyen received from the scheme. First name validation result is only returned for Visa.</param>
-        /// <param name="fullName">The raw full name validation result that Adyen received from the scheme. Full name is the only field that is validated for Mastercard</param>
-        /// <param name="lastName">The raw last name validation result that Adyen received from the scheme. Last name validation result is only returned for Visa.</param>
-        /// <param name="middleName">The raw middle name validation result that Adyen received from the scheme. Middle name validation result is only returned for Visa.</param>
-        /// <param name="status">The raw name validation status value that Adyen received from the scheme. Only returned for Visa.</param>
-        [JsonConstructor]
-        public PaymentValidationsNameResultRawResponse(Option<string?> firstName = default, Option<string?> fullName = default, Option<string?> lastName = default, Option<string?> middleName = default, Option<string?> status = default)
-        {
-            _FirstNameOption = firstName;
-            _FullNameOption = fullName;
-            _LastNameOption = lastName;
-            _MiddleNameOption = middleName;
-            _StatusOption = status;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentValidationsNameResultRawResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -210,9 +191,20 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new PaymentValidationsNameResultRawResponse(firstName, fullName, lastName, middleName, status);
+
+            var result = new PaymentValidationsNameResultRawResponse();
+            if (firstName.IsSet)
+                result.FirstName = firstName.Value;
+            if (fullName.IsSet)
+                result.FullName = fullName.Value;
+            if (lastName.IsSet)
+                result.LastName = lastName.Value;
+            if (middleName.IsSet)
+                result.MiddleName = middleName.Value;
+            if (status.IsSet)
+                result.Status = status.Value;
+            return result;
         }
 
         /// <summary>
@@ -223,13 +215,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentValidationsNameResultRawResponse paymentValidationsNameResultRawResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentValidationsNameResultRawResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -240,7 +232,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentValidationsNameResultRawResponse paymentValidationsNameResultRawResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paymentValidationsNameResultRawResponse._FirstNameOption.IsSet)
                 if (paymentValidationsNameResultRawResponse.FirstName != null)
                     writer.WriteString("firstName", paymentValidationsNameResultRawResponse.FirstName);

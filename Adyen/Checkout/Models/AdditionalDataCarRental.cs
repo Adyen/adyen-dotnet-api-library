@@ -34,65 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataCarRental" /> class.
         /// </summary>
-        /// <param name="carRentalCheckOutDate">The pick-up date. * Date format: &#x60;yyyyMMdd&#x60;</param>
-        /// <param name="carRentalCustomerServiceTollFreeNumber">The customer service phone number of the car rental company. * Format: Alphanumeric * maxLength: 17 * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - *Must not be all zeros.</param>
-        /// <param name="carRentalDaysRented">Number of days for which the car is being rented. * Format: Numeric * maxLength: 4 * Must not be all spaces</param>
-        /// <param name="carRentalFuelCharges">Any fuel charges associated with the rental, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: Numeric * maxLength: 12</param>
-        /// <param name="carRentalInsuranceCharges">Any insurance charges associated with the rental, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: Numeric * maxLength: 12 * Must not be all spaces *Must not be all zeros.</param>
-        /// <param name="carRentalLocationCity">The city where the car is rented. * Format: Alphanumeric * maxLength: 18 * Must not start with a space or be all spaces *Must not be all zeros.</param>
-        /// <param name="carRentalLocationCountry">The country where the car is rented, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. * Format: Alphanumeric * maxLength: 2</param>
-        /// <param name="carRentalLocationStateProvince">The state or province where the car is rented. * Format: Alphanumeric * maxLength: 2 * Must not start with a space or be all spaces *Must not be all zeros.</param>
-        /// <param name="carRentalNoShowIndicator">Indicates if the customer didn&#39;t pick up their rental car. * Y - Customer did not pick up their car * N - Not applicable</param>
-        /// <param name="carRentalOneWayDropOffCharges">The charge for not returning a car to the original rental location, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * maxLength: 12</param>
-        /// <param name="carRentalRate">The daily rental rate, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: Alphanumeric * maxLength: 12</param>
-        /// <param name="carRentalRateIndicator">Specifies whether the given rate is applied daily or weekly. * D - Daily rate * W - Weekly rate</param>
-        /// <param name="carRentalRentalAgreementNumber">The rental agreement number for the car rental. * Format: Alphanumeric * maxLength: 9 * Must not start with a space or be all spaces *Must not be all zeros.</param>
-        /// <param name="carRentalRentalClassId">The classification of the rental car. * Format: Alphanumeric * maxLength: 4 * Must not start with a space or be all spaces *Must not be all zeros.</param>
-        /// <param name="carRentalRenterName">The name of the person renting the car. * Format: Alphanumeric * maxLength: 26 * If you send more than 26 characters, the name is truncated * Must not start with a space or be all spaces *Must not be all zeros.</param>
-        /// <param name="carRentalReturnCity">The city where the car must be returned. * Format: Alphanumeric * maxLength: 18 * Must not start with a space or be all spaces *Must not be all zeros.</param>
-        /// <param name="carRentalReturnCountry">The country where the car must be returned, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. * Format: Alphanumeric * maxLength: 2</param>
-        /// <param name="carRentalReturnDate">The last date to return the car by. * Date format: &#x60;yyyyMMdd&#x60; * maxLength: 8</param>
-        /// <param name="carRentalReturnLocationId">The agency code, phone number, or address abbreviation * Format: Alphanumeric * maxLength: 10 * Must not start with a space or be all spaces *Must not be all zeros.</param>
-        /// <param name="carRentalReturnStateProvince">The state or province where the car must be returned. * Format: Alphanumeric * maxLength: 3 * Must not start with a space or be all spaces *Must not be all zeros.</param>
-        /// <param name="carRentalTaxExemptIndicator">Indicates if the goods or services were tax-exempt, or if tax was not paid on them.  Values: * Y - Goods or services were tax exempt * N - Tax was not collected</param>
-        /// <param name="travelEntertainmentAuthDataDuration">Number of days the car is rented for. This should be included in the auth message. * Format: Numeric * maxLength: 4</param>
-        /// <param name="travelEntertainmentAuthDataMarket">Indicates what market-specific dataset will be submitted or is being submitted. Value should be &#39;A&#39; for car rental. This should be included in the auth message. * Format: Alphanumeric * maxLength: 1</param>
-        [JsonConstructor]
-        public AdditionalDataCarRental(Option<string?> carRentalCheckOutDate = default, Option<string?> carRentalCustomerServiceTollFreeNumber = default, Option<string?> carRentalDaysRented = default, Option<string?> carRentalFuelCharges = default, Option<string?> carRentalInsuranceCharges = default, Option<string?> carRentalLocationCity = default, Option<string?> carRentalLocationCountry = default, Option<string?> carRentalLocationStateProvince = default, Option<string?> carRentalNoShowIndicator = default, Option<string?> carRentalOneWayDropOffCharges = default, Option<string?> carRentalRate = default, Option<string?> carRentalRateIndicator = default, Option<string?> carRentalRentalAgreementNumber = default, Option<string?> carRentalRentalClassId = default, Option<string?> carRentalRenterName = default, Option<string?> carRentalReturnCity = default, Option<string?> carRentalReturnCountry = default, Option<string?> carRentalReturnDate = default, Option<string?> carRentalReturnLocationId = default, Option<string?> carRentalReturnStateProvince = default, Option<string?> carRentalTaxExemptIndicator = default, Option<string?> travelEntertainmentAuthDataDuration = default, Option<string?> travelEntertainmentAuthDataMarket = default)
-        {
-            _CarRentalCheckOutDateOption = carRentalCheckOutDate;
-            _CarRentalCustomerServiceTollFreeNumberOption = carRentalCustomerServiceTollFreeNumber;
-            _CarRentalDaysRentedOption = carRentalDaysRented;
-            _CarRentalFuelChargesOption = carRentalFuelCharges;
-            _CarRentalInsuranceChargesOption = carRentalInsuranceCharges;
-            _CarRentalLocationCityOption = carRentalLocationCity;
-            _CarRentalLocationCountryOption = carRentalLocationCountry;
-            _CarRentalLocationStateProvinceOption = carRentalLocationStateProvince;
-            _CarRentalNoShowIndicatorOption = carRentalNoShowIndicator;
-            _CarRentalOneWayDropOffChargesOption = carRentalOneWayDropOffCharges;
-            _CarRentalRateOption = carRentalRate;
-            _CarRentalRateIndicatorOption = carRentalRateIndicator;
-            _CarRentalRentalAgreementNumberOption = carRentalRentalAgreementNumber;
-            _CarRentalRentalClassIdOption = carRentalRentalClassId;
-            _CarRentalRenterNameOption = carRentalRenterName;
-            _CarRentalReturnCityOption = carRentalReturnCity;
-            _CarRentalReturnCountryOption = carRentalReturnCountry;
-            _CarRentalReturnDateOption = carRentalReturnDate;
-            _CarRentalReturnLocationIdOption = carRentalReturnLocationId;
-            _CarRentalReturnStateProvinceOption = carRentalReturnStateProvince;
-            _CarRentalTaxExemptIndicatorOption = carRentalTaxExemptIndicator;
-            _TravelEntertainmentAuthDataDurationOption = travelEntertainmentAuthDataDuration;
-            _TravelEntertainmentAuthDataMarketOption = travelEntertainmentAuthDataMarket;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public AdditionalDataCarRental()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -588,9 +533,56 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new AdditionalDataCarRental(carRentalCheckOutDate, carRentalCustomerServiceTollFreeNumber, carRentalDaysRented, carRentalFuelCharges, carRentalInsuranceCharges, carRentalLocationCity, carRentalLocationCountry, carRentalLocationStateProvince, carRentalNoShowIndicator, carRentalOneWayDropOffCharges, carRentalRate, carRentalRateIndicator, carRentalRentalAgreementNumber, carRentalRentalClassId, carRentalRenterName, carRentalReturnCity, carRentalReturnCountry, carRentalReturnDate, carRentalReturnLocationId, carRentalReturnStateProvince, carRentalTaxExemptIndicator, travelEntertainmentAuthDataDuration, travelEntertainmentAuthDataMarket);
+
+            var result = new AdditionalDataCarRental();
+            if (carRentalCheckOutDate.IsSet)
+                result.CarRentalCheckOutDate = carRentalCheckOutDate.Value;
+            if (carRentalCustomerServiceTollFreeNumber.IsSet)
+                result.CarRentalCustomerServiceTollFreeNumber = carRentalCustomerServiceTollFreeNumber.Value;
+            if (carRentalDaysRented.IsSet)
+                result.CarRentalDaysRented = carRentalDaysRented.Value;
+            if (carRentalFuelCharges.IsSet)
+                result.CarRentalFuelCharges = carRentalFuelCharges.Value;
+            if (carRentalInsuranceCharges.IsSet)
+                result.CarRentalInsuranceCharges = carRentalInsuranceCharges.Value;
+            if (carRentalLocationCity.IsSet)
+                result.CarRentalLocationCity = carRentalLocationCity.Value;
+            if (carRentalLocationCountry.IsSet)
+                result.CarRentalLocationCountry = carRentalLocationCountry.Value;
+            if (carRentalLocationStateProvince.IsSet)
+                result.CarRentalLocationStateProvince = carRentalLocationStateProvince.Value;
+            if (carRentalNoShowIndicator.IsSet)
+                result.CarRentalNoShowIndicator = carRentalNoShowIndicator.Value;
+            if (carRentalOneWayDropOffCharges.IsSet)
+                result.CarRentalOneWayDropOffCharges = carRentalOneWayDropOffCharges.Value;
+            if (carRentalRate.IsSet)
+                result.CarRentalRate = carRentalRate.Value;
+            if (carRentalRateIndicator.IsSet)
+                result.CarRentalRateIndicator = carRentalRateIndicator.Value;
+            if (carRentalRentalAgreementNumber.IsSet)
+                result.CarRentalRentalAgreementNumber = carRentalRentalAgreementNumber.Value;
+            if (carRentalRentalClassId.IsSet)
+                result.CarRentalRentalClassId = carRentalRentalClassId.Value;
+            if (carRentalRenterName.IsSet)
+                result.CarRentalRenterName = carRentalRenterName.Value;
+            if (carRentalReturnCity.IsSet)
+                result.CarRentalReturnCity = carRentalReturnCity.Value;
+            if (carRentalReturnCountry.IsSet)
+                result.CarRentalReturnCountry = carRentalReturnCountry.Value;
+            if (carRentalReturnDate.IsSet)
+                result.CarRentalReturnDate = carRentalReturnDate.Value;
+            if (carRentalReturnLocationId.IsSet)
+                result.CarRentalReturnLocationId = carRentalReturnLocationId.Value;
+            if (carRentalReturnStateProvince.IsSet)
+                result.CarRentalReturnStateProvince = carRentalReturnStateProvince.Value;
+            if (carRentalTaxExemptIndicator.IsSet)
+                result.CarRentalTaxExemptIndicator = carRentalTaxExemptIndicator.Value;
+            if (travelEntertainmentAuthDataDuration.IsSet)
+                result.TravelEntertainmentAuthDataDuration = travelEntertainmentAuthDataDuration.Value;
+            if (travelEntertainmentAuthDataMarket.IsSet)
+                result.TravelEntertainmentAuthDataMarket = travelEntertainmentAuthDataMarket.Value;
+            return result;
         }
 
         /// <summary>
@@ -601,13 +593,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, AdditionalDataCarRental additionalDataCarRental, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, additionalDataCarRental, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -618,7 +610,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, AdditionalDataCarRental additionalDataCarRental, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (additionalDataCarRental._CarRentalCheckOutDateOption.IsSet)
                 if (additionalDataCarRental.CarRentalCheckOutDate != null)
                     writer.WriteString("carRental.checkOutDate", additionalDataCarRental.CarRentalCheckOutDate);

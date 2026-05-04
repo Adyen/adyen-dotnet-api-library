@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="DeliveryMethod" /> class.
         /// </summary>
-        /// <param name="amount">amount</param>
-        /// <param name="description">The name of the delivery method as shown to the shopper.</param>
-        /// <param name="reference">The reference of the delivery method.</param>
-        /// <param name="selected">If you display the PayPal lightbox with delivery methods, set to **true** for the delivery method that is selected. Only one delivery method can be selected at a time.</param>
-        /// <param name="type">The type of the delivery method.</param>
-        [JsonConstructor]
-        public DeliveryMethod(Option<Amount?> amount = default, Option<string?> description = default, Option<string?> reference = default, Option<bool?> selected = default, Option<TypeEnum?> type = default)
-        {
-            _AmountOption = amount;
-            _DescriptionOption = description;
-            _ReferenceOption = reference;
-            _SelectedOption = selected;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public DeliveryMethod()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -75,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.Shipping - Shipping
             /// </summary>
             public static readonly TypeEnum Shipping = new("Shipping");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -87,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -117,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -128,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Shipping)
                     return "Shipping";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -304,9 +285,20 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new DeliveryMethod(amount, description, reference, selected, type);
+
+            var result = new DeliveryMethod();
+            if (amount.IsSet)
+                result.Amount = amount.Value;
+            if (description.IsSet)
+                result.Description = description.Value;
+            if (reference.IsSet)
+                result.Reference = reference.Value;
+            if (selected.IsSet)
+                result.Selected = selected.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -317,13 +309,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, DeliveryMethod deliveryMethod, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, deliveryMethod, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -334,7 +326,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, DeliveryMethod deliveryMethod, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (deliveryMethod._AmountOption.IsSet)
             {
                 writer.WritePropertyName("amount");
@@ -352,7 +344,7 @@ namespace Adyen.Checkout.Models
                 if (deliveryMethod._SelectedOption.Value != null)
                     writer.WriteBoolean("selected", deliveryMethod._SelectedOption.Value!.Value);
 
-            if (deliveryMethod._TypeOption.IsSet && deliveryMethod.Type != null) 
+            if (deliveryMethod._TypeOption.IsSet && deliveryMethod.Type != null)
             {
                 string? typeRawValue = DeliveryMethod.TypeEnum.ToJsonValue(deliveryMethod._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);

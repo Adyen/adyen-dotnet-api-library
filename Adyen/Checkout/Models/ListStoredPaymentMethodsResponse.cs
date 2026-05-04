@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ListStoredPaymentMethodsResponse" /> class.
         /// </summary>
-        /// <param name="merchantAccount">Your merchant account.</param>
-        /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
-        /// <param name="storedPaymentMethods">List of all stored payment methods.</param>
-        [JsonConstructor]
-        public ListStoredPaymentMethodsResponse(Option<string?> merchantAccount = default, Option<string?> shopperReference = default, Option<List<StoredPaymentMethodResource>?> storedPaymentMethods = default)
-        {
-            _MerchantAccountOption = merchantAccount;
-            _ShopperReferenceOption = shopperReference;
-            _StoredPaymentMethodsOption = storedPaymentMethods;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ListStoredPaymentMethodsResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -168,9 +153,16 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ListStoredPaymentMethodsResponse(merchantAccount, shopperReference, storedPaymentMethods);
+
+            var result = new ListStoredPaymentMethodsResponse();
+            if (merchantAccount.IsSet)
+                result.MerchantAccount = merchantAccount.Value;
+            if (shopperReference.IsSet)
+                result.ShopperReference = shopperReference.Value;
+            if (storedPaymentMethods.IsSet)
+                result.StoredPaymentMethods = storedPaymentMethods.Value;
+            return result;
         }
 
         /// <summary>
@@ -181,13 +173,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ListStoredPaymentMethodsResponse listStoredPaymentMethodsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, listStoredPaymentMethodsResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -198,7 +190,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ListStoredPaymentMethodsResponse listStoredPaymentMethodsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (listStoredPaymentMethodsResponse._MerchantAccountOption.IsSet)
                 if (listStoredPaymentMethodsResponse.MerchantAccount != null)
                     writer.WriteString("merchantAccount", listStoredPaymentMethodsResponse.MerchantAccount);

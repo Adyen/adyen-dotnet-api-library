@@ -34,33 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="BalanceCheckResponse" /> class.
         /// </summary>
-        /// <param name="balance">balance</param>
-        /// <param name="resultCode">The result of the cancellation request.  Possible values:  * **Success** – Indicates that the balance check was successful. * **NotEnoughBalance** – Commonly indicates that the card did not have enough balance to pay the amount in the request, or that the currency of the balance on the card did not match the currency of the requested amount. * **Failed** – Indicates that the balance check failed.</param>
-        /// <param name="additionalData">Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** &gt; **Developers** &gt; **Additional data**.</param>
-        /// <param name="fraudResult">fraudResult</param>
-        /// <param name="pspReference">Adyen&#39;s 16-character reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.</param>
-        /// <param name="refusalReason">If the payment&#39;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).</param>
-        /// <param name="transactionLimit">transactionLimit</param>
-        [JsonConstructor]
-        public BalanceCheckResponse(Amount balance, ResultCodeEnum resultCode, Option<Dictionary<string, string>?> additionalData = default, Option<FraudResult?> fraudResult = default, Option<string?> pspReference = default, Option<string?> refusalReason = default, Option<Amount?> transactionLimit = default)
-        {
-            Balance = balance;
-            ResultCode = resultCode;
-            _AdditionalDataOption = additionalData;
-            _FraudResultOption = fraudResult;
-            _PspReferenceOption = pspReference;
-            _RefusalReasonOption = refusalReason;
-            _TransactionLimitOption = transactionLimit;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public BalanceCheckResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -89,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// ResultCodeEnum.Failed - Failed
             /// </summary>
             public static readonly ResultCodeEnum Failed = new("Failed");
-        
+
             private ResultCodeEnum(string? value)
             {
                 Value = value;
@@ -101,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ResultCodeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ResultCodeEnum?(string? value) => value == null ? null : new ResultCodeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ResultCodeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ResultCodeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ResultCodeEnum"/> instance./// </returns>
             public static implicit operator string?(ResultCodeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ResultCodeEnum? left, ResultCodeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ResultCodeEnum? left, ResultCodeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ResultCodeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ResultCodeEnum?"/>.
             /// </summary>
@@ -133,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ResultCodeEnum"/> to the json value.
             /// </summary>
@@ -144,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ResultCodeEnum.Success)
                     return "Success";
-                
+
                 if (value == ResultCodeEnum.NotEnoughBalance)
                     return "NotEnoughBalance";
-                
+
                 if (value == ResultCodeEnum.Failed)
                     return "Failed";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ResultCodeEnum.               
+            /// JsonConverter for writing ResultCodeEnum.
             /// </summary>
             public class ResultCodeEnumJsonConverter : JsonConverter<ResultCodeEnum>
             {
@@ -348,14 +325,27 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!balance.IsSet)
                 throw new ArgumentException("Property is required for class BalanceCheckResponse.", nameof(balance));
 
             if (!resultCode.IsSet)
                 throw new ArgumentException("Property is required for class BalanceCheckResponse.", nameof(resultCode));
 
-            return new BalanceCheckResponse(balance.Value!, resultCode.Value!.Value!, additionalData, fraudResult, pspReference, refusalReason, transactionLimit);
+            var result = new BalanceCheckResponse();
+            result.Balance = balance.Value!;
+            result.ResultCode = resultCode.Value!.Value!;
+            if (additionalData.IsSet)
+                result.AdditionalData = additionalData.Value;
+            if (fraudResult.IsSet)
+                result.FraudResult = fraudResult.Value;
+            if (pspReference.IsSet)
+                result.PspReference = pspReference.Value;
+            if (refusalReason.IsSet)
+                result.RefusalReason = refusalReason.Value;
+            if (transactionLimit.IsSet)
+                result.TransactionLimit = transactionLimit.Value;
+            return result;
         }
 
         /// <summary>
@@ -366,13 +356,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, BalanceCheckResponse balanceCheckResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, balanceCheckResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -383,15 +373,15 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, BalanceCheckResponse balanceCheckResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WritePropertyName("balance");
             JsonSerializer.Serialize(writer, balanceCheckResponse.Balance, jsonSerializerOptions);
-            if (balanceCheckResponse.ResultCode != null) 
+            if (balanceCheckResponse.ResultCode != null)
             {
                 string? resultCodeRawValue = BalanceCheckResponse.ResultCodeEnum.ToJsonValue(balanceCheckResponse.ResultCode);
                 writer.WriteString("resultCode", resultCodeRawValue);
             }
-            
+
             if (balanceCheckResponse._AdditionalDataOption.IsSet)
             {
                 writer.WritePropertyName("additionalData");

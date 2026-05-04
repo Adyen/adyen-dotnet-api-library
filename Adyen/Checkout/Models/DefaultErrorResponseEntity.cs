@@ -34,35 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultErrorResponseEntity" /> class.
         /// </summary>
-        /// <param name="detail">A human-readable explanation specific to this occurrence of the problem.</param>
-        /// <param name="errorCode">Unique business error code.</param>
-        /// <param name="instance">A URI that identifies the specific occurrence of the problem if applicable.</param>
-        /// <param name="invalidFields">Array of fields with validation errors when applicable.</param>
-        /// <param name="requestId">The unique reference for the request.</param>
-        /// <param name="status">The HTTP status code.</param>
-        /// <param name="title">A short, human-readable summary of the problem type.</param>
-        /// <param name="type">A URI that identifies the validation error type. It points to human-readable documentation for the problem type.</param>
-        [JsonConstructor]
-        public DefaultErrorResponseEntity(Option<string?> detail = default, Option<string?> errorCode = default, Option<string?> instance = default, Option<List<InvalidField>?> invalidFields = default, Option<string?> requestId = default, Option<int?> status = default, Option<string?> title = default, Option<string?> type = default)
-        {
-            _DetailOption = detail;
-            _ErrorCodeOption = errorCode;
-            _InstanceOption = instance;
-            _InvalidFieldsOption = invalidFields;
-            _RequestIdOption = requestId;
-            _StatusOption = status;
-            _TitleOption = title;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public DefaultErrorResponseEntity()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -273,9 +248,26 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new DefaultErrorResponseEntity(detail, errorCode, instance, invalidFields, requestId, status, title, type);
+
+            var result = new DefaultErrorResponseEntity();
+            if (detail.IsSet)
+                result.Detail = detail.Value;
+            if (errorCode.IsSet)
+                result.ErrorCode = errorCode.Value;
+            if (instance.IsSet)
+                result.Instance = instance.Value;
+            if (invalidFields.IsSet)
+                result.InvalidFields = invalidFields.Value;
+            if (requestId.IsSet)
+                result.RequestId = requestId.Value;
+            if (status.IsSet)
+                result.Status = status.Value;
+            if (title.IsSet)
+                result.Title = title.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -286,13 +278,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, DefaultErrorResponseEntity defaultErrorResponseEntity, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, defaultErrorResponseEntity, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -303,7 +295,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, DefaultErrorResponseEntity defaultErrorResponseEntity, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (defaultErrorResponseEntity._DetailOption.IsSet)
                 if (defaultErrorResponseEntity.Detail != null)
                     writer.WriteString("detail", defaultErrorResponseEntity.Detail);

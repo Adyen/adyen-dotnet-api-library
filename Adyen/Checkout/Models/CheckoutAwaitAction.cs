@@ -34,27 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutAwaitAction" /> class.
         /// </summary>
-        /// <param name="type">**await**</param>
-        /// <param name="paymentData">Encoded payment data.</param>
-        /// <param name="paymentMethodType">Specifies the payment method.</param>
-        /// <param name="url">Specifies the URL to redirect to.</param>
-        [JsonConstructor]
-        public CheckoutAwaitAction(TypeEnum type, Option<string?> paymentData = default, Option<string?> paymentMethodType = default, Option<string?> url = default)
-        {
-            Type = type;
-            _PaymentDataOption = paymentData;
-            _PaymentMethodTypeOption = paymentMethodType;
-            _UrlOption = url;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CheckoutAwaitAction()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -73,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.Await - await
             /// </summary>
             public static readonly TypeEnum Await = new("await");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -85,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -115,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -126,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Await)
                     return "await";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -277,11 +260,19 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class CheckoutAwaitAction.", nameof(type));
 
-            return new CheckoutAwaitAction(type.Value!.Value!, paymentData, paymentMethodType, url);
+            var result = new CheckoutAwaitAction();
+            result.Type = type.Value!.Value!;
+            if (paymentData.IsSet)
+                result.PaymentData = paymentData.Value;
+            if (paymentMethodType.IsSet)
+                result.PaymentMethodType = paymentMethodType.Value;
+            if (url.IsSet)
+                result.Url = url.Value;
+            return result;
         }
 
         /// <summary>
@@ -292,13 +283,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CheckoutAwaitAction checkoutAwaitAction, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, checkoutAwaitAction, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -309,13 +300,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CheckoutAwaitAction checkoutAwaitAction, JsonSerializerOptions jsonSerializerOptions)
         {
-            
-            if (checkoutAwaitAction.Type != null) 
+
+            if (checkoutAwaitAction.Type != null)
             {
                 string? typeRawValue = CheckoutAwaitAction.TypeEnum.ToJsonValue(checkoutAwaitAction.Type);
                 writer.WriteString("type", typeRawValue);
             }
-            
+
             if (checkoutAwaitAction._PaymentDataOption.IsSet)
                 if (checkoutAwaitAction.PaymentData != null)
                     writer.WriteString("paymentData", checkoutAwaitAction.PaymentData);

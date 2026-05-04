@@ -34,27 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentCancelRequest" /> class.
         /// </summary>
-        /// <param name="merchantAccount">The merchant account that is used to process the payment.</param>
-        /// <param name="applicationInfo">applicationInfo</param>
-        /// <param name="enhancedSchemeData">enhancedSchemeData</param>
-        /// <param name="reference">Your reference for the cancel request. Maximum length: 80 characters.</param>
-        [JsonConstructor]
-        public PaymentCancelRequest(string merchantAccount, Option<ApplicationInfo?> applicationInfo = default, Option<EnhancedSchemeData?> enhancedSchemeData = default, Option<string?> reference = default)
-        {
-            MerchantAccount = merchantAccount;
-            _ApplicationInfoOption = applicationInfo;
-            _EnhancedSchemeDataOption = enhancedSchemeData;
-            _ReferenceOption = reference;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentCancelRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -180,11 +163,19 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!merchantAccount.IsSet)
                 throw new ArgumentException("Property is required for class PaymentCancelRequest.", nameof(merchantAccount));
 
-            return new PaymentCancelRequest(merchantAccount.Value!, applicationInfo, enhancedSchemeData, reference);
+            var result = new PaymentCancelRequest();
+            result.MerchantAccount = merchantAccount.Value!;
+            if (applicationInfo.IsSet)
+                result.ApplicationInfo = applicationInfo.Value;
+            if (enhancedSchemeData.IsSet)
+                result.EnhancedSchemeData = enhancedSchemeData.Value;
+            if (reference.IsSet)
+                result.Reference = reference.Value;
+            return result;
         }
 
         /// <summary>
@@ -195,13 +186,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentCancelRequest paymentCancelRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentCancelRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -212,7 +203,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentCancelRequest paymentCancelRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paymentCancelRequest.MerchantAccount != null)
                 writer.WriteString("merchantAccount", paymentCancelRequest.MerchantAccount);
 

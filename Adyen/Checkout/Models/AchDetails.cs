@@ -34,45 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="AchDetails" /> class.
         /// </summary>
-        /// <param name="accountHolderType">The account holder type (personal or business).</param>
-        /// <param name="bankAccountNumber">The bank account number (without separators).</param>
-        /// <param name="bankAccountType">The bank account type (checking, savings...).</param>
-        /// <param name="bankLocationId">The bank routing number of the account. The field value is &#x60;nil&#x60; in most cases.</param>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="encryptedBankAccountNumber">Encrypted bank account number. The bank account number (without separators).</param>
-        /// <param name="encryptedBankLocationId">Encrypted location id. The bank routing number of the account. The field value is &#x60;nil&#x60; in most cases.</param>
-        /// <param name="ownerName">The name of the bank account holder. If you submit a name with non-Latin characters, we automatically replace some of them with corresponding Latin characters to meet the FATF recommendations. For example: * χ12 is converted to ch12. * üA is converted to euA. * Peter Møller is converted to Peter Mller, because banks don&#39;t accept &#39;ø&#39;. After replacement, the ownerName must have at least three alphanumeric characters (A-Z, a-z, 0-9), and at least one of them must be a valid Latin character (A-Z, a-z). For example: * John17 - allowed. * J17 - allowed. * 171 - not allowed. * John-7 - allowed. &gt; If provided details don&#39;t match the required format, the response returns the error message: 203 &#39;Invalid bank account holder name&#39;.</param>
-        /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="transferInstrumentId">The unique identifier of your user&#39;s verified transfer instrument, which you can use to top up their balance accounts.</param>
-        /// <param name="type">**ach** (default to TypeEnum.Ach)</param>
-        [JsonConstructor]
-        public AchDetails(Option<AccountHolderTypeEnum?> accountHolderType = default, Option<string?> bankAccountNumber = default, Option<BankAccountTypeEnum?> bankAccountType = default, Option<string?> bankLocationId = default, Option<string?> checkoutAttemptId = default, Option<string?> encryptedBankAccountNumber = default, Option<string?> encryptedBankLocationId = default, Option<string?> ownerName = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<string?> transferInstrumentId = default, Option<TypeEnum?> type = default)
-        {
-            _AccountHolderTypeOption = accountHolderType;
-            _BankAccountNumberOption = bankAccountNumber;
-            _BankAccountTypeOption = bankAccountType;
-            _BankLocationIdOption = bankLocationId;
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _EncryptedBankAccountNumberOption = encryptedBankAccountNumber;
-            _EncryptedBankLocationIdOption = encryptedBankLocationId;
-            _OwnerNameOption = ownerName;
-            _RecurringDetailReferenceOption = recurringDetailReference;
-            _SdkDataOption = sdkData;
-            _StoredPaymentMethodIdOption = storedPaymentMethodId;
-            _TransferInstrumentIdOption = transferInstrumentId;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public AchDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -96,7 +61,7 @@ namespace Adyen.Checkout.Models
             /// AccountHolderTypeEnum.Personal - personal
             /// </summary>
             public static readonly AccountHolderTypeEnum Personal = new("personal");
-        
+
             private AccountHolderTypeEnum(string? value)
             {
                 Value = value;
@@ -108,24 +73,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="AccountHolderTypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator AccountHolderTypeEnum?(string? value) => value == null ? null : new AccountHolderTypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="AccountHolderTypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="AccountHolderTypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="AccountHolderTypeEnum"/> instance./// </returns>
             public static implicit operator string?(AccountHolderTypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(AccountHolderTypeEnum? left, AccountHolderTypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(AccountHolderTypeEnum? left, AccountHolderTypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is AccountHolderTypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="AccountHolderTypeEnum?"/>.
             /// </summary>
@@ -139,7 +104,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="AccountHolderTypeEnum"/> to the json value.
             /// </summary>
@@ -150,18 +115,18 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == AccountHolderTypeEnum.Business)
                     return "business";
-                
+
                 if (value == AccountHolderTypeEnum.Personal)
                     return "personal";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing AccountHolderTypeEnum.               
+            /// JsonConverter for writing AccountHolderTypeEnum.
             /// </summary>
             public class AccountHolderTypeEnumJsonConverter : JsonConverter<AccountHolderTypeEnum>
             {
@@ -238,7 +203,7 @@ namespace Adyen.Checkout.Models
             /// BankAccountTypeEnum.Savings - savings
             /// </summary>
             public static readonly BankAccountTypeEnum Savings = new("savings");
-        
+
             private BankAccountTypeEnum(string? value)
             {
                 Value = value;
@@ -250,24 +215,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="BankAccountTypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator BankAccountTypeEnum?(string? value) => value == null ? null : new BankAccountTypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="BankAccountTypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="BankAccountTypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="BankAccountTypeEnum"/> instance./// </returns>
             public static implicit operator string?(BankAccountTypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(BankAccountTypeEnum? left, BankAccountTypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(BankAccountTypeEnum? left, BankAccountTypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is BankAccountTypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="BankAccountTypeEnum?"/>.
             /// </summary>
@@ -286,7 +251,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="BankAccountTypeEnum"/> to the json value.
             /// </summary>
@@ -297,33 +262,33 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == BankAccountTypeEnum.Balance)
                     return "balance";
-                
+
                 if (value == BankAccountTypeEnum.Checking)
                     return "checking";
-                
+
                 if (value == BankAccountTypeEnum.Deposit)
                     return "deposit";
-                
+
                 if (value == BankAccountTypeEnum.General)
                     return "general";
-                
+
                 if (value == BankAccountTypeEnum.Other)
                     return "other";
-                
+
                 if (value == BankAccountTypeEnum.Payment)
                     return "payment";
-                
+
                 if (value == BankAccountTypeEnum.Savings)
                     return "savings";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing BankAccountTypeEnum.               
+            /// JsonConverter for writing BankAccountTypeEnum.
             /// </summary>
             public class BankAccountTypeEnumJsonConverter : JsonConverter<BankAccountTypeEnum>
             {
@@ -375,7 +340,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.AchPlaid - ach_plaid
             /// </summary>
             public static readonly TypeEnum AchPlaid = new("ach_plaid");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -387,24 +352,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -418,7 +383,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -429,18 +394,18 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Ach)
                     return "ach";
-                
+
                 if (value == TypeEnum.AchPlaid)
                     return "ach_plaid";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -736,9 +701,36 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new AchDetails(accountHolderType, bankAccountNumber, bankAccountType, bankLocationId, checkoutAttemptId, encryptedBankAccountNumber, encryptedBankLocationId, ownerName, recurringDetailReference, sdkData, storedPaymentMethodId, transferInstrumentId, type);
+
+            var result = new AchDetails();
+            if (accountHolderType.IsSet)
+                result.AccountHolderType = accountHolderType.Value;
+            if (bankAccountNumber.IsSet)
+                result.BankAccountNumber = bankAccountNumber.Value;
+            if (bankAccountType.IsSet)
+                result.BankAccountType = bankAccountType.Value;
+            if (bankLocationId.IsSet)
+                result.BankLocationId = bankLocationId.Value;
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (encryptedBankAccountNumber.IsSet)
+                result.EncryptedBankAccountNumber = encryptedBankAccountNumber.Value;
+            if (encryptedBankLocationId.IsSet)
+                result.EncryptedBankLocationId = encryptedBankLocationId.Value;
+            if (ownerName.IsSet)
+                result.OwnerName = ownerName.Value;
+            if (recurringDetailReference.IsSet)
+                result.RecurringDetailReference = recurringDetailReference.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (storedPaymentMethodId.IsSet)
+                result.StoredPaymentMethodId = storedPaymentMethodId.Value;
+            if (transferInstrumentId.IsSet)
+                result.TransferInstrumentId = transferInstrumentId.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -749,13 +741,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, AchDetails achDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, achDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -766,23 +758,23 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, AchDetails achDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
-            if (achDetails._AccountHolderTypeOption.IsSet && achDetails.AccountHolderType != null) 
+
+            if (achDetails._AccountHolderTypeOption.IsSet && achDetails.AccountHolderType != null)
             {
                 string? accountHolderTypeRawValue = AchDetails.AccountHolderTypeEnum.ToJsonValue(achDetails._AccountHolderTypeOption.Value!.Value);
                 writer.WriteString("accountHolderType", accountHolderTypeRawValue);
             }
-            
+
             if (achDetails._BankAccountNumberOption.IsSet)
                 if (achDetails.BankAccountNumber != null)
                     writer.WriteString("bankAccountNumber", achDetails.BankAccountNumber);
 
-            if (achDetails._BankAccountTypeOption.IsSet && achDetails.BankAccountType != null) 
+            if (achDetails._BankAccountTypeOption.IsSet && achDetails.BankAccountType != null)
             {
                 string? bankAccountTypeRawValue = AchDetails.BankAccountTypeEnum.ToJsonValue(achDetails._BankAccountTypeOption.Value!.Value);
                 writer.WriteString("bankAccountType", bankAccountTypeRawValue);
             }
-            
+
             if (achDetails._BankLocationIdOption.IsSet)
                 if (achDetails.BankLocationId != null)
                     writer.WriteString("bankLocationId", achDetails.BankLocationId);
@@ -819,7 +811,7 @@ namespace Adyen.Checkout.Models
                 if (achDetails.TransferInstrumentId != null)
                     writer.WriteString("transferInstrumentId", achDetails.TransferInstrumentId);
 
-            if (achDetails._TypeOption.IsSet && achDetails.Type != null) 
+            if (achDetails._TypeOption.IsSet && achDetails.Type != null)
             {
                 string? typeRawValue = AchDetails.TypeEnum.ToJsonValue(achDetails._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);

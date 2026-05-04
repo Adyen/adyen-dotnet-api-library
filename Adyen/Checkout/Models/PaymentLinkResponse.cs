@@ -34,111 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentLinkResponse" /> class.
         /// </summary>
-        /// <param name="amount">amount</param>
-        /// <param name="id">A unique identifier of the payment link.</param>
-        /// <param name="merchantAccount">The merchant account identifier for which the payment link is created.</param>
-        /// <param name="reference">A reference that is used to uniquely identify the payment in future communications about the payment status.</param>
-        /// <param name="status">Status of the payment link. Possible values: * **active**: The link can be used to make payments. * **expired**: The expiry date for the payment link has passed. Shoppers can no longer use the link to make payments. * **completed**: The shopper completed the payment. * **paymentPending**: The shopper is in the process of making the payment. Applies to payment methods with an asynchronous flow.</param>
-        /// <param name="url">The URL at which the shopper can complete the payment.</param>
-        /// <param name="allowedPaymentMethods">List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;applepay\&quot;]&#x60;</param>
-        /// <param name="applicationInfo">applicationInfo</param>
-        /// <param name="billingAddress">billingAddress</param>
-        /// <param name="blockedPaymentMethods">List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;applepay\&quot;]&#x60;</param>
-        /// <param name="captureDelayHours">The delay between the authorisation and scheduled auto-capture, specified in hours.</param>
-        /// <param name="countryCode">The shopper&#39;s two-letter country code.</param>
-        /// <param name="dateOfBirth">The shopper&#39;s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD</param>
-        /// <param name="deliverAt">The date and time when the purchased goods should be delivered.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.</param>
-        /// <param name="deliveryAddress">deliveryAddress</param>
-        /// <param name="description">A short description visible on the payment page. Maximum length: 280 characters.</param>
-        /// <param name="expiresAt">The date when the payment link expires.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format with time zone offset: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.  The maximum expiry date is 70 days after the payment link is created.  If not provided, the payment link expires 24 hours after it was created.</param>
-        /// <param name="fundOrigin">fundOrigin</param>
-        /// <param name="fundRecipient">fundRecipient</param>
-        /// <param name="installmentOptions">A set of key-value pairs that specifies the installment options available per payment method. The key must be a payment method name in lowercase. For example, **card** to specify installment options for all cards, or **visa** or **mc**. The value must be an object containing the installment options.</param>
-        /// <param name="lineItems">Price and product information about the purchased items, to be included on the invoice sent to the shopper. &gt; This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty.</param>
-        /// <param name="manualCapture">Indicates if the payment must be [captured manually](https://docs.adyen.com/online-payments/capture).</param>
-        /// <param name="mcc">The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.</param>
-        /// <param name="merchantOrderReference">This reference allows linking multiple transactions to each other for reporting purposes (for example, order auth-rate). The reference should be unique per billing cycle.</param>
-        /// <param name="metadata">Metadata consists of entries, each of which includes a key and a value. Limitations: * Maximum 20 key-value pairs per request. Otherwise, error \&quot;177\&quot; occurs: \&quot;Metadata size exceeds limit\&quot; * Maximum 20 characters per key. Otherwise, error \&quot;178\&quot; occurs: \&quot;Metadata key size exceeds limit\&quot; * A key cannot have the name &#x60;checkout.linkId&#x60;. Any value that you provide with this key is going to be replaced by the real payment link ID.</param>
-        /// <param name="platformChargebackLogic">platformChargebackLogic</param>
-        /// <param name="recurringProcessingModel">Defines a recurring payment type. Required when &#x60;storePaymentMethodMode&#x60; is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </param>
-        /// <param name="requiredShopperFields">List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information).  Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper&#39;s email address. * **shopperName** – The shopper&#39;s full name. * **telephoneNumber** – The shopper&#39;s phone number. </param>
-        /// <param name="returnUrl">Website URL used for redirection after payment is completed. If provided, a **Continue** button will be shown on the payment page. If shoppers select the button, they are redirected to the specified URL.</param>
-        /// <param name="reusable">Indicates whether the payment link can be reused for multiple payments. If not provided, this defaults to **false** which means the link can be used for one successful payment only.</param>
-        /// <param name="riskData">riskData</param>
-        /// <param name="shopperEmail">The shopper&#39;s email address.</param>
-        /// <param name="shopperLocale">The language to be used in the payment page, specified by a combination of a language and country code. For example, &#x60;en-US&#x60;.  For a list of shopper locales that Pay by Link supports, refer to [Language and localization](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#language).</param>
-        /// <param name="shopperName">shopperName</param>
-        /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.</param>
-        /// <param name="shopperStatement">The text to be shown on the shopper&#39;s bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , &#39; _ - ? + * /_**.</param>
-        /// <param name="showRemovePaymentMethodButton">Set to **false** to hide the button that lets the shopper remove a stored payment method. (default to true)</param>
-        /// <param name="socialSecurityNumber">The shopper&#39;s social security number.</param>
-        /// <param name="splitCardFundingSources">Boolean value indicating whether the card payment method should be split into separate debit and credit options. (default to false)</param>
-        /// <param name="splits">An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).</param>
-        /// <param name="store">The physical store, for which this payment is processed.</param>
-        /// <param name="storePaymentMethodMode">Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the &#x60;shopperReference&#x60; is provided, the Drop-in/Component shows a checkbox where the shopper can select to store their payment details for card payments. * **enabled** – If the &#x60;shopperReference&#x60; is provided, the details will be stored without asking the shopper for consent.   When set to **askForConsent** or **enabled**, you must also include the &#x60;recurringProcessingModel&#x60; parameter.</param>
-        /// <param name="telephoneNumber">The shopper&#39;s telephone number.  The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we do not submit it for authentication. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the &#x60;shopperEmail&#x60;.</param>
-        /// <param name="themeId">A [theme](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#themes) to customize the appearance of the payment page. If not specified, the payment page is rendered according to the theme set as default in your Customer Area.</param>
-        /// <param name="threeDS2RequestData">threeDS2RequestData</param>
-        /// <param name="updatedAt">The date when the payment link status was updated.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.</param>
-        [JsonConstructor]
-        public PaymentLinkResponse(Amount amount, string id, string merchantAccount, string reference, StatusEnum status, string url, Option<List<string>?> allowedPaymentMethods = default, Option<ApplicationInfo?> applicationInfo = default, Option<Address?> billingAddress = default, Option<List<string>?> blockedPaymentMethods = default, Option<int?> captureDelayHours = default, Option<string?> countryCode = default, Option<DateOnly?> dateOfBirth = default, Option<DateTimeOffset?> deliverAt = default, Option<Address?> deliveryAddress = default, Option<string?> description = default, Option<DateTimeOffset?> expiresAt = default, Option<FundOrigin?> fundOrigin = default, Option<FundRecipient?> fundRecipient = default, Option<Dictionary<string, InstallmentOption>?> installmentOptions = default, Option<List<LineItem>?> lineItems = default, Option<bool?> manualCapture = default, Option<string?> mcc = default, Option<string?> merchantOrderReference = default, Option<Dictionary<string, string>?> metadata = default, Option<PlatformChargebackLogic?> platformChargebackLogic = default, Option<RecurringProcessingModelEnum?> recurringProcessingModel = default, Option<List<PaymentLinkResponse.RequiredShopperFieldsEnum>?> requiredShopperFields = default, Option<string?> returnUrl = default, Option<bool?> reusable = default, Option<RiskData?> riskData = default, Option<string?> shopperEmail = default, Option<string?> shopperLocale = default, Option<Name?> shopperName = default, Option<string?> shopperReference = default, Option<string?> shopperStatement = default, Option<bool?> showRemovePaymentMethodButton = default, Option<string?> socialSecurityNumber = default, Option<bool?> splitCardFundingSources = default, Option<List<Split>?> splits = default, Option<string?> store = default, Option<StorePaymentMethodModeEnum?> storePaymentMethodMode = default, Option<string?> telephoneNumber = default, Option<string?> themeId = default, Option<CheckoutSessionThreeDS2RequestData?> threeDS2RequestData = default, Option<DateTimeOffset?> updatedAt = default)
-        {
-            Amount = amount;
-            Id = id;
-            MerchantAccount = merchantAccount;
-            Reference = reference;
-            Status = status;
-            Url = url;
-            _AllowedPaymentMethodsOption = allowedPaymentMethods;
-            _ApplicationInfoOption = applicationInfo;
-            _BillingAddressOption = billingAddress;
-            _BlockedPaymentMethodsOption = blockedPaymentMethods;
-            _CaptureDelayHoursOption = captureDelayHours;
-            _CountryCodeOption = countryCode;
-            _DateOfBirthOption = dateOfBirth;
-            _DeliverAtOption = deliverAt;
-            _DeliveryAddressOption = deliveryAddress;
-            _DescriptionOption = description;
-            _ExpiresAtOption = expiresAt;
-            _FundOriginOption = fundOrigin;
-            _FundRecipientOption = fundRecipient;
-            _InstallmentOptionsOption = installmentOptions;
-            _LineItemsOption = lineItems;
-            _ManualCaptureOption = manualCapture;
-            _MccOption = mcc;
-            _MerchantOrderReferenceOption = merchantOrderReference;
-            _MetadataOption = metadata;
-            _PlatformChargebackLogicOption = platformChargebackLogic;
-            _RecurringProcessingModelOption = recurringProcessingModel;
-            _RequiredShopperFieldsOption = requiredShopperFields;
-            _ReturnUrlOption = returnUrl;
-            _ReusableOption = reusable;
-            _RiskDataOption = riskData;
-            _ShopperEmailOption = shopperEmail;
-            _ShopperLocaleOption = shopperLocale;
-            _ShopperNameOption = shopperName;
-            _ShopperReferenceOption = shopperReference;
-            _ShopperStatementOption = shopperStatement;
-            _ShowRemovePaymentMethodButtonOption = showRemovePaymentMethodButton;
-            _SocialSecurityNumberOption = socialSecurityNumber;
-            _SplitCardFundingSourcesOption = splitCardFundingSources;
-            _SplitsOption = splits;
-            _StoreOption = store;
-            _StorePaymentMethodModeOption = storePaymentMethodMode;
-            _TelephoneNumberOption = telephoneNumber;
-            _ThemeIdOption = themeId;
-            _ThreeDS2RequestDataOption = threeDS2RequestData;
-            _UpdatedAtOption = updatedAt;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentLinkResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -177,7 +76,7 @@ namespace Adyen.Checkout.Models
             /// StatusEnum.PaymentPending - paymentPending
             /// </summary>
             public static readonly StatusEnum PaymentPending = new("paymentPending");
-        
+
             private StatusEnum(string? value)
             {
                 Value = value;
@@ -189,24 +88,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="StatusEnum"/> instance initialized with the string value.</returns>
             public static implicit operator StatusEnum?(string? value) => value == null ? null : new StatusEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="StatusEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="StatusEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="StatusEnum"/> instance./// </returns>
             public static implicit operator string?(StatusEnum? option) => option?.Value;
-        
+
             public static bool operator ==(StatusEnum? left, StatusEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(StatusEnum? left, StatusEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is StatusEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="StatusEnum?"/>.
             /// </summary>
@@ -223,7 +122,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="StatusEnum"/> to the json value.
             /// </summary>
@@ -234,27 +133,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == StatusEnum.Active)
                     return "active";
-                
+
                 if (value == StatusEnum.Completed)
                     return "completed";
-                
+
                 if (value == StatusEnum.Expired)
                     return "expired";
-                
+
                 if (value == StatusEnum.Paid)
                     return "paid";
-                
+
                 if (value == StatusEnum.PaymentPending)
                     return "paymentPending";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing StatusEnum.               
+            /// JsonConverter for writing StatusEnum.
             /// </summary>
             public class StatusEnumJsonConverter : JsonConverter<StatusEnum>
             {
@@ -279,7 +178,7 @@ namespace Adyen.Checkout.Models
         public StatusEnum Status { get; set; }
 
         /// <summary>
-        /// Defines a recurring payment type. Required when `storePaymentMethodMode` is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount. 
+        /// Defines a recurring payment type. Required when `storePaymentMethodMode` is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.
         /// </summary>
         /// <value>Defines a recurring payment type. Required when &#x60;storePaymentMethodMode&#x60; is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
         [JsonConverter(typeof(RecurringProcessingModelEnumJsonConverter))]
@@ -304,7 +203,7 @@ namespace Adyen.Checkout.Models
             /// RecurringProcessingModelEnum.UnscheduledCardOnFile - UnscheduledCardOnFile
             /// </summary>
             public static readonly RecurringProcessingModelEnum UnscheduledCardOnFile = new("UnscheduledCardOnFile");
-        
+
             private RecurringProcessingModelEnum(string? value)
             {
                 Value = value;
@@ -316,24 +215,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="RecurringProcessingModelEnum"/> instance initialized with the string value.</returns>
             public static implicit operator RecurringProcessingModelEnum?(string? value) => value == null ? null : new RecurringProcessingModelEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="RecurringProcessingModelEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="RecurringProcessingModelEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="RecurringProcessingModelEnum"/> instance./// </returns>
             public static implicit operator string?(RecurringProcessingModelEnum? option) => option?.Value;
-        
+
             public static bool operator ==(RecurringProcessingModelEnum? left, RecurringProcessingModelEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(RecurringProcessingModelEnum? left, RecurringProcessingModelEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is RecurringProcessingModelEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="RecurringProcessingModelEnum?"/>.
             /// </summary>
@@ -348,7 +247,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="RecurringProcessingModelEnum"/> to the json value.
             /// </summary>
@@ -359,21 +258,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == RecurringProcessingModelEnum.CardOnFile)
                     return "CardOnFile";
-                
+
                 if (value == RecurringProcessingModelEnum.Subscription)
                     return "Subscription";
-                
+
                 if (value == RecurringProcessingModelEnum.UnscheduledCardOnFile)
                     return "UnscheduledCardOnFile";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing RecurringProcessingModelEnum.               
+            /// JsonConverter for writing RecurringProcessingModelEnum.
             /// </summary>
             public class RecurringProcessingModelEnumJsonConverter : JsonConverter<RecurringProcessingModelEnum>
             {
@@ -398,7 +297,7 @@ namespace Adyen.Checkout.Models
         public Option<RecurringProcessingModelEnum?> _RecurringProcessingModelOption { get; private set; }
 
         /// <summary>
-        /// Defines a recurring payment type. Required when `storePaymentMethodMode` is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount. 
+        /// Defines a recurring payment type. Required when `storePaymentMethodMode` is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.
         /// </summary>
         /// <value>Defines a recurring payment type. Required when &#x60;storePaymentMethodMode&#x60; is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
         [JsonPropertyName("recurringProcessingModel")]
@@ -439,7 +338,7 @@ namespace Adyen.Checkout.Models
             /// RequiredShopperFieldsEnum.TelephoneNumber - telephoneNumber
             /// </summary>
             public static readonly RequiredShopperFieldsEnum TelephoneNumber = new("telephoneNumber");
-        
+
             private RequiredShopperFieldsEnum(string? value)
             {
                 Value = value;
@@ -451,24 +350,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="RequiredShopperFieldsEnum"/> instance initialized with the string value.</returns>
             public static implicit operator RequiredShopperFieldsEnum?(string? value) => value == null ? null : new RequiredShopperFieldsEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="RequiredShopperFieldsEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="RequiredShopperFieldsEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="RequiredShopperFieldsEnum"/> instance./// </returns>
             public static implicit operator string?(RequiredShopperFieldsEnum? option) => option?.Value;
-        
+
             public static bool operator ==(RequiredShopperFieldsEnum? left, RequiredShopperFieldsEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(RequiredShopperFieldsEnum? left, RequiredShopperFieldsEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is RequiredShopperFieldsEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="RequiredShopperFieldsEnum?"/>.
             /// </summary>
@@ -485,7 +384,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="RequiredShopperFieldsEnum"/> to the json value.
             /// </summary>
@@ -496,27 +395,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == RequiredShopperFieldsEnum.BillingAddress)
                     return "billingAddress";
-                
+
                 if (value == RequiredShopperFieldsEnum.DeliveryAddress)
                     return "deliveryAddress";
-                
+
                 if (value == RequiredShopperFieldsEnum.ShopperEmail)
                     return "shopperEmail";
-                
+
                 if (value == RequiredShopperFieldsEnum.ShopperName)
                     return "shopperName";
-                
+
                 if (value == RequiredShopperFieldsEnum.TelephoneNumber)
                     return "telephoneNumber";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing RequiredShopperFieldsEnum.               
+            /// JsonConverter for writing RequiredShopperFieldsEnum.
             /// </summary>
             public class RequiredShopperFieldsEnumJsonConverter : JsonConverter<RequiredShopperFieldsEnum>
             {
@@ -559,7 +458,7 @@ namespace Adyen.Checkout.Models
             /// StorePaymentMethodModeEnum.Enabled - enabled
             /// </summary>
             public static readonly StorePaymentMethodModeEnum Enabled = new("enabled");
-        
+
             private StorePaymentMethodModeEnum(string? value)
             {
                 Value = value;
@@ -571,24 +470,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="StorePaymentMethodModeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator StorePaymentMethodModeEnum?(string? value) => value == null ? null : new StorePaymentMethodModeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="StorePaymentMethodModeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="StorePaymentMethodModeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="StorePaymentMethodModeEnum"/> instance./// </returns>
             public static implicit operator string?(StorePaymentMethodModeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(StorePaymentMethodModeEnum? left, StorePaymentMethodModeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(StorePaymentMethodModeEnum? left, StorePaymentMethodModeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is StorePaymentMethodModeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="StorePaymentMethodModeEnum?"/>.
             /// </summary>
@@ -603,7 +502,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="StorePaymentMethodModeEnum"/> to the json value.
             /// </summary>
@@ -614,21 +513,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == StorePaymentMethodModeEnum.AskForConsent)
                     return "askForConsent";
-                
+
                 if (value == StorePaymentMethodModeEnum.Disabled)
                     return "disabled";
-                
+
                 if (value == StorePaymentMethodModeEnum.Enabled)
                     return "enabled";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing StorePaymentMethodModeEnum.               
+            /// JsonConverter for writing StorePaymentMethodModeEnum.
             /// </summary>
             public class StorePaymentMethodModeEnumJsonConverter : JsonConverter<StorePaymentMethodModeEnum>
             {
@@ -670,7 +569,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>A unique identifier of the payment link.</value>
         [JsonPropertyName("id")]
-        public string Id { get; }
+        public string Id { get; set; }
 
         /// <summary>
         /// The merchant account identifier for which the payment link is created.
@@ -691,7 +590,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The URL at which the shopper can complete the payment.</value>
         [JsonPropertyName("url")]
-        public string Url { get; }
+        public string Url { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AllowedPaymentMethods"/> will be populated.
@@ -975,7 +874,7 @@ namespace Adyen.Checkout.Models
         public Option<List<PaymentLinkResponse.RequiredShopperFieldsEnum>?> _RequiredShopperFieldsOption { get; private set; }
 
         /// <summary>
-        /// List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information).  Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper&#39;s email address. * **shopperName** – The shopper&#39;s full name. * **telephoneNumber** – The shopper&#39;s phone number. 
+        /// List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information).  Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper&#39;s email address. * **shopperName** – The shopper&#39;s full name. * **telephoneNumber** – The shopper&#39;s phone number.
         /// </summary>
         /// <value>List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information).  Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper's email address. * **shopperName** – The shopper's full name. * **telephoneNumber** – The shopper's phone number. </value>
         [JsonPropertyName("requiredShopperFields")]
@@ -1525,7 +1424,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!amount.IsSet)
                 throw new ArgumentException("Property is required for class PaymentLinkResponse.", nameof(amount));
 
@@ -1544,7 +1443,94 @@ namespace Adyen.Checkout.Models
             if (!url.IsSet)
                 throw new ArgumentException("Property is required for class PaymentLinkResponse.", nameof(url));
 
-            return new PaymentLinkResponse(amount.Value!, id.Value!, merchantAccount.Value!, reference.Value!, status.Value!.Value!, url.Value!, allowedPaymentMethods, applicationInfo, billingAddress, blockedPaymentMethods, captureDelayHours, countryCode, dateOfBirth, deliverAt, deliveryAddress, description, expiresAt, fundOrigin, fundRecipient, installmentOptions, lineItems, manualCapture, mcc, merchantOrderReference, metadata, platformChargebackLogic, recurringProcessingModel, requiredShopperFields, returnUrl, reusable, riskData, shopperEmail, shopperLocale, shopperName, shopperReference, shopperStatement, showRemovePaymentMethodButton, socialSecurityNumber, splitCardFundingSources, splits, store, storePaymentMethodMode, telephoneNumber, themeId, threeDS2RequestData, updatedAt);
+            var result = new PaymentLinkResponse();
+            result.Amount = amount.Value!;
+            result.Id = id.Value!;
+            result.MerchantAccount = merchantAccount.Value!;
+            result.Reference = reference.Value!;
+            result.Status = status.Value!.Value!;
+            result.Url = url.Value!;
+            if (allowedPaymentMethods.IsSet)
+                result.AllowedPaymentMethods = allowedPaymentMethods.Value;
+            if (applicationInfo.IsSet)
+                result.ApplicationInfo = applicationInfo.Value;
+            if (billingAddress.IsSet)
+                result.BillingAddress = billingAddress.Value;
+            if (blockedPaymentMethods.IsSet)
+                result.BlockedPaymentMethods = blockedPaymentMethods.Value;
+            if (captureDelayHours.IsSet)
+                result.CaptureDelayHours = captureDelayHours.Value;
+            if (countryCode.IsSet)
+                result.CountryCode = countryCode.Value;
+            if (dateOfBirth.IsSet)
+                result.DateOfBirth = dateOfBirth.Value;
+            if (deliverAt.IsSet)
+                result.DeliverAt = deliverAt.Value;
+            if (deliveryAddress.IsSet)
+                result.DeliveryAddress = deliveryAddress.Value;
+            if (description.IsSet)
+                result.Description = description.Value;
+            if (expiresAt.IsSet)
+                result.ExpiresAt = expiresAt.Value;
+            if (fundOrigin.IsSet)
+                result.FundOrigin = fundOrigin.Value;
+            if (fundRecipient.IsSet)
+                result.FundRecipient = fundRecipient.Value;
+            if (installmentOptions.IsSet)
+                result.InstallmentOptions = installmentOptions.Value;
+            if (lineItems.IsSet)
+                result.LineItems = lineItems.Value;
+            if (manualCapture.IsSet)
+                result.ManualCapture = manualCapture.Value;
+            if (mcc.IsSet)
+                result.Mcc = mcc.Value;
+            if (merchantOrderReference.IsSet)
+                result.MerchantOrderReference = merchantOrderReference.Value;
+            if (metadata.IsSet)
+                result.Metadata = metadata.Value;
+            if (platformChargebackLogic.IsSet)
+                result.PlatformChargebackLogic = platformChargebackLogic.Value;
+            if (recurringProcessingModel.IsSet)
+                result.RecurringProcessingModel = recurringProcessingModel.Value;
+            if (requiredShopperFields.IsSet)
+                result.RequiredShopperFields = requiredShopperFields.Value;
+            if (returnUrl.IsSet)
+                result.ReturnUrl = returnUrl.Value;
+            if (reusable.IsSet)
+                result.Reusable = reusable.Value;
+            if (riskData.IsSet)
+                result.RiskData = riskData.Value;
+            if (shopperEmail.IsSet)
+                result.ShopperEmail = shopperEmail.Value;
+            if (shopperLocale.IsSet)
+                result.ShopperLocale = shopperLocale.Value;
+            if (shopperName.IsSet)
+                result.ShopperName = shopperName.Value;
+            if (shopperReference.IsSet)
+                result.ShopperReference = shopperReference.Value;
+            if (shopperStatement.IsSet)
+                result.ShopperStatement = shopperStatement.Value;
+            if (showRemovePaymentMethodButton.IsSet)
+                result.ShowRemovePaymentMethodButton = showRemovePaymentMethodButton.Value;
+            if (socialSecurityNumber.IsSet)
+                result.SocialSecurityNumber = socialSecurityNumber.Value;
+            if (splitCardFundingSources.IsSet)
+                result.SplitCardFundingSources = splitCardFundingSources.Value;
+            if (splits.IsSet)
+                result.Splits = splits.Value;
+            if (store.IsSet)
+                result.Store = store.Value;
+            if (storePaymentMethodMode.IsSet)
+                result.StorePaymentMethodMode = storePaymentMethodMode.Value;
+            if (telephoneNumber.IsSet)
+                result.TelephoneNumber = telephoneNumber.Value;
+            if (themeId.IsSet)
+                result.ThemeId = themeId.Value;
+            if (threeDS2RequestData.IsSet)
+                result.ThreeDS2RequestData = threeDS2RequestData.Value;
+            if (updatedAt.IsSet)
+                result.UpdatedAt = updatedAt.Value;
+            return result;
         }
 
         /// <summary>
@@ -1555,13 +1541,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentLinkResponse paymentLinkResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentLinkResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -1572,7 +1558,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentLinkResponse paymentLinkResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WritePropertyName("amount");
             JsonSerializer.Serialize(writer, paymentLinkResponse.Amount, jsonSerializerOptions);
             if (paymentLinkResponse.Id != null)
@@ -1584,12 +1570,12 @@ namespace Adyen.Checkout.Models
             if (paymentLinkResponse.Reference != null)
                 writer.WriteString("reference", paymentLinkResponse.Reference);
 
-            if (paymentLinkResponse.Status != null) 
+            if (paymentLinkResponse.Status != null)
             {
                 string? statusRawValue = PaymentLinkResponse.StatusEnum.ToJsonValue(paymentLinkResponse.Status);
                 writer.WriteString("status", statusRawValue);
             }
-            
+
             if (paymentLinkResponse.Url != null)
                 writer.WriteString("url", paymentLinkResponse.Url);
 
@@ -1684,12 +1670,12 @@ namespace Adyen.Checkout.Models
                 writer.WritePropertyName("platformChargebackLogic");
                 JsonSerializer.Serialize(writer, paymentLinkResponse.PlatformChargebackLogic, jsonSerializerOptions);
             }
-            if (paymentLinkResponse._RecurringProcessingModelOption.IsSet && paymentLinkResponse.RecurringProcessingModel != null) 
+            if (paymentLinkResponse._RecurringProcessingModelOption.IsSet && paymentLinkResponse.RecurringProcessingModel != null)
             {
                 string? recurringProcessingModelRawValue = PaymentLinkResponse.RecurringProcessingModelEnum.ToJsonValue(paymentLinkResponse._RecurringProcessingModelOption.Value!.Value);
                 writer.WriteString("recurringProcessingModel", recurringProcessingModelRawValue);
             }
-            
+
             if (paymentLinkResponse._RequiredShopperFieldsOption.IsSet)
             {
                 writer.WritePropertyName("requiredShopperFields");
@@ -1750,12 +1736,12 @@ namespace Adyen.Checkout.Models
                 if (paymentLinkResponse.Store != null)
                     writer.WriteString("store", paymentLinkResponse.Store);
 
-            if (paymentLinkResponse._StorePaymentMethodModeOption.IsSet && paymentLinkResponse.StorePaymentMethodMode != null) 
+            if (paymentLinkResponse._StorePaymentMethodModeOption.IsSet && paymentLinkResponse.StorePaymentMethodMode != null)
             {
                 string? storePaymentMethodModeRawValue = PaymentLinkResponse.StorePaymentMethodModeEnum.ToJsonValue(paymentLinkResponse._StorePaymentMethodModeOption.Value!.Value);
                 writer.WriteString("storePaymentMethodMode", storePaymentMethodModeRawValue);
             }
-            
+
             if (paymentLinkResponse._TelephoneNumberOption.IsSet)
                 if (paymentLinkResponse.TelephoneNumber != null)
                     writer.WriteString("telephoneNumber", paymentLinkResponse.TelephoneNumber);

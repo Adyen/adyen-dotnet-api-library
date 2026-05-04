@@ -34,27 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="InstallmentOption" /> class.
         /// </summary>
-        /// <param name="maxValue">The maximum number of installments offered for this payment method.</param>
-        /// <param name="plans">Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving**</param>
-        /// <param name="preselectedValue">Preselected number of installments offered for this payment method.</param>
-        /// <param name="values">An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with &#x60;maxValue&#x60;.</param>
-        [JsonConstructor]
-        public InstallmentOption(Option<int?> maxValue = default, Option<List<InstallmentOption.PlansEnum>?> plans = default, Option<int?> preselectedValue = default, Option<List<int>?> values = default)
-        {
-            _MaxValueOption = maxValue;
-            _PlansOption = plans;
-            _PreselectedValueOption = preselectedValue;
-            _ValuesOption = values;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public InstallmentOption()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -117,7 +100,7 @@ namespace Adyen.Checkout.Models
             /// PlansEnum.WithInterest - with_interest
             /// </summary>
             public static readonly PlansEnum WithInterest = new("with_interest");
-        
+
             private PlansEnum(string? value)
             {
                 Value = value;
@@ -129,24 +112,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="PlansEnum"/> instance initialized with the string value.</returns>
             public static implicit operator PlansEnum?(string? value) => value == null ? null : new PlansEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="PlansEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="PlansEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="PlansEnum"/> instance./// </returns>
             public static implicit operator string?(PlansEnum? option) => option?.Value;
-        
+
             public static bool operator ==(PlansEnum? left, PlansEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(PlansEnum? left, PlansEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is PlansEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="PlansEnum?"/>.
             /// </summary>
@@ -168,7 +151,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="PlansEnum"/> to the json value.
             /// </summary>
@@ -179,42 +162,42 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == PlansEnum.Bonus)
                     return "bonus";
-                
+
                 if (value == PlansEnum.BuynowPaylater)
                     return "buynow_paylater";
-                
+
                 if (value == PlansEnum.InteresRefundPrctg)
                     return "interes_refund_prctg";
-                
+
                 if (value == PlansEnum.InterestBonus)
                     return "interest_bonus";
-                
+
                 if (value == PlansEnum.NointeresRefundPrctg)
                     return "nointeres_refund_prctg";
-                
+
                 if (value == PlansEnum.NointerestBonus)
                     return "nointerest_bonus";
-                
+
                 if (value == PlansEnum.RefundPrctg)
                     return "refund_prctg";
-                
+
                 if (value == PlansEnum.Regular)
                     return "regular";
-                
+
                 if (value == PlansEnum.Revolving)
                     return "revolving";
-                
+
                 if (value == PlansEnum.WithInterest)
                     return "with_interest";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing PlansEnum.               
+            /// JsonConverter for writing PlansEnum.
             /// </summary>
             public class PlansEnumJsonConverter : JsonConverter<PlansEnum>
             {
@@ -363,9 +346,18 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new InstallmentOption(maxValue, plans, preselectedValue, values);
+
+            var result = new InstallmentOption();
+            if (maxValue.IsSet)
+                result.MaxValue = maxValue.Value;
+            if (plans.IsSet)
+                result.Plans = plans.Value;
+            if (preselectedValue.IsSet)
+                result.PreselectedValue = preselectedValue.Value;
+            if (values.IsSet)
+                result.Values = values.Value;
+            return result;
         }
 
         /// <summary>
@@ -376,13 +368,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, InstallmentOption installmentOption, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, installmentOption, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -393,7 +385,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, InstallmentOption installmentOption, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (installmentOption._MaxValueOption.IsSet)
                 if (installmentOption._MaxValueOption.Value != null)
                     writer.WriteNumber("maxValue", installmentOption._MaxValueOption.Value!.Value);

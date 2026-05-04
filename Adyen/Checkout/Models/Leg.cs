@@ -34,37 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Leg" /> class.
         /// </summary>
-        /// <param name="carrierCode">The [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX) that identifies the carrier. This field is required if the airline data includes leg details. * Example: KLM &#x3D; KL * minLength: 2 characters * maxLength: 2 characters * Must not start with a space or be all spaces. * Must not be all zeros.</param>
-        /// <param name="classOfTravel">A one-letter travel class identifier.  The following are common:  * F: first class * J: business class * Y: economy class * W: premium economy  * Encoding: ASCII * minLength: 1 character * maxLength: 1 character * Must not start with a space or be all spaces. * Must not be all zeros.</param>
-        /// <param name="dateOfTravel">Date and time of travel in format &#x60;yyyy-MM-ddTHH:mm&#x60;. * Use local time of departure airport. * minLength: 16 characters * maxLength: 16 characters</param>
-        /// <param name="departureAirportCode">The [IATA](https://www.iata.org/services/pages/codes.aspx) three-letter airport code of the departure airport. This field is required if the airline data includes leg details.  * Encoding: ASCII * Example: Amsterdam &#x3D; AMS * minLength: 3 characters * maxLength: 3 characters * Must not start with a space or be all spaces. * Must not be all zeros.</param>
-        /// <param name="departureTax">The amount of [departure tax](https://en.wikipedia.org/wiki/Departure_tax) charged, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Encoding: Numeric * minLength: 1 * maxLength: 11 * Must not be all zeros.</param>
-        /// <param name="destinationAirportCode">The [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code of the destination airport. This field is required if the airline data includes leg details. * Example: Amsterdam &#x3D; AMS * Encoding: ASCII * minLength: 3 characters * maxLength: 3 characters * Must not start with a space or be all spaces. * Must not be all zeros.</param>
-        /// <param name="fareBasisCode">The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 15 characters * Must not start with a space or be all spaces. * Must not be all zeros.</param>
-        /// <param name="flightNumber">The flight identifier. * minLength: 1 character * maxLength: 5 characters * Must not start with a space or be all spaces. * Must not be all zeros.</param>
-        /// <param name="stopOverCode">A one-letter code that indicates whether the passenger is entitled to make a stopover. Can be a space, O if the passenger is entitled to make a stopover, or X if they are not. * Encoding: ASCII * minLength: 1 character * maxLength: 1 character</param>
-        [JsonConstructor]
-        public Leg(Option<string?> carrierCode = default, Option<string?> classOfTravel = default, Option<DateTimeOffset?> dateOfTravel = default, Option<string?> departureAirportCode = default, Option<long?> departureTax = default, Option<string?> destinationAirportCode = default, Option<string?> fareBasisCode = default, Option<string?> flightNumber = default, Option<string?> stopOverCode = default)
-        {
-            _CarrierCodeOption = carrierCode;
-            _ClassOfTravelOption = classOfTravel;
-            _DateOfTravelOption = dateOfTravel;
-            _DepartureAirportCodeOption = departureAirportCode;
-            _DepartureTaxOption = departureTax;
-            _DestinationAirportCodeOption = destinationAirportCode;
-            _FareBasisCodeOption = fareBasisCode;
-            _FlightNumberOption = flightNumber;
-            _StopOverCodeOption = stopOverCode;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public Leg()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -299,9 +272,28 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new Leg(carrierCode, classOfTravel, dateOfTravel, departureAirportCode, departureTax, destinationAirportCode, fareBasisCode, flightNumber, stopOverCode);
+
+            var result = new Leg();
+            if (carrierCode.IsSet)
+                result.CarrierCode = carrierCode.Value;
+            if (classOfTravel.IsSet)
+                result.ClassOfTravel = classOfTravel.Value;
+            if (dateOfTravel.IsSet)
+                result.DateOfTravel = dateOfTravel.Value;
+            if (departureAirportCode.IsSet)
+                result.DepartureAirportCode = departureAirportCode.Value;
+            if (departureTax.IsSet)
+                result.DepartureTax = departureTax.Value;
+            if (destinationAirportCode.IsSet)
+                result.DestinationAirportCode = destinationAirportCode.Value;
+            if (fareBasisCode.IsSet)
+                result.FareBasisCode = fareBasisCode.Value;
+            if (flightNumber.IsSet)
+                result.FlightNumber = flightNumber.Value;
+            if (stopOverCode.IsSet)
+                result.StopOverCode = stopOverCode.Value;
+            return result;
         }
 
         /// <summary>
@@ -312,13 +304,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, Leg leg, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, leg, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -329,7 +321,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, Leg leg, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (leg._CarrierCodeOption.IsSet)
                 if (leg.CarrierCode != null)
                     writer.WriteString("carrierCode", leg.CarrierCode);

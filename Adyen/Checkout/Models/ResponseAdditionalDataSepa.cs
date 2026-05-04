@@ -34,27 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataSepa" /> class.
         /// </summary>
-        /// <param name="sepadirectdebitDateOfSignature">The transaction signature date.  Format: yyyy-MM-dd</param>
-        /// <param name="sepadirectdebitMandateId">Its value corresponds to the pspReference value of the transaction.</param>
-        /// <param name="sepadirectdebitSepadirectdebitDueDate">The date that the the shopper&#39;s bank account is charged.</param>
-        /// <param name="sepadirectdebitSequenceType">This field can take one of the following values: * OneOff: (OOFF) Direct debit instruction to initiate exactly one direct debit transaction.  * First: (FRST) Initial/first collection in a series of direct debit instructions. * Recurring: (RCUR) Direct debit instruction to carry out regular direct debit transactions initiated by the creditor. * Final: (FNAL) Last/final collection in a series of direct debit instructions.  Example: OOFF</param>
-        [JsonConstructor]
-        public ResponseAdditionalDataSepa(Option<string?> sepadirectdebitDateOfSignature = default, Option<string?> sepadirectdebitMandateId = default, Option<string?> sepadirectdebitSepadirectdebitDueDate = default, Option<string?> sepadirectdebitSequenceType = default)
-        {
-            _SepadirectdebitDateOfSignatureOption = sepadirectdebitDateOfSignature;
-            _SepadirectdebitMandateIdOption = sepadirectdebitMandateId;
-            _SepadirectdebitSepadirectdebitDueDateOption = sepadirectdebitSepadirectdebitDueDate;
-            _SepadirectdebitSequenceTypeOption = sepadirectdebitSequenceType;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ResponseAdditionalDataSepa()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -189,9 +172,18 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ResponseAdditionalDataSepa(sepadirectdebitDateOfSignature, sepadirectdebitMandateId, sepadirectdebitSepadirectdebitDueDate, sepadirectdebitSequenceType);
+
+            var result = new ResponseAdditionalDataSepa();
+            if (sepadirectdebitDateOfSignature.IsSet)
+                result.SepadirectdebitDateOfSignature = sepadirectdebitDateOfSignature.Value;
+            if (sepadirectdebitMandateId.IsSet)
+                result.SepadirectdebitMandateId = sepadirectdebitMandateId.Value;
+            if (sepadirectdebitSepadirectdebitDueDate.IsSet)
+                result.SepadirectdebitSepadirectdebitDueDate = sepadirectdebitSepadirectdebitDueDate.Value;
+            if (sepadirectdebitSequenceType.IsSet)
+                result.SepadirectdebitSequenceType = sepadirectdebitSequenceType.Value;
+            return result;
         }
 
         /// <summary>
@@ -202,13 +194,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ResponseAdditionalDataSepa responseAdditionalDataSepa, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, responseAdditionalDataSepa, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -219,7 +211,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ResponseAdditionalDataSepa responseAdditionalDataSepa, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (responseAdditionalDataSepa._SepadirectdebitDateOfSignatureOption.IsSet)
                 if (responseAdditionalDataSepa.SepadirectdebitDateOfSignature != null)
                     writer.WriteString("sepadirectdebit.dateOfSignature", responseAdditionalDataSepa.SepadirectdebitDateOfSignature);

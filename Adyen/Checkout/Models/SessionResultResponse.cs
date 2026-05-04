@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="SessionResultResponse" /> class.
         /// </summary>
-        /// <param name="additionalData">Contains additional information about the payment. Some fields are included only if you enable them. To enable these fields in your Customer Area, go to **Developers** &gt; **Additional data**.</param>
-        /// <param name="id">A unique identifier of the session.</param>
-        /// <param name="payments">A list of all authorised payments done for this session.</param>
-        /// <param name="reference">The unique reference that you provided in the original &#x60;/sessions&#x60; request. This identifies the payment and is used in all communication with you about the payment status.</param>
-        /// <param name="status">The status of the session. The status included in the response doesn&#39;t get updated. Don&#39;t make the request again to check for payment status updates.  Possible values: * **completed**: the shopper completed the payment, and the payment was authorized. * **paymentPending**: the shopper is in the process of making the payment. This applies to payment methods with an asynchronous flow, like voucher payments where the shopper completes the payment in a physical shop. * **refused**: the session has been refused, because of too many refused payment attempts. The shopper can no longer complete the payment with this session. * **canceled**: the shopper canceled the payment. * **expired**: the session expired. The shopper can no longer complete the payment with this session. By default, the session expires one hour after it is created.</param>
-        [JsonConstructor]
-        public SessionResultResponse(Option<Dictionary<string, string>?> additionalData = default, Option<string?> id = default, Option<List<Payment>?> payments = default, Option<string?> reference = default, Option<StatusEnum?> status = default)
-        {
-            _AdditionalDataOption = additionalData;
-            _IdOption = id;
-            _PaymentsOption = payments;
-            _ReferenceOption = reference;
-            _StatusOption = status;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public SessionResultResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -100,7 +81,7 @@ namespace Adyen.Checkout.Models
             /// StatusEnum.Refused - refused
             /// </summary>
             public static readonly StatusEnum Refused = new("refused");
-        
+
             private StatusEnum(string? value)
             {
                 Value = value;
@@ -112,24 +93,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="StatusEnum"/> instance initialized with the string value.</returns>
             public static implicit operator StatusEnum?(string? value) => value == null ? null : new StatusEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="StatusEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="StatusEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="StatusEnum"/> instance./// </returns>
             public static implicit operator string?(StatusEnum? option) => option?.Value;
-        
+
             public static bool operator ==(StatusEnum? left, StatusEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(StatusEnum? left, StatusEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is StatusEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="StatusEnum?"/>.
             /// </summary>
@@ -147,7 +128,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="StatusEnum"/> to the json value.
             /// </summary>
@@ -158,30 +139,30 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == StatusEnum.Active)
                     return "active";
-                
+
                 if (value == StatusEnum.Canceled)
                     return "canceled";
-                
+
                 if (value == StatusEnum.Completed)
                     return "completed";
-                
+
                 if (value == StatusEnum.Expired)
                     return "expired";
-                
+
                 if (value == StatusEnum.PaymentPending)
                     return "paymentPending";
-                
+
                 if (value == StatusEnum.Refused)
                     return "refused";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing StatusEnum.               
+            /// JsonConverter for writing StatusEnum.
             /// </summary>
             public class StatusEnumJsonConverter : JsonConverter<StatusEnum>
             {
@@ -350,9 +331,20 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new SessionResultResponse(additionalData, id, payments, reference, status);
+
+            var result = new SessionResultResponse();
+            if (additionalData.IsSet)
+                result.AdditionalData = additionalData.Value;
+            if (id.IsSet)
+                result.Id = id.Value;
+            if (payments.IsSet)
+                result.Payments = payments.Value;
+            if (reference.IsSet)
+                result.Reference = reference.Value;
+            if (status.IsSet)
+                result.Status = status.Value;
+            return result;
         }
 
         /// <summary>
@@ -363,13 +355,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, SessionResultResponse sessionResultResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, sessionResultResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -380,7 +372,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, SessionResultResponse sessionResultResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (sessionResultResponse._AdditionalDataOption.IsSet)
             {
                 writer.WritePropertyName("additionalData");
@@ -399,7 +391,7 @@ namespace Adyen.Checkout.Models
                 if (sessionResultResponse.Reference != null)
                     writer.WriteString("reference", sessionResultResponse.Reference);
 
-            if (sessionResultResponse._StatusOption.IsSet && sessionResultResponse.Status != null) 
+            if (sessionResultResponse._StatusOption.IsSet && sessionResultResponse.Status != null)
             {
                 string? statusRawValue = SessionResultResponse.StatusEnum.ToJsonValue(sessionResultResponse._StatusOption.Value!.Value);
                 writer.WriteString("status", statusRawValue);

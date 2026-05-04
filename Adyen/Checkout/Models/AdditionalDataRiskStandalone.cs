@@ -34,49 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataRiskStandalone" /> class.
         /// </summary>
-        /// <param name="payPalCountryCode">Shopper&#39;s country of residence in the form of ISO standard 3166 2-character country codes.</param>
-        /// <param name="payPalEmailId">Shopper&#39;s email.</param>
-        /// <param name="payPalFirstName">Shopper&#39;s first name.</param>
-        /// <param name="payPalLastName">Shopper&#39;s last name.</param>
-        /// <param name="payPalPayerId">Unique PayPal Customer Account identification number. Character length and limitations: 13 single-byte alphanumeric characters.</param>
-        /// <param name="payPalPhone">Shopper&#39;s phone number.</param>
-        /// <param name="payPalProtectionEligibility">Allowed values: * **Eligible** — Merchant is protected by PayPal&#39;s Seller Protection Policy for Unauthorized Payments and Item Not Received.  * **PartiallyEligible** — Merchant is protected by PayPal&#39;s Seller Protection Policy for Item Not Received.  * **Ineligible** — Merchant is not protected under the Seller Protection Policy.</param>
-        /// <param name="payPalTransactionId">Unique transaction ID of the payment.</param>
-        /// <param name="avsResultRaw">Raw AVS result received from the acquirer, where available. Example: D</param>
-        /// <param name="bin">The Bank Identification Number of a credit card, which is the first six digits of a card number. Required for [tokenized card request](https://docs.adyen.com/online-payments/tokenization).</param>
-        /// <param name="cvcResultRaw">Raw CVC result received from the acquirer, where available. Example: 1</param>
-        /// <param name="riskToken">Unique identifier or token for the shopper&#39;s card details.</param>
-        /// <param name="threeDAuthenticated">A Boolean value indicating whether 3DS authentication was completed on this payment. Example: true</param>
-        /// <param name="threeDOffered">A Boolean value indicating whether 3DS was offered for this payment. Example: true</param>
-        /// <param name="tokenDataType">Required for PayPal payments only. The only supported value is: **paypal**.</param>
-        [JsonConstructor]
-        public AdditionalDataRiskStandalone(Option<string?> payPalCountryCode = default, Option<string?> payPalEmailId = default, Option<string?> payPalFirstName = default, Option<string?> payPalLastName = default, Option<string?> payPalPayerId = default, Option<string?> payPalPhone = default, Option<string?> payPalProtectionEligibility = default, Option<string?> payPalTransactionId = default, Option<string?> avsResultRaw = default, Option<string?> bin = default, Option<string?> cvcResultRaw = default, Option<string?> riskToken = default, Option<string?> threeDAuthenticated = default, Option<string?> threeDOffered = default, Option<string?> tokenDataType = default)
-        {
-            _PayPalCountryCodeOption = payPalCountryCode;
-            _PayPalEmailIdOption = payPalEmailId;
-            _PayPalFirstNameOption = payPalFirstName;
-            _PayPalLastNameOption = payPalLastName;
-            _PayPalPayerIdOption = payPalPayerId;
-            _PayPalPhoneOption = payPalPhone;
-            _PayPalProtectionEligibilityOption = payPalProtectionEligibility;
-            _PayPalTransactionIdOption = payPalTransactionId;
-            _AvsResultRawOption = avsResultRaw;
-            _BinOption = bin;
-            _CvcResultRawOption = cvcResultRaw;
-            _RiskTokenOption = riskToken;
-            _ThreeDAuthenticatedOption = threeDAuthenticated;
-            _ThreeDOfferedOption = threeDOffered;
-            _TokenDataTypeOption = tokenDataType;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public AdditionalDataRiskStandalone()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -420,9 +381,40 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new AdditionalDataRiskStandalone(payPalCountryCode, payPalEmailId, payPalFirstName, payPalLastName, payPalPayerId, payPalPhone, payPalProtectionEligibility, payPalTransactionId, avsResultRaw, bin, cvcResultRaw, riskToken, threeDAuthenticated, threeDOffered, tokenDataType);
+
+            var result = new AdditionalDataRiskStandalone();
+            if (payPalCountryCode.IsSet)
+                result.PayPalCountryCode = payPalCountryCode.Value;
+            if (payPalEmailId.IsSet)
+                result.PayPalEmailId = payPalEmailId.Value;
+            if (payPalFirstName.IsSet)
+                result.PayPalFirstName = payPalFirstName.Value;
+            if (payPalLastName.IsSet)
+                result.PayPalLastName = payPalLastName.Value;
+            if (payPalPayerId.IsSet)
+                result.PayPalPayerId = payPalPayerId.Value;
+            if (payPalPhone.IsSet)
+                result.PayPalPhone = payPalPhone.Value;
+            if (payPalProtectionEligibility.IsSet)
+                result.PayPalProtectionEligibility = payPalProtectionEligibility.Value;
+            if (payPalTransactionId.IsSet)
+                result.PayPalTransactionId = payPalTransactionId.Value;
+            if (avsResultRaw.IsSet)
+                result.AvsResultRaw = avsResultRaw.Value;
+            if (bin.IsSet)
+                result.Bin = bin.Value;
+            if (cvcResultRaw.IsSet)
+                result.CvcResultRaw = cvcResultRaw.Value;
+            if (riskToken.IsSet)
+                result.RiskToken = riskToken.Value;
+            if (threeDAuthenticated.IsSet)
+                result.ThreeDAuthenticated = threeDAuthenticated.Value;
+            if (threeDOffered.IsSet)
+                result.ThreeDOffered = threeDOffered.Value;
+            if (tokenDataType.IsSet)
+                result.TokenDataType = tokenDataType.Value;
+            return result;
         }
 
         /// <summary>
@@ -433,13 +425,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, AdditionalDataRiskStandalone additionalDataRiskStandalone, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, additionalDataRiskStandalone, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -450,7 +442,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, AdditionalDataRiskStandalone additionalDataRiskStandalone, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (additionalDataRiskStandalone._PayPalCountryCodeOption.IsSet)
                 if (additionalDataRiskStandalone.PayPalCountryCode != null)
                     writer.WriteString("PayPal.CountryCode", additionalDataRiskStandalone.PayPalCountryCode);

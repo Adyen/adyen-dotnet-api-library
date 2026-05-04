@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutOutgoingForwardRequest" /> class.
         /// </summary>
-        /// <param name="body">The request body that you want Adyen to forward to the third party on your behalf, in string format.  Include key value pairs to specify the payment details, and use [placeholders](https://docs.adyen.com/online-payments/tokenization/forward-payment-details#placeholders) for the values. Adyen replaces the placeholders with the payment details when making the request to the third party.  When forwarding a network token, include a [condition](https://docs.adyen.com/online-payments/tokenization/forward-payment-details#conditional-placeholders) that checks if the network token exists, and informs Adyen of which fields to send depending on the outcome.</param>
-        /// <param name="httpMethod">The HTTP method to use for the request Adyen makes on your behalf to the third party.</param>
-        /// <param name="credentials">Your credentials that are needed to authenticate with the third party.</param>
-        /// <param name="headers">The request headers that will be included in the request Adyen makes to the third party on your behalf. Supports the &#x60;{{credentials}}&#x60; [placeholder](https://docs.adyen.com/online-payments/tokenization/forward-payment-details#placeholders).</param>
-        /// <param name="urlSuffix">The suffix that Adyen needs to append to the &#x60;baseUrl&#x60; to construct the destination URL that belongs to the third party. This is usually the endpoint name for the request, for example, **_/payments**.</param>
-        [JsonConstructor]
-        public CheckoutOutgoingForwardRequest(string body, HttpMethodEnum httpMethod, Option<string?> credentials = default, Option<Dictionary<string, string>?> headers = default, Option<string?> urlSuffix = default)
-        {
-            Body = body;
-            HttpMethod = httpMethod;
-            _CredentialsOption = credentials;
-            _HeadersOption = headers;
-            _UrlSuffixOption = urlSuffix;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CheckoutOutgoingForwardRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -85,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// HttpMethodEnum.Patch - patch
             /// </summary>
             public static readonly HttpMethodEnum Patch = new("patch");
-        
+
             private HttpMethodEnum(string? value)
             {
                 Value = value;
@@ -97,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="HttpMethodEnum"/> instance initialized with the string value.</returns>
             public static implicit operator HttpMethodEnum?(string? value) => value == null ? null : new HttpMethodEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="HttpMethodEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="HttpMethodEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="HttpMethodEnum"/> instance./// </returns>
             public static implicit operator string?(HttpMethodEnum? option) => option?.Value;
-        
+
             public static bool operator ==(HttpMethodEnum? left, HttpMethodEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(HttpMethodEnum? left, HttpMethodEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is HttpMethodEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="HttpMethodEnum?"/>.
             /// </summary>
@@ -129,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="HttpMethodEnum"/> to the json value.
             /// </summary>
@@ -140,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == HttpMethodEnum.Post)
                     return "post";
-                
+
                 if (value == HttpMethodEnum.Put)
                     return "put";
-                
+
                 if (value == HttpMethodEnum.Patch)
                     return "patch";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing HttpMethodEnum.               
+            /// JsonConverter for writing HttpMethodEnum.
             /// </summary>
             public class HttpMethodEnumJsonConverter : JsonConverter<HttpMethodEnum>
             {
@@ -309,14 +290,23 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!body.IsSet)
                 throw new ArgumentException("Property is required for class CheckoutOutgoingForwardRequest.", nameof(body));
 
             if (!httpMethod.IsSet)
                 throw new ArgumentException("Property is required for class CheckoutOutgoingForwardRequest.", nameof(httpMethod));
 
-            return new CheckoutOutgoingForwardRequest(body.Value!, httpMethod.Value!.Value!, credentials, headers, urlSuffix);
+            var result = new CheckoutOutgoingForwardRequest();
+            result.Body = body.Value!;
+            result.HttpMethod = httpMethod.Value!.Value!;
+            if (credentials.IsSet)
+                result.Credentials = credentials.Value;
+            if (headers.IsSet)
+                result.Headers = headers.Value;
+            if (urlSuffix.IsSet)
+                result.UrlSuffix = urlSuffix.Value;
+            return result;
         }
 
         /// <summary>
@@ -327,13 +317,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CheckoutOutgoingForwardRequest checkoutOutgoingForwardRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, checkoutOutgoingForwardRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -344,16 +334,16 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CheckoutOutgoingForwardRequest checkoutOutgoingForwardRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (checkoutOutgoingForwardRequest.Body != null)
                 writer.WriteString("body", checkoutOutgoingForwardRequest.Body);
 
-            if (checkoutOutgoingForwardRequest.HttpMethod != null) 
+            if (checkoutOutgoingForwardRequest.HttpMethod != null)
             {
                 string? httpMethodRawValue = CheckoutOutgoingForwardRequest.HttpMethodEnum.ToJsonValue(checkoutOutgoingForwardRequest.HttpMethod);
                 writer.WriteString("httpMethod", httpMethodRawValue);
             }
-            
+
             if (checkoutOutgoingForwardRequest._CredentialsOption.IsSet)
                 if (checkoutOutgoingForwardRequest.Credentials != null)
                     writer.WriteString("credentials", checkoutOutgoingForwardRequest.Credentials);

@@ -34,33 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="DonationPaymentResponse" /> class.
         /// </summary>
-        /// <param name="amount">amount</param>
-        /// <param name="donationAccount">The Adyen account name of your charity. We will provide you with this account name once your chosen charity has been [onboarded](https://docs.adyen.com/online-payments/donations#onboarding).</param>
-        /// <param name="id">Your unique resource identifier.</param>
-        /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction.</param>
-        /// <param name="payment">payment</param>
-        /// <param name="reference">The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.</param>
-        /// <param name="status">The status of the donation transaction.  Possible values: * **completed** * **pending** * **refused**</param>
-        [JsonConstructor]
-        public DonationPaymentResponse(Option<Amount?> amount = default, Option<string?> donationAccount = default, Option<string?> id = default, Option<string?> merchantAccount = default, Option<PaymentResponse?> payment = default, Option<string?> reference = default, Option<StatusEnum?> status = default)
-        {
-            _AmountOption = amount;
-            _DonationAccountOption = donationAccount;
-            _IdOption = id;
-            _MerchantAccountOption = merchantAccount;
-            _PaymentOption = payment;
-            _ReferenceOption = reference;
-            _StatusOption = status;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public DonationPaymentResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -89,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// StatusEnum.Refused - refused
             /// </summary>
             public static readonly StatusEnum Refused = new("refused");
-        
+
             private StatusEnum(string? value)
             {
                 Value = value;
@@ -101,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="StatusEnum"/> instance initialized with the string value.</returns>
             public static implicit operator StatusEnum?(string? value) => value == null ? null : new StatusEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="StatusEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="StatusEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="StatusEnum"/> instance./// </returns>
             public static implicit operator string?(StatusEnum? option) => option?.Value;
-        
+
             public static bool operator ==(StatusEnum? left, StatusEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(StatusEnum? left, StatusEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is StatusEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="StatusEnum?"/>.
             /// </summary>
@@ -133,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="StatusEnum"/> to the json value.
             /// </summary>
@@ -144,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == StatusEnum.Completed)
                     return "completed";
-                
+
                 if (value == StatusEnum.Pending)
                     return "pending";
-                
+
                 if (value == StatusEnum.Refused)
                     return "refused";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing StatusEnum.               
+            /// JsonConverter for writing StatusEnum.
             /// </summary>
             public class StatusEnumJsonConverter : JsonConverter<StatusEnum>
             {
@@ -363,9 +340,24 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new DonationPaymentResponse(amount, donationAccount, id, merchantAccount, payment, reference, status);
+
+            var result = new DonationPaymentResponse();
+            if (amount.IsSet)
+                result.Amount = amount.Value;
+            if (donationAccount.IsSet)
+                result.DonationAccount = donationAccount.Value;
+            if (id.IsSet)
+                result.Id = id.Value;
+            if (merchantAccount.IsSet)
+                result.MerchantAccount = merchantAccount.Value;
+            if (payment.IsSet)
+                result.Payment = payment.Value;
+            if (reference.IsSet)
+                result.Reference = reference.Value;
+            if (status.IsSet)
+                result.Status = status.Value;
+            return result;
         }
 
         /// <summary>
@@ -376,13 +368,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, DonationPaymentResponse donationPaymentResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, donationPaymentResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -393,7 +385,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, DonationPaymentResponse donationPaymentResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (donationPaymentResponse._AmountOption.IsSet)
             {
                 writer.WritePropertyName("amount");
@@ -420,7 +412,7 @@ namespace Adyen.Checkout.Models
                 if (donationPaymentResponse.Reference != null)
                     writer.WriteString("reference", donationPaymentResponse.Reference);
 
-            if (donationPaymentResponse._StatusOption.IsSet && donationPaymentResponse.Status != null) 
+            if (donationPaymentResponse._StatusOption.IsSet && donationPaymentResponse.Status != null)
             {
                 string? statusRawValue = DonationPaymentResponse.StatusEnum.ToJsonValue(donationPaymentResponse._StatusOption.Value!.Value);
                 writer.WriteString("status", statusRawValue);

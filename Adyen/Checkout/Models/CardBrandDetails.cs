@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CardBrandDetails" /> class.
         /// </summary>
-        /// <param name="supported">Indicates if you support the card brand.</param>
-        /// <param name="type">The name of the card brand.</param>
-        [JsonConstructor]
-        public CardBrandDetails(Option<bool?> supported = default, Option<string?> type = default)
-        {
-            _SupportedOption = supported;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CardBrandDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -147,9 +134,14 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new CardBrandDetails(supported, type);
+
+            var result = new CardBrandDetails();
+            if (supported.IsSet)
+                result.Supported = supported.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -160,13 +152,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CardBrandDetails cardBrandDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, cardBrandDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -177,7 +169,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CardBrandDetails cardBrandDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (cardBrandDetails._SupportedOption.IsSet)
                 if (cardBrandDetails._SupportedOption.Value != null)
                     writer.WriteBoolean("supported", cardBrandDetails._SupportedOption.Value!.Value);

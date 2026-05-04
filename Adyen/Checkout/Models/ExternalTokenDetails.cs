@@ -34,35 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ExternalTokenDetails" /> class.
         /// </summary>
-        /// <param name="storedPaymentMethodId">Identifier used to fetch the token from the external service</param>
-        /// <param name="subtype">The external service from which to fetch the token. Supported only for specific companies. Contact Adyen if you want to use this feature.</param>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="expiryMonth">The card expiry month. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).</param>
-        /// <param name="expiryYear">The card expiry year. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).</param>
-        /// <param name="holderName">The name of the card holder.</param>
-        /// <param name="number">The card number. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).</param>
-        /// <param name="type">The type of token. Allowed value: **externalToken**. (default to TypeEnum.ExternalToken)</param>
-        [JsonConstructor]
-        public ExternalTokenDetails(string storedPaymentMethodId, SubtypeEnum subtype, Option<string?> checkoutAttemptId = default, Option<string?> expiryMonth = default, Option<string?> expiryYear = default, Option<string?> holderName = default, Option<string?> number = default, TypeEnum type = default)
-        {
-            StoredPaymentMethodId = storedPaymentMethodId;
-            Subtype = subtype;
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _ExpiryMonthOption = expiryMonth;
-            _ExpiryYearOption = expiryYear;
-            _HolderNameOption = holderName;
-            _NumberOption = number;
-            Type = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ExternalTokenDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -81,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// SubtypeEnum.Hilton - hilton
             /// </summary>
             public static readonly SubtypeEnum Hilton = new("hilton");
-        
+
             private SubtypeEnum(string? value)
             {
                 Value = value;
@@ -93,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="SubtypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator SubtypeEnum?(string? value) => value == null ? null : new SubtypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="SubtypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="SubtypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="SubtypeEnum"/> instance./// </returns>
             public static implicit operator string?(SubtypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(SubtypeEnum? left, SubtypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(SubtypeEnum? left, SubtypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is SubtypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="SubtypeEnum?"/>.
             /// </summary>
@@ -123,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="SubtypeEnum"/> to the json value.
             /// </summary>
@@ -134,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == SubtypeEnum.Hilton)
                     return "hilton";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing SubtypeEnum.               
+            /// JsonConverter for writing SubtypeEnum.
             /// </summary>
             public class SubtypeEnumJsonConverter : JsonConverter<SubtypeEnum>
             {
@@ -182,7 +157,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.ExternalToken - externalToken
             /// </summary>
             public static readonly TypeEnum ExternalToken = new("externalToken");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -194,24 +169,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -224,7 +199,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -235,15 +210,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.ExternalToken)
                     return "externalToken";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -442,7 +417,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!storedPaymentMethodId.IsSet)
                 throw new ArgumentException("Property is required for class ExternalTokenDetails.", nameof(storedPaymentMethodId));
 
@@ -452,7 +427,21 @@ namespace Adyen.Checkout.Models
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class ExternalTokenDetails.", nameof(type));
 
-            return new ExternalTokenDetails(storedPaymentMethodId.Value!, subtype.Value!.Value!, checkoutAttemptId, expiryMonth, expiryYear, holderName, number, type.Value!.Value!);
+            var result = new ExternalTokenDetails();
+            result.StoredPaymentMethodId = storedPaymentMethodId.Value!;
+            result.Subtype = subtype.Value!.Value!;
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (expiryMonth.IsSet)
+                result.ExpiryMonth = expiryMonth.Value;
+            if (expiryYear.IsSet)
+                result.ExpiryYear = expiryYear.Value;
+            if (holderName.IsSet)
+                result.HolderName = holderName.Value;
+            if (number.IsSet)
+                result.Number = number.Value;
+            result.Type = type.Value!.Value!;
+            return result;
         }
 
         /// <summary>
@@ -463,13 +452,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ExternalTokenDetails externalTokenDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, externalTokenDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -480,16 +469,16 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ExternalTokenDetails externalTokenDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (externalTokenDetails.StoredPaymentMethodId != null)
                 writer.WriteString("storedPaymentMethodId", externalTokenDetails.StoredPaymentMethodId);
 
-            if (externalTokenDetails.Subtype != null) 
+            if (externalTokenDetails.Subtype != null)
             {
                 string? subtypeRawValue = ExternalTokenDetails.SubtypeEnum.ToJsonValue(externalTokenDetails.Subtype);
                 writer.WriteString("subtype", subtypeRawValue);
             }
-            
+
             if (externalTokenDetails._CheckoutAttemptIdOption.IsSet)
                 if (externalTokenDetails.CheckoutAttemptId != null)
                     writer.WriteString("checkoutAttemptId", externalTokenDetails.CheckoutAttemptId);
@@ -510,7 +499,7 @@ namespace Adyen.Checkout.Models
                 if (externalTokenDetails.Number != null)
                     writer.WriteString("number", externalTokenDetails.Number);
 
-            if (externalTokenDetails.Type != null) 
+            if (externalTokenDetails.Type != null)
             {
                 string? typeRawValue = ExternalTokenDetails.TypeEnum.ToJsonValue(externalTokenDetails.Type);
                 writer.WriteString("type", typeRawValue);

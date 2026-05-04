@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Name" /> class.
         /// </summary>
-        /// <param name="firstName">The first name.</param>
-        /// <param name="lastName">The last name.</param>
-        [JsonConstructor]
-        public Name(string firstName, string lastName)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public Name()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -133,14 +120,17 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!firstName.IsSet)
                 throw new ArgumentException("Property is required for class Name.", nameof(firstName));
 
             if (!lastName.IsSet)
                 throw new ArgumentException("Property is required for class Name.", nameof(lastName));
 
-            return new Name(firstName.Value!, lastName.Value!);
+            var result = new Name();
+            result.FirstName = firstName.Value!;
+            result.LastName = lastName.Value!;
+            return result;
         }
 
         /// <summary>
@@ -151,13 +141,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, Name name, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, name, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -168,7 +158,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, Name name, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (name.FirstName != null)
                 writer.WriteString("firstName", name.FirstName);
 

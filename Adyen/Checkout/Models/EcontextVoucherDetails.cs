@@ -34,33 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="EcontextVoucherDetails" /> class.
         /// </summary>
-        /// <param name="firstName">The shopper&#39;s first name.</param>
-        /// <param name="lastName">The shopper&#39;s last name.</param>
-        /// <param name="shopperEmail">The shopper&#39;s email.</param>
-        /// <param name="telephoneNumber">The shopper&#39;s contact number. It must have an international number format, for example **+31 20 779 1846**. Formats like **+31 (0)20 779 1846** or **0031 20 779 1846** are not accepted.</param>
-        /// <param name="type">**econtextvoucher**</param>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        [JsonConstructor]
-        public EcontextVoucherDetails(string firstName, string lastName, string shopperEmail, string telephoneNumber, TypeEnum type, Option<string?> checkoutAttemptId = default, Option<string?> sdkData = default)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            ShopperEmail = shopperEmail;
-            TelephoneNumber = telephoneNumber;
-            Type = type;
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _SdkDataOption = sdkData;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public EcontextVoucherDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -99,7 +76,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.EcontextAtm - econtext_atm
             /// </summary>
             public static readonly TypeEnum EcontextAtm = new("econtext_atm");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -111,24 +88,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -145,7 +122,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -156,27 +133,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.EcontextSevenEleven)
                     return "econtext_seven_eleven";
-                
+
                 if (value == TypeEnum.EcontextOnline)
                     return "econtext_online";
-                
+
                 if (value == TypeEnum.Econtext)
                     return "econtext";
-                
+
                 if (value == TypeEnum.EcontextStores)
                     return "econtext_stores";
-                
+
                 if (value == TypeEnum.EcontextAtm)
                     return "econtext_atm";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -348,7 +325,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!firstName.IsSet)
                 throw new ArgumentException("Property is required for class EcontextVoucherDetails.", nameof(firstName));
 
@@ -364,7 +341,17 @@ namespace Adyen.Checkout.Models
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class EcontextVoucherDetails.", nameof(type));
 
-            return new EcontextVoucherDetails(firstName.Value!, lastName.Value!, shopperEmail.Value!, telephoneNumber.Value!, type.Value!.Value!, checkoutAttemptId, sdkData);
+            var result = new EcontextVoucherDetails();
+            result.FirstName = firstName.Value!;
+            result.LastName = lastName.Value!;
+            result.ShopperEmail = shopperEmail.Value!;
+            result.TelephoneNumber = telephoneNumber.Value!;
+            result.Type = type.Value!.Value!;
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            return result;
         }
 
         /// <summary>
@@ -375,13 +362,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, EcontextVoucherDetails econtextVoucherDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, econtextVoucherDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -392,7 +379,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, EcontextVoucherDetails econtextVoucherDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (econtextVoucherDetails.FirstName != null)
                 writer.WriteString("firstName", econtextVoucherDetails.FirstName);
 
@@ -405,12 +392,12 @@ namespace Adyen.Checkout.Models
             if (econtextVoucherDetails.TelephoneNumber != null)
                 writer.WriteString("telephoneNumber", econtextVoucherDetails.TelephoneNumber);
 
-            if (econtextVoucherDetails.Type != null) 
+            if (econtextVoucherDetails.Type != null)
             {
                 string? typeRawValue = EcontextVoucherDetails.TypeEnum.ToJsonValue(econtextVoucherDetails.Type);
                 writer.WriteString("type", typeRawValue);
             }
-            
+
             if (econtextVoucherDetails._CheckoutAttemptIdOption.IsSet)
                 if (econtextVoucherDetails.CheckoutAttemptId != null)
                     writer.WriteString("checkoutAttemptId", econtextVoucherDetails.CheckoutAttemptId);

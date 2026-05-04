@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="SubMerchant" /> class.
         /// </summary>
-        /// <param name="city">The city of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 13 characters</param>
-        /// <param name="country">The three-letter country code of the sub-merchant&#39;s address. For example, **BRA** for Brazil.  * Format: [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) * Fixed length: 3 characters</param>
-        /// <param name="mcc">The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits</param>
-        /// <param name="name">The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement  that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters</param>
-        /// <param name="taxId">The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ</param>
-        [JsonConstructor]
-        public SubMerchant(Option<string?> city = default, Option<string?> country = default, Option<string?> mcc = default, Option<string?> name = default, Option<string?> taxId = default)
-        {
-            _CityOption = city;
-            _CountryOption = country;
-            _MccOption = mcc;
-            _NameOption = name;
-            _TaxIdOption = taxId;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public SubMerchant()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -210,9 +191,20 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new SubMerchant(city, country, mcc, name, taxId);
+
+            var result = new SubMerchant();
+            if (city.IsSet)
+                result.City = city.Value;
+            if (country.IsSet)
+                result.Country = country.Value;
+            if (mcc.IsSet)
+                result.Mcc = mcc.Value;
+            if (name.IsSet)
+                result.Name = name.Value;
+            if (taxId.IsSet)
+                result.TaxId = taxId.Value;
+            return result;
         }
 
         /// <summary>
@@ -223,13 +215,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, SubMerchant subMerchant, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, subMerchant, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -240,7 +232,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, SubMerchant subMerchant, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (subMerchant._CityOption.IsSet)
                 if (subMerchant.City != null)
                     writer.WriteString("city", subMerchant.City);

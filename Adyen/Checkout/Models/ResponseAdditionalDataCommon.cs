@@ -34,149 +34,14 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataCommon" /> class.
         /// </summary>
-        /// <param name="acquirerAccountCode">The name of the Adyen acquirer account.  Example: PayPalSandbox_TestAcquirer  &gt; Only relevant for PayPal transactions.</param>
-        /// <param name="acquirerCode">The name of the acquirer processing the payment request.  Example: TestPmmAcquirer</param>
-        /// <param name="acquirerReference">The reference number that can be used for reconciliation in case a non-Adyen acquirer is used for settlement.  Example: 7C9N3FNBKT9</param>
-        /// <param name="alias">The Adyen alias of the card.  Example: H167852639363479</param>
-        /// <param name="aliasType">The type of the card alias.  Example: Default</param>
-        /// <param name="authCode">Authorisation code: * When the payment is authorised successfully, this field holds the authorisation code for the payment. * When the payment is not authorised, this field is empty.  Example: 58747</param>
-        /// <param name="authorisationMid">Merchant ID known by the acquirer.</param>
-        /// <param name="authorisedAmountCurrency">The currency of the authorised amount, as a three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).</param>
-        /// <param name="authorisedAmountValue">Value of the amount authorised.  This amount is represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes).</param>
-        /// <param name="avsResult">The AVS result code of the payment, which provides information about the outcome of the AVS check.  For possible values, see [AVS](https://docs.adyen.com/risk-management/configure-standard-risk-rules/consistency-rules#billing-address-does-not-match-cardholder-address-avs).</param>
-        /// <param name="avsResultRaw">Raw AVS result received from the acquirer, where available.  Example: D</param>
-        /// <param name="bic">BIC of a bank account.  Example: TESTNL01  &gt; Only relevant for SEPA Direct Debit transactions.</param>
-        /// <param name="coBrandedWith">Includes the co-branded card information.</param>
-        /// <param name="cvcResult">The result of CVC verification.</param>
-        /// <param name="cvcResultRaw">The raw result of CVC verification.</param>
-        /// <param name="dsTransID">Supported for 3D Secure 2. The unique transaction identifier assigned by the DS to identify a single transaction.</param>
-        /// <param name="eci">The Electronic Commerce Indicator returned from the schemes for the 3DS payment session.  Example: 02</param>
-        /// <param name="expiryDate">The expiry date on the card.  Example: 6/2016  &gt; Returned only in case of a card payment.</param>
-        /// <param name="extraCostsCurrency">The currency of the extra amount charged due to additional amounts set in the skin used in the HPP payment request.  Example: EUR</param>
-        /// <param name="extraCostsValue">The value of the extra amount charged due to additional amounts set in the skin used in the HPP payment request. The amount is in minor units.</param>
-        /// <param name="fraudCheckItemNrFraudCheckname">The fraud score due to a particular fraud check. The fraud check name is found in the key of the key-value pair.</param>
-        /// <param name="fraudManualReview">Indicates if the payment is sent to manual review.</param>
-        /// <param name="fraudResultType">The fraud result properties of the payment. Possible values: * AMBER * GREEN * RED  </param>
-        /// <param name="fraudRiskLevel">The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. Possible values: * veryLow * low * medium * high * veryHigh  </param>
-        /// <param name="fundingSource">Information regarding the funding type of the card. The possible return values are: * CHARGE * CREDIT * DEBIT * PREPAID * PREPAID_RELOADABLE  * PREPAID_NONRELOADABLE * DEFFERED_DEBIT  &gt; This functionality requires additional configuration on Adyen&#39;s end. To enable it, contact the Support Team.  For receiving this field in the notification, enable **Include Funding Source** in **Notifications** &gt; **Additional settings**.</param>
-        /// <param name="fundsAvailability">Indicates availability of funds.  Visa: * \&quot;I\&quot; (fast funds are supported) * \&quot;N\&quot; (otherwise)  Mastercard: * \&quot;I\&quot; (product type is Prepaid or Debit, or issuing country is in CEE/HGEM list) * \&quot;N\&quot; (otherwise)  &gt; Returned when you verify a card BIN or estimate costs, and only if payoutEligible is \&quot;Y\&quot; or \&quot;D\&quot;.</param>
-        /// <param name="inferredRefusalReason">Provides the more granular indication of why a transaction was refused. When a transaction fails with either \&quot;Refused\&quot;, \&quot;Restricted Card\&quot;, \&quot;Transaction Not Permitted\&quot;, \&quot;Not supported\&quot; or \&quot;DeclinedNon Generic\&quot; refusalReason from the issuer, Adyen cross references its PSP-wide data for extra insight into the refusal reason. If an inferred refusal reason is available, the &#x60;inferredRefusalReason&#x60;, field is populated and the &#x60;refusalReason&#x60;, is set to \&quot;Not Supported\&quot;.  Possible values:  * 3D Secure Mandated * Closed Account * ContAuth Not Supported * CVC Mandated * Ecommerce Not Allowed * Crossborder Not Supported * Card Updated  * Low Authrate Bin * Non-reloadable prepaid card</param>
-        /// <param name="isCardCommercial">Indicates if the card is used for business purposes only.</param>
-        /// <param name="issuerCountry">The issuing country of the card based on the BIN list that Adyen maintains.  Example: JP</param>
-        /// <param name="liabilityShift">A Boolean value indicating whether a liability shift was offered for this payment.</param>
-        /// <param name="mcBankNetReferenceNumber">The &#x60;mcBankNetReferenceNumber&#x60;, is a minimum of six characters and a maximum of nine characters long.  &gt; Contact Support Team to enable this field.</param>
-        /// <param name="merchantAdviceCode">The Merchant Advice Code (MAC) can be returned by Mastercard issuers for refused payments. If present, the MAC contains information about why the payment failed, and whether it can be retried.  For more information see [Mastercard Merchant Advice Codes](https://docs.adyen.com/development-resources/raw-acquirer-responses#mastercard-merchant-advice-codes).</param>
-        /// <param name="merchantReference">The reference provided for the transaction.</param>
-        /// <param name="networkTxReference">Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID.</param>
-        /// <param name="ownerName">The owner name of a bank account.  Only relevant for SEPA Direct Debit transactions.</param>
-        /// <param name="paymentAccountReference">The Payment Account Reference (PAR) value links a network token with the underlying primary account number (PAN). The PAR value consists of 29 uppercase alphanumeric characters.</param>
-        /// <param name="paymentMethod">The payment method used in the transaction.</param>
-        /// <param name="paymentMethodVariant">The Adyen sub-variant of the payment method used for the payment request.  For more information, refer to [PaymentMethodVariant](https://docs.adyen.com/development-resources/paymentmethodvariant).  Example: mcpro</param>
-        /// <param name="payoutEligible">Indicates whether a payout is eligible or not for this card.  Visa: * \&quot;Y\&quot; * \&quot;N\&quot;  Mastercard: * \&quot;Y\&quot; (domestic and cross-border)  * \&quot;D\&quot; (only domestic) * \&quot;N\&quot; (no MoneySend) * \&quot;U\&quot; (unknown)</param>
-        /// <param name="realtimeAccountUpdaterStatus">The response code from the Real Time Account Updater service.  Possible return values are: * CardChanged * CardExpiryChanged * CloseAccount  * ContactCardAccountHolder</param>
-        /// <param name="receiptFreeText">Message to be displayed on the terminal.</param>
-        /// <param name="recurringContractTypes">The recurring contract types applicable to the transaction.</param>
-        /// <param name="recurringFirstPspReference">The &#x60;pspReference&#x60;, of the first recurring payment that created the recurring detail.  This functionality requires additional configuration on Adyen&#39;s end. To enable it, contact the Support Team.</param>
-        /// <param name="recurringRecurringDetailReference">The reference that uniquely identifies the recurring transaction.</param>
-        /// <param name="recurringShopperReference">The provided reference of the shopper for a recurring transaction.</param>
-        /// <param name="recurringProcessingModel">The processing model used for the recurring transaction.</param>
-        /// <param name="referred">If the payment is referred, this field is set to true.  This field is unavailable if the payment is referred and is usually not returned with ecommerce transactions.  Example: true</param>
-        /// <param name="refusalReasonRaw">Raw refusal reason received from the acquirer, where available.  Example: AUTHORISED</param>
-        /// <param name="requestAmount">The amount of the payment request.</param>
-        /// <param name="requestCurrencyCode">The currency of the payment request.</param>
-        /// <param name="shopperInteraction">The shopper interaction type of the payment request.  Example: Ecommerce</param>
-        /// <param name="shopperReference">The shopperReference passed in the payment request.  Example: AdyenTestShopperXX</param>
-        /// <param name="terminalId">The terminal ID used in a point-of-sale payment.  Example: 06022622</param>
-        /// <param name="threeDAuthenticated">A Boolean value indicating whether 3DS authentication was completed on this payment.  Example: true</param>
-        /// <param name="threeDAuthenticatedResponse">The raw 3DS authentication result from the card issuer.  Example: N</param>
-        /// <param name="threeDOffered">A Boolean value indicating whether 3DS was offered for this payment.  Example: true</param>
-        /// <param name="threeDOfferedResponse">The raw enrollment result from the 3DS directory services of the card schemes.  Example: Y</param>
-        /// <param name="threeDSVersion">The 3D Secure 2 version.</param>
-        /// <param name="tokenizationShopperReference">The reference for the shopper that you sent when tokenizing the payment details.</param>
-        /// <param name="tokenizationStoreOperationType">The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored. </param>
-        /// <param name="tokenizationStoredPaymentMethodId">The reference that uniquely identifies tokenized payment details.</param>
-        /// <param name="visaTransactionId">The &#x60;visaTransactionId&#x60;, has a fixed length of 15 numeric characters.  &gt; Contact Support Team to enable this field.</param>
-        /// <param name="xid">The 3DS transaction ID of the 3DS session sent in notifications. The value is Base64-encoded and is returned for transactions with directoryResponse &#39;N&#39; or &#39;Y&#39;.   Example: ODgxNDc2MDg2MDExODk5MAAAAAA&#x3D;</param>
-        [JsonConstructor]
-        public ResponseAdditionalDataCommon(Option<string?> acquirerAccountCode = default, Option<string?> acquirerCode = default, Option<string?> acquirerReference = default, Option<string?> alias = default, Option<string?> aliasType = default, Option<string?> authCode = default, Option<string?> authorisationMid = default, Option<string?> authorisedAmountCurrency = default, Option<string?> authorisedAmountValue = default, Option<string?> avsResult = default, Option<string?> avsResultRaw = default, Option<string?> bic = default, Option<string?> coBrandedWith = default, Option<string?> cvcResult = default, Option<string?> cvcResultRaw = default, Option<string?> dsTransID = default, Option<string?> eci = default, Option<string?> expiryDate = default, Option<string?> extraCostsCurrency = default, Option<string?> extraCostsValue = default, Option<string?> fraudCheckItemNrFraudCheckname = default, Option<string?> fraudManualReview = default, Option<FraudResultTypeEnum?> fraudResultType = default, Option<FraudRiskLevelEnum?> fraudRiskLevel = default, Option<string?> fundingSource = default, Option<string?> fundsAvailability = default, Option<string?> inferredRefusalReason = default, Option<string?> isCardCommercial = default, Option<string?> issuerCountry = default, Option<string?> liabilityShift = default, Option<string?> mcBankNetReferenceNumber = default, Option<string?> merchantAdviceCode = default, Option<string?> merchantReference = default, Option<string?> networkTxReference = default, Option<string?> ownerName = default, Option<string?> paymentAccountReference = default, Option<string?> paymentMethod = default, Option<string?> paymentMethodVariant = default, Option<string?> payoutEligible = default, Option<string?> realtimeAccountUpdaterStatus = default, Option<string?> receiptFreeText = default, Option<string?> recurringContractTypes = default, Option<string?> recurringFirstPspReference = default, Option<string?> recurringRecurringDetailReference = default, Option<string?> recurringShopperReference = default, Option<RecurringProcessingModelEnum?> recurringProcessingModel = default, Option<string?> referred = default, Option<string?> refusalReasonRaw = default, Option<string?> requestAmount = default, Option<string?> requestCurrencyCode = default, Option<string?> shopperInteraction = default, Option<string?> shopperReference = default, Option<string?> terminalId = default, Option<string?> threeDAuthenticated = default, Option<string?> threeDAuthenticatedResponse = default, Option<string?> threeDOffered = default, Option<string?> threeDOfferedResponse = default, Option<string?> threeDSVersion = default, Option<string?> tokenizationShopperReference = default, Option<TokenizationStoreOperationTypeEnum?> tokenizationStoreOperationType = default, Option<string?> tokenizationStoredPaymentMethodId = default, Option<string?> visaTransactionId = default, Option<string?> xid = default)
-        {
-            _AcquirerAccountCodeOption = acquirerAccountCode;
-            _AcquirerCodeOption = acquirerCode;
-            _AcquirerReferenceOption = acquirerReference;
-            _AliasOption = alias;
-            _AliasTypeOption = aliasType;
-            _AuthCodeOption = authCode;
-            _AuthorisationMidOption = authorisationMid;
-            _AuthorisedAmountCurrencyOption = authorisedAmountCurrency;
-            _AuthorisedAmountValueOption = authorisedAmountValue;
-            _AvsResultOption = avsResult;
-            _AvsResultRawOption = avsResultRaw;
-            _BicOption = bic;
-            _CoBrandedWithOption = coBrandedWith;
-            _CvcResultOption = cvcResult;
-            _CvcResultRawOption = cvcResultRaw;
-            _DsTransIDOption = dsTransID;
-            _EciOption = eci;
-            _ExpiryDateOption = expiryDate;
-            _ExtraCostsCurrencyOption = extraCostsCurrency;
-            _ExtraCostsValueOption = extraCostsValue;
-            _FraudCheckItemNrFraudChecknameOption = fraudCheckItemNrFraudCheckname;
-            _FraudManualReviewOption = fraudManualReview;
-            _FraudResultTypeOption = fraudResultType;
-            _FraudRiskLevelOption = fraudRiskLevel;
-            _FundingSourceOption = fundingSource;
-            _FundsAvailabilityOption = fundsAvailability;
-            _InferredRefusalReasonOption = inferredRefusalReason;
-            _IsCardCommercialOption = isCardCommercial;
-            _IssuerCountryOption = issuerCountry;
-            _LiabilityShiftOption = liabilityShift;
-            _McBankNetReferenceNumberOption = mcBankNetReferenceNumber;
-            _MerchantAdviceCodeOption = merchantAdviceCode;
-            _MerchantReferenceOption = merchantReference;
-            _NetworkTxReferenceOption = networkTxReference;
-            _OwnerNameOption = ownerName;
-            _PaymentAccountReferenceOption = paymentAccountReference;
-            _PaymentMethodOption = paymentMethod;
-            _PaymentMethodVariantOption = paymentMethodVariant;
-            _PayoutEligibleOption = payoutEligible;
-            _RealtimeAccountUpdaterStatusOption = realtimeAccountUpdaterStatus;
-            _ReceiptFreeTextOption = receiptFreeText;
-            _RecurringContractTypesOption = recurringContractTypes;
-            _RecurringFirstPspReferenceOption = recurringFirstPspReference;
-            _RecurringRecurringDetailReferenceOption = recurringRecurringDetailReference;
-            _RecurringShopperReferenceOption = recurringShopperReference;
-            _RecurringProcessingModelOption = recurringProcessingModel;
-            _ReferredOption = referred;
-            _RefusalReasonRawOption = refusalReasonRaw;
-            _RequestAmountOption = requestAmount;
-            _RequestCurrencyCodeOption = requestCurrencyCode;
-            _ShopperInteractionOption = shopperInteraction;
-            _ShopperReferenceOption = shopperReference;
-            _TerminalIdOption = terminalId;
-            _ThreeDAuthenticatedOption = threeDAuthenticated;
-            _ThreeDAuthenticatedResponseOption = threeDAuthenticatedResponse;
-            _ThreeDOfferedOption = threeDOffered;
-            _ThreeDOfferedResponseOption = threeDOfferedResponse;
-            _ThreeDSVersionOption = threeDSVersion;
-            _TokenizationShopperReferenceOption = tokenizationShopperReference;
-            _TokenizationStoreOperationTypeOption = tokenizationStoreOperationType;
-            _TokenizationStoredPaymentMethodIdOption = tokenizationStoredPaymentMethodId;
-            _VisaTransactionIdOption = visaTransactionId;
-            _XidOption = xid;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ResponseAdditionalDataCommon()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
-        /// The fraud result properties of the payment. Possible values: * AMBER * GREEN * RED  
+        /// The fraud result properties of the payment. Possible values: * AMBER * GREEN * RED
         /// </summary>
         /// <value>The fraud result properties of the payment. Possible values: * AMBER * GREEN * RED  </value>
         [JsonConverter(typeof(FraudResultTypeEnumJsonConverter))]
@@ -201,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// FraudResultTypeEnum.RED - RED
             /// </summary>
             public static readonly FraudResultTypeEnum RED = new("RED");
-        
+
             private FraudResultTypeEnum(string? value)
             {
                 Value = value;
@@ -213,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="FraudResultTypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator FraudResultTypeEnum?(string? value) => value == null ? null : new FraudResultTypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="FraudResultTypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="FraudResultTypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="FraudResultTypeEnum"/> instance./// </returns>
             public static implicit operator string?(FraudResultTypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(FraudResultTypeEnum? left, FraudResultTypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(FraudResultTypeEnum? left, FraudResultTypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is FraudResultTypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="FraudResultTypeEnum?"/>.
             /// </summary>
@@ -245,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="FraudResultTypeEnum"/> to the json value.
             /// </summary>
@@ -256,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == FraudResultTypeEnum.AMBER)
                     return "AMBER";
-                
+
                 if (value == FraudResultTypeEnum.GREEN)
                     return "GREEN";
-                
+
                 if (value == FraudResultTypeEnum.RED)
                     return "RED";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing FraudResultTypeEnum.               
+            /// JsonConverter for writing FraudResultTypeEnum.
             /// </summary>
             public class FraudResultTypeEnumJsonConverter : JsonConverter<FraudResultTypeEnum>
             {
@@ -295,14 +160,14 @@ namespace Adyen.Checkout.Models
         public Option<FraudResultTypeEnum?> _FraudResultTypeOption { get; private set; }
 
         /// <summary>
-        /// The fraud result properties of the payment. Possible values: * AMBER * GREEN * RED  
+        /// The fraud result properties of the payment. Possible values: * AMBER * GREEN * RED
         /// </summary>
         /// <value>The fraud result properties of the payment. Possible values: * AMBER * GREEN * RED  </value>
         [JsonPropertyName("fraudResultType")]
         public FraudResultTypeEnum? FraudResultType { get { return this._FraudResultTypeOption; } set { this._FraudResultTypeOption = new(value); } }
 
         /// <summary>
-        /// The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. Possible values: * veryLow * low * medium * high * veryHigh  
+        /// The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. Possible values: * veryLow * low * medium * high * veryHigh
         /// </summary>
         /// <value>The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. Possible values: * veryLow * low * medium * high * veryHigh  </value>
         [JsonConverter(typeof(FraudRiskLevelEnumJsonConverter))]
@@ -337,7 +202,7 @@ namespace Adyen.Checkout.Models
             /// FraudRiskLevelEnum.VeryHigh - veryHigh
             /// </summary>
             public static readonly FraudRiskLevelEnum VeryHigh = new("veryHigh");
-        
+
             private FraudRiskLevelEnum(string? value)
             {
                 Value = value;
@@ -349,24 +214,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="FraudRiskLevelEnum"/> instance initialized with the string value.</returns>
             public static implicit operator FraudRiskLevelEnum?(string? value) => value == null ? null : new FraudRiskLevelEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="FraudRiskLevelEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="FraudRiskLevelEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="FraudRiskLevelEnum"/> instance./// </returns>
             public static implicit operator string?(FraudRiskLevelEnum? option) => option?.Value;
-        
+
             public static bool operator ==(FraudRiskLevelEnum? left, FraudRiskLevelEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(FraudRiskLevelEnum? left, FraudRiskLevelEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is FraudRiskLevelEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="FraudRiskLevelEnum?"/>.
             /// </summary>
@@ -383,7 +248,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="FraudRiskLevelEnum"/> to the json value.
             /// </summary>
@@ -394,27 +259,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == FraudRiskLevelEnum.VeryLow)
                     return "veryLow";
-                
+
                 if (value == FraudRiskLevelEnum.Low)
                     return "low";
-                
+
                 if (value == FraudRiskLevelEnum.Medium)
                     return "medium";
-                
+
                 if (value == FraudRiskLevelEnum.High)
                     return "high";
-                
+
                 if (value == FraudRiskLevelEnum.VeryHigh)
                     return "veryHigh";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing FraudRiskLevelEnum.               
+            /// JsonConverter for writing FraudRiskLevelEnum.
             /// </summary>
             public class FraudRiskLevelEnumJsonConverter : JsonConverter<FraudRiskLevelEnum>
             {
@@ -439,7 +304,7 @@ namespace Adyen.Checkout.Models
         public Option<FraudRiskLevelEnum?> _FraudRiskLevelOption { get; private set; }
 
         /// <summary>
-        /// The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. Possible values: * veryLow * low * medium * high * veryHigh  
+        /// The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. Possible values: * veryLow * low * medium * high * veryHigh
         /// </summary>
         /// <value>The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. Possible values: * veryLow * low * medium * high * veryHigh  </value>
         [JsonPropertyName("fraudRiskLevel")]
@@ -471,7 +336,7 @@ namespace Adyen.Checkout.Models
             /// RecurringProcessingModelEnum.UnscheduledCardOnFile - UnscheduledCardOnFile
             /// </summary>
             public static readonly RecurringProcessingModelEnum UnscheduledCardOnFile = new("UnscheduledCardOnFile");
-        
+
             private RecurringProcessingModelEnum(string? value)
             {
                 Value = value;
@@ -483,24 +348,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="RecurringProcessingModelEnum"/> instance initialized with the string value.</returns>
             public static implicit operator RecurringProcessingModelEnum?(string? value) => value == null ? null : new RecurringProcessingModelEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="RecurringProcessingModelEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="RecurringProcessingModelEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="RecurringProcessingModelEnum"/> instance./// </returns>
             public static implicit operator string?(RecurringProcessingModelEnum? option) => option?.Value;
-        
+
             public static bool operator ==(RecurringProcessingModelEnum? left, RecurringProcessingModelEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(RecurringProcessingModelEnum? left, RecurringProcessingModelEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is RecurringProcessingModelEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="RecurringProcessingModelEnum?"/>.
             /// </summary>
@@ -515,7 +380,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="RecurringProcessingModelEnum"/> to the json value.
             /// </summary>
@@ -526,21 +391,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == RecurringProcessingModelEnum.CardOnFile)
                     return "CardOnFile";
-                
+
                 if (value == RecurringProcessingModelEnum.Subscription)
                     return "Subscription";
-                
+
                 if (value == RecurringProcessingModelEnum.UnscheduledCardOnFile)
                     return "UnscheduledCardOnFile";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing RecurringProcessingModelEnum.               
+            /// JsonConverter for writing RecurringProcessingModelEnum.
             /// </summary>
             public class RecurringProcessingModelEnumJsonConverter : JsonConverter<RecurringProcessingModelEnum>
             {
@@ -572,7 +437,7 @@ namespace Adyen.Checkout.Models
         public RecurringProcessingModelEnum? RecurringProcessingModel { get { return this._RecurringProcessingModelOption; } set { this._RecurringProcessingModelOption = new(value); } }
 
         /// <summary>
-        /// The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored. 
+        /// The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored.
         /// </summary>
         /// <value>The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored. </value>
         [JsonConverter(typeof(TokenizationStoreOperationTypeEnumJsonConverter))]
@@ -597,7 +462,7 @@ namespace Adyen.Checkout.Models
             /// TokenizationStoreOperationTypeEnum.AlreadyExisting - alreadyExisting
             /// </summary>
             public static readonly TokenizationStoreOperationTypeEnum AlreadyExisting = new("alreadyExisting");
-        
+
             private TokenizationStoreOperationTypeEnum(string? value)
             {
                 Value = value;
@@ -609,24 +474,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TokenizationStoreOperationTypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TokenizationStoreOperationTypeEnum?(string? value) => value == null ? null : new TokenizationStoreOperationTypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TokenizationStoreOperationTypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TokenizationStoreOperationTypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TokenizationStoreOperationTypeEnum"/> instance./// </returns>
             public static implicit operator string?(TokenizationStoreOperationTypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TokenizationStoreOperationTypeEnum? left, TokenizationStoreOperationTypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TokenizationStoreOperationTypeEnum? left, TokenizationStoreOperationTypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TokenizationStoreOperationTypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TokenizationStoreOperationTypeEnum?"/>.
             /// </summary>
@@ -641,7 +506,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TokenizationStoreOperationTypeEnum"/> to the json value.
             /// </summary>
@@ -652,21 +517,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TokenizationStoreOperationTypeEnum.Created)
                     return "created";
-                
+
                 if (value == TokenizationStoreOperationTypeEnum.Updated)
                     return "updated";
-                
+
                 if (value == TokenizationStoreOperationTypeEnum.AlreadyExisting)
                     return "alreadyExisting";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TokenizationStoreOperationTypeEnum.               
+            /// JsonConverter for writing TokenizationStoreOperationTypeEnum.
             /// </summary>
             public class TokenizationStoreOperationTypeEnumJsonConverter : JsonConverter<TokenizationStoreOperationTypeEnum>
             {
@@ -691,7 +556,7 @@ namespace Adyen.Checkout.Models
         public Option<TokenizationStoreOperationTypeEnum?> _TokenizationStoreOperationTypeOption { get; private set; }
 
         /// <summary>
-        /// The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored. 
+        /// The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored.
         /// </summary>
         /// <value>The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored. </value>
         [JsonPropertyName("tokenization.store.operationType")]
@@ -1902,9 +1767,136 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ResponseAdditionalDataCommon(acquirerAccountCode, acquirerCode, acquirerReference, alias, aliasType, authCode, authorisationMid, authorisedAmountCurrency, authorisedAmountValue, avsResult, avsResultRaw, bic, coBrandedWith, cvcResult, cvcResultRaw, dsTransID, eci, expiryDate, extraCostsCurrency, extraCostsValue, fraudCheckItemNrFraudCheckname, fraudManualReview, fraudResultType, fraudRiskLevel, fundingSource, fundsAvailability, inferredRefusalReason, isCardCommercial, issuerCountry, liabilityShift, mcBankNetReferenceNumber, merchantAdviceCode, merchantReference, networkTxReference, ownerName, paymentAccountReference, paymentMethod, paymentMethodVariant, payoutEligible, realtimeAccountUpdaterStatus, receiptFreeText, recurringContractTypes, recurringFirstPspReference, recurringRecurringDetailReference, recurringShopperReference, recurringProcessingModel, referred, refusalReasonRaw, requestAmount, requestCurrencyCode, shopperInteraction, shopperReference, terminalId, threeDAuthenticated, threeDAuthenticatedResponse, threeDOffered, threeDOfferedResponse, threeDSVersion, tokenizationShopperReference, tokenizationStoreOperationType, tokenizationStoredPaymentMethodId, visaTransactionId, xid);
+
+            var result = new ResponseAdditionalDataCommon();
+            if (acquirerAccountCode.IsSet)
+                result.AcquirerAccountCode = acquirerAccountCode.Value;
+            if (acquirerCode.IsSet)
+                result.AcquirerCode = acquirerCode.Value;
+            if (acquirerReference.IsSet)
+                result.AcquirerReference = acquirerReference.Value;
+            if (alias.IsSet)
+                result.Alias = alias.Value;
+            if (aliasType.IsSet)
+                result.AliasType = aliasType.Value;
+            if (authCode.IsSet)
+                result.AuthCode = authCode.Value;
+            if (authorisationMid.IsSet)
+                result.AuthorisationMid = authorisationMid.Value;
+            if (authorisedAmountCurrency.IsSet)
+                result.AuthorisedAmountCurrency = authorisedAmountCurrency.Value;
+            if (authorisedAmountValue.IsSet)
+                result.AuthorisedAmountValue = authorisedAmountValue.Value;
+            if (avsResult.IsSet)
+                result.AvsResult = avsResult.Value;
+            if (avsResultRaw.IsSet)
+                result.AvsResultRaw = avsResultRaw.Value;
+            if (bic.IsSet)
+                result.Bic = bic.Value;
+            if (coBrandedWith.IsSet)
+                result.CoBrandedWith = coBrandedWith.Value;
+            if (cvcResult.IsSet)
+                result.CvcResult = cvcResult.Value;
+            if (cvcResultRaw.IsSet)
+                result.CvcResultRaw = cvcResultRaw.Value;
+            if (dsTransID.IsSet)
+                result.DsTransID = dsTransID.Value;
+            if (eci.IsSet)
+                result.Eci = eci.Value;
+            if (expiryDate.IsSet)
+                result.ExpiryDate = expiryDate.Value;
+            if (extraCostsCurrency.IsSet)
+                result.ExtraCostsCurrency = extraCostsCurrency.Value;
+            if (extraCostsValue.IsSet)
+                result.ExtraCostsValue = extraCostsValue.Value;
+            if (fraudCheckItemNrFraudCheckname.IsSet)
+                result.FraudCheckItemNrFraudCheckname = fraudCheckItemNrFraudCheckname.Value;
+            if (fraudManualReview.IsSet)
+                result.FraudManualReview = fraudManualReview.Value;
+            if (fraudResultType.IsSet)
+                result.FraudResultType = fraudResultType.Value;
+            if (fraudRiskLevel.IsSet)
+                result.FraudRiskLevel = fraudRiskLevel.Value;
+            if (fundingSource.IsSet)
+                result.FundingSource = fundingSource.Value;
+            if (fundsAvailability.IsSet)
+                result.FundsAvailability = fundsAvailability.Value;
+            if (inferredRefusalReason.IsSet)
+                result.InferredRefusalReason = inferredRefusalReason.Value;
+            if (isCardCommercial.IsSet)
+                result.IsCardCommercial = isCardCommercial.Value;
+            if (issuerCountry.IsSet)
+                result.IssuerCountry = issuerCountry.Value;
+            if (liabilityShift.IsSet)
+                result.LiabilityShift = liabilityShift.Value;
+            if (mcBankNetReferenceNumber.IsSet)
+                result.McBankNetReferenceNumber = mcBankNetReferenceNumber.Value;
+            if (merchantAdviceCode.IsSet)
+                result.MerchantAdviceCode = merchantAdviceCode.Value;
+            if (merchantReference.IsSet)
+                result.MerchantReference = merchantReference.Value;
+            if (networkTxReference.IsSet)
+                result.NetworkTxReference = networkTxReference.Value;
+            if (ownerName.IsSet)
+                result.OwnerName = ownerName.Value;
+            if (paymentAccountReference.IsSet)
+                result.PaymentAccountReference = paymentAccountReference.Value;
+            if (paymentMethod.IsSet)
+                result.PaymentMethod = paymentMethod.Value;
+            if (paymentMethodVariant.IsSet)
+                result.PaymentMethodVariant = paymentMethodVariant.Value;
+            if (payoutEligible.IsSet)
+                result.PayoutEligible = payoutEligible.Value;
+            if (realtimeAccountUpdaterStatus.IsSet)
+                result.RealtimeAccountUpdaterStatus = realtimeAccountUpdaterStatus.Value;
+            if (receiptFreeText.IsSet)
+                result.ReceiptFreeText = receiptFreeText.Value;
+            if (recurringContractTypes.IsSet)
+                result.RecurringContractTypes = recurringContractTypes.Value;
+            if (recurringFirstPspReference.IsSet)
+                result.RecurringFirstPspReference = recurringFirstPspReference.Value;
+            if (recurringRecurringDetailReference.IsSet)
+                result.RecurringRecurringDetailReference = recurringRecurringDetailReference.Value;
+            if (recurringShopperReference.IsSet)
+                result.RecurringShopperReference = recurringShopperReference.Value;
+            if (recurringProcessingModel.IsSet)
+                result.RecurringProcessingModel = recurringProcessingModel.Value;
+            if (referred.IsSet)
+                result.Referred = referred.Value;
+            if (refusalReasonRaw.IsSet)
+                result.RefusalReasonRaw = refusalReasonRaw.Value;
+            if (requestAmount.IsSet)
+                result.RequestAmount = requestAmount.Value;
+            if (requestCurrencyCode.IsSet)
+                result.RequestCurrencyCode = requestCurrencyCode.Value;
+            if (shopperInteraction.IsSet)
+                result.ShopperInteraction = shopperInteraction.Value;
+            if (shopperReference.IsSet)
+                result.ShopperReference = shopperReference.Value;
+            if (terminalId.IsSet)
+                result.TerminalId = terminalId.Value;
+            if (threeDAuthenticated.IsSet)
+                result.ThreeDAuthenticated = threeDAuthenticated.Value;
+            if (threeDAuthenticatedResponse.IsSet)
+                result.ThreeDAuthenticatedResponse = threeDAuthenticatedResponse.Value;
+            if (threeDOffered.IsSet)
+                result.ThreeDOffered = threeDOffered.Value;
+            if (threeDOfferedResponse.IsSet)
+                result.ThreeDOfferedResponse = threeDOfferedResponse.Value;
+            if (threeDSVersion.IsSet)
+                result.ThreeDSVersion = threeDSVersion.Value;
+            if (tokenizationShopperReference.IsSet)
+                result.TokenizationShopperReference = tokenizationShopperReference.Value;
+            if (tokenizationStoreOperationType.IsSet)
+                result.TokenizationStoreOperationType = tokenizationStoreOperationType.Value;
+            if (tokenizationStoredPaymentMethodId.IsSet)
+                result.TokenizationStoredPaymentMethodId = tokenizationStoredPaymentMethodId.Value;
+            if (visaTransactionId.IsSet)
+                result.VisaTransactionId = visaTransactionId.Value;
+            if (xid.IsSet)
+                result.Xid = xid.Value;
+            return result;
         }
 
         /// <summary>
@@ -1915,13 +1907,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ResponseAdditionalDataCommon responseAdditionalDataCommon, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, responseAdditionalDataCommon, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -1932,7 +1924,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ResponseAdditionalDataCommon responseAdditionalDataCommon, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (responseAdditionalDataCommon._AcquirerAccountCodeOption.IsSet)
                 if (responseAdditionalDataCommon.AcquirerAccountCode != null)
                     writer.WriteString("acquirerAccountCode", responseAdditionalDataCommon.AcquirerAccountCode);
@@ -2021,18 +2013,18 @@ namespace Adyen.Checkout.Models
                 if (responseAdditionalDataCommon.FraudManualReview != null)
                     writer.WriteString("fraudManualReview", responseAdditionalDataCommon.FraudManualReview);
 
-            if (responseAdditionalDataCommon._FraudResultTypeOption.IsSet && responseAdditionalDataCommon.FraudResultType != null) 
+            if (responseAdditionalDataCommon._FraudResultTypeOption.IsSet && responseAdditionalDataCommon.FraudResultType != null)
             {
                 string? fraudResultTypeRawValue = ResponseAdditionalDataCommon.FraudResultTypeEnum.ToJsonValue(responseAdditionalDataCommon._FraudResultTypeOption.Value!.Value);
                 writer.WriteString("fraudResultType", fraudResultTypeRawValue);
             }
-            
-            if (responseAdditionalDataCommon._FraudRiskLevelOption.IsSet && responseAdditionalDataCommon.FraudRiskLevel != null) 
+
+            if (responseAdditionalDataCommon._FraudRiskLevelOption.IsSet && responseAdditionalDataCommon.FraudRiskLevel != null)
             {
                 string? fraudRiskLevelRawValue = ResponseAdditionalDataCommon.FraudRiskLevelEnum.ToJsonValue(responseAdditionalDataCommon._FraudRiskLevelOption.Value!.Value);
                 writer.WriteString("fraudRiskLevel", fraudRiskLevelRawValue);
             }
-            
+
             if (responseAdditionalDataCommon._FundingSourceOption.IsSet)
                 if (responseAdditionalDataCommon.FundingSource != null)
                     writer.WriteString("fundingSource", responseAdditionalDataCommon.FundingSource);
@@ -2117,12 +2109,12 @@ namespace Adyen.Checkout.Models
                 if (responseAdditionalDataCommon.RecurringShopperReference != null)
                     writer.WriteString("recurring.shopperReference", responseAdditionalDataCommon.RecurringShopperReference);
 
-            if (responseAdditionalDataCommon._RecurringProcessingModelOption.IsSet && responseAdditionalDataCommon.RecurringProcessingModel != null) 
+            if (responseAdditionalDataCommon._RecurringProcessingModelOption.IsSet && responseAdditionalDataCommon.RecurringProcessingModel != null)
             {
                 string? recurringProcessingModelRawValue = ResponseAdditionalDataCommon.RecurringProcessingModelEnum.ToJsonValue(responseAdditionalDataCommon._RecurringProcessingModelOption.Value!.Value);
                 writer.WriteString("recurringProcessingModel", recurringProcessingModelRawValue);
             }
-            
+
             if (responseAdditionalDataCommon._ReferredOption.IsSet)
                 if (responseAdditionalDataCommon.Referred != null)
                     writer.WriteString("referred", responseAdditionalDataCommon.Referred);
@@ -2175,12 +2167,12 @@ namespace Adyen.Checkout.Models
                 if (responseAdditionalDataCommon.TokenizationShopperReference != null)
                     writer.WriteString("tokenization.shopperReference", responseAdditionalDataCommon.TokenizationShopperReference);
 
-            if (responseAdditionalDataCommon._TokenizationStoreOperationTypeOption.IsSet && responseAdditionalDataCommon.TokenizationStoreOperationType != null) 
+            if (responseAdditionalDataCommon._TokenizationStoreOperationTypeOption.IsSet && responseAdditionalDataCommon.TokenizationStoreOperationType != null)
             {
                 string? tokenizationStoreOperationTypeRawValue = ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum.ToJsonValue(responseAdditionalDataCommon._TokenizationStoreOperationTypeOption.Value!.Value);
                 writer.WriteString("tokenization.store.operationType", tokenizationStoreOperationTypeRawValue);
             }
-            
+
             if (responseAdditionalDataCommon._TokenizationStoredPaymentMethodIdOption.IsSet)
                 if (responseAdditionalDataCommon.TokenizationStoredPaymentMethodId != null)
                     writer.WriteString("tokenization.storedPaymentMethodId", responseAdditionalDataCommon.TokenizationStoredPaymentMethodId);

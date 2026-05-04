@@ -34,31 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationInfo" /> class.
         /// </summary>
-        /// <param name="adyenLibrary">adyenLibrary</param>
-        /// <param name="adyenPaymentSource">adyenPaymentSource</param>
-        /// <param name="externalPlatform">externalPlatform</param>
-        /// <param name="merchantApplication">merchantApplication</param>
-        /// <param name="merchantDevice">merchantDevice</param>
-        /// <param name="shopperInteractionDevice">shopperInteractionDevice</param>
-        [JsonConstructor]
-        public ApplicationInfo(Option<CommonField?> adyenLibrary = default, Option<CommonField?> adyenPaymentSource = default, Option<ExternalPlatform?> externalPlatform = default, Option<CommonField?> merchantApplication = default, Option<MerchantDevice?> merchantDevice = default, Option<ShopperInteractionDevice?> shopperInteractionDevice = default)
-        {
-            _AdyenLibraryOption = adyenLibrary;
-            _AdyenPaymentSourceOption = adyenPaymentSource;
-            _ExternalPlatformOption = externalPlatform;
-            _MerchantApplicationOption = merchantApplication;
-            _MerchantDeviceOption = merchantDevice;
-            _ShopperInteractionDeviceOption = shopperInteractionDevice;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ApplicationInfo()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -225,9 +204,22 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ApplicationInfo(adyenLibrary, adyenPaymentSource, externalPlatform, merchantApplication, merchantDevice, shopperInteractionDevice);
+
+            var result = new ApplicationInfo();
+            if (adyenLibrary.IsSet)
+                result.AdyenLibrary = adyenLibrary.Value;
+            if (adyenPaymentSource.IsSet)
+                result.AdyenPaymentSource = adyenPaymentSource.Value;
+            if (externalPlatform.IsSet)
+                result.ExternalPlatform = externalPlatform.Value;
+            if (merchantApplication.IsSet)
+                result.MerchantApplication = merchantApplication.Value;
+            if (merchantDevice.IsSet)
+                result.MerchantDevice = merchantDevice.Value;
+            if (shopperInteractionDevice.IsSet)
+                result.ShopperInteractionDevice = shopperInteractionDevice.Value;
+            return result;
         }
 
         /// <summary>
@@ -238,13 +230,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ApplicationInfo applicationInfo, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, applicationInfo, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -255,7 +247,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ApplicationInfo applicationInfo, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (applicationInfo._AdyenLibraryOption.IsSet)
             {
                 writer.WritePropertyName("adyenLibrary");

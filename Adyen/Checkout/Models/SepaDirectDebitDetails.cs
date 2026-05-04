@@ -34,37 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="SepaDirectDebitDetails" /> class.
         /// </summary>
-        /// <param name="iban">The International Bank Account Number (IBAN).</param>
-        /// <param name="ownerName">The name of the bank account holder.</param>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="dueDate">The date that the the shopper&#39;s bank account is charged.</param>
-        /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="transferInstrumentId">The unique identifier of your user&#39;s verified transfer instrument, which you can use to top up their balance accounts.</param>
-        /// <param name="type">**sepadirectdebit** (default to TypeEnum.Sepadirectdebit)</param>
-        [JsonConstructor]
-        public SepaDirectDebitDetails(string iban, string ownerName, Option<string?> checkoutAttemptId = default, Option<string?> dueDate = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<string?> transferInstrumentId = default, Option<TypeEnum?> type = default)
-        {
-            Iban = iban;
-            OwnerName = ownerName;
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _DueDateOption = dueDate;
-            _RecurringDetailReferenceOption = recurringDetailReference;
-            _SdkDataOption = sdkData;
-            _StoredPaymentMethodIdOption = storedPaymentMethodId;
-            _TransferInstrumentIdOption = transferInstrumentId;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public SepaDirectDebitDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -88,7 +61,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.SepadirectdebitAmazonpay - sepadirectdebit_amazonpay
             /// </summary>
             public static readonly TypeEnum SepadirectdebitAmazonpay = new("sepadirectdebit_amazonpay");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -100,24 +73,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -131,7 +104,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -142,18 +115,18 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Sepadirectdebit)
                     return "sepadirectdebit";
-                
+
                 if (value == TypeEnum.SepadirectdebitAmazonpay)
                     return "sepadirectdebit_amazonpay";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -385,14 +358,31 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!iban.IsSet)
                 throw new ArgumentException("Property is required for class SepaDirectDebitDetails.", nameof(iban));
 
             if (!ownerName.IsSet)
                 throw new ArgumentException("Property is required for class SepaDirectDebitDetails.", nameof(ownerName));
 
-            return new SepaDirectDebitDetails(iban.Value!, ownerName.Value!, checkoutAttemptId, dueDate, recurringDetailReference, sdkData, storedPaymentMethodId, transferInstrumentId, type);
+            var result = new SepaDirectDebitDetails();
+            result.Iban = iban.Value!;
+            result.OwnerName = ownerName.Value!;
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (dueDate.IsSet)
+                result.DueDate = dueDate.Value;
+            if (recurringDetailReference.IsSet)
+                result.RecurringDetailReference = recurringDetailReference.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (storedPaymentMethodId.IsSet)
+                result.StoredPaymentMethodId = storedPaymentMethodId.Value;
+            if (transferInstrumentId.IsSet)
+                result.TransferInstrumentId = transferInstrumentId.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -403,13 +393,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, SepaDirectDebitDetails sepaDirectDebitDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, sepaDirectDebitDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -420,7 +410,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, SepaDirectDebitDetails sepaDirectDebitDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (sepaDirectDebitDetails.Iban != null)
                 writer.WriteString("iban", sepaDirectDebitDetails.Iban);
 
@@ -451,7 +441,7 @@ namespace Adyen.Checkout.Models
                 if (sepaDirectDebitDetails.TransferInstrumentId != null)
                     writer.WriteString("transferInstrumentId", sepaDirectDebitDetails.TransferInstrumentId);
 
-            if (sepaDirectDebitDetails._TypeOption.IsSet && sepaDirectDebitDetails.Type != null) 
+            if (sepaDirectDebitDetails._TypeOption.IsSet && sepaDirectDebitDetails.Type != null)
             {
                 string? typeRawValue = SepaDirectDebitDetails.TypeEnum.ToJsonValue(sepaDirectDebitDetails._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);

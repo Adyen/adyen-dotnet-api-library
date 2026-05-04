@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CancelOrderRequest" /> class.
         /// </summary>
-        /// <param name="merchantAccount">The merchant account identifier that orderData belongs to.</param>
-        /// <param name="order">order</param>
-        [JsonConstructor]
-        public CancelOrderRequest(string merchantAccount, EncryptedOrderData order)
-        {
-            MerchantAccount = merchantAccount;
-            Order = order;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CancelOrderRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -132,14 +119,17 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!merchantAccount.IsSet)
                 throw new ArgumentException("Property is required for class CancelOrderRequest.", nameof(merchantAccount));
 
             if (!order.IsSet)
                 throw new ArgumentException("Property is required for class CancelOrderRequest.", nameof(order));
 
-            return new CancelOrderRequest(merchantAccount.Value!, order.Value!);
+            var result = new CancelOrderRequest();
+            result.MerchantAccount = merchantAccount.Value!;
+            result.Order = order.Value!;
+            return result;
         }
 
         /// <summary>
@@ -150,13 +140,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CancelOrderRequest cancelOrderRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, cancelOrderRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -167,7 +157,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CancelOrderRequest cancelOrderRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (cancelOrderRequest.MerchantAccount != null)
                 writer.WriteString("merchantAccount", cancelOrderRequest.MerchantAccount);
 

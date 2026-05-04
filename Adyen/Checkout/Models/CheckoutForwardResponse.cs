@@ -34,27 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutForwardResponse" /> class.
         /// </summary>
-        /// <param name="response">response</param>
-        /// <param name="merchantReference">Merchant defined payment reference.</param>
-        /// <param name="pspReference">Adyen&#39;s 16-character reference associated with the transaction/request. This value is globally unique. Use this reference when you communicate with us about this request.</param>
-        /// <param name="storedPaymentMethodId">The unique identifier of the token.</param>
-        [JsonConstructor]
-        public CheckoutForwardResponse(CheckoutForwardResponseFromUrl response, Option<string?> merchantReference = default, Option<string?> pspReference = default, Option<string?> storedPaymentMethodId = default)
-        {
-            Response = response;
-            _MerchantReferenceOption = merchantReference;
-            _PspReferenceOption = pspReference;
-            _StoredPaymentMethodIdOption = storedPaymentMethodId;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CheckoutForwardResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -181,11 +164,19 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!response.IsSet)
                 throw new ArgumentException("Property is required for class CheckoutForwardResponse.", nameof(response));
 
-            return new CheckoutForwardResponse(response.Value!, merchantReference, pspReference, storedPaymentMethodId);
+            var result = new CheckoutForwardResponse();
+            result.Response = response.Value!;
+            if (merchantReference.IsSet)
+                result.MerchantReference = merchantReference.Value;
+            if (pspReference.IsSet)
+                result.PspReference = pspReference.Value;
+            if (storedPaymentMethodId.IsSet)
+                result.StoredPaymentMethodId = storedPaymentMethodId.Value;
+            return result;
         }
 
         /// <summary>
@@ -196,13 +187,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CheckoutForwardResponse checkoutForwardResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, checkoutForwardResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -213,7 +204,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CheckoutForwardResponse checkoutForwardResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WritePropertyName("response");
             JsonSerializer.Serialize(writer, checkoutForwardResponse.Response, jsonSerializerOptions);
             if (checkoutForwardResponse._MerchantReferenceOption.IsSet)

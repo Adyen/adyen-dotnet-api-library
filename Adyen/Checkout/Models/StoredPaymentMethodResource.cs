@@ -34,57 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredPaymentMethodResource" /> class.
         /// </summary>
-        /// <param name="brand">The brand of the card.</param>
-        /// <param name="cardBin">The bank identification number (BIN) of the card.</param>
-        /// <param name="expiryMonth">The month the card expires.</param>
-        /// <param name="expiryYear">The last two digits of the year the card expires. For example, **22** for the year 2022.</param>
-        /// <param name="externalResponseCode">The response code returned by an external system (for example after a provisioning operation).</param>
-        /// <param name="externalTokenReference">The token reference of a linked token in an external system (for example a network token reference).</param>
-        /// <param name="holderName">The unique payment method code.</param>
-        /// <param name="iban">The IBAN of the bank account.</param>
-        /// <param name="id">A unique identifier of this stored payment method.</param>
-        /// <param name="issuerName">The name of the issuer of token or card.</param>
-        /// <param name="lastFour">The last four digits of the PAN.</param>
-        /// <param name="mandate">mandate</param>
-        /// <param name="name">The display name of the stored payment method.</param>
-        /// <param name="networkTxReference">Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID.</param>
-        /// <param name="ownerName">The name of the bank account holder.</param>
-        /// <param name="shopperEmail">The shopper’s email address.</param>
-        /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.</param>
-        /// <param name="supportedRecurringProcessingModels">Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount.</param>
-        /// <param name="type">The type of payment method.</param>
-        [JsonConstructor]
-        public StoredPaymentMethodResource(Option<string?> brand = default, Option<string?> cardBin = default, Option<string?> expiryMonth = default, Option<string?> expiryYear = default, Option<string?> externalResponseCode = default, Option<string?> externalTokenReference = default, Option<string?> holderName = default, Option<string?> iban = default, Option<string?> id = default, Option<string?> issuerName = default, Option<string?> lastFour = default, Option<TokenMandate?> mandate = default, Option<string?> name = default, Option<string?> networkTxReference = default, Option<string?> ownerName = default, Option<string?> shopperEmail = default, Option<string?> shopperReference = default, Option<List<string>?> supportedRecurringProcessingModels = default, Option<string?> type = default)
-        {
-            _BrandOption = brand;
-            _CardBinOption = cardBin;
-            _ExpiryMonthOption = expiryMonth;
-            _ExpiryYearOption = expiryYear;
-            _ExternalResponseCodeOption = externalResponseCode;
-            _ExternalTokenReferenceOption = externalTokenReference;
-            _HolderNameOption = holderName;
-            _IbanOption = iban;
-            _IdOption = id;
-            _IssuerNameOption = issuerName;
-            _LastFourOption = lastFour;
-            _MandateOption = mandate;
-            _NameOption = name;
-            _NetworkTxReferenceOption = networkTxReference;
-            _OwnerNameOption = ownerName;
-            _ShopperEmailOption = shopperEmail;
-            _ShopperReferenceOption = shopperReference;
-            _SupportedRecurringProcessingModelsOption = supportedRecurringProcessingModels;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public StoredPaymentMethodResource()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -503,9 +456,48 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new StoredPaymentMethodResource(brand, cardBin, expiryMonth, expiryYear, externalResponseCode, externalTokenReference, holderName, iban, id, issuerName, lastFour, mandate, name, networkTxReference, ownerName, shopperEmail, shopperReference, supportedRecurringProcessingModels, type);
+
+            var result = new StoredPaymentMethodResource();
+            if (brand.IsSet)
+                result.Brand = brand.Value;
+            if (cardBin.IsSet)
+                result.CardBin = cardBin.Value;
+            if (expiryMonth.IsSet)
+                result.ExpiryMonth = expiryMonth.Value;
+            if (expiryYear.IsSet)
+                result.ExpiryYear = expiryYear.Value;
+            if (externalResponseCode.IsSet)
+                result.ExternalResponseCode = externalResponseCode.Value;
+            if (externalTokenReference.IsSet)
+                result.ExternalTokenReference = externalTokenReference.Value;
+            if (holderName.IsSet)
+                result.HolderName = holderName.Value;
+            if (iban.IsSet)
+                result.Iban = iban.Value;
+            if (id.IsSet)
+                result.Id = id.Value;
+            if (issuerName.IsSet)
+                result.IssuerName = issuerName.Value;
+            if (lastFour.IsSet)
+                result.LastFour = lastFour.Value;
+            if (mandate.IsSet)
+                result.Mandate = mandate.Value;
+            if (name.IsSet)
+                result.Name = name.Value;
+            if (networkTxReference.IsSet)
+                result.NetworkTxReference = networkTxReference.Value;
+            if (ownerName.IsSet)
+                result.OwnerName = ownerName.Value;
+            if (shopperEmail.IsSet)
+                result.ShopperEmail = shopperEmail.Value;
+            if (shopperReference.IsSet)
+                result.ShopperReference = shopperReference.Value;
+            if (supportedRecurringProcessingModels.IsSet)
+                result.SupportedRecurringProcessingModels = supportedRecurringProcessingModels.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -516,13 +508,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, StoredPaymentMethodResource storedPaymentMethodResource, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, storedPaymentMethodResource, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -533,7 +525,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, StoredPaymentMethodResource storedPaymentMethodResource, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (storedPaymentMethodResource._BrandOption.IsSet)
                 if (storedPaymentMethodResource.Brand != null)
                     writer.WriteString("brand", storedPaymentMethodResource.Brand);

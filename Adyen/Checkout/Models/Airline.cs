@@ -34,45 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Airline" /> class.
         /// </summary>
-        /// <param name="passengerName">The passenger&#39;s name, initials, and title. * Format: last name + first name or initials + title * Example: *FLYER / MARY MS* * minLength: 1 character * maxLength: 20 characters * If you send more than 20 characters, the name is truncated * Must not start with a space or be all spaces. * Must not be all zeros.</param>
-        /// <param name="agency">agency</param>
-        /// <param name="boardingFee">The amount charged for boarding the plane, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Encoding: Numeric * minLength: 1 character * maxLength: 11 characters</param>
-        /// <param name="code">The [IATA](https://www.iata.org/services/pages/codes.aspx) 3-digit accounting code (PAX) that identifies the carrier. * Format: IATA 3-digit accounting code (PAX) * Example: KLM &#x3D; 074 * minLength: 3 characters * maxLength: 3 characters * Must not start with a space or be all spaces. * Must not be all zeros.</param>
-        /// <param name="computerizedReservationSystem">The [CRS](https://en.wikipedia.org/wiki/Computer_reservation_system) used to make the reservation and purchase the ticket. * Encoding: ASCII * minLength: 4 characters * maxLength: 4 characters</param>
-        /// <param name="customerReferenceNumber">The alphanumeric customer reference number. * Encoding: ASCII * maxLength: 20 characters * If you send more than 20 characters, the customer reference number is truncated * Must not start with a space or be all spaces.</param>
-        /// <param name="designatorCode">The [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX) that identifies the carrier. * Encoding: ASCII * Example: KLM &#x3D; KL * minLength: 2 characters * maxLength: 2 characters * Must not start with a space or be all spaces.</param>
-        /// <param name="documentType">A code that identifies the type of item bought. The description of the code can appear on credit card statements. * Encoding: ASCII * Example: Passenger ticket &#x3D; 01 * minLength: 2 characters * maxLength: 2 characters</param>
-        /// <param name="flightDate">The flight departure date. Time is optional. * Format for date only: &#x60;yyyy-MM-dd&#x60; * Format for date and time: &#x60;yyyy-MM-ddTHH:mm&#x60; * Use local time of departure airport. * minLength: 10 characters * maxLength: 16 characters</param>
-        /// <param name="legs">legs</param>
-        /// <param name="passengers">passengers</param>
-        /// <param name="ticket">ticket</param>
-        /// <param name="travelAgency">travelAgency</param>
-        [JsonConstructor]
-        public Airline(string passengerName, Option<Agency?> agency = default, Option<long?> boardingFee = default, Option<string?> code = default, Option<string?> computerizedReservationSystem = default, Option<string?> customerReferenceNumber = default, Option<string?> designatorCode = default, Option<string?> documentType = default, Option<DateTimeOffset?> flightDate = default, Option<List<Leg>?> legs = default, Option<List<Passenger>?> passengers = default, Option<Ticket?> ticket = default, Option<TravelAgency?> travelAgency = default)
-        {
-            PassengerName = passengerName;
-            _AgencyOption = agency;
-            _BoardingFeeOption = boardingFee;
-            _CodeOption = code;
-            _ComputerizedReservationSystemOption = computerizedReservationSystem;
-            _CustomerReferenceNumberOption = customerReferenceNumber;
-            _DesignatorCodeOption = designatorCode;
-            _DocumentTypeOption = documentType;
-            _FlightDateOption = flightDate;
-            _LegsOption = legs;
-            _PassengersOption = passengers;
-            _TicketOption = ticket;
-            _TravelAgencyOption = travelAgency;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public Airline()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -371,11 +336,37 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!passengerName.IsSet)
                 throw new ArgumentException("Property is required for class Airline.", nameof(passengerName));
 
-            return new Airline(passengerName.Value!, agency, boardingFee, code, computerizedReservationSystem, customerReferenceNumber, designatorCode, documentType, flightDate, legs, passengers, ticket, travelAgency);
+            var result = new Airline();
+            result.PassengerName = passengerName.Value!;
+            if (agency.IsSet)
+                result.Agency = agency.Value;
+            if (boardingFee.IsSet)
+                result.BoardingFee = boardingFee.Value;
+            if (code.IsSet)
+                result.Code = code.Value;
+            if (computerizedReservationSystem.IsSet)
+                result.ComputerizedReservationSystem = computerizedReservationSystem.Value;
+            if (customerReferenceNumber.IsSet)
+                result.CustomerReferenceNumber = customerReferenceNumber.Value;
+            if (designatorCode.IsSet)
+                result.DesignatorCode = designatorCode.Value;
+            if (documentType.IsSet)
+                result.DocumentType = documentType.Value;
+            if (flightDate.IsSet)
+                result.FlightDate = flightDate.Value;
+            if (legs.IsSet)
+                result.Legs = legs.Value;
+            if (passengers.IsSet)
+                result.Passengers = passengers.Value;
+            if (ticket.IsSet)
+                result.Ticket = ticket.Value;
+            if (travelAgency.IsSet)
+                result.TravelAgency = travelAgency.Value;
+            return result;
         }
 
         /// <summary>
@@ -386,13 +377,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, Airline airline, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, airline, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -403,7 +394,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, Airline airline, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (airline.PassengerName != null)
                 writer.WriteString("passengerName", airline.PassengerName);
 

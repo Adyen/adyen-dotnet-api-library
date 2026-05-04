@@ -34,41 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CashAppDetails" /> class.
         /// </summary>
-        /// <param name="cashtag">Cash App issued cashtag for recurring payment</param>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="customerId">Cash App issued customerId for recurring payment</param>
-        /// <param name="grantId">Cash App issued grantId for one time payment</param>
-        /// <param name="onFileGrantId">Cash App issued onFileGrantId for recurring payment</param>
-        /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="requestId">Cash App request id</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="subtype">The payment method subtype.</param>
-        /// <param name="type">cashapp (default to TypeEnum.Cashapp)</param>
-        [JsonConstructor]
-        public CashAppDetails(Option<string?> cashtag = default, Option<string?> checkoutAttemptId = default, Option<string?> customerId = default, Option<string?> grantId = default, Option<string?> onFileGrantId = default, Option<string?> recurringDetailReference = default, Option<string?> requestId = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<string?> subtype = default, Option<TypeEnum?> type = default)
-        {
-            _CashtagOption = cashtag;
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _CustomerIdOption = customerId;
-            _GrantIdOption = grantId;
-            _OnFileGrantIdOption = onFileGrantId;
-            _RecurringDetailReferenceOption = recurringDetailReference;
-            _RequestIdOption = requestId;
-            _SdkDataOption = sdkData;
-            _StoredPaymentMethodIdOption = storedPaymentMethodId;
-            _SubtypeOption = subtype;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CashAppDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -87,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.Cashapp - cashapp
             /// </summary>
             public static readonly TypeEnum Cashapp = new("cashapp");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -99,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -129,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -140,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Cashapp)
                     return "cashapp";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -432,9 +401,32 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new CashAppDetails(cashtag, checkoutAttemptId, customerId, grantId, onFileGrantId, recurringDetailReference, requestId, sdkData, storedPaymentMethodId, subtype, type);
+
+            var result = new CashAppDetails();
+            if (cashtag.IsSet)
+                result.Cashtag = cashtag.Value;
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (customerId.IsSet)
+                result.CustomerId = customerId.Value;
+            if (grantId.IsSet)
+                result.GrantId = grantId.Value;
+            if (onFileGrantId.IsSet)
+                result.OnFileGrantId = onFileGrantId.Value;
+            if (recurringDetailReference.IsSet)
+                result.RecurringDetailReference = recurringDetailReference.Value;
+            if (requestId.IsSet)
+                result.RequestId = requestId.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (storedPaymentMethodId.IsSet)
+                result.StoredPaymentMethodId = storedPaymentMethodId.Value;
+            if (subtype.IsSet)
+                result.Subtype = subtype.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -445,13 +437,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CashAppDetails cashAppDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, cashAppDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -462,7 +454,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CashAppDetails cashAppDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (cashAppDetails._CashtagOption.IsSet)
                 if (cashAppDetails.Cashtag != null)
                     writer.WriteString("cashtag", cashAppDetails.Cashtag);
@@ -503,7 +495,7 @@ namespace Adyen.Checkout.Models
                 if (cashAppDetails.Subtype != null)
                     writer.WriteString("subtype", cashAppDetails.Subtype);
 
-            if (cashAppDetails._TypeOption.IsSet && cashAppDetails.Type != null) 
+            if (cashAppDetails._TypeOption.IsSet && cashAppDetails.Type != null)
             {
                 string? typeRawValue = CashAppDetails.TypeEnum.ToJsonValue(cashAppDetails._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);

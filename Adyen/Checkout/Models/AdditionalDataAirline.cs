@@ -34,77 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataAirline" /> class.
         /// </summary>
-        /// <param name="airlinePassengerName">The passenger&#39;s name, initials, and title. * Format: last name + first name or initials + title * Example: *FLYER / MARY MS* * minLength: 1 character * maxLength: 20 characters * If you send more than 20 characters, the name is truncated * Must not be all spaces  * Must not be all zeros.</param>
-        /// <param name="airlineAgencyInvoiceNumber">The reference number for the invoice, issued by the agency. * Encoding: ASCII * minLength: 1 character * maxLength: 6 characters</param>
-        /// <param name="airlineAgencyPlanName">The two-letter agency plan identifier. * Encoding: ASCII * minLength: 2 characters * maxLength: 2 characters</param>
-        /// <param name="airlineAirlineCode">The [IATA](https://www.iata.org/services/pages/codes.aspx) 3-digit accounting code (PAX) that identifies the carrier. * Format: IATA 3-digit accounting code (PAX) * Example: KLM &#x3D; 074 * minLength: 3 characters * maxLength: 3 characters * Must not be all spaces * Must not be all zeros.</param>
-        /// <param name="airlineAirlineDesignatorCode">The [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX) that identifies the carrier. * Encoding: ASCII * Example: KLM &#x3D; KL * minLength: 2 characters * maxLength: 2 characters * Must not be all spaces * Must not be all zeros.</param>
-        /// <param name="airlineBoardingFee">The amount charged for boarding the plane, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Encoding: Numeric * minLength: 1 character * maxLength: 18 characters</param>
-        /// <param name="airlineComputerizedReservationSystem">The [CRS](https://en.wikipedia.org/wiki/Computer_reservation_system) used to make the reservation and purchase the ticket. * Encoding: ASCII * minLength: 4 characters * maxLength: 4 characters</param>
-        /// <param name="airlineCustomerReferenceNumber">The alphanumeric customer reference number. * Encoding: ASCII * maxLength: 20 characters * If you send more than 20 characters, the customer reference number is truncated * Must not be all spaces</param>
-        /// <param name="airlineDocumentType">A code that identifies the type of item bought. The description of the code can appear on credit card statements. * Encoding: ASCII * Example: Passenger ticket &#x3D; 01 * minLength: 2 characters * maxLength: 2 characters</param>
-        /// <param name="airlineFlightDate">The flight departure date. Local time &#x60;(HH:mm)&#x60; is optional. * Date format: &#x60;yyyy-MM-dd&#x60; * Date and time format: &#x60;yyyy-MM-dd HH:mm&#x60; * minLength: 10 characters * maxLength: 16 characters</param>
-        /// <param name="airlineIssueDate">The date that the ticket was issued to the passenger. * minLength: 6 characters * maxLength: 6 characters * Date format: YYMMDD</param>
-        /// <param name="airlineLegCarrierCode">The [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX) that identifies the carrier. This field is required if the airline data includes leg details. * Example: KLM &#x3D; KL * minLength: 2 characters * maxLength: 2 characters * Must not be all spaces * Must not be all zeros.</param>
-        /// <param name="airlineLegClassOfTravel">A one-letter travel class identifier.  The following are common:  * F: first class * J: business class * Y: economy class * W: premium economy  * Encoding: ASCII * minLength: 1 character * maxLength: 1 character * Must not be all spaces * Must not be all zeros.</param>
-        /// <param name="airlineLegDateOfTravel">  Date and time of travel in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format &#x60;yyyy-MM-dd HH:mm&#x60;. * Encoding: ASCII * minLength: 16 characters * maxLength: 16 characters</param>
-        /// <param name="airlineLegDepartAirport">The [IATA](https://www.iata.org/services/pages/codes.aspx) three-letter airport code of the departure airport. This field is required if the airline data includes leg details.  * Encoding: ASCII * Example: Amsterdam &#x3D; AMS * minLength: 3 characters * maxLength: 3 characters * Must not be all spaces * Must not be all zeros.</param>
-        /// <param name="airlineLegDepartTax">The amount of [departure tax](https://en.wikipedia.org/wiki/Departure_tax) charged, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Encoding: Numeric * minLength: 1 * maxLength: 12 * Must not be all zeros.</param>
-        /// <param name="airlineLegDestinationCode">The [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code of the destination airport. This field is required if the airline data includes leg details. * Example: Amsterdam &#x3D; AMS * Encoding: ASCII * minLength: 3 characters * maxLength: 3 characters * Must not be all spaces * Must not be all zeros.</param>
-        /// <param name="airlineLegFareBaseCode">The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 15 characters * Must not be all spaces * Must not be all zeros.</param>
-        /// <param name="airlineLegFlightNumber">The flight identifier. * minLength: 1 character * maxLength: 5 characters * Must not be all spaces * Must not be all zeros.</param>
-        /// <param name="airlineLegStopOverCode">A one-letter code that indicates whether the passenger is entitled to make a stopover. Can be a space, O if the passenger is entitled to make a stopover, or X if they are not. * Encoding: ASCII * minLength: 1 character * maxLength: 1 character</param>
-        /// <param name="airlinePassengerDateOfBirth">The passenger&#39;s date of birth.  Date format: &#x60;yyyy-MM-dd&#x60; * minLength: 10 * maxLength: 10</param>
-        /// <param name="airlinePassengerFirstName">The passenger&#39;s first name. &gt; This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII</param>
-        /// <param name="airlinePassengerLastName">The passenger&#39;s last name. &gt; This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII</param>
-        /// <param name="airlinePassengerPhoneNumber">The passenger&#39;s phone number, including country code. This is an alphanumeric field that can include the &#39;+&#39; and &#39;-&#39; signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters</param>
-        /// <param name="airlinePassengerTravellerType">The IATA passenger type code (PTC). * Encoding: ASCII * minLength: 3 characters * maxLength: 6 characters</param>
-        /// <param name="airlineTicketIssueAddress">The address of the organization that issued the ticket. * minLength: 0 characters * maxLength: 16 characters</param>
-        /// <param name="airlineTicketNumber">The ticket&#39;s unique identifier. * minLength: 1 character * maxLength: 15 characters * Must not be all spaces * Must not be all zeros.</param>
-        /// <param name="airlineTravelAgencyCode">The unique identifier from IATA or ARC for the travel agency that issues the ticket. * Encoding: ASCII * minLength: 1 character * maxLength: 8 characters * Must not be all spaces * Must not be all zeros.</param>
-        /// <param name="airlineTravelAgencyName">The name of the travel agency.  * Encoding: ASCII * minLength: 1 character * maxLength: 25 characters * Must not be all spaces * Must not be all zeros.</param>
-        [JsonConstructor]
-        public AdditionalDataAirline(string airlinePassengerName, Option<string?> airlineAgencyInvoiceNumber = default, Option<string?> airlineAgencyPlanName = default, Option<string?> airlineAirlineCode = default, Option<string?> airlineAirlineDesignatorCode = default, Option<string?> airlineBoardingFee = default, Option<string?> airlineComputerizedReservationSystem = default, Option<string?> airlineCustomerReferenceNumber = default, Option<string?> airlineDocumentType = default, Option<string?> airlineFlightDate = default, Option<string?> airlineIssueDate = default, Option<string?> airlineLegCarrierCode = default, Option<string?> airlineLegClassOfTravel = default, Option<string?> airlineLegDateOfTravel = default, Option<string?> airlineLegDepartAirport = default, Option<string?> airlineLegDepartTax = default, Option<string?> airlineLegDestinationCode = default, Option<string?> airlineLegFareBaseCode = default, Option<string?> airlineLegFlightNumber = default, Option<string?> airlineLegStopOverCode = default, Option<string?> airlinePassengerDateOfBirth = default, Option<string?> airlinePassengerFirstName = default, Option<string?> airlinePassengerLastName = default, Option<string?> airlinePassengerPhoneNumber = default, Option<string?> airlinePassengerTravellerType = default, Option<string?> airlineTicketIssueAddress = default, Option<string?> airlineTicketNumber = default, Option<string?> airlineTravelAgencyCode = default, Option<string?> airlineTravelAgencyName = default)
-        {
-            AirlinePassengerName = airlinePassengerName;
-            _AirlineAgencyInvoiceNumberOption = airlineAgencyInvoiceNumber;
-            _AirlineAgencyPlanNameOption = airlineAgencyPlanName;
-            _AirlineAirlineCodeOption = airlineAirlineCode;
-            _AirlineAirlineDesignatorCodeOption = airlineAirlineDesignatorCode;
-            _AirlineBoardingFeeOption = airlineBoardingFee;
-            _AirlineComputerizedReservationSystemOption = airlineComputerizedReservationSystem;
-            _AirlineCustomerReferenceNumberOption = airlineCustomerReferenceNumber;
-            _AirlineDocumentTypeOption = airlineDocumentType;
-            _AirlineFlightDateOption = airlineFlightDate;
-            _AirlineIssueDateOption = airlineIssueDate;
-            _AirlineLegCarrierCodeOption = airlineLegCarrierCode;
-            _AirlineLegClassOfTravelOption = airlineLegClassOfTravel;
-            _AirlineLegDateOfTravelOption = airlineLegDateOfTravel;
-            _AirlineLegDepartAirportOption = airlineLegDepartAirport;
-            _AirlineLegDepartTaxOption = airlineLegDepartTax;
-            _AirlineLegDestinationCodeOption = airlineLegDestinationCode;
-            _AirlineLegFareBaseCodeOption = airlineLegFareBaseCode;
-            _AirlineLegFlightNumberOption = airlineLegFlightNumber;
-            _AirlineLegStopOverCodeOption = airlineLegStopOverCode;
-            _AirlinePassengerDateOfBirthOption = airlinePassengerDateOfBirth;
-            _AirlinePassengerFirstNameOption = airlinePassengerFirstName;
-            _AirlinePassengerLastNameOption = airlinePassengerLastName;
-            _AirlinePassengerPhoneNumberOption = airlinePassengerPhoneNumber;
-            _AirlinePassengerTravellerTypeOption = airlinePassengerTravellerType;
-            _AirlineTicketIssueAddressOption = airlineTicketIssueAddress;
-            _AirlineTicketNumberOption = airlineTicketNumber;
-            _AirlineTravelAgencyCodeOption = airlineTravelAgencyCode;
-            _AirlineTravelAgencyNameOption = airlineTravelAgencyName;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public AdditionalDataAirline()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -707,11 +640,69 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!airlinePassengerName.IsSet)
                 throw new ArgumentException("Property is required for class AdditionalDataAirline.", nameof(airlinePassengerName));
 
-            return new AdditionalDataAirline(airlinePassengerName.Value!, airlineAgencyInvoiceNumber, airlineAgencyPlanName, airlineAirlineCode, airlineAirlineDesignatorCode, airlineBoardingFee, airlineComputerizedReservationSystem, airlineCustomerReferenceNumber, airlineDocumentType, airlineFlightDate, airlineIssueDate, airlineLegCarrierCode, airlineLegClassOfTravel, airlineLegDateOfTravel, airlineLegDepartAirport, airlineLegDepartTax, airlineLegDestinationCode, airlineLegFareBaseCode, airlineLegFlightNumber, airlineLegStopOverCode, airlinePassengerDateOfBirth, airlinePassengerFirstName, airlinePassengerLastName, airlinePassengerPhoneNumber, airlinePassengerTravellerType, airlineTicketIssueAddress, airlineTicketNumber, airlineTravelAgencyCode, airlineTravelAgencyName);
+            var result = new AdditionalDataAirline();
+            result.AirlinePassengerName = airlinePassengerName.Value!;
+            if (airlineAgencyInvoiceNumber.IsSet)
+                result.AirlineAgencyInvoiceNumber = airlineAgencyInvoiceNumber.Value;
+            if (airlineAgencyPlanName.IsSet)
+                result.AirlineAgencyPlanName = airlineAgencyPlanName.Value;
+            if (airlineAirlineCode.IsSet)
+                result.AirlineAirlineCode = airlineAirlineCode.Value;
+            if (airlineAirlineDesignatorCode.IsSet)
+                result.AirlineAirlineDesignatorCode = airlineAirlineDesignatorCode.Value;
+            if (airlineBoardingFee.IsSet)
+                result.AirlineBoardingFee = airlineBoardingFee.Value;
+            if (airlineComputerizedReservationSystem.IsSet)
+                result.AirlineComputerizedReservationSystem = airlineComputerizedReservationSystem.Value;
+            if (airlineCustomerReferenceNumber.IsSet)
+                result.AirlineCustomerReferenceNumber = airlineCustomerReferenceNumber.Value;
+            if (airlineDocumentType.IsSet)
+                result.AirlineDocumentType = airlineDocumentType.Value;
+            if (airlineFlightDate.IsSet)
+                result.AirlineFlightDate = airlineFlightDate.Value;
+            if (airlineIssueDate.IsSet)
+                result.AirlineIssueDate = airlineIssueDate.Value;
+            if (airlineLegCarrierCode.IsSet)
+                result.AirlineLegCarrierCode = airlineLegCarrierCode.Value;
+            if (airlineLegClassOfTravel.IsSet)
+                result.AirlineLegClassOfTravel = airlineLegClassOfTravel.Value;
+            if (airlineLegDateOfTravel.IsSet)
+                result.AirlineLegDateOfTravel = airlineLegDateOfTravel.Value;
+            if (airlineLegDepartAirport.IsSet)
+                result.AirlineLegDepartAirport = airlineLegDepartAirport.Value;
+            if (airlineLegDepartTax.IsSet)
+                result.AirlineLegDepartTax = airlineLegDepartTax.Value;
+            if (airlineLegDestinationCode.IsSet)
+                result.AirlineLegDestinationCode = airlineLegDestinationCode.Value;
+            if (airlineLegFareBaseCode.IsSet)
+                result.AirlineLegFareBaseCode = airlineLegFareBaseCode.Value;
+            if (airlineLegFlightNumber.IsSet)
+                result.AirlineLegFlightNumber = airlineLegFlightNumber.Value;
+            if (airlineLegStopOverCode.IsSet)
+                result.AirlineLegStopOverCode = airlineLegStopOverCode.Value;
+            if (airlinePassengerDateOfBirth.IsSet)
+                result.AirlinePassengerDateOfBirth = airlinePassengerDateOfBirth.Value;
+            if (airlinePassengerFirstName.IsSet)
+                result.AirlinePassengerFirstName = airlinePassengerFirstName.Value;
+            if (airlinePassengerLastName.IsSet)
+                result.AirlinePassengerLastName = airlinePassengerLastName.Value;
+            if (airlinePassengerPhoneNumber.IsSet)
+                result.AirlinePassengerPhoneNumber = airlinePassengerPhoneNumber.Value;
+            if (airlinePassengerTravellerType.IsSet)
+                result.AirlinePassengerTravellerType = airlinePassengerTravellerType.Value;
+            if (airlineTicketIssueAddress.IsSet)
+                result.AirlineTicketIssueAddress = airlineTicketIssueAddress.Value;
+            if (airlineTicketNumber.IsSet)
+                result.AirlineTicketNumber = airlineTicketNumber.Value;
+            if (airlineTravelAgencyCode.IsSet)
+                result.AirlineTravelAgencyCode = airlineTravelAgencyCode.Value;
+            if (airlineTravelAgencyName.IsSet)
+                result.AirlineTravelAgencyName = airlineTravelAgencyName.Value;
+            return result;
         }
 
         /// <summary>
@@ -722,13 +713,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, AdditionalDataAirline additionalDataAirline, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, additionalDataAirline, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -739,7 +730,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, AdditionalDataAirline additionalDataAirline, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (additionalDataAirline.AirlinePassengerName != null)
                 writer.WriteString("airline.passenger_name", additionalDataAirline.AirlinePassengerName);
 

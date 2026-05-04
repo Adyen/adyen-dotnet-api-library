@@ -34,57 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDS2ResponseData" /> class.
         /// </summary>
-        /// <param name="acsChallengeMandated">acsChallengeMandated</param>
-        /// <param name="acsOperatorID">acsOperatorID</param>
-        /// <param name="acsReferenceNumber">acsReferenceNumber</param>
-        /// <param name="acsSignedContent">acsSignedContent</param>
-        /// <param name="acsTransID">acsTransID</param>
-        /// <param name="acsURL">acsURL</param>
-        /// <param name="authenticationType">authenticationType</param>
-        /// <param name="cardHolderInfo">cardHolderInfo</param>
-        /// <param name="cavvAlgorithm">cavvAlgorithm</param>
-        /// <param name="challengeIndicator">challengeIndicator</param>
-        /// <param name="dsReferenceNumber">dsReferenceNumber</param>
-        /// <param name="dsTransID">dsTransID</param>
-        /// <param name="exemptionIndicator">exemptionIndicator</param>
-        /// <param name="messageVersion">messageVersion</param>
-        /// <param name="riskScore">riskScore</param>
-        /// <param name="sdkEphemPubKey">sdkEphemPubKey</param>
-        /// <param name="threeDSServerTransID">threeDSServerTransID</param>
-        /// <param name="transStatus">transStatus</param>
-        /// <param name="transStatusReason">transStatusReason</param>
-        [JsonConstructor]
-        public ThreeDS2ResponseData(Option<string?> acsChallengeMandated = default, Option<string?> acsOperatorID = default, Option<string?> acsReferenceNumber = default, Option<string?> acsSignedContent = default, Option<string?> acsTransID = default, Option<string?> acsURL = default, Option<string?> authenticationType = default, Option<string?> cardHolderInfo = default, Option<string?> cavvAlgorithm = default, Option<string?> challengeIndicator = default, Option<string?> dsReferenceNumber = default, Option<string?> dsTransID = default, Option<string?> exemptionIndicator = default, Option<string?> messageVersion = default, Option<string?> riskScore = default, Option<string?> sdkEphemPubKey = default, Option<string?> threeDSServerTransID = default, Option<string?> transStatus = default, Option<string?> transStatusReason = default)
-        {
-            _AcsChallengeMandatedOption = acsChallengeMandated;
-            _AcsOperatorIDOption = acsOperatorID;
-            _AcsReferenceNumberOption = acsReferenceNumber;
-            _AcsSignedContentOption = acsSignedContent;
-            _AcsTransIDOption = acsTransID;
-            _AcsURLOption = acsURL;
-            _AuthenticationTypeOption = authenticationType;
-            _CardHolderInfoOption = cardHolderInfo;
-            _CavvAlgorithmOption = cavvAlgorithm;
-            _ChallengeIndicatorOption = challengeIndicator;
-            _DsReferenceNumberOption = dsReferenceNumber;
-            _DsTransIDOption = dsTransID;
-            _ExemptionIndicatorOption = exemptionIndicator;
-            _MessageVersionOption = messageVersion;
-            _RiskScoreOption = riskScore;
-            _SdkEphemPubKeyOption = sdkEphemPubKey;
-            _ThreeDSServerTransIDOption = threeDSServerTransID;
-            _TransStatusOption = transStatus;
-            _TransStatusReasonOption = transStatusReason;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ThreeDS2ResponseData()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -485,9 +438,48 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ThreeDS2ResponseData(acsChallengeMandated, acsOperatorID, acsReferenceNumber, acsSignedContent, acsTransID, acsURL, authenticationType, cardHolderInfo, cavvAlgorithm, challengeIndicator, dsReferenceNumber, dsTransID, exemptionIndicator, messageVersion, riskScore, sdkEphemPubKey, threeDSServerTransID, transStatus, transStatusReason);
+
+            var result = new ThreeDS2ResponseData();
+            if (acsChallengeMandated.IsSet)
+                result.AcsChallengeMandated = acsChallengeMandated.Value;
+            if (acsOperatorID.IsSet)
+                result.AcsOperatorID = acsOperatorID.Value;
+            if (acsReferenceNumber.IsSet)
+                result.AcsReferenceNumber = acsReferenceNumber.Value;
+            if (acsSignedContent.IsSet)
+                result.AcsSignedContent = acsSignedContent.Value;
+            if (acsTransID.IsSet)
+                result.AcsTransID = acsTransID.Value;
+            if (acsURL.IsSet)
+                result.AcsURL = acsURL.Value;
+            if (authenticationType.IsSet)
+                result.AuthenticationType = authenticationType.Value;
+            if (cardHolderInfo.IsSet)
+                result.CardHolderInfo = cardHolderInfo.Value;
+            if (cavvAlgorithm.IsSet)
+                result.CavvAlgorithm = cavvAlgorithm.Value;
+            if (challengeIndicator.IsSet)
+                result.ChallengeIndicator = challengeIndicator.Value;
+            if (dsReferenceNumber.IsSet)
+                result.DsReferenceNumber = dsReferenceNumber.Value;
+            if (dsTransID.IsSet)
+                result.DsTransID = dsTransID.Value;
+            if (exemptionIndicator.IsSet)
+                result.ExemptionIndicator = exemptionIndicator.Value;
+            if (messageVersion.IsSet)
+                result.MessageVersion = messageVersion.Value;
+            if (riskScore.IsSet)
+                result.RiskScore = riskScore.Value;
+            if (sdkEphemPubKey.IsSet)
+                result.SdkEphemPubKey = sdkEphemPubKey.Value;
+            if (threeDSServerTransID.IsSet)
+                result.ThreeDSServerTransID = threeDSServerTransID.Value;
+            if (transStatus.IsSet)
+                result.TransStatus = transStatus.Value;
+            if (transStatusReason.IsSet)
+                result.TransStatusReason = transStatusReason.Value;
+            return result;
         }
 
         /// <summary>
@@ -498,13 +490,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ThreeDS2ResponseData threeDS2ResponseData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, threeDS2ResponseData, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -515,7 +507,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ThreeDS2ResponseData threeDS2ResponseData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (threeDS2ResponseData._AcsChallengeMandatedOption.IsSet)
                 if (threeDS2ResponseData.AcsChallengeMandated != null)
                     writer.WriteString("acsChallengeMandated", threeDS2ResponseData.AcsChallengeMandated);

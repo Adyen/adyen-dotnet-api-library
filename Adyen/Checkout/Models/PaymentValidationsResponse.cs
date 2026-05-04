@@ -34,21 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentValidationsResponse" /> class.
         /// </summary>
-        /// <param name="name">name</param>
-        [JsonConstructor]
-        public PaymentValidationsResponse(Option<PaymentValidationsNameResponse?> name = default)
-        {
-            _NameOption = name;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentValidationsResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -125,9 +114,12 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new PaymentValidationsResponse(name);
+
+            var result = new PaymentValidationsResponse();
+            if (name.IsSet)
+                result.Name = name.Value;
+            return result;
         }
 
         /// <summary>
@@ -138,13 +130,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentValidationsResponse paymentValidationsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentValidationsResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -155,7 +147,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentValidationsResponse paymentValidationsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paymentValidationsResponse._NameOption.IsSet)
             {
                 writer.WritePropertyName("name");

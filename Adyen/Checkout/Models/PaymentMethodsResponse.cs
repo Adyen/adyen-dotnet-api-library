@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodsResponse" /> class.
         /// </summary>
-        /// <param name="paymentMethods">Detailed list of payment methods required to generate payment forms.</param>
-        /// <param name="storedPaymentMethods">List of all stored payment methods.</param>
-        [JsonConstructor]
-        public PaymentMethodsResponse(Option<List<PaymentMethod>?> paymentMethods = default, Option<List<StoredPaymentMethod>?> storedPaymentMethods = default)
-        {
-            _PaymentMethodsOption = paymentMethods;
-            _StoredPaymentMethodsOption = storedPaymentMethods;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentMethodsResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -147,9 +134,14 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new PaymentMethodsResponse(paymentMethods, storedPaymentMethods);
+
+            var result = new PaymentMethodsResponse();
+            if (paymentMethods.IsSet)
+                result.PaymentMethods = paymentMethods.Value;
+            if (storedPaymentMethods.IsSet)
+                result.StoredPaymentMethods = storedPaymentMethods.Value;
+            return result;
         }
 
         /// <summary>
@@ -160,13 +152,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentMethodsResponse paymentMethodsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentMethodsResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -177,7 +169,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentMethodsResponse paymentMethodsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paymentMethodsResponse._PaymentMethodsOption.IsSet)
             {
                 writer.WritePropertyName("paymentMethods");

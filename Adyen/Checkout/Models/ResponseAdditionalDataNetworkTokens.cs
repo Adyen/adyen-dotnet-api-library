@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataNetworkTokens" /> class.
         /// </summary>
-        /// <param name="networkTokenAvailable">Indicates whether a network token is available for the specified card.</param>
-        /// <param name="networkTokenBin">The Bank Identification Number of a tokenized card, which is the first six digits of a card number.</param>
-        /// <param name="networkTokenTokenSummary">The last four digits of a network token.</param>
-        [JsonConstructor]
-        public ResponseAdditionalDataNetworkTokens(Option<string?> networkTokenAvailable = default, Option<string?> networkTokenBin = default, Option<string?> networkTokenTokenSummary = default)
-        {
-            _NetworkTokenAvailableOption = networkTokenAvailable;
-            _NetworkTokenBinOption = networkTokenBin;
-            _NetworkTokenTokenSummaryOption = networkTokenTokenSummary;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ResponseAdditionalDataNetworkTokens()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -168,9 +153,16 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ResponseAdditionalDataNetworkTokens(networkTokenAvailable, networkTokenBin, networkTokenTokenSummary);
+
+            var result = new ResponseAdditionalDataNetworkTokens();
+            if (networkTokenAvailable.IsSet)
+                result.NetworkTokenAvailable = networkTokenAvailable.Value;
+            if (networkTokenBin.IsSet)
+                result.NetworkTokenBin = networkTokenBin.Value;
+            if (networkTokenTokenSummary.IsSet)
+                result.NetworkTokenTokenSummary = networkTokenTokenSummary.Value;
+            return result;
         }
 
         /// <summary>
@@ -181,13 +173,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ResponseAdditionalDataNetworkTokens responseAdditionalDataNetworkTokens, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, responseAdditionalDataNetworkTokens, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -198,7 +190,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ResponseAdditionalDataNetworkTokens responseAdditionalDataNetworkTokens, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (responseAdditionalDataNetworkTokens._NetworkTokenAvailableOption.IsSet)
                 if (responseAdditionalDataNetworkTokens.NetworkTokenAvailable != null)
                     writer.WriteString("networkToken.available", responseAdditionalDataNetworkTokens.NetworkTokenAvailable);

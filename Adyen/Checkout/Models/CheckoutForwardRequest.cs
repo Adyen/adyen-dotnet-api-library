@@ -34,35 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutForwardRequest" /> class.
         /// </summary>
-        /// <param name="baseUrl">The base URL of the third party API, where Adyen will send the request to forward the payment details.</param>
-        /// <param name="merchantAccount">Your merchant account.</param>
-        /// <param name="request">request</param>
-        /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.</param>
-        /// <param name="merchantReference">Merchant defined payment reference.</param>
-        /// <param name="options">options</param>
-        /// <param name="paymentMethod">paymentMethod</param>
-        /// <param name="storedPaymentMethodId">The unique identifier of the token that you want to forward to the third party. This is the &#x60;storedPaymentMethodId&#x60; you received in the webhook after you created the token.</param>
-        [JsonConstructor]
-        public CheckoutForwardRequest(string baseUrl, string merchantAccount, CheckoutOutgoingForwardRequest request, string shopperReference, Option<string?> merchantReference = default, Option<CheckoutForwardRequestOptions?> options = default, Option<CheckoutForwardRequestCard?> paymentMethod = default, Option<string?> storedPaymentMethodId = default)
-        {
-            BaseUrl = baseUrl;
-            MerchantAccount = merchantAccount;
-            Request = request;
-            ShopperReference = shopperReference;
-            _MerchantReferenceOption = merchantReference;
-            _OptionsOption = options;
-            _PaymentMethodOption = paymentMethod;
-            _StoredPaymentMethodIdOption = storedPaymentMethodId;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CheckoutForwardRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -242,7 +217,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!baseUrl.IsSet)
                 throw new ArgumentException("Property is required for class CheckoutForwardRequest.", nameof(baseUrl));
 
@@ -255,7 +230,20 @@ namespace Adyen.Checkout.Models
             if (!shopperReference.IsSet)
                 throw new ArgumentException("Property is required for class CheckoutForwardRequest.", nameof(shopperReference));
 
-            return new CheckoutForwardRequest(baseUrl.Value!, merchantAccount.Value!, request.Value!, shopperReference.Value!, merchantReference, options, paymentMethod, storedPaymentMethodId);
+            var result = new CheckoutForwardRequest();
+            result.BaseUrl = baseUrl.Value!;
+            result.MerchantAccount = merchantAccount.Value!;
+            result.Request = request.Value!;
+            result.ShopperReference = shopperReference.Value!;
+            if (merchantReference.IsSet)
+                result.MerchantReference = merchantReference.Value;
+            if (options.IsSet)
+                result.Options = options.Value;
+            if (paymentMethod.IsSet)
+                result.PaymentMethod = paymentMethod.Value;
+            if (storedPaymentMethodId.IsSet)
+                result.StoredPaymentMethodId = storedPaymentMethodId.Value;
+            return result;
         }
 
         /// <summary>
@@ -266,13 +254,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CheckoutForwardRequest checkoutForwardRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, checkoutForwardRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -283,7 +271,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CheckoutForwardRequest checkoutForwardRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (checkoutForwardRequest.BaseUrl != null)
                 writer.WriteString("baseUrl", checkoutForwardRequest.BaseUrl);
 

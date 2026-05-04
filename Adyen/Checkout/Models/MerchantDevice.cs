@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="MerchantDevice" /> class.
         /// </summary>
-        /// <param name="os">Operating system running on the merchant device.</param>
-        /// <param name="osVersion">Version of the operating system on the merchant device.</param>
-        /// <param name="reference">Merchant device reference.</param>
-        [JsonConstructor]
-        public MerchantDevice(Option<string?> os = default, Option<string?> osVersion = default, Option<string?> reference = default)
-        {
-            _OsOption = os;
-            _OsVersionOption = osVersion;
-            _ReferenceOption = reference;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public MerchantDevice()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -168,9 +153,16 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new MerchantDevice(os, osVersion, reference);
+
+            var result = new MerchantDevice();
+            if (os.IsSet)
+                result.Os = os.Value;
+            if (osVersion.IsSet)
+                result.OsVersion = osVersion.Value;
+            if (reference.IsSet)
+                result.Reference = reference.Value;
+            return result;
         }
 
         /// <summary>
@@ -181,13 +173,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, MerchantDevice merchantDevice, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, merchantDevice, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -198,7 +190,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, MerchantDevice merchantDevice, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (merchantDevice._OsOption.IsSet)
                 if (merchantDevice.Os != null)
                     writer.WriteString("os", merchantDevice.Os);

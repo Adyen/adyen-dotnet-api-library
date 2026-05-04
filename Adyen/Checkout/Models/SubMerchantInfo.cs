@@ -34,39 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="SubMerchantInfo" /> class.
         /// </summary>
-        /// <param name="address">address</param>
-        /// <param name="amount">amount</param>
-        /// <param name="email">Required for transactions performed by registered payment facilitators. The email associated with the sub-merchant&#39;s account.</param>
-        /// <param name="id">Required for transactions performed by registered payment facilitators. A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant.  * Format: Alphanumeric * Maximum length: 15 characters</param>
-        /// <param name="mcc">Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits</param>
-        /// <param name="name">Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement that will appear in the card statement. Exception: for acquirers in Brazil, this value does not overwrite the shopper statement. * Format: Alphanumeric * Maximum length: 22 characters</param>
-        /// <param name="phoneNumber">Required for transactions performed by registered payment facilitators. The phone number associated with the sub-merchant&#39;s account.</param>
-        /// <param name="registeredSince">registeredSince</param>
-        /// <param name="taxId">Required for transactions performed by registered payment facilitators. The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ</param>
-        /// <param name="url">Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s URL on the platform, i.e. the sub-merchant&#39;s shop.</param>
-        [JsonConstructor]
-        public SubMerchantInfo(Option<BillingAddress?> address = default, Option<Amount?> amount = default, Option<string?> email = default, Option<string?> id = default, Option<string?> mcc = default, Option<string?> name = default, Option<string?> phoneNumber = default, Option<string?> registeredSince = default, Option<string?> taxId = default, Option<string?> url = default)
-        {
-            _AddressOption = address;
-            _AmountOption = amount;
-            _EmailOption = email;
-            _IdOption = id;
-            _MccOption = mcc;
-            _NameOption = name;
-            _PhoneNumberOption = phoneNumber;
-            _RegisteredSinceOption = registeredSince;
-            _TaxIdOption = taxId;
-            _UrlOption = url;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public SubMerchantInfo()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -312,9 +283,30 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new SubMerchantInfo(address, amount, email, id, mcc, name, phoneNumber, registeredSince, taxId, url);
+
+            var result = new SubMerchantInfo();
+            if (address.IsSet)
+                result.Address = address.Value;
+            if (amount.IsSet)
+                result.Amount = amount.Value;
+            if (email.IsSet)
+                result.Email = email.Value;
+            if (id.IsSet)
+                result.Id = id.Value;
+            if (mcc.IsSet)
+                result.Mcc = mcc.Value;
+            if (name.IsSet)
+                result.Name = name.Value;
+            if (phoneNumber.IsSet)
+                result.PhoneNumber = phoneNumber.Value;
+            if (registeredSince.IsSet)
+                result.RegisteredSince = registeredSince.Value;
+            if (taxId.IsSet)
+                result.TaxId = taxId.Value;
+            if (url.IsSet)
+                result.Url = url.Value;
+            return result;
         }
 
         /// <summary>
@@ -325,13 +317,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, SubMerchantInfo subMerchantInfo, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, subMerchantInfo, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -342,7 +334,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, SubMerchantInfo subMerchantInfo, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (subMerchantInfo._AddressOption.IsSet)
             {
                 writer.WritePropertyName("address");

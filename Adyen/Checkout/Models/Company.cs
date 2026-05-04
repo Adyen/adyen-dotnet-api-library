@@ -34,31 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Company" /> class.
         /// </summary>
-        /// <param name="homepage">The company website&#39;s home page.</param>
-        /// <param name="name">The company name.</param>
-        /// <param name="registrationNumber">Registration number of the company.</param>
-        /// <param name="registryLocation">Registry location of the company.</param>
-        /// <param name="taxId">Tax ID of the company.</param>
-        /// <param name="type">The company type.</param>
-        [JsonConstructor]
-        public Company(Option<string?> homepage = default, Option<string?> name = default, Option<string?> registrationNumber = default, Option<string?> registryLocation = default, Option<string?> taxId = default, Option<string?> type = default)
-        {
-            _HomepageOption = homepage;
-            _NameOption = name;
-            _RegistrationNumberOption = registrationNumber;
-            _RegistryLocationOption = registryLocation;
-            _TaxIdOption = taxId;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public Company()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -231,9 +210,22 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new Company(homepage, name, registrationNumber, registryLocation, taxId, type);
+
+            var result = new Company();
+            if (homepage.IsSet)
+                result.Homepage = homepage.Value;
+            if (name.IsSet)
+                result.Name = name.Value;
+            if (registrationNumber.IsSet)
+                result.RegistrationNumber = registrationNumber.Value;
+            if (registryLocation.IsSet)
+                result.RegistryLocation = registryLocation.Value;
+            if (taxId.IsSet)
+                result.TaxId = taxId.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -244,13 +236,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, Company company, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, company, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -261,7 +253,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, Company company, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (company._HomepageOption.IsSet)
                 if (company.Homepage != null)
                     writer.WriteString("homepage", company.Homepage);

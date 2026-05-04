@@ -34,43 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ForexQuote" /> class.
         /// </summary>
-        /// <param name="basePoints">The base points.</param>
-        /// <param name="validTill">The date until which the forex quote is valid.</param>
-        /// <param name="account">The account name.</param>
-        /// <param name="accountType">The account type.</param>
-        /// <param name="baseAmount">baseAmount</param>
-        /// <param name="buy">buy</param>
-        /// <param name="interbank">interbank</param>
-        /// <param name="reference">The reference assigned to the forex quote request.</param>
-        /// <param name="sell">sell</param>
-        /// <param name="signature">The signature to validate the integrity.</param>
-        /// <param name="source">The source of the forex quote.</param>
-        /// <param name="type">The type of forex.</param>
-        [JsonConstructor]
-        public ForexQuote(int basePoints, DateTimeOffset validTill, Option<string?> account = default, Option<string?> accountType = default, Option<Amount?> baseAmount = default, Option<Amount?> buy = default, Option<Amount?> interbank = default, Option<string?> reference = default, Option<Amount?> sell = default, Option<string?> signature = default, Option<string?> source = default, Option<string?> type = default)
-        {
-            BasePoints = basePoints;
-            ValidTill = validTill;
-            _AccountOption = account;
-            _AccountTypeOption = accountType;
-            _BaseAmountOption = baseAmount;
-            _BuyOption = buy;
-            _InterbankOption = interbank;
-            _ReferenceOption = reference;
-            _SellOption = sell;
-            _SignatureOption = signature;
-            _SourceOption = source;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ForexQuote()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -344,14 +311,37 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!basePoints.IsSet)
                 throw new ArgumentException("Property is required for class ForexQuote.", nameof(basePoints));
 
             if (!validTill.IsSet)
                 throw new ArgumentException("Property is required for class ForexQuote.", nameof(validTill));
 
-            return new ForexQuote(basePoints.Value!.Value!, validTill.Value!.Value!, account, accountType, baseAmount, buy, interbank, reference, sell, signature, source, type);
+            var result = new ForexQuote();
+            result.BasePoints = basePoints.Value!.Value!;
+            result.ValidTill = validTill.Value!.Value!;
+            if (account.IsSet)
+                result.Account = account.Value;
+            if (accountType.IsSet)
+                result.AccountType = accountType.Value;
+            if (baseAmount.IsSet)
+                result.BaseAmount = baseAmount.Value;
+            if (buy.IsSet)
+                result.Buy = buy.Value;
+            if (interbank.IsSet)
+                result.Interbank = interbank.Value;
+            if (reference.IsSet)
+                result.Reference = reference.Value;
+            if (sell.IsSet)
+                result.Sell = sell.Value;
+            if (signature.IsSet)
+                result.Signature = signature.Value;
+            if (source.IsSet)
+                result.Source = source.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -362,13 +352,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ForexQuote forexQuote, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, forexQuote, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -379,7 +369,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ForexQuote forexQuote, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteNumber("basePoints", forexQuote.BasePoints);
 
             writer.WriteString("validTill", forexQuote.ValidTill.ToString(ValidTillFormat));

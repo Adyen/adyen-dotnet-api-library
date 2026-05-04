@@ -34,21 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="TaxTotal" /> class.
         /// </summary>
-        /// <param name="amount">amount</param>
-        [JsonConstructor]
-        public TaxTotal(Option<Amount?> amount = default)
-        {
-            _AmountOption = amount;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public TaxTotal()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -125,9 +114,12 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new TaxTotal(amount);
+
+            var result = new TaxTotal();
+            if (amount.IsSet)
+                result.Amount = amount.Value;
+            return result;
         }
 
         /// <summary>
@@ -138,13 +130,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, TaxTotal taxTotal, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, taxTotal, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -155,7 +147,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, TaxTotal taxTotal, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (taxTotal._AmountOption.IsSet)
             {
                 writer.WritePropertyName("amount");

@@ -34,51 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentResponse" /> class.
         /// </summary>
-        /// <param name="action">action</param>
-        /// <param name="additionalData">Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** &gt; **Developers** &gt; **Additional data**.</param>
-        /// <param name="amount">amount</param>
-        /// <param name="donationToken">Donation Token containing payment details for Adyen Giving.</param>
-        /// <param name="fraudResult">fraudResult</param>
-        /// <param name="merchantReference">The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.</param>
-        /// <param name="order">order</param>
-        /// <param name="paymentMethod">paymentMethod</param>
-        /// <param name="paymentValidations">paymentValidations</param>
-        /// <param name="pspReference">Adyen&#39;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.  &gt; For payment methods that require a redirect or additional action, you will get this value in the &#x60;/payments/details&#x60; response.</param>
-        /// <param name="refusalReason">If the payment&#39;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).</param>
-        /// <param name="refusalReasonCode">Code that specifies the refusal reason. For more information, see [Authorisation refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).</param>
-        /// <param name="resultCode">The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **AuthenticationNotRequired** – The transaction does not require 3D Secure authentication. Returned for [standalone authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#39;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **PartiallyAuthorised** – The payment has been authorised for a partial amount. This happens for card payments when the merchant supports Partial Authorisations and the cardholder has insufficient funds. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. * **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state.</param>
-        /// <param name="threeDS2ResponseData">threeDS2ResponseData</param>
-        /// <param name="threeDS2Result">threeDS2Result</param>
-        /// <param name="threeDSPaymentData">When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint as &#x60;paymentData&#x60;.</param>
-        [JsonConstructor]
-        public PaymentResponse(Option<PaymentResponseAction?> action = default, Option<Dictionary<string, string>?> additionalData = default, Option<Amount?> amount = default, Option<string?> donationToken = default, Option<FraudResult?> fraudResult = default, Option<string?> merchantReference = default, Option<CheckoutOrderResponse?> order = default, Option<ResponsePaymentMethod?> paymentMethod = default, Option<PaymentValidationsResponse?> paymentValidations = default, Option<string?> pspReference = default, Option<string?> refusalReason = default, Option<string?> refusalReasonCode = default, Option<ResultCodeEnum?> resultCode = default, Option<ThreeDS2ResponseData?> threeDS2ResponseData = default, Option<ThreeDS2Result?> threeDS2Result = default, Option<string?> threeDSPaymentData = default)
-        {
-            _ActionOption = action;
-            _AdditionalDataOption = additionalData;
-            _AmountOption = amount;
-            _DonationTokenOption = donationToken;
-            _FraudResultOption = fraudResult;
-            _MerchantReferenceOption = merchantReference;
-            _OrderOption = order;
-            _PaymentMethodOption = paymentMethod;
-            _PaymentValidationsOption = paymentValidations;
-            _PspReferenceOption = pspReference;
-            _RefusalReasonOption = refusalReason;
-            _RefusalReasonCodeOption = refusalReasonCode;
-            _ResultCodeOption = resultCode;
-            _ThreeDS2ResponseDataOption = threeDS2ResponseData;
-            _ThreeDS2ResultOption = threeDS2Result;
-            _ThreeDSPaymentDataOption = threeDSPaymentData;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -162,7 +121,7 @@ namespace Adyen.Checkout.Models
             /// ResultCodeEnum.Success - Success
             /// </summary>
             public static readonly ResultCodeEnum Success = new("Success");
-        
+
             private ResultCodeEnum(string? value)
             {
                 Value = value;
@@ -174,24 +133,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ResultCodeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ResultCodeEnum?(string? value) => value == null ? null : new ResultCodeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ResultCodeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ResultCodeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ResultCodeEnum"/> instance./// </returns>
             public static implicit operator string?(ResultCodeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ResultCodeEnum? left, ResultCodeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ResultCodeEnum? left, ResultCodeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ResultCodeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ResultCodeEnum?"/>.
             /// </summary>
@@ -217,7 +176,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ResultCodeEnum"/> to the json value.
             /// </summary>
@@ -228,54 +187,54 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ResultCodeEnum.AuthenticationFinished)
                     return "AuthenticationFinished";
-                
+
                 if (value == ResultCodeEnum.AuthenticationNotRequired)
                     return "AuthenticationNotRequired";
-                
+
                 if (value == ResultCodeEnum.Authorised)
                     return "Authorised";
-                
+
                 if (value == ResultCodeEnum.Cancelled)
                     return "Cancelled";
-                
+
                 if (value == ResultCodeEnum.ChallengeShopper)
                     return "ChallengeShopper";
-                
+
                 if (value == ResultCodeEnum.Error)
                     return "Error";
-                
+
                 if (value == ResultCodeEnum.IdentifyShopper)
                     return "IdentifyShopper";
-                
+
                 if (value == ResultCodeEnum.PartiallyAuthorised)
                     return "PartiallyAuthorised";
-                
+
                 if (value == ResultCodeEnum.Pending)
                     return "Pending";
-                
+
                 if (value == ResultCodeEnum.PresentToShopper)
                     return "PresentToShopper";
-                
+
                 if (value == ResultCodeEnum.Received)
                     return "Received";
-                
+
                 if (value == ResultCodeEnum.RedirectShopper)
                     return "RedirectShopper";
-                
+
                 if (value == ResultCodeEnum.Refused)
                     return "Refused";
-                
+
                 if (value == ResultCodeEnum.Success)
                     return "Success";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ResultCodeEnum.               
+            /// JsonConverter for writing ResultCodeEnum.
             /// </summary>
             public class ResultCodeEnumJsonConverter : JsonConverter<ResultCodeEnum>
             {
@@ -645,9 +604,42 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new PaymentResponse(action, additionalData, amount, donationToken, fraudResult, merchantReference, order, paymentMethod, paymentValidations, pspReference, refusalReason, refusalReasonCode, resultCode, threeDS2ResponseData, threeDS2Result, threeDSPaymentData);
+
+            var result = new PaymentResponse();
+            if (action.IsSet)
+                result.Action = action.Value;
+            if (additionalData.IsSet)
+                result.AdditionalData = additionalData.Value;
+            if (amount.IsSet)
+                result.Amount = amount.Value;
+            if (donationToken.IsSet)
+                result.DonationToken = donationToken.Value;
+            if (fraudResult.IsSet)
+                result.FraudResult = fraudResult.Value;
+            if (merchantReference.IsSet)
+                result.MerchantReference = merchantReference.Value;
+            if (order.IsSet)
+                result.Order = order.Value;
+            if (paymentMethod.IsSet)
+                result.PaymentMethod = paymentMethod.Value;
+            if (paymentValidations.IsSet)
+                result.PaymentValidations = paymentValidations.Value;
+            if (pspReference.IsSet)
+                result.PspReference = pspReference.Value;
+            if (refusalReason.IsSet)
+                result.RefusalReason = refusalReason.Value;
+            if (refusalReasonCode.IsSet)
+                result.RefusalReasonCode = refusalReasonCode.Value;
+            if (resultCode.IsSet)
+                result.ResultCode = resultCode.Value;
+            if (threeDS2ResponseData.IsSet)
+                result.ThreeDS2ResponseData = threeDS2ResponseData.Value;
+            if (threeDS2Result.IsSet)
+                result.ThreeDS2Result = threeDS2Result.Value;
+            if (threeDSPaymentData.IsSet)
+                result.ThreeDSPaymentData = threeDSPaymentData.Value;
+            return result;
         }
 
         /// <summary>
@@ -658,13 +650,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentResponse paymentResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -675,7 +667,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentResponse paymentResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paymentResponse._ActionOption.IsSet)
             {
                 writer.WritePropertyName("action");
@@ -731,12 +723,12 @@ namespace Adyen.Checkout.Models
                 if (paymentResponse.RefusalReasonCode != null)
                     writer.WriteString("refusalReasonCode", paymentResponse.RefusalReasonCode);
 
-            if (paymentResponse._ResultCodeOption.IsSet && paymentResponse.ResultCode != null) 
+            if (paymentResponse._ResultCodeOption.IsSet && paymentResponse.ResultCode != null)
             {
                 string? resultCodeRawValue = PaymentResponse.ResultCodeEnum.ToJsonValue(paymentResponse._ResultCodeOption.Value!.Value);
                 writer.WriteString("resultCode", resultCodeRawValue);
             }
-            
+
             if (paymentResponse._ThreeDS2ResponseDataOption.IsSet)
             {
                 writer.WritePropertyName("threeDS2ResponseData");

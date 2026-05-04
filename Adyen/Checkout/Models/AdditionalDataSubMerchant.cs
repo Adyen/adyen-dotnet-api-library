@@ -34,43 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataSubMerchant" /> class.
         /// </summary>
-        /// <param name="subMerchantNumberOfSubSellers">Required for transactions performed by registered payment facilitators. Indicates the number of sub-merchants contained in the request. For example, **3**.</param>
-        /// <param name="subMerchantSubSellerSubSellerNrCity">Required for transactions performed by registered payment facilitators. The city of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 13 characters</param>
-        /// <param name="subMerchantSubSellerSubSellerNrCountry">Required for transactions performed by registered payment facilitators. The three-letter country code of the sub-merchant&#39;s address. For example, **BRA** for Brazil.  * Format: [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) * Fixed length: 3 characters</param>
-        /// <param name="subMerchantSubSellerSubSellerNrEmail">Required for transactions performed by registered payment facilitators. The email address of the sub-merchant. * Format: Alphanumeric * Maximum length: 40 characters</param>
-        /// <param name="subMerchantSubSellerSubSellerNrId">Required for transactions performed by registered payment facilitators. A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant.  * Format: Alphanumeric * Maximum length: 15 characters</param>
-        /// <param name="subMerchantSubSellerSubSellerNrMcc">Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits</param>
-        /// <param name="subMerchantSubSellerSubSellerNrName">Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement  that will appear in the card statement. Exception: for acquirers in Brazil, this value does not overwrite the shopper statement. * Format: Alphanumeric * Maximum length: 22 characters</param>
-        /// <param name="subMerchantSubSellerSubSellerNrPhoneNumber">Required for transactions performed by registered payment facilitators. The phone number of the sub-merchant. * Format: Alphanumeric and special characters * Maximum length: 20 characters</param>
-        /// <param name="subMerchantSubSellerSubSellerNrPostalCode">Required for transactions performed by registered payment facilitators. The postal code of the sub-merchant&#39;s address, without dashes. * Format: Numeric * Fixed length: 8 digits</param>
-        /// <param name="subMerchantSubSellerSubSellerNrState">Required for transactions performed by registered payment facilitators. The state code of the sub-merchant&#39;s address, if applicable to the country. * Format: Alphanumeric * Maximum length: 2 characters</param>
-        /// <param name="subMerchantSubSellerSubSellerNrStreet">Required for transactions performed by registered payment facilitators. The street name and house number of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 60 characters</param>
-        /// <param name="subMerchantSubSellerSubSellerNrTaxId">Required for transactions performed by registered payment facilitators. The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ</param>
-        [JsonConstructor]
-        public AdditionalDataSubMerchant(Option<string?> subMerchantNumberOfSubSellers = default, Option<string?> subMerchantSubSellerSubSellerNrCity = default, Option<string?> subMerchantSubSellerSubSellerNrCountry = default, Option<string?> subMerchantSubSellerSubSellerNrEmail = default, Option<string?> subMerchantSubSellerSubSellerNrId = default, Option<string?> subMerchantSubSellerSubSellerNrMcc = default, Option<string?> subMerchantSubSellerSubSellerNrName = default, Option<string?> subMerchantSubSellerSubSellerNrPhoneNumber = default, Option<string?> subMerchantSubSellerSubSellerNrPostalCode = default, Option<string?> subMerchantSubSellerSubSellerNrState = default, Option<string?> subMerchantSubSellerSubSellerNrStreet = default, Option<string?> subMerchantSubSellerSubSellerNrTaxId = default)
-        {
-            _SubMerchantNumberOfSubSellersOption = subMerchantNumberOfSubSellers;
-            _SubMerchantSubSellerSubSellerNrCityOption = subMerchantSubSellerSubSellerNrCity;
-            _SubMerchantSubSellerSubSellerNrCountryOption = subMerchantSubSellerSubSellerNrCountry;
-            _SubMerchantSubSellerSubSellerNrEmailOption = subMerchantSubSellerSubSellerNrEmail;
-            _SubMerchantSubSellerSubSellerNrIdOption = subMerchantSubSellerSubSellerNrId;
-            _SubMerchantSubSellerSubSellerNrMccOption = subMerchantSubSellerSubSellerNrMcc;
-            _SubMerchantSubSellerSubSellerNrNameOption = subMerchantSubSellerSubSellerNrName;
-            _SubMerchantSubSellerSubSellerNrPhoneNumberOption = subMerchantSubSellerSubSellerNrPhoneNumber;
-            _SubMerchantSubSellerSubSellerNrPostalCodeOption = subMerchantSubSellerSubSellerNrPostalCode;
-            _SubMerchantSubSellerSubSellerNrStateOption = subMerchantSubSellerSubSellerNrState;
-            _SubMerchantSubSellerSubSellerNrStreetOption = subMerchantSubSellerSubSellerNrStreet;
-            _SubMerchantSubSellerSubSellerNrTaxIdOption = subMerchantSubSellerSubSellerNrTaxId;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public AdditionalDataSubMerchant()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -357,9 +324,34 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new AdditionalDataSubMerchant(subMerchantNumberOfSubSellers, subMerchantSubSellerSubSellerNrCity, subMerchantSubSellerSubSellerNrCountry, subMerchantSubSellerSubSellerNrEmail, subMerchantSubSellerSubSellerNrId, subMerchantSubSellerSubSellerNrMcc, subMerchantSubSellerSubSellerNrName, subMerchantSubSellerSubSellerNrPhoneNumber, subMerchantSubSellerSubSellerNrPostalCode, subMerchantSubSellerSubSellerNrState, subMerchantSubSellerSubSellerNrStreet, subMerchantSubSellerSubSellerNrTaxId);
+
+            var result = new AdditionalDataSubMerchant();
+            if (subMerchantNumberOfSubSellers.IsSet)
+                result.SubMerchantNumberOfSubSellers = subMerchantNumberOfSubSellers.Value;
+            if (subMerchantSubSellerSubSellerNrCity.IsSet)
+                result.SubMerchantSubSellerSubSellerNrCity = subMerchantSubSellerSubSellerNrCity.Value;
+            if (subMerchantSubSellerSubSellerNrCountry.IsSet)
+                result.SubMerchantSubSellerSubSellerNrCountry = subMerchantSubSellerSubSellerNrCountry.Value;
+            if (subMerchantSubSellerSubSellerNrEmail.IsSet)
+                result.SubMerchantSubSellerSubSellerNrEmail = subMerchantSubSellerSubSellerNrEmail.Value;
+            if (subMerchantSubSellerSubSellerNrId.IsSet)
+                result.SubMerchantSubSellerSubSellerNrId = subMerchantSubSellerSubSellerNrId.Value;
+            if (subMerchantSubSellerSubSellerNrMcc.IsSet)
+                result.SubMerchantSubSellerSubSellerNrMcc = subMerchantSubSellerSubSellerNrMcc.Value;
+            if (subMerchantSubSellerSubSellerNrName.IsSet)
+                result.SubMerchantSubSellerSubSellerNrName = subMerchantSubSellerSubSellerNrName.Value;
+            if (subMerchantSubSellerSubSellerNrPhoneNumber.IsSet)
+                result.SubMerchantSubSellerSubSellerNrPhoneNumber = subMerchantSubSellerSubSellerNrPhoneNumber.Value;
+            if (subMerchantSubSellerSubSellerNrPostalCode.IsSet)
+                result.SubMerchantSubSellerSubSellerNrPostalCode = subMerchantSubSellerSubSellerNrPostalCode.Value;
+            if (subMerchantSubSellerSubSellerNrState.IsSet)
+                result.SubMerchantSubSellerSubSellerNrState = subMerchantSubSellerSubSellerNrState.Value;
+            if (subMerchantSubSellerSubSellerNrStreet.IsSet)
+                result.SubMerchantSubSellerSubSellerNrStreet = subMerchantSubSellerSubSellerNrStreet.Value;
+            if (subMerchantSubSellerSubSellerNrTaxId.IsSet)
+                result.SubMerchantSubSellerSubSellerNrTaxId = subMerchantSubSellerSubSellerNrTaxId.Value;
+            return result;
         }
 
         /// <summary>
@@ -370,13 +362,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, AdditionalDataSubMerchant additionalDataSubMerchant, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, additionalDataSubMerchant, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -387,7 +379,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, AdditionalDataSubMerchant additionalDataSubMerchant, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (additionalDataSubMerchant._SubMerchantNumberOfSubSellersOption.IsSet)
                 if (additionalDataSubMerchant.SubMerchantNumberOfSubSellers != null)
                     writer.WriteString("subMerchant.numberOfSubSellers", additionalDataSubMerchant.SubMerchantNumberOfSubSellers);

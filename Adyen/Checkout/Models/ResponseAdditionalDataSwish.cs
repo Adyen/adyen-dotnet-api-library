@@ -34,21 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataSwish" /> class.
         /// </summary>
-        /// <param name="swishPayerAlias">A Swish shopper&#39;s telephone number.</param>
-        [JsonConstructor]
-        public ResponseAdditionalDataSwish(Option<string?> swishPayerAlias = default)
-        {
-            _SwishPayerAliasOption = swishPayerAlias;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ResponseAdditionalDataSwish()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -126,9 +115,12 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ResponseAdditionalDataSwish(swishPayerAlias);
+
+            var result = new ResponseAdditionalDataSwish();
+            if (swishPayerAlias.IsSet)
+                result.SwishPayerAlias = swishPayerAlias.Value;
+            return result;
         }
 
         /// <summary>
@@ -139,13 +131,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ResponseAdditionalDataSwish responseAdditionalDataSwish, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, responseAdditionalDataSwish, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -156,7 +148,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ResponseAdditionalDataSwish responseAdditionalDataSwish, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (responseAdditionalDataSwish._SwishPayerAliasOption.IsSet)
                 if (responseAdditionalDataSwish.SwishPayerAlias != null)
                     writer.WriteString("swish.payerAlias", responseAdditionalDataSwish.SwishPayerAlias);

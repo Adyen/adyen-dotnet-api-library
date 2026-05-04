@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PayByBankAISDirectDebitDetails" /> class.
         /// </summary>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="type">**paybybank_AIS_DD** (default to TypeEnum.PaybybankAISDD)</param>
-        [JsonConstructor]
-        public PayByBankAISDirectDebitDetails(Option<string?> checkoutAttemptId = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, TypeEnum type = default)
-        {
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _RecurringDetailReferenceOption = recurringDetailReference;
-            _SdkDataOption = sdkData;
-            _StoredPaymentMethodIdOption = storedPaymentMethodId;
-            Type = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PayByBankAISDirectDebitDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -75,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.PaybybankAISDD - paybybank_AIS_DD
             /// </summary>
             public static readonly TypeEnum PaybybankAISDD = new("paybybank_AIS_DD");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -87,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -117,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -128,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.PaybybankAISDD)
                     return "paybybank_AIS_DD";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -299,11 +280,21 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class PayByBankAISDirectDebitDetails.", nameof(type));
 
-            return new PayByBankAISDirectDebitDetails(checkoutAttemptId, recurringDetailReference, sdkData, storedPaymentMethodId, type.Value!.Value!);
+            var result = new PayByBankAISDirectDebitDetails();
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (recurringDetailReference.IsSet)
+                result.RecurringDetailReference = recurringDetailReference.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (storedPaymentMethodId.IsSet)
+                result.StoredPaymentMethodId = storedPaymentMethodId.Value;
+            result.Type = type.Value!.Value!;
+            return result;
         }
 
         /// <summary>
@@ -314,13 +305,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PayByBankAISDirectDebitDetails payByBankAISDirectDebitDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, payByBankAISDirectDebitDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -331,7 +322,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PayByBankAISDirectDebitDetails payByBankAISDirectDebitDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (payByBankAISDirectDebitDetails._CheckoutAttemptIdOption.IsSet)
                 if (payByBankAISDirectDebitDetails.CheckoutAttemptId != null)
                     writer.WriteString("checkoutAttemptId", payByBankAISDirectDebitDetails.CheckoutAttemptId);
@@ -348,7 +339,7 @@ namespace Adyen.Checkout.Models
                 if (payByBankAISDirectDebitDetails.StoredPaymentMethodId != null)
                     writer.WriteString("storedPaymentMethodId", payByBankAISDirectDebitDetails.StoredPaymentMethodId);
 
-            if (payByBankAISDirectDebitDetails.Type != null) 
+            if (payByBankAISDirectDebitDetails.Type != null)
             {
                 string? typeRawValue = PayByBankAISDirectDebitDetails.TypeEnum.ToJsonValue(payByBankAISDirectDebitDetails.Type);
                 writer.WriteString("type", typeRawValue);

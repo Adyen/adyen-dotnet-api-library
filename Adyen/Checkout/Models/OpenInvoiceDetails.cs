@@ -34,35 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="OpenInvoiceDetails" /> class.
         /// </summary>
-        /// <param name="billingAddress">The address where to send the invoice.</param>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="deliveryAddress">The address where the goods should be delivered.</param>
-        /// <param name="personalDetails">Shopper name, date of birth, phone number, and email address.</param>
-        /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="type">**openinvoice** (default to TypeEnum.Openinvoice)</param>
-        [JsonConstructor]
-        public OpenInvoiceDetails(Option<string?> billingAddress = default, Option<string?> checkoutAttemptId = default, Option<string?> deliveryAddress = default, Option<string?> personalDetails = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<TypeEnum?> type = default)
-        {
-            _BillingAddressOption = billingAddress;
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _DeliveryAddressOption = deliveryAddress;
-            _PersonalDetailsOption = personalDetails;
-            _RecurringDetailReferenceOption = recurringDetailReference;
-            _SdkDataOption = sdkData;
-            _StoredPaymentMethodIdOption = storedPaymentMethodId;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public OpenInvoiceDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -91,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.AtomePos - atome_pos
             /// </summary>
             public static readonly TypeEnum AtomePos = new("atome_pos");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -103,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -135,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -146,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Openinvoice)
                     return "openinvoice";
-                
+
                 if (value == TypeEnum.AfterpayDirectdebit)
                     return "afterpay_directdebit";
-                
+
                 if (value == TypeEnum.AtomePos)
                     return "atome_pos";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -387,9 +362,26 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new OpenInvoiceDetails(billingAddress, checkoutAttemptId, deliveryAddress, personalDetails, recurringDetailReference, sdkData, storedPaymentMethodId, type);
+
+            var result = new OpenInvoiceDetails();
+            if (billingAddress.IsSet)
+                result.BillingAddress = billingAddress.Value;
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (deliveryAddress.IsSet)
+                result.DeliveryAddress = deliveryAddress.Value;
+            if (personalDetails.IsSet)
+                result.PersonalDetails = personalDetails.Value;
+            if (recurringDetailReference.IsSet)
+                result.RecurringDetailReference = recurringDetailReference.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (storedPaymentMethodId.IsSet)
+                result.StoredPaymentMethodId = storedPaymentMethodId.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -400,13 +392,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, OpenInvoiceDetails openInvoiceDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, openInvoiceDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -417,7 +409,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, OpenInvoiceDetails openInvoiceDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (openInvoiceDetails._BillingAddressOption.IsSet)
                 if (openInvoiceDetails.BillingAddress != null)
                     writer.WriteString("billingAddress", openInvoiceDetails.BillingAddress);
@@ -446,7 +438,7 @@ namespace Adyen.Checkout.Models
                 if (openInvoiceDetails.StoredPaymentMethodId != null)
                     writer.WriteString("storedPaymentMethodId", openInvoiceDetails.StoredPaymentMethodId);
 
-            if (openInvoiceDetails._TypeOption.IsSet && openInvoiceDetails.Type != null) 
+            if (openInvoiceDetails._TypeOption.IsSet && openInvoiceDetails.Type != null)
             {
                 string? typeRawValue = OpenInvoiceDetails.TypeEnum.ToJsonValue(openInvoiceDetails._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);

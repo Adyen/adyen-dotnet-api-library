@@ -34,21 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataOpi" /> class.
         /// </summary>
-        /// <param name="opiTransToken">Returned in the response if you included &#x60;opi.includeTransToken: true&#x60; in an ecommerce payment request. This contains an Oracle Payment Interface token that you can store in your Oracle Opera database to identify tokenized ecommerce transactions. For more information and required settings, see [Oracle Opera](https://docs.adyen.com/plugins/oracle-opera#opi-token-ecommerce).</param>
-        [JsonConstructor]
-        public ResponseAdditionalDataOpi(Option<string?> opiTransToken = default)
-        {
-            _OpiTransTokenOption = opiTransToken;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ResponseAdditionalDataOpi()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -126,9 +115,12 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ResponseAdditionalDataOpi(opiTransToken);
+
+            var result = new ResponseAdditionalDataOpi();
+            if (opiTransToken.IsSet)
+                result.OpiTransToken = opiTransToken.Value;
+            return result;
         }
 
         /// <summary>
@@ -139,13 +131,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ResponseAdditionalDataOpi responseAdditionalDataOpi, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, responseAdditionalDataOpi, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -156,7 +148,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ResponseAdditionalDataOpi responseAdditionalDataOpi, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (responseAdditionalDataOpi._OpiTransTokenOption.IsSet)
                 if (responseAdditionalDataOpi.OpiTransToken != null)
                     writer.WriteString("opi.transToken", responseAdditionalDataOpi.OpiTransToken);

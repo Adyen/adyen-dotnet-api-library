@@ -31,18 +31,6 @@ namespace Adyen.Checkout.Models
     /// </summary>
     public partial class PayToPaymentMethod : ShopperIdPaymentMethod
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PayToPaymentMethod" /> class.
-        /// </summary>
-        /// <param name="shopperReference">shopperReference</param>
-        [JsonConstructor]
-        public PayToPaymentMethod(Option<string?> shopperReference = default) : base()
-        {
-            _ShopperReferenceOption = shopperReference;
-            OnCreated();
-        }
-        
-
         partial void OnCreated();
 
         /// <summary>
@@ -124,11 +112,14 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class PayToPaymentMethod.", nameof(type));
 
-            return new PayToPaymentMethod(shopperReference);
+            var result = new PayToPaymentMethod();
+            if (shopperReference.IsSet)
+                result.ShopperReference = shopperReference.Value;
+            return result;
         }
 
         /// <summary>
@@ -139,13 +130,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PayToPaymentMethod payToPaymentMethod, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, payToPaymentMethod, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -156,10 +147,10 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PayToPaymentMethod payToPaymentMethod, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (payToPaymentMethod.Type != null)
     writer.WriteString("type", payToPaymentMethod.Type);
-            
+
             if (payToPaymentMethod._ShopperReferenceOption.IsSet)
                 if (payToPaymentMethod.ShopperReference != null)
                     writer.WriteString("shopperReference", payToPaymentMethod.ShopperReference);

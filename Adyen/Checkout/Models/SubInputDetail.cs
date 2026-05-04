@@ -34,31 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="SubInputDetail" /> class.
         /// </summary>
-        /// <param name="configuration">Configuration parameters for the required input.</param>
-        /// <param name="items">In case of a select, the items to choose from.</param>
-        /// <param name="key">The value to provide in the result.</param>
-        /// <param name="optional">True if this input is optional to provide.</param>
-        /// <param name="type">The type of the required input.</param>
-        /// <param name="value">The value can be pre-filled, if available.</param>
-        [JsonConstructor]
-        public SubInputDetail(Option<Dictionary<string, string>?> configuration = default, Option<List<Item>?> items = default, Option<string?> key = default, Option<bool?> optional = default, Option<string?> type = default, Option<string?> value = default)
-        {
-            _ConfigurationOption = configuration;
-            _ItemsOption = items;
-            _KeyOption = key;
-            _OptionalOption = optional;
-            _TypeOption = type;
-            _ValueOption = value;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public SubInputDetail()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -231,9 +210,22 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new SubInputDetail(configuration, items, key, optional, type, value);
+
+            var result = new SubInputDetail();
+            if (configuration.IsSet)
+                result.Configuration = configuration.Value;
+            if (items.IsSet)
+                result.Items = items.Value;
+            if (key.IsSet)
+                result.Key = key.Value;
+            if (optional.IsSet)
+                result.Optional = optional.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            if (value.IsSet)
+                result.Value = value.Value;
+            return result;
         }
 
         /// <summary>
@@ -244,13 +236,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, SubInputDetail subInputDetail, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, subInputDetail, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -261,7 +253,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, SubInputDetail subInputDetail, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (subInputDetail._ConfigurationOption.IsSet)
             {
                 writer.WritePropertyName("configuration");

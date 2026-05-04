@@ -34,27 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateOrderRequest" /> class.
         /// </summary>
-        /// <param name="amount">amount</param>
-        /// <param name="merchantAccount">The merchant account identifier, with which you want to process the order.</param>
-        /// <param name="reference">A custom reference identifying the order.</param>
-        /// <param name="expiresAt">The date when the order should expire. If not provided, the default expiry duration is 1 day.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.</param>
-        [JsonConstructor]
-        public CreateOrderRequest(Amount amount, string merchantAccount, string reference, Option<string?> expiresAt = default)
-        {
-            Amount = amount;
-            MerchantAccount = merchantAccount;
-            Reference = reference;
-            _ExpiresAtOption = expiresAt;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CreateOrderRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -167,7 +150,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!amount.IsSet)
                 throw new ArgumentException("Property is required for class CreateOrderRequest.", nameof(amount));
 
@@ -177,7 +160,13 @@ namespace Adyen.Checkout.Models
             if (!reference.IsSet)
                 throw new ArgumentException("Property is required for class CreateOrderRequest.", nameof(reference));
 
-            return new CreateOrderRequest(amount.Value!, merchantAccount.Value!, reference.Value!, expiresAt);
+            var result = new CreateOrderRequest();
+            result.Amount = amount.Value!;
+            result.MerchantAccount = merchantAccount.Value!;
+            result.Reference = reference.Value!;
+            if (expiresAt.IsSet)
+                result.ExpiresAt = expiresAt.Value;
+            return result;
         }
 
         /// <summary>
@@ -188,13 +177,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CreateOrderRequest createOrderRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, createOrderRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -205,7 +194,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CreateOrderRequest createOrderRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WritePropertyName("amount");
             JsonSerializer.Serialize(writer, createOrderRequest.Amount, jsonSerializerOptions);
             if (createOrderRequest.MerchantAccount != null)

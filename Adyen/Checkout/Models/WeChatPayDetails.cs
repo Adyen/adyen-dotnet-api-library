@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="WeChatPayDetails" /> class.
         /// </summary>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="type">**wechatpay** (default to TypeEnum.Wechatpay)</param>
-        [JsonConstructor]
-        public WeChatPayDetails(Option<string?> checkoutAttemptId = default, Option<string?> sdkData = default, Option<TypeEnum?> type = default)
-        {
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _SdkDataOption = sdkData;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public WeChatPayDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -76,7 +61,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.WechatpayPos - wechatpay_pos
             /// </summary>
             public static readonly TypeEnum WechatpayPos = new("wechatpay_pos");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -88,24 +73,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -119,7 +104,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -130,18 +115,18 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Wechatpay)
                     return "wechatpay";
-                
+
                 if (value == TypeEnum.WechatpayPos)
                     return "wechatpay_pos";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -272,9 +257,16 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new WeChatPayDetails(checkoutAttemptId, sdkData, type);
+
+            var result = new WeChatPayDetails();
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -285,13 +277,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, WeChatPayDetails weChatPayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, weChatPayDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -302,7 +294,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, WeChatPayDetails weChatPayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (weChatPayDetails._CheckoutAttemptIdOption.IsSet)
                 if (weChatPayDetails.CheckoutAttemptId != null)
                     writer.WriteString("checkoutAttemptId", weChatPayDetails.CheckoutAttemptId);
@@ -311,7 +303,7 @@ namespace Adyen.Checkout.Models
                 if (weChatPayDetails.SdkData != null)
                     writer.WriteString("sdkData", weChatPayDetails.SdkData);
 
-            if (weChatPayDetails._TypeOption.IsSet && weChatPayDetails.Type != null) 
+            if (weChatPayDetails._TypeOption.IsSet && weChatPayDetails.Type != null)
             {
                 string? typeRawValue = WeChatPayDetails.TypeEnum.ToJsonValue(weChatPayDetails._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);

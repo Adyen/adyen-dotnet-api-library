@@ -34,35 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentAmountUpdateRequest" /> class.
         /// </summary>
-        /// <param name="amount">amount</param>
-        /// <param name="merchantAccount">The merchant account that is used to process the payment.</param>
-        /// <param name="applicationInfo">applicationInfo</param>
-        /// <param name="enhancedSchemeData">enhancedSchemeData</param>
-        /// <param name="industryUsage">The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**</param>
-        /// <param name="lineItems">Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.</param>
-        /// <param name="reference">Your reference for the amount update request. Maximum length: 80 characters.</param>
-        /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/process-payments) or [platforms](https://docs.adyen.com/platforms/process-payments).</param>
-        [JsonConstructor]
-        public PaymentAmountUpdateRequest(Amount amount, string merchantAccount, Option<ApplicationInfo?> applicationInfo = default, Option<EnhancedSchemeData?> enhancedSchemeData = default, Option<IndustryUsageEnum?> industryUsage = default, Option<List<LineItem>?> lineItems = default, Option<string?> reference = default, Option<List<Split>?> splits = default)
-        {
-            Amount = amount;
-            MerchantAccount = merchantAccount;
-            _ApplicationInfoOption = applicationInfo;
-            _EnhancedSchemeDataOption = enhancedSchemeData;
-            _IndustryUsageOption = industryUsage;
-            _LineItemsOption = lineItems;
-            _ReferenceOption = reference;
-            _SplitsOption = splits;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentAmountUpdateRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -91,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// IndustryUsageEnum.NoShow - noShow
             /// </summary>
             public static readonly IndustryUsageEnum NoShow = new("noShow");
-        
+
             private IndustryUsageEnum(string? value)
             {
                 Value = value;
@@ -103,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="IndustryUsageEnum"/> instance initialized with the string value.</returns>
             public static implicit operator IndustryUsageEnum?(string? value) => value == null ? null : new IndustryUsageEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="IndustryUsageEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="IndustryUsageEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="IndustryUsageEnum"/> instance./// </returns>
             public static implicit operator string?(IndustryUsageEnum? option) => option?.Value;
-        
+
             public static bool operator ==(IndustryUsageEnum? left, IndustryUsageEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(IndustryUsageEnum? left, IndustryUsageEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is IndustryUsageEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="IndustryUsageEnum?"/>.
             /// </summary>
@@ -135,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="IndustryUsageEnum"/> to the json value.
             /// </summary>
@@ -146,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == IndustryUsageEnum.DelayedCharge)
                     return "delayedCharge";
-                
+
                 if (value == IndustryUsageEnum.Installment)
                     return "installment";
-                
+
                 if (value == IndustryUsageEnum.NoShow)
                     return "noShow";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing IndustryUsageEnum.               
+            /// JsonConverter for writing IndustryUsageEnum.
             /// </summary>
             public class IndustryUsageEnumJsonConverter : JsonConverter<IndustryUsageEnum>
             {
@@ -369,14 +344,29 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!amount.IsSet)
                 throw new ArgumentException("Property is required for class PaymentAmountUpdateRequest.", nameof(amount));
 
             if (!merchantAccount.IsSet)
                 throw new ArgumentException("Property is required for class PaymentAmountUpdateRequest.", nameof(merchantAccount));
 
-            return new PaymentAmountUpdateRequest(amount.Value!, merchantAccount.Value!, applicationInfo, enhancedSchemeData, industryUsage, lineItems, reference, splits);
+            var result = new PaymentAmountUpdateRequest();
+            result.Amount = amount.Value!;
+            result.MerchantAccount = merchantAccount.Value!;
+            if (applicationInfo.IsSet)
+                result.ApplicationInfo = applicationInfo.Value;
+            if (enhancedSchemeData.IsSet)
+                result.EnhancedSchemeData = enhancedSchemeData.Value;
+            if (industryUsage.IsSet)
+                result.IndustryUsage = industryUsage.Value;
+            if (lineItems.IsSet)
+                result.LineItems = lineItems.Value;
+            if (reference.IsSet)
+                result.Reference = reference.Value;
+            if (splits.IsSet)
+                result.Splits = splits.Value;
+            return result;
         }
 
         /// <summary>
@@ -387,13 +377,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentAmountUpdateRequest paymentAmountUpdateRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentAmountUpdateRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -404,7 +394,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentAmountUpdateRequest paymentAmountUpdateRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WritePropertyName("amount");
             JsonSerializer.Serialize(writer, paymentAmountUpdateRequest.Amount, jsonSerializerOptions);
             if (paymentAmountUpdateRequest.MerchantAccount != null)
@@ -420,12 +410,12 @@ namespace Adyen.Checkout.Models
                 writer.WritePropertyName("enhancedSchemeData");
                 JsonSerializer.Serialize(writer, paymentAmountUpdateRequest.EnhancedSchemeData, jsonSerializerOptions);
             }
-            if (paymentAmountUpdateRequest._IndustryUsageOption.IsSet && paymentAmountUpdateRequest.IndustryUsage != null) 
+            if (paymentAmountUpdateRequest._IndustryUsageOption.IsSet && paymentAmountUpdateRequest.IndustryUsage != null)
             {
                 string? industryUsageRawValue = PaymentAmountUpdateRequest.IndustryUsageEnum.ToJsonValue(paymentAmountUpdateRequest._IndustryUsageOption.Value!.Value);
                 writer.WriteString("industryUsage", industryUsageRawValue);
             }
-            
+
             if (paymentAmountUpdateRequest._LineItemsOption.IsSet)
             {
                 writer.WritePropertyName("lineItems");

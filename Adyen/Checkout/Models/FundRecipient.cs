@@ -34,43 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="FundRecipient" /> class.
         /// </summary>
-        /// <param name="iBAN">The IBAN of the bank account where the funds are being transferred to.</param>
-        /// <param name="billingAddress">billingAddress</param>
-        /// <param name="paymentMethod">paymentMethod</param>
-        /// <param name="shopperEmail">The email address of the shopper.</param>
-        /// <param name="shopperName">shopperName</param>
-        /// <param name="shopperReference">Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.</param>
-        /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="subMerchant">subMerchant</param>
-        /// <param name="telephoneNumber">The telephone number of the shopper.</param>
-        /// <param name="walletIdentifier">The unique identifier for the wallet the funds are being transferred to. You can use the shopper reference or any other identifier.</param>
-        /// <param name="walletOwnerTaxId">The tax identifier of the person receiving the funds.</param>
-        /// <param name="walletPurpose">The purpose of a digital wallet transaction.</param>
-        [JsonConstructor]
-        public FundRecipient(Option<string?> iBAN = default, Option<Address?> billingAddress = default, Option<CardDetails?> paymentMethod = default, Option<string?> shopperEmail = default, Option<Name?> shopperName = default, Option<string?> shopperReference = default, Option<string?> storedPaymentMethodId = default, Option<SubMerchant?> subMerchant = default, Option<string?> telephoneNumber = default, Option<string?> walletIdentifier = default, Option<string?> walletOwnerTaxId = default, Option<WalletPurposeEnum?> walletPurpose = default)
-        {
-            _IBANOption = iBAN;
-            _BillingAddressOption = billingAddress;
-            _PaymentMethodOption = paymentMethod;
-            _ShopperEmailOption = shopperEmail;
-            _ShopperNameOption = shopperName;
-            _ShopperReferenceOption = shopperReference;
-            _StoredPaymentMethodIdOption = storedPaymentMethodId;
-            _SubMerchantOption = subMerchant;
-            _TelephoneNumberOption = telephoneNumber;
-            _WalletIdentifierOption = walletIdentifier;
-            _WalletOwnerTaxIdOption = walletOwnerTaxId;
-            _WalletPurposeOption = walletPurpose;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public FundRecipient()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -109,7 +76,7 @@ namespace Adyen.Checkout.Models
             /// WalletPurposeEnum.UnidentifiedBoleto - unidentifiedBoleto
             /// </summary>
             public static readonly WalletPurposeEnum UnidentifiedBoleto = new("unidentifiedBoleto");
-        
+
             private WalletPurposeEnum(string? value)
             {
                 Value = value;
@@ -121,24 +88,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="WalletPurposeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator WalletPurposeEnum?(string? value) => value == null ? null : new WalletPurposeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="WalletPurposeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="WalletPurposeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="WalletPurposeEnum"/> instance./// </returns>
             public static implicit operator string?(WalletPurposeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(WalletPurposeEnum? left, WalletPurposeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(WalletPurposeEnum? left, WalletPurposeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is WalletPurposeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="WalletPurposeEnum?"/>.
             /// </summary>
@@ -155,7 +122,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="WalletPurposeEnum"/> to the json value.
             /// </summary>
@@ -166,27 +133,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == WalletPurposeEnum.IdentifiedBoleto)
                     return "identifiedBoleto";
-                
+
                 if (value == WalletPurposeEnum.TransferDifferentWallet)
                     return "transferDifferentWallet";
-                
+
                 if (value == WalletPurposeEnum.TransferOwnWallet)
                     return "transferOwnWallet";
-                
+
                 if (value == WalletPurposeEnum.TransferSameWallet)
                     return "transferSameWallet";
-                
+
                 if (value == WalletPurposeEnum.UnidentifiedBoleto)
                     return "unidentifiedBoleto";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing WalletPurposeEnum.               
+            /// JsonConverter for writing WalletPurposeEnum.
             /// </summary>
             public class WalletPurposeEnumJsonConverter : JsonConverter<WalletPurposeEnum>
             {
@@ -484,9 +451,34 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new FundRecipient(iBAN, billingAddress, paymentMethod, shopperEmail, shopperName, shopperReference, storedPaymentMethodId, subMerchant, telephoneNumber, walletIdentifier, walletOwnerTaxId, walletPurpose);
+
+            var result = new FundRecipient();
+            if (iBAN.IsSet)
+                result.IBAN = iBAN.Value;
+            if (billingAddress.IsSet)
+                result.BillingAddress = billingAddress.Value;
+            if (paymentMethod.IsSet)
+                result.PaymentMethod = paymentMethod.Value;
+            if (shopperEmail.IsSet)
+                result.ShopperEmail = shopperEmail.Value;
+            if (shopperName.IsSet)
+                result.ShopperName = shopperName.Value;
+            if (shopperReference.IsSet)
+                result.ShopperReference = shopperReference.Value;
+            if (storedPaymentMethodId.IsSet)
+                result.StoredPaymentMethodId = storedPaymentMethodId.Value;
+            if (subMerchant.IsSet)
+                result.SubMerchant = subMerchant.Value;
+            if (telephoneNumber.IsSet)
+                result.TelephoneNumber = telephoneNumber.Value;
+            if (walletIdentifier.IsSet)
+                result.WalletIdentifier = walletIdentifier.Value;
+            if (walletOwnerTaxId.IsSet)
+                result.WalletOwnerTaxId = walletOwnerTaxId.Value;
+            if (walletPurpose.IsSet)
+                result.WalletPurpose = walletPurpose.Value;
+            return result;
         }
 
         /// <summary>
@@ -497,13 +489,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, FundRecipient fundRecipient, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, fundRecipient, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -514,7 +506,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, FundRecipient fundRecipient, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (fundRecipient._IBANOption.IsSet)
                 if (fundRecipient.IBAN != null)
                     writer.WriteString("IBAN", fundRecipient.IBAN);
@@ -563,7 +555,7 @@ namespace Adyen.Checkout.Models
                 if (fundRecipient.WalletOwnerTaxId != null)
                     writer.WriteString("walletOwnerTaxId", fundRecipient.WalletOwnerTaxId);
 
-            if (fundRecipient._WalletPurposeOption.IsSet && fundRecipient.WalletPurpose != null) 
+            if (fundRecipient._WalletPurposeOption.IsSet && fundRecipient.WalletPurpose != null)
             {
                 string? walletPurposeRawValue = FundRecipient.WalletPurposeEnum.ToJsonValue(fundRecipient._WalletPurposeOption.Value!.Value);
                 writer.WriteString("walletPurpose", walletPurposeRawValue);

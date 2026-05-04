@@ -34,21 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="UtilityRequest" /> class.
         /// </summary>
-        /// <param name="originDomains">The list of origin domains, for which origin keys are requested.</param>
-        [JsonConstructor]
-        public UtilityRequest(List<string> originDomains)
-        {
-            OriginDomains = originDomains;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public UtilityRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -119,11 +108,13 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!originDomains.IsSet)
                 throw new ArgumentException("Property is required for class UtilityRequest.", nameof(originDomains));
 
-            return new UtilityRequest(originDomains.Value!);
+            var result = new UtilityRequest();
+            result.OriginDomains = originDomains.Value!;
+            return result;
         }
 
         /// <summary>
@@ -134,13 +125,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, UtilityRequest utilityRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, utilityRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -151,7 +142,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, UtilityRequest utilityRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WritePropertyName("originDomains");
             JsonSerializer.Serialize(writer, utilityRequest.OriginDomains, jsonSerializerOptions);
         }

@@ -34,33 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PseDetails" /> class.
         /// </summary>
-        /// <param name="bank">The shopper&#39;s bank.</param>
-        /// <param name="clientType">The client type.</param>
-        /// <param name="identification">The identification code.</param>
-        /// <param name="identificationType">The identification type.</param>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="type">The payment method type.</param>
-        [JsonConstructor]
-        public PseDetails(string bank, string clientType, string identification, string identificationType, Option<string?> checkoutAttemptId = default, Option<string?> sdkData = default, Option<TypeEnum?> type = default)
-        {
-            Bank = bank;
-            ClientType = clientType;
-            Identification = identification;
-            IdentificationType = identificationType;
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _SdkDataOption = sdkData;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PseDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -79,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.PsePayulatam - pse_payulatam
             /// </summary>
             public static readonly TypeEnum PsePayulatam = new("pse_payulatam");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -91,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -121,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -132,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.PsePayulatam)
                     return "pse_payulatam";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -319,7 +296,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!bank.IsSet)
                 throw new ArgumentException("Property is required for class PseDetails.", nameof(bank));
 
@@ -332,7 +309,18 @@ namespace Adyen.Checkout.Models
             if (!identificationType.IsSet)
                 throw new ArgumentException("Property is required for class PseDetails.", nameof(identificationType));
 
-            return new PseDetails(bank.Value!, clientType.Value!, identification.Value!, identificationType.Value!, checkoutAttemptId, sdkData, type);
+            var result = new PseDetails();
+            result.Bank = bank.Value!;
+            result.ClientType = clientType.Value!;
+            result.Identification = identification.Value!;
+            result.IdentificationType = identificationType.Value!;
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -343,13 +331,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PseDetails pseDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, pseDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -360,7 +348,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PseDetails pseDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (pseDetails.Bank != null)
                 writer.WriteString("bank", pseDetails.Bank);
 
@@ -381,7 +369,7 @@ namespace Adyen.Checkout.Models
                 if (pseDetails.SdkData != null)
                     writer.WriteString("sdkData", pseDetails.SdkData);
 
-            if (pseDetails._TypeOption.IsSet && pseDetails.Type != null) 
+            if (pseDetails._TypeOption.IsSet && pseDetails.Type != null)
             {
                 string? typeRawValue = PseDetails.TypeEnum.ToJsonValue(pseDetails._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);

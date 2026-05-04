@@ -34,27 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentDetailsRequest" /> class.
         /// </summary>
-        /// <param name="details">details</param>
-        /// <param name="authenticationData">authenticationData</param>
-        /// <param name="paymentData">Encoded payment data. For [authorizing a payment after using 3D Secure 2 Authentication-only](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only/#authorise-the-payment-with-adyen):  If you received &#x60;resultCode&#x60;: **AuthenticationNotRequired** in the &#x60;/payments&#x60; response, use the &#x60;threeDSPaymentData&#x60; from the same response.  If you received &#x60;resultCode&#x60;: **AuthenticationFinished** in the &#x60;/payments&#x60; response, use the &#x60;action.paymentData&#x60; from the same response.</param>
-        /// <param name="threeDSAuthenticationOnly">Change the &#x60;authenticationOnly&#x60; indicator originally set in the &#x60;/payments&#x60; request. Only needs to be set if you want to modify the value set previously.</param>
-        [JsonConstructor]
-        public PaymentDetailsRequest(PaymentCompletionDetails details, Option<DetailsRequestAuthenticationData?> authenticationData = default, Option<string?> paymentData = default, Option<bool?> threeDSAuthenticationOnly = default)
-        {
-            Details = details;
-            _AuthenticationDataOption = authenticationData;
-            _PaymentDataOption = paymentData;
-            _ThreeDSAuthenticationOnlyOption = threeDSAuthenticationOnly;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentDetailsRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -181,11 +164,19 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!details.IsSet)
                 throw new ArgumentException("Property is required for class PaymentDetailsRequest.", nameof(details));
 
-            return new PaymentDetailsRequest(details.Value!, authenticationData, paymentData, threeDSAuthenticationOnly);
+            var result = new PaymentDetailsRequest();
+            result.Details = details.Value!;
+            if (authenticationData.IsSet)
+                result.AuthenticationData = authenticationData.Value;
+            if (paymentData.IsSet)
+                result.PaymentData = paymentData.Value;
+            if (threeDSAuthenticationOnly.IsSet)
+                result.ThreeDSAuthenticationOnly = threeDSAuthenticationOnly.Value;
+            return result;
         }
 
         /// <summary>
@@ -196,13 +187,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentDetailsRequest paymentDetailsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentDetailsRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -213,7 +204,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentDetailsRequest paymentDetailsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WritePropertyName("details");
             JsonSerializer.Serialize(writer, paymentDetailsRequest.Details, jsonSerializerOptions);
             if (paymentDetailsRequest._AuthenticationDataOption.IsSet)

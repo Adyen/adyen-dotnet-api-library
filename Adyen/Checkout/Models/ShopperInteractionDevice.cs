@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ShopperInteractionDevice" /> class.
         /// </summary>
-        /// <param name="locale">Locale on the shopper interaction device.</param>
-        /// <param name="os">Operating system running on the shopper interaction device.</param>
-        /// <param name="osVersion">Version of the operating system on the shopper interaction device.</param>
-        [JsonConstructor]
-        public ShopperInteractionDevice(Option<string?> locale = default, Option<string?> os = default, Option<string?> osVersion = default)
-        {
-            _LocaleOption = locale;
-            _OsOption = os;
-            _OsVersionOption = osVersion;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ShopperInteractionDevice()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -168,9 +153,16 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ShopperInteractionDevice(locale, os, osVersion);
+
+            var result = new ShopperInteractionDevice();
+            if (locale.IsSet)
+                result.Locale = locale.Value;
+            if (os.IsSet)
+                result.Os = os.Value;
+            if (osVersion.IsSet)
+                result.OsVersion = osVersion.Value;
+            return result;
         }
 
         /// <summary>
@@ -181,13 +173,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ShopperInteractionDevice shopperInteractionDevice, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, shopperInteractionDevice, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -198,7 +190,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ShopperInteractionDevice shopperInteractionDevice, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (shopperInteractionDevice._LocaleOption.IsSet)
                 if (shopperInteractionDevice.Locale != null)
                     writer.WriteString("locale", shopperInteractionDevice.Locale);

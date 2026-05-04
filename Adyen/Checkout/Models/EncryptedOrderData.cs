@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="EncryptedOrderData" /> class.
         /// </summary>
-        /// <param name="orderData">The encrypted order data.</param>
-        /// <param name="pspReference">The &#x60;pspReference&#x60; that belongs to the order.</param>
-        [JsonConstructor]
-        public EncryptedOrderData(string orderData, string pspReference)
-        {
-            OrderData = orderData;
-            PspReference = pspReference;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public EncryptedOrderData()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -133,14 +120,17 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!orderData.IsSet)
                 throw new ArgumentException("Property is required for class EncryptedOrderData.", nameof(orderData));
 
             if (!pspReference.IsSet)
                 throw new ArgumentException("Property is required for class EncryptedOrderData.", nameof(pspReference));
 
-            return new EncryptedOrderData(orderData.Value!, pspReference.Value!);
+            var result = new EncryptedOrderData();
+            result.OrderData = orderData.Value!;
+            result.PspReference = pspReference.Value!;
+            return result;
         }
 
         /// <summary>
@@ -151,13 +141,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, EncryptedOrderData encryptedOrderData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, encryptedOrderData, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -168,7 +158,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, EncryptedOrderData encryptedOrderData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (encryptedOrderData.OrderData != null)
                 writer.WriteString("orderData", encryptedOrderData.OrderData);
 

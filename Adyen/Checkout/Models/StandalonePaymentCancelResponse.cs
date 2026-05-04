@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="StandalonePaymentCancelResponse" /> class.
         /// </summary>
-        /// <param name="merchantAccount">The merchant account that is used to process the payment.</param>
-        /// <param name="paymentReference">The [&#x60;reference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_reference) of the payment to cancel.</param>
-        /// <param name="pspReference">Adyen&#39;s 16-character reference associated with the cancel request.</param>
-        /// <param name="status">The status of your request. This will always have the value **received**.</param>
-        /// <param name="reference">Your reference for the cancel request.</param>
-        [JsonConstructor]
-        public StandalonePaymentCancelResponse(string merchantAccount, string paymentReference, string pspReference, StatusEnum status, Option<string?> reference = default)
-        {
-            MerchantAccount = merchantAccount;
-            PaymentReference = paymentReference;
-            PspReference = pspReference;
-            Status = status;
-            _ReferenceOption = reference;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public StandalonePaymentCancelResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -75,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// StatusEnum.Received - received
             /// </summary>
             public static readonly StatusEnum Received = new("received");
-        
+
             private StatusEnum(string? value)
             {
                 Value = value;
@@ -87,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="StatusEnum"/> instance initialized with the string value.</returns>
             public static implicit operator StatusEnum?(string? value) => value == null ? null : new StatusEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="StatusEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="StatusEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="StatusEnum"/> instance./// </returns>
             public static implicit operator string?(StatusEnum? option) => option?.Value;
-        
+
             public static bool operator ==(StatusEnum? left, StatusEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(StatusEnum? left, StatusEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is StatusEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="StatusEnum?"/>.
             /// </summary>
@@ -117,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="StatusEnum"/> to the json value.
             /// </summary>
@@ -128,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == StatusEnum.Received)
                     return "received";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing StatusEnum.               
+            /// JsonConverter for writing StatusEnum.
             /// </summary>
             public class StatusEnumJsonConverter : JsonConverter<StatusEnum>
             {
@@ -277,7 +258,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!merchantAccount.IsSet)
                 throw new ArgumentException("Property is required for class StandalonePaymentCancelResponse.", nameof(merchantAccount));
 
@@ -290,7 +271,14 @@ namespace Adyen.Checkout.Models
             if (!status.IsSet)
                 throw new ArgumentException("Property is required for class StandalonePaymentCancelResponse.", nameof(status));
 
-            return new StandalonePaymentCancelResponse(merchantAccount.Value!, paymentReference.Value!, pspReference.Value!, status.Value!.Value!, reference);
+            var result = new StandalonePaymentCancelResponse();
+            result.MerchantAccount = merchantAccount.Value!;
+            result.PaymentReference = paymentReference.Value!;
+            result.PspReference = pspReference.Value!;
+            result.Status = status.Value!.Value!;
+            if (reference.IsSet)
+                result.Reference = reference.Value;
+            return result;
         }
 
         /// <summary>
@@ -301,13 +289,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, StandalonePaymentCancelResponse standalonePaymentCancelResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, standalonePaymentCancelResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -318,7 +306,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, StandalonePaymentCancelResponse standalonePaymentCancelResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (standalonePaymentCancelResponse.MerchantAccount != null)
                 writer.WriteString("merchantAccount", standalonePaymentCancelResponse.MerchantAccount);
 
@@ -328,12 +316,12 @@ namespace Adyen.Checkout.Models
             if (standalonePaymentCancelResponse.PspReference != null)
                 writer.WriteString("pspReference", standalonePaymentCancelResponse.PspReference);
 
-            if (standalonePaymentCancelResponse.Status != null) 
+            if (standalonePaymentCancelResponse.Status != null)
             {
                 string? statusRawValue = StandalonePaymentCancelResponse.StatusEnum.ToJsonValue(standalonePaymentCancelResponse.Status);
                 writer.WriteString("status", statusRawValue);
             }
-            
+
             if (standalonePaymentCancelResponse._ReferenceOption.IsSet)
                 if (standalonePaymentCancelResponse.Reference != null)
                     writer.WriteString("reference", standalonePaymentCancelResponse.Reference);

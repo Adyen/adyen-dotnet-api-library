@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentReversalResponse" /> class.
         /// </summary>
-        /// <param name="merchantAccount">The merchant account that is used to process the payment.</param>
-        /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to reverse. </param>
-        /// <param name="pspReference">Adyen&#39;s 16-character reference associated with the reversal request.</param>
-        /// <param name="status">The status of your request. This will always have the value **received**.</param>
-        /// <param name="reference">Your reference for the reversal request.</param>
-        [JsonConstructor]
-        public PaymentReversalResponse(string merchantAccount, string paymentPspReference, string pspReference, StatusEnum status, Option<string?> reference = default)
-        {
-            MerchantAccount = merchantAccount;
-            PaymentPspReference = paymentPspReference;
-            PspReference = pspReference;
-            Status = status;
-            _ReferenceOption = reference;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentReversalResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -75,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// StatusEnum.Received - received
             /// </summary>
             public static readonly StatusEnum Received = new("received");
-        
+
             private StatusEnum(string? value)
             {
                 Value = value;
@@ -87,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="StatusEnum"/> instance initialized with the string value.</returns>
             public static implicit operator StatusEnum?(string? value) => value == null ? null : new StatusEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="StatusEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="StatusEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="StatusEnum"/> instance./// </returns>
             public static implicit operator string?(StatusEnum? option) => option?.Value;
-        
+
             public static bool operator ==(StatusEnum? left, StatusEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(StatusEnum? left, StatusEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is StatusEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="StatusEnum?"/>.
             /// </summary>
@@ -117,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="StatusEnum"/> to the json value.
             /// </summary>
@@ -128,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == StatusEnum.Received)
                     return "received";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing StatusEnum.               
+            /// JsonConverter for writing StatusEnum.
             /// </summary>
             public class StatusEnumJsonConverter : JsonConverter<StatusEnum>
             {
@@ -168,7 +149,7 @@ namespace Adyen.Checkout.Models
         public string MerchantAccount { get; set; }
 
         /// <summary>
-        /// The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to reverse. 
+        /// The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to reverse.
         /// </summary>
         /// <value>The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to reverse. </value>
         [JsonPropertyName("paymentPspReference")]
@@ -277,7 +258,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!merchantAccount.IsSet)
                 throw new ArgumentException("Property is required for class PaymentReversalResponse.", nameof(merchantAccount));
 
@@ -290,7 +271,14 @@ namespace Adyen.Checkout.Models
             if (!status.IsSet)
                 throw new ArgumentException("Property is required for class PaymentReversalResponse.", nameof(status));
 
-            return new PaymentReversalResponse(merchantAccount.Value!, paymentPspReference.Value!, pspReference.Value!, status.Value!.Value!, reference);
+            var result = new PaymentReversalResponse();
+            result.MerchantAccount = merchantAccount.Value!;
+            result.PaymentPspReference = paymentPspReference.Value!;
+            result.PspReference = pspReference.Value!;
+            result.Status = status.Value!.Value!;
+            if (reference.IsSet)
+                result.Reference = reference.Value;
+            return result;
         }
 
         /// <summary>
@@ -301,13 +289,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentReversalResponse paymentReversalResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentReversalResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -318,7 +306,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentReversalResponse paymentReversalResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paymentReversalResponse.MerchantAccount != null)
                 writer.WriteString("merchantAccount", paymentReversalResponse.MerchantAccount);
 
@@ -328,12 +316,12 @@ namespace Adyen.Checkout.Models
             if (paymentReversalResponse.PspReference != null)
                 writer.WriteString("pspReference", paymentReversalResponse.PspReference);
 
-            if (paymentReversalResponse.Status != null) 
+            if (paymentReversalResponse.Status != null)
             {
                 string? statusRawValue = PaymentReversalResponse.StatusEnum.ToJsonValue(paymentReversalResponse.Status);
                 writer.WriteString("status", statusRawValue);
             }
-            
+
             if (paymentReversalResponse._ReferenceOption.IsSet)
                 if (paymentReversalResponse.Reference != null)
                     writer.WriteString("reference", paymentReversalResponse.Reference);

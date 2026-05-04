@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodGroup" /> class.
         /// </summary>
-        /// <param name="name">The name of the group.</param>
-        /// <param name="paymentMethodData">Echo data to be used if the payment method is displayed as part of this group.</param>
-        /// <param name="type">The unique code of the group.</param>
-        [JsonConstructor]
-        public PaymentMethodGroup(Option<string?> name = default, Option<string?> paymentMethodData = default, Option<string?> type = default)
-        {
-            _NameOption = name;
-            _PaymentMethodDataOption = paymentMethodData;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentMethodGroup()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -168,9 +153,16 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new PaymentMethodGroup(name, paymentMethodData, type);
+
+            var result = new PaymentMethodGroup();
+            if (name.IsSet)
+                result.Name = name.Value;
+            if (paymentMethodData.IsSet)
+                result.PaymentMethodData = paymentMethodData.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -181,13 +173,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentMethodGroup paymentMethodGroup, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentMethodGroup, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -198,7 +190,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentMethodGroup paymentMethodGroup, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paymentMethodGroup._NameOption.IsSet)
                 if (paymentMethodGroup.Name != null)
                     writer.WriteString("name", paymentMethodGroup.Name);

@@ -34,39 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutForwardRequestCard" /> class.
         /// </summary>
-        /// <param name="cvc">The [card verification code](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid) (1-20 characters). Depending on the card brand, it is also known as: * CVV2/CVC2 – length: 3 digits * CID – length: 4 digits </param>
-        /// <param name="encryptedCardNumber">The encrypted card number.</param>
-        /// <param name="encryptedExpiryMonth">The encrypted expiryMonth</param>
-        /// <param name="encryptedExpiryYear">The encrypted card expiry year.</param>
-        /// <param name="encryptedSecurityCode">The encrypted security code.</param>
-        /// <param name="expiryMonth">The card expiry month. Format: 2 digits, zero-padded for single digits. For example: * 03 &#x3D; March * 11 &#x3D; November</param>
-        /// <param name="expiryYear">The card expiry year.</param>
-        /// <param name="holderName">The name of the cardholder.</param>
-        /// <param name="number">The card number. Only collect raw card data if you are fully [PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide). Format: Do not use separators.</param>
-        /// <param name="type">Default payment method details. Common for scheme payment methods, and for simple payment method details. (default to TypeEnum.Scheme)</param>
-        [JsonConstructor]
-        public CheckoutForwardRequestCard(Option<string?> cvc = default, Option<string?> encryptedCardNumber = default, Option<string?> encryptedExpiryMonth = default, Option<string?> encryptedExpiryYear = default, Option<string?> encryptedSecurityCode = default, Option<string?> expiryMonth = default, Option<string?> expiryYear = default, Option<string?> holderName = default, Option<string?> number = default, Option<TypeEnum?> type = default)
-        {
-            _CvcOption = cvc;
-            _EncryptedCardNumberOption = encryptedCardNumber;
-            _EncryptedExpiryMonthOption = encryptedExpiryMonth;
-            _EncryptedExpiryYearOption = encryptedExpiryYear;
-            _EncryptedSecurityCodeOption = encryptedSecurityCode;
-            _ExpiryMonthOption = expiryMonth;
-            _ExpiryYearOption = expiryYear;
-            _HolderNameOption = holderName;
-            _NumberOption = number;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CheckoutForwardRequestCard()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -85,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.Scheme - scheme
             /// </summary>
             public static readonly TypeEnum Scheme = new("scheme");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -97,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -127,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -138,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Scheme)
                     return "scheme";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -185,7 +156,7 @@ namespace Adyen.Checkout.Models
         public Option<string?> _CvcOption { get; private set; }
 
         /// <summary>
-        /// The [card verification code](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid) (1-20 characters). Depending on the card brand, it is also known as: * CVV2/CVC2 – length: 3 digits * CID – length: 4 digits 
+        /// The [card verification code](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid) (1-20 characters). Depending on the card brand, it is also known as: * CVV2/CVC2 – length: 3 digits * CID – length: 4 digits
         /// </summary>
         /// <value>The [card verification code](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid) (1-20 characters). Depending on the card brand, it is also known as: * CVV2/CVC2 – length: 3 digits * CID – length: 4 digits </value>
         [JsonPropertyName("cvc")]
@@ -410,9 +381,30 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new CheckoutForwardRequestCard(cvc, encryptedCardNumber, encryptedExpiryMonth, encryptedExpiryYear, encryptedSecurityCode, expiryMonth, expiryYear, holderName, number, type);
+
+            var result = new CheckoutForwardRequestCard();
+            if (cvc.IsSet)
+                result.Cvc = cvc.Value;
+            if (encryptedCardNumber.IsSet)
+                result.EncryptedCardNumber = encryptedCardNumber.Value;
+            if (encryptedExpiryMonth.IsSet)
+                result.EncryptedExpiryMonth = encryptedExpiryMonth.Value;
+            if (encryptedExpiryYear.IsSet)
+                result.EncryptedExpiryYear = encryptedExpiryYear.Value;
+            if (encryptedSecurityCode.IsSet)
+                result.EncryptedSecurityCode = encryptedSecurityCode.Value;
+            if (expiryMonth.IsSet)
+                result.ExpiryMonth = expiryMonth.Value;
+            if (expiryYear.IsSet)
+                result.ExpiryYear = expiryYear.Value;
+            if (holderName.IsSet)
+                result.HolderName = holderName.Value;
+            if (number.IsSet)
+                result.Number = number.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -423,13 +415,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CheckoutForwardRequestCard checkoutForwardRequestCard, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, checkoutForwardRequestCard, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -440,7 +432,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CheckoutForwardRequestCard checkoutForwardRequestCard, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (checkoutForwardRequestCard._CvcOption.IsSet)
                 if (checkoutForwardRequestCard.Cvc != null)
                     writer.WriteString("cvc", checkoutForwardRequestCard.Cvc);
@@ -477,7 +469,7 @@ namespace Adyen.Checkout.Models
                 if (checkoutForwardRequestCard.Number != null)
                     writer.WriteString("number", checkoutForwardRequestCard.Number);
 
-            if (checkoutForwardRequestCard._TypeOption.IsSet && checkoutForwardRequestCard.Type != null) 
+            if (checkoutForwardRequestCard._TypeOption.IsSet && checkoutForwardRequestCard.Type != null)
             {
                 string? typeRawValue = CheckoutForwardRequestCard.TypeEnum.ToJsonValue(checkoutForwardRequestCard._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);

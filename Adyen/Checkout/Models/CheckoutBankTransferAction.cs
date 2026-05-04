@@ -34,49 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutBankTransferAction" /> class.
         /// </summary>
-        /// <param name="type">The type of the action.</param>
-        /// <param name="accountNumber">The account number of the bank transfer.</param>
-        /// <param name="bankCode">The bank code of the bank transfer.</param>
-        /// <param name="beneficiary">The name of the account holder.</param>
-        /// <param name="bic">The BIC of the IBAN.</param>
-        /// <param name="branchCode">The branch code of the bank transfer.</param>
-        /// <param name="downloadUrl">The url to download payment details with.</param>
-        /// <param name="iban">The IBAN of the bank transfer.</param>
-        /// <param name="paymentMethodType">Specifies the payment method.</param>
-        /// <param name="reference">The transfer reference.</param>
-        /// <param name="routingNumber">The routing number of the bank transfer.</param>
-        /// <param name="shopperEmail">The e-mail of the shopper, included if an e-mail was sent to the shopper.</param>
-        /// <param name="sortCode">The sort code of the bank transfer.</param>
-        /// <param name="totalAmount">totalAmount</param>
-        /// <param name="url">Specifies the URL to redirect to.</param>
-        [JsonConstructor]
-        public CheckoutBankTransferAction(TypeEnum type, Option<string?> accountNumber = default, Option<string?> bankCode = default, Option<string?> beneficiary = default, Option<string?> bic = default, Option<string?> branchCode = default, Option<string?> downloadUrl = default, Option<string?> iban = default, Option<string?> paymentMethodType = default, Option<string?> reference = default, Option<string?> routingNumber = default, Option<string?> shopperEmail = default, Option<string?> sortCode = default, Option<Amount?> totalAmount = default, Option<string?> url = default)
-        {
-            Type = type;
-            _AccountNumberOption = accountNumber;
-            _BankCodeOption = bankCode;
-            _BeneficiaryOption = beneficiary;
-            _BicOption = bic;
-            _BranchCodeOption = branchCode;
-            _DownloadUrlOption = downloadUrl;
-            _IbanOption = iban;
-            _PaymentMethodTypeOption = paymentMethodType;
-            _ReferenceOption = reference;
-            _RoutingNumberOption = routingNumber;
-            _ShopperEmailOption = shopperEmail;
-            _SortCodeOption = sortCode;
-            _TotalAmountOption = totalAmount;
-            _UrlOption = url;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CheckoutBankTransferAction()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -95,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.BankTransfer - bankTransfer
             /// </summary>
             public static readonly TypeEnum BankTransfer = new("bankTransfer");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -107,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -137,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -148,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.BankTransfer)
                     return "bankTransfer";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -507,11 +468,41 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class CheckoutBankTransferAction.", nameof(type));
 
-            return new CheckoutBankTransferAction(type.Value!.Value!, accountNumber, bankCode, beneficiary, bic, branchCode, downloadUrl, iban, paymentMethodType, reference, routingNumber, shopperEmail, sortCode, totalAmount, url);
+            var result = new CheckoutBankTransferAction();
+            result.Type = type.Value!.Value!;
+            if (accountNumber.IsSet)
+                result.AccountNumber = accountNumber.Value;
+            if (bankCode.IsSet)
+                result.BankCode = bankCode.Value;
+            if (beneficiary.IsSet)
+                result.Beneficiary = beneficiary.Value;
+            if (bic.IsSet)
+                result.Bic = bic.Value;
+            if (branchCode.IsSet)
+                result.BranchCode = branchCode.Value;
+            if (downloadUrl.IsSet)
+                result.DownloadUrl = downloadUrl.Value;
+            if (iban.IsSet)
+                result.Iban = iban.Value;
+            if (paymentMethodType.IsSet)
+                result.PaymentMethodType = paymentMethodType.Value;
+            if (reference.IsSet)
+                result.Reference = reference.Value;
+            if (routingNumber.IsSet)
+                result.RoutingNumber = routingNumber.Value;
+            if (shopperEmail.IsSet)
+                result.ShopperEmail = shopperEmail.Value;
+            if (sortCode.IsSet)
+                result.SortCode = sortCode.Value;
+            if (totalAmount.IsSet)
+                result.TotalAmount = totalAmount.Value;
+            if (url.IsSet)
+                result.Url = url.Value;
+            return result;
         }
 
         /// <summary>
@@ -522,13 +513,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CheckoutBankTransferAction checkoutBankTransferAction, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, checkoutBankTransferAction, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -539,13 +530,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CheckoutBankTransferAction checkoutBankTransferAction, JsonSerializerOptions jsonSerializerOptions)
         {
-            
-            if (checkoutBankTransferAction.Type != null) 
+
+            if (checkoutBankTransferAction.Type != null)
             {
                 string? typeRawValue = CheckoutBankTransferAction.TypeEnum.ToJsonValue(checkoutBankTransferAction.Type);
                 writer.WriteString("type", typeRawValue);
             }
-            
+
             if (checkoutBankTransferAction._AccountNumberOption.IsSet)
                 if (checkoutBankTransferAction.AccountNumber != null)
                     writer.WriteString("accountNumber", checkoutBankTransferAction.AccountNumber);

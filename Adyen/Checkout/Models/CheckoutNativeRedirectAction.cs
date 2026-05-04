@@ -34,31 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutNativeRedirectAction" /> class.
         /// </summary>
-        /// <param name="type">**nativeRedirect**</param>
-        /// <param name="data">When the redirect URL must be accessed via POST, use this data to post to the redirect URL.</param>
-        /// <param name="method">Specifies the HTTP method, for example GET or POST.</param>
-        /// <param name="nativeRedirectData">Native SDK&#39;s redirect data containing the direct issuer link and state data that must be submitted to the /v1/nativeRedirect/redirectResult.</param>
-        /// <param name="paymentMethodType">Specifies the payment method.</param>
-        /// <param name="url">Specifies the URL to redirect to.</param>
-        [JsonConstructor]
-        public CheckoutNativeRedirectAction(TypeEnum type, Option<Dictionary<string, string>?> data = default, Option<string?> method = default, Option<string?> nativeRedirectData = default, Option<string?> paymentMethodType = default, Option<string?> url = default)
-        {
-            Type = type;
-            _DataOption = data;
-            _MethodOption = method;
-            _NativeRedirectDataOption = nativeRedirectData;
-            _PaymentMethodTypeOption = paymentMethodType;
-            _UrlOption = url;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CheckoutNativeRedirectAction()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -77,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.NativeRedirect - nativeRedirect
             /// </summary>
             public static readonly TypeEnum NativeRedirect = new("nativeRedirect");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -89,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -119,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -130,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.NativeRedirect)
                     return "nativeRedirect";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -319,11 +298,23 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class CheckoutNativeRedirectAction.", nameof(type));
 
-            return new CheckoutNativeRedirectAction(type.Value!.Value!, data, method, nativeRedirectData, paymentMethodType, url);
+            var result = new CheckoutNativeRedirectAction();
+            result.Type = type.Value!.Value!;
+            if (data.IsSet)
+                result.Data = data.Value;
+            if (method.IsSet)
+                result.Method = method.Value;
+            if (nativeRedirectData.IsSet)
+                result.NativeRedirectData = nativeRedirectData.Value;
+            if (paymentMethodType.IsSet)
+                result.PaymentMethodType = paymentMethodType.Value;
+            if (url.IsSet)
+                result.Url = url.Value;
+            return result;
         }
 
         /// <summary>
@@ -334,13 +325,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CheckoutNativeRedirectAction checkoutNativeRedirectAction, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, checkoutNativeRedirectAction, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -351,13 +342,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CheckoutNativeRedirectAction checkoutNativeRedirectAction, JsonSerializerOptions jsonSerializerOptions)
         {
-            
-            if (checkoutNativeRedirectAction.Type != null) 
+
+            if (checkoutNativeRedirectAction.Type != null)
             {
                 string? typeRawValue = CheckoutNativeRedirectAction.TypeEnum.ToJsonValue(checkoutNativeRedirectAction.Type);
                 writer.WriteString("type", typeRawValue);
             }
-            
+
             if (checkoutNativeRedirectAction._DataOption.IsSet)
             {
                 writer.WritePropertyName("data");

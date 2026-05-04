@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ShopperName" /> class.
         /// </summary>
-        /// <param name="firstName">The first name.</param>
-        /// <param name="lastName">The last name.</param>
-        [JsonConstructor]
-        public ShopperName(string firstName, string lastName)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ShopperName()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -133,14 +120,17 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!firstName.IsSet)
                 throw new ArgumentException("Property is required for class ShopperName.", nameof(firstName));
 
             if (!lastName.IsSet)
                 throw new ArgumentException("Property is required for class ShopperName.", nameof(lastName));
 
-            return new ShopperName(firstName.Value!, lastName.Value!);
+            var result = new ShopperName();
+            result.FirstName = firstName.Value!;
+            result.LastName = lastName.Value!;
+            return result;
         }
 
         /// <summary>
@@ -151,13 +141,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ShopperName shopperName, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, shopperName, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -168,7 +158,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ShopperName shopperName, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (shopperName.FirstName != null)
                 writer.WriteString("firstName", shopperName.FirstName);
 

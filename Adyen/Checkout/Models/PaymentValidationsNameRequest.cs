@@ -34,21 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentValidationsNameRequest" /> class.
         /// </summary>
-        /// <param name="status">Set to **requested** to request a [name validation](https://docs.adyen.com/payment-methods/cards/name-validation) to verify if the cardholder name provided by the shopper matches the cardholder name on file at the issuing bank.</param>
-        [JsonConstructor]
-        public PaymentValidationsNameRequest(string status)
-        {
-            Status = status;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentValidationsNameRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -119,11 +108,13 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!status.IsSet)
                 throw new ArgumentException("Property is required for class PaymentValidationsNameRequest.", nameof(status));
 
-            return new PaymentValidationsNameRequest(status.Value!);
+            var result = new PaymentValidationsNameRequest();
+            result.Status = status.Value!;
+            return result;
         }
 
         /// <summary>
@@ -134,13 +125,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentValidationsNameRequest paymentValidationsNameRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentValidationsNameRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -151,7 +142,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentValidationsNameRequest paymentValidationsNameRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paymentValidationsNameRequest.Status != null)
                 writer.WriteString("status", paymentValidationsNameRequest.Status);
         }

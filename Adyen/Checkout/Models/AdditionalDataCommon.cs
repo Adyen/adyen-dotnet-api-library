@@ -34,61 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataCommon" /> class.
         /// </summary>
-        /// <param name="requestedTestAcquirerResponseCode">Triggers test scenarios that allow to replicate certain acquirer response codes. See [Testing result codes and refusal reasons](https://docs.adyen.com/development-resources/testing/result-codes/) to learn about the possible values, and the &#x60;refusalReason&#x60; values you can trigger. </param>
-        /// <param name="requestedTestErrorResponseCode">Triggers test scenarios that allow to replicate certain communication errors.  Allowed values: * **NO_CONNECTION_AVAILABLE** – There wasn&#39;t a connection available to service the outgoing communication. This is a transient, retriable error since no messaging could be initiated to an issuing system (or third-party acquiring system). Therefore, the header Transient-Error: true is returned in the response. A subsequent request using the same idempotency key will be processed as if it was the first request. * **IOEXCEPTION_RECEIVED** – Something went wrong during transmission of the message or receiving the response. This is a classified as non-transient because the message could have been received by the issuing party and been acted upon. No transient error header is returned. If using idempotency, the (error) response is stored as the final result for the idempotency key. Subsequent messages with the same idempotency key not be processed beyond returning the stored response.</param>
-        /// <param name="allowPartialAuth">Set to true to authorise a part of the requested amount in case the cardholder does not have enough funds on their account.  If a payment was partially authorised, the response includes resultCode: PartiallyAuthorised and the authorised amount in additionalData.authorisedAmountValue. To enable this functionality, contact our Support Team.</param>
-        /// <param name="authorisationType">Flags a card payment request for either pre-authorisation or final authorisation. For more information, refer to [Authorisation types](https://docs.adyen.com/online-payments/adjust-authorisation#authorisation-types).  Allowed values: * **PreAuth** – flags the payment request to be handled as a pre-authorisation. * **FinalAuth** – flags the payment request to be handled as a final authorisation.</param>
-        /// <param name="autoRescue">Set to **true** to enable [Auto Rescue](https://docs.adyen.com/online-payments/auto-rescue/) for a transaction. Use the &#x60;maxDaysToRescue&#x60; to specify a rescue window.</param>
-        /// <param name="customRoutingFlag">Allows you to determine or override the acquirer account that should be used for the transaction.  If you need to process a payment with an acquirer different from a default one, you can set up a corresponding configuration on the Adyen payments platform. Then you can pass a custom routing flag in a payment request&#39;s additional data to target a specific acquirer.  To enable this functionality, contact [Support](https://www.adyen.help/hc/en-us/requests/new).</param>
-        /// <param name="industryUsage">In case of [asynchronous authorisation adjustment](https://docs.adyen.com/online-payments/adjust-authorisation#adjust-authorisation), this field denotes why the additional payment is made.  Possible values:   * **NoShow**: An incremental charge is carried out because of a no-show for a guaranteed reservation.   * **DelayedCharge**: An incremental charge is carried out to process an additional payment after the original services have been rendered and the respective payment has been processed.</param>
-        /// <param name="manualCapture">Set to **true** to require [manual capture](https://docs.adyen.com/online-payments/capture) for the transaction.</param>
-        /// <param name="maxDaysToRescue">The rescue window for a transaction, in days, when &#x60;autoRescue&#x60; is set to **true**. You can specify a value between 1 and 48.  * For [cards](https://docs.adyen.com/online-payments/auto-rescue/cards/), the default is one calendar month.  * For [SEPA](https://docs.adyen.com/online-payments/auto-rescue/sepa/), the default is 42 days.</param>
-        /// <param name="networkTxReference">Allows you to link the transaction to the original or previous one in a subscription/card-on-file chain. This field is required for token-based transactions where Adyen does not tokenize the card.  Transaction identifier from card schemes, for example, Mastercard Trace ID or the Visa Transaction ID.  Submit the original transaction ID of the contract in your payment request if you are not tokenizing card details with Adyen and are making a merchant-initiated transaction (MIT) for subsequent charges.  Make sure you are sending &#x60;shopperInteraction&#x60; **ContAuth** and &#x60;recurringProcessingModel&#x60; **Subscription** or **UnscheduledCardOnFile** to ensure that the transaction is classified as MIT.</param>
-        /// <param name="overwriteBrand">Boolean indicator that can be optionally used for performing debit transactions on combo cards (for example, combo cards in Brazil). This is not mandatory but we recommend that you set this to true if you want to use the &#x60;selectedBrand&#x60; value to specify how to process the transaction.</param>
-        /// <param name="subMerchantCity">This field is required if the transaction is performed by a registered payment facilitator. This field must contain the city of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 13 characters.</param>
-        /// <param name="subMerchantCountry">This field is required if the transaction is performed by a registered payment facilitator. This field must contain the three-letter country code of the actual merchant&#39;s address. * Format: alpha-numeric. * Fixed length: 3 characters.</param>
-        /// <param name="subMerchantEmail">This field is required for transactions performed by registered payment facilitators. This field contains the email address of the sub-merchant. * Format: Alphanumeric * Maximum length: 40 characters</param>
-        /// <param name="subMerchantID">This field contains an identifier of the actual merchant when a transaction is submitted via a payment facilitator. The payment facilitator must send in this unique ID.  A unique identifier per submerchant that is required if the transaction is performed by a registered payment facilitator. * Format: alpha-numeric. * Fixed length: 15 characters.</param>
-        /// <param name="subMerchantName">This field is required if the transaction is performed by a registered payment facilitator. This field must contain the name of the actual merchant. * Format: alpha-numeric. * Maximum length: 22 characters.</param>
-        /// <param name="subMerchantPhoneNumber">This field is required for transactions performed by registered payment facilitators. This field contains the phone number of the sub-merchant.* Format: Alphanumeric * Maximum length: 20 characters</param>
-        /// <param name="subMerchantPostalCode">This field is required if the transaction is performed by a registered payment facilitator. This field must contain the postal code of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 10 characters.</param>
-        /// <param name="subMerchantState">This field is required if the transaction is performed by a registered payment facilitator, and if applicable to the country. This field must contain the state code of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 3 characters.</param>
-        /// <param name="subMerchantStreet">This field is required if the transaction is performed by a registered payment facilitator. This field must contain the street of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 60 characters.</param>
-        /// <param name="subMerchantTaxId">This field is required if the transaction is performed by a registered payment facilitator. This field must contain the tax ID of the actual merchant. * Format: alpha-numeric. * Fixed length: 11 or 14 characters.</param>
-        [JsonConstructor]
-        public AdditionalDataCommon(Option<string?> requestedTestAcquirerResponseCode = default, Option<string?> requestedTestErrorResponseCode = default, Option<string?> allowPartialAuth = default, Option<string?> authorisationType = default, Option<string?> autoRescue = default, Option<string?> customRoutingFlag = default, Option<IndustryUsageEnum?> industryUsage = default, Option<string?> manualCapture = default, Option<string?> maxDaysToRescue = default, Option<string?> networkTxReference = default, Option<string?> overwriteBrand = default, Option<string?> subMerchantCity = default, Option<string?> subMerchantCountry = default, Option<string?> subMerchantEmail = default, Option<string?> subMerchantID = default, Option<string?> subMerchantName = default, Option<string?> subMerchantPhoneNumber = default, Option<string?> subMerchantPostalCode = default, Option<string?> subMerchantState = default, Option<string?> subMerchantStreet = default, Option<string?> subMerchantTaxId = default)
-        {
-            _RequestedTestAcquirerResponseCodeOption = requestedTestAcquirerResponseCode;
-            _RequestedTestErrorResponseCodeOption = requestedTestErrorResponseCode;
-            _AllowPartialAuthOption = allowPartialAuth;
-            _AuthorisationTypeOption = authorisationType;
-            _AutoRescueOption = autoRescue;
-            _CustomRoutingFlagOption = customRoutingFlag;
-            _IndustryUsageOption = industryUsage;
-            _ManualCaptureOption = manualCapture;
-            _MaxDaysToRescueOption = maxDaysToRescue;
-            _NetworkTxReferenceOption = networkTxReference;
-            _OverwriteBrandOption = overwriteBrand;
-            _SubMerchantCityOption = subMerchantCity;
-            _SubMerchantCountryOption = subMerchantCountry;
-            _SubMerchantEmailOption = subMerchantEmail;
-            _SubMerchantIDOption = subMerchantID;
-            _SubMerchantNameOption = subMerchantName;
-            _SubMerchantPhoneNumberOption = subMerchantPhoneNumber;
-            _SubMerchantPostalCodeOption = subMerchantPostalCode;
-            _SubMerchantStateOption = subMerchantState;
-            _SubMerchantStreetOption = subMerchantStreet;
-            _SubMerchantTaxIdOption = subMerchantTaxId;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public AdditionalDataCommon()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -112,7 +61,7 @@ namespace Adyen.Checkout.Models
             /// IndustryUsageEnum.DelayedCharge - DelayedCharge
             /// </summary>
             public static readonly IndustryUsageEnum DelayedCharge = new("DelayedCharge");
-        
+
             private IndustryUsageEnum(string? value)
             {
                 Value = value;
@@ -124,24 +73,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="IndustryUsageEnum"/> instance initialized with the string value.</returns>
             public static implicit operator IndustryUsageEnum?(string? value) => value == null ? null : new IndustryUsageEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="IndustryUsageEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="IndustryUsageEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="IndustryUsageEnum"/> instance./// </returns>
             public static implicit operator string?(IndustryUsageEnum? option) => option?.Value;
-        
+
             public static bool operator ==(IndustryUsageEnum? left, IndustryUsageEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(IndustryUsageEnum? left, IndustryUsageEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is IndustryUsageEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="IndustryUsageEnum?"/>.
             /// </summary>
@@ -155,7 +104,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="IndustryUsageEnum"/> to the json value.
             /// </summary>
@@ -166,18 +115,18 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == IndustryUsageEnum.NoShow)
                     return "NoShow";
-                
+
                 if (value == IndustryUsageEnum.DelayedCharge)
                     return "DelayedCharge";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing IndustryUsageEnum.               
+            /// JsonConverter for writing IndustryUsageEnum.
             /// </summary>
             public class IndustryUsageEnumJsonConverter : JsonConverter<IndustryUsageEnum>
             {
@@ -216,7 +165,7 @@ namespace Adyen.Checkout.Models
         public Option<string?> _RequestedTestAcquirerResponseCodeOption { get; private set; }
 
         /// <summary>
-        /// Triggers test scenarios that allow to replicate certain acquirer response codes. See [Testing result codes and refusal reasons](https://docs.adyen.com/development-resources/testing/result-codes/) to learn about the possible values, and the &#x60;refusalReason&#x60; values you can trigger. 
+        /// Triggers test scenarios that allow to replicate certain acquirer response codes. See [Testing result codes and refusal reasons](https://docs.adyen.com/development-resources/testing/result-codes/) to learn about the possible values, and the &#x60;refusalReason&#x60; values you can trigger.
         /// </summary>
         /// <value>Triggers test scenarios that allow to replicate certain acquirer response codes. See [Testing result codes and refusal reasons](https://docs.adyen.com/development-resources/testing/result-codes/) to learn about the possible values, and the `refusalReason` values you can trigger. </value>
         [JsonPropertyName("RequestedTestAcquirerResponseCode")]
@@ -650,9 +599,52 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new AdditionalDataCommon(requestedTestAcquirerResponseCode, requestedTestErrorResponseCode, allowPartialAuth, authorisationType, autoRescue, customRoutingFlag, industryUsage, manualCapture, maxDaysToRescue, networkTxReference, overwriteBrand, subMerchantCity, subMerchantCountry, subMerchantEmail, subMerchantID, subMerchantName, subMerchantPhoneNumber, subMerchantPostalCode, subMerchantState, subMerchantStreet, subMerchantTaxId);
+
+            var result = new AdditionalDataCommon();
+            if (requestedTestAcquirerResponseCode.IsSet)
+                result.RequestedTestAcquirerResponseCode = requestedTestAcquirerResponseCode.Value;
+            if (requestedTestErrorResponseCode.IsSet)
+                result.RequestedTestErrorResponseCode = requestedTestErrorResponseCode.Value;
+            if (allowPartialAuth.IsSet)
+                result.AllowPartialAuth = allowPartialAuth.Value;
+            if (authorisationType.IsSet)
+                result.AuthorisationType = authorisationType.Value;
+            if (autoRescue.IsSet)
+                result.AutoRescue = autoRescue.Value;
+            if (customRoutingFlag.IsSet)
+                result.CustomRoutingFlag = customRoutingFlag.Value;
+            if (industryUsage.IsSet)
+                result.IndustryUsage = industryUsage.Value;
+            if (manualCapture.IsSet)
+                result.ManualCapture = manualCapture.Value;
+            if (maxDaysToRescue.IsSet)
+                result.MaxDaysToRescue = maxDaysToRescue.Value;
+            if (networkTxReference.IsSet)
+                result.NetworkTxReference = networkTxReference.Value;
+            if (overwriteBrand.IsSet)
+                result.OverwriteBrand = overwriteBrand.Value;
+            if (subMerchantCity.IsSet)
+                result.SubMerchantCity = subMerchantCity.Value;
+            if (subMerchantCountry.IsSet)
+                result.SubMerchantCountry = subMerchantCountry.Value;
+            if (subMerchantEmail.IsSet)
+                result.SubMerchantEmail = subMerchantEmail.Value;
+            if (subMerchantID.IsSet)
+                result.SubMerchantID = subMerchantID.Value;
+            if (subMerchantName.IsSet)
+                result.SubMerchantName = subMerchantName.Value;
+            if (subMerchantPhoneNumber.IsSet)
+                result.SubMerchantPhoneNumber = subMerchantPhoneNumber.Value;
+            if (subMerchantPostalCode.IsSet)
+                result.SubMerchantPostalCode = subMerchantPostalCode.Value;
+            if (subMerchantState.IsSet)
+                result.SubMerchantState = subMerchantState.Value;
+            if (subMerchantStreet.IsSet)
+                result.SubMerchantStreet = subMerchantStreet.Value;
+            if (subMerchantTaxId.IsSet)
+                result.SubMerchantTaxId = subMerchantTaxId.Value;
+            return result;
         }
 
         /// <summary>
@@ -663,13 +655,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, AdditionalDataCommon additionalDataCommon, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, additionalDataCommon, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -680,7 +672,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, AdditionalDataCommon additionalDataCommon, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (additionalDataCommon._RequestedTestAcquirerResponseCodeOption.IsSet)
                 if (additionalDataCommon.RequestedTestAcquirerResponseCode != null)
                     writer.WriteString("RequestedTestAcquirerResponseCode", additionalDataCommon.RequestedTestAcquirerResponseCode);
@@ -705,12 +697,12 @@ namespace Adyen.Checkout.Models
                 if (additionalDataCommon.CustomRoutingFlag != null)
                     writer.WriteString("customRoutingFlag", additionalDataCommon.CustomRoutingFlag);
 
-            if (additionalDataCommon._IndustryUsageOption.IsSet && additionalDataCommon.IndustryUsage != null) 
+            if (additionalDataCommon._IndustryUsageOption.IsSet && additionalDataCommon.IndustryUsage != null)
             {
                 string? industryUsageRawValue = AdditionalDataCommon.IndustryUsageEnum.ToJsonValue(additionalDataCommon._IndustryUsageOption.Value!.Value);
                 writer.WriteString("industryUsage", industryUsageRawValue);
             }
-            
+
             if (additionalDataCommon._ManualCaptureOption.IsSet)
                 if (additionalDataCommon.ManualCapture != null)
                     writer.WriteString("manualCapture", additionalDataCommon.ManualCapture);

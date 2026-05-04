@@ -33,12 +33,13 @@ namespace Adyen.Test.Checkout
         [TestMethod]
         public void Given_PaymentLinkRequest_When_NullableString_IsExplicitlyNull_Then_Serializes_Without_Error()
         {
-            var request = new PaymentLinkRequest(
-                amount: new Amount("EUR", 1000),
-                merchantAccount: "TestMerchant",
-                reference: "test-ref",
-                countryCode: null
-            );
+            var request = new PaymentLinkRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                MerchantAccount = "TestMerchant",
+                Reference = "test-ref",
+                CountryCode = null,
+            };
 
             string json = JsonSerializer.Serialize(request, _jsonSerializerOptionsProvider.Options);
 
@@ -49,12 +50,13 @@ namespace Adyen.Test.Checkout
         [TestMethod]
         public void Given_PaymentLinkRequest_When_NullableBool_IsExplicitlyNull_Then_Serializes_Without_Error()
         {
-            var request = new PaymentLinkRequest(
-                amount: new Amount("EUR", 1000),
-                merchantAccount: "TestMerchant",
-                reference: "test-ref",
-                reusable: null
-            );
+            var request = new PaymentLinkRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                MerchantAccount = "TestMerchant",
+                Reference = "test-ref",
+                Reusable = null,
+            };
 
             string json = JsonSerializer.Serialize(request, _jsonSerializerOptionsProvider.Options);
 
@@ -65,12 +67,13 @@ namespace Adyen.Test.Checkout
         [TestMethod]
         public void Given_PaymentLinkRequest_When_NullableInt_IsExplicitlyNull_Then_Serializes_Without_Error()
         {
-            var request = new PaymentLinkRequest(
-                amount: new Amount("EUR", 1000),
-                merchantAccount: "TestMerchant",
-                reference: "test-ref",
-                captureDelayHours: null
-            );
+            var request = new PaymentLinkRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                MerchantAccount = "TestMerchant",
+                Reference = "test-ref",
+                CaptureDelayHours = null,
+            };
 
             string json = JsonSerializer.Serialize(request, _jsonSerializerOptionsProvider.Options);
 
@@ -81,13 +84,14 @@ namespace Adyen.Test.Checkout
         [TestMethod]
         public void Given_CreateCheckoutSessionRequest_When_NullableDate_IsExplicitlyNull_Then_Serializes_Without_Error()
         {
-            var request = new CreateCheckoutSessionRequest(
-                amount: new Amount("EUR", 1000),
-                merchantAccount: "TestMerchant",
-                reference: "test-ref",
-                returnUrl: "https://example.com",
-                dateOfBirth: null
-            );
+            var request = new CreateCheckoutSessionRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                MerchantAccount = "TestMerchant",
+                Reference = "test-ref",
+                ReturnUrl = "https://example.com",
+                DateOfBirth = null,
+            };
 
             string json = JsonSerializer.Serialize(request, _jsonSerializerOptionsProvider.Options);
 
@@ -98,13 +102,14 @@ namespace Adyen.Test.Checkout
         [TestMethod]
         public void Given_CreateCheckoutSessionRequest_When_NullableDateTime_IsExplicitlyNull_Then_Serializes_Without_Error()
         {
-            var request = new CreateCheckoutSessionRequest(
-                amount: new Amount("EUR", 1000),
-                merchantAccount: "TestMerchant",
-                reference: "test-ref",
-                returnUrl: "https://example.com",
-                expiresAt: null
-            );
+            var request = new CreateCheckoutSessionRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                MerchantAccount = "TestMerchant",
+                Reference = "test-ref",
+                ReturnUrl = "https://example.com",
+                ExpiresAt = null,
+            };
 
             string json = JsonSerializer.Serialize(request, _jsonSerializerOptionsProvider.Options);
 
@@ -115,12 +120,13 @@ namespace Adyen.Test.Checkout
         [TestMethod]
         public void Given_PaymentLinkRequest_When_NullableBool_HasValue_Then_Serializes_Correctly()
         {
-            var request = new PaymentLinkRequest(
-                amount: new Amount("EUR", 1000),
-                merchantAccount: "TestMerchant",
-                reference: "test-ref",
-                reusable: true
-            );
+            var request = new PaymentLinkRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                MerchantAccount = "TestMerchant",
+                Reference = "test-ref",
+                Reusable = true,
+            };
 
             string json = JsonSerializer.Serialize(request, _jsonSerializerOptionsProvider.Options);
 
@@ -130,12 +136,13 @@ namespace Adyen.Test.Checkout
         [TestMethod]
         public void Given_PaymentLinkRequest_When_NullableInt_HasValue_Then_Serializes_Correctly()
         {
-            var request = new PaymentLinkRequest(
-                amount: new Amount("EUR", 1000),
-                merchantAccount: "TestMerchant",
-                reference: "test-ref",
-                captureDelayHours: 5
-            );
+            var request = new PaymentLinkRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                MerchantAccount = "TestMerchant",
+                Reference = "test-ref",
+                CaptureDelayHours = 5,
+            };
 
             string json = JsonSerializer.Serialize(request, _jsonSerializerOptionsProvider.Options);
 
@@ -146,13 +153,14 @@ namespace Adyen.Test.Checkout
         public void Given_CreateCheckoutSessionRequest_When_NullableDateTime_HasValue_Then_Serializes_Correctly()
         {
             var expiresAt = new DateTimeOffset(2026, 12, 31, 23, 59, 59, TimeSpan.Zero);
-            var request = new CreateCheckoutSessionRequest(
-                amount: new Amount("EUR", 1000),
-                merchantAccount: "TestMerchant",
-                reference: "test-ref",
-                returnUrl: "https://example.com",
-                expiresAt: expiresAt
-            );
+            var request = new CreateCheckoutSessionRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                MerchantAccount = "TestMerchant",
+                Reference = "test-ref",
+                ReturnUrl = "https://example.com",
+                ExpiresAt = expiresAt,
+            };
 
             string json = JsonSerializer.Serialize(request, _jsonSerializerOptionsProvider.Options);
 
@@ -162,12 +170,13 @@ namespace Adyen.Test.Checkout
         [TestMethod]
         public void Given_PaymentLinkRequest_When_NullableBool_IsExplicitlyNull_Then_RoundTrip_Produces_No_Value()
         {
-            var original = new PaymentLinkRequest(
-                amount: new Amount("EUR", 1000),
-                merchantAccount: "TestMerchant",
-                reference: "test-ref",
-                reusable: null
-            );
+            var original = new PaymentLinkRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                MerchantAccount = "TestMerchant",
+                Reference = "test-ref",
+                Reusable = null,
+            };
 
             string json = JsonSerializer.Serialize(original, _jsonSerializerOptionsProvider.Options);
             var deserialized = JsonSerializer.Deserialize<PaymentLinkRequest>(json, _jsonSerializerOptionsProvider.Options);
@@ -179,12 +188,13 @@ namespace Adyen.Test.Checkout
         [TestMethod]
         public void Given_PaymentLinkRequest_When_NullableBool_HasValue_Then_RoundTrip_Preserves_Value()
         {
-            var original = new PaymentLinkRequest(
-                amount: new Amount("EUR", 1000),
-                merchantAccount: "TestMerchant",
-                reference: "test-ref",
-                reusable: true
-            );
+            var original = new PaymentLinkRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                MerchantAccount = "TestMerchant",
+                Reference = "test-ref",
+                Reusable = true,
+            };
 
             string json = JsonSerializer.Serialize(original, _jsonSerializerOptionsProvider.Options);
             var deserialized = JsonSerializer.Deserialize<PaymentLinkRequest>(json, _jsonSerializerOptionsProvider.Options);

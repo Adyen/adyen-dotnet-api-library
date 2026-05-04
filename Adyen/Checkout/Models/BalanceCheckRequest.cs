@@ -34,111 +34,14 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="BalanceCheckRequest" /> class.
         /// </summary>
-        /// <param name="amount">amount</param>
-        /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction.</param>
-        /// <param name="paymentMethod">The collection that contains the type of the payment method and its specific information.</param>
-        /// <param name="accountInfo">accountInfo</param>
-        /// <param name="additionalAmount">additionalAmount</param>
-        /// <param name="additionalData">This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value.</param>
-        /// <param name="applicationInfo">applicationInfo</param>
-        /// <param name="billingAddress">billingAddress</param>
-        /// <param name="browserInfo">browserInfo</param>
-        /// <param name="captureDelayHours">The delay between the authorisation and scheduled auto-capture, specified in hours.</param>
-        /// <param name="dateOfBirth">The shopper&#39;s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD</param>
-        /// <param name="dccQuote">dccQuote</param>
-        /// <param name="deliveryAddress">deliveryAddress</param>
-        /// <param name="deliveryDate">The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00</param>
-        /// <param name="deviceFingerprint">A string containing the shopper&#39;s device fingerprint. For more information, refer to [Device fingerprinting](https://docs.adyen.com/risk-management/device-fingerprinting).</param>
-        /// <param name="fraudOffset">An integer value that is added to the normal fraud score. The value can be either positive or negative.</param>
-        /// <param name="installments">installments</param>
-        /// <param name="localizedShopperStatement">The &#x60;localizedShopperStatement&#x60; field lets you use dynamic values for your shopper statement in a local character set. If this parameter is left empty, not provided, or not applicable (in case of cross-border transactions), then **shopperStatement** is used.  Currently, &#x60;localizedShopperStatement&#x60; is only supported for payments with Visa, Mastercard, JCB, Diners, and Discover.  **Supported characters**: Hiragana, Katakana, Kanji, and alphanumeric.</param>
-        /// <param name="mcc">The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.</param>
-        /// <param name="merchantOrderReference">This reference allows linking multiple transactions to each other for reporting purposes (i.e. order auth-rate). The reference should be unique per billing cycle. The same merchant order reference should never be reused after the first authorised attempt. If used, this field should be supplied for all incoming authorisations. &gt; We strongly recommend you send the &#x60;merchantOrderReference&#x60; value to benefit from linking payment requests when authorisation retries take place. In addition, we recommend you provide &#x60;retry.orderAttemptNumber&#x60;, &#x60;retry.chainAttemptNumber&#x60;, and &#x60;retry.skipRetry&#x60; values in &#x60;PaymentRequest.additionalData&#x60;.</param>
-        /// <param name="merchantRiskIndicator">merchantRiskIndicator</param>
-        /// <param name="metadata">Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. When exceeding, the \&quot;177\&quot; error occurs: \&quot;Metadata size exceeds limit\&quot;. * Maximum 20 characters per key. * Maximum 80 characters per value. </param>
-        /// <param name="orderReference">When you are doing multiple partial (gift card) payments, this is the &#x60;pspReference&#x60; of the first payment. We use this to link the multiple payments to each other. As your own reference for linking multiple payments, use the &#x60;merchantOrderReference&#x60;instead.</param>
-        /// <param name="recurring">recurring</param>
-        /// <param name="recurringProcessingModel">Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </param>
-        /// <param name="reference">The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.</param>
-        /// <param name="selectedBrand">Some payment methods require defining a value for this field to specify how to process the transaction.  For the Bancontact payment method, it can be set to: * &#x60;maestro&#x60; (default), to be processed like a Maestro card, or * &#x60;bcmc&#x60;, to be processed like a Bancontact card.</param>
-        /// <param name="selectedRecurringDetailReference">The &#x60;recurringDetailReference&#x60; you want to use for this payment. The value &#x60;LATEST&#x60; can be used to select the most recently stored recurring detail.</param>
-        /// <param name="sessionId">A session ID used to identify a payment session.</param>
-        /// <param name="shopperEmail">The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication if you did not include the &#x60;telephoneNumber&#x60;.</param>
-        /// <param name="shopperIP">The shopper&#39;s IP address. We recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks). &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication for all web and mobile integrations, if you did not include the &#x60;shopperEmail&#x60;. For native mobile integrations, the field is required to support cases where authentication is routed to the redirect flow. This field is also mandatory for some merchants depending on your business model. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).</param>
-        /// <param name="shopperInteraction">Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * &#x60;Ecommerce&#x60; - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * &#x60;ContAuth&#x60; - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * &#x60;Moto&#x60; - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * &#x60;POS&#x60; - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.</param>
-        /// <param name="shopperLocale">The combination of a language code and a country code to specify the language to be used in the payment.</param>
-        /// <param name="shopperName">shopperName</param>
-        /// <param name="shopperReference">Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.</param>
-        /// <param name="shopperStatement">The text to be shown on the shopper&#39;s bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , &#39; _ - ? + * /_**.</param>
-        /// <param name="socialSecurityNumber">The shopper&#39;s social security number.</param>
-        /// <param name="splits">An array of objects specifying how the payment should be split when using either Adyen for Platforms for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/split-payments), or standalone [Issuing](https://docs.adyen.com/issuing/add-manage-funds#split).</param>
-        /// <param name="store">Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.</param>
-        /// <param name="telephoneNumber">The shopper&#39;s telephone number.  The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we do not submit it for authentication. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the &#x60;shopperEmail&#x60;.</param>
-        /// <param name="threeDS2RequestData">threeDS2RequestData</param>
-        /// <param name="threeDSAuthenticationOnly">Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.Default: **false**. (default to false)</param>
-        /// <param name="totalsGroup">The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available).</param>
-        /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID.</param>
-        [JsonConstructor]
-        public BalanceCheckRequest(Amount amount, string merchantAccount, Dictionary<string, string> paymentMethod, Option<AccountInfo?> accountInfo = default, Option<Amount?> additionalAmount = default, Option<Dictionary<string, string>?> additionalData = default, Option<ApplicationInfo?> applicationInfo = default, Option<Address?> billingAddress = default, Option<BrowserInfo?> browserInfo = default, Option<int?> captureDelayHours = default, Option<DateOnly?> dateOfBirth = default, Option<ForexQuote?> dccQuote = default, Option<Address?> deliveryAddress = default, Option<DateTimeOffset?> deliveryDate = default, Option<string?> deviceFingerprint = default, Option<int?> fraudOffset = default, Option<Installments?> installments = default, Option<Dictionary<string, string>?> localizedShopperStatement = default, Option<string?> mcc = default, Option<string?> merchantOrderReference = default, Option<MerchantRiskIndicator?> merchantRiskIndicator = default, Option<Dictionary<string, string>?> metadata = default, Option<string?> orderReference = default, Option<Recurring?> recurring = default, Option<RecurringProcessingModelEnum?> recurringProcessingModel = default, Option<string?> reference = default, Option<string?> selectedBrand = default, Option<string?> selectedRecurringDetailReference = default, Option<string?> sessionId = default, Option<string?> shopperEmail = default, Option<string?> shopperIP = default, Option<ShopperInteractionEnum?> shopperInteraction = default, Option<string?> shopperLocale = default, Option<Name?> shopperName = default, Option<string?> shopperReference = default, Option<string?> shopperStatement = default, Option<string?> socialSecurityNumber = default, Option<List<Split>?> splits = default, Option<string?> store = default, Option<string?> telephoneNumber = default, Option<ThreeDS2RequestData?> threeDS2RequestData = default, Option<bool?> threeDSAuthenticationOnly = default, Option<string?> totalsGroup = default, Option<bool?> trustedShopper = default)
-        {
-            Amount = amount;
-            MerchantAccount = merchantAccount;
-            PaymentMethod = paymentMethod;
-            _AccountInfoOption = accountInfo;
-            _AdditionalAmountOption = additionalAmount;
-            _AdditionalDataOption = additionalData;
-            _ApplicationInfoOption = applicationInfo;
-            _BillingAddressOption = billingAddress;
-            _BrowserInfoOption = browserInfo;
-            _CaptureDelayHoursOption = captureDelayHours;
-            _DateOfBirthOption = dateOfBirth;
-            _DccQuoteOption = dccQuote;
-            _DeliveryAddressOption = deliveryAddress;
-            _DeliveryDateOption = deliveryDate;
-            _DeviceFingerprintOption = deviceFingerprint;
-            _FraudOffsetOption = fraudOffset;
-            _InstallmentsOption = installments;
-            _LocalizedShopperStatementOption = localizedShopperStatement;
-            _MccOption = mcc;
-            _MerchantOrderReferenceOption = merchantOrderReference;
-            _MerchantRiskIndicatorOption = merchantRiskIndicator;
-            _MetadataOption = metadata;
-            _OrderReferenceOption = orderReference;
-            _RecurringOption = recurring;
-            _RecurringProcessingModelOption = recurringProcessingModel;
-            _ReferenceOption = reference;
-            _SelectedBrandOption = selectedBrand;
-            _SelectedRecurringDetailReferenceOption = selectedRecurringDetailReference;
-            _SessionIdOption = sessionId;
-            _ShopperEmailOption = shopperEmail;
-            _ShopperIPOption = shopperIP;
-            _ShopperInteractionOption = shopperInteraction;
-            _ShopperLocaleOption = shopperLocale;
-            _ShopperNameOption = shopperName;
-            _ShopperReferenceOption = shopperReference;
-            _ShopperStatementOption = shopperStatement;
-            _SocialSecurityNumberOption = socialSecurityNumber;
-            _SplitsOption = splits;
-            _StoreOption = store;
-            _TelephoneNumberOption = telephoneNumber;
-            _ThreeDS2RequestDataOption = threeDS2RequestData;
-            _ThreeDSAuthenticationOnlyOption = threeDSAuthenticationOnly;
-            _TotalsGroupOption = totalsGroup;
-            _TrustedShopperOption = trustedShopper;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public BalanceCheckRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
-        /// Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount. 
+        /// Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.
         /// </summary>
         /// <value>Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
         [JsonConverter(typeof(RecurringProcessingModelEnumJsonConverter))]
@@ -163,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// RecurringProcessingModelEnum.UnscheduledCardOnFile - UnscheduledCardOnFile
             /// </summary>
             public static readonly RecurringProcessingModelEnum UnscheduledCardOnFile = new("UnscheduledCardOnFile");
-        
+
             private RecurringProcessingModelEnum(string? value)
             {
                 Value = value;
@@ -175,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="RecurringProcessingModelEnum"/> instance initialized with the string value.</returns>
             public static implicit operator RecurringProcessingModelEnum?(string? value) => value == null ? null : new RecurringProcessingModelEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="RecurringProcessingModelEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="RecurringProcessingModelEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="RecurringProcessingModelEnum"/> instance./// </returns>
             public static implicit operator string?(RecurringProcessingModelEnum? option) => option?.Value;
-        
+
             public static bool operator ==(RecurringProcessingModelEnum? left, RecurringProcessingModelEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(RecurringProcessingModelEnum? left, RecurringProcessingModelEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is RecurringProcessingModelEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="RecurringProcessingModelEnum?"/>.
             /// </summary>
@@ -207,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="RecurringProcessingModelEnum"/> to the json value.
             /// </summary>
@@ -218,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == RecurringProcessingModelEnum.CardOnFile)
                     return "CardOnFile";
-                
+
                 if (value == RecurringProcessingModelEnum.Subscription)
                     return "Subscription";
-                
+
                 if (value == RecurringProcessingModelEnum.UnscheduledCardOnFile)
                     return "UnscheduledCardOnFile";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing RecurringProcessingModelEnum.               
+            /// JsonConverter for writing RecurringProcessingModelEnum.
             /// </summary>
             public class RecurringProcessingModelEnumJsonConverter : JsonConverter<RecurringProcessingModelEnum>
             {
@@ -257,7 +160,7 @@ namespace Adyen.Checkout.Models
         public Option<RecurringProcessingModelEnum?> _RecurringProcessingModelOption { get; private set; }
 
         /// <summary>
-        /// Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount. 
+        /// Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.
         /// </summary>
         /// <value>Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
         [JsonPropertyName("recurringProcessingModel")]
@@ -294,7 +197,7 @@ namespace Adyen.Checkout.Models
             /// ShopperInteractionEnum.POS - POS
             /// </summary>
             public static readonly ShopperInteractionEnum POS = new("POS");
-        
+
             private ShopperInteractionEnum(string? value)
             {
                 Value = value;
@@ -306,24 +209,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ShopperInteractionEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ShopperInteractionEnum?(string? value) => value == null ? null : new ShopperInteractionEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ShopperInteractionEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ShopperInteractionEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ShopperInteractionEnum"/> instance./// </returns>
             public static implicit operator string?(ShopperInteractionEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ShopperInteractionEnum? left, ShopperInteractionEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ShopperInteractionEnum? left, ShopperInteractionEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ShopperInteractionEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ShopperInteractionEnum?"/>.
             /// </summary>
@@ -339,7 +242,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ShopperInteractionEnum"/> to the json value.
             /// </summary>
@@ -350,24 +253,24 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ShopperInteractionEnum.Ecommerce)
                     return "Ecommerce";
-                
+
                 if (value == ShopperInteractionEnum.ContAuth)
                     return "ContAuth";
-                
+
                 if (value == ShopperInteractionEnum.Moto)
                     return "Moto";
-                
+
                 if (value == ShopperInteractionEnum.POS)
                     return "POS";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ShopperInteractionEnum.               
+            /// JsonConverter for writing ShopperInteractionEnum.
             /// </summary>
             public class ShopperInteractionEnumJsonConverter : JsonConverter<ShopperInteractionEnum>
             {
@@ -669,7 +572,7 @@ namespace Adyen.Checkout.Models
         public Option<Dictionary<string, string>?> _MetadataOption { get; private set; }
 
         /// <summary>
-        /// Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. When exceeding, the \&quot;177\&quot; error occurs: \&quot;Metadata size exceeds limit\&quot;. * Maximum 20 characters per key. * Maximum 80 characters per value. 
+        /// Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. When exceeding, the \&quot;177\&quot; error occurs: \&quot;Metadata size exceeds limit\&quot;. * Maximum 20 characters per key. * Maximum 80 characters per value.
         /// </summary>
         /// <value>Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. When exceeding, the \"177\" error occurs: \"Metadata size exceeds limit\". * Maximum 20 characters per key. * Maximum 80 characters per value. </value>
         [JsonPropertyName("metadata")]
@@ -1241,7 +1144,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!amount.IsSet)
                 throw new ArgumentException("Property is required for class BalanceCheckRequest.", nameof(amount));
 
@@ -1251,7 +1154,93 @@ namespace Adyen.Checkout.Models
             if (!paymentMethod.IsSet)
                 throw new ArgumentException("Property is required for class BalanceCheckRequest.", nameof(paymentMethod));
 
-            return new BalanceCheckRequest(amount.Value!, merchantAccount.Value!, paymentMethod.Value!, accountInfo, additionalAmount, additionalData, applicationInfo, billingAddress, browserInfo, captureDelayHours, dateOfBirth, dccQuote, deliveryAddress, deliveryDate, deviceFingerprint, fraudOffset, installments, localizedShopperStatement, mcc, merchantOrderReference, merchantRiskIndicator, metadata, orderReference, recurring, recurringProcessingModel, reference, selectedBrand, selectedRecurringDetailReference, sessionId, shopperEmail, shopperIP, shopperInteraction, shopperLocale, shopperName, shopperReference, shopperStatement, socialSecurityNumber, splits, store, telephoneNumber, threeDS2RequestData, threeDSAuthenticationOnly, totalsGroup, trustedShopper);
+            var result = new BalanceCheckRequest();
+            result.Amount = amount.Value!;
+            result.MerchantAccount = merchantAccount.Value!;
+            result.PaymentMethod = paymentMethod.Value!;
+            if (accountInfo.IsSet)
+                result.AccountInfo = accountInfo.Value;
+            if (additionalAmount.IsSet)
+                result.AdditionalAmount = additionalAmount.Value;
+            if (additionalData.IsSet)
+                result.AdditionalData = additionalData.Value;
+            if (applicationInfo.IsSet)
+                result.ApplicationInfo = applicationInfo.Value;
+            if (billingAddress.IsSet)
+                result.BillingAddress = billingAddress.Value;
+            if (browserInfo.IsSet)
+                result.BrowserInfo = browserInfo.Value;
+            if (captureDelayHours.IsSet)
+                result.CaptureDelayHours = captureDelayHours.Value;
+            if (dateOfBirth.IsSet)
+                result.DateOfBirth = dateOfBirth.Value;
+            if (dccQuote.IsSet)
+                result.DccQuote = dccQuote.Value;
+            if (deliveryAddress.IsSet)
+                result.DeliveryAddress = deliveryAddress.Value;
+            if (deliveryDate.IsSet)
+                result.DeliveryDate = deliveryDate.Value;
+            if (deviceFingerprint.IsSet)
+                result.DeviceFingerprint = deviceFingerprint.Value;
+            if (fraudOffset.IsSet)
+                result.FraudOffset = fraudOffset.Value;
+            if (installments.IsSet)
+                result.Installments = installments.Value;
+            if (localizedShopperStatement.IsSet)
+                result.LocalizedShopperStatement = localizedShopperStatement.Value;
+            if (mcc.IsSet)
+                result.Mcc = mcc.Value;
+            if (merchantOrderReference.IsSet)
+                result.MerchantOrderReference = merchantOrderReference.Value;
+            if (merchantRiskIndicator.IsSet)
+                result.MerchantRiskIndicator = merchantRiskIndicator.Value;
+            if (metadata.IsSet)
+                result.Metadata = metadata.Value;
+            if (orderReference.IsSet)
+                result.OrderReference = orderReference.Value;
+            if (recurring.IsSet)
+                result.Recurring = recurring.Value;
+            if (recurringProcessingModel.IsSet)
+                result.RecurringProcessingModel = recurringProcessingModel.Value;
+            if (reference.IsSet)
+                result.Reference = reference.Value;
+            if (selectedBrand.IsSet)
+                result.SelectedBrand = selectedBrand.Value;
+            if (selectedRecurringDetailReference.IsSet)
+                result.SelectedRecurringDetailReference = selectedRecurringDetailReference.Value;
+            if (sessionId.IsSet)
+                result.SessionId = sessionId.Value;
+            if (shopperEmail.IsSet)
+                result.ShopperEmail = shopperEmail.Value;
+            if (shopperIP.IsSet)
+                result.ShopperIP = shopperIP.Value;
+            if (shopperInteraction.IsSet)
+                result.ShopperInteraction = shopperInteraction.Value;
+            if (shopperLocale.IsSet)
+                result.ShopperLocale = shopperLocale.Value;
+            if (shopperName.IsSet)
+                result.ShopperName = shopperName.Value;
+            if (shopperReference.IsSet)
+                result.ShopperReference = shopperReference.Value;
+            if (shopperStatement.IsSet)
+                result.ShopperStatement = shopperStatement.Value;
+            if (socialSecurityNumber.IsSet)
+                result.SocialSecurityNumber = socialSecurityNumber.Value;
+            if (splits.IsSet)
+                result.Splits = splits.Value;
+            if (store.IsSet)
+                result.Store = store.Value;
+            if (telephoneNumber.IsSet)
+                result.TelephoneNumber = telephoneNumber.Value;
+            if (threeDS2RequestData.IsSet)
+                result.ThreeDS2RequestData = threeDS2RequestData.Value;
+            if (threeDSAuthenticationOnly.IsSet)
+                result.ThreeDSAuthenticationOnly = threeDSAuthenticationOnly.Value;
+            if (totalsGroup.IsSet)
+                result.TotalsGroup = totalsGroup.Value;
+            if (trustedShopper.IsSet)
+                result.TrustedShopper = trustedShopper.Value;
+            return result;
         }
 
         /// <summary>
@@ -1262,13 +1251,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, BalanceCheckRequest balanceCheckRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, balanceCheckRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -1279,7 +1268,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, BalanceCheckRequest balanceCheckRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WritePropertyName("amount");
             JsonSerializer.Serialize(writer, balanceCheckRequest.Amount, jsonSerializerOptions);
             if (balanceCheckRequest.MerchantAccount != null)
@@ -1384,12 +1373,12 @@ namespace Adyen.Checkout.Models
                 writer.WritePropertyName("recurring");
                 JsonSerializer.Serialize(writer, balanceCheckRequest.Recurring, jsonSerializerOptions);
             }
-            if (balanceCheckRequest._RecurringProcessingModelOption.IsSet && balanceCheckRequest.RecurringProcessingModel != null) 
+            if (balanceCheckRequest._RecurringProcessingModelOption.IsSet && balanceCheckRequest.RecurringProcessingModel != null)
             {
                 string? recurringProcessingModelRawValue = BalanceCheckRequest.RecurringProcessingModelEnum.ToJsonValue(balanceCheckRequest._RecurringProcessingModelOption.Value!.Value);
                 writer.WriteString("recurringProcessingModel", recurringProcessingModelRawValue);
             }
-            
+
             if (balanceCheckRequest._ReferenceOption.IsSet)
                 if (balanceCheckRequest.Reference != null)
                     writer.WriteString("reference", balanceCheckRequest.Reference);
@@ -1414,12 +1403,12 @@ namespace Adyen.Checkout.Models
                 if (balanceCheckRequest.ShopperIP != null)
                     writer.WriteString("shopperIP", balanceCheckRequest.ShopperIP);
 
-            if (balanceCheckRequest._ShopperInteractionOption.IsSet && balanceCheckRequest.ShopperInteraction != null) 
+            if (balanceCheckRequest._ShopperInteractionOption.IsSet && balanceCheckRequest.ShopperInteraction != null)
             {
                 string? shopperInteractionRawValue = BalanceCheckRequest.ShopperInteractionEnum.ToJsonValue(balanceCheckRequest._ShopperInteractionOption.Value!.Value);
                 writer.WriteString("shopperInteraction", shopperInteractionRawValue);
             }
-            
+
             if (balanceCheckRequest._ShopperLocaleOption.IsSet)
                 if (balanceCheckRequest.ShopperLocale != null)
                     writer.WriteString("shopperLocale", balanceCheckRequest.ShopperLocale);

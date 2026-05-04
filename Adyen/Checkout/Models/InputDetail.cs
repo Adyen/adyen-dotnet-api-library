@@ -34,37 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="InputDetail" /> class.
         /// </summary>
-        /// <param name="configuration">Configuration parameters for the required input.</param>
-        /// <param name="details">Input details can also be provided recursively.</param>
-        /// <param name="inputDetails">Input details can also be provided recursively (deprecated).</param>
-        /// <param name="itemSearchUrl">In case of a select, the URL from which to query the items.</param>
-        /// <param name="items">In case of a select, the items to choose from.</param>
-        /// <param name="key">The value to provide in the result.</param>
-        /// <param name="optional">True if this input value is optional.</param>
-        /// <param name="type">The type of the required input.</param>
-        /// <param name="value">The value can be pre-filled, if available.</param>
-        [JsonConstructor]
-        public InputDetail(Option<Dictionary<string, string>?> configuration = default, Option<List<SubInputDetail>?> details = default, Option<List<SubInputDetail>?> inputDetails = default, Option<string?> itemSearchUrl = default, Option<List<Item>?> items = default, Option<string?> key = default, Option<bool?> optional = default, Option<string?> type = default, Option<string?> value = default)
-        {
-            _ConfigurationOption = configuration;
-            _DetailsOption = details;
-            _InputDetailsOption = inputDetails;
-            _ItemSearchUrlOption = itemSearchUrl;
-            _ItemsOption = items;
-            _KeyOption = key;
-            _OptionalOption = optional;
-            _TypeOption = type;
-            _ValueOption = value;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public InputDetail()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -295,9 +268,28 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new InputDetail(configuration, details, inputDetails, itemSearchUrl, items, key, optional, type, value);
+
+            var result = new InputDetail();
+            if (configuration.IsSet)
+                result.Configuration = configuration.Value;
+            if (details.IsSet)
+                result.Details = details.Value;
+            if (inputDetails.IsSet)
+                result.InputDetails = inputDetails.Value;
+            if (itemSearchUrl.IsSet)
+                result.ItemSearchUrl = itemSearchUrl.Value;
+            if (items.IsSet)
+                result.Items = items.Value;
+            if (key.IsSet)
+                result.Key = key.Value;
+            if (optional.IsSet)
+                result.Optional = optional.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            if (value.IsSet)
+                result.Value = value.Value;
+            return result;
         }
 
         /// <summary>
@@ -308,13 +300,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, InputDetail inputDetail, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, inputDetail, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -325,7 +317,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, InputDetail inputDetail, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (inputDetail._ConfigurationOption.IsSet)
             {
                 writer.WritePropertyName("configuration");

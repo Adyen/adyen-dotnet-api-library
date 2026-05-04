@@ -34,41 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="DonationCampaign" /> class.
         /// </summary>
-        /// <param name="amounts">amounts</param>
-        /// <param name="bannerUrl">The URL for the banner of the nonprofit or campaign.</param>
-        /// <param name="campaignName">The name of the donation campaign..</param>
-        /// <param name="causeName">The cause of the nonprofit.</param>
-        /// <param name="donation">donation</param>
-        /// <param name="id">The unique campaign ID of the donation campaign.</param>
-        /// <param name="logoUrl">The URL for the logo of the nonprofit.</param>
-        /// <param name="nonprofitDescription">The description of the nonprofit.</param>
-        /// <param name="nonprofitName">The name of the nonprofit organization that receives the donation.</param>
-        /// <param name="nonprofitUrl">The website URL of the nonprofit.</param>
-        /// <param name="termsAndConditionsUrl">The URL of the terms and conditions page of the nonprofit and the campaign.</param>
-        [JsonConstructor]
-        public DonationCampaign(Option<Amounts?> amounts = default, Option<string?> bannerUrl = default, Option<string?> campaignName = default, Option<string?> causeName = default, Option<Donation?> donation = default, Option<string?> id = default, Option<string?> logoUrl = default, Option<string?> nonprofitDescription = default, Option<string?> nonprofitName = default, Option<string?> nonprofitUrl = default, Option<string?> termsAndConditionsUrl = default)
-        {
-            _AmountsOption = amounts;
-            _BannerUrlOption = bannerUrl;
-            _CampaignNameOption = campaignName;
-            _CauseNameOption = causeName;
-            _DonationOption = donation;
-            _IdOption = id;
-            _LogoUrlOption = logoUrl;
-            _NonprofitDescriptionOption = nonprofitDescription;
-            _NonprofitNameOption = nonprofitName;
-            _NonprofitUrlOption = nonprofitUrl;
-            _TermsAndConditionsUrlOption = termsAndConditionsUrl;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public DonationCampaign()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -334,9 +303,32 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new DonationCampaign(amounts, bannerUrl, campaignName, causeName, donation, id, logoUrl, nonprofitDescription, nonprofitName, nonprofitUrl, termsAndConditionsUrl);
+
+            var result = new DonationCampaign();
+            if (amounts.IsSet)
+                result.Amounts = amounts.Value;
+            if (bannerUrl.IsSet)
+                result.BannerUrl = bannerUrl.Value;
+            if (campaignName.IsSet)
+                result.CampaignName = campaignName.Value;
+            if (causeName.IsSet)
+                result.CauseName = causeName.Value;
+            if (donation.IsSet)
+                result.Donation = donation.Value;
+            if (id.IsSet)
+                result.Id = id.Value;
+            if (logoUrl.IsSet)
+                result.LogoUrl = logoUrl.Value;
+            if (nonprofitDescription.IsSet)
+                result.NonprofitDescription = nonprofitDescription.Value;
+            if (nonprofitName.IsSet)
+                result.NonprofitName = nonprofitName.Value;
+            if (nonprofitUrl.IsSet)
+                result.NonprofitUrl = nonprofitUrl.Value;
+            if (termsAndConditionsUrl.IsSet)
+                result.TermsAndConditionsUrl = termsAndConditionsUrl.Value;
+            return result;
         }
 
         /// <summary>
@@ -347,13 +339,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, DonationCampaign donationCampaign, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, donationCampaign, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -364,7 +356,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, DonationCampaign donationCampaign, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (donationCampaign._AmountsOption.IsSet)
             {
                 writer.WritePropertyName("amounts");

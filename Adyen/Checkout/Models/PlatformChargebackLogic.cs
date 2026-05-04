@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PlatformChargebackLogic" /> class.
         /// </summary>
-        /// <param name="behavior">The method of handling the chargeback.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**.</param>
-        /// <param name="costAllocationAccount">The unique identifier of the balance account to which the chargeback fees are booked. By default, the chargeback fees are booked to your liable balance account.</param>
-        /// <param name="targetAccount">The unique identifier of the balance account against which the disputed amount is booked.  Required if &#x60;behavior&#x60; is **deductFromOneBalanceAccount**.</param>
-        [JsonConstructor]
-        public PlatformChargebackLogic(Option<BehaviorEnum?> behavior = default, Option<string?> costAllocationAccount = default, Option<string?> targetAccount = default)
-        {
-            _BehaviorOption = behavior;
-            _CostAllocationAccountOption = costAllocationAccount;
-            _TargetAccountOption = targetAccount;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PlatformChargebackLogic()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -81,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// BehaviorEnum.DeductFromOneBalanceAccount - deductFromOneBalanceAccount
             /// </summary>
             public static readonly BehaviorEnum DeductFromOneBalanceAccount = new("deductFromOneBalanceAccount");
-        
+
             private BehaviorEnum(string? value)
             {
                 Value = value;
@@ -93,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="BehaviorEnum"/> instance initialized with the string value.</returns>
             public static implicit operator BehaviorEnum?(string? value) => value == null ? null : new BehaviorEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="BehaviorEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="BehaviorEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="BehaviorEnum"/> instance./// </returns>
             public static implicit operator string?(BehaviorEnum? option) => option?.Value;
-        
+
             public static bool operator ==(BehaviorEnum? left, BehaviorEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(BehaviorEnum? left, BehaviorEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is BehaviorEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="BehaviorEnum?"/>.
             /// </summary>
@@ -125,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="BehaviorEnum"/> to the json value.
             /// </summary>
@@ -136,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == BehaviorEnum.DeductAccordingToSplitRatio)
                     return "deductAccordingToSplitRatio";
-                
+
                 if (value == BehaviorEnum.DeductFromLiableAccount)
                     return "deductFromLiableAccount";
-                
+
                 if (value == BehaviorEnum.DeductFromOneBalanceAccount)
                     return "deductFromOneBalanceAccount";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing BehaviorEnum.               
+            /// JsonConverter for writing BehaviorEnum.
             /// </summary>
             public class BehaviorEnumJsonConverter : JsonConverter<BehaviorEnum>
             {
@@ -281,9 +266,16 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new PlatformChargebackLogic(behavior, costAllocationAccount, targetAccount);
+
+            var result = new PlatformChargebackLogic();
+            if (behavior.IsSet)
+                result.Behavior = behavior.Value;
+            if (costAllocationAccount.IsSet)
+                result.CostAllocationAccount = costAllocationAccount.Value;
+            if (targetAccount.IsSet)
+                result.TargetAccount = targetAccount.Value;
+            return result;
         }
 
         /// <summary>
@@ -294,13 +286,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PlatformChargebackLogic platformChargebackLogic, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, platformChargebackLogic, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -311,13 +303,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PlatformChargebackLogic platformChargebackLogic, JsonSerializerOptions jsonSerializerOptions)
         {
-            
-            if (platformChargebackLogic._BehaviorOption.IsSet && platformChargebackLogic.Behavior != null) 
+
+            if (platformChargebackLogic._BehaviorOption.IsSet && platformChargebackLogic.Behavior != null)
             {
                 string? behaviorRawValue = PlatformChargebackLogic.BehaviorEnum.ToJsonValue(platformChargebackLogic._BehaviorOption.Value!.Value);
                 writer.WriteString("behavior", behaviorRawValue);
             }
-            
+
             if (platformChargebackLogic._CostAllocationAccountOption.IsSet)
                 if (platformChargebackLogic.CostAllocationAccount != null)
                     writer.WriteString("costAllocationAccount", platformChargebackLogic.CostAllocationAccount);

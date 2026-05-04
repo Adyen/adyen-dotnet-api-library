@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="EnhancedSchemeData" /> class.
         /// </summary>
-        /// <param name="airline">airline</param>
-        /// <param name="levelTwoThree">levelTwoThree</param>
-        [JsonConstructor]
-        public EnhancedSchemeData(Option<Airline?> airline = default, Option<LevelTwoThree?> levelTwoThree = default)
-        {
-            _AirlineOption = airline;
-            _LevelTwoThreeOption = levelTwoThree;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public EnhancedSchemeData()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -145,9 +132,14 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new EnhancedSchemeData(airline, levelTwoThree);
+
+            var result = new EnhancedSchemeData();
+            if (airline.IsSet)
+                result.Airline = airline.Value;
+            if (levelTwoThree.IsSet)
+                result.LevelTwoThree = levelTwoThree.Value;
+            return result;
         }
 
         /// <summary>
@@ -158,13 +150,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, EnhancedSchemeData enhancedSchemeData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, enhancedSchemeData, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -175,7 +167,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, EnhancedSchemeData enhancedSchemeData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (enhancedSchemeData._AirlineOption.IsSet)
             {
                 writer.WritePropertyName("airline");

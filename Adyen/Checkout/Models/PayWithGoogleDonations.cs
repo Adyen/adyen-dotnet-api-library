@@ -34,35 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PayWithGoogleDonations" /> class.
         /// </summary>
-        /// <param name="googlePayToken">The &#x60;token&#x60; that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) &#x60;PaymentData&#x60; response.</param>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="fundingSource">The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.</param>
-        /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="threeDS2SdkVersion">Required for mobile integrations. Version of the 3D Secure 2 mobile SDK.</param>
-        /// <param name="type">**paywithgoogle** (default to TypeEnum.Paywithgoogle)</param>
-        [JsonConstructor]
-        public PayWithGoogleDonations(string googlePayToken, Option<string?> checkoutAttemptId = default, Option<FundingSourceEnum?> fundingSource = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<string?> threeDS2SdkVersion = default, Option<TypeEnum?> type = default)
-        {
-            GooglePayToken = googlePayToken;
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _FundingSourceOption = fundingSource;
-            _RecurringDetailReferenceOption = recurringDetailReference;
-            _SdkDataOption = sdkData;
-            _StoredPaymentMethodIdOption = storedPaymentMethodId;
-            _ThreeDS2SdkVersionOption = threeDS2SdkVersion;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PayWithGoogleDonations()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -91,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// FundingSourceEnum.Prepaid - prepaid
             /// </summary>
             public static readonly FundingSourceEnum Prepaid = new("prepaid");
-        
+
             private FundingSourceEnum(string? value)
             {
                 Value = value;
@@ -103,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="FundingSourceEnum"/> instance initialized with the string value.</returns>
             public static implicit operator FundingSourceEnum?(string? value) => value == null ? null : new FundingSourceEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="FundingSourceEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="FundingSourceEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="FundingSourceEnum"/> instance./// </returns>
             public static implicit operator string?(FundingSourceEnum? option) => option?.Value;
-        
+
             public static bool operator ==(FundingSourceEnum? left, FundingSourceEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(FundingSourceEnum? left, FundingSourceEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is FundingSourceEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="FundingSourceEnum?"/>.
             /// </summary>
@@ -135,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="FundingSourceEnum"/> to the json value.
             /// </summary>
@@ -146,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == FundingSourceEnum.Credit)
                     return "credit";
-                
+
                 if (value == FundingSourceEnum.Debit)
                     return "debit";
-                
+
                 if (value == FundingSourceEnum.Prepaid)
                     return "prepaid";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing FundingSourceEnum.               
+            /// JsonConverter for writing FundingSourceEnum.
             /// </summary>
             public class FundingSourceEnumJsonConverter : JsonConverter<FundingSourceEnum>
             {
@@ -207,7 +182,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.Paywithgoogle - paywithgoogle
             /// </summary>
             public static readonly TypeEnum Paywithgoogle = new("paywithgoogle");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -219,24 +194,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -249,7 +224,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -260,15 +235,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Paywithgoogle)
                     return "paywithgoogle";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -475,11 +450,27 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!googlePayToken.IsSet)
                 throw new ArgumentException("Property is required for class PayWithGoogleDonations.", nameof(googlePayToken));
 
-            return new PayWithGoogleDonations(googlePayToken.Value!, checkoutAttemptId, fundingSource, recurringDetailReference, sdkData, storedPaymentMethodId, threeDS2SdkVersion, type);
+            var result = new PayWithGoogleDonations();
+            result.GooglePayToken = googlePayToken.Value!;
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (fundingSource.IsSet)
+                result.FundingSource = fundingSource.Value;
+            if (recurringDetailReference.IsSet)
+                result.RecurringDetailReference = recurringDetailReference.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (storedPaymentMethodId.IsSet)
+                result.StoredPaymentMethodId = storedPaymentMethodId.Value;
+            if (threeDS2SdkVersion.IsSet)
+                result.ThreeDS2SdkVersion = threeDS2SdkVersion.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -490,13 +481,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PayWithGoogleDonations payWithGoogleDonations, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, payWithGoogleDonations, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -507,7 +498,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PayWithGoogleDonations payWithGoogleDonations, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (payWithGoogleDonations.GooglePayToken != null)
                 writer.WriteString("googlePayToken", payWithGoogleDonations.GooglePayToken);
 
@@ -515,12 +506,12 @@ namespace Adyen.Checkout.Models
                 if (payWithGoogleDonations.CheckoutAttemptId != null)
                     writer.WriteString("checkoutAttemptId", payWithGoogleDonations.CheckoutAttemptId);
 
-            if (payWithGoogleDonations._FundingSourceOption.IsSet && payWithGoogleDonations.FundingSource != null) 
+            if (payWithGoogleDonations._FundingSourceOption.IsSet && payWithGoogleDonations.FundingSource != null)
             {
                 string? fundingSourceRawValue = PayWithGoogleDonations.FundingSourceEnum.ToJsonValue(payWithGoogleDonations._FundingSourceOption.Value!.Value);
                 writer.WriteString("fundingSource", fundingSourceRawValue);
             }
-            
+
             if (payWithGoogleDonations._RecurringDetailReferenceOption.IsSet)
                 if (payWithGoogleDonations.RecurringDetailReference != null)
                     writer.WriteString("recurringDetailReference", payWithGoogleDonations.RecurringDetailReference);
@@ -537,7 +528,7 @@ namespace Adyen.Checkout.Models
                 if (payWithGoogleDonations.ThreeDS2SdkVersion != null)
                     writer.WriteString("threeDS2SdkVersion", payWithGoogleDonations.ThreeDS2SdkVersion);
 
-            if (payWithGoogleDonations._TypeOption.IsSet && payWithGoogleDonations.Type != null) 
+            if (payWithGoogleDonations._TypeOption.IsSet && payWithGoogleDonations.Type != null)
             {
                 string? typeRawValue = PayWithGoogleDonations.TypeEnum.ToJsonValue(payWithGoogleDonations._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);

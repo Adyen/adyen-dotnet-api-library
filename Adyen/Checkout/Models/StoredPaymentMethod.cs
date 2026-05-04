@@ -34,53 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredPaymentMethod" /> class.
         /// </summary>
-        /// <param name="bankAccountNumber">The bank account number (without separators).</param>
-        /// <param name="bankLocationId">The location id of the bank. The field value is &#x60;nil&#x60; in most cases.</param>
-        /// <param name="brand">The brand of the card.</param>
-        /// <param name="expiryMonth">The two-digit month when the card expires</param>
-        /// <param name="expiryYear">The last two digits of the year the card expires. For example, **22** for the year 2022.</param>
-        /// <param name="holderName">The unique payment method code.</param>
-        /// <param name="iban">The IBAN of the bank account.</param>
-        /// <param name="id">A unique identifier of this stored payment method.</param>
-        /// <param name="label">The shopper’s issuer account label</param>
-        /// <param name="lastFour">The last four digits of the PAN.</param>
-        /// <param name="name">The display name of the stored payment method.</param>
-        /// <param name="networkTxReference">Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID.</param>
-        /// <param name="ownerName">The name of the bank account holder.</param>
-        /// <param name="shopperEmail">The shopper’s email address.</param>
-        /// <param name="supportedRecurringProcessingModels">The supported recurring processing models for this stored payment method.</param>
-        /// <param name="supportedShopperInteractions">The supported shopper interactions for this stored payment method.</param>
-        /// <param name="type">The type of payment method.</param>
-        [JsonConstructor]
-        public StoredPaymentMethod(Option<string?> bankAccountNumber = default, Option<string?> bankLocationId = default, Option<string?> brand = default, Option<string?> expiryMonth = default, Option<string?> expiryYear = default, Option<string?> holderName = default, Option<string?> iban = default, Option<string?> id = default, Option<string?> label = default, Option<string?> lastFour = default, Option<string?> name = default, Option<string?> networkTxReference = default, Option<string?> ownerName = default, Option<string?> shopperEmail = default, Option<List<string>?> supportedRecurringProcessingModels = default, Option<List<string>?> supportedShopperInteractions = default, Option<string?> type = default)
-        {
-            _BankAccountNumberOption = bankAccountNumber;
-            _BankLocationIdOption = bankLocationId;
-            _BrandOption = brand;
-            _ExpiryMonthOption = expiryMonth;
-            _ExpiryYearOption = expiryYear;
-            _HolderNameOption = holderName;
-            _IbanOption = iban;
-            _IdOption = id;
-            _LabelOption = label;
-            _LastFourOption = lastFour;
-            _NameOption = name;
-            _NetworkTxReferenceOption = networkTxReference;
-            _OwnerNameOption = ownerName;
-            _ShopperEmailOption = shopperEmail;
-            _SupportedRecurringProcessingModelsOption = supportedRecurringProcessingModels;
-            _SupportedShopperInteractionsOption = supportedShopperInteractions;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public StoredPaymentMethod()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -462,9 +419,44 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new StoredPaymentMethod(bankAccountNumber, bankLocationId, brand, expiryMonth, expiryYear, holderName, iban, id, label, lastFour, name, networkTxReference, ownerName, shopperEmail, supportedRecurringProcessingModels, supportedShopperInteractions, type);
+
+            var result = new StoredPaymentMethod();
+            if (bankAccountNumber.IsSet)
+                result.BankAccountNumber = bankAccountNumber.Value;
+            if (bankLocationId.IsSet)
+                result.BankLocationId = bankLocationId.Value;
+            if (brand.IsSet)
+                result.Brand = brand.Value;
+            if (expiryMonth.IsSet)
+                result.ExpiryMonth = expiryMonth.Value;
+            if (expiryYear.IsSet)
+                result.ExpiryYear = expiryYear.Value;
+            if (holderName.IsSet)
+                result.HolderName = holderName.Value;
+            if (iban.IsSet)
+                result.Iban = iban.Value;
+            if (id.IsSet)
+                result.Id = id.Value;
+            if (label.IsSet)
+                result.Label = label.Value;
+            if (lastFour.IsSet)
+                result.LastFour = lastFour.Value;
+            if (name.IsSet)
+                result.Name = name.Value;
+            if (networkTxReference.IsSet)
+                result.NetworkTxReference = networkTxReference.Value;
+            if (ownerName.IsSet)
+                result.OwnerName = ownerName.Value;
+            if (shopperEmail.IsSet)
+                result.ShopperEmail = shopperEmail.Value;
+            if (supportedRecurringProcessingModels.IsSet)
+                result.SupportedRecurringProcessingModels = supportedRecurringProcessingModels.Value;
+            if (supportedShopperInteractions.IsSet)
+                result.SupportedShopperInteractions = supportedShopperInteractions.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -475,13 +467,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, StoredPaymentMethod storedPaymentMethod, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, storedPaymentMethod, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -492,7 +484,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, StoredPaymentMethod storedPaymentMethod, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (storedPaymentMethod._BankAccountNumberOption.IsSet)
                 if (storedPaymentMethod.BankAccountNumber != null)
                     writer.WriteString("bankAccountNumber", storedPaymentMethod.BankAccountNumber);

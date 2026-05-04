@@ -34,27 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="SDKEphemPubKey" /> class.
         /// </summary>
-        /// <param name="crv">The &#x60;crv&#x60; value as received from the 3D Secure 2 SDK.</param>
-        /// <param name="kty">The &#x60;kty&#x60; value as received from the 3D Secure 2 SDK.</param>
-        /// <param name="x">The &#x60;x&#x60; value as received from the 3D Secure 2 SDK.</param>
-        /// <param name="y">The &#x60;y&#x60; value as received from the 3D Secure 2 SDK.</param>
-        [JsonConstructor]
-        public SDKEphemPubKey(Option<string?> crv = default, Option<string?> kty = default, Option<string?> x = default, Option<string?> y = default)
-        {
-            _CrvOption = crv;
-            _KtyOption = kty;
-            _XOption = x;
-            _YOption = y;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public SDKEphemPubKey()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -189,9 +172,18 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new SDKEphemPubKey(crv, kty, x, y);
+
+            var result = new SDKEphemPubKey();
+            if (crv.IsSet)
+                result.Crv = crv.Value;
+            if (kty.IsSet)
+                result.Kty = kty.Value;
+            if (x.IsSet)
+                result.X = x.Value;
+            if (y.IsSet)
+                result.Y = y.Value;
+            return result;
         }
 
         /// <summary>
@@ -202,13 +194,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, SDKEphemPubKey sDKEphemPubKey, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, sDKEphemPubKey, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -219,7 +211,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, SDKEphemPubKey sDKEphemPubKey, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (sDKEphemPubKey._CrvOption.IsSet)
                 if (sDKEphemPubKey.Crv != null)
                     writer.WriteString("crv", sDKEphemPubKey.Crv);

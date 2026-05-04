@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Split" /> class.
         /// </summary>
-        /// <param name="type">The part of the payment you want to book to the specified &#x60;account&#x60;.  Possible values for the [Balance Platform](https://docs.adyen.com/adyen-for-platforms-model): * **BalanceAccount**: Books part of the payment (specified in &#x60;amount&#x60;) to the specified &#x60;account&#x60;. * Transaction fees types that you can book to the specified &#x60;account&#x60;:    * **AcquiringFees**: The aggregated amount of the interchange and scheme fees.    * **PaymentFee**: The aggregated amount of all transaction fees.    * **AdyenFees**: The aggregated amount of Adyen&#39;s commission and markup fees.    * **AdyenCommission**: The transaction fees due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/interchange-fees-explained).    * **AdyenMarkup**: The transaction fees due to Adyen under [Interchange ++ pricing](https://www.adyen.com/knowledge-hub/interchange-fees-explained).    * **Interchange**: The fees paid to the issuer for each payment made with the card network.    * **SchemeFee**: The fees paid to the card scheme for using their network.  * **Commission**: Your platform&#39;s commission on the payment (specified in &#x60;amount&#x60;), booked to your liable balance account. * **Remainder**: The amount left over after a currency conversion, booked to the specified &#x60;account&#x60;. * **Surcharge**: The payment acceptance fee imposed by the card scheme or debit network provider, paid by your user&#39;s customer. * **TopUp**: Allows you and your users to top up balance accounts using direct debit, card payments, or other payment methods. * **VAT**: The value-added tax charged on the payment, booked to your platforms liable balance account. * **Default**: In very specific use cases, allows you to book the specified &#x60;amount&#x60; to the specified &#x60;account&#x60;. For more information, contact Adyen support.  Possible values for the [Classic Platforms integration](https://docs.adyen.com/classic-platforms): **Commission**, **Default**, **MarketPlace**, **PaymentFee**, **VAT**.</param>
-        /// <param name="account">The unique identifier of the account to which the split amount is booked. Required if &#x60;type&#x60; is **MarketPlace** or **BalanceAccount**.  * [Classic Platforms integration](https://docs.adyen.com/classic-platforms): The [&#x60;accountCode&#x60;](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccount#request-accountCode) of the account to which the split amount is booked. * [Balance Platform](https://docs.adyen.com/adyen-for-platforms-model): The [&#x60;balanceAccountId&#x60;](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/balanceAccounts/_id_#path-id) of the account to which the split amount is booked.</param>
-        /// <param name="amount">amount</param>
-        /// <param name="description">Your description for the split item.</param>
-        /// <param name="reference">Your unique reference for the part of the payment booked to the specified &#x60;account&#x60;.  This is required if &#x60;type&#x60; is **MarketPlace** ([Classic Platforms integration](https://docs.adyen.com/classic-platforms)) or **BalanceAccount** ([Balance Platform](https://docs.adyen.com/adyen-for-platforms-model)).  For the other types, we also recommend providing a **unique** reference so you can reconcile the split and the associated payment in the transaction overview and in the reports.</param>
-        [JsonConstructor]
-        public Split(TypeEnum type, Option<string?> account = default, Option<SplitAmount?> amount = default, Option<string?> description = default, Option<string?> reference = default)
-        {
-            Type = type;
-            _AccountOption = account;
-            _AmountOption = amount;
-            _DescriptionOption = description;
-            _ReferenceOption = reference;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public Split()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -150,7 +131,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.VAT - VAT
             /// </summary>
             public static readonly TypeEnum VAT = new("VAT");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -162,24 +143,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -207,7 +188,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -218,60 +199,60 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.AcquiringFees)
                     return "AcquiringFees";
-                
+
                 if (value == TypeEnum.AdyenCommission)
                     return "AdyenCommission";
-                
+
                 if (value == TypeEnum.AdyenFees)
                     return "AdyenFees";
-                
+
                 if (value == TypeEnum.AdyenMarkup)
                     return "AdyenMarkup";
-                
+
                 if (value == TypeEnum.BalanceAccount)
                     return "BalanceAccount";
-                
+
                 if (value == TypeEnum.Commission)
                     return "Commission";
-                
+
                 if (value == TypeEnum.Default)
                     return "Default";
-                
+
                 if (value == TypeEnum.Interchange)
                     return "Interchange";
-                
+
                 if (value == TypeEnum.MarketPlace)
                     return "MarketPlace";
-                
+
                 if (value == TypeEnum.PaymentFee)
                     return "PaymentFee";
-                
+
                 if (value == TypeEnum.Remainder)
                     return "Remainder";
-                
+
                 if (value == TypeEnum.SchemeFee)
                     return "SchemeFee";
-                
+
                 if (value == TypeEnum.Surcharge)
                     return "Surcharge";
-                
+
                 if (value == TypeEnum.Tip)
                     return "Tip";
-                
+
                 if (value == TypeEnum.TopUp)
                     return "TopUp";
-                
+
                 if (value == TypeEnum.VAT)
                     return "VAT";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -432,11 +413,21 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class Split.", nameof(type));
 
-            return new Split(type.Value!.Value!, account, amount, description, reference);
+            var result = new Split();
+            result.Type = type.Value!.Value!;
+            if (account.IsSet)
+                result.Account = account.Value;
+            if (amount.IsSet)
+                result.Amount = amount.Value;
+            if (description.IsSet)
+                result.Description = description.Value;
+            if (reference.IsSet)
+                result.Reference = reference.Value;
+            return result;
         }
 
         /// <summary>
@@ -447,13 +438,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, Split split, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, split, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -464,13 +455,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, Split split, JsonSerializerOptions jsonSerializerOptions)
         {
-            
-            if (split.Type != null) 
+
+            if (split.Type != null)
             {
                 string? typeRawValue = Split.TypeEnum.ToJsonValue(split.Type);
                 writer.WriteString("type", typeRawValue);
             }
-            
+
             if (split._AccountOption.IsSet)
                 if (split.Account != null)
                     writer.WriteString("account", split.Account);

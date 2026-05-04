@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodUPIApps" /> class.
         /// </summary>
-        /// <param name="id">The unique identifier of this app, to submit in requests to /payments.</param>
-        /// <param name="name">A localized name of the app.</param>
-        [JsonConstructor]
-        public PaymentMethodUPIApps(string id, string name)
-        {
-            Id = id;
-            Name = name;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentMethodUPIApps()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -133,14 +120,17 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!id.IsSet)
                 throw new ArgumentException("Property is required for class PaymentMethodUPIApps.", nameof(id));
 
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class PaymentMethodUPIApps.", nameof(name));
 
-            return new PaymentMethodUPIApps(id.Value!, name.Value!);
+            var result = new PaymentMethodUPIApps();
+            result.Id = id.Value!;
+            result.Name = name.Value!;
+            return result;
         }
 
         /// <summary>
@@ -151,13 +141,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentMethodUPIApps paymentMethodUPIApps, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentMethodUPIApps, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -168,7 +158,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentMethodUPIApps paymentMethodUPIApps, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paymentMethodUPIApps.Id != null)
                 writer.WriteString("id", paymentMethodUPIApps.Id);
 

@@ -34,31 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceError" /> class.
         /// </summary>
-        /// <param name="additionalData">Contains additional information about the payment. Some data fields are included only if you select them first. Go to **Customer Area** &gt; **Developers** &gt; **Additional data**.</param>
-        /// <param name="errorCode">The error code mapped to the error message.</param>
-        /// <param name="errorType">The category of the error.</param>
-        /// <param name="message">A short explanation of the issue.</param>
-        /// <param name="pspReference">The PSP reference of the payment.</param>
-        /// <param name="status">The HTTP response status.</param>
-        [JsonConstructor]
-        public ServiceError(Option<Dictionary<string, string>?> additionalData = default, Option<string?> errorCode = default, Option<string?> errorType = default, Option<string?> message = default, Option<string?> pspReference = default, Option<int?> status = default)
-        {
-            _AdditionalDataOption = additionalData;
-            _ErrorCodeOption = errorCode;
-            _ErrorTypeOption = errorType;
-            _MessageOption = message;
-            _PspReferenceOption = pspReference;
-            _StatusOption = status;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ServiceError()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -231,9 +210,22 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ServiceError(additionalData, errorCode, errorType, message, pspReference, status);
+
+            var result = new ServiceError();
+            if (additionalData.IsSet)
+                result.AdditionalData = additionalData.Value;
+            if (errorCode.IsSet)
+                result.ErrorCode = errorCode.Value;
+            if (errorType.IsSet)
+                result.ErrorType = errorType.Value;
+            if (message.IsSet)
+                result.Message = message.Value;
+            if (pspReference.IsSet)
+                result.PspReference = pspReference.Value;
+            if (status.IsSet)
+                result.Status = status.Value;
+            return result;
         }
 
         /// <summary>
@@ -244,13 +236,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ServiceError serviceError, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, serviceError, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -261,7 +253,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ServiceError serviceError, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (serviceError._AdditionalDataOption.IsSet)
             {
                 writer.WritePropertyName("additionalData");

@@ -34,21 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplePaySessionResponse" /> class.
         /// </summary>
-        /// <param name="data">Base64 encoded data you need to [complete the Apple Pay merchant validation](https://docs.adyen.com/payment-methods/apple-pay/api-only?tab&#x3D;adyen-certificate-validation_1#complete-apple-pay-session-validation).</param>
-        [JsonConstructor]
-        public ApplePaySessionResponse(string data)
-        {
-            Data = data;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ApplePaySessionResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -119,11 +108,13 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!data.IsSet)
                 throw new ArgumentException("Property is required for class ApplePaySessionResponse.", nameof(data));
 
-            return new ApplePaySessionResponse(data.Value!);
+            var result = new ApplePaySessionResponse();
+            result.Data = data.Value!;
+            return result;
         }
 
         /// <summary>
@@ -134,13 +125,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ApplePaySessionResponse applePaySessionResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, applePaySessionResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -151,7 +142,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ApplePaySessionResponse applePaySessionResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (applePaySessionResponse.Data != null)
                 writer.WriteString("data", applePaySessionResponse.Data);
         }
