@@ -34,37 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Mandate" /> class.
         /// </summary>
-        /// <param name="amount">The billing amount (in minor units) of the recurring transactions.</param>
-        /// <param name="endsAt">End date of the billing plan, in YYYY-MM-DD format.</param>
-        /// <param name="frequency">The frequency with which a shopper should be charged.  Possible values: **adhoc**, **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.</param>
-        /// <param name="amountRule">The limitation rule of the billing amount.  Possible values:  * **max**: The transaction amount can not exceed the &#x60;amount&#x60;.   * **exact**: The transaction amount should be the same as the &#x60;amount&#x60;.  </param>
-        /// <param name="billingAttemptsRule">The rule to specify the period, within which the recurring debit can happen, relative to the mandate recurring date.  Possible values:   * **on**: On a specific date.   * **before**:  Before and on a specific date.   * **after**: On and after a specific date.  </param>
-        /// <param name="billingDay">The number of the day, on which the recurring debit can happen. Should be within the same calendar month as the mandate recurring date.  Possible values: 1-31 based on the &#x60;frequency&#x60;.</param>
-        /// <param name="count">The number of transactions that can be performed within the given frequency.</param>
-        /// <param name="remarks">The message shown by UPI to the shopper on the approval screen.</param>
-        /// <param name="startsAt">Start date of the billing plan, in YYYY-MM-DD format. By default, the transaction date.</param>
-        [JsonConstructor]
-        public Mandate(string amount, string endsAt, FrequencyEnum frequency, Option<AmountRuleEnum?> amountRule = default, Option<BillingAttemptsRuleEnum?> billingAttemptsRule = default, Option<string?> billingDay = default, Option<string?> count = default, Option<string?> remarks = default, Option<string?> startsAt = default)
-        {
-            Amount = amount;
-            EndsAt = endsAt;
-            Frequency = frequency;
-            _AmountRuleOption = amountRule;
-            _BillingAttemptsRuleOption = billingAttemptsRule;
-            _BillingDayOption = billingDay;
-            _CountOption = count;
-            _RemarksOption = remarks;
-            _StartsAtOption = startsAt;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public Mandate()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -118,7 +91,7 @@ namespace Adyen.Checkout.Models
             /// FrequencyEnum.Yearly - yearly
             /// </summary>
             public static readonly FrequencyEnum Yearly = new("yearly");
-        
+
             private FrequencyEnum(string? value)
             {
                 Value = value;
@@ -130,24 +103,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="FrequencyEnum"/> instance initialized with the string value.</returns>
             public static implicit operator FrequencyEnum?(string? value) => value == null ? null : new FrequencyEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="FrequencyEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="FrequencyEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="FrequencyEnum"/> instance./// </returns>
             public static implicit operator string?(FrequencyEnum? option) => option?.Value;
-        
+
             public static bool operator ==(FrequencyEnum? left, FrequencyEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(FrequencyEnum? left, FrequencyEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is FrequencyEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="FrequencyEnum?"/>.
             /// </summary>
@@ -167,7 +140,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="FrequencyEnum"/> to the json value.
             /// </summary>
@@ -178,36 +151,36 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == FrequencyEnum.Adhoc)
                     return "adhoc";
-                
+
                 if (value == FrequencyEnum.Daily)
                     return "daily";
-                
+
                 if (value == FrequencyEnum.Weekly)
                     return "weekly";
-                
+
                 if (value == FrequencyEnum.BiWeekly)
                     return "biWeekly";
-                
+
                 if (value == FrequencyEnum.Monthly)
                     return "monthly";
-                
+
                 if (value == FrequencyEnum.Quarterly)
                     return "quarterly";
-                
+
                 if (value == FrequencyEnum.HalfYearly)
                     return "halfYearly";
-                
+
                 if (value == FrequencyEnum.Yearly)
                     return "yearly";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing FrequencyEnum.               
+            /// JsonConverter for writing FrequencyEnum.
             /// </summary>
             public class FrequencyEnumJsonConverter : JsonConverter<FrequencyEnum>
             {
@@ -232,7 +205,7 @@ namespace Adyen.Checkout.Models
         public FrequencyEnum Frequency { get; set; }
 
         /// <summary>
-        /// The limitation rule of the billing amount.  Possible values:  * **max**: The transaction amount can not exceed the `amount`.   * **exact**: The transaction amount should be the same as the `amount`.  
+        /// The limitation rule of the billing amount.  Possible values:  * **max**: The transaction amount can not exceed the `amount`.   * **exact**: The transaction amount should be the same as the `amount`.
         /// </summary>
         /// <value>The limitation rule of the billing amount.  Possible values:  * **max**: The transaction amount can not exceed the &#x60;amount&#x60;.   * **exact**: The transaction amount should be the same as the &#x60;amount&#x60;.  </value>
         [JsonConverter(typeof(AmountRuleEnumJsonConverter))]
@@ -252,7 +225,7 @@ namespace Adyen.Checkout.Models
             /// AmountRuleEnum.Exact - exact
             /// </summary>
             public static readonly AmountRuleEnum Exact = new("exact");
-        
+
             private AmountRuleEnum(string? value)
             {
                 Value = value;
@@ -264,24 +237,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="AmountRuleEnum"/> instance initialized with the string value.</returns>
             public static implicit operator AmountRuleEnum?(string? value) => value == null ? null : new AmountRuleEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="AmountRuleEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="AmountRuleEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="AmountRuleEnum"/> instance./// </returns>
             public static implicit operator string?(AmountRuleEnum? option) => option?.Value;
-        
+
             public static bool operator ==(AmountRuleEnum? left, AmountRuleEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(AmountRuleEnum? left, AmountRuleEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is AmountRuleEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="AmountRuleEnum?"/>.
             /// </summary>
@@ -295,7 +268,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="AmountRuleEnum"/> to the json value.
             /// </summary>
@@ -306,18 +279,18 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == AmountRuleEnum.Max)
                     return "max";
-                
+
                 if (value == AmountRuleEnum.Exact)
                     return "exact";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing AmountRuleEnum.               
+            /// JsonConverter for writing AmountRuleEnum.
             /// </summary>
             public class AmountRuleEnumJsonConverter : JsonConverter<AmountRuleEnum>
             {
@@ -342,14 +315,14 @@ namespace Adyen.Checkout.Models
         public Option<AmountRuleEnum?> _AmountRuleOption { get; private set; }
 
         /// <summary>
-        /// The limitation rule of the billing amount.  Possible values:  * **max**: The transaction amount can not exceed the `amount`.   * **exact**: The transaction amount should be the same as the `amount`.  
+        /// The limitation rule of the billing amount.  Possible values:  * **max**: The transaction amount can not exceed the `amount`.   * **exact**: The transaction amount should be the same as the `amount`.
         /// </summary>
         /// <value>The limitation rule of the billing amount.  Possible values:  * **max**: The transaction amount can not exceed the &#x60;amount&#x60;.   * **exact**: The transaction amount should be the same as the &#x60;amount&#x60;.  </value>
         [JsonPropertyName("amountRule")]
         public AmountRuleEnum? AmountRule { get { return this._AmountRuleOption; } set { this._AmountRuleOption = new(value); } }
 
         /// <summary>
-        /// The rule to specify the period, within which the recurring debit can happen, relative to the mandate recurring date.  Possible values:   * **on**: On a specific date.   * **before**:  Before and on a specific date.   * **after**: On and after a specific date.  
+        /// The rule to specify the period, within which the recurring debit can happen, relative to the mandate recurring date.  Possible values:   * **on**: On a specific date.   * **before**:  Before and on a specific date.   * **after**: On and after a specific date.
         /// </summary>
         /// <value>The rule to specify the period, within which the recurring debit can happen, relative to the mandate recurring date.  Possible values:   * **on**: On a specific date.   * **before**:  Before and on a specific date.   * **after**: On and after a specific date.  </value>
         [JsonConverter(typeof(BillingAttemptsRuleEnumJsonConverter))]
@@ -374,7 +347,7 @@ namespace Adyen.Checkout.Models
             /// BillingAttemptsRuleEnum.After - after
             /// </summary>
             public static readonly BillingAttemptsRuleEnum After = new("after");
-        
+
             private BillingAttemptsRuleEnum(string? value)
             {
                 Value = value;
@@ -386,24 +359,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="BillingAttemptsRuleEnum"/> instance initialized with the string value.</returns>
             public static implicit operator BillingAttemptsRuleEnum?(string? value) => value == null ? null : new BillingAttemptsRuleEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="BillingAttemptsRuleEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="BillingAttemptsRuleEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="BillingAttemptsRuleEnum"/> instance./// </returns>
             public static implicit operator string?(BillingAttemptsRuleEnum? option) => option?.Value;
-        
+
             public static bool operator ==(BillingAttemptsRuleEnum? left, BillingAttemptsRuleEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(BillingAttemptsRuleEnum? left, BillingAttemptsRuleEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is BillingAttemptsRuleEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="BillingAttemptsRuleEnum?"/>.
             /// </summary>
@@ -418,7 +391,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="BillingAttemptsRuleEnum"/> to the json value.
             /// </summary>
@@ -429,21 +402,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == BillingAttemptsRuleEnum.On)
                     return "on";
-                
+
                 if (value == BillingAttemptsRuleEnum.Before)
                     return "before";
-                
+
                 if (value == BillingAttemptsRuleEnum.After)
                     return "after";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing BillingAttemptsRuleEnum.               
+            /// JsonConverter for writing BillingAttemptsRuleEnum.
             /// </summary>
             public class BillingAttemptsRuleEnumJsonConverter : JsonConverter<BillingAttemptsRuleEnum>
             {
@@ -468,7 +441,7 @@ namespace Adyen.Checkout.Models
         public Option<BillingAttemptsRuleEnum?> _BillingAttemptsRuleOption { get; private set; }
 
         /// <summary>
-        /// The rule to specify the period, within which the recurring debit can happen, relative to the mandate recurring date.  Possible values:   * **on**: On a specific date.   * **before**:  Before and on a specific date.   * **after**: On and after a specific date.  
+        /// The rule to specify the period, within which the recurring debit can happen, relative to the mandate recurring date.  Possible values:   * **on**: On a specific date.   * **before**:  Before and on a specific date.   * **after**: On and after a specific date.
         /// </summary>
         /// <value>The rule to specify the period, within which the recurring debit can happen, relative to the mandate recurring date.  Possible values:   * **on**: On a specific date.   * **before**:  Before and on a specific date.   * **after**: On and after a specific date.  </value>
         [JsonPropertyName("billingAttemptsRule")]
@@ -648,7 +621,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!amount.IsSet)
                 throw new ArgumentException("Property is required for class Mandate.", nameof(amount));
 
@@ -658,7 +631,23 @@ namespace Adyen.Checkout.Models
             if (!frequency.IsSet)
                 throw new ArgumentException("Property is required for class Mandate.", nameof(frequency));
 
-            return new Mandate(amount.Value!, endsAt.Value!, frequency.Value!.Value!, amountRule, billingAttemptsRule, billingDay, count, remarks, startsAt);
+            var result = new Mandate();
+            result.Amount = amount.Value!;
+            result.EndsAt = endsAt.Value!;
+            result.Frequency = frequency.Value!.Value!;
+            if (amountRule.IsSet)
+                result.AmountRule = amountRule.Value;
+            if (billingAttemptsRule.IsSet)
+                result.BillingAttemptsRule = billingAttemptsRule.Value;
+            if (billingDay.IsSet)
+                result.BillingDay = billingDay.Value;
+            if (count.IsSet)
+                result.Count = count.Value;
+            if (remarks.IsSet)
+                result.Remarks = remarks.Value;
+            if (startsAt.IsSet)
+                result.StartsAt = startsAt.Value;
+            return result;
         }
 
         /// <summary>
@@ -669,13 +658,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, Mandate mandate, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, mandate, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -686,31 +675,31 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, Mandate mandate, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (mandate.Amount != null)
                 writer.WriteString("amount", mandate.Amount);
 
             if (mandate.EndsAt != null)
                 writer.WriteString("endsAt", mandate.EndsAt);
 
-            if (mandate.Frequency != null) 
+            if (mandate.Frequency != null)
             {
                 string? frequencyRawValue = Mandate.FrequencyEnum.ToJsonValue(mandate.Frequency);
                 writer.WriteString("frequency", frequencyRawValue);
             }
-            
-            if (mandate._AmountRuleOption.IsSet && mandate.AmountRule != null) 
+
+            if (mandate._AmountRuleOption.IsSet && mandate.AmountRule != null)
             {
                 string? amountRuleRawValue = Mandate.AmountRuleEnum.ToJsonValue(mandate._AmountRuleOption.Value!.Value);
                 writer.WriteString("amountRule", amountRuleRawValue);
             }
-            
-            if (mandate._BillingAttemptsRuleOption.IsSet && mandate.BillingAttemptsRule != null) 
+
+            if (mandate._BillingAttemptsRuleOption.IsSet && mandate.BillingAttemptsRule != null)
             {
                 string? billingAttemptsRuleRawValue = Mandate.BillingAttemptsRuleEnum.ToJsonValue(mandate._BillingAttemptsRuleOption.Value!.Value);
                 writer.WriteString("billingAttemptsRule", billingAttemptsRuleRawValue);
             }
-            
+
             if (mandate._BillingDayOption.IsSet)
                 if (mandate.BillingDay != null)
                     writer.WriteString("billingDay", mandate.BillingDay);

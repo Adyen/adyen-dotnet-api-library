@@ -34,37 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentCaptureRequest" /> class.
         /// </summary>
-        /// <param name="amount">amount</param>
-        /// <param name="merchantAccount">The merchant account that is used to process the payment.</param>
-        /// <param name="applicationInfo">applicationInfo</param>
-        /// <param name="enhancedSchemeData">enhancedSchemeData</param>
-        /// <param name="lineItems">Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.</param>
-        /// <param name="platformChargebackLogic">platformChargebackLogic</param>
-        /// <param name="reference">Your reference for the capture request. Maximum length: 80 characters.</param>
-        /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/).</param>
-        /// <param name="subMerchants">A List of sub-merchants.</param>
-        [JsonConstructor]
-        public PaymentCaptureRequest(Amount amount, string merchantAccount, Option<ApplicationInfo?> applicationInfo = default, Option<EnhancedSchemeData?> enhancedSchemeData = default, Option<List<LineItem>?> lineItems = default, Option<PlatformChargebackLogic?> platformChargebackLogic = default, Option<string?> reference = default, Option<List<Split>?> splits = default, Option<List<SubMerchantInfo>?> subMerchants = default)
-        {
-            Amount = amount;
-            MerchantAccount = merchantAccount;
-            _ApplicationInfoOption = applicationInfo;
-            _EnhancedSchemeDataOption = enhancedSchemeData;
-            _LineItemsOption = lineItems;
-            _PlatformChargebackLogicOption = platformChargebackLogic;
-            _ReferenceOption = reference;
-            _SplitsOption = splits;
-            _SubMerchantsOption = subMerchants;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentCaptureRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -276,14 +249,31 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!amount.IsSet)
                 throw new ArgumentException("Property is required for class PaymentCaptureRequest.", nameof(amount));
 
             if (!merchantAccount.IsSet)
                 throw new ArgumentException("Property is required for class PaymentCaptureRequest.", nameof(merchantAccount));
 
-            return new PaymentCaptureRequest(amount.Value!, merchantAccount.Value!, applicationInfo, enhancedSchemeData, lineItems, platformChargebackLogic, reference, splits, subMerchants);
+            var result = new PaymentCaptureRequest();
+            result.Amount = amount.Value!;
+            result.MerchantAccount = merchantAccount.Value!;
+            if (applicationInfo.IsSet)
+                result.ApplicationInfo = applicationInfo.Value;
+            if (enhancedSchemeData.IsSet)
+                result.EnhancedSchemeData = enhancedSchemeData.Value;
+            if (lineItems.IsSet)
+                result.LineItems = lineItems.Value;
+            if (platformChargebackLogic.IsSet)
+                result.PlatformChargebackLogic = platformChargebackLogic.Value;
+            if (reference.IsSet)
+                result.Reference = reference.Value;
+            if (splits.IsSet)
+                result.Splits = splits.Value;
+            if (subMerchants.IsSet)
+                result.SubMerchants = subMerchants.Value;
+            return result;
         }
 
         /// <summary>
@@ -294,13 +284,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentCaptureRequest paymentCaptureRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentCaptureRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -311,7 +301,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentCaptureRequest paymentCaptureRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WritePropertyName("amount");
             JsonSerializer.Serialize(writer, paymentCaptureRequest.Amount, jsonSerializerOptions);
             if (paymentCaptureRequest.MerchantAccount != null)

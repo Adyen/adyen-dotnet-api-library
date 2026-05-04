@@ -34,43 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataInstallments" /> class.
         /// </summary>
-        /// <param name="installmentPaymentDataInstallmentType">Type of installment. The value of &#x60;installmentType&#x60; should be **IssuerFinanced**.</param>
-        /// <param name="installmentPaymentDataOptionItemNrAnnualPercentageRate">Annual interest rate.</param>
-        /// <param name="installmentPaymentDataOptionItemNrFirstInstallmentAmount">First Installment Amount in minor units.</param>
-        /// <param name="installmentPaymentDataOptionItemNrInstallmentFee">Installment fee amount in minor units.</param>
-        /// <param name="installmentPaymentDataOptionItemNrInterestRate">Interest rate for the installment period.</param>
-        /// <param name="installmentPaymentDataOptionItemNrMaximumNumberOfInstallments">Maximum number of installments possible for this payment.</param>
-        /// <param name="installmentPaymentDataOptionItemNrMinimumNumberOfInstallments">Minimum number of installments possible for this payment.</param>
-        /// <param name="installmentPaymentDataOptionItemNrNumberOfInstallments">Total number of installments possible for this payment.</param>
-        /// <param name="installmentPaymentDataOptionItemNrSubsequentInstallmentAmount">Subsequent Installment Amount in minor units.</param>
-        /// <param name="installmentPaymentDataOptionItemNrTotalAmountDue">Total amount in minor units.</param>
-        /// <param name="installmentPaymentDataPaymentOptions">Possible values: * PayInInstallmentsOnly * PayInFullOnly * PayInFullOrInstallments</param>
-        /// <param name="installmentsValue">The number of installments that the payment amount should be charged with.  Example: 5 &gt; Only relevant for card payments in countries that support installments.</param>
-        [JsonConstructor]
-        public ResponseAdditionalDataInstallments(Option<string?> installmentPaymentDataInstallmentType = default, Option<string?> installmentPaymentDataOptionItemNrAnnualPercentageRate = default, Option<string?> installmentPaymentDataOptionItemNrFirstInstallmentAmount = default, Option<string?> installmentPaymentDataOptionItemNrInstallmentFee = default, Option<string?> installmentPaymentDataOptionItemNrInterestRate = default, Option<string?> installmentPaymentDataOptionItemNrMaximumNumberOfInstallments = default, Option<string?> installmentPaymentDataOptionItemNrMinimumNumberOfInstallments = default, Option<string?> installmentPaymentDataOptionItemNrNumberOfInstallments = default, Option<string?> installmentPaymentDataOptionItemNrSubsequentInstallmentAmount = default, Option<string?> installmentPaymentDataOptionItemNrTotalAmountDue = default, Option<string?> installmentPaymentDataPaymentOptions = default, Option<string?> installmentsValue = default)
-        {
-            _InstallmentPaymentDataInstallmentTypeOption = installmentPaymentDataInstallmentType;
-            _InstallmentPaymentDataOptionItemNrAnnualPercentageRateOption = installmentPaymentDataOptionItemNrAnnualPercentageRate;
-            _InstallmentPaymentDataOptionItemNrFirstInstallmentAmountOption = installmentPaymentDataOptionItemNrFirstInstallmentAmount;
-            _InstallmentPaymentDataOptionItemNrInstallmentFeeOption = installmentPaymentDataOptionItemNrInstallmentFee;
-            _InstallmentPaymentDataOptionItemNrInterestRateOption = installmentPaymentDataOptionItemNrInterestRate;
-            _InstallmentPaymentDataOptionItemNrMaximumNumberOfInstallmentsOption = installmentPaymentDataOptionItemNrMaximumNumberOfInstallments;
-            _InstallmentPaymentDataOptionItemNrMinimumNumberOfInstallmentsOption = installmentPaymentDataOptionItemNrMinimumNumberOfInstallments;
-            _InstallmentPaymentDataOptionItemNrNumberOfInstallmentsOption = installmentPaymentDataOptionItemNrNumberOfInstallments;
-            _InstallmentPaymentDataOptionItemNrSubsequentInstallmentAmountOption = installmentPaymentDataOptionItemNrSubsequentInstallmentAmount;
-            _InstallmentPaymentDataOptionItemNrTotalAmountDueOption = installmentPaymentDataOptionItemNrTotalAmountDue;
-            _InstallmentPaymentDataPaymentOptionsOption = installmentPaymentDataPaymentOptions;
-            _InstallmentsValueOption = installmentsValue;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ResponseAdditionalDataInstallments()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -357,9 +324,34 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ResponseAdditionalDataInstallments(installmentPaymentDataInstallmentType, installmentPaymentDataOptionItemNrAnnualPercentageRate, installmentPaymentDataOptionItemNrFirstInstallmentAmount, installmentPaymentDataOptionItemNrInstallmentFee, installmentPaymentDataOptionItemNrInterestRate, installmentPaymentDataOptionItemNrMaximumNumberOfInstallments, installmentPaymentDataOptionItemNrMinimumNumberOfInstallments, installmentPaymentDataOptionItemNrNumberOfInstallments, installmentPaymentDataOptionItemNrSubsequentInstallmentAmount, installmentPaymentDataOptionItemNrTotalAmountDue, installmentPaymentDataPaymentOptions, installmentsValue);
+
+            var result = new ResponseAdditionalDataInstallments();
+            if (installmentPaymentDataInstallmentType.IsSet)
+                result.InstallmentPaymentDataInstallmentType = installmentPaymentDataInstallmentType.Value;
+            if (installmentPaymentDataOptionItemNrAnnualPercentageRate.IsSet)
+                result.InstallmentPaymentDataOptionItemNrAnnualPercentageRate = installmentPaymentDataOptionItemNrAnnualPercentageRate.Value;
+            if (installmentPaymentDataOptionItemNrFirstInstallmentAmount.IsSet)
+                result.InstallmentPaymentDataOptionItemNrFirstInstallmentAmount = installmentPaymentDataOptionItemNrFirstInstallmentAmount.Value;
+            if (installmentPaymentDataOptionItemNrInstallmentFee.IsSet)
+                result.InstallmentPaymentDataOptionItemNrInstallmentFee = installmentPaymentDataOptionItemNrInstallmentFee.Value;
+            if (installmentPaymentDataOptionItemNrInterestRate.IsSet)
+                result.InstallmentPaymentDataOptionItemNrInterestRate = installmentPaymentDataOptionItemNrInterestRate.Value;
+            if (installmentPaymentDataOptionItemNrMaximumNumberOfInstallments.IsSet)
+                result.InstallmentPaymentDataOptionItemNrMaximumNumberOfInstallments = installmentPaymentDataOptionItemNrMaximumNumberOfInstallments.Value;
+            if (installmentPaymentDataOptionItemNrMinimumNumberOfInstallments.IsSet)
+                result.InstallmentPaymentDataOptionItemNrMinimumNumberOfInstallments = installmentPaymentDataOptionItemNrMinimumNumberOfInstallments.Value;
+            if (installmentPaymentDataOptionItemNrNumberOfInstallments.IsSet)
+                result.InstallmentPaymentDataOptionItemNrNumberOfInstallments = installmentPaymentDataOptionItemNrNumberOfInstallments.Value;
+            if (installmentPaymentDataOptionItemNrSubsequentInstallmentAmount.IsSet)
+                result.InstallmentPaymentDataOptionItemNrSubsequentInstallmentAmount = installmentPaymentDataOptionItemNrSubsequentInstallmentAmount.Value;
+            if (installmentPaymentDataOptionItemNrTotalAmountDue.IsSet)
+                result.InstallmentPaymentDataOptionItemNrTotalAmountDue = installmentPaymentDataOptionItemNrTotalAmountDue.Value;
+            if (installmentPaymentDataPaymentOptions.IsSet)
+                result.InstallmentPaymentDataPaymentOptions = installmentPaymentDataPaymentOptions.Value;
+            if (installmentsValue.IsSet)
+                result.InstallmentsValue = installmentsValue.Value;
+            return result;
         }
 
         /// <summary>
@@ -370,13 +362,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ResponseAdditionalDataInstallments responseAdditionalDataInstallments, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, responseAdditionalDataInstallments, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -387,7 +379,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ResponseAdditionalDataInstallments responseAdditionalDataInstallments, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (responseAdditionalDataInstallments._InstallmentPaymentDataInstallmentTypeOption.IsSet)
                 if (responseAdditionalDataInstallments.InstallmentPaymentDataInstallmentType != null)
                     writer.WriteString("installmentPaymentData.installmentType", responseAdditionalDataInstallments.InstallmentPaymentDataInstallmentType);

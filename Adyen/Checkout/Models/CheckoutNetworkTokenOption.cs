@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutNetworkTokenOption" /> class.
         /// </summary>
-        /// <param name="includeCryptogram">Set to **true** to enable forwarding network token cryptograms.</param>
-        /// <param name="useNetworkToken">Set to **true** to forward the network token for a card.</param>
-        [JsonConstructor]
-        public CheckoutNetworkTokenOption(Option<bool?> includeCryptogram = default, Option<bool?> useNetworkToken = default)
-        {
-            _IncludeCryptogramOption = includeCryptogram;
-            _UseNetworkTokenOption = useNetworkToken;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CheckoutNetworkTokenOption()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -147,9 +134,14 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new CheckoutNetworkTokenOption(includeCryptogram, useNetworkToken);
+
+            var result = new CheckoutNetworkTokenOption();
+            if (includeCryptogram.IsSet)
+                result.IncludeCryptogram = includeCryptogram.Value;
+            if (useNetworkToken.IsSet)
+                result.UseNetworkToken = useNetworkToken.Value;
+            return result;
         }
 
         /// <summary>
@@ -160,13 +152,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CheckoutNetworkTokenOption checkoutNetworkTokenOption, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, checkoutNetworkTokenOption, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -177,7 +169,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CheckoutNetworkTokenOption checkoutNetworkTokenOption, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (checkoutNetworkTokenOption._IncludeCryptogramOption.IsSet)
                 if (checkoutNetworkTokenOption._IncludeCryptogramOption.Value != null)
                     writer.WriteBoolean("includeCryptogram", checkoutNetworkTokenOption._IncludeCryptogramOption.Value!.Value);

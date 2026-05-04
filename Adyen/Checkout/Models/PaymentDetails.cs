@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentDetails" /> class.
         /// </summary>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="type">The payment method type.</param>
-        [JsonConstructor]
-        public PaymentDetails(Option<string?> checkoutAttemptId = default, Option<string?> sdkData = default, Option<TypeEnum?> type = default)
-        {
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _SdkDataOption = sdkData;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -501,7 +486,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.Balanceplatform - balanceplatform
             /// </summary>
             public static readonly TypeEnum Balanceplatform = new("balanceplatform");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -513,24 +498,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -629,7 +614,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -640,273 +625,273 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Alipay)
                     return "alipay";
-                
+
                 if (value == TypeEnum.Multibanco)
                     return "multibanco";
-                
+
                 if (value == TypeEnum.BankTransfer)
                     return "bankTransfer";
-                
+
                 if (value == TypeEnum.BankTransferIBAN)
                     return "bankTransfer_IBAN";
-                
+
                 if (value == TypeEnum.Paybright)
                     return "paybright";
-                
+
                 if (value == TypeEnum.Paynow)
                     return "paynow";
-                
+
                 if (value == TypeEnum.AffirmPos)
                     return "affirm_pos";
-                
+
                 if (value == TypeEnum.Iris)
                     return "iris";
-                
+
                 if (value == TypeEnum.Trustly)
                     return "trustly";
-                
+
                 if (value == TypeEnum.Trustlyvector)
                     return "trustlyvector";
-                
+
                 if (value == TypeEnum.Oney)
                     return "oney";
-                
+
                 if (value == TypeEnum.Facilypay)
                     return "facilypay";
-                
+
                 if (value == TypeEnum.Facilypay3x)
                     return "facilypay_3x";
-                
+
                 if (value == TypeEnum.Facilypay4x)
                     return "facilypay_4x";
-                
+
                 if (value == TypeEnum.Facilypay6x)
                     return "facilypay_6x";
-                
+
                 if (value == TypeEnum.Facilypay10x)
                     return "facilypay_10x";
-                
+
                 if (value == TypeEnum.Facilypay12x)
                     return "facilypay_12x";
-                
+
                 if (value == TypeEnum.Unionpay)
                     return "unionpay";
-                
+
                 if (value == TypeEnum.KcpBanktransfer)
                     return "kcp_banktransfer";
-                
+
                 if (value == TypeEnum.KcpPayco)
                     return "kcp_payco";
-                
+
                 if (value == TypeEnum.KcpCreditcard)
                     return "kcp_creditcard";
-                
+
                 if (value == TypeEnum.WechatpaySDK)
                     return "wechatpaySDK";
-                
+
                 if (value == TypeEnum.WechatpayQR)
                     return "wechatpayQR";
-                
+
                 if (value == TypeEnum.WechatpayWeb)
                     return "wechatpayWeb";
-                
+
                 if (value == TypeEnum.MolpayBoost)
                     return "molpay_boost";
-                
+
                 if (value == TypeEnum.WalletIN)
                     return "wallet_IN";
-                
+
                 if (value == TypeEnum.PayuINCashcard)
                     return "payu_IN_cashcard";
-                
+
                 if (value == TypeEnum.PayuINNb)
                     return "payu_IN_nb";
-                
+
                 if (value == TypeEnum.Paytm)
                     return "paytm";
-                
+
                 if (value == TypeEnum.MolpayEbankingVN)
                     return "molpay_ebanking_VN";
-                
+
                 if (value == TypeEnum.MolpayEbankingMY)
                     return "molpay_ebanking_MY";
-                
+
                 if (value == TypeEnum.MolpayEbankingDirectMY)
                     return "molpay_ebanking_direct_MY";
-                
+
                 if (value == TypeEnum.Swish)
                     return "swish";
-                
+
                 if (value == TypeEnum.Bizum)
                     return "bizum";
-                
+
                 if (value == TypeEnum.Walley)
                     return "walley";
-                
+
                 if (value == TypeEnum.WalleyB2b)
                     return "walley_b2b";
-                
+
                 if (value == TypeEnum.Alma)
                     return "alma";
-                
+
                 if (value == TypeEnum.Paypo)
                     return "paypo";
-                
+
                 if (value == TypeEnum.Scalapay)
                     return "scalapay";
-                
+
                 if (value == TypeEnum.Scalapay3x)
                     return "scalapay_3x";
-                
+
                 if (value == TypeEnum.Scalapay4x)
                     return "scalapay_4x";
-                
+
                 if (value == TypeEnum.MolpayFpx)
                     return "molpay_fpx";
-                
+
                 if (value == TypeEnum.Payme)
                     return "payme";
-                
+
                 if (value == TypeEnum.PaymePos)
                     return "payme_pos";
-                
+
                 if (value == TypeEnum.Konbini)
                     return "konbini";
-                
+
                 if (value == TypeEnum.DirectEbanking)
                     return "directEbanking";
-                
+
                 if (value == TypeEnum.Boletobancario)
                     return "boletobancario";
-                
+
                 if (value == TypeEnum.Cashticket)
                     return "cashticket";
-                
+
                 if (value == TypeEnum.Ikano)
                     return "ikano";
-                
+
                 if (value == TypeEnum.Karenmillen)
                     return "karenmillen";
-                
+
                 if (value == TypeEnum.Oasis)
                     return "oasis";
-                
+
                 if (value == TypeEnum.Warehouse)
                     return "warehouse";
-                
+
                 if (value == TypeEnum.PrimeiropayBoleto)
                     return "primeiropay_boleto";
-                
+
                 if (value == TypeEnum.Mada)
                     return "mada";
-                
+
                 if (value == TypeEnum.Benefit)
                     return "benefit";
-                
+
                 if (value == TypeEnum.Knet)
                     return "knet";
-                
+
                 if (value == TypeEnum.Omannet)
                     return "omannet";
-                
+
                 if (value == TypeEnum.GopayWallet)
                     return "gopay_wallet";
-                
+
                 if (value == TypeEnum.KcpNaverpay)
                     return "kcp_naverpay";
-                
+
                 if (value == TypeEnum.Fawry)
                     return "fawry";
-                
+
                 if (value == TypeEnum.Atome)
                     return "atome";
-                
+
                 if (value == TypeEnum.Naps)
                     return "naps";
-                
+
                 if (value == TypeEnum.Nordea)
                     return "nordea";
-                
+
                 if (value == TypeEnum.BoletobancarioBradesco)
                     return "boletobancario_bradesco";
-                
+
                 if (value == TypeEnum.BoletobancarioItau)
                     return "boletobancario_itau";
-                
+
                 if (value == TypeEnum.BoletobancarioSantander)
                     return "boletobancario_santander";
-                
+
                 if (value == TypeEnum.BoletobancarioBancodobrasil)
                     return "boletobancario_bancodobrasil";
-                
+
                 if (value == TypeEnum.BoletobancarioHsbc)
                     return "boletobancario_hsbc";
-                
+
                 if (value == TypeEnum.MolpayMaybank2u)
                     return "molpay_maybank2u";
-                
+
                 if (value == TypeEnum.MolpayCimb)
                     return "molpay_cimb";
-                
+
                 if (value == TypeEnum.MolpayRhb)
                     return "molpay_rhb";
-                
+
                 if (value == TypeEnum.MolpayAmb)
                     return "molpay_amb";
-                
+
                 if (value == TypeEnum.MolpayHlb)
                     return "molpay_hlb";
-                
+
                 if (value == TypeEnum.MolpayAffinEpg)
                     return "molpay_affin_epg";
-                
+
                 if (value == TypeEnum.MolpayBankislam)
                     return "molpay_bankislam";
-                
+
                 if (value == TypeEnum.MolpayPublicbank)
                     return "molpay_publicbank";
-                
+
                 if (value == TypeEnum.FpxAgrobank)
                     return "fpx_agrobank";
-                
+
                 if (value == TypeEnum.Touchngo)
                     return "touchngo";
-                
+
                 if (value == TypeEnum.Maybank2uMae)
                     return "maybank2u_mae";
-                
+
                 if (value == TypeEnum.Duitnow)
                     return "duitnow";
-                
+
                 if (value == TypeEnum.Promptpay)
                     return "promptpay";
-                
+
                 if (value == TypeEnum.TwintPos)
                     return "twint_pos";
-                
+
                 if (value == TypeEnum.AlipayHk)
                     return "alipay_hk";
-                
+
                 if (value == TypeEnum.AlipayHkWeb)
                     return "alipay_hk_web";
-                
+
                 if (value == TypeEnum.AlipayHkWap)
                     return "alipay_hk_wap";
-                
+
                 if (value == TypeEnum.AlipayWap)
                     return "alipay_wap";
-                
+
                 if (value == TypeEnum.Balanceplatform)
                     return "balanceplatform";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -1037,9 +1022,16 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new PaymentDetails(checkoutAttemptId, sdkData, type);
+
+            var result = new PaymentDetails();
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -1050,13 +1042,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentDetails paymentDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -1067,7 +1059,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentDetails paymentDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paymentDetails._CheckoutAttemptIdOption.IsSet)
                 if (paymentDetails.CheckoutAttemptId != null)
                     writer.WriteString("checkoutAttemptId", paymentDetails.CheckoutAttemptId);
@@ -1076,7 +1068,7 @@ namespace Adyen.Checkout.Models
                 if (paymentDetails.SdkData != null)
                     writer.WriteString("sdkData", paymentDetails.SdkData);
 
-            if (paymentDetails._TypeOption.IsSet && paymentDetails.Type != null) 
+            if (paymentDetails._TypeOption.IsSet && paymentDetails.Type != null)
             {
                 string? typeRawValue = PaymentDetails.TypeEnum.ToJsonValue(paymentDetails._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);

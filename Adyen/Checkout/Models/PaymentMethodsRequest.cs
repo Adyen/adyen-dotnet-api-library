@@ -34,55 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodsRequest" /> class.
         /// </summary>
-        /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction.</param>
-        /// <param name="additionalData">This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value.</param>
-        /// <param name="allowedPaymentMethods">List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;applepay\&quot;]&#x60;</param>
-        /// <param name="amount">amount</param>
-        /// <param name="blockedPaymentMethods">List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;applepay\&quot;]&#x60;</param>
-        /// <param name="browserInfo">browserInfo</param>
-        /// <param name="channel">The platform where a payment transaction takes place. This field can be used for filtering out payment methods that are only available on specific platforms. Possible values: * iOS * Android * Web</param>
-        /// <param name="countryCode">The shopper&#39;s country code.</param>
-        /// <param name="order">order</param>
-        /// <param name="shopperConversionId">A unique ID that can be used to associate &#x60;/paymentMethods&#x60; and &#x60;/payments&#x60; requests with the same shopper transaction, offering insights into conversion rates.</param>
-        /// <param name="shopperEmail">The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication if you did not include the &#x60;telephoneNumber&#x60;.</param>
-        /// <param name="shopperIP">The shopper&#39;s IP address. We recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks). &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication for all web and mobile integrations, if you did not include the &#x60;shopperEmail&#x60;. For native mobile integrations, the field is required to support cases where authentication is routed to the redirect flow. This field is also mandatory for some merchants depending on your business model. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).</param>
-        /// <param name="shopperLocale">The combination of a language code and a country code to specify the language to be used in the payment.</param>
-        /// <param name="shopperReference">Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.</param>
-        /// <param name="splitCardFundingSources">Boolean value indicating whether the card payment method should be split into separate debit and credit options. (default to false)</param>
-        /// <param name="store">Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.</param>
-        /// <param name="storeFiltrationMode">Specifies how payment methods should be filtered based on the &#x60;store&#x60; parameter:   - **exclusive**: Only payment methods belonging to the specified &#x60;store&#x60; are returned.   - **inclusive**: Payment methods from the &#x60;store&#x60; and those not associated with any other store are returned.</param>
-        /// <param name="telephoneNumber">The shopper&#39;s telephone number.  The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we do not submit it for authentication. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the &#x60;shopperEmail&#x60;.</param>
-        [JsonConstructor]
-        public PaymentMethodsRequest(string merchantAccount, Option<Dictionary<string, string>?> additionalData = default, Option<List<string>?> allowedPaymentMethods = default, Option<Amount?> amount = default, Option<List<string>?> blockedPaymentMethods = default, Option<BrowserInfo?> browserInfo = default, Option<ChannelEnum?> channel = default, Option<string?> countryCode = default, Option<EncryptedOrderData?> order = default, Option<string?> shopperConversionId = default, Option<string?> shopperEmail = default, Option<string?> shopperIP = default, Option<string?> shopperLocale = default, Option<string?> shopperReference = default, Option<bool?> splitCardFundingSources = default, Option<string?> store = default, Option<StoreFiltrationModeEnum?> storeFiltrationMode = default, Option<string?> telephoneNumber = default)
-        {
-            MerchantAccount = merchantAccount;
-            _AdditionalDataOption = additionalData;
-            _AllowedPaymentMethodsOption = allowedPaymentMethods;
-            _AmountOption = amount;
-            _BlockedPaymentMethodsOption = blockedPaymentMethods;
-            _BrowserInfoOption = browserInfo;
-            _ChannelOption = channel;
-            _CountryCodeOption = countryCode;
-            _OrderOption = order;
-            _ShopperConversionIdOption = shopperConversionId;
-            _ShopperEmailOption = shopperEmail;
-            _ShopperIPOption = shopperIP;
-            _ShopperLocaleOption = shopperLocale;
-            _ShopperReferenceOption = shopperReference;
-            _SplitCardFundingSourcesOption = splitCardFundingSources;
-            _StoreOption = store;
-            _StoreFiltrationModeOption = storeFiltrationMode;
-            _TelephoneNumberOption = telephoneNumber;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentMethodsRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -111,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// ChannelEnum.Web - Web
             /// </summary>
             public static readonly ChannelEnum Web = new("Web");
-        
+
             private ChannelEnum(string? value)
             {
                 Value = value;
@@ -123,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ChannelEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ChannelEnum?(string? value) => value == null ? null : new ChannelEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ChannelEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ChannelEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ChannelEnum"/> instance./// </returns>
             public static implicit operator string?(ChannelEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ChannelEnum? left, ChannelEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ChannelEnum? left, ChannelEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ChannelEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ChannelEnum?"/>.
             /// </summary>
@@ -155,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ChannelEnum"/> to the json value.
             /// </summary>
@@ -166,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ChannelEnum.IOS)
                     return "iOS";
-                
+
                 if (value == ChannelEnum.Android)
                     return "Android";
-                
+
                 if (value == ChannelEnum.Web)
                     return "Web";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ChannelEnum.               
+            /// JsonConverter for writing ChannelEnum.
             /// </summary>
             public class ChannelEnumJsonConverter : JsonConverter<ChannelEnum>
             {
@@ -237,7 +192,7 @@ namespace Adyen.Checkout.Models
             /// StoreFiltrationModeEnum.SkipFilter - skipFilter
             /// </summary>
             public static readonly StoreFiltrationModeEnum SkipFilter = new("skipFilter");
-        
+
             private StoreFiltrationModeEnum(string? value)
             {
                 Value = value;
@@ -249,24 +204,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="StoreFiltrationModeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator StoreFiltrationModeEnum?(string? value) => value == null ? null : new StoreFiltrationModeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="StoreFiltrationModeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="StoreFiltrationModeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="StoreFiltrationModeEnum"/> instance./// </returns>
             public static implicit operator string?(StoreFiltrationModeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(StoreFiltrationModeEnum? left, StoreFiltrationModeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(StoreFiltrationModeEnum? left, StoreFiltrationModeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is StoreFiltrationModeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="StoreFiltrationModeEnum?"/>.
             /// </summary>
@@ -281,7 +236,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="StoreFiltrationModeEnum"/> to the json value.
             /// </summary>
@@ -292,21 +247,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == StoreFiltrationModeEnum.Exclusive)
                     return "exclusive";
-                
+
                 if (value == StoreFiltrationModeEnum.Inclusive)
                     return "inclusive";
-                
+
                 if (value == StoreFiltrationModeEnum.SkipFilter)
                     return "skipFilter";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing StoreFiltrationModeEnum.               
+            /// JsonConverter for writing StoreFiltrationModeEnum.
             /// </summary>
             public class StoreFiltrationModeEnumJsonConverter : JsonConverter<StoreFiltrationModeEnum>
             {
@@ -699,11 +654,47 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!merchantAccount.IsSet)
                 throw new ArgumentException("Property is required for class PaymentMethodsRequest.", nameof(merchantAccount));
 
-            return new PaymentMethodsRequest(merchantAccount.Value!, additionalData, allowedPaymentMethods, amount, blockedPaymentMethods, browserInfo, channel, countryCode, order, shopperConversionId, shopperEmail, shopperIP, shopperLocale, shopperReference, splitCardFundingSources, store, storeFiltrationMode, telephoneNumber);
+            var result = new PaymentMethodsRequest();
+            result.MerchantAccount = merchantAccount.Value!;
+            if (additionalData.IsSet)
+                result.AdditionalData = additionalData.Value;
+            if (allowedPaymentMethods.IsSet)
+                result.AllowedPaymentMethods = allowedPaymentMethods.Value;
+            if (amount.IsSet)
+                result.Amount = amount.Value;
+            if (blockedPaymentMethods.IsSet)
+                result.BlockedPaymentMethods = blockedPaymentMethods.Value;
+            if (browserInfo.IsSet)
+                result.BrowserInfo = browserInfo.Value;
+            if (channel.IsSet)
+                result.Channel = channel.Value;
+            if (countryCode.IsSet)
+                result.CountryCode = countryCode.Value;
+            if (order.IsSet)
+                result.Order = order.Value;
+            if (shopperConversionId.IsSet)
+                result.ShopperConversionId = shopperConversionId.Value;
+            if (shopperEmail.IsSet)
+                result.ShopperEmail = shopperEmail.Value;
+            if (shopperIP.IsSet)
+                result.ShopperIP = shopperIP.Value;
+            if (shopperLocale.IsSet)
+                result.ShopperLocale = shopperLocale.Value;
+            if (shopperReference.IsSet)
+                result.ShopperReference = shopperReference.Value;
+            if (splitCardFundingSources.IsSet)
+                result.SplitCardFundingSources = splitCardFundingSources.Value;
+            if (store.IsSet)
+                result.Store = store.Value;
+            if (storeFiltrationMode.IsSet)
+                result.StoreFiltrationMode = storeFiltrationMode.Value;
+            if (telephoneNumber.IsSet)
+                result.TelephoneNumber = telephoneNumber.Value;
+            return result;
         }
 
         /// <summary>
@@ -714,13 +705,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentMethodsRequest paymentMethodsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentMethodsRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -731,7 +722,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentMethodsRequest paymentMethodsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paymentMethodsRequest.MerchantAccount != null)
                 writer.WriteString("merchantAccount", paymentMethodsRequest.MerchantAccount);
 
@@ -760,12 +751,12 @@ namespace Adyen.Checkout.Models
                 writer.WritePropertyName("browserInfo");
                 JsonSerializer.Serialize(writer, paymentMethodsRequest.BrowserInfo, jsonSerializerOptions);
             }
-            if (paymentMethodsRequest._ChannelOption.IsSet && paymentMethodsRequest.Channel != null) 
+            if (paymentMethodsRequest._ChannelOption.IsSet && paymentMethodsRequest.Channel != null)
             {
                 string? channelRawValue = PaymentMethodsRequest.ChannelEnum.ToJsonValue(paymentMethodsRequest._ChannelOption.Value!.Value);
                 writer.WriteString("channel", channelRawValue);
             }
-            
+
             if (paymentMethodsRequest._CountryCodeOption.IsSet)
                 if (paymentMethodsRequest.CountryCode != null)
                     writer.WriteString("countryCode", paymentMethodsRequest.CountryCode);
@@ -803,12 +794,12 @@ namespace Adyen.Checkout.Models
                 if (paymentMethodsRequest.Store != null)
                     writer.WriteString("store", paymentMethodsRequest.Store);
 
-            if (paymentMethodsRequest._StoreFiltrationModeOption.IsSet && paymentMethodsRequest.StoreFiltrationMode != null) 
+            if (paymentMethodsRequest._StoreFiltrationModeOption.IsSet && paymentMethodsRequest.StoreFiltrationMode != null)
             {
                 string? storeFiltrationModeRawValue = PaymentMethodsRequest.StoreFiltrationModeEnum.ToJsonValue(paymentMethodsRequest._StoreFiltrationModeOption.Value!.Value);
                 writer.WriteString("storeFiltrationMode", storeFiltrationModeRawValue);
             }
-            
+
             if (paymentMethodsRequest._TelephoneNumberOption.IsSet)
                 if (paymentMethodsRequest.TelephoneNumber != null)
                     writer.WriteString("telephoneNumber", paymentMethodsRequest.TelephoneNumber);

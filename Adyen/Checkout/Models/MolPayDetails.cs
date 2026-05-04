@@ -34,27 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="MolPayDetails" /> class.
         /// </summary>
-        /// <param name="issuer">The shopper&#39;s bank. Specify this with the issuer value that corresponds to this bank.</param>
-        /// <param name="type">**molpay**</param>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        [JsonConstructor]
-        public MolPayDetails(string issuer, TypeEnum type, Option<string?> checkoutAttemptId = default, Option<string?> sdkData = default)
-        {
-            Issuer = issuer;
-            Type = type;
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _SdkDataOption = sdkData;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public MolPayDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -78,7 +61,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.MolpayEbankingTH - molpay_ebanking_TH
             /// </summary>
             public static readonly TypeEnum MolpayEbankingTH = new("molpay_ebanking_TH");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -90,24 +73,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -121,7 +104,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -132,18 +115,18 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.MolpayEbankingFpxMY)
                     return "molpay_ebanking_fpx_MY";
-                
+
                 if (value == TypeEnum.MolpayEbankingTH)
                     return "molpay_ebanking_TH";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -279,14 +262,21 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!issuer.IsSet)
                 throw new ArgumentException("Property is required for class MolPayDetails.", nameof(issuer));
 
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class MolPayDetails.", nameof(type));
 
-            return new MolPayDetails(issuer.Value!, type.Value!.Value!, checkoutAttemptId, sdkData);
+            var result = new MolPayDetails();
+            result.Issuer = issuer.Value!;
+            result.Type = type.Value!.Value!;
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            return result;
         }
 
         /// <summary>
@@ -297,13 +287,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, MolPayDetails molPayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, molPayDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -314,16 +304,16 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, MolPayDetails molPayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (molPayDetails.Issuer != null)
                 writer.WriteString("issuer", molPayDetails.Issuer);
 
-            if (molPayDetails.Type != null) 
+            if (molPayDetails.Type != null)
             {
                 string? typeRawValue = MolPayDetails.TypeEnum.ToJsonValue(molPayDetails.Type);
                 writer.WriteString("type", typeRawValue);
             }
-            
+
             if (molPayDetails._CheckoutAttemptIdOption.IsSet)
                 if (molPayDetails.CheckoutAttemptId != null)
                     writer.WriteString("checkoutAttemptId", molPayDetails.CheckoutAttemptId);

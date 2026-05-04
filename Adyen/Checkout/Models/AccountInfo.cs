@@ -34,57 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountInfo" /> class.
         /// </summary>
-        /// <param name="accountAgeIndicator">Indicator for the length of time since this shopper account was created in the merchant&#39;s environment. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days</param>
-        /// <param name="accountChangeDate">Date when the shopper&#39;s account was last changed.</param>
-        /// <param name="accountChangeIndicator">Indicator for the length of time since the shopper&#39;s account was last updated. Allowed values: * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days</param>
-        /// <param name="accountCreationDate">Date when the shopper&#39;s account was created.</param>
-        /// <param name="accountType">Indicates the type of account. For example, for a multi-account card product. Allowed values: * notApplicable * credit * debit</param>
-        /// <param name="addCardAttemptsDay">Number of attempts the shopper tried to add a card to their account in the last day.</param>
-        /// <param name="deliveryAddressUsageDate">Date the selected delivery address was first used.</param>
-        /// <param name="deliveryAddressUsageIndicator">Indicator for the length of time since this delivery address was first used. Allowed values: * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days</param>
-        /// <param name="homePhone">Shopper&#39;s home phone number (including the country code).</param>
-        /// <param name="mobilePhone">Shopper&#39;s mobile phone number (including the country code).</param>
-        /// <param name="passwordChangeDate">Date when the shopper last changed their password.</param>
-        /// <param name="passwordChangeIndicator">Indicator when the shopper has changed their password. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days</param>
-        /// <param name="pastTransactionsDay">Number of all transactions (successful and abandoned) from this shopper in the past 24 hours.</param>
-        /// <param name="pastTransactionsYear">Number of all transactions (successful and abandoned) from this shopper in the past year.</param>
-        /// <param name="paymentAccountAge">Date this payment method was added to the shopper&#39;s account.</param>
-        /// <param name="paymentAccountIndicator">Indicator for the length of time since this payment method was added to this shopper&#39;s account. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days</param>
-        /// <param name="purchasesLast6Months">Number of successful purchases in the last six months.</param>
-        /// <param name="suspiciousActivity">Whether suspicious activity was recorded on this account.</param>
-        /// <param name="workPhone">Shopper&#39;s work phone number (including the country code).</param>
-        [JsonConstructor]
-        public AccountInfo(Option<AccountAgeIndicatorEnum?> accountAgeIndicator = default, Option<DateTimeOffset?> accountChangeDate = default, Option<AccountChangeIndicatorEnum?> accountChangeIndicator = default, Option<DateTimeOffset?> accountCreationDate = default, Option<AccountTypeEnum?> accountType = default, Option<int?> addCardAttemptsDay = default, Option<DateTimeOffset?> deliveryAddressUsageDate = default, Option<DeliveryAddressUsageIndicatorEnum?> deliveryAddressUsageIndicator = default, Option<string?> homePhone = default, Option<string?> mobilePhone = default, Option<DateTimeOffset?> passwordChangeDate = default, Option<PasswordChangeIndicatorEnum?> passwordChangeIndicator = default, Option<int?> pastTransactionsDay = default, Option<int?> pastTransactionsYear = default, Option<DateTimeOffset?> paymentAccountAge = default, Option<PaymentAccountIndicatorEnum?> paymentAccountIndicator = default, Option<int?> purchasesLast6Months = default, Option<bool?> suspiciousActivity = default, Option<string?> workPhone = default)
-        {
-            _AccountAgeIndicatorOption = accountAgeIndicator;
-            _AccountChangeDateOption = accountChangeDate;
-            _AccountChangeIndicatorOption = accountChangeIndicator;
-            _AccountCreationDateOption = accountCreationDate;
-            _AccountTypeOption = accountType;
-            _AddCardAttemptsDayOption = addCardAttemptsDay;
-            _DeliveryAddressUsageDateOption = deliveryAddressUsageDate;
-            _DeliveryAddressUsageIndicatorOption = deliveryAddressUsageIndicator;
-            _HomePhoneOption = homePhone;
-            _MobilePhoneOption = mobilePhone;
-            _PasswordChangeDateOption = passwordChangeDate;
-            _PasswordChangeIndicatorOption = passwordChangeIndicator;
-            _PastTransactionsDayOption = pastTransactionsDay;
-            _PastTransactionsYearOption = pastTransactionsYear;
-            _PaymentAccountAgeOption = paymentAccountAge;
-            _PaymentAccountIndicatorOption = paymentAccountIndicator;
-            _PurchasesLast6MonthsOption = purchasesLast6Months;
-            _SuspiciousActivityOption = suspiciousActivity;
-            _WorkPhoneOption = workPhone;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public AccountInfo()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -123,7 +76,7 @@ namespace Adyen.Checkout.Models
             /// AccountAgeIndicatorEnum.MoreThan60Days - moreThan60Days
             /// </summary>
             public static readonly AccountAgeIndicatorEnum MoreThan60Days = new("moreThan60Days");
-        
+
             private AccountAgeIndicatorEnum(string? value)
             {
                 Value = value;
@@ -135,24 +88,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="AccountAgeIndicatorEnum"/> instance initialized with the string value.</returns>
             public static implicit operator AccountAgeIndicatorEnum?(string? value) => value == null ? null : new AccountAgeIndicatorEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="AccountAgeIndicatorEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="AccountAgeIndicatorEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="AccountAgeIndicatorEnum"/> instance./// </returns>
             public static implicit operator string?(AccountAgeIndicatorEnum? option) => option?.Value;
-        
+
             public static bool operator ==(AccountAgeIndicatorEnum? left, AccountAgeIndicatorEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(AccountAgeIndicatorEnum? left, AccountAgeIndicatorEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is AccountAgeIndicatorEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="AccountAgeIndicatorEnum?"/>.
             /// </summary>
@@ -169,7 +122,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="AccountAgeIndicatorEnum"/> to the json value.
             /// </summary>
@@ -180,27 +133,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == AccountAgeIndicatorEnum.NotApplicable)
                     return "notApplicable";
-                
+
                 if (value == AccountAgeIndicatorEnum.ThisTransaction)
                     return "thisTransaction";
-                
+
                 if (value == AccountAgeIndicatorEnum.LessThan30Days)
                     return "lessThan30Days";
-                
+
                 if (value == AccountAgeIndicatorEnum.From30To60Days)
                     return "from30To60Days";
-                
+
                 if (value == AccountAgeIndicatorEnum.MoreThan60Days)
                     return "moreThan60Days";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing AccountAgeIndicatorEnum.               
+            /// JsonConverter for writing AccountAgeIndicatorEnum.
             /// </summary>
             public class AccountAgeIndicatorEnumJsonConverter : JsonConverter<AccountAgeIndicatorEnum>
             {
@@ -262,7 +215,7 @@ namespace Adyen.Checkout.Models
             /// AccountChangeIndicatorEnum.MoreThan60Days - moreThan60Days
             /// </summary>
             public static readonly AccountChangeIndicatorEnum MoreThan60Days = new("moreThan60Days");
-        
+
             private AccountChangeIndicatorEnum(string? value)
             {
                 Value = value;
@@ -274,24 +227,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="AccountChangeIndicatorEnum"/> instance initialized with the string value.</returns>
             public static implicit operator AccountChangeIndicatorEnum?(string? value) => value == null ? null : new AccountChangeIndicatorEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="AccountChangeIndicatorEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="AccountChangeIndicatorEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="AccountChangeIndicatorEnum"/> instance./// </returns>
             public static implicit operator string?(AccountChangeIndicatorEnum? option) => option?.Value;
-        
+
             public static bool operator ==(AccountChangeIndicatorEnum? left, AccountChangeIndicatorEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(AccountChangeIndicatorEnum? left, AccountChangeIndicatorEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is AccountChangeIndicatorEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="AccountChangeIndicatorEnum?"/>.
             /// </summary>
@@ -307,7 +260,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="AccountChangeIndicatorEnum"/> to the json value.
             /// </summary>
@@ -318,24 +271,24 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == AccountChangeIndicatorEnum.ThisTransaction)
                     return "thisTransaction";
-                
+
                 if (value == AccountChangeIndicatorEnum.LessThan30Days)
                     return "lessThan30Days";
-                
+
                 if (value == AccountChangeIndicatorEnum.From30To60Days)
                     return "from30To60Days";
-                
+
                 if (value == AccountChangeIndicatorEnum.MoreThan60Days)
                     return "moreThan60Days";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing AccountChangeIndicatorEnum.               
+            /// JsonConverter for writing AccountChangeIndicatorEnum.
             /// </summary>
             public class AccountChangeIndicatorEnumJsonConverter : JsonConverter<AccountChangeIndicatorEnum>
             {
@@ -392,7 +345,7 @@ namespace Adyen.Checkout.Models
             /// AccountTypeEnum.Debit - debit
             /// </summary>
             public static readonly AccountTypeEnum Debit = new("debit");
-        
+
             private AccountTypeEnum(string? value)
             {
                 Value = value;
@@ -404,24 +357,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="AccountTypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator AccountTypeEnum?(string? value) => value == null ? null : new AccountTypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="AccountTypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="AccountTypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="AccountTypeEnum"/> instance./// </returns>
             public static implicit operator string?(AccountTypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(AccountTypeEnum? left, AccountTypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(AccountTypeEnum? left, AccountTypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is AccountTypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="AccountTypeEnum?"/>.
             /// </summary>
@@ -436,7 +389,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="AccountTypeEnum"/> to the json value.
             /// </summary>
@@ -447,21 +400,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == AccountTypeEnum.NotApplicable)
                     return "notApplicable";
-                
+
                 if (value == AccountTypeEnum.Credit)
                     return "credit";
-                
+
                 if (value == AccountTypeEnum.Debit)
                     return "debit";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing AccountTypeEnum.               
+            /// JsonConverter for writing AccountTypeEnum.
             /// </summary>
             public class AccountTypeEnumJsonConverter : JsonConverter<AccountTypeEnum>
             {
@@ -523,7 +476,7 @@ namespace Adyen.Checkout.Models
             /// DeliveryAddressUsageIndicatorEnum.MoreThan60Days - moreThan60Days
             /// </summary>
             public static readonly DeliveryAddressUsageIndicatorEnum MoreThan60Days = new("moreThan60Days");
-        
+
             private DeliveryAddressUsageIndicatorEnum(string? value)
             {
                 Value = value;
@@ -535,24 +488,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="DeliveryAddressUsageIndicatorEnum"/> instance initialized with the string value.</returns>
             public static implicit operator DeliveryAddressUsageIndicatorEnum?(string? value) => value == null ? null : new DeliveryAddressUsageIndicatorEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="DeliveryAddressUsageIndicatorEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="DeliveryAddressUsageIndicatorEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="DeliveryAddressUsageIndicatorEnum"/> instance./// </returns>
             public static implicit operator string?(DeliveryAddressUsageIndicatorEnum? option) => option?.Value;
-        
+
             public static bool operator ==(DeliveryAddressUsageIndicatorEnum? left, DeliveryAddressUsageIndicatorEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(DeliveryAddressUsageIndicatorEnum? left, DeliveryAddressUsageIndicatorEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is DeliveryAddressUsageIndicatorEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="DeliveryAddressUsageIndicatorEnum?"/>.
             /// </summary>
@@ -568,7 +521,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="DeliveryAddressUsageIndicatorEnum"/> to the json value.
             /// </summary>
@@ -579,24 +532,24 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == DeliveryAddressUsageIndicatorEnum.ThisTransaction)
                     return "thisTransaction";
-                
+
                 if (value == DeliveryAddressUsageIndicatorEnum.LessThan30Days)
                     return "lessThan30Days";
-                
+
                 if (value == DeliveryAddressUsageIndicatorEnum.From30To60Days)
                     return "from30To60Days";
-                
+
                 if (value == DeliveryAddressUsageIndicatorEnum.MoreThan60Days)
                     return "moreThan60Days";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing DeliveryAddressUsageIndicatorEnum.               
+            /// JsonConverter for writing DeliveryAddressUsageIndicatorEnum.
             /// </summary>
             public class DeliveryAddressUsageIndicatorEnumJsonConverter : JsonConverter<DeliveryAddressUsageIndicatorEnum>
             {
@@ -663,7 +616,7 @@ namespace Adyen.Checkout.Models
             /// PasswordChangeIndicatorEnum.MoreThan60Days - moreThan60Days
             /// </summary>
             public static readonly PasswordChangeIndicatorEnum MoreThan60Days = new("moreThan60Days");
-        
+
             private PasswordChangeIndicatorEnum(string? value)
             {
                 Value = value;
@@ -675,24 +628,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="PasswordChangeIndicatorEnum"/> instance initialized with the string value.</returns>
             public static implicit operator PasswordChangeIndicatorEnum?(string? value) => value == null ? null : new PasswordChangeIndicatorEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="PasswordChangeIndicatorEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="PasswordChangeIndicatorEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="PasswordChangeIndicatorEnum"/> instance./// </returns>
             public static implicit operator string?(PasswordChangeIndicatorEnum? option) => option?.Value;
-        
+
             public static bool operator ==(PasswordChangeIndicatorEnum? left, PasswordChangeIndicatorEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(PasswordChangeIndicatorEnum? left, PasswordChangeIndicatorEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is PasswordChangeIndicatorEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="PasswordChangeIndicatorEnum?"/>.
             /// </summary>
@@ -709,7 +662,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="PasswordChangeIndicatorEnum"/> to the json value.
             /// </summary>
@@ -720,27 +673,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == PasswordChangeIndicatorEnum.NotApplicable)
                     return "notApplicable";
-                
+
                 if (value == PasswordChangeIndicatorEnum.ThisTransaction)
                     return "thisTransaction";
-                
+
                 if (value == PasswordChangeIndicatorEnum.LessThan30Days)
                     return "lessThan30Days";
-                
+
                 if (value == PasswordChangeIndicatorEnum.From30To60Days)
                     return "from30To60Days";
-                
+
                 if (value == PasswordChangeIndicatorEnum.MoreThan60Days)
                     return "moreThan60Days";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing PasswordChangeIndicatorEnum.               
+            /// JsonConverter for writing PasswordChangeIndicatorEnum.
             /// </summary>
             public class PasswordChangeIndicatorEnumJsonConverter : JsonConverter<PasswordChangeIndicatorEnum>
             {
@@ -807,7 +760,7 @@ namespace Adyen.Checkout.Models
             /// PaymentAccountIndicatorEnum.MoreThan60Days - moreThan60Days
             /// </summary>
             public static readonly PaymentAccountIndicatorEnum MoreThan60Days = new("moreThan60Days");
-        
+
             private PaymentAccountIndicatorEnum(string? value)
             {
                 Value = value;
@@ -819,24 +772,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="PaymentAccountIndicatorEnum"/> instance initialized with the string value.</returns>
             public static implicit operator PaymentAccountIndicatorEnum?(string? value) => value == null ? null : new PaymentAccountIndicatorEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="PaymentAccountIndicatorEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="PaymentAccountIndicatorEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="PaymentAccountIndicatorEnum"/> instance./// </returns>
             public static implicit operator string?(PaymentAccountIndicatorEnum? option) => option?.Value;
-        
+
             public static bool operator ==(PaymentAccountIndicatorEnum? left, PaymentAccountIndicatorEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(PaymentAccountIndicatorEnum? left, PaymentAccountIndicatorEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is PaymentAccountIndicatorEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="PaymentAccountIndicatorEnum?"/>.
             /// </summary>
@@ -853,7 +806,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="PaymentAccountIndicatorEnum"/> to the json value.
             /// </summary>
@@ -864,27 +817,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == PaymentAccountIndicatorEnum.NotApplicable)
                     return "notApplicable";
-                
+
                 if (value == PaymentAccountIndicatorEnum.ThisTransaction)
                     return "thisTransaction";
-                
+
                 if (value == PaymentAccountIndicatorEnum.LessThan30Days)
                     return "lessThan30Days";
-                
+
                 if (value == PaymentAccountIndicatorEnum.From30To60Days)
                     return "from30To60Days";
-                
+
                 if (value == PaymentAccountIndicatorEnum.MoreThan60Days)
                     return "moreThan60Days";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing PaymentAccountIndicatorEnum.               
+            /// JsonConverter for writing PaymentAccountIndicatorEnum.
             /// </summary>
             public class PaymentAccountIndicatorEnumJsonConverter : JsonConverter<PaymentAccountIndicatorEnum>
             {
@@ -1282,9 +1235,48 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new AccountInfo(accountAgeIndicator, accountChangeDate, accountChangeIndicator, accountCreationDate, accountType, addCardAttemptsDay, deliveryAddressUsageDate, deliveryAddressUsageIndicator, homePhone, mobilePhone, passwordChangeDate, passwordChangeIndicator, pastTransactionsDay, pastTransactionsYear, paymentAccountAge, paymentAccountIndicator, purchasesLast6Months, suspiciousActivity, workPhone);
+
+            var result = new AccountInfo();
+            if (accountAgeIndicator.IsSet)
+                result.AccountAgeIndicator = accountAgeIndicator.Value;
+            if (accountChangeDate.IsSet)
+                result.AccountChangeDate = accountChangeDate.Value;
+            if (accountChangeIndicator.IsSet)
+                result.AccountChangeIndicator = accountChangeIndicator.Value;
+            if (accountCreationDate.IsSet)
+                result.AccountCreationDate = accountCreationDate.Value;
+            if (accountType.IsSet)
+                result.AccountType = accountType.Value;
+            if (addCardAttemptsDay.IsSet)
+                result.AddCardAttemptsDay = addCardAttemptsDay.Value;
+            if (deliveryAddressUsageDate.IsSet)
+                result.DeliveryAddressUsageDate = deliveryAddressUsageDate.Value;
+            if (deliveryAddressUsageIndicator.IsSet)
+                result.DeliveryAddressUsageIndicator = deliveryAddressUsageIndicator.Value;
+            if (homePhone.IsSet)
+                result.HomePhone = homePhone.Value;
+            if (mobilePhone.IsSet)
+                result.MobilePhone = mobilePhone.Value;
+            if (passwordChangeDate.IsSet)
+                result.PasswordChangeDate = passwordChangeDate.Value;
+            if (passwordChangeIndicator.IsSet)
+                result.PasswordChangeIndicator = passwordChangeIndicator.Value;
+            if (pastTransactionsDay.IsSet)
+                result.PastTransactionsDay = pastTransactionsDay.Value;
+            if (pastTransactionsYear.IsSet)
+                result.PastTransactionsYear = pastTransactionsYear.Value;
+            if (paymentAccountAge.IsSet)
+                result.PaymentAccountAge = paymentAccountAge.Value;
+            if (paymentAccountIndicator.IsSet)
+                result.PaymentAccountIndicator = paymentAccountIndicator.Value;
+            if (purchasesLast6Months.IsSet)
+                result.PurchasesLast6Months = purchasesLast6Months.Value;
+            if (suspiciousActivity.IsSet)
+                result.SuspiciousActivity = suspiciousActivity.Value;
+            if (workPhone.IsSet)
+                result.WorkPhone = workPhone.Value;
+            return result;
         }
 
         /// <summary>
@@ -1295,13 +1287,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, AccountInfo accountInfo, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, accountInfo, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -1312,33 +1304,33 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, AccountInfo accountInfo, JsonSerializerOptions jsonSerializerOptions)
         {
-            
-            if (accountInfo._AccountAgeIndicatorOption.IsSet && accountInfo.AccountAgeIndicator != null) 
+
+            if (accountInfo._AccountAgeIndicatorOption.IsSet && accountInfo.AccountAgeIndicator != null)
             {
                 string? accountAgeIndicatorRawValue = AccountInfo.AccountAgeIndicatorEnum.ToJsonValue(accountInfo._AccountAgeIndicatorOption.Value!.Value);
                 writer.WriteString("accountAgeIndicator", accountAgeIndicatorRawValue);
             }
-            
+
             if (accountInfo._AccountChangeDateOption.IsSet)
                 if (accountInfo._AccountChangeDateOption.Value != null)
                     writer.WriteString("accountChangeDate", accountInfo._AccountChangeDateOption.Value!.Value.ToString(AccountChangeDateFormat));
 
-            if (accountInfo._AccountChangeIndicatorOption.IsSet && accountInfo.AccountChangeIndicator != null) 
+            if (accountInfo._AccountChangeIndicatorOption.IsSet && accountInfo.AccountChangeIndicator != null)
             {
                 string? accountChangeIndicatorRawValue = AccountInfo.AccountChangeIndicatorEnum.ToJsonValue(accountInfo._AccountChangeIndicatorOption.Value!.Value);
                 writer.WriteString("accountChangeIndicator", accountChangeIndicatorRawValue);
             }
-            
+
             if (accountInfo._AccountCreationDateOption.IsSet)
                 if (accountInfo._AccountCreationDateOption.Value != null)
                     writer.WriteString("accountCreationDate", accountInfo._AccountCreationDateOption.Value!.Value.ToString(AccountCreationDateFormat));
 
-            if (accountInfo._AccountTypeOption.IsSet && accountInfo.AccountType != null) 
+            if (accountInfo._AccountTypeOption.IsSet && accountInfo.AccountType != null)
             {
                 string? accountTypeRawValue = AccountInfo.AccountTypeEnum.ToJsonValue(accountInfo._AccountTypeOption.Value!.Value);
                 writer.WriteString("accountType", accountTypeRawValue);
             }
-            
+
             if (accountInfo._AddCardAttemptsDayOption.IsSet)
                 if (accountInfo._AddCardAttemptsDayOption.Value != null)
                     writer.WriteNumber("addCardAttemptsDay", accountInfo._AddCardAttemptsDayOption.Value!.Value);
@@ -1347,12 +1339,12 @@ namespace Adyen.Checkout.Models
                 if (accountInfo._DeliveryAddressUsageDateOption.Value != null)
                     writer.WriteString("deliveryAddressUsageDate", accountInfo._DeliveryAddressUsageDateOption.Value!.Value.ToString(DeliveryAddressUsageDateFormat));
 
-            if (accountInfo._DeliveryAddressUsageIndicatorOption.IsSet && accountInfo.DeliveryAddressUsageIndicator != null) 
+            if (accountInfo._DeliveryAddressUsageIndicatorOption.IsSet && accountInfo.DeliveryAddressUsageIndicator != null)
             {
                 string? deliveryAddressUsageIndicatorRawValue = AccountInfo.DeliveryAddressUsageIndicatorEnum.ToJsonValue(accountInfo._DeliveryAddressUsageIndicatorOption.Value!.Value);
                 writer.WriteString("deliveryAddressUsageIndicator", deliveryAddressUsageIndicatorRawValue);
             }
-            
+
             if (accountInfo._HomePhoneOption.IsSet)
                 if (accountInfo.HomePhone != null)
                     writer.WriteString("homePhone", accountInfo.HomePhone);
@@ -1365,12 +1357,12 @@ namespace Adyen.Checkout.Models
                 if (accountInfo._PasswordChangeDateOption.Value != null)
                     writer.WriteString("passwordChangeDate", accountInfo._PasswordChangeDateOption.Value!.Value.ToString(PasswordChangeDateFormat));
 
-            if (accountInfo._PasswordChangeIndicatorOption.IsSet && accountInfo.PasswordChangeIndicator != null) 
+            if (accountInfo._PasswordChangeIndicatorOption.IsSet && accountInfo.PasswordChangeIndicator != null)
             {
                 string? passwordChangeIndicatorRawValue = AccountInfo.PasswordChangeIndicatorEnum.ToJsonValue(accountInfo._PasswordChangeIndicatorOption.Value!.Value);
                 writer.WriteString("passwordChangeIndicator", passwordChangeIndicatorRawValue);
             }
-            
+
             if (accountInfo._PastTransactionsDayOption.IsSet)
                 if (accountInfo._PastTransactionsDayOption.Value != null)
                     writer.WriteNumber("pastTransactionsDay", accountInfo._PastTransactionsDayOption.Value!.Value);
@@ -1383,12 +1375,12 @@ namespace Adyen.Checkout.Models
                 if (accountInfo._PaymentAccountAgeOption.Value != null)
                     writer.WriteString("paymentAccountAge", accountInfo._PaymentAccountAgeOption.Value!.Value.ToString(PaymentAccountAgeFormat));
 
-            if (accountInfo._PaymentAccountIndicatorOption.IsSet && accountInfo.PaymentAccountIndicator != null) 
+            if (accountInfo._PaymentAccountIndicatorOption.IsSet && accountInfo.PaymentAccountIndicator != null)
             {
                 string? paymentAccountIndicatorRawValue = AccountInfo.PaymentAccountIndicatorEnum.ToJsonValue(accountInfo._PaymentAccountIndicatorOption.Value!.Value);
                 writer.WriteString("paymentAccountIndicator", paymentAccountIndicatorRawValue);
             }
-            
+
             if (accountInfo._PurchasesLast6MonthsOption.IsSet)
                 if (accountInfo._PurchasesLast6MonthsOption.Value != null)
                     writer.WriteNumber("purchasesLast6Months", accountInfo._PurchasesLast6MonthsOption.Value!.Value);

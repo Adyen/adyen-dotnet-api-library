@@ -34,33 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="WeChatPayMiniProgramDetails" /> class.
         /// </summary>
-        /// <param name="appId">appId</param>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="openid">openid</param>
-        /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="type">**wechatpayMiniProgram** (default to TypeEnum.WechatpayMiniProgram)</param>
-        [JsonConstructor]
-        public WeChatPayMiniProgramDetails(Option<string?> appId = default, Option<string?> checkoutAttemptId = default, Option<string?> openid = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<TypeEnum?> type = default)
-        {
-            _AppIdOption = appId;
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _OpenidOption = openid;
-            _RecurringDetailReferenceOption = recurringDetailReference;
-            _SdkDataOption = sdkData;
-            _StoredPaymentMethodIdOption = storedPaymentMethodId;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public WeChatPayMiniProgramDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -79,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.WechatpayMiniProgram - wechatpayMiniProgram
             /// </summary>
             public static readonly TypeEnum WechatpayMiniProgram = new("wechatpayMiniProgram");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -91,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -121,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -132,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.WechatpayMiniProgram)
                     return "wechatpayMiniProgram";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -346,9 +323,24 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new WeChatPayMiniProgramDetails(appId, checkoutAttemptId, openid, recurringDetailReference, sdkData, storedPaymentMethodId, type);
+
+            var result = new WeChatPayMiniProgramDetails();
+            if (appId.IsSet)
+                result.AppId = appId.Value;
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (openid.IsSet)
+                result.Openid = openid.Value;
+            if (recurringDetailReference.IsSet)
+                result.RecurringDetailReference = recurringDetailReference.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (storedPaymentMethodId.IsSet)
+                result.StoredPaymentMethodId = storedPaymentMethodId.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -359,13 +351,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, WeChatPayMiniProgramDetails weChatPayMiniProgramDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, weChatPayMiniProgramDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -376,7 +368,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, WeChatPayMiniProgramDetails weChatPayMiniProgramDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (weChatPayMiniProgramDetails._AppIdOption.IsSet)
                 if (weChatPayMiniProgramDetails.AppId != null)
                     writer.WriteString("appId", weChatPayMiniProgramDetails.AppId);
@@ -401,7 +393,7 @@ namespace Adyen.Checkout.Models
                 if (weChatPayMiniProgramDetails.StoredPaymentMethodId != null)
                     writer.WriteString("storedPaymentMethodId", weChatPayMiniProgramDetails.StoredPaymentMethodId);
 
-            if (weChatPayMiniProgramDetails._TypeOption.IsSet && weChatPayMiniProgramDetails.Type != null) 
+            if (weChatPayMiniProgramDetails._TypeOption.IsSet && weChatPayMiniProgramDetails.Type != null)
             {
                 string? typeRawValue = WeChatPayMiniProgramDetails.TypeEnum.ToJsonValue(weChatPayMiniProgramDetails._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);

@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="SplitAmount" /> class.
         /// </summary>
-        /// <param name="value">The value of the split amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).</param>
-        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). By default, this is the original payment currency.</param>
-        [JsonConstructor]
-        public SplitAmount(long value, Option<string?> currency = default)
-        {
-            Value = value;
-            _CurrencyOption = currency;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public SplitAmount()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -140,11 +127,15 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class SplitAmount.", nameof(value));
 
-            return new SplitAmount(value.Value!.Value!, currency);
+            var result = new SplitAmount();
+            result.Value = value.Value!.Value!;
+            if (currency.IsSet)
+                result.Currency = currency.Value;
+            return result;
         }
 
         /// <summary>
@@ -155,13 +146,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, SplitAmount splitAmount, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, splitAmount, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -172,7 +163,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, SplitAmount splitAmount, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteNumber("value", splitAmount.Value);
 
             if (splitAmount._CurrencyOption.IsSet)

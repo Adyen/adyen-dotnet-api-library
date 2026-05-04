@@ -34,37 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="BrowserInfo" /> class.
         /// </summary>
-        /// <param name="acceptHeader">The accept header value of the shopper&#39;s browser.</param>
-        /// <param name="colorDepth">The color depth of the shopper&#39;s browser in bits per pixel. This should be obtained by using the browser&#39;s &#x60;screen.colorDepth&#x60; property. Accepted values: 1, 4, 8, 15, 16, 24, 30, 32 or 48 bit color depth.</param>
-        /// <param name="javaEnabled">Boolean value indicating if the shopper&#39;s browser is able to execute Java.</param>
-        /// <param name="language">The &#x60;navigator.language&#x60; value of the shopper&#39;s browser (as defined in IETF BCP 47).</param>
-        /// <param name="screenHeight">The total height of the shopper&#39;s device screen in pixels.</param>
-        /// <param name="screenWidth">The total width of the shopper&#39;s device screen in pixels.</param>
-        /// <param name="timeZoneOffset">Time difference between UTC time and the shopper&#39;s browser local time, in minutes.</param>
-        /// <param name="userAgent">The user agent value of the shopper&#39;s browser.</param>
-        /// <param name="javaScriptEnabled">Boolean value indicating if the shopper&#39;s browser is able to execute JavaScript. A default &#39;true&#39; value is assumed if the field is not present. (default to true)</param>
-        [JsonConstructor]
-        public BrowserInfo(string acceptHeader, int colorDepth, bool javaEnabled, string language, int screenHeight, int screenWidth, int timeZoneOffset, string userAgent, Option<bool?> javaScriptEnabled = default)
-        {
-            AcceptHeader = acceptHeader;
-            ColorDepth = colorDepth;
-            JavaEnabled = javaEnabled;
-            Language = language;
-            ScreenHeight = screenHeight;
-            ScreenWidth = screenWidth;
-            TimeZoneOffset = timeZoneOffset;
-            UserAgent = userAgent;
-            _JavaScriptEnabledOption = javaScriptEnabled;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public BrowserInfo()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -238,7 +211,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!acceptHeader.IsSet)
                 throw new ArgumentException("Property is required for class BrowserInfo.", nameof(acceptHeader));
 
@@ -263,7 +236,18 @@ namespace Adyen.Checkout.Models
             if (!userAgent.IsSet)
                 throw new ArgumentException("Property is required for class BrowserInfo.", nameof(userAgent));
 
-            return new BrowserInfo(acceptHeader.Value!, colorDepth.Value!.Value!, javaEnabled.Value!.Value!, language.Value!, screenHeight.Value!.Value!, screenWidth.Value!.Value!, timeZoneOffset.Value!.Value!, userAgent.Value!, javaScriptEnabled);
+            var result = new BrowserInfo();
+            result.AcceptHeader = acceptHeader.Value!;
+            result.ColorDepth = colorDepth.Value!.Value!;
+            result.JavaEnabled = javaEnabled.Value!.Value!;
+            result.Language = language.Value!;
+            result.ScreenHeight = screenHeight.Value!.Value!;
+            result.ScreenWidth = screenWidth.Value!.Value!;
+            result.TimeZoneOffset = timeZoneOffset.Value!.Value!;
+            result.UserAgent = userAgent.Value!;
+            if (javaScriptEnabled.IsSet)
+                result.JavaScriptEnabled = javaScriptEnabled.Value;
+            return result;
         }
 
         /// <summary>
@@ -274,13 +258,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, BrowserInfo browserInfo, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, browserInfo, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -291,7 +275,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, BrowserInfo browserInfo, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (browserInfo.AcceptHeader != null)
                 writer.WriteString("acceptHeader", browserInfo.AcceptHeader);
 

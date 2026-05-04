@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Phone" /> class.
         /// </summary>
-        /// <param name="cc">Country code. Length: 1–3 digits.</param>
-        /// <param name="subscriber">Subscriber number. Length: 4-15  digits.</param>
-        [JsonConstructor]
-        public Phone(Option<string?> cc = default, Option<string?> subscriber = default)
-        {
-            _CcOption = cc;
-            _SubscriberOption = subscriber;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public Phone()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -147,9 +134,14 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new Phone(cc, subscriber);
+
+            var result = new Phone();
+            if (cc.IsSet)
+                result.Cc = cc.Value;
+            if (subscriber.IsSet)
+                result.Subscriber = subscriber.Value;
+            return result;
         }
 
         /// <summary>
@@ -160,13 +152,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, Phone phone, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, phone, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -177,7 +169,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, Phone phone, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (phone._CcOption.IsSet)
                 if (phone.Cc != null)
                     writer.WriteString("cc", phone.Cc);

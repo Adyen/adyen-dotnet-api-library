@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Ticket" /> class.
         /// </summary>
-        /// <param name="issueAddress">The address of the organization that issued the ticket. * minLength: 0 characters * maxLength: 16 characters</param>
-        /// <param name="issueDate">The date that the ticket was issued to the passenger. * minLength: 10 characters * maxLength: 10 characters * Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): yyyy-MM-dd</param>
-        /// <param name="number">The ticket&#39;s unique identifier. * minLength: 1 character * maxLength: 15 characters * Must not start with a space or be all spaces. * Must not be all zeros.</param>
-        [JsonConstructor]
-        public Ticket(Option<string?> issueAddress = default, Option<DateOnly?> issueDate = default, Option<string?> number = default)
-        {
-            _IssueAddressOption = issueAddress;
-            _IssueDateOption = issueDate;
-            _NumberOption = number;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public Ticket()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -173,9 +158,16 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new Ticket(issueAddress, issueDate, number);
+
+            var result = new Ticket();
+            if (issueAddress.IsSet)
+                result.IssueAddress = issueAddress.Value;
+            if (issueDate.IsSet)
+                result.IssueDate = issueDate.Value;
+            if (number.IsSet)
+                result.Number = number.Value;
+            return result;
         }
 
         /// <summary>
@@ -186,13 +178,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, Ticket ticket, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, ticket, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -203,7 +195,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, Ticket ticket, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (ticket._IssueAddressOption.IsSet)
                 if (ticket.IssueAddress != null)
                     writer.WriteString("issueAddress", ticket.IssueAddress);

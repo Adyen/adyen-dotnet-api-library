@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ShopperTaxInfo" /> class.
         /// </summary>
-        /// <param name="taxId">The tax-id of the shopper doing the transaction.</param>
-        /// <param name="taxIdCountryCode">The country to which the tax-id belongs to.</param>
-        [JsonConstructor]
-        public ShopperTaxInfo(string taxId, string taxIdCountryCode)
-        {
-            TaxId = taxId;
-            TaxIdCountryCode = taxIdCountryCode;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ShopperTaxInfo()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -133,14 +120,17 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!taxId.IsSet)
                 throw new ArgumentException("Property is required for class ShopperTaxInfo.", nameof(taxId));
 
             if (!taxIdCountryCode.IsSet)
                 throw new ArgumentException("Property is required for class ShopperTaxInfo.", nameof(taxIdCountryCode));
 
-            return new ShopperTaxInfo(taxId.Value!, taxIdCountryCode.Value!);
+            var result = new ShopperTaxInfo();
+            result.TaxId = taxId.Value!;
+            result.TaxIdCountryCode = taxIdCountryCode.Value!;
+            return result;
         }
 
         /// <summary>
@@ -151,13 +141,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ShopperTaxInfo shopperTaxInfo, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, shopperTaxInfo, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -168,7 +158,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ShopperTaxInfo shopperTaxInfo, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (shopperTaxInfo.TaxId != null)
                 writer.WriteString("taxId", shopperTaxInfo.TaxId);
 

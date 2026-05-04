@@ -34,35 +34,14 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredPaymentMethodRequest" /> class.
         /// </summary>
-        /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction.</param>
-        /// <param name="paymentMethod">paymentMethod</param>
-        /// <param name="recurringProcessingModel">Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </param>
-        /// <param name="shopperReference">A unique identifier for the shopper (for example, user ID or account ID).</param>
-        /// <param name="shopperEmail">The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks.</param>
-        /// <param name="shopperIP">The IP address of a shopper.</param>
-        [JsonConstructor]
-        public StoredPaymentMethodRequest(string merchantAccount, PaymentMethodToStore paymentMethod, RecurringProcessingModelEnum recurringProcessingModel, string shopperReference, Option<string?> shopperEmail = default, Option<string?> shopperIP = default)
-        {
-            MerchantAccount = merchantAccount;
-            PaymentMethod = paymentMethod;
-            RecurringProcessingModel = recurringProcessingModel;
-            ShopperReference = shopperReference;
-            _ShopperEmailOption = shopperEmail;
-            _ShopperIPOption = shopperIP;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public StoredPaymentMethodRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
-        /// Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount. 
+        /// Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.
         /// </summary>
         /// <value>Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
         [JsonConverter(typeof(RecurringProcessingModelEnumJsonConverter))]
@@ -87,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// RecurringProcessingModelEnum.UnscheduledCardOnFile - UnscheduledCardOnFile
             /// </summary>
             public static readonly RecurringProcessingModelEnum UnscheduledCardOnFile = new("UnscheduledCardOnFile");
-        
+
             private RecurringProcessingModelEnum(string? value)
             {
                 Value = value;
@@ -99,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="RecurringProcessingModelEnum"/> instance initialized with the string value.</returns>
             public static implicit operator RecurringProcessingModelEnum?(string? value) => value == null ? null : new RecurringProcessingModelEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="RecurringProcessingModelEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="RecurringProcessingModelEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="RecurringProcessingModelEnum"/> instance./// </returns>
             public static implicit operator string?(RecurringProcessingModelEnum? option) => option?.Value;
-        
+
             public static bool operator ==(RecurringProcessingModelEnum? left, RecurringProcessingModelEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(RecurringProcessingModelEnum? left, RecurringProcessingModelEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is RecurringProcessingModelEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="RecurringProcessingModelEnum?"/>.
             /// </summary>
@@ -131,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="RecurringProcessingModelEnum"/> to the json value.
             /// </summary>
@@ -142,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == RecurringProcessingModelEnum.CardOnFile)
                     return "CardOnFile";
-                
+
                 if (value == RecurringProcessingModelEnum.Subscription)
                     return "Subscription";
-                
+
                 if (value == RecurringProcessingModelEnum.UnscheduledCardOnFile)
                     return "UnscheduledCardOnFile";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing RecurringProcessingModelEnum.               
+            /// JsonConverter for writing RecurringProcessingModelEnum.
             /// </summary>
             public class RecurringProcessingModelEnumJsonConverter : JsonConverter<RecurringProcessingModelEnum>
             {
@@ -174,7 +153,7 @@ namespace Adyen.Checkout.Models
         }
 
         /// <summary>
-        /// Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount. 
+        /// Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.
         /// </summary>
         /// <value>Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
         [JsonPropertyName("recurringProcessingModel")]
@@ -315,7 +294,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!merchantAccount.IsSet)
                 throw new ArgumentException("Property is required for class StoredPaymentMethodRequest.", nameof(merchantAccount));
 
@@ -328,7 +307,16 @@ namespace Adyen.Checkout.Models
             if (!shopperReference.IsSet)
                 throw new ArgumentException("Property is required for class StoredPaymentMethodRequest.", nameof(shopperReference));
 
-            return new StoredPaymentMethodRequest(merchantAccount.Value!, paymentMethod.Value!, recurringProcessingModel.Value!.Value!, shopperReference.Value!, shopperEmail, shopperIP);
+            var result = new StoredPaymentMethodRequest();
+            result.MerchantAccount = merchantAccount.Value!;
+            result.PaymentMethod = paymentMethod.Value!;
+            result.RecurringProcessingModel = recurringProcessingModel.Value!.Value!;
+            result.ShopperReference = shopperReference.Value!;
+            if (shopperEmail.IsSet)
+                result.ShopperEmail = shopperEmail.Value;
+            if (shopperIP.IsSet)
+                result.ShopperIP = shopperIP.Value;
+            return result;
         }
 
         /// <summary>
@@ -339,13 +327,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, StoredPaymentMethodRequest storedPaymentMethodRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, storedPaymentMethodRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -356,18 +344,18 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, StoredPaymentMethodRequest storedPaymentMethodRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (storedPaymentMethodRequest.MerchantAccount != null)
                 writer.WriteString("merchantAccount", storedPaymentMethodRequest.MerchantAccount);
 
             writer.WritePropertyName("paymentMethod");
             JsonSerializer.Serialize(writer, storedPaymentMethodRequest.PaymentMethod, jsonSerializerOptions);
-            if (storedPaymentMethodRequest.RecurringProcessingModel != null) 
+            if (storedPaymentMethodRequest.RecurringProcessingModel != null)
             {
                 string? recurringProcessingModelRawValue = StoredPaymentMethodRequest.RecurringProcessingModelEnum.ToJsonValue(storedPaymentMethodRequest.RecurringProcessingModel);
                 writer.WriteString("recurringProcessingModel", recurringProcessingModelRawValue);
             }
-            
+
             if (storedPaymentMethodRequest.ShopperReference != null)
                 writer.WriteString("shopperReference", storedPaymentMethodRequest.ShopperReference);
 

@@ -34,33 +34,14 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Recurring" /> class.
         /// </summary>
-        /// <param name="contract">The type of recurring contract to be used. Possible values: * &#x60;ONECLICK&#x60; – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid). * &#x60;RECURRING&#x60; – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-not-present-cnp). * &#x60;ONECLICK,RECURRING&#x60; – Payment details can be used regardless of whether the shopper is on your site or not. * &#x60;PAYOUT&#x60; – Payment details can be used to [make a payout](https://docs.adyen.com/online-payments/online-payouts). * &#x60;EXTERNAL&#x60; - Use this when you store payment details and send the raw card number or network token directly in your API request. </param>
-        /// <param name="recurringDetailName">A descriptive name for this detail.</param>
-        /// <param name="recurringExpiry">Date after which no further authorisations shall be performed. Only for 3D Secure 2.</param>
-        /// <param name="recurringFrequency">Minimum number of days between authorisations. Only for 3D Secure 2.</param>
-        /// <param name="tokenService">The name of the token service.</param>
-        [JsonConstructor]
-        public Recurring(Option<ContractEnum?> contract = default, Option<string?> recurringDetailName = default, Option<DateTimeOffset?> recurringExpiry = default, Option<string?> recurringFrequency = default, Option<TokenServiceEnum?> tokenService = default)
-        {
-            _ContractOption = contract;
-            _RecurringDetailNameOption = recurringDetailName;
-            _RecurringExpiryOption = recurringExpiry;
-            _RecurringFrequencyOption = recurringFrequency;
-            _TokenServiceOption = tokenService;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public Recurring()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
-        /// The type of recurring contract to be used. Possible values: * `ONECLICK` – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid). * `RECURRING` – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-not-present-cnp). * `ONECLICK,RECURRING` – Payment details can be used regardless of whether the shopper is on your site or not. * `PAYOUT` – Payment details can be used to [make a payout](https://docs.adyen.com/online-payments/online-payouts). * `EXTERNAL` - Use this when you store payment details and send the raw card number or network token directly in your API request. 
+        /// The type of recurring contract to be used. Possible values: * `ONECLICK` – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid). * `RECURRING` – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-not-present-cnp). * `ONECLICK,RECURRING` – Payment details can be used regardless of whether the shopper is on your site or not. * `PAYOUT` – Payment details can be used to [make a payout](https://docs.adyen.com/online-payments/online-payouts). * `EXTERNAL` - Use this when you store payment details and send the raw card number or network token directly in your API request.
         /// </summary>
         /// <value>The type of recurring contract to be used. Possible values: * &#x60;ONECLICK&#x60; – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid). * &#x60;RECURRING&#x60; – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-not-present-cnp). * &#x60;ONECLICK,RECURRING&#x60; – Payment details can be used regardless of whether the shopper is on your site or not. * &#x60;PAYOUT&#x60; – Payment details can be used to [make a payout](https://docs.adyen.com/online-payments/online-payouts). * &#x60;EXTERNAL&#x60; - Use this when you store payment details and send the raw card number or network token directly in your API request. </value>
         [JsonConverter(typeof(ContractEnumJsonConverter))]
@@ -95,7 +76,7 @@ namespace Adyen.Checkout.Models
             /// ContractEnum.EXTERNAL - EXTERNAL
             /// </summary>
             public static readonly ContractEnum EXTERNAL = new("EXTERNAL");
-        
+
             private ContractEnum(string? value)
             {
                 Value = value;
@@ -107,24 +88,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ContractEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ContractEnum?(string? value) => value == null ? null : new ContractEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ContractEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ContractEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ContractEnum"/> instance./// </returns>
             public static implicit operator string?(ContractEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ContractEnum? left, ContractEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ContractEnum? left, ContractEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ContractEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ContractEnum?"/>.
             /// </summary>
@@ -141,7 +122,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ContractEnum"/> to the json value.
             /// </summary>
@@ -152,27 +133,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ContractEnum.ONECLICK)
                     return "ONECLICK";
-                
+
                 if (value == ContractEnum.ONECLICKRECURRING)
                     return "ONECLICK,RECURRING";
-                
+
                 if (value == ContractEnum.RECURRING)
                     return "RECURRING";
-                
+
                 if (value == ContractEnum.PAYOUT)
                     return "PAYOUT";
-                
+
                 if (value == ContractEnum.EXTERNAL)
                     return "EXTERNAL";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ContractEnum.               
+            /// JsonConverter for writing ContractEnum.
             /// </summary>
             public class ContractEnumJsonConverter : JsonConverter<ContractEnum>
             {
@@ -197,7 +178,7 @@ namespace Adyen.Checkout.Models
         public Option<ContractEnum?> _ContractOption { get; private set; }
 
         /// <summary>
-        /// The type of recurring contract to be used. Possible values: * `ONECLICK` – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid). * `RECURRING` – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-not-present-cnp). * `ONECLICK,RECURRING` – Payment details can be used regardless of whether the shopper is on your site or not. * `PAYOUT` – Payment details can be used to [make a payout](https://docs.adyen.com/online-payments/online-payouts). * `EXTERNAL` - Use this when you store payment details and send the raw card number or network token directly in your API request. 
+        /// The type of recurring contract to be used. Possible values: * `ONECLICK` – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid). * `RECURRING` – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-not-present-cnp). * `ONECLICK,RECURRING` – Payment details can be used regardless of whether the shopper is on your site or not. * `PAYOUT` – Payment details can be used to [make a payout](https://docs.adyen.com/online-payments/online-payouts). * `EXTERNAL` - Use this when you store payment details and send the raw card number or network token directly in your API request.
         /// </summary>
         /// <value>The type of recurring contract to be used. Possible values: * &#x60;ONECLICK&#x60; – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid). * &#x60;RECURRING&#x60; – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-not-present-cnp). * &#x60;ONECLICK,RECURRING&#x60; – Payment details can be used regardless of whether the shopper is on your site or not. * &#x60;PAYOUT&#x60; – Payment details can be used to [make a payout](https://docs.adyen.com/online-payments/online-payouts). * &#x60;EXTERNAL&#x60; - Use this when you store payment details and send the raw card number or network token directly in your API request. </value>
         [JsonPropertyName("contract")]
@@ -234,7 +215,7 @@ namespace Adyen.Checkout.Models
             /// TokenServiceEnum.TOKENSHARING - TOKEN_SHARING
             /// </summary>
             public static readonly TokenServiceEnum TOKENSHARING = new("TOKEN_SHARING");
-        
+
             private TokenServiceEnum(string? value)
             {
                 Value = value;
@@ -246,24 +227,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TokenServiceEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TokenServiceEnum?(string? value) => value == null ? null : new TokenServiceEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TokenServiceEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TokenServiceEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TokenServiceEnum"/> instance./// </returns>
             public static implicit operator string?(TokenServiceEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TokenServiceEnum? left, TokenServiceEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TokenServiceEnum? left, TokenServiceEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TokenServiceEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TokenServiceEnum?"/>.
             /// </summary>
@@ -279,7 +260,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TokenServiceEnum"/> to the json value.
             /// </summary>
@@ -290,24 +271,24 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TokenServiceEnum.VISATOKENSERVICE)
                     return "VISATOKENSERVICE";
-                
+
                 if (value == TokenServiceEnum.MCTOKENSERVICE)
                     return "MCTOKENSERVICE";
-                
+
                 if (value == TokenServiceEnum.AMEXTOKENSERVICE)
                     return "AMEXTOKENSERVICE";
-                
+
                 if (value == TokenServiceEnum.TOKENSHARING)
                     return "TOKEN_SHARING";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TokenServiceEnum.               
+            /// JsonConverter for writing TokenServiceEnum.
             /// </summary>
             public class TokenServiceEnumJsonConverter : JsonConverter<TokenServiceEnum>
             {
@@ -468,9 +449,20 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new Recurring(contract, recurringDetailName, recurringExpiry, recurringFrequency, tokenService);
+
+            var result = new Recurring();
+            if (contract.IsSet)
+                result.Contract = contract.Value;
+            if (recurringDetailName.IsSet)
+                result.RecurringDetailName = recurringDetailName.Value;
+            if (recurringExpiry.IsSet)
+                result.RecurringExpiry = recurringExpiry.Value;
+            if (recurringFrequency.IsSet)
+                result.RecurringFrequency = recurringFrequency.Value;
+            if (tokenService.IsSet)
+                result.TokenService = tokenService.Value;
+            return result;
         }
 
         /// <summary>
@@ -481,13 +473,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, Recurring recurring, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, recurring, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -498,13 +490,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, Recurring recurring, JsonSerializerOptions jsonSerializerOptions)
         {
-            
-            if (recurring._ContractOption.IsSet && recurring.Contract != null) 
+
+            if (recurring._ContractOption.IsSet && recurring.Contract != null)
             {
                 string? contractRawValue = Recurring.ContractEnum.ToJsonValue(recurring._ContractOption.Value!.Value);
                 writer.WriteString("contract", contractRawValue);
             }
-            
+
             if (recurring._RecurringDetailNameOption.IsSet)
                 if (recurring.RecurringDetailName != null)
                     writer.WriteString("recurringDetailName", recurring.RecurringDetailName);
@@ -517,7 +509,7 @@ namespace Adyen.Checkout.Models
                 if (recurring.RecurringFrequency != null)
                     writer.WriteString("recurringFrequency", recurring.RecurringFrequency);
 
-            if (recurring._TokenServiceOption.IsSet && recurring.TokenService != null) 
+            if (recurring._TokenServiceOption.IsSet && recurring.TokenService != null)
             {
                 string? tokenServiceRawValue = Recurring.TokenServiceEnum.ToJsonValue(recurring._TokenServiceOption.Value!.Value);
                 writer.WriteString("tokenService", tokenServiceRawValue);

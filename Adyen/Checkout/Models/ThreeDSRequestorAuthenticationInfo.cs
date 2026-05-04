@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDSRequestorAuthenticationInfo" /> class.
         /// </summary>
-        /// <param name="threeDSReqAuthData">Data that documents and supports a specific authentication process. Maximum length: 2048 bytes.</param>
-        /// <param name="threeDSReqAuthMethod">Mechanism used by the Cardholder to authenticate to the 3DS Requestor. Allowed values: * **01** — No 3DS Requestor authentication occurred (for example, cardholder “logged in” as guest). * **02** — Login to the cardholder account at the 3DS Requestor system using 3DS Requestor’s own credentials. * **03** — Login to the cardholder account at the 3DS Requestor system using federated ID. * **04** — Login to the cardholder account at the 3DS Requestor system using issuer credentials. * **05** — Login to the cardholder account at the 3DS Requestor system using third-party authentication. * **06** — Login to the cardholder account at the 3DS Requestor system using FIDO Authenticator.</param>
-        /// <param name="threeDSReqAuthTimestamp">Date and time in UTC of the cardholder authentication. Format: YYYYMMDDHHMM</param>
-        [JsonConstructor]
-        public ThreeDSRequestorAuthenticationInfo(Option<string?> threeDSReqAuthData = default, Option<ThreeDSReqAuthMethodEnum?> threeDSReqAuthMethod = default, Option<string?> threeDSReqAuthTimestamp = default)
-        {
-            _ThreeDSReqAuthDataOption = threeDSReqAuthData;
-            _ThreeDSReqAuthMethodOption = threeDSReqAuthMethod;
-            _ThreeDSReqAuthTimestampOption = threeDSReqAuthTimestamp;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ThreeDSRequestorAuthenticationInfo()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -96,7 +81,7 @@ namespace Adyen.Checkout.Models
             /// ThreeDSReqAuthMethodEnum._06 - 06
             /// </summary>
             public static readonly ThreeDSReqAuthMethodEnum _06 = new("06");
-        
+
             private ThreeDSReqAuthMethodEnum(string? value)
             {
                 Value = value;
@@ -108,24 +93,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ThreeDSReqAuthMethodEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ThreeDSReqAuthMethodEnum?(string? value) => value == null ? null : new ThreeDSReqAuthMethodEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ThreeDSReqAuthMethodEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ThreeDSReqAuthMethodEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ThreeDSReqAuthMethodEnum"/> instance./// </returns>
             public static implicit operator string?(ThreeDSReqAuthMethodEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ThreeDSReqAuthMethodEnum? left, ThreeDSReqAuthMethodEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ThreeDSReqAuthMethodEnum? left, ThreeDSReqAuthMethodEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ThreeDSReqAuthMethodEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ThreeDSReqAuthMethodEnum?"/>.
             /// </summary>
@@ -143,7 +128,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ThreeDSReqAuthMethodEnum"/> to the json value.
             /// </summary>
@@ -154,30 +139,30 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ThreeDSReqAuthMethodEnum._01)
                     return "01";
-                
+
                 if (value == ThreeDSReqAuthMethodEnum._02)
                     return "02";
-                
+
                 if (value == ThreeDSReqAuthMethodEnum._03)
                     return "03";
-                
+
                 if (value == ThreeDSReqAuthMethodEnum._04)
                     return "04";
-                
+
                 if (value == ThreeDSReqAuthMethodEnum._05)
                     return "05";
-                
+
                 if (value == ThreeDSReqAuthMethodEnum._06)
                     return "06";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ThreeDSReqAuthMethodEnum.               
+            /// JsonConverter for writing ThreeDSReqAuthMethodEnum.
             /// </summary>
             public class ThreeDSReqAuthMethodEnumJsonConverter : JsonConverter<ThreeDSReqAuthMethodEnum>
             {
@@ -308,9 +293,16 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ThreeDSRequestorAuthenticationInfo(threeDSReqAuthData, threeDSReqAuthMethod, threeDSReqAuthTimestamp);
+
+            var result = new ThreeDSRequestorAuthenticationInfo();
+            if (threeDSReqAuthData.IsSet)
+                result.ThreeDSReqAuthData = threeDSReqAuthData.Value;
+            if (threeDSReqAuthMethod.IsSet)
+                result.ThreeDSReqAuthMethod = threeDSReqAuthMethod.Value;
+            if (threeDSReqAuthTimestamp.IsSet)
+                result.ThreeDSReqAuthTimestamp = threeDSReqAuthTimestamp.Value;
+            return result;
         }
 
         /// <summary>
@@ -321,13 +313,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ThreeDSRequestorAuthenticationInfo threeDSRequestorAuthenticationInfo, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, threeDSRequestorAuthenticationInfo, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -338,17 +330,17 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ThreeDSRequestorAuthenticationInfo threeDSRequestorAuthenticationInfo, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (threeDSRequestorAuthenticationInfo._ThreeDSReqAuthDataOption.IsSet)
                 if (threeDSRequestorAuthenticationInfo.ThreeDSReqAuthData != null)
                     writer.WriteString("threeDSReqAuthData", threeDSRequestorAuthenticationInfo.ThreeDSReqAuthData);
 
-            if (threeDSRequestorAuthenticationInfo._ThreeDSReqAuthMethodOption.IsSet && threeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethod != null) 
+            if (threeDSRequestorAuthenticationInfo._ThreeDSReqAuthMethodOption.IsSet && threeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethod != null)
             {
                 string? threeDSReqAuthMethodRawValue = ThreeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethodEnum.ToJsonValue(threeDSRequestorAuthenticationInfo._ThreeDSReqAuthMethodOption.Value!.Value);
                 writer.WriteString("threeDSReqAuthMethod", threeDSReqAuthMethodRawValue);
             }
-            
+
             if (threeDSRequestorAuthenticationInfo._ThreeDSReqAuthTimestampOption.IsSet)
                 if (threeDSRequestorAuthenticationInfo.ThreeDSReqAuthTimestamp != null)
                     writer.WriteString("threeDSReqAuthTimestamp", threeDSRequestorAuthenticationInfo.ThreeDSReqAuthTimestamp);

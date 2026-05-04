@@ -34,31 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaypalUpdateOrderRequest" /> class.
         /// </summary>
-        /// <param name="amount">amount</param>
-        /// <param name="deliveryMethods">The list of new delivery methods and the cost of each.</param>
-        /// <param name="paymentData">The &#x60;paymentData&#x60; from the client side. This value changes every time you make a &#x60;/paypal/updateOrder&#x60; request.</param>
-        /// <param name="pspReference">The original &#x60;pspReference&#x60; from the &#x60;/payments&#x60; response.</param>
-        /// <param name="sessionId">The original &#x60;sessionId&#x60; from the &#x60;/sessions&#x60; response.</param>
-        /// <param name="taxTotal">taxTotal</param>
-        [JsonConstructor]
-        public PaypalUpdateOrderRequest(Option<Amount?> amount = default, Option<List<DeliveryMethod>?> deliveryMethods = default, Option<string?> paymentData = default, Option<string?> pspReference = default, Option<string?> sessionId = default, Option<TaxTotal?> taxTotal = default)
-        {
-            _AmountOption = amount;
-            _DeliveryMethodsOption = deliveryMethods;
-            _PaymentDataOption = paymentData;
-            _PspReferenceOption = pspReference;
-            _SessionIdOption = sessionId;
-            _TaxTotalOption = taxTotal;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaypalUpdateOrderRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -229,9 +208,22 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new PaypalUpdateOrderRequest(amount, deliveryMethods, paymentData, pspReference, sessionId, taxTotal);
+
+            var result = new PaypalUpdateOrderRequest();
+            if (amount.IsSet)
+                result.Amount = amount.Value;
+            if (deliveryMethods.IsSet)
+                result.DeliveryMethods = deliveryMethods.Value;
+            if (paymentData.IsSet)
+                result.PaymentData = paymentData.Value;
+            if (pspReference.IsSet)
+                result.PspReference = pspReference.Value;
+            if (sessionId.IsSet)
+                result.SessionId = sessionId.Value;
+            if (taxTotal.IsSet)
+                result.TaxTotal = taxTotal.Value;
+            return result;
         }
 
         /// <summary>
@@ -242,13 +234,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaypalUpdateOrderRequest paypalUpdateOrderRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paypalUpdateOrderRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -259,7 +251,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaypalUpdateOrderRequest paypalUpdateOrderRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paypalUpdateOrderRequest._AmountOption.IsSet)
             {
                 writer.WritePropertyName("amount");

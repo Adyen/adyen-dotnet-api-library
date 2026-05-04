@@ -554,14 +554,15 @@ namespace Adyen.Test.Checkout
         public void Given_Serialize_When_CheckoutSessionRequest_Result_Contains_DateOnly_And_DateTimeOffset()
         {
             // Arrange
-            CreateCheckoutSessionRequest checkoutSessionRequest = new CreateCheckoutSessionRequest(
-                merchantAccount: "TestMerchant",
-                reference: "TestReference",
-                returnUrl: "http://test-url.com",
-                amount: new Amount("EUR", 10000L),
-                dateOfBirth: new DateOnly(1998, 1, 1),
-                expiresAt: new DateTimeOffset(2023, 4, 1, 1, 1, 1, TimeSpan.Zero)
-            );
+            CreateCheckoutSessionRequest checkoutSessionRequest = new CreateCheckoutSessionRequest
+            {
+                MerchantAccount = "TestMerchant",
+                Reference = "TestReference",
+                ReturnUrl = "http://test-url.com",
+                Amount = new Amount { Currency = "EUR", Value = 10000L },
+                DateOfBirth = new DateOnly(1998, 1, 1),
+                ExpiresAt = new DateTimeOffset(2023, 4, 1, 1, 1, 1, TimeSpan.Zero),
+            };
             
             // Act
             string target = JsonSerializer.Serialize(checkoutSessionRequest, _jsonSerializerOptionsProvider.Options);
@@ -585,14 +586,15 @@ namespace Adyen.Test.Checkout
         public void Given_Serialize_When_CheckoutSessionRequest_Is_Filled_Result_Returns_No_Null_Values()
         {
             // Arrange
-            CreateCheckoutSessionRequest checkoutSessionRequest = new CreateCheckoutSessionRequest(
-                merchantAccount: "TestMerchant",
-                reference: "TestReference",
-                returnUrl: "http://test-url.com",
-                amount: new Amount("EUR", 10000L),
-                dateOfBirth: new DateOnly(1998, 1, 1),
-                expiresAt: new DateTimeOffset(2023, 4, 1, 1, 1, 1, TimeSpan.Zero)
-                );
+            CreateCheckoutSessionRequest checkoutSessionRequest = new CreateCheckoutSessionRequest
+            {
+                MerchantAccount = "TestMerchant",
+                Reference = "TestReference",
+                ReturnUrl = "http://test-url.com",
+                Amount = new Amount { Currency = "EUR", Value = 10000L },
+                DateOfBirth = new DateOnly(1998, 1, 1),
+                ExpiresAt = new DateTimeOffset(2023, 4, 1, 1, 1, 1, TimeSpan.Zero),
+            };
             
             // Act
             string target = JsonSerializer.Serialize(checkoutSessionRequest, _jsonSerializerOptionsProvider.Options);

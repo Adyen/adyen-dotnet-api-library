@@ -34,35 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ItemDetailLine" /> class.
         /// </summary>
-        /// <param name="commodityCode">The code that identifies the item in a standardized commodity coding scheme. There are different commodity coding schemes: * [UNSPSC commodity codes](https://www.ungm.org/public/unspsc) * [HS commodity codes](https://www.wcoomd.org/en/topics/nomenclature/overview.aspx) * [NAICS commodity codes](https://www.census.gov/naics/) * [NAPCS commodity codes](https://www.census.gov/naics/napcs/)   * Encoding: ASCII * Max length: 12 characters * Must not start with a space or be all spaces. * Must not be all zeros.</param>
-        /// <param name="description">A description of the item, that provides details about the purchase.   For Visa transactions with level 3 ESD, the description must not be the same or very similar to your merchant name, or, consist only of common words like \&quot;product\&quot;, or \&quot;service\&quot;. * Encoding: ASCII * Max length: 26 characters * Must not be a single character. * Must not be blank. * Must not be all special characters. * Must not start with a space or be all spaces. * Must not be all zeros.</param>
-        /// <param name="discountAmount">The discount amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Encoding: Numeric * Max value: 10000000000</param>
-        /// <param name="productCode">The product code. Must be a unique product code associated with the item or service. This can be your unique code for the item, or the manufacturer&#39;s product code.  * Encoding: ASCII. * Max length: 12 characters</param>
-        /// <param name="quantity">The number of items. Must be an integer greater than zero. * Encoding: Numeric * Max value: 9999</param>
-        /// <param name="totalAmount">The total amount for the line item, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Encoding: Numeric * Max value: 10000000000  See [Amount requirements for level 2/3 ESD](https://docs.adyen.com//payment-methods/cards/enhanced-scheme-data/l2-l3#amount-requirements) to learn more about how to calculate the line item total.</param>
-        /// <param name="unitOfMeasure">The unit of measurement for an item. * Encoding: ASCII * Max length: 3 characters</param>
-        /// <param name="unitPrice">The unit price, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Encoding: Numeric * Max value: 10000000000</param>
-        [JsonConstructor]
-        public ItemDetailLine(Option<string?> commodityCode = default, Option<string?> description = default, Option<long?> discountAmount = default, Option<string?> productCode = default, Option<long?> quantity = default, Option<long?> totalAmount = default, Option<string?> unitOfMeasure = default, Option<long?> unitPrice = default)
-        {
-            _CommodityCodeOption = commodityCode;
-            _DescriptionOption = description;
-            _DiscountAmountOption = discountAmount;
-            _ProductCodeOption = productCode;
-            _QuantityOption = quantity;
-            _TotalAmountOption = totalAmount;
-            _UnitOfMeasureOption = unitOfMeasure;
-            _UnitPriceOption = unitPrice;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ItemDetailLine()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -273,9 +248,26 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ItemDetailLine(commodityCode, description, discountAmount, productCode, quantity, totalAmount, unitOfMeasure, unitPrice);
+
+            var result = new ItemDetailLine();
+            if (commodityCode.IsSet)
+                result.CommodityCode = commodityCode.Value;
+            if (description.IsSet)
+                result.Description = description.Value;
+            if (discountAmount.IsSet)
+                result.DiscountAmount = discountAmount.Value;
+            if (productCode.IsSet)
+                result.ProductCode = productCode.Value;
+            if (quantity.IsSet)
+                result.Quantity = quantity.Value;
+            if (totalAmount.IsSet)
+                result.TotalAmount = totalAmount.Value;
+            if (unitOfMeasure.IsSet)
+                result.UnitOfMeasure = unitOfMeasure.Value;
+            if (unitPrice.IsSet)
+                result.UnitPrice = unitPrice.Value;
+            return result;
         }
 
         /// <summary>
@@ -286,13 +278,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ItemDetailLine itemDetailLine, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, itemDetailLine, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -303,7 +295,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ItemDetailLine itemDetailLine, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (itemDetailLine._CommodityCodeOption.IsSet)
                 if (itemDetailLine.CommodityCode != null)
                     writer.WriteString("commodityCode", itemDetailLine.CommodityCode);

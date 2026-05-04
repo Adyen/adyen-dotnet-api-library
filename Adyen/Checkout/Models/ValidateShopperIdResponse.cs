@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ValidateShopperIdResponse" /> class.
         /// </summary>
-        /// <param name="reason">Reason for the result.</param>
-        /// <param name="result">result</param>
-        [JsonConstructor]
-        public ValidateShopperIdResponse(Option<string?> reason = default, Option<Result?> result = default)
-        {
-            _ReasonOption = reason;
-            _ResultOption = result;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ValidateShopperIdResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -148,9 +135,14 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ValidateShopperIdResponse(reason, result);
+
+            var validateShopperIdResponse = new ValidateShopperIdResponse();
+            if (reason.IsSet)
+                validateShopperIdResponse.Reason = reason.Value;
+            if (result.IsSet)
+                validateShopperIdResponse.Result = result.Value;
+            return validateShopperIdResponse;
         }
 
         /// <summary>
@@ -161,13 +153,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ValidateShopperIdResponse validateShopperIdResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, validateShopperIdResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -178,7 +170,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ValidateShopperIdResponse validateShopperIdResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (validateShopperIdResponse._ReasonOption.IsSet)
                 if (validateShopperIdResponse.Reason != null)
                     writer.WriteString("reason", validateShopperIdResponse.Reason);

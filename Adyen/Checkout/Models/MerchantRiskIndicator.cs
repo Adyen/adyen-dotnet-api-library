@@ -34,47 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="MerchantRiskIndicator" /> class.
         /// </summary>
-        /// <param name="addressMatch">Whether the chosen delivery address is identical to the billing address.</param>
-        /// <param name="deliveryAddressIndicator">Indicator regarding the delivery address. Allowed values: * &#x60;shipToBillingAddress&#x60; * &#x60;shipToVerifiedAddress&#x60; * &#x60;shipToNewAddress&#x60; * &#x60;shipToStore&#x60; * &#x60;digitalGoods&#x60; * &#x60;goodsNotShipped&#x60; * &#x60;other&#x60;</param>
-        /// <param name="deliveryEmail">The delivery email address (for digital goods).</param>
-        /// <param name="deliveryEmailAddress">For Electronic delivery, the email address to which the merchandise was delivered. Maximum length: 254 characters.</param>
-        /// <param name="deliveryTimeframe">The estimated delivery time for the shopper to receive the goods. Allowed values: * &#x60;electronicDelivery&#x60; * &#x60;sameDayShipping&#x60; * &#x60;overnightShipping&#x60; * &#x60;twoOrMoreDaysShipping&#x60;</param>
-        /// <param name="giftCardAmount">giftCardAmount</param>
-        /// <param name="giftCardCount">For prepaid or gift card purchase, total count of individual prepaid or gift cards/codes purchased.</param>
-        /// <param name="giftCardCurr">For prepaid or gift card purchase, [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) three-digit currency code of the gift card, other than those listed in Table A.5 of the EMVCo 3D Secure Protocol and Core Functions Specification.</param>
-        /// <param name="preOrderDate">For pre-order purchases, the expected date this product will be available to the shopper.</param>
-        /// <param name="preOrderPurchase">Indicator for whether this transaction is for pre-ordering a product.</param>
-        /// <param name="preOrderPurchaseInd">Indicates whether Cardholder is placing an order for merchandise with a future availability or release date.</param>
-        /// <param name="reorderItems">Indicator for whether the shopper has already purchased the same items in the past.</param>
-        /// <param name="reorderItemsInd">Indicates whether the cardholder is reordering previously purchased merchandise.</param>
-        /// <param name="shipIndicator">Indicates shipping method chosen for the transaction.</param>
-        [JsonConstructor]
-        public MerchantRiskIndicator(Option<bool?> addressMatch = default, Option<DeliveryAddressIndicatorEnum?> deliveryAddressIndicator = default, Option<string?> deliveryEmail = default, Option<string?> deliveryEmailAddress = default, Option<DeliveryTimeframeEnum?> deliveryTimeframe = default, Option<Amount?> giftCardAmount = default, Option<int?> giftCardCount = default, Option<string?> giftCardCurr = default, Option<DateTimeOffset?> preOrderDate = default, Option<bool?> preOrderPurchase = default, Option<string?> preOrderPurchaseInd = default, Option<bool?> reorderItems = default, Option<string?> reorderItemsInd = default, Option<string?> shipIndicator = default)
-        {
-            _AddressMatchOption = addressMatch;
-            _DeliveryAddressIndicatorOption = deliveryAddressIndicator;
-            _DeliveryEmailOption = deliveryEmail;
-            _DeliveryEmailAddressOption = deliveryEmailAddress;
-            _DeliveryTimeframeOption = deliveryTimeframe;
-            _GiftCardAmountOption = giftCardAmount;
-            _GiftCardCountOption = giftCardCount;
-            _GiftCardCurrOption = giftCardCurr;
-            _PreOrderDateOption = preOrderDate;
-            _PreOrderPurchaseOption = preOrderPurchase;
-            _PreOrderPurchaseIndOption = preOrderPurchaseInd;
-            _ReorderItemsOption = reorderItems;
-            _ReorderItemsIndOption = reorderItemsInd;
-            _ShipIndicatorOption = shipIndicator;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public MerchantRiskIndicator()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -123,7 +86,7 @@ namespace Adyen.Checkout.Models
             /// DeliveryAddressIndicatorEnum.Other - other
             /// </summary>
             public static readonly DeliveryAddressIndicatorEnum Other = new("other");
-        
+
             private DeliveryAddressIndicatorEnum(string? value)
             {
                 Value = value;
@@ -135,24 +98,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="DeliveryAddressIndicatorEnum"/> instance initialized with the string value.</returns>
             public static implicit operator DeliveryAddressIndicatorEnum?(string? value) => value == null ? null : new DeliveryAddressIndicatorEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="DeliveryAddressIndicatorEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="DeliveryAddressIndicatorEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="DeliveryAddressIndicatorEnum"/> instance./// </returns>
             public static implicit operator string?(DeliveryAddressIndicatorEnum? option) => option?.Value;
-        
+
             public static bool operator ==(DeliveryAddressIndicatorEnum? left, DeliveryAddressIndicatorEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(DeliveryAddressIndicatorEnum? left, DeliveryAddressIndicatorEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is DeliveryAddressIndicatorEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="DeliveryAddressIndicatorEnum?"/>.
             /// </summary>
@@ -171,7 +134,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="DeliveryAddressIndicatorEnum"/> to the json value.
             /// </summary>
@@ -182,33 +145,33 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == DeliveryAddressIndicatorEnum.ShipToBillingAddress)
                     return "shipToBillingAddress";
-                
+
                 if (value == DeliveryAddressIndicatorEnum.ShipToVerifiedAddress)
                     return "shipToVerifiedAddress";
-                
+
                 if (value == DeliveryAddressIndicatorEnum.ShipToNewAddress)
                     return "shipToNewAddress";
-                
+
                 if (value == DeliveryAddressIndicatorEnum.ShipToStore)
                     return "shipToStore";
-                
+
                 if (value == DeliveryAddressIndicatorEnum.DigitalGoods)
                     return "digitalGoods";
-                
+
                 if (value == DeliveryAddressIndicatorEnum.GoodsNotShipped)
                     return "goodsNotShipped";
-                
+
                 if (value == DeliveryAddressIndicatorEnum.Other)
                     return "other";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing DeliveryAddressIndicatorEnum.               
+            /// JsonConverter for writing DeliveryAddressIndicatorEnum.
             /// </summary>
             public class DeliveryAddressIndicatorEnumJsonConverter : JsonConverter<DeliveryAddressIndicatorEnum>
             {
@@ -270,7 +233,7 @@ namespace Adyen.Checkout.Models
             /// DeliveryTimeframeEnum.TwoOrMoreDaysShipping - twoOrMoreDaysShipping
             /// </summary>
             public static readonly DeliveryTimeframeEnum TwoOrMoreDaysShipping = new("twoOrMoreDaysShipping");
-        
+
             private DeliveryTimeframeEnum(string? value)
             {
                 Value = value;
@@ -282,24 +245,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="DeliveryTimeframeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator DeliveryTimeframeEnum?(string? value) => value == null ? null : new DeliveryTimeframeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="DeliveryTimeframeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="DeliveryTimeframeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="DeliveryTimeframeEnum"/> instance./// </returns>
             public static implicit operator string?(DeliveryTimeframeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(DeliveryTimeframeEnum? left, DeliveryTimeframeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(DeliveryTimeframeEnum? left, DeliveryTimeframeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is DeliveryTimeframeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="DeliveryTimeframeEnum?"/>.
             /// </summary>
@@ -315,7 +278,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="DeliveryTimeframeEnum"/> to the json value.
             /// </summary>
@@ -326,24 +289,24 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == DeliveryTimeframeEnum.ElectronicDelivery)
                     return "electronicDelivery";
-                
+
                 if (value == DeliveryTimeframeEnum.SameDayShipping)
                     return "sameDayShipping";
-                
+
                 if (value == DeliveryTimeframeEnum.OvernightShipping)
                     return "overnightShipping";
-                
+
                 if (value == DeliveryTimeframeEnum.TwoOrMoreDaysShipping)
                     return "twoOrMoreDaysShipping";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing DeliveryTimeframeEnum.               
+            /// JsonConverter for writing DeliveryTimeframeEnum.
             /// </summary>
             public class DeliveryTimeframeEnumJsonConverter : JsonConverter<DeliveryTimeframeEnum>
             {
@@ -675,9 +638,38 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new MerchantRiskIndicator(addressMatch, deliveryAddressIndicator, deliveryEmail, deliveryEmailAddress, deliveryTimeframe, giftCardAmount, giftCardCount, giftCardCurr, preOrderDate, preOrderPurchase, preOrderPurchaseInd, reorderItems, reorderItemsInd, shipIndicator);
+
+            var result = new MerchantRiskIndicator();
+            if (addressMatch.IsSet)
+                result.AddressMatch = addressMatch.Value;
+            if (deliveryAddressIndicator.IsSet)
+                result.DeliveryAddressIndicator = deliveryAddressIndicator.Value;
+            if (deliveryEmail.IsSet)
+                result.DeliveryEmail = deliveryEmail.Value;
+            if (deliveryEmailAddress.IsSet)
+                result.DeliveryEmailAddress = deliveryEmailAddress.Value;
+            if (deliveryTimeframe.IsSet)
+                result.DeliveryTimeframe = deliveryTimeframe.Value;
+            if (giftCardAmount.IsSet)
+                result.GiftCardAmount = giftCardAmount.Value;
+            if (giftCardCount.IsSet)
+                result.GiftCardCount = giftCardCount.Value;
+            if (giftCardCurr.IsSet)
+                result.GiftCardCurr = giftCardCurr.Value;
+            if (preOrderDate.IsSet)
+                result.PreOrderDate = preOrderDate.Value;
+            if (preOrderPurchase.IsSet)
+                result.PreOrderPurchase = preOrderPurchase.Value;
+            if (preOrderPurchaseInd.IsSet)
+                result.PreOrderPurchaseInd = preOrderPurchaseInd.Value;
+            if (reorderItems.IsSet)
+                result.ReorderItems = reorderItems.Value;
+            if (reorderItemsInd.IsSet)
+                result.ReorderItemsInd = reorderItemsInd.Value;
+            if (shipIndicator.IsSet)
+                result.ShipIndicator = shipIndicator.Value;
+            return result;
         }
 
         /// <summary>
@@ -688,13 +680,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, MerchantRiskIndicator merchantRiskIndicator, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, merchantRiskIndicator, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -705,17 +697,17 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, MerchantRiskIndicator merchantRiskIndicator, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (merchantRiskIndicator._AddressMatchOption.IsSet)
                 if (merchantRiskIndicator._AddressMatchOption.Value != null)
                     writer.WriteBoolean("addressMatch", merchantRiskIndicator._AddressMatchOption.Value!.Value);
 
-            if (merchantRiskIndicator._DeliveryAddressIndicatorOption.IsSet && merchantRiskIndicator.DeliveryAddressIndicator != null) 
+            if (merchantRiskIndicator._DeliveryAddressIndicatorOption.IsSet && merchantRiskIndicator.DeliveryAddressIndicator != null)
             {
                 string? deliveryAddressIndicatorRawValue = MerchantRiskIndicator.DeliveryAddressIndicatorEnum.ToJsonValue(merchantRiskIndicator._DeliveryAddressIndicatorOption.Value!.Value);
                 writer.WriteString("deliveryAddressIndicator", deliveryAddressIndicatorRawValue);
             }
-            
+
             if (merchantRiskIndicator._DeliveryEmailOption.IsSet)
                 if (merchantRiskIndicator.DeliveryEmail != null)
                     writer.WriteString("deliveryEmail", merchantRiskIndicator.DeliveryEmail);
@@ -724,12 +716,12 @@ namespace Adyen.Checkout.Models
                 if (merchantRiskIndicator.DeliveryEmailAddress != null)
                     writer.WriteString("deliveryEmailAddress", merchantRiskIndicator.DeliveryEmailAddress);
 
-            if (merchantRiskIndicator._DeliveryTimeframeOption.IsSet && merchantRiskIndicator.DeliveryTimeframe != null) 
+            if (merchantRiskIndicator._DeliveryTimeframeOption.IsSet && merchantRiskIndicator.DeliveryTimeframe != null)
             {
                 string? deliveryTimeframeRawValue = MerchantRiskIndicator.DeliveryTimeframeEnum.ToJsonValue(merchantRiskIndicator._DeliveryTimeframeOption.Value!.Value);
                 writer.WriteString("deliveryTimeframe", deliveryTimeframeRawValue);
             }
-            
+
             if (merchantRiskIndicator._GiftCardAmountOption.IsSet)
             {
                 writer.WritePropertyName("giftCardAmount");

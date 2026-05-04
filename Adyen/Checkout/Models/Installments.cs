@@ -34,29 +34,14 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Installments" /> class.
         /// </summary>
-        /// <param name="value">Defines the number of installments. Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary. This value can be zero for Installments processed in Mexico.</param>
-        /// <param name="extra">Defines the bonus percentage, refund percentage or if the transaction is Buy now Pay later. Used for [card installments in Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico) </param>
-        /// <param name="plan">The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). and [Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico). By default, this is set to **regular**. </param>
-        [JsonConstructor]
-        public Installments(int value, Option<int?> extra = default, Option<PlanEnum?> plan = default)
-        {
-            Value = value;
-            _ExtraOption = extra;
-            _PlanOption = plan;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public Installments()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
-        /// The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). and [Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico). By default, this is set to **regular**. 
+        /// The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). and [Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico). By default, this is set to **regular**.
         /// </summary>
         /// <value>The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). and [Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico). By default, this is set to **regular**. </value>
         [JsonConverter(typeof(PlanEnumJsonConverter))]
@@ -116,7 +101,7 @@ namespace Adyen.Checkout.Models
             /// PlanEnum.WithInterest - with_interest
             /// </summary>
             public static readonly PlanEnum WithInterest = new("with_interest");
-        
+
             private PlanEnum(string? value)
             {
                 Value = value;
@@ -128,24 +113,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="PlanEnum"/> instance initialized with the string value.</returns>
             public static implicit operator PlanEnum?(string? value) => value == null ? null : new PlanEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="PlanEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="PlanEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="PlanEnum"/> instance./// </returns>
             public static implicit operator string?(PlanEnum? option) => option?.Value;
-        
+
             public static bool operator ==(PlanEnum? left, PlanEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(PlanEnum? left, PlanEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is PlanEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="PlanEnum?"/>.
             /// </summary>
@@ -167,7 +152,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="PlanEnum"/> to the json value.
             /// </summary>
@@ -178,42 +163,42 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == PlanEnum.Bonus)
                     return "bonus";
-                
+
                 if (value == PlanEnum.BuynowPaylater)
                     return "buynow_paylater";
-                
+
                 if (value == PlanEnum.InteresRefundPrctg)
                     return "interes_refund_prctg";
-                
+
                 if (value == PlanEnum.InterestBonus)
                     return "interest_bonus";
-                
+
                 if (value == PlanEnum.NointeresRefundPrctg)
                     return "nointeres_refund_prctg";
-                
+
                 if (value == PlanEnum.NointerestBonus)
                     return "nointerest_bonus";
-                
+
                 if (value == PlanEnum.RefundPrctg)
                     return "refund_prctg";
-                
+
                 if (value == PlanEnum.Regular)
                     return "regular";
-                
+
                 if (value == PlanEnum.Revolving)
                     return "revolving";
-                
+
                 if (value == PlanEnum.WithInterest)
                     return "with_interest";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing PlanEnum.               
+            /// JsonConverter for writing PlanEnum.
             /// </summary>
             public class PlanEnumJsonConverter : JsonConverter<PlanEnum>
             {
@@ -238,7 +223,7 @@ namespace Adyen.Checkout.Models
         public Option<PlanEnum?> _PlanOption { get; private set; }
 
         /// <summary>
-        /// The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). and [Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico). By default, this is set to **regular**. 
+        /// The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). and [Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico). By default, this is set to **regular**.
         /// </summary>
         /// <value>The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). and [Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico). By default, this is set to **regular**. </value>
         [JsonPropertyName("plan")]
@@ -259,7 +244,7 @@ namespace Adyen.Checkout.Models
         public Option<int?> _ExtraOption { get; private set; }
 
         /// <summary>
-        /// Defines the bonus percentage, refund percentage or if the transaction is Buy now Pay later. Used for [card installments in Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico) 
+        /// Defines the bonus percentage, refund percentage or if the transaction is Buy now Pay later. Used for [card installments in Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico)
         /// </summary>
         /// <value>Defines the bonus percentage, refund percentage or if the transaction is Buy now Pay later. Used for [card installments in Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico) </value>
         [JsonPropertyName("extra")]
@@ -337,11 +322,17 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class Installments.", nameof(value));
 
-            return new Installments(value.Value!.Value!, extra, plan);
+            var result = new Installments();
+            result.Value = value.Value!.Value!;
+            if (extra.IsSet)
+                result.Extra = extra.Value;
+            if (plan.IsSet)
+                result.Plan = plan.Value;
+            return result;
         }
 
         /// <summary>
@@ -352,13 +343,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, Installments installments, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, installments, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -369,14 +360,14 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, Installments installments, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteNumber("value", installments.Value);
 
             if (installments._ExtraOption.IsSet)
                 if (installments._ExtraOption.Value != null)
                     writer.WriteNumber("extra", installments._ExtraOption.Value!.Value);
 
-            if (installments._PlanOption.IsSet && installments.Plan != null) 
+            if (installments._PlanOption.IsSet && installments.Plan != null)
             {
                 string? planRawValue = Installments.PlanEnum.ToJsonValue(installments._PlanOption.Value!.Value);
                 writer.WriteString("plan", planRawValue);

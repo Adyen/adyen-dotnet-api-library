@@ -34,55 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataOpenInvoice" /> class.
         /// </summary>
-        /// <param name="openinvoicedataMerchantData">Holds different merchant data points like product, purchase, customer, and so on. It takes data in a Base64 encoded string.  The &#x60;merchantData&#x60; parameter needs to be added to the &#x60;openinvoicedata&#x60; signature at the end.  Since the field is optional, if it&#39;s not included it does not impact computing the merchant signature.  Applies only to Klarna.  You can contact Klarna for the format and structure of the string.</param>
-        /// <param name="openinvoicedataNumberOfLines">The number of invoice lines included in &#x60;openinvoicedata&#x60;.  There needs to be at least one line, so &#x60;numberOfLines&#x60; needs to be at least 1.</param>
-        /// <param name="openinvoicedataRecipientFirstName">First name of the recipient. If the delivery address and the billing address are different, specify the &#x60;recipientFirstName&#x60; and &#x60;recipientLastName&#x60; to share the delivery address with Klarna. Otherwise, only the billing address is shared with Klarna.</param>
-        /// <param name="openinvoicedataRecipientLastName">Last name of the recipient. If the delivery address and the billing address are different, specify the &#x60;recipientFirstName&#x60; and &#x60;recipientLastName&#x60; to share the delivery address with Klarna. Otherwise, only the billing address is shared with Klarna.</param>
-        /// <param name="openinvoicedataLineItemNrCurrencyCode">The three-character ISO currency code.</param>
-        /// <param name="openinvoicedataLineItemNrDescription">A text description of the product the invoice line refers to.</param>
-        /// <param name="openinvoicedataLineItemNrItemAmount">The price for one item in the invoice line, represented in minor units.  The due amount for the item, VAT excluded.</param>
-        /// <param name="openinvoicedataLineItemNrItemId">A unique id for this item. Required for RatePay if the description of each item is not unique.</param>
-        /// <param name="openinvoicedataLineItemNrItemVatAmount">The VAT due for one item in the invoice line, represented in minor units.</param>
-        /// <param name="openinvoicedataLineItemNrItemVatPercentage">The VAT percentage for one item in the invoice line, represented in minor units.  For example, 19% VAT is specified as 1900.</param>
-        /// <param name="openinvoicedataLineItemNrNumberOfItems">The number of units purchased of a specific product.</param>
-        /// <param name="openinvoicedataLineItemNrReturnShippingCompany">Name of the shipping company handling the the return shipment.</param>
-        /// <param name="openinvoicedataLineItemNrReturnTrackingNumber">The tracking number for the return of the shipment.</param>
-        /// <param name="openinvoicedataLineItemNrReturnTrackingUri">URI where the customer can track the return of their shipment.</param>
-        /// <param name="openinvoicedataLineItemNrShippingCompany">Name of the shipping company handling the delivery.</param>
-        /// <param name="openinvoicedataLineItemNrShippingMethod">Shipping method.</param>
-        /// <param name="openinvoicedataLineItemNrTrackingNumber">The tracking number for the shipment.</param>
-        /// <param name="openinvoicedataLineItemNrTrackingUri">URI where the customer can track their shipment.</param>
-        [JsonConstructor]
-        public AdditionalDataOpenInvoice(Option<string?> openinvoicedataMerchantData = default, Option<string?> openinvoicedataNumberOfLines = default, Option<string?> openinvoicedataRecipientFirstName = default, Option<string?> openinvoicedataRecipientLastName = default, Option<string?> openinvoicedataLineItemNrCurrencyCode = default, Option<string?> openinvoicedataLineItemNrDescription = default, Option<string?> openinvoicedataLineItemNrItemAmount = default, Option<string?> openinvoicedataLineItemNrItemId = default, Option<string?> openinvoicedataLineItemNrItemVatAmount = default, Option<string?> openinvoicedataLineItemNrItemVatPercentage = default, Option<string?> openinvoicedataLineItemNrNumberOfItems = default, Option<string?> openinvoicedataLineItemNrReturnShippingCompany = default, Option<string?> openinvoicedataLineItemNrReturnTrackingNumber = default, Option<string?> openinvoicedataLineItemNrReturnTrackingUri = default, Option<string?> openinvoicedataLineItemNrShippingCompany = default, Option<string?> openinvoicedataLineItemNrShippingMethod = default, Option<string?> openinvoicedataLineItemNrTrackingNumber = default, Option<string?> openinvoicedataLineItemNrTrackingUri = default)
-        {
-            _OpeninvoicedataMerchantDataOption = openinvoicedataMerchantData;
-            _OpeninvoicedataNumberOfLinesOption = openinvoicedataNumberOfLines;
-            _OpeninvoicedataRecipientFirstNameOption = openinvoicedataRecipientFirstName;
-            _OpeninvoicedataRecipientLastNameOption = openinvoicedataRecipientLastName;
-            _OpeninvoicedataLineItemNrCurrencyCodeOption = openinvoicedataLineItemNrCurrencyCode;
-            _OpeninvoicedataLineItemNrDescriptionOption = openinvoicedataLineItemNrDescription;
-            _OpeninvoicedataLineItemNrItemAmountOption = openinvoicedataLineItemNrItemAmount;
-            _OpeninvoicedataLineItemNrItemIdOption = openinvoicedataLineItemNrItemId;
-            _OpeninvoicedataLineItemNrItemVatAmountOption = openinvoicedataLineItemNrItemVatAmount;
-            _OpeninvoicedataLineItemNrItemVatPercentageOption = openinvoicedataLineItemNrItemVatPercentage;
-            _OpeninvoicedataLineItemNrNumberOfItemsOption = openinvoicedataLineItemNrNumberOfItems;
-            _OpeninvoicedataLineItemNrReturnShippingCompanyOption = openinvoicedataLineItemNrReturnShippingCompany;
-            _OpeninvoicedataLineItemNrReturnTrackingNumberOption = openinvoicedataLineItemNrReturnTrackingNumber;
-            _OpeninvoicedataLineItemNrReturnTrackingUriOption = openinvoicedataLineItemNrReturnTrackingUri;
-            _OpeninvoicedataLineItemNrShippingCompanyOption = openinvoicedataLineItemNrShippingCompany;
-            _OpeninvoicedataLineItemNrShippingMethodOption = openinvoicedataLineItemNrShippingMethod;
-            _OpeninvoicedataLineItemNrTrackingNumberOption = openinvoicedataLineItemNrTrackingNumber;
-            _OpeninvoicedataLineItemNrTrackingUriOption = openinvoicedataLineItemNrTrackingUri;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public AdditionalDataOpenInvoice()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -483,9 +438,46 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new AdditionalDataOpenInvoice(openinvoicedataMerchantData, openinvoicedataNumberOfLines, openinvoicedataRecipientFirstName, openinvoicedataRecipientLastName, openinvoicedataLineItemNrCurrencyCode, openinvoicedataLineItemNrDescription, openinvoicedataLineItemNrItemAmount, openinvoicedataLineItemNrItemId, openinvoicedataLineItemNrItemVatAmount, openinvoicedataLineItemNrItemVatPercentage, openinvoicedataLineItemNrNumberOfItems, openinvoicedataLineItemNrReturnShippingCompany, openinvoicedataLineItemNrReturnTrackingNumber, openinvoicedataLineItemNrReturnTrackingUri, openinvoicedataLineItemNrShippingCompany, openinvoicedataLineItemNrShippingMethod, openinvoicedataLineItemNrTrackingNumber, openinvoicedataLineItemNrTrackingUri);
+
+            var result = new AdditionalDataOpenInvoice();
+            if (openinvoicedataMerchantData.IsSet)
+                result.OpeninvoicedataMerchantData = openinvoicedataMerchantData.Value;
+            if (openinvoicedataNumberOfLines.IsSet)
+                result.OpeninvoicedataNumberOfLines = openinvoicedataNumberOfLines.Value;
+            if (openinvoicedataRecipientFirstName.IsSet)
+                result.OpeninvoicedataRecipientFirstName = openinvoicedataRecipientFirstName.Value;
+            if (openinvoicedataRecipientLastName.IsSet)
+                result.OpeninvoicedataRecipientLastName = openinvoicedataRecipientLastName.Value;
+            if (openinvoicedataLineItemNrCurrencyCode.IsSet)
+                result.OpeninvoicedataLineItemNrCurrencyCode = openinvoicedataLineItemNrCurrencyCode.Value;
+            if (openinvoicedataLineItemNrDescription.IsSet)
+                result.OpeninvoicedataLineItemNrDescription = openinvoicedataLineItemNrDescription.Value;
+            if (openinvoicedataLineItemNrItemAmount.IsSet)
+                result.OpeninvoicedataLineItemNrItemAmount = openinvoicedataLineItemNrItemAmount.Value;
+            if (openinvoicedataLineItemNrItemId.IsSet)
+                result.OpeninvoicedataLineItemNrItemId = openinvoicedataLineItemNrItemId.Value;
+            if (openinvoicedataLineItemNrItemVatAmount.IsSet)
+                result.OpeninvoicedataLineItemNrItemVatAmount = openinvoicedataLineItemNrItemVatAmount.Value;
+            if (openinvoicedataLineItemNrItemVatPercentage.IsSet)
+                result.OpeninvoicedataLineItemNrItemVatPercentage = openinvoicedataLineItemNrItemVatPercentage.Value;
+            if (openinvoicedataLineItemNrNumberOfItems.IsSet)
+                result.OpeninvoicedataLineItemNrNumberOfItems = openinvoicedataLineItemNrNumberOfItems.Value;
+            if (openinvoicedataLineItemNrReturnShippingCompany.IsSet)
+                result.OpeninvoicedataLineItemNrReturnShippingCompany = openinvoicedataLineItemNrReturnShippingCompany.Value;
+            if (openinvoicedataLineItemNrReturnTrackingNumber.IsSet)
+                result.OpeninvoicedataLineItemNrReturnTrackingNumber = openinvoicedataLineItemNrReturnTrackingNumber.Value;
+            if (openinvoicedataLineItemNrReturnTrackingUri.IsSet)
+                result.OpeninvoicedataLineItemNrReturnTrackingUri = openinvoicedataLineItemNrReturnTrackingUri.Value;
+            if (openinvoicedataLineItemNrShippingCompany.IsSet)
+                result.OpeninvoicedataLineItemNrShippingCompany = openinvoicedataLineItemNrShippingCompany.Value;
+            if (openinvoicedataLineItemNrShippingMethod.IsSet)
+                result.OpeninvoicedataLineItemNrShippingMethod = openinvoicedataLineItemNrShippingMethod.Value;
+            if (openinvoicedataLineItemNrTrackingNumber.IsSet)
+                result.OpeninvoicedataLineItemNrTrackingNumber = openinvoicedataLineItemNrTrackingNumber.Value;
+            if (openinvoicedataLineItemNrTrackingUri.IsSet)
+                result.OpeninvoicedataLineItemNrTrackingUri = openinvoicedataLineItemNrTrackingUri.Value;
+            return result;
         }
 
         /// <summary>
@@ -496,13 +488,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, AdditionalDataOpenInvoice additionalDataOpenInvoice, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, additionalDataOpenInvoice, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -513,7 +505,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, AdditionalDataOpenInvoice additionalDataOpenInvoice, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (additionalDataOpenInvoice._OpeninvoicedataMerchantDataOption.IsSet)
                 if (additionalDataOpenInvoice.OpeninvoicedataMerchantData != null)
                     writer.WriteString("openinvoicedata.merchantData", additionalDataOpenInvoice.OpeninvoicedataMerchantData);

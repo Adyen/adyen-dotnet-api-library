@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationData" /> class.
         /// </summary>
-        /// <param name="attemptAuthentication">Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don&#39;t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined.</param>
-        /// <param name="authenticationOnly">Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization. Default: **false**. (default to false)</param>
-        /// <param name="threeDSRequestData">threeDSRequestData</param>
-        [JsonConstructor]
-        public AuthenticationData(Option<AttemptAuthenticationEnum?> attemptAuthentication = default, Option<bool?> authenticationOnly = default, Option<ThreeDSRequestData?> threeDSRequestData = default)
-        {
-            _AttemptAuthenticationOption = attemptAuthentication;
-            _AuthenticationOnlyOption = authenticationOnly;
-            _ThreeDSRequestDataOption = threeDSRequestData;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public AuthenticationData()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -76,7 +61,7 @@ namespace Adyen.Checkout.Models
             /// AttemptAuthenticationEnum.Never - never
             /// </summary>
             public static readonly AttemptAuthenticationEnum Never = new("never");
-        
+
             private AttemptAuthenticationEnum(string? value)
             {
                 Value = value;
@@ -88,24 +73,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="AttemptAuthenticationEnum"/> instance initialized with the string value.</returns>
             public static implicit operator AttemptAuthenticationEnum?(string? value) => value == null ? null : new AttemptAuthenticationEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="AttemptAuthenticationEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="AttemptAuthenticationEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="AttemptAuthenticationEnum"/> instance./// </returns>
             public static implicit operator string?(AttemptAuthenticationEnum? option) => option?.Value;
-        
+
             public static bool operator ==(AttemptAuthenticationEnum? left, AttemptAuthenticationEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(AttemptAuthenticationEnum? left, AttemptAuthenticationEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is AttemptAuthenticationEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="AttemptAuthenticationEnum?"/>.
             /// </summary>
@@ -119,7 +104,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="AttemptAuthenticationEnum"/> to the json value.
             /// </summary>
@@ -130,18 +115,18 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == AttemptAuthenticationEnum.Always)
                     return "always";
-                
+
                 if (value == AttemptAuthenticationEnum.Never)
                     return "never";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing AttemptAuthenticationEnum.               
+            /// JsonConverter for writing AttemptAuthenticationEnum.
             /// </summary>
             public class AttemptAuthenticationEnumJsonConverter : JsonConverter<AttemptAuthenticationEnum>
             {
@@ -271,9 +256,16 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new AuthenticationData(attemptAuthentication, authenticationOnly, threeDSRequestData);
+
+            var result = new AuthenticationData();
+            if (attemptAuthentication.IsSet)
+                result.AttemptAuthentication = attemptAuthentication.Value;
+            if (authenticationOnly.IsSet)
+                result.AuthenticationOnly = authenticationOnly.Value;
+            if (threeDSRequestData.IsSet)
+                result.ThreeDSRequestData = threeDSRequestData.Value;
+            return result;
         }
 
         /// <summary>
@@ -284,13 +276,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, AuthenticationData authenticationData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, authenticationData, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -301,13 +293,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, AuthenticationData authenticationData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
-            if (authenticationData._AttemptAuthenticationOption.IsSet && authenticationData.AttemptAuthentication != null) 
+
+            if (authenticationData._AttemptAuthenticationOption.IsSet && authenticationData.AttemptAuthentication != null)
             {
                 string? attemptAuthenticationRawValue = AuthenticationData.AttemptAuthenticationEnum.ToJsonValue(authenticationData._AttemptAuthenticationOption.Value!.Value);
                 writer.WriteString("attemptAuthentication", attemptAuthenticationRawValue);
             }
-            
+
             if (authenticationData._AuthenticationOnlyOption.IsSet)
                 if (authenticationData._AuthenticationOnlyOption.Value != null)
                     writer.WriteBoolean("authenticationOnly", authenticationData._AuthenticationOnlyOption.Value!.Value);

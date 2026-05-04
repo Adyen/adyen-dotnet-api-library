@@ -34,21 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentValidations" /> class.
         /// </summary>
-        /// <param name="name">name</param>
-        [JsonConstructor]
-        public PaymentValidations(Option<PaymentValidationsNameRequest?> name = default)
-        {
-            _NameOption = name;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentValidations()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -125,9 +114,12 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new PaymentValidations(name);
+
+            var result = new PaymentValidations();
+            if (name.IsSet)
+                result.Name = name.Value;
+            return result;
         }
 
         /// <summary>
@@ -138,13 +130,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentValidations paymentValidations, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentValidations, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -155,7 +147,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentValidations paymentValidations, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paymentValidations._NameOption.IsSet)
             {
                 writer.WritePropertyName("name");

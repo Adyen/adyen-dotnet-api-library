@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Donation" /> class.
         /// </summary>
-        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes/).</param>
-        /// <param name="donationType">The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donations amounts that the shopper can select from.</param>
-        /// <param name="type">The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donation amounts that the shopper can select from.</param>
-        /// <param name="maxRoundupAmount">The maximum amount a transaction can be rounded up to make a donation. This field is only present when &#x60;donationType&#x60; is **roundup**.</param>
-        /// <param name="values">The fixed donation amounts in [minor units](https://docs.adyen.com/development-resources/currency-codes//#minor-units). This field is only present when &#x60;donationType&#x60; is **fixedAmounts**.</param>
-        [JsonConstructor]
-        public Donation(string currency, string donationType, string type, Option<long?> maxRoundupAmount = default, Option<List<long>?> values = default)
-        {
-            Currency = currency;
-            DonationType = donationType;
-            Type = type;
-            _MaxRoundupAmountOption = maxRoundupAmount;
-            _ValuesOption = values;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public Donation()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -189,7 +170,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!currency.IsSet)
                 throw new ArgumentException("Property is required for class Donation.", nameof(currency));
 
@@ -199,7 +180,15 @@ namespace Adyen.Checkout.Models
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class Donation.", nameof(type));
 
-            return new Donation(currency.Value!, donationType.Value!, type.Value!, maxRoundupAmount, values);
+            var result = new Donation();
+            result.Currency = currency.Value!;
+            result.DonationType = donationType.Value!;
+            result.Type = type.Value!;
+            if (maxRoundupAmount.IsSet)
+                result.MaxRoundupAmount = maxRoundupAmount.Value;
+            if (values.IsSet)
+                result.Values = values.Value;
+            return result;
         }
 
         /// <summary>
@@ -210,13 +199,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, Donation donation, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, donation, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -227,7 +216,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, Donation donation, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (donation.Currency != null)
                 writer.WriteString("currency", donation.Currency);
 

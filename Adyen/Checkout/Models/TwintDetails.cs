@@ -34,31 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="TwintDetails" /> class.
         /// </summary>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="subtype">The type of flow to initiate.</param>
-        /// <param name="type">The payment method type.</param>
-        [JsonConstructor]
-        public TwintDetails(Option<string?> checkoutAttemptId = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<string?> subtype = default, Option<TypeEnum?> type = default)
-        {
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _RecurringDetailReferenceOption = recurringDetailReference;
-            _SdkDataOption = sdkData;
-            _StoredPaymentMethodIdOption = storedPaymentMethodId;
-            _SubtypeOption = subtype;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public TwintDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -77,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.Twint - twint
             /// </summary>
             public static readonly TypeEnum Twint = new("twint");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -89,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -119,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -130,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Twint)
                     return "twint";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -327,9 +306,22 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new TwintDetails(checkoutAttemptId, recurringDetailReference, sdkData, storedPaymentMethodId, subtype, type);
+
+            var result = new TwintDetails();
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (recurringDetailReference.IsSet)
+                result.RecurringDetailReference = recurringDetailReference.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (storedPaymentMethodId.IsSet)
+                result.StoredPaymentMethodId = storedPaymentMethodId.Value;
+            if (subtype.IsSet)
+                result.Subtype = subtype.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -340,13 +332,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, TwintDetails twintDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, twintDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -357,7 +349,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, TwintDetails twintDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (twintDetails._CheckoutAttemptIdOption.IsSet)
                 if (twintDetails.CheckoutAttemptId != null)
                     writer.WriteString("checkoutAttemptId", twintDetails.CheckoutAttemptId);
@@ -378,7 +370,7 @@ namespace Adyen.Checkout.Models
                 if (twintDetails.Subtype != null)
                     writer.WriteString("subtype", twintDetails.Subtype);
 
-            if (twintDetails._TypeOption.IsSet && twintDetails.Type != null) 
+            if (twintDetails._TypeOption.IsSet && twintDetails.Type != null)
             {
                 string? typeRawValue = TwintDetails.TypeEnum.ToJsonValue(twintDetails._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);

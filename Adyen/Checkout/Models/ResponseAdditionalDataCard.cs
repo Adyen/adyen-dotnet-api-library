@@ -34,41 +34,14 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataCard" /> class.
         /// </summary>
-        /// <param name="cardBin">The first six digits of the card number.  This is the [Bank Identification Number (BIN)](https://docs.adyen.com/get-started-with-adyen/payment-glossary#bank-identification-number-bin) for card numbers with a six-digit BIN.  Example: 521234</param>
-        /// <param name="cardHolderName">The cardholder name passed in the payment request.</param>
-        /// <param name="cardIssuingBank">The bank or the financial institution granting lines of credit through card association branded payment cards. This information can be included when available.</param>
-        /// <param name="cardIssuingCountry">The country where the card was issued.  Example: US</param>
-        /// <param name="cardIssuingCurrency">The currency in which the card is issued, if this information is available. Provided as the currency code or currency number from the ISO-4217 standard.   Example: USD</param>
-        /// <param name="cardPaymentMethod">The card payment method used for the transaction.  Example: amex</param>
-        /// <param name="cardProductId">The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit </param>
-        /// <param name="cardSummary">The last four digits of a card number.  &gt; Returned only in case of a card payment.</param>
-        /// <param name="issuerBin">The first eight digits of the card number. Only returned if the card number is 16 digits or more.  This is the [Bank Identification Number (BIN)](https://docs.adyen.com/get-started-with-adyen/payment-glossary#bank-identification-number-bin) for card numbers with an eight-digit BIN.  Example: 52123423</param>
-        [JsonConstructor]
-        public ResponseAdditionalDataCard(Option<string?> cardBin = default, Option<string?> cardHolderName = default, Option<string?> cardIssuingBank = default, Option<string?> cardIssuingCountry = default, Option<string?> cardIssuingCurrency = default, Option<string?> cardPaymentMethod = default, Option<CardProductIdEnum?> cardProductId = default, Option<string?> cardSummary = default, Option<string?> issuerBin = default)
-        {
-            _CardBinOption = cardBin;
-            _CardHolderNameOption = cardHolderName;
-            _CardIssuingBankOption = cardIssuingBank;
-            _CardIssuingCountryOption = cardIssuingCountry;
-            _CardIssuingCurrencyOption = cardIssuingCurrency;
-            _CardPaymentMethodOption = cardPaymentMethod;
-            _CardProductIdOption = cardProductId;
-            _CardSummaryOption = cardSummary;
-            _IssuerBinOption = issuerBin;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ResponseAdditionalDataCard()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
-        /// The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit 
+        /// The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit
         /// </summary>
         /// <value>The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit </value>
         [JsonConverter(typeof(CardProductIdEnumJsonConverter))]
@@ -133,7 +106,7 @@ namespace Adyen.Checkout.Models
             /// CardProductIdEnum.MCI - MCI
             /// </summary>
             public static readonly CardProductIdEnum MCI = new("MCI");
-        
+
             private CardProductIdEnum(string? value)
             {
                 Value = value;
@@ -145,24 +118,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="CardProductIdEnum"/> instance initialized with the string value.</returns>
             public static implicit operator CardProductIdEnum?(string? value) => value == null ? null : new CardProductIdEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="CardProductIdEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="CardProductIdEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="CardProductIdEnum"/> instance./// </returns>
             public static implicit operator string?(CardProductIdEnum? option) => option?.Value;
-        
+
             public static bool operator ==(CardProductIdEnum? left, CardProductIdEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(CardProductIdEnum? left, CardProductIdEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is CardProductIdEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="CardProductIdEnum?"/>.
             /// </summary>
@@ -185,7 +158,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="CardProductIdEnum"/> to the json value.
             /// </summary>
@@ -196,45 +169,45 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == CardProductIdEnum.A)
                     return "A";
-                
+
                 if (value == CardProductIdEnum.B)
                     return "B";
-                
+
                 if (value == CardProductIdEnum.C)
                     return "C";
-                
+
                 if (value == CardProductIdEnum.D)
                     return "D";
-                
+
                 if (value == CardProductIdEnum.F)
                     return "F";
-                
+
                 if (value == CardProductIdEnum.MCC)
                     return "MCC";
-                
+
                 if (value == CardProductIdEnum.MCE)
                     return "MCE";
-                
+
                 if (value == CardProductIdEnum.MCF)
                     return "MCF";
-                
+
                 if (value == CardProductIdEnum.MCG)
                     return "MCG";
-                
+
                 if (value == CardProductIdEnum.MCH)
                     return "MCH";
-                
+
                 if (value == CardProductIdEnum.MCI)
                     return "MCI";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing CardProductIdEnum.               
+            /// JsonConverter for writing CardProductIdEnum.
             /// </summary>
             public class CardProductIdEnumJsonConverter : JsonConverter<CardProductIdEnum>
             {
@@ -259,7 +232,7 @@ namespace Adyen.Checkout.Models
         public Option<CardProductIdEnum?> _CardProductIdOption { get; private set; }
 
         /// <summary>
-        /// The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit 
+        /// The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit
         /// </summary>
         /// <value>The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit </value>
         [JsonPropertyName("cardProductId")]
@@ -479,9 +452,28 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ResponseAdditionalDataCard(cardBin, cardHolderName, cardIssuingBank, cardIssuingCountry, cardIssuingCurrency, cardPaymentMethod, cardProductId, cardSummary, issuerBin);
+
+            var result = new ResponseAdditionalDataCard();
+            if (cardBin.IsSet)
+                result.CardBin = cardBin.Value;
+            if (cardHolderName.IsSet)
+                result.CardHolderName = cardHolderName.Value;
+            if (cardIssuingBank.IsSet)
+                result.CardIssuingBank = cardIssuingBank.Value;
+            if (cardIssuingCountry.IsSet)
+                result.CardIssuingCountry = cardIssuingCountry.Value;
+            if (cardIssuingCurrency.IsSet)
+                result.CardIssuingCurrency = cardIssuingCurrency.Value;
+            if (cardPaymentMethod.IsSet)
+                result.CardPaymentMethod = cardPaymentMethod.Value;
+            if (cardProductId.IsSet)
+                result.CardProductId = cardProductId.Value;
+            if (cardSummary.IsSet)
+                result.CardSummary = cardSummary.Value;
+            if (issuerBin.IsSet)
+                result.IssuerBin = issuerBin.Value;
+            return result;
         }
 
         /// <summary>
@@ -492,13 +484,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ResponseAdditionalDataCard responseAdditionalDataCard, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, responseAdditionalDataCard, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -509,7 +501,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ResponseAdditionalDataCard responseAdditionalDataCard, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (responseAdditionalDataCard._CardBinOption.IsSet)
                 if (responseAdditionalDataCard.CardBin != null)
                     writer.WriteString("cardBin", responseAdditionalDataCard.CardBin);
@@ -534,12 +526,12 @@ namespace Adyen.Checkout.Models
                 if (responseAdditionalDataCard.CardPaymentMethod != null)
                     writer.WriteString("cardPaymentMethod", responseAdditionalDataCard.CardPaymentMethod);
 
-            if (responseAdditionalDataCard._CardProductIdOption.IsSet && responseAdditionalDataCard.CardProductId != null) 
+            if (responseAdditionalDataCard._CardProductIdOption.IsSet && responseAdditionalDataCard.CardProductId != null)
             {
                 string? cardProductIdRawValue = ResponseAdditionalDataCard.CardProductIdEnum.ToJsonValue(responseAdditionalDataCard._CardProductIdOption.Value!.Value);
                 writer.WriteString("cardProductId", cardProductIdRawValue);
             }
-            
+
             if (responseAdditionalDataCard._CardSummaryOption.IsSet)
                 if (responseAdditionalDataCard.CardSummary != null)
                     writer.WriteString("cardSummary", responseAdditionalDataCard.CardSummary);

@@ -34,27 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutSessionThreeDS2RequestData" /> class.
         /// </summary>
-        /// <param name="homePhone">homePhone</param>
-        /// <param name="mobilePhone">mobilePhone</param>
-        /// <param name="threeDSRequestorChallengeInd">Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only</param>
-        /// <param name="workPhone">workPhone</param>
-        [JsonConstructor]
-        public CheckoutSessionThreeDS2RequestData(Option<Phone?> homePhone = default, Option<Phone?> mobilePhone = default, Option<ThreeDSRequestorChallengeIndEnum?> threeDSRequestorChallengeInd = default, Option<Phone?> workPhone = default)
-        {
-            _HomePhoneOption = homePhone;
-            _MobilePhoneOption = mobilePhone;
-            _ThreeDSRequestorChallengeIndOption = threeDSRequestorChallengeInd;
-            _WorkPhoneOption = workPhone;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CheckoutSessionThreeDS2RequestData()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -98,7 +81,7 @@ namespace Adyen.Checkout.Models
             /// ThreeDSRequestorChallengeIndEnum._06 - 06
             /// </summary>
             public static readonly ThreeDSRequestorChallengeIndEnum _06 = new("06");
-        
+
             private ThreeDSRequestorChallengeIndEnum(string? value)
             {
                 Value = value;
@@ -110,24 +93,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ThreeDSRequestorChallengeIndEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ThreeDSRequestorChallengeIndEnum?(string? value) => value == null ? null : new ThreeDSRequestorChallengeIndEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ThreeDSRequestorChallengeIndEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ThreeDSRequestorChallengeIndEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ThreeDSRequestorChallengeIndEnum"/> instance./// </returns>
             public static implicit operator string?(ThreeDSRequestorChallengeIndEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ThreeDSRequestorChallengeIndEnum? left, ThreeDSRequestorChallengeIndEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ThreeDSRequestorChallengeIndEnum? left, ThreeDSRequestorChallengeIndEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ThreeDSRequestorChallengeIndEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ThreeDSRequestorChallengeIndEnum?"/>.
             /// </summary>
@@ -145,7 +128,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ThreeDSRequestorChallengeIndEnum"/> to the json value.
             /// </summary>
@@ -156,30 +139,30 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ThreeDSRequestorChallengeIndEnum._01)
                     return "01";
-                
+
                 if (value == ThreeDSRequestorChallengeIndEnum._02)
                     return "02";
-                
+
                 if (value == ThreeDSRequestorChallengeIndEnum._03)
                     return "03";
-                
+
                 if (value == ThreeDSRequestorChallengeIndEnum._04)
                     return "04";
-                
+
                 if (value == ThreeDSRequestorChallengeIndEnum._05)
                     return "05";
-                
+
                 if (value == ThreeDSRequestorChallengeIndEnum._06)
                     return "06";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ThreeDSRequestorChallengeIndEnum.               
+            /// JsonConverter for writing ThreeDSRequestorChallengeIndEnum.
             /// </summary>
             public class ThreeDSRequestorChallengeIndEnumJsonConverter : JsonConverter<ThreeDSRequestorChallengeIndEnum>
             {
@@ -326,9 +309,18 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new CheckoutSessionThreeDS2RequestData(homePhone, mobilePhone, threeDSRequestorChallengeInd, workPhone);
+
+            var result = new CheckoutSessionThreeDS2RequestData();
+            if (homePhone.IsSet)
+                result.HomePhone = homePhone.Value;
+            if (mobilePhone.IsSet)
+                result.MobilePhone = mobilePhone.Value;
+            if (threeDSRequestorChallengeInd.IsSet)
+                result.ThreeDSRequestorChallengeInd = threeDSRequestorChallengeInd.Value;
+            if (workPhone.IsSet)
+                result.WorkPhone = workPhone.Value;
+            return result;
         }
 
         /// <summary>
@@ -339,13 +331,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CheckoutSessionThreeDS2RequestData checkoutSessionThreeDS2RequestData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, checkoutSessionThreeDS2RequestData, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -356,7 +348,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CheckoutSessionThreeDS2RequestData checkoutSessionThreeDS2RequestData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (checkoutSessionThreeDS2RequestData._HomePhoneOption.IsSet)
             {
                 writer.WritePropertyName("homePhone");
@@ -367,12 +359,12 @@ namespace Adyen.Checkout.Models
                 writer.WritePropertyName("mobilePhone");
                 JsonSerializer.Serialize(writer, checkoutSessionThreeDS2RequestData.MobilePhone, jsonSerializerOptions);
             }
-            if (checkoutSessionThreeDS2RequestData._ThreeDSRequestorChallengeIndOption.IsSet && checkoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeInd != null) 
+            if (checkoutSessionThreeDS2RequestData._ThreeDSRequestorChallengeIndOption.IsSet && checkoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeInd != null)
             {
                 string? threeDSRequestorChallengeIndRawValue = CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum.ToJsonValue(checkoutSessionThreeDS2RequestData._ThreeDSRequestorChallengeIndOption.Value!.Value);
                 writer.WriteString("threeDSRequestorChallengeInd", threeDSRequestorChallengeIndRawValue);
             }
-            
+
             if (checkoutSessionThreeDS2RequestData._WorkPhoneOption.IsSet)
             {
                 writer.WritePropertyName("workPhone");

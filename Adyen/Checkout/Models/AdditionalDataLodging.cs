@@ -34,53 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataLodging" /> class.
         /// </summary>
-        /// <param name="lodgingSpecialProgramCode">A code that corresponds to the category of lodging charges for the payment. Possible values: * 1: Lodging * 2: No show reservation * 3: Advanced deposit</param>
-        /// <param name="lodgingCheckInDate">The arrival date. * Date format: **yyyyMmDd**. For example, for 2023 April 22, **20230422**.</param>
-        /// <param name="lodgingCheckOutDate">The departure date. * Date format: **yyyyMmDd**. For example, for 2023 April 22, **20230422**.</param>
-        /// <param name="lodgingCustomerServiceTollFreeNumber">The toll-free phone number for the lodging. * Format: numeric * Max length: 17 characters. * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - * Must not be all zeros.</param>
-        /// <param name="lodgingFireSafetyActIndicator">Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Must be &#39;Y&#39; or &#39;N&#39;. * Format: alphabetic * Max length: 1 character</param>
-        /// <param name="lodgingFolioCashAdvances">The folio cash advances, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters</param>
-        /// <param name="lodgingFolioNumber">The card acceptor’s internal invoice or billing ID reference number. * Max length: 25 characters * Must not start with a space * Must not contain any special characters * Must not be all zeros.</param>
-        /// <param name="lodgingFoodBeverageCharges">Any charges for food and beverages associated with the booking, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters</param>
-        /// <param name="lodgingNoShowIndicator">Indicates if the customer didn&#39;t check in for their booking.  Possible values:  * **Y**: the customer didn&#39;t check in  * **N**: the customer checked in</param>
-        /// <param name="lodgingPrepaidExpenses">The prepaid expenses for the booking. * Format: numeric * Max length: 12 characters</param>
-        /// <param name="lodgingPropertyPhoneNumber">The lodging property location&#39;s phone number. * Format: numeric * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - * Must not be all zeros.</param>
-        /// <param name="lodgingRoom1NumberOfNights">The total number of nights the room is booked for. * Format: numeric * Must be a number between 0 and 99 * Max length: 4 characters</param>
-        /// <param name="lodgingRoom1Rate">The rate for the room, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number</param>
-        /// <param name="lodgingTotalRoomTax">The total room tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number</param>
-        /// <param name="lodgingTotalTax">The total tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number</param>
-        /// <param name="travelEntertainmentAuthDataDuration">The number of nights. This should be included in the auth message. * Format: numeric * Max length: 4 characters</param>
-        /// <param name="travelEntertainmentAuthDataMarket">Indicates what market-specific dataset will be submitted. Must be &#39;H&#39; for Hotel. This should be included in the auth message.  * Format: alphanumeric * Max length: 1 character</param>
-        [JsonConstructor]
-        public AdditionalDataLodging(Option<string?> lodgingSpecialProgramCode = default, Option<string?> lodgingCheckInDate = default, Option<string?> lodgingCheckOutDate = default, Option<string?> lodgingCustomerServiceTollFreeNumber = default, Option<string?> lodgingFireSafetyActIndicator = default, Option<string?> lodgingFolioCashAdvances = default, Option<string?> lodgingFolioNumber = default, Option<string?> lodgingFoodBeverageCharges = default, Option<string?> lodgingNoShowIndicator = default, Option<string?> lodgingPrepaidExpenses = default, Option<string?> lodgingPropertyPhoneNumber = default, Option<string?> lodgingRoom1NumberOfNights = default, Option<string?> lodgingRoom1Rate = default, Option<string?> lodgingTotalRoomTax = default, Option<string?> lodgingTotalTax = default, Option<string?> travelEntertainmentAuthDataDuration = default, Option<string?> travelEntertainmentAuthDataMarket = default)
-        {
-            _LodgingSpecialProgramCodeOption = lodgingSpecialProgramCode;
-            _LodgingCheckInDateOption = lodgingCheckInDate;
-            _LodgingCheckOutDateOption = lodgingCheckOutDate;
-            _LodgingCustomerServiceTollFreeNumberOption = lodgingCustomerServiceTollFreeNumber;
-            _LodgingFireSafetyActIndicatorOption = lodgingFireSafetyActIndicator;
-            _LodgingFolioCashAdvancesOption = lodgingFolioCashAdvances;
-            _LodgingFolioNumberOption = lodgingFolioNumber;
-            _LodgingFoodBeverageChargesOption = lodgingFoodBeverageCharges;
-            _LodgingNoShowIndicatorOption = lodgingNoShowIndicator;
-            _LodgingPrepaidExpensesOption = lodgingPrepaidExpenses;
-            _LodgingPropertyPhoneNumberOption = lodgingPropertyPhoneNumber;
-            _LodgingRoom1NumberOfNightsOption = lodgingRoom1NumberOfNights;
-            _LodgingRoom1RateOption = lodgingRoom1Rate;
-            _LodgingTotalRoomTaxOption = lodgingTotalRoomTax;
-            _LodgingTotalTaxOption = lodgingTotalTax;
-            _TravelEntertainmentAuthDataDurationOption = travelEntertainmentAuthDataDuration;
-            _TravelEntertainmentAuthDataMarketOption = travelEntertainmentAuthDataMarket;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public AdditionalDataLodging()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -462,9 +419,44 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new AdditionalDataLodging(lodgingSpecialProgramCode, lodgingCheckInDate, lodgingCheckOutDate, lodgingCustomerServiceTollFreeNumber, lodgingFireSafetyActIndicator, lodgingFolioCashAdvances, lodgingFolioNumber, lodgingFoodBeverageCharges, lodgingNoShowIndicator, lodgingPrepaidExpenses, lodgingPropertyPhoneNumber, lodgingRoom1NumberOfNights, lodgingRoom1Rate, lodgingTotalRoomTax, lodgingTotalTax, travelEntertainmentAuthDataDuration, travelEntertainmentAuthDataMarket);
+
+            var result = new AdditionalDataLodging();
+            if (lodgingSpecialProgramCode.IsSet)
+                result.LodgingSpecialProgramCode = lodgingSpecialProgramCode.Value;
+            if (lodgingCheckInDate.IsSet)
+                result.LodgingCheckInDate = lodgingCheckInDate.Value;
+            if (lodgingCheckOutDate.IsSet)
+                result.LodgingCheckOutDate = lodgingCheckOutDate.Value;
+            if (lodgingCustomerServiceTollFreeNumber.IsSet)
+                result.LodgingCustomerServiceTollFreeNumber = lodgingCustomerServiceTollFreeNumber.Value;
+            if (lodgingFireSafetyActIndicator.IsSet)
+                result.LodgingFireSafetyActIndicator = lodgingFireSafetyActIndicator.Value;
+            if (lodgingFolioCashAdvances.IsSet)
+                result.LodgingFolioCashAdvances = lodgingFolioCashAdvances.Value;
+            if (lodgingFolioNumber.IsSet)
+                result.LodgingFolioNumber = lodgingFolioNumber.Value;
+            if (lodgingFoodBeverageCharges.IsSet)
+                result.LodgingFoodBeverageCharges = lodgingFoodBeverageCharges.Value;
+            if (lodgingNoShowIndicator.IsSet)
+                result.LodgingNoShowIndicator = lodgingNoShowIndicator.Value;
+            if (lodgingPrepaidExpenses.IsSet)
+                result.LodgingPrepaidExpenses = lodgingPrepaidExpenses.Value;
+            if (lodgingPropertyPhoneNumber.IsSet)
+                result.LodgingPropertyPhoneNumber = lodgingPropertyPhoneNumber.Value;
+            if (lodgingRoom1NumberOfNights.IsSet)
+                result.LodgingRoom1NumberOfNights = lodgingRoom1NumberOfNights.Value;
+            if (lodgingRoom1Rate.IsSet)
+                result.LodgingRoom1Rate = lodgingRoom1Rate.Value;
+            if (lodgingTotalRoomTax.IsSet)
+                result.LodgingTotalRoomTax = lodgingTotalRoomTax.Value;
+            if (lodgingTotalTax.IsSet)
+                result.LodgingTotalTax = lodgingTotalTax.Value;
+            if (travelEntertainmentAuthDataDuration.IsSet)
+                result.TravelEntertainmentAuthDataDuration = travelEntertainmentAuthDataDuration.Value;
+            if (travelEntertainmentAuthDataMarket.IsSet)
+                result.TravelEntertainmentAuthDataMarket = travelEntertainmentAuthDataMarket.Value;
+            return result;
         }
 
         /// <summary>
@@ -475,13 +467,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, AdditionalDataLodging additionalDataLodging, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, additionalDataLodging, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -492,7 +484,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, AdditionalDataLodging additionalDataLodging, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (additionalDataLodging._LodgingSpecialProgramCodeOption.IsSet)
                 if (additionalDataLodging.LodgingSpecialProgramCode != null)
                     writer.WriteString("lodging.SpecialProgramCode", additionalDataLodging.LodgingSpecialProgramCode);

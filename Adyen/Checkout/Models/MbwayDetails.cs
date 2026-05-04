@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="MbwayDetails" /> class.
         /// </summary>
-        /// <param name="shopperEmail">shopperEmail</param>
-        /// <param name="telephoneNumber">telephoneNumber</param>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="type">**mbway** (default to TypeEnum.Mbway)</param>
-        [JsonConstructor]
-        public MbwayDetails(string shopperEmail, string telephoneNumber, Option<string?> checkoutAttemptId = default, Option<string?> sdkData = default, Option<TypeEnum?> type = default)
-        {
-            ShopperEmail = shopperEmail;
-            TelephoneNumber = telephoneNumber;
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _SdkDataOption = sdkData;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public MbwayDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -75,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.Mbway - mbway
             /// </summary>
             public static readonly TypeEnum Mbway = new("mbway");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -87,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -117,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -128,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Mbway)
                     return "mbway";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -289,14 +270,23 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!shopperEmail.IsSet)
                 throw new ArgumentException("Property is required for class MbwayDetails.", nameof(shopperEmail));
 
             if (!telephoneNumber.IsSet)
                 throw new ArgumentException("Property is required for class MbwayDetails.", nameof(telephoneNumber));
 
-            return new MbwayDetails(shopperEmail.Value!, telephoneNumber.Value!, checkoutAttemptId, sdkData, type);
+            var result = new MbwayDetails();
+            result.ShopperEmail = shopperEmail.Value!;
+            result.TelephoneNumber = telephoneNumber.Value!;
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -307,13 +297,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, MbwayDetails mbwayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, mbwayDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -324,7 +314,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, MbwayDetails mbwayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (mbwayDetails.ShopperEmail != null)
                 writer.WriteString("shopperEmail", mbwayDetails.ShopperEmail);
 
@@ -339,7 +329,7 @@ namespace Adyen.Checkout.Models
                 if (mbwayDetails.SdkData != null)
                     writer.WriteString("sdkData", mbwayDetails.SdkData);
 
-            if (mbwayDetails._TypeOption.IsSet && mbwayDetails.Type != null) 
+            if (mbwayDetails._TypeOption.IsSet && mbwayDetails.Type != null)
             {
                 string? typeRawValue = MbwayDetails.TypeEnum.ToJsonValue(mbwayDetails._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);

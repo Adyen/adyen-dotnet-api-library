@@ -34,31 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataWallets" /> class.
         /// </summary>
-        /// <param name="androidpayToken">The Android Pay token retrieved from the SDK.</param>
-        /// <param name="masterpassTransactionId">The Mastercard Masterpass Transaction ID retrieved from the SDK.</param>
-        /// <param name="paymentToken">The Apple Pay token retrieved from the SDK.</param>
-        /// <param name="paywithgoogleToken">The Google Pay token retrieved from the SDK.</param>
-        /// <param name="samsungpayToken">The Samsung Pay token retrieved from the SDK.</param>
-        /// <param name="visacheckoutCallId">The Visa Checkout Call ID retrieved from the SDK.</param>
-        [JsonConstructor]
-        public AdditionalDataWallets(Option<string?> androidpayToken = default, Option<string?> masterpassTransactionId = default, Option<string?> paymentToken = default, Option<string?> paywithgoogleToken = default, Option<string?> samsungpayToken = default, Option<string?> visacheckoutCallId = default)
-        {
-            _AndroidpayTokenOption = androidpayToken;
-            _MasterpassTransactionIdOption = masterpassTransactionId;
-            _PaymentTokenOption = paymentToken;
-            _PaywithgoogleTokenOption = paywithgoogleToken;
-            _SamsungpayTokenOption = samsungpayToken;
-            _VisacheckoutCallIdOption = visacheckoutCallId;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public AdditionalDataWallets()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -231,9 +210,22 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new AdditionalDataWallets(androidpayToken, masterpassTransactionId, paymentToken, paywithgoogleToken, samsungpayToken, visacheckoutCallId);
+
+            var result = new AdditionalDataWallets();
+            if (androidpayToken.IsSet)
+                result.AndroidpayToken = androidpayToken.Value;
+            if (masterpassTransactionId.IsSet)
+                result.MasterpassTransactionId = masterpassTransactionId.Value;
+            if (paymentToken.IsSet)
+                result.PaymentToken = paymentToken.Value;
+            if (paywithgoogleToken.IsSet)
+                result.PaywithgoogleToken = paywithgoogleToken.Value;
+            if (samsungpayToken.IsSet)
+                result.SamsungpayToken = samsungpayToken.Value;
+            if (visacheckoutCallId.IsSet)
+                result.VisacheckoutCallId = visacheckoutCallId.Value;
+            return result;
         }
 
         /// <summary>
@@ -244,13 +236,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, AdditionalDataWallets additionalDataWallets, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, additionalDataWallets, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -261,7 +253,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, AdditionalDataWallets additionalDataWallets, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (additionalDataWallets._AndroidpayTokenOption.IsSet)
                 if (additionalDataWallets.AndroidpayToken != null)
                     writer.WriteString("androidpay.token", additionalDataWallets.AndroidpayToken);

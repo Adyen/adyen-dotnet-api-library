@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="VisaCheckoutDetails" /> class.
         /// </summary>
-        /// <param name="visaCheckoutCallId">The Visa Click to Pay Call ID value. When your shopper selects a payment and/or a shipping address from Visa Click to Pay, you will receive a Visa Click to Pay Call ID.</param>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="fundingSource">The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="type">**visacheckout** (default to TypeEnum.Visacheckout)</param>
-        [JsonConstructor]
-        public VisaCheckoutDetails(string visaCheckoutCallId, Option<string?> checkoutAttemptId = default, Option<FundingSourceEnum?> fundingSource = default, Option<string?> sdkData = default, Option<TypeEnum?> type = default)
-        {
-            VisaCheckoutCallId = visaCheckoutCallId;
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _FundingSourceOption = fundingSource;
-            _SdkDataOption = sdkData;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public VisaCheckoutDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -85,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// FundingSourceEnum.Prepaid - prepaid
             /// </summary>
             public static readonly FundingSourceEnum Prepaid = new("prepaid");
-        
+
             private FundingSourceEnum(string? value)
             {
                 Value = value;
@@ -97,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="FundingSourceEnum"/> instance initialized with the string value.</returns>
             public static implicit operator FundingSourceEnum?(string? value) => value == null ? null : new FundingSourceEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="FundingSourceEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="FundingSourceEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="FundingSourceEnum"/> instance./// </returns>
             public static implicit operator string?(FundingSourceEnum? option) => option?.Value;
-        
+
             public static bool operator ==(FundingSourceEnum? left, FundingSourceEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(FundingSourceEnum? left, FundingSourceEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is FundingSourceEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="FundingSourceEnum?"/>.
             /// </summary>
@@ -129,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="FundingSourceEnum"/> to the json value.
             /// </summary>
@@ -140,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == FundingSourceEnum.Credit)
                     return "credit";
-                
+
                 if (value == FundingSourceEnum.Debit)
                     return "debit";
-                
+
                 if (value == FundingSourceEnum.Prepaid)
                     return "prepaid";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing FundingSourceEnum.               
+            /// JsonConverter for writing FundingSourceEnum.
             /// </summary>
             public class FundingSourceEnumJsonConverter : JsonConverter<FundingSourceEnum>
             {
@@ -201,7 +182,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.Visacheckout - visacheckout
             /// </summary>
             public static readonly TypeEnum Visacheckout = new("visacheckout");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -213,24 +194,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -243,7 +224,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -254,15 +235,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Visacheckout)
                     return "visacheckout";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -411,11 +392,21 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!visaCheckoutCallId.IsSet)
                 throw new ArgumentException("Property is required for class VisaCheckoutDetails.", nameof(visaCheckoutCallId));
 
-            return new VisaCheckoutDetails(visaCheckoutCallId.Value!, checkoutAttemptId, fundingSource, sdkData, type);
+            var result = new VisaCheckoutDetails();
+            result.VisaCheckoutCallId = visaCheckoutCallId.Value!;
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (fundingSource.IsSet)
+                result.FundingSource = fundingSource.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -426,13 +417,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, VisaCheckoutDetails visaCheckoutDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, visaCheckoutDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -443,7 +434,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, VisaCheckoutDetails visaCheckoutDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (visaCheckoutDetails.VisaCheckoutCallId != null)
                 writer.WriteString("visaCheckoutCallId", visaCheckoutDetails.VisaCheckoutCallId);
 
@@ -451,17 +442,17 @@ namespace Adyen.Checkout.Models
                 if (visaCheckoutDetails.CheckoutAttemptId != null)
                     writer.WriteString("checkoutAttemptId", visaCheckoutDetails.CheckoutAttemptId);
 
-            if (visaCheckoutDetails._FundingSourceOption.IsSet && visaCheckoutDetails.FundingSource != null) 
+            if (visaCheckoutDetails._FundingSourceOption.IsSet && visaCheckoutDetails.FundingSource != null)
             {
                 string? fundingSourceRawValue = VisaCheckoutDetails.FundingSourceEnum.ToJsonValue(visaCheckoutDetails._FundingSourceOption.Value!.Value);
                 writer.WriteString("fundingSource", fundingSourceRawValue);
             }
-            
+
             if (visaCheckoutDetails._SdkDataOption.IsSet)
                 if (visaCheckoutDetails.SdkData != null)
                     writer.WriteString("sdkData", visaCheckoutDetails.SdkData);
 
-            if (visaCheckoutDetails._TypeOption.IsSet && visaCheckoutDetails.Type != null) 
+            if (visaCheckoutDetails._TypeOption.IsSet && visaCheckoutDetails.Type != null)
             {
                 string? typeRawValue = VisaCheckoutDetails.TypeEnum.ToJsonValue(visaCheckoutDetails._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);

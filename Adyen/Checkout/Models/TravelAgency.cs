@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="TravelAgency" /> class.
         /// </summary>
-        /// <param name="code">The unique identifier from IATA or ARC for the travel agency that issues the ticket. * Encoding: ASCII * minLength: 1 character * maxLength: 8 characters * Must not start with a space or be all spaces. * Must not be all zeros.</param>
-        /// <param name="name">The name of the travel agency.  * Encoding: ASCII * minLength: 1 character * maxLength: 25 characters * Must not start with a space or be all spaces. * Must not be all zeros.</param>
-        [JsonConstructor]
-        public TravelAgency(Option<string?> code = default, Option<string?> name = default)
-        {
-            _CodeOption = code;
-            _NameOption = name;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public TravelAgency()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -147,9 +134,14 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new TravelAgency(code, name);
+
+            var result = new TravelAgency();
+            if (code.IsSet)
+                result.Code = code.Value;
+            if (name.IsSet)
+                result.Name = name.Value;
+            return result;
         }
 
         /// <summary>
@@ -160,13 +152,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, TravelAgency travelAgency, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, travelAgency, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -177,7 +169,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, TravelAgency travelAgency, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (travelAgency._CodeOption.IsSet)
                 if (travelAgency.Code != null)
                     writer.WriteString("code", travelAgency.Code);

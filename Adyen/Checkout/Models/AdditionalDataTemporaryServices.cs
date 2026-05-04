@@ -34,37 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataTemporaryServices" /> class.
         /// </summary>
-        /// <param name="enhancedSchemeDataCustomerReference">The customer code, if supplied by a customer. * Encoding: ASCII * maxLength: 25</param>
-        /// <param name="enhancedSchemeDataEmployeeName">The name or ID of the person working in a temporary capacity. * maxLength: 40.   * Must not be all spaces.  *Must not be all zeros.</param>
-        /// <param name="enhancedSchemeDataJobDescription">The job description of the person working in a temporary capacity. * maxLength: 40  * Must not be all spaces.  *Must not be all zeros.</param>
-        /// <param name="enhancedSchemeDataRegularHoursRate">The amount paid for regular hours worked, [minor units](https://docs.adyen.com/development-resources/currency-codes). * maxLength: 7 * Must not be empty * Can be all zeros</param>
-        /// <param name="enhancedSchemeDataRegularHoursWorked">The hours worked. * maxLength: 7 * Must not be empty * Can be all zeros</param>
-        /// <param name="enhancedSchemeDataRequestName">The name of the person requesting temporary services. * maxLength: 40 * Must not be all zeros * Must not be all spaces</param>
-        /// <param name="enhancedSchemeDataTempStartDate">The billing period start date. * Format: ddMMyy * maxLength: 6</param>
-        /// <param name="enhancedSchemeDataTempWeekEnding">The billing period end date. * Format: ddMMyy * maxLength: 6</param>
-        /// <param name="enhancedSchemeDataTotalTaxAmount">The total tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). For example, 2000 means USD 20.00 * maxLength: 12</param>
-        [JsonConstructor]
-        public AdditionalDataTemporaryServices(Option<string?> enhancedSchemeDataCustomerReference = default, Option<string?> enhancedSchemeDataEmployeeName = default, Option<string?> enhancedSchemeDataJobDescription = default, Option<string?> enhancedSchemeDataRegularHoursRate = default, Option<string?> enhancedSchemeDataRegularHoursWorked = default, Option<string?> enhancedSchemeDataRequestName = default, Option<string?> enhancedSchemeDataTempStartDate = default, Option<string?> enhancedSchemeDataTempWeekEnding = default, Option<string?> enhancedSchemeDataTotalTaxAmount = default)
-        {
-            _EnhancedSchemeDataCustomerReferenceOption = enhancedSchemeDataCustomerReference;
-            _EnhancedSchemeDataEmployeeNameOption = enhancedSchemeDataEmployeeName;
-            _EnhancedSchemeDataJobDescriptionOption = enhancedSchemeDataJobDescription;
-            _EnhancedSchemeDataRegularHoursRateOption = enhancedSchemeDataRegularHoursRate;
-            _EnhancedSchemeDataRegularHoursWorkedOption = enhancedSchemeDataRegularHoursWorked;
-            _EnhancedSchemeDataRequestNameOption = enhancedSchemeDataRequestName;
-            _EnhancedSchemeDataTempStartDateOption = enhancedSchemeDataTempStartDate;
-            _EnhancedSchemeDataTempWeekEndingOption = enhancedSchemeDataTempWeekEnding;
-            _EnhancedSchemeDataTotalTaxAmountOption = enhancedSchemeDataTotalTaxAmount;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public AdditionalDataTemporaryServices()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -294,9 +267,28 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new AdditionalDataTemporaryServices(enhancedSchemeDataCustomerReference, enhancedSchemeDataEmployeeName, enhancedSchemeDataJobDescription, enhancedSchemeDataRegularHoursRate, enhancedSchemeDataRegularHoursWorked, enhancedSchemeDataRequestName, enhancedSchemeDataTempStartDate, enhancedSchemeDataTempWeekEnding, enhancedSchemeDataTotalTaxAmount);
+
+            var result = new AdditionalDataTemporaryServices();
+            if (enhancedSchemeDataCustomerReference.IsSet)
+                result.EnhancedSchemeDataCustomerReference = enhancedSchemeDataCustomerReference.Value;
+            if (enhancedSchemeDataEmployeeName.IsSet)
+                result.EnhancedSchemeDataEmployeeName = enhancedSchemeDataEmployeeName.Value;
+            if (enhancedSchemeDataJobDescription.IsSet)
+                result.EnhancedSchemeDataJobDescription = enhancedSchemeDataJobDescription.Value;
+            if (enhancedSchemeDataRegularHoursRate.IsSet)
+                result.EnhancedSchemeDataRegularHoursRate = enhancedSchemeDataRegularHoursRate.Value;
+            if (enhancedSchemeDataRegularHoursWorked.IsSet)
+                result.EnhancedSchemeDataRegularHoursWorked = enhancedSchemeDataRegularHoursWorked.Value;
+            if (enhancedSchemeDataRequestName.IsSet)
+                result.EnhancedSchemeDataRequestName = enhancedSchemeDataRequestName.Value;
+            if (enhancedSchemeDataTempStartDate.IsSet)
+                result.EnhancedSchemeDataTempStartDate = enhancedSchemeDataTempStartDate.Value;
+            if (enhancedSchemeDataTempWeekEnding.IsSet)
+                result.EnhancedSchemeDataTempWeekEnding = enhancedSchemeDataTempWeekEnding.Value;
+            if (enhancedSchemeDataTotalTaxAmount.IsSet)
+                result.EnhancedSchemeDataTotalTaxAmount = enhancedSchemeDataTotalTaxAmount.Value;
+            return result;
         }
 
         /// <summary>
@@ -307,13 +299,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, AdditionalDataTemporaryServices additionalDataTemporaryServices, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, additionalDataTemporaryServices, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -324,7 +316,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, AdditionalDataTemporaryServices additionalDataTemporaryServices, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (additionalDataTemporaryServices._EnhancedSchemeDataCustomerReferenceOption.IsSet)
                 if (additionalDataTemporaryServices.EnhancedSchemeDataCustomerReference != null)
                     writer.WriteString("enhancedSchemeData.customerReference", additionalDataTemporaryServices.EnhancedSchemeDataCustomerReference);

@@ -34,27 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="EBankingFinlandDetails" /> class.
         /// </summary>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="issuer">The Ebanking Finland issuer value of the shopper&#39;s selected bank.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="type">**ebanking_FI** (default to TypeEnum.EbankingFI)</param>
-        [JsonConstructor]
-        public EBankingFinlandDetails(Option<string?> checkoutAttemptId = default, Option<string?> issuer = default, Option<string?> sdkData = default, TypeEnum type = default)
-        {
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _IssuerOption = issuer;
-            _SdkDataOption = sdkData;
-            Type = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public EBankingFinlandDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -73,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.EbankingFI - ebanking_FI
             /// </summary>
             public static readonly TypeEnum EbankingFI = new("ebanking_FI");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -85,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -115,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -126,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.EbankingFI)
                     return "ebanking_FI";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -277,11 +260,19 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class EBankingFinlandDetails.", nameof(type));
 
-            return new EBankingFinlandDetails(checkoutAttemptId, issuer, sdkData, type.Value!.Value!);
+            var result = new EBankingFinlandDetails();
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (issuer.IsSet)
+                result.Issuer = issuer.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            result.Type = type.Value!.Value!;
+            return result;
         }
 
         /// <summary>
@@ -292,13 +283,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, EBankingFinlandDetails eBankingFinlandDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, eBankingFinlandDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -309,7 +300,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, EBankingFinlandDetails eBankingFinlandDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (eBankingFinlandDetails._CheckoutAttemptIdOption.IsSet)
                 if (eBankingFinlandDetails.CheckoutAttemptId != null)
                     writer.WriteString("checkoutAttemptId", eBankingFinlandDetails.CheckoutAttemptId);
@@ -322,7 +313,7 @@ namespace Adyen.Checkout.Models
                 if (eBankingFinlandDetails.SdkData != null)
                     writer.WriteString("sdkData", eBankingFinlandDetails.SdkData);
 
-            if (eBankingFinlandDetails.Type != null) 
+            if (eBankingFinlandDetails.Type != null)
             {
                 string? typeRawValue = EBankingFinlandDetails.TypeEnum.ToJsonValue(eBankingFinlandDetails.Type);
                 writer.WriteString("type", typeRawValue);

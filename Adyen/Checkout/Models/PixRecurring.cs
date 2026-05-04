@@ -34,39 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PixRecurring" /> class.
         /// </summary>
-        /// <param name="billingDate">The date on which the shopper&#39;s payment method will be charged, in YYYY-MM-DD format.</param>
-        /// <param name="businessDayOnly">Flag used to define whether liquidation can happen only on business days</param>
-        /// <param name="endsAt">End date of the billing plan, in YYYY-MM-DD format. The end date must align with the frequency and the start date of the billing plan. If left blank, the subscription will continue indefinitely unless it is cancelled by the shopper.</param>
-        /// <param name="frequency">The frequency at which the shopper will be charged.</param>
-        /// <param name="minAmount">minAmount</param>
-        /// <param name="originalPspReference">The pspReference for the failed recurring payment. Find this in AUTHORISATION webhook you received after the billing date.</param>
-        /// <param name="recurringAmount">recurringAmount</param>
-        /// <param name="recurringStatement">The text that that will be shown on the shopper&#39;s bank statement for the recurring payments. We recommend to add a descriptive text about the subscription to let your shoppers recognize your recurring payments. Maximum length: 35 characters.</param>
-        /// <param name="retryPolicy">When set to true, you can retry for failed recurring payments. The default value is true.</param>
-        /// <param name="startsAt">Start date of the billing plan, in YYYY-MM-DD format. The default value is the transaction date.</param>
-        [JsonConstructor]
-        public PixRecurring(Option<string?> billingDate = default, Option<bool?> businessDayOnly = default, Option<string?> endsAt = default, Option<FrequencyEnum?> frequency = default, Option<Amount?> minAmount = default, Option<string?> originalPspReference = default, Option<Amount?> recurringAmount = default, Option<string?> recurringStatement = default, Option<bool?> retryPolicy = default, Option<string?> startsAt = default)
-        {
-            _BillingDateOption = billingDate;
-            _BusinessDayOnlyOption = businessDayOnly;
-            _EndsAtOption = endsAt;
-            _FrequencyOption = frequency;
-            _MinAmountOption = minAmount;
-            _OriginalPspReferenceOption = originalPspReference;
-            _RecurringAmountOption = recurringAmount;
-            _RecurringStatementOption = recurringStatement;
-            _RetryPolicyOption = retryPolicy;
-            _StartsAtOption = startsAt;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PixRecurring()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -105,7 +76,7 @@ namespace Adyen.Checkout.Models
             /// FrequencyEnum.Yearly - yearly
             /// </summary>
             public static readonly FrequencyEnum Yearly = new("yearly");
-        
+
             private FrequencyEnum(string? value)
             {
                 Value = value;
@@ -117,24 +88,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="FrequencyEnum"/> instance initialized with the string value.</returns>
             public static implicit operator FrequencyEnum?(string? value) => value == null ? null : new FrequencyEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="FrequencyEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="FrequencyEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="FrequencyEnum"/> instance./// </returns>
             public static implicit operator string?(FrequencyEnum? option) => option?.Value;
-        
+
             public static bool operator ==(FrequencyEnum? left, FrequencyEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(FrequencyEnum? left, FrequencyEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is FrequencyEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="FrequencyEnum?"/>.
             /// </summary>
@@ -151,7 +122,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="FrequencyEnum"/> to the json value.
             /// </summary>
@@ -162,27 +133,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == FrequencyEnum.Weekly)
                     return "weekly";
-                
+
                 if (value == FrequencyEnum.Monthly)
                     return "monthly";
-                
+
                 if (value == FrequencyEnum.Quarterly)
                     return "quarterly";
-                
+
                 if (value == FrequencyEnum.HalfYearly)
                     return "half-yearly";
-                
+
                 if (value == FrequencyEnum.Yearly)
                     return "yearly";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing FrequencyEnum.               
+            /// JsonConverter for writing FrequencyEnum.
             /// </summary>
             public class FrequencyEnumJsonConverter : JsonConverter<FrequencyEnum>
             {
@@ -444,9 +415,30 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new PixRecurring(billingDate, businessDayOnly, endsAt, frequency, minAmount, originalPspReference, recurringAmount, recurringStatement, retryPolicy, startsAt);
+
+            var result = new PixRecurring();
+            if (billingDate.IsSet)
+                result.BillingDate = billingDate.Value;
+            if (businessDayOnly.IsSet)
+                result.BusinessDayOnly = businessDayOnly.Value;
+            if (endsAt.IsSet)
+                result.EndsAt = endsAt.Value;
+            if (frequency.IsSet)
+                result.Frequency = frequency.Value;
+            if (minAmount.IsSet)
+                result.MinAmount = minAmount.Value;
+            if (originalPspReference.IsSet)
+                result.OriginalPspReference = originalPspReference.Value;
+            if (recurringAmount.IsSet)
+                result.RecurringAmount = recurringAmount.Value;
+            if (recurringStatement.IsSet)
+                result.RecurringStatement = recurringStatement.Value;
+            if (retryPolicy.IsSet)
+                result.RetryPolicy = retryPolicy.Value;
+            if (startsAt.IsSet)
+                result.StartsAt = startsAt.Value;
+            return result;
         }
 
         /// <summary>
@@ -457,13 +449,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PixRecurring pixRecurring, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, pixRecurring, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -474,7 +466,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PixRecurring pixRecurring, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (pixRecurring._BillingDateOption.IsSet)
                 if (pixRecurring.BillingDate != null)
                     writer.WriteString("billingDate", pixRecurring.BillingDate);
@@ -487,12 +479,12 @@ namespace Adyen.Checkout.Models
                 if (pixRecurring.EndsAt != null)
                     writer.WriteString("endsAt", pixRecurring.EndsAt);
 
-            if (pixRecurring._FrequencyOption.IsSet && pixRecurring.Frequency != null) 
+            if (pixRecurring._FrequencyOption.IsSet && pixRecurring.Frequency != null)
             {
                 string? frequencyRawValue = PixRecurring.FrequencyEnum.ToJsonValue(pixRecurring._FrequencyOption.Value!.Value);
                 writer.WriteString("frequency", frequencyRawValue);
             }
-            
+
             if (pixRecurring._MinAmountOption.IsSet)
             {
                 writer.WritePropertyName("minAmount");

@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CardDetailsRequest" /> class.
         /// </summary>
-        /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction.</param>
-        /// <param name="cardNumber">A minimum of the first six digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the &#x60;encryptedCardNumber&#x60; field.</param>
-        /// <param name="countryCode">The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE</param>
-        /// <param name="encryptedCardNumber">The encrypted card number.</param>
-        /// <param name="supportedBrands">The card brands you support. This is the [&#x60;brands&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/paymentMethods#responses-200-paymentMethods-brands) array from your [&#x60;/paymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.   If not included, our API uses the ones configured for your merchant account and, if provided, the country code.</param>
-        [JsonConstructor]
-        public CardDetailsRequest(string merchantAccount, Option<string?> cardNumber = default, Option<string?> countryCode = default, Option<string?> encryptedCardNumber = default, Option<List<string>?> supportedBrands = default)
-        {
-            MerchantAccount = merchantAccount;
-            _CardNumberOption = cardNumber;
-            _CountryCodeOption = countryCode;
-            _EncryptedCardNumberOption = encryptedCardNumber;
-            _SupportedBrandsOption = supportedBrands;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CardDetailsRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -203,11 +184,21 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!merchantAccount.IsSet)
                 throw new ArgumentException("Property is required for class CardDetailsRequest.", nameof(merchantAccount));
 
-            return new CardDetailsRequest(merchantAccount.Value!, cardNumber, countryCode, encryptedCardNumber, supportedBrands);
+            var result = new CardDetailsRequest();
+            result.MerchantAccount = merchantAccount.Value!;
+            if (cardNumber.IsSet)
+                result.CardNumber = cardNumber.Value;
+            if (countryCode.IsSet)
+                result.CountryCode = countryCode.Value;
+            if (encryptedCardNumber.IsSet)
+                result.EncryptedCardNumber = encryptedCardNumber.Value;
+            if (supportedBrands.IsSet)
+                result.SupportedBrands = supportedBrands.Value;
+            return result;
         }
 
         /// <summary>
@@ -218,13 +209,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CardDetailsRequest cardDetailsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, cardDetailsRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -235,7 +226,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CardDetailsRequest cardDetailsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (cardDetailsRequest.MerchantAccount != null)
                 writer.WriteString("merchantAccount", cardDetailsRequest.MerchantAccount);
 

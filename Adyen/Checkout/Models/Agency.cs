@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Agency" /> class.
         /// </summary>
-        /// <param name="invoiceNumber">The reference number for the invoice, issued by the agency. * Encoding: ASCII * minLength: 1 character * maxLength: 6 characters</param>
-        /// <param name="planName">The two-letter agency plan identifier. * Encoding: ASCII * minLength: 2 characters * maxLength: 2 characters</param>
-        [JsonConstructor]
-        public Agency(Option<string?> invoiceNumber = default, Option<string?> planName = default)
-        {
-            _InvoiceNumberOption = invoiceNumber;
-            _PlanNameOption = planName;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public Agency()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -147,9 +134,14 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new Agency(invoiceNumber, planName);
+
+            var result = new Agency();
+            if (invoiceNumber.IsSet)
+                result.InvoiceNumber = invoiceNumber.Value;
+            if (planName.IsSet)
+                result.PlanName = planName.Value;
+            return result;
         }
 
         /// <summary>
@@ -160,13 +152,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, Agency agency, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, agency, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -177,7 +169,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, Agency agency, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (agency._InvoiceNumberOption.IsSet)
                 if (agency.InvoiceNumber != null)
                     writer.WriteString("invoiceNumber", agency.InvoiceNumber);

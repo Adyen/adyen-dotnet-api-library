@@ -34,31 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataBillingAddress" /> class.
         /// </summary>
-        /// <param name="billingAddressCity">The billing address city passed in the payment request.</param>
-        /// <param name="billingAddressCountry">The billing address country passed in the payment request.  Example: NL</param>
-        /// <param name="billingAddressHouseNumberOrName">The billing address house number or name passed in the payment request.</param>
-        /// <param name="billingAddressPostalCode">The billing address postal code passed in the payment request.  Example: 1011 DJ</param>
-        /// <param name="billingAddressStateOrProvince">The billing address state or province passed in the payment request.  Example: NH</param>
-        /// <param name="billingAddressStreet">The billing address street passed in the payment request.</param>
-        [JsonConstructor]
-        public ResponseAdditionalDataBillingAddress(Option<string?> billingAddressCity = default, Option<string?> billingAddressCountry = default, Option<string?> billingAddressHouseNumberOrName = default, Option<string?> billingAddressPostalCode = default, Option<string?> billingAddressStateOrProvince = default, Option<string?> billingAddressStreet = default)
-        {
-            _BillingAddressCityOption = billingAddressCity;
-            _BillingAddressCountryOption = billingAddressCountry;
-            _BillingAddressHouseNumberOrNameOption = billingAddressHouseNumberOrName;
-            _BillingAddressPostalCodeOption = billingAddressPostalCode;
-            _BillingAddressStateOrProvinceOption = billingAddressStateOrProvince;
-            _BillingAddressStreetOption = billingAddressStreet;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ResponseAdditionalDataBillingAddress()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -231,9 +210,22 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ResponseAdditionalDataBillingAddress(billingAddressCity, billingAddressCountry, billingAddressHouseNumberOrName, billingAddressPostalCode, billingAddressStateOrProvince, billingAddressStreet);
+
+            var result = new ResponseAdditionalDataBillingAddress();
+            if (billingAddressCity.IsSet)
+                result.BillingAddressCity = billingAddressCity.Value;
+            if (billingAddressCountry.IsSet)
+                result.BillingAddressCountry = billingAddressCountry.Value;
+            if (billingAddressHouseNumberOrName.IsSet)
+                result.BillingAddressHouseNumberOrName = billingAddressHouseNumberOrName.Value;
+            if (billingAddressPostalCode.IsSet)
+                result.BillingAddressPostalCode = billingAddressPostalCode.Value;
+            if (billingAddressStateOrProvince.IsSet)
+                result.BillingAddressStateOrProvince = billingAddressStateOrProvince.Value;
+            if (billingAddressStreet.IsSet)
+                result.BillingAddressStreet = billingAddressStreet.Value;
+            return result;
         }
 
         /// <summary>
@@ -244,13 +236,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ResponseAdditionalDataBillingAddress responseAdditionalDataBillingAddress, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, responseAdditionalDataBillingAddress, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -261,7 +253,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ResponseAdditionalDataBillingAddress responseAdditionalDataBillingAddress, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (responseAdditionalDataBillingAddress._BillingAddressCityOption.IsSet)
                 if (responseAdditionalDataBillingAddress.BillingAddressCity != null)
                     writer.WriteString("billingAddress.city", responseAdditionalDataBillingAddress.BillingAddressCity);

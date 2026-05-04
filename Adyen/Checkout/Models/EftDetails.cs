@@ -34,37 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="EftDetails" /> class.
         /// </summary>
-        /// <param name="bankAccountNumber">The bank account number (without separators).</param>
-        /// <param name="bankCode">The financial institution code.</param>
-        /// <param name="bankLocationId">The bank routing number of the account.</param>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="ownerName">The name of the bank account holder. If you submit a name with non-Latin characters, we automatically replace some of them with corresponding Latin characters to meet the FATF recommendations. For example: * χ12 is converted to ch12. * üA is converted to euA. * Peter Møller is converted to Peter Mller, because banks don&#39;t accept &#39;ø&#39;. After replacement, the ownerName must have at least three alphanumeric characters (A-Z, a-z, 0-9), and at least one of them must be a valid Latin character (A-Z, a-z). For example: * John17 - allowed. * J17 - allowed. * 171 - not allowed. * John-7 - allowed. &gt; If provided details don&#39;t match the required format, the response returns the error message: 203 &#39;Invalid bank account holder name&#39;.</param>
-        /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="type">**eft** (default to TypeEnum.EftDirectdebitCA)</param>
-        [JsonConstructor]
-        public EftDetails(Option<string?> bankAccountNumber = default, Option<string?> bankCode = default, Option<string?> bankLocationId = default, Option<string?> checkoutAttemptId = default, Option<string?> ownerName = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<TypeEnum?> type = default)
-        {
-            _BankAccountNumberOption = bankAccountNumber;
-            _BankCodeOption = bankCode;
-            _BankLocationIdOption = bankLocationId;
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _OwnerNameOption = ownerName;
-            _RecurringDetailReferenceOption = recurringDetailReference;
-            _SdkDataOption = sdkData;
-            _StoredPaymentMethodIdOption = storedPaymentMethodId;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public EftDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -83,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.EftDirectdebitCA - eft_directdebit_CA
             /// </summary>
             public static readonly TypeEnum EftDirectdebitCA = new("eft_directdebit_CA");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -95,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -125,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -136,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.EftDirectdebitCA)
                     return "eft_directdebit_CA";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -390,9 +363,28 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new EftDetails(bankAccountNumber, bankCode, bankLocationId, checkoutAttemptId, ownerName, recurringDetailReference, sdkData, storedPaymentMethodId, type);
+
+            var result = new EftDetails();
+            if (bankAccountNumber.IsSet)
+                result.BankAccountNumber = bankAccountNumber.Value;
+            if (bankCode.IsSet)
+                result.BankCode = bankCode.Value;
+            if (bankLocationId.IsSet)
+                result.BankLocationId = bankLocationId.Value;
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (ownerName.IsSet)
+                result.OwnerName = ownerName.Value;
+            if (recurringDetailReference.IsSet)
+                result.RecurringDetailReference = recurringDetailReference.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (storedPaymentMethodId.IsSet)
+                result.StoredPaymentMethodId = storedPaymentMethodId.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -403,13 +395,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, EftDetails eftDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, eftDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -420,7 +412,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, EftDetails eftDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (eftDetails._BankAccountNumberOption.IsSet)
                 if (eftDetails.BankAccountNumber != null)
                     writer.WriteString("bankAccountNumber", eftDetails.BankAccountNumber);
@@ -453,7 +445,7 @@ namespace Adyen.Checkout.Models
                 if (eftDetails.StoredPaymentMethodId != null)
                     writer.WriteString("storedPaymentMethodId", eftDetails.StoredPaymentMethodId);
 
-            if (eftDetails._TypeOption.IsSet && eftDetails.Type != null) 
+            if (eftDetails._TypeOption.IsSet && eftDetails.Type != null)
             {
                 string? typeRawValue = EftDetails.TypeEnum.ToJsonValue(eftDetails._TypeOption.Value!.Value);
                 writer.WriteString("type", typeRawValue);

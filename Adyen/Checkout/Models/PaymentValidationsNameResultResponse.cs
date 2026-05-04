@@ -34,27 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentValidationsNameResultResponse" /> class.
         /// </summary>
-        /// <param name="firstName">Informs you if the first name your shopper provided matches the cardholder first name on file at the issuing bank. The first name is only validated for Visa. Possible values:  **match**, **partialMatch**, **noMatch**</param>
-        /// <param name="fullName">Informs you if the full name your shopper provided matches the cardholder name on file at the issuing bank. The full name is the only field that is validated for Mastercard. Possible values:  **match**, **partialMatch**, **noMatch** </param>
-        /// <param name="lastName">Informs you if the last name your shopper provided matches the cardholder last name on file at the issuing bank. The last name is only validated for Visa. Possible values:  **match**, **partialMatch**, **noMatch**</param>
-        /// <param name="middleName">Informs you if the middle name your shopper provided matches the cardholder middle name on file at the issuing bank. The middle name is only validated for Visa. Possible values:  **match**, **partialMatch**, **noMatch**</param>
-        [JsonConstructor]
-        public PaymentValidationsNameResultResponse(Option<string?> firstName = default, Option<string?> fullName = default, Option<string?> lastName = default, Option<string?> middleName = default)
-        {
-            _FirstNameOption = firstName;
-            _FullNameOption = fullName;
-            _LastNameOption = lastName;
-            _MiddleNameOption = middleName;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentValidationsNameResultResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -79,7 +62,7 @@ namespace Adyen.Checkout.Models
         public Option<string?> _FullNameOption { get; private set; }
 
         /// <summary>
-        /// Informs you if the full name your shopper provided matches the cardholder name on file at the issuing bank. The full name is the only field that is validated for Mastercard. Possible values:  **match**, **partialMatch**, **noMatch** 
+        /// Informs you if the full name your shopper provided matches the cardholder name on file at the issuing bank. The full name is the only field that is validated for Mastercard. Possible values:  **match**, **partialMatch**, **noMatch**
         /// </summary>
         /// <value>Informs you if the full name your shopper provided matches the cardholder name on file at the issuing bank. The full name is the only field that is validated for Mastercard. Possible values:  **match**, **partialMatch**, **noMatch** </value>
         [JsonPropertyName("fullName")]
@@ -189,9 +172,18 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new PaymentValidationsNameResultResponse(firstName, fullName, lastName, middleName);
+
+            var result = new PaymentValidationsNameResultResponse();
+            if (firstName.IsSet)
+                result.FirstName = firstName.Value;
+            if (fullName.IsSet)
+                result.FullName = fullName.Value;
+            if (lastName.IsSet)
+                result.LastName = lastName.Value;
+            if (middleName.IsSet)
+                result.MiddleName = middleName.Value;
+            return result;
         }
 
         /// <summary>
@@ -202,13 +194,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentValidationsNameResultResponse paymentValidationsNameResultResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentValidationsNameResultResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -219,7 +211,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentValidationsNameResultResponse paymentValidationsNameResultResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paymentValidationsNameResultResponse._FirstNameOption.IsSet)
                 if (paymentValidationsNameResultResponse.FirstName != null)
                     writer.WriteString("firstName", paymentValidationsNameResultResponse.FirstName);

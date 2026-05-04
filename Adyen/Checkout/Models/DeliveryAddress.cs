@@ -34,35 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="DeliveryAddress" /> class.
         /// </summary>
-        /// <param name="city">The name of the city. Maximum length: 3000 characters.</param>
-        /// <param name="country">The two-character ISO-3166-1 alpha-2 country code. For example, **US**. &gt; If you don&#39;t know the country or are not collecting the country from the shopper, provide &#x60;country&#x60; as &#x60;ZZ&#x60;.</param>
-        /// <param name="houseNumberOrName">The number or name of the house. Maximum length: 3000 characters.</param>
-        /// <param name="postalCode">A maximum of five digits for an address in the US, or a maximum of ten characters for an address in all other countries.</param>
-        /// <param name="street">The name of the street. Maximum length: 3000 characters. &gt; The house number should not be included in this field; it should be separately provided via &#x60;houseNumberOrName&#x60;.</param>
-        /// <param name="firstName">firstName</param>
-        /// <param name="lastName">lastName</param>
-        /// <param name="stateOrProvince">The two-character ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. &gt; Required for the US and Canada.</param>
-        [JsonConstructor]
-        public DeliveryAddress(string city, string country, string houseNumberOrName, string postalCode, string street, Option<string?> firstName = default, Option<string?> lastName = default, Option<string?> stateOrProvince = default)
-        {
-            City = city;
-            Country = country;
-            HouseNumberOrName = houseNumberOrName;
-            PostalCode = postalCode;
-            Street = street;
-            _FirstNameOption = firstName;
-            _LastNameOption = lastName;
-            _StateOrProvinceOption = stateOrProvince;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public DeliveryAddress()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -236,7 +211,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!city.IsSet)
                 throw new ArgumentException("Property is required for class DeliveryAddress.", nameof(city));
 
@@ -252,7 +227,19 @@ namespace Adyen.Checkout.Models
             if (!street.IsSet)
                 throw new ArgumentException("Property is required for class DeliveryAddress.", nameof(street));
 
-            return new DeliveryAddress(city.Value!, country.Value!, houseNumberOrName.Value!, postalCode.Value!, street.Value!, firstName, lastName, stateOrProvince);
+            var result = new DeliveryAddress();
+            result.City = city.Value!;
+            result.Country = country.Value!;
+            result.HouseNumberOrName = houseNumberOrName.Value!;
+            result.PostalCode = postalCode.Value!;
+            result.Street = street.Value!;
+            if (firstName.IsSet)
+                result.FirstName = firstName.Value;
+            if (lastName.IsSet)
+                result.LastName = lastName.Value;
+            if (stateOrProvince.IsSet)
+                result.StateOrProvince = stateOrProvince.Value;
+            return result;
         }
 
         /// <summary>
@@ -263,13 +250,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, DeliveryAddress deliveryAddress, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, deliveryAddress, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -280,7 +267,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, DeliveryAddress deliveryAddress, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (deliveryAddress.City != null)
                 writer.WriteString("city", deliveryAddress.City);
 

@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Passenger" /> class.
         /// </summary>
-        /// <param name="dateOfBirth">The passenger&#39;s date of birth. * Format &#x60;yyyy-MM-dd&#x60; * minLength: 10 * maxLength: 10</param>
-        /// <param name="firstName">The passenger&#39;s first name. &gt; This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII</param>
-        /// <param name="lastName">The passenger&#39;s last name. &gt; This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII</param>
-        /// <param name="phoneNumber">The passenger&#39;s phone number, including country code. This is an alphanumeric field that can include the &#39;+&#39; and &#39;-&#39; signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters</param>
-        /// <param name="travellerType">The IATA passenger type code (PTC). * Encoding: ASCII * minLength: 3 characters * maxLength: 6 characters</param>
-        [JsonConstructor]
-        public Passenger(Option<DateOnly?> dateOfBirth = default, Option<string?> firstName = default, Option<string?> lastName = default, Option<string?> phoneNumber = default, Option<string?> travellerType = default)
-        {
-            _DateOfBirthOption = dateOfBirth;
-            _FirstNameOption = firstName;
-            _LastNameOption = lastName;
-            _PhoneNumberOption = phoneNumber;
-            _TravellerTypeOption = travellerType;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public Passenger()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -215,9 +196,20 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new Passenger(dateOfBirth, firstName, lastName, phoneNumber, travellerType);
+
+            var result = new Passenger();
+            if (dateOfBirth.IsSet)
+                result.DateOfBirth = dateOfBirth.Value;
+            if (firstName.IsSet)
+                result.FirstName = firstName.Value;
+            if (lastName.IsSet)
+                result.LastName = lastName.Value;
+            if (phoneNumber.IsSet)
+                result.PhoneNumber = phoneNumber.Value;
+            if (travellerType.IsSet)
+                result.TravellerType = travellerType.Value;
+            return result;
         }
 
         /// <summary>
@@ -228,13 +220,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, Passenger passenger, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, passenger, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -245,7 +237,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, Passenger passenger, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (passenger._DateOfBirthOption.IsSet)
                 if (passenger._DateOfBirthOption.Value != null)
                     writer.WriteString("dateOfBirth", passenger._DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));

@@ -34,41 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethod" /> class.
         /// </summary>
-        /// <param name="apps">A list of apps for this payment method.</param>
-        /// <param name="brand">Brand for the selected gift card. For example: plastix, hmclub.</param>
-        /// <param name="brands">List of possible brands. For example: visa, mc.</param>
-        /// <param name="configuration">The configuration of the payment method.</param>
-        /// <param name="fundingSource">The funding source of the payment method.</param>
-        /// <param name="group">group</param>
-        /// <param name="inputDetails">All input details to be provided to complete the payment with this payment method.</param>
-        /// <param name="issuers">A list of issuers for this payment method.</param>
-        /// <param name="name">The displayable name of this payment method.</param>
-        /// <param name="promoted">Indicates whether this payment method should be promoted or not.</param>
-        /// <param name="type">The unique payment method code.</param>
-        [JsonConstructor]
-        public PaymentMethod(Option<List<PaymentMethodUPIApps>?> apps = default, Option<string?> brand = default, Option<List<string>?> brands = default, Option<Dictionary<string, string>?> configuration = default, Option<FundingSourceEnum?> fundingSource = default, Option<PaymentMethodGroup?> group = default, Option<List<InputDetail>?> inputDetails = default, Option<List<PaymentMethodIssuer>?> issuers = default, Option<string?> name = default, Option<bool?> promoted = default, Option<string?> type = default)
-        {
-            _AppsOption = apps;
-            _BrandOption = brand;
-            _BrandsOption = brands;
-            _ConfigurationOption = configuration;
-            _FundingSourceOption = fundingSource;
-            _GroupOption = group;
-            _InputDetailsOption = inputDetails;
-            _IssuersOption = issuers;
-            _NameOption = name;
-            _PromotedOption = promoted;
-            _TypeOption = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentMethod()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -97,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// FundingSourceEnum.Prepaid - prepaid
             /// </summary>
             public static readonly FundingSourceEnum Prepaid = new("prepaid");
-        
+
             private FundingSourceEnum(string? value)
             {
                 Value = value;
@@ -109,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="FundingSourceEnum"/> instance initialized with the string value.</returns>
             public static implicit operator FundingSourceEnum?(string? value) => value == null ? null : new FundingSourceEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="FundingSourceEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="FundingSourceEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="FundingSourceEnum"/> instance./// </returns>
             public static implicit operator string?(FundingSourceEnum? option) => option?.Value;
-        
+
             public static bool operator ==(FundingSourceEnum? left, FundingSourceEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(FundingSourceEnum? left, FundingSourceEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is FundingSourceEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="FundingSourceEnum?"/>.
             /// </summary>
@@ -141,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="FundingSourceEnum"/> to the json value.
             /// </summary>
@@ -152,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == FundingSourceEnum.Credit)
                     return "credit";
-                
+
                 if (value == FundingSourceEnum.Debit)
                     return "debit";
-                
+
                 if (value == FundingSourceEnum.Prepaid)
                     return "prepaid";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing FundingSourceEnum.               
+            /// JsonConverter for writing FundingSourceEnum.
             /// </summary>
             public class FundingSourceEnumJsonConverter : JsonConverter<FundingSourceEnum>
             {
@@ -449,9 +418,32 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new PaymentMethod(apps, brand, brands, configuration, fundingSource, group, inputDetails, issuers, name, promoted, type);
+
+            var result = new PaymentMethod();
+            if (apps.IsSet)
+                result.Apps = apps.Value;
+            if (brand.IsSet)
+                result.Brand = brand.Value;
+            if (brands.IsSet)
+                result.Brands = brands.Value;
+            if (configuration.IsSet)
+                result.Configuration = configuration.Value;
+            if (fundingSource.IsSet)
+                result.FundingSource = fundingSource.Value;
+            if (group.IsSet)
+                result.Group = group.Value;
+            if (inputDetails.IsSet)
+                result.InputDetails = inputDetails.Value;
+            if (issuers.IsSet)
+                result.Issuers = issuers.Value;
+            if (name.IsSet)
+                result.Name = name.Value;
+            if (promoted.IsSet)
+                result.Promoted = promoted.Value;
+            if (type.IsSet)
+                result.Type = type.Value;
+            return result;
         }
 
         /// <summary>
@@ -462,13 +454,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentMethod paymentMethod, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentMethod, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -479,7 +471,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentMethod paymentMethod, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paymentMethod._AppsOption.IsSet)
             {
                 writer.WritePropertyName("apps");
@@ -499,12 +491,12 @@ namespace Adyen.Checkout.Models
                 writer.WritePropertyName("configuration");
                 JsonSerializer.Serialize(writer, paymentMethod.Configuration, jsonSerializerOptions);
             }
-            if (paymentMethod._FundingSourceOption.IsSet && paymentMethod.FundingSource != null) 
+            if (paymentMethod._FundingSourceOption.IsSet && paymentMethod.FundingSource != null)
             {
                 string? fundingSourceRawValue = PaymentMethod.FundingSourceEnum.ToJsonValue(paymentMethod._FundingSourceOption.Value!.Value);
                 writer.WriteString("fundingSource", fundingSourceRawValue);
             }
-            
+
             if (paymentMethod._GroupOption.IsSet)
             {
                 writer.WritePropertyName("group");

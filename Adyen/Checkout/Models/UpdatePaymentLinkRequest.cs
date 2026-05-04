@@ -34,21 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdatePaymentLinkRequest" /> class.
         /// </summary>
-        /// <param name="status">Status of the payment link. Possible values: * **expired**</param>
-        [JsonConstructor]
-        public UpdatePaymentLinkRequest(StatusEnum status)
-        {
-            Status = status;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public UpdatePaymentLinkRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -67,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// StatusEnum.Expired - expired
             /// </summary>
             public static readonly StatusEnum Expired = new("expired");
-        
+
             private StatusEnum(string? value)
             {
                 Value = value;
@@ -79,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="StatusEnum"/> instance initialized with the string value.</returns>
             public static implicit operator StatusEnum?(string? value) => value == null ? null : new StatusEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="StatusEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="StatusEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="StatusEnum"/> instance./// </returns>
             public static implicit operator string?(StatusEnum? option) => option?.Value;
-        
+
             public static bool operator ==(StatusEnum? left, StatusEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(StatusEnum? left, StatusEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is StatusEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="StatusEnum?"/>.
             /// </summary>
@@ -109,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="StatusEnum"/> to the json value.
             /// </summary>
@@ -120,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == StatusEnum.Expired)
                     return "expired";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing StatusEnum.               
+            /// JsonConverter for writing StatusEnum.
             /// </summary>
             public class StatusEnumJsonConverter : JsonConverter<StatusEnum>
             {
@@ -214,11 +203,13 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!status.IsSet)
                 throw new ArgumentException("Property is required for class UpdatePaymentLinkRequest.", nameof(status));
 
-            return new UpdatePaymentLinkRequest(status.Value!.Value!);
+            var result = new UpdatePaymentLinkRequest();
+            result.Status = status.Value!.Value!;
+            return result;
         }
 
         /// <summary>
@@ -229,13 +220,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, UpdatePaymentLinkRequest updatePaymentLinkRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, updatePaymentLinkRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -246,8 +237,8 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, UpdatePaymentLinkRequest updatePaymentLinkRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
-            if (updatePaymentLinkRequest.Status != null) 
+
+            if (updatePaymentLinkRequest.Status != null)
             {
                 string? statusRawValue = UpdatePaymentLinkRequest.StatusEnum.ToJsonValue(updatePaymentLinkRequest.Status);
                 writer.WriteString("status", statusRawValue);

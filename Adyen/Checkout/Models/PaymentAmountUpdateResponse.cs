@@ -34,37 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentAmountUpdateResponse" /> class.
         /// </summary>
-        /// <param name="amount">amount</param>
-        /// <param name="merchantAccount">The merchant account that is used to process the payment.</param>
-        /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to update. </param>
-        /// <param name="pspReference">Adyen&#39;s 16-character reference associated with the amount update request.</param>
-        /// <param name="reference">Your reference for the amount update request. Maximum length: 80 characters.</param>
-        /// <param name="status">The status of your request. This will always have the value **received**.</param>
-        /// <param name="industryUsage">The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**</param>
-        /// <param name="lineItems">Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.</param>
-        /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/process-payments) or [platforms](https://docs.adyen.com/platforms/process-payments).</param>
-        [JsonConstructor]
-        public PaymentAmountUpdateResponse(Amount amount, string merchantAccount, string paymentPspReference, string pspReference, string reference, StatusEnum status, Option<IndustryUsageEnum?> industryUsage = default, Option<List<LineItem>?> lineItems = default, Option<List<Split>?> splits = default)
-        {
-            Amount = amount;
-            MerchantAccount = merchantAccount;
-            PaymentPspReference = paymentPspReference;
-            PspReference = pspReference;
-            Reference = reference;
-            Status = status;
-            _IndustryUsageOption = industryUsage;
-            _LineItemsOption = lineItems;
-            _SplitsOption = splits;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentAmountUpdateResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -83,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// StatusEnum.Received - received
             /// </summary>
             public static readonly StatusEnum Received = new("received");
-        
+
             private StatusEnum(string? value)
             {
                 Value = value;
@@ -95,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="StatusEnum"/> instance initialized with the string value.</returns>
             public static implicit operator StatusEnum?(string? value) => value == null ? null : new StatusEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="StatusEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="StatusEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="StatusEnum"/> instance./// </returns>
             public static implicit operator string?(StatusEnum? option) => option?.Value;
-        
+
             public static bool operator ==(StatusEnum? left, StatusEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(StatusEnum? left, StatusEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is StatusEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="StatusEnum?"/>.
             /// </summary>
@@ -125,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="StatusEnum"/> to the json value.
             /// </summary>
@@ -136,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == StatusEnum.Received)
                     return "received";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing StatusEnum.               
+            /// JsonConverter for writing StatusEnum.
             /// </summary>
             public class StatusEnumJsonConverter : JsonConverter<StatusEnum>
             {
@@ -194,7 +167,7 @@ namespace Adyen.Checkout.Models
             /// IndustryUsageEnum.NoShow - noShow
             /// </summary>
             public static readonly IndustryUsageEnum NoShow = new("noShow");
-        
+
             private IndustryUsageEnum(string? value)
             {
                 Value = value;
@@ -206,24 +179,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="IndustryUsageEnum"/> instance initialized with the string value.</returns>
             public static implicit operator IndustryUsageEnum?(string? value) => value == null ? null : new IndustryUsageEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="IndustryUsageEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="IndustryUsageEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="IndustryUsageEnum"/> instance./// </returns>
             public static implicit operator string?(IndustryUsageEnum? option) => option?.Value;
-        
+
             public static bool operator ==(IndustryUsageEnum? left, IndustryUsageEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(IndustryUsageEnum? left, IndustryUsageEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is IndustryUsageEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="IndustryUsageEnum?"/>.
             /// </summary>
@@ -238,7 +211,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="IndustryUsageEnum"/> to the json value.
             /// </summary>
@@ -249,21 +222,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == IndustryUsageEnum.DelayedCharge)
                     return "delayedCharge";
-                
+
                 if (value == IndustryUsageEnum.Installment)
                     return "installment";
-                
+
                 if (value == IndustryUsageEnum.NoShow)
                     return "noShow";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing IndustryUsageEnum.               
+            /// JsonConverter for writing IndustryUsageEnum.
             /// </summary>
             public class IndustryUsageEnumJsonConverter : JsonConverter<IndustryUsageEnum>
             {
@@ -308,7 +281,7 @@ namespace Adyen.Checkout.Models
         public string MerchantAccount { get; set; }
 
         /// <summary>
-        /// The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to update. 
+        /// The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to update.
         /// </summary>
         /// <value>The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to update. </value>
         [JsonPropertyName("paymentPspReference")]
@@ -459,7 +432,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!amount.IsSet)
                 throw new ArgumentException("Property is required for class PaymentAmountUpdateResponse.", nameof(amount));
 
@@ -478,7 +451,20 @@ namespace Adyen.Checkout.Models
             if (!status.IsSet)
                 throw new ArgumentException("Property is required for class PaymentAmountUpdateResponse.", nameof(status));
 
-            return new PaymentAmountUpdateResponse(amount.Value!, merchantAccount.Value!, paymentPspReference.Value!, pspReference.Value!, reference.Value!, status.Value!.Value!, industryUsage, lineItems, splits);
+            var result = new PaymentAmountUpdateResponse();
+            result.Amount = amount.Value!;
+            result.MerchantAccount = merchantAccount.Value!;
+            result.PaymentPspReference = paymentPspReference.Value!;
+            result.PspReference = pspReference.Value!;
+            result.Reference = reference.Value!;
+            result.Status = status.Value!.Value!;
+            if (industryUsage.IsSet)
+                result.IndustryUsage = industryUsage.Value;
+            if (lineItems.IsSet)
+                result.LineItems = lineItems.Value;
+            if (splits.IsSet)
+                result.Splits = splits.Value;
+            return result;
         }
 
         /// <summary>
@@ -489,13 +475,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentAmountUpdateResponse paymentAmountUpdateResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentAmountUpdateResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -506,7 +492,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentAmountUpdateResponse paymentAmountUpdateResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WritePropertyName("amount");
             JsonSerializer.Serialize(writer, paymentAmountUpdateResponse.Amount, jsonSerializerOptions);
             if (paymentAmountUpdateResponse.MerchantAccount != null)
@@ -521,18 +507,18 @@ namespace Adyen.Checkout.Models
             if (paymentAmountUpdateResponse.Reference != null)
                 writer.WriteString("reference", paymentAmountUpdateResponse.Reference);
 
-            if (paymentAmountUpdateResponse.Status != null) 
+            if (paymentAmountUpdateResponse.Status != null)
             {
                 string? statusRawValue = PaymentAmountUpdateResponse.StatusEnum.ToJsonValue(paymentAmountUpdateResponse.Status);
                 writer.WriteString("status", statusRawValue);
             }
-            
-            if (paymentAmountUpdateResponse._IndustryUsageOption.IsSet && paymentAmountUpdateResponse.IndustryUsage != null) 
+
+            if (paymentAmountUpdateResponse._IndustryUsageOption.IsSet && paymentAmountUpdateResponse.IndustryUsage != null)
             {
                 string? industryUsageRawValue = PaymentAmountUpdateResponse.IndustryUsageEnum.ToJsonValue(paymentAmountUpdateResponse._IndustryUsageOption.Value!.Value);
                 writer.WriteString("industryUsage", industryUsageRawValue);
             }
-            
+
             if (paymentAmountUpdateResponse._LineItemsOption.IsSet)
             {
                 writer.WritePropertyName("lineItems");

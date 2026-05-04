@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaypalUpdateOrderResponse" /> class.
         /// </summary>
-        /// <param name="paymentData">The updated paymentData.</param>
-        /// <param name="status">The status of the request. This indicates whether the order was successfully updated with PayPal.</param>
-        [JsonConstructor]
-        public PaypalUpdateOrderResponse(string paymentData, StatusEnum status)
-        {
-            PaymentData = paymentData;
-            Status = status;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaypalUpdateOrderResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -74,7 +61,7 @@ namespace Adyen.Checkout.Models
             /// StatusEnum.Success - success
             /// </summary>
             public static readonly StatusEnum Success = new("success");
-        
+
             private StatusEnum(string? value)
             {
                 Value = value;
@@ -86,24 +73,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="StatusEnum"/> instance initialized with the string value.</returns>
             public static implicit operator StatusEnum?(string? value) => value == null ? null : new StatusEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="StatusEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="StatusEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="StatusEnum"/> instance./// </returns>
             public static implicit operator string?(StatusEnum? option) => option?.Value;
-        
+
             public static bool operator ==(StatusEnum? left, StatusEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(StatusEnum? left, StatusEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is StatusEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="StatusEnum?"/>.
             /// </summary>
@@ -117,7 +104,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="StatusEnum"/> to the json value.
             /// </summary>
@@ -128,18 +115,18 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == StatusEnum.Error)
                     return "error";
-                
+
                 if (value == StatusEnum.Success)
                     return "success";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing StatusEnum.               
+            /// JsonConverter for writing StatusEnum.
             /// </summary>
             public class StatusEnumJsonConverter : JsonConverter<StatusEnum>
             {
@@ -237,14 +224,17 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!paymentData.IsSet)
                 throw new ArgumentException("Property is required for class PaypalUpdateOrderResponse.", nameof(paymentData));
 
             if (!status.IsSet)
                 throw new ArgumentException("Property is required for class PaypalUpdateOrderResponse.", nameof(status));
 
-            return new PaypalUpdateOrderResponse(paymentData.Value!, status.Value!.Value!);
+            var result = new PaypalUpdateOrderResponse();
+            result.PaymentData = paymentData.Value!;
+            result.Status = status.Value!.Value!;
+            return result;
         }
 
         /// <summary>
@@ -255,13 +245,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaypalUpdateOrderResponse paypalUpdateOrderResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paypalUpdateOrderResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -272,11 +262,11 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaypalUpdateOrderResponse paypalUpdateOrderResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paypalUpdateOrderResponse.PaymentData != null)
                 writer.WriteString("paymentData", paypalUpdateOrderResponse.PaymentData);
 
-            if (paypalUpdateOrderResponse.Status != null) 
+            if (paypalUpdateOrderResponse.Status != null)
             {
                 string? statusRawValue = PaypalUpdateOrderResponse.StatusEnum.ToJsonValue(paypalUpdateOrderResponse.Status);
                 writer.WriteString("status", statusRawValue);

@@ -34,31 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalData3DSecure" /> class.
         /// </summary>
-        /// <param name="allow3DS2">Indicates if you are able to process 3D Secure 2 transactions natively on your payment page. Send this parameter when you are using &#x60;/payments&#x60; endpoint with any of our [native 3D Secure 2 solutions](https://docs.adyen.com/online-payments/3d-secure/native-3ds2).   &gt; This parameter only indicates readiness to support native 3D Secure 2 authentication. To specify if you _want_ to perform 3D Secure, use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) or send the &#x60;executeThreeD&#x60; parameter.  Possible values: * **true** - Ready to support native 3D Secure 2 authentication. Setting this to true does not mean always applying 3D Secure 2. Adyen selects redirect or native authentication based on your configuration to optimize authorization rates and improve the shopper&#39;s experience. * **false** – Not ready to support native 3D Secure 2 authentication. Adyen offers redirect 3D Secure 2 authentication instead, based on your configuration. </param>
-        /// <param name="challengeWindowSize">Dimensions of the 3DS2 challenge window to be displayed to the cardholder.  Possible values:  * **01** - size of 250x400  * **02** - size of 390x400 * **03** - size of 500x600 * **04** - size of 600x400 * **05** - Fullscreen</param>
-        /// <param name="executeThreeD">Indicates if you want to perform 3D Secure authentication on a transaction.   &gt; Alternatively, you can use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) to configure rules for applying 3D Secure.  Possible values: * **true** – Perform 3D Secure authentication. * **false** – Don&#39;t perform 3D Secure authentication. Note that this setting results in refusals if the issuer mandates 3D Secure because of the PSD2 directive  or other, national regulations.  </param>
-        /// <param name="mpiImplementationType">In case of Secure+, this field must be set to **CUPSecurePlus**.</param>
-        /// <param name="scaExemption">Indicates the [exemption type](https://docs.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that you want to request for the transaction.   Possible values: * **lowValue**  * **secureCorporate**  * **trustedBeneficiary**  * **transactionRiskAnalysis** </param>
-        /// <param name="threeDSVersion">Indicates your preference for the 3D Secure version.  &gt; If you use this parameter, you override the checks from Adyen&#39;s Authentication Engine. We recommend to use this field only if you have an extensive knowledge of 3D Secure.  Possible values: * **2.1.0**: Apply 3D Secure version 2.1.0.  * **2.2.0**: Apply 3D Secure version 2.2.0. If the issuer does not support version 2.2.0, we will fall back to 2.1.0.  The following rules apply: * If you prefer 2.1.0 or 2.2.0 but we receive a negative &#x60;transStatus&#x60; in the &#x60;ARes&#x60;, we will apply the fallback policy configured in your account. * If you the BIN is not enrolled, you will receive an error.  </param>
-        [JsonConstructor]
-        public AdditionalData3DSecure(Option<string?> allow3DS2 = default, Option<ChallengeWindowSizeEnum?> challengeWindowSize = default, Option<string?> executeThreeD = default, Option<string?> mpiImplementationType = default, Option<string?> scaExemption = default, Option<string?> threeDSVersion = default)
-        {
-            _Allow3DS2Option = allow3DS2;
-            _ChallengeWindowSizeOption = challengeWindowSize;
-            _ExecuteThreeDOption = executeThreeD;
-            _MpiImplementationTypeOption = mpiImplementationType;
-            _ScaExemptionOption = scaExemption;
-            _ThreeDSVersionOption = threeDSVersion;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public AdditionalData3DSecure()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -97,7 +76,7 @@ namespace Adyen.Checkout.Models
             /// ChallengeWindowSizeEnum._05 - 05
             /// </summary>
             public static readonly ChallengeWindowSizeEnum _05 = new("05");
-        
+
             private ChallengeWindowSizeEnum(string? value)
             {
                 Value = value;
@@ -109,24 +88,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ChallengeWindowSizeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ChallengeWindowSizeEnum?(string? value) => value == null ? null : new ChallengeWindowSizeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ChallengeWindowSizeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ChallengeWindowSizeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ChallengeWindowSizeEnum"/> instance./// </returns>
             public static implicit operator string?(ChallengeWindowSizeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ChallengeWindowSizeEnum? left, ChallengeWindowSizeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ChallengeWindowSizeEnum? left, ChallengeWindowSizeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ChallengeWindowSizeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ChallengeWindowSizeEnum?"/>.
             /// </summary>
@@ -143,7 +122,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ChallengeWindowSizeEnum"/> to the json value.
             /// </summary>
@@ -154,27 +133,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ChallengeWindowSizeEnum._01)
                     return "01";
-                
+
                 if (value == ChallengeWindowSizeEnum._02)
                     return "02";
-                
+
                 if (value == ChallengeWindowSizeEnum._03)
                     return "03";
-                
+
                 if (value == ChallengeWindowSizeEnum._04)
                     return "04";
-                
+
                 if (value == ChallengeWindowSizeEnum._05)
                     return "05";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ChallengeWindowSizeEnum.               
+            /// JsonConverter for writing ChallengeWindowSizeEnum.
             /// </summary>
             public class ChallengeWindowSizeEnumJsonConverter : JsonConverter<ChallengeWindowSizeEnum>
             {
@@ -213,7 +192,7 @@ namespace Adyen.Checkout.Models
         public Option<string?> _Allow3DS2Option { get; private set; }
 
         /// <summary>
-        /// Indicates if you are able to process 3D Secure 2 transactions natively on your payment page. Send this parameter when you are using &#x60;/payments&#x60; endpoint with any of our [native 3D Secure 2 solutions](https://docs.adyen.com/online-payments/3d-secure/native-3ds2).   &gt; This parameter only indicates readiness to support native 3D Secure 2 authentication. To specify if you _want_ to perform 3D Secure, use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) or send the &#x60;executeThreeD&#x60; parameter.  Possible values: * **true** - Ready to support native 3D Secure 2 authentication. Setting this to true does not mean always applying 3D Secure 2. Adyen selects redirect or native authentication based on your configuration to optimize authorization rates and improve the shopper&#39;s experience. * **false** – Not ready to support native 3D Secure 2 authentication. Adyen offers redirect 3D Secure 2 authentication instead, based on your configuration. 
+        /// Indicates if you are able to process 3D Secure 2 transactions natively on your payment page. Send this parameter when you are using &#x60;/payments&#x60; endpoint with any of our [native 3D Secure 2 solutions](https://docs.adyen.com/online-payments/3d-secure/native-3ds2).   &gt; This parameter only indicates readiness to support native 3D Secure 2 authentication. To specify if you _want_ to perform 3D Secure, use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) or send the &#x60;executeThreeD&#x60; parameter.  Possible values: * **true** - Ready to support native 3D Secure 2 authentication. Setting this to true does not mean always applying 3D Secure 2. Adyen selects redirect or native authentication based on your configuration to optimize authorization rates and improve the shopper&#39;s experience. * **false** – Not ready to support native 3D Secure 2 authentication. Adyen offers redirect 3D Secure 2 authentication instead, based on your configuration.
         /// </summary>
         /// <value>Indicates if you are able to process 3D Secure 2 transactions natively on your payment page. Send this parameter when you are using `/payments` endpoint with any of our [native 3D Secure 2 solutions](https://docs.adyen.com/online-payments/3d-secure/native-3ds2).   > This parameter only indicates readiness to support native 3D Secure 2 authentication. To specify if you _want_ to perform 3D Secure, use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) or send the `executeThreeD` parameter.  Possible values: * **true** - Ready to support native 3D Secure 2 authentication. Setting this to true does not mean always applying 3D Secure 2. Adyen selects redirect or native authentication based on your configuration to optimize authorization rates and improve the shopper's experience. * **false** – Not ready to support native 3D Secure 2 authentication. Adyen offers redirect 3D Secure 2 authentication instead, based on your configuration. </value>
         [JsonPropertyName("allow3DS2")]
@@ -228,7 +207,7 @@ namespace Adyen.Checkout.Models
         public Option<string?> _ExecuteThreeDOption { get; private set; }
 
         /// <summary>
-        /// Indicates if you want to perform 3D Secure authentication on a transaction.   &gt; Alternatively, you can use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) to configure rules for applying 3D Secure.  Possible values: * **true** – Perform 3D Secure authentication. * **false** – Don&#39;t perform 3D Secure authentication. Note that this setting results in refusals if the issuer mandates 3D Secure because of the PSD2 directive  or other, national regulations.  
+        /// Indicates if you want to perform 3D Secure authentication on a transaction.   &gt; Alternatively, you can use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) to configure rules for applying 3D Secure.  Possible values: * **true** – Perform 3D Secure authentication. * **false** – Don&#39;t perform 3D Secure authentication. Note that this setting results in refusals if the issuer mandates 3D Secure because of the PSD2 directive  or other, national regulations.
         /// </summary>
         /// <value>Indicates if you want to perform 3D Secure authentication on a transaction.   > Alternatively, you can use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) to configure rules for applying 3D Secure.  Possible values: * **true** – Perform 3D Secure authentication. * **false** – Don't perform 3D Secure authentication. Note that this setting results in refusals if the issuer mandates 3D Secure because of the PSD2 directive  or other, national regulations.  </value>
         [JsonPropertyName("executeThreeD")]
@@ -257,7 +236,7 @@ namespace Adyen.Checkout.Models
         public Option<string?> _ScaExemptionOption { get; private set; }
 
         /// <summary>
-        /// Indicates the [exemption type](https://docs.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that you want to request for the transaction.   Possible values: * **lowValue**  * **secureCorporate**  * **trustedBeneficiary**  * **transactionRiskAnalysis** 
+        /// Indicates the [exemption type](https://docs.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that you want to request for the transaction.   Possible values: * **lowValue**  * **secureCorporate**  * **trustedBeneficiary**  * **transactionRiskAnalysis**
         /// </summary>
         /// <value>Indicates the [exemption type](https://docs.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that you want to request for the transaction.   Possible values: * **lowValue**  * **secureCorporate**  * **trustedBeneficiary**  * **transactionRiskAnalysis** </value>
         [JsonPropertyName("scaExemption")]
@@ -271,7 +250,7 @@ namespace Adyen.Checkout.Models
         public Option<string?> _ThreeDSVersionOption { get; private set; }
 
         /// <summary>
-        /// Indicates your preference for the 3D Secure version.  &gt; If you use this parameter, you override the checks from Adyen&#39;s Authentication Engine. We recommend to use this field only if you have an extensive knowledge of 3D Secure.  Possible values: * **2.1.0**: Apply 3D Secure version 2.1.0.  * **2.2.0**: Apply 3D Secure version 2.2.0. If the issuer does not support version 2.2.0, we will fall back to 2.1.0.  The following rules apply: * If you prefer 2.1.0 or 2.2.0 but we receive a negative &#x60;transStatus&#x60; in the &#x60;ARes&#x60;, we will apply the fallback policy configured in your account. * If you the BIN is not enrolled, you will receive an error.  
+        /// Indicates your preference for the 3D Secure version.  &gt; If you use this parameter, you override the checks from Adyen&#39;s Authentication Engine. We recommend to use this field only if you have an extensive knowledge of 3D Secure.  Possible values: * **2.1.0**: Apply 3D Secure version 2.1.0.  * **2.2.0**: Apply 3D Secure version 2.2.0. If the issuer does not support version 2.2.0, we will fall back to 2.1.0.  The following rules apply: * If you prefer 2.1.0 or 2.2.0 but we receive a negative &#x60;transStatus&#x60; in the &#x60;ARes&#x60;, we will apply the fallback policy configured in your account. * If you the BIN is not enrolled, you will receive an error.
         /// </summary>
         /// <value>Indicates your preference for the 3D Secure version.  > If you use this parameter, you override the checks from Adyen's Authentication Engine. We recommend to use this field only if you have an extensive knowledge of 3D Secure.  Possible values: * **2.1.0**: Apply 3D Secure version 2.1.0.  * **2.2.0**: Apply 3D Secure version 2.2.0. If the issuer does not support version 2.2.0, we will fall back to 2.1.0.  The following rules apply: * If you prefer 2.1.0 or 2.2.0 but we receive a negative `transStatus` in the `ARes`, we will apply the fallback policy configured in your account. * If you the BIN is not enrolled, you will receive an error.  </value>
         [JsonPropertyName("threeDSVersion")]
@@ -364,9 +343,22 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new AdditionalData3DSecure(allow3DS2, challengeWindowSize, executeThreeD, mpiImplementationType, scaExemption, threeDSVersion);
+
+            var result = new AdditionalData3DSecure();
+            if (allow3DS2.IsSet)
+                result.Allow3DS2 = allow3DS2.Value;
+            if (challengeWindowSize.IsSet)
+                result.ChallengeWindowSize = challengeWindowSize.Value;
+            if (executeThreeD.IsSet)
+                result.ExecuteThreeD = executeThreeD.Value;
+            if (mpiImplementationType.IsSet)
+                result.MpiImplementationType = mpiImplementationType.Value;
+            if (scaExemption.IsSet)
+                result.ScaExemption = scaExemption.Value;
+            if (threeDSVersion.IsSet)
+                result.ThreeDSVersion = threeDSVersion.Value;
+            return result;
         }
 
         /// <summary>
@@ -377,13 +369,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, AdditionalData3DSecure additionalData3DSecure, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, additionalData3DSecure, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -394,17 +386,17 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, AdditionalData3DSecure additionalData3DSecure, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (additionalData3DSecure._Allow3DS2Option.IsSet)
                 if (additionalData3DSecure.Allow3DS2 != null)
                     writer.WriteString("allow3DS2", additionalData3DSecure.Allow3DS2);
 
-            if (additionalData3DSecure._ChallengeWindowSizeOption.IsSet && additionalData3DSecure.ChallengeWindowSize != null) 
+            if (additionalData3DSecure._ChallengeWindowSizeOption.IsSet && additionalData3DSecure.ChallengeWindowSize != null)
             {
                 string? challengeWindowSizeRawValue = AdditionalData3DSecure.ChallengeWindowSizeEnum.ToJsonValue(additionalData3DSecure._ChallengeWindowSizeOption.Value!.Value);
                 writer.WriteString("challengeWindowSize", challengeWindowSizeRawValue);
             }
-            
+
             if (additionalData3DSecure._ExecuteThreeDOption.IsSet)
                 if (additionalData3DSecure.ExecuteThreeD != null)
                     writer.WriteString("executeThreeD", additionalData3DSecure.ExecuteThreeD);

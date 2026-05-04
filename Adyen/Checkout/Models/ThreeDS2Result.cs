@@ -34,47 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDS2Result" /> class.
         /// </summary>
-        /// <param name="authenticationValue">The &#x60;authenticationValue&#x60; value as defined in the 3D Secure 2 specification.</param>
-        /// <param name="cavvAlgorithm">The algorithm used by the ACS to calculate the authentication value, only for Cartes Bancaires integrations.</param>
-        /// <param name="challengeCancel">Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata).</param>
-        /// <param name="dsTransID">The &#x60;dsTransID&#x60; value as defined in the 3D Secure 2 specification.</param>
-        /// <param name="eci">The &#x60;eci&#x60; value as defined in the 3D Secure 2 specification.</param>
-        /// <param name="exemptionIndicator">Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * &#x60;lowValue&#x60; * &#x60;secureCorporate&#x60; * &#x60;trustedBeneficiary&#x60; * &#x60;transactionRiskAnalysis&#x60; </param>
-        /// <param name="messageVersion">The &#x60;messageVersion&#x60; value as defined in the 3D Secure 2 specification.</param>
-        /// <param name="riskScore">Risk score calculated by Cartes Bancaires Directory Server (DS).</param>
-        /// <param name="threeDSRequestorChallengeInd">Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only</param>
-        /// <param name="threeDSServerTransID">The &#x60;threeDSServerTransID&#x60; value as defined in the 3D Secure 2 specification.</param>
-        /// <param name="timestamp">The &#x60;timestamp&#x60; value of the 3D Secure 2 authentication.</param>
-        /// <param name="transStatus">The &#x60;transStatus&#x60; value as defined in the 3D Secure 2 specification.</param>
-        /// <param name="transStatusReason">Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).</param>
-        /// <param name="whiteListStatus">The &#x60;whiteListStatus&#x60; value as defined in the 3D Secure 2 specification.</param>
-        [JsonConstructor]
-        public ThreeDS2Result(Option<string?> authenticationValue = default, Option<string?> cavvAlgorithm = default, Option<ChallengeCancelEnum?> challengeCancel = default, Option<string?> dsTransID = default, Option<string?> eci = default, Option<ExemptionIndicatorEnum?> exemptionIndicator = default, Option<string?> messageVersion = default, Option<string?> riskScore = default, Option<ThreeDSRequestorChallengeIndEnum?> threeDSRequestorChallengeInd = default, Option<string?> threeDSServerTransID = default, Option<string?> timestamp = default, Option<string?> transStatus = default, Option<string?> transStatusReason = default, Option<string?> whiteListStatus = default)
-        {
-            _AuthenticationValueOption = authenticationValue;
-            _CavvAlgorithmOption = cavvAlgorithm;
-            _ChallengeCancelOption = challengeCancel;
-            _DsTransIDOption = dsTransID;
-            _EciOption = eci;
-            _ExemptionIndicatorOption = exemptionIndicator;
-            _MessageVersionOption = messageVersion;
-            _RiskScoreOption = riskScore;
-            _ThreeDSRequestorChallengeIndOption = threeDSRequestorChallengeInd;
-            _ThreeDSServerTransIDOption = threeDSServerTransID;
-            _TimestampOption = timestamp;
-            _TransStatusOption = transStatus;
-            _TransStatusReasonOption = transStatusReason;
-            _WhiteListStatusOption = whiteListStatus;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ThreeDS2Result()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -123,7 +86,7 @@ namespace Adyen.Checkout.Models
             /// ChallengeCancelEnum._07 - 07
             /// </summary>
             public static readonly ChallengeCancelEnum _07 = new("07");
-        
+
             private ChallengeCancelEnum(string? value)
             {
                 Value = value;
@@ -135,24 +98,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ChallengeCancelEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ChallengeCancelEnum?(string? value) => value == null ? null : new ChallengeCancelEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ChallengeCancelEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ChallengeCancelEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ChallengeCancelEnum"/> instance./// </returns>
             public static implicit operator string?(ChallengeCancelEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ChallengeCancelEnum? left, ChallengeCancelEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ChallengeCancelEnum? left, ChallengeCancelEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ChallengeCancelEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ChallengeCancelEnum?"/>.
             /// </summary>
@@ -171,7 +134,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ChallengeCancelEnum"/> to the json value.
             /// </summary>
@@ -182,33 +145,33 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ChallengeCancelEnum._01)
                     return "01";
-                
+
                 if (value == ChallengeCancelEnum._02)
                     return "02";
-                
+
                 if (value == ChallengeCancelEnum._03)
                     return "03";
-                
+
                 if (value == ChallengeCancelEnum._04)
                     return "04";
-                
+
                 if (value == ChallengeCancelEnum._05)
                     return "05";
-                
+
                 if (value == ChallengeCancelEnum._06)
                     return "06";
-                
+
                 if (value == ChallengeCancelEnum._07)
                     return "07";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ChallengeCancelEnum.               
+            /// JsonConverter for writing ChallengeCancelEnum.
             /// </summary>
             public class ChallengeCancelEnumJsonConverter : JsonConverter<ChallengeCancelEnum>
             {
@@ -240,7 +203,7 @@ namespace Adyen.Checkout.Models
         public ChallengeCancelEnum? ChallengeCancel { get { return this._ChallengeCancelOption; } set { this._ChallengeCancelOption = new(value); } }
 
         /// <summary>
-        /// Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * `lowValue` * `secureCorporate` * `trustedBeneficiary` * `transactionRiskAnalysis` 
+        /// Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * `lowValue` * `secureCorporate` * `trustedBeneficiary` * `transactionRiskAnalysis`
         /// </summary>
         /// <value>Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * &#x60;lowValue&#x60; * &#x60;secureCorporate&#x60; * &#x60;trustedBeneficiary&#x60; * &#x60;transactionRiskAnalysis&#x60; </value>
         [JsonConverter(typeof(ExemptionIndicatorEnumJsonConverter))]
@@ -270,7 +233,7 @@ namespace Adyen.Checkout.Models
             /// ExemptionIndicatorEnum.TransactionRiskAnalysis - transactionRiskAnalysis
             /// </summary>
             public static readonly ExemptionIndicatorEnum TransactionRiskAnalysis = new("transactionRiskAnalysis");
-        
+
             private ExemptionIndicatorEnum(string? value)
             {
                 Value = value;
@@ -282,24 +245,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ExemptionIndicatorEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ExemptionIndicatorEnum?(string? value) => value == null ? null : new ExemptionIndicatorEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ExemptionIndicatorEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ExemptionIndicatorEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ExemptionIndicatorEnum"/> instance./// </returns>
             public static implicit operator string?(ExemptionIndicatorEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ExemptionIndicatorEnum? left, ExemptionIndicatorEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ExemptionIndicatorEnum? left, ExemptionIndicatorEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ExemptionIndicatorEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ExemptionIndicatorEnum?"/>.
             /// </summary>
@@ -315,7 +278,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ExemptionIndicatorEnum"/> to the json value.
             /// </summary>
@@ -326,24 +289,24 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ExemptionIndicatorEnum.LowValue)
                     return "lowValue";
-                
+
                 if (value == ExemptionIndicatorEnum.SecureCorporate)
                     return "secureCorporate";
-                
+
                 if (value == ExemptionIndicatorEnum.TrustedBeneficiary)
                     return "trustedBeneficiary";
-                
+
                 if (value == ExemptionIndicatorEnum.TransactionRiskAnalysis)
                     return "transactionRiskAnalysis";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ExemptionIndicatorEnum.               
+            /// JsonConverter for writing ExemptionIndicatorEnum.
             /// </summary>
             public class ExemptionIndicatorEnumJsonConverter : JsonConverter<ExemptionIndicatorEnum>
             {
@@ -368,7 +331,7 @@ namespace Adyen.Checkout.Models
         public Option<ExemptionIndicatorEnum?> _ExemptionIndicatorOption { get; private set; }
 
         /// <summary>
-        /// Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * `lowValue` * `secureCorporate` * `trustedBeneficiary` * `transactionRiskAnalysis` 
+        /// Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * `lowValue` * `secureCorporate` * `trustedBeneficiary` * `transactionRiskAnalysis`
         /// </summary>
         /// <value>Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * &#x60;lowValue&#x60; * &#x60;secureCorporate&#x60; * &#x60;trustedBeneficiary&#x60; * &#x60;transactionRiskAnalysis&#x60; </value>
         [JsonPropertyName("exemptionIndicator")]
@@ -415,7 +378,7 @@ namespace Adyen.Checkout.Models
             /// ThreeDSRequestorChallengeIndEnum._06 - 06
             /// </summary>
             public static readonly ThreeDSRequestorChallengeIndEnum _06 = new("06");
-        
+
             private ThreeDSRequestorChallengeIndEnum(string? value)
             {
                 Value = value;
@@ -427,24 +390,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ThreeDSRequestorChallengeIndEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ThreeDSRequestorChallengeIndEnum?(string? value) => value == null ? null : new ThreeDSRequestorChallengeIndEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ThreeDSRequestorChallengeIndEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ThreeDSRequestorChallengeIndEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ThreeDSRequestorChallengeIndEnum"/> instance./// </returns>
             public static implicit operator string?(ThreeDSRequestorChallengeIndEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ThreeDSRequestorChallengeIndEnum? left, ThreeDSRequestorChallengeIndEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ThreeDSRequestorChallengeIndEnum? left, ThreeDSRequestorChallengeIndEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ThreeDSRequestorChallengeIndEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ThreeDSRequestorChallengeIndEnum?"/>.
             /// </summary>
@@ -462,7 +425,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ThreeDSRequestorChallengeIndEnum"/> to the json value.
             /// </summary>
@@ -473,30 +436,30 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ThreeDSRequestorChallengeIndEnum._01)
                     return "01";
-                
+
                 if (value == ThreeDSRequestorChallengeIndEnum._02)
                     return "02";
-                
+
                 if (value == ThreeDSRequestorChallengeIndEnum._03)
                     return "03";
-                
+
                 if (value == ThreeDSRequestorChallengeIndEnum._04)
                     return "04";
-                
+
                 if (value == ThreeDSRequestorChallengeIndEnum._05)
                     return "05";
-                
+
                 if (value == ThreeDSRequestorChallengeIndEnum._06)
                     return "06";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ThreeDSRequestorChallengeIndEnum.               
+            /// JsonConverter for writing ThreeDSRequestorChallengeIndEnum.
             /// </summary>
             public class ThreeDSRequestorChallengeIndEnumJsonConverter : JsonConverter<ThreeDSRequestorChallengeIndEnum>
             {
@@ -810,9 +773,38 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ThreeDS2Result(authenticationValue, cavvAlgorithm, challengeCancel, dsTransID, eci, exemptionIndicator, messageVersion, riskScore, threeDSRequestorChallengeInd, threeDSServerTransID, timestamp, transStatus, transStatusReason, whiteListStatus);
+
+            var result = new ThreeDS2Result();
+            if (authenticationValue.IsSet)
+                result.AuthenticationValue = authenticationValue.Value;
+            if (cavvAlgorithm.IsSet)
+                result.CavvAlgorithm = cavvAlgorithm.Value;
+            if (challengeCancel.IsSet)
+                result.ChallengeCancel = challengeCancel.Value;
+            if (dsTransID.IsSet)
+                result.DsTransID = dsTransID.Value;
+            if (eci.IsSet)
+                result.Eci = eci.Value;
+            if (exemptionIndicator.IsSet)
+                result.ExemptionIndicator = exemptionIndicator.Value;
+            if (messageVersion.IsSet)
+                result.MessageVersion = messageVersion.Value;
+            if (riskScore.IsSet)
+                result.RiskScore = riskScore.Value;
+            if (threeDSRequestorChallengeInd.IsSet)
+                result.ThreeDSRequestorChallengeInd = threeDSRequestorChallengeInd.Value;
+            if (threeDSServerTransID.IsSet)
+                result.ThreeDSServerTransID = threeDSServerTransID.Value;
+            if (timestamp.IsSet)
+                result.Timestamp = timestamp.Value;
+            if (transStatus.IsSet)
+                result.TransStatus = transStatus.Value;
+            if (transStatusReason.IsSet)
+                result.TransStatusReason = transStatusReason.Value;
+            if (whiteListStatus.IsSet)
+                result.WhiteListStatus = whiteListStatus.Value;
+            return result;
         }
 
         /// <summary>
@@ -823,13 +815,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ThreeDS2Result threeDS2Result, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, threeDS2Result, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -840,7 +832,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ThreeDS2Result threeDS2Result, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (threeDS2Result._AuthenticationValueOption.IsSet)
                 if (threeDS2Result.AuthenticationValue != null)
                     writer.WriteString("authenticationValue", threeDS2Result.AuthenticationValue);
@@ -849,12 +841,12 @@ namespace Adyen.Checkout.Models
                 if (threeDS2Result.CavvAlgorithm != null)
                     writer.WriteString("cavvAlgorithm", threeDS2Result.CavvAlgorithm);
 
-            if (threeDS2Result._ChallengeCancelOption.IsSet && threeDS2Result.ChallengeCancel != null) 
+            if (threeDS2Result._ChallengeCancelOption.IsSet && threeDS2Result.ChallengeCancel != null)
             {
                 string? challengeCancelRawValue = ThreeDS2Result.ChallengeCancelEnum.ToJsonValue(threeDS2Result._ChallengeCancelOption.Value!.Value);
                 writer.WriteString("challengeCancel", challengeCancelRawValue);
             }
-            
+
             if (threeDS2Result._DsTransIDOption.IsSet)
                 if (threeDS2Result.DsTransID != null)
                     writer.WriteString("dsTransID", threeDS2Result.DsTransID);
@@ -863,12 +855,12 @@ namespace Adyen.Checkout.Models
                 if (threeDS2Result.Eci != null)
                     writer.WriteString("eci", threeDS2Result.Eci);
 
-            if (threeDS2Result._ExemptionIndicatorOption.IsSet && threeDS2Result.ExemptionIndicator != null) 
+            if (threeDS2Result._ExemptionIndicatorOption.IsSet && threeDS2Result.ExemptionIndicator != null)
             {
                 string? exemptionIndicatorRawValue = ThreeDS2Result.ExemptionIndicatorEnum.ToJsonValue(threeDS2Result._ExemptionIndicatorOption.Value!.Value);
                 writer.WriteString("exemptionIndicator", exemptionIndicatorRawValue);
             }
-            
+
             if (threeDS2Result._MessageVersionOption.IsSet)
                 if (threeDS2Result.MessageVersion != null)
                     writer.WriteString("messageVersion", threeDS2Result.MessageVersion);
@@ -877,12 +869,12 @@ namespace Adyen.Checkout.Models
                 if (threeDS2Result.RiskScore != null)
                     writer.WriteString("riskScore", threeDS2Result.RiskScore);
 
-            if (threeDS2Result._ThreeDSRequestorChallengeIndOption.IsSet && threeDS2Result.ThreeDSRequestorChallengeInd != null) 
+            if (threeDS2Result._ThreeDSRequestorChallengeIndOption.IsSet && threeDS2Result.ThreeDSRequestorChallengeInd != null)
             {
                 string? threeDSRequestorChallengeIndRawValue = ThreeDS2Result.ThreeDSRequestorChallengeIndEnum.ToJsonValue(threeDS2Result._ThreeDSRequestorChallengeIndOption.Value!.Value);
                 writer.WriteString("threeDSRequestorChallengeInd", threeDSRequestorChallengeIndRawValue);
             }
-            
+
             if (threeDS2Result._ThreeDSServerTransIDOption.IsSet)
                 if (threeDS2Result.ThreeDSServerTransID != null)
                     writer.WriteString("threeDSServerTransID", threeDS2Result.ThreeDSServerTransID);

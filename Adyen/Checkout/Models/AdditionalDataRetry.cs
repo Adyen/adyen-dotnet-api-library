@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataRetry" /> class.
         /// </summary>
-        /// <param name="retryChainAttemptNumber">The number of times the transaction (not order) has been retried between different payment service providers. For instance, the &#x60;chainAttemptNumber&#x60; set to 2 means that this transaction has been recently tried on another provider before being sent to Adyen.  &gt; If you submit &#x60;retry.chainAttemptNumber&#x60;, &#x60;retry.orderAttemptNumber&#x60;, and &#x60;retry.skipRetry&#x60; values, we also recommend you provide the &#x60;merchantOrderReference&#x60; to facilitate linking payment attempts together.</param>
-        /// <param name="retryOrderAttemptNumber">The index of the attempt to bill a particular order, which is identified by the &#x60;merchantOrderReference&#x60; field. For example, if a recurring transaction fails and is retried one day later, then the order number for these attempts would be 1 and 2, respectively.  &gt; If you submit &#x60;retry.chainAttemptNumber&#x60;, &#x60;retry.orderAttemptNumber&#x60;, and &#x60;retry.skipRetry&#x60; values, we also recommend you provide the &#x60;merchantOrderReference&#x60; to facilitate linking payment attempts together.</param>
-        /// <param name="retrySkipRetry">The Boolean value indicating whether Adyen should skip or retry this transaction, if possible.  &gt; If you submit &#x60;retry.chainAttemptNumber&#x60;, &#x60;retry.orderAttemptNumber&#x60;, and &#x60;retry.skipRetry&#x60; values, we also recommend you provide the &#x60;merchantOrderReference&#x60; to facilitate linking payment attempts together.</param>
-        [JsonConstructor]
-        public AdditionalDataRetry(Option<string?> retryChainAttemptNumber = default, Option<string?> retryOrderAttemptNumber = default, Option<string?> retrySkipRetry = default)
-        {
-            _RetryChainAttemptNumberOption = retryChainAttemptNumber;
-            _RetryOrderAttemptNumberOption = retryOrderAttemptNumber;
-            _RetrySkipRetryOption = retrySkipRetry;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public AdditionalDataRetry()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -168,9 +153,16 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new AdditionalDataRetry(retryChainAttemptNumber, retryOrderAttemptNumber, retrySkipRetry);
+
+            var result = new AdditionalDataRetry();
+            if (retryChainAttemptNumber.IsSet)
+                result.RetryChainAttemptNumber = retryChainAttemptNumber.Value;
+            if (retryOrderAttemptNumber.IsSet)
+                result.RetryOrderAttemptNumber = retryOrderAttemptNumber.Value;
+            if (retrySkipRetry.IsSet)
+                result.RetrySkipRetry = retrySkipRetry.Value;
+            return result;
         }
 
         /// <summary>
@@ -181,13 +173,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, AdditionalDataRetry additionalDataRetry, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, additionalDataRetry, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -198,7 +190,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, AdditionalDataRetry additionalDataRetry, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (additionalDataRetry._RetryChainAttemptNumberOption.IsSet)
                 if (additionalDataRetry.RetryChainAttemptNumber != null)
                     writer.WriteString("retry.chainAttemptNumber", additionalDataRetry.RetryChainAttemptNumber);

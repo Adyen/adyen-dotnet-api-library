@@ -34,13 +34,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ShopperIdPaymentMethod" /> class.
         /// </summary>
-        [JsonConstructor]
         public ShopperIdPaymentMethod()
         {
             Type = this.GetType().Name;
             OnCreated();
         }
-        
+
 
         partial void OnCreated();
 
@@ -119,7 +118,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class ShopperIdPaymentMethod.", nameof(type));
 
@@ -144,13 +143,13 @@ namespace Adyen.Checkout.Models
                 return;
             }
 
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, shopperIdPaymentMethod, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -161,7 +160,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ShopperIdPaymentMethod shopperIdPaymentMethod, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (shopperIdPaymentMethod.Type != null)
     writer.WriteString("type", shopperIdPaymentMethod.Type);
         }

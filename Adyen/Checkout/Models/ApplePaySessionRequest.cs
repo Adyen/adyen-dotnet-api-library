@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplePaySessionRequest" /> class.
         /// </summary>
-        /// <param name="displayName">This is the name that your shoppers will see in the Apple Pay interface.  The value returned as &#x60;configuration.merchantName&#x60; field from the [&#x60;/paymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.</param>
-        /// <param name="domainName">The domain name you provided when you added Apple Pay in your Customer Area.  This must match the &#x60;window.location.hostname&#x60; of the web shop.</param>
-        /// <param name="merchantIdentifier">Your merchant identifier registered with Apple Pay.  Use the value of the &#x60;configuration.merchantId&#x60; field from the [&#x60;/paymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.</param>
-        [JsonConstructor]
-        public ApplePaySessionRequest(string displayName, string domainName, string merchantIdentifier)
-        {
-            DisplayName = displayName;
-            DomainName = domainName;
-            MerchantIdentifier = merchantIdentifier;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ApplePaySessionRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -147,7 +132,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!displayName.IsSet)
                 throw new ArgumentException("Property is required for class ApplePaySessionRequest.", nameof(displayName));
 
@@ -157,7 +142,11 @@ namespace Adyen.Checkout.Models
             if (!merchantIdentifier.IsSet)
                 throw new ArgumentException("Property is required for class ApplePaySessionRequest.", nameof(merchantIdentifier));
 
-            return new ApplePaySessionRequest(displayName.Value!, domainName.Value!, merchantIdentifier.Value!);
+            var result = new ApplePaySessionRequest();
+            result.DisplayName = displayName.Value!;
+            result.DomainName = domainName.Value!;
+            result.MerchantIdentifier = merchantIdentifier.Value!;
+            return result;
         }
 
         /// <summary>
@@ -168,13 +157,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ApplePaySessionRequest applePaySessionRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, applePaySessionRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -185,7 +174,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ApplePaySessionRequest applePaySessionRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (applePaySessionRequest.DisplayName != null)
                 writer.WriteString("displayName", applePaySessionRequest.DisplayName);
 

@@ -34,31 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutOrderResponse" /> class.
         /// </summary>
-        /// <param name="pspReference">The &#x60;pspReference&#x60; that belongs to the order.</param>
-        /// <param name="amount">amount</param>
-        /// <param name="expiresAt">The expiry date for the order.</param>
-        /// <param name="orderData">The encrypted order data.</param>
-        /// <param name="reference">The merchant reference for the order.</param>
-        /// <param name="remainingAmount">remainingAmount</param>
-        [JsonConstructor]
-        public CheckoutOrderResponse(string pspReference, Option<Amount?> amount = default, Option<string?> expiresAt = default, Option<string?> orderData = default, Option<string?> reference = default, Option<Amount?> remainingAmount = default)
-        {
-            PspReference = pspReference;
-            _AmountOption = amount;
-            _ExpiresAtOption = expiresAt;
-            _OrderDataOption = orderData;
-            _ReferenceOption = reference;
-            _RemainingAmountOption = remainingAmount;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CheckoutOrderResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -222,11 +201,23 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!pspReference.IsSet)
                 throw new ArgumentException("Property is required for class CheckoutOrderResponse.", nameof(pspReference));
 
-            return new CheckoutOrderResponse(pspReference.Value!, amount, expiresAt, orderData, reference, remainingAmount);
+            var result = new CheckoutOrderResponse();
+            result.PspReference = pspReference.Value!;
+            if (amount.IsSet)
+                result.Amount = amount.Value;
+            if (expiresAt.IsSet)
+                result.ExpiresAt = expiresAt.Value;
+            if (orderData.IsSet)
+                result.OrderData = orderData.Value;
+            if (reference.IsSet)
+                result.Reference = reference.Value;
+            if (remainingAmount.IsSet)
+                result.RemainingAmount = remainingAmount.Value;
+            return result;
         }
 
         /// <summary>
@@ -237,13 +228,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CheckoutOrderResponse checkoutOrderResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, checkoutOrderResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -254,7 +245,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CheckoutOrderResponse checkoutOrderResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (checkoutOrderResponse.PspReference != null)
                 writer.WriteString("pspReference", checkoutOrderResponse.PspReference);
 

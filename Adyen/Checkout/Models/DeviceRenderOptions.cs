@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceRenderOptions" /> class.
         /// </summary>
-        /// <param name="sdkInterface">Supported SDK interface types. Allowed values: * native * html * both (default to SdkInterfaceEnum.Both)</param>
-        /// <param name="sdkUiType">UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect</param>
-        [JsonConstructor]
-        public DeviceRenderOptions(Option<SdkInterfaceEnum?> sdkInterface = default, Option<List<DeviceRenderOptions.SdkUiTypeEnum>?> sdkUiType = default)
-        {
-            _SdkInterfaceOption = sdkInterface;
-            _SdkUiTypeOption = sdkUiType;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public DeviceRenderOptions()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -79,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// SdkInterfaceEnum.Both - both
             /// </summary>
             public static readonly SdkInterfaceEnum Both = new("both");
-        
+
             private SdkInterfaceEnum(string? value)
             {
                 Value = value;
@@ -91,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="SdkInterfaceEnum"/> instance initialized with the string value.</returns>
             public static implicit operator SdkInterfaceEnum?(string? value) => value == null ? null : new SdkInterfaceEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="SdkInterfaceEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="SdkInterfaceEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="SdkInterfaceEnum"/> instance./// </returns>
             public static implicit operator string?(SdkInterfaceEnum? option) => option?.Value;
-        
+
             public static bool operator ==(SdkInterfaceEnum? left, SdkInterfaceEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(SdkInterfaceEnum? left, SdkInterfaceEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is SdkInterfaceEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="SdkInterfaceEnum?"/>.
             /// </summary>
@@ -123,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="SdkInterfaceEnum"/> to the json value.
             /// </summary>
@@ -134,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == SdkInterfaceEnum.Native)
                     return "native";
-                
+
                 if (value == SdkInterfaceEnum.Html)
                     return "html";
-                
+
                 if (value == SdkInterfaceEnum.Both)
                     return "both";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing SdkInterfaceEnum.               
+            /// JsonConverter for writing SdkInterfaceEnum.
             /// </summary>
             public class SdkInterfaceEnumJsonConverter : JsonConverter<SdkInterfaceEnum>
             {
@@ -214,7 +201,7 @@ namespace Adyen.Checkout.Models
             /// SdkUiTypeEnum.Text - text
             /// </summary>
             public static readonly SdkUiTypeEnum Text = new("text");
-        
+
             private SdkUiTypeEnum(string? value)
             {
                 Value = value;
@@ -226,24 +213,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="SdkUiTypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator SdkUiTypeEnum?(string? value) => value == null ? null : new SdkUiTypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="SdkUiTypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="SdkUiTypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="SdkUiTypeEnum"/> instance./// </returns>
             public static implicit operator string?(SdkUiTypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(SdkUiTypeEnum? left, SdkUiTypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(SdkUiTypeEnum? left, SdkUiTypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is SdkUiTypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="SdkUiTypeEnum?"/>.
             /// </summary>
@@ -260,7 +247,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="SdkUiTypeEnum"/> to the json value.
             /// </summary>
@@ -271,27 +258,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == SdkUiTypeEnum.MultiSelect)
                     return "multiSelect";
-                
+
                 if (value == SdkUiTypeEnum.OtherHtml)
                     return "otherHtml";
-                
+
                 if (value == SdkUiTypeEnum.OutOfBand)
                     return "outOfBand";
-                
+
                 if (value == SdkUiTypeEnum.SingleSelect)
                     return "singleSelect";
-                
+
                 if (value == SdkUiTypeEnum.Text)
                     return "text";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing SdkUiTypeEnum.               
+            /// JsonConverter for writing SdkUiTypeEnum.
             /// </summary>
             public class SdkUiTypeEnumJsonConverter : JsonConverter<SdkUiTypeEnum>
             {
@@ -389,9 +376,14 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new DeviceRenderOptions(sdkInterface, sdkUiType);
+
+            var result = new DeviceRenderOptions();
+            if (sdkInterface.IsSet)
+                result.SdkInterface = sdkInterface.Value;
+            if (sdkUiType.IsSet)
+                result.SdkUiType = sdkUiType.Value;
+            return result;
         }
 
         /// <summary>
@@ -402,13 +394,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, DeviceRenderOptions deviceRenderOptions, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, deviceRenderOptions, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -419,13 +411,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, DeviceRenderOptions deviceRenderOptions, JsonSerializerOptions jsonSerializerOptions)
         {
-            
-            if (deviceRenderOptions._SdkInterfaceOption.IsSet && deviceRenderOptions.SdkInterface != null) 
+
+            if (deviceRenderOptions._SdkInterfaceOption.IsSet && deviceRenderOptions.SdkInterface != null)
             {
                 string? sdkInterfaceRawValue = DeviceRenderOptions.SdkInterfaceEnum.ToJsonValue(deviceRenderOptions._SdkInterfaceOption.Value!.Value);
                 writer.WriteString("sdkInterface", sdkInterfaceRawValue);
             }
-            
+
             if (deviceRenderOptions._SdkUiTypeOption.IsSet)
             {
                 writer.WritePropertyName("sdkUiType");

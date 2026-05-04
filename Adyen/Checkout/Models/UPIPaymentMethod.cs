@@ -31,18 +31,6 @@ namespace Adyen.Checkout.Models
     /// </summary>
     public partial class UPIPaymentMethod : ShopperIdPaymentMethod
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UPIPaymentMethod" /> class.
-        /// </summary>
-        /// <param name="virtualPaymentAddress">virtualPaymentAddress</param>
-        [JsonConstructor]
-        public UPIPaymentMethod(Option<string?> virtualPaymentAddress = default) : base()
-        {
-            _VirtualPaymentAddressOption = virtualPaymentAddress;
-            OnCreated();
-        }
-        
-
         partial void OnCreated();
 
         /// <summary>
@@ -124,11 +112,14 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class UPIPaymentMethod.", nameof(type));
 
-            return new UPIPaymentMethod(virtualPaymentAddress);
+            var result = new UPIPaymentMethod();
+            if (virtualPaymentAddress.IsSet)
+                result.VirtualPaymentAddress = virtualPaymentAddress.Value;
+            return result;
         }
 
         /// <summary>
@@ -139,13 +130,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, UPIPaymentMethod uPIPaymentMethod, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, uPIPaymentMethod, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -156,10 +147,10 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, UPIPaymentMethod uPIPaymentMethod, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (uPIPaymentMethod.Type != null)
     writer.WriteString("type", uPIPaymentMethod.Type);
-            
+
             if (uPIPaymentMethod._VirtualPaymentAddressOption.IsSet)
                 if (uPIPaymentMethod.VirtualPaymentAddress != null)
                     writer.WriteString("virtualPaymentAddress", uPIPaymentMethod.VirtualPaymentAddress);

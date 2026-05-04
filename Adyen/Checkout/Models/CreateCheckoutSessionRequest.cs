@@ -34,141 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateCheckoutSessionRequest" /> class.
         /// </summary>
-        /// <param name="amount">amount</param>
-        /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction.</param>
-        /// <param name="reference">The reference to uniquely identify a payment.</param>
-        /// <param name="returnUrl">The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol &#x60;http://&#x60; or &#x60;https://&#x60;. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: &#x60;https://your-company.example.com/checkout?shopperOrder&#x3D;12xy&#x60; * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: &#x60;my-app://&#x60; * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: &#x60;my-app://your.package.name&#x60;  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value.  We strongly recommend that you use a maximum of 1024 characters.  &gt; The URL must not include personally identifiable information (PII), for example name or email address.</param>
-        /// <param name="accountInfo">accountInfo</param>
-        /// <param name="additionalAmount">additionalAmount</param>
-        /// <param name="additionalData">This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value.</param>
-        /// <param name="allowedPaymentMethods">List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;applepay\&quot;]&#x60;</param>
-        /// <param name="applicationInfo">applicationInfo</param>
-        /// <param name="authenticationData">authenticationData</param>
-        /// <param name="billingAddress">billingAddress</param>
-        /// <param name="blockedPaymentMethods">List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;applepay\&quot;]&#x60;</param>
-        /// <param name="captureDelayHours">The delay between the authorisation and scheduled auto-capture, specified in hours.</param>
-        /// <param name="channel">The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the &#x60;sdkVersion&#x60; or &#x60;token&#x60;.  Possible values: * **iOS** * **Android** * **Web**</param>
-        /// <param name="company">company</param>
-        /// <param name="countryCode">The shopper&#39;s two-letter country code.</param>
-        /// <param name="dateOfBirth">The shopper&#39;s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD</param>
-        /// <param name="deliverAt">The date and time when the purchased goods should be delivered.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.</param>
-        /// <param name="deliveryAddress">deliveryAddress</param>
-        /// <param name="enableOneClick">When true and &#x60;shopperReference&#x60; is provided, the shopper will be asked if the payment details should be stored for future [one-click payments](https://docs.adyen.com/get-started-with-adyen/payment-glossary/#one-click-payments-definition).</param>
-        /// <param name="enablePayOut">When true and &#x60;shopperReference&#x60; is provided, the payment details will be tokenized for payouts.</param>
-        /// <param name="enableRecurring">When true and &#x60;shopperReference&#x60; is provided, the payment details will be stored for [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types) where the shopper is not present, such as subscription or automatic top-up payments.</param>
-        /// <param name="expiresAt">The date the session expires in [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. When not specified, the expiry date is set to 1 hour after session creation. You cannot set the session expiry to more than 24 hours after session creation.</param>
-        /// <param name="fundOrigin">fundOrigin</param>
-        /// <param name="fundRecipient">fundRecipient</param>
-        /// <param name="installmentOptions">A set of key-value pairs that specifies the installment options available per payment method. The key must be a payment method name in lowercase. For example, **card** to specify installment options for all cards, or **visa** or **mc**. The value must be an object containing the installment options.</param>
-        /// <param name="lineItems">Price and product information about the purchased items, to be included on the invoice sent to the shopper. &gt; This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty.</param>
-        /// <param name="mandate">mandate</param>
-        /// <param name="mcc">The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.</param>
-        /// <param name="merchantOrderReference">This reference allows linking multiple transactions to each other for reporting purposes (i.e. order auth-rate). The reference should be unique per billing cycle. The same merchant order reference should never be reused after the first authorised attempt. If used, this field should be supplied for all incoming authorisations. &gt; We strongly recommend you send the &#x60;merchantOrderReference&#x60; value to benefit from linking payment requests when authorisation retries take place. In addition, we recommend you provide &#x60;retry.orderAttemptNumber&#x60;, &#x60;retry.chainAttemptNumber&#x60;, and &#x60;retry.skipRetry&#x60; values in &#x60;PaymentRequest.additionalData&#x60;.</param>
-        /// <param name="metadata">Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. * Maximum 20 characters per key. * Maximum 80 characters per value. </param>
-        /// <param name="mode">Indicates the type of front end integration. Possible values: * **embedded** (default): Drop-in or Components integration * **hosted**: Hosted Checkout integration (default to ModeEnum.Embedded)</param>
-        /// <param name="mpiData">mpiData</param>
-        /// <param name="platformChargebackLogic">platformChargebackLogic</param>
-        /// <param name="recurringExpiry">Date after which no further authorisations shall be performed. Only for 3D Secure 2.</param>
-        /// <param name="recurringFrequency">Minimum number of days between authorisations. Only for 3D Secure 2.</param>
-        /// <param name="recurringProcessingModel">Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </param>
-        /// <param name="redirectFromIssuerMethod">Specifies the redirect method (GET or POST) when redirecting back from the issuer.</param>
-        /// <param name="redirectToIssuerMethod">Specifies the redirect method (GET or POST) when redirecting to the issuer.</param>
-        /// <param name="riskData">riskData</param>
-        /// <param name="shopperEmail">The shopper&#39;s email address.</param>
-        /// <param name="shopperIP">The shopper&#39;s IP address. We recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks). &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication for all web and mobile integrations, if you did not include the &#x60;shopperEmail&#x60;. For native mobile integrations, the field is required to support cases where authentication is routed to the redirect flow. This field is also mandatory for some merchants depending on your business model. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).</param>
-        /// <param name="shopperInteraction">Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * &#x60;Ecommerce&#x60; - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * &#x60;ContAuth&#x60; - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * &#x60;Moto&#x60; - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * &#x60;POS&#x60; - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.</param>
-        /// <param name="shopperLocale">The combination of a language code and a country code to specify the language to be used in the payment.</param>
-        /// <param name="shopperName">shopperName</param>
-        /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.</param>
-        /// <param name="shopperStatement">The text to be shown on the shopper&#39;s bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , &#39; _ - ? + * /_**.</param>
-        /// <param name="showInstallmentAmount">Set to true to show the payment amount per installment.</param>
-        /// <param name="showRemovePaymentMethodButton">Set to **true** to show a button that lets the shopper remove a stored payment method.</param>
-        /// <param name="socialSecurityNumber">The shopper&#39;s social security number.</param>
-        /// <param name="splitCardFundingSources">Boolean value indicating whether the card payment method should be split into separate debit and credit options. (default to false)</param>
-        /// <param name="splits">An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).</param>
-        /// <param name="store">Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.</param>
-        /// <param name="storeFiltrationMode">Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.</param>
-        /// <param name="storePaymentMethod">When true and &#x60;shopperReference&#x60; is provided, the payment details will be stored for future [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types).</param>
-        /// <param name="storePaymentMethodMode">Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the &#x60;shopperReference&#x60; is provided, the Drop-in/Component shows a checkbox where the shopper can select to store their payment details for card payments. * **enabled** – If the &#x60;shopperReference&#x60; is provided, the details will be stored without asking the shopper for consent.</param>
-        /// <param name="telephoneNumber">The shopper&#39;s telephone number.  The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we do not submit it for authentication. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the &#x60;shopperEmail&#x60;.</param>
-        /// <param name="themeId">Sets a custom theme for [Hosted Checkout](https://docs.adyen.com/online-payments/build-your-integration/?platform&#x3D;Web&amp;integration&#x3D;Hosted+Checkout). The value can be any of the **Theme ID** values from your Customer Area.</param>
-        /// <param name="threeDS2RequestData">threeDS2RequestData</param>
-        /// <param name="threeDSAuthenticationOnly">Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.Default: **false**. (default to false)</param>
-        /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID.</param>
-        [JsonConstructor]
-        public CreateCheckoutSessionRequest(Amount amount, string merchantAccount, string reference, string returnUrl, Option<AccountInfo?> accountInfo = default, Option<Amount?> additionalAmount = default, Option<Dictionary<string, string>?> additionalData = default, Option<List<string>?> allowedPaymentMethods = default, Option<ApplicationInfo?> applicationInfo = default, Option<AuthenticationData?> authenticationData = default, Option<BillingAddress?> billingAddress = default, Option<List<string>?> blockedPaymentMethods = default, Option<int?> captureDelayHours = default, Option<ChannelEnum?> channel = default, Option<Company?> company = default, Option<string?> countryCode = default, Option<DateOnly?> dateOfBirth = default, Option<DateTimeOffset?> deliverAt = default, Option<DeliveryAddress?> deliveryAddress = default, Option<bool?> enableOneClick = default, Option<bool?> enablePayOut = default, Option<bool?> enableRecurring = default, Option<DateTimeOffset?> expiresAt = default, Option<FundOrigin?> fundOrigin = default, Option<FundRecipient?> fundRecipient = default, Option<Dictionary<string, CheckoutSessionInstallmentOption>?> installmentOptions = default, Option<List<LineItem>?> lineItems = default, Option<Mandate?> mandate = default, Option<string?> mcc = default, Option<string?> merchantOrderReference = default, Option<Dictionary<string, string>?> metadata = default, Option<ModeEnum?> mode = default, Option<ThreeDSecureData?> mpiData = default, Option<PlatformChargebackLogic?> platformChargebackLogic = default, Option<string?> recurringExpiry = default, Option<string?> recurringFrequency = default, Option<RecurringProcessingModelEnum?> recurringProcessingModel = default, Option<string?> redirectFromIssuerMethod = default, Option<string?> redirectToIssuerMethod = default, Option<RiskData?> riskData = default, Option<string?> shopperEmail = default, Option<string?> shopperIP = default, Option<ShopperInteractionEnum?> shopperInteraction = default, Option<string?> shopperLocale = default, Option<ShopperName?> shopperName = default, Option<string?> shopperReference = default, Option<string?> shopperStatement = default, Option<bool?> showInstallmentAmount = default, Option<bool?> showRemovePaymentMethodButton = default, Option<string?> socialSecurityNumber = default, Option<bool?> splitCardFundingSources = default, Option<List<Split>?> splits = default, Option<string?> store = default, Option<StoreFiltrationModeEnum?> storeFiltrationMode = default, Option<bool?> storePaymentMethod = default, Option<StorePaymentMethodModeEnum?> storePaymentMethodMode = default, Option<string?> telephoneNumber = default, Option<string?> themeId = default, Option<CheckoutSessionThreeDS2RequestData?> threeDS2RequestData = default, Option<bool?> threeDSAuthenticationOnly = default, Option<bool?> trustedShopper = default)
-        {
-            Amount = amount;
-            MerchantAccount = merchantAccount;
-            Reference = reference;
-            ReturnUrl = returnUrl;
-            _AccountInfoOption = accountInfo;
-            _AdditionalAmountOption = additionalAmount;
-            _AdditionalDataOption = additionalData;
-            _AllowedPaymentMethodsOption = allowedPaymentMethods;
-            _ApplicationInfoOption = applicationInfo;
-            _AuthenticationDataOption = authenticationData;
-            _BillingAddressOption = billingAddress;
-            _BlockedPaymentMethodsOption = blockedPaymentMethods;
-            _CaptureDelayHoursOption = captureDelayHours;
-            _ChannelOption = channel;
-            _CompanyOption = company;
-            _CountryCodeOption = countryCode;
-            _DateOfBirthOption = dateOfBirth;
-            _DeliverAtOption = deliverAt;
-            _DeliveryAddressOption = deliveryAddress;
-            _EnableOneClickOption = enableOneClick;
-            _EnablePayOutOption = enablePayOut;
-            _EnableRecurringOption = enableRecurring;
-            _ExpiresAtOption = expiresAt;
-            _FundOriginOption = fundOrigin;
-            _FundRecipientOption = fundRecipient;
-            _InstallmentOptionsOption = installmentOptions;
-            _LineItemsOption = lineItems;
-            _MandateOption = mandate;
-            _MccOption = mcc;
-            _MerchantOrderReferenceOption = merchantOrderReference;
-            _MetadataOption = metadata;
-            _ModeOption = mode;
-            _MpiDataOption = mpiData;
-            _PlatformChargebackLogicOption = platformChargebackLogic;
-            _RecurringExpiryOption = recurringExpiry;
-            _RecurringFrequencyOption = recurringFrequency;
-            _RecurringProcessingModelOption = recurringProcessingModel;
-            _RedirectFromIssuerMethodOption = redirectFromIssuerMethod;
-            _RedirectToIssuerMethodOption = redirectToIssuerMethod;
-            _RiskDataOption = riskData;
-            _ShopperEmailOption = shopperEmail;
-            _ShopperIPOption = shopperIP;
-            _ShopperInteractionOption = shopperInteraction;
-            _ShopperLocaleOption = shopperLocale;
-            _ShopperNameOption = shopperName;
-            _ShopperReferenceOption = shopperReference;
-            _ShopperStatementOption = shopperStatement;
-            _ShowInstallmentAmountOption = showInstallmentAmount;
-            _ShowRemovePaymentMethodButtonOption = showRemovePaymentMethodButton;
-            _SocialSecurityNumberOption = socialSecurityNumber;
-            _SplitCardFundingSourcesOption = splitCardFundingSources;
-            _SplitsOption = splits;
-            _StoreOption = store;
-            _StoreFiltrationModeOption = storeFiltrationMode;
-            _StorePaymentMethodOption = storePaymentMethod;
-            _StorePaymentMethodModeOption = storePaymentMethodMode;
-            _TelephoneNumberOption = telephoneNumber;
-            _ThemeIdOption = themeId;
-            _ThreeDS2RequestDataOption = threeDS2RequestData;
-            _ThreeDSAuthenticationOnlyOption = threeDSAuthenticationOnly;
-            _TrustedShopperOption = trustedShopper;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CreateCheckoutSessionRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -197,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// ChannelEnum.Web - Web
             /// </summary>
             public static readonly ChannelEnum Web = new("Web");
-        
+
             private ChannelEnum(string? value)
             {
                 Value = value;
@@ -209,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ChannelEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ChannelEnum?(string? value) => value == null ? null : new ChannelEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ChannelEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ChannelEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ChannelEnum"/> instance./// </returns>
             public static implicit operator string?(ChannelEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ChannelEnum? left, ChannelEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ChannelEnum? left, ChannelEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ChannelEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ChannelEnum?"/>.
             /// </summary>
@@ -241,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ChannelEnum"/> to the json value.
             /// </summary>
@@ -252,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ChannelEnum.IOS)
                     return "iOS";
-                
+
                 if (value == ChannelEnum.Android)
                     return "Android";
-                
+
                 if (value == ChannelEnum.Web)
                     return "Web";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ChannelEnum.               
+            /// JsonConverter for writing ChannelEnum.
             /// </summary>
             public class ChannelEnumJsonConverter : JsonConverter<ChannelEnum>
             {
@@ -318,7 +187,7 @@ namespace Adyen.Checkout.Models
             /// ModeEnum.Hosted - hosted
             /// </summary>
             public static readonly ModeEnum Hosted = new("hosted");
-        
+
             private ModeEnum(string? value)
             {
                 Value = value;
@@ -330,24 +199,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ModeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ModeEnum?(string? value) => value == null ? null : new ModeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ModeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ModeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ModeEnum"/> instance./// </returns>
             public static implicit operator string?(ModeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ModeEnum? left, ModeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ModeEnum? left, ModeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ModeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ModeEnum?"/>.
             /// </summary>
@@ -361,7 +230,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ModeEnum"/> to the json value.
             /// </summary>
@@ -372,18 +241,18 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ModeEnum.Embedded)
                     return "embedded";
-                
+
                 if (value == ModeEnum.Hosted)
                     return "hosted";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ModeEnum.               
+            /// JsonConverter for writing ModeEnum.
             /// </summary>
             public class ModeEnumJsonConverter : JsonConverter<ModeEnum>
             {
@@ -415,7 +284,7 @@ namespace Adyen.Checkout.Models
         public ModeEnum? Mode { get { return this._ModeOption; } set { this._ModeOption = new(value); } }
 
         /// <summary>
-        /// Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount. 
+        /// Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.
         /// </summary>
         /// <value>Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
         [JsonConverter(typeof(RecurringProcessingModelEnumJsonConverter))]
@@ -440,7 +309,7 @@ namespace Adyen.Checkout.Models
             /// RecurringProcessingModelEnum.UnscheduledCardOnFile - UnscheduledCardOnFile
             /// </summary>
             public static readonly RecurringProcessingModelEnum UnscheduledCardOnFile = new("UnscheduledCardOnFile");
-        
+
             private RecurringProcessingModelEnum(string? value)
             {
                 Value = value;
@@ -452,24 +321,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="RecurringProcessingModelEnum"/> instance initialized with the string value.</returns>
             public static implicit operator RecurringProcessingModelEnum?(string? value) => value == null ? null : new RecurringProcessingModelEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="RecurringProcessingModelEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="RecurringProcessingModelEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="RecurringProcessingModelEnum"/> instance./// </returns>
             public static implicit operator string?(RecurringProcessingModelEnum? option) => option?.Value;
-        
+
             public static bool operator ==(RecurringProcessingModelEnum? left, RecurringProcessingModelEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(RecurringProcessingModelEnum? left, RecurringProcessingModelEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is RecurringProcessingModelEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="RecurringProcessingModelEnum?"/>.
             /// </summary>
@@ -484,7 +353,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="RecurringProcessingModelEnum"/> to the json value.
             /// </summary>
@@ -495,21 +364,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == RecurringProcessingModelEnum.CardOnFile)
                     return "CardOnFile";
-                
+
                 if (value == RecurringProcessingModelEnum.Subscription)
                     return "Subscription";
-                
+
                 if (value == RecurringProcessingModelEnum.UnscheduledCardOnFile)
                     return "UnscheduledCardOnFile";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing RecurringProcessingModelEnum.               
+            /// JsonConverter for writing RecurringProcessingModelEnum.
             /// </summary>
             public class RecurringProcessingModelEnumJsonConverter : JsonConverter<RecurringProcessingModelEnum>
             {
@@ -534,7 +403,7 @@ namespace Adyen.Checkout.Models
         public Option<RecurringProcessingModelEnum?> _RecurringProcessingModelOption { get; private set; }
 
         /// <summary>
-        /// Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount. 
+        /// Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.
         /// </summary>
         /// <value>Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
         [JsonPropertyName("recurringProcessingModel")]
@@ -571,7 +440,7 @@ namespace Adyen.Checkout.Models
             /// ShopperInteractionEnum.POS - POS
             /// </summary>
             public static readonly ShopperInteractionEnum POS = new("POS");
-        
+
             private ShopperInteractionEnum(string? value)
             {
                 Value = value;
@@ -583,24 +452,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ShopperInteractionEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ShopperInteractionEnum?(string? value) => value == null ? null : new ShopperInteractionEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ShopperInteractionEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ShopperInteractionEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ShopperInteractionEnum"/> instance./// </returns>
             public static implicit operator string?(ShopperInteractionEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ShopperInteractionEnum? left, ShopperInteractionEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ShopperInteractionEnum? left, ShopperInteractionEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ShopperInteractionEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ShopperInteractionEnum?"/>.
             /// </summary>
@@ -616,7 +485,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ShopperInteractionEnum"/> to the json value.
             /// </summary>
@@ -627,24 +496,24 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ShopperInteractionEnum.Ecommerce)
                     return "Ecommerce";
-                
+
                 if (value == ShopperInteractionEnum.ContAuth)
                     return "ContAuth";
-                
+
                 if (value == ShopperInteractionEnum.Moto)
                     return "Moto";
-                
+
                 if (value == ShopperInteractionEnum.POS)
                     return "POS";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ShopperInteractionEnum.               
+            /// JsonConverter for writing ShopperInteractionEnum.
             /// </summary>
             public class ShopperInteractionEnumJsonConverter : JsonConverter<ShopperInteractionEnum>
             {
@@ -701,7 +570,7 @@ namespace Adyen.Checkout.Models
             /// StoreFiltrationModeEnum.SkipFilter - skipFilter
             /// </summary>
             public static readonly StoreFiltrationModeEnum SkipFilter = new("skipFilter");
-        
+
             private StoreFiltrationModeEnum(string? value)
             {
                 Value = value;
@@ -713,24 +582,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="StoreFiltrationModeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator StoreFiltrationModeEnum?(string? value) => value == null ? null : new StoreFiltrationModeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="StoreFiltrationModeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="StoreFiltrationModeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="StoreFiltrationModeEnum"/> instance./// </returns>
             public static implicit operator string?(StoreFiltrationModeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(StoreFiltrationModeEnum? left, StoreFiltrationModeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(StoreFiltrationModeEnum? left, StoreFiltrationModeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is StoreFiltrationModeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="StoreFiltrationModeEnum?"/>.
             /// </summary>
@@ -745,7 +614,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="StoreFiltrationModeEnum"/> to the json value.
             /// </summary>
@@ -756,21 +625,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == StoreFiltrationModeEnum.Exclusive)
                     return "exclusive";
-                
+
                 if (value == StoreFiltrationModeEnum.Inclusive)
                     return "inclusive";
-                
+
                 if (value == StoreFiltrationModeEnum.SkipFilter)
                     return "skipFilter";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing StoreFiltrationModeEnum.               
+            /// JsonConverter for writing StoreFiltrationModeEnum.
             /// </summary>
             public class StoreFiltrationModeEnumJsonConverter : JsonConverter<StoreFiltrationModeEnum>
             {
@@ -827,7 +696,7 @@ namespace Adyen.Checkout.Models
             /// StorePaymentMethodModeEnum.Enabled - enabled
             /// </summary>
             public static readonly StorePaymentMethodModeEnum Enabled = new("enabled");
-        
+
             private StorePaymentMethodModeEnum(string? value)
             {
                 Value = value;
@@ -839,24 +708,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="StorePaymentMethodModeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator StorePaymentMethodModeEnum?(string? value) => value == null ? null : new StorePaymentMethodModeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="StorePaymentMethodModeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="StorePaymentMethodModeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="StorePaymentMethodModeEnum"/> instance./// </returns>
             public static implicit operator string?(StorePaymentMethodModeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(StorePaymentMethodModeEnum? left, StorePaymentMethodModeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(StorePaymentMethodModeEnum? left, StorePaymentMethodModeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is StorePaymentMethodModeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="StorePaymentMethodModeEnum?"/>.
             /// </summary>
@@ -871,7 +740,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="StorePaymentMethodModeEnum"/> to the json value.
             /// </summary>
@@ -882,21 +751,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == StorePaymentMethodModeEnum.AskForConsent)
                     return "askForConsent";
-                
+
                 if (value == StorePaymentMethodModeEnum.Disabled)
                     return "disabled";
-                
+
                 if (value == StorePaymentMethodModeEnum.Enabled)
                     return "enabled";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing StorePaymentMethodModeEnum.               
+            /// JsonConverter for writing StorePaymentMethodModeEnum.
             /// </summary>
             public class StorePaymentMethodModeEnumJsonConverter : JsonConverter<StorePaymentMethodModeEnum>
             {
@@ -1302,7 +1171,7 @@ namespace Adyen.Checkout.Models
         public Option<Dictionary<string, string>?> _MetadataOption { get; private set; }
 
         /// <summary>
-        /// Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. * Maximum 20 characters per key. * Maximum 80 characters per value. 
+        /// Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. * Maximum 20 characters per key. * Maximum 80 characters per value.
         /// </summary>
         /// <value>Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. * Maximum 20 characters per key. * Maximum 80 characters per value. </value>
         [JsonPropertyName("metadata")]
@@ -2036,7 +1905,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!amount.IsSet)
                 throw new ArgumentException("Property is required for class CreateCheckoutSessionRequest.", nameof(amount));
 
@@ -2049,7 +1918,126 @@ namespace Adyen.Checkout.Models
             if (!returnUrl.IsSet)
                 throw new ArgumentException("Property is required for class CreateCheckoutSessionRequest.", nameof(returnUrl));
 
-            return new CreateCheckoutSessionRequest(amount.Value!, merchantAccount.Value!, reference.Value!, returnUrl.Value!, accountInfo, additionalAmount, additionalData, allowedPaymentMethods, applicationInfo, authenticationData, billingAddress, blockedPaymentMethods, captureDelayHours, channel, company, countryCode, dateOfBirth, deliverAt, deliveryAddress, enableOneClick, enablePayOut, enableRecurring, expiresAt, fundOrigin, fundRecipient, installmentOptions, lineItems, mandate, mcc, merchantOrderReference, metadata, mode, mpiData, platformChargebackLogic, recurringExpiry, recurringFrequency, recurringProcessingModel, redirectFromIssuerMethod, redirectToIssuerMethod, riskData, shopperEmail, shopperIP, shopperInteraction, shopperLocale, shopperName, shopperReference, shopperStatement, showInstallmentAmount, showRemovePaymentMethodButton, socialSecurityNumber, splitCardFundingSources, splits, store, storeFiltrationMode, storePaymentMethod, storePaymentMethodMode, telephoneNumber, themeId, threeDS2RequestData, threeDSAuthenticationOnly, trustedShopper);
+            var result = new CreateCheckoutSessionRequest();
+            result.Amount = amount.Value!;
+            result.MerchantAccount = merchantAccount.Value!;
+            result.Reference = reference.Value!;
+            result.ReturnUrl = returnUrl.Value!;
+            if (accountInfo.IsSet)
+                result.AccountInfo = accountInfo.Value;
+            if (additionalAmount.IsSet)
+                result.AdditionalAmount = additionalAmount.Value;
+            if (additionalData.IsSet)
+                result.AdditionalData = additionalData.Value;
+            if (allowedPaymentMethods.IsSet)
+                result.AllowedPaymentMethods = allowedPaymentMethods.Value;
+            if (applicationInfo.IsSet)
+                result.ApplicationInfo = applicationInfo.Value;
+            if (authenticationData.IsSet)
+                result.AuthenticationData = authenticationData.Value;
+            if (billingAddress.IsSet)
+                result.BillingAddress = billingAddress.Value;
+            if (blockedPaymentMethods.IsSet)
+                result.BlockedPaymentMethods = blockedPaymentMethods.Value;
+            if (captureDelayHours.IsSet)
+                result.CaptureDelayHours = captureDelayHours.Value;
+            if (channel.IsSet)
+                result.Channel = channel.Value;
+            if (company.IsSet)
+                result.Company = company.Value;
+            if (countryCode.IsSet)
+                result.CountryCode = countryCode.Value;
+            if (dateOfBirth.IsSet)
+                result.DateOfBirth = dateOfBirth.Value;
+            if (deliverAt.IsSet)
+                result.DeliverAt = deliverAt.Value;
+            if (deliveryAddress.IsSet)
+                result.DeliveryAddress = deliveryAddress.Value;
+            if (enableOneClick.IsSet)
+                result.EnableOneClick = enableOneClick.Value;
+            if (enablePayOut.IsSet)
+                result.EnablePayOut = enablePayOut.Value;
+            if (enableRecurring.IsSet)
+                result.EnableRecurring = enableRecurring.Value;
+            if (expiresAt.IsSet)
+                result.ExpiresAt = expiresAt.Value;
+            if (fundOrigin.IsSet)
+                result.FundOrigin = fundOrigin.Value;
+            if (fundRecipient.IsSet)
+                result.FundRecipient = fundRecipient.Value;
+            if (installmentOptions.IsSet)
+                result.InstallmentOptions = installmentOptions.Value;
+            if (lineItems.IsSet)
+                result.LineItems = lineItems.Value;
+            if (mandate.IsSet)
+                result.Mandate = mandate.Value;
+            if (mcc.IsSet)
+                result.Mcc = mcc.Value;
+            if (merchantOrderReference.IsSet)
+                result.MerchantOrderReference = merchantOrderReference.Value;
+            if (metadata.IsSet)
+                result.Metadata = metadata.Value;
+            if (mode.IsSet)
+                result.Mode = mode.Value;
+            if (mpiData.IsSet)
+                result.MpiData = mpiData.Value;
+            if (platformChargebackLogic.IsSet)
+                result.PlatformChargebackLogic = platformChargebackLogic.Value;
+            if (recurringExpiry.IsSet)
+                result.RecurringExpiry = recurringExpiry.Value;
+            if (recurringFrequency.IsSet)
+                result.RecurringFrequency = recurringFrequency.Value;
+            if (recurringProcessingModel.IsSet)
+                result.RecurringProcessingModel = recurringProcessingModel.Value;
+            if (redirectFromIssuerMethod.IsSet)
+                result.RedirectFromIssuerMethod = redirectFromIssuerMethod.Value;
+            if (redirectToIssuerMethod.IsSet)
+                result.RedirectToIssuerMethod = redirectToIssuerMethod.Value;
+            if (riskData.IsSet)
+                result.RiskData = riskData.Value;
+            if (shopperEmail.IsSet)
+                result.ShopperEmail = shopperEmail.Value;
+            if (shopperIP.IsSet)
+                result.ShopperIP = shopperIP.Value;
+            if (shopperInteraction.IsSet)
+                result.ShopperInteraction = shopperInteraction.Value;
+            if (shopperLocale.IsSet)
+                result.ShopperLocale = shopperLocale.Value;
+            if (shopperName.IsSet)
+                result.ShopperName = shopperName.Value;
+            if (shopperReference.IsSet)
+                result.ShopperReference = shopperReference.Value;
+            if (shopperStatement.IsSet)
+                result.ShopperStatement = shopperStatement.Value;
+            if (showInstallmentAmount.IsSet)
+                result.ShowInstallmentAmount = showInstallmentAmount.Value;
+            if (showRemovePaymentMethodButton.IsSet)
+                result.ShowRemovePaymentMethodButton = showRemovePaymentMethodButton.Value;
+            if (socialSecurityNumber.IsSet)
+                result.SocialSecurityNumber = socialSecurityNumber.Value;
+            if (splitCardFundingSources.IsSet)
+                result.SplitCardFundingSources = splitCardFundingSources.Value;
+            if (splits.IsSet)
+                result.Splits = splits.Value;
+            if (store.IsSet)
+                result.Store = store.Value;
+            if (storeFiltrationMode.IsSet)
+                result.StoreFiltrationMode = storeFiltrationMode.Value;
+            if (storePaymentMethod.IsSet)
+                result.StorePaymentMethod = storePaymentMethod.Value;
+            if (storePaymentMethodMode.IsSet)
+                result.StorePaymentMethodMode = storePaymentMethodMode.Value;
+            if (telephoneNumber.IsSet)
+                result.TelephoneNumber = telephoneNumber.Value;
+            if (themeId.IsSet)
+                result.ThemeId = themeId.Value;
+            if (threeDS2RequestData.IsSet)
+                result.ThreeDS2RequestData = threeDS2RequestData.Value;
+            if (threeDSAuthenticationOnly.IsSet)
+                result.ThreeDSAuthenticationOnly = threeDSAuthenticationOnly.Value;
+            if (trustedShopper.IsSet)
+                result.TrustedShopper = trustedShopper.Value;
+            return result;
         }
 
         /// <summary>
@@ -2060,13 +2048,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CreateCheckoutSessionRequest createCheckoutSessionRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, createCheckoutSessionRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -2077,7 +2065,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CreateCheckoutSessionRequest createCheckoutSessionRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WritePropertyName("amount");
             JsonSerializer.Serialize(writer, createCheckoutSessionRequest.Amount, jsonSerializerOptions);
             if (createCheckoutSessionRequest.MerchantAccount != null)
@@ -2133,12 +2121,12 @@ namespace Adyen.Checkout.Models
                 if (createCheckoutSessionRequest._CaptureDelayHoursOption.Value != null)
                     writer.WriteNumber("captureDelayHours", createCheckoutSessionRequest._CaptureDelayHoursOption.Value!.Value);
 
-            if (createCheckoutSessionRequest._ChannelOption.IsSet && createCheckoutSessionRequest.Channel != null) 
+            if (createCheckoutSessionRequest._ChannelOption.IsSet && createCheckoutSessionRequest.Channel != null)
             {
                 string? channelRawValue = CreateCheckoutSessionRequest.ChannelEnum.ToJsonValue(createCheckoutSessionRequest._ChannelOption.Value!.Value);
                 writer.WriteString("channel", channelRawValue);
             }
-            
+
             if (createCheckoutSessionRequest._CompanyOption.IsSet)
             {
                 writer.WritePropertyName("company");
@@ -2215,12 +2203,12 @@ namespace Adyen.Checkout.Models
                 writer.WritePropertyName("metadata");
                 JsonSerializer.Serialize(writer, createCheckoutSessionRequest.Metadata, jsonSerializerOptions);
             }
-            if (createCheckoutSessionRequest._ModeOption.IsSet && createCheckoutSessionRequest.Mode != null) 
+            if (createCheckoutSessionRequest._ModeOption.IsSet && createCheckoutSessionRequest.Mode != null)
             {
                 string? modeRawValue = CreateCheckoutSessionRequest.ModeEnum.ToJsonValue(createCheckoutSessionRequest._ModeOption.Value!.Value);
                 writer.WriteString("mode", modeRawValue);
             }
-            
+
             if (createCheckoutSessionRequest._MpiDataOption.IsSet)
             {
                 writer.WritePropertyName("mpiData");
@@ -2239,12 +2227,12 @@ namespace Adyen.Checkout.Models
                 if (createCheckoutSessionRequest.RecurringFrequency != null)
                     writer.WriteString("recurringFrequency", createCheckoutSessionRequest.RecurringFrequency);
 
-            if (createCheckoutSessionRequest._RecurringProcessingModelOption.IsSet && createCheckoutSessionRequest.RecurringProcessingModel != null) 
+            if (createCheckoutSessionRequest._RecurringProcessingModelOption.IsSet && createCheckoutSessionRequest.RecurringProcessingModel != null)
             {
                 string? recurringProcessingModelRawValue = CreateCheckoutSessionRequest.RecurringProcessingModelEnum.ToJsonValue(createCheckoutSessionRequest._RecurringProcessingModelOption.Value!.Value);
                 writer.WriteString("recurringProcessingModel", recurringProcessingModelRawValue);
             }
-            
+
             if (createCheckoutSessionRequest._RedirectFromIssuerMethodOption.IsSet)
                 if (createCheckoutSessionRequest.RedirectFromIssuerMethod != null)
                     writer.WriteString("redirectFromIssuerMethod", createCheckoutSessionRequest.RedirectFromIssuerMethod);
@@ -2266,12 +2254,12 @@ namespace Adyen.Checkout.Models
                 if (createCheckoutSessionRequest.ShopperIP != null)
                     writer.WriteString("shopperIP", createCheckoutSessionRequest.ShopperIP);
 
-            if (createCheckoutSessionRequest._ShopperInteractionOption.IsSet && createCheckoutSessionRequest.ShopperInteraction != null) 
+            if (createCheckoutSessionRequest._ShopperInteractionOption.IsSet && createCheckoutSessionRequest.ShopperInteraction != null)
             {
                 string? shopperInteractionRawValue = CreateCheckoutSessionRequest.ShopperInteractionEnum.ToJsonValue(createCheckoutSessionRequest._ShopperInteractionOption.Value!.Value);
                 writer.WriteString("shopperInteraction", shopperInteractionRawValue);
             }
-            
+
             if (createCheckoutSessionRequest._ShopperLocaleOption.IsSet)
                 if (createCheckoutSessionRequest.ShopperLocale != null)
                     writer.WriteString("shopperLocale", createCheckoutSessionRequest.ShopperLocale);
@@ -2314,22 +2302,22 @@ namespace Adyen.Checkout.Models
                 if (createCheckoutSessionRequest.Store != null)
                     writer.WriteString("store", createCheckoutSessionRequest.Store);
 
-            if (createCheckoutSessionRequest._StoreFiltrationModeOption.IsSet && createCheckoutSessionRequest.StoreFiltrationMode != null) 
+            if (createCheckoutSessionRequest._StoreFiltrationModeOption.IsSet && createCheckoutSessionRequest.StoreFiltrationMode != null)
             {
                 string? storeFiltrationModeRawValue = CreateCheckoutSessionRequest.StoreFiltrationModeEnum.ToJsonValue(createCheckoutSessionRequest._StoreFiltrationModeOption.Value!.Value);
                 writer.WriteString("storeFiltrationMode", storeFiltrationModeRawValue);
             }
-            
+
             if (createCheckoutSessionRequest._StorePaymentMethodOption.IsSet)
                 if (createCheckoutSessionRequest._StorePaymentMethodOption.Value != null)
                     writer.WriteBoolean("storePaymentMethod", createCheckoutSessionRequest._StorePaymentMethodOption.Value!.Value);
 
-            if (createCheckoutSessionRequest._StorePaymentMethodModeOption.IsSet && createCheckoutSessionRequest.StorePaymentMethodMode != null) 
+            if (createCheckoutSessionRequest._StorePaymentMethodModeOption.IsSet && createCheckoutSessionRequest.StorePaymentMethodMode != null)
             {
                 string? storePaymentMethodModeRawValue = CreateCheckoutSessionRequest.StorePaymentMethodModeEnum.ToJsonValue(createCheckoutSessionRequest._StorePaymentMethodModeOption.Value!.Value);
                 writer.WriteString("storePaymentMethodMode", storePaymentMethodModeRawValue);
             }
-            
+
             if (createCheckoutSessionRequest._TelephoneNumberOption.IsSet)
                 if (createCheckoutSessionRequest.TelephoneNumber != null)
                     writer.WriteString("telephoneNumber", createCheckoutSessionRequest.TelephoneNumber);

@@ -64,22 +64,23 @@ namespace Adyen.IntegrationTest.Checkout
         public async Task Given_Payments_When_CardDetails_Provided_Returns_OK()
         {
             // Arrange
-            var request = new PaymentRequest(
-                amount: new Amount("EUR", 1999),
-                merchantAccount: _merchantAccount,
-                reference: "reference",
-                returnUrl: "https://adyen.com/",
-                paymentMethod: new CheckoutPaymentMethod(
-                    new CardDetails(
-                        type: CardDetails.TypeEnum.Scheme,
-                        encryptedCardNumber: "test_4111111111111111",
-                        encryptedExpiryMonth: "test_03",
-                        encryptedExpiryYear: "test_2030",
-                        encryptedSecurityCode: "test_737",
-                        holderName: "John Smith"
-                        )
-                    )
-                );
+            var request = new PaymentRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1999 },
+                MerchantAccount = _merchantAccount,
+                Reference = "reference",
+                ReturnUrl = "https://adyen.com/",
+                PaymentMethod = new CheckoutPaymentMethod(
+                    new CardDetails
+                    {
+                        Type = CardDetails.TypeEnum.Scheme,
+                        EncryptedCardNumber = "test_4111111111111111",
+                        EncryptedExpiryMonth = "test_03",
+                        EncryptedExpiryYear = "test_2030",
+                        EncryptedSecurityCode = "test_737",
+                        HolderName = "John Smith"
+                    })
+            };
             IPaymentsApiResponse response = await _paymentsApiService.PaymentsAsync(request);
 
             response.TryDeserializeOkResponse(out var result);
@@ -90,22 +91,23 @@ namespace Adyen.IntegrationTest.Checkout
         public async Task xGiven_Payments_When_CardDetails_With_Empty_RequestOptions_Succeeds()
         {
             // Test when no idempotency key is provided
-            var request = new PaymentRequest(
-                amount: new Amount("EUR", 1999),
-                merchantAccount: _merchantAccount,
-                reference: "ref1-original-request-1",
-                returnUrl: "https://adyen.com/",
-                paymentMethod: new CheckoutPaymentMethod(
-                    new CardDetails(
-                        type: CardDetails.TypeEnum.Scheme,
-                        encryptedCardNumber: "test_4111111111111111",
-                        encryptedExpiryMonth: "test_03",
-                        encryptedExpiryYear: "test_2030",
-                        encryptedSecurityCode: "test_737",
-                        holderName: "John Smith"
-                        )
-                    )
-                );
+            var request = new PaymentRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1999 },
+                MerchantAccount = _merchantAccount,
+                Reference = "ref1-original-request-1",
+                ReturnUrl = "https://adyen.com/",
+                PaymentMethod = new CheckoutPaymentMethod(
+                    new CardDetails
+                    {
+                        Type = CardDetails.TypeEnum.Scheme,
+                        EncryptedCardNumber = "test_4111111111111111",
+                        EncryptedExpiryMonth = "test_03",
+                        EncryptedExpiryYear = "test_2030",
+                        EncryptedSecurityCode = "test_737",
+                        HolderName = "John Smith"
+                    })
+            };
             IPaymentsApiResponse response = await _paymentsApiService.PaymentsAsync(request, new RequestOptions());
 
             response.TryDeserializeOkResponse(out PaymentResponse result);
@@ -117,22 +119,23 @@ namespace Adyen.IntegrationTest.Checkout
         public async Task Given_Payments_When_CardDetails_Without_Idempotency_Key_Provided_Returns_DifferentRefs()
         {
             // Test when no idempotency key is provided
-            var request = new PaymentRequest(
-                amount: new Amount("EUR", 1999),
-                merchantAccount: _merchantAccount,
-                reference: "ref1-original-request-1",
-                returnUrl: "https://adyen.com/",
-                paymentMethod: new CheckoutPaymentMethod(
-                    new CardDetails(
-                        type: CardDetails.TypeEnum.Scheme,
-                        encryptedCardNumber: "test_4111111111111111",
-                        encryptedExpiryMonth: "test_03",
-                        encryptedExpiryYear: "test_2030",
-                        encryptedSecurityCode: "test_737",
-                        holderName: "John Smith"
-                        )
-                    )
-                );
+            var request = new PaymentRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1999 },
+                MerchantAccount = _merchantAccount,
+                Reference = "ref1-original-request-1",
+                ReturnUrl = "https://adyen.com/",
+                PaymentMethod = new CheckoutPaymentMethod(
+                    new CardDetails
+                    {
+                        Type = CardDetails.TypeEnum.Scheme,
+                        EncryptedCardNumber = "test_4111111111111111",
+                        EncryptedExpiryMonth = "test_03",
+                        EncryptedExpiryYear = "test_2030",
+                        EncryptedSecurityCode = "test_737",
+                        HolderName = "John Smith"
+                    })
+            };
             IPaymentsApiResponse response = await _paymentsApiService.PaymentsAsync(paymentRequest: request);
 
             response.TryDeserializeOkResponse(out PaymentResponse result);
@@ -140,44 +143,46 @@ namespace Adyen.IntegrationTest.Checkout
             
             
             // Test when no idempotency key is provided
-            var request2 = new PaymentRequest(
-                amount: new Amount("EUR", 1999),
-                merchantAccount: _merchantAccount,
-                reference: "ref2-should-be-different",
-                returnUrl: "https://adyen.com/",
-                paymentMethod: new CheckoutPaymentMethod(
-                    new CardDetails(
-                        type: CardDetails.TypeEnum.Scheme,
-                        encryptedCardNumber: "test_4111111111111111",
-                        encryptedExpiryMonth: "test_03",
-                        encryptedExpiryYear: "test_2030",
-                        encryptedSecurityCode: "test_737",
-                        holderName: "John Smith"
-                        )
-                    )
-                );
+            var request2 = new PaymentRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1999 },
+                MerchantAccount = _merchantAccount,
+                Reference = "ref2-should-be-different",
+                ReturnUrl = "https://adyen.com/",
+                PaymentMethod = new CheckoutPaymentMethod(
+                    new CardDetails
+                    {
+                        Type = CardDetails.TypeEnum.Scheme,
+                        EncryptedCardNumber = "test_4111111111111111",
+                        EncryptedExpiryMonth = "test_03",
+                        EncryptedExpiryYear = "test_2030",
+                        EncryptedSecurityCode = "test_737",
+                        HolderName = "John Smith"
+                    })
+            };
             IPaymentsApiResponse response2 = await _paymentsApiService.PaymentsAsync(paymentRequest: request2);
 
             response2.TryDeserializeOkResponse(out PaymentResponse result2);
             Assert.AreEqual(result2?.MerchantReference, "ref2-should-be-different");
             
             // Test when null is explicitly provided.
-            var request3 = new PaymentRequest(
-                amount: new Amount("EUR", 1999),
-                merchantAccount: _merchantAccount,
-                reference: "ref3-should-be-very-different",
-                returnUrl: "https://adyen.com/",
-                paymentMethod: new CheckoutPaymentMethod(
-                    new CardDetails(
-                        type: CardDetails.TypeEnum.Scheme,
-                        encryptedCardNumber: "test_4111111111111111",
-                        encryptedExpiryMonth: "test_03",
-                        encryptedExpiryYear: "test_2030",
-                        encryptedSecurityCode: "test_737",
-                        holderName: "John Smith"
-                        )
-                    )
-                );
+            var request3 = new PaymentRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1999 },
+                MerchantAccount = _merchantAccount,
+                Reference = "ref3-should-be-very-different",
+                ReturnUrl = "https://adyen.com/",
+                PaymentMethod = new CheckoutPaymentMethod(
+                    new CardDetails
+                    {
+                        Type = CardDetails.TypeEnum.Scheme,
+                        EncryptedCardNumber = "test_4111111111111111",
+                        EncryptedExpiryMonth = "test_03",
+                        EncryptedExpiryYear = "test_2030",
+                        EncryptedSecurityCode = "test_737",
+                        HolderName = "John Smith"
+                    })
+            };
             IPaymentsApiResponse response3 = await _paymentsApiService.PaymentsAsync(request3);
             response3.TryDeserializeOkResponse(out PaymentResponse result3);
             Assert.AreEqual(result3?.MerchantReference, "ref3-should-be-very-different");
@@ -232,22 +237,23 @@ namespace Adyen.IntegrationTest.Checkout
         {
             // Arrange
 
-            var request = new PaymentRequest(
-                amount: new Amount("EUR", 1999),
-                merchantAccount: _merchantAccount,
-                reference: "reference",
-                returnUrl: "https://adyen.com/",
-                paymentMethod: new CheckoutPaymentMethod(
-                    new CardDetails(
-                        type: CardDetails.TypeEnum.Scheme,
-                        encryptedCardNumber: "test_4111111111111111",
-                        encryptedExpiryMonth: "test_03",
-                        encryptedExpiryYear: "test_2030",
-                        encryptedSecurityCode: "test_737",
-                        holderName: "John Smith"
-                        )
-                    )
-                );
+            var request = new PaymentRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1999 },
+                MerchantAccount = _merchantAccount,
+                Reference = "reference",
+                ReturnUrl = "https://adyen.com/",
+                PaymentMethod = new CheckoutPaymentMethod(
+                    new CardDetails
+                    {
+                        Type = CardDetails.TypeEnum.Scheme,
+                        EncryptedCardNumber = "test_4111111111111111",
+                        EncryptedExpiryMonth = "test_03",
+                        EncryptedExpiryYear = "test_2030",
+                        EncryptedSecurityCode = "test_737",
+                        HolderName = "John Smith"
+                    })
+            };
 
             
             PaymentsServiceEvents paymentsServiceEvents = _host.Services.GetRequiredService<PaymentsServiceEvents>();

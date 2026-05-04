@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Amounts" /> class.
         /// </summary>
-        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes/).</param>
-        /// <param name="values">The amounts of the donation (in [minor units](https://docs.adyen.com/development-resources/currency-codes/)).</param>
-        [JsonConstructor]
-        public Amounts(string currency, List<long> values)
-        {
-            Currency = currency;
-            Values = values;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public Amounts()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -133,14 +120,17 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!currency.IsSet)
                 throw new ArgumentException("Property is required for class Amounts.", nameof(currency));
 
             if (!values.IsSet)
                 throw new ArgumentException("Property is required for class Amounts.", nameof(values));
 
-            return new Amounts(currency.Value!, values.Value!);
+            var result = new Amounts();
+            result.Currency = currency.Value!;
+            result.Values = values.Value!;
+            return result;
         }
 
         /// <summary>
@@ -151,13 +141,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, Amounts amounts, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, amounts, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -168,7 +158,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, Amounts amounts, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (amounts.Currency != null)
                 writer.WriteString("currency", amounts.Currency);
 

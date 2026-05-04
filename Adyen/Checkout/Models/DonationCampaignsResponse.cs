@@ -34,21 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="DonationCampaignsResponse" /> class.
         /// </summary>
-        /// <param name="donationCampaigns">List of active donation campaigns for your merchant account.</param>
-        [JsonConstructor]
-        public DonationCampaignsResponse(Option<List<DonationCampaign>?> donationCampaigns = default)
-        {
-            _DonationCampaignsOption = donationCampaigns;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public DonationCampaignsResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -126,9 +115,12 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new DonationCampaignsResponse(donationCampaigns);
+
+            var result = new DonationCampaignsResponse();
+            if (donationCampaigns.IsSet)
+                result.DonationCampaigns = donationCampaigns.Value;
+            return result;
         }
 
         /// <summary>
@@ -139,13 +131,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, DonationCampaignsResponse donationCampaignsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, donationCampaignsResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -156,7 +148,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, DonationCampaignsResponse donationCampaignsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (donationCampaignsResponse._DonationCampaignsOption.IsSet)
             {
                 writer.WritePropertyName("donationCampaigns");

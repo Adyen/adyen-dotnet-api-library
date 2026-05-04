@@ -34,39 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PayPalDetails" /> class.
         /// </summary>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="orderID">The unique ID associated with the order.</param>
-        /// <param name="payeePreferred">IMMEDIATE_PAYMENT_REQUIRED or UNRESTRICTED</param>
-        /// <param name="payerID">The unique ID associated with the payer.</param>
-        /// <param name="payerSelected">PAYPAL or PAYPAL_CREDIT</param>
-        /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="subtype">The type of flow to initiate.</param>
-        /// <param name="type">**paypal** (default to TypeEnum.Paypal)</param>
-        [JsonConstructor]
-        public PayPalDetails(Option<string?> checkoutAttemptId = default, Option<string?> orderID = default, Option<string?> payeePreferred = default, Option<string?> payerID = default, Option<string?> payerSelected = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, Option<SubtypeEnum?> subtype = default, TypeEnum type = default)
-        {
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _OrderIDOption = orderID;
-            _PayeePreferredOption = payeePreferred;
-            _PayerIDOption = payerID;
-            _PayerSelectedOption = payerSelected;
-            _RecurringDetailReferenceOption = recurringDetailReference;
-            _SdkDataOption = sdkData;
-            _StoredPaymentMethodIdOption = storedPaymentMethodId;
-            _SubtypeOption = subtype;
-            Type = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PayPalDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -95,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// SubtypeEnum.Sdk - sdk
             /// </summary>
             public static readonly SubtypeEnum Sdk = new("sdk");
-        
+
             private SubtypeEnum(string? value)
             {
                 Value = value;
@@ -107,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="SubtypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator SubtypeEnum?(string? value) => value == null ? null : new SubtypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="SubtypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="SubtypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="SubtypeEnum"/> instance./// </returns>
             public static implicit operator string?(SubtypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(SubtypeEnum? left, SubtypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(SubtypeEnum? left, SubtypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is SubtypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="SubtypeEnum?"/>.
             /// </summary>
@@ -139,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="SubtypeEnum"/> to the json value.
             /// </summary>
@@ -150,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == SubtypeEnum.Express)
                     return "express";
-                
+
                 if (value == SubtypeEnum.Redirect)
                     return "redirect";
-                
+
                 if (value == SubtypeEnum.Sdk)
                     return "sdk";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing SubtypeEnum.               
+            /// JsonConverter for writing SubtypeEnum.
             /// </summary>
             public class SubtypeEnumJsonConverter : JsonConverter<SubtypeEnum>
             {
@@ -211,7 +182,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.Paypal - paypal
             /// </summary>
             public static readonly TypeEnum Paypal = new("paypal");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -223,24 +194,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -253,7 +224,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -264,15 +235,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Paypal)
                     return "paypal";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -517,11 +488,31 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class PayPalDetails.", nameof(type));
 
-            return new PayPalDetails(checkoutAttemptId, orderID, payeePreferred, payerID, payerSelected, recurringDetailReference, sdkData, storedPaymentMethodId, subtype, type.Value!.Value!);
+            var result = new PayPalDetails();
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (orderID.IsSet)
+                result.OrderID = orderID.Value;
+            if (payeePreferred.IsSet)
+                result.PayeePreferred = payeePreferred.Value;
+            if (payerID.IsSet)
+                result.PayerID = payerID.Value;
+            if (payerSelected.IsSet)
+                result.PayerSelected = payerSelected.Value;
+            if (recurringDetailReference.IsSet)
+                result.RecurringDetailReference = recurringDetailReference.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (storedPaymentMethodId.IsSet)
+                result.StoredPaymentMethodId = storedPaymentMethodId.Value;
+            if (subtype.IsSet)
+                result.Subtype = subtype.Value;
+            result.Type = type.Value!.Value!;
+            return result;
         }
 
         /// <summary>
@@ -532,13 +523,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PayPalDetails payPalDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, payPalDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -549,7 +540,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PayPalDetails payPalDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (payPalDetails._CheckoutAttemptIdOption.IsSet)
                 if (payPalDetails.CheckoutAttemptId != null)
                     writer.WriteString("checkoutAttemptId", payPalDetails.CheckoutAttemptId);
@@ -582,13 +573,13 @@ namespace Adyen.Checkout.Models
                 if (payPalDetails.StoredPaymentMethodId != null)
                     writer.WriteString("storedPaymentMethodId", payPalDetails.StoredPaymentMethodId);
 
-            if (payPalDetails._SubtypeOption.IsSet && payPalDetails.Subtype != null) 
+            if (payPalDetails._SubtypeOption.IsSet && payPalDetails.Subtype != null)
             {
                 string? subtypeRawValue = PayPalDetails.SubtypeEnum.ToJsonValue(payPalDetails._SubtypeOption.Value!.Value);
                 writer.WriteString("subtype", subtypeRawValue);
             }
-            
-            if (payPalDetails.Type != null) 
+
+            if (payPalDetails.Type != null)
             {
                 string? typeRawValue = PayPalDetails.TypeEnum.ToJsonValue(payPalDetails.Type);
                 writer.WriteString("type", typeRawValue);

@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentValidationsNameResponse" /> class.
         /// </summary>
-        /// <param name="rawResponse">rawResponse</param>
-        /// <param name="result">result</param>
-        /// <param name="status">Informs you if the name validation was performed. Possible values:  **performed**, **notPerformed**, **notSupported**</param>
-        [JsonConstructor]
-        public PaymentValidationsNameResponse(Option<PaymentValidationsNameResultRawResponse?> rawResponse = default, Option<PaymentValidationsNameResultResponse?> result = default, Option<StatusEnum?> status = default)
-        {
-            _RawResponseOption = rawResponse;
-            _ResultOption = result;
-            _StatusOption = status;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public PaymentValidationsNameResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -81,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// StatusEnum.Performed - performed
             /// </summary>
             public static readonly StatusEnum Performed = new("performed");
-        
+
             private StatusEnum(string? value)
             {
                 Value = value;
@@ -93,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="StatusEnum"/> instance initialized with the string value.</returns>
             public static implicit operator StatusEnum?(string? value) => value == null ? null : new StatusEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="StatusEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="StatusEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="StatusEnum"/> instance./// </returns>
             public static implicit operator string?(StatusEnum? option) => option?.Value;
-        
+
             public static bool operator ==(StatusEnum? left, StatusEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(StatusEnum? left, StatusEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is StatusEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="StatusEnum?"/>.
             /// </summary>
@@ -125,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="StatusEnum"/> to the json value.
             /// </summary>
@@ -136,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == StatusEnum.NotPerformed)
                     return "notPerformed";
-                
+
                 if (value == StatusEnum.NotSupported)
                     return "notSupported";
-                
+
                 if (value == StatusEnum.Performed)
                     return "performed";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing StatusEnum.               
+            /// JsonConverter for writing StatusEnum.
             /// </summary>
             public class StatusEnumJsonConverter : JsonConverter<StatusEnum>
             {
@@ -279,9 +264,16 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new PaymentValidationsNameResponse(rawResponse, result, status);
+
+            var paymentValidationsNameResponse = new PaymentValidationsNameResponse();
+            if (rawResponse.IsSet)
+                paymentValidationsNameResponse.RawResponse = rawResponse.Value;
+            if (result.IsSet)
+                paymentValidationsNameResponse.Result = result.Value;
+            if (status.IsSet)
+                paymentValidationsNameResponse.Status = status.Value;
+            return paymentValidationsNameResponse;
         }
 
         /// <summary>
@@ -292,13 +284,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentValidationsNameResponse paymentValidationsNameResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, paymentValidationsNameResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -309,7 +301,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, PaymentValidationsNameResponse paymentValidationsNameResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (paymentValidationsNameResponse._RawResponseOption.IsSet)
             {
                 writer.WritePropertyName("rawResponse");
@@ -320,7 +312,7 @@ namespace Adyen.Checkout.Models
                 writer.WritePropertyName("result");
                 JsonSerializer.Serialize(writer, paymentValidationsNameResponse.Result, jsonSerializerOptions);
             }
-            if (paymentValidationsNameResponse._StatusOption.IsSet && paymentValidationsNameResponse.Status != null) 
+            if (paymentValidationsNameResponse._StatusOption.IsSet && paymentValidationsNameResponse.Status != null)
             {
                 string? statusRawValue = PaymentValidationsNameResponse.StatusEnum.ToJsonValue(paymentValidationsNameResponse._StatusOption.Value!.Value);
                 writer.WriteString("status", statusRawValue);

@@ -34,27 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDSRequestData" /> class.
         /// </summary>
-        /// <param name="challengeWindowSize">Dimensions of the 3DS2 challenge window to be displayed to the cardholder.  Possible values:  * **01** - size of 250x400  * **02** - size of 390x400 * **03** - size of 500x600 * **04** - size of 600x400 * **05** - Fullscreen</param>
-        /// <param name="dataOnly">Required to trigger the [data-only flow](https://docs.adyen.com/online-payments/3d-secure/data-only/). When set to **true**, forces the 3D Secure 2 data-only flow for all transactions where it is possible. </param>
-        /// <param name="nativeThreeDS">Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be triggered when available. Adyen can still select to fallback to the redirect flow to optimize authorization rates and improve the shopper&#39;s experience.  Possible values: * **preferred**: Use native 3D Secure authentication when available. * **disabled**: Use the redirect 3D Secure authentication flow.</param>
-        /// <param name="threeDSVersion">The version of 3D Secure to use.  Possible values:  * **2.1.0** * **2.2.0**</param>
-        [JsonConstructor]
-        public ThreeDSRequestData(Option<ChallengeWindowSizeEnum?> challengeWindowSize = default, Option<DataOnlyEnum?> dataOnly = default, Option<NativeThreeDSEnum?> nativeThreeDS = default, Option<ThreeDSVersionEnum?> threeDSVersion = default)
-        {
-            _ChallengeWindowSizeOption = challengeWindowSize;
-            _DataOnlyOption = dataOnly;
-            _NativeThreeDSOption = nativeThreeDS;
-            _ThreeDSVersionOption = threeDSVersion;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ThreeDSRequestData()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -93,7 +76,7 @@ namespace Adyen.Checkout.Models
             /// ChallengeWindowSizeEnum._05 - 05
             /// </summary>
             public static readonly ChallengeWindowSizeEnum _05 = new("05");
-        
+
             private ChallengeWindowSizeEnum(string? value)
             {
                 Value = value;
@@ -105,24 +88,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ChallengeWindowSizeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ChallengeWindowSizeEnum?(string? value) => value == null ? null : new ChallengeWindowSizeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ChallengeWindowSizeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ChallengeWindowSizeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ChallengeWindowSizeEnum"/> instance./// </returns>
             public static implicit operator string?(ChallengeWindowSizeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ChallengeWindowSizeEnum? left, ChallengeWindowSizeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ChallengeWindowSizeEnum? left, ChallengeWindowSizeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ChallengeWindowSizeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ChallengeWindowSizeEnum?"/>.
             /// </summary>
@@ -139,7 +122,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ChallengeWindowSizeEnum"/> to the json value.
             /// </summary>
@@ -150,27 +133,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ChallengeWindowSizeEnum._01)
                     return "01";
-                
+
                 if (value == ChallengeWindowSizeEnum._02)
                     return "02";
-                
+
                 if (value == ChallengeWindowSizeEnum._03)
                     return "03";
-                
+
                 if (value == ChallengeWindowSizeEnum._04)
                     return "04";
-                
+
                 if (value == ChallengeWindowSizeEnum._05)
                     return "05";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ChallengeWindowSizeEnum.               
+            /// JsonConverter for writing ChallengeWindowSizeEnum.
             /// </summary>
             public class ChallengeWindowSizeEnumJsonConverter : JsonConverter<ChallengeWindowSizeEnum>
             {
@@ -202,7 +185,7 @@ namespace Adyen.Checkout.Models
         public ChallengeWindowSizeEnum? ChallengeWindowSize { get { return this._ChallengeWindowSizeOption; } set { this._ChallengeWindowSizeOption = new(value); } }
 
         /// <summary>
-        /// Required to trigger the [data-only flow](https://docs.adyen.com/online-payments/3d-secure/data-only/). When set to **true**, forces the 3D Secure 2 data-only flow for all transactions where it is possible. 
+        /// Required to trigger the [data-only flow](https://docs.adyen.com/online-payments/3d-secure/data-only/). When set to **true**, forces the 3D Secure 2 data-only flow for all transactions where it is possible.
         /// </summary>
         /// <value>Required to trigger the [data-only flow](https://docs.adyen.com/online-payments/3d-secure/data-only/). When set to **true**, forces the 3D Secure 2 data-only flow for all transactions where it is possible. </value>
         [JsonConverter(typeof(DataOnlyEnumJsonConverter))]
@@ -222,7 +205,7 @@ namespace Adyen.Checkout.Models
             /// DataOnlyEnum.True - true
             /// </summary>
             public static readonly DataOnlyEnum True = new("true");
-        
+
             private DataOnlyEnum(string? value)
             {
                 Value = value;
@@ -234,24 +217,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="DataOnlyEnum"/> instance initialized with the string value.</returns>
             public static implicit operator DataOnlyEnum?(string? value) => value == null ? null : new DataOnlyEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="DataOnlyEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="DataOnlyEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="DataOnlyEnum"/> instance./// </returns>
             public static implicit operator string?(DataOnlyEnum? option) => option?.Value;
-        
+
             public static bool operator ==(DataOnlyEnum? left, DataOnlyEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(DataOnlyEnum? left, DataOnlyEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is DataOnlyEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="DataOnlyEnum?"/>.
             /// </summary>
@@ -265,7 +248,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="DataOnlyEnum"/> to the json value.
             /// </summary>
@@ -276,18 +259,18 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == DataOnlyEnum.False)
                     return "false";
-                
+
                 if (value == DataOnlyEnum.True)
                     return "true";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing DataOnlyEnum.               
+            /// JsonConverter for writing DataOnlyEnum.
             /// </summary>
             public class DataOnlyEnumJsonConverter : JsonConverter<DataOnlyEnum>
             {
@@ -312,7 +295,7 @@ namespace Adyen.Checkout.Models
         public Option<DataOnlyEnum?> _DataOnlyOption { get; private set; }
 
         /// <summary>
-        /// Required to trigger the [data-only flow](https://docs.adyen.com/online-payments/3d-secure/data-only/). When set to **true**, forces the 3D Secure 2 data-only flow for all transactions where it is possible. 
+        /// Required to trigger the [data-only flow](https://docs.adyen.com/online-payments/3d-secure/data-only/). When set to **true**, forces the 3D Secure 2 data-only flow for all transactions where it is possible.
         /// </summary>
         /// <value>Required to trigger the [data-only flow](https://docs.adyen.com/online-payments/3d-secure/data-only/). When set to **true**, forces the 3D Secure 2 data-only flow for all transactions where it is possible. </value>
         [JsonPropertyName("dataOnly")]
@@ -339,7 +322,7 @@ namespace Adyen.Checkout.Models
             /// NativeThreeDSEnum.Disabled - disabled
             /// </summary>
             public static readonly NativeThreeDSEnum Disabled = new("disabled");
-        
+
             private NativeThreeDSEnum(string? value)
             {
                 Value = value;
@@ -351,24 +334,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="NativeThreeDSEnum"/> instance initialized with the string value.</returns>
             public static implicit operator NativeThreeDSEnum?(string? value) => value == null ? null : new NativeThreeDSEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="NativeThreeDSEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="NativeThreeDSEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="NativeThreeDSEnum"/> instance./// </returns>
             public static implicit operator string?(NativeThreeDSEnum? option) => option?.Value;
-        
+
             public static bool operator ==(NativeThreeDSEnum? left, NativeThreeDSEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(NativeThreeDSEnum? left, NativeThreeDSEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is NativeThreeDSEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="NativeThreeDSEnum?"/>.
             /// </summary>
@@ -382,7 +365,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="NativeThreeDSEnum"/> to the json value.
             /// </summary>
@@ -393,18 +376,18 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == NativeThreeDSEnum.Preferred)
                     return "preferred";
-                
+
                 if (value == NativeThreeDSEnum.Disabled)
                     return "disabled";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing NativeThreeDSEnum.               
+            /// JsonConverter for writing NativeThreeDSEnum.
             /// </summary>
             public class NativeThreeDSEnumJsonConverter : JsonConverter<NativeThreeDSEnum>
             {
@@ -456,7 +439,7 @@ namespace Adyen.Checkout.Models
             /// ThreeDSVersionEnum._220 - 2.2.0
             /// </summary>
             public static readonly ThreeDSVersionEnum _220 = new("2.2.0");
-        
+
             private ThreeDSVersionEnum(string? value)
             {
                 Value = value;
@@ -468,24 +451,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ThreeDSVersionEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ThreeDSVersionEnum?(string? value) => value == null ? null : new ThreeDSVersionEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ThreeDSVersionEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ThreeDSVersionEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ThreeDSVersionEnum"/> instance./// </returns>
             public static implicit operator string?(ThreeDSVersionEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ThreeDSVersionEnum? left, ThreeDSVersionEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ThreeDSVersionEnum? left, ThreeDSVersionEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ThreeDSVersionEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ThreeDSVersionEnum?"/>.
             /// </summary>
@@ -499,7 +482,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ThreeDSVersionEnum"/> to the json value.
             /// </summary>
@@ -510,18 +493,18 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ThreeDSVersionEnum._210)
                     return "2.1.0";
-                
+
                 if (value == ThreeDSVersionEnum._220)
                     return "2.2.0";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ThreeDSVersionEnum.               
+            /// JsonConverter for writing ThreeDSVersionEnum.
             /// </summary>
             public class ThreeDSVersionEnumJsonConverter : JsonConverter<ThreeDSVersionEnum>
             {
@@ -632,9 +615,18 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ThreeDSRequestData(challengeWindowSize, dataOnly, nativeThreeDS, threeDSVersion);
+
+            var result = new ThreeDSRequestData();
+            if (challengeWindowSize.IsSet)
+                result.ChallengeWindowSize = challengeWindowSize.Value;
+            if (dataOnly.IsSet)
+                result.DataOnly = dataOnly.Value;
+            if (nativeThreeDS.IsSet)
+                result.NativeThreeDS = nativeThreeDS.Value;
+            if (threeDSVersion.IsSet)
+                result.ThreeDSVersion = threeDSVersion.Value;
+            return result;
         }
 
         /// <summary>
@@ -645,13 +637,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ThreeDSRequestData threeDSRequestData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, threeDSRequestData, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -662,26 +654,26 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ThreeDSRequestData threeDSRequestData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
-            if (threeDSRequestData._ChallengeWindowSizeOption.IsSet && threeDSRequestData.ChallengeWindowSize != null) 
+
+            if (threeDSRequestData._ChallengeWindowSizeOption.IsSet && threeDSRequestData.ChallengeWindowSize != null)
             {
                 string? challengeWindowSizeRawValue = ThreeDSRequestData.ChallengeWindowSizeEnum.ToJsonValue(threeDSRequestData._ChallengeWindowSizeOption.Value!.Value);
                 writer.WriteString("challengeWindowSize", challengeWindowSizeRawValue);
             }
-            
-            if (threeDSRequestData._DataOnlyOption.IsSet && threeDSRequestData.DataOnly != null) 
+
+            if (threeDSRequestData._DataOnlyOption.IsSet && threeDSRequestData.DataOnly != null)
             {
                 string? dataOnlyRawValue = ThreeDSRequestData.DataOnlyEnum.ToJsonValue(threeDSRequestData._DataOnlyOption.Value!.Value);
                 writer.WriteString("dataOnly", dataOnlyRawValue);
             }
-            
-            if (threeDSRequestData._NativeThreeDSOption.IsSet && threeDSRequestData.NativeThreeDS != null) 
+
+            if (threeDSRequestData._NativeThreeDSOption.IsSet && threeDSRequestData.NativeThreeDS != null)
             {
                 string? nativeThreeDSRawValue = ThreeDSRequestData.NativeThreeDSEnum.ToJsonValue(threeDSRequestData._NativeThreeDSOption.Value!.Value);
                 writer.WriteString("nativeThreeDS", nativeThreeDSRawValue);
             }
-            
-            if (threeDSRequestData._ThreeDSVersionOption.IsSet && threeDSRequestData.ThreeDSVersion != null) 
+
+            if (threeDSRequestData._ThreeDSVersionOption.IsSet && threeDSRequestData.ThreeDSVersion != null)
             {
                 string? threeDSVersionRawValue = ThreeDSRequestData.ThreeDSVersionEnum.ToJsonValue(threeDSRequestData._ThreeDSVersionOption.Value!.Value);
                 writer.WriteString("threeDSVersion", threeDSVersionRawValue);

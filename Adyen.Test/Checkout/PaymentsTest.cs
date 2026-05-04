@@ -52,18 +52,19 @@ namespace Adyen.Test.Checkout
         public async Task Given_CreateCheckoutSessionRequest_When_Serialize_Long__Result_Contains_Zeros()
         {
             // Arrange
-            CreateCheckoutSessionRequest checkoutSessionRequest = new CreateCheckoutSessionRequest(
-                amount: new Amount("EUR", 10000L),
-                merchantAccount: "merchantAccount",
-                reference: "TestReference",
-                returnUrl: "http://test-url.com",
-                channel: CreateCheckoutSessionRequest.ChannelEnum.Web,
-                countryCode: "NL",
-                lineItems: new List<LineItem>() {
-                    new LineItem(quantity: 1, amountIncludingTax: 5000, description: "description1", amountExcludingTax: 0),
-                    new LineItem(quantity: 1, amountIncludingTax: 5000, description: "description2", taxAmount: 0)
-                }
-            );
+            CreateCheckoutSessionRequest checkoutSessionRequest = new CreateCheckoutSessionRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 10000L },
+                MerchantAccount = "merchantAccount",
+                Reference = "TestReference",
+                ReturnUrl = "http://test-url.com",
+                Channel = CreateCheckoutSessionRequest.ChannelEnum.Web,
+                CountryCode = "NL",
+                LineItems = new List<LineItem>() {
+                    new LineItem { Quantity = 1, AmountIncludingTax = 5000, Description = "description1", AmountExcludingTax = 0 },
+                    new LineItem { Quantity = 1, AmountIncludingTax = 5000, Description = "description2", TaxAmount = 0 }
+                },
+            };
             
             // Act
             string result = JsonSerializer.Serialize(checkoutSessionRequest, _jsonSerializerOptionsProvider.Options);
@@ -328,26 +329,32 @@ namespace Adyen.Test.Checkout
                 Type = CardDetails.TypeEnum.Card
             };
 
-            var accountInfoNullObject = new PaymentRequest(
-                merchantAccount: "YOUR_MERCHANT_ACCOUNT",
-                amount: new Amount("EUR", 1000), reference: "ACH test",
-                paymentMethod: new CheckoutPaymentMethod(cardDetails),
-                shopperIP: "192.0.2.1",
-                channel: PaymentRequest.ChannelEnum.Web, origin: "https://your-company.com",
-                returnUrl: "https://your-company.com/checkout?shopperOrder=12xy..",
-                accountInfo: null // Set `AccountInfo` explicitly to null
-            );
+            var accountInfoNullObject = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                Reference = "ACH test",
+                PaymentMethod = new CheckoutPaymentMethod(cardDetails),
+                ShopperIP = "192.0.2.1",
+                Channel = PaymentRequest.ChannelEnum.Web,
+                Origin = "https://your-company.com",
+                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy..",
+                AccountInfo = null // Set `AccountInfo` explicitly to null,
+            };
             
             
-            var accountInfoNotPresentObject = new PaymentRequest(
-                merchantAccount: "YOUR_MERCHANT_ACCOUNT",
-                amount: new Amount("EUR", 1000), reference: "ACH test",
-                paymentMethod: new CheckoutPaymentMethod(cardDetails),
-                shopperIP: "192.0.2.1",
-                channel: PaymentRequest.ChannelEnum.Web, origin: "https://your-company.com",
-                returnUrl: "https://your-company.com/checkout?shopperOrder=12xy.."
-                //accountInfo: ... // AccountInfo (key) is not present
-            );
+            var accountInfoNotPresentObject = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                Reference = "ACH test",
+                PaymentMethod = new CheckoutPaymentMethod(cardDetails),
+                ShopperIP = "192.0.2.1",
+                Channel = PaymentRequest.ChannelEnum.Web,
+                Origin = "https://your-company.com",
+                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
+                //accountInfo: ... // AccountInfo (key) is not present,
+            };
             
             // Act
             string accountInfoNullSerializedObject = JsonSerializer.Serialize(accountInfoNullObject, _jsonSerializerOptionsProvider.Options);
@@ -376,14 +383,17 @@ namespace Adyen.Test.Checkout
                 OwnerName = "John Smith"
             };
 
-            var paymentRequest = new PaymentRequest(
-                merchantAccount: "YOUR_MERCHANT_ACCOUNT",
-                amount: new Amount("EUR", 1000), reference: "ACH test",
-                paymentMethod: new CheckoutPaymentMethod(achDetails),
-                shopperIP: "192.0.2.1",
-                channel: PaymentRequest.ChannelEnum.Web, origin: "https://your-company.com",
-                returnUrl: "https://your-company.com/checkout?shopperOrder=12xy.."
-            );
+            var paymentRequest = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                Reference = "ACH test",
+                PaymentMethod = new CheckoutPaymentMethod(achDetails),
+                ShopperIP = "192.0.2.1",
+                Channel = PaymentRequest.ChannelEnum.Web,
+                Origin = "https://your-company.com",
+                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy..",
+            };
             
             // Act
             string serialized = JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptionsProvider.Options);
@@ -405,18 +415,20 @@ namespace Adyen.Test.Checkout
         public async Task Given_Serialize_When_PaymentMethod_Is_ApplePayDetails_Result_Is_Not_Null()
         {
             // Arrange
-            var applePay = new ApplePayDetails(
-                type: ApplePayDetails.TypeEnum.Applepay,
-                applePayToken: "VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU..."
-            );
+            var applePay = new ApplePayDetails
+            {
+                Type = ApplePayDetails.TypeEnum.Applepay,
+                ApplePayToken = "VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU...",
+            };
 
-            var paymentRequest = new PaymentRequest(
-                merchantAccount: "YOUR_MERCHANT_ACCOUNT",
-                amount: new Amount("EUR", 1000),
-                reference: "apple pay test",
-                paymentMethod: new CheckoutPaymentMethod(applePay),
-                returnUrl: "https://your-company.com/checkout?shopperOrder=12xy.."
-            );
+            var paymentRequest = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                Reference = "apple pay test",
+                PaymentMethod = new CheckoutPaymentMethod(applePay),
+                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy..",
+            };
             
             // Act
             string serialized = JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptionsProvider.Options);
@@ -435,18 +447,21 @@ namespace Adyen.Test.Checkout
         public async Task Given_Serialize_When_PaymentMethod_Is_GooglePayDetails_Result_Is_Not_Null()
         {
             // Arrange
-            var paymentRequest = new PaymentRequest(
-                merchantAccount: "YOUR_MERCHANT_ACCOUNT",
-                amount: new Amount("EUR", 1000),
-                reference: "google pay test",
-                paymentMethod: new CheckoutPaymentMethod(
-                    new GooglePayDetails(
-                        type: GooglePayDetails.TypeEnum.Googlepay,
-                        googlePayToken: "==Payload as retrieved from Google Pay response==",
-                        fundingSource: GooglePayDetails.FundingSourceEnum.Debit
-                    )
+            var paymentRequest = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                Reference = "google pay test",
+                PaymentMethod = new CheckoutPaymentMethod(
+                    new GooglePayDetails
+                    {
+                        Type = GooglePayDetails.TypeEnum.Googlepay,
+                        GooglePayToken = "==Payload as retrieved from Google Pay response==",
+                        FundingSource = GooglePayDetails.FundingSourceEnum.Debit,
+                    }
                 ),
-                returnUrl: "https://your-company.com/checkout?shopperOrder=12xy..");
+                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy..",
+            };
 
             // Act
             string serialized = JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptionsProvider.Options);
@@ -466,15 +481,18 @@ namespace Adyen.Test.Checkout
         public async Task Given_Serialize_When_PaymentMethod_Is_iDEAL_Result_Is_Not_Null()
         {
             // Arrange
-            var paymentRequest = new PaymentRequest(
-                merchantAccount: "YOUR_MERCHANT_ACCOUNT",
-                amount: new Amount("EUR", 1000),
-                reference: "ideal test",
-                paymentMethod: new CheckoutPaymentMethod(new IdealDetails(
-                    type: IdealDetails.TypeEnum.Ideal,
-                    issuer: "1121")
-                ),
-                returnUrl: "https://your-company.com/checkout?shopperOrder=12xy..");
+            var paymentRequest = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                Reference = "ideal test",
+                PaymentMethod = new CheckoutPaymentMethod(new IdealDetails
+                {
+                    Type = IdealDetails.TypeEnum.Ideal,
+                    Issuer = "1121",
+                }),
+                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy..",
+            };
 
             // Act
             string serialized = JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptionsProvider.Options);
@@ -495,7 +513,7 @@ namespace Adyen.Test.Checkout
             var paymentRequest = new PaymentRequest
             {
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
-                Amount = new Amount("GBP", 1000),
+                Amount = new Amount { Currency = "GBP", Value = 1000 },
                 Reference = "bacs direct debit test",
                 PaymentMethod = new CheckoutPaymentMethod(new BacsDirectDebitDetails
                 {
@@ -530,7 +548,7 @@ namespace Adyen.Test.Checkout
             var paymentRequest = new PaymentRequest
             {
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
-                Amount = new Amount("USD", 1000),
+                Amount = new Amount { Currency = "USD", Value = 1000 },
                 Reference = "paypal test",
                 PaymentMethod = new CheckoutPaymentMethod(new PayPalDetails
                 {
@@ -559,7 +577,7 @@ namespace Adyen.Test.Checkout
             var paymentRequest = new PaymentRequest
             {
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
-                Amount = new Amount("USD", 1000),
+                Amount = new Amount { Currency = "USD", Value = 1000 },
                 Reference = "zip test",
                 PaymentMethod = new CheckoutPaymentMethod(new ZipDetails
                 {
@@ -761,14 +779,15 @@ namespace Adyen.Test.Checkout
             var paymentResponse = new PaymentResponse
             {
                 ResultCode = PaymentResponse.ResultCodeEnum.IdentifyShopper,
-                Action = new PaymentResponseAction(new CheckoutThreeDS2Action(
-                    type: CheckoutThreeDS2Action.TypeEnum.ThreeDS2,
-                    subtype: new Option<string?>("fingerprint"),
-                    paymentData: new Option<string?>("test-payment-data"),
-                    paymentMethodType: new Option<string?>("scheme"),
-                    authorisationToken: new Option<string?>("test-authorisation-token"),
-                    token: new Option<string?>("test-token")
-                ))
+                Action = new PaymentResponseAction(new CheckoutThreeDS2Action
+                {
+                    Type = CheckoutThreeDS2Action.TypeEnum.ThreeDS2,
+                    Subtype = "fingerprint",
+                    PaymentData = "test-payment-data",
+                    PaymentMethodType = "scheme",
+                    AuthorisationToken = "test-authorisation-token",
+                    Token = "test-token",
+                })
             };
 
             // Act
@@ -793,17 +812,18 @@ namespace Adyen.Test.Checkout
             var paymentResponse = new PaymentResponse
             {
                 ResultCode = PaymentResponse.ResultCodeEnum.RedirectShopper,
-                Action = new PaymentResponseAction(new CheckoutRedirectAction(
-                    type: CheckoutRedirectAction.TypeEnum.Redirect,
-                    paymentMethodType: new Option<string?>("scheme"),
-                    url: new Option<string?>("https://checkoutshopper-test.adyen.com/checkoutshopper/identifyShopper.shtml"),
-                    method: new Option<string?>("POST"),
-                    data: new Option<Dictionary<string, string>?>(new Dictionary<string, string>
+                Action = new PaymentResponseAction(new CheckoutRedirectAction
+                {
+                    Type = CheckoutRedirectAction.TypeEnum.Redirect,
+                    PaymentMethodType = "scheme",
+                    Url = "https://checkoutshopper-test.adyen.com/checkoutshopper/identifyShopper.shtml",
+                    Method = "POST",
+                    Data = new Dictionary<string, string>
                     {
                         { "MD", "test-md-value" },
                         { "PaReq", "test-pareq-value" }
-                    })
-                ))
+                    },
+                })
             };
 
             // Act
@@ -860,14 +880,15 @@ namespace Adyen.Test.Checkout
             var paymentResponse = new PaymentResponse
             {
                 ResultCode = PaymentResponse.ResultCodeEnum.ChallengeShopper,
-                Action = new PaymentResponseAction(new CheckoutThreeDS2Action(
-                    type: CheckoutThreeDS2Action.TypeEnum.ThreeDS2,
-                    subtype: new Option<string?>("challenge"),
-                    paymentData: new Option<string?>("test-payment-data"),
-                    paymentMethodType: new Option<string?>("scheme"),
-                    authorisationToken: new Option<string?>("test-authorisation-token"),
-                    token: new Option<string?>("test-token")
-                ))
+                Action = new PaymentResponseAction(new CheckoutThreeDS2Action
+                {
+                    Type = CheckoutThreeDS2Action.TypeEnum.ThreeDS2,
+                    Subtype = "challenge",
+                    PaymentData = "test-payment-data",
+                    PaymentMethodType = "scheme",
+                    AuthorisationToken = "test-authorisation-token",
+                    Token = "test-token",
+                })
             };
 
             // Act

@@ -34,21 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="DetailsRequestAuthenticationData" /> class.
         /// </summary>
-        /// <param name="authenticationOnly">Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.Default: **false**. (default to false)</param>
-        [JsonConstructor]
-        public DetailsRequestAuthenticationData(Option<bool?> authenticationOnly = default)
-        {
-            _AuthenticationOnlyOption = authenticationOnly;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public DetailsRequestAuthenticationData()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -126,9 +115,12 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new DetailsRequestAuthenticationData(authenticationOnly);
+
+            var result = new DetailsRequestAuthenticationData();
+            if (authenticationOnly.IsSet)
+                result.AuthenticationOnly = authenticationOnly.Value;
+            return result;
         }
 
         /// <summary>
@@ -139,13 +131,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, DetailsRequestAuthenticationData detailsRequestAuthenticationData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, detailsRequestAuthenticationData, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -156,7 +148,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, DetailsRequestAuthenticationData detailsRequestAuthenticationData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (detailsRequestAuthenticationData._AuthenticationOnlyOption.IsSet)
                 if (detailsRequestAuthenticationData._AuthenticationOnlyOption.Value != null)
                     writer.WriteBoolean("authenticationOnly", detailsRequestAuthenticationData._AuthenticationOnlyOption.Value!.Value);

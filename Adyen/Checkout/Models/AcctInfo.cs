@@ -34,51 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="AcctInfo" /> class.
         /// </summary>
-        /// <param name="chAccAgeInd">Length of time that the cardholder has had the account with the 3DS Requestor.  Allowed values: * **01** — No account * **02** — Created during this transaction * **03** — Less than 30 days * **04** — 30–60 days * **05** — More than 60 days</param>
-        /// <param name="chAccChange">Date that the cardholder’s account with the 3DS Requestor was last changed, including Billing or Shipping address, new payment account, or new user(s) added.  Format: **YYYYMMDD**</param>
-        /// <param name="chAccChangeInd">Length of time since the cardholder’s account information with the 3DS Requestor was last changed, including Billing or Shipping address, new payment account, or new user(s) added.  Allowed values: * **01** — Changed during this transaction * **02** — Less than 30 days * **03** — 30–60 days * **04** — More than 60 days</param>
-        /// <param name="chAccPwChange">Date that cardholder’s account with the 3DS Requestor had a password change or account reset.  Format: **YYYYMMDD**</param>
-        /// <param name="chAccPwChangeInd">Indicates the length of time since the cardholder’s account with the 3DS Requestor had a password change or account reset.  Allowed values: * **01** — No change * **02** — Changed during this transaction * **03** — Less than 30 days * **04** — 30–60 days * **05** — More than 60 days</param>
-        /// <param name="chAccString">Date that the cardholder opened the account with the 3DS Requestor.  Format: **YYYYMMDD**</param>
-        /// <param name="nbPurchaseAccount">Number of purchases with this cardholder account during the previous six months. Max length: 4 characters.</param>
-        /// <param name="paymentAccAge">String that the payment account was enrolled in the cardholder’s account with the 3DS Requestor.  Format: **YYYYMMDD**</param>
-        /// <param name="paymentAccInd">Indicates the length of time that the payment account was enrolled in the cardholder’s account with the 3DS Requestor.  Allowed values: * **01** — No account (guest checkout) * **02** — During this transaction * **03** — Less than 30 days * **04** — 30–60 days * **05** — More than 60 days</param>
-        /// <param name="provisionAttemptsDay">Number of Add Card attempts in the last 24 hours. Max length: 3 characters.</param>
-        /// <param name="shipAddressUsage">String when the shipping address used for this transaction was first used with the 3DS Requestor.  Format: **YYYYMMDD**</param>
-        /// <param name="shipAddressUsageInd">Indicates when the shipping address used for this transaction was first used with the 3DS Requestor.  Allowed values: * **01** — This transaction * **02** — Less than 30 days * **03** — 30–60 days * **04** — More than 60 days</param>
-        /// <param name="shipNameIndicator">Indicates if the Cardholder Name on the account is identical to the shipping Name used for this transaction.  Allowed values: * **01** — Account Name identical to shipping Name * **02** — Account Name different to shipping Name</param>
-        /// <param name="suspiciousAccActivity">Indicates whether the 3DS Requestor has experienced suspicious activity (including previous fraud) on the cardholder account.  Allowed values: * **01** — No suspicious activity has been observed * **02** — Suspicious activity has been observed</param>
-        /// <param name="txnActivityDay">Number of transactions (successful and abandoned) for this cardholder account with the 3DS Requestor across all payment accounts in the previous 24 hours. Max length: 3 characters.</param>
-        /// <param name="txnActivityYear">Number of transactions (successful and abandoned) for this cardholder account with the 3DS Requestor across all payment accounts in the previous year. Max length: 3 characters.</param>
-        [JsonConstructor]
-        public AcctInfo(Option<ChAccAgeIndEnum?> chAccAgeInd = default, Option<string?> chAccChange = default, Option<ChAccChangeIndEnum?> chAccChangeInd = default, Option<string?> chAccPwChange = default, Option<ChAccPwChangeIndEnum?> chAccPwChangeInd = default, Option<string?> chAccString = default, Option<string?> nbPurchaseAccount = default, Option<string?> paymentAccAge = default, Option<PaymentAccIndEnum?> paymentAccInd = default, Option<string?> provisionAttemptsDay = default, Option<string?> shipAddressUsage = default, Option<ShipAddressUsageIndEnum?> shipAddressUsageInd = default, Option<ShipNameIndicatorEnum?> shipNameIndicator = default, Option<SuspiciousAccActivityEnum?> suspiciousAccActivity = default, Option<string?> txnActivityDay = default, Option<string?> txnActivityYear = default)
-        {
-            _ChAccAgeIndOption = chAccAgeInd;
-            _ChAccChangeOption = chAccChange;
-            _ChAccChangeIndOption = chAccChangeInd;
-            _ChAccPwChangeOption = chAccPwChange;
-            _ChAccPwChangeIndOption = chAccPwChangeInd;
-            _ChAccStringOption = chAccString;
-            _NbPurchaseAccountOption = nbPurchaseAccount;
-            _PaymentAccAgeOption = paymentAccAge;
-            _PaymentAccIndOption = paymentAccInd;
-            _ProvisionAttemptsDayOption = provisionAttemptsDay;
-            _ShipAddressUsageOption = shipAddressUsage;
-            _ShipAddressUsageIndOption = shipAddressUsageInd;
-            _ShipNameIndicatorOption = shipNameIndicator;
-            _SuspiciousAccActivityOption = suspiciousAccActivity;
-            _TxnActivityDayOption = txnActivityDay;
-            _TxnActivityYearOption = txnActivityYear;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public AcctInfo()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -117,7 +76,7 @@ namespace Adyen.Checkout.Models
             /// ChAccAgeIndEnum._05 - 05
             /// </summary>
             public static readonly ChAccAgeIndEnum _05 = new("05");
-        
+
             private ChAccAgeIndEnum(string? value)
             {
                 Value = value;
@@ -129,24 +88,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ChAccAgeIndEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ChAccAgeIndEnum?(string? value) => value == null ? null : new ChAccAgeIndEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ChAccAgeIndEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ChAccAgeIndEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ChAccAgeIndEnum"/> instance./// </returns>
             public static implicit operator string?(ChAccAgeIndEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ChAccAgeIndEnum? left, ChAccAgeIndEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ChAccAgeIndEnum? left, ChAccAgeIndEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ChAccAgeIndEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ChAccAgeIndEnum?"/>.
             /// </summary>
@@ -163,7 +122,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ChAccAgeIndEnum"/> to the json value.
             /// </summary>
@@ -174,27 +133,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ChAccAgeIndEnum._01)
                     return "01";
-                
+
                 if (value == ChAccAgeIndEnum._02)
                     return "02";
-                
+
                 if (value == ChAccAgeIndEnum._03)
                     return "03";
-                
+
                 if (value == ChAccAgeIndEnum._04)
                     return "04";
-                
+
                 if (value == ChAccAgeIndEnum._05)
                     return "05";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ChAccAgeIndEnum.               
+            /// JsonConverter for writing ChAccAgeIndEnum.
             /// </summary>
             public class ChAccAgeIndEnumJsonConverter : JsonConverter<ChAccAgeIndEnum>
             {
@@ -256,7 +215,7 @@ namespace Adyen.Checkout.Models
             /// ChAccChangeIndEnum._04 - 04
             /// </summary>
             public static readonly ChAccChangeIndEnum _04 = new("04");
-        
+
             private ChAccChangeIndEnum(string? value)
             {
                 Value = value;
@@ -268,24 +227,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ChAccChangeIndEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ChAccChangeIndEnum?(string? value) => value == null ? null : new ChAccChangeIndEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ChAccChangeIndEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ChAccChangeIndEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ChAccChangeIndEnum"/> instance./// </returns>
             public static implicit operator string?(ChAccChangeIndEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ChAccChangeIndEnum? left, ChAccChangeIndEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ChAccChangeIndEnum? left, ChAccChangeIndEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ChAccChangeIndEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ChAccChangeIndEnum?"/>.
             /// </summary>
@@ -301,7 +260,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ChAccChangeIndEnum"/> to the json value.
             /// </summary>
@@ -312,24 +271,24 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ChAccChangeIndEnum._01)
                     return "01";
-                
+
                 if (value == ChAccChangeIndEnum._02)
                     return "02";
-                
+
                 if (value == ChAccChangeIndEnum._03)
                     return "03";
-                
+
                 if (value == ChAccChangeIndEnum._04)
                     return "04";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ChAccChangeIndEnum.               
+            /// JsonConverter for writing ChAccChangeIndEnum.
             /// </summary>
             public class ChAccChangeIndEnumJsonConverter : JsonConverter<ChAccChangeIndEnum>
             {
@@ -396,7 +355,7 @@ namespace Adyen.Checkout.Models
             /// ChAccPwChangeIndEnum._05 - 05
             /// </summary>
             public static readonly ChAccPwChangeIndEnum _05 = new("05");
-        
+
             private ChAccPwChangeIndEnum(string? value)
             {
                 Value = value;
@@ -408,24 +367,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ChAccPwChangeIndEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ChAccPwChangeIndEnum?(string? value) => value == null ? null : new ChAccPwChangeIndEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ChAccPwChangeIndEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ChAccPwChangeIndEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ChAccPwChangeIndEnum"/> instance./// </returns>
             public static implicit operator string?(ChAccPwChangeIndEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ChAccPwChangeIndEnum? left, ChAccPwChangeIndEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ChAccPwChangeIndEnum? left, ChAccPwChangeIndEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ChAccPwChangeIndEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ChAccPwChangeIndEnum?"/>.
             /// </summary>
@@ -442,7 +401,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ChAccPwChangeIndEnum"/> to the json value.
             /// </summary>
@@ -453,27 +412,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ChAccPwChangeIndEnum._01)
                     return "01";
-                
+
                 if (value == ChAccPwChangeIndEnum._02)
                     return "02";
-                
+
                 if (value == ChAccPwChangeIndEnum._03)
                     return "03";
-                
+
                 if (value == ChAccPwChangeIndEnum._04)
                     return "04";
-                
+
                 if (value == ChAccPwChangeIndEnum._05)
                     return "05";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ChAccPwChangeIndEnum.               
+            /// JsonConverter for writing ChAccPwChangeIndEnum.
             /// </summary>
             public class ChAccPwChangeIndEnumJsonConverter : JsonConverter<ChAccPwChangeIndEnum>
             {
@@ -540,7 +499,7 @@ namespace Adyen.Checkout.Models
             /// PaymentAccIndEnum._05 - 05
             /// </summary>
             public static readonly PaymentAccIndEnum _05 = new("05");
-        
+
             private PaymentAccIndEnum(string? value)
             {
                 Value = value;
@@ -552,24 +511,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="PaymentAccIndEnum"/> instance initialized with the string value.</returns>
             public static implicit operator PaymentAccIndEnum?(string? value) => value == null ? null : new PaymentAccIndEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="PaymentAccIndEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="PaymentAccIndEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="PaymentAccIndEnum"/> instance./// </returns>
             public static implicit operator string?(PaymentAccIndEnum? option) => option?.Value;
-        
+
             public static bool operator ==(PaymentAccIndEnum? left, PaymentAccIndEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(PaymentAccIndEnum? left, PaymentAccIndEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is PaymentAccIndEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="PaymentAccIndEnum?"/>.
             /// </summary>
@@ -586,7 +545,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="PaymentAccIndEnum"/> to the json value.
             /// </summary>
@@ -597,27 +556,27 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == PaymentAccIndEnum._01)
                     return "01";
-                
+
                 if (value == PaymentAccIndEnum._02)
                     return "02";
-                
+
                 if (value == PaymentAccIndEnum._03)
                     return "03";
-                
+
                 if (value == PaymentAccIndEnum._04)
                     return "04";
-                
+
                 if (value == PaymentAccIndEnum._05)
                     return "05";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing PaymentAccIndEnum.               
+            /// JsonConverter for writing PaymentAccIndEnum.
             /// </summary>
             public class PaymentAccIndEnumJsonConverter : JsonConverter<PaymentAccIndEnum>
             {
@@ -679,7 +638,7 @@ namespace Adyen.Checkout.Models
             /// ShipAddressUsageIndEnum._04 - 04
             /// </summary>
             public static readonly ShipAddressUsageIndEnum _04 = new("04");
-        
+
             private ShipAddressUsageIndEnum(string? value)
             {
                 Value = value;
@@ -691,24 +650,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ShipAddressUsageIndEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ShipAddressUsageIndEnum?(string? value) => value == null ? null : new ShipAddressUsageIndEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ShipAddressUsageIndEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ShipAddressUsageIndEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ShipAddressUsageIndEnum"/> instance./// </returns>
             public static implicit operator string?(ShipAddressUsageIndEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ShipAddressUsageIndEnum? left, ShipAddressUsageIndEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ShipAddressUsageIndEnum? left, ShipAddressUsageIndEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ShipAddressUsageIndEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ShipAddressUsageIndEnum?"/>.
             /// </summary>
@@ -724,7 +683,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ShipAddressUsageIndEnum"/> to the json value.
             /// </summary>
@@ -735,24 +694,24 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ShipAddressUsageIndEnum._01)
                     return "01";
-                
+
                 if (value == ShipAddressUsageIndEnum._02)
                     return "02";
-                
+
                 if (value == ShipAddressUsageIndEnum._03)
                     return "03";
-                
+
                 if (value == ShipAddressUsageIndEnum._04)
                     return "04";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ShipAddressUsageIndEnum.               
+            /// JsonConverter for writing ShipAddressUsageIndEnum.
             /// </summary>
             public class ShipAddressUsageIndEnumJsonConverter : JsonConverter<ShipAddressUsageIndEnum>
             {
@@ -804,7 +763,7 @@ namespace Adyen.Checkout.Models
             /// ShipNameIndicatorEnum._02 - 02
             /// </summary>
             public static readonly ShipNameIndicatorEnum _02 = new("02");
-        
+
             private ShipNameIndicatorEnum(string? value)
             {
                 Value = value;
@@ -816,24 +775,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ShipNameIndicatorEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ShipNameIndicatorEnum?(string? value) => value == null ? null : new ShipNameIndicatorEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ShipNameIndicatorEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ShipNameIndicatorEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ShipNameIndicatorEnum"/> instance./// </returns>
             public static implicit operator string?(ShipNameIndicatorEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ShipNameIndicatorEnum? left, ShipNameIndicatorEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ShipNameIndicatorEnum? left, ShipNameIndicatorEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ShipNameIndicatorEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ShipNameIndicatorEnum?"/>.
             /// </summary>
@@ -847,7 +806,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ShipNameIndicatorEnum"/> to the json value.
             /// </summary>
@@ -858,18 +817,18 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ShipNameIndicatorEnum._01)
                     return "01";
-                
+
                 if (value == ShipNameIndicatorEnum._02)
                     return "02";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ShipNameIndicatorEnum.               
+            /// JsonConverter for writing ShipNameIndicatorEnum.
             /// </summary>
             public class ShipNameIndicatorEnumJsonConverter : JsonConverter<ShipNameIndicatorEnum>
             {
@@ -921,7 +880,7 @@ namespace Adyen.Checkout.Models
             /// SuspiciousAccActivityEnum._02 - 02
             /// </summary>
             public static readonly SuspiciousAccActivityEnum _02 = new("02");
-        
+
             private SuspiciousAccActivityEnum(string? value)
             {
                 Value = value;
@@ -933,24 +892,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="SuspiciousAccActivityEnum"/> instance initialized with the string value.</returns>
             public static implicit operator SuspiciousAccActivityEnum?(string? value) => value == null ? null : new SuspiciousAccActivityEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="SuspiciousAccActivityEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="SuspiciousAccActivityEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="SuspiciousAccActivityEnum"/> instance./// </returns>
             public static implicit operator string?(SuspiciousAccActivityEnum? option) => option?.Value;
-        
+
             public static bool operator ==(SuspiciousAccActivityEnum? left, SuspiciousAccActivityEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(SuspiciousAccActivityEnum? left, SuspiciousAccActivityEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is SuspiciousAccActivityEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="SuspiciousAccActivityEnum?"/>.
             /// </summary>
@@ -964,7 +923,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="SuspiciousAccActivityEnum"/> to the json value.
             /// </summary>
@@ -975,18 +934,18 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == SuspiciousAccActivityEnum._01)
                     return "01";
-                
+
                 if (value == SuspiciousAccActivityEnum._02)
                     return "02";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing SuspiciousAccActivityEnum.               
+            /// JsonConverter for writing SuspiciousAccActivityEnum.
             /// </summary>
             public class SuspiciousAccActivityEnumJsonConverter : JsonConverter<SuspiciousAccActivityEnum>
             {
@@ -1286,9 +1245,42 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new AcctInfo(chAccAgeInd, chAccChange, chAccChangeInd, chAccPwChange, chAccPwChangeInd, chAccString, nbPurchaseAccount, paymentAccAge, paymentAccInd, provisionAttemptsDay, shipAddressUsage, shipAddressUsageInd, shipNameIndicator, suspiciousAccActivity, txnActivityDay, txnActivityYear);
+
+            var result = new AcctInfo();
+            if (chAccAgeInd.IsSet)
+                result.ChAccAgeInd = chAccAgeInd.Value;
+            if (chAccChange.IsSet)
+                result.ChAccChange = chAccChange.Value;
+            if (chAccChangeInd.IsSet)
+                result.ChAccChangeInd = chAccChangeInd.Value;
+            if (chAccPwChange.IsSet)
+                result.ChAccPwChange = chAccPwChange.Value;
+            if (chAccPwChangeInd.IsSet)
+                result.ChAccPwChangeInd = chAccPwChangeInd.Value;
+            if (chAccString.IsSet)
+                result.ChAccString = chAccString.Value;
+            if (nbPurchaseAccount.IsSet)
+                result.NbPurchaseAccount = nbPurchaseAccount.Value;
+            if (paymentAccAge.IsSet)
+                result.PaymentAccAge = paymentAccAge.Value;
+            if (paymentAccInd.IsSet)
+                result.PaymentAccInd = paymentAccInd.Value;
+            if (provisionAttemptsDay.IsSet)
+                result.ProvisionAttemptsDay = provisionAttemptsDay.Value;
+            if (shipAddressUsage.IsSet)
+                result.ShipAddressUsage = shipAddressUsage.Value;
+            if (shipAddressUsageInd.IsSet)
+                result.ShipAddressUsageInd = shipAddressUsageInd.Value;
+            if (shipNameIndicator.IsSet)
+                result.ShipNameIndicator = shipNameIndicator.Value;
+            if (suspiciousAccActivity.IsSet)
+                result.SuspiciousAccActivity = suspiciousAccActivity.Value;
+            if (txnActivityDay.IsSet)
+                result.TxnActivityDay = txnActivityDay.Value;
+            if (txnActivityYear.IsSet)
+                result.TxnActivityYear = txnActivityYear.Value;
+            return result;
         }
 
         /// <summary>
@@ -1299,13 +1291,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, AcctInfo acctInfo, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, acctInfo, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -1316,33 +1308,33 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, AcctInfo acctInfo, JsonSerializerOptions jsonSerializerOptions)
         {
-            
-            if (acctInfo._ChAccAgeIndOption.IsSet && acctInfo.ChAccAgeInd != null) 
+
+            if (acctInfo._ChAccAgeIndOption.IsSet && acctInfo.ChAccAgeInd != null)
             {
                 string? chAccAgeIndRawValue = AcctInfo.ChAccAgeIndEnum.ToJsonValue(acctInfo._ChAccAgeIndOption.Value!.Value);
                 writer.WriteString("chAccAgeInd", chAccAgeIndRawValue);
             }
-            
+
             if (acctInfo._ChAccChangeOption.IsSet)
                 if (acctInfo.ChAccChange != null)
                     writer.WriteString("chAccChange", acctInfo.ChAccChange);
 
-            if (acctInfo._ChAccChangeIndOption.IsSet && acctInfo.ChAccChangeInd != null) 
+            if (acctInfo._ChAccChangeIndOption.IsSet && acctInfo.ChAccChangeInd != null)
             {
                 string? chAccChangeIndRawValue = AcctInfo.ChAccChangeIndEnum.ToJsonValue(acctInfo._ChAccChangeIndOption.Value!.Value);
                 writer.WriteString("chAccChangeInd", chAccChangeIndRawValue);
             }
-            
+
             if (acctInfo._ChAccPwChangeOption.IsSet)
                 if (acctInfo.ChAccPwChange != null)
                     writer.WriteString("chAccPwChange", acctInfo.ChAccPwChange);
 
-            if (acctInfo._ChAccPwChangeIndOption.IsSet && acctInfo.ChAccPwChangeInd != null) 
+            if (acctInfo._ChAccPwChangeIndOption.IsSet && acctInfo.ChAccPwChangeInd != null)
             {
                 string? chAccPwChangeIndRawValue = AcctInfo.ChAccPwChangeIndEnum.ToJsonValue(acctInfo._ChAccPwChangeIndOption.Value!.Value);
                 writer.WriteString("chAccPwChangeInd", chAccPwChangeIndRawValue);
             }
-            
+
             if (acctInfo._ChAccStringOption.IsSet)
                 if (acctInfo.ChAccString != null)
                     writer.WriteString("chAccString", acctInfo.ChAccString);
@@ -1355,12 +1347,12 @@ namespace Adyen.Checkout.Models
                 if (acctInfo.PaymentAccAge != null)
                     writer.WriteString("paymentAccAge", acctInfo.PaymentAccAge);
 
-            if (acctInfo._PaymentAccIndOption.IsSet && acctInfo.PaymentAccInd != null) 
+            if (acctInfo._PaymentAccIndOption.IsSet && acctInfo.PaymentAccInd != null)
             {
                 string? paymentAccIndRawValue = AcctInfo.PaymentAccIndEnum.ToJsonValue(acctInfo._PaymentAccIndOption.Value!.Value);
                 writer.WriteString("paymentAccInd", paymentAccIndRawValue);
             }
-            
+
             if (acctInfo._ProvisionAttemptsDayOption.IsSet)
                 if (acctInfo.ProvisionAttemptsDay != null)
                     writer.WriteString("provisionAttemptsDay", acctInfo.ProvisionAttemptsDay);
@@ -1369,24 +1361,24 @@ namespace Adyen.Checkout.Models
                 if (acctInfo.ShipAddressUsage != null)
                     writer.WriteString("shipAddressUsage", acctInfo.ShipAddressUsage);
 
-            if (acctInfo._ShipAddressUsageIndOption.IsSet && acctInfo.ShipAddressUsageInd != null) 
+            if (acctInfo._ShipAddressUsageIndOption.IsSet && acctInfo.ShipAddressUsageInd != null)
             {
                 string? shipAddressUsageIndRawValue = AcctInfo.ShipAddressUsageIndEnum.ToJsonValue(acctInfo._ShipAddressUsageIndOption.Value!.Value);
                 writer.WriteString("shipAddressUsageInd", shipAddressUsageIndRawValue);
             }
-            
-            if (acctInfo._ShipNameIndicatorOption.IsSet && acctInfo.ShipNameIndicator != null) 
+
+            if (acctInfo._ShipNameIndicatorOption.IsSet && acctInfo.ShipNameIndicator != null)
             {
                 string? shipNameIndicatorRawValue = AcctInfo.ShipNameIndicatorEnum.ToJsonValue(acctInfo._ShipNameIndicatorOption.Value!.Value);
                 writer.WriteString("shipNameIndicator", shipNameIndicatorRawValue);
             }
-            
-            if (acctInfo._SuspiciousAccActivityOption.IsSet && acctInfo.SuspiciousAccActivity != null) 
+
+            if (acctInfo._SuspiciousAccActivityOption.IsSet && acctInfo.SuspiciousAccActivity != null)
             {
                 string? suspiciousAccActivityRawValue = AcctInfo.SuspiciousAccActivityEnum.ToJsonValue(acctInfo._SuspiciousAccActivityOption.Value!.Value);
                 writer.WriteString("suspiciousAccActivity", suspiciousAccActivityRawValue);
             }
-            
+
             if (acctInfo._TxnActivityDayOption.IsSet)
                 if (acctInfo.TxnActivityDay != null)
                     writer.WriteString("txnActivityDay", acctInfo.TxnActivityDay);

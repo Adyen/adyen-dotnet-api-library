@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="FundOrigin" /> class.
         /// </summary>
-        /// <param name="billingAddress">billingAddress</param>
-        /// <param name="shopperEmail">The email address of the person funding the money.</param>
-        /// <param name="shopperName">shopperName</param>
-        /// <param name="telephoneNumber">The phone number of the person funding the money.</param>
-        /// <param name="walletIdentifier">The unique identifier of the wallet where the funds are coming from.</param>
-        [JsonConstructor]
-        public FundOrigin(Option<Address?> billingAddress = default, Option<string?> shopperEmail = default, Option<Name?> shopperName = default, Option<string?> telephoneNumber = default, Option<string?> walletIdentifier = default)
-        {
-            _BillingAddressOption = billingAddress;
-            _ShopperEmailOption = shopperEmail;
-            _ShopperNameOption = shopperName;
-            _TelephoneNumberOption = telephoneNumber;
-            _WalletIdentifierOption = walletIdentifier;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public FundOrigin()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -208,9 +189,20 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new FundOrigin(billingAddress, shopperEmail, shopperName, telephoneNumber, walletIdentifier);
+
+            var result = new FundOrigin();
+            if (billingAddress.IsSet)
+                result.BillingAddress = billingAddress.Value;
+            if (shopperEmail.IsSet)
+                result.ShopperEmail = shopperEmail.Value;
+            if (shopperName.IsSet)
+                result.ShopperName = shopperName.Value;
+            if (telephoneNumber.IsSet)
+                result.TelephoneNumber = telephoneNumber.Value;
+            if (walletIdentifier.IsSet)
+                result.WalletIdentifier = walletIdentifier.Value;
+            return result;
         }
 
         /// <summary>
@@ -221,13 +213,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, FundOrigin fundOrigin, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, fundOrigin, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -238,7 +230,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, FundOrigin fundOrigin, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (fundOrigin._BillingAddressOption.IsSet)
             {
                 writer.WritePropertyName("billingAddress");

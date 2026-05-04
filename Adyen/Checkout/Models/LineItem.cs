@@ -34,55 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="LineItem" /> class.
         /// </summary>
-        /// <param name="amountExcludingTax">Item amount excluding the tax, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units).</param>
-        /// <param name="amountIncludingTax">Item amount including the tax, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units).</param>
-        /// <param name="brand">Brand of the item.</param>
-        /// <param name="color">Color of the item.</param>
-        /// <param name="description">Description of the line item.</param>
-        /// <param name="id">ID of the line item.</param>
-        /// <param name="imageUrl">Link to the picture of the purchased item.</param>
-        /// <param name="itemCategory">Item category, used by the payment methods PayPal and Ratepay.</param>
-        /// <param name="manufacturer">Manufacturer of the item.</param>
-        /// <param name="marketplaceSellerId">Marketplace seller id.</param>
-        /// <param name="productUrl">Link to the purchased item.</param>
-        /// <param name="quantity">Number of items.</param>
-        /// <param name="receiverEmail">Email associated with the given product in the basket (usually in electronic gift cards).</param>
-        /// <param name="size">Size of the item.</param>
-        /// <param name="sku">Stock keeping unit.</param>
-        /// <param name="taxAmount">Tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units).</param>
-        /// <param name="taxPercentage">Tax percentage, represented as a [basis point](https://en.wikipedia.org/wiki/Basis_point) integer. For example:  - **530** for 5.3% (five point three percent)   - **2100** for 21% (twenty-one percent)</param>
-        /// <param name="upc">Universal Product Code.</param>
-        [JsonConstructor]
-        public LineItem(Option<long?> amountExcludingTax = default, Option<long?> amountIncludingTax = default, Option<string?> brand = default, Option<string?> color = default, Option<string?> description = default, Option<string?> id = default, Option<string?> imageUrl = default, Option<string?> itemCategory = default, Option<string?> manufacturer = default, Option<string?> marketplaceSellerId = default, Option<string?> productUrl = default, Option<long?> quantity = default, Option<string?> receiverEmail = default, Option<string?> size = default, Option<string?> sku = default, Option<long?> taxAmount = default, Option<long?> taxPercentage = default, Option<string?> upc = default)
-        {
-            _AmountExcludingTaxOption = amountExcludingTax;
-            _AmountIncludingTaxOption = amountIncludingTax;
-            _BrandOption = brand;
-            _ColorOption = color;
-            _DescriptionOption = description;
-            _IdOption = id;
-            _ImageUrlOption = imageUrl;
-            _ItemCategoryOption = itemCategory;
-            _ManufacturerOption = manufacturer;
-            _MarketplaceSellerIdOption = marketplaceSellerId;
-            _ProductUrlOption = productUrl;
-            _QuantityOption = quantity;
-            _ReceiverEmailOption = receiverEmail;
-            _SizeOption = size;
-            _SkuOption = sku;
-            _TaxAmountOption = taxAmount;
-            _TaxPercentageOption = taxPercentage;
-            _UpcOption = upc;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public LineItem()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -483,9 +438,46 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new LineItem(amountExcludingTax, amountIncludingTax, brand, color, description, id, imageUrl, itemCategory, manufacturer, marketplaceSellerId, productUrl, quantity, receiverEmail, size, sku, taxAmount, taxPercentage, upc);
+
+            var result = new LineItem();
+            if (amountExcludingTax.IsSet)
+                result.AmountExcludingTax = amountExcludingTax.Value;
+            if (amountIncludingTax.IsSet)
+                result.AmountIncludingTax = amountIncludingTax.Value;
+            if (brand.IsSet)
+                result.Brand = brand.Value;
+            if (color.IsSet)
+                result.Color = color.Value;
+            if (description.IsSet)
+                result.Description = description.Value;
+            if (id.IsSet)
+                result.Id = id.Value;
+            if (imageUrl.IsSet)
+                result.ImageUrl = imageUrl.Value;
+            if (itemCategory.IsSet)
+                result.ItemCategory = itemCategory.Value;
+            if (manufacturer.IsSet)
+                result.Manufacturer = manufacturer.Value;
+            if (marketplaceSellerId.IsSet)
+                result.MarketplaceSellerId = marketplaceSellerId.Value;
+            if (productUrl.IsSet)
+                result.ProductUrl = productUrl.Value;
+            if (quantity.IsSet)
+                result.Quantity = quantity.Value;
+            if (receiverEmail.IsSet)
+                result.ReceiverEmail = receiverEmail.Value;
+            if (size.IsSet)
+                result.Size = size.Value;
+            if (sku.IsSet)
+                result.Sku = sku.Value;
+            if (taxAmount.IsSet)
+                result.TaxAmount = taxAmount.Value;
+            if (taxPercentage.IsSet)
+                result.TaxPercentage = taxPercentage.Value;
+            if (upc.IsSet)
+                result.Upc = upc.Value;
+            return result;
         }
 
         /// <summary>
@@ -496,13 +488,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, LineItem lineItem, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, lineItem, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -513,7 +505,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, LineItem lineItem, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (lineItem._AmountExcludingTaxOption.IsSet)
                 if (lineItem._AmountExcludingTaxOption.Value != null)
                     writer.WriteNumber("amountExcludingTax", lineItem._AmountExcludingTaxOption.Value!.Value);

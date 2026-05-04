@@ -34,27 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Payment" /> class.
         /// </summary>
-        /// <param name="amount">amount</param>
-        /// <param name="paymentMethod">paymentMethod</param>
-        /// <param name="pspReference">Adyen&#39;s 16-character reference associated with the transaction/request. This value is globally unique. Use this reference when you communicate with us about this request.</param>
-        /// <param name="resultCode">The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Received** – Indicates the payment request was successfully received by Adyen, and will be processed. This is the initial state for all payments. * **Pending** – The payment order was successfully received but the final status of the payment is not available yet. This is common for payment methods with an asynchronous flow.</param>
-        [JsonConstructor]
-        public Payment(Option<Amount?> amount = default, Option<ResponsePaymentMethod?> paymentMethod = default, Option<string?> pspReference = default, Option<ResultCodeEnum?> resultCode = default)
-        {
-            _AmountOption = amount;
-            _PaymentMethodOption = paymentMethod;
-            _PspReferenceOption = pspReference;
-            _ResultCodeOption = resultCode;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public Payment()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -83,7 +66,7 @@ namespace Adyen.Checkout.Models
             /// ResultCodeEnum.Pending - Pending
             /// </summary>
             public static readonly ResultCodeEnum Pending = new("Pending");
-        
+
             private ResultCodeEnum(string? value)
             {
                 Value = value;
@@ -95,24 +78,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ResultCodeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ResultCodeEnum?(string? value) => value == null ? null : new ResultCodeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ResultCodeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ResultCodeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ResultCodeEnum"/> instance./// </returns>
             public static implicit operator string?(ResultCodeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ResultCodeEnum? left, ResultCodeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ResultCodeEnum? left, ResultCodeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ResultCodeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ResultCodeEnum?"/>.
             /// </summary>
@@ -127,7 +110,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ResultCodeEnum"/> to the json value.
             /// </summary>
@@ -138,21 +121,21 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ResultCodeEnum.Authorised)
                     return "Authorised";
-                
+
                 if (value == ResultCodeEnum.Received)
                     return "Received";
-                
+
                 if (value == ResultCodeEnum.Pending)
                     return "Pending";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ResultCodeEnum.               
+            /// JsonConverter for writing ResultCodeEnum.
             /// </summary>
             public class ResultCodeEnumJsonConverter : JsonConverter<ResultCodeEnum>
             {
@@ -300,9 +283,18 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new Payment(amount, paymentMethod, pspReference, resultCode);
+
+            var result = new Payment();
+            if (amount.IsSet)
+                result.Amount = amount.Value;
+            if (paymentMethod.IsSet)
+                result.PaymentMethod = paymentMethod.Value;
+            if (pspReference.IsSet)
+                result.PspReference = pspReference.Value;
+            if (resultCode.IsSet)
+                result.ResultCode = resultCode.Value;
+            return result;
         }
 
         /// <summary>
@@ -313,13 +305,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, Payment payment, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, payment, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -330,7 +322,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, Payment payment, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (payment._AmountOption.IsSet)
             {
                 writer.WritePropertyName("amount");
@@ -345,7 +337,7 @@ namespace Adyen.Checkout.Models
                 if (payment.PspReference != null)
                     writer.WriteString("pspReference", payment.PspReference);
 
-            if (payment._ResultCodeOption.IsSet && payment.ResultCode != null) 
+            if (payment._ResultCodeOption.IsSet && payment.ResultCode != null)
             {
                 string? resultCodeRawValue = Payment.ResultCodeEnum.ToJsonValue(payment._ResultCodeOption.Value!.Value);
                 writer.WriteString("resultCode", resultCodeRawValue);

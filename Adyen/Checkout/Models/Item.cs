@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Item" /> class.
         /// </summary>
-        /// <param name="id">The value to provide in the result.</param>
-        /// <param name="name">The display name.</param>
-        [JsonConstructor]
-        public Item(Option<string?> id = default, Option<string?> name = default)
-        {
-            _IdOption = id;
-            _NameOption = name;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public Item()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -147,9 +134,14 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new Item(id, name);
+
+            var result = new Item();
+            if (id.IsSet)
+                result.Id = id.Value;
+            if (name.IsSet)
+                result.Name = name.Value;
+            return result;
         }
 
         /// <summary>
@@ -160,13 +152,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, Item item, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, item, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -177,7 +169,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, Item item, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (item._IdOption.IsSet)
                 if (item.Id != null)
                     writer.WriteString("id", item.Id);

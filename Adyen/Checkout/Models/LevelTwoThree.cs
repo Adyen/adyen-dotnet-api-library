@@ -34,35 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="LevelTwoThree" /> class.
         /// </summary>
-        /// <param name="customerReferenceNumber">The reference number to identify the customer and their order. * Format: ASCII * Max length: 25 characters * Must not start with a space or be all spaces. * Must not be all zeros.</param>
-        /// <param name="destination">destination</param>
-        /// <param name="dutyAmount">The duty tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Encoding: Numeric * Max value: 10000000000</param>
-        /// <param name="freightAmount">The shipping amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Encoding: Numeric * Max value: 10000000000</param>
-        /// <param name="itemDetailLines">The list of item detail lines.</param>
-        /// <param name="orderDate">The date of the order. * Min Length: 10 characters * Max Length: 10 characters * Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): yyyy-MM-dd</param>
-        /// <param name="shipFromPostalCode">The postal code of the address where the item is shipped from. * Encoding: ASCII * Max length: 10 characters * For the US, it must be in five or nine digits format. For example, 10001 or 10001-0000. * For Canada, it must be in 6 digits format. For example, M4B 1G5.</param>
-        /// <param name="totalTaxAmount">The amount of state or provincial [tax included in the total transaction amount](https://docs.adyen.com/payment-methods/cards/enhanced-scheme-data/l2-l3#requirements-to-send-level-2-3-esd), in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Encoding: Numeric * Max value: 10000000000 * For L2 data: must not be all zeroes.  * For L3 data: can be zero.</param>
-        [JsonConstructor]
-        public LevelTwoThree(Option<string?> customerReferenceNumber = default, Option<Destination?> destination = default, Option<long?> dutyAmount = default, Option<long?> freightAmount = default, Option<List<ItemDetailLine>?> itemDetailLines = default, Option<DateOnly?> orderDate = default, Option<string?> shipFromPostalCode = default, Option<long?> totalTaxAmount = default)
-        {
-            _CustomerReferenceNumberOption = customerReferenceNumber;
-            _DestinationOption = destination;
-            _DutyAmountOption = dutyAmount;
-            _FreightAmountOption = freightAmount;
-            _ItemDetailLinesOption = itemDetailLines;
-            _OrderDateOption = orderDate;
-            _ShipFromPostalCodeOption = shipFromPostalCode;
-            _TotalTaxAmountOption = totalTaxAmount;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public LevelTwoThree()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -277,9 +252,26 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new LevelTwoThree(customerReferenceNumber, destination, dutyAmount, freightAmount, itemDetailLines, orderDate, shipFromPostalCode, totalTaxAmount);
+
+            var result = new LevelTwoThree();
+            if (customerReferenceNumber.IsSet)
+                result.CustomerReferenceNumber = customerReferenceNumber.Value;
+            if (destination.IsSet)
+                result.Destination = destination.Value;
+            if (dutyAmount.IsSet)
+                result.DutyAmount = dutyAmount.Value;
+            if (freightAmount.IsSet)
+                result.FreightAmount = freightAmount.Value;
+            if (itemDetailLines.IsSet)
+                result.ItemDetailLines = itemDetailLines.Value;
+            if (orderDate.IsSet)
+                result.OrderDate = orderDate.Value;
+            if (shipFromPostalCode.IsSet)
+                result.ShipFromPostalCode = shipFromPostalCode.Value;
+            if (totalTaxAmount.IsSet)
+                result.TotalTaxAmount = totalTaxAmount.Value;
+            return result;
         }
 
         /// <summary>
@@ -290,13 +282,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, LevelTwoThree levelTwoThree, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, levelTwoThree, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -307,7 +299,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, LevelTwoThree levelTwoThree, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (levelTwoThree._CustomerReferenceNumberOption.IsSet)
                 if (levelTwoThree.CustomerReferenceNumber != null)
                     writer.WriteString("customerReferenceNumber", levelTwoThree.CustomerReferenceNumber);

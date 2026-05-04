@@ -34,35 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="RatepayDetails" /> class.
         /// </summary>
-        /// <param name="billingAddress">The address where to send the invoice.</param>
-        /// <param name="checkoutAttemptId">The checkout attempt identifier.</param>
-        /// <param name="deliveryAddress">The address where the goods should be delivered.</param>
-        /// <param name="personalDetails">Shopper name, date of birth, phone number, and email address.</param>
-        /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK</param>
-        /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</param>
-        /// <param name="type">**ratepay** (default to TypeEnum.Ratepay)</param>
-        [JsonConstructor]
-        public RatepayDetails(Option<string?> billingAddress = default, Option<string?> checkoutAttemptId = default, Option<string?> deliveryAddress = default, Option<string?> personalDetails = default, Option<string?> recurringDetailReference = default, Option<string?> sdkData = default, Option<string?> storedPaymentMethodId = default, TypeEnum type = default)
-        {
-            _BillingAddressOption = billingAddress;
-            _CheckoutAttemptIdOption = checkoutAttemptId;
-            _DeliveryAddressOption = deliveryAddress;
-            _PersonalDetailsOption = personalDetails;
-            _RecurringDetailReferenceOption = recurringDetailReference;
-            _SdkDataOption = sdkData;
-            _StoredPaymentMethodIdOption = storedPaymentMethodId;
-            Type = type;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public RatepayDetails()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -86,7 +61,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.RatepayDirectdebit - ratepay_directdebit
             /// </summary>
             public static readonly TypeEnum RatepayDirectdebit = new("ratepay_directdebit");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -98,24 +73,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -129,7 +104,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -140,18 +115,18 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Ratepay)
                     return "ratepay";
-                
+
                 if (value == TypeEnum.RatepayDirectdebit)
                     return "ratepay_directdebit";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -371,11 +346,27 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class RatepayDetails.", nameof(type));
 
-            return new RatepayDetails(billingAddress, checkoutAttemptId, deliveryAddress, personalDetails, recurringDetailReference, sdkData, storedPaymentMethodId, type.Value!.Value!);
+            var result = new RatepayDetails();
+            if (billingAddress.IsSet)
+                result.BillingAddress = billingAddress.Value;
+            if (checkoutAttemptId.IsSet)
+                result.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (deliveryAddress.IsSet)
+                result.DeliveryAddress = deliveryAddress.Value;
+            if (personalDetails.IsSet)
+                result.PersonalDetails = personalDetails.Value;
+            if (recurringDetailReference.IsSet)
+                result.RecurringDetailReference = recurringDetailReference.Value;
+            if (sdkData.IsSet)
+                result.SdkData = sdkData.Value;
+            if (storedPaymentMethodId.IsSet)
+                result.StoredPaymentMethodId = storedPaymentMethodId.Value;
+            result.Type = type.Value!.Value!;
+            return result;
         }
 
         /// <summary>
@@ -386,13 +377,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, RatepayDetails ratepayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, ratepayDetails, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -403,7 +394,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, RatepayDetails ratepayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (ratepayDetails._BillingAddressOption.IsSet)
                 if (ratepayDetails.BillingAddress != null)
                     writer.WriteString("billingAddress", ratepayDetails.BillingAddress);
@@ -432,7 +423,7 @@ namespace Adyen.Checkout.Models
                 if (ratepayDetails.StoredPaymentMethodId != null)
                     writer.WriteString("storedPaymentMethodId", ratepayDetails.StoredPaymentMethodId);
 
-            if (ratepayDetails.Type != null) 
+            if (ratepayDetails.Type != null)
             {
                 string? typeRawValue = RatepayDetails.TypeEnum.ToJsonValue(ratepayDetails.Type);
                 writer.WriteString("type", typeRawValue);

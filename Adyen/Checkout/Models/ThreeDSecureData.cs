@@ -34,47 +34,14 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDSecureData" /> class.
         /// </summary>
-        /// <param name="authenticationResponse">In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter.  </param>
-        /// <param name="cavv">The cardholder authentication value (base64 encoded, 20 bytes in a decoded form).</param>
-        /// <param name="cavvAlgorithm">The CAVV algorithm used. Include this only for 3D Secure 1.</param>
-        /// <param name="challengeCancel">Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata).</param>
-        /// <param name="directoryResponse">In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;.  </param>
-        /// <param name="dsTransID">Supported for 3D Secure 2. The unique transaction identifier assigned by the Directory Server (DS) to identify a single transaction.</param>
-        /// <param name="eci">The electronic commerce indicator.</param>
-        /// <param name="riskScore">Risk score calculated by Directory Server (DS). Required for Cartes Bancaires integrations.</param>
-        /// <param name="threeDSVersion">The version of the 3D Secure protocol.</param>
-        /// <param name="tokenAuthenticationVerificationValue">Network token authentication verification value (TAVV). The network token cryptogram.</param>
-        /// <param name="transStatusReason">Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).</param>
-        /// <param name="xid">Supported for 3D Secure 1. The transaction identifier (Base64-encoded, 20 bytes in a decoded form).</param>
-        [JsonConstructor]
-        public ThreeDSecureData(Option<AuthenticationResponseEnum?> authenticationResponse = default, Option<byte[]?> cavv = default, Option<string?> cavvAlgorithm = default, Option<ChallengeCancelEnum?> challengeCancel = default, Option<DirectoryResponseEnum?> directoryResponse = default, Option<string?> dsTransID = default, Option<string?> eci = default, Option<string?> riskScore = default, Option<string?> threeDSVersion = default, Option<byte[]?> tokenAuthenticationVerificationValue = default, Option<string?> transStatusReason = default, Option<byte[]?> xid = default)
-        {
-            _AuthenticationResponseOption = authenticationResponse;
-            _CavvOption = cavv;
-            _CavvAlgorithmOption = cavvAlgorithm;
-            _ChallengeCancelOption = challengeCancel;
-            _DirectoryResponseOption = directoryResponse;
-            _DsTransIDOption = dsTransID;
-            _EciOption = eci;
-            _RiskScoreOption = riskScore;
-            _ThreeDSVersionOption = threeDSVersion;
-            _TokenAuthenticationVerificationValueOption = tokenAuthenticationVerificationValue;
-            _TransStatusReasonOption = transStatusReason;
-            _XidOption = xid;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ThreeDSecureData()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
-        /// In 3D Secure 2, this is the `transStatus` from the challenge result. If the transaction was frictionless, omit this parameter.  
+        /// In 3D Secure 2, this is the `transStatus` from the challenge result. If the transaction was frictionless, omit this parameter.
         /// </summary>
         /// <value>In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter.  </value>
         [JsonConverter(typeof(AuthenticationResponseEnumJsonConverter))]
@@ -104,7 +71,7 @@ namespace Adyen.Checkout.Models
             /// AuthenticationResponseEnum.A - A
             /// </summary>
             public static readonly AuthenticationResponseEnum A = new("A");
-        
+
             private AuthenticationResponseEnum(string? value)
             {
                 Value = value;
@@ -116,24 +83,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="AuthenticationResponseEnum"/> instance initialized with the string value.</returns>
             public static implicit operator AuthenticationResponseEnum?(string? value) => value == null ? null : new AuthenticationResponseEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="AuthenticationResponseEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="AuthenticationResponseEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="AuthenticationResponseEnum"/> instance./// </returns>
             public static implicit operator string?(AuthenticationResponseEnum? option) => option?.Value;
-        
+
             public static bool operator ==(AuthenticationResponseEnum? left, AuthenticationResponseEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(AuthenticationResponseEnum? left, AuthenticationResponseEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is AuthenticationResponseEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="AuthenticationResponseEnum?"/>.
             /// </summary>
@@ -149,7 +116,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="AuthenticationResponseEnum"/> to the json value.
             /// </summary>
@@ -160,24 +127,24 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == AuthenticationResponseEnum.Y)
                     return "Y";
-                
+
                 if (value == AuthenticationResponseEnum.N)
                     return "N";
-                
+
                 if (value == AuthenticationResponseEnum.U)
                     return "U";
-                
+
                 if (value == AuthenticationResponseEnum.A)
                     return "A";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing AuthenticationResponseEnum.               
+            /// JsonConverter for writing AuthenticationResponseEnum.
             /// </summary>
             public class AuthenticationResponseEnumJsonConverter : JsonConverter<AuthenticationResponseEnum>
             {
@@ -202,7 +169,7 @@ namespace Adyen.Checkout.Models
         public Option<AuthenticationResponseEnum?> _AuthenticationResponseOption { get; private set; }
 
         /// <summary>
-        /// In 3D Secure 2, this is the `transStatus` from the challenge result. If the transaction was frictionless, omit this parameter.  
+        /// In 3D Secure 2, this is the `transStatus` from the challenge result. If the transaction was frictionless, omit this parameter.
         /// </summary>
         /// <value>In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter.  </value>
         [JsonPropertyName("authenticationResponse")]
@@ -254,7 +221,7 @@ namespace Adyen.Checkout.Models
             /// ChallengeCancelEnum._07 - 07
             /// </summary>
             public static readonly ChallengeCancelEnum _07 = new("07");
-        
+
             private ChallengeCancelEnum(string? value)
             {
                 Value = value;
@@ -266,24 +233,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="ChallengeCancelEnum"/> instance initialized with the string value.</returns>
             public static implicit operator ChallengeCancelEnum?(string? value) => value == null ? null : new ChallengeCancelEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="ChallengeCancelEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="ChallengeCancelEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="ChallengeCancelEnum"/> instance./// </returns>
             public static implicit operator string?(ChallengeCancelEnum? option) => option?.Value;
-        
+
             public static bool operator ==(ChallengeCancelEnum? left, ChallengeCancelEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(ChallengeCancelEnum? left, ChallengeCancelEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is ChallengeCancelEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="ChallengeCancelEnum?"/>.
             /// </summary>
@@ -302,7 +269,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="ChallengeCancelEnum"/> to the json value.
             /// </summary>
@@ -313,33 +280,33 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == ChallengeCancelEnum._01)
                     return "01";
-                
+
                 if (value == ChallengeCancelEnum._02)
                     return "02";
-                
+
                 if (value == ChallengeCancelEnum._03)
                     return "03";
-                
+
                 if (value == ChallengeCancelEnum._04)
                     return "04";
-                
+
                 if (value == ChallengeCancelEnum._05)
                     return "05";
-                
+
                 if (value == ChallengeCancelEnum._06)
                     return "06";
-                
+
                 if (value == ChallengeCancelEnum._07)
                     return "07";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing ChallengeCancelEnum.               
+            /// JsonConverter for writing ChallengeCancelEnum.
             /// </summary>
             public class ChallengeCancelEnumJsonConverter : JsonConverter<ChallengeCancelEnum>
             {
@@ -371,7 +338,7 @@ namespace Adyen.Checkout.Models
         public ChallengeCancelEnum? ChallengeCancel { get { return this._ChallengeCancelOption; } set { this._ChallengeCancelOption = new(value); } }
 
         /// <summary>
-        /// In 3D Secure 2, this is the `transStatus` from the `ARes`.  
+        /// In 3D Secure 2, this is the `transStatus` from the `ARes`.
         /// </summary>
         /// <value>In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;.  </value>
         [JsonConverter(typeof(DirectoryResponseEnumJsonConverter))]
@@ -421,7 +388,7 @@ namespace Adyen.Checkout.Models
             /// DirectoryResponseEnum.Y - Y
             /// </summary>
             public static readonly DirectoryResponseEnum Y = new("Y");
-        
+
             private DirectoryResponseEnum(string? value)
             {
                 Value = value;
@@ -433,24 +400,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="DirectoryResponseEnum"/> instance initialized with the string value.</returns>
             public static implicit operator DirectoryResponseEnum?(string? value) => value == null ? null : new DirectoryResponseEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="DirectoryResponseEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="DirectoryResponseEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="DirectoryResponseEnum"/> instance./// </returns>
             public static implicit operator string?(DirectoryResponseEnum? option) => option?.Value;
-        
+
             public static bool operator ==(DirectoryResponseEnum? left, DirectoryResponseEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(DirectoryResponseEnum? left, DirectoryResponseEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is DirectoryResponseEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="DirectoryResponseEnum?"/>.
             /// </summary>
@@ -470,7 +437,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="DirectoryResponseEnum"/> to the json value.
             /// </summary>
@@ -481,36 +448,36 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == DirectoryResponseEnum.A)
                     return "A";
-                
+
                 if (value == DirectoryResponseEnum.C)
                     return "C";
-                
+
                 if (value == DirectoryResponseEnum.D)
                     return "D";
-                
+
                 if (value == DirectoryResponseEnum.I)
                     return "I";
-                
+
                 if (value == DirectoryResponseEnum.N)
                     return "N";
-                
+
                 if (value == DirectoryResponseEnum.R)
                     return "R";
-                
+
                 if (value == DirectoryResponseEnum.U)
                     return "U";
-                
+
                 if (value == DirectoryResponseEnum.Y)
                     return "Y";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing DirectoryResponseEnum.               
+            /// JsonConverter for writing DirectoryResponseEnum.
             /// </summary>
             public class DirectoryResponseEnumJsonConverter : JsonConverter<DirectoryResponseEnum>
             {
@@ -535,7 +502,7 @@ namespace Adyen.Checkout.Models
         public Option<DirectoryResponseEnum?> _DirectoryResponseOption { get; private set; }
 
         /// <summary>
-        /// In 3D Secure 2, this is the `transStatus` from the `ARes`.  
+        /// In 3D Secure 2, this is the `transStatus` from the `ARes`.
         /// </summary>
         /// <value>In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;.  </value>
         [JsonPropertyName("directoryResponse")]
@@ -786,9 +753,34 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new ThreeDSecureData(authenticationResponse, cavv, cavvAlgorithm, challengeCancel, directoryResponse, dsTransID, eci, riskScore, threeDSVersion, tokenAuthenticationVerificationValue, transStatusReason, xid);
+
+            var result = new ThreeDSecureData();
+            if (authenticationResponse.IsSet)
+                result.AuthenticationResponse = authenticationResponse.Value;
+            if (cavv.IsSet)
+                result.Cavv = cavv.Value;
+            if (cavvAlgorithm.IsSet)
+                result.CavvAlgorithm = cavvAlgorithm.Value;
+            if (challengeCancel.IsSet)
+                result.ChallengeCancel = challengeCancel.Value;
+            if (directoryResponse.IsSet)
+                result.DirectoryResponse = directoryResponse.Value;
+            if (dsTransID.IsSet)
+                result.DsTransID = dsTransID.Value;
+            if (eci.IsSet)
+                result.Eci = eci.Value;
+            if (riskScore.IsSet)
+                result.RiskScore = riskScore.Value;
+            if (threeDSVersion.IsSet)
+                result.ThreeDSVersion = threeDSVersion.Value;
+            if (tokenAuthenticationVerificationValue.IsSet)
+                result.TokenAuthenticationVerificationValue = tokenAuthenticationVerificationValue.Value;
+            if (transStatusReason.IsSet)
+                result.TransStatusReason = transStatusReason.Value;
+            if (xid.IsSet)
+                result.Xid = xid.Value;
+            return result;
         }
 
         /// <summary>
@@ -799,13 +791,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ThreeDSecureData threeDSecureData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, threeDSecureData, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -816,13 +808,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ThreeDSecureData threeDSecureData, JsonSerializerOptions jsonSerializerOptions)
         {
-            
-            if (threeDSecureData._AuthenticationResponseOption.IsSet && threeDSecureData.AuthenticationResponse != null) 
+
+            if (threeDSecureData._AuthenticationResponseOption.IsSet && threeDSecureData.AuthenticationResponse != null)
             {
                 string? authenticationResponseRawValue = ThreeDSecureData.AuthenticationResponseEnum.ToJsonValue(threeDSecureData._AuthenticationResponseOption.Value!.Value);
                 writer.WriteString("authenticationResponse", authenticationResponseRawValue);
             }
-            
+
             if (threeDSecureData._CavvOption.IsSet)
             {
                 writer.WritePropertyName("cavv");
@@ -832,18 +824,18 @@ namespace Adyen.Checkout.Models
                 if (threeDSecureData.CavvAlgorithm != null)
                     writer.WriteString("cavvAlgorithm", threeDSecureData.CavvAlgorithm);
 
-            if (threeDSecureData._ChallengeCancelOption.IsSet && threeDSecureData.ChallengeCancel != null) 
+            if (threeDSecureData._ChallengeCancelOption.IsSet && threeDSecureData.ChallengeCancel != null)
             {
                 string? challengeCancelRawValue = ThreeDSecureData.ChallengeCancelEnum.ToJsonValue(threeDSecureData._ChallengeCancelOption.Value!.Value);
                 writer.WriteString("challengeCancel", challengeCancelRawValue);
             }
-            
-            if (threeDSecureData._DirectoryResponseOption.IsSet && threeDSecureData.DirectoryResponse != null) 
+
+            if (threeDSecureData._DirectoryResponseOption.IsSet && threeDSecureData.DirectoryResponse != null)
             {
                 string? directoryResponseRawValue = ThreeDSecureData.DirectoryResponseEnum.ToJsonValue(threeDSecureData._DirectoryResponseOption.Value!.Value);
                 writer.WriteString("directoryResponse", directoryResponseRawValue);
             }
-            
+
             if (threeDSecureData._DsTransIDOption.IsSet)
                 if (threeDSecureData.DsTransID != null)
                     writer.WriteString("dsTransID", threeDSecureData.DsTransID);

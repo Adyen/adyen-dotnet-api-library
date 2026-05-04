@@ -34,21 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="UtilityResponse" /> class.
         /// </summary>
-        /// <param name="originKeys">The list of origin keys for all requested domains. For each list item, the key is the domain and the value is the origin key.</param>
-        [JsonConstructor]
-        public UtilityResponse(Option<Dictionary<string, string>?> originKeys = default)
-        {
-            _OriginKeysOption = originKeys;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public UtilityResponse()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -126,9 +115,12 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new UtilityResponse(originKeys);
+
+            var result = new UtilityResponse();
+            if (originKeys.IsSet)
+                result.OriginKeys = originKeys.Value;
+            return result;
         }
 
         /// <summary>
@@ -139,13 +131,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, UtilityResponse utilityResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, utilityResponse, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -156,7 +148,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, UtilityResponse utilityResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (utilityResponse._OriginKeysOption.IsSet)
             {
                 writer.WritePropertyName("originKeys");

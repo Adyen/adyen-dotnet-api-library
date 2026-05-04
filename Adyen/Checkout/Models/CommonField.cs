@@ -34,23 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CommonField" /> class.
         /// </summary>
-        /// <param name="name">Name of the field. For example, Name of External Platform.</param>
-        /// <param name="version">Version of the field. For example, Version of External Platform.</param>
-        [JsonConstructor]
-        public CommonField(Option<string?> name = default, Option<string?> version = default)
-        {
-            _NameOption = name;
-            _VersionOption = version;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CommonField()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -147,9 +134,14 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new CommonField(name, version);
+
+            var result = new CommonField();
+            if (name.IsSet)
+                result.Name = name.Value;
+            if (version.IsSet)
+                result.Version = version.Value;
+            return result;
         }
 
         /// <summary>
@@ -160,13 +152,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CommonField commonField, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, commonField, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -177,7 +169,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CommonField commonField, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (commonField._NameOption.IsSet)
                 if (commonField.Name != null)
                     writer.WriteString("name", commonField.Name);

@@ -34,35 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataRatepay" /> class.
         /// </summary>
-        /// <param name="ratepayInstallmentAmount">Amount the customer has to pay each month.</param>
-        /// <param name="ratepayInterestRate">Interest rate of this installment.</param>
-        /// <param name="ratepayLastInstallmentAmount">Amount of the last installment.</param>
-        /// <param name="ratepayPaymentFirstday">Calendar day of the first payment.</param>
-        /// <param name="ratepaydataDeliveryDate">Date the merchant delivered the goods to the customer.</param>
-        /// <param name="ratepaydataDueDate">Date by which the customer must settle the payment.</param>
-        /// <param name="ratepaydataInvoiceDate">Invoice date, defined by the merchant. If not included, the invoice date is set to the delivery date.</param>
-        /// <param name="ratepaydataInvoiceId">Identification name or number for the invoice, defined by the merchant.</param>
-        [JsonConstructor]
-        public AdditionalDataRatepay(Option<string?> ratepayInstallmentAmount = default, Option<string?> ratepayInterestRate = default, Option<string?> ratepayLastInstallmentAmount = default, Option<string?> ratepayPaymentFirstday = default, Option<string?> ratepaydataDeliveryDate = default, Option<string?> ratepaydataDueDate = default, Option<string?> ratepaydataInvoiceDate = default, Option<string?> ratepaydataInvoiceId = default)
-        {
-            _RatepayInstallmentAmountOption = ratepayInstallmentAmount;
-            _RatepayInterestRateOption = ratepayInterestRate;
-            _RatepayLastInstallmentAmountOption = ratepayLastInstallmentAmount;
-            _RatepayPaymentFirstdayOption = ratepayPaymentFirstday;
-            _RatepaydataDeliveryDateOption = ratepaydataDeliveryDate;
-            _RatepaydataDueDateOption = ratepaydataDueDate;
-            _RatepaydataInvoiceDateOption = ratepaydataInvoiceDate;
-            _RatepaydataInvoiceIdOption = ratepaydataInvoiceId;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public AdditionalDataRatepay()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -273,9 +248,26 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new AdditionalDataRatepay(ratepayInstallmentAmount, ratepayInterestRate, ratepayLastInstallmentAmount, ratepayPaymentFirstday, ratepaydataDeliveryDate, ratepaydataDueDate, ratepaydataInvoiceDate, ratepaydataInvoiceId);
+
+            var result = new AdditionalDataRatepay();
+            if (ratepayInstallmentAmount.IsSet)
+                result.RatepayInstallmentAmount = ratepayInstallmentAmount.Value;
+            if (ratepayInterestRate.IsSet)
+                result.RatepayInterestRate = ratepayInterestRate.Value;
+            if (ratepayLastInstallmentAmount.IsSet)
+                result.RatepayLastInstallmentAmount = ratepayLastInstallmentAmount.Value;
+            if (ratepayPaymentFirstday.IsSet)
+                result.RatepayPaymentFirstday = ratepayPaymentFirstday.Value;
+            if (ratepaydataDeliveryDate.IsSet)
+                result.RatepaydataDeliveryDate = ratepaydataDeliveryDate.Value;
+            if (ratepaydataDueDate.IsSet)
+                result.RatepaydataDueDate = ratepaydataDueDate.Value;
+            if (ratepaydataInvoiceDate.IsSet)
+                result.RatepaydataInvoiceDate = ratepaydataInvoiceDate.Value;
+            if (ratepaydataInvoiceId.IsSet)
+                result.RatepaydataInvoiceId = ratepaydataInvoiceId.Value;
+            return result;
         }
 
         /// <summary>
@@ -286,13 +278,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, AdditionalDataRatepay additionalDataRatepay, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, additionalDataRatepay, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -303,7 +295,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, AdditionalDataRatepay additionalDataRatepay, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (additionalDataRatepay._RatepayInstallmentAmountOption.IsSet)
                 if (additionalDataRatepay.RatepayInstallmentAmount != null)
                     writer.WriteString("ratepay.installmentAmount", additionalDataRatepay.RatepayInstallmentAmount);

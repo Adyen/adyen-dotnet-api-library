@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutRedirectAction" /> class.
         /// </summary>
-        /// <param name="type">**redirect**</param>
-        /// <param name="data">When the redirect URL must be accessed via POST, use this data to post to the redirect URL.</param>
-        /// <param name="method">Specifies the HTTP method, for example GET or POST.</param>
-        /// <param name="paymentMethodType">Specifies the payment method.</param>
-        /// <param name="url">Specifies the URL to redirect to.</param>
-        [JsonConstructor]
-        public CheckoutRedirectAction(TypeEnum type, Option<Dictionary<string, string>?> data = default, Option<string?> method = default, Option<string?> paymentMethodType = default, Option<string?> url = default)
-        {
-            Type = type;
-            _DataOption = data;
-            _MethodOption = method;
-            _PaymentMethodTypeOption = paymentMethodType;
-            _UrlOption = url;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CheckoutRedirectAction()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -75,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.Redirect - redirect
             /// </summary>
             public static readonly TypeEnum Redirect = new("redirect");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -87,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -117,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -128,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Redirect)
                     return "redirect";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -298,11 +279,21 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class CheckoutRedirectAction.", nameof(type));
 
-            return new CheckoutRedirectAction(type.Value!.Value!, data, method, paymentMethodType, url);
+            var result = new CheckoutRedirectAction();
+            result.Type = type.Value!.Value!;
+            if (data.IsSet)
+                result.Data = data.Value;
+            if (method.IsSet)
+                result.Method = method.Value;
+            if (paymentMethodType.IsSet)
+                result.PaymentMethodType = paymentMethodType.Value;
+            if (url.IsSet)
+                result.Url = url.Value;
+            return result;
         }
 
         /// <summary>
@@ -313,13 +304,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CheckoutRedirectAction checkoutRedirectAction, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, checkoutRedirectAction, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -330,13 +321,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CheckoutRedirectAction checkoutRedirectAction, JsonSerializerOptions jsonSerializerOptions)
         {
-            
-            if (checkoutRedirectAction.Type != null) 
+
+            if (checkoutRedirectAction.Type != null)
             {
                 string? typeRawValue = CheckoutRedirectAction.TypeEnum.ToJsonValue(checkoutRedirectAction.Type);
                 writer.WriteString("type", typeRawValue);
             }
-            
+
             if (checkoutRedirectAction._DataOption.IsSet)
             {
                 writer.WritePropertyName("data");

@@ -34,29 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ValidateShopperIdRequest" /> class.
         /// </summary>
-        /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction.</param>
-        /// <param name="paymentMethod">paymentMethod</param>
-        /// <param name="shopperEmail">shopperEmail</param>
-        /// <param name="shopperIP">shopperIP</param>
-        /// <param name="shopperReference">shopperReference</param>
-        [JsonConstructor]
-        public ValidateShopperIdRequest(string merchantAccount, ShopperIdPaymentMethod paymentMethod, Option<string?> shopperEmail = default, Option<string?> shopperIP = default, Option<string?> shopperReference = default)
-        {
-            MerchantAccount = merchantAccount;
-            PaymentMethod = paymentMethod;
-            _ShopperEmailOption = shopperEmail;
-            _ShopperIPOption = shopperIP;
-            _ShopperReferenceOption = shopperReference;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ValidateShopperIdRequest()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -192,14 +173,23 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!merchantAccount.IsSet)
                 throw new ArgumentException("Property is required for class ValidateShopperIdRequest.", nameof(merchantAccount));
 
             if (!paymentMethod.IsSet)
                 throw new ArgumentException("Property is required for class ValidateShopperIdRequest.", nameof(paymentMethod));
 
-            return new ValidateShopperIdRequest(merchantAccount.Value!, paymentMethod.Value!, shopperEmail, shopperIP, shopperReference);
+            var result = new ValidateShopperIdRequest();
+            result.MerchantAccount = merchantAccount.Value!;
+            result.PaymentMethod = paymentMethod.Value!;
+            if (shopperEmail.IsSet)
+                result.ShopperEmail = shopperEmail.Value;
+            if (shopperIP.IsSet)
+                result.ShopperIP = shopperIP.Value;
+            if (shopperReference.IsSet)
+                result.ShopperReference = shopperReference.Value;
+            return result;
         }
 
         /// <summary>
@@ -210,13 +200,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, ValidateShopperIdRequest validateShopperIdRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, validateShopperIdRequest, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -227,7 +217,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, ValidateShopperIdRequest validateShopperIdRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (validateShopperIdRequest.MerchantAccount != null)
                 writer.WriteString("merchantAccount", validateShopperIdRequest.MerchantAccount);
 

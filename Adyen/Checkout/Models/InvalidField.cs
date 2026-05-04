@@ -34,25 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="InvalidField" /> class.
         /// </summary>
-        /// <param name="name">The field that has an invalid value.</param>
-        /// <param name="value">The invalid value.</param>
-        /// <param name="message">Description of the validation error.</param>
-        [JsonConstructor]
-        public InvalidField(string name, string value, string message)
-        {
-            Name = name;
-            Value = value;
-            Message = message;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public InvalidField()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -147,7 +132,7 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class InvalidField.", nameof(name));
 
@@ -157,7 +142,11 @@ namespace Adyen.Checkout.Models
             if (!message.IsSet)
                 throw new ArgumentException("Property is required for class InvalidField.", nameof(message));
 
-            return new InvalidField(name.Value!, value.Value!, message.Value!);
+            var result = new InvalidField();
+            result.Name = name.Value!;
+            result.Value = value.Value!;
+            result.Message = message.Value!;
+            return result;
         }
 
         /// <summary>
@@ -168,13 +157,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, InvalidField invalidField, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, invalidField, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -185,7 +174,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, InvalidField invalidField, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (invalidField.Name != null)
                 writer.WriteString("name", invalidField.Name);
 

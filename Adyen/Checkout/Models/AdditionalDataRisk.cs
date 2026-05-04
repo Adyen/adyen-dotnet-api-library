@@ -34,61 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataRisk" /> class.
         /// </summary>
-        /// <param name="riskdataCustomFieldName">The data for your custom risk field. For more information, refer to [Create custom risk fields](https://docs.adyen.com/risk-management/configure-custom-risk-rules#step-1-create-custom-risk-fields).</param>
-        /// <param name="riskdataBasketItemItemNrAmountPerItem">The price of item in the basket, represented in [minor units](https://docs.adyen.com/development-resources/currency-codes).</param>
-        /// <param name="riskdataBasketItemItemNrBrand">Brand of the item.</param>
-        /// <param name="riskdataBasketItemItemNrCategory">Category of the item.</param>
-        /// <param name="riskdataBasketItemItemNrColor">Color of the item.</param>
-        /// <param name="riskdataBasketItemItemNrCurrency">The three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217).</param>
-        /// <param name="riskdataBasketItemItemNrItemID">ID of the item.</param>
-        /// <param name="riskdataBasketItemItemNrManufacturer">Manufacturer of the item.</param>
-        /// <param name="riskdataBasketItemItemNrProductTitle">A text description of the product the invoice line refers to.</param>
-        /// <param name="riskdataBasketItemItemNrQuantity">Quantity of the item purchased.</param>
-        /// <param name="riskdataBasketItemItemNrReceiverEmail">Email associated with the given product in the basket (usually in electronic gift cards).</param>
-        /// <param name="riskdataBasketItemItemNrSize">Size of the item.</param>
-        /// <param name="riskdataBasketItemItemNrSku">[Stock keeping unit](https://en.wikipedia.org/wiki/Stock_keeping_unit).</param>
-        /// <param name="riskdataBasketItemItemNrUpc">[Universal Product Code](https://en.wikipedia.org/wiki/Universal_Product_Code).</param>
-        /// <param name="riskdataPromotionsPromotionItemNrPromotionCode">Code of the promotion.</param>
-        /// <param name="riskdataPromotionsPromotionItemNrPromotionDiscountAmount">The discount amount of the promotion, represented in [minor units](https://docs.adyen.com/development-resources/currency-codes).</param>
-        /// <param name="riskdataPromotionsPromotionItemNrPromotionDiscountCurrency">The three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217).</param>
-        /// <param name="riskdataPromotionsPromotionItemNrPromotionDiscountPercentage">Promotion&#39;s percentage discount. It is represented in percentage value and there is no need to include the &#39;%&#39; sign.  e.g. for a promotion discount of 30%, the value of the field should be 30.</param>
-        /// <param name="riskdataPromotionsPromotionItemNrPromotionName">Name of the promotion.</param>
-        /// <param name="riskdataRiskProfileReference">Reference number of the risk profile that you want to apply to the payment. If not provided or left blank, the merchant-level account&#39;s default risk profile will be applied to the payment. For more information, see [dynamically assign a risk profile to a payment](https://docs.adyen.com/risk-management/create-and-use-risk-profiles#dynamically-assign-a-risk-profile-to-a-payment).</param>
-        /// <param name="riskdataSkipRisk">If this parameter is provided with the value **true**, risk checks for the payment request are skipped and the transaction will not get a risk score.</param>
-        [JsonConstructor]
-        public AdditionalDataRisk(Option<string?> riskdataCustomFieldName = default, Option<string?> riskdataBasketItemItemNrAmountPerItem = default, Option<string?> riskdataBasketItemItemNrBrand = default, Option<string?> riskdataBasketItemItemNrCategory = default, Option<string?> riskdataBasketItemItemNrColor = default, Option<string?> riskdataBasketItemItemNrCurrency = default, Option<string?> riskdataBasketItemItemNrItemID = default, Option<string?> riskdataBasketItemItemNrManufacturer = default, Option<string?> riskdataBasketItemItemNrProductTitle = default, Option<string?> riskdataBasketItemItemNrQuantity = default, Option<string?> riskdataBasketItemItemNrReceiverEmail = default, Option<string?> riskdataBasketItemItemNrSize = default, Option<string?> riskdataBasketItemItemNrSku = default, Option<string?> riskdataBasketItemItemNrUpc = default, Option<string?> riskdataPromotionsPromotionItemNrPromotionCode = default, Option<string?> riskdataPromotionsPromotionItemNrPromotionDiscountAmount = default, Option<string?> riskdataPromotionsPromotionItemNrPromotionDiscountCurrency = default, Option<string?> riskdataPromotionsPromotionItemNrPromotionDiscountPercentage = default, Option<string?> riskdataPromotionsPromotionItemNrPromotionName = default, Option<string?> riskdataRiskProfileReference = default, Option<string?> riskdataSkipRisk = default)
-        {
-            _RiskdataCustomFieldNameOption = riskdataCustomFieldName;
-            _RiskdataBasketItemItemNrAmountPerItemOption = riskdataBasketItemItemNrAmountPerItem;
-            _RiskdataBasketItemItemNrBrandOption = riskdataBasketItemItemNrBrand;
-            _RiskdataBasketItemItemNrCategoryOption = riskdataBasketItemItemNrCategory;
-            _RiskdataBasketItemItemNrColorOption = riskdataBasketItemItemNrColor;
-            _RiskdataBasketItemItemNrCurrencyOption = riskdataBasketItemItemNrCurrency;
-            _RiskdataBasketItemItemNrItemIDOption = riskdataBasketItemItemNrItemID;
-            _RiskdataBasketItemItemNrManufacturerOption = riskdataBasketItemItemNrManufacturer;
-            _RiskdataBasketItemItemNrProductTitleOption = riskdataBasketItemItemNrProductTitle;
-            _RiskdataBasketItemItemNrQuantityOption = riskdataBasketItemItemNrQuantity;
-            _RiskdataBasketItemItemNrReceiverEmailOption = riskdataBasketItemItemNrReceiverEmail;
-            _RiskdataBasketItemItemNrSizeOption = riskdataBasketItemItemNrSize;
-            _RiskdataBasketItemItemNrSkuOption = riskdataBasketItemItemNrSku;
-            _RiskdataBasketItemItemNrUpcOption = riskdataBasketItemItemNrUpc;
-            _RiskdataPromotionsPromotionItemNrPromotionCodeOption = riskdataPromotionsPromotionItemNrPromotionCode;
-            _RiskdataPromotionsPromotionItemNrPromotionDiscountAmountOption = riskdataPromotionsPromotionItemNrPromotionDiscountAmount;
-            _RiskdataPromotionsPromotionItemNrPromotionDiscountCurrencyOption = riskdataPromotionsPromotionItemNrPromotionDiscountCurrency;
-            _RiskdataPromotionsPromotionItemNrPromotionDiscountPercentageOption = riskdataPromotionsPromotionItemNrPromotionDiscountPercentage;
-            _RiskdataPromotionsPromotionItemNrPromotionNameOption = riskdataPromotionsPromotionItemNrPromotionName;
-            _RiskdataRiskProfileReferenceOption = riskdataRiskProfileReference;
-            _RiskdataSkipRiskOption = riskdataSkipRisk;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public AdditionalDataRisk()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -546,9 +495,52 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
 
-            return new AdditionalDataRisk(riskdataCustomFieldName, riskdataBasketItemItemNrAmountPerItem, riskdataBasketItemItemNrBrand, riskdataBasketItemItemNrCategory, riskdataBasketItemItemNrColor, riskdataBasketItemItemNrCurrency, riskdataBasketItemItemNrItemID, riskdataBasketItemItemNrManufacturer, riskdataBasketItemItemNrProductTitle, riskdataBasketItemItemNrQuantity, riskdataBasketItemItemNrReceiverEmail, riskdataBasketItemItemNrSize, riskdataBasketItemItemNrSku, riskdataBasketItemItemNrUpc, riskdataPromotionsPromotionItemNrPromotionCode, riskdataPromotionsPromotionItemNrPromotionDiscountAmount, riskdataPromotionsPromotionItemNrPromotionDiscountCurrency, riskdataPromotionsPromotionItemNrPromotionDiscountPercentage, riskdataPromotionsPromotionItemNrPromotionName, riskdataRiskProfileReference, riskdataSkipRisk);
+
+            var result = new AdditionalDataRisk();
+            if (riskdataCustomFieldName.IsSet)
+                result.RiskdataCustomFieldName = riskdataCustomFieldName.Value;
+            if (riskdataBasketItemItemNrAmountPerItem.IsSet)
+                result.RiskdataBasketItemItemNrAmountPerItem = riskdataBasketItemItemNrAmountPerItem.Value;
+            if (riskdataBasketItemItemNrBrand.IsSet)
+                result.RiskdataBasketItemItemNrBrand = riskdataBasketItemItemNrBrand.Value;
+            if (riskdataBasketItemItemNrCategory.IsSet)
+                result.RiskdataBasketItemItemNrCategory = riskdataBasketItemItemNrCategory.Value;
+            if (riskdataBasketItemItemNrColor.IsSet)
+                result.RiskdataBasketItemItemNrColor = riskdataBasketItemItemNrColor.Value;
+            if (riskdataBasketItemItemNrCurrency.IsSet)
+                result.RiskdataBasketItemItemNrCurrency = riskdataBasketItemItemNrCurrency.Value;
+            if (riskdataBasketItemItemNrItemID.IsSet)
+                result.RiskdataBasketItemItemNrItemID = riskdataBasketItemItemNrItemID.Value;
+            if (riskdataBasketItemItemNrManufacturer.IsSet)
+                result.RiskdataBasketItemItemNrManufacturer = riskdataBasketItemItemNrManufacturer.Value;
+            if (riskdataBasketItemItemNrProductTitle.IsSet)
+                result.RiskdataBasketItemItemNrProductTitle = riskdataBasketItemItemNrProductTitle.Value;
+            if (riskdataBasketItemItemNrQuantity.IsSet)
+                result.RiskdataBasketItemItemNrQuantity = riskdataBasketItemItemNrQuantity.Value;
+            if (riskdataBasketItemItemNrReceiverEmail.IsSet)
+                result.RiskdataBasketItemItemNrReceiverEmail = riskdataBasketItemItemNrReceiverEmail.Value;
+            if (riskdataBasketItemItemNrSize.IsSet)
+                result.RiskdataBasketItemItemNrSize = riskdataBasketItemItemNrSize.Value;
+            if (riskdataBasketItemItemNrSku.IsSet)
+                result.RiskdataBasketItemItemNrSku = riskdataBasketItemItemNrSku.Value;
+            if (riskdataBasketItemItemNrUpc.IsSet)
+                result.RiskdataBasketItemItemNrUpc = riskdataBasketItemItemNrUpc.Value;
+            if (riskdataPromotionsPromotionItemNrPromotionCode.IsSet)
+                result.RiskdataPromotionsPromotionItemNrPromotionCode = riskdataPromotionsPromotionItemNrPromotionCode.Value;
+            if (riskdataPromotionsPromotionItemNrPromotionDiscountAmount.IsSet)
+                result.RiskdataPromotionsPromotionItemNrPromotionDiscountAmount = riskdataPromotionsPromotionItemNrPromotionDiscountAmount.Value;
+            if (riskdataPromotionsPromotionItemNrPromotionDiscountCurrency.IsSet)
+                result.RiskdataPromotionsPromotionItemNrPromotionDiscountCurrency = riskdataPromotionsPromotionItemNrPromotionDiscountCurrency.Value;
+            if (riskdataPromotionsPromotionItemNrPromotionDiscountPercentage.IsSet)
+                result.RiskdataPromotionsPromotionItemNrPromotionDiscountPercentage = riskdataPromotionsPromotionItemNrPromotionDiscountPercentage.Value;
+            if (riskdataPromotionsPromotionItemNrPromotionName.IsSet)
+                result.RiskdataPromotionsPromotionItemNrPromotionName = riskdataPromotionsPromotionItemNrPromotionName.Value;
+            if (riskdataRiskProfileReference.IsSet)
+                result.RiskdataRiskProfileReference = riskdataRiskProfileReference.Value;
+            if (riskdataSkipRisk.IsSet)
+                result.RiskdataSkipRisk = riskdataSkipRisk.Value;
+            return result;
         }
 
         /// <summary>
@@ -559,13 +551,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, AdditionalDataRisk additionalDataRisk, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, additionalDataRisk, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -576,7 +568,7 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, AdditionalDataRisk additionalDataRisk, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             if (additionalDataRisk._RiskdataCustomFieldNameOption.IsSet)
                 if (additionalDataRisk.RiskdataCustomFieldName != null)
                     writer.WriteString("riskdata.[customFieldName]", additionalDataRisk.RiskdataCustomFieldName);

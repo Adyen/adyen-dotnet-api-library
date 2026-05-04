@@ -34,61 +34,10 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutVoucherAction" /> class.
         /// </summary>
-        /// <param name="type">**voucher**</param>
-        /// <param name="alternativeReference">The voucher alternative reference code.</param>
-        /// <param name="collectionInstitutionNumber">A collection institution number (store number) for Econtext Pay-Easy ATM.</param>
-        /// <param name="downloadUrl">The URL to download the voucher.</param>
-        /// <param name="entity">An entity number of Multibanco.</param>
-        /// <param name="expiresAt">The date time of the voucher expiry.</param>
-        /// <param name="initialAmount">initialAmount</param>
-        /// <param name="instructionsUrl">The URL to the detailed instructions to make payment using the voucher.</param>
-        /// <param name="issuer">The issuer of the voucher.</param>
-        /// <param name="maskedTelephoneNumber">The shopper telephone number (partially masked).</param>
-        /// <param name="merchantName">The merchant name.</param>
-        /// <param name="merchantReference">The merchant reference.</param>
-        /// <param name="passCreationToken">A Base64-encoded token containing all properties of the voucher. For iOS, you can use this to pass a voucher to Apple Wallet.</param>
-        /// <param name="paymentData">Encoded payment data.</param>
-        /// <param name="paymentMethodType">Specifies the payment method.</param>
-        /// <param name="reference">The voucher reference code.</param>
-        /// <param name="shopperEmail">The shopper email.</param>
-        /// <param name="shopperName">The shopper name.</param>
-        /// <param name="surcharge">surcharge</param>
-        /// <param name="totalAmount">totalAmount</param>
-        /// <param name="url">Specifies the URL to redirect to.</param>
-        [JsonConstructor]
-        public CheckoutVoucherAction(TypeEnum type, Option<string?> alternativeReference = default, Option<string?> collectionInstitutionNumber = default, Option<string?> downloadUrl = default, Option<string?> entity = default, Option<string?> expiresAt = default, Option<Amount?> initialAmount = default, Option<string?> instructionsUrl = default, Option<string?> issuer = default, Option<string?> maskedTelephoneNumber = default, Option<string?> merchantName = default, Option<string?> merchantReference = default, Option<string?> passCreationToken = default, Option<string?> paymentData = default, Option<string?> paymentMethodType = default, Option<string?> reference = default, Option<string?> shopperEmail = default, Option<string?> shopperName = default, Option<Amount?> surcharge = default, Option<Amount?> totalAmount = default, Option<string?> url = default)
-        {
-            Type = type;
-            _AlternativeReferenceOption = alternativeReference;
-            _CollectionInstitutionNumberOption = collectionInstitutionNumber;
-            _DownloadUrlOption = downloadUrl;
-            _EntityOption = entity;
-            _ExpiresAtOption = expiresAt;
-            _InitialAmountOption = initialAmount;
-            _InstructionsUrlOption = instructionsUrl;
-            _IssuerOption = issuer;
-            _MaskedTelephoneNumberOption = maskedTelephoneNumber;
-            _MerchantNameOption = merchantName;
-            _MerchantReferenceOption = merchantReference;
-            _PassCreationTokenOption = passCreationToken;
-            _PaymentDataOption = paymentData;
-            _PaymentMethodTypeOption = paymentMethodType;
-            _ReferenceOption = reference;
-            _ShopperEmailOption = shopperEmail;
-            _ShopperNameOption = shopperName;
-            _SurchargeOption = surcharge;
-            _TotalAmountOption = totalAmount;
-            _UrlOption = url;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public CheckoutVoucherAction()
         {
+            OnCreated();
         }
-
         partial void OnCreated();
 
         /// <summary>
@@ -107,7 +56,7 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.Voucher - voucher
             /// </summary>
             public static readonly TypeEnum Voucher = new("voucher");
-        
+
             private TypeEnum(string? value)
             {
                 Value = value;
@@ -119,24 +68,24 @@ namespace Adyen.Checkout.Models
             /// <param name="value">The string value to convert. Defaults to null.</param>
             /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
             public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
-    
+
             /// <summary>
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
             /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
-        
+
             public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
             public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-    
+
             public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-        
+
             public override string ToString() => Value ?? string.Empty;
-        
+
             /// <summary>
             /// Returns a <see cref="TypeEnum?"/>.
             /// </summary>
@@ -149,7 +98,7 @@ namespace Adyen.Checkout.Models
                     _ => null,
                 };
             }
-    
+
             /// <summary>
             /// Converts the <see cref="TypeEnum"/> to the json value.
             /// </summary>
@@ -160,15 +109,15 @@ namespace Adyen.Checkout.Models
             {
                 if (value == null)
                     return null;
-            
+
                 if (value == TypeEnum.Voucher)
                     return "voucher";
-                
+
                 return null;
             }
-            
+
             /// <summary>
-            /// JsonConverter for writing TypeEnum.               
+            /// JsonConverter for writing TypeEnum.
             /// </summary>
             public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
             {
@@ -631,11 +580,53 @@ namespace Adyen.Checkout.Models
                     }
                 }
             }
-            
+
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class CheckoutVoucherAction.", nameof(type));
 
-            return new CheckoutVoucherAction(type.Value!.Value!, alternativeReference, collectionInstitutionNumber, downloadUrl, entity, expiresAt, initialAmount, instructionsUrl, issuer, maskedTelephoneNumber, merchantName, merchantReference, passCreationToken, paymentData, paymentMethodType, reference, shopperEmail, shopperName, surcharge, totalAmount, url);
+            var result = new CheckoutVoucherAction();
+            result.Type = type.Value!.Value!;
+            if (alternativeReference.IsSet)
+                result.AlternativeReference = alternativeReference.Value;
+            if (collectionInstitutionNumber.IsSet)
+                result.CollectionInstitutionNumber = collectionInstitutionNumber.Value;
+            if (downloadUrl.IsSet)
+                result.DownloadUrl = downloadUrl.Value;
+            if (entity.IsSet)
+                result.Entity = entity.Value;
+            if (expiresAt.IsSet)
+                result.ExpiresAt = expiresAt.Value;
+            if (initialAmount.IsSet)
+                result.InitialAmount = initialAmount.Value;
+            if (instructionsUrl.IsSet)
+                result.InstructionsUrl = instructionsUrl.Value;
+            if (issuer.IsSet)
+                result.Issuer = issuer.Value;
+            if (maskedTelephoneNumber.IsSet)
+                result.MaskedTelephoneNumber = maskedTelephoneNumber.Value;
+            if (merchantName.IsSet)
+                result.MerchantName = merchantName.Value;
+            if (merchantReference.IsSet)
+                result.MerchantReference = merchantReference.Value;
+            if (passCreationToken.IsSet)
+                result.PassCreationToken = passCreationToken.Value;
+            if (paymentData.IsSet)
+                result.PaymentData = paymentData.Value;
+            if (paymentMethodType.IsSet)
+                result.PaymentMethodType = paymentMethodType.Value;
+            if (reference.IsSet)
+                result.Reference = reference.Value;
+            if (shopperEmail.IsSet)
+                result.ShopperEmail = shopperEmail.Value;
+            if (shopperName.IsSet)
+                result.ShopperName = shopperName.Value;
+            if (surcharge.IsSet)
+                result.Surcharge = surcharge.Value;
+            if (totalAmount.IsSet)
+                result.TotalAmount = totalAmount.Value;
+            if (url.IsSet)
+                result.Url = url.Value;
+            return result;
         }
 
         /// <summary>
@@ -646,13 +637,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, CheckoutVoucherAction checkoutVoucherAction, JsonSerializerOptions jsonSerializerOptions)
         {
-            
+
             writer.WriteStartObject();
-            
+
             WriteProperties(writer, checkoutVoucherAction, jsonSerializerOptions);
-            
+
             writer.WriteEndObject();
-            
+
         }
 
         /// <summary>
@@ -663,13 +654,13 @@ namespace Adyen.Checkout.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public void WriteProperties(Utf8JsonWriter writer, CheckoutVoucherAction checkoutVoucherAction, JsonSerializerOptions jsonSerializerOptions)
         {
-            
-            if (checkoutVoucherAction.Type != null) 
+
+            if (checkoutVoucherAction.Type != null)
             {
                 string? typeRawValue = CheckoutVoucherAction.TypeEnum.ToJsonValue(checkoutVoucherAction.Type);
                 writer.WriteString("type", typeRawValue);
             }
-            
+
             if (checkoutVoucherAction._AlternativeReferenceOption.IsSet)
                 if (checkoutVoucherAction.AlternativeReference != null)
                     writer.WriteString("alternativeReference", checkoutVoucherAction.AlternativeReference);
