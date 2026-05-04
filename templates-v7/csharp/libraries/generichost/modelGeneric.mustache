@@ -51,30 +51,9 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="{{classname}}" /> class.
         /// </summary>
-        {{#composedSchemas.anyOf}}
-        /// <param name="{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}"></param>
-        {{/composedSchemas.anyOf}}
-        {{#allVars}}
-        {{^isDiscriminator}}
-        /// <param name="{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}">{{description}}{{^description}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/description}}{{#defaultValue}} (default to {{.}}){{/defaultValue}}</param>
-        {{/isDiscriminator}}
-        {{/allVars}}
-        {{#model.vendorExtensions.x-model-is-mutable}}{{>visibility}}{{/model.vendorExtensions.x-model-is-mutable}}{{^model.vendorExtensions.x-model-is-mutable}}internal{{/model.vendorExtensions.x-model-is-mutable}} {{classname}}({{#lambda.joinWithComma}}{{#composedSchemas.anyOf}}{{^required}}Option<{{/required}}{{{datatypeWithEnum}}}{{>NullConditionalProperty}}{{^required}}>{{/required}} {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}}  {{/composedSchemas.anyOf}}{{>ModelSignature}}{{/lambda.joinWithComma}}){{#parent}} : base({{#lambda.joinWithComma}}{{>ModelBaseSignature}}{{/lambda.joinWithComma}}){{/parent}}
+        {{#model.vendorExtensions.x-model-is-mutable}}{{>visibility}}{{/model.vendorExtensions.x-model-is-mutable}}{{^model.vendorExtensions.x-model-is-mutable}}internal{{/model.vendorExtensions.x-model-is-mutable}} {{classname}}(){{#parent}} : base(){{/parent}}
         {
-            {{#composedSchemas.anyOf}}
-            {{#lambda.titlecase}}{{name}}{{/lambda.titlecase}}{{^required}}Option{{/required}} = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};
-            {{/composedSchemas.anyOf}}
             {{#allVars}}
-            {{^isDiscriminator}}
-            {{^isInherited}}
-            {{^required}}{{#isEnum}}{{#defaultValue}}_{{name}}Option = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}}.IsSet ? {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}} : {{defaultValue}};{{/defaultValue}}{{^defaultValue}}_{{name}}Option = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};{{/defaultValue}}{{/isEnum}}{{^isEnum}}_{{name}}Option = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};{{/isEnum}}{{/required}}{{#required}}{{name}} = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};{{/required}}
-            {{/isInherited}}
-            {{#isInherited}}
-            {{#isNew}}
-            {{^required}}{{#isEnum}}{{#defaultValue}}_{{name}}Option = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}}.IsSet ? {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}} : {{defaultValue}};{{/defaultValue}}{{^defaultValue}}_{{name}}Option = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};{{/defaultValue}}{{/isEnum}}{{^isEnum}}_{{name}}Option = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};{{/isEnum}}{{/required}}{{#required}}{{name}} = {{#lambda.escape_reserved_word}}{{#lambda.camel_case}}{{name}}{{/lambda.camel_case}}{{/lambda.escape_reserved_word}};{{/required}}
-            {{/isNew}}
-            {{/isInherited}}
-            {{/isDiscriminator}}
             {{#vendorExtensions.x-is-base-or-new-discriminator}}
             {{^model.composedSchemas.anyOf}}
             {{^model.composedSchemas.oneOf}}
@@ -82,22 +61,20 @@
             {{/model.composedSchemas.oneOf}}
             {{/model.composedSchemas.anyOf}}
             {{/vendorExtensions.x-is-base-or-new-discriminator}}
+            {{^vendorExtensions.x-is-base-or-new-discriminator}}
+            {{^isDiscriminator}}
+            {{^required}}
+            {{#isEnum}}
+            {{#defaultValue}}
+            _{{name}}Option = {{.}};
+            {{/defaultValue}}
+            {{/isEnum}}
+            {{/required}}
+            {{/isDiscriminator}}
+            {{/vendorExtensions.x-is-base-or-new-discriminator}}
             {{/allVars}}
             OnCreated();
         }
-        
-        {{#allVars}}
-        {{^isDiscriminator}}
-        {{#-first}}
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
-        {{#model.vendorExtensions.x-model-is-mutable}}{{>visibility}}{{/model.vendorExtensions.x-model-is-mutable}}{{^model.vendorExtensions.x-model-is-mutable}}internal{{/model.vendorExtensions.x-model-is-mutable}} {{classname}}()
-        {
-        }
-        {{/-first}}
-        {{/isDiscriminator}}
-        {{/allVars}}
 
         {{/composedSchemas.oneOf}}
         partial void OnCreated();
