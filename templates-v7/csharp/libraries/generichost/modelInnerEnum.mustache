@@ -45,7 +45,7 @@
             /// Converts a <see cref="{{datatypeWithEnum}}"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="{{datatypeWithEnum}}"/> instance. Default to null.</param>
-            /// <returns>String value of the <see cref="{{datatypeWithEnum}}"/> instance./// </returns>
+            /// <returns>String value of the <see cref="{{datatypeWithEnum}}"/> instance.</returns>
             public static implicit operator string?({{datatypeWithEnum}}? option) => option?.Value;
         
             /// <summary>
@@ -92,9 +92,6 @@
             /// </summary>
             /// <param name="value"><see cref="{{datatypeWithEnum}}"/></param>
             /// <returns>String value of the enum.</returns>
-            {{#isString}}
-            /// <exception cref="NotImplementedException"></exception>
-            {{/isString}}
             public static {{>EnumValueDataType}}?{{#lambda.first}}{{#nrt}}{{/nrt}}{{/lambda.first}} ToJsonValue({{datatypeWithEnum}}? value)
             {
                 if (value == null)
