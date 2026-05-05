@@ -939,7 +939,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>A unique identifier of the session.</value>
         [JsonPropertyName("id")]
-        public string Id { get; }
+        public string Id { get; set; }
 
         /// <summary>
         /// The merchant account identifier, with which you want to process the transaction.

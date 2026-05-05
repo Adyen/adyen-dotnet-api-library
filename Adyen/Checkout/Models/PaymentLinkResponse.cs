@@ -653,7 +653,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>A unique identifier of the payment link.</value>
         [JsonPropertyName("id")]
-        public string Id { get; }
+        public string Id { get; set; }
 
         /// <summary>
         /// The merchant account identifier for which the payment link is created.
@@ -674,7 +674,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The URL at which the shopper can complete the payment.</value>
         [JsonPropertyName("url")]
-        public string Url { get; }
+        public string Url { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AllowedPaymentMethods"/> will be populated.
