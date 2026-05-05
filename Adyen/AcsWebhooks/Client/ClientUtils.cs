@@ -181,8 +181,9 @@ namespace Adyen.AcsWebhooks.Client
                 // only encode characters that would break query string structure,
                 // while preserving sub-delimiters (+, /, !) and non-ASCII via Uri.EscapeDataString
                 var sb = new System.Text.StringBuilder(value.Length);
-                foreach (char c in value)
+                for (int i = 0; i < value.Length; i++)
                 {
+                    char c = value[i];
                     switch (c)
                     {
                         case '&': sb.Append("%26"); break;
@@ -192,9 +193,16 @@ namespace Adyen.AcsWebhooks.Client
                         case '%': sb.Append("%25"); break;
                         default:
                             if (c > 127)
-                                sb.Append(Uri.EscapeDataString(c.ToString()));
+                            {
+                                if (char.IsHighSurrogate(c) && i + 1 < value.Length && char.IsLowSurrogate(value[i + 1]))
+                                    sb.Append(Uri.EscapeDataString(value.Substring(i++, 2)));
+                                else
+                                    sb.Append(Uri.EscapeDataString(c.ToString()));
+                            }
                             else
+                            {
                                 sb.Append(c);
+                            }
                             break;
                     }
                 }
