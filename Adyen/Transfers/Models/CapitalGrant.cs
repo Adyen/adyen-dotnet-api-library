@@ -412,7 +412,7 @@ namespace Adyen.Transfers.Models
             capitalGrant.GrantAccountId = grantAccountId.Value!;
             capitalGrant.GrantOfferId = grantOfferId.Value!;
             capitalGrant.Id = id.Value!;
-            capitalGrant.Status = status.Value!;
+            capitalGrant.Status = status.Value!.Value;
             if (amount.IsSet)
                 capitalGrant.Amount = amount.Value;
             if (counterparty.IsSet)

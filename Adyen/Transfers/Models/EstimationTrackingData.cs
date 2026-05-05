@@ -253,7 +253,7 @@ namespace Adyen.Transfers.Models
 
             var estimationTrackingData = new EstimationTrackingData();
             estimationTrackingData.EstimatedArrivalTime = estimatedArrivalTime.Value!.Value;
-            estimationTrackingData.Type = type.Value!;
+            estimationTrackingData.Type = type.Value!.Value;
             return estimationTrackingData;
         }
 

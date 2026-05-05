@@ -2827,9 +2827,9 @@ namespace Adyen.Transfers.Models
 
             var transfer = new Transfer();
             transfer.Amount = amount.Value!;
-            transfer.Category = category.Value!;
+            transfer.Category = category.Value!.Value;
             transfer.Counterparty = counterparty.Value!;
-            transfer.Status = status.Value!;
+            transfer.Status = status.Value!.Value;
             if (accountHolder.IsSet)
                 transfer.AccountHolder = accountHolder.Value;
             if (balanceAccount.IsSet)
