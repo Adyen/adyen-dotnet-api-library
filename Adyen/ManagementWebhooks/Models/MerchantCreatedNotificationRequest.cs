@@ -284,7 +284,7 @@ namespace Adyen.ManagementWebhooks.Models
             merchantCreatedNotificationRequest.CreatedAt = createdAt.Value!.Value;
             merchantCreatedNotificationRequest.Data = data.Value!;
             merchantCreatedNotificationRequest.Environment = environment.Value!;
-            merchantCreatedNotificationRequest.Type = type.Value!;
+            merchantCreatedNotificationRequest.Type = type.Value!.Value;
             return merchantCreatedNotificationRequest;
         }
 

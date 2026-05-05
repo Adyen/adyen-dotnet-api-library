@@ -284,7 +284,7 @@ namespace Adyen.ManagementWebhooks.Models
             terminalBoardingNotificationRequest.CreatedAt = createdAt.Value!.Value;
             terminalBoardingNotificationRequest.Data = data.Value!;
             terminalBoardingNotificationRequest.Environment = environment.Value!;
-            terminalBoardingNotificationRequest.Type = type.Value!;
+            terminalBoardingNotificationRequest.Type = type.Value!.Value;
             return terminalBoardingNotificationRequest;
         }
 

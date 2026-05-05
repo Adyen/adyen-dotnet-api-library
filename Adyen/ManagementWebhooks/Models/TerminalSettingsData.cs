@@ -332,7 +332,7 @@ namespace Adyen.ManagementWebhooks.Models
                 throw new ArgumentException("Property is required for class TerminalSettingsData.", nameof(user));
 
             var terminalSettingsData = new TerminalSettingsData();
-            terminalSettingsData.UpdateSource = updateSource.Value!;
+            terminalSettingsData.UpdateSource = updateSource.Value!.Value;
             terminalSettingsData.User = user.Value!;
             if (companyId.IsSet)
                 terminalSettingsData.CompanyId = companyId.Value;

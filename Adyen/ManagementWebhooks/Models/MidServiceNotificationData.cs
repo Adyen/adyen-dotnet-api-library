@@ -552,7 +552,7 @@ namespace Adyen.ManagementWebhooks.Models
             var midServiceNotificationData = new MidServiceNotificationData();
             midServiceNotificationData.Id = id.Value!;
             midServiceNotificationData.MerchantId = merchantId.Value!;
-            midServiceNotificationData.Status = status.Value!;
+            midServiceNotificationData.Status = status.Value!.Value;
             midServiceNotificationData.Type = type.Value!;
             if (allowed.IsSet)
                 midServiceNotificationData.Allowed = allowed.Value;
