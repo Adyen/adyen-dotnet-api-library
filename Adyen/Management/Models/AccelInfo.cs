@@ -268,7 +268,7 @@ namespace Adyen.Management.Models
                 throw new ArgumentException("Property is required for class AccelInfo.", nameof(processingType));
 
             var accelInfo = new AccelInfo();
-            accelInfo.ProcessingType = processingType.Value!;
+            accelInfo.ProcessingType = processingType.Value!.Value;
             if (transactionDescription.IsSet)
                 accelInfo.TransactionDescription = transactionDescription.Value;
             return accelInfo;

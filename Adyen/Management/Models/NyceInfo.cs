@@ -268,7 +268,7 @@ namespace Adyen.Management.Models
                 throw new ArgumentException("Property is required for class NyceInfo.", nameof(processingType));
 
             var nyceInfo = new NyceInfo();
-            nyceInfo.ProcessingType = processingType.Value!;
+            nyceInfo.ProcessingType = processingType.Value!.Value;
             if (transactionDescription.IsSet)
                 nyceInfo.TransactionDescription = transactionDescription.Value;
             return nyceInfo;

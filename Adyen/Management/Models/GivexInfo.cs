@@ -288,7 +288,7 @@ namespace Adyen.Management.Models
             var givexInfo = new GivexInfo();
             givexInfo.CurrencyCode = currencyCode.Value!;
             givexInfo.Password = password.Value!;
-            givexInfo.PaymentFlow = paymentFlow.Value!;
+            givexInfo.PaymentFlow = paymentFlow.Value!.Value;
             givexInfo.Username = username.Value!;
             return givexInfo;
         }

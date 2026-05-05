@@ -686,9 +686,9 @@ namespace Adyen.Management.Models
 
             var splitConfigurationRule = new SplitConfigurationRule();
             splitConfigurationRule.Currency = currency.Value!;
-            splitConfigurationRule.FundingSource = fundingSource.Value!;
+            splitConfigurationRule.FundingSource = fundingSource.Value!.Value;
             splitConfigurationRule.PaymentMethod = paymentMethod.Value!;
-            splitConfigurationRule.ShopperInteraction = shopperInteraction.Value!;
+            splitConfigurationRule.ShopperInteraction = shopperInteraction.Value!.Value;
             splitConfigurationRule.SplitLogic = splitLogic.Value!;
             if (cardRegion.IsSet)
                 splitConfigurationRule.CardRegion = cardRegion.Value;

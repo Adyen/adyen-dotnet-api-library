@@ -1029,7 +1029,7 @@ namespace Adyen.Management.Models
 
             var webhook = new Webhook();
             webhook.Active = active.Value!.Value;
-            webhook.CommunicationFormat = communicationFormat.Value!;
+            webhook.CommunicationFormat = communicationFormat.Value!.Value;
             webhook.Type = type.Value!;
             webhook.Url = url.Value!;
             if (links.IsSet)

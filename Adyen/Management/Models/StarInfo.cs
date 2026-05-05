@@ -268,7 +268,7 @@ namespace Adyen.Management.Models
                 throw new ArgumentException("Property is required for class StarInfo.", nameof(processingType));
 
             var starInfo = new StarInfo();
-            starInfo.ProcessingType = processingType.Value!;
+            starInfo.ProcessingType = processingType.Value!.Value;
             if (transactionDescription.IsSet)
                 starInfo.TransactionDescription = transactionDescription.Value;
             return starInfo;

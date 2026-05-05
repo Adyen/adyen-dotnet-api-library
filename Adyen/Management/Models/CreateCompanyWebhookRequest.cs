@@ -908,8 +908,8 @@ namespace Adyen.Management.Models
 
             var createCompanyWebhookRequest = new CreateCompanyWebhookRequest();
             createCompanyWebhookRequest.Active = active.Value!.Value;
-            createCompanyWebhookRequest.CommunicationFormat = communicationFormat.Value!;
-            createCompanyWebhookRequest.FilterMerchantAccountType = filterMerchantAccountType.Value!;
+            createCompanyWebhookRequest.CommunicationFormat = communicationFormat.Value!.Value;
+            createCompanyWebhookRequest.FilterMerchantAccountType = filterMerchantAccountType.Value!.Value;
             createCompanyWebhookRequest.FilterMerchantAccounts = filterMerchantAccounts.Value!;
             createCompanyWebhookRequest.Type = type.Value!;
             createCompanyWebhookRequest.Url = url.Value!;
