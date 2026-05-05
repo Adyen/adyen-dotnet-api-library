@@ -90,10 +90,11 @@ namespace Adyen.Test.Management
         public void Given_Serialize_When_TerminalSettings_Includes_Null_Surcharge()
         {
             // Arrange
-            TerminalSettings terminalSettings = new TerminalSettings(
-                localization: new Localization("it"),
-                surcharge: null
-            );
+            TerminalSettings terminalSettings = new TerminalSettings
+            {
+                Localization = new Localization { Language = "it" },
+                Surcharge = null
+            };
             
             // Act
             string target = JsonSerializer.Serialize(terminalSettings, _jsonSerializerOptionsProvider.Options);

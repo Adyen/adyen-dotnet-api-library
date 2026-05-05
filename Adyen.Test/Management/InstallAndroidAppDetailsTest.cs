@@ -1,4 +1,3 @@
-using Adyen.Core;
 using Adyen.Core.Options;
 using Adyen.Management.Client;
 using Adyen.Management.Extensions;
@@ -32,7 +31,7 @@ namespace Adyen.Test.Management
         [TestMethod]
         public void Given_Serialize_When_TypeNotProvided_Then_DefaultTypeIsIncluded()
         {
-            var details = new InstallAndroidAppDetails(appId: new Option<string?>("app-1"));
+            var details = new InstallAndroidAppDetails { AppId = "app-1" };
 
             string json = JsonSerializer.Serialize(details, _jsonSerializerOptionsProvider.Options);
 
@@ -43,9 +42,11 @@ namespace Adyen.Test.Management
         [TestMethod]
         public void Given_Serialize_When_TypeExplicitlySet_Then_ExplicitTypeIsUsed()
         {
-            var details = new InstallAndroidAppDetails(
-                appId: new Option<string?>("app-1"),
-                type: new Option<InstallAndroidAppDetails.TypeEnum?>(InstallAndroidAppDetails.TypeEnum.InstallAndroidApp));
+            var details = new InstallAndroidAppDetails
+            {
+                AppId = "app-1",
+                Type = InstallAndroidAppDetails.TypeEnum.InstallAndroidApp
+            };
 
             string json = JsonSerializer.Serialize(details, _jsonSerializerOptionsProvider.Options);
 
@@ -55,9 +56,11 @@ namespace Adyen.Test.Management
         [TestMethod]
         public void Given_Serialize_When_TypeExplicitlyNull_Then_TypeOmitted()
         {
-            var details = new InstallAndroidAppDetails(
-                appId: new Option<string?>("app-1"),
-                type: new Option<InstallAndroidAppDetails.TypeEnum?>(null));
+            var details = new InstallAndroidAppDetails
+            {
+                AppId = "app-1",
+                Type = null
+            };
 
             string json = JsonSerializer.Serialize(details, _jsonSerializerOptionsProvider.Options);
 
@@ -77,12 +80,11 @@ namespace Adyen.Test.Management
         }
 
         [TestMethod]
-        public void Given_DefaultConstructor_Then_TypeIsNull()
+        public void Given_DefaultConstructor_Then_TypeIsInstallAndroidApp()
         {
             var details = new InstallAndroidAppDetails();
 
-            // Parameterless constructor leaves _TypeOption unset — no default applied
-            Assert.IsNull(details.Type);
+            Assert.AreEqual(InstallAndroidAppDetails.TypeEnum.InstallAndroidApp, details.Type);
         }
     }
 }
