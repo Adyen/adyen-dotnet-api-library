@@ -827,7 +827,7 @@ namespace Adyen.BalancePlatform.Models
             paymentInstrument.BalanceAccountId = balanceAccountId.Value!;
             paymentInstrument.Id = id.Value!;
             paymentInstrument.IssuingCountryCode = issuingCountryCode.Value!;
-            paymentInstrument.Type = type.Value!;
+            paymentInstrument.Type = type.Value!.Value;
             if (additionalBankAccountIdentifications.IsSet)
                 paymentInstrument.AdditionalBankAccountIdentifications = additionalBankAccountIdentifications.Value;
             if (bankAccount.IsSet)

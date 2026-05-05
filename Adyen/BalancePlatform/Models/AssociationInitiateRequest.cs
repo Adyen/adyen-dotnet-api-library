@@ -248,7 +248,7 @@ namespace Adyen.BalancePlatform.Models
 
             var associationInitiateRequest = new AssociationInitiateRequest();
             associationInitiateRequest.Ids = ids.Value!;
-            associationInitiateRequest.Type = type.Value!;
+            associationInitiateRequest.Type = type.Value!.Value;
             return associationInitiateRequest;
         }
 

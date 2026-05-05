@@ -253,7 +253,7 @@ namespace Adyen.BalancePlatform.Models
             var uSInternationalAchPriorityRequirement = new USInternationalAchPriorityRequirement();
             if (description.IsSet)
                 uSInternationalAchPriorityRequirement.Description = description.Value;
-            uSInternationalAchPriorityRequirement.Type = type.Value!;
+            uSInternationalAchPriorityRequirement.Type = type.Value!.Value;
             return uSInternationalAchPriorityRequirement;
         }
 

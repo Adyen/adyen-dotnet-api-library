@@ -461,7 +461,7 @@ namespace Adyen.BalancePlatform.Models
                 paymentInstrumentRequirement.OnlyForCrossBalancePlatform = onlyForCrossBalancePlatform.Value;
             if (paymentInstrumentType.IsSet)
                 paymentInstrumentRequirement.PaymentInstrumentType = paymentInstrumentType.Value;
-            paymentInstrumentRequirement.Type = type.Value!;
+            paymentInstrumentRequirement.Type = type.Value!.Value;
             return paymentInstrumentRequirement;
         }
 

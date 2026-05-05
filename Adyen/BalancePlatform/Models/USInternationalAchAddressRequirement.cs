@@ -253,7 +253,7 @@ namespace Adyen.BalancePlatform.Models
             var uSInternationalAchAddressRequirement = new USInternationalAchAddressRequirement();
             if (description.IsSet)
                 uSInternationalAchAddressRequirement.Description = description.Value;
-            uSInternationalAchAddressRequirement.Type = type.Value!;
+            uSInternationalAchAddressRequirement.Type = type.Value!.Value;
             return uSInternationalAchAddressRequirement;
         }
 

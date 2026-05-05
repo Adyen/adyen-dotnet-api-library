@@ -263,7 +263,7 @@ namespace Adyen.BalancePlatform.Models
             var associationFinaliseRequest = new AssociationFinaliseRequest();
             associationFinaliseRequest.Ids = ids.Value!;
             associationFinaliseRequest.StrongCustomerAuthentication = strongCustomerAuthentication.Value!;
-            associationFinaliseRequest.Type = type.Value!;
+            associationFinaliseRequest.Type = type.Value!.Value;
             return associationFinaliseRequest;
         }
 

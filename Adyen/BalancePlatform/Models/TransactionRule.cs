@@ -1066,7 +1066,7 @@ namespace Adyen.BalancePlatform.Models
             transactionRule.Interval = interval.Value!;
             transactionRule.Reference = reference.Value!;
             transactionRule.RuleRestrictions = ruleRestrictions.Value!;
-            transactionRule.Type = type.Value!;
+            transactionRule.Type = type.Value!.Value;
             if (aggregationLevel.IsSet)
                 transactionRule.AggregationLevel = aggregationLevel.Value;
             if (endDate.IsSet)

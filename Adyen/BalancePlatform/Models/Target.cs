@@ -266,7 +266,7 @@ namespace Adyen.BalancePlatform.Models
 
             var target = new Target();
             target.Id = id.Value!;
-            target.Type = type.Value!;
+            target.Type = type.Value!.Value;
             return target;
         }
 

@@ -295,7 +295,7 @@ namespace Adyen.BalancePlatform.Models
                 amountMinMaxRequirement.Max = max.Value;
             if (min.IsSet)
                 amountMinMaxRequirement.Min = min.Value;
-            amountMinMaxRequirement.Type = type.Value!;
+            amountMinMaxRequirement.Type = type.Value!.Value;
             return amountMinMaxRequirement;
         }
 

@@ -420,9 +420,9 @@ namespace Adyen.BalancePlatform.Models
 
             var balanceWebhookSettingInfo = new BalanceWebhookSettingInfo();
             balanceWebhookSettingInfo.Currency = currency.Value!;
-            balanceWebhookSettingInfo.Status = status.Value!;
+            balanceWebhookSettingInfo.Status = status.Value!.Value;
             balanceWebhookSettingInfo.Target = target.Value!;
-            balanceWebhookSettingInfo.Type = type.Value!;
+            balanceWebhookSettingInfo.Type = type.Value!.Value;
             if (conditions.IsSet)
                 balanceWebhookSettingInfo.Conditions = conditions.Value;
             return balanceWebhookSettingInfo;

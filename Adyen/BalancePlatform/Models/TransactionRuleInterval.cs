@@ -549,7 +549,7 @@ namespace Adyen.BalancePlatform.Models
                 throw new ArgumentException("Property is required for class TransactionRuleInterval.", nameof(type));
 
             var transactionRuleInterval = new TransactionRuleInterval();
-            transactionRuleInterval.Type = type.Value!;
+            transactionRuleInterval.Type = type.Value!.Value;
             if (dayOfMonth.IsSet)
                 transactionRuleInterval.DayOfMonth = dayOfMonth.Value;
             if (dayOfWeek.IsSet)
