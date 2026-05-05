@@ -135,7 +135,7 @@ namespace Adyen.BalancePlatform.Models
 
             var scaEntity = new ScaEntity();
             scaEntity.Id = id.Value!;
-            scaEntity.Type = type.Value!;
+            scaEntity.Type = type.Value!.Value;
             return scaEntity;
         }
 

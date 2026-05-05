@@ -150,7 +150,7 @@ namespace Adyen.BalancePlatform.Models
             var scaDevice = new ScaDevice();
             scaDevice.Id = id.Value!;
             scaDevice.Name = name.Value!;
-            scaDevice.Type = type.Value!;
+            scaDevice.Type = type.Value!.Value;
             return scaDevice;
         }
 

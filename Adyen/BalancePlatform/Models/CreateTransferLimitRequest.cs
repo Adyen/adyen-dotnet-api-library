@@ -234,8 +234,8 @@ namespace Adyen.BalancePlatform.Models
 
             var createTransferLimitRequest = new CreateTransferLimitRequest();
             createTransferLimitRequest.Amount = amount.Value!;
-            createTransferLimitRequest.Scope = scope.Value!;
-            createTransferLimitRequest.TransferType = transferType.Value!;
+            createTransferLimitRequest.Scope = scope.Value!.Value;
+            createTransferLimitRequest.TransferType = transferType.Value!.Value;
             if (endsAt.IsSet)
                 createTransferLimitRequest.EndsAt = endsAt.Value;
             if (reference.IsSet)
