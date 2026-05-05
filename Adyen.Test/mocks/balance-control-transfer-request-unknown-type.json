@@ -1,0 +1,9 @@
+{
+  "amount": {
+    "value": 75000,
+    "currency": "USD"
+  },
+  "fromMerchant": "MerchantAccount_NL",
+  "toMerchant": "MerchantAccount_DE",
+  "type": "unknown-type"
+}
