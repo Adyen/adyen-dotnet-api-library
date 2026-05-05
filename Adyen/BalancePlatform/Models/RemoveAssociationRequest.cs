@@ -149,7 +149,7 @@ namespace Adyen.BalancePlatform.Models
 
             var removeAssociationRequest = new RemoveAssociationRequest();
             removeAssociationRequest.EntityId = entityId.Value!;
-            removeAssociationRequest.EntityType = entityType.Value!;
+            removeAssociationRequest.EntityType = entityType.Value!.Value;
             removeAssociationRequest.ScaDeviceIds = scaDeviceIds.Value!;
             return removeAssociationRequest;
         }

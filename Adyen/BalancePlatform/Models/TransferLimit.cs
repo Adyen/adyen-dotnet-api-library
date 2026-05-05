@@ -262,10 +262,10 @@ namespace Adyen.BalancePlatform.Models
             var transferLimit = new TransferLimit();
             transferLimit.Amount = amount.Value!;
             transferLimit.Id = id.Value!;
-            transferLimit.LimitStatus = limitStatus.Value!;
-            transferLimit.Scope = scope.Value!;
+            transferLimit.LimitStatus = limitStatus.Value!.Value;
+            transferLimit.Scope = scope.Value!.Value;
             transferLimit.StartsAt = startsAt.Value!.Value;
-            transferLimit.TransferType = transferType.Value!;
+            transferLimit.TransferType = transferType.Value!.Value;
             if (endsAt.IsSet)
                 transferLimit.EndsAt = endsAt.Value;
             if (reference.IsSet)

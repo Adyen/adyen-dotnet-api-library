@@ -166,9 +166,9 @@ namespace Adyen.BalancePlatform.Models
 
             var association = new Association();
             association.EntityId = entityId.Value!;
-            association.EntityType = entityType.Value!;
+            association.EntityType = entityType.Value!.Value;
             association.ScaDeviceId = scaDeviceId.Value!;
-            association.Status = status.Value!;
+            association.Status = status.Value!.Value;
             return association;
         }
 

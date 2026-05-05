@@ -165,9 +165,9 @@ namespace Adyen.BalancePlatform.Models
 
             var approveAssociationRequest = new ApproveAssociationRequest();
             approveAssociationRequest.EntityId = entityId.Value!;
-            approveAssociationRequest.EntityType = entityType.Value!;
+            approveAssociationRequest.EntityType = entityType.Value!.Value;
             approveAssociationRequest.ScaDeviceIds = scaDeviceIds.Value!;
-            approveAssociationRequest.Status = status.Value!;
+            approveAssociationRequest.Status = status.Value!.Value;
             return approveAssociationRequest;
         }
 

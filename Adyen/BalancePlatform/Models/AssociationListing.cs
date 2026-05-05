@@ -222,10 +222,10 @@ namespace Adyen.BalancePlatform.Models
             var associationListing = new AssociationListing();
             associationListing.CreatedAt = createdAt.Value!.Value;
             associationListing.EntityId = entityId.Value!;
-            associationListing.EntityType = entityType.Value!;
+            associationListing.EntityType = entityType.Value!.Value;
             associationListing.ScaDeviceId = scaDeviceId.Value!;
-            associationListing.ScaDeviceType = scaDeviceType.Value!;
-            associationListing.Status = status.Value!;
+            associationListing.ScaDeviceType = scaDeviceType.Value!.Value;
+            associationListing.Status = status.Value!.Value;
             if (scaDeviceName.IsSet)
                 associationListing.ScaDeviceName = scaDeviceName.Value;
             return associationListing;
