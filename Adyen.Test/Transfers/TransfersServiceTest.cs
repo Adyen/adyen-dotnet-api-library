@@ -42,11 +42,12 @@ namespace Adyen.Test.Transfers
                 .Build();
 
             var transfersService = testHost.Services.GetRequiredService<ITransfersService>();
-            var transferInfo = new TransferInfo(
-                amount: new Amount("EUR", 110000),
-                category: TransferInfo.CategoryEnum.Bank,
-                counterparty: new CounterpartyInfoV3()
-            );
+            var transferInfo = new TransferInfo
+            {
+                Amount = new Amount { Currency = "EUR", Value = 110000 },
+                Category = TransferInfo.CategoryEnum.Bank,
+                Counterparty = new CounterpartyInfoV3()
+            };
 
             // Act
             var response = await transfersService.TransferFundsAsync(transferInfo);

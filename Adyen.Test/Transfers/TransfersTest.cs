@@ -12,12 +12,14 @@ namespace Adyen.Test.Transfers
     [TestClass]
     public class TransfersTest
     {
-        private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
+        private static IHost _host;
+        private static JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
 
-        public TransfersTest()
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
         {
-            IHost host = Host.CreateDefaultBuilder()
-                .ConfigureTransfers((context, services, config) =>
+            _host = Host.CreateDefaultBuilder()
+                .ConfigureTransfers((ctx, services, config) =>
                 {
                     config.ConfigureAdyenOptions(options =>
                     {
@@ -26,7 +28,13 @@ namespace Adyen.Test.Transfers
                 })
                 .Build();
 
-            _jsonSerializerOptionsProvider = host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
+            _jsonSerializerOptionsProvider = _host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
+        }
+
+        [ClassCleanup]
+        public static void ClassCleanup()
+        {
+            _host?.Dispose();
         }
         
         [TestMethod]
