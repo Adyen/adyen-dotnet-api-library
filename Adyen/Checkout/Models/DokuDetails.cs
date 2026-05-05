@@ -408,7 +408,7 @@ namespace Adyen.Checkout.Models
             dokuDetails.FirstName = firstName.Value!;
             dokuDetails.LastName = lastName.Value!;
             dokuDetails.ShopperEmail = shopperEmail.Value!;
-            dokuDetails.Type = type.Value!;
+            dokuDetails.Type = type.Value!.Value;
             if (checkoutAttemptId.IsSet)
                 dokuDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (sdkData.IsSet)

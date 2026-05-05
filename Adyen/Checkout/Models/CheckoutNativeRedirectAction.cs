@@ -327,7 +327,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class CheckoutNativeRedirectAction.", nameof(type));
 
             var checkoutNativeRedirectAction = new CheckoutNativeRedirectAction();
-            checkoutNativeRedirectAction.Type = type.Value!;
+            checkoutNativeRedirectAction.Type = type.Value!.Value;
             if (data.IsSet)
                 checkoutNativeRedirectAction.Data = data.Value;
             if (method.IsSet)

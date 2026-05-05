@@ -471,7 +471,7 @@ namespace Adyen.Checkout.Models
                 rivertyDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
             if (subtype.IsSet)
                 rivertyDetails.Subtype = subtype.Value;
-            rivertyDetails.Type = type.Value!;
+            rivertyDetails.Type = type.Value!.Value;
             return rivertyDetails;
         }
 

@@ -318,7 +318,7 @@ namespace Adyen.Checkout.Models
                 payByBankAISDirectDebitDetails.SdkData = sdkData.Value;
             if (storedPaymentMethodId.IsSet)
                 payByBankAISDirectDebitDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            payByBankAISDirectDebitDetails.Type = type.Value!;
+            payByBankAISDirectDebitDetails.Type = type.Value!.Value;
             return payByBankAISDirectDebitDetails;
         }
 

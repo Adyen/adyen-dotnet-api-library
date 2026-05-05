@@ -295,7 +295,7 @@ namespace Adyen.Checkout.Models
                 payByBankDetails.Issuer = issuer.Value;
             if (sdkData.IsSet)
                 payByBankDetails.SdkData = sdkData.Value;
-            payByBankDetails.Type = type.Value!;
+            payByBankDetails.Type = type.Value!.Value;
             return payByBankDetails;
         }
 

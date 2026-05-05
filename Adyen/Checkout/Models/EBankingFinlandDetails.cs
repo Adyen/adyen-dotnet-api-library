@@ -295,7 +295,7 @@ namespace Adyen.Checkout.Models
                 eBankingFinlandDetails.Issuer = issuer.Value;
             if (sdkData.IsSet)
                 eBankingFinlandDetails.SdkData = sdkData.Value;
-            eBankingFinlandDetails.Type = type.Value!;
+            eBankingFinlandDetails.Type = type.Value!.Value;
             return eBankingFinlandDetails;
         }
 

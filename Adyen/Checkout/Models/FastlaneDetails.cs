@@ -334,7 +334,7 @@ namespace Adyen.Checkout.Models
                 fastlaneDetails.SdkData = sdkData.Value;
             if (storedPaymentMethodId.IsSet)
                 fastlaneDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            fastlaneDetails.Type = type.Value!;
+            fastlaneDetails.Type = type.Value!.Value;
             return fastlaneDetails;
         }
 

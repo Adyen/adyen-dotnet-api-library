@@ -323,7 +323,7 @@ namespace Adyen.Checkout.Models
 
             var checkoutOutgoingForwardRequest = new CheckoutOutgoingForwardRequest();
             checkoutOutgoingForwardRequest.Body = body.Value!;
-            checkoutOutgoingForwardRequest.HttpMethod = httpMethod.Value!;
+            checkoutOutgoingForwardRequest.HttpMethod = httpMethod.Value!.Value;
             if (credentials.IsSet)
                 checkoutOutgoingForwardRequest.Credentials = credentials.Value;
             if (headers.IsSet)

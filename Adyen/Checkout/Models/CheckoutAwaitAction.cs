@@ -289,7 +289,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class CheckoutAwaitAction.", nameof(type));
 
             var checkoutAwaitAction = new CheckoutAwaitAction();
-            checkoutAwaitAction.Type = type.Value!;
+            checkoutAwaitAction.Type = type.Value!.Value;
             if (paymentData.IsSet)
                 checkoutAwaitAction.PaymentData = paymentData.Value;
             if (paymentMethodType.IsSet)

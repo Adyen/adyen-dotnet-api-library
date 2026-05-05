@@ -295,7 +295,7 @@ namespace Adyen.Checkout.Models
 
             var molPayDetails = new MolPayDetails();
             molPayDetails.Issuer = issuer.Value!;
-            molPayDetails.Type = type.Value!;
+            molPayDetails.Type = type.Value!.Value;
             if (checkoutAttemptId.IsSet)
                 molPayDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (sdkData.IsSet)

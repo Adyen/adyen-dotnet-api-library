@@ -362,7 +362,7 @@ namespace Adyen.Checkout.Models
 
             var genericIssuerPaymentMethodDetails = new GenericIssuerPaymentMethodDetails();
             genericIssuerPaymentMethodDetails.Issuer = issuer.Value!;
-            genericIssuerPaymentMethodDetails.Type = type.Value!;
+            genericIssuerPaymentMethodDetails.Type = type.Value!.Value;
             if (checkoutAttemptId.IsSet)
                 genericIssuerPaymentMethodDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (recurringDetailReference.IsSet)

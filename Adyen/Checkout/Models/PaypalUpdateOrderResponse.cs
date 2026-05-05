@@ -257,7 +257,7 @@ namespace Adyen.Checkout.Models
 
             var paypalUpdateOrderResponse = new PaypalUpdateOrderResponse();
             paypalUpdateOrderResponse.PaymentData = paymentData.Value!;
-            paypalUpdateOrderResponse.Status = status.Value!;
+            paypalUpdateOrderResponse.Status = status.Value!.Value;
             return paypalUpdateOrderResponse;
         }
 
