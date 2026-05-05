@@ -434,7 +434,7 @@ namespace Adyen.LegalEntityManagement.Models
                 throw new ArgumentException("Property is required for class LegalEntityInfoRequiredType.", nameof(type));
 
             var legalEntityInfoRequiredType = new LegalEntityInfoRequiredType();
-            legalEntityInfoRequiredType.Type = type.Value!;
+            legalEntityInfoRequiredType.Type = type.Value!.Value;
             if (capabilities.IsSet)
                 legalEntityInfoRequiredType.Capabilities = capabilities.Value;
             if (entityAssociations.IsSet)

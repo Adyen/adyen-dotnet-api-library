@@ -348,7 +348,7 @@ namespace Adyen.LegalEntityManagement.Models
 
             var getTermsOfServiceDocumentRequest = new GetTermsOfServiceDocumentRequest();
             getTermsOfServiceDocumentRequest.Language = language.Value!;
-            getTermsOfServiceDocumentRequest.Type = type.Value!;
+            getTermsOfServiceDocumentRequest.Type = type.Value!.Value;
             if (termsOfServiceDocumentFormat.IsSet)
                 getTermsOfServiceDocumentRequest.TermsOfServiceDocumentFormat = termsOfServiceDocumentFormat.Value;
             return getTermsOfServiceDocumentRequest;
