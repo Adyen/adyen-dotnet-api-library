@@ -63,14 +63,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _ReferenceOption { get; }
+        public Option<string?> _ReferenceOption { get; private set; }
 
         /// <summary>
         /// The reference of the undefined beneficiary.
         /// </summary>
         /// <value>The reference of the undefined beneficiary.</value>
         [JsonPropertyName("reference")]
-        public string? Reference { get { return this._ReferenceOption; } }
+        public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

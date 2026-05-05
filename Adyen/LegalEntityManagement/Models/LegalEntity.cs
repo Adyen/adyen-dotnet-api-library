@@ -345,14 +345,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<TransferInstrumentReference>?> _TransferInstrumentsOption { get; }
+        public Option<List<TransferInstrumentReference>?> _TransferInstrumentsOption { get; private set; }
 
         /// <summary>
         /// List of transfer instruments that the legal entity owns.
         /// </summary>
         /// <value>List of transfer instruments that the legal entity owns.</value>
         [JsonPropertyName("transferInstruments")]
-        public List<TransferInstrumentReference>? TransferInstruments { get { return this._TransferInstrumentsOption; } }
+        public List<TransferInstrumentReference>? TransferInstruments { get { return this._TransferInstrumentsOption; } set { this._TransferInstrumentsOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Trust"/> will be populated.
@@ -385,14 +385,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<VerificationDeadline>?> _VerificationDeadlinesOption { get; }
+        public Option<List<VerificationDeadline>?> _VerificationDeadlinesOption { get; private set; }
 
         /// <summary>
         /// List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.
         /// </summary>
         /// <value>List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.</value>
         [JsonPropertyName("verificationDeadlines")]
-        public List<VerificationDeadline>? VerificationDeadlines { get { return this._VerificationDeadlinesOption; } }
+        public List<VerificationDeadline>? VerificationDeadlines { get { return this._VerificationDeadlinesOption; } set { this._VerificationDeadlinesOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="VerificationPlan"/> will be populated.

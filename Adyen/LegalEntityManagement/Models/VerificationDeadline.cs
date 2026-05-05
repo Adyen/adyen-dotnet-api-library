@@ -662,14 +662,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>?> _EntityIdsOption { get; }
+        public Option<List<string>?> _EntityIdsOption { get; private set; }
 
         /// <summary>
         /// The unique identifiers of the legal entity or supporting entities that the deadline applies to
         /// </summary>
         /// <value>The unique identifiers of the legal entity or supporting entities that the deadline applies to</value>
         [JsonPropertyName("entityIds")]
-        public List<string>? EntityIds { get { return this._EntityIdsOption; } }
+        public List<string>? EntityIds { get { return this._EntityIdsOption; } set { this._EntityIdsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

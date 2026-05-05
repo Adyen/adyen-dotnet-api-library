@@ -106,14 +106,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<bool?> _TrustedSourceOption { get; }
+        public Option<bool?> _TrustedSourceOption { get; private set; }
 
         /// <summary>
         /// Identifies if the bank account was created through [instant bank verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote&#x3D;2023-05-08-hosted-onboarding).
         /// </summary>
         /// <value>Identifies if the bank account was created through [instant bank verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote=2023-05-08-hosted-onboarding).</value>
         [JsonPropertyName("trustedSource")]
-        public bool? TrustedSource { get { return this._TrustedSourceOption; } }
+        public bool? TrustedSource { get { return this._TrustedSourceOption; } set { this._TrustedSourceOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

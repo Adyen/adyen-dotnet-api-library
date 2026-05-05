@@ -375,14 +375,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<DateTimeOffset?> _CreationDateOption { get; }
+        public Option<DateTimeOffset?> _CreationDateOption { get; private set; }
 
         /// <summary>
         /// The creation date of the document.
         /// </summary>
         /// <value>The creation date of the document.</value>
         [JsonPropertyName("creationDate")]
-        public DateTimeOffset? CreationDate { get { return this._CreationDateOption; } }
+        public DateTimeOffset? CreationDate { get { return this._CreationDateOption; } set { this._CreationDateOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ExpiryDate"/> will be populated.
@@ -419,14 +419,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _IdOption { get; }
+        public Option<string?> _IdOption { get; private set; }
 
         /// <summary>
         /// The unique identifier of the document.
         /// </summary>
         /// <value>The unique identifier of the document.</value>
         [JsonPropertyName("id")]
-        public string? Id { get { return this._IdOption; } }
+        public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="IssuerCountry"/> will be populated.
@@ -465,14 +465,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<DateTimeOffset?> _ModificationDateOption { get; }
+        public Option<DateTimeOffset?> _ModificationDateOption { get; private set; }
 
         /// <summary>
         /// The modification date of the document.
         /// </summary>
         /// <value>The modification date of the document.</value>
         [JsonPropertyName("modificationDate")]
-        public DateTimeOffset? ModificationDate { get { return this._ModificationDateOption; } }
+        public DateTimeOffset? ModificationDate { get { return this._ModificationDateOption; } set { this._ModificationDateOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Number"/> will be populated.

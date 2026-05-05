@@ -190,14 +190,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<AllowedLevelEnum?> _AllowedLevelOption { get; }
+        public Option<AllowedLevelEnum?> _AllowedLevelOption { get; private set; }
 
         /// <summary>
         /// The capability level that is allowed for the legal entity.  Possible values: **notApplicable**, **low**, **medium**, **high**.
         /// </summary>
         /// <value>The capability level that is allowed for the legal entity.  Possible values: **notApplicable**, **low**, **medium**, **high**.</value>
         [JsonPropertyName("allowedLevel")]
-        public AllowedLevelEnum? AllowedLevel { get { return this._AllowedLevelOption; } }
+        public AllowedLevelEnum? AllowedLevel { get { return this._AllowedLevelOption; } set { this._AllowedLevelOption = new(value); } }
 
         /// <summary>
         /// The requested level of the capability. Some capabilities, such as those used in [card issuing](https://docs.adyen.com/issuing/add-capabilities#capability-levels), have different levels. Levels increase the capability, but also require additional checks and increased monitoring.  Possible values: **notApplicable**, **low**, **medium**, **high**.
@@ -345,28 +345,28 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<RequestedLevelEnum?> _RequestedLevelOption { get; }
+        public Option<RequestedLevelEnum?> _RequestedLevelOption { get; private set; }
 
         /// <summary>
         /// The requested level of the capability. Some capabilities, such as those used in [card issuing](https://docs.adyen.com/issuing/add-capabilities#capability-levels), have different levels. Levels increase the capability, but also require additional checks and increased monitoring.  Possible values: **notApplicable**, **low**, **medium**, **high**.
         /// </summary>
         /// <value>The requested level of the capability. Some capabilities, such as those used in [card issuing](https://docs.adyen.com/issuing/add-capabilities#capability-levels), have different levels. Levels increase the capability, but also require additional checks and increased monitoring.  Possible values: **notApplicable**, **low**, **medium**, **high**.</value>
         [JsonPropertyName("requestedLevel")]
-        public RequestedLevelEnum? RequestedLevel { get { return this._RequestedLevelOption; } }
+        public RequestedLevelEnum? RequestedLevel { get { return this._RequestedLevelOption; } set { this._RequestedLevelOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Allowed"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<bool?> _AllowedOption { get; }
+        public Option<bool?> _AllowedOption { get; private set; }
 
         /// <summary>
         /// Indicates whether the capability is allowed. Adyen sets this to **true** if the verification is successful.
         /// </summary>
         /// <value>Indicates whether the capability is allowed. Adyen sets this to **true** if the verification is successful.</value>
         [JsonPropertyName("allowed")]
-        public bool? Allowed { get { return this._AllowedOption; } }
+        public bool? Allowed { get { return this._AllowedOption; } set { this._AllowedOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AllowedSettings"/> will be populated.
@@ -386,14 +386,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<bool?> _RequestedOption { get; }
+        public Option<bool?> _RequestedOption { get; private set; }
 
         /// <summary>
         /// Indicates whether the capability is requested. To check whether the legal entity is permitted to use the capability, refer to the &#x60;allowed&#x60; field.
         /// </summary>
         /// <value>Indicates whether the capability is requested. To check whether the legal entity is permitted to use the capability, refer to the `allowed` field.</value>
         [JsonPropertyName("requested")]
-        public bool? Requested { get { return this._RequestedOption; } }
+        public bool? Requested { get { return this._RequestedOption; } set { this._RequestedOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="RequestedSettings"/> will be populated.
@@ -413,28 +413,28 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<SupportingEntityCapability>?> _TransferInstrumentsOption { get; }
+        public Option<List<SupportingEntityCapability>?> _TransferInstrumentsOption { get; private set; }
 
         /// <summary>
         /// The capability status of transfer instruments associated with the legal entity.
         /// </summary>
         /// <value>The capability status of transfer instruments associated with the legal entity.</value>
         [JsonPropertyName("transferInstruments")]
-        public List<SupportingEntityCapability>? TransferInstruments { get { return this._TransferInstrumentsOption; } }
+        public List<SupportingEntityCapability>? TransferInstruments { get { return this._TransferInstrumentsOption; } set { this._TransferInstrumentsOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="VerificationStatus"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _VerificationStatusOption { get; }
+        public Option<string?> _VerificationStatusOption { get; private set; }
 
         /// <summary>
         /// The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. 
         /// </summary>
         /// <value>The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the `errors` array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. </value>
         [JsonPropertyName("verificationStatus")]
-        public string? VerificationStatus { get { return this._VerificationStatusOption; } }
+        public string? VerificationStatus { get { return this._VerificationStatusOption; } set { this._VerificationStatusOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
