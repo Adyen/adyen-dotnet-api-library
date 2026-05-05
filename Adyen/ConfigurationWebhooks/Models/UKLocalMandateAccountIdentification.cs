@@ -264,7 +264,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             var uKLocalMandateAccountIdentification = new UKLocalMandateAccountIdentification();
             uKLocalMandateAccountIdentification.AccountNumber = accountNumber.Value!;
             uKLocalMandateAccountIdentification.SortCode = sortCode.Value!;
-            uKLocalMandateAccountIdentification.Type = type.Value!;
+            uKLocalMandateAccountIdentification.Type = type.Value!.Value;
             return uKLocalMandateAccountIdentification;
         }
 

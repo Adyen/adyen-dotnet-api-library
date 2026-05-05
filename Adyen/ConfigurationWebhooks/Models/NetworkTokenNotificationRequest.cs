@@ -296,7 +296,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             var networkTokenNotificationRequest = new NetworkTokenNotificationRequest();
             networkTokenNotificationRequest.Data = data.Value!;
             networkTokenNotificationRequest.Environment = environment.Value!;
-            networkTokenNotificationRequest.Type = type.Value!;
+            networkTokenNotificationRequest.Type = type.Value!.Value;
             if (timestamp.IsSet)
                 networkTokenNotificationRequest.Timestamp = timestamp.Value;
             return networkTokenNotificationRequest;

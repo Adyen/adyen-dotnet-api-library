@@ -287,7 +287,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             var scoreNotificationRequest = new ScoreNotificationRequest();
             scoreNotificationRequest.Data = data.Value!;
             scoreNotificationRequest.Environment = environment.Value!;
-            scoreNotificationRequest.Type = type.Value!;
+            scoreNotificationRequest.Type = type.Value!.Value;
             if (timestamp.IsSet)
                 scoreNotificationRequest.Timestamp = timestamp.Value;
             return scoreNotificationRequest;

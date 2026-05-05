@@ -296,7 +296,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             var paymentNotificationRequest = new PaymentNotificationRequest();
             paymentNotificationRequest.Data = data.Value!;
             paymentNotificationRequest.Environment = environment.Value!;
-            paymentNotificationRequest.Type = type.Value!;
+            paymentNotificationRequest.Type = type.Value!.Value;
             if (timestamp.IsSet)
                 paymentNotificationRequest.Timestamp = timestamp.Value;
             return paymentNotificationRequest;
