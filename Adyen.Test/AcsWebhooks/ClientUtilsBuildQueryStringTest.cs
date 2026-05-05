@@ -126,5 +126,12 @@ namespace Adyen.Test.AcsWebhooks
         {
             Assert.AreEqual("foo=", Invoke(Nvc(("foo", ""))));
         }
+
+        [TestMethod]
+        public void SurrogatePair_IsPercentEncoded()
+        {
+            // "😊" (U+1F60A) is stored as a surrogate pair in UTF-16; must encode to %F0%9F%98%8A
+            Assert.AreEqual("foo=%F0%9F%98%8A", Invoke(Nvc(("foo", "😊"))));
+        }
     }
 }
