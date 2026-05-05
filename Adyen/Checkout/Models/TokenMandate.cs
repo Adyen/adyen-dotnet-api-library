@@ -1012,7 +1012,7 @@ namespace Adyen.Checkout.Models
             tokenMandate.Amount = amount.Value!;
             tokenMandate.Currency = currency.Value!;
             tokenMandate.EndsAt = endsAt.Value!;
-            tokenMandate.Frequency = frequency.Value!;
+            tokenMandate.Frequency = frequency.Value!.Value;
             tokenMandate.MandateId = mandateId.Value!;
             tokenMandate.ProviderId = providerId.Value!;
             tokenMandate.Status = status.Value!;

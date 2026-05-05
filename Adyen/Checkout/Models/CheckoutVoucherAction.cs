@@ -609,7 +609,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class CheckoutVoucherAction.", nameof(type));
 
             var checkoutVoucherAction = new CheckoutVoucherAction();
-            checkoutVoucherAction.Type = type.Value!;
+            checkoutVoucherAction.Type = type.Value!.Value;
             if (alternativeReference.IsSet)
                 checkoutVoucherAction.AlternativeReference = alternativeReference.Value;
             if (collectionInstitutionNumber.IsSet)

@@ -1532,7 +1532,7 @@ namespace Adyen.Checkout.Models
             paymentLinkResponse.Id = id.Value!;
             paymentLinkResponse.MerchantAccount = merchantAccount.Value!;
             paymentLinkResponse.Reference = reference.Value!;
-            paymentLinkResponse.Status = status.Value!;
+            paymentLinkResponse.Status = status.Value!.Value;
             paymentLinkResponse.Url = url.Value!;
             if (allowedPaymentMethods.IsSet)
                 paymentLinkResponse.AllowedPaymentMethods = allowedPaymentMethods.Value;

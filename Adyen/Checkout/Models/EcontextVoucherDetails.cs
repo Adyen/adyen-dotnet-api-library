@@ -370,7 +370,7 @@ namespace Adyen.Checkout.Models
             econtextVoucherDetails.LastName = lastName.Value!;
             econtextVoucherDetails.ShopperEmail = shopperEmail.Value!;
             econtextVoucherDetails.TelephoneNumber = telephoneNumber.Value!;
-            econtextVoucherDetails.Type = type.Value!;
+            econtextVoucherDetails.Type = type.Value!.Value;
             if (checkoutAttemptId.IsSet)
                 econtextVoucherDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (sdkData.IsSet)

@@ -388,7 +388,7 @@ namespace Adyen.Checkout.Models
             createOrderResponse.ExpiresAt = expiresAt.Value!;
             createOrderResponse.OrderData = orderData.Value!;
             createOrderResponse.RemainingAmount = remainingAmount.Value!;
-            createOrderResponse.ResultCode = resultCode.Value!;
+            createOrderResponse.ResultCode = resultCode.Value!.Value;
             if (additionalData.IsSet)
                 createOrderResponse.AdditionalData = additionalData.Value;
             if (fraudResult.IsSet)

@@ -381,7 +381,7 @@ namespace Adyen.Checkout.Models
                 upiIntentDetails.ShopperNotificationReference = shopperNotificationReference.Value;
             if (storedPaymentMethodId.IsSet)
                 upiIntentDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            upiIntentDetails.Type = type.Value!;
+            upiIntentDetails.Type = type.Value!.Value;
             return upiIntentDetails;
         }
 

@@ -308,7 +308,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class CheckoutRedirectAction.", nameof(type));
 
             var checkoutRedirectAction = new CheckoutRedirectAction();
-            checkoutRedirectAction.Type = type.Value!;
+            checkoutRedirectAction.Type = type.Value!.Value;
             if (data.IsSet)
                 checkoutRedirectAction.Data = data.Value;
             if (method.IsSet)

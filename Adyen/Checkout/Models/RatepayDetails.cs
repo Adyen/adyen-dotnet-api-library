@@ -390,7 +390,7 @@ namespace Adyen.Checkout.Models
                 ratepayDetails.SdkData = sdkData.Value;
             if (storedPaymentMethodId.IsSet)
                 ratepayDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            ratepayDetails.Type = type.Value!;
+            ratepayDetails.Type = type.Value!.Value;
             return ratepayDetails;
         }
 

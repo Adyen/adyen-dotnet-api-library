@@ -299,7 +299,7 @@ namespace Adyen.Checkout.Models
             paymentCancelResponse.MerchantAccount = merchantAccount.Value!;
             paymentCancelResponse.PaymentPspReference = paymentPspReference.Value!;
             paymentCancelResponse.PspReference = pspReference.Value!;
-            paymentCancelResponse.Status = status.Value!;
+            paymentCancelResponse.Status = status.Value!.Value;
             if (reference.IsSet)
                 paymentCancelResponse.Reference = reference.Value;
             return paymentCancelResponse;

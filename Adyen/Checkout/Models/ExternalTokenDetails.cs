@@ -473,7 +473,7 @@ namespace Adyen.Checkout.Models
 
             var externalTokenDetails = new ExternalTokenDetails();
             externalTokenDetails.StoredPaymentMethodId = storedPaymentMethodId.Value!;
-            externalTokenDetails.Subtype = subtype.Value!;
+            externalTokenDetails.Subtype = subtype.Value!.Value;
             if (checkoutAttemptId.IsSet)
                 externalTokenDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (expiryMonth.IsSet)
@@ -484,7 +484,7 @@ namespace Adyen.Checkout.Models
                 externalTokenDetails.HolderName = holderName.Value;
             if (number.IsSet)
                 externalTokenDetails.Number = number.Value;
-            externalTokenDetails.Type = type.Value!;
+            externalTokenDetails.Type = type.Value!.Value;
             return externalTokenDetails;
         }
 
