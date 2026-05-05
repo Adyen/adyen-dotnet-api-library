@@ -444,9 +444,9 @@ namespace Adyen.TokenizationWebhooks.Models
             var tokenizationDisabledDetailsNotificationRequest = new TokenizationDisabledDetailsNotificationRequest();
             tokenizationDisabledDetailsNotificationRequest.CreatedAt = createdAt.Value!.Value;
             tokenizationDisabledDetailsNotificationRequest.Data = data.Value!;
-            tokenizationDisabledDetailsNotificationRequest.Environment = environment.Value!;
+            tokenizationDisabledDetailsNotificationRequest.Environment = environment.Value!.Value;
             tokenizationDisabledDetailsNotificationRequest.EventId = eventId.Value!;
-            tokenizationDisabledDetailsNotificationRequest.Type = type.Value!;
+            tokenizationDisabledDetailsNotificationRequest.Type = type.Value!.Value;
             if (version.IsSet)
                 tokenizationDisabledDetailsNotificationRequest.Version = version.Value;
             return tokenizationDisabledDetailsNotificationRequest;
