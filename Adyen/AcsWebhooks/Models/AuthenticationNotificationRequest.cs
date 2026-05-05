@@ -287,7 +287,7 @@ namespace Adyen.AcsWebhooks.Models
             var authenticationNotificationRequest = new AuthenticationNotificationRequest();
             authenticationNotificationRequest.Data = data.Value!;
             authenticationNotificationRequest.Environment = environment.Value!;
-            authenticationNotificationRequest.Type = type.Value!;
+            authenticationNotificationRequest.Type = type.Value!.Value;
             if (timestamp.IsSet)
                 authenticationNotificationRequest.Timestamp = timestamp.Value;
             return authenticationNotificationRequest;
