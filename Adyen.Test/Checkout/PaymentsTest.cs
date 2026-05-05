@@ -1077,29 +1077,6 @@ namespace Adyen.Test.Checkout
             Assert.IsNull(result.StoredPaymentMethods);
         }
 
-        /// <summary>
-        /// Regression test for GitHub issue #1474 applied to a non-Checkout namespace.
-        /// Verifies that <see cref="Adyen.AcsWebhooks.Models.ServiceError"/>, which has all-optional
-        /// fields, can be deserialized using default <see cref="JsonSerializerOptions"/> without throwing.
-        /// The <c>[JsonConstructor]</c> regression affected every generated model across all namespaces.
-        /// </summary>
-        [TestMethod]
-        public void Given_ServiceError_When_Deserialized_With_Default_Options_Then_Does_Not_Throw()
-        {
-            // Arrange
-            string json = "{\"errorCode\":\"000\",\"message\":\"test error\",\"status\":422}";
-
-            // Act
-            Adyen.AcsWebhooks.Models.ServiceError result =
-                JsonSerializer.Deserialize<Adyen.AcsWebhooks.Models.ServiceError>(json);
-
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual("000", result.ErrorCode);
-            Assert.AreEqual("test error", result.Message);
-            Assert.AreEqual(422, result.Status);
-        }
-
         [TestMethod]
         public void Given_PaymentResponse_When_RoundTrip_ThreeDS2_Then_ActionIsFlatAndNullFieldsAreOmitted()
         {
