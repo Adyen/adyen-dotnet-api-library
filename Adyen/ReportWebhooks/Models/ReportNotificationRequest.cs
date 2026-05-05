@@ -287,7 +287,7 @@ namespace Adyen.ReportWebhooks.Models
             var reportNotificationRequest = new ReportNotificationRequest();
             reportNotificationRequest.Data = data.Value!;
             reportNotificationRequest.Environment = environment.Value!;
-            reportNotificationRequest.Type = type.Value!;
+            reportNotificationRequest.Type = type.Value!.Value;
             if (timestamp.IsSet)
                 reportNotificationRequest.Timestamp = timestamp.Value;
             return reportNotificationRequest;
