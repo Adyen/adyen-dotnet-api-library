@@ -296,7 +296,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             var mandateNotificationRequest = new MandateNotificationRequest();
             mandateNotificationRequest.Data = data.Value!;
             mandateNotificationRequest.Environment = environment.Value!;
-            mandateNotificationRequest.Type = type.Value!;
+            mandateNotificationRequest.Type = type.Value!.Value;
             if (timestamp.IsSet)
                 mandateNotificationRequest.Timestamp = timestamp.Value;
             return mandateNotificationRequest;

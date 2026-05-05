@@ -305,7 +305,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             var sweepConfigurationNotificationRequest = new SweepConfigurationNotificationRequest();
             sweepConfigurationNotificationRequest.Data = data.Value!;
             sweepConfigurationNotificationRequest.Environment = environment.Value!;
-            sweepConfigurationNotificationRequest.Type = type.Value!;
+            sweepConfigurationNotificationRequest.Type = type.Value!.Value;
             if (timestamp.IsSet)
                 sweepConfigurationNotificationRequest.Timestamp = timestamp.Value;
             return sweepConfigurationNotificationRequest;

@@ -296,7 +296,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             var cardOrderNotificationRequest = new CardOrderNotificationRequest();
             cardOrderNotificationRequest.Data = data.Value!;
             cardOrderNotificationRequest.Environment = environment.Value!;
-            cardOrderNotificationRequest.Type = type.Value!;
+            cardOrderNotificationRequest.Type = type.Value!.Value;
             if (timestamp.IsSet)
                 cardOrderNotificationRequest.Timestamp = timestamp.Value;
             return cardOrderNotificationRequest;

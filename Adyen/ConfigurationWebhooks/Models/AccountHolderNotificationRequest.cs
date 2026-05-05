@@ -296,7 +296,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             var accountHolderNotificationRequest = new AccountHolderNotificationRequest();
             accountHolderNotificationRequest.Data = data.Value!;
             accountHolderNotificationRequest.Environment = environment.Value!;
-            accountHolderNotificationRequest.Type = type.Value!;
+            accountHolderNotificationRequest.Type = type.Value!.Value;
             if (timestamp.IsSet)
                 accountHolderNotificationRequest.Timestamp = timestamp.Value;
             return accountHolderNotificationRequest;
