@@ -30,81 +30,81 @@ using Adyen.Capital.Client;
 namespace Adyen.Capital.Models
 {
     /// <summary>
-    /// Defines FundsCollectionType
+    /// Defines FinancingType
     /// </summary>
-    public enum FundsCollectionType
+    public enum FinancingType
     {
         /// <summary>
-        /// Enum UnscheduledRepayment for value: UnscheduledRepayment
+        /// Enum HardwareFinancing for value: hardwareFinancing
         /// </summary>
-        UnscheduledRepayment = 1,
+        HardwareFinancing = 1,
 
         /// <summary>
-        /// Enum Revocation for value: Revocation
+        /// Enum BusinessFinancing for value: businessFinancing
         /// </summary>
-        Revocation = 2
+        BusinessFinancing = 2
     }
 
     /// <summary>
-    /// Converts <see cref="FundsCollectionType"/> to and from the JSON value
+    /// Converts <see cref="FinancingType"/> to and from the JSON value
     /// </summary>
-    public static class FundsCollectionTypeValueConverter
+    public static class FinancingTypeValueConverter
     {
         /// <summary>
-        /// Parses a given value to <see cref="FundsCollectionType"/>
+        /// Parses a given value to <see cref="FinancingType"/>
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static FundsCollectionType FromString(string value)
+        public static FinancingType FromString(string value)
         {
-            if (value.Equals("UnscheduledRepayment"))
-                return FundsCollectionType.UnscheduledRepayment;
+            if (value.Equals("hardwareFinancing"))
+                return FinancingType.HardwareFinancing;
 
-            if (value.Equals("Revocation"))
-                return FundsCollectionType.Revocation;
+            if (value.Equals("businessFinancing"))
+                return FinancingType.BusinessFinancing;
 
-            throw new NotImplementedException($"Could not convert value to type FundsCollectionType: '{value}'");
+            throw new NotImplementedException($"Could not convert value to type FinancingType: '{value}'");
         }
 
         /// <summary>
-        /// Parses a given value to <see cref="FundsCollectionType"/>
+        /// Parses a given value to <see cref="FinancingType"/>
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static FundsCollectionType? FromStringOrDefault(string value)
+        public static FinancingType? FromStringOrDefault(string value)
         {
-            if (value.Equals("UnscheduledRepayment"))
-                return FundsCollectionType.UnscheduledRepayment;
+            if (value.Equals("hardwareFinancing"))
+                return FinancingType.HardwareFinancing;
 
-            if (value.Equals("Revocation"))
-                return FundsCollectionType.Revocation;
+            if (value.Equals("businessFinancing"))
+                return FinancingType.BusinessFinancing;
 
             return null;
         }
 
         /// <summary>
-        /// Converts the <see cref="FundsCollectionType"/> to the json value
+        /// Converts the <see cref="FinancingType"/> to the json value
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public static string ToJsonValue(FundsCollectionType value)
+        public static string ToJsonValue(FinancingType value)
         {
-            if (value == FundsCollectionType.UnscheduledRepayment)
-                return "UnscheduledRepayment";
+            if (value == FinancingType.HardwareFinancing)
+                return "hardwareFinancing";
 
-            if (value == FundsCollectionType.Revocation)
-                return "Revocation";
+            if (value == FinancingType.BusinessFinancing)
+                return "businessFinancing";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="FundsCollectionType"/>
+    /// A Json converter for type <see cref="FinancingType"/>
     /// </summary>
     /// <exception cref="NotImplementedException"></exception>
-    public class FundsCollectionTypeJsonConverter : JsonConverter<FundsCollectionType>
+    public class FinancingTypeJsonConverter : JsonConverter<FinancingType>
     {
         /// <summary>
         /// Returns a  from the Json object
@@ -113,13 +113,13 @@ namespace Adyen.Capital.Models
         /// <param name="typeToConvert"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public override FundsCollectionType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override FinancingType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             string? rawValue = reader.GetString();
 
-            FundsCollectionType? result = rawValue == null
+            FinancingType? result = rawValue == null
                 ? null
-                : FundsCollectionTypeValueConverter.FromStringOrDefault(rawValue);
+                : FinancingTypeValueConverter.FromStringOrDefault(rawValue);
 
             if (result != null)
                 return result.Value;
@@ -128,36 +128,36 @@ namespace Adyen.Capital.Models
         }
 
         /// <summary>
-        /// Writes the FundsCollectionType to the json writer
+        /// Writes the FinancingType to the json writer
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="fundsCollectionType"></param>
+        /// <param name="financingType"></param>
         /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, FundsCollectionType fundsCollectionType, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, FinancingType financingType, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(FundsCollectionTypeValueConverter.ToJsonValue(fundsCollectionType).ToString());
+            writer.WriteStringValue(FinancingTypeValueConverter.ToJsonValue(financingType).ToString());
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="FundsCollectionType"/>
+    /// A Json converter for type <see cref="FinancingType"/>
     /// </summary>
-    public class FundsCollectionTypeNullableJsonConverter : JsonConverter<FundsCollectionType?>
+    public class FinancingTypeNullableJsonConverter : JsonConverter<FinancingType?>
     {
         /// <summary>
-        /// Returns a FundsCollectionType from the Json object
+        /// Returns a FinancingType from the Json object
         /// </summary>
         /// <param name="reader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public override FundsCollectionType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override FinancingType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             string? rawValue = reader.GetString();
 
-            FundsCollectionType? result = rawValue == null
+            FinancingType? result = rawValue == null
                 ? null
-                : FundsCollectionTypeValueConverter.FromStringOrDefault(rawValue);
+                : FinancingTypeValueConverter.FromStringOrDefault(rawValue);
 
             if (result != null)
                 return result.Value;
@@ -166,14 +166,14 @@ namespace Adyen.Capital.Models
         }
 
         /// <summary>
-        /// Writes the FundsCollectionType to the json writer
+        /// Writes the FinancingType to the json writer
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="fundsCollectionType"></param>
+        /// <param name="financingType"></param>
         /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, FundsCollectionType? fundsCollectionType, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, FinancingType? financingType, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(fundsCollectionType.HasValue ? FundsCollectionTypeValueConverter.ToJsonValue(fundsCollectionType.Value).ToString() : "null");
+            writer.WriteStringValue(financingType.HasValue ? FinancingTypeValueConverter.ToJsonValue(financingType.Value).ToString() : "null");
         }
     }
 }
