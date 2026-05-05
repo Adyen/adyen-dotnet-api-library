@@ -3004,8 +3004,8 @@ namespace Adyen.Transfers.Models
 
             var transferData = new TransferData();
             transferData.Amount = amount.Value!;
-            transferData.Category = category.Value!;
-            transferData.Status = status.Value!;
+            transferData.Category = category.Value!.Value;
+            transferData.Status = status.Value!.Value;
             if (accountHolder.IsSet)
                 transferData.AccountHolder = accountHolder.Value;
             if (balanceAccount.IsSet)

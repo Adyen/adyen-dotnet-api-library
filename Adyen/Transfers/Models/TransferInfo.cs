@@ -963,7 +963,7 @@ namespace Adyen.Transfers.Models
 
             var transferInfo = new TransferInfo();
             transferInfo.Amount = amount.Value!;
-            transferInfo.Category = category.Value!;
+            transferInfo.Category = category.Value!.Value;
             transferInfo.Counterparty = counterparty.Value!;
             if (balanceAccountId.IsSet)
                 transferInfo.BalanceAccountId = balanceAccountId.Value;

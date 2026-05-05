@@ -264,7 +264,7 @@ namespace Adyen.Transfers.Models
             var sELocalAccountIdentification = new SELocalAccountIdentification();
             sELocalAccountIdentification.AccountNumber = accountNumber.Value!;
             sELocalAccountIdentification.ClearingNumber = clearingNumber.Value!;
-            sELocalAccountIdentification.Type = type.Value!;
+            sELocalAccountIdentification.Type = type.Value!.Value;
             return sELocalAccountIdentification;
         }
 
