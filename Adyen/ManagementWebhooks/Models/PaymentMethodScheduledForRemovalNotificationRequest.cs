@@ -284,7 +284,7 @@ namespace Adyen.ManagementWebhooks.Models
             paymentMethodScheduledForRemovalNotificationRequest.CreatedAt = createdAt.Value!.Value;
             paymentMethodScheduledForRemovalNotificationRequest.Data = data.Value!;
             paymentMethodScheduledForRemovalNotificationRequest.Environment = environment.Value!;
-            paymentMethodScheduledForRemovalNotificationRequest.Type = type.Value!;
+            paymentMethodScheduledForRemovalNotificationRequest.Type = type.Value!.Value;
             return paymentMethodScheduledForRemovalNotificationRequest;
         }
 
