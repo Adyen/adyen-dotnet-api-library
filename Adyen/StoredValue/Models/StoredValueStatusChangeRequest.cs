@@ -523,7 +523,7 @@ namespace Adyen.StoredValue.Models
             storedValueStatusChangeRequest.MerchantAccount = merchantAccount.Value!;
             storedValueStatusChangeRequest.PaymentMethod = paymentMethod.Value!;
             storedValueStatusChangeRequest.Reference = reference.Value!;
-            storedValueStatusChangeRequest.Status = status.Value!;
+            storedValueStatusChangeRequest.Status = status.Value!.Value;
             if (amount.IsSet)
                 storedValueStatusChangeRequest.Amount = amount.Value;
             if (recurringDetailReference.IsSet)
