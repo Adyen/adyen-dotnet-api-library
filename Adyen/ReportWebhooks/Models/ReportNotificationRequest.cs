@@ -37,24 +37,9 @@ namespace Adyen.ReportWebhooks.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ReportNotificationRequest" /> class.
         /// </summary>
-        /// <param name="data">data</param>
-        /// <param name="environment">The environment from which the webhook originated.  Possible values: **test**, **live**.</param>
-        /// <param name="type">Type of webhook.</param>
-        /// <param name="timestamp">When the event was queued.</param>
-        public ReportNotificationRequest(ReportNotificationData data, string environment, TypeEnum type, Option<DateTimeOffset?> timestamp = default)
-        {
-            Data = data;
-            Environment = environment;
-            Type = type;
-            _TimestampOption = timestamp;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ReportNotificationRequest()
         {
+            OnCreated();
         }
 
         partial void OnCreated();
@@ -92,7 +77,7 @@ namespace Adyen.ReportWebhooks.Models
             /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
             /// </summary>
             /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
-            /// <returns>String value of the <see cref="TypeEnum"/> instance./// </returns>
+            /// <returns>String value of the <see cref="TypeEnum"/> instance.</returns>
             public static implicit operator string?(TypeEnum? option) => option?.Value;
         
             /// <summary>
@@ -138,7 +123,6 @@ namespace Adyen.ReportWebhooks.Models
             /// </summary>
             /// <param name="value"><see cref="TypeEnum"/></param>
             /// <returns>String value of the enum.</returns>
-            /// <exception cref="NotImplementedException"></exception>
             public static string? ToJsonValue(TypeEnum? value)
             {
                 if (value == null)
@@ -300,7 +284,13 @@ namespace Adyen.ReportWebhooks.Models
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class ReportNotificationRequest.", nameof(type));
 
-            return new ReportNotificationRequest(data.Value!, environment.Value!, type.Value!.Value!, timestamp);
+            var reportNotificationRequest = new ReportNotificationRequest();
+            reportNotificationRequest.Data = data.Value!;
+            reportNotificationRequest.Environment = environment.Value!;
+            reportNotificationRequest.Type = type.Value!;
+            if (timestamp.IsSet)
+                reportNotificationRequest.Timestamp = timestamp.Value;
+            return reportNotificationRequest;
         }
 
         /// <summary>
