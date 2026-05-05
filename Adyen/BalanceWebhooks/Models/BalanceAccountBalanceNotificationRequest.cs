@@ -287,7 +287,7 @@ namespace Adyen.BalanceWebhooks.Models
             var balanceAccountBalanceNotificationRequest = new BalanceAccountBalanceNotificationRequest();
             balanceAccountBalanceNotificationRequest.Data = data.Value!;
             balanceAccountBalanceNotificationRequest.Environment = environment.Value!;
-            balanceAccountBalanceNotificationRequest.Type = type.Value!;
+            balanceAccountBalanceNotificationRequest.Type = type.Value!.Value;
             if (timestamp.IsSet)
                 balanceAccountBalanceNotificationRequest.Timestamp = timestamp.Value;
             return balanceAccountBalanceNotificationRequest;
