@@ -1,8 +1,8 @@
 {
   "service": "recurring",
   "project": "dotnet",
-  "generatedAt": "2026-05-05T09:26:41Z",
+  "generatedAt": "2026-05-05T15:07:45Z",
   "openapiCommitSha": "7824ebf60ac8c780120e550d6495a8f02e409859",
-  "automationCommitSha": "4c065f4314ebb286f05dc38fd80f19058281c63c",
-  "libraryCommitSha": "7c907b8997d2478961b6c5dcab6a3f1d2a769b05"
+  "automationCommitSha": "0b7ef4e0ed6a7963ab005efe76eab748250edafc",
+  "libraryCommitSha": "414fdea106ba87981d10a8baf12248a36fa7e91f"
 }
