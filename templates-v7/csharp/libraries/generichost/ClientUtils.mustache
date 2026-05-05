@@ -197,12 +197,27 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
                 var value = parameters[key] ?? string.Empty;
                 // keys are always encoded (must be ASCII identifiers)
                 var encodedKey = Uri.EscapeDataString(key);
-                // only encode selected characters           
-                var encodedValue = value
-                    .Replace("&", "%26")
-                    .Replace("=", "%3D")
-                    .Replace("#", "%23")
-                    .Replace(" ", "%20");
+                // only encode characters that would break query string structure,
+                // while preserving sub-delimiters (+, /, !) and non-ASCII via Uri.EscapeDataString
+                var sb = new System.Text.StringBuilder(value.Length);
+                foreach (char c in value)
+                {
+                    switch (c)
+                    {
+                        case '&': sb.Append("%26"); break;
+                        case '=': sb.Append("%3D"); break;
+                        case '#': sb.Append("%23"); break;
+                        case ' ': sb.Append("%20"); break;
+                        case '%': sb.Append("%25"); break;
+                        default:
+                            if (c > 127)
+                                sb.Append(Uri.EscapeDataString(c.ToString()));
+                            else
+                                sb.Append(c);
+                            break;
+                    }
+                }
+                var encodedValue = sb.ToString();
                 parts.Add(encodedKey + "=" + encodedValue);
             }
             return string.Join("&", parts);
