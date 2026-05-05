@@ -287,7 +287,7 @@ namespace Adyen.BalanceWebhooks.Models
             var releasedBlockedBalanceNotificationRequest = new ReleasedBlockedBalanceNotificationRequest();
             releasedBlockedBalanceNotificationRequest.Data = data.Value!;
             releasedBlockedBalanceNotificationRequest.Environment = environment.Value!;
-            releasedBlockedBalanceNotificationRequest.Type = type.Value!;
+            releasedBlockedBalanceNotificationRequest.Type = type.Value!.Value;
             if (timestamp.IsSet)
                 releasedBlockedBalanceNotificationRequest.Timestamp = timestamp.Value;
             return releasedBlockedBalanceNotificationRequest;
