@@ -241,7 +241,7 @@ namespace Adyen.AcsWebhooks.Models
                 throw new ArgumentException("Property is required for class AuthenticationDecision.", nameof(status));
 
             var authenticationDecision = new AuthenticationDecision();
-            authenticationDecision.Status = status.Value!;
+            authenticationDecision.Status = status.Value!.Value;
             return authenticationDecision;
         }
 
