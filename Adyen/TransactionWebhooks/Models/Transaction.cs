@@ -457,7 +457,7 @@ namespace Adyen.TransactionWebhooks.Models
             transaction.BalancePlatform = balancePlatform.Value!;
             transaction.BookingDate = bookingDate.Value!.Value;
             transaction.Id = id.Value!;
-            transaction.Status = status.Value!;
+            transaction.Status = status.Value!.Value;
             transaction.ValueDate = valueDate.Value!.Value;
             if (creationDate.IsSet)
                 transaction.CreationDate = creationDate.Value;
