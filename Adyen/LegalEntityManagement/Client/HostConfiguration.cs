@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Adyen.LegalEntityManagement.Services;
 using Adyen.LegalEntityManagement.Client;

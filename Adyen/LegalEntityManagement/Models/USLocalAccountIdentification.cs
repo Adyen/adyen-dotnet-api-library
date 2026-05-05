@@ -410,7 +410,7 @@ namespace Adyen.LegalEntityManagement.Models
             uSLocalAccountIdentification.RoutingNumber = routingNumber.Value!;
             if (accountType.IsSet)
                 uSLocalAccountIdentification.AccountType = accountType.Value;
-            uSLocalAccountIdentification.Type = type.Value!.Value!;
+            uSLocalAccountIdentification.Type = type.Value!;
             return uSLocalAccountIdentification;
         }
 

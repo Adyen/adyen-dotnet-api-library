@@ -756,7 +756,7 @@ namespace Adyen.LegalEntityManagement.Models
 
             var verificationDeadline = new VerificationDeadline();
             verificationDeadline.Capabilities = capabilities.Value!;
-            verificationDeadline.ExpiresAt = expiresAt.Value!.Value!;
+            verificationDeadline.ExpiresAt = expiresAt.Value!.Value;
             if (entityIds.IsSet)
                 verificationDeadline.EntityIds = entityIds.Value;
             return verificationDeadline;

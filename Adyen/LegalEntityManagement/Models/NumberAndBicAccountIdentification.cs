@@ -284,7 +284,7 @@ namespace Adyen.LegalEntityManagement.Models
             numberAndBicAccountIdentification.Bic = bic.Value!;
             if (additionalBankIdentification.IsSet)
                 numberAndBicAccountIdentification.AdditionalBankIdentification = additionalBankIdentification.Value;
-            numberAndBicAccountIdentification.Type = type.Value!.Value!;
+            numberAndBicAccountIdentification.Type = type.Value!;
             return numberAndBicAccountIdentification;
         }
 

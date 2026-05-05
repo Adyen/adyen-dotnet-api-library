@@ -426,7 +426,7 @@ namespace Adyen.LegalEntityManagement.Models
             cALocalAccountIdentification.TransitNumber = transitNumber.Value!;
             if (accountType.IsSet)
                 cALocalAccountIdentification.AccountType = accountType.Value;
-            cALocalAccountIdentification.Type = type.Value!.Value!;
+            cALocalAccountIdentification.Type = type.Value!;
             return cALocalAccountIdentification;
         }
 

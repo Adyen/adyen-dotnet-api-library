@@ -264,7 +264,7 @@ namespace Adyen.LegalEntityManagement.Models
             var hKLocalAccountIdentification = new HKLocalAccountIdentification();
             hKLocalAccountIdentification.AccountNumber = accountNumber.Value!;
             hKLocalAccountIdentification.ClearingCode = clearingCode.Value!;
-            hKLocalAccountIdentification.Type = type.Value!.Value!;
+            hKLocalAccountIdentification.Type = type.Value!;
             return hKLocalAccountIdentification;
         }
 

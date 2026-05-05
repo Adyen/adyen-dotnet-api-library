@@ -595,7 +595,7 @@ namespace Adyen.LegalEntityManagement.Models
                 throw new ArgumentException("Property is required for class SourceOfFunds.", nameof(adyenProcessedFunds));
 
             var sourceOfFunds = new SourceOfFunds();
-            sourceOfFunds.AdyenProcessedFunds = adyenProcessedFunds.Value!.Value!;
+            sourceOfFunds.AdyenProcessedFunds = adyenProcessedFunds.Value!.Value;
             if (amount.IsSet)
                 sourceOfFunds.Amount = amount.Value;
             if (assetMonthsHeld.IsSet)
