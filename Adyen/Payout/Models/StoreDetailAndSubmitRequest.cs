@@ -552,7 +552,7 @@ namespace Adyen.Payout.Models
             var storeDetailAndSubmitRequest = new StoreDetailAndSubmitRequest();
             storeDetailAndSubmitRequest.Amount = amount.Value!;
             storeDetailAndSubmitRequest.DateOfBirth = dateOfBirth.Value!.Value;
-            storeDetailAndSubmitRequest.EntityType = entityType.Value!;
+            storeDetailAndSubmitRequest.EntityType = entityType.Value!.Value;
             storeDetailAndSubmitRequest.MerchantAccount = merchantAccount.Value!;
             storeDetailAndSubmitRequest.Nationality = nationality.Value!;
             storeDetailAndSubmitRequest.Recurring = recurring.Value!;
