@@ -296,26 +296,39 @@ namespace Adyen.Test.Payment
 
         public static PaymentRequest CreateFullPaymentRequest()
         {
-            PaymentRequest paymentRequest = new PaymentRequest(
-                applicationInfo: new ApplicationInfo(adyenLibrary: new CommonField(name: Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName, version: Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion)),
-                merchantAccount: "MerchantAccount",
-                amount: new Amount("EUR", 1500), card: CreateTestCard(), 
-                reference: "payment - " + DateTime.Now.ToString("yyyyMMdd"), 
-                additionalData: CreateAdditionalData());
-            return paymentRequest;
+            return new PaymentRequest
+            {
+                ApplicationInfo = new ApplicationInfo
+                {
+                    AdyenLibrary = new CommonField
+                    {
+                        Name = Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName,
+                        Version = Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion
+                    }
+                },
+                MerchantAccount = "MerchantAccount",
+                Amount = new Amount { Currency = "EUR", Value = 1500 },
+                Card = CreateTestCard(),
+                Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
+                AdditionalData = CreateAdditionalData()
+            };
         }
 
         public static PaymentRequest3ds2 CreateFullPaymentRequest3DS2()
         {
-            PaymentRequest3ds2 paymentRequest = new PaymentRequest3ds2(
-                amount: new Amount("EUR", 1500),
-                merchantAccount: "MerchantAccount",
-                reference: "payment - " + DateTime.Now.ToString("yyyyMMdd"),
-                additionalData: CreateAdditionalData(),
-                threeDS2RequestData: new ThreeDS2RequestData(threeDSCompInd: "Y",
-                deviceChannel: "browser"),
-                browserInfo: CreateMockBrowserInfo() );
-            return paymentRequest;
+            return new PaymentRequest3ds2
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1500 },
+                MerchantAccount = "MerchantAccount",
+                Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
+                AdditionalData = CreateAdditionalData(),
+                ThreeDS2RequestData = new ThreeDS2RequestData
+                {
+                    ThreeDSCompInd = "Y",
+                    DeviceChannel = "browser"
+                },
+                BrowserInfo = CreateMockBrowserInfo()
+            };
         }
 
         public static PaymentRequest CreateFullPaymentRequestWithShopperInteraction(PaymentRequest.ShopperInteractionEnum shopperInteraction)
@@ -338,16 +351,24 @@ namespace Adyen.Test.Payment
 
         public static PaymentRequest3d CreateFullPaymentRequest3D()
         {
-            PaymentRequest3d paymentRequest = new PaymentRequest3d(
-                md: "md", 
-                merchantAccount: "MerchantAccount",
-                paResponse: "paResponse",
-                applicationInfo: new ApplicationInfo(adyenLibrary: new CommonField(name: Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName, version: Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion)), 
-                browserInfo: CreateMockBrowserInfo(), 
-                reference: "payment - " + DateTime.Now.ToString("yyyyMMdd"), 
-                captureDelayHours: 0,
-                fraudOffset: 0);
-            return paymentRequest;
+            return new PaymentRequest3d
+            {
+                Md = "md",
+                MerchantAccount = "MerchantAccount",
+                PaResponse = "paResponse",
+                ApplicationInfo = new ApplicationInfo
+                {
+                    AdyenLibrary = new CommonField
+                    {
+                        Name = Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName,
+                        Version = Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion
+                    }
+                },
+                BrowserInfo = CreateMockBrowserInfo(),
+                Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
+                CaptureDelayHours = 0,
+                FraudOffset = 0
+            };
         }
 
 
@@ -362,12 +383,12 @@ namespace Adyen.Test.Payment
 
         public static Card CreateTestCard()
         {
-            return new Card(number: "4111111111111111", expiryMonth: "08", expiryYear: "2018", cvc: "737", holderName: "John Smith");
+            return new Card { Number = "4111111111111111", ExpiryMonth = "08", ExpiryYear = "2018", Cvc = "737", HolderName = "John Smith" };
         }
 
         public static Card CreateTestCard3D()
         {
-            return new Card(number: "5212345678901234", expiryMonth: "08", expiryYear: "2018", cvc: "737", holderName: "John Smith");
+            return new Card { Number = "5212345678901234", ExpiryMonth = "08", ExpiryYear = "2018", Cvc = "737", HolderName = "John Smith" };
         }
 
         public static string GetTestPspReferenceMocked()
