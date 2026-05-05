@@ -390,7 +390,7 @@ namespace Adyen.BalancePlatform.Models
             cardInfo.Brand = brand.Value!;
             cardInfo.BrandVariant = brandVariant.Value!;
             cardInfo.CardholderName = cardholderName.Value!;
-            cardInfo.FormFactor = formFactor.Value!;
+            cardInfo.FormFactor = formFactor.Value!.Value;
             if (authentication.IsSet)
                 cardInfo.Authentication = authentication.Value;
             if (configuration.IsSet)

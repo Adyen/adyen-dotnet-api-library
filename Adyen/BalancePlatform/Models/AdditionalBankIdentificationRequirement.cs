@@ -416,7 +416,7 @@ namespace Adyen.BalancePlatform.Models
                 additionalBankIdentificationRequirement.AdditionalBankIdentificationType = additionalBankIdentificationType.Value;
             if (description.IsSet)
                 additionalBankIdentificationRequirement.Description = description.Value;
-            additionalBankIdentificationRequirement.Type = type.Value!;
+            additionalBankIdentificationRequirement.Type = type.Value!.Value;
             return additionalBankIdentificationRequirement;
         }
 

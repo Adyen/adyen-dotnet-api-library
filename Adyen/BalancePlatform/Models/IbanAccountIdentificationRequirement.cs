@@ -274,7 +274,7 @@ namespace Adyen.BalancePlatform.Models
                 ibanAccountIdentificationRequirement.Description = description.Value;
             if (ibanPrefixes.IsSet)
                 ibanAccountIdentificationRequirement.IbanPrefixes = ibanPrefixes.Value;
-            ibanAccountIdentificationRequirement.Type = type.Value!;
+            ibanAccountIdentificationRequirement.Type = type.Value!.Value;
             return ibanAccountIdentificationRequirement;
         }
 

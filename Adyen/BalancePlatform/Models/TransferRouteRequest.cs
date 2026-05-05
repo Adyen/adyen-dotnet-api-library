@@ -496,7 +496,7 @@ namespace Adyen.BalancePlatform.Models
 
             var transferRouteRequest = new TransferRouteRequest();
             transferRouteRequest.BalancePlatform = balancePlatform.Value!;
-            transferRouteRequest.Category = category.Value!;
+            transferRouteRequest.Category = category.Value!.Value;
             transferRouteRequest.Currency = currency.Value!;
             if (balanceAccountId.IsSet)
                 transferRouteRequest.BalanceAccountId = balanceAccountId.Value;

@@ -250,7 +250,7 @@ namespace Adyen.BalancePlatform.Models
                 throw new ArgumentException("Property is required for class PinChangeResponse.", nameof(status));
 
             var pinChangeResponse = new PinChangeResponse();
-            pinChangeResponse.Status = status.Value!;
+            pinChangeResponse.Status = status.Value!.Value;
             return pinChangeResponse;
         }
 

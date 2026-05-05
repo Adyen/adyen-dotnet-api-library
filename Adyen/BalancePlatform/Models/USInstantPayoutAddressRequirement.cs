@@ -253,7 +253,7 @@ namespace Adyen.BalancePlatform.Models
             var uSInstantPayoutAddressRequirement = new USInstantPayoutAddressRequirement();
             if (description.IsSet)
                 uSInstantPayoutAddressRequirement.Description = description.Value;
-            uSInstantPayoutAddressRequirement.Type = type.Value!;
+            uSInstantPayoutAddressRequirement.Type = type.Value!.Value;
             return uSInstantPayoutAddressRequirement;
         }
 

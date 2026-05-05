@@ -248,7 +248,7 @@ namespace Adyen.BalancePlatform.Models
 
             var nZLocalAccountIdentification = new NZLocalAccountIdentification();
             nZLocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            nZLocalAccountIdentification.Type = type.Value!;
+            nZLocalAccountIdentification.Type = type.Value!.Value;
             return nZLocalAccountIdentification;
         }
 

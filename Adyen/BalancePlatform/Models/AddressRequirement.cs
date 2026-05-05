@@ -423,7 +423,7 @@ namespace Adyen.BalancePlatform.Models
                 addressRequirement.Description = description.Value;
             if (requiredAddressFields.IsSet)
                 addressRequirement.RequiredAddressFields = requiredAddressFields.Value;
-            addressRequirement.Type = type.Value!;
+            addressRequirement.Type = type.Value!.Value;
             return addressRequirement;
         }
 

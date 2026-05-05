@@ -301,7 +301,7 @@ namespace Adyen.BalancePlatform.Models
             bRLocalAccountIdentification.BranchNumber = branchNumber.Value!;
             if (ispb.IsSet)
                 bRLocalAccountIdentification.Ispb = ispb.Value;
-            bRLocalAccountIdentification.Type = type.Value!;
+            bRLocalAccountIdentification.Type = type.Value!.Value;
             return bRLocalAccountIdentification;
         }
 

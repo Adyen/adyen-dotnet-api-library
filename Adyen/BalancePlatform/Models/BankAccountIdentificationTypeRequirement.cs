@@ -567,7 +567,7 @@ namespace Adyen.BalancePlatform.Models
                 bankAccountIdentificationTypeRequirement.BankAccountIdentificationTypes = bankAccountIdentificationTypes.Value;
             if (description.IsSet)
                 bankAccountIdentificationTypeRequirement.Description = description.Value;
-            bankAccountIdentificationTypeRequirement.Type = type.Value!;
+            bankAccountIdentificationTypeRequirement.Type = type.Value!.Value;
             return bankAccountIdentificationTypeRequirement;
         }
 

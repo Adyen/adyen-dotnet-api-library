@@ -253,7 +253,7 @@ namespace Adyen.BalancePlatform.Models
             var amountNonZeroDecimalsRequirement = new AmountNonZeroDecimalsRequirement();
             if (description.IsSet)
                 amountNonZeroDecimalsRequirement.Description = description.Value;
-            amountNonZeroDecimalsRequirement.Type = type.Value!;
+            amountNonZeroDecimalsRequirement.Type = type.Value!.Value;
             return amountNonZeroDecimalsRequirement;
         }
 

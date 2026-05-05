@@ -431,8 +431,8 @@ namespace Adyen.BalancePlatform.Models
                 throw new ArgumentException("Property is required for class Condition.", nameof(value));
 
             var condition = new Condition();
-            condition.BalanceType = balanceType.Value!;
-            condition.ConditionType = conditionType.Value!;
+            condition.BalanceType = balanceType.Value!.Value;
+            condition.ConditionType = conditionType.Value!.Value;
             condition.Value = value.Value!.Value;
             return condition;
         }

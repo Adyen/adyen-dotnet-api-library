@@ -410,7 +410,7 @@ namespace Adyen.BalancePlatform.Models
             uSLocalAccountIdentification.RoutingNumber = routingNumber.Value!;
             if (accountType.IsSet)
                 uSLocalAccountIdentification.AccountType = accountType.Value;
-            uSLocalAccountIdentification.Type = type.Value!;
+            uSLocalAccountIdentification.Type = type.Value!.Value;
             return uSLocalAccountIdentification;
         }
 
