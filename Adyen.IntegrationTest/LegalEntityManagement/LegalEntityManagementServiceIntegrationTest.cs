@@ -54,21 +54,25 @@ namespace Adyen.IntegrationTest.LegalEntityManagement
         [TestMethod]
         public async Task Given_LegalEntityService_When_CreateLegalEntity_Returns_OK()
         {
-            var request = new LegalEntityInfoRequiredType(
-                type: LegalEntityInfoRequiredType.TypeEnum.Individual,
-                individual: new Individual(
-                    name: new Name(
-                        firstName: "John",
-                        lastName: "Visconti"
-                        ),
-                    residentialAddress: new Address(
-                        country: "IT",
-                        city: "Rome",
-                        postalCode: "23100",
-                        street: "123 Main St"
-                        )
-                    )
-                );
+            var request = new LegalEntityInfoRequiredType
+            {
+                Type = LegalEntityInfoRequiredType.TypeEnum.Individual,
+                Individual = new Individual
+                {
+                    Name = new Name
+                    {
+                        FirstName = "John",
+                        LastName = "Visconti"
+                    },
+                    ResidentialAddress = new Address
+                    {
+                        Country = "IT",
+                        City = "Rome",
+                        PostalCode = "23100",
+                        Street = "123 Main St"
+                    }
+                }
+            };
             ICreateLegalEntityApiResponse response = 
                 await _legalEntitiesService.CreateLegalEntityAsync(request);
             
