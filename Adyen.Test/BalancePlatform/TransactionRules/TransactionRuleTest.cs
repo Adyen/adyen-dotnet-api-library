@@ -34,23 +34,27 @@ namespace Adyen.Test.BalancePlatform.TransactionRules
         public async Task Given_TransactionRule_Serialize_Correctly()
         {
             // Arrange
-            var target = new TransactionRule(
-                description: "Allow only point-of-sale transactions",
-                reference: "YOUR_REFERENCE_4F7346",
-                entityKey: new TransactionRuleEntityKey(entityType: "paymentInstrument", entityReference: "PI3227C223222B5BPCMFXD2XG"),
-                status: TransactionRule.StatusEnum.Active,
-                interval: new TransactionRuleInterval("perTransaction"),
-                ruleRestrictions: new TransactionRuleRestrictions(
-                    processingTypes: new ProcessingTypesRestriction(
-                        operation: "noneMatch",
-                        value: new List<ProcessingTypesRestriction.ValueEnum>
+            var target = new TransactionRule
+            {
+                Description = "Allow only point-of-sale transactions",
+                Reference = "YOUR_REFERENCE_4F7346",
+                EntityKey = new TransactionRuleEntityKey { EntityType = "paymentInstrument", EntityReference = "PI3227C223222B5BPCMFXD2XG" },
+                Status = TransactionRule.StatusEnum.Active,
+                Interval = new TransactionRuleInterval { Type = TransactionRuleInterval.TypeEnum.PerTransaction },
+                RuleRestrictions = new TransactionRuleRestrictions
+                {
+                    ProcessingTypes = new ProcessingTypesRestriction
+                    {
+                        Operation = "noneMatch",
+                        Value = new List<ProcessingTypesRestriction.ValueEnum>
                         {
-                            ProcessingTypesRestriction.ValueEnum.Pos, 
+                            ProcessingTypesRestriction.ValueEnum.Pos,
                             ProcessingTypesRestriction.ValueEnum.Ecommerce
-                        })
-                    ),
-                type: "blockList"
-            );
+                        }
+                    }
+                },
+                Type = TransactionRule.TypeEnum.BlockList
+            };
             
             // Act
             string result = JsonSerializer.Serialize(target, _jsonSerializerOptionsProvider.Options);

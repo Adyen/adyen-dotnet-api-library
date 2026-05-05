@@ -57,12 +57,13 @@ namespace Adyen.Test.BalancePlatform.BalanceAccountValidation
         public void Given_Serialize_When_BankAccountIdentification_Is_BrLocal()
         {
             // Arrange
-            BRLocalAccountIdentification brLocalAccountIdentification = new BRLocalAccountIdentification(
-                accountNumber: "12345",
-                bankCode: "123",
-                branchNumber: "6789",
-                type: BRLocalAccountIdentification.TypeEnum.BrLocal
-            );
+            BRLocalAccountIdentification brLocalAccountIdentification = new BRLocalAccountIdentification
+            {
+                AccountNumber = "12345",
+                BankCode = "123",
+                BranchNumber = "6789",
+                Type = BRLocalAccountIdentification.TypeEnum.BrLocal
+            };
             
             // Act
             string target = JsonSerializer.Serialize(brLocalAccountIdentification, _jsonSerializerOptionsProvider.Options);
@@ -79,10 +80,11 @@ namespace Adyen.Test.BalancePlatform.BalanceAccountValidation
         public void Given_Serialize_When_IbanAccountIdentification_Is_Provided()
         {
             // Arrange
-            IbanAccountIdentification ibanAccountIdentification = new IbanAccountIdentification(
-                iban: "NL12345",
-                type: IbanAccountIdentification.TypeEnum.Iban
-            );
+            IbanAccountIdentification ibanAccountIdentification = new IbanAccountIdentification
+            {
+                Iban = "NL12345",
+                Type = IbanAccountIdentification.TypeEnum.Iban
+            };
             
             // Act
             string target = JsonSerializer.Serialize(ibanAccountIdentification, _jsonSerializerOptionsProvider.Options);
@@ -99,9 +101,10 @@ namespace Adyen.Test.BalancePlatform.BalanceAccountValidation
         public void Given_Serialize_When_IbanAccountIdentification_Is_Provided_Without_Type()
         {
             // Arrange
-            IbanAccountIdentification ibanAccountIdentification = new IbanAccountIdentification(
-                iban: "NL12345"
-            );
+            IbanAccountIdentification ibanAccountIdentification = new IbanAccountIdentification
+            {
+                Iban = "NL12345"
+            };
             
             Assert.IsNotNull(ibanAccountIdentification.Iban);
             Assert.IsNull(ibanAccountIdentification.Type);

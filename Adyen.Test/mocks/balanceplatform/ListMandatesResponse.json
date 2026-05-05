@@ -1,0 +1,28 @@
+{
+  "link": {
+    "self": {
+      "href": "https://balanceplatform-api-test.adyen.com/bcl/v2/mandates"
+    }
+  },
+  "mandates": [
+    {
+      "id": "MNDT7QXPLKT9R333640TX334709E",
+      "type": "bacs",
+      "balanceAccountId": "BA43EKD334339T6N8X655DW77",
+      "paymentInstrumentId": "PI43EKK334339T6N8X65688CS",
+      "status": "approved",
+      "counterparty": {
+        "accountHolder": {
+          "fullName": "Example Merchant Ltd"
+        },
+        "accountIdentification": {
+          "type": "UKLocalMandateAccountIdentification",
+          "accountNumber": "12345678",
+          "sortCode": "123456"
+        }
+      },
+      "createdAt": "2026-02-23T13:04:15.683Z",
+      "updatedAt": "2026-02-23T13:04:15.683Z"
+    }
+  ]
+}
