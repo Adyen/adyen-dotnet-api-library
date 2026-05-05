@@ -1,8 +1,8 @@
 {
   "service": "acswebhooks",
   "project": "dotnet",
-  "generatedAt": "2026-05-05T10:37:07Z",
+  "generatedAt": "2026-05-05T13:56:35Z",
   "openapiCommitSha": "7824ebf60ac8c780120e550d6495a8f02e409859",
   "automationCommitSha": "4c065f4314ebb286f05dc38fd80f19058281c63c",
-  "libraryCommitSha": "c15c011ea24a82381fd28e9d4305b4e6b3ae8a8b"
+  "libraryCommitSha": "fd97d74e6398627e88ecedb1e38998fec2a44c61"
 }

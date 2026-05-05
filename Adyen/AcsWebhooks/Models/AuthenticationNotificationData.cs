@@ -331,7 +331,7 @@ namespace Adyen.AcsWebhooks.Models
             authenticationNotificationData.Id = id.Value!;
             authenticationNotificationData.PaymentInstrumentId = paymentInstrumentId.Value!;
             authenticationNotificationData.Purchase = purchase.Value!;
-            authenticationNotificationData.Status = status.Value!.Value!;
+            authenticationNotificationData.Status = status.Value!;
             if (balancePlatform.IsSet)
                 authenticationNotificationData.BalancePlatform = balancePlatform.Value;
             return authenticationNotificationData;

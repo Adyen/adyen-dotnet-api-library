@@ -133,7 +133,7 @@ namespace Adyen.AcsWebhooks.Models
 
             var amount = new Amount();
             amount.Currency = currency.Value!;
-            amount.Value = value.Value!.Value!;
+            amount.Value = value.Value!.Value;
             return amount;
         }
 

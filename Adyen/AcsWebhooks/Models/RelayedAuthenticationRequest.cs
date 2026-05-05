@@ -338,7 +338,7 @@ namespace Adyen.AcsWebhooks.Models
             relayedAuthenticationRequest.Id = id.Value!;
             relayedAuthenticationRequest.PaymentInstrumentId = paymentInstrumentId.Value!;
             relayedAuthenticationRequest.Purchase = purchase.Value!;
-            relayedAuthenticationRequest.Type = type.Value!.Value!;
+            relayedAuthenticationRequest.Type = type.Value!;
             if (threeDSRequestorAppURL.IsSet)
                 relayedAuthenticationRequest.ThreeDSRequestorAppURL = threeDSRequestorAppURL.Value;
             if (timestamp.IsSet)

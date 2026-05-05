@@ -37,7 +37,6 @@ namespace Adyen.AcsWebhooks.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceError" /> class.
         /// </summary>
-
         public ServiceError()
         {
             OnCreated();

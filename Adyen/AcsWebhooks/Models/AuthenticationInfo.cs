@@ -1666,16 +1666,16 @@ namespace Adyen.AcsWebhooks.Models
 
             var authenticationInfo = new AuthenticationInfo();
             authenticationInfo.AcsTransId = acsTransId.Value!;
-            authenticationInfo.ChallengeIndicator = challengeIndicator.Value!.Value!;
-            authenticationInfo.CreatedAt = createdAt.Value!.Value!;
-            authenticationInfo.DeviceChannel = deviceChannel.Value!.Value!;
+            authenticationInfo.ChallengeIndicator = challengeIndicator.Value!;
+            authenticationInfo.CreatedAt = createdAt.Value!.Value;
+            authenticationInfo.DeviceChannel = deviceChannel.Value!;
             authenticationInfo.DsTransID = dsTransID.Value!;
-            authenticationInfo.InPSD2Scope = inPSD2Scope.Value!.Value!;
-            authenticationInfo.MessageCategory = messageCategory.Value!.Value!;
+            authenticationInfo.InPSD2Scope = inPSD2Scope.Value!.Value;
+            authenticationInfo.MessageCategory = messageCategory.Value!;
             authenticationInfo.MessageVersion = messageVersion.Value!;
             authenticationInfo.ThreeDSServerTransID = threeDSServerTransID.Value!;
-            authenticationInfo.TransStatus = transStatus.Value!.Value!;
-            authenticationInfo.Type = type.Value!.Value!;
+            authenticationInfo.TransStatus = transStatus.Value!;
+            authenticationInfo.Type = type.Value!;
             if (challenge.IsSet)
                 authenticationInfo.Challenge = challenge.Value;
             if (exemptionIndicator.IsSet)
