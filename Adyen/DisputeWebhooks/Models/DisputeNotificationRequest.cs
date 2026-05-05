@@ -256,7 +256,7 @@ namespace Adyen.DisputeWebhooks.Models
 
             var disputeNotificationRequest = new DisputeNotificationRequest();
             disputeNotificationRequest.Data = data.Value!;
-            disputeNotificationRequest.Type = type.Value!;
+            disputeNotificationRequest.Type = type.Value!.Value;
             return disputeNotificationRequest;
         }
 
