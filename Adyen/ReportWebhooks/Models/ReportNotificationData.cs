@@ -37,32 +37,9 @@ namespace Adyen.ReportWebhooks.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ReportNotificationData" /> class.
         /// </summary>
-        /// <param name="downloadUrl">The URL at which you can download the report. To download, you must authenticate your GET request with your [API credentials](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/overview).</param>
-        /// <param name="fileName">The filename of the report.</param>
-        /// <param name="reportType">The type of report. Possible values:  - &#x60;balanceplatform_accounting_interactive_report&#x60; - &#x60;balanceplatform_accounting_report&#x60; - &#x60;balanceplatform_balance_report&#x60; - &#x60;balanceplatform_fee_report&#x60; - &#x60;balanceplatform_payment_instrument_report&#x60; - &#x60;balanceplatform_payout_report&#x60; - &#x60;balanceplatform_statement_report&#x60;  </param>
-        /// <param name="accountHolder">accountHolder</param>
-        /// <param name="balanceAccount">balanceAccount</param>
-        /// <param name="balancePlatform">The unique identifier of the balance platform.</param>
-        /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.</param>
-        /// <param name="id">The ID of the resource.</param>
-        public ReportNotificationData(string downloadUrl, string fileName, string reportType, Option<ResourceReference?> accountHolder = default, Option<ResourceReference?> balanceAccount = default, Option<string?> balancePlatform = default, Option<DateTimeOffset?> creationDate = default, Option<string?> id = default)
-        {
-            DownloadUrl = downloadUrl;
-            FileName = fileName;
-            ReportType = reportType;
-            _AccountHolderOption = accountHolder;
-            _BalanceAccountOption = balanceAccount;
-            _BalancePlatformOption = balancePlatform;
-            _CreationDateOption = creationDate;
-            _IdOption = id;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public ReportNotificationData()
         {
+            OnCreated();
         }
 
         partial void OnCreated();
@@ -267,7 +244,21 @@ namespace Adyen.ReportWebhooks.Models
             if (!reportType.IsSet)
                 throw new ArgumentException("Property is required for class ReportNotificationData.", nameof(reportType));
 
-            return new ReportNotificationData(downloadUrl.Value!, fileName.Value!, reportType.Value!, accountHolder, balanceAccount, balancePlatform, creationDate, id);
+            var reportNotificationData = new ReportNotificationData();
+            reportNotificationData.DownloadUrl = downloadUrl.Value!;
+            reportNotificationData.FileName = fileName.Value!;
+            reportNotificationData.ReportType = reportType.Value!;
+            if (accountHolder.IsSet)
+                reportNotificationData.AccountHolder = accountHolder.Value;
+            if (balanceAccount.IsSet)
+                reportNotificationData.BalanceAccount = balanceAccount.Value;
+            if (balancePlatform.IsSet)
+                reportNotificationData.BalancePlatform = balancePlatform.Value;
+            if (creationDate.IsSet)
+                reportNotificationData.CreationDate = creationDate.Value;
+            if (id.IsSet)
+                reportNotificationData.Id = id.Value;
+            return reportNotificationData;
         }
 
         /// <summary>

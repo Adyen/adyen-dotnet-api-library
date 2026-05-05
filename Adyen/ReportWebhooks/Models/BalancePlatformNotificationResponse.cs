@@ -37,18 +37,9 @@ namespace Adyen.ReportWebhooks.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="BalancePlatformNotificationResponse" /> class.
         /// </summary>
-        /// <param name="notificationResponse">Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks/#accept-webhooks).</param>
-        public BalancePlatformNotificationResponse(Option<string?> notificationResponse = default)
-        {
-            _NotificationResponseOption = notificationResponse;
-            OnCreated();
-        }
-        
-        /// <summary>
-        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
-        /// </summary>
         public BalancePlatformNotificationResponse()
         {
+            OnCreated();
         }
 
         partial void OnCreated();
@@ -129,8 +120,10 @@ namespace Adyen.ReportWebhooks.Models
                 }
             }
             
-
-            return new BalancePlatformNotificationResponse(notificationResponse);
+            var balancePlatformNotificationResponse = new BalancePlatformNotificationResponse();
+            if (notificationResponse.IsSet)
+                balancePlatformNotificationResponse.NotificationResponse = notificationResponse.Value;
+            return balancePlatformNotificationResponse;
         }
 
         /// <summary>
