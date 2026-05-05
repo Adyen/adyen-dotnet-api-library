@@ -484,7 +484,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
             card.Brand = brand.Value!;
             card.BrandVariant = brandVariant.Value!;
             card.CardholderName = cardholderName.Value!;
-            card.FormFactor = formFactor.Value!;
+            card.FormFactor = formFactor.Value!.Value;
             if (authentication.IsSet)
                 card.Authentication = authentication.Value;
             if (bin.IsSet)
