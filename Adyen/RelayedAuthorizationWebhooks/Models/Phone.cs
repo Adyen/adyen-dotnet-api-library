@@ -257,7 +257,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
 
             var phone = new Phone();
             phone.Number = number.Value!;
-            phone.Type = type.Value!;
+            phone.Type = type.Value!.Value;
             return phone;
         }
 
