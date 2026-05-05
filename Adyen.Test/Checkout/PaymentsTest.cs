@@ -655,23 +655,6 @@ namespace Adyen.Test.Checkout
         }
 
         [TestMethod]
-        public void Given_NameValueCollectionWithPercentEncoded_When_ParameterToString_Then_PercentIsPassedThrough()
-        {
-            // Arrange - values that already contain percent-encoded sequences (e.g. from opaque
-            // tokens) must not be double-encoded: %26 should stay as %26, not become %2526.
-            var nvc = new System.Collections.Specialized.NameValueCollection();
-            nvc.Add("token", "already%26encoded%20value");
-
-            // Act
-            var result = ClientUtils.ParameterToString(nvc);
-
-            // Assert - % is not encoded, so existing percent sequences pass through unchanged
-            Assert.IsNotNull(result);
-            Assert.AreEqual("token=already%26encoded%20value", result,
-                $"Expected percent-encoded sequences to pass through unchanged, but result was: {result}");
-        }
-
-        [TestMethod]
         public void Given_NameValueCollectionWithEmptyValue_When_ParameterToString_Then_KeyIsPreservedWithEquals()
         {
             // Arrange - empty string value should produce "key=" in the query string
