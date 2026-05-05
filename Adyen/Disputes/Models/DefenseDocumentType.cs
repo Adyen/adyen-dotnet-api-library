@@ -147,7 +147,7 @@ namespace Adyen.Disputes.Models
                 throw new ArgumentException("Property is required for class DefenseDocumentType.", nameof(requirementLevel));
 
             var defenseDocumentType = new DefenseDocumentType();
-            defenseDocumentType.Available = available.Value!.Value!;
+            defenseDocumentType.Available = available.Value!.Value;
             defenseDocumentType.DefenseDocumentTypeCode = defenseDocumentTypeCode.Value!;
             defenseDocumentType.RequirementLevel = requirementLevel.Value!;
             return defenseDocumentType;
