@@ -327,7 +327,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class CheckoutDelegatedAuthenticationAction.", nameof(type));
 
             var checkoutDelegatedAuthenticationAction = new CheckoutDelegatedAuthenticationAction();
-            checkoutDelegatedAuthenticationAction.Type = type.Value!.Value!;
+            checkoutDelegatedAuthenticationAction.Type = type.Value!;
             if (authorisationToken.IsSet)
                 checkoutDelegatedAuthenticationAction.AuthorisationToken = authorisationToken.Value;
             if (paymentData.IsSet)

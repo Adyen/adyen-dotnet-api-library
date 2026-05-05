@@ -389,7 +389,7 @@ namespace Adyen.Checkout.Models
             paymentCaptureResponse.MerchantAccount = merchantAccount.Value!;
             paymentCaptureResponse.PaymentPspReference = paymentPspReference.Value!;
             paymentCaptureResponse.PspReference = pspReference.Value!;
-            paymentCaptureResponse.Status = status.Value!.Value!;
+            paymentCaptureResponse.Status = status.Value!;
             if (lineItems.IsSet)
                 paymentCaptureResponse.LineItems = lineItems.Value;
             if (platformChargebackLogic.IsSet)

@@ -334,7 +334,7 @@ namespace Adyen.Checkout.Models
             var storedPaymentMethodRequest = new StoredPaymentMethodRequest();
             storedPaymentMethodRequest.MerchantAccount = merchantAccount.Value!;
             storedPaymentMethodRequest.PaymentMethod = paymentMethod.Value!;
-            storedPaymentMethodRequest.RecurringProcessingModel = recurringProcessingModel.Value!.Value!;
+            storedPaymentMethodRequest.RecurringProcessingModel = recurringProcessingModel.Value!;
             storedPaymentMethodRequest.ShopperReference = shopperReference.Value!;
             if (shopperEmail.IsSet)
                 storedPaymentMethodRequest.ShopperEmail = shopperEmail.Value;

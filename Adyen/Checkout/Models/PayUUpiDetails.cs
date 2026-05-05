@@ -358,7 +358,7 @@ namespace Adyen.Checkout.Models
                 payUUpiDetails.ShopperNotificationReference = shopperNotificationReference.Value;
             if (storedPaymentMethodId.IsSet)
                 payUUpiDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            payUUpiDetails.Type = type.Value!.Value!;
+            payUUpiDetails.Type = type.Value!;
             if (virtualPaymentAddress.IsSet)
                 payUUpiDetails.VirtualPaymentAddress = virtualPaymentAddress.Value;
             return payUUpiDetails;

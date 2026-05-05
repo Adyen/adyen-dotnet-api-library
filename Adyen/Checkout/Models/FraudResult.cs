@@ -136,7 +136,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class FraudResult.", nameof(accountScore));
 
             var fraudResult = new FraudResult();
-            fraudResult.AccountScore = accountScore.Value!.Value!;
+            fraudResult.AccountScore = accountScore.Value!.Value;
             if (results.IsSet)
                 fraudResult.Results = results.Value;
             return fraudResult;

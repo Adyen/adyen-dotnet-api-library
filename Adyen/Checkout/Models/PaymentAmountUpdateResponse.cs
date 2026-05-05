@@ -501,7 +501,7 @@ namespace Adyen.Checkout.Models
             paymentAmountUpdateResponse.PaymentPspReference = paymentPspReference.Value!;
             paymentAmountUpdateResponse.PspReference = pspReference.Value!;
             paymentAmountUpdateResponse.Reference = reference.Value!;
-            paymentAmountUpdateResponse.Status = status.Value!.Value!;
+            paymentAmountUpdateResponse.Status = status.Value!;
             if (industryUsage.IsSet)
                 paymentAmountUpdateResponse.IndustryUsage = industryUsage.Value;
             if (lineItems.IsSet)

@@ -408,7 +408,7 @@ namespace Adyen.Checkout.Models
                 afterpayDetails.SdkData = sdkData.Value;
             if (storedPaymentMethodId.IsSet)
                 afterpayDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            afterpayDetails.Type = type.Value!.Value!;
+            afterpayDetails.Type = type.Value!;
             return afterpayDetails;
         }
 

@@ -560,7 +560,7 @@ namespace Adyen.Checkout.Models
             paymentRefundResponse.MerchantAccount = merchantAccount.Value!;
             paymentRefundResponse.PaymentPspReference = paymentPspReference.Value!;
             paymentRefundResponse.PspReference = pspReference.Value!;
-            paymentRefundResponse.Status = status.Value!.Value!;
+            paymentRefundResponse.Status = status.Value!;
             if (capturePspReference.IsSet)
                 paymentRefundResponse.CapturePspReference = capturePspReference.Value;
             if (lineItems.IsSet)

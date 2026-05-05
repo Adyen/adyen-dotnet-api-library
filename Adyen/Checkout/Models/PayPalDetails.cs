@@ -556,7 +556,7 @@ namespace Adyen.Checkout.Models
                 payPalDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
             if (subtype.IsSet)
                 payPalDetails.Subtype = subtype.Value;
-            payPalDetails.Type = type.Value!.Value!;
+            payPalDetails.Type = type.Value!;
             return payPalDetails;
         }
 

@@ -2095,7 +2095,7 @@ namespace Adyen.Checkout.Models
 
             var createCheckoutSessionResponse = new CreateCheckoutSessionResponse();
             createCheckoutSessionResponse.Amount = amount.Value!;
-            createCheckoutSessionResponse.ExpiresAt = expiresAt.Value!.Value!;
+            createCheckoutSessionResponse.ExpiresAt = expiresAt.Value!.Value;
             createCheckoutSessionResponse.Id = id.Value!;
             createCheckoutSessionResponse.MerchantAccount = merchantAccount.Value!;
             createCheckoutSessionResponse.Reference = reference.Value!;

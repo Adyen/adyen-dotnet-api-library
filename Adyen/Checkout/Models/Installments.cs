@@ -351,7 +351,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class Installments.", nameof(value));
 
             var installments = new Installments();
-            installments.Value = value.Value!.Value!;
+            installments.Value = value.Value!.Value;
             if (extra.IsSet)
                 installments.Extra = extra.Value;
             if (plan.IsSet)

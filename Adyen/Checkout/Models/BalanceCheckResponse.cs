@@ -358,7 +358,7 @@ namespace Adyen.Checkout.Models
 
             var balanceCheckResponse = new BalanceCheckResponse();
             balanceCheckResponse.Balance = balance.Value!;
-            balanceCheckResponse.ResultCode = resultCode.Value!.Value!;
+            balanceCheckResponse.ResultCode = resultCode.Value!;
             if (additionalData.IsSet)
                 balanceCheckResponse.AdditionalData = additionalData.Value;
             if (fraudResult.IsSet)

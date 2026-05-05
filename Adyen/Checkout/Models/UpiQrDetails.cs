@@ -360,7 +360,7 @@ namespace Adyen.Checkout.Models
                 upiQrDetails.ShopperNotificationReference = shopperNotificationReference.Value;
             if (storedPaymentMethodId.IsSet)
                 upiQrDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            upiQrDetails.Type = type.Value!.Value!;
+            upiQrDetails.Type = type.Value!;
             return upiQrDetails;
         }
 

@@ -317,7 +317,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class CheckoutSDKAction.", nameof(type));
 
             var checkoutSDKAction = new CheckoutSDKAction();
-            checkoutSDKAction.Type = type.Value!.Value!;
+            checkoutSDKAction.Type = type.Value!;
             if (paymentData.IsSet)
                 checkoutSDKAction.PaymentData = paymentData.Value;
             if (paymentMethodType.IsSet)
