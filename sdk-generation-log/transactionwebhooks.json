@@ -1,8 +1,8 @@
 {
   "service": "transactionwebhooks",
   "project": "dotnet",
-  "generatedAt": "2026-04-30T10:00:10Z",
-  "openapiCommitSha": "d24c59897bc66d049db5fbc0f4823efe59964e67",
-  "automationCommitSha": "4ad0c0c7e87bc0e5994a9a3350a991d0691350bb",
-  "libraryCommitSha": "58cf7ddd1ce25669b0591c0a37377e4d46d456ef"
+  "generatedAt": "2026-05-05T14:19:43Z",
+  "openapiCommitSha": "7824ebf60ac8c780120e550d6495a8f02e409859",
+  "automationCommitSha": "4c065f4314ebb286f05dc38fd80f19058281c63c",
+  "libraryCommitSha": "d47f540ff1bbc3fd4a8d1ebedbfe91505d316afd"
 }
