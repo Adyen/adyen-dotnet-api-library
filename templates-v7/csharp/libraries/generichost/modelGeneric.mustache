@@ -111,6 +111,9 @@
         {{#description}}
         /// <value>{{.}}</value>
         {{/description}}
+        {{#isReadOnly}}
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
+        {{/isReadOnly}}
         {{#example}}
         /* <example>{{.}}</example> */
         {{/example}}
@@ -139,6 +142,9 @@
         /// {{{description}}}{{^description}}<see cref="{{name}}"/>.{{/description}}
         /// </summary>{{#description}}
         /// <value>{{.}}</value>{{/description}}
+        {{#isReadOnly}}
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
+        {{/isReadOnly}}
         {{#example}}
         /* <example>{{.}}</example> */
         {{/example}}
@@ -156,6 +162,9 @@
         /// {{{description}}}{{^description}}<see cref="{{name}}"/>.{{/description}}.
         /// </summary>{{#description}}
         /// <value>{{.}}</value>{{/description}}
+        {{#isReadOnly}}
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
+        {{/isReadOnly}}
         {{#example}}
         /* <example>{{.}}</example> */
         {{/example}}
@@ -198,6 +207,9 @@
         /// {{{description}}}{{^description}}<see cref="{{name}}"/>.{{/description}}
         /// </summary>{{#description}}
         /// <value>{{.}}</value>{{/description}}
+        {{#isReadOnly}}
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
+        {{/isReadOnly}}
         {{#example}}
         /* <example>{{.}}</example> */
         {{/example}}
@@ -224,6 +236,9 @@
         /// {{description}}{{^description}}<see cref="{{name}}"/>.{{/description}}
         /// </summary>{{#description}}
         /// <value>{{{description}}}</value>{{/description}}
+        {{#isReadOnly}}
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
+        {{/isReadOnly}}
         {{#example}}
         /* <example>{{.}}</example> */
         {{/example}}

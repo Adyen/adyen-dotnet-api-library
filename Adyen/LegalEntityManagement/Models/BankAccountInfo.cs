@@ -112,6 +112,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// Identifies if the bank account was created through [instant bank verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote&#x3D;2023-05-08-hosted-onboarding).
         /// </summary>
         /// <value>Identifies if the bank account was created through [instant bank verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote=2023-05-08-hosted-onboarding).</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("trustedSource")]
         public bool? TrustedSource { get { return this._TrustedSourceOption; } set { this._TrustedSourceOption = new(value); } }
 
