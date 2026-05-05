@@ -331,7 +331,7 @@ namespace Adyen.Management.Models
 
             var terminalAssignment = new TerminalAssignment();
             terminalAssignment.CompanyId = companyId.Value!;
-            terminalAssignment.Status = status.Value!;
+            terminalAssignment.Status = status.Value!.Value;
             if (merchantId.IsSet)
                 terminalAssignment.MerchantId = merchantId.Value;
             if (reassignmentTarget.IsSet)

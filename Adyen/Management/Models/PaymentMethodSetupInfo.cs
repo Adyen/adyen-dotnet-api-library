@@ -2631,7 +2631,7 @@ namespace Adyen.Management.Models
                 throw new ArgumentException("Property is required for class PaymentMethodSetupInfo.", nameof(type));
 
             var paymentMethodSetupInfo = new PaymentMethodSetupInfo();
-            paymentMethodSetupInfo.Type = type.Value!;
+            paymentMethodSetupInfo.Type = type.Value!.Value;
             if (accel.IsSet)
                 paymentMethodSetupInfo.Accel = accel.Value;
             if (affirm.IsSet)

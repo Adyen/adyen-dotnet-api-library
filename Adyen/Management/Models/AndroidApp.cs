@@ -419,7 +419,7 @@ namespace Adyen.Management.Models
 
             var androidApp = new AndroidApp();
             androidApp.Id = id.Value!;
-            androidApp.Status = status.Value!;
+            androidApp.Status = status.Value!.Value;
             if (description.IsSet)
                 androidApp.Description = description.Value;
             if (errorCode.IsSet)

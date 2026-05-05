@@ -309,7 +309,7 @@ namespace Adyen.Management.Models
 
             var klarnaInfo = new KlarnaInfo();
             klarnaInfo.DisputeEmail = disputeEmail.Value!;
-            klarnaInfo.Region = region.Value!;
+            klarnaInfo.Region = region.Value!.Value;
             klarnaInfo.SupportEmail = supportEmail.Value!;
             if (autoCapture.IsSet)
                 klarnaInfo.AutoCapture = autoCapture.Value;

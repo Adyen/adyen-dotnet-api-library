@@ -745,7 +745,7 @@ namespace Adyen.Management.Models
 
             var createMerchantWebhookRequest = new CreateMerchantWebhookRequest();
             createMerchantWebhookRequest.Active = active.Value!.Value;
-            createMerchantWebhookRequest.CommunicationFormat = communicationFormat.Value!;
+            createMerchantWebhookRequest.CommunicationFormat = communicationFormat.Value!.Value;
             createMerchantWebhookRequest.Type = type.Value!;
             createMerchantWebhookRequest.Url = url.Value!;
             if (acceptsExpiredCertificate.IsSet)

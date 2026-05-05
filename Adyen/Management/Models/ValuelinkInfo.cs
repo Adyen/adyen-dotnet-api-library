@@ -295,7 +295,7 @@ namespace Adyen.Management.Models
 
             var valuelinkInfo = new ValuelinkInfo();
             valuelinkInfo.AuthorisationMid = authorisationMid.Value!;
-            valuelinkInfo.PinSupport = pinSupport.Value!;
+            valuelinkInfo.PinSupport = pinSupport.Value!.Value;
             if (submitterId.IsSet)
                 valuelinkInfo.SubmitterId = submitterId.Value;
             if (terminalId.IsSet)
