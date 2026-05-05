@@ -1,0 +1,13 @@
+{
+  "amount": {
+    "value": 50000,
+    "currency": "EUR"
+  },
+  "createdAt": "2022-01-24",
+  "fromMerchant": "MerchantAccount_NL",
+  "toMerchant": "MerchantAccount_DE",
+  "type": "unknown-type",
+  "reference": "Unique reference for the transfer",
+  "pspReference": "8816080397613514",
+  "status": "unknown-status"
+}

@@ -552,12 +552,12 @@ namespace Adyen.BalanceControl.Models
 
             var balanceTransferResponse = new BalanceTransferResponse();
             balanceTransferResponse.Amount = amount.Value!;
-            balanceTransferResponse.CreatedAt = createdAt.Value!.Value!;
+            balanceTransferResponse.CreatedAt = createdAt.Value!.Value;
             balanceTransferResponse.FromMerchant = fromMerchant.Value!;
             balanceTransferResponse.PspReference = pspReference.Value!;
-            balanceTransferResponse.Status = status.Value!.Value!;
+            balanceTransferResponse.Status = status.Value!;
             balanceTransferResponse.ToMerchant = toMerchant.Value!;
-            balanceTransferResponse.Type = type.Value!.Value!;
+            balanceTransferResponse.Type = type.Value!;
             if (description.IsSet)
                 balanceTransferResponse.Description = description.Value;
             if (reference.IsSet)
