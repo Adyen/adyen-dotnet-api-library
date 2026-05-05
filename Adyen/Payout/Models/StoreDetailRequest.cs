@@ -503,7 +503,7 @@ namespace Adyen.Payout.Models
 
             var storeDetailRequest = new StoreDetailRequest();
             storeDetailRequest.DateOfBirth = dateOfBirth.Value!.Value;
-            storeDetailRequest.EntityType = entityType.Value!;
+            storeDetailRequest.EntityType = entityType.Value!.Value;
             storeDetailRequest.MerchantAccount = merchantAccount.Value!;
             storeDetailRequest.Nationality = nationality.Value!;
             storeDetailRequest.Recurring = recurring.Value!;
