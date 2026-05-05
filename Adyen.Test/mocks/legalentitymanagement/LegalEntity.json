@@ -3,6 +3,8 @@
     "sendToTransferInstrument": {
       "allowed": false,
       "requested": true,
+      "allowedLevel": "medium",
+      "requestedLevel": "high",
       "transferInstruments": [
         {
           "allowed": false,
@@ -58,11 +60,23 @@
   },
   "type": "individual",
   "id": "LE322JV223222D5GG42KN6869",
+  "reference": "YOUR_REFERENCE",
   "transferInstruments": [
     {
       "id": "SE322KH223222F5GXZFNM3BGP",
       "accountIdentifier": "NL**ABNA******0123",
       "trustedSource": false
+    }
+  ],
+  "verificationDeadlines": [
+    {
+      "capabilities": [
+        "receivePayments"
+      ],
+      "entityIds": [
+        "LE322JV223222D5GG42KN6869"
+      ],
+      "expiresAt": "2024-06-01T00:00:00Z"
     }
   ]
 }
