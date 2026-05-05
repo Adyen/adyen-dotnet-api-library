@@ -269,7 +269,7 @@ namespace Adyen.LegalEntityManagement.Models
             ibanAccountIdentification.Iban = iban.Value!;
             if (bic.IsSet)
                 ibanAccountIdentification.Bic = bic.Value;
-            ibanAccountIdentification.Type = type.Value!;
+            ibanAccountIdentification.Type = type.Value!.Value;
             return ibanAccountIdentification;
         }
 

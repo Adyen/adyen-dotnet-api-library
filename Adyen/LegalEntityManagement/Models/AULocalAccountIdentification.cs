@@ -264,7 +264,7 @@ namespace Adyen.LegalEntityManagement.Models
             var aULocalAccountIdentification = new AULocalAccountIdentification();
             aULocalAccountIdentification.AccountNumber = accountNumber.Value!;
             aULocalAccountIdentification.BsbCode = bsbCode.Value!;
-            aULocalAccountIdentification.Type = type.Value!;
+            aULocalAccountIdentification.Type = type.Value!.Value;
             return aULocalAccountIdentification;
         }
 

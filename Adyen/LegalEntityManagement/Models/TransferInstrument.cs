@@ -345,7 +345,7 @@ namespace Adyen.LegalEntityManagement.Models
             transferInstrument.BankAccount = bankAccount.Value!;
             transferInstrument.Id = id.Value!;
             transferInstrument.LegalEntityId = legalEntityId.Value!;
-            transferInstrument.Type = type.Value!;
+            transferInstrument.Type = type.Value!.Value;
             if (capabilities.IsSet)
                 transferInstrument.Capabilities = capabilities.Value;
             if (documentDetails.IsSet)
