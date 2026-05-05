@@ -642,7 +642,7 @@ namespace Adyen.LegalEntityManagement.Models
 
             var document = new Document();
             document.Description = description.Value!;
-            document.Type = type.Value!.Value!;
+            document.Type = type.Value!;
             if (attachment.IsSet)
                 document.Attachment = attachment.Value;
             if (attachments.IsSet)

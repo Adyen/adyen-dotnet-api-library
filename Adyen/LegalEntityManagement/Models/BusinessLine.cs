@@ -410,7 +410,7 @@ namespace Adyen.LegalEntityManagement.Models
             businessLine.Id = id.Value!;
             businessLine.IndustryCode = industryCode.Value!;
             businessLine.LegalEntityId = legalEntityId.Value!;
-            businessLine.Service = service.Value!.Value!;
+            businessLine.Service = service.Value!;
             if (industryCodeDescription.IsSet)
                 businessLine.IndustryCodeDescription = industryCodeDescription.Value;
             if (problems.IsSet)

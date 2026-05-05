@@ -248,7 +248,7 @@ namespace Adyen.LegalEntityManagement.Models
 
             var nZLocalAccountIdentification = new NZLocalAccountIdentification();
             nZLocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            nZLocalAccountIdentification.Type = type.Value!.Value!;
+            nZLocalAccountIdentification.Type = type.Value!;
             return nZLocalAccountIdentification;
         }
 

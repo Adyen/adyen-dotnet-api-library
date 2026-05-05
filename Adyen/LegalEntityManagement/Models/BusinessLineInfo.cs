@@ -375,7 +375,7 @@ namespace Adyen.LegalEntityManagement.Models
             var businessLineInfo = new BusinessLineInfo();
             businessLineInfo.IndustryCode = industryCode.Value!;
             businessLineInfo.LegalEntityId = legalEntityId.Value!;
-            businessLineInfo.Service = service.Value!.Value!;
+            businessLineInfo.Service = service.Value!;
             if (industryCodeDescription.IsSet)
                 businessLineInfo.IndustryCodeDescription = industryCodeDescription.Value;
             if (salesChannels.IsSet)

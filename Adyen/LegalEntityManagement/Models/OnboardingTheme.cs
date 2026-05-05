@@ -195,7 +195,7 @@ namespace Adyen.LegalEntityManagement.Models
                 throw new ArgumentException("Property is required for class OnboardingTheme.", nameof(properties));
 
             var onboardingTheme = new OnboardingTheme();
-            onboardingTheme.CreatedAt = createdAt.Value!.Value!;
+            onboardingTheme.CreatedAt = createdAt.Value!.Value;
             onboardingTheme.Id = id.Value!;
             onboardingTheme.Properties = properties.Value!;
             if (description.IsSet)

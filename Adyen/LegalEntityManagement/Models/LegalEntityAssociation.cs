@@ -534,7 +534,7 @@ namespace Adyen.LegalEntityManagement.Models
 
             var legalEntityAssociation = new LegalEntityAssociation();
             legalEntityAssociation.LegalEntityId = legalEntityId.Value!;
-            legalEntityAssociation.Type = type.Value!.Value!;
+            legalEntityAssociation.Type = type.Value!;
             if (associatorId.IsSet)
                 legalEntityAssociation.AssociatorId = associatorId.Value;
             if (entityType.IsSet)

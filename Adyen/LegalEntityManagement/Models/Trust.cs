@@ -754,7 +754,7 @@ namespace Adyen.LegalEntityManagement.Models
             trust.CountryOfGoverningLaw = countryOfGoverningLaw.Value!;
             trust.Name = name.Value!;
             trust.RegisteredAddress = registeredAddress.Value!;
-            trust.Type = type.Value!.Value!;
+            trust.Type = type.Value!;
             if (dateOfIncorporation.IsSet)
                 trust.DateOfIncorporation = dateOfIncorporation.Value;
             if (description.IsSet)

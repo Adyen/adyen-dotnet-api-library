@@ -264,7 +264,7 @@ namespace Adyen.LegalEntityManagement.Models
             var dKLocalAccountIdentification = new DKLocalAccountIdentification();
             dKLocalAccountIdentification.AccountNumber = accountNumber.Value!;
             dKLocalAccountIdentification.BankCode = bankCode.Value!;
-            dKLocalAccountIdentification.Type = type.Value!.Value!;
+            dKLocalAccountIdentification.Type = type.Value!;
             return dKLocalAccountIdentification;
         }
 

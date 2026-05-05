@@ -248,7 +248,7 @@ namespace Adyen.LegalEntityManagement.Models
 
             var hULocalAccountIdentification = new HULocalAccountIdentification();
             hULocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            hULocalAccountIdentification.Type = type.Value!.Value!;
+            hULocalAccountIdentification.Type = type.Value!;
             return hULocalAccountIdentification;
         }
 

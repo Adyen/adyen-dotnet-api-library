@@ -272,7 +272,7 @@ namespace Adyen.LegalEntityManagement.Models
             var transferInstrumentInfo = new TransferInstrumentInfo();
             transferInstrumentInfo.BankAccount = bankAccount.Value!;
             transferInstrumentInfo.LegalEntityId = legalEntityId.Value!;
-            transferInstrumentInfo.Type = type.Value!.Value!;
+            transferInstrumentInfo.Type = type.Value!;
             return transferInstrumentInfo;
         }
 
