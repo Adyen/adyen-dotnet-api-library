@@ -24,7 +24,8 @@ namespace Adyen.Test.AcsWebhooks
         {
             var method = typeof(Adyen.AcsWebhooks.Client.ClientUtils)
                 .GetMethod("BuildQueryString", BindingFlags.NonPublic | BindingFlags.Static);
-            return (string)method!.Invoke(null, new object[] { parameters });
+            Assert.IsNotNull(method, "BuildQueryString method not found — it may have been renamed or removed.");
+            return (string)method.Invoke(null, new object[] { parameters });
         }
 
         private static NameValueCollection Nvc(params (string key, string value)[] pairs)
@@ -112,6 +113,18 @@ namespace Adyen.Test.AcsWebhooks
         {
             // key contains "&" — must be fully escaped via Uri.EscapeDataString
             Assert.AreEqual("a%26b=1", Invoke(Nvc(("a&b", "1"))));
+        }
+
+        [TestMethod]
+        public void EmptyCollection_ReturnsEmptyString()
+        {
+            Assert.AreEqual("", Invoke(new NameValueCollection()));
+        }
+
+        [TestMethod]
+        public void EmptyValue_RendersKeyWithNoValue()
+        {
+            Assert.AreEqual("foo=", Invoke(Nvc(("foo", ""))));
         }
     }
 }
