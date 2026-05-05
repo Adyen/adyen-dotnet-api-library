@@ -273,7 +273,7 @@ namespace Adyen.TransferWebhooks.Models
                 merchantPurchaseData.Airline = airline.Value;
             if (lodging.IsSet)
                 merchantPurchaseData.Lodging = lodging.Value;
-            merchantPurchaseData.Type = type.Value!;
+            merchantPurchaseData.Type = type.Value!.Value;
             return merchantPurchaseData;
         }
 

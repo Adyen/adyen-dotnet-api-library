@@ -248,7 +248,7 @@ namespace Adyen.TransferWebhooks.Models
 
             var pLLocalAccountIdentification = new PLLocalAccountIdentification();
             pLLocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            pLLocalAccountIdentification.Type = type.Value!;
+            pLLocalAccountIdentification.Type = type.Value!.Value;
             return pLLocalAccountIdentification;
         }
 

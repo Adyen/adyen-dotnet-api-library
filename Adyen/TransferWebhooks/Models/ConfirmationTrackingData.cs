@@ -371,8 +371,8 @@ namespace Adyen.TransferWebhooks.Models
                 throw new ArgumentException("Property is required for class ConfirmationTrackingData.", nameof(type));
 
             var confirmationTrackingData = new ConfirmationTrackingData();
-            confirmationTrackingData.Status = status.Value!;
-            confirmationTrackingData.Type = type.Value!;
+            confirmationTrackingData.Status = status.Value!.Value;
+            confirmationTrackingData.Type = type.Value!.Value;
             return confirmationTrackingData;
         }
 
