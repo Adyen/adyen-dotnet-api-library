@@ -357,7 +357,7 @@ namespace Adyen.Payment.Models
 
             var modificationResult = new ModificationResult();
             modificationResult.PspReference = pspReference.Value!;
-            modificationResult.Response = response.Value!;
+            modificationResult.Response = response.Value!.Value;
             if (additionalData.IsSet)
                 modificationResult.AdditionalData = additionalData.Value;
             return modificationResult;
