@@ -1,8 +1,8 @@
 {
   "service": "disputes",
   "project": "dotnet",
-  "generatedAt": "2026-05-05T11:16:37Z",
+  "generatedAt": "2026-05-05T15:07:41Z",
   "openapiCommitSha": "7824ebf60ac8c780120e550d6495a8f02e409859",
-  "automationCommitSha": "4c065f4314ebb286f05dc38fd80f19058281c63c",
-  "libraryCommitSha": "af4fdd5442330b99145c6349827469d96af57cd6"
+  "automationCommitSha": "0b7ef4e0ed6a7963ab005efe76eab748250edafc",
+  "libraryCommitSha": "414fdea106ba87981d10a8baf12248a36fa7e91f"
 }

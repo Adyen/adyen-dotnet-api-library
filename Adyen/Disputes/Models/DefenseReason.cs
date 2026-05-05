@@ -152,7 +152,7 @@ namespace Adyen.Disputes.Models
 
             var defenseReason = new DefenseReason();
             defenseReason.DefenseReasonCode = defenseReasonCode.Value!;
-            defenseReason.Satisfied = satisfied.Value!.Value!;
+            defenseReason.Satisfied = satisfied.Value!.Value;
             if (defenseDocumentTypes.IsSet)
                 defenseReason.DefenseDocumentTypes = defenseDocumentTypes.Value;
             return defenseReason;
