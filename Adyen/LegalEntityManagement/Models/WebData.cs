@@ -63,14 +63,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _WebAddressIdOption { get; }
+        public Option<string?> _WebAddressIdOption { get; private set; }
 
         /// <summary>
         /// The unique identifier of the web address.
         /// </summary>
         /// <value>The unique identifier of the web address.</value>
         [JsonPropertyName("webAddressId")]
-        public string? WebAddressId { get { return this._WebAddressIdOption; } }
+        public string? WebAddressId { get { return this._WebAddressIdOption; } set { this._WebAddressIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -209,14 +209,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _IndustryCodeDescriptionOption { get; }
+        public Option<string?> _IndustryCodeDescriptionOption { get; private set; }
 
         /// <summary>
         /// The description of the industry code.
         /// </summary>
         /// <value>The description of the industry code.</value>
         [JsonPropertyName("industryCodeDescription")]
-        public string? IndustryCodeDescription { get { return this._IndustryCodeDescriptionOption; } }
+        public string? IndustryCodeDescription { get { return this._IndustryCodeDescriptionOption; } set { this._IndustryCodeDescriptionOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Problems"/> will be populated.
