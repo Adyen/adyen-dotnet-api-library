@@ -1,0 +1,17 @@
+{
+  "data": [
+    {
+      "card": {
+        "status": "shipped"
+      },
+      "cardOrderItemId": "UNIQUE_CARD_ORDER_ITEM_ID",
+      "paymentInstrumentId": "UNIQUE_PAYMENT_INSTRUMENT_ID",
+      "pin": {
+        "status": "produced"
+      },
+      "shippingMethod": "Cardholder Post Basic National"
+    }
+  ],
+  "hasNext": false,
+  "hasPrevious": false
+}

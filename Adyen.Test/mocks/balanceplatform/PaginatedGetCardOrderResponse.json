@@ -1,0 +1,15 @@
+{
+  "cardOrders": [
+    {
+      "beginDate": "2022-12-05T00:00:00+01:00",
+      "cardManufacturingProfileId": "UNIQUE_CARD_MANUFACTURER_PROFILE_ID",
+      "endDate": "2022-12-06T00:00:00+01:00",
+      "id": "UNIQUE_CARD_ORDER_ID",
+      "lockDate": "2023-04-14T16:43:02+02:00",
+      "serviceCenter": "IDEMIA Sittard",
+      "status": "closed"
+    }
+  ],
+  "hasNext": true,
+  "hasPrevious": false
+}
