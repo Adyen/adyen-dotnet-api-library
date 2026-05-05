@@ -287,7 +287,7 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
             var negativeBalanceCompensationWarningNotificationRequest = new NegativeBalanceCompensationWarningNotificationRequest();
             negativeBalanceCompensationWarningNotificationRequest.Data = data.Value!;
             negativeBalanceCompensationWarningNotificationRequest.Environment = environment.Value!;
-            negativeBalanceCompensationWarningNotificationRequest.Type = type.Value!;
+            negativeBalanceCompensationWarningNotificationRequest.Type = type.Value!.Value;
             if (timestamp.IsSet)
                 negativeBalanceCompensationWarningNotificationRequest.Timestamp = timestamp.Value;
             return negativeBalanceCompensationWarningNotificationRequest;
