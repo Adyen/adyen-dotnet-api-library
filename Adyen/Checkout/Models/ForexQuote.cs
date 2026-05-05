@@ -323,8 +323,8 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class ForexQuote.", nameof(validTill));
 
             var forexQuote = new ForexQuote();
-            forexQuote.BasePoints = basePoints.Value!.Value!;
-            forexQuote.ValidTill = validTill.Value!.Value!;
+            forexQuote.BasePoints = basePoints.Value!.Value;
+            forexQuote.ValidTill = validTill.Value!.Value;
             if (account.IsSet)
                 forexQuote.Account = account.Value;
             if (accountType.IsSet)

@@ -456,7 +456,7 @@ namespace Adyen.Checkout.Models
                 klarnaDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
             if (subtype.IsSet)
                 klarnaDetails.Subtype = subtype.Value;
-            klarnaDetails.Type = type.Value!.Value!;
+            klarnaDetails.Type = type.Value!;
             return klarnaDetails;
         }
 

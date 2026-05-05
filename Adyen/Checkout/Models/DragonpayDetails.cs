@@ -332,7 +332,7 @@ namespace Adyen.Checkout.Models
 
             var dragonpayDetails = new DragonpayDetails();
             dragonpayDetails.Issuer = issuer.Value!;
-            dragonpayDetails.Type = type.Value!.Value!;
+            dragonpayDetails.Type = type.Value!;
             if (checkoutAttemptId.IsSet)
                 dragonpayDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (sdkData.IsSet)

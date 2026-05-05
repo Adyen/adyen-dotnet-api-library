@@ -346,7 +346,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class CheckoutThreeDS2Action.", nameof(type));
 
             var checkoutThreeDS2Action = new CheckoutThreeDS2Action();
-            checkoutThreeDS2Action.Type = type.Value!.Value!;
+            checkoutThreeDS2Action.Type = type.Value!;
             if (authorisationToken.IsSet)
                 checkoutThreeDS2Action.AuthorisationToken = authorisationToken.Value;
             if (paymentData.IsSet)

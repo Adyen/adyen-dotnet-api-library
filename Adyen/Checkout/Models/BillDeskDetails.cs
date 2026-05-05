@@ -295,7 +295,7 @@ namespace Adyen.Checkout.Models
 
             var billDeskDetails = new BillDeskDetails();
             billDeskDetails.Issuer = issuer.Value!;
-            billDeskDetails.Type = type.Value!.Value!;
+            billDeskDetails.Type = type.Value!;
             if (checkoutAttemptId.IsSet)
                 billDeskDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (sdkData.IsSet)

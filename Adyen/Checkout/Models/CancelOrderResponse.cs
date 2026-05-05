@@ -248,7 +248,7 @@ namespace Adyen.Checkout.Models
 
             var cancelOrderResponse = new CancelOrderResponse();
             cancelOrderResponse.PspReference = pspReference.Value!;
-            cancelOrderResponse.ResultCode = resultCode.Value!.Value!;
+            cancelOrderResponse.ResultCode = resultCode.Value!;
             return cancelOrderResponse;
         }
 

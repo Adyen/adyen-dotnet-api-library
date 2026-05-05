@@ -117,7 +117,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class Surcharge.", nameof(value));
 
             var surcharge = new Surcharge();
-            surcharge.Value = value.Value!.Value!;
+            surcharge.Value = value.Value!.Value;
             return surcharge;
         }
 

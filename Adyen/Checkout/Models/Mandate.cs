@@ -698,7 +698,7 @@ namespace Adyen.Checkout.Models
             var mandate = new Mandate();
             mandate.Amount = amount.Value!;
             mandate.EndsAt = endsAt.Value!;
-            mandate.Frequency = frequency.Value!.Value!;
+            mandate.Frequency = frequency.Value!;
             if (amountRule.IsSet)
                 mandate.AmountRule = amountRule.Value;
             if (billingAttemptsRule.IsSet)

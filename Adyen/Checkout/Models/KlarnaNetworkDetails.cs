@@ -360,7 +360,7 @@ namespace Adyen.Checkout.Models
                 klarnaNetworkDetails.SdkData = sdkData.Value;
             if (storedPaymentMethodId.IsSet)
                 klarnaNetworkDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            klarnaNetworkDetails.Type = type.Value!.Value!;
+            klarnaNetworkDetails.Type = type.Value!;
             return klarnaNetworkDetails;
         }
 

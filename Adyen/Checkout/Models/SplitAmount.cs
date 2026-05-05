@@ -136,7 +136,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class SplitAmount.", nameof(value));
 
             var splitAmount = new SplitAmount();
-            splitAmount.Value = value.Value!.Value!;
+            splitAmount.Value = value.Value!.Value;
             if (currency.IsSet)
                 splitAmount.Currency = currency.Value;
             return splitAmount;

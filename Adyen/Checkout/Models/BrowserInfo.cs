@@ -242,12 +242,12 @@ namespace Adyen.Checkout.Models
 
             var browserInfo = new BrowserInfo();
             browserInfo.AcceptHeader = acceptHeader.Value!;
-            browserInfo.ColorDepth = colorDepth.Value!.Value!;
-            browserInfo.JavaEnabled = javaEnabled.Value!.Value!;
+            browserInfo.ColorDepth = colorDepth.Value!.Value;
+            browserInfo.JavaEnabled = javaEnabled.Value!.Value;
             browserInfo.Language = language.Value!;
-            browserInfo.ScreenHeight = screenHeight.Value!.Value!;
-            browserInfo.ScreenWidth = screenWidth.Value!.Value!;
-            browserInfo.TimeZoneOffset = timeZoneOffset.Value!.Value!;
+            browserInfo.ScreenHeight = screenHeight.Value!.Value;
+            browserInfo.ScreenWidth = screenWidth.Value!.Value;
+            browserInfo.TimeZoneOffset = timeZoneOffset.Value!.Value;
             browserInfo.UserAgent = userAgent.Value!;
             if (javaScriptEnabled.IsSet)
                 browserInfo.JavaScriptEnabled = javaScriptEnabled.Value;
