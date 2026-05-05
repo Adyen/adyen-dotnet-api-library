@@ -151,7 +151,7 @@ namespace Adyen.AcsWebhooks.Models
                 throw new ArgumentException("Property is required for class Purchase.", nameof(originalAmount));
 
             var purchase = new Purchase();
-            purchase.Date = date.Value!.Value!;
+            purchase.Date = date.Value!.Value;
             purchase.MerchantName = merchantName.Value!;
             purchase.OriginalAmount = originalAmount.Value!;
             return purchase;
