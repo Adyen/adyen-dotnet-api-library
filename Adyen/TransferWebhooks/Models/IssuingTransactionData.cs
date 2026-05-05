@@ -253,7 +253,7 @@ namespace Adyen.TransferWebhooks.Models
             var issuingTransactionData = new IssuingTransactionData();
             if (captureCycleId.IsSet)
                 issuingTransactionData.CaptureCycleId = captureCycleId.Value;
-            issuingTransactionData.Type = type.Value!;
+            issuingTransactionData.Type = type.Value!.Value;
             return issuingTransactionData;
         }
 

@@ -264,7 +264,7 @@ namespace Adyen.TransferWebhooks.Models
             var dKLocalAccountIdentification = new DKLocalAccountIdentification();
             dKLocalAccountIdentification.AccountNumber = accountNumber.Value!;
             dKLocalAccountIdentification.BankCode = bankCode.Value!;
-            dKLocalAccountIdentification.Type = type.Value!;
+            dKLocalAccountIdentification.Type = type.Value!.Value;
             return dKLocalAccountIdentification;
         }
 

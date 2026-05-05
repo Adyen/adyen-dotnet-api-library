@@ -273,7 +273,7 @@ namespace Adyen.TransferWebhooks.Models
                 interchangeData.InterchangeAmount = interchangeAmount.Value;
             if (interchangeRateIndicator.IsSet)
                 interchangeData.InterchangeRateIndicator = interchangeRateIndicator.Value;
-            interchangeData.Type = type.Value!;
+            interchangeData.Type = type.Value!.Value;
             return interchangeData;
         }
 
