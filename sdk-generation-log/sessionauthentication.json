@@ -1,8 +1,8 @@
 {
   "service": "sessionauthentication",
   "project": "dotnet",
-  "generatedAt": "2026-04-23T11:37:08Z",
-  "openapiCommitSha": "ae28b691b7da78d2abedb5fa8baff05c59b00ae0",
-  "automationCommitSha": "4ad0c0c7e87bc0e5994a9a3350a991d0691350bb",
-  "libraryCommitSha": "9fb7e82517cad1094624fda220bc3ca05a40a5c3"
+  "generatedAt": "2026-05-05T21:10:53Z",
+  "openapiCommitSha": "7824ebf60ac8c780120e550d6495a8f02e409859",
+  "automationCommitSha": "0b7ef4e0ed6a7963ab005efe76eab748250edafc",
+  "libraryCommitSha": "9a811bcd4451ee9600a7dc6223843ce087ef12ba"
 }
