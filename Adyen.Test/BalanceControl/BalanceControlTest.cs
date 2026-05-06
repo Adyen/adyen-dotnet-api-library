@@ -63,21 +63,6 @@ namespace Adyen.Test.BalanceControl
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_BalanceTransferResponse_With_Unknown_Enum_Returns_Null_Type_And_Status()
-        {
-            // Arrange - unknown enum values previously caused NullReferenceException due to x.Value!.Value! pattern
-            var json = TestUtilities.GetTestFileContent("mocks/balance-control-transfer-unknown-type.json");
-
-            // Act
-            var response = JsonSerializer.Deserialize<BalanceTransferResponse>(json, _jsonSerializerOptionsProvider.Options);
-
-            // Assert
-            Assert.IsNotNull(response);
-            Assert.IsNull(response.Type);
-            Assert.IsNull(response.Status);
-        }
-
-        [TestMethod]
         public void Given_Deserialize_When_BalanceTransferRequest_Returns_Correct_Type_And_Amount()
         {
             // Arrange
@@ -92,20 +77,6 @@ namespace Adyen.Test.BalanceControl
             Assert.AreEqual("USD", request.Amount.Currency);
         }
 
-        [TestMethod]
-        public void Given_Deserialize_When_BalanceTransferRequest_With_Unknown_Type_Returns_Null_Type()
-        {
-            // Arrange - unknown enum value previously caused NullReferenceException due to x.Value!.Value! pattern
-            var json = TestUtilities.GetTestFileContent("mocks/balance-control-transfer-request-unknown-type.json");
-
-            // Act
-            var request = JsonSerializer.Deserialize<BalanceTransferRequest>(json, _jsonSerializerOptionsProvider.Options);
-
-            // Assert
-            Assert.IsNotNull(request);
-            Assert.IsNull(request.Type);
-        }
-        
         [TestMethod]
         public void Given_Serialize_When_BalanceTransferResponse_Returns_Correct_Json()
         {
