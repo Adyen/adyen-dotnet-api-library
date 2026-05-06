@@ -1,0 +1,5 @@
+{
+  "type": "PAYMENT_INSTRUMENT",
+  "deviceId": "UNIQUE_SCA_DEVICE_ID",
+  "ids": ["PI3227C223222B5BPCMFXD2XG"]
+}

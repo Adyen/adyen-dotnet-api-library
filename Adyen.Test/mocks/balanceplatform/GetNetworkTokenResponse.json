@@ -1,0 +1,8 @@
+{
+  "token": {
+    "id": "NT1234567890",
+    "paymentInstrumentId": "PI3227C223222B5BPCMFXD2XG",
+    "status": "active",
+    "tokenLastFour": "1234"
+  }
+}
