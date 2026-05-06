@@ -1,0 +1,20 @@
+{
+  "id": "UNIQUE_GRANT_OFFER_ID",
+  "accountHolderId": "AH3227C223222B5CMD3FJFKGZ",
+  "contractType": "loan",
+  "amount": {
+    "currency": "EUR",
+    "value": 10000
+  },
+  "fee": {
+    "amount": {
+      "currency": "EUR",
+      "value": 500
+    }
+  },
+  "repayment": {
+    "basisPoints": 1000
+  },
+  "startsAt": "2024-01-01T00:00:00.0000000Z",
+  "expiresAt": "2024-12-31T23:59:59.0000000Z"
+}

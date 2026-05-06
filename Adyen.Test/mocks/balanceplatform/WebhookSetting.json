@@ -1,0 +1,10 @@
+{
+  "currency": "EUR",
+  "id": "UNIQUE_WEBHOOK_SETTING_ID",
+  "status": "active",
+  "target": {
+    "type": "balancePlatform",
+    "id": "YOUR_BALANCE_PLATFORM"
+  },
+  "type": "BalanceWebhookSetting"
+}
