@@ -1230,6 +1230,5 @@ namespace Adyen.Test.Checkout
         }
 
         #endregion
-
     }
 }

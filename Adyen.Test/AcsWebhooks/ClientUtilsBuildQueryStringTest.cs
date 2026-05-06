@@ -8,9 +8,10 @@ namespace Adyen.Test.AcsWebhooks
     /// Tests for the <c>BuildQueryString</c> method in <see cref="Adyen.AcsWebhooks.Client.ClientUtils"/>.
     ///
     /// The method uses minimal percent-encoding: only characters that would break query string
-    /// structure are escaped (&amp;, =, #, space, %). Sub-delimiters (+, /, !) and ASCII
-    /// printable characters are intentionally left unencoded. Non-ASCII characters are encoded
-    /// via <see cref="Uri.EscapeDataString"/>.
+    /// structure are escaped (&amp;, =, #, space). Sub-delimiters (+, /, !) and ASCII
+    /// printable characters are intentionally left unencoded. The <c>%</c> character is also
+    /// left unencoded so that already percent-encoded sequences pass through unchanged.
+    /// Non-ASCII characters are encoded via <see cref="Uri.EscapeDataString"/>.
     ///
     /// Reflection is used because <c>BuildQueryString</c> is <c>internal</c> and the main assembly
     /// is strong-named, which prevents <c>InternalsVisibleTo</c> from granting access to an
@@ -67,17 +68,17 @@ namespace Adyen.Test.AcsWebhooks
         }
 
         [TestMethod]
-        public void Percent_InValue_IsEncoded_PreventingDoubleEncoding()
+        public void Percent_InValue_PassesThrough()
         {
-            // regression: "50%off" must not produce "50%off" (leaving % raw)
-            Assert.AreEqual("foo=50%25off", Invoke(Nvc(("foo", "50%off"))));
+            // raw "%" is not a structural character, so it must not be encoded
+            Assert.AreEqual("foo=50%off", Invoke(Nvc(("foo", "50%off"))));
         }
 
         [TestMethod]
         public void AlreadyEncodedPercent20_IsNotDoubleEncoded()
         {
-            // "%20" in input → "%" becomes "%25", so output is "%2520"
-            Assert.AreEqual("foo=%2520", Invoke(Nvc(("foo", "%20"))));
+            // already-encoded sequences must pass through unchanged — "%" is preserved
+            Assert.AreEqual("foo=%20", Invoke(Nvc(("foo", "%20"))));
         }
 
         [TestMethod]
@@ -132,6 +133,21 @@ namespace Adyen.Test.AcsWebhooks
         {
             // "😊" (U+1F60A) is stored as a surrogate pair in UTF-16; must encode to %F0%9F%98%8A
             Assert.AreEqual("foo=%F0%9F%98%8A", Invoke(Nvc(("foo", "😊"))));
+        }
+
+        [TestMethod]
+        public void AlreadyEncodedToken_PassesThroughUnchanged()
+        {
+            // opaque tokens with pre-encoded sequences must not be double-encoded
+            Assert.AreEqual("token=already%26encoded%20value", Invoke(Nvc(("token", "already%26encoded%20value"))));
+        }
+
+        [TestMethod]
+        public void PercentFollowedByValidHex_PassesThroughUnchanged()
+        {
+            // "100%20rate": the caller is responsible for pre-encoding raw % — this method
+            // treats any % as already encoded and leaves it unchanged
+            Assert.AreEqual("foo=100%20rate", Invoke(Nvc(("foo", "100%20rate"))));
         }
     }
 }
