@@ -138,7 +138,7 @@ namespace Adyen.Test.AcsWebhooks
         {
             // Arrange
             string json = "{ \"test\": \"value\" }";
-            string invalidHmacSignature = "Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=";
+            string invalidHmacSignature = "invalid-hmac-signature";
 
             // Act
             bool isValid = _acsWebhooksHandler.IsValidHmacSignature(json, invalidHmacSignature);
