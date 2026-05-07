@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using Adyen.Core.Options;
 using Adyen.Checkout.Extensions;
 using Adyen.Checkout.Models;
