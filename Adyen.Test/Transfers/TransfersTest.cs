@@ -140,6 +140,65 @@ namespace Adyen.Test.Transfers
             Assert.AreEqual("1W1UG35U8A9J5ZLG", response.TransferId);
         }
         
+        #region Tracking Discriminator
+        
+        [TestMethod]
+        public async Task Given_Deserialize_When_TrackingTypeConfirmation_Returns_ConfirmationTrackingData()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/transfers/transfer-data-confirmation-tracking.json");
+            
+            // Act
+            var response = JsonSerializer.Deserialize<TransferData>(json, _jsonSerializerOptionsProvider.Options);
+            
+            // Assert
+            Assert.IsNotNull(response.Tracking);
+            Assert.IsNotNull(response.Tracking.ConfirmationTrackingData);
+            Assert.IsNull(response.Tracking.EstimationTrackingData);
+            Assert.IsNull(response.Tracking.InternalReviewTrackingData);
+            Assert.AreEqual(ConfirmationTrackingData.TypeEnum.Confirmation, response.Tracking.ConfirmationTrackingData.Type);
+            Assert.AreEqual(ConfirmationTrackingData.StatusEnum.Credited, response.Tracking.ConfirmationTrackingData.Status);
+        }
+        
+        [TestMethod]
+        public async Task Given_Deserialize_When_TrackingTypeEstimation_Returns_EstimationTrackingData()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/transfers/transfer-data-estimation-tracking.json");
+            
+            // Act
+            var response = JsonSerializer.Deserialize<TransferData>(json, _jsonSerializerOptionsProvider.Options);
+            
+            // Assert
+            Assert.IsNotNull(response.Tracking);
+            Assert.IsNull(response.Tracking.ConfirmationTrackingData);
+            Assert.IsNotNull(response.Tracking.EstimationTrackingData);
+            Assert.IsNull(response.Tracking.InternalReviewTrackingData);
+            Assert.AreEqual(EstimationTrackingData.TypeEnum.Estimation, response.Tracking.EstimationTrackingData.Type);
+            Assert.AreEqual(new DateTimeOffset(2023, 8, 20, 13, 7, 40, TimeSpan.Zero), response.Tracking.EstimationTrackingData.EstimatedArrivalTime);
+        }
+        
+        [TestMethod]
+        public async Task Given_Deserialize_When_TrackingTypeInternalReview_Returns_InternalReviewTrackingData()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/transfers/transfer-data-internal-review-tracking.json");
+            
+            // Act
+            var response = JsonSerializer.Deserialize<TransferData>(json, _jsonSerializerOptionsProvider.Options);
+            
+            // Assert
+            Assert.IsNotNull(response.Tracking);
+            Assert.IsNull(response.Tracking.ConfirmationTrackingData);
+            Assert.IsNull(response.Tracking.EstimationTrackingData);
+            Assert.IsNotNull(response.Tracking.InternalReviewTrackingData);
+            Assert.AreEqual(InternalReviewTrackingData.TypeEnum.InternalReview, response.Tracking.InternalReviewTrackingData.Type);
+            Assert.AreEqual(InternalReviewTrackingData.StatusEnum.Pending, response.Tracking.InternalReviewTrackingData.Status);
+            Assert.AreEqual(InternalReviewTrackingData.ReasonEnum.RefusedForRegulatoryReasons, response.Tracking.InternalReviewTrackingData.Reason);
+        }
+        
+        #endregion
+        
         #region Grants
         
         [TestMethod]

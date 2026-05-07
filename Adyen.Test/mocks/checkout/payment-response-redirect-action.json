@@ -1,0 +1,11 @@
+{
+  "pspReference": "JLCMPCQ8HXSKGK82",
+  "resultCode": "RedirectShopper",
+  "merchantReference": "Your order number",
+  "action": {
+    "paymentMethodType": "scheme",
+    "url": "https://checkoutshopper-test.adyen.com/checkoutshopper/threeDS/redirect",
+    "method": "GET",
+    "type": "redirect"
+  }
+}

@@ -1095,5 +1095,141 @@ namespace Adyen.Test.Checkout
             Assert.IsFalse(jsonDoc.RootElement.TryGetProperty("merchantReference", out _));
         }
 
+        #region PaymentResponse discriminator
+
+        [TestMethod]
+        public void Given_Deserialize_When_PaymentResponse_WithRedirectAction_Then_CheckoutRedirectAction_IsPopulated()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/checkout/payment-response-redirect-action.json");
+
+            // Act
+            var response = JsonSerializer.Deserialize<PaymentResponse>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(response);
+            Assert.AreEqual(PaymentResponse.ResultCodeEnum.RedirectShopper, response.ResultCode);
+            Assert.IsNotNull(response.Action);
+            Assert.IsNotNull(response.Action.CheckoutRedirectAction);
+            Assert.IsNull(response.Action.CheckoutThreeDS2Action);
+            Assert.IsNull(response.Action.CheckoutSDKAction);
+            Assert.AreEqual(CheckoutRedirectAction.TypeEnum.Redirect, response.Action.CheckoutRedirectAction.Type);
+            Assert.AreEqual("scheme", response.Action.CheckoutRedirectAction.PaymentMethodType);
+            Assert.AreEqual("GET", response.Action.CheckoutRedirectAction.Method);
+        }
+
+        [TestMethod]
+        public void Given_Deserialize_When_PaymentResponse_WithThreeDS2Action_Then_CheckoutThreeDS2Action_IsPopulated()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/checkout/payment-response-threeDS2-action.json");
+
+            // Act
+            var response = JsonSerializer.Deserialize<PaymentResponse>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(response);
+            Assert.AreEqual(PaymentResponse.ResultCodeEnum.IdentifyShopper, response.ResultCode);
+            Assert.IsNotNull(response.Action);
+            Assert.IsNotNull(response.Action.CheckoutThreeDS2Action);
+            Assert.IsNull(response.Action.CheckoutRedirectAction);
+            Assert.IsNull(response.Action.CheckoutSDKAction);
+            Assert.AreEqual(CheckoutThreeDS2Action.TypeEnum.ThreeDS2, response.Action.CheckoutThreeDS2Action.Type);
+            Assert.AreEqual("scheme", response.Action.CheckoutThreeDS2Action.PaymentMethodType);
+            Assert.IsNotNull(response.Action.CheckoutThreeDS2Action.Token);
+        }
+
+        [TestMethod]
+        public void Given_Serialize_When_PaymentResponse_WithRedirectAction_Then_TypeIsPreserved()
+        {
+            // Arrange
+            var action = new PaymentResponseAction(new CheckoutRedirectAction
+            {
+                Type = CheckoutRedirectAction.TypeEnum.Redirect,
+                PaymentMethodType = "scheme",
+                Url = "https://checkoutshopper-test.adyen.com/redirect",
+                Method = "GET"
+            });
+            var response = new PaymentResponse
+            {
+                ResultCode = PaymentResponse.ResultCodeEnum.RedirectShopper,
+                Action = action
+            };
+
+            // Act
+            string json = JsonSerializer.Serialize(response, _jsonSerializerOptionsProvider.Options);
+            var jsonDoc = JsonDocument.Parse(json);
+
+            // Assert
+            Assert.AreEqual("RedirectShopper", jsonDoc.RootElement.GetProperty("resultCode").GetString());
+            Assert.AreEqual("redirect", jsonDoc.RootElement.GetProperty("action").GetProperty("type").GetString());
+            Assert.AreEqual("scheme", jsonDoc.RootElement.GetProperty("action").GetProperty("paymentMethodType").GetString());
+            Assert.AreEqual("GET", jsonDoc.RootElement.GetProperty("action").GetProperty("method").GetString());
+        }
+
+        #endregion
+
+        #region PaymentDetailsResponse discriminator
+
+        [TestMethod]
+        public void Given_Deserialize_When_PaymentDetailsResponse_WithoutAction_Then_ResultCode_IsAuthorised()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/checkout/payment-details-response-authorised.json");
+
+            // Act
+            var response = JsonSerializer.Deserialize<PaymentDetailsResponse>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(response);
+            Assert.AreEqual(PaymentDetailsResponse.ResultCodeEnum.Authorised, response.ResultCode);
+            Assert.IsNull(response.Action);
+        }
+
+        [TestMethod]
+        public void Given_Deserialize_When_PaymentDetailsResponse_WithThreeDS2Action_Then_CheckoutThreeDS2Action_IsPopulated()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/checkout/payment-details-response-threeDS2-action.json");
+
+            // Act
+            var response = JsonSerializer.Deserialize<PaymentDetailsResponse>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(response);
+            Assert.AreEqual(PaymentDetailsResponse.ResultCodeEnum.ChallengeShopper, response.ResultCode);
+            Assert.IsNotNull(response.Action);
+            Assert.AreEqual(CheckoutThreeDS2Action.TypeEnum.ThreeDS2, response.Action.Type);
+            Assert.AreEqual("scheme", response.Action.PaymentMethodType);
+            Assert.IsNotNull(response.Action.Token);
+        }
+
+        [TestMethod]
+        public void Given_Serialize_When_PaymentDetailsResponse_WithThreeDS2Action_Then_TypeIsPreserved()
+        {
+            // Arrange
+            var response = new PaymentDetailsResponse
+            {
+                ResultCode = PaymentDetailsResponse.ResultCodeEnum.ChallengeShopper,
+                Action = new CheckoutThreeDS2Action
+                {
+                    Type = CheckoutThreeDS2Action.TypeEnum.ThreeDS2,
+                    PaymentMethodType = "scheme",
+                    PaymentData = "test-payment-data"
+                }
+            };
+
+            // Act
+            string json = JsonSerializer.Serialize(response, _jsonSerializerOptionsProvider.Options);
+            var jsonDoc = JsonDocument.Parse(json);
+
+            // Assert
+            Assert.AreEqual("ChallengeShopper", jsonDoc.RootElement.GetProperty("resultCode").GetString());
+            Assert.AreEqual("threeDS2", jsonDoc.RootElement.GetProperty("action").GetProperty("type").GetString());
+            Assert.AreEqual("scheme", jsonDoc.RootElement.GetProperty("action").GetProperty("paymentMethodType").GetString());
+        }
+
+        #endregion
+
     }
 }
