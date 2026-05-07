@@ -21,12 +21,15 @@ on:
       - main
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
   release:
     runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
       - name: Prepare the next main release
