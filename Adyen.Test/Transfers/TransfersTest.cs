@@ -143,7 +143,7 @@ namespace Adyen.Test.Transfers
         #region Tracking Discriminator
         
         [TestMethod]
-        public async Task Given_Deserialize_When_TrackingTypeConfirmation_Returns_ConfirmationTrackingData()
+        public void Given_Deserialize_When_TrackingTypeConfirmation_Returns_ConfirmationTrackingData()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/transfers/transfer-data-confirmation-tracking.json");
@@ -152,6 +152,7 @@ namespace Adyen.Test.Transfers
             var response = JsonSerializer.Deserialize<TransferData>(json, _jsonSerializerOptionsProvider.Options);
             
             // Assert
+            Assert.IsNotNull(response);
             Assert.IsNotNull(response.Tracking);
             Assert.IsNotNull(response.Tracking.ConfirmationTrackingData);
             Assert.IsNull(response.Tracking.EstimationTrackingData);
@@ -161,7 +162,7 @@ namespace Adyen.Test.Transfers
         }
         
         [TestMethod]
-        public async Task Given_Deserialize_When_TrackingTypeEstimation_Returns_EstimationTrackingData()
+        public void Given_Deserialize_When_TrackingTypeEstimation_Returns_EstimationTrackingData()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/transfers/transfer-data-estimation-tracking.json");
@@ -170,6 +171,7 @@ namespace Adyen.Test.Transfers
             var response = JsonSerializer.Deserialize<TransferData>(json, _jsonSerializerOptionsProvider.Options);
             
             // Assert
+            Assert.IsNotNull(response);
             Assert.IsNotNull(response.Tracking);
             Assert.IsNull(response.Tracking.ConfirmationTrackingData);
             Assert.IsNotNull(response.Tracking.EstimationTrackingData);
@@ -179,7 +181,7 @@ namespace Adyen.Test.Transfers
         }
         
         [TestMethod]
-        public async Task Given_Deserialize_When_TrackingTypeInternalReview_Returns_InternalReviewTrackingData()
+        public void Given_Deserialize_When_TrackingTypeInternalReview_Returns_InternalReviewTrackingData()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/transfers/transfer-data-internal-review-tracking.json");
@@ -188,6 +190,7 @@ namespace Adyen.Test.Transfers
             var response = JsonSerializer.Deserialize<TransferData>(json, _jsonSerializerOptionsProvider.Options);
             
             // Assert
+            Assert.IsNotNull(response);
             Assert.IsNotNull(response.Tracking);
             Assert.IsNull(response.Tracking.ConfirmationTrackingData);
             Assert.IsNull(response.Tracking.EstimationTrackingData);
