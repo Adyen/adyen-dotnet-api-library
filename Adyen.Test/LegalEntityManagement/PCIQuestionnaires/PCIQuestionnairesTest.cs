@@ -74,7 +74,7 @@ namespace Adyen.Test.LegalEntityManagement.PCIQuestionnaires
         public async Task GeneratePciQuestionnaireAsyncTest()
         {
             // Arrange
-            var json = "{\n  \"content\": \"JVBERi0xLjQKJcOkw7zDtsOfCjIgMCBv+f/ub0j6JPRX+E3EmC==\",\n  \"language\": \"fr\",\n  \"pciTemplateReferences\": [\n    \"PCIT-T7KC6VGL\",\n    \"PCIT-PKB6DKS4\"\n  ]\n}";
+            var json = "{\n  \"content\": \"dGVzdA==\",\n  \"language\": \"fr\",\n  \"pciTemplateReferences\": [\n    \"PCIT-T7KC6VGL\",\n    \"PCIT-PKB6DKS4\"\n  ]\n}";
             var legalEntityId = "LE123";
             var request = new GeneratePciDescriptionRequest();
 
@@ -111,7 +111,7 @@ namespace Adyen.Test.LegalEntityManagement.PCIQuestionnaires
         public async Task GetPciQuestionnaireAsyncTest()
         {
             // Arrange
-            var json = "{\n  \"content\": \"JVBERi0xLjQKJcOkw7zDtsOfCjIgMCBv+f/ub0j6JPRX+E3EmC==\",\n  \"createdAt\": \"2023-03-02T17:54:19.538365Z\",\n  \"id\": \"PCID422GZ22322565HHMH48CW63CPH\",\n  \"validUntil\": \"2024-03-01T17:54:19.538365Z\"\n}";
+            var json = "{\n  \"content\": \"dGVzdA==\",\n  \"createdAt\": \"2023-03-02T17:54:19.538365Z\",\n  \"id\": \"PCID422GZ22322565HHMH48CW63CPH\",\n  \"validUntil\": \"2024-03-01T17:54:19.538365Z\"\n}";
             var legalEntityId = "LE123";
             var pciId = "PCI123";
 

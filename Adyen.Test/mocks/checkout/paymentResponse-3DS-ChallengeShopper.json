@@ -1,7 +1,7 @@
 {
   "resultCode": "ChallengeShopper",
   "action": {
-    "paymentData": "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=",
+    "paymentData": "test-payment-data",
     "paymentMethodType": "scheme",
     "token": "S0zYWQ0MGEwMjU2MjEifQ==",
     "type": "threeDS2"
@@ -13,6 +13,6 @@
       "type": "text"
     }
   ],
-  "paymentData": "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI="
+  "paymentData": "test-payment-data"
 }                                                 
                            

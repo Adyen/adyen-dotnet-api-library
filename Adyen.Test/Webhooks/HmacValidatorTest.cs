@@ -118,7 +118,7 @@ namespace Adyen.Test.Webhooks
                         'cvcResult': '1 Matches',
                         'cvcResultRaw': 'M',
                         'expiryDate': '03/2030',
-                        'hmacSignature': 'CZErGCNQaSsxbaQfZaJlakqo7KPP+mIa8a+wx3yNs9A=',
+                        'hmacSignature': 'cyYGGNUYxRCIwmfET0zxNPQN/m9cKR6xNECwPzTfJIQ=',
                         'paymentMethod': 'visa',
                         'refusalReasonRaw': 'AUTHORISED',
                         'retry.attempt1.acquirer': 'TestPmmAcquirer',
@@ -148,7 +148,7 @@ namespace Adyen.Test.Webhooks
                 'success': 'true'
             }";
             NotificationRequestItem notificationRequestItem = JsonConvert.DeserializeObject<NotificationRequestItem>(jsonNotification);
-            bool isValidHmac = hmacValidator.IsValidHmac(notificationRequestItem, "74F490DD33F7327BAECC88B2947C011FC02D014A473AAA33A8EC93E4DC069174");
+            bool isValidHmac = hmacValidator.IsValidHmac(notificationRequestItem, "AABBCCDDEEFFAABBCCDDEEFFAABBCCDDEEFFAABBCCDDEEFFAABBCCDDEEFFAABB");
             Assert.IsTrue(isValidHmac);
         }
 
