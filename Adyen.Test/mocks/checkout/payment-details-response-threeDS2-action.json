@@ -1,0 +1,10 @@
+{
+  "resultCode": "ChallengeShopper",
+  "action": {
+    "paymentData": "test-payment-data",
+    "paymentMethodType": "scheme",
+    "authorisationToken": "test-authorisation-token",
+    "token": "test-token",
+    "type": "threeDS2"
+  }
+}
