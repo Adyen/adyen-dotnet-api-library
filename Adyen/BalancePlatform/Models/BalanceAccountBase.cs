@@ -266,6 +266,7 @@ namespace Adyen.BalancePlatform.Models
         /// The unique identifier of the account of the migrated account holder in the classic integration.
         /// </summary>
         /// <value>The unique identifier of the account of the migrated account holder in the classic integration.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("migratedAccountCode")]
         public string? MigratedAccountCode { get { return this._MigratedAccountCodeOption; } set { this._MigratedAccountCodeOption = new(value); } }
 

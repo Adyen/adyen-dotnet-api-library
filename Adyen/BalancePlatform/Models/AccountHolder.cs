@@ -194,6 +194,7 @@ namespace Adyen.BalancePlatform.Models
         /// The unique identifier of the account holder.
         /// </summary>
         /// <value>The unique identifier of the account holder.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("id")]
         public string Id { get; set; }
 
@@ -286,6 +287,7 @@ namespace Adyen.BalancePlatform.Models
         /// The unique identifier of the migrated account holder in the classic integration.
         /// </summary>
         /// <value>The unique identifier of the migrated account holder in the classic integration.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("migratedAccountHolderCode")]
         public string? MigratedAccountHolderCode { get { return this._MigratedAccountHolderCodeOption; } set { this._MigratedAccountHolderCodeOption = new(value); } }
 
@@ -342,6 +344,7 @@ namespace Adyen.BalancePlatform.Models
         /// List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.
         /// </summary>
         /// <value>List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("verificationDeadlines")]
         public List<VerificationDeadline>? VerificationDeadlines { get { return this._VerificationDeadlinesOption; } set { this._VerificationDeadlinesOption = new(value); } }
 

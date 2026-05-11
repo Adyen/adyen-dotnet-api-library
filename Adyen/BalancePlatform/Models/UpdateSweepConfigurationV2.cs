@@ -609,6 +609,7 @@ namespace Adyen.BalancePlatform.Models
         /// The reason for disabling the sweep.
         /// </summary>
         /// <value>The reason for disabling the sweep.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("reason")]
         public ReasonEnum? Reason { get { return this._ReasonOption; } set { this._ReasonOption = new(value); } }
 
@@ -938,6 +939,7 @@ namespace Adyen.BalancePlatform.Models
         /// The unique identifier of the sweep.
         /// </summary>
         /// <value>The unique identifier of the sweep.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("id")]
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
@@ -966,6 +968,7 @@ namespace Adyen.BalancePlatform.Models
         /// The human readable reason for disabling the sweep.
         /// </summary>
         /// <value>The human readable reason for disabling the sweep.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("reasonDetail")]
         public string? ReasonDetail { get { return this._ReasonDetailOption; } set { this._ReasonDetailOption = new(value); } }
 

@@ -309,6 +309,7 @@ namespace Adyen.BalancePlatform.Models
         /// The primary account number (PAN) of the card. &gt; The PAN is masked by default and returned only for single-use virtual cards.
         /// </summary>
         /// <value>The primary account number (PAN) of the card. > The PAN is masked by default and returned only for single-use virtual cards.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("number")]
         public string? Number { get { return this._NumberOption; } set { this._NumberOption = new(value); } }
 
