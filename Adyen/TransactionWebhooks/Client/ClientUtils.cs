@@ -162,6 +162,12 @@ namespace Adyen.TransactionWebhooks.Client
         /// query values.
         /// </para>
         /// </summary>
+        /// <remarks>
+        /// The <c>%</c> character is <b>not</b> encoded by this method. If a value contains a
+        /// literal <c>%</c> that is not part of a percent-encoded sequence (e.g. <c>50%off</c>),
+        /// the caller must encode it as <c>%25</c> before passing it to this method. This design
+        /// intentionally preserves already-encoded sequences such as opaque tokens or redirect URLs.
+        /// </remarks>
         /// <param name="parameters">The query string parameters.</param>
         /// <returns>A query string (without leading '?').</returns>
         internal static string BuildQueryString(System.Collections.Specialized.NameValueCollection parameters)
@@ -184,7 +190,6 @@ namespace Adyen.TransactionWebhooks.Client
                         case '=': sb.Append("%3D"); break;
                         case '#': sb.Append("%23"); break;
                         case ' ': sb.Append("%20"); break;
-                        case '%': sb.Append("%25"); break;
                         default:
                             if (c > 127)
                             {
