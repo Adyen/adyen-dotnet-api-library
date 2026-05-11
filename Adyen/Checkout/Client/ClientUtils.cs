@@ -440,8 +440,6 @@ namespace Adyen.Checkout.Client
                 return Models.Recurring.ContractEnum.ToJsonValue(recurringContractEnum);
             if (obj is Models.Recurring.TokenServiceEnum recurringTokenServiceEnum)
                 return Models.Recurring.TokenServiceEnum.ToJsonValue(recurringTokenServiceEnum);
-            if (obj is Models.ResponseAdditionalDataCard.CardProductIdEnum responseAdditionalDataCardCardProductIdEnum)
-                return Models.ResponseAdditionalDataCard.CardProductIdEnum.ToJsonValue(responseAdditionalDataCardCardProductIdEnum);
             if (obj is Models.ResponseAdditionalDataCommon.FraudResultTypeEnum responseAdditionalDataCommonFraudResultTypeEnum)
                 return Models.ResponseAdditionalDataCommon.FraudResultTypeEnum.ToJsonValue(responseAdditionalDataCommonFraudResultTypeEnum);
             if (obj is Models.ResponseAdditionalDataCommon.FraudRiskLevelEnum responseAdditionalDataCommonFraudRiskLevelEnum)

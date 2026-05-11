@@ -114,6 +114,20 @@ namespace Adyen.Checkout.Models
         public bool? Tokenize { get { return this._TokenizeOption; } set { this._TokenizeOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="TransactionLinkIdPaths"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<string>?> _TransactionLinkIdPathsOption { get; private set; }
+
+        /// <summary>
+        /// Set in tokenize:true case when forwarding PAN. Addresses to the possible location(s) of transactionLinkId in the incoming 3rd party response
+        /// </summary>
+        /// <value>Set in tokenize:true case when forwarding PAN. Addresses to the possible location(s) of transactionLinkId in the incoming 3rd party response</value>
+        [JsonPropertyName("transactionLinkIdPaths")]
+        public List<string>? TransactionLinkIdPaths { get { return this._TransactionLinkIdPathsOption; } set { this._TransactionLinkIdPathsOption = new(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -126,6 +140,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  NetworkToken: ").Append(NetworkToken).Append("\n");
             sb.Append("  NetworkTxReferencePaths: ").Append(NetworkTxReferencePaths).Append("\n");
             sb.Append("  Tokenize: ").Append(Tokenize).Append("\n");
+            sb.Append("  TransactionLinkIdPaths: ").Append(TransactionLinkIdPaths).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -158,6 +173,7 @@ namespace Adyen.Checkout.Models
             Option<CheckoutNetworkTokenOption?> networkToken = default;
             Option<List<string>?> networkTxReferencePaths = default;
             Option<bool?> tokenize = default;
+            Option<List<string>?> transactionLinkIdPaths = default;
 
             while (utf8JsonReader.Read())
             {
@@ -189,6 +205,9 @@ namespace Adyen.Checkout.Models
                         case "tokenize":
                             tokenize = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
+                        case "transactionLinkIdPaths":
+                            transactionLinkIdPaths = new Option<List<string>?>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         default:
                             break;
                     }
@@ -206,6 +225,8 @@ namespace Adyen.Checkout.Models
                 checkoutForwardRequestOptions.NetworkTxReferencePaths = networkTxReferencePaths.Value;
             if (tokenize.IsSet)
                 checkoutForwardRequestOptions.Tokenize = tokenize.Value;
+            if (transactionLinkIdPaths.IsSet)
+                checkoutForwardRequestOptions.TransactionLinkIdPaths = transactionLinkIdPaths.Value;
             return checkoutForwardRequestOptions;
         }
 
@@ -256,6 +277,12 @@ namespace Adyen.Checkout.Models
             if (checkoutForwardRequestOptions._TokenizeOption.IsSet)
                 if (checkoutForwardRequestOptions._TokenizeOption.Value != null)
                     writer.WriteBoolean("tokenize", checkoutForwardRequestOptions._TokenizeOption.Value!.Value);
+
+            if (checkoutForwardRequestOptions._TransactionLinkIdPathsOption.IsSet)
+            {
+                writer.WritePropertyName("transactionLinkIdPaths");
+                JsonSerializer.Serialize(writer, checkoutForwardRequestOptions.TransactionLinkIdPaths, jsonSerializerOptions);
+            }
         }
     }
 }

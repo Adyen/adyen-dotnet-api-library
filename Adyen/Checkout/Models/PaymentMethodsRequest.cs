@@ -446,9 +446,9 @@ namespace Adyen.Checkout.Models
         public Option<string?> _ShopperConversionIdOption { get; private set; }
 
         /// <summary>
-        /// A unique ID that can be used to associate &#x60;/paymentMethods&#x60; and &#x60;/payments&#x60; requests with the same shopper transaction, offering insights into conversion rates.
+        /// A unique ID to [connect the shopper to a single checkout session](https://docs.adyen.com/online-payments/checkout-settings#checkout-shopper-conversion-id) that uses multiple API requests. You can use this to get insights into conversion rates.
         /// </summary>
-        /// <value>A unique ID that can be used to associate `/paymentMethods` and `/payments` requests with the same shopper transaction, offering insights into conversion rates.</value>
+        /// <value>A unique ID to [connect the shopper to a single checkout session](https://docs.adyen.com/online-payments/checkout-settings#checkout-shopper-conversion-id) that uses multiple API requests. You can use this to get insights into conversion rates.</value>
         [JsonPropertyName("shopperConversionId")]
         public string? ShopperConversionId { get { return this._ShopperConversionIdOption; } set { this._ShopperConversionIdOption = new(value); } }
 
