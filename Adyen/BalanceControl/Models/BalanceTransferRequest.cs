@@ -362,7 +362,7 @@ namespace Adyen.BalanceControl.Models
             balanceTransferRequest.Amount = amount.Value!;
             balanceTransferRequest.FromMerchant = fromMerchant.Value!;
             balanceTransferRequest.ToMerchant = toMerchant.Value!;
-            balanceTransferRequest.Type = type.Value!;
+            balanceTransferRequest.Type = type.Value!.Value;
             if (description.IsSet)
                 balanceTransferRequest.Description = description.Value;
             if (reference.IsSet)
