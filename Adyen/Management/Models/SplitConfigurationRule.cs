@@ -571,6 +571,7 @@ namespace Adyen.Management.Models
         /// The unique identifier of the split configuration rule.
         /// </summary>
         /// <value>The unique identifier of the split configuration rule.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("ruleId")]
         public string? RuleId { get { return this._RuleIdOption; } set { this._RuleIdOption = new(value); } }
 
