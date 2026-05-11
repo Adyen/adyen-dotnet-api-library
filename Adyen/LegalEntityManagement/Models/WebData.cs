@@ -69,6 +69,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// The unique identifier of the web address.
         /// </summary>
         /// <value>The unique identifier of the web address.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("webAddressId")]
         public string? WebAddressId { get { return this._WebAddressIdOption; } set { this._WebAddressIdOption = new(value); } }
 

@@ -212,6 +212,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// The unique identifier of the legal entity.
         /// </summary>
         /// <value>The unique identifier of the legal entity.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("id")]
         public string Id { get; set; }
 
@@ -351,6 +352,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// List of transfer instruments that the legal entity owns.
         /// </summary>
         /// <value>List of transfer instruments that the legal entity owns.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("transferInstruments")]
         public List<TransferInstrumentReference>? TransferInstruments { get { return this._TransferInstrumentsOption; } set { this._TransferInstrumentsOption = new(value); } }
 
@@ -391,6 +393,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.
         /// </summary>
         /// <value>List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("verificationDeadlines")]
         public List<VerificationDeadline>? VerificationDeadlines { get { return this._VerificationDeadlinesOption; } set { this._VerificationDeadlinesOption = new(value); } }
 

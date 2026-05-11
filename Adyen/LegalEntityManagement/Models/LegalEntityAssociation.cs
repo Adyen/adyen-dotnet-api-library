@@ -336,6 +336,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// The unique identifier of another legal entity with which the &#x60;legalEntityId&#x60; is associated. When the &#x60;legalEntityId&#x60; is associated to legal entities other than the current one, the response returns all the associations.
         /// </summary>
         /// <value>The unique identifier of another legal entity with which the `legalEntityId` is associated. When the `legalEntityId` is associated to legal entities other than the current one, the response returns all the associations.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("associatorId")]
         public string? AssociatorId { get { return this._AssociatorIdOption; } set { this._AssociatorIdOption = new(value); } }
 
@@ -350,6 +351,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// The legal entity type of associated legal entity.  For example, **organization**, **soleProprietorship** or **individual**.
         /// </summary>
         /// <value>The legal entity type of associated legal entity.  For example, **organization**, **soleProprietorship** or **individual**.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("entityType")]
         public string? EntityType { get { return this._EntityTypeOption; } set { this._EntityTypeOption = new(value); } }
 
@@ -378,6 +380,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// The name of the associated [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id).  - For **individual**, &#x60;name.firstName&#x60; and &#x60;name.lastName&#x60;. - For **organization**, &#x60;legalName&#x60;. - For **soleProprietorship**, &#x60;name&#x60;.
         /// </summary>
         /// <value>The name of the associated [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id).  - For **individual**, `name.firstName` and `name.lastName`. - For **organization**, `legalName`. - For **soleProprietorship**, `name`.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("name")]
         public string? Name { get { return this._NameOption; } set { this._NameOption = new(value); } }
 

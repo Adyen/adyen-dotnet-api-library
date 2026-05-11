@@ -62,6 +62,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code prefix of the phone number. For example, **US** or **NL**.  The value of the &#x60;phoneCountryCode&#x60; is determined by the country code digit(s) of &#x60;phone.number&#x60;
         /// </summary>
         /// <value>The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code prefix of the phone number. For example, **US** or **NL**.  The value of the `phoneCountryCode` is determined by the country code digit(s) of `phone.number`</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("phoneCountryCode")]
         public string? PhoneCountryCode { get { return this._PhoneCountryCodeOption; } set { this._PhoneCountryCodeOption = new(value); } }
 

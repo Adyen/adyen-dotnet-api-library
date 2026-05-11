@@ -184,6 +184,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// The unique identifier of the transfer instrument.
         /// </summary>
         /// <value>The unique identifier of the transfer instrument.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("id")]
         public string Id { get; set; }
 
