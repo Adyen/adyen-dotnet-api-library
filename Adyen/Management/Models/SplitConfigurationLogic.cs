@@ -2010,6 +2010,7 @@ namespace Adyen.Management.Models
         /// Unique identifier of the collection of split instructions that are applied when the rule conditions are met.
         /// </summary>
         /// <value>Unique identifier of the collection of split instructions that are applied when the rule conditions are met.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("splitLogicId")]
         public string? SplitLogicId { get { return this._SplitLogicIdOption; } set { this._SplitLogicIdOption = new(value); } }
 

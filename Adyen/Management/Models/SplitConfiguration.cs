@@ -69,6 +69,7 @@ namespace Adyen.Management.Models
         /// Unique identifier of the split configuration.
         /// </summary>
         /// <value>Unique identifier of the split configuration.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("splitConfigurationId")]
         public string? SplitConfigurationId { get { return this._SplitConfigurationIdOption; } set { this._SplitConfigurationIdOption = new(value); } }
 
