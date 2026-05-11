@@ -647,6 +647,7 @@ namespace Adyen.BalancePlatform.Models
         /// The names of the capabilities to be disallowed.
         /// </summary>
         /// <value>The names of the capabilities to be disallowed.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("capabilities")]
         public List<VerificationDeadline.CapabilitiesEnum> Capabilities { get; set; }
 
@@ -654,6 +655,7 @@ namespace Adyen.BalancePlatform.Models
         /// The date that verification is due by before capabilities are disallowed.
         /// </summary>
         /// <value>The date that verification is due by before capabilities are disallowed.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("expiresAt")]
         public DateTimeOffset ExpiresAt { get; set; }
 
@@ -668,6 +670,7 @@ namespace Adyen.BalancePlatform.Models
         /// The unique identifiers of the bank account(s) that the deadline applies to
         /// </summary>
         /// <value>The unique identifiers of the bank account(s) that the deadline applies to</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("entityIds")]
         public List<string>? EntityIds { get { return this._EntityIdsOption; } set { this._EntityIdsOption = new(value); } }
 

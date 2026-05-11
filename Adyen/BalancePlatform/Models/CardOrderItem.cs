@@ -110,6 +110,7 @@ namespace Adyen.BalancePlatform.Models
         /// The ID of the resource.
         /// </summary>
         /// <value>The ID of the resource.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("id")]
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 

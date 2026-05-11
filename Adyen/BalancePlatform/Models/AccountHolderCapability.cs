@@ -196,6 +196,7 @@ namespace Adyen.BalancePlatform.Models
         /// The capability level that is allowed for the account holder.  Possible values: **notApplicable**, **low**, **medium**, **high**.
         /// </summary>
         /// <value>The capability level that is allowed for the account holder.  Possible values: **notApplicable**, **low**, **medium**, **high**.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("allowedLevel")]
         public AllowedLevelEnum? AllowedLevel { get { return this._AllowedLevelOption; } set { this._AllowedLevelOption = new(value); } }
 
@@ -506,6 +507,7 @@ namespace Adyen.BalancePlatform.Models
         /// The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the `errors` array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. 
         /// </summary>
         /// <value>The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. </value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("verificationStatus")]
         public VerificationStatusEnum? VerificationStatus { get { return this._VerificationStatusOption; } set { this._VerificationStatusOption = new(value); } }
 
@@ -520,6 +522,7 @@ namespace Adyen.BalancePlatform.Models
         /// Indicates whether the capability is allowed. Adyen sets this to **true** if the verification is successful and the account holder is permitted to use the capability.
         /// </summary>
         /// <value>Indicates whether the capability is allowed. Adyen sets this to **true** if the verification is successful and the account holder is permitted to use the capability.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("allowed")]
         public bool? Allowed { get { return this._AllowedOption; } set { this._AllowedOption = new(value); } }
 
@@ -561,6 +564,7 @@ namespace Adyen.BalancePlatform.Models
         /// Contains verification errors and the actions that you can take to resolve them.
         /// </summary>
         /// <value>Contains verification errors and the actions that you can take to resolve them.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("problems")]
         public List<CapabilityProblem>? Problems { get { return this._ProblemsOption; } set { this._ProblemsOption = new(value); } }
 
@@ -602,6 +606,7 @@ namespace Adyen.BalancePlatform.Models
         /// Contains the status of the transfer instruments associated with this capability. 
         /// </summary>
         /// <value>Contains the status of the transfer instruments associated with this capability. </value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("transferInstruments")]
         public List<AccountSupportingEntityCapability>? TransferInstruments { get { return this._TransferInstrumentsOption; } set { this._TransferInstrumentsOption = new(value); } }
 
