@@ -1,8 +1,8 @@
 {
   "service": "negativebalancewarningwebhooks",
   "project": "dotnet",
-  "generatedAt": "2026-05-05T21:10:46Z",
+  "generatedAt": "2026-05-11T11:53:56Z",
   "openapiCommitSha": "7824ebf60ac8c780120e550d6495a8f02e409859",
   "automationCommitSha": "0b7ef4e0ed6a7963ab005efe76eab748250edafc",
-  "libraryCommitSha": "9a811bcd4451ee9600a7dc6223843ce087ef12ba"
+  "libraryCommitSha": "c15a6fcb02f10f63414645011874afc63016cbd4"
 }
