@@ -55,6 +55,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// Indicates whether the capability is allowed for the supporting entity.  If a capability is allowed for a supporting entity but not for the parent legal entity, this means the legal entity has other supporting entities that failed verification.  **You can use the allowed supporting entity** regardless of the verification status of other supporting entities.
         /// </summary>
         /// <value>Indicates whether the capability is allowed for the supporting entity.  If a capability is allowed for a supporting entity but not for the parent legal entity, this means the legal entity has other supporting entities that failed verification.  **You can use the allowed supporting entity** regardless of the verification status of other supporting entities.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("allowed")]
         public bool? Allowed { get { return this._AllowedOption; } set { this._AllowedOption = new(value); } }
 
@@ -69,6 +70,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// Supporting entity reference 
         /// </summary>
         /// <value>Supporting entity reference </value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("id")]
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
@@ -83,6 +85,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// Indicates whether the supporting entity capability is requested. 
         /// </summary>
         /// <value>Indicates whether the supporting entity capability is requested. </value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("requested")]
         public bool? Requested { get { return this._RequestedOption; } set { this._RequestedOption = new(value); } }
 
@@ -97,6 +100,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// The status of the verification checks for the capability of the supporting entity.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. 
         /// </summary>
         /// <value>The status of the verification checks for the capability of the supporting entity.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the `errors` array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. </value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("verificationStatus")]
         public string? VerificationStatus { get { return this._VerificationStatusOption; } set { this._VerificationStatusOption = new(value); } }
 

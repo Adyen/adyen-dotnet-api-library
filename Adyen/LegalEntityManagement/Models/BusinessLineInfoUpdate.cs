@@ -69,6 +69,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// The description of the industry code.
         /// </summary>
         /// <value>The description of the industry code.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("industryCodeDescription")]
         public string? IndustryCodeDescription { get { return this._IndustryCodeDescriptionOption; } set { this._IndustryCodeDescriptionOption = new(value); } }
 

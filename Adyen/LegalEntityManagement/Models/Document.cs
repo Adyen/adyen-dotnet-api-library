@@ -381,6 +381,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// The creation date of the document.
         /// </summary>
         /// <value>The creation date of the document.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("creationDate")]
         public DateTimeOffset? CreationDate { get { return this._CreationDateOption; } set { this._CreationDateOption = new(value); } }
 
@@ -425,6 +426,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// The unique identifier of the document.
         /// </summary>
         /// <value>The unique identifier of the document.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("id")]
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
@@ -471,6 +473,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// The modification date of the document.
         /// </summary>
         /// <value>The modification date of the document.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("modificationDate")]
         public DateTimeOffset? ModificationDate { get { return this._ModificationDateOption; } set { this._ModificationDateOption = new(value); } }
 

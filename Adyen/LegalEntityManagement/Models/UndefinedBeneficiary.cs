@@ -69,6 +69,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// The reference of the undefined beneficiary.
         /// </summary>
         /// <value>The reference of the undefined beneficiary.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("reference")]
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
