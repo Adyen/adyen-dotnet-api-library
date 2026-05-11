@@ -149,5 +149,26 @@ namespace Adyen.Test.AcsWebhooks
             // treats any % as already encoded and leaves it unchanged
             Assert.AreEqual("foo=100%20rate", Invoke(Nvc(("foo", "100%20rate"))));
         }
+
+        [TestMethod]
+        public void UnpairedSurrogate_IsReplacedWithReplacementCharacter()
+        {
+            // Unpaired high surrogate \uD83D should be replaced with %EF%BF%BD to avoid crashes
+            Assert.AreEqual("foo=%EF%BF%BD", Invoke(Nvc(("foo", "\uD83D"))));
+        }
+
+        [TestMethod]
+        public void ControlCharacters_ArePercentEncoded()
+        {
+            // Control characters (c < 32) must be encoded for safety
+            Assert.AreEqual("foo=%0A%0D%09", Invoke(Nvc(("foo", "\n\r\t"))));
+        }
+
+        [TestMethod]
+        public void HighAscii_IsPercentEncoded()
+        {
+            // DEL (127) and non-ASCII characters (>= 128) should be encoded
+            Assert.AreEqual("foo=%7F", Invoke(Nvc(("foo", "\u007F"))));
+        }
     }
 }
