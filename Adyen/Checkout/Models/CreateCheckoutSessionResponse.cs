@@ -938,6 +938,7 @@ namespace Adyen.Checkout.Models
         /// A unique identifier of the session.
         /// </summary>
         /// <value>A unique identifier of the session.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("id")]
         public string Id { get; set; }
 

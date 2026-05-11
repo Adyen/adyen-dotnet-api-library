@@ -652,6 +652,7 @@ namespace Adyen.Checkout.Models
         /// A unique identifier of the payment link.
         /// </summary>
         /// <value>A unique identifier of the payment link.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("id")]
         public string Id { get; set; }
 
@@ -673,6 +674,7 @@ namespace Adyen.Checkout.Models
         /// The URL at which the shopper can complete the payment.
         /// </summary>
         /// <value>The URL at which the shopper can complete the payment.</value>
+        /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("url")]
         public string Url { get; set; }
 
