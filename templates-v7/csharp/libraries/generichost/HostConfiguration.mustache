@@ -58,8 +58,7 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
             {{#models}}
             {{#model}}
             {{#isEnum}}
-            _jsonOptions.Converters.Add(new {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}JsonConverter());
-            _jsonOptions.Converters.Add(new {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}NullableJsonConverter());
+            _jsonOptions.Converters.Add(new {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}.{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}JsonConverter());
             {{/isEnum}}
             {{^isEnum}}
             _jsonOptions.Converters.Add(new {{classname}}JsonConverter());
