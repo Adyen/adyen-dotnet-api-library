@@ -140,7 +140,7 @@ namespace Adyen.Checkout.Models
                 if (value == FeeTypeEnum.ShopperPays)
                     return "shopperPays";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -268,7 +268,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Alma)
                     return "alma";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -401,14 +401,14 @@ namespace Adyen.Checkout.Models
                             break;
                         case "feeType":
                             string? feeTypeRawValue = utf8JsonReader.GetString();
-                            feeType = new Option<AlmaDetails.FeeTypeEnum?>(AlmaDetails.FeeTypeEnum.FromStringOrDefault(feeTypeRawValue));
+                            feeType = new Option<AlmaDetails.FeeTypeEnum?>(AlmaDetails.FeeTypeEnum.FromStringOrDefault(feeTypeRawValue) ?? (AlmaDetails.FeeTypeEnum)feeTypeRawValue);
                             break;
                         case "sdkData":
                             sdkData = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<AlmaDetails.TypeEnum?>(AlmaDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<AlmaDetails.TypeEnum?>(AlmaDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (AlmaDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

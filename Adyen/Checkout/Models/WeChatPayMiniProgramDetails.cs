@@ -132,7 +132,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.WechatpayMiniProgram)
                     return "wechatpayMiniProgram";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -342,7 +342,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<WeChatPayMiniProgramDetails.TypeEnum?>(WeChatPayMiniProgramDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<WeChatPayMiniProgramDetails.TypeEnum?>(WeChatPayMiniProgramDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (WeChatPayMiniProgramDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

@@ -185,7 +185,7 @@ namespace Adyen.Checkout.Models
                 if (value == ChallengeCancelEnum._07)
                     return "07";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -340,7 +340,7 @@ namespace Adyen.Checkout.Models
                 if (value == ExemptionIndicatorEnum.TransactionRiskAnalysis)
                     return "transactionRiskAnalysis";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -513,7 +513,7 @@ namespace Adyen.Checkout.Models
                 if (value == ThreeDSRequestorChallengeIndEnum._06)
                     return "06";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -795,7 +795,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "challengeCancel":
                             string? challengeCancelRawValue = utf8JsonReader.GetString();
-                            challengeCancel = new Option<ThreeDS2Result.ChallengeCancelEnum?>(ThreeDS2Result.ChallengeCancelEnum.FromStringOrDefault(challengeCancelRawValue));
+                            challengeCancel = new Option<ThreeDS2Result.ChallengeCancelEnum?>(ThreeDS2Result.ChallengeCancelEnum.FromStringOrDefault(challengeCancelRawValue) ?? (ThreeDS2Result.ChallengeCancelEnum)challengeCancelRawValue);
                             break;
                         case "dsTransID":
                             dsTransID = new Option<string?>(utf8JsonReader.GetString()!);
@@ -805,7 +805,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "exemptionIndicator":
                             string? exemptionIndicatorRawValue = utf8JsonReader.GetString();
-                            exemptionIndicator = new Option<ThreeDS2Result.ExemptionIndicatorEnum?>(ThreeDS2Result.ExemptionIndicatorEnum.FromStringOrDefault(exemptionIndicatorRawValue));
+                            exemptionIndicator = new Option<ThreeDS2Result.ExemptionIndicatorEnum?>(ThreeDS2Result.ExemptionIndicatorEnum.FromStringOrDefault(exemptionIndicatorRawValue) ?? (ThreeDS2Result.ExemptionIndicatorEnum)exemptionIndicatorRawValue);
                             break;
                         case "messageVersion":
                             messageVersion = new Option<string?>(utf8JsonReader.GetString()!);
@@ -815,7 +815,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "threeDSRequestorChallengeInd":
                             string? threeDSRequestorChallengeIndRawValue = utf8JsonReader.GetString();
-                            threeDSRequestorChallengeInd = new Option<ThreeDS2Result.ThreeDSRequestorChallengeIndEnum?>(ThreeDS2Result.ThreeDSRequestorChallengeIndEnum.FromStringOrDefault(threeDSRequestorChallengeIndRawValue));
+                            threeDSRequestorChallengeInd = new Option<ThreeDS2Result.ThreeDSRequestorChallengeIndEnum?>(ThreeDS2Result.ThreeDSRequestorChallengeIndEnum.FromStringOrDefault(threeDSRequestorChallengeIndRawValue) ?? (ThreeDS2Result.ThreeDSRequestorChallengeIndEnum)threeDSRequestorChallengeIndRawValue);
                             break;
                         case "threeDSServerTransID":
                             threeDSServerTransID = new Option<string?>(utf8JsonReader.GetString()!);

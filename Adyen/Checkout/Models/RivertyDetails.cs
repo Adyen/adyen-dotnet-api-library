@@ -158,7 +158,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.SepadirectdebitRiverty)
                     return "sepadirectdebit_riverty";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -439,7 +439,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<RivertyDetails.TypeEnum?>(RivertyDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<RivertyDetails.TypeEnum?>(RivertyDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (RivertyDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -471,7 +471,7 @@ namespace Adyen.Checkout.Models
                 rivertyDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
             if (subtype.IsSet)
                 rivertyDetails.Subtype = subtype.Value;
-            rivertyDetails.Type = type.Value!.Value;
+            rivertyDetails.Type = type.Value!;
             return rivertyDetails;
         }
 

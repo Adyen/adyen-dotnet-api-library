@@ -167,7 +167,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.EcontextAtm)
                     return "econtext_atm";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -336,7 +336,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<EcontextVoucherDetails.TypeEnum?>(EcontextVoucherDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<EcontextVoucherDetails.TypeEnum?>(EcontextVoucherDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (EcontextVoucherDetails.TypeEnum)typeRawValue);
                             break;
                         case "checkoutAttemptId":
                             checkoutAttemptId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -370,7 +370,7 @@ namespace Adyen.Checkout.Models
             econtextVoucherDetails.LastName = lastName.Value!;
             econtextVoucherDetails.ShopperEmail = shopperEmail.Value!;
             econtextVoucherDetails.TelephoneNumber = telephoneNumber.Value!;
-            econtextVoucherDetails.Type = type.Value!.Value;
+            econtextVoucherDetails.Type = type.Value!;
             if (checkoutAttemptId.IsSet)
                 econtextVoucherDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (sdkData.IsSet)

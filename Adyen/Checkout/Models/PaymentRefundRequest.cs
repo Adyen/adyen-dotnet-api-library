@@ -167,7 +167,7 @@ namespace Adyen.Checkout.Models
                 if (value == MerchantRefundReasonEnum.OTHER)
                     return "OTHER";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -408,7 +408,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "merchantRefundReason":
                             string? merchantRefundReasonRawValue = utf8JsonReader.GetString();
-                            merchantRefundReason = new Option<PaymentRefundRequest.MerchantRefundReasonEnum?>(PaymentRefundRequest.MerchantRefundReasonEnum.FromStringOrDefault(merchantRefundReasonRawValue));
+                            merchantRefundReason = new Option<PaymentRefundRequest.MerchantRefundReasonEnum?>(PaymentRefundRequest.MerchantRefundReasonEnum.FromStringOrDefault(merchantRefundReasonRawValue) ?? (PaymentRefundRequest.MerchantRefundReasonEnum)merchantRefundReasonRawValue);
                             break;
                         case "reference":
                             reference = new Option<string?>(utf8JsonReader.GetString()!);

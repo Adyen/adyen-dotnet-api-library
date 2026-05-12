@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Paybybank)
                     return "paybybank";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -277,7 +277,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PayByBankDetails.TypeEnum?>(PayByBankDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<PayByBankDetails.TypeEnum?>(PayByBankDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PayByBankDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -295,7 +295,7 @@ namespace Adyen.Checkout.Models
                 payByBankDetails.Issuer = issuer.Value;
             if (sdkData.IsSet)
                 payByBankDetails.SdkData = sdkData.Value;
-            payByBankDetails.Type = type.Value!.Value;
+            payByBankDetails.Type = type.Value!;
             return payByBankDetails;
         }
 

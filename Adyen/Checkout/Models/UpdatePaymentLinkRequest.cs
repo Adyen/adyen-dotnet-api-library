@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == StatusEnum.Expired)
                     return "expired";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -220,7 +220,7 @@ namespace Adyen.Checkout.Models
                     {
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<UpdatePaymentLinkRequest.StatusEnum?>(UpdatePaymentLinkRequest.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<UpdatePaymentLinkRequest.StatusEnum?>(UpdatePaymentLinkRequest.StatusEnum.FromStringOrDefault(statusRawValue) ?? (UpdatePaymentLinkRequest.StatusEnum)statusRawValue);
                             break;
                         default:
                             break;
@@ -232,7 +232,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class UpdatePaymentLinkRequest.", nameof(status));
 
             var updatePaymentLinkRequest = new UpdatePaymentLinkRequest();
-            updatePaymentLinkRequest.Status = status.Value!.Value;
+            updatePaymentLinkRequest.Status = status.Value!;
             return updatePaymentLinkRequest;
         }
 

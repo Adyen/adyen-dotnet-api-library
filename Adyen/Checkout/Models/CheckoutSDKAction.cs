@@ -140,7 +140,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.WechatpaySDK)
                     return "wechatpaySDK";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -293,7 +293,7 @@ namespace Adyen.Checkout.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CheckoutSDKAction.TypeEnum?>(CheckoutSDKAction.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CheckoutSDKAction.TypeEnum?>(CheckoutSDKAction.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CheckoutSDKAction.TypeEnum)typeRawValue);
                             break;
                         case "paymentData":
                             paymentData = new Option<string?>(utf8JsonReader.GetString()!);
@@ -317,7 +317,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class CheckoutSDKAction.", nameof(type));
 
             var checkoutSDKAction = new CheckoutSDKAction();
-            checkoutSDKAction.Type = type.Value!.Value;
+            checkoutSDKAction.Type = type.Value!;
             if (paymentData.IsSet)
                 checkoutSDKAction.PaymentData = paymentData.Value;
             if (paymentMethodType.IsSet)

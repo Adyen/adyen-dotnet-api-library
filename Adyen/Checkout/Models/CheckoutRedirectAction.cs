@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Redirect)
                     return "redirect";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -284,7 +284,7 @@ namespace Adyen.Checkout.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CheckoutRedirectAction.TypeEnum?>(CheckoutRedirectAction.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CheckoutRedirectAction.TypeEnum?>(CheckoutRedirectAction.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CheckoutRedirectAction.TypeEnum)typeRawValue);
                             break;
                         case "data":
                             data = new Option<Dictionary<string, string>?>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -308,7 +308,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class CheckoutRedirectAction.", nameof(type));
 
             var checkoutRedirectAction = new CheckoutRedirectAction();
-            checkoutRedirectAction.Type = type.Value!.Value;
+            checkoutRedirectAction.Type = type.Value!;
             if (data.IsSet)
                 checkoutRedirectAction.Data = data.Value;
             if (method.IsSet)

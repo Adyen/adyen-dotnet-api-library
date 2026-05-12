@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Shipping)
                     return "Shipping";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -302,7 +302,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<DeliveryMethod.TypeEnum?>(DeliveryMethod.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<DeliveryMethod.TypeEnum?>(DeliveryMethod.TypeEnum.FromStringOrDefault(typeRawValue) ?? (DeliveryMethod.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

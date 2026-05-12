@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == StatusEnum.Received)
                     return "received";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -346,7 +346,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<PaymentCaptureResponse.StatusEnum?>(PaymentCaptureResponse.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<PaymentCaptureResponse.StatusEnum?>(PaymentCaptureResponse.StatusEnum.FromStringOrDefault(statusRawValue) ?? (PaymentCaptureResponse.StatusEnum)statusRawValue);
                             break;
                         case "lineItems":
                             lineItems = new Option<List<LineItem>?>(JsonSerializer.Deserialize<List<LineItem>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -389,7 +389,7 @@ namespace Adyen.Checkout.Models
             paymentCaptureResponse.MerchantAccount = merchantAccount.Value!;
             paymentCaptureResponse.PaymentPspReference = paymentPspReference.Value!;
             paymentCaptureResponse.PspReference = pspReference.Value!;
-            paymentCaptureResponse.Status = status.Value!.Value;
+            paymentCaptureResponse.Status = status.Value!;
             if (lineItems.IsSet)
                 paymentCaptureResponse.LineItems = lineItems.Value;
             if (platformChargebackLogic.IsSet)

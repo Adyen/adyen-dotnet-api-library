@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Await)
                     return "await";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -268,7 +268,7 @@ namespace Adyen.Checkout.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CheckoutAwaitAction.TypeEnum?>(CheckoutAwaitAction.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CheckoutAwaitAction.TypeEnum?>(CheckoutAwaitAction.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CheckoutAwaitAction.TypeEnum)typeRawValue);
                             break;
                         case "paymentData":
                             paymentData = new Option<string?>(utf8JsonReader.GetString()!);
@@ -289,7 +289,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class CheckoutAwaitAction.", nameof(type));
 
             var checkoutAwaitAction = new CheckoutAwaitAction();
-            checkoutAwaitAction.Type = type.Value!.Value;
+            checkoutAwaitAction.Type = type.Value!;
             if (paymentData.IsSet)
                 checkoutAwaitAction.PaymentData = paymentData.Value;
             if (paymentMethodType.IsSet)

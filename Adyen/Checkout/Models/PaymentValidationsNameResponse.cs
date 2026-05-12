@@ -149,7 +149,7 @@ namespace Adyen.Checkout.Models
                 if (value == StatusEnum.Performed)
                     return "performed";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -281,7 +281,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<PaymentValidationsNameResponse.StatusEnum?>(PaymentValidationsNameResponse.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<PaymentValidationsNameResponse.StatusEnum?>(PaymentValidationsNameResponse.StatusEnum.FromStringOrDefault(statusRawValue) ?? (PaymentValidationsNameResponse.StatusEnum)statusRawValue);
                             break;
                         default:
                             break;

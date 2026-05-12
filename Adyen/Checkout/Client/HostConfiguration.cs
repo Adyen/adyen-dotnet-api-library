@@ -259,8 +259,7 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new ResponseAdditionalDataSepaJsonConverter());
             _jsonOptions.Converters.Add(new ResponseAdditionalDataSwishJsonConverter());
             _jsonOptions.Converters.Add(new ResponsePaymentMethodJsonConverter());
-            _jsonOptions.Converters.Add(new ResultJsonConverter());
-            _jsonOptions.Converters.Add(new ResultNullableJsonConverter());
+            _jsonOptions.Converters.Add(new Result.ResultJsonConverter());
             _jsonOptions.Converters.Add(new RiskDataJsonConverter());
             _jsonOptions.Converters.Add(new RivertyDetailsJsonConverter());
             _jsonOptions.Converters.Add(new SDKEphemPubKeyJsonConverter());

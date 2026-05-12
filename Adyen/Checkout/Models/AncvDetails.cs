@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Ancv)
                     return "ancv";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -324,7 +324,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<AncvDetails.TypeEnum?>(AncvDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<AncvDetails.TypeEnum?>(AncvDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (AncvDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

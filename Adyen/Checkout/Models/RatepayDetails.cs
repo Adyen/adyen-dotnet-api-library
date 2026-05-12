@@ -140,7 +140,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.RatepayDirectdebit)
                     return "ratepay_directdebit";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -364,7 +364,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<RatepayDetails.TypeEnum?>(RatepayDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<RatepayDetails.TypeEnum?>(RatepayDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (RatepayDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -390,7 +390,7 @@ namespace Adyen.Checkout.Models
                 ratepayDetails.SdkData = sdkData.Value;
             if (storedPaymentMethodId.IsSet)
                 ratepayDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            ratepayDetails.Type = type.Value!.Value;
+            ratepayDetails.Type = type.Value!;
             return ratepayDetails;
         }
 

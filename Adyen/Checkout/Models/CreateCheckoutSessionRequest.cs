@@ -150,7 +150,7 @@ namespace Adyen.Checkout.Models
                 if (value == ChannelEnum.Web)
                     return "Web";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -287,7 +287,7 @@ namespace Adyen.Checkout.Models
                 if (value == ModeEnum.Hosted)
                     return "hosted";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -433,7 +433,7 @@ namespace Adyen.Checkout.Models
                 if (value == RecurringProcessingModelEnum.UnscheduledCardOnFile)
                     return "UnscheduledCardOnFile";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -588,7 +588,7 @@ namespace Adyen.Checkout.Models
                 if (value == ShopperInteractionEnum.POS)
                     return "POS";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -734,7 +734,7 @@ namespace Adyen.Checkout.Models
                 if (value == StoreFiltrationModeEnum.SkipFilter)
                     return "skipFilter";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -880,7 +880,7 @@ namespace Adyen.Checkout.Models
                 if (value == StorePaymentMethodModeEnum.Enabled)
                     return "enabled";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1878,7 +1878,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "channel":
                             string? channelRawValue = utf8JsonReader.GetString();
-                            channel = new Option<CreateCheckoutSessionRequest.ChannelEnum?>(CreateCheckoutSessionRequest.ChannelEnum.FromStringOrDefault(channelRawValue));
+                            channel = new Option<CreateCheckoutSessionRequest.ChannelEnum?>(CreateCheckoutSessionRequest.ChannelEnum.FromStringOrDefault(channelRawValue) ?? (CreateCheckoutSessionRequest.ChannelEnum)channelRawValue);
                             break;
                         case "company":
                             company = new Option<Company?>(JsonSerializer.Deserialize<Company>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -1933,7 +1933,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "mode":
                             string? modeRawValue = utf8JsonReader.GetString();
-                            mode = new Option<CreateCheckoutSessionRequest.ModeEnum?>(CreateCheckoutSessionRequest.ModeEnum.FromStringOrDefault(modeRawValue));
+                            mode = new Option<CreateCheckoutSessionRequest.ModeEnum?>(CreateCheckoutSessionRequest.ModeEnum.FromStringOrDefault(modeRawValue) ?? (CreateCheckoutSessionRequest.ModeEnum)modeRawValue);
                             break;
                         case "mpiData":
                             mpiData = new Option<ThreeDSecureData?>(JsonSerializer.Deserialize<ThreeDSecureData>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -1949,7 +1949,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "recurringProcessingModel":
                             string? recurringProcessingModelRawValue = utf8JsonReader.GetString();
-                            recurringProcessingModel = new Option<CreateCheckoutSessionRequest.RecurringProcessingModelEnum?>(CreateCheckoutSessionRequest.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue));
+                            recurringProcessingModel = new Option<CreateCheckoutSessionRequest.RecurringProcessingModelEnum?>(CreateCheckoutSessionRequest.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue) ?? (CreateCheckoutSessionRequest.RecurringProcessingModelEnum)recurringProcessingModelRawValue);
                             break;
                         case "redirectFromIssuerMethod":
                             redirectFromIssuerMethod = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1968,7 +1968,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "shopperInteraction":
                             string? shopperInteractionRawValue = utf8JsonReader.GetString();
-                            shopperInteraction = new Option<CreateCheckoutSessionRequest.ShopperInteractionEnum?>(CreateCheckoutSessionRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue));
+                            shopperInteraction = new Option<CreateCheckoutSessionRequest.ShopperInteractionEnum?>(CreateCheckoutSessionRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue) ?? (CreateCheckoutSessionRequest.ShopperInteractionEnum)shopperInteractionRawValue);
                             break;
                         case "shopperLocale":
                             shopperLocale = new Option<string?>(utf8JsonReader.GetString()!);
@@ -2002,14 +2002,14 @@ namespace Adyen.Checkout.Models
                             break;
                         case "storeFiltrationMode":
                             string? storeFiltrationModeRawValue = utf8JsonReader.GetString();
-                            storeFiltrationMode = new Option<CreateCheckoutSessionRequest.StoreFiltrationModeEnum?>(CreateCheckoutSessionRequest.StoreFiltrationModeEnum.FromStringOrDefault(storeFiltrationModeRawValue));
+                            storeFiltrationMode = new Option<CreateCheckoutSessionRequest.StoreFiltrationModeEnum?>(CreateCheckoutSessionRequest.StoreFiltrationModeEnum.FromStringOrDefault(storeFiltrationModeRawValue) ?? (CreateCheckoutSessionRequest.StoreFiltrationModeEnum)storeFiltrationModeRawValue);
                             break;
                         case "storePaymentMethod":
                             storePaymentMethod = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "storePaymentMethodMode":
                             string? storePaymentMethodModeRawValue = utf8JsonReader.GetString();
-                            storePaymentMethodMode = new Option<CreateCheckoutSessionRequest.StorePaymentMethodModeEnum?>(CreateCheckoutSessionRequest.StorePaymentMethodModeEnum.FromStringOrDefault(storePaymentMethodModeRawValue));
+                            storePaymentMethodMode = new Option<CreateCheckoutSessionRequest.StorePaymentMethodModeEnum?>(CreateCheckoutSessionRequest.StorePaymentMethodModeEnum.FromStringOrDefault(storePaymentMethodModeRawValue) ?? (CreateCheckoutSessionRequest.StorePaymentMethodModeEnum)storePaymentMethodModeRawValue);
                             break;
                         case "telephoneNumber":
                             telephoneNumber = new Option<string?>(utf8JsonReader.GetString()!);

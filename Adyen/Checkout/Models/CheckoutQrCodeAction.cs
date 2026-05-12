@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.QrCode)
                     return "qrCode";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -300,7 +300,7 @@ namespace Adyen.Checkout.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CheckoutQrCodeAction.TypeEnum?>(CheckoutQrCodeAction.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CheckoutQrCodeAction.TypeEnum?>(CheckoutQrCodeAction.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CheckoutQrCodeAction.TypeEnum)typeRawValue);
                             break;
                         case "expiresAt":
                             expiresAt = new Option<string?>(utf8JsonReader.GetString()!);
@@ -327,7 +327,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class CheckoutQrCodeAction.", nameof(type));
 
             var checkoutQrCodeAction = new CheckoutQrCodeAction();
-            checkoutQrCodeAction.Type = type.Value!.Value;
+            checkoutQrCodeAction.Type = type.Value!;
             if (expiresAt.IsSet)
                 checkoutQrCodeAction.ExpiresAt = expiresAt.Value;
             if (paymentData.IsSet)

@@ -905,7 +905,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Balanceplatform)
                     return "balanceplatform";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1039,7 +1039,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PaymentDetails.TypeEnum?>(PaymentDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<PaymentDetails.TypeEnum?>(PaymentDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PaymentDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

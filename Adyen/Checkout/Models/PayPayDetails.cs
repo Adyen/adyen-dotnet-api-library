@@ -132,7 +132,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Paypay)
                     return "paypay";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -306,7 +306,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PayPayDetails.TypeEnum?>(PayPayDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<PayPayDetails.TypeEnum?>(PayPayDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PayPayDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

@@ -131,8 +131,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "result":
                             string? resultRawValue = utf8JsonReader.GetString();
-                            if (resultRawValue != null)
-                                result = new Option<Result?>(ResultValueConverter.FromStringOrDefault(resultRawValue));
+                            result = new Option<Result?>(Result.FromStringOrDefault(resultRawValue) ?? (Result)resultRawValue);
                             break;
                         default:
                             break;
@@ -180,7 +179,7 @@ namespace Adyen.Checkout.Models
 
             if (validateShopperIdResponse._ResultOption.IsSet)
             {
-                var resultRawValue = ResultValueConverter.ToJsonValue(validateShopperIdResponse.Result!.Value);
+                var resultRawValue = Result.ToJsonValue(validateShopperIdResponse.Result);
                 writer.WriteString("result", resultRawValue);
             }
         }

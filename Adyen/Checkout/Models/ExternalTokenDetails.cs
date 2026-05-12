@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == SubtypeEnum.Hilton)
                     return "hilton";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -252,7 +252,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.ExternalToken)
                     return "externalToken";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -435,7 +435,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "subtype":
                             string? subtypeRawValue = utf8JsonReader.GetString();
-                            subtype = new Option<ExternalTokenDetails.SubtypeEnum?>(ExternalTokenDetails.SubtypeEnum.FromStringOrDefault(subtypeRawValue));
+                            subtype = new Option<ExternalTokenDetails.SubtypeEnum?>(ExternalTokenDetails.SubtypeEnum.FromStringOrDefault(subtypeRawValue) ?? (ExternalTokenDetails.SubtypeEnum)subtypeRawValue);
                             break;
                         case "checkoutAttemptId":
                             checkoutAttemptId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -454,7 +454,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<ExternalTokenDetails.TypeEnum?>(ExternalTokenDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<ExternalTokenDetails.TypeEnum?>(ExternalTokenDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (ExternalTokenDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -473,7 +473,7 @@ namespace Adyen.Checkout.Models
 
             var externalTokenDetails = new ExternalTokenDetails();
             externalTokenDetails.StoredPaymentMethodId = storedPaymentMethodId.Value!;
-            externalTokenDetails.Subtype = subtype.Value!.Value;
+            externalTokenDetails.Subtype = subtype.Value!;
             if (checkoutAttemptId.IsSet)
                 externalTokenDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (expiryMonth.IsSet)
@@ -484,7 +484,7 @@ namespace Adyen.Checkout.Models
                 externalTokenDetails.HolderName = holderName.Value;
             if (number.IsSet)
                 externalTokenDetails.Number = number.Value;
-            externalTokenDetails.Type = type.Value!.Value;
+            externalTokenDetails.Type = type.Value!;
             return externalTokenDetails;
         }
 

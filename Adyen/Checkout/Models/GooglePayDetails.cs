@@ -150,7 +150,7 @@ namespace Adyen.Checkout.Models
                 if (value == FundingSourceEnum.Prepaid)
                     return "prepaid";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -278,7 +278,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Googlepay)
                     return "googlepay";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -489,7 +489,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "fundingSource":
                             string? fundingSourceRawValue = utf8JsonReader.GetString();
-                            fundingSource = new Option<GooglePayDetails.FundingSourceEnum?>(GooglePayDetails.FundingSourceEnum.FromStringOrDefault(fundingSourceRawValue));
+                            fundingSource = new Option<GooglePayDetails.FundingSourceEnum?>(GooglePayDetails.FundingSourceEnum.FromStringOrDefault(fundingSourceRawValue) ?? (GooglePayDetails.FundingSourceEnum)fundingSourceRawValue);
                             break;
                         case "googlePayCardNetwork":
                             googlePayCardNetwork = new Option<string?>(utf8JsonReader.GetString()!);
@@ -508,7 +508,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<GooglePayDetails.TypeEnum?>(GooglePayDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<GooglePayDetails.TypeEnum?>(GooglePayDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (GooglePayDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

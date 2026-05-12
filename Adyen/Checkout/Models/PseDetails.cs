@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.PsePayulatam)
                     return "pse_payulatam";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -313,7 +313,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PseDetails.TypeEnum?>(PseDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<PseDetails.TypeEnum?>(PseDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PseDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

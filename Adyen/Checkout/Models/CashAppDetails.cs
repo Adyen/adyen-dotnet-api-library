@@ -132,7 +132,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Cashapp)
                     return "cashapp";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -420,7 +420,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CashAppDetails.TypeEnum?>(CashAppDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CashAppDetails.TypeEnum?>(CashAppDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CashAppDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

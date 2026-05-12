@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Twint)
                     return "twint";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -324,7 +324,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<TwintDetails.TypeEnum?>(TwintDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<TwintDetails.TypeEnum?>(TwintDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TwintDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

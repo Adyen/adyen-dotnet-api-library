@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.PaybybankAISDD)
                     return "paybybank_AIS_DD";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -298,7 +298,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PayByBankAISDirectDebitDetails.TypeEnum?>(PayByBankAISDirectDebitDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<PayByBankAISDirectDebitDetails.TypeEnum?>(PayByBankAISDirectDebitDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PayByBankAISDirectDebitDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -318,7 +318,7 @@ namespace Adyen.Checkout.Models
                 payByBankAISDirectDebitDetails.SdkData = sdkData.Value;
             if (storedPaymentMethodId.IsSet)
                 payByBankAISDirectDebitDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            payByBankAISDirectDebitDetails.Type = type.Value!.Value;
+            payByBankAISDirectDebitDetails.Type = type.Value!;
             return payByBankAISDirectDebitDetails;
         }
 

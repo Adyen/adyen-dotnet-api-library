@@ -149,7 +149,7 @@ namespace Adyen.Checkout.Models
                 if (value == ChannelEnum.Web)
                     return "Web";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -295,7 +295,7 @@ namespace Adyen.Checkout.Models
                 if (value == RecurringProcessingModelEnum.UnscheduledCardOnFile)
                     return "UnscheduledCardOnFile";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -450,7 +450,7 @@ namespace Adyen.Checkout.Models
                 if (value == ShopperInteractionEnum.POS)
                     return "POS";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1194,7 +1194,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "channel":
                             string? channelRawValue = utf8JsonReader.GetString();
-                            channel = new Option<DonationPaymentRequest.ChannelEnum?>(DonationPaymentRequest.ChannelEnum.FromStringOrDefault(channelRawValue));
+                            channel = new Option<DonationPaymentRequest.ChannelEnum?>(DonationPaymentRequest.ChannelEnum.FromStringOrDefault(channelRawValue) ?? (DonationPaymentRequest.ChannelEnum)channelRawValue);
                             break;
                         case "checkoutAttemptId":
                             checkoutAttemptId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1249,7 +1249,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "recurringProcessingModel":
                             string? recurringProcessingModelRawValue = utf8JsonReader.GetString();
-                            recurringProcessingModel = new Option<DonationPaymentRequest.RecurringProcessingModelEnum?>(DonationPaymentRequest.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue));
+                            recurringProcessingModel = new Option<DonationPaymentRequest.RecurringProcessingModelEnum?>(DonationPaymentRequest.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue) ?? (DonationPaymentRequest.RecurringProcessingModelEnum)recurringProcessingModelRawValue);
                             break;
                         case "redirectFromIssuerMethod":
                             redirectFromIssuerMethod = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1268,7 +1268,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "shopperInteraction":
                             string? shopperInteractionRawValue = utf8JsonReader.GetString();
-                            shopperInteraction = new Option<DonationPaymentRequest.ShopperInteractionEnum?>(DonationPaymentRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue));
+                            shopperInteraction = new Option<DonationPaymentRequest.ShopperInteractionEnum?>(DonationPaymentRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue) ?? (DonationPaymentRequest.ShopperInteractionEnum)shopperInteractionRawValue);
                             break;
                         case "shopperLocale":
                             shopperLocale = new Option<string?>(utf8JsonReader.GetString()!);

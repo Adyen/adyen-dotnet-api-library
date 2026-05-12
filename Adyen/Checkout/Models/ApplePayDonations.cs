@@ -150,7 +150,7 @@ namespace Adyen.Checkout.Models
                 if (value == FundingSourceEnum.Prepaid)
                     return "prepaid";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -278,7 +278,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Applepay)
                     return "applepay";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -457,7 +457,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "fundingSource":
                             string? fundingSourceRawValue = utf8JsonReader.GetString();
-                            fundingSource = new Option<ApplePayDonations.FundingSourceEnum?>(ApplePayDonations.FundingSourceEnum.FromStringOrDefault(fundingSourceRawValue));
+                            fundingSource = new Option<ApplePayDonations.FundingSourceEnum?>(ApplePayDonations.FundingSourceEnum.FromStringOrDefault(fundingSourceRawValue) ?? (ApplePayDonations.FundingSourceEnum)fundingSourceRawValue);
                             break;
                         case "recurringDetailReference":
                             recurringDetailReference = new Option<string?>(utf8JsonReader.GetString()!);
@@ -470,7 +470,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<ApplePayDonations.TypeEnum?>(ApplePayDonations.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<ApplePayDonations.TypeEnum?>(ApplePayDonations.TypeEnum.FromStringOrDefault(typeRawValue) ?? (ApplePayDonations.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

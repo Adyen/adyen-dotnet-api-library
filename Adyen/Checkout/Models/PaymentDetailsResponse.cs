@@ -248,7 +248,7 @@ namespace Adyen.Checkout.Models
                 if (value == ResultCodeEnum.Success)
                     return "Success";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -628,7 +628,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "resultCode":
                             string? resultCodeRawValue = utf8JsonReader.GetString();
-                            resultCode = new Option<PaymentDetailsResponse.ResultCodeEnum?>(PaymentDetailsResponse.ResultCodeEnum.FromStringOrDefault(resultCodeRawValue));
+                            resultCode = new Option<PaymentDetailsResponse.ResultCodeEnum?>(PaymentDetailsResponse.ResultCodeEnum.FromStringOrDefault(resultCodeRawValue) ?? (PaymentDetailsResponse.ResultCodeEnum)resultCodeRawValue);
                             break;
                         case "shopperLocale":
                             shopperLocale = new Option<string?>(utf8JsonReader.GetString()!);

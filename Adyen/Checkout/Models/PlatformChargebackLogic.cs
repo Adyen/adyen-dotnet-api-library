@@ -149,7 +149,7 @@ namespace Adyen.Checkout.Models
                 if (value == BehaviorEnum.DeductFromLiableAccount)
                     return "deductFromLiableAccount";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -277,7 +277,7 @@ namespace Adyen.Checkout.Models
                     {
                         case "behavior":
                             string? behaviorRawValue = utf8JsonReader.GetString();
-                            behavior = new Option<PlatformChargebackLogic.BehaviorEnum?>(PlatformChargebackLogic.BehaviorEnum.FromStringOrDefault(behaviorRawValue));
+                            behavior = new Option<PlatformChargebackLogic.BehaviorEnum?>(PlatformChargebackLogic.BehaviorEnum.FromStringOrDefault(behaviorRawValue) ?? (PlatformChargebackLogic.BehaviorEnum)behaviorRawValue);
                             break;
                         case "costAllocationAccount":
                             costAllocationAccount = new Option<string?>(utf8JsonReader.GetString()!);

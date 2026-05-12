@@ -140,7 +140,7 @@ namespace Adyen.Checkout.Models
                 if (value == AttemptAuthenticationEnum.Never)
                     return "never";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -267,7 +267,7 @@ namespace Adyen.Checkout.Models
                     {
                         case "attemptAuthentication":
                             string? attemptAuthenticationRawValue = utf8JsonReader.GetString();
-                            attemptAuthentication = new Option<AuthenticationData.AttemptAuthenticationEnum?>(AuthenticationData.AttemptAuthenticationEnum.FromStringOrDefault(attemptAuthenticationRawValue));
+                            attemptAuthentication = new Option<AuthenticationData.AttemptAuthenticationEnum?>(AuthenticationData.AttemptAuthenticationEnum.FromStringOrDefault(attemptAuthenticationRawValue) ?? (AuthenticationData.AttemptAuthenticationEnum)attemptAuthenticationRawValue);
                             break;
                         case "authenticationOnly":
                             authenticationOnly = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());

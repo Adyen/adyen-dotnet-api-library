@@ -221,7 +221,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.DokuOvo)
                     return "doku_ovo";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -378,7 +378,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<DokuDetails.TypeEnum?>(DokuDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<DokuDetails.TypeEnum?>(DokuDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (DokuDetails.TypeEnum)typeRawValue);
                             break;
                         case "checkoutAttemptId":
                             checkoutAttemptId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -408,7 +408,7 @@ namespace Adyen.Checkout.Models
             dokuDetails.FirstName = firstName.Value!;
             dokuDetails.LastName = lastName.Value!;
             dokuDetails.ShopperEmail = shopperEmail.Value!;
-            dokuDetails.Type = type.Value!.Value;
+            dokuDetails.Type = type.Value!;
             if (checkoutAttemptId.IsSet)
                 dokuDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (sdkData.IsSet)

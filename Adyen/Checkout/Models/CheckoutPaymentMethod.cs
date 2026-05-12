@@ -1324,178 +1324,178 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (achDetails?.Type != null)
+            if (achDetails?.Type != null && AchDetails.TypeEnum.FromStringOrDefault((string?)achDetails.Type) != null)
                 return new CheckoutPaymentMethod(achDetails);
 
-            if (affirmDetails?.Type != null)
+            if (affirmDetails?.Type != null && AffirmDetails.TypeEnum.FromStringOrDefault((string?)affirmDetails.Type) != null)
                 return new CheckoutPaymentMethod(affirmDetails);
 
-            if (afterpayDetails?.Type != null)
+            if (afterpayDetails?.Type != null && AfterpayDetails.TypeEnum.FromStringOrDefault((string?)afterpayDetails.Type) != null)
                 return new CheckoutPaymentMethod(afterpayDetails);
 
-            if (almaDetails?.Type != null)
+            if (almaDetails?.Type != null && AlmaDetails.TypeEnum.FromStringOrDefault((string?)almaDetails.Type) != null)
                 return new CheckoutPaymentMethod(almaDetails);
 
-            if (amazonPayDetails?.Type != null)
+            if (amazonPayDetails?.Type != null && AmazonPayDetails.TypeEnum.FromStringOrDefault((string?)amazonPayDetails.Type) != null)
                 return new CheckoutPaymentMethod(amazonPayDetails);
 
-            if (ancvDetails?.Type != null)
+            if (ancvDetails?.Type != null && AncvDetails.TypeEnum.FromStringOrDefault((string?)ancvDetails.Type) != null)
                 return new CheckoutPaymentMethod(ancvDetails);
 
-            if (androidPayDetails?.Type != null)
+            if (androidPayDetails?.Type != null && AndroidPayDetails.TypeEnum.FromStringOrDefault((string?)androidPayDetails.Type) != null)
                 return new CheckoutPaymentMethod(androidPayDetails);
 
-            if (applePayDetails?.Type != null)
+            if (applePayDetails?.Type != null && ApplePayDetails.TypeEnum.FromStringOrDefault((string?)applePayDetails.Type) != null)
                 return new CheckoutPaymentMethod(applePayDetails);
 
-            if (bacsDirectDebitDetails?.Type != null)
+            if (bacsDirectDebitDetails?.Type != null && BacsDirectDebitDetails.TypeEnum.FromStringOrDefault((string?)bacsDirectDebitDetails.Type) != null)
                 return new CheckoutPaymentMethod(bacsDirectDebitDetails);
 
-            if (billDeskDetails?.Type != null)
+            if (billDeskDetails?.Type != null && BillDeskDetails.TypeEnum.FromStringOrDefault((string?)billDeskDetails.Type) != null)
                 return new CheckoutPaymentMethod(billDeskDetails);
 
-            if (blikDetails?.Type != null)
+            if (blikDetails?.Type != null && BlikDetails.TypeEnum.FromStringOrDefault((string?)blikDetails.Type) != null)
                 return new CheckoutPaymentMethod(blikDetails);
 
-            if (cardDetails?.Type != null)
+            if (cardDetails?.Type != null && CardDetails.TypeEnum.FromStringOrDefault((string?)cardDetails.Type) != null)
                 return new CheckoutPaymentMethod(cardDetails);
 
-            if (cashAppDetails?.Type != null)
+            if (cashAppDetails?.Type != null && CashAppDetails.TypeEnum.FromStringOrDefault((string?)cashAppDetails.Type) != null)
                 return new CheckoutPaymentMethod(cashAppDetails);
 
-            if (cellulantDetails?.Type != null)
+            if (cellulantDetails?.Type != null && CellulantDetails.TypeEnum.FromStringOrDefault((string?)cellulantDetails.Type) != null)
                 return new CheckoutPaymentMethod(cellulantDetails);
 
-            if (directDebitAuDetails?.Type != null)
+            if (directDebitAuDetails?.Type != null && DirectDebitAuDetails.TypeEnum.FromStringOrDefault((string?)directDebitAuDetails.Type) != null)
                 return new CheckoutPaymentMethod(directDebitAuDetails);
 
-            if (dokuDetails?.Type != null)
+            if (dokuDetails?.Type != null && DokuDetails.TypeEnum.FromStringOrDefault((string?)dokuDetails.Type) != null)
                 return new CheckoutPaymentMethod(dokuDetails);
 
-            if (dragonpayDetails?.Type != null)
+            if (dragonpayDetails?.Type != null && DragonpayDetails.TypeEnum.FromStringOrDefault((string?)dragonpayDetails.Type) != null)
                 return new CheckoutPaymentMethod(dragonpayDetails);
 
-            if (eBankingFinlandDetails?.Type != null)
+            if (eBankingFinlandDetails?.Type != null && EBankingFinlandDetails.TypeEnum.FromStringOrDefault((string?)eBankingFinlandDetails.Type) != null)
                 return new CheckoutPaymentMethod(eBankingFinlandDetails);
 
-            if (econtextVoucherDetails?.Type != null)
+            if (econtextVoucherDetails?.Type != null && EcontextVoucherDetails.TypeEnum.FromStringOrDefault((string?)econtextVoucherDetails.Type) != null)
                 return new CheckoutPaymentMethod(econtextVoucherDetails);
 
-            if (eftDetails?.Type != null)
+            if (eftDetails?.Type != null && EftDetails.TypeEnum.FromStringOrDefault((string?)eftDetails.Type) != null)
                 return new CheckoutPaymentMethod(eftDetails);
 
-            if (externalTokenDetails?.Type != null)
+            if (externalTokenDetails?.Type != null && ExternalTokenDetails.TypeEnum.FromStringOrDefault((string?)externalTokenDetails.Type) != null)
                 return new CheckoutPaymentMethod(externalTokenDetails);
 
-            if (fastlaneDetails?.Type != null)
+            if (fastlaneDetails?.Type != null && FastlaneDetails.TypeEnum.FromStringOrDefault((string?)fastlaneDetails.Type) != null)
                 return new CheckoutPaymentMethod(fastlaneDetails);
 
-            if (genericIssuerPaymentMethodDetails?.Type != null)
+            if (genericIssuerPaymentMethodDetails?.Type != null && GenericIssuerPaymentMethodDetails.TypeEnum.FromStringOrDefault((string?)genericIssuerPaymentMethodDetails.Type) != null)
                 return new CheckoutPaymentMethod(genericIssuerPaymentMethodDetails);
 
-            if (googlePayDetails?.Type != null)
+            if (googlePayDetails?.Type != null && GooglePayDetails.TypeEnum.FromStringOrDefault((string?)googlePayDetails.Type) != null)
                 return new CheckoutPaymentMethod(googlePayDetails);
 
-            if (idealDetails?.Type != null)
+            if (idealDetails?.Type != null && IdealDetails.TypeEnum.FromStringOrDefault((string?)idealDetails.Type) != null)
                 return new CheckoutPaymentMethod(idealDetails);
 
-            if (klarnaDetails?.Type != null)
+            if (klarnaDetails?.Type != null && KlarnaDetails.TypeEnum.FromStringOrDefault((string?)klarnaDetails.Type) != null)
                 return new CheckoutPaymentMethod(klarnaDetails);
 
-            if (klarnaNetworkDetails?.Type != null)
+            if (klarnaNetworkDetails?.Type != null && KlarnaNetworkDetails.TypeEnum.FromStringOrDefault((string?)klarnaNetworkDetails.Type) != null)
                 return new CheckoutPaymentMethod(klarnaNetworkDetails);
 
-            if (masterpassDetails?.Type != null)
+            if (masterpassDetails?.Type != null && MasterpassDetails.TypeEnum.FromStringOrDefault((string?)masterpassDetails.Type) != null)
                 return new CheckoutPaymentMethod(masterpassDetails);
 
-            if (mbwayDetails?.Type != null)
+            if (mbwayDetails?.Type != null && MbwayDetails.TypeEnum.FromStringOrDefault((string?)mbwayDetails.Type) != null)
                 return new CheckoutPaymentMethod(mbwayDetails);
 
-            if (mobilePayDetails?.Type != null)
+            if (mobilePayDetails?.Type != null && MobilePayDetails.TypeEnum.FromStringOrDefault((string?)mobilePayDetails.Type) != null)
                 return new CheckoutPaymentMethod(mobilePayDetails);
 
-            if (molPayDetails?.Type != null)
+            if (molPayDetails?.Type != null && MolPayDetails.TypeEnum.FromStringOrDefault((string?)molPayDetails.Type) != null)
                 return new CheckoutPaymentMethod(molPayDetails);
 
-            if (openInvoiceDetails?.Type != null)
+            if (openInvoiceDetails?.Type != null && OpenInvoiceDetails.TypeEnum.FromStringOrDefault((string?)openInvoiceDetails.Type) != null)
                 return new CheckoutPaymentMethod(openInvoiceDetails);
 
-            if (payByBankAISDirectDebitDetails?.Type != null)
+            if (payByBankAISDirectDebitDetails?.Type != null && PayByBankAISDirectDebitDetails.TypeEnum.FromStringOrDefault((string?)payByBankAISDirectDebitDetails.Type) != null)
                 return new CheckoutPaymentMethod(payByBankAISDirectDebitDetails);
 
-            if (payByBankDetails?.Type != null)
+            if (payByBankDetails?.Type != null && PayByBankDetails.TypeEnum.FromStringOrDefault((string?)payByBankDetails.Type) != null)
                 return new CheckoutPaymentMethod(payByBankDetails);
 
-            if (payPalDetails?.Type != null)
+            if (payPalDetails?.Type != null && PayPalDetails.TypeEnum.FromStringOrDefault((string?)payPalDetails.Type) != null)
                 return new CheckoutPaymentMethod(payPalDetails);
 
-            if (payPayDetails?.Type != null)
+            if (payPayDetails?.Type != null && PayPayDetails.TypeEnum.FromStringOrDefault((string?)payPayDetails.Type) != null)
                 return new CheckoutPaymentMethod(payPayDetails);
 
-            if (payToDetails?.Type != null)
+            if (payToDetails?.Type != null && PayToDetails.TypeEnum.FromStringOrDefault((string?)payToDetails.Type) != null)
                 return new CheckoutPaymentMethod(payToDetails);
 
-            if (payUUpiDetails?.Type != null)
+            if (payUUpiDetails?.Type != null && PayUUpiDetails.TypeEnum.FromStringOrDefault((string?)payUUpiDetails.Type) != null)
                 return new CheckoutPaymentMethod(payUUpiDetails);
 
-            if (payWithGoogleDetails?.Type != null)
+            if (payWithGoogleDetails?.Type != null && PayWithGoogleDetails.TypeEnum.FromStringOrDefault((string?)payWithGoogleDetails.Type) != null)
                 return new CheckoutPaymentMethod(payWithGoogleDetails);
 
-            if (paymentDetails?.Type != null)
+            if (paymentDetails?.Type != null && PaymentDetails.TypeEnum.FromStringOrDefault((string?)paymentDetails.Type) != null)
                 return new CheckoutPaymentMethod(paymentDetails);
 
-            if (pixDetails?.Type != null)
+            if (pixDetails?.Type != null && PixDetails.TypeEnum.FromStringOrDefault((string?)pixDetails.Type) != null)
                 return new CheckoutPaymentMethod(pixDetails);
 
-            if (pixPayByBankDetails?.Type != null)
+            if (pixPayByBankDetails?.Type != null && PixPayByBankDetails.TypeEnum.FromStringOrDefault((string?)pixPayByBankDetails.Type) != null)
                 return new CheckoutPaymentMethod(pixPayByBankDetails);
 
-            if (pseDetails?.Type != null)
+            if (pseDetails?.Type != null && PseDetails.TypeEnum.FromStringOrDefault((string?)pseDetails.Type) != null)
                 return new CheckoutPaymentMethod(pseDetails);
 
-            if (rakutenPayDetails?.Type != null)
+            if (rakutenPayDetails?.Type != null && RakutenPayDetails.TypeEnum.FromStringOrDefault((string?)rakutenPayDetails.Type) != null)
                 return new CheckoutPaymentMethod(rakutenPayDetails);
 
-            if (ratepayDetails?.Type != null)
+            if (ratepayDetails?.Type != null && RatepayDetails.TypeEnum.FromStringOrDefault((string?)ratepayDetails.Type) != null)
                 return new CheckoutPaymentMethod(ratepayDetails);
 
-            if (rivertyDetails?.Type != null)
+            if (rivertyDetails?.Type != null && RivertyDetails.TypeEnum.FromStringOrDefault((string?)rivertyDetails.Type) != null)
                 return new CheckoutPaymentMethod(rivertyDetails);
 
-            if (samsungPayDetails?.Type != null)
+            if (samsungPayDetails?.Type != null && SamsungPayDetails.TypeEnum.FromStringOrDefault((string?)samsungPayDetails.Type) != null)
                 return new CheckoutPaymentMethod(samsungPayDetails);
 
-            if (sepaDirectDebitDetails?.Type != null)
+            if (sepaDirectDebitDetails?.Type != null && SepaDirectDebitDetails.TypeEnum.FromStringOrDefault((string?)sepaDirectDebitDetails.Type) != null)
                 return new CheckoutPaymentMethod(sepaDirectDebitDetails);
 
-            if (storedPaymentMethodDetails?.Type != null)
+            if (storedPaymentMethodDetails?.Type != null && StoredPaymentMethodDetails.TypeEnum.FromStringOrDefault((string?)storedPaymentMethodDetails.Type) != null)
                 return new CheckoutPaymentMethod(storedPaymentMethodDetails);
 
-            if (twintDetails?.Type != null)
+            if (twintDetails?.Type != null && TwintDetails.TypeEnum.FromStringOrDefault((string?)twintDetails.Type) != null)
                 return new CheckoutPaymentMethod(twintDetails);
 
-            if (upiCollectDetails?.Type != null)
+            if (upiCollectDetails?.Type != null && UpiCollectDetails.TypeEnum.FromStringOrDefault((string?)upiCollectDetails.Type) != null)
                 return new CheckoutPaymentMethod(upiCollectDetails);
 
-            if (upiIntentDetails?.Type != null)
+            if (upiIntentDetails?.Type != null && UpiIntentDetails.TypeEnum.FromStringOrDefault((string?)upiIntentDetails.Type) != null)
                 return new CheckoutPaymentMethod(upiIntentDetails);
 
-            if (upiQrDetails?.Type != null)
+            if (upiQrDetails?.Type != null && UpiQrDetails.TypeEnum.FromStringOrDefault((string?)upiQrDetails.Type) != null)
                 return new CheckoutPaymentMethod(upiQrDetails);
 
-            if (vippsDetails?.Type != null)
+            if (vippsDetails?.Type != null && VippsDetails.TypeEnum.FromStringOrDefault((string?)vippsDetails.Type) != null)
                 return new CheckoutPaymentMethod(vippsDetails);
 
-            if (visaCheckoutDetails?.Type != null)
+            if (visaCheckoutDetails?.Type != null && VisaCheckoutDetails.TypeEnum.FromStringOrDefault((string?)visaCheckoutDetails.Type) != null)
                 return new CheckoutPaymentMethod(visaCheckoutDetails);
 
-            if (weChatPayDetails?.Type != null)
+            if (weChatPayDetails?.Type != null && WeChatPayDetails.TypeEnum.FromStringOrDefault((string?)weChatPayDetails.Type) != null)
                 return new CheckoutPaymentMethod(weChatPayDetails);
 
-            if (weChatPayMiniProgramDetails?.Type != null)
+            if (weChatPayMiniProgramDetails?.Type != null && WeChatPayMiniProgramDetails.TypeEnum.FromStringOrDefault((string?)weChatPayMiniProgramDetails.Type) != null)
                 return new CheckoutPaymentMethod(weChatPayMiniProgramDetails);
 
-            if (zipDetails?.Type != null)
+            if (zipDetails?.Type != null && ZipDetails.TypeEnum.FromStringOrDefault((string?)zipDetails.Type) != null)
                 return new CheckoutPaymentMethod(zipDetails);
 
             throw new JsonException();

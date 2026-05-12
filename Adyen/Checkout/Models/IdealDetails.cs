@@ -132,7 +132,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Ideal)
                     return "ideal";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -325,7 +325,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<IdealDetails.TypeEnum?>(IdealDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<IdealDetails.TypeEnum?>(IdealDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (IdealDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

@@ -149,7 +149,7 @@ namespace Adyen.Checkout.Models
                 if (value == SubtypeEnum.Sdk)
                     return "sdk";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -277,7 +277,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Paypal)
                     return "paypal";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -522,11 +522,11 @@ namespace Adyen.Checkout.Models
                             break;
                         case "subtype":
                             string? subtypeRawValue = utf8JsonReader.GetString();
-                            subtype = new Option<PayPalDetails.SubtypeEnum?>(PayPalDetails.SubtypeEnum.FromStringOrDefault(subtypeRawValue));
+                            subtype = new Option<PayPalDetails.SubtypeEnum?>(PayPalDetails.SubtypeEnum.FromStringOrDefault(subtypeRawValue) ?? (PayPalDetails.SubtypeEnum)subtypeRawValue);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PayPalDetails.TypeEnum?>(PayPalDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<PayPalDetails.TypeEnum?>(PayPalDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PayPalDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -556,7 +556,7 @@ namespace Adyen.Checkout.Models
                 payPalDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
             if (subtype.IsSet)
                 payPalDetails.Subtype = subtype.Value;
-            payPalDetails.Type = type.Value!.Value;
+            payPalDetails.Type = type.Value!;
             return payPalDetails;
         }
 

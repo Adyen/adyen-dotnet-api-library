@@ -149,7 +149,7 @@ namespace Adyen.Checkout.Models
                 if (value == ChannelEnum.Web)
                     return "Web";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -286,7 +286,7 @@ namespace Adyen.Checkout.Models
                 if (value == EntityTypeEnum.CompanyName)
                     return "CompanyName";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -432,7 +432,7 @@ namespace Adyen.Checkout.Models
                 if (value == IndustryUsageEnum.NoShow)
                     return "noShow";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -578,7 +578,7 @@ namespace Adyen.Checkout.Models
                 if (value == RecurringProcessingModelEnum.UnscheduledCardOnFile)
                     return "UnscheduledCardOnFile";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -733,7 +733,7 @@ namespace Adyen.Checkout.Models
                 if (value == ShopperInteractionEnum.POS)
                     return "POS";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1942,7 +1942,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "channel":
                             string? channelRawValue = utf8JsonReader.GetString();
-                            channel = new Option<PaymentRequest.ChannelEnum?>(PaymentRequest.ChannelEnum.FromStringOrDefault(channelRawValue));
+                            channel = new Option<PaymentRequest.ChannelEnum?>(PaymentRequest.ChannelEnum.FromStringOrDefault(channelRawValue) ?? (PaymentRequest.ChannelEnum)channelRawValue);
                             break;
                         case "checkoutAttemptId":
                             checkoutAttemptId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1988,7 +1988,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "entityType":
                             string? entityTypeRawValue = utf8JsonReader.GetString();
-                            entityType = new Option<PaymentRequest.EntityTypeEnum?>(PaymentRequest.EntityTypeEnum.FromStringOrDefault(entityTypeRawValue));
+                            entityType = new Option<PaymentRequest.EntityTypeEnum?>(PaymentRequest.EntityTypeEnum.FromStringOrDefault(entityTypeRawValue) ?? (PaymentRequest.EntityTypeEnum)entityTypeRawValue);
                             break;
                         case "fraudOffset":
                             fraudOffset = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -2001,7 +2001,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "industryUsage":
                             string? industryUsageRawValue = utf8JsonReader.GetString();
-                            industryUsage = new Option<PaymentRequest.IndustryUsageEnum?>(PaymentRequest.IndustryUsageEnum.FromStringOrDefault(industryUsageRawValue));
+                            industryUsage = new Option<PaymentRequest.IndustryUsageEnum?>(PaymentRequest.IndustryUsageEnum.FromStringOrDefault(industryUsageRawValue) ?? (PaymentRequest.IndustryUsageEnum)industryUsageRawValue);
                             break;
                         case "installments":
                             installments = new Option<Installments?>(JsonSerializer.Deserialize<Installments>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -2053,7 +2053,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "recurringProcessingModel":
                             string? recurringProcessingModelRawValue = utf8JsonReader.GetString();
-                            recurringProcessingModel = new Option<PaymentRequest.RecurringProcessingModelEnum?>(PaymentRequest.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue));
+                            recurringProcessingModel = new Option<PaymentRequest.RecurringProcessingModelEnum?>(PaymentRequest.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue) ?? (PaymentRequest.RecurringProcessingModelEnum)recurringProcessingModelRawValue);
                             break;
                         case "redirectFromIssuerMethod":
                             redirectFromIssuerMethod = new Option<string?>(utf8JsonReader.GetString()!);
@@ -2078,7 +2078,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "shopperInteraction":
                             string? shopperInteractionRawValue = utf8JsonReader.GetString();
-                            shopperInteraction = new Option<PaymentRequest.ShopperInteractionEnum?>(PaymentRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue));
+                            shopperInteraction = new Option<PaymentRequest.ShopperInteractionEnum?>(PaymentRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue) ?? (PaymentRequest.ShopperInteractionEnum)shopperInteractionRawValue);
                             break;
                         case "shopperLocale":
                             shopperLocale = new Option<string?>(utf8JsonReader.GetString()!);

@@ -140,7 +140,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.BilldeskWallet)
                     return "billdesk_wallet";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -273,7 +273,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<BillDeskDetails.TypeEnum?>(BillDeskDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<BillDeskDetails.TypeEnum?>(BillDeskDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (BillDeskDetails.TypeEnum)typeRawValue);
                             break;
                         case "checkoutAttemptId":
                             checkoutAttemptId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -295,7 +295,7 @@ namespace Adyen.Checkout.Models
 
             var billDeskDetails = new BillDeskDetails();
             billDeskDetails.Issuer = issuer.Value!;
-            billDeskDetails.Type = type.Value!.Value;
+            billDeskDetails.Type = type.Value!;
             if (checkoutAttemptId.IsSet)
                 billDeskDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (sdkData.IsSet)

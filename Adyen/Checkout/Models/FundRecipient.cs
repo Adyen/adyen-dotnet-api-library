@@ -167,7 +167,7 @@ namespace Adyen.Checkout.Models
                 if (value == WalletPurposeEnum.UnidentifiedBoleto)
                     return "unidentifiedBoleto";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -468,7 +468,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "walletPurpose":
                             string? walletPurposeRawValue = utf8JsonReader.GetString();
-                            walletPurpose = new Option<FundRecipient.WalletPurposeEnum?>(FundRecipient.WalletPurposeEnum.FromStringOrDefault(walletPurposeRawValue));
+                            walletPurpose = new Option<FundRecipient.WalletPurposeEnum?>(FundRecipient.WalletPurposeEnum.FromStringOrDefault(walletPurposeRawValue) ?? (FundRecipient.WalletPurposeEnum)walletPurposeRawValue);
                             break;
                         default:
                             break;

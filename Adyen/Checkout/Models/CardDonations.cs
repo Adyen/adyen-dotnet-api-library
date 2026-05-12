@@ -150,7 +150,7 @@ namespace Adyen.Checkout.Models
                 if (value == FundingSourceEnum.Prepaid)
                     return "prepaid";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -323,7 +323,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Clicktopay)
                     return "clicktopay";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -882,7 +882,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "fundingSource":
                             string? fundingSourceRawValue = utf8JsonReader.GetString();
-                            fundingSource = new Option<CardDonations.FundingSourceEnum?>(CardDonations.FundingSourceEnum.FromStringOrDefault(fundingSourceRawValue));
+                            fundingSource = new Option<CardDonations.FundingSourceEnum?>(CardDonations.FundingSourceEnum.FromStringOrDefault(fundingSourceRawValue) ?? (CardDonations.FundingSourceEnum)fundingSourceRawValue);
                             break;
                         case "holderName":
                             holderName = new Option<string?>(utf8JsonReader.GetString()!);
@@ -922,7 +922,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CardDonations.TypeEnum?>(CardDonations.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CardDonations.TypeEnum?>(CardDonations.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CardDonations.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

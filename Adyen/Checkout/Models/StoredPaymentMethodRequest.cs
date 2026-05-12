@@ -149,7 +149,7 @@ namespace Adyen.Checkout.Models
                 if (value == RecurringProcessingModelEnum.UnscheduledCardOnFile)
                     return "UnscheduledCardOnFile";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -302,7 +302,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "recurringProcessingModel":
                             string? recurringProcessingModelRawValue = utf8JsonReader.GetString();
-                            recurringProcessingModel = new Option<StoredPaymentMethodRequest.RecurringProcessingModelEnum?>(StoredPaymentMethodRequest.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue));
+                            recurringProcessingModel = new Option<StoredPaymentMethodRequest.RecurringProcessingModelEnum?>(StoredPaymentMethodRequest.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue) ?? (StoredPaymentMethodRequest.RecurringProcessingModelEnum)recurringProcessingModelRawValue);
                             break;
                         case "shopperReference":
                             shopperReference = new Option<string?>(utf8JsonReader.GetString()!);
@@ -334,7 +334,7 @@ namespace Adyen.Checkout.Models
             var storedPaymentMethodRequest = new StoredPaymentMethodRequest();
             storedPaymentMethodRequest.MerchantAccount = merchantAccount.Value!;
             storedPaymentMethodRequest.PaymentMethod = paymentMethod.Value!;
-            storedPaymentMethodRequest.RecurringProcessingModel = recurringProcessingModel.Value!.Value;
+            storedPaymentMethodRequest.RecurringProcessingModel = recurringProcessingModel.Value!;
             storedPaymentMethodRequest.ShopperReference = shopperReference.Value!;
             if (shopperEmail.IsSet)
                 storedPaymentMethodRequest.ShopperEmail = shopperEmail.Value;

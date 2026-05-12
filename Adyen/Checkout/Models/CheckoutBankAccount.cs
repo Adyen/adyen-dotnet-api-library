@@ -185,7 +185,7 @@ namespace Adyen.Checkout.Models
                 if (value == AccountTypeEnum.Savings)
                     return "savings";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -425,7 +425,7 @@ namespace Adyen.Checkout.Models
                     {
                         case "accountType":
                             string? accountTypeRawValue = utf8JsonReader.GetString();
-                            accountType = new Option<CheckoutBankAccount.AccountTypeEnum?>(CheckoutBankAccount.AccountTypeEnum.FromStringOrDefault(accountTypeRawValue));
+                            accountType = new Option<CheckoutBankAccount.AccountTypeEnum?>(CheckoutBankAccount.AccountTypeEnum.FromStringOrDefault(accountTypeRawValue) ?? (CheckoutBankAccount.AccountTypeEnum)accountTypeRawValue);
                             break;
                         case "bankAccountNumber":
                             bankAccountNumber = new Option<string?>(utf8JsonReader.GetString()!);

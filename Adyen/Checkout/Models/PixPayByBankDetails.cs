@@ -132,7 +132,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.PaybybankPix)
                     return "paybybank_pix";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -360,7 +360,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PixPayByBankDetails.TypeEnum?>(PixPayByBankDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<PixPayByBankDetails.TypeEnum?>(PixPayByBankDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PixPayByBankDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

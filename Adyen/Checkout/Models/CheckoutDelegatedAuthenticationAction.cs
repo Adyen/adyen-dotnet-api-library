@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.DelegatedAuthentication)
                     return "delegatedAuthentication";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -300,7 +300,7 @@ namespace Adyen.Checkout.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CheckoutDelegatedAuthenticationAction.TypeEnum?>(CheckoutDelegatedAuthenticationAction.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CheckoutDelegatedAuthenticationAction.TypeEnum?>(CheckoutDelegatedAuthenticationAction.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CheckoutDelegatedAuthenticationAction.TypeEnum)typeRawValue);
                             break;
                         case "authorisationToken":
                             authorisationToken = new Option<string?>(utf8JsonReader.GetString()!);
@@ -327,7 +327,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class CheckoutDelegatedAuthenticationAction.", nameof(type));
 
             var checkoutDelegatedAuthenticationAction = new CheckoutDelegatedAuthenticationAction();
-            checkoutDelegatedAuthenticationAction.Type = type.Value!.Value;
+            checkoutDelegatedAuthenticationAction.Type = type.Value!;
             if (authorisationToken.IsSet)
                 checkoutDelegatedAuthenticationAction.AuthorisationToken = authorisationToken.Value;
             if (paymentData.IsSet)

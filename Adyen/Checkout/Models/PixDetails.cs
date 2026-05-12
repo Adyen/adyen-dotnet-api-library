@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Pix)
                     return "pix";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -323,7 +323,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PixDetails.TypeEnum?>(PixDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<PixDetails.TypeEnum?>(PixDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PixDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

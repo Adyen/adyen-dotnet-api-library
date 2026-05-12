@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.UpiIntent)
                     return "upi_intent";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -355,7 +355,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<UpiIntentDetails.TypeEnum?>(UpiIntentDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<UpiIntentDetails.TypeEnum?>(UpiIntentDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (UpiIntentDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -381,7 +381,7 @@ namespace Adyen.Checkout.Models
                 upiIntentDetails.ShopperNotificationReference = shopperNotificationReference.Value;
             if (storedPaymentMethodId.IsSet)
                 upiIntentDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            upiIntentDetails.Type = type.Value!.Value;
+            upiIntentDetails.Type = type.Value!;
             return upiIntentDetails;
         }
 

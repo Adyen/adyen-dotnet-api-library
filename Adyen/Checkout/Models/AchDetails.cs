@@ -141,7 +141,7 @@ namespace Adyen.Checkout.Models
                 if (value == AccountHolderTypeEnum.Personal)
                     return "personal";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -323,7 +323,7 @@ namespace Adyen.Checkout.Models
                 if (value == BankAccountTypeEnum.Savings)
                     return "savings";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -460,7 +460,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.AchPlaid)
                     return "ach_plaid";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -722,14 +722,14 @@ namespace Adyen.Checkout.Models
                     {
                         case "accountHolderType":
                             string? accountHolderTypeRawValue = utf8JsonReader.GetString();
-                            accountHolderType = new Option<AchDetails.AccountHolderTypeEnum?>(AchDetails.AccountHolderTypeEnum.FromStringOrDefault(accountHolderTypeRawValue));
+                            accountHolderType = new Option<AchDetails.AccountHolderTypeEnum?>(AchDetails.AccountHolderTypeEnum.FromStringOrDefault(accountHolderTypeRawValue) ?? (AchDetails.AccountHolderTypeEnum)accountHolderTypeRawValue);
                             break;
                         case "bankAccountNumber":
                             bankAccountNumber = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "bankAccountType":
                             string? bankAccountTypeRawValue = utf8JsonReader.GetString();
-                            bankAccountType = new Option<AchDetails.BankAccountTypeEnum?>(AchDetails.BankAccountTypeEnum.FromStringOrDefault(bankAccountTypeRawValue));
+                            bankAccountType = new Option<AchDetails.BankAccountTypeEnum?>(AchDetails.BankAccountTypeEnum.FromStringOrDefault(bankAccountTypeRawValue) ?? (AchDetails.BankAccountTypeEnum)bankAccountTypeRawValue);
                             break;
                         case "bankLocationId":
                             bankLocationId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -760,7 +760,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<AchDetails.TypeEnum?>(AchDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<AchDetails.TypeEnum?>(AchDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (AchDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

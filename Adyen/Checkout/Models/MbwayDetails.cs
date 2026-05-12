@@ -132,7 +132,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Mbway)
                     return "mbway";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -288,7 +288,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<MbwayDetails.TypeEnum?>(MbwayDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<MbwayDetails.TypeEnum?>(MbwayDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (MbwayDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

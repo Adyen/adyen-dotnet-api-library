@@ -149,7 +149,7 @@ namespace Adyen.Checkout.Models
                 if (value == ChannelEnum.Web)
                     return "Web";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -295,7 +295,7 @@ namespace Adyen.Checkout.Models
                 if (value == StoreFiltrationModeEnum.SkipFilter)
                     return "skipFilter";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -657,7 +657,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "channel":
                             string? channelRawValue = utf8JsonReader.GetString();
-                            channel = new Option<PaymentMethodsRequest.ChannelEnum?>(PaymentMethodsRequest.ChannelEnum.FromStringOrDefault(channelRawValue));
+                            channel = new Option<PaymentMethodsRequest.ChannelEnum?>(PaymentMethodsRequest.ChannelEnum.FromStringOrDefault(channelRawValue) ?? (PaymentMethodsRequest.ChannelEnum)channelRawValue);
                             break;
                         case "countryCode":
                             countryCode = new Option<string?>(utf8JsonReader.GetString()!);
@@ -688,7 +688,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "storeFiltrationMode":
                             string? storeFiltrationModeRawValue = utf8JsonReader.GetString();
-                            storeFiltrationMode = new Option<PaymentMethodsRequest.StoreFiltrationModeEnum?>(PaymentMethodsRequest.StoreFiltrationModeEnum.FromStringOrDefault(storeFiltrationModeRawValue));
+                            storeFiltrationMode = new Option<PaymentMethodsRequest.StoreFiltrationModeEnum?>(PaymentMethodsRequest.StoreFiltrationModeEnum.FromStringOrDefault(storeFiltrationModeRawValue) ?? (PaymentMethodsRequest.StoreFiltrationModeEnum)storeFiltrationModeRawValue);
                             break;
                         case "telephoneNumber":
                             telephoneNumber = new Option<string?>(utf8JsonReader.GetString()!);
