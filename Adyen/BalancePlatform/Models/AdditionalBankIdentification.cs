@@ -158,7 +158,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.UsRoutingNumber)
                     return "usRoutingNumber";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -273,7 +273,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<AdditionalBankIdentification.TypeEnum?>(AdditionalBankIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<AdditionalBankIdentification.TypeEnum?>(AdditionalBankIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (AdditionalBankIdentification.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

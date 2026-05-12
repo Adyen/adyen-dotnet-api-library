@@ -131,7 +131,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.HkLocal)
                     return "hkLocal";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -244,7 +244,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<HKLocalAccountIdentification.TypeEnum?>(HKLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<HKLocalAccountIdentification.TypeEnum?>(HKLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (HKLocalAccountIdentification.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -264,7 +264,7 @@ namespace Adyen.BalancePlatform.Models
             var hKLocalAccountIdentification = new HKLocalAccountIdentification();
             hKLocalAccountIdentification.AccountNumber = accountNumber.Value!;
             hKLocalAccountIdentification.ClearingCode = clearingCode.Value!;
-            hKLocalAccountIdentification.Type = type.Value!.Value;
+            hKLocalAccountIdentification.Type = type.Value!;
             return hKLocalAccountIdentification;
         }
 

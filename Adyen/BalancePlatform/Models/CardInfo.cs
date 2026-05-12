@@ -149,7 +149,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == FormFactorEnum.Virtual)
                     return "virtual";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -351,7 +351,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "formFactor":
                             string? formFactorRawValue = utf8JsonReader.GetString();
-                            formFactor = new Option<CardInfo.FormFactorEnum?>(CardInfo.FormFactorEnum.FromStringOrDefault(formFactorRawValue));
+                            formFactor = new Option<CardInfo.FormFactorEnum?>(CardInfo.FormFactorEnum.FromStringOrDefault(formFactorRawValue) ?? (CardInfo.FormFactorEnum)formFactorRawValue);
                             break;
                         case "authentication":
                             authentication = new Option<Authentication?>(JsonSerializer.Deserialize<Authentication>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -390,7 +390,7 @@ namespace Adyen.BalancePlatform.Models
             cardInfo.Brand = brand.Value!;
             cardInfo.BrandVariant = brandVariant.Value!;
             cardInfo.CardholderName = cardholderName.Value!;
-            cardInfo.FormFactor = formFactor.Value!.Value;
+            cardInfo.FormFactor = formFactor.Value!;
             if (authentication.IsSet)
                 cardInfo.Authentication = authentication.Value;
             if (configuration.IsSet)

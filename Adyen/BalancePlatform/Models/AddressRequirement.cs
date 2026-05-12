@@ -166,7 +166,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == RequiredAddressFieldsEnum.StateOrProvince)
                     return "stateOrProvince";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -280,7 +280,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.AddressRequirement)
                     return "addressRequirement";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -407,7 +407,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<AddressRequirement.TypeEnum?>(AddressRequirement.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<AddressRequirement.TypeEnum?>(AddressRequirement.TypeEnum.FromStringOrDefault(typeRawValue) ?? (AddressRequirement.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -423,7 +423,7 @@ namespace Adyen.BalancePlatform.Models
                 addressRequirement.Description = description.Value;
             if (requiredAddressFields.IsSet)
                 addressRequirement.RequiredAddressFields = requiredAddressFields.Value;
-            addressRequirement.Type = type.Value!.Value;
+            addressRequirement.Type = type.Value!;
             return addressRequirement;
         }
 

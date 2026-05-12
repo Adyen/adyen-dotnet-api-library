@@ -33,7 +33,7 @@ namespace Adyen.Test.BalancePlatform.AccountHolders
         
         
         [TestMethod]
-        public async Task Given_AccountHolder_When_Unknown_Enum_Then_Result_Deserialize_To_Null()
+        public async Task Given_AccountHolder_When_Unknown_Enum_Then_Result_Deserialize_PreservesRawValue()
         {
             // Arrange
             string json =  TestUtilities.GetTestFileContent("mocks/balanceplatform/AccountHolderWithUnknownEnum.json");
@@ -41,9 +41,10 @@ namespace Adyen.Test.BalancePlatform.AccountHolders
             // Act
             var response = JsonSerializer.Deserialize<AccountHolder>(json, _jsonSerializerOptionsProvider.Options);
             
-            // Assert
+            // Assert - unknown enum values are now preserved (not null) per IEX-3037 IEnum pattern
             Assert.IsNotNull(response);
-            Assert.IsNull(response.Status);
+            Assert.IsNotNull(response.Status);
+            Assert.AreEqual("unknown-enum", response.Status.Value);
         }
         
         [TestMethod]

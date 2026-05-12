@@ -131,7 +131,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == CategoryEnum.Bank)
                     return "bank";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -296,7 +296,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == PrioritiesEnum.Wire)
                     return "wire";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -462,7 +462,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "category":
                             string? categoryRawValue = utf8JsonReader.GetString();
-                            category = new Option<TransferRouteRequest.CategoryEnum?>(TransferRouteRequest.CategoryEnum.FromStringOrDefault(categoryRawValue));
+                            category = new Option<TransferRouteRequest.CategoryEnum?>(TransferRouteRequest.CategoryEnum.FromStringOrDefault(categoryRawValue) ?? (TransferRouteRequest.CategoryEnum)categoryRawValue);
                             break;
                         case "currency":
                             currency = new Option<string?>(utf8JsonReader.GetString()!);
@@ -496,7 +496,7 @@ namespace Adyen.BalancePlatform.Models
 
             var transferRouteRequest = new TransferRouteRequest();
             transferRouteRequest.BalancePlatform = balancePlatform.Value!;
-            transferRouteRequest.Category = category.Value!.Value;
+            transferRouteRequest.Category = category.Value!;
             transferRouteRequest.Currency = currency.Value!;
             if (balanceAccountId.IsSet)
                 transferRouteRequest.BalanceAccountId = balanceAccountId.Value;

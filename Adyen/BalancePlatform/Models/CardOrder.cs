@@ -140,7 +140,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == StatusEnum.Open)
                     return "open";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -389,7 +389,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<CardOrder.StatusEnum?>(CardOrder.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<CardOrder.StatusEnum?>(CardOrder.StatusEnum.FromStringOrDefault(statusRawValue) ?? (CardOrder.StatusEnum)statusRawValue);
                             break;
                         default:
                             break;

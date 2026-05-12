@@ -32,75 +32,91 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// Defines ScaEntityType
     /// </summary>
-    public enum ScaEntityType
+    [JsonConverter(typeof(ScaEntityType.ScaEntityTypeJsonConverter))]
+    public class ScaEntityType : IEnum
     {
         /// <summary>
-        /// Enum AccountHolder for value: accountHolder
+        /// Returns the value of the ScaEntityType.
         /// </summary>
-        AccountHolder = 1,
+        public string? Value { get; set; }
 
         /// <summary>
-        /// Enum LegalEntity for value: legalEntity
+        /// ScaEntityType.AccountHolder - accountHolder
         /// </summary>
-        LegalEntity = 2,
+        public static readonly ScaEntityType AccountHolder = new("accountHolder");
 
         /// <summary>
-        /// Enum PaymentInstrument for value: paymentInstrument
+        /// ScaEntityType.LegalEntity - legalEntity
         /// </summary>
-        PaymentInstrument = 3
-    }
+        public static readonly ScaEntityType LegalEntity = new("legalEntity");
 
-    /// <summary>
-    /// Converts <see cref="ScaEntityType"/> to and from the JSON value
-    /// </summary>
-    public static class ScaEntityTypeValueConverter
-    {
         /// <summary>
-        /// Parses a given value to <see cref="ScaEntityType"/>
+        /// ScaEntityType.PaymentInstrument - paymentInstrument
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static ScaEntityType FromString(string value)
+        public static readonly ScaEntityType PaymentInstrument = new("paymentInstrument");
+
+        private ScaEntityType(string? value)
         {
-            if (value.Equals("accountHolder"))
-                return ScaEntityType.AccountHolder;
-
-            if (value.Equals("legalEntity"))
-                return ScaEntityType.LegalEntity;
-
-            if (value.Equals("paymentInstrument"))
-                return ScaEntityType.PaymentInstrument;
-
-            throw new NotImplementedException($"Could not convert value to type ScaEntityType: '{value}'");
+            Value = value;
         }
 
         /// <summary>
-        /// Parses a given value to <see cref="ScaEntityType"/>
+        /// Converts a string to a <see cref="ScaEntityType"/> implicitly.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static ScaEntityType? FromStringOrDefault(string value)
+        public static implicit operator ScaEntityType?(string? value) => value == null ? null : new ScaEntityType(value);
+
+        /// <summary>
+        /// Converts a <see cref="ScaEntityType"/> instance to a string implicitly.
+        /// </summary>
+        public static implicit operator string?(ScaEntityType? option) => option?.Value;
+
+        /// <summary>
+        /// Compares two <see cref="ScaEntityType"/> instances for equality.
+        /// </summary>
+        public static bool operator ==(ScaEntityType? left, ScaEntityType? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Compares two <see cref="ScaEntityType"/> instances for inequality.
+        /// </summary>
+        public static bool operator !=(ScaEntityType? left, ScaEntityType? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns true if the given object is equal to this <see cref="ScaEntityType"/> instance.
+        /// </summary>
+        public override bool Equals(object? obj) => obj is ScaEntityType other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns a hash code for this <see cref="ScaEntityType"/> instance.
+        /// </summary>
+        public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+        /// <summary>
+        /// Returns the string value of the <see cref="ScaEntityType"/> instance.
+        /// </summary>
+        public override string ToString() => Value ?? string.Empty;
+
+        /// <summary>
+        /// Returns a <see cref="ScaEntityType?"/>, or null if the value is not recognized.
+        /// </summary>
+        public static ScaEntityType? FromStringOrDefault(string? value)
         {
-            if (value.Equals("accountHolder"))
-                return ScaEntityType.AccountHolder;
-
-            if (value.Equals("legalEntity"))
-                return ScaEntityType.LegalEntity;
-
-            if (value.Equals("paymentInstrument"))
-                return ScaEntityType.PaymentInstrument;
-
-            return null;
+            return value switch {
+                "accountHolder" => ScaEntityType.AccountHolder,
+                "legalEntity" => ScaEntityType.LegalEntity,
+                "paymentInstrument" => ScaEntityType.PaymentInstrument,
+                _ => null,
+            };
         }
 
         /// <summary>
-        /// Converts the <see cref="ScaEntityType"/> to the json value
+        /// Converts the <see cref="ScaEntityType"/> to the json value.
+        /// Returns the raw string value, preserving unknown values for round-trip safety.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string ToJsonValue(ScaEntityType value)
+        public static string? ToJsonValue(ScaEntityType? value)
         {
+            if (value == null)
+                return null;
+
             if (value == ScaEntityType.AccountHolder)
                 return "accountHolder";
 
@@ -110,84 +126,32 @@ namespace Adyen.BalancePlatform.Models
             if (value == ScaEntityType.PaymentInstrument)
                 return "paymentInstrument";
 
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-    }
-
-    /// <summary>
-    /// A Json converter for type <see cref="ScaEntityType"/>
-    /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    public class ScaEntityTypeJsonConverter : JsonConverter<ScaEntityType>
-    {
-        /// <summary>
-        /// Returns a  from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override ScaEntityType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            ScaEntityType? result = rawValue == null
-                ? null
-                : ScaEntityTypeValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
+            return value.Value;
         }
 
         /// <summary>
-        /// Writes the ScaEntityType to the json writer
+        /// JsonConverter for <see cref="ScaEntityType"/>.
+        /// Preserves unknown values instead of throwing an exception.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="scaEntityType"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, ScaEntityType scaEntityType, JsonSerializerOptions options)
+        public class ScaEntityTypeJsonConverter : JsonConverter<ScaEntityType>
         {
-            writer.WriteStringValue(ScaEntityTypeValueConverter.ToJsonValue(scaEntityType).ToString());
-        }
-    }
+            /// <summary>
+            /// Deserializes a <see cref="ScaEntityType"/> from JSON.
+            /// Unknown values are preserved as-is rather than throwing an exception.
+            /// </summary>
+            public override ScaEntityType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                string? rawValue = reader.GetString();
+                return rawValue == null ? null : ScaEntityType.FromStringOrDefault(rawValue) ?? new ScaEntityType(rawValue);
+            }
 
-    /// <summary>
-    /// A Json converter for type <see cref="ScaEntityType"/>
-    /// </summary>
-    public class ScaEntityTypeNullableJsonConverter : JsonConverter<ScaEntityType?>
-    {
-        /// <summary>
-        /// Returns a ScaEntityType from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override ScaEntityType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            ScaEntityType? result = rawValue == null
-                ? null
-                : ScaEntityTypeValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
-        }
-
-        /// <summary>
-        /// Writes the ScaEntityType to the json writer
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="scaEntityType"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, ScaEntityType? scaEntityType, JsonSerializerOptions options)
-        {
-            writer.WriteStringValue(scaEntityType.HasValue ? ScaEntityTypeValueConverter.ToJsonValue(scaEntityType.Value).ToString() : "null");
+            /// <summary>
+            /// Serializes a <see cref="ScaEntityType"/> to JSON.
+            /// </summary>
+            public override void Write(Utf8JsonWriter writer, ScaEntityType value, JsonSerializerOptions options)
+            {
+                writer.WriteStringValue(ScaEntityType.ToJsonValue(value));
+            }
         }
     }
 }

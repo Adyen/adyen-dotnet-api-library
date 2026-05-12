@@ -134,16 +134,14 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "entityType":
                             string? entityTypeRawValue = utf8JsonReader.GetString();
-                            if (entityTypeRawValue != null)
-                                entityType = new Option<ScaEntityType?>(ScaEntityTypeValueConverter.FromStringOrDefault(entityTypeRawValue));
+                            entityType = new Option<ScaEntityType?>(ScaEntityType.FromStringOrDefault(entityTypeRawValue) ?? (ScaEntityType)entityTypeRawValue);
                             break;
                         case "scaDeviceIds":
                             scaDeviceIds = new Option<List<string>?>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            if (statusRawValue != null)
-                                status = new Option<AssociationStatus?>(AssociationStatusValueConverter.FromStringOrDefault(statusRawValue));
+                            status = new Option<AssociationStatus?>(AssociationStatus.FromStringOrDefault(statusRawValue) ?? (AssociationStatus)statusRawValue);
                             break;
                         default:
                             break;
@@ -165,9 +163,9 @@ namespace Adyen.BalancePlatform.Models
 
             var approveAssociationRequest = new ApproveAssociationRequest();
             approveAssociationRequest.EntityId = entityId.Value!;
-            approveAssociationRequest.EntityType = entityType.Value!.Value;
+            approveAssociationRequest.EntityType = entityType.Value!;
             approveAssociationRequest.ScaDeviceIds = scaDeviceIds.Value!;
-            approveAssociationRequest.Status = status.Value!.Value;
+            approveAssociationRequest.Status = status.Value!;
             return approveAssociationRequest;
         }
 
@@ -200,12 +198,12 @@ namespace Adyen.BalancePlatform.Models
             if (approveAssociationRequest.EntityId != null)
                 writer.WriteString("entityId", approveAssociationRequest.EntityId);
 
-            var entityTypeRawValue = ScaEntityTypeValueConverter.ToJsonValue(approveAssociationRequest.EntityType);
+            var entityTypeRawValue = ScaEntityType.ToJsonValue(approveAssociationRequest.EntityType);
             writer.WriteString("entityType", entityTypeRawValue);
 
             writer.WritePropertyName("scaDeviceIds");
             JsonSerializer.Serialize(writer, approveAssociationRequest.ScaDeviceIds, jsonSerializerOptions);
-            var statusRawValue = AssociationStatusValueConverter.ToJsonValue(approveAssociationRequest.Status);
+            var statusRawValue = AssociationStatus.ToJsonValue(approveAssociationRequest.Status);
             writer.WriteString("status", statusRawValue);
         }
     }

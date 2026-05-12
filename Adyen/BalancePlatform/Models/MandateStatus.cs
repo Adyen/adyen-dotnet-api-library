@@ -32,75 +32,91 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// Defines MandateStatus
     /// </summary>
-    public enum MandateStatus
+    [JsonConverter(typeof(MandateStatus.MandateStatusJsonConverter))]
+    public class MandateStatus : IEnum
     {
         /// <summary>
-        /// Enum Pending for value: pending
+        /// Returns the value of the MandateStatus.
         /// </summary>
-        Pending = 1,
+        public string? Value { get; set; }
 
         /// <summary>
-        /// Enum Approved for value: approved
+        /// MandateStatus.Pending - pending
         /// </summary>
-        Approved = 2,
+        public static readonly MandateStatus Pending = new("pending");
 
         /// <summary>
-        /// Enum Cancelled for value: cancelled
+        /// MandateStatus.Approved - approved
         /// </summary>
-        Cancelled = 3
-    }
+        public static readonly MandateStatus Approved = new("approved");
 
-    /// <summary>
-    /// Converts <see cref="MandateStatus"/> to and from the JSON value
-    /// </summary>
-    public static class MandateStatusValueConverter
-    {
         /// <summary>
-        /// Parses a given value to <see cref="MandateStatus"/>
+        /// MandateStatus.Cancelled - cancelled
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static MandateStatus FromString(string value)
+        public static readonly MandateStatus Cancelled = new("cancelled");
+
+        private MandateStatus(string? value)
         {
-            if (value.Equals("pending"))
-                return MandateStatus.Pending;
-
-            if (value.Equals("approved"))
-                return MandateStatus.Approved;
-
-            if (value.Equals("cancelled"))
-                return MandateStatus.Cancelled;
-
-            throw new NotImplementedException($"Could not convert value to type MandateStatus: '{value}'");
+            Value = value;
         }
 
         /// <summary>
-        /// Parses a given value to <see cref="MandateStatus"/>
+        /// Converts a string to a <see cref="MandateStatus"/> implicitly.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static MandateStatus? FromStringOrDefault(string value)
+        public static implicit operator MandateStatus?(string? value) => value == null ? null : new MandateStatus(value);
+
+        /// <summary>
+        /// Converts a <see cref="MandateStatus"/> instance to a string implicitly.
+        /// </summary>
+        public static implicit operator string?(MandateStatus? option) => option?.Value;
+
+        /// <summary>
+        /// Compares two <see cref="MandateStatus"/> instances for equality.
+        /// </summary>
+        public static bool operator ==(MandateStatus? left, MandateStatus? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Compares two <see cref="MandateStatus"/> instances for inequality.
+        /// </summary>
+        public static bool operator !=(MandateStatus? left, MandateStatus? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns true if the given object is equal to this <see cref="MandateStatus"/> instance.
+        /// </summary>
+        public override bool Equals(object? obj) => obj is MandateStatus other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns a hash code for this <see cref="MandateStatus"/> instance.
+        /// </summary>
+        public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+        /// <summary>
+        /// Returns the string value of the <see cref="MandateStatus"/> instance.
+        /// </summary>
+        public override string ToString() => Value ?? string.Empty;
+
+        /// <summary>
+        /// Returns a <see cref="MandateStatus?"/>, or null if the value is not recognized.
+        /// </summary>
+        public static MandateStatus? FromStringOrDefault(string? value)
         {
-            if (value.Equals("pending"))
-                return MandateStatus.Pending;
-
-            if (value.Equals("approved"))
-                return MandateStatus.Approved;
-
-            if (value.Equals("cancelled"))
-                return MandateStatus.Cancelled;
-
-            return null;
+            return value switch {
+                "pending" => MandateStatus.Pending,
+                "approved" => MandateStatus.Approved,
+                "cancelled" => MandateStatus.Cancelled,
+                _ => null,
+            };
         }
 
         /// <summary>
-        /// Converts the <see cref="MandateStatus"/> to the json value
+        /// Converts the <see cref="MandateStatus"/> to the json value.
+        /// Returns the raw string value, preserving unknown values for round-trip safety.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string ToJsonValue(MandateStatus value)
+        public static string? ToJsonValue(MandateStatus? value)
         {
+            if (value == null)
+                return null;
+
             if (value == MandateStatus.Pending)
                 return "pending";
 
@@ -110,84 +126,32 @@ namespace Adyen.BalancePlatform.Models
             if (value == MandateStatus.Cancelled)
                 return "cancelled";
 
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-    }
-
-    /// <summary>
-    /// A Json converter for type <see cref="MandateStatus"/>
-    /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    public class MandateStatusJsonConverter : JsonConverter<MandateStatus>
-    {
-        /// <summary>
-        /// Returns a  from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override MandateStatus Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            MandateStatus? result = rawValue == null
-                ? null
-                : MandateStatusValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
+            return value.Value;
         }
 
         /// <summary>
-        /// Writes the MandateStatus to the json writer
+        /// JsonConverter for <see cref="MandateStatus"/>.
+        /// Preserves unknown values instead of throwing an exception.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="mandateStatus"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, MandateStatus mandateStatus, JsonSerializerOptions options)
+        public class MandateStatusJsonConverter : JsonConverter<MandateStatus>
         {
-            writer.WriteStringValue(MandateStatusValueConverter.ToJsonValue(mandateStatus).ToString());
-        }
-    }
+            /// <summary>
+            /// Deserializes a <see cref="MandateStatus"/> from JSON.
+            /// Unknown values are preserved as-is rather than throwing an exception.
+            /// </summary>
+            public override MandateStatus? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                string? rawValue = reader.GetString();
+                return rawValue == null ? null : MandateStatus.FromStringOrDefault(rawValue) ?? new MandateStatus(rawValue);
+            }
 
-    /// <summary>
-    /// A Json converter for type <see cref="MandateStatus"/>
-    /// </summary>
-    public class MandateStatusNullableJsonConverter : JsonConverter<MandateStatus?>
-    {
-        /// <summary>
-        /// Returns a MandateStatus from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override MandateStatus? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            MandateStatus? result = rawValue == null
-                ? null
-                : MandateStatusValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
-        }
-
-        /// <summary>
-        /// Writes the MandateStatus to the json writer
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="mandateStatus"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, MandateStatus? mandateStatus, JsonSerializerOptions options)
-        {
-            writer.WriteStringValue(mandateStatus.HasValue ? MandateStatusValueConverter.ToJsonValue(mandateStatus.Value).ToString() : "null");
+            /// <summary>
+            /// Serializes a <see cref="MandateStatus"/> to JSON.
+            /// </summary>
+            public override void Write(Utf8JsonWriter writer, MandateStatus value, JsonSerializerOptions options)
+            {
+                writer.WriteStringValue(MandateStatus.ToJsonValue(value));
+            }
         }
     }
 }

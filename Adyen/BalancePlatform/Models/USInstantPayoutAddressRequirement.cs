@@ -131,7 +131,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.UsInstantPayoutAddressRequirement)
                     return "usInstantPayoutAddressRequirement";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -239,7 +239,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<USInstantPayoutAddressRequirement.TypeEnum?>(USInstantPayoutAddressRequirement.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<USInstantPayoutAddressRequirement.TypeEnum?>(USInstantPayoutAddressRequirement.TypeEnum.FromStringOrDefault(typeRawValue) ?? (USInstantPayoutAddressRequirement.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -253,7 +253,7 @@ namespace Adyen.BalancePlatform.Models
             var uSInstantPayoutAddressRequirement = new USInstantPayoutAddressRequirement();
             if (description.IsSet)
                 uSInstantPayoutAddressRequirement.Description = description.Value;
-            uSInstantPayoutAddressRequirement.Type = type.Value!.Value;
+            uSInstantPayoutAddressRequirement.Type = type.Value!;
             return uSInstantPayoutAddressRequirement;
         }
 

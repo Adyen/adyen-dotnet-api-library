@@ -176,21 +176,18 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "entityType":
                             string? entityTypeRawValue = utf8JsonReader.GetString();
-                            if (entityTypeRawValue != null)
-                                entityType = new Option<ScaEntityType?>(ScaEntityTypeValueConverter.FromStringOrDefault(entityTypeRawValue));
+                            entityType = new Option<ScaEntityType?>(ScaEntityType.FromStringOrDefault(entityTypeRawValue) ?? (ScaEntityType)entityTypeRawValue);
                             break;
                         case "scaDeviceId":
                             scaDeviceId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "scaDeviceType":
                             string? scaDeviceTypeRawValue = utf8JsonReader.GetString();
-                            if (scaDeviceTypeRawValue != null)
-                                scaDeviceType = new Option<ScaDeviceType?>(ScaDeviceTypeValueConverter.FromStringOrDefault(scaDeviceTypeRawValue));
+                            scaDeviceType = new Option<ScaDeviceType?>(ScaDeviceType.FromStringOrDefault(scaDeviceTypeRawValue) ?? (ScaDeviceType)scaDeviceTypeRawValue);
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            if (statusRawValue != null)
-                                status = new Option<AssociationStatus?>(AssociationStatusValueConverter.FromStringOrDefault(statusRawValue));
+                            status = new Option<AssociationStatus?>(AssociationStatus.FromStringOrDefault(statusRawValue) ?? (AssociationStatus)statusRawValue);
                             break;
                         case "scaDeviceName":
                             scaDeviceName = new Option<string?>(utf8JsonReader.GetString()!);
@@ -222,10 +219,10 @@ namespace Adyen.BalancePlatform.Models
             var associationListing = new AssociationListing();
             associationListing.CreatedAt = createdAt.Value!.Value;
             associationListing.EntityId = entityId.Value!;
-            associationListing.EntityType = entityType.Value!.Value;
+            associationListing.EntityType = entityType.Value!;
             associationListing.ScaDeviceId = scaDeviceId.Value!;
-            associationListing.ScaDeviceType = scaDeviceType.Value!.Value;
-            associationListing.Status = status.Value!.Value;
+            associationListing.ScaDeviceType = scaDeviceType.Value!;
+            associationListing.Status = status.Value!;
             if (scaDeviceName.IsSet)
                 associationListing.ScaDeviceName = scaDeviceName.Value;
             return associationListing;
@@ -262,16 +259,16 @@ namespace Adyen.BalancePlatform.Models
             if (associationListing.EntityId != null)
                 writer.WriteString("entityId", associationListing.EntityId);
 
-            var entityTypeRawValue = ScaEntityTypeValueConverter.ToJsonValue(associationListing.EntityType);
+            var entityTypeRawValue = ScaEntityType.ToJsonValue(associationListing.EntityType);
             writer.WriteString("entityType", entityTypeRawValue);
 
             if (associationListing.ScaDeviceId != null)
                 writer.WriteString("scaDeviceId", associationListing.ScaDeviceId);
 
-            var scaDeviceTypeRawValue = ScaDeviceTypeValueConverter.ToJsonValue(associationListing.ScaDeviceType);
+            var scaDeviceTypeRawValue = ScaDeviceType.ToJsonValue(associationListing.ScaDeviceType);
             writer.WriteString("scaDeviceType", scaDeviceTypeRawValue);
 
-            var statusRawValue = AssociationStatusValueConverter.ToJsonValue(associationListing.Status);
+            var statusRawValue = AssociationStatus.ToJsonValue(associationListing.Status);
             writer.WriteString("status", statusRawValue);
 
             if (associationListing._ScaDeviceNameOption.IsSet)

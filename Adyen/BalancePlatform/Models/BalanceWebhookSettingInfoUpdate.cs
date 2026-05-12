@@ -140,7 +140,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == StatusEnum.Inactive)
                     return "inactive";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -268,7 +268,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.Balance)
                     return "balance";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -419,14 +419,14 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<BalanceWebhookSettingInfoUpdate.StatusEnum?>(BalanceWebhookSettingInfoUpdate.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<BalanceWebhookSettingInfoUpdate.StatusEnum?>(BalanceWebhookSettingInfoUpdate.StatusEnum.FromStringOrDefault(statusRawValue) ?? (BalanceWebhookSettingInfoUpdate.StatusEnum)statusRawValue);
                             break;
                         case "target":
                             target = new Option<TargetUpdate?>(JsonSerializer.Deserialize<TargetUpdate>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<BalanceWebhookSettingInfoUpdate.TypeEnum?>(BalanceWebhookSettingInfoUpdate.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<BalanceWebhookSettingInfoUpdate.TypeEnum?>(BalanceWebhookSettingInfoUpdate.TypeEnum.FromStringOrDefault(typeRawValue) ?? (BalanceWebhookSettingInfoUpdate.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

@@ -131,7 +131,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.PaymentInstrument)
                     return "PaymentInstrument";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -243,7 +243,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<AssociationFinaliseRequest.TypeEnum?>(AssociationFinaliseRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<AssociationFinaliseRequest.TypeEnum?>(AssociationFinaliseRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (AssociationFinaliseRequest.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -263,7 +263,7 @@ namespace Adyen.BalancePlatform.Models
             var associationFinaliseRequest = new AssociationFinaliseRequest();
             associationFinaliseRequest.Ids = ids.Value!;
             associationFinaliseRequest.StrongCustomerAuthentication = strongCustomerAuthentication.Value!;
-            associationFinaliseRequest.Type = type.Value!.Value;
+            associationFinaliseRequest.Type = type.Value!;
             return associationFinaliseRequest;
         }
 

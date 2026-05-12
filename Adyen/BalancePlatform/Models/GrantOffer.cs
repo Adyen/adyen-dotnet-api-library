@@ -140,7 +140,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == ContractTypeEnum.Loan)
                     return "loan";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -354,7 +354,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "contractType":
                             string? contractTypeRawValue = utf8JsonReader.GetString();
-                            contractType = new Option<GrantOffer.ContractTypeEnum?>(GrantOffer.ContractTypeEnum.FromStringOrDefault(contractTypeRawValue));
+                            contractType = new Option<GrantOffer.ContractTypeEnum?>(GrantOffer.ContractTypeEnum.FromStringOrDefault(contractTypeRawValue) ?? (GrantOffer.ContractTypeEnum)contractTypeRawValue);
                             break;
                         case "expiresAt":
                             expiresAt = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));

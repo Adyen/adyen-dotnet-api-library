@@ -158,7 +158,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == OperationEnum.StartsWith)
                     return "startsWith";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -270,7 +270,7 @@ namespace Adyen.BalancePlatform.Models
                     {
                         case "operation":
                             string? operationRawValue = utf8JsonReader.GetString();
-                            operation = new Option<StringMatch.OperationEnum?>(StringMatch.OperationEnum.FromStringOrDefault(operationRawValue));
+                            operation = new Option<StringMatch.OperationEnum?>(StringMatch.OperationEnum.FromStringOrDefault(operationRawValue) ?? (StringMatch.OperationEnum)operationRawValue);
                             break;
                         case "value":
                             value = new Option<string?>(utf8JsonReader.GetString()!);

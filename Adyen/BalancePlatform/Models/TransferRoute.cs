@@ -212,7 +212,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == CategoryEnum.Upgrade)
                     return "upgrade";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -385,7 +385,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == PriorityEnum.Wire)
                     return "wire";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -531,7 +531,7 @@ namespace Adyen.BalancePlatform.Models
                     {
                         case "category":
                             string? categoryRawValue = utf8JsonReader.GetString();
-                            category = new Option<TransferRoute.CategoryEnum?>(TransferRoute.CategoryEnum.FromStringOrDefault(categoryRawValue));
+                            category = new Option<TransferRoute.CategoryEnum?>(TransferRoute.CategoryEnum.FromStringOrDefault(categoryRawValue) ?? (TransferRoute.CategoryEnum)categoryRawValue);
                             break;
                         case "country":
                             country = new Option<string?>(utf8JsonReader.GetString()!);
@@ -541,7 +541,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "priority":
                             string? priorityRawValue = utf8JsonReader.GetString();
-                            priority = new Option<TransferRoute.PriorityEnum?>(TransferRoute.PriorityEnum.FromStringOrDefault(priorityRawValue));
+                            priority = new Option<TransferRoute.PriorityEnum?>(TransferRoute.PriorityEnum.FromStringOrDefault(priorityRawValue) ?? (TransferRoute.PriorityEnum)priorityRawValue);
                             break;
                         case "requirements":
                             requirements = new Option<List<TransferRouteRequirementsInner>?>(JsonSerializer.Deserialize<List<TransferRouteRequirementsInner>>(ref utf8JsonReader, jsonSerializerOptions)!);

@@ -149,7 +149,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == StatusEnum.Suspended)
                     return "suspended";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -432,7 +432,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<AccountHolderUpdateRequest.StatusEnum?>(AccountHolderUpdateRequest.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<AccountHolderUpdateRequest.StatusEnum?>(AccountHolderUpdateRequest.StatusEnum.FromStringOrDefault(statusRawValue) ?? (AccountHolderUpdateRequest.StatusEnum)statusRawValue);
                             break;
                         case "timeZone":
                             timeZone = new Option<string?>(utf8JsonReader.GetString()!);

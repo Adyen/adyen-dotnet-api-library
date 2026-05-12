@@ -167,7 +167,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == UnitEnum.Weeks)
                     return "weeks";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -279,7 +279,7 @@ namespace Adyen.BalancePlatform.Models
                     {
                         case "unit":
                             string? unitRawValue = utf8JsonReader.GetString();
-                            unit = new Option<Duration.UnitEnum?>(Duration.UnitEnum.FromStringOrDefault(unitRawValue));
+                            unit = new Option<Duration.UnitEnum?>(Duration.UnitEnum.FromStringOrDefault(unitRawValue) ?? (Duration.UnitEnum)unitRawValue);
                             break;
                         case "value":
                             value = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());

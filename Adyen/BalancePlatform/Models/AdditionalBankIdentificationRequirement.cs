@@ -158,7 +158,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == AdditionalBankIdentificationTypeEnum.UsRoutingNumber)
                     return "usRoutingNumber";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -286,7 +286,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.AdditionalBankIdentificationRequirement)
                     return "additionalBankIdentificationRequirement";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -393,14 +393,14 @@ namespace Adyen.BalancePlatform.Models
                     {
                         case "additionalBankIdentificationType":
                             string? additionalBankIdentificationTypeRawValue = utf8JsonReader.GetString();
-                            additionalBankIdentificationType = new Option<AdditionalBankIdentificationRequirement.AdditionalBankIdentificationTypeEnum?>(AdditionalBankIdentificationRequirement.AdditionalBankIdentificationTypeEnum.FromStringOrDefault(additionalBankIdentificationTypeRawValue));
+                            additionalBankIdentificationType = new Option<AdditionalBankIdentificationRequirement.AdditionalBankIdentificationTypeEnum?>(AdditionalBankIdentificationRequirement.AdditionalBankIdentificationTypeEnum.FromStringOrDefault(additionalBankIdentificationTypeRawValue) ?? (AdditionalBankIdentificationRequirement.AdditionalBankIdentificationTypeEnum)additionalBankIdentificationTypeRawValue);
                             break;
                         case "description":
                             description = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<AdditionalBankIdentificationRequirement.TypeEnum?>(AdditionalBankIdentificationRequirement.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<AdditionalBankIdentificationRequirement.TypeEnum?>(AdditionalBankIdentificationRequirement.TypeEnum.FromStringOrDefault(typeRawValue) ?? (AdditionalBankIdentificationRequirement.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -416,7 +416,7 @@ namespace Adyen.BalancePlatform.Models
                 additionalBankIdentificationRequirement.AdditionalBankIdentificationType = additionalBankIdentificationType.Value;
             if (description.IsSet)
                 additionalBankIdentificationRequirement.Description = description.Value;
-            additionalBankIdentificationRequirement.Type = type.Value!.Value;
+            additionalBankIdentificationRequirement.Type = type.Value!;
             return additionalBankIdentificationRequirement;
         }
 

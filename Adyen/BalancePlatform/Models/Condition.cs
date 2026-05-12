@@ -158,7 +158,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == BalanceTypeEnum.Reserved)
                     return "reserved";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -306,7 +306,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == ConditionTypeEnum.LessThanOrEqual)
                     return "lessThanOrEqual";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -406,11 +406,11 @@ namespace Adyen.BalancePlatform.Models
                     {
                         case "balanceType":
                             string? balanceTypeRawValue = utf8JsonReader.GetString();
-                            balanceType = new Option<Condition.BalanceTypeEnum?>(Condition.BalanceTypeEnum.FromStringOrDefault(balanceTypeRawValue));
+                            balanceType = new Option<Condition.BalanceTypeEnum?>(Condition.BalanceTypeEnum.FromStringOrDefault(balanceTypeRawValue) ?? (Condition.BalanceTypeEnum)balanceTypeRawValue);
                             break;
                         case "conditionType":
                             string? conditionTypeRawValue = utf8JsonReader.GetString();
-                            conditionType = new Option<Condition.ConditionTypeEnum?>(Condition.ConditionTypeEnum.FromStringOrDefault(conditionTypeRawValue));
+                            conditionType = new Option<Condition.ConditionTypeEnum?>(Condition.ConditionTypeEnum.FromStringOrDefault(conditionTypeRawValue) ?? (Condition.ConditionTypeEnum)conditionTypeRawValue);
                             break;
                         case "value":
                             value = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
@@ -431,8 +431,8 @@ namespace Adyen.BalancePlatform.Models
                 throw new ArgumentException("Property is required for class Condition.", nameof(value));
 
             var condition = new Condition();
-            condition.BalanceType = balanceType.Value!.Value;
-            condition.ConditionType = conditionType.Value!.Value;
+            condition.BalanceType = balanceType.Value!;
+            condition.ConditionType = conditionType.Value!;
             condition.Value = value.Value!.Value;
             return condition;
         }

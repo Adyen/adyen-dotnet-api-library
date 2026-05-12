@@ -131,7 +131,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.AmountMinMaxRequirement)
                     return "amountMinMaxRequirement";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -277,7 +277,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<AmountMinMaxRequirement.TypeEnum?>(AmountMinMaxRequirement.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<AmountMinMaxRequirement.TypeEnum?>(AmountMinMaxRequirement.TypeEnum.FromStringOrDefault(typeRawValue) ?? (AmountMinMaxRequirement.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -295,7 +295,7 @@ namespace Adyen.BalancePlatform.Models
                 amountMinMaxRequirement.Max = max.Value;
             if (min.IsSet)
                 amountMinMaxRequirement.Min = min.Value;
-            amountMinMaxRequirement.Type = type.Value!.Value;
+            amountMinMaxRequirement.Type = type.Value!;
             return amountMinMaxRequirement;
         }
 

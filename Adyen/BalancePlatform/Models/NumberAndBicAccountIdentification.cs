@@ -131,7 +131,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.NumberAndBic)
                     return "numberAndBic";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -262,7 +262,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<NumberAndBicAccountIdentification.TypeEnum?>(NumberAndBicAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<NumberAndBicAccountIdentification.TypeEnum?>(NumberAndBicAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (NumberAndBicAccountIdentification.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -284,7 +284,7 @@ namespace Adyen.BalancePlatform.Models
             numberAndBicAccountIdentification.Bic = bic.Value!;
             if (additionalBankIdentification.IsSet)
                 numberAndBicAccountIdentification.AdditionalBankIdentification = additionalBankIdentification.Value;
-            numberAndBicAccountIdentification.Type = type.Value!.Value;
+            numberAndBicAccountIdentification.Type = type.Value!;
             return numberAndBicAccountIdentification;
         }
 

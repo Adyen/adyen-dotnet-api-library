@@ -32,134 +32,108 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// Defines SettingType
     /// </summary>
-    public enum SettingType
+    [JsonConverter(typeof(SettingType.SettingTypeJsonConverter))]
+    public class SettingType : IEnum
     {
         /// <summary>
-        /// Enum Balance for value: balance
+        /// Returns the value of the SettingType.
         /// </summary>
-        Balance = 1
-    }
+        public string? Value { get; set; }
 
-    /// <summary>
-    /// Converts <see cref="SettingType"/> to and from the JSON value
-    /// </summary>
-    public static class SettingTypeValueConverter
-    {
         /// <summary>
-        /// Parses a given value to <see cref="SettingType"/>
+        /// SettingType.Balance - balance
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static SettingType FromString(string value)
+        public static readonly SettingType Balance = new("balance");
+
+        private SettingType(string? value)
         {
-            if (value.Equals("balance"))
-                return SettingType.Balance;
-
-            throw new NotImplementedException($"Could not convert value to type SettingType: '{value}'");
+            Value = value;
         }
 
         /// <summary>
-        /// Parses a given value to <see cref="SettingType"/>
+        /// Converts a string to a <see cref="SettingType"/> implicitly.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static SettingType? FromStringOrDefault(string value)
-        {
-            if (value.Equals("balance"))
-                return SettingType.Balance;
+        public static implicit operator SettingType?(string? value) => value == null ? null : new SettingType(value);
 
-            return null;
+        /// <summary>
+        /// Converts a <see cref="SettingType"/> instance to a string implicitly.
+        /// </summary>
+        public static implicit operator string?(SettingType? option) => option?.Value;
+
+        /// <summary>
+        /// Compares two <see cref="SettingType"/> instances for equality.
+        /// </summary>
+        public static bool operator ==(SettingType? left, SettingType? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Compares two <see cref="SettingType"/> instances for inequality.
+        /// </summary>
+        public static bool operator !=(SettingType? left, SettingType? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns true if the given object is equal to this <see cref="SettingType"/> instance.
+        /// </summary>
+        public override bool Equals(object? obj) => obj is SettingType other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns a hash code for this <see cref="SettingType"/> instance.
+        /// </summary>
+        public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+        /// <summary>
+        /// Returns the string value of the <see cref="SettingType"/> instance.
+        /// </summary>
+        public override string ToString() => Value ?? string.Empty;
+
+        /// <summary>
+        /// Returns a <see cref="SettingType?"/>, or null if the value is not recognized.
+        /// </summary>
+        public static SettingType? FromStringOrDefault(string? value)
+        {
+            return value switch {
+                "balance" => SettingType.Balance,
+                _ => null,
+            };
         }
 
         /// <summary>
-        /// Converts the <see cref="SettingType"/> to the json value
+        /// Converts the <see cref="SettingType"/> to the json value.
+        /// Returns the raw string value, preserving unknown values for round-trip safety.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string ToJsonValue(SettingType value)
+        public static string? ToJsonValue(SettingType? value)
         {
+            if (value == null)
+                return null;
+
             if (value == SettingType.Balance)
                 return "balance";
 
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-    }
-
-    /// <summary>
-    /// A Json converter for type <see cref="SettingType"/>
-    /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    public class SettingTypeJsonConverter : JsonConverter<SettingType>
-    {
-        /// <summary>
-        /// Returns a  from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override SettingType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            SettingType? result = rawValue == null
-                ? null
-                : SettingTypeValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
+            return value.Value;
         }
 
         /// <summary>
-        /// Writes the SettingType to the json writer
+        /// JsonConverter for <see cref="SettingType"/>.
+        /// Preserves unknown values instead of throwing an exception.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="settingType"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, SettingType settingType, JsonSerializerOptions options)
+        public class SettingTypeJsonConverter : JsonConverter<SettingType>
         {
-            writer.WriteStringValue(SettingTypeValueConverter.ToJsonValue(settingType).ToString());
-        }
-    }
+            /// <summary>
+            /// Deserializes a <see cref="SettingType"/> from JSON.
+            /// Unknown values are preserved as-is rather than throwing an exception.
+            /// </summary>
+            public override SettingType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                string? rawValue = reader.GetString();
+                return rawValue == null ? null : SettingType.FromStringOrDefault(rawValue) ?? new SettingType(rawValue);
+            }
 
-    /// <summary>
-    /// A Json converter for type <see cref="SettingType"/>
-    /// </summary>
-    public class SettingTypeNullableJsonConverter : JsonConverter<SettingType?>
-    {
-        /// <summary>
-        /// Returns a SettingType from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override SettingType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            SettingType? result = rawValue == null
-                ? null
-                : SettingTypeValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
-        }
-
-        /// <summary>
-        /// Writes the SettingType to the json writer
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="settingType"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, SettingType? settingType, JsonSerializerOptions options)
-        {
-            writer.WriteStringValue(settingType.HasValue ? SettingTypeValueConverter.ToJsonValue(settingType.Value).ToString() : "null");
+            /// <summary>
+            /// Serializes a <see cref="SettingType"/> to JSON.
+            /// </summary>
+            public override void Write(Utf8JsonWriter writer, SettingType value, JsonSerializerOptions options)
+            {
+                writer.WriteStringValue(SettingType.ToJsonValue(value));
+            }
         }
     }
 }

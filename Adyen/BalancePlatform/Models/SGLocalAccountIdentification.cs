@@ -132,7 +132,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.SgLocal)
                     return "sgLocal";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -252,7 +252,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<SGLocalAccountIdentification.TypeEnum?>(SGLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<SGLocalAccountIdentification.TypeEnum?>(SGLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (SGLocalAccountIdentification.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

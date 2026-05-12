@@ -131,7 +131,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == ContentTypeEnum.ApplicationPdf)
                     return "application/pdf";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -239,7 +239,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "contentType":
                             string? contentTypeRawValue = utf8JsonReader.GetString();
-                            contentType = new Option<GetTaxFormResponse.ContentTypeEnum?>(GetTaxFormResponse.ContentTypeEnum.FromStringOrDefault(contentTypeRawValue));
+                            contentType = new Option<GetTaxFormResponse.ContentTypeEnum?>(GetTaxFormResponse.ContentTypeEnum.FromStringOrDefault(contentTypeRawValue) ?? (GetTaxFormResponse.ContentTypeEnum)contentTypeRawValue);
                             break;
                         default:
                             break;

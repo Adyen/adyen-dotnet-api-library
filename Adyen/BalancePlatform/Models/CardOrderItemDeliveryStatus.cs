@@ -194,7 +194,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == StatusEnum.Unknown)
                     return "unknown";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -325,7 +325,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<CardOrderItemDeliveryStatus.StatusEnum?>(CardOrderItemDeliveryStatus.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<CardOrderItemDeliveryStatus.StatusEnum?>(CardOrderItemDeliveryStatus.StatusEnum.FromStringOrDefault(statusRawValue) ?? (CardOrderItemDeliveryStatus.StatusEnum)statusRawValue);
                             break;
                         case "trackingNumber":
                             trackingNumber = new Option<string?>(utf8JsonReader.GetString()!);

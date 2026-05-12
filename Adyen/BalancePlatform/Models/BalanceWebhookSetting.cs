@@ -131,8 +131,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                                type = new Option<SettingType?>(SettingTypeValueConverter.FromStringOrDefault(typeRawValue));
+                            type = new Option<SettingType?>(SettingType.FromStringOrDefault(typeRawValue) ?? (SettingType)typeRawValue);
                             break;
                         case "conditions":
                             conditions = new Option<List<Condition>?>(JsonSerializer.Deserialize<List<Condition>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -206,7 +205,7 @@ namespace Adyen.BalancePlatform.Models
             writer.WritePropertyName("target");
             JsonSerializer.Serialize(writer, balanceWebhookSetting.Target, jsonSerializerOptions);
             if (balanceWebhookSetting.Type != null)
-    writer.WriteString("type", SettingTypeValueConverter.ToJsonValue(balanceWebhookSetting.Type));
+    writer.WriteString("type", SettingType.ToJsonValue(balanceWebhookSetting.Type));
             
             if (balanceWebhookSetting._ConditionsOption.IsSet)
             {

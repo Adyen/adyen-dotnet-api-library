@@ -32,134 +32,108 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// Defines MandateType
     /// </summary>
-    public enum MandateType
+    [JsonConverter(typeof(MandateType.MandateTypeJsonConverter))]
+    public class MandateType : IEnum
     {
         /// <summary>
-        /// Enum Bacs for value: bacs
+        /// Returns the value of the MandateType.
         /// </summary>
-        Bacs = 1
-    }
+        public string? Value { get; set; }
 
-    /// <summary>
-    /// Converts <see cref="MandateType"/> to and from the JSON value
-    /// </summary>
-    public static class MandateTypeValueConverter
-    {
         /// <summary>
-        /// Parses a given value to <see cref="MandateType"/>
+        /// MandateType.Bacs - bacs
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static MandateType FromString(string value)
+        public static readonly MandateType Bacs = new("bacs");
+
+        private MandateType(string? value)
         {
-            if (value.Equals("bacs"))
-                return MandateType.Bacs;
-
-            throw new NotImplementedException($"Could not convert value to type MandateType: '{value}'");
+            Value = value;
         }
 
         /// <summary>
-        /// Parses a given value to <see cref="MandateType"/>
+        /// Converts a string to a <see cref="MandateType"/> implicitly.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static MandateType? FromStringOrDefault(string value)
-        {
-            if (value.Equals("bacs"))
-                return MandateType.Bacs;
+        public static implicit operator MandateType?(string? value) => value == null ? null : new MandateType(value);
 
-            return null;
+        /// <summary>
+        /// Converts a <see cref="MandateType"/> instance to a string implicitly.
+        /// </summary>
+        public static implicit operator string?(MandateType? option) => option?.Value;
+
+        /// <summary>
+        /// Compares two <see cref="MandateType"/> instances for equality.
+        /// </summary>
+        public static bool operator ==(MandateType? left, MandateType? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Compares two <see cref="MandateType"/> instances for inequality.
+        /// </summary>
+        public static bool operator !=(MandateType? left, MandateType? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns true if the given object is equal to this <see cref="MandateType"/> instance.
+        /// </summary>
+        public override bool Equals(object? obj) => obj is MandateType other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns a hash code for this <see cref="MandateType"/> instance.
+        /// </summary>
+        public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+        /// <summary>
+        /// Returns the string value of the <see cref="MandateType"/> instance.
+        /// </summary>
+        public override string ToString() => Value ?? string.Empty;
+
+        /// <summary>
+        /// Returns a <see cref="MandateType?"/>, or null if the value is not recognized.
+        /// </summary>
+        public static MandateType? FromStringOrDefault(string? value)
+        {
+            return value switch {
+                "bacs" => MandateType.Bacs,
+                _ => null,
+            };
         }
 
         /// <summary>
-        /// Converts the <see cref="MandateType"/> to the json value
+        /// Converts the <see cref="MandateType"/> to the json value.
+        /// Returns the raw string value, preserving unknown values for round-trip safety.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string ToJsonValue(MandateType value)
+        public static string? ToJsonValue(MandateType? value)
         {
+            if (value == null)
+                return null;
+
             if (value == MandateType.Bacs)
                 return "bacs";
 
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-    }
-
-    /// <summary>
-    /// A Json converter for type <see cref="MandateType"/>
-    /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    public class MandateTypeJsonConverter : JsonConverter<MandateType>
-    {
-        /// <summary>
-        /// Returns a  from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override MandateType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            MandateType? result = rawValue == null
-                ? null
-                : MandateTypeValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
+            return value.Value;
         }
 
         /// <summary>
-        /// Writes the MandateType to the json writer
+        /// JsonConverter for <see cref="MandateType"/>.
+        /// Preserves unknown values instead of throwing an exception.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="mandateType"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, MandateType mandateType, JsonSerializerOptions options)
+        public class MandateTypeJsonConverter : JsonConverter<MandateType>
         {
-            writer.WriteStringValue(MandateTypeValueConverter.ToJsonValue(mandateType).ToString());
-        }
-    }
+            /// <summary>
+            /// Deserializes a <see cref="MandateType"/> from JSON.
+            /// Unknown values are preserved as-is rather than throwing an exception.
+            /// </summary>
+            public override MandateType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                string? rawValue = reader.GetString();
+                return rawValue == null ? null : MandateType.FromStringOrDefault(rawValue) ?? new MandateType(rawValue);
+            }
 
-    /// <summary>
-    /// A Json converter for type <see cref="MandateType"/>
-    /// </summary>
-    public class MandateTypeNullableJsonConverter : JsonConverter<MandateType?>
-    {
-        /// <summary>
-        /// Returns a MandateType from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override MandateType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            MandateType? result = rawValue == null
-                ? null
-                : MandateTypeValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
-        }
-
-        /// <summary>
-        /// Writes the MandateType to the json writer
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="mandateType"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, MandateType? mandateType, JsonSerializerOptions options)
-        {
-            writer.WriteStringValue(mandateType.HasValue ? MandateTypeValueConverter.ToJsonValue(mandateType.Value).ToString() : "null");
+            /// <summary>
+            /// Serializes a <see cref="MandateType"/> to JSON.
+            /// </summary>
+            public override void Write(Utf8JsonWriter writer, MandateType value, JsonSerializerOptions options)
+            {
+                writer.WriteStringValue(MandateType.ToJsonValue(value));
+            }
         }
     }
 }

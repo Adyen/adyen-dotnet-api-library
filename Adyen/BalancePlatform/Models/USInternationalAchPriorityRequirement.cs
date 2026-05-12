@@ -131,7 +131,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.UsInternationalAchPriorityRequirement)
                     return "usInternationalAchPriorityRequirement";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -239,7 +239,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<USInternationalAchPriorityRequirement.TypeEnum?>(USInternationalAchPriorityRequirement.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<USInternationalAchPriorityRequirement.TypeEnum?>(USInternationalAchPriorityRequirement.TypeEnum.FromStringOrDefault(typeRawValue) ?? (USInternationalAchPriorityRequirement.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -253,7 +253,7 @@ namespace Adyen.BalancePlatform.Models
             var uSInternationalAchPriorityRequirement = new USInternationalAchPriorityRequirement();
             if (description.IsSet)
                 uSInternationalAchPriorityRequirement.Description = description.Value;
-            uSInternationalAchPriorityRequirement.Type = type.Value!.Value;
+            uSInternationalAchPriorityRequirement.Type = type.Value!;
             return uSInternationalAchPriorityRequirement;
         }
 

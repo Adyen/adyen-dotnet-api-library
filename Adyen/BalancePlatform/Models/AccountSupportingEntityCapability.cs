@@ -158,7 +158,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == AllowedLevelEnum.NotApplicable)
                     return "notApplicable";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -314,7 +314,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == RequestedLevelEnum.NotApplicable)
                     return "notApplicable";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -469,7 +469,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == VerificationStatusEnum.Valid)
                     return "valid";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -639,7 +639,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "allowedLevel":
                             string? allowedLevelRawValue = utf8JsonReader.GetString();
-                            allowedLevel = new Option<AccountSupportingEntityCapability.AllowedLevelEnum?>(AccountSupportingEntityCapability.AllowedLevelEnum.FromStringOrDefault(allowedLevelRawValue));
+                            allowedLevel = new Option<AccountSupportingEntityCapability.AllowedLevelEnum?>(AccountSupportingEntityCapability.AllowedLevelEnum.FromStringOrDefault(allowedLevelRawValue) ?? (AccountSupportingEntityCapability.AllowedLevelEnum)allowedLevelRawValue);
                             break;
                         case "enabled":
                             enabled = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
@@ -652,11 +652,11 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "requestedLevel":
                             string? requestedLevelRawValue = utf8JsonReader.GetString();
-                            requestedLevel = new Option<AccountSupportingEntityCapability.RequestedLevelEnum?>(AccountSupportingEntityCapability.RequestedLevelEnum.FromStringOrDefault(requestedLevelRawValue));
+                            requestedLevel = new Option<AccountSupportingEntityCapability.RequestedLevelEnum?>(AccountSupportingEntityCapability.RequestedLevelEnum.FromStringOrDefault(requestedLevelRawValue) ?? (AccountSupportingEntityCapability.RequestedLevelEnum)requestedLevelRawValue);
                             break;
                         case "verificationStatus":
                             string? verificationStatusRawValue = utf8JsonReader.GetString();
-                            verificationStatus = new Option<AccountSupportingEntityCapability.VerificationStatusEnum?>(AccountSupportingEntityCapability.VerificationStatusEnum.FromStringOrDefault(verificationStatusRawValue));
+                            verificationStatus = new Option<AccountSupportingEntityCapability.VerificationStatusEnum?>(AccountSupportingEntityCapability.VerificationStatusEnum.FromStringOrDefault(verificationStatusRawValue) ?? (AccountSupportingEntityCapability.VerificationStatusEnum)verificationStatusRawValue);
                             break;
                         default:
                             break;

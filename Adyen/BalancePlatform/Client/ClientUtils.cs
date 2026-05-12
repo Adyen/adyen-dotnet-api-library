@@ -161,7 +161,7 @@ namespace Adyen.BalancePlatform.Client
             if (obj is Models.AssociationInitiateRequest.TypeEnum associationInitiateRequestTypeEnum)
                 return Models.AssociationInitiateRequest.TypeEnum.ToJsonValue(associationInitiateRequestTypeEnum);
             if (obj is Models.AssociationStatus associationStatus)
-                return AssociationStatusValueConverter.ToJsonValue(associationStatus);
+                return AssociationStatus.ToJsonValue(associationStatus);
             if (obj is Models.BRLocalAccountIdentification.TypeEnum bRLocalAccountIdentificationTypeEnum)
                 return Models.BRLocalAccountIdentification.TypeEnum.ToJsonValue(bRLocalAccountIdentificationTypeEnum);
             if (obj is Models.BalanceAccount.StatusEnum balanceAccountStatusEnum)
@@ -247,11 +247,11 @@ namespace Adyen.BalancePlatform.Client
             if (obj is Models.IbanAccountIdentificationRequirement.TypeEnum ibanAccountIdentificationRequirementTypeEnum)
                 return Models.IbanAccountIdentificationRequirement.TypeEnum.ToJsonValue(ibanAccountIdentificationRequirementTypeEnum);
             if (obj is Models.LimitStatus limitStatus)
-                return LimitStatusValueConverter.ToJsonValue(limitStatus);
+                return LimitStatus.ToJsonValue(limitStatus);
             if (obj is Models.MandateStatus mandateStatus)
-                return MandateStatusValueConverter.ToJsonValue(mandateStatus);
+                return MandateStatus.ToJsonValue(mandateStatus);
             if (obj is Models.MandateType mandateType)
-                return MandateTypeValueConverter.ToJsonValue(mandateType);
+                return MandateType.ToJsonValue(mandateType);
             if (obj is Models.MatchingValuesRestriction.ValueEnum matchingValuesRestrictionValueEnum)
                 return MatchingValuesRestriction.ValueEnum.ToJsonValue(matchingValuesRestrictionValueEnum);
             if (obj is Models.NOLocalAccountIdentification.TypeEnum nOLocalAccountIdentificationTypeEnum)
@@ -297,17 +297,17 @@ namespace Adyen.BalancePlatform.Client
             if (obj is Models.SGLocalAccountIdentification.TypeEnum sGLocalAccountIdentificationTypeEnum)
                 return Models.SGLocalAccountIdentification.TypeEnum.ToJsonValue(sGLocalAccountIdentificationTypeEnum);
             if (obj is Models.ScaDeviceType scaDeviceType)
-                return ScaDeviceTypeValueConverter.ToJsonValue(scaDeviceType);
+                return ScaDeviceType.ToJsonValue(scaDeviceType);
             if (obj is Models.ScaEntityType scaEntityType)
-                return ScaEntityTypeValueConverter.ToJsonValue(scaEntityType);
+                return ScaEntityType.ToJsonValue(scaEntityType);
             if (obj is Models.ScaExemption scaExemption)
-                return ScaExemptionValueConverter.ToJsonValue(scaExemption);
+                return ScaExemption.ToJsonValue(scaExemption);
             if (obj is Models.ScaStatus scaStatus)
-                return ScaStatusValueConverter.ToJsonValue(scaStatus);
+                return ScaStatus.ToJsonValue(scaStatus);
             if (obj is Models.Scope scope)
-                return ScopeValueConverter.ToJsonValue(scope);
+                return Scope.ToJsonValue(scope);
             if (obj is Models.SettingType settingType)
-                return SettingTypeValueConverter.ToJsonValue(settingType);
+                return SettingType.ToJsonValue(settingType);
             if (obj is Models.SourceAccountTypesRestriction.ValueEnum sourceAccountTypesRestrictionValueEnum)
                 return SourceAccountTypesRestriction.ValueEnum.ToJsonValue(sourceAccountTypesRestrictionValueEnum);
             if (obj is Models.StringMatch.OperationEnum stringMatchOperationEnum)
@@ -361,7 +361,7 @@ namespace Adyen.BalancePlatform.Client
             if (obj is Models.TransferRouteRequest.PrioritiesEnum transferRouteRequestPrioritiesEnum)
                 return TransferRouteRequest.PrioritiesEnum.ToJsonValue(transferRouteRequestPrioritiesEnum);
             if (obj is Models.TransferType transferType)
-                return TransferTypeValueConverter.ToJsonValue(transferType);
+                return TransferType.ToJsonValue(transferType);
             if (obj is Models.UKLocalAccountIdentification.TypeEnum uKLocalAccountIdentificationTypeEnum)
                 return Models.UKLocalAccountIdentification.TypeEnum.ToJsonValue(uKLocalAccountIdentificationTypeEnum);
             if (obj is Models.USInstantPayoutAddressRequirement.TypeEnum uSInstantPayoutAddressRequirementTypeEnum)

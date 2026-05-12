@@ -184,7 +184,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == ValueEnum.Wednesday)
                     return "wednesday";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>

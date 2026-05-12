@@ -158,7 +158,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.Velocity)
                     return "velocity";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -306,7 +306,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == OutcomeTypeEnum.TimedBlock)
                     return "timedBlock";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -470,7 +470,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == PurposeEnum.System)
                     return "system";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -625,7 +625,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == RequestTypeEnum.Tokenization)
                     return "tokenization";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -762,7 +762,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == StatusEnum.Inactive)
                     return "inactive";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -987,7 +987,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<TransactionRuleInfo.TypeEnum?>(TransactionRuleInfo.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<TransactionRuleInfo.TypeEnum?>(TransactionRuleInfo.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TransactionRuleInfo.TypeEnum)typeRawValue);
                             break;
                         case "aggregationLevel":
                             aggregationLevel = new Option<string?>(utf8JsonReader.GetString()!);
@@ -997,15 +997,15 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "outcomeType":
                             string? outcomeTypeRawValue = utf8JsonReader.GetString();
-                            outcomeType = new Option<TransactionRuleInfo.OutcomeTypeEnum?>(TransactionRuleInfo.OutcomeTypeEnum.FromStringOrDefault(outcomeTypeRawValue));
+                            outcomeType = new Option<TransactionRuleInfo.OutcomeTypeEnum?>(TransactionRuleInfo.OutcomeTypeEnum.FromStringOrDefault(outcomeTypeRawValue) ?? (TransactionRuleInfo.OutcomeTypeEnum)outcomeTypeRawValue);
                             break;
                         case "purpose":
                             string? purposeRawValue = utf8JsonReader.GetString();
-                            purpose = new Option<TransactionRuleInfo.PurposeEnum?>(TransactionRuleInfo.PurposeEnum.FromStringOrDefault(purposeRawValue));
+                            purpose = new Option<TransactionRuleInfo.PurposeEnum?>(TransactionRuleInfo.PurposeEnum.FromStringOrDefault(purposeRawValue) ?? (TransactionRuleInfo.PurposeEnum)purposeRawValue);
                             break;
                         case "requestType":
                             string? requestTypeRawValue = utf8JsonReader.GetString();
-                            requestType = new Option<TransactionRuleInfo.RequestTypeEnum?>(TransactionRuleInfo.RequestTypeEnum.FromStringOrDefault(requestTypeRawValue));
+                            requestType = new Option<TransactionRuleInfo.RequestTypeEnum?>(TransactionRuleInfo.RequestTypeEnum.FromStringOrDefault(requestTypeRawValue) ?? (TransactionRuleInfo.RequestTypeEnum)requestTypeRawValue);
                             break;
                         case "score":
                             score = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -1015,7 +1015,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<TransactionRuleInfo.StatusEnum?>(TransactionRuleInfo.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<TransactionRuleInfo.StatusEnum?>(TransactionRuleInfo.StatusEnum.FromStringOrDefault(statusRawValue) ?? (TransactionRuleInfo.StatusEnum)statusRawValue);
                             break;
                         default:
                             break;
@@ -1047,7 +1047,7 @@ namespace Adyen.BalancePlatform.Models
             transactionRuleInfo.Interval = interval.Value!;
             transactionRuleInfo.Reference = reference.Value!;
             transactionRuleInfo.RuleRestrictions = ruleRestrictions.Value!;
-            transactionRuleInfo.Type = type.Value!.Value;
+            transactionRuleInfo.Type = type.Value!;
             if (aggregationLevel.IsSet)
                 transactionRuleInfo.AggregationLevel = aggregationLevel.Value;
             if (endDate.IsSet)

@@ -131,7 +131,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.CzLocal)
                     return "czLocal";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -244,7 +244,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CZLocalAccountIdentification.TypeEnum?>(CZLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CZLocalAccountIdentification.TypeEnum?>(CZLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CZLocalAccountIdentification.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -264,7 +264,7 @@ namespace Adyen.BalancePlatform.Models
             var cZLocalAccountIdentification = new CZLocalAccountIdentification();
             cZLocalAccountIdentification.AccountNumber = accountNumber.Value!;
             cZLocalAccountIdentification.BankCode = bankCode.Value!;
-            cZLocalAccountIdentification.Type = type.Value!.Value;
+            cZLocalAccountIdentification.Type = type.Value!;
             return cZLocalAccountIdentification;
         }
 

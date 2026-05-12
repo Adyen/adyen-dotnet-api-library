@@ -128,8 +128,7 @@ namespace Adyen.BalancePlatform.Models
                     {
                         case "exemption":
                             string? exemptionRawValue = utf8JsonReader.GetString();
-                            if (exemptionRawValue != null)
-                                exemption = new Option<ScaExemption?>(ScaExemptionValueConverter.FromStringOrDefault(exemptionRawValue));
+                            exemption = new Option<ScaExemption?>(ScaExemption.FromStringOrDefault(exemptionRawValue) ?? (ScaExemption)exemptionRawValue);
                             break;
                         case "scaOnApproval":
                             scaOnApproval = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
@@ -176,7 +175,7 @@ namespace Adyen.BalancePlatform.Models
             
             if (createScaInformation._ExemptionOption.IsSet)
             {
-                var exemptionRawValue = ScaExemptionValueConverter.ToJsonValue(createScaInformation.Exemption!.Value);
+                var exemptionRawValue = ScaExemption.ToJsonValue(createScaInformation.Exemption);
                 writer.WriteString("exemption", exemptionRawValue);
             }
             if (createScaInformation._ScaOnApprovalOption.IsSet)

@@ -150,7 +150,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == FormFactorEnum.Virtual)
                     return "virtual";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -246,7 +246,7 @@ namespace Adyen.BalancePlatform.Models
                     {
                         case "formFactor":
                             string? formFactorRawValue = utf8JsonReader.GetString();
-                            formFactor = new Option<BankAccountModel.FormFactorEnum?>(BankAccountModel.FormFactorEnum.FromStringOrDefault(formFactorRawValue));
+                            formFactor = new Option<BankAccountModel.FormFactorEnum?>(BankAccountModel.FormFactorEnum.FromStringOrDefault(formFactorRawValue) ?? (BankAccountModel.FormFactorEnum)formFactorRawValue);
                             break;
                         default:
                             break;

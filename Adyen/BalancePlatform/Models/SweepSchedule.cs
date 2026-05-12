@@ -167,7 +167,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.Cron)
                     return "cron";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -272,7 +272,7 @@ namespace Adyen.BalancePlatform.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<SweepSchedule.TypeEnum?>(SweepSchedule.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<SweepSchedule.TypeEnum?>(SweepSchedule.TypeEnum.FromStringOrDefault(typeRawValue) ?? (SweepSchedule.TypeEnum)typeRawValue);
                             break;
                         case "cronExpression":
                             cronExpression = new Option<string?>(utf8JsonReader.GetString()!);
@@ -287,7 +287,7 @@ namespace Adyen.BalancePlatform.Models
                 throw new ArgumentException("Property is required for class SweepSchedule.", nameof(type));
 
             var sweepSchedule = new SweepSchedule();
-            sweepSchedule.Type = type.Value!.Value;
+            sweepSchedule.Type = type.Value!;
             if (cronExpression.IsSet)
                 sweepSchedule.CronExpression = cronExpression.Value;
             return sweepSchedule;
