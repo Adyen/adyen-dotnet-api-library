@@ -131,7 +131,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.SeLocal)
                     return "seLocal";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -244,7 +244,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<SELocalAccountIdentification.TypeEnum?>(SELocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<SELocalAccountIdentification.TypeEnum?>(SELocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (SELocalAccountIdentification.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -264,7 +264,7 @@ namespace Adyen.BalancePlatform.Models
             var sELocalAccountIdentification = new SELocalAccountIdentification();
             sELocalAccountIdentification.AccountNumber = accountNumber.Value!;
             sELocalAccountIdentification.ClearingNumber = clearingNumber.Value!;
-            sELocalAccountIdentification.Type = type.Value!.Value;
+            sELocalAccountIdentification.Type = type.Value!;
             return sELocalAccountIdentification;
         }
 

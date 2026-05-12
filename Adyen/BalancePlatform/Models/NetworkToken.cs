@@ -158,7 +158,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == StatusEnum.Closed)
                     return "closed";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -400,7 +400,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<NetworkToken.StatusEnum?>(NetworkToken.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<NetworkToken.StatusEnum?>(NetworkToken.StatusEnum.FromStringOrDefault(statusRawValue) ?? (NetworkToken.StatusEnum)statusRawValue);
                             break;
                         case "tokenLastFour":
                             tokenLastFour = new Option<string?>(utf8JsonReader.GetString()!);

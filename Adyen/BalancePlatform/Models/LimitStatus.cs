@@ -33,86 +33,97 @@ namespace Adyen.BalancePlatform.Models
     /// The status of the transfer limit. Possible values:    * **active**: the limit is currently active. * **inactive**: the limit is currently inactive. * **pendingSCA**: the limit is pending until your user performs SCA. * **scheduled**: the limit is scheduled to become active at a future date.
     /// </summary>
     /// <value>The status of the transfer limit. Possible values:    * **active**: the limit is currently active. * **inactive**: the limit is currently inactive. * **pendingSCA**: the limit is pending until your user performs SCA. * **scheduled**: the limit is scheduled to become active at a future date.</value>
-    public enum LimitStatus
+    [JsonConverter(typeof(LimitStatus.LimitStatusJsonConverter))]
+    public class LimitStatus : IEnum
     {
         /// <summary>
-        /// Enum Active for value: active
+        /// Returns the value of the LimitStatus.
         /// </summary>
-        Active = 1,
+        public string? Value { get; set; }
 
         /// <summary>
-        /// Enum Inactive for value: inactive
+        /// LimitStatus.Active - active
         /// </summary>
-        Inactive = 2,
+        public static readonly LimitStatus Active = new("active");
 
         /// <summary>
-        /// Enum PendingSCA for value: pendingSCA
+        /// LimitStatus.Inactive - inactive
         /// </summary>
-        PendingSCA = 3,
+        public static readonly LimitStatus Inactive = new("inactive");
 
         /// <summary>
-        /// Enum Scheduled for value: scheduled
+        /// LimitStatus.PendingSCA - pendingSCA
         /// </summary>
-        Scheduled = 4
-    }
+        public static readonly LimitStatus PendingSCA = new("pendingSCA");
 
-    /// <summary>
-    /// Converts <see cref="LimitStatus"/> to and from the JSON value
-    /// </summary>
-    public static class LimitStatusValueConverter
-    {
         /// <summary>
-        /// Parses a given value to <see cref="LimitStatus"/>
+        /// LimitStatus.Scheduled - scheduled
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static LimitStatus FromString(string value)
+        public static readonly LimitStatus Scheduled = new("scheduled");
+
+        private LimitStatus(string? value)
         {
-            if (value.Equals("active"))
-                return LimitStatus.Active;
-
-            if (value.Equals("inactive"))
-                return LimitStatus.Inactive;
-
-            if (value.Equals("pendingSCA"))
-                return LimitStatus.PendingSCA;
-
-            if (value.Equals("scheduled"))
-                return LimitStatus.Scheduled;
-
-            throw new NotImplementedException($"Could not convert value to type LimitStatus: '{value}'");
+            Value = value;
         }
 
         /// <summary>
-        /// Parses a given value to <see cref="LimitStatus"/>
+        /// Converts a string to a <see cref="LimitStatus"/> implicitly.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static LimitStatus? FromStringOrDefault(string value)
+        public static implicit operator LimitStatus?(string? value) => value == null ? null : new LimitStatus(value);
+
+        /// <summary>
+        /// Converts a <see cref="LimitStatus"/> instance to a string implicitly.
+        /// </summary>
+        public static implicit operator string?(LimitStatus? option) => option?.Value;
+
+        /// <summary>
+        /// Compares two <see cref="LimitStatus"/> instances for equality.
+        /// </summary>
+        public static bool operator ==(LimitStatus? left, LimitStatus? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Compares two <see cref="LimitStatus"/> instances for inequality.
+        /// </summary>
+        public static bool operator !=(LimitStatus? left, LimitStatus? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns true if the given object is equal to this <see cref="LimitStatus"/> instance.
+        /// </summary>
+        public override bool Equals(object? obj) => obj is LimitStatus other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns a hash code for this <see cref="LimitStatus"/> instance.
+        /// </summary>
+        public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+        /// <summary>
+        /// Returns the string value of the <see cref="LimitStatus"/> instance.
+        /// </summary>
+        public override string ToString() => Value ?? string.Empty;
+
+        /// <summary>
+        /// Returns a <see cref="LimitStatus?"/>, or null if the value is not recognized.
+        /// </summary>
+        public static LimitStatus? FromStringOrDefault(string? value)
         {
-            if (value.Equals("active"))
-                return LimitStatus.Active;
-
-            if (value.Equals("inactive"))
-                return LimitStatus.Inactive;
-
-            if (value.Equals("pendingSCA"))
-                return LimitStatus.PendingSCA;
-
-            if (value.Equals("scheduled"))
-                return LimitStatus.Scheduled;
-
-            return null;
+            return value switch {
+                "active" => LimitStatus.Active,
+                "inactive" => LimitStatus.Inactive,
+                "pendingSCA" => LimitStatus.PendingSCA,
+                "scheduled" => LimitStatus.Scheduled,
+                _ => null,
+            };
         }
 
         /// <summary>
-        /// Converts the <see cref="LimitStatus"/> to the json value
+        /// Converts the <see cref="LimitStatus"/> to the json value.
+        /// Returns the raw string value, preserving unknown values for round-trip safety.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string ToJsonValue(LimitStatus value)
+        public static string? ToJsonValue(LimitStatus? value)
         {
+            if (value == null)
+                return null;
+
             if (value == LimitStatus.Active)
                 return "active";
 
@@ -125,84 +136,32 @@ namespace Adyen.BalancePlatform.Models
             if (value == LimitStatus.Scheduled)
                 return "scheduled";
 
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-    }
-
-    /// <summary>
-    /// A Json converter for type <see cref="LimitStatus"/>
-    /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    public class LimitStatusJsonConverter : JsonConverter<LimitStatus>
-    {
-        /// <summary>
-        /// Returns a  from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override LimitStatus Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            LimitStatus? result = rawValue == null
-                ? null
-                : LimitStatusValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
+            return value.Value;
         }
 
         /// <summary>
-        /// Writes the LimitStatus to the json writer
+        /// JsonConverter for <see cref="LimitStatus"/>.
+        /// Preserves unknown values instead of throwing an exception.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="limitStatus"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, LimitStatus limitStatus, JsonSerializerOptions options)
+        public class LimitStatusJsonConverter : JsonConverter<LimitStatus>
         {
-            writer.WriteStringValue(LimitStatusValueConverter.ToJsonValue(limitStatus).ToString());
-        }
-    }
+            /// <summary>
+            /// Deserializes a <see cref="LimitStatus"/> from JSON.
+            /// Unknown values are preserved as-is rather than throwing an exception.
+            /// </summary>
+            public override LimitStatus? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                string? rawValue = reader.GetString();
+                return rawValue == null ? null : LimitStatus.FromStringOrDefault(rawValue) ?? new LimitStatus(rawValue);
+            }
 
-    /// <summary>
-    /// A Json converter for type <see cref="LimitStatus"/>
-    /// </summary>
-    public class LimitStatusNullableJsonConverter : JsonConverter<LimitStatus?>
-    {
-        /// <summary>
-        /// Returns a LimitStatus from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override LimitStatus? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            LimitStatus? result = rawValue == null
-                ? null
-                : LimitStatusValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
-        }
-
-        /// <summary>
-        /// Writes the LimitStatus to the json writer
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="limitStatus"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, LimitStatus? limitStatus, JsonSerializerOptions options)
-        {
-            writer.WriteStringValue(limitStatus.HasValue ? LimitStatusValueConverter.ToJsonValue(limitStatus.Value).ToString() : "null");
+            /// <summary>
+            /// Serializes a <see cref="LimitStatus"/> to JSON.
+            /// </summary>
+            public override void Write(Utf8JsonWriter writer, LimitStatus value, JsonSerializerOptions options)
+            {
+                writer.WriteStringValue(LimitStatus.ToJsonValue(value));
+            }
         }
     }
 }

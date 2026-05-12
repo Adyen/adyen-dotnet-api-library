@@ -166,7 +166,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == ValueEnum.MerchantName)
                     return "merchantName";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>

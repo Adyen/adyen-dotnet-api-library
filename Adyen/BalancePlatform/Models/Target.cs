@@ -149,7 +149,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.BalancePlatform)
                     return "balancePlatform";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -250,7 +250,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<Target.TypeEnum?>(Target.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<Target.TypeEnum?>(Target.TypeEnum.FromStringOrDefault(typeRawValue) ?? (Target.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -266,7 +266,7 @@ namespace Adyen.BalancePlatform.Models
 
             var target = new Target();
             target.Id = id.Value!;
-            target.Type = type.Value!.Value;
+            target.Type = type.Value!;
             return target;
         }
 

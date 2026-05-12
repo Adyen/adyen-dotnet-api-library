@@ -131,7 +131,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.AmountNonZeroDecimalsRequirement)
                     return "amountNonZeroDecimalsRequirement";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -239,7 +239,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<AmountNonZeroDecimalsRequirement.TypeEnum?>(AmountNonZeroDecimalsRequirement.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<AmountNonZeroDecimalsRequirement.TypeEnum?>(AmountNonZeroDecimalsRequirement.TypeEnum.FromStringOrDefault(typeRawValue) ?? (AmountNonZeroDecimalsRequirement.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -253,7 +253,7 @@ namespace Adyen.BalancePlatform.Models
             var amountNonZeroDecimalsRequirement = new AmountNonZeroDecimalsRequirement();
             if (description.IsSet)
                 amountNonZeroDecimalsRequirement.Description = description.Value;
-            amountNonZeroDecimalsRequirement.Type = type.Value!.Value;
+            amountNonZeroDecimalsRequirement.Type = type.Value!;
             return amountNonZeroDecimalsRequirement;
         }
 

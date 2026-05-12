@@ -157,7 +157,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == ValueEnum.TransferInstrument)
                     return "transferInstrument";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>

@@ -33,148 +33,117 @@ namespace Adyen.BalancePlatform.Models
     /// The scope to which the transfer limit applies. Possible values: * **perTransaction**: you set a maximum amount for each transfer made from the balance account or balance platform. * **perDay**: you set a maximum total amount for all transfers made from the balance account or balance platform in a day.
     /// </summary>
     /// <value>The scope to which the transfer limit applies. Possible values: * **perTransaction**: you set a maximum amount for each transfer made from the balance account or balance platform. * **perDay**: you set a maximum total amount for all transfers made from the balance account or balance platform in a day.</value>
-    public enum Scope
+    [JsonConverter(typeof(Scope.ScopeJsonConverter))]
+    public class Scope : IEnum
     {
         /// <summary>
-        /// Enum PerDay for value: perDay
+        /// Returns the value of the Scope.
         /// </summary>
-        PerDay = 1,
+        public string? Value { get; set; }
 
         /// <summary>
-        /// Enum PerTransaction for value: perTransaction
+        /// Scope.PerDay - perDay
         /// </summary>
-        PerTransaction = 2
-    }
+        public static readonly Scope PerDay = new("perDay");
 
-    /// <summary>
-    /// Converts <see cref="Scope"/> to and from the JSON value
-    /// </summary>
-    public static class ScopeValueConverter
-    {
         /// <summary>
-        /// Parses a given value to <see cref="Scope"/>
+        /// Scope.PerTransaction - perTransaction
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static Scope FromString(string value)
+        public static readonly Scope PerTransaction = new("perTransaction");
+
+        private Scope(string? value)
         {
-            if (value.Equals("perDay"))
-                return Scope.PerDay;
-
-            if (value.Equals("perTransaction"))
-                return Scope.PerTransaction;
-
-            throw new NotImplementedException($"Could not convert value to type Scope: '{value}'");
+            Value = value;
         }
 
         /// <summary>
-        /// Parses a given value to <see cref="Scope"/>
+        /// Converts a string to a <see cref="Scope"/> implicitly.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static Scope? FromStringOrDefault(string value)
+        public static implicit operator Scope?(string? value) => value == null ? null : new Scope(value);
+
+        /// <summary>
+        /// Converts a <see cref="Scope"/> instance to a string implicitly.
+        /// </summary>
+        public static implicit operator string?(Scope? option) => option?.Value;
+
+        /// <summary>
+        /// Compares two <see cref="Scope"/> instances for equality.
+        /// </summary>
+        public static bool operator ==(Scope? left, Scope? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Compares two <see cref="Scope"/> instances for inequality.
+        /// </summary>
+        public static bool operator !=(Scope? left, Scope? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns true if the given object is equal to this <see cref="Scope"/> instance.
+        /// </summary>
+        public override bool Equals(object? obj) => obj is Scope other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns a hash code for this <see cref="Scope"/> instance.
+        /// </summary>
+        public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+        /// <summary>
+        /// Returns the string value of the <see cref="Scope"/> instance.
+        /// </summary>
+        public override string ToString() => Value ?? string.Empty;
+
+        /// <summary>
+        /// Returns a <see cref="Scope?"/>, or null if the value is not recognized.
+        /// </summary>
+        public static Scope? FromStringOrDefault(string? value)
         {
-            if (value.Equals("perDay"))
-                return Scope.PerDay;
-
-            if (value.Equals("perTransaction"))
-                return Scope.PerTransaction;
-
-            return null;
+            return value switch {
+                "perDay" => Scope.PerDay,
+                "perTransaction" => Scope.PerTransaction,
+                _ => null,
+            };
         }
 
         /// <summary>
-        /// Converts the <see cref="Scope"/> to the json value
+        /// Converts the <see cref="Scope"/> to the json value.
+        /// Returns the raw string value, preserving unknown values for round-trip safety.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string ToJsonValue(Scope value)
+        public static string? ToJsonValue(Scope? value)
         {
+            if (value == null)
+                return null;
+
             if (value == Scope.PerDay)
                 return "perDay";
 
             if (value == Scope.PerTransaction)
                 return "perTransaction";
 
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-    }
-
-    /// <summary>
-    /// A Json converter for type <see cref="Scope"/>
-    /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    public class ScopeJsonConverter : JsonConverter<Scope>
-    {
-        /// <summary>
-        /// Returns a  from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override Scope Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            Scope? result = rawValue == null
-                ? null
-                : ScopeValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
+            return value.Value;
         }
 
         /// <summary>
-        /// Writes the Scope to the json writer
+        /// JsonConverter for <see cref="Scope"/>.
+        /// Preserves unknown values instead of throwing an exception.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="scope"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, Scope scope, JsonSerializerOptions options)
+        public class ScopeJsonConverter : JsonConverter<Scope>
         {
-            writer.WriteStringValue(ScopeValueConverter.ToJsonValue(scope).ToString());
-        }
-    }
+            /// <summary>
+            /// Deserializes a <see cref="Scope"/> from JSON.
+            /// Unknown values are preserved as-is rather than throwing an exception.
+            /// </summary>
+            public override Scope? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                string? rawValue = reader.GetString();
+                return rawValue == null ? null : Scope.FromStringOrDefault(rawValue) ?? new Scope(rawValue);
+            }
 
-    /// <summary>
-    /// A Json converter for type <see cref="Scope"/>
-    /// </summary>
-    public class ScopeNullableJsonConverter : JsonConverter<Scope?>
-    {
-        /// <summary>
-        /// Returns a Scope from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override Scope? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            Scope? result = rawValue == null
-                ? null
-                : ScopeValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
-        }
-
-        /// <summary>
-        /// Writes the Scope to the json writer
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="scope"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, Scope? scope, JsonSerializerOptions options)
-        {
-            writer.WriteStringValue(scope.HasValue ? ScopeValueConverter.ToJsonValue(scope.Value).ToString() : "null");
+            /// <summary>
+            /// Serializes a <see cref="Scope"/> to JSON.
+            /// </summary>
+            public override void Write(Utf8JsonWriter writer, Scope value, JsonSerializerOptions options)
+            {
+                writer.WriteStringValue(Scope.ToJsonValue(value));
+            }
         }
     }
 }

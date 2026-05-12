@@ -39,7 +39,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         public WebhookSetting()
         {
-            Type = (SettingType)Enum.Parse(typeof(SettingType), this.GetType().Name);
+            Type = (SettingType)this.GetType().Name;
             OnCreated();
         }
 
@@ -157,8 +157,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                                type = new Option<SettingType?>(SettingTypeValueConverter.FromStringOrDefault(typeRawValue));
+                            type = new Option<SettingType?>(SettingType.FromStringOrDefault(typeRawValue) ?? (SettingType)typeRawValue);
                             break;
                         default:
                             break;
@@ -232,7 +231,7 @@ namespace Adyen.BalancePlatform.Models
             writer.WritePropertyName("target");
             JsonSerializer.Serialize(writer, webhookSetting.Target, jsonSerializerOptions);
             if (webhookSetting.Type != null)
-    writer.WriteString("type", SettingTypeValueConverter.ToJsonValue(webhookSetting.Type));
+    writer.WriteString("type", SettingType.ToJsonValue(webhookSetting.Type));
         }
     }
 }

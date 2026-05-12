@@ -185,7 +185,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.Weekly)
                     return "weekly";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -360,7 +360,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == DayOfWeekEnum.Wednesday)
                     return "wednesday";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -521,14 +521,14 @@ namespace Adyen.BalancePlatform.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<TransactionRuleInterval.TypeEnum?>(TransactionRuleInterval.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<TransactionRuleInterval.TypeEnum?>(TransactionRuleInterval.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TransactionRuleInterval.TypeEnum)typeRawValue);
                             break;
                         case "dayOfMonth":
                             dayOfMonth = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "dayOfWeek":
                             string? dayOfWeekRawValue = utf8JsonReader.GetString();
-                            dayOfWeek = new Option<TransactionRuleInterval.DayOfWeekEnum?>(TransactionRuleInterval.DayOfWeekEnum.FromStringOrDefault(dayOfWeekRawValue));
+                            dayOfWeek = new Option<TransactionRuleInterval.DayOfWeekEnum?>(TransactionRuleInterval.DayOfWeekEnum.FromStringOrDefault(dayOfWeekRawValue) ?? (TransactionRuleInterval.DayOfWeekEnum)dayOfWeekRawValue);
                             break;
                         case "duration":
                             duration = new Option<Duration?>(JsonSerializer.Deserialize<Duration>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -549,7 +549,7 @@ namespace Adyen.BalancePlatform.Models
                 throw new ArgumentException("Property is required for class TransactionRuleInterval.", nameof(type));
 
             var transactionRuleInterval = new TransactionRuleInterval();
-            transactionRuleInterval.Type = type.Value!.Value;
+            transactionRuleInterval.Type = type.Value!;
             if (dayOfMonth.IsSet)
                 transactionRuleInterval.DayOfMonth = dayOfMonth.Value;
             if (dayOfWeek.IsSet)

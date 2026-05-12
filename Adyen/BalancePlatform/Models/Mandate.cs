@@ -247,13 +247,11 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            if (statusRawValue != null)
-                                status = new Option<MandateStatus?>(MandateStatusValueConverter.FromStringOrDefault(statusRawValue));
+                            status = new Option<MandateStatus?>(MandateStatus.FromStringOrDefault(statusRawValue) ?? (MandateStatus)statusRawValue);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                                type = new Option<MandateType?>(MandateTypeValueConverter.FromStringOrDefault(typeRawValue));
+                            type = new Option<MandateType?>(MandateType.FromStringOrDefault(typeRawValue) ?? (MandateType)typeRawValue);
                             break;
                         case "updatedAt":
                             updatedAt = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -333,12 +331,12 @@ namespace Adyen.BalancePlatform.Models
 
             if (mandate._StatusOption.IsSet)
             {
-                var statusRawValue = MandateStatusValueConverter.ToJsonValue(mandate.Status!.Value);
+                var statusRawValue = MandateStatus.ToJsonValue(mandate.Status);
                 writer.WriteString("status", statusRawValue);
             }
             if (mandate._TypeOption.IsSet)
             {
-                var typeRawValue = MandateTypeValueConverter.ToJsonValue(mandate.Type!.Value);
+                var typeRawValue = MandateType.ToJsonValue(mandate.Type);
                 writer.WriteString("type", typeRawValue);
             }
             if (mandate._UpdatedAtOption.IsSet)

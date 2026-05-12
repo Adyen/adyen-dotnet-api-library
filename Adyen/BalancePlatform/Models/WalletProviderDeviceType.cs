@@ -193,7 +193,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == ValueEnum.WEARABLE)
                     return "WEARABLE";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>

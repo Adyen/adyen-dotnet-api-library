@@ -131,7 +131,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.PAYMENTINSTRUMENT)
                     return "PAYMENT_INSTRUMENT";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -252,7 +252,7 @@ namespace Adyen.BalancePlatform.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<AssociationFinaliseResponse.TypeEnum?>(AssociationFinaliseResponse.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<AssociationFinaliseResponse.TypeEnum?>(AssociationFinaliseResponse.TypeEnum.FromStringOrDefault(typeRawValue) ?? (AssociationFinaliseResponse.TypeEnum)typeRawValue);
                             break;
                         case "deviceId":
                             deviceId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -270,7 +270,7 @@ namespace Adyen.BalancePlatform.Models
                 throw new ArgumentException("Property is required for class AssociationFinaliseResponse.", nameof(type));
 
             var associationFinaliseResponse = new AssociationFinaliseResponse();
-            associationFinaliseResponse.Type = type.Value!.Value;
+            associationFinaliseResponse.Type = type.Value!;
             if (deviceId.IsSet)
                 associationFinaliseResponse.DeviceId = deviceId.Value;
             if (ids.IsSet)

@@ -32,75 +32,91 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// Defines ScaDeviceType
     /// </summary>
-    public enum ScaDeviceType
+    [JsonConverter(typeof(ScaDeviceType.ScaDeviceTypeJsonConverter))]
+    public class ScaDeviceType : IEnum
     {
         /// <summary>
-        /// Enum Browser for value: browser
+        /// Returns the value of the ScaDeviceType.
         /// </summary>
-        Browser = 1,
+        public string? Value { get; set; }
 
         /// <summary>
-        /// Enum Ios for value: ios
+        /// ScaDeviceType.Browser - browser
         /// </summary>
-        Ios = 2,
+        public static readonly ScaDeviceType Browser = new("browser");
 
         /// <summary>
-        /// Enum Android for value: android
+        /// ScaDeviceType.Ios - ios
         /// </summary>
-        Android = 3
-    }
+        public static readonly ScaDeviceType Ios = new("ios");
 
-    /// <summary>
-    /// Converts <see cref="ScaDeviceType"/> to and from the JSON value
-    /// </summary>
-    public static class ScaDeviceTypeValueConverter
-    {
         /// <summary>
-        /// Parses a given value to <see cref="ScaDeviceType"/>
+        /// ScaDeviceType.Android - android
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static ScaDeviceType FromString(string value)
+        public static readonly ScaDeviceType Android = new("android");
+
+        private ScaDeviceType(string? value)
         {
-            if (value.Equals("browser"))
-                return ScaDeviceType.Browser;
-
-            if (value.Equals("ios"))
-                return ScaDeviceType.Ios;
-
-            if (value.Equals("android"))
-                return ScaDeviceType.Android;
-
-            throw new NotImplementedException($"Could not convert value to type ScaDeviceType: '{value}'");
+            Value = value;
         }
 
         /// <summary>
-        /// Parses a given value to <see cref="ScaDeviceType"/>
+        /// Converts a string to a <see cref="ScaDeviceType"/> implicitly.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static ScaDeviceType? FromStringOrDefault(string value)
+        public static implicit operator ScaDeviceType?(string? value) => value == null ? null : new ScaDeviceType(value);
+
+        /// <summary>
+        /// Converts a <see cref="ScaDeviceType"/> instance to a string implicitly.
+        /// </summary>
+        public static implicit operator string?(ScaDeviceType? option) => option?.Value;
+
+        /// <summary>
+        /// Compares two <see cref="ScaDeviceType"/> instances for equality.
+        /// </summary>
+        public static bool operator ==(ScaDeviceType? left, ScaDeviceType? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Compares two <see cref="ScaDeviceType"/> instances for inequality.
+        /// </summary>
+        public static bool operator !=(ScaDeviceType? left, ScaDeviceType? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns true if the given object is equal to this <see cref="ScaDeviceType"/> instance.
+        /// </summary>
+        public override bool Equals(object? obj) => obj is ScaDeviceType other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns a hash code for this <see cref="ScaDeviceType"/> instance.
+        /// </summary>
+        public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+        /// <summary>
+        /// Returns the string value of the <see cref="ScaDeviceType"/> instance.
+        /// </summary>
+        public override string ToString() => Value ?? string.Empty;
+
+        /// <summary>
+        /// Returns a <see cref="ScaDeviceType?"/>, or null if the value is not recognized.
+        /// </summary>
+        public static ScaDeviceType? FromStringOrDefault(string? value)
         {
-            if (value.Equals("browser"))
-                return ScaDeviceType.Browser;
-
-            if (value.Equals("ios"))
-                return ScaDeviceType.Ios;
-
-            if (value.Equals("android"))
-                return ScaDeviceType.Android;
-
-            return null;
+            return value switch {
+                "browser" => ScaDeviceType.Browser,
+                "ios" => ScaDeviceType.Ios,
+                "android" => ScaDeviceType.Android,
+                _ => null,
+            };
         }
 
         /// <summary>
-        /// Converts the <see cref="ScaDeviceType"/> to the json value
+        /// Converts the <see cref="ScaDeviceType"/> to the json value.
+        /// Returns the raw string value, preserving unknown values for round-trip safety.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string ToJsonValue(ScaDeviceType value)
+        public static string? ToJsonValue(ScaDeviceType? value)
         {
+            if (value == null)
+                return null;
+
             if (value == ScaDeviceType.Browser)
                 return "browser";
 
@@ -110,84 +126,32 @@ namespace Adyen.BalancePlatform.Models
             if (value == ScaDeviceType.Android)
                 return "android";
 
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-    }
-
-    /// <summary>
-    /// A Json converter for type <see cref="ScaDeviceType"/>
-    /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    public class ScaDeviceTypeJsonConverter : JsonConverter<ScaDeviceType>
-    {
-        /// <summary>
-        /// Returns a  from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override ScaDeviceType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            ScaDeviceType? result = rawValue == null
-                ? null
-                : ScaDeviceTypeValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
+            return value.Value;
         }
 
         /// <summary>
-        /// Writes the ScaDeviceType to the json writer
+        /// JsonConverter for <see cref="ScaDeviceType"/>.
+        /// Preserves unknown values instead of throwing an exception.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="scaDeviceType"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, ScaDeviceType scaDeviceType, JsonSerializerOptions options)
+        public class ScaDeviceTypeJsonConverter : JsonConverter<ScaDeviceType>
         {
-            writer.WriteStringValue(ScaDeviceTypeValueConverter.ToJsonValue(scaDeviceType).ToString());
-        }
-    }
+            /// <summary>
+            /// Deserializes a <see cref="ScaDeviceType"/> from JSON.
+            /// Unknown values are preserved as-is rather than throwing an exception.
+            /// </summary>
+            public override ScaDeviceType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                string? rawValue = reader.GetString();
+                return rawValue == null ? null : ScaDeviceType.FromStringOrDefault(rawValue) ?? new ScaDeviceType(rawValue);
+            }
 
-    /// <summary>
-    /// A Json converter for type <see cref="ScaDeviceType"/>
-    /// </summary>
-    public class ScaDeviceTypeNullableJsonConverter : JsonConverter<ScaDeviceType?>
-    {
-        /// <summary>
-        /// Returns a ScaDeviceType from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override ScaDeviceType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            ScaDeviceType? result = rawValue == null
-                ? null
-                : ScaDeviceTypeValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
-        }
-
-        /// <summary>
-        /// Writes the ScaDeviceType to the json writer
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="scaDeviceType"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, ScaDeviceType? scaDeviceType, JsonSerializerOptions options)
-        {
-            writer.WriteStringValue(scaDeviceType.HasValue ? ScaDeviceTypeValueConverter.ToJsonValue(scaDeviceType.Value).ToString() : "null");
+            /// <summary>
+            /// Serializes a <see cref="ScaDeviceType"/> to JSON.
+            /// </summary>
+            public override void Write(Utf8JsonWriter writer, ScaDeviceType value, JsonSerializerOptions options)
+            {
+                writer.WriteStringValue(ScaDeviceType.ToJsonValue(value));
+            }
         }
     }
 }

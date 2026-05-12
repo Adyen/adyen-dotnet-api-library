@@ -310,7 +310,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == BankAccountIdentificationTypesEnum.UsLocal)
                     return "usLocal";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -424,7 +424,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.BankAccountIdentificationTypeRequirement)
                     return "bankAccountIdentificationTypeRequirement";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -551,7 +551,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<BankAccountIdentificationTypeRequirement.TypeEnum?>(BankAccountIdentificationTypeRequirement.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<BankAccountIdentificationTypeRequirement.TypeEnum?>(BankAccountIdentificationTypeRequirement.TypeEnum.FromStringOrDefault(typeRawValue) ?? (BankAccountIdentificationTypeRequirement.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -567,7 +567,7 @@ namespace Adyen.BalancePlatform.Models
                 bankAccountIdentificationTypeRequirement.BankAccountIdentificationTypes = bankAccountIdentificationTypes.Value;
             if (description.IsSet)
                 bankAccountIdentificationTypeRequirement.Description = description.Value;
-            bankAccountIdentificationTypeRequirement.Type = type.Value!.Value;
+            bankAccountIdentificationTypeRequirement.Type = type.Value!;
             return bankAccountIdentificationTypeRequirement;
         }
 

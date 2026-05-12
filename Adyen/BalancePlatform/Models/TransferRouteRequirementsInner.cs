@@ -316,34 +316,34 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (additionalBankIdentificationRequirement?.Type != null)
+            if (additionalBankIdentificationRequirement?.Type != null && AdditionalBankIdentificationRequirement.TypeEnum.FromStringOrDefault((string?)additionalBankIdentificationRequirement.Type) != null)
                 return new TransferRouteRequirementsInner(additionalBankIdentificationRequirement);
 
-            if (addressRequirement?.Type != null)
+            if (addressRequirement?.Type != null && AddressRequirement.TypeEnum.FromStringOrDefault((string?)addressRequirement.Type) != null)
                 return new TransferRouteRequirementsInner(addressRequirement);
 
-            if (amountMinMaxRequirement?.Type != null)
+            if (amountMinMaxRequirement?.Type != null && AmountMinMaxRequirement.TypeEnum.FromStringOrDefault((string?)amountMinMaxRequirement.Type) != null)
                 return new TransferRouteRequirementsInner(amountMinMaxRequirement);
 
-            if (amountNonZeroDecimalsRequirement?.Type != null)
+            if (amountNonZeroDecimalsRequirement?.Type != null && AmountNonZeroDecimalsRequirement.TypeEnum.FromStringOrDefault((string?)amountNonZeroDecimalsRequirement.Type) != null)
                 return new TransferRouteRequirementsInner(amountNonZeroDecimalsRequirement);
 
-            if (bankAccountIdentificationTypeRequirement?.Type != null)
+            if (bankAccountIdentificationTypeRequirement?.Type != null && BankAccountIdentificationTypeRequirement.TypeEnum.FromStringOrDefault((string?)bankAccountIdentificationTypeRequirement.Type) != null)
                 return new TransferRouteRequirementsInner(bankAccountIdentificationTypeRequirement);
 
-            if (ibanAccountIdentificationRequirement?.Type != null)
+            if (ibanAccountIdentificationRequirement?.Type != null && IbanAccountIdentificationRequirement.TypeEnum.FromStringOrDefault((string?)ibanAccountIdentificationRequirement.Type) != null)
                 return new TransferRouteRequirementsInner(ibanAccountIdentificationRequirement);
 
-            if (paymentInstrumentRequirement?.Type != null)
+            if (paymentInstrumentRequirement?.Type != null && PaymentInstrumentRequirement.TypeEnum.FromStringOrDefault((string?)paymentInstrumentRequirement.Type) != null)
                 return new TransferRouteRequirementsInner(paymentInstrumentRequirement);
 
-            if (uSInstantPayoutAddressRequirement?.Type != null)
+            if (uSInstantPayoutAddressRequirement?.Type != null && USInstantPayoutAddressRequirement.TypeEnum.FromStringOrDefault((string?)uSInstantPayoutAddressRequirement.Type) != null)
                 return new TransferRouteRequirementsInner(uSInstantPayoutAddressRequirement);
 
-            if (uSInternationalAchAddressRequirement?.Type != null)
+            if (uSInternationalAchAddressRequirement?.Type != null && USInternationalAchAddressRequirement.TypeEnum.FromStringOrDefault((string?)uSInternationalAchAddressRequirement.Type) != null)
                 return new TransferRouteRequirementsInner(uSInternationalAchAddressRequirement);
 
-            if (uSInternationalAchPriorityRequirement?.Type != null)
+            if (uSInternationalAchPriorityRequirement?.Type != null && USInternationalAchPriorityRequirement.TypeEnum.FromStringOrDefault((string?)uSInternationalAchPriorityRequirement.Type) != null)
                 return new TransferRouteRequirementsInner(uSInternationalAchPriorityRequirement);
 
             throw new JsonException();

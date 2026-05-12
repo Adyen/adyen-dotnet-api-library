@@ -158,7 +158,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == PhoneTypeEnum.SIP)
                     return "SIP";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -292,7 +292,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "phoneType":
                             string? phoneTypeRawValue = utf8JsonReader.GetString();
-                            phoneType = new Option<PhoneNumber.PhoneTypeEnum?>(PhoneNumber.PhoneTypeEnum.FromStringOrDefault(phoneTypeRawValue));
+                            phoneType = new Option<PhoneNumber.PhoneTypeEnum?>(PhoneNumber.PhoneTypeEnum.FromStringOrDefault(phoneTypeRawValue) ?? (PhoneNumber.PhoneTypeEnum)phoneTypeRawValue);
                             break;
                         default:
                             break;

@@ -33,75 +33,91 @@ namespace Adyen.BalancePlatform.Models
     /// The status of Strong Customer Authentication (SCA). Possible values: * **notPerformed**: the requester was unable to successfully authenticate the request using SCA, or has an SCA exemption. * **pending**: the request is pending SCA authentication. * **performed**: the request is successfully authenticated using SCA.
     /// </summary>
     /// <value>The status of Strong Customer Authentication (SCA). Possible values: * **notPerformed**: the requester was unable to successfully authenticate the request using SCA, or has an SCA exemption. * **pending**: the request is pending SCA authentication. * **performed**: the request is successfully authenticated using SCA.</value>
-    public enum ScaStatus
+    [JsonConverter(typeof(ScaStatus.ScaStatusJsonConverter))]
+    public class ScaStatus : IEnum
     {
         /// <summary>
-        /// Enum NotPerformed for value: notPerformed
+        /// Returns the value of the ScaStatus.
         /// </summary>
-        NotPerformed = 1,
+        public string? Value { get; set; }
 
         /// <summary>
-        /// Enum Pending for value: pending
+        /// ScaStatus.NotPerformed - notPerformed
         /// </summary>
-        Pending = 2,
+        public static readonly ScaStatus NotPerformed = new("notPerformed");
 
         /// <summary>
-        /// Enum Performed for value: performed
+        /// ScaStatus.Pending - pending
         /// </summary>
-        Performed = 3
-    }
+        public static readonly ScaStatus Pending = new("pending");
 
-    /// <summary>
-    /// Converts <see cref="ScaStatus"/> to and from the JSON value
-    /// </summary>
-    public static class ScaStatusValueConverter
-    {
         /// <summary>
-        /// Parses a given value to <see cref="ScaStatus"/>
+        /// ScaStatus.Performed - performed
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static ScaStatus FromString(string value)
+        public static readonly ScaStatus Performed = new("performed");
+
+        private ScaStatus(string? value)
         {
-            if (value.Equals("notPerformed"))
-                return ScaStatus.NotPerformed;
-
-            if (value.Equals("pending"))
-                return ScaStatus.Pending;
-
-            if (value.Equals("performed"))
-                return ScaStatus.Performed;
-
-            throw new NotImplementedException($"Could not convert value to type ScaStatus: '{value}'");
+            Value = value;
         }
 
         /// <summary>
-        /// Parses a given value to <see cref="ScaStatus"/>
+        /// Converts a string to a <see cref="ScaStatus"/> implicitly.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static ScaStatus? FromStringOrDefault(string value)
+        public static implicit operator ScaStatus?(string? value) => value == null ? null : new ScaStatus(value);
+
+        /// <summary>
+        /// Converts a <see cref="ScaStatus"/> instance to a string implicitly.
+        /// </summary>
+        public static implicit operator string?(ScaStatus? option) => option?.Value;
+
+        /// <summary>
+        /// Compares two <see cref="ScaStatus"/> instances for equality.
+        /// </summary>
+        public static bool operator ==(ScaStatus? left, ScaStatus? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Compares two <see cref="ScaStatus"/> instances for inequality.
+        /// </summary>
+        public static bool operator !=(ScaStatus? left, ScaStatus? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns true if the given object is equal to this <see cref="ScaStatus"/> instance.
+        /// </summary>
+        public override bool Equals(object? obj) => obj is ScaStatus other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns a hash code for this <see cref="ScaStatus"/> instance.
+        /// </summary>
+        public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+        /// <summary>
+        /// Returns the string value of the <see cref="ScaStatus"/> instance.
+        /// </summary>
+        public override string ToString() => Value ?? string.Empty;
+
+        /// <summary>
+        /// Returns a <see cref="ScaStatus?"/>, or null if the value is not recognized.
+        /// </summary>
+        public static ScaStatus? FromStringOrDefault(string? value)
         {
-            if (value.Equals("notPerformed"))
-                return ScaStatus.NotPerformed;
-
-            if (value.Equals("pending"))
-                return ScaStatus.Pending;
-
-            if (value.Equals("performed"))
-                return ScaStatus.Performed;
-
-            return null;
+            return value switch {
+                "notPerformed" => ScaStatus.NotPerformed,
+                "pending" => ScaStatus.Pending,
+                "performed" => ScaStatus.Performed,
+                _ => null,
+            };
         }
 
         /// <summary>
-        /// Converts the <see cref="ScaStatus"/> to the json value
+        /// Converts the <see cref="ScaStatus"/> to the json value.
+        /// Returns the raw string value, preserving unknown values for round-trip safety.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string ToJsonValue(ScaStatus value)
+        public static string? ToJsonValue(ScaStatus? value)
         {
+            if (value == null)
+                return null;
+
             if (value == ScaStatus.NotPerformed)
                 return "notPerformed";
 
@@ -111,84 +127,32 @@ namespace Adyen.BalancePlatform.Models
             if (value == ScaStatus.Performed)
                 return "performed";
 
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-    }
-
-    /// <summary>
-    /// A Json converter for type <see cref="ScaStatus"/>
-    /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    public class ScaStatusJsonConverter : JsonConverter<ScaStatus>
-    {
-        /// <summary>
-        /// Returns a  from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override ScaStatus Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            ScaStatus? result = rawValue == null
-                ? null
-                : ScaStatusValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
+            return value.Value;
         }
 
         /// <summary>
-        /// Writes the ScaStatus to the json writer
+        /// JsonConverter for <see cref="ScaStatus"/>.
+        /// Preserves unknown values instead of throwing an exception.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="scaStatus"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, ScaStatus scaStatus, JsonSerializerOptions options)
+        public class ScaStatusJsonConverter : JsonConverter<ScaStatus>
         {
-            writer.WriteStringValue(ScaStatusValueConverter.ToJsonValue(scaStatus).ToString());
-        }
-    }
+            /// <summary>
+            /// Deserializes a <see cref="ScaStatus"/> from JSON.
+            /// Unknown values are preserved as-is rather than throwing an exception.
+            /// </summary>
+            public override ScaStatus? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                string? rawValue = reader.GetString();
+                return rawValue == null ? null : ScaStatus.FromStringOrDefault(rawValue) ?? new ScaStatus(rawValue);
+            }
 
-    /// <summary>
-    /// A Json converter for type <see cref="ScaStatus"/>
-    /// </summary>
-    public class ScaStatusNullableJsonConverter : JsonConverter<ScaStatus?>
-    {
-        /// <summary>
-        /// Returns a ScaStatus from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override ScaStatus? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            ScaStatus? result = rawValue == null
-                ? null
-                : ScaStatusValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
-        }
-
-        /// <summary>
-        /// Writes the ScaStatus to the json writer
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="scaStatus"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, ScaStatus? scaStatus, JsonSerializerOptions options)
-        {
-            writer.WriteStringValue(scaStatus.HasValue ? ScaStatusValueConverter.ToJsonValue(scaStatus.Value).ToString() : "null");
+            /// <summary>
+            /// Serializes a <see cref="ScaStatus"/> to JSON.
+            /// </summary>
+            public override void Write(Utf8JsonWriter writer, ScaStatus value, JsonSerializerOptions options)
+            {
+                writer.WriteStringValue(ScaStatus.ToJsonValue(value));
+            }
         }
     }
 }

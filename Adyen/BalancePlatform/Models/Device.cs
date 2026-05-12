@@ -149,7 +149,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.Browser)
                     return "browser";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -302,7 +302,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<Device.TypeEnum?>(Device.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<Device.TypeEnum?>(Device.TypeEnum.FromStringOrDefault(typeRawValue) ?? (Device.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

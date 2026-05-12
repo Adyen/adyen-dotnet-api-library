@@ -193,7 +193,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == ValueEnum.Unknown)
                     return "unknown";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>

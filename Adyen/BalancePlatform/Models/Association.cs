@@ -135,16 +135,14 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "entityType":
                             string? entityTypeRawValue = utf8JsonReader.GetString();
-                            if (entityTypeRawValue != null)
-                                entityType = new Option<ScaEntityType?>(ScaEntityTypeValueConverter.FromStringOrDefault(entityTypeRawValue));
+                            entityType = new Option<ScaEntityType?>(ScaEntityType.FromStringOrDefault(entityTypeRawValue) ?? (ScaEntityType)entityTypeRawValue);
                             break;
                         case "scaDeviceId":
                             scaDeviceId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            if (statusRawValue != null)
-                                status = new Option<AssociationStatus?>(AssociationStatusValueConverter.FromStringOrDefault(statusRawValue));
+                            status = new Option<AssociationStatus?>(AssociationStatus.FromStringOrDefault(statusRawValue) ?? (AssociationStatus)statusRawValue);
                             break;
                         default:
                             break;
@@ -166,9 +164,9 @@ namespace Adyen.BalancePlatform.Models
 
             var association = new Association();
             association.EntityId = entityId.Value!;
-            association.EntityType = entityType.Value!.Value;
+            association.EntityType = entityType.Value!;
             association.ScaDeviceId = scaDeviceId.Value!;
-            association.Status = status.Value!.Value;
+            association.Status = status.Value!;
             return association;
         }
 
@@ -201,13 +199,13 @@ namespace Adyen.BalancePlatform.Models
             if (association.EntityId != null)
                 writer.WriteString("entityId", association.EntityId);
 
-            var entityTypeRawValue = ScaEntityTypeValueConverter.ToJsonValue(association.EntityType);
+            var entityTypeRawValue = ScaEntityType.ToJsonValue(association.EntityType);
             writer.WriteString("entityType", entityTypeRawValue);
 
             if (association.ScaDeviceId != null)
                 writer.WriteString("scaDeviceId", association.ScaDeviceId);
 
-            var statusRawValue = AssociationStatusValueConverter.ToJsonValue(association.Status);
+            var statusRawValue = AssociationStatus.ToJsonValue(association.Status);
             writer.WriteString("status", statusRawValue);
         }
     }

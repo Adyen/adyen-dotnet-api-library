@@ -118,8 +118,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                                type = new Option<ScaEntityType?>(ScaEntityTypeValueConverter.FromStringOrDefault(typeRawValue));
+                            type = new Option<ScaEntityType?>(ScaEntityType.FromStringOrDefault(typeRawValue) ?? (ScaEntityType)typeRawValue);
                             break;
                         default:
                             break;
@@ -135,7 +134,7 @@ namespace Adyen.BalancePlatform.Models
 
             var scaEntity = new ScaEntity();
             scaEntity.Id = id.Value!;
-            scaEntity.Type = type.Value!.Value;
+            scaEntity.Type = type.Value!;
             return scaEntity;
         }
 
@@ -168,7 +167,7 @@ namespace Adyen.BalancePlatform.Models
             if (scaEntity.Id != null)
                 writer.WriteString("id", scaEntity.Id);
 
-            var typeRawValue = ScaEntityTypeValueConverter.ToJsonValue(scaEntity.Type);
+            var typeRawValue = ScaEntityType.ToJsonValue(scaEntity.Type);
             writer.WriteString("type", typeRawValue);
         }
     }

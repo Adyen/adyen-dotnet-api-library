@@ -30,100 +30,106 @@ using Adyen.BalancePlatform.Client;
 namespace Adyen.BalancePlatform.Models
 {
     /// <summary>
-    /// The type of exemption for Strong Customer Authentication (SCA). Possible values: * **lowerLimit**: the newly created limit is lower than the existing limit. * **notRegulated**: the limit is created in a country, region, or industry where it is not mandated by law to use SCA. * **setByPlatform**: you set a limit for one of your user&#39;s balance accounts, or for your balance platform. * **initialLimit**: there are no existing transfer limits set on the balance account or balance platform. * **alreadyPerformed**: you are confident about your user&#39;s identity and do not need to verify this using SCA.
+    /// The type of exemption for Strong Customer Authentication (SCA). Possible values: * **lowerLimit**: the newly created limit is lower than the existing limit. * **notRegulated**: the limit is created in a country, region, or industry where it is not mandated by law to use SCA. * **setByPlatform**: you set a limit for one of your user's balance accounts, or for your balance platform. * **initialLimit**: there are no existing transfer limits set on the balance account or balance platform. * **alreadyPerformed**: you are confident about your user's identity and do not need to verify this using SCA.
     /// </summary>
     /// <value>The type of exemption for Strong Customer Authentication (SCA). Possible values: * **lowerLimit**: the newly created limit is lower than the existing limit. * **notRegulated**: the limit is created in a country, region, or industry where it is not mandated by law to use SCA. * **setByPlatform**: you set a limit for one of your user&#39;s balance accounts, or for your balance platform. * **initialLimit**: there are no existing transfer limits set on the balance account or balance platform. * **alreadyPerformed**: you are confident about your user&#39;s identity and do not need to verify this using SCA.</value>
-    public enum ScaExemption
+    [JsonConverter(typeof(ScaExemption.ScaExemptionJsonConverter))]
+    public class ScaExemption : IEnum
     {
         /// <summary>
-        /// Enum SetByPlatform for value: setByPlatform
+        /// Returns the value of the ScaExemption.
         /// </summary>
-        SetByPlatform = 1,
+        public string? Value { get; set; }
 
         /// <summary>
-        /// Enum InitialLimit for value: initialLimit
+        /// ScaExemption.SetByPlatform - setByPlatform
         /// </summary>
-        InitialLimit = 2,
+        public static readonly ScaExemption SetByPlatform = new("setByPlatform");
 
         /// <summary>
-        /// Enum LowerLimit for value: lowerLimit
+        /// ScaExemption.InitialLimit - initialLimit
         /// </summary>
-        LowerLimit = 3,
+        public static readonly ScaExemption InitialLimit = new("initialLimit");
 
         /// <summary>
-        /// Enum NotRegulated for value: notRegulated
+        /// ScaExemption.LowerLimit - lowerLimit
         /// </summary>
-        NotRegulated = 4,
+        public static readonly ScaExemption LowerLimit = new("lowerLimit");
 
         /// <summary>
-        /// Enum AlreadyPerformed for value: alreadyPerformed
+        /// ScaExemption.NotRegulated - notRegulated
         /// </summary>
-        AlreadyPerformed = 5
-    }
+        public static readonly ScaExemption NotRegulated = new("notRegulated");
 
-    /// <summary>
-    /// Converts <see cref="ScaExemption"/> to and from the JSON value
-    /// </summary>
-    public static class ScaExemptionValueConverter
-    {
         /// <summary>
-        /// Parses a given value to <see cref="ScaExemption"/>
+        /// ScaExemption.AlreadyPerformed - alreadyPerformed
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static ScaExemption FromString(string value)
+        public static readonly ScaExemption AlreadyPerformed = new("alreadyPerformed");
+
+        private ScaExemption(string? value)
         {
-            if (value.Equals("setByPlatform"))
-                return ScaExemption.SetByPlatform;
-
-            if (value.Equals("initialLimit"))
-                return ScaExemption.InitialLimit;
-
-            if (value.Equals("lowerLimit"))
-                return ScaExemption.LowerLimit;
-
-            if (value.Equals("notRegulated"))
-                return ScaExemption.NotRegulated;
-
-            if (value.Equals("alreadyPerformed"))
-                return ScaExemption.AlreadyPerformed;
-
-            throw new NotImplementedException($"Could not convert value to type ScaExemption: '{value}'");
+            Value = value;
         }
 
         /// <summary>
-        /// Parses a given value to <see cref="ScaExemption"/>
+        /// Converts a string to a <see cref="ScaExemption"/> implicitly.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static ScaExemption? FromStringOrDefault(string value)
+        public static implicit operator ScaExemption?(string? value) => value == null ? null : new ScaExemption(value);
+
+        /// <summary>
+        /// Converts a <see cref="ScaExemption"/> instance to a string implicitly.
+        /// </summary>
+        public static implicit operator string?(ScaExemption? option) => option?.Value;
+
+        /// <summary>
+        /// Compares two <see cref="ScaExemption"/> instances for equality.
+        /// </summary>
+        public static bool operator ==(ScaExemption? left, ScaExemption? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Compares two <see cref="ScaExemption"/> instances for inequality.
+        /// </summary>
+        public static bool operator !=(ScaExemption? left, ScaExemption? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns true if the given object is equal to this <see cref="ScaExemption"/> instance.
+        /// </summary>
+        public override bool Equals(object? obj) => obj is ScaExemption other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns a hash code for this <see cref="ScaExemption"/> instance.
+        /// </summary>
+        public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+        /// <summary>
+        /// Returns the string value of the <see cref="ScaExemption"/> instance.
+        /// </summary>
+        public override string ToString() => Value ?? string.Empty;
+
+        /// <summary>
+        /// Returns a <see cref="ScaExemption?"/>, or null if the value is not recognized.
+        /// </summary>
+        public static ScaExemption? FromStringOrDefault(string? value)
         {
-            if (value.Equals("setByPlatform"))
-                return ScaExemption.SetByPlatform;
-
-            if (value.Equals("initialLimit"))
-                return ScaExemption.InitialLimit;
-
-            if (value.Equals("lowerLimit"))
-                return ScaExemption.LowerLimit;
-
-            if (value.Equals("notRegulated"))
-                return ScaExemption.NotRegulated;
-
-            if (value.Equals("alreadyPerformed"))
-                return ScaExemption.AlreadyPerformed;
-
-            return null;
+            return value switch {
+                "setByPlatform" => ScaExemption.SetByPlatform,
+                "initialLimit" => ScaExemption.InitialLimit,
+                "lowerLimit" => ScaExemption.LowerLimit,
+                "notRegulated" => ScaExemption.NotRegulated,
+                "alreadyPerformed" => ScaExemption.AlreadyPerformed,
+                _ => null,
+            };
         }
 
         /// <summary>
-        /// Converts the <see cref="ScaExemption"/> to the json value
+        /// Converts the <see cref="ScaExemption"/> to the json value.
+        /// Returns the raw string value, preserving unknown values for round-trip safety.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string ToJsonValue(ScaExemption value)
+        public static string? ToJsonValue(ScaExemption? value)
         {
+            if (value == null)
+                return null;
+
             if (value == ScaExemption.SetByPlatform)
                 return "setByPlatform";
 
@@ -139,84 +145,32 @@ namespace Adyen.BalancePlatform.Models
             if (value == ScaExemption.AlreadyPerformed)
                 return "alreadyPerformed";
 
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-    }
-
-    /// <summary>
-    /// A Json converter for type <see cref="ScaExemption"/>
-    /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    public class ScaExemptionJsonConverter : JsonConverter<ScaExemption>
-    {
-        /// <summary>
-        /// Returns a  from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override ScaExemption Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            ScaExemption? result = rawValue == null
-                ? null
-                : ScaExemptionValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
+            return value.Value;
         }
 
         /// <summary>
-        /// Writes the ScaExemption to the json writer
+        /// JsonConverter for <see cref="ScaExemption"/>.
+        /// Preserves unknown values instead of throwing an exception.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="scaExemption"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, ScaExemption scaExemption, JsonSerializerOptions options)
+        public class ScaExemptionJsonConverter : JsonConverter<ScaExemption>
         {
-            writer.WriteStringValue(ScaExemptionValueConverter.ToJsonValue(scaExemption).ToString());
-        }
-    }
+            /// <summary>
+            /// Deserializes a <see cref="ScaExemption"/> from JSON.
+            /// Unknown values are preserved as-is rather than throwing an exception.
+            /// </summary>
+            public override ScaExemption? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                string? rawValue = reader.GetString();
+                return rawValue == null ? null : ScaExemption.FromStringOrDefault(rawValue) ?? new ScaExemption(rawValue);
+            }
 
-    /// <summary>
-    /// A Json converter for type <see cref="ScaExemption"/>
-    /// </summary>
-    public class ScaExemptionNullableJsonConverter : JsonConverter<ScaExemption?>
-    {
-        /// <summary>
-        /// Returns a ScaExemption from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override ScaExemption? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            ScaExemption? result = rawValue == null
-                ? null
-                : ScaExemptionValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
-        }
-
-        /// <summary>
-        /// Writes the ScaExemption to the json writer
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="scaExemption"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, ScaExemption? scaExemption, JsonSerializerOptions options)
-        {
-            writer.WriteStringValue(scaExemption.HasValue ? ScaExemptionValueConverter.ToJsonValue(scaExemption.Value).ToString() : "null");
+            /// <summary>
+            /// Serializes a <see cref="ScaExemption"/> to JSON.
+            /// </summary>
+            public override void Write(Utf8JsonWriter writer, ScaExemption value, JsonSerializerOptions options)
+            {
+                writer.WriteStringValue(ScaExemption.ToJsonValue(value));
+            }
         }
     }
 }

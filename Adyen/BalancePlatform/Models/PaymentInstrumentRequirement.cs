@@ -140,7 +140,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == PaymentInstrumentTypeEnum.Card)
                     return "Card";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -268,7 +268,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.PaymentInstrumentRequirement)
                     return "paymentInstrumentRequirement";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -435,11 +435,11 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "paymentInstrumentType":
                             string? paymentInstrumentTypeRawValue = utf8JsonReader.GetString();
-                            paymentInstrumentType = new Option<PaymentInstrumentRequirement.PaymentInstrumentTypeEnum?>(PaymentInstrumentRequirement.PaymentInstrumentTypeEnum.FromStringOrDefault(paymentInstrumentTypeRawValue));
+                            paymentInstrumentType = new Option<PaymentInstrumentRequirement.PaymentInstrumentTypeEnum?>(PaymentInstrumentRequirement.PaymentInstrumentTypeEnum.FromStringOrDefault(paymentInstrumentTypeRawValue) ?? (PaymentInstrumentRequirement.PaymentInstrumentTypeEnum)paymentInstrumentTypeRawValue);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PaymentInstrumentRequirement.TypeEnum?>(PaymentInstrumentRequirement.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<PaymentInstrumentRequirement.TypeEnum?>(PaymentInstrumentRequirement.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PaymentInstrumentRequirement.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -461,7 +461,7 @@ namespace Adyen.BalancePlatform.Models
                 paymentInstrumentRequirement.OnlyForCrossBalancePlatform = onlyForCrossBalancePlatform.Value;
             if (paymentInstrumentType.IsSet)
                 paymentInstrumentRequirement.PaymentInstrumentType = paymentInstrumentType.Value;
-            paymentInstrumentRequirement.Type = type.Value!.Value;
+            paymentInstrumentRequirement.Type = type.Value!;
             return paymentInstrumentRequirement;
         }
 

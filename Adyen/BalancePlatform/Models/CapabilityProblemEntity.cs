@@ -149,7 +149,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.LegalEntity)
                     return "LegalEntity";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -301,7 +301,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CapabilityProblemEntity.TypeEnum?>(CapabilityProblemEntity.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CapabilityProblemEntity.TypeEnum?>(CapabilityProblemEntity.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CapabilityProblemEntity.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

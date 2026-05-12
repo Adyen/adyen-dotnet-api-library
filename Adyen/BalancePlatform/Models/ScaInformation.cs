@@ -120,13 +120,11 @@ namespace Adyen.BalancePlatform.Models
                     {
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            if (statusRawValue != null)
-                                status = new Option<ScaStatus?>(ScaStatusValueConverter.FromStringOrDefault(statusRawValue));
+                            status = new Option<ScaStatus?>(ScaStatus.FromStringOrDefault(statusRawValue) ?? (ScaStatus)statusRawValue);
                             break;
                         case "exemption":
                             string? exemptionRawValue = utf8JsonReader.GetString();
-                            if (exemptionRawValue != null)
-                                exemption = new Option<ScaExemption?>(ScaExemptionValueConverter.FromStringOrDefault(exemptionRawValue));
+                            exemption = new Option<ScaExemption?>(ScaExemption.FromStringOrDefault(exemptionRawValue) ?? (ScaExemption)exemptionRawValue);
                             break;
                         default:
                             break;
@@ -138,7 +136,7 @@ namespace Adyen.BalancePlatform.Models
                 throw new ArgumentException("Property is required for class ScaInformation.", nameof(status));
 
             var scaInformation = new ScaInformation();
-            scaInformation.Status = status.Value!.Value;
+            scaInformation.Status = status.Value!;
             if (exemption.IsSet)
                 scaInformation.Exemption = exemption.Value;
             return scaInformation;
@@ -170,12 +168,12 @@ namespace Adyen.BalancePlatform.Models
         public void WriteProperties(Utf8JsonWriter writer, ScaInformation scaInformation, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            var statusRawValue = ScaStatusValueConverter.ToJsonValue(scaInformation.Status);
+            var statusRawValue = ScaStatus.ToJsonValue(scaInformation.Status);
             writer.WriteString("status", statusRawValue);
 
             if (scaInformation._ExemptionOption.IsSet)
             {
-                var exemptionRawValue = ScaExemptionValueConverter.ToJsonValue(scaInformation.Exemption!.Value);
+                var exemptionRawValue = ScaExemption.ToJsonValue(scaInformation.Exemption);
                 writer.WriteString("exemption", exemptionRawValue);
             }
         }

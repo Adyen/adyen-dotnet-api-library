@@ -140,7 +140,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.Card)
                     return "card";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -288,7 +288,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == StatusEnum.Suspended)
                     return "suspended";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -488,7 +488,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == StatusReasonEnum.TransactionRule)
                     return "transactionRule";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -768,7 +768,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PaymentInstrument.TypeEnum?>(PaymentInstrument.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<PaymentInstrument.TypeEnum?>(PaymentInstrument.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PaymentInstrument.TypeEnum)typeRawValue);
                             break;
                         case "additionalBankAccountIdentifications":
                             additionalBankAccountIdentifications = new Option<List<PaymentInstrumentAdditionalBankAccountIdentificationsInner>?>(JsonSerializer.Deserialize<List<PaymentInstrumentAdditionalBankAccountIdentificationsInner>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -796,14 +796,14 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<PaymentInstrument.StatusEnum?>(PaymentInstrument.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<PaymentInstrument.StatusEnum?>(PaymentInstrument.StatusEnum.FromStringOrDefault(statusRawValue) ?? (PaymentInstrument.StatusEnum)statusRawValue);
                             break;
                         case "statusComment":
                             statusComment = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "statusReason":
                             string? statusReasonRawValue = utf8JsonReader.GetString();
-                            statusReason = new Option<PaymentInstrument.StatusReasonEnum?>(PaymentInstrument.StatusReasonEnum.FromStringOrDefault(statusReasonRawValue));
+                            statusReason = new Option<PaymentInstrument.StatusReasonEnum?>(PaymentInstrument.StatusReasonEnum.FromStringOrDefault(statusReasonRawValue) ?? (PaymentInstrument.StatusReasonEnum)statusReasonRawValue);
                             break;
                         default:
                             break;
@@ -827,7 +827,7 @@ namespace Adyen.BalancePlatform.Models
             paymentInstrument.BalanceAccountId = balanceAccountId.Value!;
             paymentInstrument.Id = id.Value!;
             paymentInstrument.IssuingCountryCode = issuingCountryCode.Value!;
-            paymentInstrument.Type = type.Value!.Value;
+            paymentInstrument.Type = type.Value!;
             if (additionalBankAccountIdentifications.IsSet)
                 paymentInstrument.AdditionalBankAccountIdentifications = additionalBankAccountIdentifications.Value;
             if (bankAccount.IsSet)

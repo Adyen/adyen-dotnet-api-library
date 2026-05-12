@@ -33,148 +33,117 @@ namespace Adyen.BalancePlatform.Models
     /// The type of transfer to which the limit applies. Possible values: * **instant**: the limit applies to transfers with an **instant** priority. * **all**: the limit applies to all transfers, regardless of priority.
     /// </summary>
     /// <value>The type of transfer to which the limit applies. Possible values: * **instant**: the limit applies to transfers with an **instant** priority. * **all**: the limit applies to all transfers, regardless of priority.</value>
-    public enum TransferType
+    [JsonConverter(typeof(TransferType.TransferTypeJsonConverter))]
+    public class TransferType : IEnum
     {
         /// <summary>
-        /// Enum Instant for value: instant
+        /// Returns the value of the TransferType.
         /// </summary>
-        Instant = 1,
+        public string? Value { get; set; }
 
         /// <summary>
-        /// Enum All for value: all
+        /// TransferType.Instant - instant
         /// </summary>
-        All = 2
-    }
+        public static readonly TransferType Instant = new("instant");
 
-    /// <summary>
-    /// Converts <see cref="TransferType"/> to and from the JSON value
-    /// </summary>
-    public static class TransferTypeValueConverter
-    {
         /// <summary>
-        /// Parses a given value to <see cref="TransferType"/>
+        /// TransferType.All - all
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static TransferType FromString(string value)
+        public static readonly TransferType All = new("all");
+
+        private TransferType(string? value)
         {
-            if (value.Equals("instant"))
-                return TransferType.Instant;
-
-            if (value.Equals("all"))
-                return TransferType.All;
-
-            throw new NotImplementedException($"Could not convert value to type TransferType: '{value}'");
+            Value = value;
         }
 
         /// <summary>
-        /// Parses a given value to <see cref="TransferType"/>
+        /// Converts a string to a <see cref="TransferType"/> implicitly.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static TransferType? FromStringOrDefault(string value)
+        public static implicit operator TransferType?(string? value) => value == null ? null : new TransferType(value);
+
+        /// <summary>
+        /// Converts a <see cref="TransferType"/> instance to a string implicitly.
+        /// </summary>
+        public static implicit operator string?(TransferType? option) => option?.Value;
+
+        /// <summary>
+        /// Compares two <see cref="TransferType"/> instances for equality.
+        /// </summary>
+        public static bool operator ==(TransferType? left, TransferType? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Compares two <see cref="TransferType"/> instances for inequality.
+        /// </summary>
+        public static bool operator !=(TransferType? left, TransferType? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns true if the given object is equal to this <see cref="TransferType"/> instance.
+        /// </summary>
+        public override bool Equals(object? obj) => obj is TransferType other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns a hash code for this <see cref="TransferType"/> instance.
+        /// </summary>
+        public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+        /// <summary>
+        /// Returns the string value of the <see cref="TransferType"/> instance.
+        /// </summary>
+        public override string ToString() => Value ?? string.Empty;
+
+        /// <summary>
+        /// Returns a <see cref="TransferType?"/>, or null if the value is not recognized.
+        /// </summary>
+        public static TransferType? FromStringOrDefault(string? value)
         {
-            if (value.Equals("instant"))
-                return TransferType.Instant;
-
-            if (value.Equals("all"))
-                return TransferType.All;
-
-            return null;
+            return value switch {
+                "instant" => TransferType.Instant,
+                "all" => TransferType.All,
+                _ => null,
+            };
         }
 
         /// <summary>
-        /// Converts the <see cref="TransferType"/> to the json value
+        /// Converts the <see cref="TransferType"/> to the json value.
+        /// Returns the raw string value, preserving unknown values for round-trip safety.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string ToJsonValue(TransferType value)
+        public static string? ToJsonValue(TransferType? value)
         {
+            if (value == null)
+                return null;
+
             if (value == TransferType.Instant)
                 return "instant";
 
             if (value == TransferType.All)
                 return "all";
 
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-    }
-
-    /// <summary>
-    /// A Json converter for type <see cref="TransferType"/>
-    /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    public class TransferTypeJsonConverter : JsonConverter<TransferType>
-    {
-        /// <summary>
-        /// Returns a  from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override TransferType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            TransferType? result = rawValue == null
-                ? null
-                : TransferTypeValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
+            return value.Value;
         }
 
         /// <summary>
-        /// Writes the TransferType to the json writer
+        /// JsonConverter for <see cref="TransferType"/>.
+        /// Preserves unknown values instead of throwing an exception.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="transferType"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, TransferType transferType, JsonSerializerOptions options)
+        public class TransferTypeJsonConverter : JsonConverter<TransferType>
         {
-            writer.WriteStringValue(TransferTypeValueConverter.ToJsonValue(transferType).ToString());
-        }
-    }
+            /// <summary>
+            /// Deserializes a <see cref="TransferType"/> from JSON.
+            /// Unknown values are preserved as-is rather than throwing an exception.
+            /// </summary>
+            public override TransferType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                string? rawValue = reader.GetString();
+                return rawValue == null ? null : TransferType.FromStringOrDefault(rawValue) ?? new TransferType(rawValue);
+            }
 
-    /// <summary>
-    /// A Json converter for type <see cref="TransferType"/>
-    /// </summary>
-    public class TransferTypeNullableJsonConverter : JsonConverter<TransferType?>
-    {
-        /// <summary>
-        /// Returns a TransferType from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override TransferType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            TransferType? result = rawValue == null
-                ? null
-                : TransferTypeValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
-        }
-
-        /// <summary>
-        /// Writes the TransferType to the json writer
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="transferType"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, TransferType? transferType, JsonSerializerOptions options)
-        {
-            writer.WriteStringValue(transferType.HasValue ? TransferTypeValueConverter.ToJsonValue(transferType.Value).ToString() : "null");
+            /// <summary>
+            /// Serializes a <see cref="TransferType"/> to JSON.
+            /// </summary>
+            public override void Write(Utf8JsonWriter writer, TransferType value, JsonSerializerOptions options)
+            {
+                writer.WriteStringValue(TransferType.ToJsonValue(value));
+            }
         }
     }
 }

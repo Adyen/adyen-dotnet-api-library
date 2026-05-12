@@ -126,8 +126,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "entityType":
                             string? entityTypeRawValue = utf8JsonReader.GetString();
-                            if (entityTypeRawValue != null)
-                                entityType = new Option<ScaEntityType?>(ScaEntityTypeValueConverter.FromStringOrDefault(entityTypeRawValue));
+                            entityType = new Option<ScaEntityType?>(ScaEntityType.FromStringOrDefault(entityTypeRawValue) ?? (ScaEntityType)entityTypeRawValue);
                             break;
                         case "scaDeviceIds":
                             scaDeviceIds = new Option<List<string>?>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -149,7 +148,7 @@ namespace Adyen.BalancePlatform.Models
 
             var removeAssociationRequest = new RemoveAssociationRequest();
             removeAssociationRequest.EntityId = entityId.Value!;
-            removeAssociationRequest.EntityType = entityType.Value!.Value;
+            removeAssociationRequest.EntityType = entityType.Value!;
             removeAssociationRequest.ScaDeviceIds = scaDeviceIds.Value!;
             return removeAssociationRequest;
         }
@@ -183,7 +182,7 @@ namespace Adyen.BalancePlatform.Models
             if (removeAssociationRequest.EntityId != null)
                 writer.WriteString("entityId", removeAssociationRequest.EntityId);
 
-            var entityTypeRawValue = ScaEntityTypeValueConverter.ToJsonValue(removeAssociationRequest.EntityType);
+            var entityTypeRawValue = ScaEntityType.ToJsonValue(removeAssociationRequest.EntityType);
             writer.WriteString("entityType", entityTypeRawValue);
 
             writer.WritePropertyName("scaDeviceIds");

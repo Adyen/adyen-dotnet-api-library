@@ -158,7 +158,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == IdentificationTypeEnum.SortCode)
                     return "sortCode";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -292,7 +292,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "identificationType":
                             string? identificationTypeRawValue = utf8JsonReader.GetString();
-                            identificationType = new Option<BankIdentification.IdentificationTypeEnum?>(BankIdentification.IdentificationTypeEnum.FromStringOrDefault(identificationTypeRawValue));
+                            identificationType = new Option<BankIdentification.IdentificationTypeEnum?>(BankIdentification.IdentificationTypeEnum.FromStringOrDefault(identificationTypeRawValue) ?? (BankIdentification.IdentificationTypeEnum)identificationTypeRawValue);
                             break;
                         default:
                             break;

@@ -131,7 +131,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.IbanAccountIdentificationRequirement)
                     return "ibanAccountIdentificationRequirement";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -258,7 +258,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<IbanAccountIdentificationRequirement.TypeEnum?>(IbanAccountIdentificationRequirement.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<IbanAccountIdentificationRequirement.TypeEnum?>(IbanAccountIdentificationRequirement.TypeEnum.FromStringOrDefault(typeRawValue) ?? (IbanAccountIdentificationRequirement.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -274,7 +274,7 @@ namespace Adyen.BalancePlatform.Models
                 ibanAccountIdentificationRequirement.Description = description.Value;
             if (ibanPrefixes.IsSet)
                 ibanAccountIdentificationRequirement.IbanPrefixes = ibanPrefixes.Value;
-            ibanAccountIdentificationRequirement.Type = type.Value!.Value;
+            ibanAccountIdentificationRequirement.Type = type.Value!;
             return ibanAccountIdentificationRequirement;
         }
 

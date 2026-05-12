@@ -140,7 +140,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == StatusEnum.Inactive)
                     return "inactive";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -261,7 +261,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.Balance)
                     return "balance";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -388,14 +388,14 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<BalanceWebhookSettingInfo.StatusEnum?>(BalanceWebhookSettingInfo.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<BalanceWebhookSettingInfo.StatusEnum?>(BalanceWebhookSettingInfo.StatusEnum.FromStringOrDefault(statusRawValue) ?? (BalanceWebhookSettingInfo.StatusEnum)statusRawValue);
                             break;
                         case "target":
                             target = new Option<Target?>(JsonSerializer.Deserialize<Target>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<BalanceWebhookSettingInfo.TypeEnum?>(BalanceWebhookSettingInfo.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<BalanceWebhookSettingInfo.TypeEnum?>(BalanceWebhookSettingInfo.TypeEnum.FromStringOrDefault(typeRawValue) ?? (BalanceWebhookSettingInfo.TypeEnum)typeRawValue);
                             break;
                         case "conditions":
                             conditions = new Option<List<Condition>?>(JsonSerializer.Deserialize<List<Condition>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -420,9 +420,9 @@ namespace Adyen.BalancePlatform.Models
 
             var balanceWebhookSettingInfo = new BalanceWebhookSettingInfo();
             balanceWebhookSettingInfo.Currency = currency.Value!;
-            balanceWebhookSettingInfo.Status = status.Value!.Value;
+            balanceWebhookSettingInfo.Status = status.Value!;
             balanceWebhookSettingInfo.Target = target.Value!;
-            balanceWebhookSettingInfo.Type = type.Value!.Value;
+            balanceWebhookSettingInfo.Type = type.Value!;
             if (conditions.IsSet)
                 balanceWebhookSettingInfo.Conditions = conditions.Value;
             return balanceWebhookSettingInfo;

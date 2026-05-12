@@ -32,148 +32,117 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// Defines AssociationStatus
     /// </summary>
-    public enum AssociationStatus
+    [JsonConverter(typeof(AssociationStatus.AssociationStatusJsonConverter))]
+    public class AssociationStatus : IEnum
     {
         /// <summary>
-        /// Enum PendingApproval for value: pendingApproval
+        /// Returns the value of the AssociationStatus.
         /// </summary>
-        PendingApproval = 1,
+        public string? Value { get; set; }
 
         /// <summary>
-        /// Enum Active for value: active
+        /// AssociationStatus.PendingApproval - pendingApproval
         /// </summary>
-        Active = 2
-    }
+        public static readonly AssociationStatus PendingApproval = new("pendingApproval");
 
-    /// <summary>
-    /// Converts <see cref="AssociationStatus"/> to and from the JSON value
-    /// </summary>
-    public static class AssociationStatusValueConverter
-    {
         /// <summary>
-        /// Parses a given value to <see cref="AssociationStatus"/>
+        /// AssociationStatus.Active - active
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static AssociationStatus FromString(string value)
+        public static readonly AssociationStatus Active = new("active");
+
+        private AssociationStatus(string? value)
         {
-            if (value.Equals("pendingApproval"))
-                return AssociationStatus.PendingApproval;
-
-            if (value.Equals("active"))
-                return AssociationStatus.Active;
-
-            throw new NotImplementedException($"Could not convert value to type AssociationStatus: '{value}'");
+            Value = value;
         }
 
         /// <summary>
-        /// Parses a given value to <see cref="AssociationStatus"/>
+        /// Converts a string to a <see cref="AssociationStatus"/> implicitly.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static AssociationStatus? FromStringOrDefault(string value)
+        public static implicit operator AssociationStatus?(string? value) => value == null ? null : new AssociationStatus(value);
+
+        /// <summary>
+        /// Converts a <see cref="AssociationStatus"/> instance to a string implicitly.
+        /// </summary>
+        public static implicit operator string?(AssociationStatus? option) => option?.Value;
+
+        /// <summary>
+        /// Compares two <see cref="AssociationStatus"/> instances for equality.
+        /// </summary>
+        public static bool operator ==(AssociationStatus? left, AssociationStatus? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Compares two <see cref="AssociationStatus"/> instances for inequality.
+        /// </summary>
+        public static bool operator !=(AssociationStatus? left, AssociationStatus? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns true if the given object is equal to this <see cref="AssociationStatus"/> instance.
+        /// </summary>
+        public override bool Equals(object? obj) => obj is AssociationStatus other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns a hash code for this <see cref="AssociationStatus"/> instance.
+        /// </summary>
+        public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+        /// <summary>
+        /// Returns the string value of the <see cref="AssociationStatus"/> instance.
+        /// </summary>
+        public override string ToString() => Value ?? string.Empty;
+
+        /// <summary>
+        /// Returns a <see cref="AssociationStatus?"/>, or null if the value is not recognized.
+        /// </summary>
+        public static AssociationStatus? FromStringOrDefault(string? value)
         {
-            if (value.Equals("pendingApproval"))
-                return AssociationStatus.PendingApproval;
-
-            if (value.Equals("active"))
-                return AssociationStatus.Active;
-
-            return null;
+            return value switch {
+                "pendingApproval" => AssociationStatus.PendingApproval,
+                "active" => AssociationStatus.Active,
+                _ => null,
+            };
         }
 
         /// <summary>
-        /// Converts the <see cref="AssociationStatus"/> to the json value
+        /// Converts the <see cref="AssociationStatus"/> to the json value.
+        /// Returns the raw string value, preserving unknown values for round-trip safety.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string ToJsonValue(AssociationStatus value)
+        public static string? ToJsonValue(AssociationStatus? value)
         {
+            if (value == null)
+                return null;
+
             if (value == AssociationStatus.PendingApproval)
                 return "pendingApproval";
 
             if (value == AssociationStatus.Active)
                 return "active";
 
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-    }
-
-    /// <summary>
-    /// A Json converter for type <see cref="AssociationStatus"/>
-    /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    public class AssociationStatusJsonConverter : JsonConverter<AssociationStatus>
-    {
-        /// <summary>
-        /// Returns a  from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override AssociationStatus Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            AssociationStatus? result = rawValue == null
-                ? null
-                : AssociationStatusValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
+            return value.Value;
         }
 
         /// <summary>
-        /// Writes the AssociationStatus to the json writer
+        /// JsonConverter for <see cref="AssociationStatus"/>.
+        /// Preserves unknown values instead of throwing an exception.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="associationStatus"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, AssociationStatus associationStatus, JsonSerializerOptions options)
+        public class AssociationStatusJsonConverter : JsonConverter<AssociationStatus>
         {
-            writer.WriteStringValue(AssociationStatusValueConverter.ToJsonValue(associationStatus).ToString());
-        }
-    }
+            /// <summary>
+            /// Deserializes a <see cref="AssociationStatus"/> from JSON.
+            /// Unknown values are preserved as-is rather than throwing an exception.
+            /// </summary>
+            public override AssociationStatus? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                string? rawValue = reader.GetString();
+                return rawValue == null ? null : AssociationStatus.FromStringOrDefault(rawValue) ?? new AssociationStatus(rawValue);
+            }
 
-    /// <summary>
-    /// A Json converter for type <see cref="AssociationStatus"/>
-    /// </summary>
-    public class AssociationStatusNullableJsonConverter : JsonConverter<AssociationStatus?>
-    {
-        /// <summary>
-        /// Returns a AssociationStatus from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override AssociationStatus? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            AssociationStatus? result = rawValue == null
-                ? null
-                : AssociationStatusValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
-        }
-
-        /// <summary>
-        /// Writes the AssociationStatus to the json writer
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="associationStatus"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, AssociationStatus? associationStatus, JsonSerializerOptions options)
-        {
-            writer.WriteStringValue(associationStatus.HasValue ? AssociationStatusValueConverter.ToJsonValue(associationStatus.Value).ToString() : "null");
+            /// <summary>
+            /// Serializes a <see cref="AssociationStatus"/> to JSON.
+            /// </summary>
+            public override void Write(Utf8JsonWriter writer, AssociationStatus value, JsonSerializerOptions options)
+            {
+                writer.WriteStringValue(AssociationStatus.ToJsonValue(value));
+            }
         }
     }
 }

@@ -139,7 +139,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == ValueEnum.BusinessAccount)
                     return "businessAccount";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>

@@ -197,13 +197,11 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "scope":
                             string? scopeRawValue = utf8JsonReader.GetString();
-                            if (scopeRawValue != null)
-                                scope = new Option<Scope?>(ScopeValueConverter.FromStringOrDefault(scopeRawValue));
+                            scope = new Option<Scope?>(Scope.FromStringOrDefault(scopeRawValue) ?? (Scope)scopeRawValue);
                             break;
                         case "transferType":
                             string? transferTypeRawValue = utf8JsonReader.GetString();
-                            if (transferTypeRawValue != null)
-                                transferType = new Option<TransferType?>(TransferTypeValueConverter.FromStringOrDefault(transferTypeRawValue));
+                            transferType = new Option<TransferType?>(TransferType.FromStringOrDefault(transferTypeRawValue) ?? (TransferType)transferTypeRawValue);
                             break;
                         case "endsAt":
                             endsAt = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -234,8 +232,8 @@ namespace Adyen.BalancePlatform.Models
 
             var createTransferLimitRequest = new CreateTransferLimitRequest();
             createTransferLimitRequest.Amount = amount.Value!;
-            createTransferLimitRequest.Scope = scope.Value!.Value;
-            createTransferLimitRequest.TransferType = transferType.Value!.Value;
+            createTransferLimitRequest.Scope = scope.Value!;
+            createTransferLimitRequest.TransferType = transferType.Value!;
             if (endsAt.IsSet)
                 createTransferLimitRequest.EndsAt = endsAt.Value;
             if (reference.IsSet)
@@ -275,10 +273,10 @@ namespace Adyen.BalancePlatform.Models
             
             writer.WritePropertyName("amount");
             JsonSerializer.Serialize(writer, createTransferLimitRequest.Amount, jsonSerializerOptions);
-            var scopeRawValue = ScopeValueConverter.ToJsonValue(createTransferLimitRequest.Scope);
+            var scopeRawValue = Scope.ToJsonValue(createTransferLimitRequest.Scope);
             writer.WriteString("scope", scopeRawValue);
 
-            var transferTypeRawValue = TransferTypeValueConverter.ToJsonValue(createTransferLimitRequest.TransferType);
+            var transferTypeRawValue = TransferType.ToJsonValue(createTransferLimitRequest.TransferType);
             writer.WriteString("transferType", transferTypeRawValue);
 
             if (createTransferLimitRequest._EndsAtOption.IsSet)

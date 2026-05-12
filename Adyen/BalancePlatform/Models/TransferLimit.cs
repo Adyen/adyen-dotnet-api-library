@@ -210,21 +210,18 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "limitStatus":
                             string? limitStatusRawValue = utf8JsonReader.GetString();
-                            if (limitStatusRawValue != null)
-                                limitStatus = new Option<LimitStatus?>(LimitStatusValueConverter.FromStringOrDefault(limitStatusRawValue));
+                            limitStatus = new Option<LimitStatus?>(LimitStatus.FromStringOrDefault(limitStatusRawValue) ?? (LimitStatus)limitStatusRawValue);
                             break;
                         case "scope":
                             string? scopeRawValue = utf8JsonReader.GetString();
-                            if (scopeRawValue != null)
-                                scope = new Option<Scope?>(ScopeValueConverter.FromStringOrDefault(scopeRawValue));
+                            scope = new Option<Scope?>(Scope.FromStringOrDefault(scopeRawValue) ?? (Scope)scopeRawValue);
                             break;
                         case "startsAt":
                             startsAt = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "transferType":
                             string? transferTypeRawValue = utf8JsonReader.GetString();
-                            if (transferTypeRawValue != null)
-                                transferType = new Option<TransferType?>(TransferTypeValueConverter.FromStringOrDefault(transferTypeRawValue));
+                            transferType = new Option<TransferType?>(TransferType.FromStringOrDefault(transferTypeRawValue) ?? (TransferType)transferTypeRawValue);
                             break;
                         case "endsAt":
                             endsAt = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -262,10 +259,10 @@ namespace Adyen.BalancePlatform.Models
             var transferLimit = new TransferLimit();
             transferLimit.Amount = amount.Value!;
             transferLimit.Id = id.Value!;
-            transferLimit.LimitStatus = limitStatus.Value!.Value;
-            transferLimit.Scope = scope.Value!.Value;
+            transferLimit.LimitStatus = limitStatus.Value!;
+            transferLimit.Scope = scope.Value!;
             transferLimit.StartsAt = startsAt.Value!.Value;
-            transferLimit.TransferType = transferType.Value!.Value;
+            transferLimit.TransferType = transferType.Value!;
             if (endsAt.IsSet)
                 transferLimit.EndsAt = endsAt.Value;
             if (reference.IsSet)
@@ -306,15 +303,15 @@ namespace Adyen.BalancePlatform.Models
             if (transferLimit.Id != null)
                 writer.WriteString("id", transferLimit.Id);
 
-            var limitStatusRawValue = LimitStatusValueConverter.ToJsonValue(transferLimit.LimitStatus);
+            var limitStatusRawValue = LimitStatus.ToJsonValue(transferLimit.LimitStatus);
             writer.WriteString("limitStatus", limitStatusRawValue);
 
-            var scopeRawValue = ScopeValueConverter.ToJsonValue(transferLimit.Scope);
+            var scopeRawValue = Scope.ToJsonValue(transferLimit.Scope);
             writer.WriteString("scope", scopeRawValue);
 
             writer.WriteString("startsAt", transferLimit.StartsAt.ToString(StartsAtFormat));
 
-            var transferTypeRawValue = TransferTypeValueConverter.ToJsonValue(transferLimit.TransferType);
+            var transferTypeRawValue = TransferType.ToJsonValue(transferLimit.TransferType);
             writer.WriteString("transferType", transferTypeRawValue);
 
             if (transferLimit._EndsAtOption.IsSet)

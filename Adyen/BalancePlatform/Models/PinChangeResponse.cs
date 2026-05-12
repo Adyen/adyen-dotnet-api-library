@@ -149,7 +149,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == StatusEnum.Unavailable)
                     return "unavailable";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -238,7 +238,7 @@ namespace Adyen.BalancePlatform.Models
                     {
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<PinChangeResponse.StatusEnum?>(PinChangeResponse.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<PinChangeResponse.StatusEnum?>(PinChangeResponse.StatusEnum.FromStringOrDefault(statusRawValue) ?? (PinChangeResponse.StatusEnum)statusRawValue);
                             break;
                         default:
                             break;
@@ -250,7 +250,7 @@ namespace Adyen.BalancePlatform.Models
                 throw new ArgumentException("Property is required for class PinChangeResponse.", nameof(status));
 
             var pinChangeResponse = new PinChangeResponse();
-            pinChangeResponse.Status = status.Value!.Value;
+            pinChangeResponse.Status = status.Value!;
             return pinChangeResponse;
         }
 

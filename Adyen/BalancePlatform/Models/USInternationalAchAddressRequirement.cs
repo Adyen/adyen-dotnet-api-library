@@ -131,7 +131,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == TypeEnum.UsInternationalAchAddressRequirement)
                     return "usInternationalAchAddressRequirement";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -239,7 +239,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<USInternationalAchAddressRequirement.TypeEnum?>(USInternationalAchAddressRequirement.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<USInternationalAchAddressRequirement.TypeEnum?>(USInternationalAchAddressRequirement.TypeEnum.FromStringOrDefault(typeRawValue) ?? (USInternationalAchAddressRequirement.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -253,7 +253,7 @@ namespace Adyen.BalancePlatform.Models
             var uSInternationalAchAddressRequirement = new USInternationalAchAddressRequirement();
             if (description.IsSet)
                 uSInternationalAchAddressRequirement.Description = description.Value;
-            uSInternationalAchAddressRequirement.Type = type.Value!.Value;
+            uSInternationalAchAddressRequirement.Type = type.Value!;
             return uSInternationalAchAddressRequirement;
         }
 

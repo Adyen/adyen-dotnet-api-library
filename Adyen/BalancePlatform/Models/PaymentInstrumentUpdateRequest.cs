@@ -158,7 +158,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == StatusEnum.Suspended)
                     return "suspended";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -358,7 +358,7 @@ namespace Adyen.BalancePlatform.Models
                 if (value == StatusReasonEnum.TransactionRule)
                     return "transactionRule";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -509,14 +509,14 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<PaymentInstrumentUpdateRequest.StatusEnum?>(PaymentInstrumentUpdateRequest.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<PaymentInstrumentUpdateRequest.StatusEnum?>(PaymentInstrumentUpdateRequest.StatusEnum.FromStringOrDefault(statusRawValue) ?? (PaymentInstrumentUpdateRequest.StatusEnum)statusRawValue);
                             break;
                         case "statusComment":
                             statusComment = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "statusReason":
                             string? statusReasonRawValue = utf8JsonReader.GetString();
-                            statusReason = new Option<PaymentInstrumentUpdateRequest.StatusReasonEnum?>(PaymentInstrumentUpdateRequest.StatusReasonEnum.FromStringOrDefault(statusReasonRawValue));
+                            statusReason = new Option<PaymentInstrumentUpdateRequest.StatusReasonEnum?>(PaymentInstrumentUpdateRequest.StatusReasonEnum.FromStringOrDefault(statusReasonRawValue) ?? (PaymentInstrumentUpdateRequest.StatusReasonEnum)statusReasonRawValue);
                             break;
                         default:
                             break;
