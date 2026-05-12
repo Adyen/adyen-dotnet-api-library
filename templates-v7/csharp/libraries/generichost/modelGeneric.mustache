@@ -37,7 +37,7 @@
             {{#vendorExtensions.x-is-base-or-new-discriminator}}
             {{^model.composedSchemas.anyOf}}
             {{^model.composedSchemas.oneOf}}
-            {{name}} = {{^isEnum}}this.GetType().Name{{/isEnum}}{{#isEnum}}({{datatypeWithEnum}})Enum.Parse(typeof({{datatypeWithEnum}}), this.GetType().Name){{/isEnum}};
+            {{name}} = {{^isEnum}}this.GetType().Name{{/isEnum}}{{#isEnum}}({{{datatypeWithEnum}}})this.GetType().Name{{/isEnum}};
             {{/model.composedSchemas.oneOf}}
             {{/model.composedSchemas.anyOf}}
             {{/vendorExtensions.x-is-base-or-new-discriminator}}
@@ -57,7 +57,7 @@
             {{#vendorExtensions.x-is-base-or-new-discriminator}}
             {{^model.composedSchemas.anyOf}}
             {{^model.composedSchemas.oneOf}}
-            {{name}} = {{^isEnum}}this.GetType().Name{{/isEnum}}{{#isEnum}}({{datatypeWithEnum}})Enum.Parse(typeof({{datatypeWithEnum}}), this.GetType().Name){{/isEnum}};
+            {{name}} = {{^isEnum}}this.GetType().Name{{/isEnum}}{{#isEnum}}({{{datatypeWithEnum}}})this.GetType().Name{{/isEnum}};
             {{/model.composedSchemas.oneOf}}
             {{/model.composedSchemas.anyOf}}
             {{/vendorExtensions.x-is-base-or-new-discriminator}}
