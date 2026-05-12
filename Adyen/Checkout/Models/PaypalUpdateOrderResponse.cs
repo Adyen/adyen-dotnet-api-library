@@ -140,7 +140,7 @@ namespace Adyen.Checkout.Models
                 if (value == StatusEnum.Success)
                     return "success";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -241,7 +241,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<PaypalUpdateOrderResponse.StatusEnum?>(PaypalUpdateOrderResponse.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<PaypalUpdateOrderResponse.StatusEnum?>(PaypalUpdateOrderResponse.StatusEnum.FromStringOrDefault(statusRawValue) ?? (PaypalUpdateOrderResponse.StatusEnum)statusRawValue);
                             break;
                         default:
                             break;
@@ -257,7 +257,7 @@ namespace Adyen.Checkout.Models
 
             var paypalUpdateOrderResponse = new PaypalUpdateOrderResponse();
             paypalUpdateOrderResponse.PaymentData = paymentData.Value!;
-            paypalUpdateOrderResponse.Status = status.Value!.Value;
+            paypalUpdateOrderResponse.Status = status.Value!;
             return paypalUpdateOrderResponse;
         }
 

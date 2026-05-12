@@ -149,7 +149,7 @@ namespace Adyen.Checkout.Models
                 if (value == FundingSourceEnum.Prepaid)
                     return "prepaid";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -418,7 +418,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "fundingSource":
                             string? fundingSourceRawValue = utf8JsonReader.GetString();
-                            fundingSource = new Option<PaymentMethod.FundingSourceEnum?>(PaymentMethod.FundingSourceEnum.FromStringOrDefault(fundingSourceRawValue));
+                            fundingSource = new Option<PaymentMethod.FundingSourceEnum?>(PaymentMethod.FundingSourceEnum.FromStringOrDefault(fundingSourceRawValue) ?? (PaymentMethod.FundingSourceEnum)fundingSourceRawValue);
                             break;
                         case "group":
                             group = new Option<PaymentMethodGroup?>(JsonSerializer.Deserialize<PaymentMethodGroup>(ref utf8JsonReader, jsonSerializerOptions)!);

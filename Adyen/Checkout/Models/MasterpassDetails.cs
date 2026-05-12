@@ -150,7 +150,7 @@ namespace Adyen.Checkout.Models
                 if (value == FundingSourceEnum.Prepaid)
                     return "prepaid";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -278,7 +278,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Masterpass)
                     return "masterpass";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -423,14 +423,14 @@ namespace Adyen.Checkout.Models
                             break;
                         case "fundingSource":
                             string? fundingSourceRawValue = utf8JsonReader.GetString();
-                            fundingSource = new Option<MasterpassDetails.FundingSourceEnum?>(MasterpassDetails.FundingSourceEnum.FromStringOrDefault(fundingSourceRawValue));
+                            fundingSource = new Option<MasterpassDetails.FundingSourceEnum?>(MasterpassDetails.FundingSourceEnum.FromStringOrDefault(fundingSourceRawValue) ?? (MasterpassDetails.FundingSourceEnum)fundingSourceRawValue);
                             break;
                         case "sdkData":
                             sdkData = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<MasterpassDetails.TypeEnum?>(MasterpassDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<MasterpassDetails.TypeEnum?>(MasterpassDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (MasterpassDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

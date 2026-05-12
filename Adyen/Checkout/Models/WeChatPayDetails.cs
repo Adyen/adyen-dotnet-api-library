@@ -141,7 +141,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.WechatpayPos)
                     return "wechatpay_pos";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -275,7 +275,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<WeChatPayDetails.TypeEnum?>(WeChatPayDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<WeChatPayDetails.TypeEnum?>(WeChatPayDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (WeChatPayDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

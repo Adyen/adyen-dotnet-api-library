@@ -150,7 +150,7 @@ namespace Adyen.Checkout.Models
                 if (value == FundingSourceEnum.Prepaid)
                     return "prepaid";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -278,7 +278,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Visacheckout)
                     return "visacheckout";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -423,14 +423,14 @@ namespace Adyen.Checkout.Models
                             break;
                         case "fundingSource":
                             string? fundingSourceRawValue = utf8JsonReader.GetString();
-                            fundingSource = new Option<VisaCheckoutDetails.FundingSourceEnum?>(VisaCheckoutDetails.FundingSourceEnum.FromStringOrDefault(fundingSourceRawValue));
+                            fundingSource = new Option<VisaCheckoutDetails.FundingSourceEnum?>(VisaCheckoutDetails.FundingSourceEnum.FromStringOrDefault(fundingSourceRawValue) ?? (VisaCheckoutDetails.FundingSourceEnum)fundingSourceRawValue);
                             break;
                         case "sdkData":
                             sdkData = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<VisaCheckoutDetails.TypeEnum?>(VisaCheckoutDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<VisaCheckoutDetails.TypeEnum?>(VisaCheckoutDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (VisaCheckoutDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

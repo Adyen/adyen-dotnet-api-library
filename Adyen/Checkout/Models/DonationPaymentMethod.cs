@@ -211,19 +211,19 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (applePayDonations?.Type != null)
+            if (applePayDonations?.Type != null && ApplePayDonations.TypeEnum.FromStringOrDefault((string?)applePayDonations.Type) != null)
                 return new DonationPaymentMethod(applePayDonations);
 
-            if (cardDonations?.Type != null)
+            if (cardDonations?.Type != null && CardDonations.TypeEnum.FromStringOrDefault((string?)cardDonations.Type) != null)
                 return new DonationPaymentMethod(cardDonations);
 
-            if (googlePayDonations?.Type != null)
+            if (googlePayDonations?.Type != null && GooglePayDonations.TypeEnum.FromStringOrDefault((string?)googlePayDonations.Type) != null)
                 return new DonationPaymentMethod(googlePayDonations);
 
-            if (idealDonations?.Type != null)
+            if (idealDonations?.Type != null && IdealDonations.TypeEnum.FromStringOrDefault((string?)idealDonations.Type) != null)
                 return new DonationPaymentMethod(idealDonations);
 
-            if (payWithGoogleDonations?.Type != null)
+            if (payWithGoogleDonations?.Type != null && PayWithGoogleDonations.TypeEnum.FromStringOrDefault((string?)payWithGoogleDonations.Type) != null)
                 return new DonationPaymentMethod(payWithGoogleDonations);
 
             throw new JsonException();

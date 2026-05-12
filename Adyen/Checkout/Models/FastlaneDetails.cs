@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Fastlane)
                     return "fastlane";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -310,7 +310,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<FastlaneDetails.TypeEnum?>(FastlaneDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<FastlaneDetails.TypeEnum?>(FastlaneDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (FastlaneDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -334,7 +334,7 @@ namespace Adyen.Checkout.Models
                 fastlaneDetails.SdkData = sdkData.Value;
             if (storedPaymentMethodId.IsSet)
                 fastlaneDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            fastlaneDetails.Type = type.Value!.Value;
+            fastlaneDetails.Type = type.Value!;
             return fastlaneDetails;
         }
 

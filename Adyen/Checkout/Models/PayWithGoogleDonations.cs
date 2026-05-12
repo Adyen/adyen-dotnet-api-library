@@ -150,7 +150,7 @@ namespace Adyen.Checkout.Models
                 if (value == FundingSourceEnum.Prepaid)
                     return "prepaid";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -278,7 +278,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Paywithgoogle)
                     return "paywithgoogle";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -473,7 +473,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "fundingSource":
                             string? fundingSourceRawValue = utf8JsonReader.GetString();
-                            fundingSource = new Option<PayWithGoogleDonations.FundingSourceEnum?>(PayWithGoogleDonations.FundingSourceEnum.FromStringOrDefault(fundingSourceRawValue));
+                            fundingSource = new Option<PayWithGoogleDonations.FundingSourceEnum?>(PayWithGoogleDonations.FundingSourceEnum.FromStringOrDefault(fundingSourceRawValue) ?? (PayWithGoogleDonations.FundingSourceEnum)fundingSourceRawValue);
                             break;
                         case "recurringDetailReference":
                             recurringDetailReference = new Option<string?>(utf8JsonReader.GetString()!);
@@ -489,7 +489,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PayWithGoogleDonations.TypeEnum?>(PayWithGoogleDonations.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<PayWithGoogleDonations.TypeEnum?>(PayWithGoogleDonations.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PayWithGoogleDonations.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

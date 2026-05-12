@@ -176,7 +176,7 @@ namespace Adyen.Checkout.Models
                 if (value == ThreeDSRequestorChallengeIndEnum._06)
                     return "06";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -323,7 +323,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "threeDSRequestorChallengeInd":
                             string? threeDSRequestorChallengeIndRawValue = utf8JsonReader.GetString();
-                            threeDSRequestorChallengeInd = new Option<CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum?>(CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum.FromStringOrDefault(threeDSRequestorChallengeIndRawValue));
+                            threeDSRequestorChallengeInd = new Option<CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum?>(CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum.FromStringOrDefault(threeDSRequestorChallengeIndRawValue) ?? (CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum)threeDSRequestorChallengeIndRawValue);
                             break;
                         case "workPhone":
                             workPhone = new Option<Phone?>(JsonSerializer.Deserialize<Phone>(ref utf8JsonReader, jsonSerializerOptions)!);

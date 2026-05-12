@@ -150,7 +150,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.AtomePos)
                     return "atome_pos";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -381,7 +381,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<OpenInvoiceDetails.TypeEnum?>(OpenInvoiceDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<OpenInvoiceDetails.TypeEnum?>(OpenInvoiceDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (OpenInvoiceDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

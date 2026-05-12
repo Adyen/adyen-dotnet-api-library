@@ -176,7 +176,7 @@ namespace Adyen.Checkout.Models
                 if (value == StatusEnum.Refused)
                     return "refused";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -348,7 +348,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<SessionResultResponse.StatusEnum?>(SessionResultResponse.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<SessionResultResponse.StatusEnum?>(SessionResultResponse.StatusEnum.FromStringOrDefault(statusRawValue) ?? (SessionResultResponse.StatusEnum)statusRawValue);
                             break;
                         default:
                             break;

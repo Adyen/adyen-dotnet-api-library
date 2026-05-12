@@ -140,7 +140,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.MolpayEbankingTH)
                     return "molpay_ebanking_TH";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -273,7 +273,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<MolPayDetails.TypeEnum?>(MolPayDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<MolPayDetails.TypeEnum?>(MolPayDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (MolPayDetails.TypeEnum)typeRawValue);
                             break;
                         case "checkoutAttemptId":
                             checkoutAttemptId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -295,7 +295,7 @@ namespace Adyen.Checkout.Models
 
             var molPayDetails = new MolPayDetails();
             molPayDetails.Issuer = issuer.Value!;
-            molPayDetails.Type = type.Value!.Value;
+            molPayDetails.Type = type.Value!;
             if (checkoutAttemptId.IsSet)
                 molPayDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (sdkData.IsSet)

@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == ResultCodeEnum.Received)
                     return "Received";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -232,7 +232,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "resultCode":
                             string? resultCodeRawValue = utf8JsonReader.GetString();
-                            resultCode = new Option<CancelOrderResponse.ResultCodeEnum?>(CancelOrderResponse.ResultCodeEnum.FromStringOrDefault(resultCodeRawValue));
+                            resultCode = new Option<CancelOrderResponse.ResultCodeEnum?>(CancelOrderResponse.ResultCodeEnum.FromStringOrDefault(resultCodeRawValue) ?? (CancelOrderResponse.ResultCodeEnum)resultCodeRawValue);
                             break;
                         default:
                             break;
@@ -248,7 +248,7 @@ namespace Adyen.Checkout.Models
 
             var cancelOrderResponse = new CancelOrderResponse();
             cancelOrderResponse.PspReference = pspReference.Value!;
-            cancelOrderResponse.ResultCode = resultCode.Value!.Value;
+            cancelOrderResponse.ResultCode = resultCode.Value!;
             return cancelOrderResponse;
         }
 

@@ -149,7 +149,7 @@ namespace Adyen.Checkout.Models
                 if (value == ResultCodeEnum.Pending)
                     return "Pending";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -300,7 +300,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "resultCode":
                             string? resultCodeRawValue = utf8JsonReader.GetString();
-                            resultCode = new Option<Payment.ResultCodeEnum?>(Payment.ResultCodeEnum.FromStringOrDefault(resultCodeRawValue));
+                            resultCode = new Option<Payment.ResultCodeEnum?>(Payment.ResultCodeEnum.FromStringOrDefault(resultCodeRawValue) ?? (Payment.ResultCodeEnum)resultCodeRawValue);
                             break;
                         default:
                             break;

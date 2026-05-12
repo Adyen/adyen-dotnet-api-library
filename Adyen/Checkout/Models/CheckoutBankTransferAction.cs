@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.BankTransfer)
                     return "bankTransfer";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -443,7 +443,7 @@ namespace Adyen.Checkout.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CheckoutBankTransferAction.TypeEnum?>(CheckoutBankTransferAction.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CheckoutBankTransferAction.TypeEnum?>(CheckoutBankTransferAction.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CheckoutBankTransferAction.TypeEnum)typeRawValue);
                             break;
                         case "accountNumber":
                             accountNumber = new Option<string?>(utf8JsonReader.GetString()!);
@@ -497,7 +497,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class CheckoutBankTransferAction.", nameof(type));
 
             var checkoutBankTransferAction = new CheckoutBankTransferAction();
-            checkoutBankTransferAction.Type = type.Value!.Value;
+            checkoutBankTransferAction.Type = type.Value!;
             if (accountNumber.IsSet)
                 checkoutBankTransferAction.AccountNumber = accountNumber.Value;
             if (bankCode.IsSet)

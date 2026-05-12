@@ -149,7 +149,7 @@ namespace Adyen.Checkout.Models
                 if (value == AcctTypeEnum._03)
                     return "03";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -286,7 +286,7 @@ namespace Adyen.Checkout.Models
                 if (value == AddrMatchEnum.N)
                     return "N";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -441,7 +441,7 @@ namespace Adyen.Checkout.Models
                 if (value == ChallengeIndicatorEnum.RequestChallengeAsMandate)
                     return "requestChallengeAsMandate";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -616,7 +616,7 @@ namespace Adyen.Checkout.Models
                 if (value == ThreeDSRequestorChallengeIndEnum._06)
                     return "06";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -780,7 +780,7 @@ namespace Adyen.Checkout.Models
                 if (value == TransTypeEnum._28)
                     return "28";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -944,7 +944,7 @@ namespace Adyen.Checkout.Models
                 if (value == TransactionTypeEnum.PrepaidActivationAndLoad)
                     return "prepaidActivationAndLoad";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1528,7 +1528,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "acctType":
                             string? acctTypeRawValue = utf8JsonReader.GetString();
-                            acctType = new Option<ThreeDS2RequestFields.AcctTypeEnum?>(ThreeDS2RequestFields.AcctTypeEnum.FromStringOrDefault(acctTypeRawValue));
+                            acctType = new Option<ThreeDS2RequestFields.AcctTypeEnum?>(ThreeDS2RequestFields.AcctTypeEnum.FromStringOrDefault(acctTypeRawValue) ?? (ThreeDS2RequestFields.AcctTypeEnum)acctTypeRawValue);
                             break;
                         case "acquirerBIN":
                             acquirerBIN = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1538,14 +1538,14 @@ namespace Adyen.Checkout.Models
                             break;
                         case "addrMatch":
                             string? addrMatchRawValue = utf8JsonReader.GetString();
-                            addrMatch = new Option<ThreeDS2RequestFields.AddrMatchEnum?>(ThreeDS2RequestFields.AddrMatchEnum.FromStringOrDefault(addrMatchRawValue));
+                            addrMatch = new Option<ThreeDS2RequestFields.AddrMatchEnum?>(ThreeDS2RequestFields.AddrMatchEnum.FromStringOrDefault(addrMatchRawValue) ?? (ThreeDS2RequestFields.AddrMatchEnum)addrMatchRawValue);
                             break;
                         case "authenticationOnly":
                             authenticationOnly = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "challengeIndicator":
                             string? challengeIndicatorRawValue = utf8JsonReader.GetString();
-                            challengeIndicator = new Option<ThreeDS2RequestFields.ChallengeIndicatorEnum?>(ThreeDS2RequestFields.ChallengeIndicatorEnum.FromStringOrDefault(challengeIndicatorRawValue));
+                            challengeIndicator = new Option<ThreeDS2RequestFields.ChallengeIndicatorEnum?>(ThreeDS2RequestFields.ChallengeIndicatorEnum.FromStringOrDefault(challengeIndicatorRawValue) ?? (ThreeDS2RequestFields.ChallengeIndicatorEnum)challengeIndicatorRawValue);
                             break;
                         case "deviceRenderOptions":
                             deviceRenderOptions = new Option<DeviceRenderOptions?>(JsonSerializer.Deserialize<DeviceRenderOptions>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -1609,7 +1609,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "threeDSRequestorChallengeInd":
                             string? threeDSRequestorChallengeIndRawValue = utf8JsonReader.GetString();
-                            threeDSRequestorChallengeInd = new Option<ThreeDS2RequestFields.ThreeDSRequestorChallengeIndEnum?>(ThreeDS2RequestFields.ThreeDSRequestorChallengeIndEnum.FromStringOrDefault(threeDSRequestorChallengeIndRawValue));
+                            threeDSRequestorChallengeInd = new Option<ThreeDS2RequestFields.ThreeDSRequestorChallengeIndEnum?>(ThreeDS2RequestFields.ThreeDSRequestorChallengeIndEnum.FromStringOrDefault(threeDSRequestorChallengeIndRawValue) ?? (ThreeDS2RequestFields.ThreeDSRequestorChallengeIndEnum)threeDSRequestorChallengeIndRawValue);
                             break;
                         case "threeDSRequestorID":
                             threeDSRequestorID = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1625,11 +1625,11 @@ namespace Adyen.Checkout.Models
                             break;
                         case "transType":
                             string? transTypeRawValue = utf8JsonReader.GetString();
-                            transType = new Option<ThreeDS2RequestFields.TransTypeEnum?>(ThreeDS2RequestFields.TransTypeEnum.FromStringOrDefault(transTypeRawValue));
+                            transType = new Option<ThreeDS2RequestFields.TransTypeEnum?>(ThreeDS2RequestFields.TransTypeEnum.FromStringOrDefault(transTypeRawValue) ?? (ThreeDS2RequestFields.TransTypeEnum)transTypeRawValue);
                             break;
                         case "transactionType":
                             string? transactionTypeRawValue = utf8JsonReader.GetString();
-                            transactionType = new Option<ThreeDS2RequestFields.TransactionTypeEnum?>(ThreeDS2RequestFields.TransactionTypeEnum.FromStringOrDefault(transactionTypeRawValue));
+                            transactionType = new Option<ThreeDS2RequestFields.TransactionTypeEnum?>(ThreeDS2RequestFields.TransactionTypeEnum.FromStringOrDefault(transactionTypeRawValue) ?? (ThreeDS2RequestFields.TransactionTypeEnum)transactionTypeRawValue);
                             break;
                         case "whiteListStatus":
                             whiteListStatus = new Option<string?>(utf8JsonReader.GetString()!);

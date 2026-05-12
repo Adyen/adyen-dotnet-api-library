@@ -158,7 +158,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.DragonpayOtcPhilippines)
                     return "dragonpay_otc_philippines";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -307,7 +307,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<DragonpayDetails.TypeEnum?>(DragonpayDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<DragonpayDetails.TypeEnum?>(DragonpayDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (DragonpayDetails.TypeEnum)typeRawValue);
                             break;
                         case "checkoutAttemptId":
                             checkoutAttemptId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -332,7 +332,7 @@ namespace Adyen.Checkout.Models
 
             var dragonpayDetails = new DragonpayDetails();
             dragonpayDetails.Issuer = issuer.Value!;
-            dragonpayDetails.Type = type.Value!.Value;
+            dragonpayDetails.Type = type.Value!;
             if (checkoutAttemptId.IsSet)
                 dragonpayDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (sdkData.IsSet)

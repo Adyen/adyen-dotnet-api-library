@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.EbankingFI)
                     return "ebanking_FI";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -277,7 +277,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<EBankingFinlandDetails.TypeEnum?>(EBankingFinlandDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<EBankingFinlandDetails.TypeEnum?>(EBankingFinlandDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (EBankingFinlandDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -295,7 +295,7 @@ namespace Adyen.Checkout.Models
                 eBankingFinlandDetails.Issuer = issuer.Value;
             if (sdkData.IsSet)
                 eBankingFinlandDetails.SdkData = sdkData.Value;
-            eBankingFinlandDetails.Type = type.Value!.Value;
+            eBankingFinlandDetails.Type = type.Value!;
             return eBankingFinlandDetails;
         }
 

@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == StatusEnum.Received)
                     return "received";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -288,7 +288,7 @@ namespace Adyen.Checkout.Models
                 if (value == MerchantRefundReasonEnum.OTHER)
                     return "OTHER";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -513,7 +513,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<PaymentRefundResponse.StatusEnum?>(PaymentRefundResponse.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<PaymentRefundResponse.StatusEnum?>(PaymentRefundResponse.StatusEnum.FromStringOrDefault(statusRawValue) ?? (PaymentRefundResponse.StatusEnum)statusRawValue);
                             break;
                         case "capturePspReference":
                             capturePspReference = new Option<string?>(utf8JsonReader.GetString()!);
@@ -523,7 +523,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "merchantRefundReason":
                             string? merchantRefundReasonRawValue = utf8JsonReader.GetString();
-                            merchantRefundReason = new Option<PaymentRefundResponse.MerchantRefundReasonEnum?>(PaymentRefundResponse.MerchantRefundReasonEnum.FromStringOrDefault(merchantRefundReasonRawValue));
+                            merchantRefundReason = new Option<PaymentRefundResponse.MerchantRefundReasonEnum?>(PaymentRefundResponse.MerchantRefundReasonEnum.FromStringOrDefault(merchantRefundReasonRawValue) ?? (PaymentRefundResponse.MerchantRefundReasonEnum)merchantRefundReasonRawValue);
                             break;
                         case "reference":
                             reference = new Option<string?>(utf8JsonReader.GetString()!);
@@ -560,7 +560,7 @@ namespace Adyen.Checkout.Models
             paymentRefundResponse.MerchantAccount = merchantAccount.Value!;
             paymentRefundResponse.PaymentPspReference = paymentPspReference.Value!;
             paymentRefundResponse.PspReference = pspReference.Value!;
-            paymentRefundResponse.Status = status.Value!.Value;
+            paymentRefundResponse.Status = status.Value!;
             if (capturePspReference.IsSet)
                 paymentRefundResponse.CapturePspReference = capturePspReference.Value;
             if (lineItems.IsSet)

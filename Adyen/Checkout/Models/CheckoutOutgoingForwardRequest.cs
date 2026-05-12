@@ -149,7 +149,7 @@ namespace Adyen.Checkout.Models
                 if (value == HttpMethodEnum.Patch)
                     return "patch";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -298,7 +298,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "httpMethod":
                             string? httpMethodRawValue = utf8JsonReader.GetString();
-                            httpMethod = new Option<CheckoutOutgoingForwardRequest.HttpMethodEnum?>(CheckoutOutgoingForwardRequest.HttpMethodEnum.FromStringOrDefault(httpMethodRawValue));
+                            httpMethod = new Option<CheckoutOutgoingForwardRequest.HttpMethodEnum?>(CheckoutOutgoingForwardRequest.HttpMethodEnum.FromStringOrDefault(httpMethodRawValue) ?? (CheckoutOutgoingForwardRequest.HttpMethodEnum)httpMethodRawValue);
                             break;
                         case "credentials":
                             credentials = new Option<string?>(utf8JsonReader.GetString()!);
@@ -323,7 +323,7 @@ namespace Adyen.Checkout.Models
 
             var checkoutOutgoingForwardRequest = new CheckoutOutgoingForwardRequest();
             checkoutOutgoingForwardRequest.Body = body.Value!;
-            checkoutOutgoingForwardRequest.HttpMethod = httpMethod.Value!.Value;
+            checkoutOutgoingForwardRequest.HttpMethod = httpMethod.Value!;
             if (credentials.IsSet)
                 checkoutOutgoingForwardRequest.Credentials = credentials.Value;
             if (headers.IsSet)

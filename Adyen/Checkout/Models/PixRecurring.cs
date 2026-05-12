@@ -167,7 +167,7 @@ namespace Adyen.Checkout.Models
                 if (value == FrequencyEnum.Yearly)
                     return "yearly";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -414,7 +414,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "frequency":
                             string? frequencyRawValue = utf8JsonReader.GetString();
-                            frequency = new Option<PixRecurring.FrequencyEnum?>(PixRecurring.FrequencyEnum.FromStringOrDefault(frequencyRawValue));
+                            frequency = new Option<PixRecurring.FrequencyEnum?>(PixRecurring.FrequencyEnum.FromStringOrDefault(frequencyRawValue) ?? (PixRecurring.FrequencyEnum)frequencyRawValue);
                             break;
                         case "minAmount":
                             minAmount = new Option<Amount?>(JsonSerializer.Deserialize<Amount>(ref utf8JsonReader, jsonSerializerOptions)!);

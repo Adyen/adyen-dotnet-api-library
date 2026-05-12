@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.NativeRedirect)
                     return "nativeRedirect";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -300,7 +300,7 @@ namespace Adyen.Checkout.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CheckoutNativeRedirectAction.TypeEnum?>(CheckoutNativeRedirectAction.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CheckoutNativeRedirectAction.TypeEnum?>(CheckoutNativeRedirectAction.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CheckoutNativeRedirectAction.TypeEnum)typeRawValue);
                             break;
                         case "data":
                             data = new Option<Dictionary<string, string>?>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -327,7 +327,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class CheckoutNativeRedirectAction.", nameof(type));
 
             var checkoutNativeRedirectAction = new CheckoutNativeRedirectAction();
-            checkoutNativeRedirectAction.Type = type.Value!.Value;
+            checkoutNativeRedirectAction.Type = type.Value!;
             if (data.IsSet)
                 checkoutNativeRedirectAction.Data = data.Value;
             if (method.IsSet)

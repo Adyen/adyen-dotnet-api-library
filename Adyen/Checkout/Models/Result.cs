@@ -32,86 +32,97 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// Defines Result
     /// </summary>
-    public enum Result
+    [JsonConverter(typeof(Result.ResultJsonConverter))]
+    public class Result : IEnum
     {
         /// <summary>
-        /// Enum VALID for value: VALID
+        /// Returns the value of the Result.
         /// </summary>
-        VALID = 1,
+        public string? Value { get; set; }
 
         /// <summary>
-        /// Enum INVALID for value: INVALID
+        /// Result.VALID - VALID
         /// </summary>
-        INVALID = 2,
+        public static readonly Result VALID = new("VALID");
 
         /// <summary>
-        /// Enum UNKNOWN for value: UNKNOWN
+        /// Result.INVALID - INVALID
         /// </summary>
-        UNKNOWN = 3,
+        public static readonly Result INVALID = new("INVALID");
 
         /// <summary>
-        /// Enum NOTREQUIRED for value: NOT_REQUIRED
+        /// Result.UNKNOWN - UNKNOWN
         /// </summary>
-        NOTREQUIRED = 4
-    }
+        public static readonly Result UNKNOWN = new("UNKNOWN");
 
-    /// <summary>
-    /// Converts <see cref="Result"/> to and from the JSON value
-    /// </summary>
-    public static class ResultValueConverter
-    {
         /// <summary>
-        /// Parses a given value to <see cref="Result"/>
+        /// Result.NOTREQUIRED - NOT_REQUIRED
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static Result FromString(string value)
+        public static readonly Result NOTREQUIRED = new("NOT_REQUIRED");
+
+        private Result(string? value)
         {
-            if (value.Equals("VALID"))
-                return Result.VALID;
-
-            if (value.Equals("INVALID"))
-                return Result.INVALID;
-
-            if (value.Equals("UNKNOWN"))
-                return Result.UNKNOWN;
-
-            if (value.Equals("NOT_REQUIRED"))
-                return Result.NOTREQUIRED;
-
-            throw new NotImplementedException($"Could not convert value to type Result: '{value}'");
+            Value = value;
         }
 
         /// <summary>
-        /// Parses a given value to <see cref="Result"/>
+        /// Converts a string to a <see cref="Result"/> implicitly.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static Result? FromStringOrDefault(string value)
+        public static implicit operator Result?(string? value) => value == null ? null : new Result(value);
+
+        /// <summary>
+        /// Converts a <see cref="Result"/> instance to a string implicitly.
+        /// </summary>
+        public static implicit operator string?(Result? option) => option?.Value;
+
+        /// <summary>
+        /// Compares two <see cref="Result"/> instances for equality.
+        /// </summary>
+        public static bool operator ==(Result? left, Result? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Compares two <see cref="Result"/> instances for inequality.
+        /// </summary>
+        public static bool operator !=(Result? left, Result? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns true if the given object is equal to this <see cref="Result"/> instance.
+        /// </summary>
+        public override bool Equals(object? obj) => obj is Result other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns a hash code for this <see cref="Result"/> instance.
+        /// </summary>
+        public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+        /// <summary>
+        /// Returns the string value of the <see cref="Result"/> instance.
+        /// </summary>
+        public override string ToString() => Value ?? string.Empty;
+
+        /// <summary>
+        /// Returns a <see cref="Result?"/>, or null if the value is not recognized.
+        /// </summary>
+        public static Result? FromStringOrDefault(string? value)
         {
-            if (value.Equals("VALID"))
-                return Result.VALID;
-
-            if (value.Equals("INVALID"))
-                return Result.INVALID;
-
-            if (value.Equals("UNKNOWN"))
-                return Result.UNKNOWN;
-
-            if (value.Equals("NOT_REQUIRED"))
-                return Result.NOTREQUIRED;
-
-            return null;
+            return value switch {
+                "VALID" => Result.VALID,
+                "INVALID" => Result.INVALID,
+                "UNKNOWN" => Result.UNKNOWN,
+                "NOT_REQUIRED" => Result.NOTREQUIRED,
+                _ => null,
+            };
         }
 
         /// <summary>
-        /// Converts the <see cref="Result"/> to the json value
+        /// Converts the <see cref="Result"/> to the json value.
+        /// Returns the raw string value, preserving unknown values for round-trip safety.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string ToJsonValue(Result value)
+        public static string? ToJsonValue(Result? value)
         {
+            if (value == null)
+                return null;
+
             if (value == Result.VALID)
                 return "VALID";
 
@@ -124,84 +135,32 @@ namespace Adyen.Checkout.Models
             if (value == Result.NOTREQUIRED)
                 return "NOT_REQUIRED";
 
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-    }
-
-    /// <summary>
-    /// A Json converter for type <see cref="Result"/>
-    /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    public class ResultJsonConverter : JsonConverter<Result>
-    {
-        /// <summary>
-        /// Returns a  from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override Result Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            Result? result = rawValue == null
-                ? null
-                : ResultValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
+            return value.Value;
         }
 
         /// <summary>
-        /// Writes the Result to the json writer
+        /// JsonConverter for <see cref="Result"/>.
+        /// Preserves unknown values instead of throwing an exception.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="result"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, Result result, JsonSerializerOptions options)
+        public class ResultJsonConverter : JsonConverter<Result>
         {
-            writer.WriteStringValue(ResultValueConverter.ToJsonValue(result).ToString());
-        }
-    }
+            /// <summary>
+            /// Deserializes a <see cref="Result"/> from JSON.
+            /// Unknown values are preserved as-is rather than throwing an exception.
+            /// </summary>
+            public override Result? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                string? rawValue = reader.GetString();
+                return rawValue == null ? null : Result.FromStringOrDefault(rawValue) ?? new Result(rawValue);
+            }
 
-    /// <summary>
-    /// A Json converter for type <see cref="Result"/>
-    /// </summary>
-    public class ResultNullableJsonConverter : JsonConverter<Result?>
-    {
-        /// <summary>
-        /// Returns a Result from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override Result? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            Result? result = rawValue == null
-                ? null
-                : ResultValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
-        }
-
-        /// <summary>
-        /// Writes the Result to the json writer
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="result"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, Result? result, JsonSerializerOptions options)
-        {
-            writer.WriteStringValue(result.HasValue ? ResultValueConverter.ToJsonValue(result.Value).ToString() : "null");
+            /// <summary>
+            /// Serializes a <see cref="Result"/> to JSON.
+            /// </summary>
+            public override void Write(Utf8JsonWriter writer, Result value, JsonSerializerOptions options)
+            {
+                writer.WriteStringValue(Result.ToJsonValue(value));
+            }
         }
     }
 }

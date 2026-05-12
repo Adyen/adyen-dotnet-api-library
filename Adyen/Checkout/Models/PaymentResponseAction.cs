@@ -295,31 +295,31 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (checkoutAwaitAction?.Type != null)
+            if (checkoutAwaitAction?.Type != null && CheckoutAwaitAction.TypeEnum.FromStringOrDefault((string?)checkoutAwaitAction.Type) != null)
                 return new PaymentResponseAction(checkoutAwaitAction);
 
-            if (checkoutBankTransferAction?.Type != null)
+            if (checkoutBankTransferAction?.Type != null && CheckoutBankTransferAction.TypeEnum.FromStringOrDefault((string?)checkoutBankTransferAction.Type) != null)
                 return new PaymentResponseAction(checkoutBankTransferAction);
 
-            if (checkoutDelegatedAuthenticationAction?.Type != null)
+            if (checkoutDelegatedAuthenticationAction?.Type != null && CheckoutDelegatedAuthenticationAction.TypeEnum.FromStringOrDefault((string?)checkoutDelegatedAuthenticationAction.Type) != null)
                 return new PaymentResponseAction(checkoutDelegatedAuthenticationAction);
 
-            if (checkoutNativeRedirectAction?.Type != null)
+            if (checkoutNativeRedirectAction?.Type != null && CheckoutNativeRedirectAction.TypeEnum.FromStringOrDefault((string?)checkoutNativeRedirectAction.Type) != null)
                 return new PaymentResponseAction(checkoutNativeRedirectAction);
 
-            if (checkoutQrCodeAction?.Type != null)
+            if (checkoutQrCodeAction?.Type != null && CheckoutQrCodeAction.TypeEnum.FromStringOrDefault((string?)checkoutQrCodeAction.Type) != null)
                 return new PaymentResponseAction(checkoutQrCodeAction);
 
-            if (checkoutRedirectAction?.Type != null)
+            if (checkoutRedirectAction?.Type != null && CheckoutRedirectAction.TypeEnum.FromStringOrDefault((string?)checkoutRedirectAction.Type) != null)
                 return new PaymentResponseAction(checkoutRedirectAction);
 
-            if (checkoutSDKAction?.Type != null)
+            if (checkoutSDKAction?.Type != null && CheckoutSDKAction.TypeEnum.FromStringOrDefault((string?)checkoutSDKAction.Type) != null)
                 return new PaymentResponseAction(checkoutSDKAction);
 
-            if (checkoutThreeDS2Action?.Type != null)
+            if (checkoutThreeDS2Action?.Type != null && CheckoutThreeDS2Action.TypeEnum.FromStringOrDefault((string?)checkoutThreeDS2Action.Type) != null)
                 return new PaymentResponseAction(checkoutThreeDS2Action);
 
-            if (checkoutVoucherAction?.Type != null)
+            if (checkoutVoucherAction?.Type != null && CheckoutVoucherAction.TypeEnum.FromStringOrDefault((string?)checkoutVoucherAction.Type) != null)
                 return new PaymentResponseAction(checkoutVoucherAction);
 
             throw new JsonException();

@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Voucher)
                     return "voucher";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -537,7 +537,7 @@ namespace Adyen.Checkout.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CheckoutVoucherAction.TypeEnum?>(CheckoutVoucherAction.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CheckoutVoucherAction.TypeEnum?>(CheckoutVoucherAction.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CheckoutVoucherAction.TypeEnum)typeRawValue);
                             break;
                         case "alternativeReference":
                             alternativeReference = new Option<string?>(utf8JsonReader.GetString()!);
@@ -609,7 +609,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class CheckoutVoucherAction.", nameof(type));
 
             var checkoutVoucherAction = new CheckoutVoucherAction();
-            checkoutVoucherAction.Type = type.Value!.Value;
+            checkoutVoucherAction.Type = type.Value!;
             if (alternativeReference.IsSet)
                 checkoutVoucherAction.AlternativeReference = alternativeReference.Value;
             if (collectionInstitutionNumber.IsSet)

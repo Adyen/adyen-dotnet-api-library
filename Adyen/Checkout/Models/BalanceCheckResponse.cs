@@ -149,7 +149,7 @@ namespace Adyen.Checkout.Models
                 if (value == ResultCodeEnum.Failed)
                     return "Failed";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -327,7 +327,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "resultCode":
                             string? resultCodeRawValue = utf8JsonReader.GetString();
-                            resultCode = new Option<BalanceCheckResponse.ResultCodeEnum?>(BalanceCheckResponse.ResultCodeEnum.FromStringOrDefault(resultCodeRawValue));
+                            resultCode = new Option<BalanceCheckResponse.ResultCodeEnum?>(BalanceCheckResponse.ResultCodeEnum.FromStringOrDefault(resultCodeRawValue) ?? (BalanceCheckResponse.ResultCodeEnum)resultCodeRawValue);
                             break;
                         case "additionalData":
                             additionalData = new Option<Dictionary<string, string>?>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -358,7 +358,7 @@ namespace Adyen.Checkout.Models
 
             var balanceCheckResponse = new BalanceCheckResponse();
             balanceCheckResponse.Balance = balance.Value!;
-            balanceCheckResponse.ResultCode = resultCode.Value!.Value;
+            balanceCheckResponse.ResultCode = resultCode.Value!;
             if (additionalData.IsSet)
                 balanceCheckResponse.AdditionalData = additionalData.Value;
             if (fraudResult.IsSet)

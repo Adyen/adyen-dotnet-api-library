@@ -149,7 +149,7 @@ namespace Adyen.Checkout.Models
                 if (value == RecurringProcessingModelEnum.UnscheduledCardOnFile)
                     return "UnscheduledCardOnFile";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -304,7 +304,7 @@ namespace Adyen.Checkout.Models
                 if (value == ShopperInteractionEnum.POS)
                     return "POS";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1124,7 +1124,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "recurringProcessingModel":
                             string? recurringProcessingModelRawValue = utf8JsonReader.GetString();
-                            recurringProcessingModel = new Option<BalanceCheckRequest.RecurringProcessingModelEnum?>(BalanceCheckRequest.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue));
+                            recurringProcessingModel = new Option<BalanceCheckRequest.RecurringProcessingModelEnum?>(BalanceCheckRequest.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue) ?? (BalanceCheckRequest.RecurringProcessingModelEnum)recurringProcessingModelRawValue);
                             break;
                         case "reference":
                             reference = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1146,7 +1146,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "shopperInteraction":
                             string? shopperInteractionRawValue = utf8JsonReader.GetString();
-                            shopperInteraction = new Option<BalanceCheckRequest.ShopperInteractionEnum?>(BalanceCheckRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue));
+                            shopperInteraction = new Option<BalanceCheckRequest.ShopperInteractionEnum?>(BalanceCheckRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue) ?? (BalanceCheckRequest.ShopperInteractionEnum)shopperInteractionRawValue);
                             break;
                         case "shopperLocale":
                             shopperLocale = new Option<string?>(utf8JsonReader.GetString()!);

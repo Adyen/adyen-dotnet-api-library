@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.PayuINUpi)
                     return "payu_IN_upi";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -333,7 +333,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PayUUpiDetails.TypeEnum?>(PayUUpiDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<PayUUpiDetails.TypeEnum?>(PayUUpiDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PayUUpiDetails.TypeEnum)typeRawValue);
                             break;
                         case "virtualPaymentAddress":
                             virtualPaymentAddress = new Option<string?>(utf8JsonReader.GetString()!);
@@ -358,7 +358,7 @@ namespace Adyen.Checkout.Models
                 payUUpiDetails.ShopperNotificationReference = shopperNotificationReference.Value;
             if (storedPaymentMethodId.IsSet)
                 payUUpiDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            payUUpiDetails.Type = type.Value!.Value;
+            payUUpiDetails.Type = type.Value!;
             if (virtualPaymentAddress.IsSet)
                 payUUpiDetails.VirtualPaymentAddress = virtualPaymentAddress.Value;
             return payUUpiDetails;

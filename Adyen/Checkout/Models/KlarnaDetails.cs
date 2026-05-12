@@ -185,7 +185,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.KlarnaB2b)
                     return "klarna_b2b";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -428,7 +428,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<KlarnaDetails.TypeEnum?>(KlarnaDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<KlarnaDetails.TypeEnum?>(KlarnaDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (KlarnaDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -456,7 +456,7 @@ namespace Adyen.Checkout.Models
                 klarnaDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
             if (subtype.IsSet)
                 klarnaDetails.Subtype = subtype.Value;
-            klarnaDetails.Type = type.Value!.Value;
+            klarnaDetails.Type = type.Value!;
             return klarnaDetails;
         }
 

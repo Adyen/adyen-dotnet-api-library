@@ -194,7 +194,7 @@ namespace Adyen.Checkout.Models
                 if (value == FrequencyEnum.Yearly)
                     return "yearly";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -324,7 +324,7 @@ namespace Adyen.Checkout.Models
                 if (value == AmountRuleEnum.Exact)
                     return "exact";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -470,7 +470,7 @@ namespace Adyen.Checkout.Models
                 if (value == BillingAttemptsRuleEnum.After)
                     return "after";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -607,7 +607,7 @@ namespace Adyen.Checkout.Models
                 if (value == RetryPolicyEnum.False)
                     return "false";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -925,7 +925,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "frequency":
                             string? frequencyRawValue = utf8JsonReader.GetString();
-                            frequency = new Option<TokenMandate.FrequencyEnum?>(TokenMandate.FrequencyEnum.FromStringOrDefault(frequencyRawValue));
+                            frequency = new Option<TokenMandate.FrequencyEnum?>(TokenMandate.FrequencyEnum.FromStringOrDefault(frequencyRawValue) ?? (TokenMandate.FrequencyEnum)frequencyRawValue);
                             break;
                         case "mandateId":
                             mandateId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -944,11 +944,11 @@ namespace Adyen.Checkout.Models
                             break;
                         case "amountRule":
                             string? amountRuleRawValue = utf8JsonReader.GetString();
-                            amountRule = new Option<TokenMandate.AmountRuleEnum?>(TokenMandate.AmountRuleEnum.FromStringOrDefault(amountRuleRawValue));
+                            amountRule = new Option<TokenMandate.AmountRuleEnum?>(TokenMandate.AmountRuleEnum.FromStringOrDefault(amountRuleRawValue) ?? (TokenMandate.AmountRuleEnum)amountRuleRawValue);
                             break;
                         case "billingAttemptsRule":
                             string? billingAttemptsRuleRawValue = utf8JsonReader.GetString();
-                            billingAttemptsRule = new Option<TokenMandate.BillingAttemptsRuleEnum?>(TokenMandate.BillingAttemptsRuleEnum.FromStringOrDefault(billingAttemptsRuleRawValue));
+                            billingAttemptsRule = new Option<TokenMandate.BillingAttemptsRuleEnum?>(TokenMandate.BillingAttemptsRuleEnum.FromStringOrDefault(billingAttemptsRuleRawValue) ?? (TokenMandate.BillingAttemptsRuleEnum)billingAttemptsRuleRawValue);
                             break;
                         case "billingDay":
                             billingDay = new Option<string?>(utf8JsonReader.GetString()!);
@@ -973,7 +973,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "retryPolicy":
                             string? retryPolicyRawValue = utf8JsonReader.GetString();
-                            retryPolicy = new Option<TokenMandate.RetryPolicyEnum?>(TokenMandate.RetryPolicyEnum.FromStringOrDefault(retryPolicyRawValue));
+                            retryPolicy = new Option<TokenMandate.RetryPolicyEnum?>(TokenMandate.RetryPolicyEnum.FromStringOrDefault(retryPolicyRawValue) ?? (TokenMandate.RetryPolicyEnum)retryPolicyRawValue);
                             break;
                         case "startsAt":
                             startsAt = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1012,7 +1012,7 @@ namespace Adyen.Checkout.Models
             tokenMandate.Amount = amount.Value!;
             tokenMandate.Currency = currency.Value!;
             tokenMandate.EndsAt = endsAt.Value!;
-            tokenMandate.Frequency = frequency.Value!.Value;
+            tokenMandate.Frequency = frequency.Value!;
             tokenMandate.MandateId = mandateId.Value!;
             tokenMandate.ProviderId = providerId.Value!;
             tokenMandate.Status = status.Value!;

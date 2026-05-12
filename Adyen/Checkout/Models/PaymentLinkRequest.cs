@@ -149,7 +149,7 @@ namespace Adyen.Checkout.Models
                 if (value == RecurringProcessingModelEnum.UnscheduledCardOnFile)
                     return "UnscheduledCardOnFile";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -312,7 +312,7 @@ namespace Adyen.Checkout.Models
                 if (value == RequiredShopperFieldsEnum.TelephoneNumber)
                     return "telephoneNumber";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -444,7 +444,7 @@ namespace Adyen.Checkout.Models
                 if (value == StorePaymentMethodModeEnum.Enabled)
                     return "enabled";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1235,7 +1235,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "recurringProcessingModel":
                             string? recurringProcessingModelRawValue = utf8JsonReader.GetString();
-                            recurringProcessingModel = new Option<PaymentLinkRequest.RecurringProcessingModelEnum?>(PaymentLinkRequest.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue));
+                            recurringProcessingModel = new Option<PaymentLinkRequest.RecurringProcessingModelEnum?>(PaymentLinkRequest.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue) ?? (PaymentLinkRequest.RecurringProcessingModelEnum)recurringProcessingModelRawValue);
                             break;
                         case "requiredShopperFields":
                             requiredShopperFields = new Option<List<PaymentLinkRequest.RequiredShopperFieldsEnum>?>(JsonSerializer.Deserialize<List<PaymentLinkRequest.RequiredShopperFieldsEnum>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -1281,7 +1281,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "storePaymentMethodMode":
                             string? storePaymentMethodModeRawValue = utf8JsonReader.GetString();
-                            storePaymentMethodMode = new Option<PaymentLinkRequest.StorePaymentMethodModeEnum?>(PaymentLinkRequest.StorePaymentMethodModeEnum.FromStringOrDefault(storePaymentMethodModeRawValue));
+                            storePaymentMethodMode = new Option<PaymentLinkRequest.StorePaymentMethodModeEnum?>(PaymentLinkRequest.StorePaymentMethodModeEnum.FromStringOrDefault(storePaymentMethodModeRawValue) ?? (PaymentLinkRequest.StorePaymentMethodModeEnum)storePaymentMethodModeRawValue);
                             break;
                         case "telephoneNumber":
                             telephoneNumber = new Option<string?>(utf8JsonReader.GetString()!);

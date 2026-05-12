@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == StatusEnum.Received)
                     return "received";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -272,7 +272,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<PaymentCancelResponse.StatusEnum?>(PaymentCancelResponse.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<PaymentCancelResponse.StatusEnum?>(PaymentCancelResponse.StatusEnum.FromStringOrDefault(statusRawValue) ?? (PaymentCancelResponse.StatusEnum)statusRawValue);
                             break;
                         case "reference":
                             reference = new Option<string?>(utf8JsonReader.GetString()!);
@@ -299,7 +299,7 @@ namespace Adyen.Checkout.Models
             paymentCancelResponse.MerchantAccount = merchantAccount.Value!;
             paymentCancelResponse.PaymentPspReference = paymentPspReference.Value!;
             paymentCancelResponse.PspReference = pspReference.Value!;
-            paymentCancelResponse.Status = status.Value!.Value;
+            paymentCancelResponse.Status = status.Value!;
             if (reference.IsSet)
                 paymentCancelResponse.Reference = reference.Value;
             return paymentCancelResponse;

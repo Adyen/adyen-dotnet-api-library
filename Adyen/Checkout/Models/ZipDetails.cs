@@ -141,7 +141,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.ZipPos)
                     return "zip_pos";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -334,7 +334,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<ZipDetails.TypeEnum?>(ZipDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<ZipDetails.TypeEnum?>(ZipDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (ZipDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

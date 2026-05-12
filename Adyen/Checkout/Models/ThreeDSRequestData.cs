@@ -167,7 +167,7 @@ namespace Adyen.Checkout.Models
                 if (value == ChallengeWindowSizeEnum._05)
                     return "05";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -304,7 +304,7 @@ namespace Adyen.Checkout.Models
                 if (value == DataOnlyEnum.True)
                     return "true";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -441,7 +441,7 @@ namespace Adyen.Checkout.Models
                 if (value == NativeThreeDSEnum.Disabled)
                     return "disabled";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -578,7 +578,7 @@ namespace Adyen.Checkout.Models
                 if (value == ThreeDSVersionEnum._220)
                     return "2.2.0";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -680,19 +680,19 @@ namespace Adyen.Checkout.Models
                     {
                         case "challengeWindowSize":
                             string? challengeWindowSizeRawValue = utf8JsonReader.GetString();
-                            challengeWindowSize = new Option<ThreeDSRequestData.ChallengeWindowSizeEnum?>(ThreeDSRequestData.ChallengeWindowSizeEnum.FromStringOrDefault(challengeWindowSizeRawValue));
+                            challengeWindowSize = new Option<ThreeDSRequestData.ChallengeWindowSizeEnum?>(ThreeDSRequestData.ChallengeWindowSizeEnum.FromStringOrDefault(challengeWindowSizeRawValue) ?? (ThreeDSRequestData.ChallengeWindowSizeEnum)challengeWindowSizeRawValue);
                             break;
                         case "dataOnly":
                             string? dataOnlyRawValue = utf8JsonReader.GetString();
-                            dataOnly = new Option<ThreeDSRequestData.DataOnlyEnum?>(ThreeDSRequestData.DataOnlyEnum.FromStringOrDefault(dataOnlyRawValue));
+                            dataOnly = new Option<ThreeDSRequestData.DataOnlyEnum?>(ThreeDSRequestData.DataOnlyEnum.FromStringOrDefault(dataOnlyRawValue) ?? (ThreeDSRequestData.DataOnlyEnum)dataOnlyRawValue);
                             break;
                         case "nativeThreeDS":
                             string? nativeThreeDSRawValue = utf8JsonReader.GetString();
-                            nativeThreeDS = new Option<ThreeDSRequestData.NativeThreeDSEnum?>(ThreeDSRequestData.NativeThreeDSEnum.FromStringOrDefault(nativeThreeDSRawValue));
+                            nativeThreeDS = new Option<ThreeDSRequestData.NativeThreeDSEnum?>(ThreeDSRequestData.NativeThreeDSEnum.FromStringOrDefault(nativeThreeDSRawValue) ?? (ThreeDSRequestData.NativeThreeDSEnum)nativeThreeDSRawValue);
                             break;
                         case "threeDSVersion":
                             string? threeDSVersionRawValue = utf8JsonReader.GetString();
-                            threeDSVersion = new Option<ThreeDSRequestData.ThreeDSVersionEnum?>(ThreeDSRequestData.ThreeDSVersionEnum.FromStringOrDefault(threeDSVersionRawValue));
+                            threeDSVersion = new Option<ThreeDSRequestData.ThreeDSVersionEnum?>(ThreeDSRequestData.ThreeDSVersionEnum.FromStringOrDefault(threeDSVersionRawValue) ?? (ThreeDSRequestData.ThreeDSVersionEnum)threeDSVersionRawValue);
                             break;
                         default:
                             break;

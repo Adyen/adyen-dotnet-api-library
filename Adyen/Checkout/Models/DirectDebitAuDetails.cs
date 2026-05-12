@@ -132,7 +132,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.DirectdebitAU)
                     return "directdebit_AU";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -344,7 +344,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<DirectDebitAuDetails.TypeEnum?>(DirectDebitAuDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<DirectDebitAuDetails.TypeEnum?>(DirectDebitAuDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (DirectDebitAuDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

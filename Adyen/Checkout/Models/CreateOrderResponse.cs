@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == ResultCodeEnum.Success)
                     return "Success";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -345,7 +345,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "resultCode":
                             string? resultCodeRawValue = utf8JsonReader.GetString();
-                            resultCode = new Option<CreateOrderResponse.ResultCodeEnum?>(CreateOrderResponse.ResultCodeEnum.FromStringOrDefault(resultCodeRawValue));
+                            resultCode = new Option<CreateOrderResponse.ResultCodeEnum?>(CreateOrderResponse.ResultCodeEnum.FromStringOrDefault(resultCodeRawValue) ?? (CreateOrderResponse.ResultCodeEnum)resultCodeRawValue);
                             break;
                         case "additionalData":
                             additionalData = new Option<Dictionary<string, string>?>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -388,7 +388,7 @@ namespace Adyen.Checkout.Models
             createOrderResponse.ExpiresAt = expiresAt.Value!;
             createOrderResponse.OrderData = orderData.Value!;
             createOrderResponse.RemainingAmount = remainingAmount.Value!;
-            createOrderResponse.ResultCode = resultCode.Value!.Value;
+            createOrderResponse.ResultCode = resultCode.Value!;
             if (additionalData.IsSet)
                 createOrderResponse.AdditionalData = additionalData.Value;
             if (fraudResult.IsSet)

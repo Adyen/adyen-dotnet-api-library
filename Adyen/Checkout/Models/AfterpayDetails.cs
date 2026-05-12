@@ -158,7 +158,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Clearpay)
                     return "clearpay";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -382,7 +382,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<AfterpayDetails.TypeEnum?>(AfterpayDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<AfterpayDetails.TypeEnum?>(AfterpayDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (AfterpayDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -408,7 +408,7 @@ namespace Adyen.Checkout.Models
                 afterpayDetails.SdkData = sdkData.Value;
             if (storedPaymentMethodId.IsSet)
                 afterpayDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            afterpayDetails.Type = type.Value!.Value;
+            afterpayDetails.Type = type.Value!;
             return afterpayDetails;
         }
 

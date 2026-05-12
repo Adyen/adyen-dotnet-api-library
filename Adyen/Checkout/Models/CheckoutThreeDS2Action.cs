@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.ThreeDS2)
                     return "threeDS2";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -316,7 +316,7 @@ namespace Adyen.Checkout.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CheckoutThreeDS2Action.TypeEnum?>(CheckoutThreeDS2Action.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CheckoutThreeDS2Action.TypeEnum?>(CheckoutThreeDS2Action.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CheckoutThreeDS2Action.TypeEnum)typeRawValue);
                             break;
                         case "authorisationToken":
                             authorisationToken = new Option<string?>(utf8JsonReader.GetString()!);
@@ -346,7 +346,7 @@ namespace Adyen.Checkout.Models
                 throw new ArgumentException("Property is required for class CheckoutThreeDS2Action.", nameof(type));
 
             var checkoutThreeDS2Action = new CheckoutThreeDS2Action();
-            checkoutThreeDS2Action.Type = type.Value!.Value;
+            checkoutThreeDS2Action.Type = type.Value!;
             if (authorisationToken.IsSet)
                 checkoutThreeDS2Action.AuthorisationToken = authorisationToken.Value;
             if (paymentData.IsSet)

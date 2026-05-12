@@ -131,7 +131,7 @@ namespace Adyen.Checkout.Models
                 if (value == StatusEnum.Received)
                     return "received";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -270,7 +270,7 @@ namespace Adyen.Checkout.Models
                 if (value == IndustryUsageEnum.NoShow)
                     return "noShow";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -459,11 +459,11 @@ namespace Adyen.Checkout.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<PaymentAmountUpdateResponse.StatusEnum?>(PaymentAmountUpdateResponse.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<PaymentAmountUpdateResponse.StatusEnum?>(PaymentAmountUpdateResponse.StatusEnum.FromStringOrDefault(statusRawValue) ?? (PaymentAmountUpdateResponse.StatusEnum)statusRawValue);
                             break;
                         case "industryUsage":
                             string? industryUsageRawValue = utf8JsonReader.GetString();
-                            industryUsage = new Option<PaymentAmountUpdateResponse.IndustryUsageEnum?>(PaymentAmountUpdateResponse.IndustryUsageEnum.FromStringOrDefault(industryUsageRawValue));
+                            industryUsage = new Option<PaymentAmountUpdateResponse.IndustryUsageEnum?>(PaymentAmountUpdateResponse.IndustryUsageEnum.FromStringOrDefault(industryUsageRawValue) ?? (PaymentAmountUpdateResponse.IndustryUsageEnum)industryUsageRawValue);
                             break;
                         case "lineItems":
                             lineItems = new Option<List<LineItem>?>(JsonSerializer.Deserialize<List<LineItem>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -501,7 +501,7 @@ namespace Adyen.Checkout.Models
             paymentAmountUpdateResponse.PaymentPspReference = paymentPspReference.Value!;
             paymentAmountUpdateResponse.PspReference = pspReference.Value!;
             paymentAmountUpdateResponse.Reference = reference.Value!;
-            paymentAmountUpdateResponse.Status = status.Value!.Value;
+            paymentAmountUpdateResponse.Status = status.Value!;
             if (industryUsage.IsSet)
                 paymentAmountUpdateResponse.IndustryUsage = industryUsage.Value;
             if (lineItems.IsSet)

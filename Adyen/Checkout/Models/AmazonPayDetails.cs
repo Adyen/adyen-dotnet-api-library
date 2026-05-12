@@ -132,7 +132,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Amazonpay)
                     return "amazonpay";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -304,7 +304,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<AmazonPayDetails.TypeEnum?>(AmazonPayDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<AmazonPayDetails.TypeEnum?>(AmazonPayDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (AmazonPayDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

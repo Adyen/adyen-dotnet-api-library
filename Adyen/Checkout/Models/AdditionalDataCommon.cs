@@ -140,7 +140,7 @@ namespace Adyen.Checkout.Models
                 if (value == IndustryUsageEnum.DelayedCharge)
                     return "DelayedCharge";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -574,7 +574,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "industryUsage":
                             string? industryUsageRawValue = utf8JsonReader.GetString();
-                            industryUsage = new Option<AdditionalDataCommon.IndustryUsageEnum?>(AdditionalDataCommon.IndustryUsageEnum.FromStringOrDefault(industryUsageRawValue));
+                            industryUsage = new Option<AdditionalDataCommon.IndustryUsageEnum?>(AdditionalDataCommon.IndustryUsageEnum.FromStringOrDefault(industryUsageRawValue) ?? (AdditionalDataCommon.IndustryUsageEnum)industryUsageRawValue);
                             break;
                         case "manualCapture":
                             manualCapture = new Option<string?>(utf8JsonReader.GetString()!);

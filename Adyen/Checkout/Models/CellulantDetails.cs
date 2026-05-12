@@ -132,7 +132,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Cellulant)
                     return "cellulant";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -285,7 +285,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CellulantDetails.TypeEnum?>(CellulantDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CellulantDetails.TypeEnum?>(CellulantDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CellulantDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

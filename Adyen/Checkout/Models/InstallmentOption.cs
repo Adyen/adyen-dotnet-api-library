@@ -211,7 +211,7 @@ namespace Adyen.Checkout.Models
                 if (value == PlansEnum.WithInterest)
                     return "with_interest";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>

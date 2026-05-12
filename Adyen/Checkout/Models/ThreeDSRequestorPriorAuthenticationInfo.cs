@@ -158,7 +158,7 @@ namespace Adyen.Checkout.Models
                 if (value == ThreeDSReqPriorAuthMethodEnum._04)
                     return "04";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -305,7 +305,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "threeDSReqPriorAuthMethod":
                             string? threeDSReqPriorAuthMethodRawValue = utf8JsonReader.GetString();
-                            threeDSReqPriorAuthMethod = new Option<ThreeDSRequestorPriorAuthenticationInfo.ThreeDSReqPriorAuthMethodEnum?>(ThreeDSRequestorPriorAuthenticationInfo.ThreeDSReqPriorAuthMethodEnum.FromStringOrDefault(threeDSReqPriorAuthMethodRawValue));
+                            threeDSReqPriorAuthMethod = new Option<ThreeDSRequestorPriorAuthenticationInfo.ThreeDSReqPriorAuthMethodEnum?>(ThreeDSRequestorPriorAuthenticationInfo.ThreeDSReqPriorAuthMethodEnum.FromStringOrDefault(threeDSReqPriorAuthMethodRawValue) ?? (ThreeDSRequestorPriorAuthenticationInfo.ThreeDSReqPriorAuthMethodEnum)threeDSReqPriorAuthMethodRawValue);
                             break;
                         case "threeDSReqPriorAuthTimestamp":
                             threeDSReqPriorAuthTimestamp = new Option<string?>(utf8JsonReader.GetString()!);

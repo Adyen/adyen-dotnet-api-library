@@ -449,7 +449,7 @@ namespace Adyen.Checkout.Client
             if (obj is Models.ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum responseAdditionalDataCommonTokenizationStoreOperationTypeEnum)
                 return Models.ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum.ToJsonValue(responseAdditionalDataCommonTokenizationStoreOperationTypeEnum);
             if (obj is Models.Result result)
-                return ResultValueConverter.ToJsonValue(result);
+                return Result.ToJsonValue(result);
             if (obj is Models.RivertyDetails.TypeEnum rivertyDetailsTypeEnum)
                 return Models.RivertyDetails.TypeEnum.ToJsonValue(rivertyDetailsTypeEnum);
             if (obj is Models.SamsungPayDetails.FundingSourceEnum samsungPayDetailsFundingSourceEnum)

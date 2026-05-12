@@ -167,7 +167,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.OnlinebankingIN)
                     return "onlinebanking_IN";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -334,7 +334,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<GenericIssuerPaymentMethodDetails.TypeEnum?>(GenericIssuerPaymentMethodDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<GenericIssuerPaymentMethodDetails.TypeEnum?>(GenericIssuerPaymentMethodDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (GenericIssuerPaymentMethodDetails.TypeEnum)typeRawValue);
                             break;
                         case "checkoutAttemptId":
                             checkoutAttemptId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -362,7 +362,7 @@ namespace Adyen.Checkout.Models
 
             var genericIssuerPaymentMethodDetails = new GenericIssuerPaymentMethodDetails();
             genericIssuerPaymentMethodDetails.Issuer = issuer.Value!;
-            genericIssuerPaymentMethodDetails.Type = type.Value!.Value;
+            genericIssuerPaymentMethodDetails.Type = type.Value!;
             if (checkoutAttemptId.IsSet)
                 genericIssuerPaymentMethodDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (recurringDetailReference.IsSet)

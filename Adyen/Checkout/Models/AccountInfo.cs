@@ -167,7 +167,7 @@ namespace Adyen.Checkout.Models
                 if (value == AccountAgeIndicatorEnum.MoreThan60Days)
                     return "moreThan60Days";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -322,7 +322,7 @@ namespace Adyen.Checkout.Models
                 if (value == AccountChangeIndicatorEnum.MoreThan60Days)
                     return "moreThan60Days";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -468,7 +468,7 @@ namespace Adyen.Checkout.Models
                 if (value == AccountTypeEnum.Debit)
                     return "debit";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -623,7 +623,7 @@ namespace Adyen.Checkout.Models
                 if (value == DeliveryAddressUsageIndicatorEnum.MoreThan60Days)
                     return "moreThan60Days";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -787,7 +787,7 @@ namespace Adyen.Checkout.Models
                 if (value == PasswordChangeIndicatorEnum.MoreThan60Days)
                     return "moreThan60Days";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -951,7 +951,7 @@ namespace Adyen.Checkout.Models
                 if (value == PaymentAccountIndicatorEnum.MoreThan60Days)
                     return "moreThan60Days";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1296,21 +1296,21 @@ namespace Adyen.Checkout.Models
                     {
                         case "accountAgeIndicator":
                             string? accountAgeIndicatorRawValue = utf8JsonReader.GetString();
-                            accountAgeIndicator = new Option<AccountInfo.AccountAgeIndicatorEnum?>(AccountInfo.AccountAgeIndicatorEnum.FromStringOrDefault(accountAgeIndicatorRawValue));
+                            accountAgeIndicator = new Option<AccountInfo.AccountAgeIndicatorEnum?>(AccountInfo.AccountAgeIndicatorEnum.FromStringOrDefault(accountAgeIndicatorRawValue) ?? (AccountInfo.AccountAgeIndicatorEnum)accountAgeIndicatorRawValue);
                             break;
                         case "accountChangeDate":
                             accountChangeDate = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "accountChangeIndicator":
                             string? accountChangeIndicatorRawValue = utf8JsonReader.GetString();
-                            accountChangeIndicator = new Option<AccountInfo.AccountChangeIndicatorEnum?>(AccountInfo.AccountChangeIndicatorEnum.FromStringOrDefault(accountChangeIndicatorRawValue));
+                            accountChangeIndicator = new Option<AccountInfo.AccountChangeIndicatorEnum?>(AccountInfo.AccountChangeIndicatorEnum.FromStringOrDefault(accountChangeIndicatorRawValue) ?? (AccountInfo.AccountChangeIndicatorEnum)accountChangeIndicatorRawValue);
                             break;
                         case "accountCreationDate":
                             accountCreationDate = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "accountType":
                             string? accountTypeRawValue = utf8JsonReader.GetString();
-                            accountType = new Option<AccountInfo.AccountTypeEnum?>(AccountInfo.AccountTypeEnum.FromStringOrDefault(accountTypeRawValue));
+                            accountType = new Option<AccountInfo.AccountTypeEnum?>(AccountInfo.AccountTypeEnum.FromStringOrDefault(accountTypeRawValue) ?? (AccountInfo.AccountTypeEnum)accountTypeRawValue);
                             break;
                         case "addCardAttemptsDay":
                             addCardAttemptsDay = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -1320,7 +1320,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "deliveryAddressUsageIndicator":
                             string? deliveryAddressUsageIndicatorRawValue = utf8JsonReader.GetString();
-                            deliveryAddressUsageIndicator = new Option<AccountInfo.DeliveryAddressUsageIndicatorEnum?>(AccountInfo.DeliveryAddressUsageIndicatorEnum.FromStringOrDefault(deliveryAddressUsageIndicatorRawValue));
+                            deliveryAddressUsageIndicator = new Option<AccountInfo.DeliveryAddressUsageIndicatorEnum?>(AccountInfo.DeliveryAddressUsageIndicatorEnum.FromStringOrDefault(deliveryAddressUsageIndicatorRawValue) ?? (AccountInfo.DeliveryAddressUsageIndicatorEnum)deliveryAddressUsageIndicatorRawValue);
                             break;
                         case "homePhone":
                             homePhone = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1333,7 +1333,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "passwordChangeIndicator":
                             string? passwordChangeIndicatorRawValue = utf8JsonReader.GetString();
-                            passwordChangeIndicator = new Option<AccountInfo.PasswordChangeIndicatorEnum?>(AccountInfo.PasswordChangeIndicatorEnum.FromStringOrDefault(passwordChangeIndicatorRawValue));
+                            passwordChangeIndicator = new Option<AccountInfo.PasswordChangeIndicatorEnum?>(AccountInfo.PasswordChangeIndicatorEnum.FromStringOrDefault(passwordChangeIndicatorRawValue) ?? (AccountInfo.PasswordChangeIndicatorEnum)passwordChangeIndicatorRawValue);
                             break;
                         case "pastTransactionsDay":
                             pastTransactionsDay = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -1346,7 +1346,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "paymentAccountIndicator":
                             string? paymentAccountIndicatorRawValue = utf8JsonReader.GetString();
-                            paymentAccountIndicator = new Option<AccountInfo.PaymentAccountIndicatorEnum?>(AccountInfo.PaymentAccountIndicatorEnum.FromStringOrDefault(paymentAccountIndicatorRawValue));
+                            paymentAccountIndicator = new Option<AccountInfo.PaymentAccountIndicatorEnum?>(AccountInfo.PaymentAccountIndicatorEnum.FromStringOrDefault(paymentAccountIndicatorRawValue) ?? (AccountInfo.PaymentAccountIndicatorEnum)paymentAccountIndicatorRawValue);
                             break;
                         case "purchasesLast6Months":
                             purchasesLast6Months = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());

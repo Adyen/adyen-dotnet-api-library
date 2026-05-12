@@ -248,7 +248,7 @@ namespace Adyen.Checkout.Models
                 if (value == ResultCodeEnum.Success)
                     return "Success";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -612,7 +612,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "resultCode":
                             string? resultCodeRawValue = utf8JsonReader.GetString();
-                            resultCode = new Option<PaymentResponse.ResultCodeEnum?>(PaymentResponse.ResultCodeEnum.FromStringOrDefault(resultCodeRawValue));
+                            resultCode = new Option<PaymentResponse.ResultCodeEnum?>(PaymentResponse.ResultCodeEnum.FromStringOrDefault(resultCodeRawValue) ?? (PaymentResponse.ResultCodeEnum)resultCodeRawValue);
                             break;
                         case "threeDS2ResponseData":
                             threeDS2ResponseData = new Option<ThreeDS2ResponseData?>(JsonSerializer.Deserialize<ThreeDS2ResponseData>(ref utf8JsonReader, jsonSerializerOptions)!);

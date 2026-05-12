@@ -167,7 +167,7 @@ namespace Adyen.Checkout.Models
                 if (value == StatusEnum.PaymentPending)
                     return "paymentPending";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -306,7 +306,7 @@ namespace Adyen.Checkout.Models
                 if (value == RecurringProcessingModelEnum.UnscheduledCardOnFile)
                     return "UnscheduledCardOnFile";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -469,7 +469,7 @@ namespace Adyen.Checkout.Models
                 if (value == RequiredShopperFieldsEnum.TelephoneNumber)
                     return "telephoneNumber";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -601,7 +601,7 @@ namespace Adyen.Checkout.Models
                 if (value == StorePaymentMethodModeEnum.Enabled)
                     return "enabled";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1378,7 +1378,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<PaymentLinkResponse.StatusEnum?>(PaymentLinkResponse.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<PaymentLinkResponse.StatusEnum?>(PaymentLinkResponse.StatusEnum.FromStringOrDefault(statusRawValue) ?? (PaymentLinkResponse.StatusEnum)statusRawValue);
                             break;
                         case "url":
                             url = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1445,7 +1445,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "recurringProcessingModel":
                             string? recurringProcessingModelRawValue = utf8JsonReader.GetString();
-                            recurringProcessingModel = new Option<PaymentLinkResponse.RecurringProcessingModelEnum?>(PaymentLinkResponse.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue));
+                            recurringProcessingModel = new Option<PaymentLinkResponse.RecurringProcessingModelEnum?>(PaymentLinkResponse.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue) ?? (PaymentLinkResponse.RecurringProcessingModelEnum)recurringProcessingModelRawValue);
                             break;
                         case "requiredShopperFields":
                             requiredShopperFields = new Option<List<PaymentLinkResponse.RequiredShopperFieldsEnum>?>(JsonSerializer.Deserialize<List<PaymentLinkResponse.RequiredShopperFieldsEnum>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -1491,7 +1491,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "storePaymentMethodMode":
                             string? storePaymentMethodModeRawValue = utf8JsonReader.GetString();
-                            storePaymentMethodMode = new Option<PaymentLinkResponse.StorePaymentMethodModeEnum?>(PaymentLinkResponse.StorePaymentMethodModeEnum.FromStringOrDefault(storePaymentMethodModeRawValue));
+                            storePaymentMethodMode = new Option<PaymentLinkResponse.StorePaymentMethodModeEnum?>(PaymentLinkResponse.StorePaymentMethodModeEnum.FromStringOrDefault(storePaymentMethodModeRawValue) ?? (PaymentLinkResponse.StorePaymentMethodModeEnum)storePaymentMethodModeRawValue);
                             break;
                         case "telephoneNumber":
                             telephoneNumber = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1534,7 +1534,7 @@ namespace Adyen.Checkout.Models
             paymentLinkResponse.Id = id.Value!;
             paymentLinkResponse.MerchantAccount = merchantAccount.Value!;
             paymentLinkResponse.Reference = reference.Value!;
-            paymentLinkResponse.Status = status.Value!.Value;
+            paymentLinkResponse.Status = status.Value!;
             paymentLinkResponse.Url = url.Value!;
             if (allowedPaymentMethods.IsSet)
                 paymentLinkResponse.AllowedPaymentMethods = allowedPaymentMethods.Value;

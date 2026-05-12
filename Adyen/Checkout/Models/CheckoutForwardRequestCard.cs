@@ -132,7 +132,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Scheme)
                     return "scheme";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -399,7 +399,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CheckoutForwardRequestCard.TypeEnum?>(CheckoutForwardRequestCard.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CheckoutForwardRequestCard.TypeEnum?>(CheckoutForwardRequestCard.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CheckoutForwardRequestCard.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

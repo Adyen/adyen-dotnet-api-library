@@ -392,7 +392,7 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.Paysafecard)
                     return "paysafecard";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -566,7 +566,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<StoredPaymentMethodDetails.TypeEnum?>(StoredPaymentMethodDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<StoredPaymentMethodDetails.TypeEnum?>(StoredPaymentMethodDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (StoredPaymentMethodDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

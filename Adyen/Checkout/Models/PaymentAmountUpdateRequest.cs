@@ -149,7 +149,7 @@ namespace Adyen.Checkout.Models
                 if (value == IndustryUsageEnum.NoShow)
                     return "noShow";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -352,7 +352,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "industryUsage":
                             string? industryUsageRawValue = utf8JsonReader.GetString();
-                            industryUsage = new Option<PaymentAmountUpdateRequest.IndustryUsageEnum?>(PaymentAmountUpdateRequest.IndustryUsageEnum.FromStringOrDefault(industryUsageRawValue));
+                            industryUsage = new Option<PaymentAmountUpdateRequest.IndustryUsageEnum?>(PaymentAmountUpdateRequest.IndustryUsageEnum.FromStringOrDefault(industryUsageRawValue) ?? (PaymentAmountUpdateRequest.IndustryUsageEnum)industryUsageRawValue);
                             break;
                         case "lineItems":
                             lineItems = new Option<List<LineItem>?>(JsonSerializer.Deserialize<List<LineItem>>(ref utf8JsonReader, jsonSerializerOptions)!);

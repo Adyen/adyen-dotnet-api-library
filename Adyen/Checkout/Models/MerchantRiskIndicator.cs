@@ -185,7 +185,7 @@ namespace Adyen.Checkout.Models
                 if (value == DeliveryAddressIndicatorEnum.Other)
                     return "other";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -340,7 +340,7 @@ namespace Adyen.Checkout.Models
                 if (value == DeliveryTimeframeEnum.TwoOrMoreDaysShipping)
                     return "twoOrMoreDaysShipping";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -639,7 +639,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "deliveryAddressIndicator":
                             string? deliveryAddressIndicatorRawValue = utf8JsonReader.GetString();
-                            deliveryAddressIndicator = new Option<MerchantRiskIndicator.DeliveryAddressIndicatorEnum?>(MerchantRiskIndicator.DeliveryAddressIndicatorEnum.FromStringOrDefault(deliveryAddressIndicatorRawValue));
+                            deliveryAddressIndicator = new Option<MerchantRiskIndicator.DeliveryAddressIndicatorEnum?>(MerchantRiskIndicator.DeliveryAddressIndicatorEnum.FromStringOrDefault(deliveryAddressIndicatorRawValue) ?? (MerchantRiskIndicator.DeliveryAddressIndicatorEnum)deliveryAddressIndicatorRawValue);
                             break;
                         case "deliveryEmail":
                             deliveryEmail = new Option<string?>(utf8JsonReader.GetString()!);
@@ -649,7 +649,7 @@ namespace Adyen.Checkout.Models
                             break;
                         case "deliveryTimeframe":
                             string? deliveryTimeframeRawValue = utf8JsonReader.GetString();
-                            deliveryTimeframe = new Option<MerchantRiskIndicator.DeliveryTimeframeEnum?>(MerchantRiskIndicator.DeliveryTimeframeEnum.FromStringOrDefault(deliveryTimeframeRawValue));
+                            deliveryTimeframe = new Option<MerchantRiskIndicator.DeliveryTimeframeEnum?>(MerchantRiskIndicator.DeliveryTimeframeEnum.FromStringOrDefault(deliveryTimeframeRawValue) ?? (MerchantRiskIndicator.DeliveryTimeframeEnum)deliveryTimeframeRawValue);
                             break;
                         case "giftCardAmount":
                             giftCardAmount = new Option<Amount?>(JsonSerializer.Deserialize<Amount>(ref utf8JsonReader, jsonSerializerOptions)!);
