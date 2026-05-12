@@ -111,10 +111,12 @@ namespace Adyen.Test.Core
         }
 
         [TestMethod]
-        public async Task Given_ToJsonValue_When_CustomEnum_Then_Returns_Null()
+        public async Task Given_ToJsonValue_When_CustomEnum_Then_Returns_RawValue()
         {
-            ExampleEnum custom = ExampleEnum.FromStringOrDefault("this-is-not-a-valid-enum");
-            Assert.IsNull(ExampleEnum.ToJsonValue(custom));
+            // After the modelInnerEnum.mustache fix, ToJsonValue preserves unknown values
+            // for round-trip safety instead of returning null.
+            ExampleEnum? custom = (ExampleEnum)"this-is-not-a-valid-enum";
+            Assert.AreEqual("this-is-not-a-valid-enum", ExampleEnum.ToJsonValue(custom));
         }
 
         [TestMethod]
@@ -137,17 +139,19 @@ namespace Adyen.Test.Core
         }
 
         [TestMethod]
-        public async Task Given_JsonSerialization_When_EnumNotInList_Then_Returns_Null()
+        public async Task Given_JsonSerialization_When_EnumNotInList_Then_PreservesRawValue()
         {
+            // After the modelInnerEnum.mustache fix, unknown values are preserved for round-trip safety.
             var options = new JsonSerializerOptions();
             options.Converters.Add(new ExampleEnum.ExampleJsonConverter());
 
-            ExampleEnum? value = ExampleEnum.FromStringOrDefault("not-in-list");
+            ExampleEnum? value = (ExampleEnum)"not-in-list";
             string serialized = JsonSerializer.Serialize(value, options);
-            Assert.AreEqual("null", serialized);
+            Assert.AreEqual("\"not-in-list\"", serialized);
 
             ExampleEnum? deserialized = JsonSerializer.Deserialize<ExampleEnum>(serialized, options);
-            Assert.AreEqual(null, deserialized);
+            Assert.IsNotNull(deserialized);
+            Assert.AreEqual("not-in-list", deserialized!.Value);
         }
 
         [TestMethod]
@@ -338,7 +342,7 @@ namespace Adyen.Test.Core
             if (value == ExampleEnum.B)
                 return "b";
 
-            return null;
+            return value.Value;
         }
 
         public class ExampleJsonConverter : JsonConverter<ExampleEnum>
