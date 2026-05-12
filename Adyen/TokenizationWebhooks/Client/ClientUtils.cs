@@ -187,12 +187,22 @@ namespace Adyen.TokenizationWebhooks.Client
                         case '#': sb.Append("%23"); break;
                         case ' ': sb.Append("%20"); break;
                         default:
-                            if (c > 127)
+                            if (c < 32 || c >= 127)
                             {
                                 if (char.IsHighSurrogate(c) && i + 1 < value.Length && char.IsLowSurrogate(value[i + 1]))
+                                {
                                     sb.Append(Uri.EscapeDataString(value.Substring(i++, 2)));
-                                else
+                                }
+                                else if (!char.IsSurrogate(c))
+                                {
                                     sb.Append(Uri.EscapeDataString(c.ToString()));
+                                }
+                                else
+                                {
+                                    // Append the Unicode replacement character for unpaired surrogates
+                                    // to avoid ArgumentException in some frameworks (e.g. .NET Framework)
+                                    sb.Append("%EF%BF%BD");
+                                }
                             }
                             else
                             {
