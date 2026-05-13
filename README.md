@@ -116,15 +116,20 @@ var response = await paymentsService.PaymentsAsync(request, new RequestOptions()
 ```
 
 ### Working with amounts
-Adyen APIs work with minor units (e.g., 1000 for 10.00 EUR). The library provides an `AmountUtil` class to help you convert decimal amounts to minor units and vice versa, according to [Adyen's specific currency rules](https://docs.adyen.com/development-resources/currency-codes).
+Adyen APIs work with minor units (e.g., 1000 for 10.00 EUR). The library provides an `AmountUtil` class to help you convert decimal amounts to minor units and vice versa, according to [Adyen's specific currency rules](https://docs.adyen.com/development-resources/currency-codes). 
+
+The utility uses **banker's rounding** (`MidpointRounding.ToEven`) and is robust against case-sensitivity or whitespace in currency codes.
 
 ```csharp
 using Adyen.Core.Utilities;
 
 // Convert decimal amount to minor units (long)
 long? minorUnits = AmountUtil.AmountToMinorUnits(12.34m, "EUR"); // Returns 1234
-long? jpyMinorUnits = AmountUtil.AmountToMinorUnits(1234m, "JPY"); // Returns 1234 (0 decimals)
+long? jpyMinorUnits = AmountUtil.AmountToMinorUnits(1234m, "jpy"); // Returns 1234 (0 decimals, case-insensitive)
 long? bhdMinorUnits = AmountUtil.AmountToMinorUnits(12.345m, "BHD"); // Returns 12345 (3 decimals)
+
+// Example of banker's rounding (MidpointRounding.ToEven)
+long? rounded = AmountUtil.AmountToMinorUnits(12.345m, "EUR"); // Returns 1234
 
 // Convert minor units (long) to decimal amount
 decimal? amount = AmountUtil.MinorUnitsToAmount(1234L, "EUR"); // Returns 12.34
