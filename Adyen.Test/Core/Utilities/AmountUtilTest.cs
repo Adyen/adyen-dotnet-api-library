@@ -33,6 +33,10 @@ namespace Adyen.Test.Core.Utilities
             // Unknown currency code (should default to 2 decimals)
             Assert.AreEqual(1234L, AmountUtil.AmountToMinorUnits(12.34m, "XXX"));
 
+            // Case-insensitivity and trimming
+            Assert.AreEqual(1234L, AmountUtil.AmountToMinorUnits(12.34m, "eur"));
+            Assert.AreEqual(1234L, AmountUtil.AmountToMinorUnits(12.34m, " EUR "));
+
             // Large magnitudes
             Assert.AreEqual(100000000000L, AmountUtil.AmountToMinorUnits(1000000000.00m, "EUR"));
             Assert.AreEqual(-100000000000L, AmountUtil.AmountToMinorUnits(-1000000000.00m, "EUR"));
@@ -81,6 +85,9 @@ namespace Adyen.Test.Core.Utilities
             // Adyen deviations
             Assert.AreEqual(12.34m, AmountUtil.MinorUnitsToAmount(1234L, "CLP"));
             Assert.AreEqual(12.34m, AmountUtil.MinorUnitsToAmount(1234L, "ISK"));
+
+            // Case-insensitivity
+            Assert.AreEqual(12.34m, AmountUtil.MinorUnitsToAmount(1234L, "eur"));
             
             // Zero amounts
             Assert.AreEqual(0m, AmountUtil.MinorUnitsToAmount(0L, "EUR"));

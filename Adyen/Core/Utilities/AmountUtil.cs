@@ -24,8 +24,9 @@ namespace Adyen.Core.Utilities
             {
                 throw new ArgumentException("Currency code cannot be null or empty.", nameof(currencyCode));
             }
-            
-            int decimals = GetDecimals(currencyCode);
+
+            string code = currencyCode.Trim().ToUpperInvariant();
+            int decimals = GetDecimals(code);
             decimal multiplier = GetPowerOfTen(decimals);
             return (long)Math.Round(amount.Value * multiplier, MidpointRounding.ToEven);
         }
@@ -47,8 +48,9 @@ namespace Adyen.Core.Utilities
             {
                 throw new ArgumentException("Currency code cannot be null or empty.", nameof(currencyCode));
             }
-            
-            int decimals = GetDecimals(currencyCode);
+
+            string code = currencyCode.Trim().ToUpperInvariant();
+            int decimals = GetDecimals(code);
             decimal divisor = GetPowerOfTen(decimals);
             return minorUnits.Value / divisor;
         }
@@ -58,12 +60,22 @@ namespace Adyen.Core.Utilities
         /// </summary>
         private static decimal GetPowerOfTen(int decimals)
         {
-            decimal result = 1m;
-            for (int i = 0; i < decimals; i++)
+            switch (decimals)
             {
-                result *= 10m;
+                case 0:
+                    return 1m;
+                case 2:
+                    return 100m;
+                case 3:
+                    return 1000m;
+                default:
+                    decimal result = 1m;
+                    for (int i = 0; i < decimals; i++)
+                    {
+                        result *= 10m;
+                    }
+                    return result;
             }
-            return result;
         }
 
         /// <summary>
