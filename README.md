@@ -114,6 +114,22 @@ Use the `RequestOptions` object to pass additional headers like the IdempotencyK
 ```csharp
 var response = await paymentsService.PaymentsAsync(request, new RequestOptions().AddIdempotencyKey(Guid.NewGuid().ToString()));
 ```
+
+### Working with amounts
+Adyen APIs work with minor units (e.g., 1000 for 10.00 EUR). The library provides an `AmountUtil` class to help you convert decimal amounts to minor units and vice versa, according to [Adyen's specific currency rules](https://docs.adyen.com/development-resources/currency-codes).
+
+```csharp
+using Adyen.Core.Utilities;
+
+// Convert decimal amount to minor units (long)
+long? minorUnits = AmountUtil.AmountToMinorUnits(12.34m, "EUR"); // Returns 1234
+long? jpyMinorUnits = AmountUtil.AmountToMinorUnits(1234m, "JPY"); // Returns 1234 (0 decimals)
+long? bhdMinorUnits = AmountUtil.AmountToMinorUnits(12.345m, "BHD"); // Returns 12345 (3 decimals)
+
+// Convert minor units (long) to decimal amount
+decimal? amount = AmountUtil.MinorUnitsToAmount(1234L, "EUR"); // Returns 12.34
+```
+
 ### Serializing and Deserializing JSON Strings
 The library uses custom JSON converters for all model types (handling oneOf polymorphism, optional-field omission, enum mapping, etc.). These converters are registered in the `JsonSerializerOptionsProvider` that is set up by the DI host. **Always pass `jsonSerializerOptionsProvider.Options` when calling `JsonSerializer.Serialize` or `JsonSerializer.Deserialize`** — using the default options will produce incorrect JSON (e.g. nested action wrappers, unexpected null fields).
 
