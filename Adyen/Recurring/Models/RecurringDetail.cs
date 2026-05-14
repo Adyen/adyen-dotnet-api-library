@@ -264,6 +264,20 @@ namespace Adyen.Recurring.Models
         public TokenDetails? TokenDetails { get { return this._TokenDetailsOption; } set { this._TokenDetailsOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="TransactionLinkId"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _TransactionLinkIdOption { get; private set; }
+
+        /// <summary>
+        /// The unique identifier for the transaction link, used for Mastercard recurring transactions.
+        /// </summary>
+        /// <value>The unique identifier for the transaction link, used for Mastercard recurring transactions.</value>
+        [JsonPropertyName("transactionLinkId")]
+        public string? TransactionLinkId { get { return this._TransactionLinkIdOption; } set { this._TransactionLinkIdOption = new(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -288,6 +302,7 @@ namespace Adyen.Recurring.Models
             sb.Append("  ShopperName: ").Append(ShopperName).Append("\n");
             sb.Append("  SocialSecurityNumber: ").Append(SocialSecurityNumber).Append("\n");
             sb.Append("  TokenDetails: ").Append(TokenDetails).Append("\n");
+            sb.Append("  TransactionLinkId: ").Append(TransactionLinkId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -337,6 +352,7 @@ namespace Adyen.Recurring.Models
             Option<Name?> shopperName = default;
             Option<string?> socialSecurityNumber = default;
             Option<TokenDetails?> tokenDetails = default;
+            Option<string?> transactionLinkId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -404,6 +420,9 @@ namespace Adyen.Recurring.Models
                         case "tokenDetails":
                             tokenDetails = new Option<TokenDetails?>(JsonSerializer.Deserialize<TokenDetails>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
+                        case "transactionLinkId":
+                            transactionLinkId = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         default:
                             break;
                     }
@@ -449,6 +468,8 @@ namespace Adyen.Recurring.Models
                 recurringDetail.SocialSecurityNumber = socialSecurityNumber.Value;
             if (tokenDetails.IsSet)
                 recurringDetail.TokenDetails = tokenDetails.Value;
+            if (transactionLinkId.IsSet)
+                recurringDetail.TransactionLinkId = transactionLinkId.Value;
             return recurringDetail;
         }
 
@@ -551,6 +572,9 @@ namespace Adyen.Recurring.Models
                 writer.WritePropertyName("tokenDetails");
                 JsonSerializer.Serialize(writer, recurringDetail.TokenDetails, jsonSerializerOptions);
             }
+            if (recurringDetail._TransactionLinkIdOption.IsSet)
+                if (recurringDetail.TransactionLinkId != null)
+                    writer.WriteString("transactionLinkId", recurringDetail.TransactionLinkId);
         }
     }
 }
