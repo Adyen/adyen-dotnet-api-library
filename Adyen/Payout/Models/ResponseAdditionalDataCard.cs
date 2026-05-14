@@ -2,7 +2,7 @@
 /*
  * Adyen Payout API
  *
- * > The **Payout API is deprecated** and no longer supports new integrations. Do one of the following: >- If you are building a new integration, use the [Transfers API](https://docs.adyen.com/api-explorer/transfers/latest/overview) instead. > - If you are already using the Payout API, reach out to your Adyen contact to learn how to migrate to the Transfers API. > > With the Transfers API, you can: > - Handle multiple payout use cases with a single API. > - Use new payout functionalities, such as instant payouts to bank accounts. > - Receive webhooks with more details and defined transfer states. > > For more information about the payout features of the Transfers API, see our [Payouts](https://docs.adyen.com/payouts/payout-service) documentation.   A set of API endpoints that allow you to store payout details, confirm, or decline a payout.  For more information, refer to [Online payouts](https://docs.adyen.com/online-payments/online-payouts). ## Authentication To use the Payout API, you need to have [two API credentials](https://docs.adyen.com/online-payments/online-payouts#payouts-to-bank-accounts-and-wallets): one for storing payout details and submitting payouts, and another one for confirming or declining payouts. If you don't have the required API credentials, contact our [Support Team](https://www.adyen.help/hc/en-us/requests/new).  If using an API key, add an `X-API-Key` header with the API key as the value, for example:   ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ```  Alternatively, you can use the username and password to connect to the API using [basic authentication](https://docs.adyen.com/development-resources/api-credentials#basic-authentication).  The following example shows how to authenticate your request with basic authentication when submitting a payout:  ``` curl -U \"storePayout@Company.YOUR_COMPANY_ACCOUNT\":\"YOUR_BASIC_AUTHENTICATION_PASSWORD\" \\ -H \"Content-Type: application/json\" \\ ... ```  ## Versioning Payments API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://pal-test.adyen.com/pal/servlet/Payout/v68/payout ```  ## Going live  To authenticate to the live endpoints, you need [API credentials](https://docs.adyen.com/development-resources/api-credentials) from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account: ```  https://{PREFIX}-pal-live.adyenpayments.com/pal/servlet/Payout/v68/payout ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.
+ * > The **Payout API is deprecated** and no longer supports new integrations. Do one of the following: >- If you are building a new integration, use the [Transfers API](https://docs.adyen.com/api-explorer/transfers/latest/overview) instead. > - If you are already using the Payout API, reach out to your Adyen contact to learn how to migrate to the Transfers API. > > With the Transfers API, you can: > - Handle multiple payout use cases with a single API. > - Use new payout functionalities, such as instant payouts to bank accounts. > - Receive webhooks with more details and defined transfer states. > > For more information about the payout features of the Transfers API, see our [Payouts](https://docs.adyen.com/payouts/payout-service) documentation.   A set of API endpoints that allow you to store payout details, confirm, or decline a payout.  For more information, refer to [Online payouts](https://docs.adyen.com/online-payments/online-payouts). ## Authentication To use the Payout API, you need to have [two API credentials](https://docs.adyen.com/online-payments/online-payouts#payouts-to-bank-accounts-and-wallets): one for storing payout details and submitting payouts, and another one for confirming or declining payouts. If you don't have the required API credentials, contact our [Support Team](https://www.adyen.help/hc/en-us/requests/new).  If using an API key, add an `X-API-Key` header with the API key as the value, for example:   ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ```  Alternatively, you can use the username and password to connect to the API using [basic authentication](https://docs.adyen.com/development-resources/api-credentials#basic-authentication).  The following example shows how to authenticate your request with basic authentication when submitting a payout:  ``` curl -U \"storePayout@Company.YOUR_COMPANY_ACCOUNT\":\"YOUR_BASIC_AUTHENTICATION_PASSWORD\" \\ -H \"Content-Type: application/json\" \\ ... ```  ## Versioning Payout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://pal-test.adyen.com/pal/servlet/Payout/v68/payout ```  ## Going live  To authenticate to the live endpoints, you need [API credentials](https://docs.adyen.com/development-resources/api-credentials) from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account: ```  https://{PREFIX}-pal-live.adyenpayments.com/pal/servlet/Payout/v68/payout ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.
  *
  * The version of the OpenAPI document: 68
  *
@@ -45,222 +45,18 @@ namespace Adyen.Payout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit 
-        /// </summary>
-        /// <value>The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit </value>
-        [JsonConverter(typeof(CardProductIdEnumJsonConverter))]
-        public class CardProductIdEnum : IEnum
-        {
-            /// <summary>
-            /// Returns the value of the CardProductIdEnum.
-            /// </summary>
-            public string? Value { get; set; }
-
-            /// <summary>
-            /// CardProductIdEnum.A - A
-            /// </summary>
-            public static readonly CardProductIdEnum A = new("A");
-
-            /// <summary>
-            /// CardProductIdEnum.B - B
-            /// </summary>
-            public static readonly CardProductIdEnum B = new("B");
-
-            /// <summary>
-            /// CardProductIdEnum.C - C
-            /// </summary>
-            public static readonly CardProductIdEnum C = new("C");
-
-            /// <summary>
-            /// CardProductIdEnum.D - D
-            /// </summary>
-            public static readonly CardProductIdEnum D = new("D");
-
-            /// <summary>
-            /// CardProductIdEnum.F - F
-            /// </summary>
-            public static readonly CardProductIdEnum F = new("F");
-
-            /// <summary>
-            /// CardProductIdEnum.MCC - MCC
-            /// </summary>
-            public static readonly CardProductIdEnum MCC = new("MCC");
-
-            /// <summary>
-            /// CardProductIdEnum.MCE - MCE
-            /// </summary>
-            public static readonly CardProductIdEnum MCE = new("MCE");
-
-            /// <summary>
-            /// CardProductIdEnum.MCF - MCF
-            /// </summary>
-            public static readonly CardProductIdEnum MCF = new("MCF");
-
-            /// <summary>
-            /// CardProductIdEnum.MCG - MCG
-            /// </summary>
-            public static readonly CardProductIdEnum MCG = new("MCG");
-
-            /// <summary>
-            /// CardProductIdEnum.MCH - MCH
-            /// </summary>
-            public static readonly CardProductIdEnum MCH = new("MCH");
-
-            /// <summary>
-            /// CardProductIdEnum.MCI - MCI
-            /// </summary>
-            public static readonly CardProductIdEnum MCI = new("MCI");
-        
-            private CardProductIdEnum(string? value)
-            {
-                Value = value;
-            }
-
-            /// <summary>
-            /// Converts a string to a <see cref="CardProductIdEnum"/> implicitly.
-            /// </summary>
-            /// <param name="value">The string value to convert. Defaults to null.</param>
-            /// <returns>A new <see cref="CardProductIdEnum"/> instance initialized with the string value.</returns>
-            public static implicit operator CardProductIdEnum?(string? value) => value == null ? null : new CardProductIdEnum(value);
-    
-            /// <summary>
-            /// Converts a <see cref="CardProductIdEnum"/> instance to a string implicitly.
-            /// </summary>
-            /// <param name="option">The <see cref="CardProductIdEnum"/> instance. Default to null.</param>
-            /// <returns>String value of the <see cref="CardProductIdEnum"/> instance.</returns>
-            public static implicit operator string?(CardProductIdEnum? option) => option?.Value;
-        
-            /// <summary>
-            /// Compares two <see cref="CardProductIdEnum"/> instances for equality.
-            /// </summary>
-            public static bool operator ==(CardProductIdEnum? left, CardProductIdEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-
-            /// <summary>
-            /// Compares two <see cref="CardProductIdEnum"/> instances for inequality.
-            /// </summary>
-            public static bool operator !=(CardProductIdEnum? left, CardProductIdEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
-
-            /// <summary>
-            /// Returns true if the given object is equal to this <see cref="CardProductIdEnum"/> instance.
-            /// </summary>
-            public override bool Equals(object? obj) => obj is CardProductIdEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-
-            /// <summary>
-            /// Returns a hash code for this <see cref="CardProductIdEnum"/> instance.
-            /// </summary>
-            public override int GetHashCode() => Value?.GetHashCode() ?? 0;
-
-            /// <summary>
-            /// Returns the string value of the <see cref="CardProductIdEnum"/> instance.
-            /// </summary>
-            public override string ToString() => Value ?? string.Empty;
-        
-            /// <summary>
-            /// Returns a <see cref="CardProductIdEnum?"/>.
-            /// </summary>
-            /// <param name="value"></param>
-            /// <returns><see cref="CardProductIdEnum"/> or null.</returns>
-            public static CardProductIdEnum? FromStringOrDefault(string value)
-            {
-                return value switch {
-                    "A" => CardProductIdEnum.A,
-                    "B" => CardProductIdEnum.B,
-                    "C" => CardProductIdEnum.C,
-                    "D" => CardProductIdEnum.D,
-                    "F" => CardProductIdEnum.F,
-                    "MCC" => CardProductIdEnum.MCC,
-                    "MCE" => CardProductIdEnum.MCE,
-                    "MCF" => CardProductIdEnum.MCF,
-                    "MCG" => CardProductIdEnum.MCG,
-                    "MCH" => CardProductIdEnum.MCH,
-                    "MCI" => CardProductIdEnum.MCI,
-                    _ => null,
-                };
-            }
-    
-            /// <summary>
-            /// Converts the <see cref="CardProductIdEnum"/> to the json value.
-            /// </summary>
-            /// <param name="value"><see cref="CardProductIdEnum"/></param>
-            /// <returns>String value of the enum.</returns>
-            public static string? ToJsonValue(CardProductIdEnum? value)
-            {
-                if (value == null)
-                    return null;
-            
-                if (value == CardProductIdEnum.A)
-                    return "A";
-                
-                if (value == CardProductIdEnum.B)
-                    return "B";
-                
-                if (value == CardProductIdEnum.C)
-                    return "C";
-                
-                if (value == CardProductIdEnum.D)
-                    return "D";
-                
-                if (value == CardProductIdEnum.F)
-                    return "F";
-                
-                if (value == CardProductIdEnum.MCC)
-                    return "MCC";
-                
-                if (value == CardProductIdEnum.MCE)
-                    return "MCE";
-                
-                if (value == CardProductIdEnum.MCF)
-                    return "MCF";
-                
-                if (value == CardProductIdEnum.MCG)
-                    return "MCG";
-                
-                if (value == CardProductIdEnum.MCH)
-                    return "MCH";
-                
-                if (value == CardProductIdEnum.MCI)
-                    return "MCI";
-                
-                return null;
-            }
-            
-            /// <summary>
-            /// JsonConverter for writing CardProductIdEnum.               
-            /// </summary>
-            public class CardProductIdEnumJsonConverter : JsonConverter<CardProductIdEnum>
-            {
-                /// <summary>
-                /// Deserializes a <see cref="CardProductIdEnum"/> from JSON.
-                /// </summary>
-                public override CardProductIdEnum? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions jsonOptions)
-                {
-                    string value = reader.GetString();
-                    return value == null ? null : CardProductIdEnum.FromStringOrDefault(value) ?? new CardProductIdEnum(value);
-                }
-
-                /// <summary>
-                /// Serializes a <see cref="CardProductIdEnum"/> to JSON.
-                /// </summary>
-                public override void Write(Utf8JsonWriter writer, CardProductIdEnum value, JsonSerializerOptions jsonOptions)
-                {
-                    writer.WriteStringValue(CardProductIdEnum.ToJsonValue(value));
-                }
-            }
-        }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="CardProductId"/> will be populated.
+        /// This is used to track if an optional field is set. If set, <see cref="CardAltID"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<CardProductIdEnum?> _CardProductIdOption { get; private set; }
+        public Option<string?> _CardAltIDOption { get; private set; }
 
         /// <summary>
-        /// The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit 
+        /// This is an ALT ID (alternate ID) mapped to the Card PAN.  &gt; Returned only in case of Ecommerce Card Payment in India
         /// </summary>
-        /// <value>The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit </value>
-        [JsonPropertyName("cardProductId")]
-        public CardProductIdEnum? CardProductId { get { return this._CardProductIdOption; } set { this._CardProductIdOption = new(value); } }
+        /// <value>This is an ALT ID (alternate ID) mapped to the Card PAN.  > Returned only in case of Ecommerce Card Payment in India</value>
+        [JsonPropertyName("cardAltID")]
+        public string? CardAltID { get { return this._CardAltIDOption; } set { this._CardAltIDOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CardBin"/> will be populated.
@@ -347,6 +143,20 @@ namespace Adyen.Payout.Models
         public string? CardPaymentMethod { get { return this._CardPaymentMethodOption; } set { this._CardPaymentMethodOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="CardProductId"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _CardProductIdOption { get; private set; }
+
+        /// <summary>
+        /// The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Example values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Example values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit 
+        /// </summary>
+        /// <value>The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Example values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Example values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit </value>
+        [JsonPropertyName("cardProductId")]
+        public string? CardProductId { get { return this._CardProductIdOption; } set { this._CardProductIdOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CardSummary"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -382,6 +192,7 @@ namespace Adyen.Payout.Models
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class ResponseAdditionalDataCard {\n");
+            sb.Append("  CardAltID: ").Append(CardAltID).Append("\n");
             sb.Append("  CardBin: ").Append(CardBin).Append("\n");
             sb.Append("  CardHolderName: ").Append(CardHolderName).Append("\n");
             sb.Append("  CardIssuingBank: ").Append(CardIssuingBank).Append("\n");
@@ -418,13 +229,14 @@ namespace Adyen.Payout.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<string?> cardAltID = default;
             Option<string?> cardBin = default;
             Option<string?> cardHolderName = default;
             Option<string?> cardIssuingBank = default;
             Option<string?> cardIssuingCountry = default;
             Option<string?> cardIssuingCurrency = default;
             Option<string?> cardPaymentMethod = default;
-            Option<ResponseAdditionalDataCard.CardProductIdEnum?> cardProductId = default;
+            Option<string?> cardProductId = default;
             Option<string?> cardSummary = default;
             Option<string?> issuerBin = default;
 
@@ -443,6 +255,9 @@ namespace Adyen.Payout.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "cardAltID":
+                            cardAltID = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "cardBin":
                             cardBin = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -462,8 +277,7 @@ namespace Adyen.Payout.Models
                             cardPaymentMethod = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "cardProductId":
-                            string? cardProductIdRawValue = utf8JsonReader.GetString();
-                            cardProductId = new Option<ResponseAdditionalDataCard.CardProductIdEnum?>(ResponseAdditionalDataCard.CardProductIdEnum.FromStringOrDefault(cardProductIdRawValue));
+                            cardProductId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "cardSummary":
                             cardSummary = new Option<string?>(utf8JsonReader.GetString()!);
@@ -478,6 +292,8 @@ namespace Adyen.Payout.Models
             }
             
             var responseAdditionalDataCard = new ResponseAdditionalDataCard();
+            if (cardAltID.IsSet)
+                responseAdditionalDataCard.CardAltID = cardAltID.Value;
             if (cardBin.IsSet)
                 responseAdditionalDataCard.CardBin = cardBin.Value;
             if (cardHolderName.IsSet)
@@ -525,6 +341,10 @@ namespace Adyen.Payout.Models
         public void WriteProperties(Utf8JsonWriter writer, ResponseAdditionalDataCard responseAdditionalDataCard, JsonSerializerOptions jsonSerializerOptions)
         {
             
+            if (responseAdditionalDataCard._CardAltIDOption.IsSet)
+                if (responseAdditionalDataCard.CardAltID != null)
+                    writer.WriteString("cardAltID", responseAdditionalDataCard.CardAltID);
+
             if (responseAdditionalDataCard._CardBinOption.IsSet)
                 if (responseAdditionalDataCard.CardBin != null)
                     writer.WriteString("cardBin", responseAdditionalDataCard.CardBin);
@@ -549,12 +369,10 @@ namespace Adyen.Payout.Models
                 if (responseAdditionalDataCard.CardPaymentMethod != null)
                     writer.WriteString("cardPaymentMethod", responseAdditionalDataCard.CardPaymentMethod);
 
-            if (responseAdditionalDataCard._CardProductIdOption.IsSet && responseAdditionalDataCard.CardProductId != null) 
-            {
-                string? cardProductIdRawValue = ResponseAdditionalDataCard.CardProductIdEnum.ToJsonValue(responseAdditionalDataCard._CardProductIdOption.Value!.Value);
-                writer.WriteString("cardProductId", cardProductIdRawValue);
-            }
-            
+            if (responseAdditionalDataCard._CardProductIdOption.IsSet)
+                if (responseAdditionalDataCard.CardProductId != null)
+                    writer.WriteString("cardProductId", responseAdditionalDataCard.CardProductId);
+
             if (responseAdditionalDataCard._CardSummaryOption.IsSet)
                 if (responseAdditionalDataCard.CardSummary != null)
                     writer.WriteString("cardSummary", responseAdditionalDataCard.CardSummary);

@@ -2,7 +2,7 @@
 /*
  * Adyen Payout API
  *
- * > The **Payout API is deprecated** and no longer supports new integrations. Do one of the following: >- If you are building a new integration, use the [Transfers API](https://docs.adyen.com/api-explorer/transfers/latest/overview) instead. > - If you are already using the Payout API, reach out to your Adyen contact to learn how to migrate to the Transfers API. > > With the Transfers API, you can: > - Handle multiple payout use cases with a single API. > - Use new payout functionalities, such as instant payouts to bank accounts. > - Receive webhooks with more details and defined transfer states. > > For more information about the payout features of the Transfers API, see our [Payouts](https://docs.adyen.com/payouts/payout-service) documentation.   A set of API endpoints that allow you to store payout details, confirm, or decline a payout.  For more information, refer to [Online payouts](https://docs.adyen.com/online-payments/online-payouts). ## Authentication To use the Payout API, you need to have [two API credentials](https://docs.adyen.com/online-payments/online-payouts#payouts-to-bank-accounts-and-wallets): one for storing payout details and submitting payouts, and another one for confirming or declining payouts. If you don't have the required API credentials, contact our [Support Team](https://www.adyen.help/hc/en-us/requests/new).  If using an API key, add an `X-API-Key` header with the API key as the value, for example:   ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ```  Alternatively, you can use the username and password to connect to the API using [basic authentication](https://docs.adyen.com/development-resources/api-credentials#basic-authentication).  The following example shows how to authenticate your request with basic authentication when submitting a payout:  ``` curl -U \"storePayout@Company.YOUR_COMPANY_ACCOUNT\":\"YOUR_BASIC_AUTHENTICATION_PASSWORD\" \\ -H \"Content-Type: application/json\" \\ ... ```  ## Versioning Payments API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://pal-test.adyen.com/pal/servlet/Payout/v68/payout ```  ## Going live  To authenticate to the live endpoints, you need [API credentials](https://docs.adyen.com/development-resources/api-credentials) from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account: ```  https://{PREFIX}-pal-live.adyenpayments.com/pal/servlet/Payout/v68/payout ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.
+ * > The **Payout API is deprecated** and no longer supports new integrations. Do one of the following: >- If you are building a new integration, use the [Transfers API](https://docs.adyen.com/api-explorer/transfers/latest/overview) instead. > - If you are already using the Payout API, reach out to your Adyen contact to learn how to migrate to the Transfers API. > > With the Transfers API, you can: > - Handle multiple payout use cases with a single API. > - Use new payout functionalities, such as instant payouts to bank accounts. > - Receive webhooks with more details and defined transfer states. > > For more information about the payout features of the Transfers API, see our [Payouts](https://docs.adyen.com/payouts/payout-service) documentation.   A set of API endpoints that allow you to store payout details, confirm, or decline a payout.  For more information, refer to [Online payouts](https://docs.adyen.com/online-payments/online-payouts). ## Authentication To use the Payout API, you need to have [two API credentials](https://docs.adyen.com/online-payments/online-payouts#payouts-to-bank-accounts-and-wallets): one for storing payout details and submitting payouts, and another one for confirming or declining payouts. If you don't have the required API credentials, contact our [Support Team](https://www.adyen.help/hc/en-us/requests/new).  If using an API key, add an `X-API-Key` header with the API key as the value, for example:   ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ```  Alternatively, you can use the username and password to connect to the API using [basic authentication](https://docs.adyen.com/development-resources/api-credentials#basic-authentication).  The following example shows how to authenticate your request with basic authentication when submitting a payout:  ``` curl -U \"storePayout@Company.YOUR_COMPANY_ACCOUNT\":\"YOUR_BASIC_AUTHENTICATION_PASSWORD\" \\ -H \"Content-Type: application/json\" \\ ... ```  ## Versioning Payout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://pal-test.adyen.com/pal/servlet/Payout/v68/payout ```  ## Going live  To authenticate to the live endpoints, you need [API credentials](https://docs.adyen.com/development-resources/api-credentials) from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account: ```  https://{PREFIX}-pal-live.adyenpayments.com/pal/servlet/Payout/v68/payout ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.
  *
  * The version of the OpenAPI document: 68
  *
@@ -1083,6 +1083,20 @@ namespace Adyen.Payout.Models
         public string? MerchantReference { get { return this._MerchantReferenceOption; } set { this._MerchantReferenceOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="NetworkProcessingMode"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _NetworkProcessingModeOption { get; private set; }
+
+        /// <summary>
+        /// Indicates the processing flow.  Possible values: * **sale**: You do not need to separately capture the funds, because capture happens automatically as part of the transaction.  * **auth**: If you have not [configured automatic capture for the transaction](https://docs.adyen.com/online-payments/capture#types-of-capture), you must manually capture the funds.
+        /// </summary>
+        /// <value>Indicates the processing flow.  Possible values: * **sale**: You do not need to separately capture the funds, because capture happens automatically as part of the transaction.  * **auth**: If you have not [configured automatic capture for the transaction](https://docs.adyen.com/online-payments/capture#types-of-capture), you must manually capture the funds.</value>
+        [JsonPropertyName("networkProcessingMode")]
+        public string? NetworkProcessingMode { get { return this._NetworkProcessingModeOption; } set { this._NetworkProcessingModeOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="NetworkTxReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -1519,6 +1533,7 @@ namespace Adyen.Payout.Models
             sb.Append("  McBankNetReferenceNumber: ").Append(McBankNetReferenceNumber).Append("\n");
             sb.Append("  MerchantAdviceCode: ").Append(MerchantAdviceCode).Append("\n");
             sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
+            sb.Append("  NetworkProcessingMode: ").Append(NetworkProcessingMode).Append("\n");
             sb.Append("  NetworkTxReference: ").Append(NetworkTxReference).Append("\n");
             sb.Append("  OwnerName: ").Append(OwnerName).Append("\n");
             sb.Append("  PaymentAccountReference: ").Append(PaymentAccountReference).Append("\n");
@@ -1609,6 +1624,7 @@ namespace Adyen.Payout.Models
             Option<string?> mcBankNetReferenceNumber = default;
             Option<string?> merchantAdviceCode = default;
             Option<string?> merchantReference = default;
+            Option<string?> networkProcessingMode = default;
             Option<string?> networkTxReference = default;
             Option<string?> ownerName = default;
             Option<string?> paymentAccountReference = default;
@@ -1755,6 +1771,9 @@ namespace Adyen.Payout.Models
                             break;
                         case "merchantReference":
                             merchantReference = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "networkProcessingMode":
+                            networkProcessingMode = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "networkTxReference":
                             networkTxReference = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1921,6 +1940,8 @@ namespace Adyen.Payout.Models
                 responseAdditionalDataCommon.MerchantAdviceCode = merchantAdviceCode.Value;
             if (merchantReference.IsSet)
                 responseAdditionalDataCommon.MerchantReference = merchantReference.Value;
+            if (networkProcessingMode.IsSet)
+                responseAdditionalDataCommon.NetworkProcessingMode = networkProcessingMode.Value;
             if (networkTxReference.IsSet)
                 responseAdditionalDataCommon.NetworkTxReference = networkTxReference.Value;
             if (ownerName.IsSet)
@@ -2145,6 +2166,10 @@ namespace Adyen.Payout.Models
             if (responseAdditionalDataCommon._MerchantReferenceOption.IsSet)
                 if (responseAdditionalDataCommon.MerchantReference != null)
                     writer.WriteString("merchantReference", responseAdditionalDataCommon.MerchantReference);
+
+            if (responseAdditionalDataCommon._NetworkProcessingModeOption.IsSet)
+                if (responseAdditionalDataCommon.NetworkProcessingMode != null)
+                    writer.WriteString("networkProcessingMode", responseAdditionalDataCommon.NetworkProcessingMode);
 
             if (responseAdditionalDataCommon._NetworkTxReferenceOption.IsSet)
                 if (responseAdditionalDataCommon.NetworkTxReference != null)
