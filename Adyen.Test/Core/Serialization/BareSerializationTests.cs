@@ -81,18 +81,16 @@ namespace Adyen.Test.Core.Serialization
         }
 
         [TestMethod]
-        public void Given_CavvJson_When_BareDeserialize_Then_CavvContainsBase64DecodedBytes()
+        public void Given_CavvJson_When_BareDeserialize_Then_CavvContainsUTF8EncodedBytes()
         {
-            // Known limitation (issue #1687): bare mode uses STJ's default base64 handler,
-            // not ByteArrayConverter. "aGVsbG8=" is base64 for "hello" (5 bytes).
-            // When #1687 is fixed, this test should be updated: bare mode will return
-            // Encoding.UTF8.GetBytes("aGVsbG8=") instead (8 bytes).
+            // Fixed by issue #1687: bare mode now uses ByteArrayConverter (UTF-8),
+            // matching DI-mode behaviour. "aGVsbG8=" treated as a UTF-8 string → 8 bytes.
             string json = "{\"cavv\":\"aGVsbG8=\"}";
 
             var data = JsonSerializer.Deserialize<ThreeDSecureData>(json);
 
             Assert.IsNotNull(data);
-            CollectionAssert.AreEqual(Convert.FromBase64String("aGVsbG8="), data.Cavv);
+            CollectionAssert.AreEqual(Encoding.UTF8.GetBytes("aGVsbG8="), data.Cavv);
         }
 
         [TestMethod]
