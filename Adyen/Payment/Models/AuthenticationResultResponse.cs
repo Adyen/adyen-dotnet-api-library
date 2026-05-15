@@ -32,6 +32,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// AuthenticationResultResponse.
     /// </summary>
+    [JsonConverter(typeof(AuthenticationResultResponseJsonConverter))]
     public partial class AuthenticationResultResponse
     {
         /// <summary>

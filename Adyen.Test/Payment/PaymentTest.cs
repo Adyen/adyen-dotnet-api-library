@@ -279,6 +279,66 @@ namespace Adyen.Test.Payment
             Assert.IsFalse(root.TryGetProperty("shopperInteraction", out _));
         }
 
+        [TestMethod]
+        public void Given_Serialize_DI_When_PaymentRequest_With_ShopperInteraction_Moto_Result_Should_Be_Moto()
+        {
+            // Arrange
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(PaymentRequest.ShopperInteractionEnum.Moto);
+
+            // Act
+            string target = JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            using var jsonDoc = JsonDocument.Parse(target);
+            JsonElement root = jsonDoc.RootElement;
+            Assert.AreEqual("Moto", root.GetProperty("shopperInteraction").GetString());
+        }
+
+        [TestMethod]
+        public void Given_Serialize_DI_When_PaymentRequest_With_ShopperInteraction_Null_Result_Should_Not_Include_Property()
+        {
+            // Arrange
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(null);
+
+            // Act
+            string target = JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            using var jsonDoc = JsonDocument.Parse(target);
+            JsonElement root = jsonDoc.RootElement;
+            Assert.IsFalse(root.TryGetProperty("shopperInteraction", out _));
+        }
+
+        [TestMethod]
+        public void Given_Deserialize_Bare_When_PaymentResult_Result_Is_Authorised()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/authorise-success.json");
+
+            // Act
+            var result = JsonSerializer.Deserialize<PaymentResult>(json);
+
+            // Assert
+            Assert.AreEqual(PaymentResult.ResultCodeEnum.Authorised, result.ResultCode);
+            Assert.AreEqual("411111", GetAdditionalData(result.AdditionalData, "cardBin"));
+            Assert.AreEqual("43733", GetAdditionalData(result.AdditionalData, "authCode"));
+        }
+
+        [TestMethod]
+        public void Given_Deserialize_Bare_When_AuthenticationResultResponse_ThreeDSServerTransId_And_DsTransID_Not_Null()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/ThreeDS2Result.json");
+
+            // Act
+            var result = JsonSerializer.Deserialize<AuthenticationResultResponse>(json);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("f04ec32b-f46b-46ef-9ccd-44be42fb0d7e", result.ThreeDS2Result.ThreeDSServerTransID);
+            Assert.AreEqual("80a16fa0-4eea-43c9-8de5-b0470d09d14d", result.ThreeDS2Result.DsTransID);
+        }
+
         private string GetAdditionalData(Dictionary<string, string> additionalData, string assertKey)
         {
             string result = "";
