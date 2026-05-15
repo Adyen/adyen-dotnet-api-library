@@ -250,7 +250,12 @@
                         {{^isNumeric}}
                         {{^isDate}}
                         {{^isDateTime}}
+                        {{#isByteArray}}
+                            {{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}} = {{>OptionProperty}}new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
+                        {{/isByteArray}}
+                        {{^isByteArray}}
                             {{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}} = {{>OptionProperty}}JsonSerializer.Deserialize<{{{datatypeWithEnum}}}>(ref utf8JsonReader, jsonSerializerOptions){{^isNullable}}{{nrt!}}{{/isNullable}});
+                        {{/isByteArray}}
                         {{/isDateTime}}
                         {{/isDate}}
                         {{/isNumeric}}
@@ -631,14 +636,14 @@
             if ({{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}} != null)
             {
                 writer.WritePropertyName("{{baseName}}");
-                JsonSerializer.Serialize(writer, {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}, jsonSerializerOptions);
+                {{#isByteArray}}new ByteArrayConverter().Write(writer, {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}, jsonSerializerOptions);{{/isByteArray}}{{^isByteArray}}JsonSerializer.Serialize(writer, {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}, jsonSerializerOptions);{{/isByteArray}}
             }
             else
                 writer.WriteNull("{{baseName}}");
             {{/isNullable}}
             {{^isNullable}}
             writer.WritePropertyName("{{baseName}}");
-            JsonSerializer.Serialize(writer, {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}, jsonSerializerOptions);
+            {{#isByteArray}}new ByteArrayConverter().Write(writer, {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}, jsonSerializerOptions);{{/isByteArray}}{{^isByteArray}}JsonSerializer.Serialize(writer, {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}, jsonSerializerOptions);{{/isByteArray}}
             {{/isNullable}}
             {{/required}}
             {{^required}}
@@ -647,7 +652,7 @@
                 if ({{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}._{{name}}Option.Value != null)
                 {
                     writer.WritePropertyName("{{baseName}}");
-                    JsonSerializer.Serialize(writer, {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}, jsonSerializerOptions);
+                    {{#isByteArray}}new ByteArrayConverter().Write(writer, {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}, jsonSerializerOptions);{{/isByteArray}}{{^isByteArray}}JsonSerializer.Serialize(writer, {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}, jsonSerializerOptions);{{/isByteArray}}
                 }
                 else
                     writer.WriteNull("{{baseName}}");
@@ -655,7 +660,7 @@
             {{^isNullable}}
             {
                 writer.WritePropertyName("{{baseName}}");
-                JsonSerializer.Serialize(writer, {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}, jsonSerializerOptions);
+                {{#isByteArray}}new ByteArrayConverter().Write(writer, {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}, jsonSerializerOptions);{{/isByteArray}}{{^isByteArray}}JsonSerializer.Serialize(writer, {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}, jsonSerializerOptions);{{/isByteArray}}
             }
             {{/isNullable}}
             {{/required}}

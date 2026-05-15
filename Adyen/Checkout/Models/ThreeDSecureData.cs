@@ -586,7 +586,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The cardholder authentication value (base64 encoded, 20 bytes in a decoded form).</value>
         [JsonPropertyName("cavv")]
-        [JsonConverter(typeof(ByteArrayConverter))]
         public byte[]? Cavv { get { return this._CavvOption; } set { this._CavvOption = new(value); } }
 
         /// <summary>
@@ -671,7 +670,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>Network token authentication verification value (TAVV). The network token cryptogram.</value>
         [JsonPropertyName("tokenAuthenticationVerificationValue")]
-        [JsonConverter(typeof(ByteArrayConverter))]
         public byte[]? TokenAuthenticationVerificationValue { get { return this._TokenAuthenticationVerificationValueOption; } set { this._TokenAuthenticationVerificationValueOption = new(value); } }
 
         /// <summary>
@@ -700,7 +698,6 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>Supported for 3D Secure 1. The transaction identifier (Base64-encoded, 20 bytes in a decoded form).</value>
         [JsonPropertyName("xid")]
-        [JsonConverter(typeof(ByteArrayConverter))]
         public byte[]? Xid { get { return this._XidOption; } set { this._XidOption = new(value); } }
 
         /// <summary>
@@ -783,7 +780,7 @@ namespace Adyen.Checkout.Models
                             authenticationResponse = new Option<ThreeDSecureData.AuthenticationResponseEnum?>(ThreeDSecureData.AuthenticationResponseEnum.FromStringOrDefault(authenticationResponseRawValue) ?? (ThreeDSecureData.AuthenticationResponseEnum)authenticationResponseRawValue);
                             break;
                         case "cavv":
-                            cavv = new Option<byte[]?>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            cavv = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
                             break;
                         case "cavvAlgorithm":
                             cavvAlgorithm = new Option<string?>(utf8JsonReader.GetString()!);
@@ -809,13 +806,13 @@ namespace Adyen.Checkout.Models
                             threeDSVersion = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "tokenAuthenticationVerificationValue":
-                            tokenAuthenticationVerificationValue = new Option<byte[]?>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            tokenAuthenticationVerificationValue = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
                             break;
                         case "transStatusReason":
                             transStatusReason = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "xid":
-                            xid = new Option<byte[]?>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            xid = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -886,7 +883,7 @@ namespace Adyen.Checkout.Models
             if (threeDSecureData._CavvOption.IsSet)
             {
                 writer.WritePropertyName("cavv");
-                JsonSerializer.Serialize(writer, threeDSecureData.Cavv, jsonSerializerOptions);
+                new ByteArrayConverter().Write(writer, threeDSecureData.Cavv, jsonSerializerOptions);
             }
             if (threeDSecureData._CavvAlgorithmOption.IsSet)
                 if (threeDSecureData.CavvAlgorithm != null)
@@ -923,7 +920,7 @@ namespace Adyen.Checkout.Models
             if (threeDSecureData._TokenAuthenticationVerificationValueOption.IsSet)
             {
                 writer.WritePropertyName("tokenAuthenticationVerificationValue");
-                JsonSerializer.Serialize(writer, threeDSecureData.TokenAuthenticationVerificationValue, jsonSerializerOptions);
+                new ByteArrayConverter().Write(writer, threeDSecureData.TokenAuthenticationVerificationValue, jsonSerializerOptions);
             }
             if (threeDSecureData._TransStatusReasonOption.IsSet)
                 if (threeDSecureData.TransStatusReason != null)
@@ -932,7 +929,7 @@ namespace Adyen.Checkout.Models
             if (threeDSecureData._XidOption.IsSet)
             {
                 writer.WritePropertyName("xid");
-                JsonSerializer.Serialize(writer, threeDSecureData.Xid, jsonSerializerOptions);
+                new ByteArrayConverter().Write(writer, threeDSecureData.Xid, jsonSerializerOptions);
             }
         }
     }

@@ -1,7 +1,9 @@
+using System.Text;
 using System.Text.Json;
 using Adyen.Checkout.Client;
 using Adyen.Checkout.Extensions;
 using Adyen.Checkout.Models;
+using Adyen.Core.Converters;
 using Adyen.Core.Options;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -201,6 +203,31 @@ namespace Adyen.Test.Checkout
 
             Assert.IsNotNull(deserialized);
             Assert.AreEqual(true, deserialized.Reusable);
+        }
+
+        [TestMethod]
+        public void Given_ThreeDSecureData_ByteArray_Bare_And_DI_Produce_Same_Bytes()
+        {
+            // Both bare and DI mode use ByteArrayConverter (UTF-8), so results must be identical.
+            string json = "{\"cavv\":\"dGVzdA==\"}";
+
+            var bareResult = JsonSerializer.Deserialize<ThreeDSecureData>(json);
+            var diResult = JsonSerializer.Deserialize<ThreeDSecureData>(json, _jsonSerializerOptionsProvider.Options);
+
+            CollectionAssert.AreEqual(diResult.Cavv, bareResult.Cavv,
+                "Bare and DI deserialization must produce identical byte[] values.");
+        }
+
+        [TestMethod]
+        public void Given_ThreeDSecureData_ByteArray_Bare_Produces_UTF8_Bytes()
+        {
+            string json = "{\"cavv\":\"dGVzdA==\"}";
+            byte[] expected = Encoding.UTF8.GetBytes("dGVzdA==");
+
+            var result = JsonSerializer.Deserialize<ThreeDSecureData>(json);
+
+            CollectionAssert.AreEqual(expected, result.Cavv,
+                "Bare deserialization must use UTF-8 encoding (ByteArrayConverter semantics), not Base64.");
         }
     }
 }
