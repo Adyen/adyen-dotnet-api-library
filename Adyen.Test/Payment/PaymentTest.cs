@@ -276,7 +276,7 @@ namespace Adyen.Test.Payment
             // Assert
             using var jsonDoc = JsonDocument.Parse(target);
             JsonElement root = jsonDoc.RootElement;
-            Assert.IsNull(root.GetProperty("shopperInteraction").GetString());
+            Assert.IsFalse(root.TryGetProperty("shopperInteraction", out _));
         }
 
         private string GetAdditionalData(Dictionary<string, string> additionalData, string assertKey)

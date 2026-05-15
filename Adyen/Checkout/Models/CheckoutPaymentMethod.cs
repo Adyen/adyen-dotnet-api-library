@@ -32,6 +32,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// The type and required details of a payment method to use..
     /// </summary>
+    [JsonConverter(typeof(CheckoutPaymentMethodJsonConverter))]
     public partial class CheckoutPaymentMethod
     {
         /// <summary>
