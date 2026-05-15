@@ -117,24 +117,8 @@ var response = await paymentsService.PaymentsAsync(request, new RequestOptions()
 ### Serializing and Deserializing JSON Strings
 The library uses custom JSON converters for all model types, handling oneOf polymorphism, optional-field omission, enum mapping, and more. Each model carries a class-level `[JsonConverter]` attribute, so `System.Text.Json` (STJ) discovers and applies the correct converter automatically — no explicit options are required for most models.
 
-#### Bare deserialization (no DI required)
-You can deserialize any Adyen model directly using a standard `JsonSerializer.Deserialize<T>` call without providing `JsonSerializerOptions`. This is useful for unit tests, webhook processing outside the DI pipeline, or caching scenarios:
-~~~~ csharp
-using System.Text.Json;
-using Adyen.Checkout.Models;
-
-// Deserialize without options — the class-level [JsonConverter] attribute is picked up automatically
-var amount = JsonSerializer.Deserialize<Amount>("{\"currency\":\"EUR\",\"value\":1000}");
-
-// Serialize without options
-var json = JsonSerializer.Serialize(amount);
-~~~~
-
-> [!NOTE]
-> Models with `byte[]` properties (e.g. `ThreeDSecureData.Cavv`) have a known behavioral difference in bare mode: STJ's built-in base64 handling is used instead of the SDK's `ByteArrayConverter`. Use the DI-provided options (see below) when working with those properties to ensure correct behavior.
-
-#### Deserialization with DI-provided options (recommended for full fidelity)
-A common use case is serializing or deserializing JSON strings when working with [Drop-in/Components](https://github.com/Adyen/adyen-web). Build the host and resolve the `JsonSerializerOptionsProvider` from the service container to get the fully configured options:
+#### Deserialization with DI-provided options (recommended)
+Build the host and resolve the `JsonSerializerOptionsProvider` from the service container to get the fully configured options:
 ~~~~ csharp
 using Adyen.Checkout.Client;
 using Microsoft.Extensions.DependencyInjection;
@@ -162,6 +146,19 @@ var paymentRequest = JsonSerializer.Deserialize<PaymentRequest>("YOUR_JSON_STRIN
 // Serialize using the library's options
 var paymentResponse = new PaymentResponse(); // Replace with your actual PaymentResponse object
 var json = JsonSerializer.Serialize(paymentResponse, jsonSerializerOptionsProvider.Options);
+~~~~
+
+#### Bare deserialization (no DI required)
+You can choose to deserialize models directly without providing `JsonSerializerOptions`. Each model carries a class-level `[JsonConverter]` attribute that STJ discovers automatically:
+~~~~ csharp
+using System.Text.Json;
+using Adyen.Checkout.Models;
+
+// Deserialize without options
+var amount = JsonSerializer.Deserialize<Amount>("{\"currency\":\"EUR\",\"value\":1000}");
+
+// Serialize without options
+var json = JsonSerializer.Serialize(amount);
 ~~~~
 ### Logging response bodies
 Here's an example how you can log API responses using `{{classname}}Events`. Consider logging responses **only on TEST** to prevent logging confidential data. 
