@@ -115,9 +115,26 @@ Use the `RequestOptions` object to pass additional headers like the IdempotencyK
 var response = await paymentsService.PaymentsAsync(request, new RequestOptions().AddIdempotencyKey(Guid.NewGuid().ToString()));
 ```
 ### Serializing and Deserializing JSON Strings
-The library uses custom JSON converters for all model types (handling oneOf polymorphism, optional-field omission, enum mapping, etc.). These converters are registered in the `JsonSerializerOptionsProvider` that is set up by the DI host. **Always pass `jsonSerializerOptionsProvider.Options` when calling `JsonSerializer.Serialize` or `JsonSerializer.Deserialize`** — using the default options will produce incorrect JSON (e.g. nested action wrappers, unexpected null fields).
+The library uses custom JSON converters for all model types, handling oneOf polymorphism, optional-field omission, enum mapping, and more. Each model carries a class-level `[JsonConverter]` attribute, so `System.Text.Json` (STJ) discovers and applies the correct converter automatically — no explicit options are required for most models.
 
-A common use case is serializing or deserializing JSON strings when working with [Drop-in/Components](https://github.com/Adyen/adyen-web). First, build the host and resolve the `JsonSerializerOptionsProvider` from the service container:
+#### Bare deserialization (no DI required)
+You can deserialize any Adyen model directly using a standard `JsonSerializer.Deserialize<T>` call without providing `JsonSerializerOptions`. This is useful for unit tests, webhook processing outside the DI pipeline, or caching scenarios:
+~~~~ csharp
+using System.Text.Json;
+using Adyen.Checkout.Models;
+
+// Deserialize without options — the class-level [JsonConverter] attribute is picked up automatically
+var amount = JsonSerializer.Deserialize<Amount>("{\"currency\":\"EUR\",\"value\":1000}");
+
+// Serialize without options
+var json = JsonSerializer.Serialize(amount);
+~~~~
+
+> [!NOTE]
+> Models with `byte[]` properties (e.g. `ThreeDSecureData.Cavv`) have a known behavioral difference in bare mode: STJ's built-in base64 handling is used instead of the SDK's `ByteArrayConverter`. Use the DI-provided options (see below) when working with those properties to ensure correct behavior.
+
+#### Deserialization with DI-provided options (recommended for full fidelity)
+A common use case is serializing or deserializing JSON strings when working with [Drop-in/Components](https://github.com/Adyen/adyen-web). Build the host and resolve the `JsonSerializerOptionsProvider` from the service container to get the fully configured options:
 ~~~~ csharp
 using Adyen.Checkout.Client;
 using Microsoft.Extensions.DependencyInjection;
