@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.Checkout.Client;
 
 namespace Adyen.Checkout.Models
@@ -32,6 +33,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// ThreeDSecureData.
     /// </summary>
+    [JsonConverter(typeof(ThreeDSecureDataJsonConverter))]
     public partial class ThreeDSecureData
     {
         /// <summary>
@@ -584,6 +586,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The cardholder authentication value (base64 encoded, 20 bytes in a decoded form).</value>
         [JsonPropertyName("cavv")]
+        [JsonConverter(typeof(ByteArrayConverter))]
         public byte[]? Cavv { get { return this._CavvOption; } set { this._CavvOption = new(value); } }
 
         /// <summary>
@@ -668,6 +671,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>Network token authentication verification value (TAVV). The network token cryptogram.</value>
         [JsonPropertyName("tokenAuthenticationVerificationValue")]
+        [JsonConverter(typeof(ByteArrayConverter))]
         public byte[]? TokenAuthenticationVerificationValue { get { return this._TokenAuthenticationVerificationValueOption; } set { this._TokenAuthenticationVerificationValueOption = new(value); } }
 
         /// <summary>
@@ -696,6 +700,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>Supported for 3D Secure 1. The transaction identifier (Base64-encoded, 20 bytes in a decoded form).</value>
         [JsonPropertyName("xid")]
+        [JsonConverter(typeof(ByteArrayConverter))]
         public byte[]? Xid { get { return this._XidOption; } set { this._XidOption = new(value); } }
 
         /// <summary>

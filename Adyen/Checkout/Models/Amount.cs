@@ -32,6 +32,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// Amount.
     /// </summary>
+    [JsonConverter(typeof(AmountJsonConverter))]
     public partial class Amount
     {
         /// <summary>
