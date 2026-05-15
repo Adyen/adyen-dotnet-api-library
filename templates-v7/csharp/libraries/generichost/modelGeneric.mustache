@@ -215,11 +215,6 @@
         /* <example>{{.}}</example> */
         {{/example}}
         [JsonPropertyName("{{baseName}}")]
-        {{#isDate}}
-        {{#required}}[JsonConverter(typeof(DateOnlyJsonConverter))]{{/required}}{{^required}}[JsonConverter(typeof(DateOnlyNullableJsonConverter))]{{/required}}
-        {{/isDate}}
-        {{#isByteArray}}[JsonConverter(typeof(ByteArrayConverter))]
-        {{/isByteArray}}
         {{#deprecated}}
         /* Deprecated{{#vendorExtensions.x-deprecatedInVersion}} since {{#appName}}{{{.}}}{{/appName}} v{{#vendorExtensions.x-deprecatedInVersion}}{{.}}{{/vendorExtensions.x-deprecatedInVersion}}{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedMessage}}: {{{.}}}{{/vendorExtensions.x-deprecatedMessage}} */
         [Obsolete("{{#vendorExtensions.x-deprecatedInVersion}}Deprecated since {{#appName}}{{{.}}}{{/appName}} v{{#vendorExtensions.x-deprecatedInVersion}}{{.}}{{/vendorExtensions.x-deprecatedInVersion}}.{{/vendorExtensions.x-deprecatedInVersion}}")]
@@ -249,11 +244,6 @@
         /* <example>{{.}}</example> */
         {{/example}}
         [JsonPropertyName("{{baseName}}")]
-        {{#isDate}}
-        {{#required}}[JsonConverter(typeof(DateOnlyJsonConverter))]{{/required}}{{^required}}[JsonConverter(typeof(DateOnlyNullableJsonConverter))]{{/required}}
-        {{/isDate}}
-        {{#isByteArray}}[JsonConverter(typeof(ByteArrayConverter))]
-        {{/isByteArray}}
         {{#deprecated}}
         /* Deprecated{{#vendorExtensions.x-deprecatedInVersion}} since {{#appName}}{{{.}}}{{/appName}} v{{#vendorExtensions.x-deprecatedInVersion}}{{.}}{{/vendorExtensions.x-deprecatedInVersion}}{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedMessage}}: {{{.}}}{{/vendorExtensions.x-deprecatedMessage}} */
         [Obsolete("{{#vendorExtensions.x-deprecatedInVersion}}Deprecated since {{#appName}}{{{.}}}{{/appName}} v{{#vendorExtensions.x-deprecatedInVersion}}{{.}}{{/vendorExtensions.x-deprecatedInVersion}}.{{/vendorExtensions.x-deprecatedInVersion}}")]
