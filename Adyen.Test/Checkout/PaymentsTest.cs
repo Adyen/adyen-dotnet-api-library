@@ -1237,7 +1237,7 @@ namespace Adyen.Test.Checkout
         public void Given_CheckoutPaymentMethod_With_Unknown_Type_When_Deserialized_Then_Throws_JsonException()
         {
             // Arrange
-            string json = "{\"type\":\"unknown_payment_method\",\"someField\":\"someValue\"}";
+            string json = @"{""type"":""unknown_payment_method"",""someField"":""someValue""}";
 
             // Act & Assert
             Assert.ThrowsException<JsonException>(() =>
@@ -1250,7 +1250,7 @@ namespace Adyen.Test.Checkout
         public void Given_PaymentResponseAction_With_Unknown_Type_When_Deserialized_Then_Throws_JsonException()
         {
             // Arrange
-            string json = "{\"type\":\"unknown_action\",\"url\":\"https://example.com\"}";
+            string json = @"{""type"":""unknown_action"",""url"":""https://example.com""}";
 
             // Act & Assert
             Assert.ThrowsException<JsonException>(() =>
