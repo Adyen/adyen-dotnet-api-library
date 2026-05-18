@@ -1230,5 +1230,35 @@ namespace Adyen.Test.Checkout
         }
 
         #endregion
+
+        #region oneOf unknown type
+
+        [TestMethod]
+        public void Given_CheckoutPaymentMethod_With_Unknown_Type_When_Deserialized_Then_Throws_JsonException()
+        {
+            // Arrange
+            string json = "{\"type\":\"unknown_payment_method\",\"someField\":\"someValue\"}";
+
+            // Act & Assert
+            Assert.ThrowsException<JsonException>(() =>
+            {
+                JsonSerializer.Deserialize<CheckoutPaymentMethod>(json, _jsonSerializerOptionsProvider.Options);
+            });
+        }
+
+        [TestMethod]
+        public void Given_PaymentResponseAction_With_Unknown_Type_When_Deserialized_Then_Throws_JsonException()
+        {
+            // Arrange
+            string json = "{\"type\":\"unknown_action\",\"url\":\"https://example.com\"}";
+
+            // Act & Assert
+            Assert.ThrowsException<JsonException>(() =>
+            {
+                JsonSerializer.Deserialize<PaymentResponseAction>(json, _jsonSerializerOptionsProvider.Options);
+            });
+        }
+
+        #endregion
     }
 }
