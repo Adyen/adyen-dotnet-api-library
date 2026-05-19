@@ -322,7 +322,7 @@
 
             {{/vendorExtensions.x-duplicated-data-type}}
             {{#-last}}
-            throw new JsonException();
+            return null!;
             {{/-last}}
             {{/oneOf}}
             {{/composedSchemas}}

@@ -1498,7 +1498,7 @@ namespace Adyen.Checkout.Models
             if (zipDetails?.Type != null && ZipDetails.TypeEnum.FromStringOrDefault((string?)zipDetails.Type) != null)
                 return new CheckoutPaymentMethod(zipDetails);
 
-            throw new JsonException();
+            return null!;
         }
 
         /// <summary>

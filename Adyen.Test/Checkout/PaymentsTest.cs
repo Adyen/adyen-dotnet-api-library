@@ -1230,5 +1230,53 @@ namespace Adyen.Test.Checkout
         }
 
         #endregion
+
+        #region allOf unknown type
+
+        [TestMethod]
+        public void Given_ShopperIdPaymentMethod_With_Unknown_Type_When_Deserialized_Then_ReturnsBaseInstance()
+        {
+            // Arrange
+            string json = @"{""type"":""unknown_shopper_id_method"",""someField"":""someValue""}";
+
+            // Act
+            var result = JsonSerializer.Deserialize<ShopperIdPaymentMethod>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(typeof(ShopperIdPaymentMethod), result.GetType());
+        }
+
+        #endregion
+
+        #region oneOf unknown type
+
+        [TestMethod]
+        public void Given_CheckoutPaymentMethod_With_Unknown_Type_When_Deserialized_Then_ReturnsNull()
+        {
+            // Arrange
+            string json = @"{""type"":""unknown_payment_method"",""someField"":""someValue""}";
+
+            // Act
+            var result = JsonSerializer.Deserialize<CheckoutPaymentMethod>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void Given_PaymentResponseAction_With_Unknown_Type_When_Deserialized_Then_ReturnsNull()
+        {
+            // Arrange
+            string json = @"{""type"":""unknown_action"",""url"":""https://example.com""}";
+
+            // Act
+            var result = JsonSerializer.Deserialize<PaymentResponseAction>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNull(result);
+        }
+
+        #endregion
     }
 }

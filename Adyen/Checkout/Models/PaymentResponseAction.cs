@@ -322,7 +322,7 @@ namespace Adyen.Checkout.Models
             if (checkoutVoucherAction?.Type != null && CheckoutVoucherAction.TypeEnum.FromStringOrDefault((string?)checkoutVoucherAction.Type) != null)
                 return new PaymentResponseAction(checkoutVoucherAction);
 
-            throw new JsonException();
+            return null!;
         }
 
         /// <summary>
