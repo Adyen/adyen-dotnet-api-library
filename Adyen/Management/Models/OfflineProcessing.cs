@@ -59,20 +59,6 @@ namespace Adyen.Management.Models
         public int? ChipFloorLimit { get { return this._ChipFloorLimitOption; } set { this._ChipFloorLimitOption = new(value); } }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="OfflineSwipeLimits"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<MinorUnitsMonetaryValue>?> _OfflineSwipeLimitsOption { get; private set; }
-
-        /// <summary>
-        /// The maximum offline transaction amount for swiped cards, in the specified currency. Updating this field is forbidden.
-        /// </summary>
-        /// <value>The maximum offline transaction amount for swiped cards, in the specified currency. Updating this field is forbidden.</value>
-        [JsonPropertyName("offlineSwipeLimits")]
-        public List<MinorUnitsMonetaryValue>? OfflineSwipeLimits { get { return this._OfflineSwipeLimitsOption; } set { this._OfflineSwipeLimitsOption = new(value); } }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -81,7 +67,6 @@ namespace Adyen.Management.Models
             StringBuilder sb = new StringBuilder();
             sb.Append("class OfflineProcessing {\n");
             sb.Append("  ChipFloorLimit: ").Append(ChipFloorLimit).Append("\n");
-            sb.Append("  OfflineSwipeLimits: ").Append(OfflineSwipeLimits).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -110,7 +95,6 @@ namespace Adyen.Management.Models
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<int?> chipFloorLimit = default;
-            Option<List<MinorUnitsMonetaryValue>?> offlineSwipeLimits = default;
 
             while (utf8JsonReader.Read())
             {
@@ -130,9 +114,6 @@ namespace Adyen.Management.Models
                         case "chipFloorLimit":
                             chipFloorLimit = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
-                        case "offlineSwipeLimits":
-                            offlineSwipeLimits = new Option<List<MinorUnitsMonetaryValue>?>(JsonSerializer.Deserialize<List<MinorUnitsMonetaryValue>>(ref utf8JsonReader, jsonSerializerOptions)!);
-                            break;
                         default:
                             break;
                     }
@@ -142,8 +123,6 @@ namespace Adyen.Management.Models
             var offlineProcessing = new OfflineProcessing();
             if (chipFloorLimit.IsSet)
                 offlineProcessing.ChipFloorLimit = chipFloorLimit.Value;
-            if (offlineSwipeLimits.IsSet)
-                offlineProcessing.OfflineSwipeLimits = offlineSwipeLimits.Value;
             return offlineProcessing;
         }
 
@@ -176,12 +155,6 @@ namespace Adyen.Management.Models
             if (offlineProcessing._ChipFloorLimitOption.IsSet)
                 if (offlineProcessing._ChipFloorLimitOption.Value != null)
                     writer.WriteNumber("chipFloorLimit", offlineProcessing._ChipFloorLimitOption.Value!.Value);
-
-            if (offlineProcessing._OfflineSwipeLimitsOption.IsSet)
-            {
-                writer.WritePropertyName("offlineSwipeLimits");
-                JsonSerializer.Serialize(writer, offlineProcessing.OfflineSwipeLimits, jsonSerializerOptions);
-            }
         }
     }
 }
