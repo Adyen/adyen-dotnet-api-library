@@ -616,7 +616,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == CapabilitiesEnum.WithdrawFromAtmInRestrictedCountriesConsumer)
                     return "withdrawFromAtmInRestrictedCountriesConsumer";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -766,7 +766,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.Rejected)
                     return "rejected";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -957,7 +957,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<VerificationError.TypeEnum?>(VerificationError.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<VerificationError.TypeEnum?>(VerificationError.TypeEnum.FromStringOrDefault(typeRawValue) ?? (VerificationError.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

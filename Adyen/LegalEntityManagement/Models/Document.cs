@@ -302,7 +302,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.ProofOfDirector)
                     return "proofOfDirector";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -596,7 +596,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<Document.TypeEnum?>(Document.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<Document.TypeEnum?>(Document.TypeEnum.FromStringOrDefault(typeRawValue) ?? (Document.TypeEnum)typeRawValue);
                             break;
                         case "attachment":
                             attachment = new Option<Attachment?>(JsonSerializer.Deserialize<Attachment>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -645,7 +645,7 @@ namespace Adyen.LegalEntityManagement.Models
 
             var document = new Document();
             document.Description = description.Value!;
-            document.Type = type.Value!.Value;
+            document.Type = type.Value!;
             if (attachment.IsSet)
                 document.Attachment = attachment.Value;
             if (attachments.IsSet)

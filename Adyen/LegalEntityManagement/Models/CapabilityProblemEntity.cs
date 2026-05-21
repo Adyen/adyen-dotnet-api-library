@@ -157,7 +157,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.Product)
                     return "product";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -307,7 +307,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CapabilityProblemEntity.TypeEnum?>(CapabilityProblemEntity.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CapabilityProblemEntity.TypeEnum?>(CapabilityProblemEntity.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CapabilityProblemEntity.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

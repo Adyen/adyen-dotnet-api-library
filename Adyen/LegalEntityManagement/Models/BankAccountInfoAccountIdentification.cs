@@ -421,49 +421,49 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (aULocalAccountIdentification?.Type != null)
+            if (aULocalAccountIdentification?.Type != null && AULocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)aULocalAccountIdentification.Type) != null)
                 return new BankAccountInfoAccountIdentification(aULocalAccountIdentification);
 
-            if (cALocalAccountIdentification?.Type != null)
+            if (cALocalAccountIdentification?.Type != null && CALocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)cALocalAccountIdentification.Type) != null)
                 return new BankAccountInfoAccountIdentification(cALocalAccountIdentification);
 
-            if (cZLocalAccountIdentification?.Type != null)
+            if (cZLocalAccountIdentification?.Type != null && CZLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)cZLocalAccountIdentification.Type) != null)
                 return new BankAccountInfoAccountIdentification(cZLocalAccountIdentification);
 
-            if (dKLocalAccountIdentification?.Type != null)
+            if (dKLocalAccountIdentification?.Type != null && DKLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)dKLocalAccountIdentification.Type) != null)
                 return new BankAccountInfoAccountIdentification(dKLocalAccountIdentification);
 
-            if (hKLocalAccountIdentification?.Type != null)
+            if (hKLocalAccountIdentification?.Type != null && HKLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)hKLocalAccountIdentification.Type) != null)
                 return new BankAccountInfoAccountIdentification(hKLocalAccountIdentification);
 
-            if (hULocalAccountIdentification?.Type != null)
+            if (hULocalAccountIdentification?.Type != null && HULocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)hULocalAccountIdentification.Type) != null)
                 return new BankAccountInfoAccountIdentification(hULocalAccountIdentification);
 
-            if (ibanAccountIdentification?.Type != null)
+            if (ibanAccountIdentification?.Type != null && IbanAccountIdentification.TypeEnum.FromStringOrDefault((string?)ibanAccountIdentification.Type) != null)
                 return new BankAccountInfoAccountIdentification(ibanAccountIdentification);
 
-            if (nOLocalAccountIdentification?.Type != null)
+            if (nOLocalAccountIdentification?.Type != null && NOLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)nOLocalAccountIdentification.Type) != null)
                 return new BankAccountInfoAccountIdentification(nOLocalAccountIdentification);
 
-            if (nZLocalAccountIdentification?.Type != null)
+            if (nZLocalAccountIdentification?.Type != null && NZLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)nZLocalAccountIdentification.Type) != null)
                 return new BankAccountInfoAccountIdentification(nZLocalAccountIdentification);
 
-            if (numberAndBicAccountIdentification?.Type != null)
+            if (numberAndBicAccountIdentification?.Type != null && NumberAndBicAccountIdentification.TypeEnum.FromStringOrDefault((string?)numberAndBicAccountIdentification.Type) != null)
                 return new BankAccountInfoAccountIdentification(numberAndBicAccountIdentification);
 
-            if (pLLocalAccountIdentification?.Type != null)
+            if (pLLocalAccountIdentification?.Type != null && PLLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)pLLocalAccountIdentification.Type) != null)
                 return new BankAccountInfoAccountIdentification(pLLocalAccountIdentification);
 
-            if (sELocalAccountIdentification?.Type != null)
+            if (sELocalAccountIdentification?.Type != null && SELocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)sELocalAccountIdentification.Type) != null)
                 return new BankAccountInfoAccountIdentification(sELocalAccountIdentification);
 
-            if (sGLocalAccountIdentification?.Type != null)
+            if (sGLocalAccountIdentification?.Type != null && SGLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)sGLocalAccountIdentification.Type) != null)
                 return new BankAccountInfoAccountIdentification(sGLocalAccountIdentification);
 
-            if (uKLocalAccountIdentification?.Type != null)
+            if (uKLocalAccountIdentification?.Type != null && UKLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)uKLocalAccountIdentification.Type) != null)
                 return new BankAccountInfoAccountIdentification(uKLocalAccountIdentification);
 
-            if (uSLocalAccountIdentification?.Type != null)
+            if (uSLocalAccountIdentification?.Type != null && USLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)uSLocalAccountIdentification.Type) != null)
                 return new BankAccountInfoAccountIdentification(uSLocalAccountIdentification);
 
             throw new JsonException();

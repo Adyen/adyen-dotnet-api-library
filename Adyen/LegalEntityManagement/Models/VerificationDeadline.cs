@@ -616,7 +616,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == CapabilitiesEnum.WithdrawFromAtmInRestrictedCountriesConsumer)
                     return "withdrawFromAtmInRestrictedCountriesConsumer";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>

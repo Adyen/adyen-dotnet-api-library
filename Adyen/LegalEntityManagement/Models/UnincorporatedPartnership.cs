@@ -374,7 +374,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.Snc)
                     return "snc";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -512,7 +512,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == VatAbsenceReasonEnum.BelowTaxThreshold)
                     return "belowTaxThreshold";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -793,11 +793,11 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<UnincorporatedPartnership.TypeEnum?>(UnincorporatedPartnership.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<UnincorporatedPartnership.TypeEnum?>(UnincorporatedPartnership.TypeEnum.FromStringOrDefault(typeRawValue) ?? (UnincorporatedPartnership.TypeEnum)typeRawValue);
                             break;
                         case "vatAbsenceReason":
                             string? vatAbsenceReasonRawValue = utf8JsonReader.GetString();
-                            vatAbsenceReason = new Option<UnincorporatedPartnership.VatAbsenceReasonEnum?>(UnincorporatedPartnership.VatAbsenceReasonEnum.FromStringOrDefault(vatAbsenceReasonRawValue));
+                            vatAbsenceReason = new Option<UnincorporatedPartnership.VatAbsenceReasonEnum?>(UnincorporatedPartnership.VatAbsenceReasonEnum.FromStringOrDefault(vatAbsenceReasonRawValue) ?? (UnincorporatedPartnership.VatAbsenceReasonEnum)vatAbsenceReasonRawValue);
                             break;
                         case "vatNumber":
                             vatNumber = new Option<string?>(utf8JsonReader.GetString()!);

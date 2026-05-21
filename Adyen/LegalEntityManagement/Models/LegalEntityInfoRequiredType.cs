@@ -167,7 +167,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.UnincorporatedPartnership)
                     return "unincorporatedPartnership";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -395,7 +395,7 @@ namespace Adyen.LegalEntityManagement.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<LegalEntityInfoRequiredType.TypeEnum?>(LegalEntityInfoRequiredType.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<LegalEntityInfoRequiredType.TypeEnum?>(LegalEntityInfoRequiredType.TypeEnum.FromStringOrDefault(typeRawValue) ?? (LegalEntityInfoRequiredType.TypeEnum)typeRawValue);
                             break;
                         case "capabilities":
                             capabilities = new Option<Dictionary<string, LegalEntityCapability>?>(JsonSerializer.Deserialize<Dictionary<string, LegalEntityCapability>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -434,7 +434,7 @@ namespace Adyen.LegalEntityManagement.Models
                 throw new ArgumentException("Property is required for class LegalEntityInfoRequiredType.", nameof(type));
 
             var legalEntityInfoRequiredType = new LegalEntityInfoRequiredType();
-            legalEntityInfoRequiredType.Type = type.Value!.Value;
+            legalEntityInfoRequiredType.Type = type.Value!;
             if (capabilities.IsSet)
                 legalEntityInfoRequiredType.Capabilities = capabilities.Value;
             if (entityAssociations.IsSet)

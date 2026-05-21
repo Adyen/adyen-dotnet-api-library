@@ -293,7 +293,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.UnlistedPublicUnitTrust)
                     return "unlistedPublicUnitTrust";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -423,7 +423,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == VatAbsenceReasonEnum.BelowTaxThreshold)
                     return "belowTaxThreshold";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -699,7 +699,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<Trust.TypeEnum?>(Trust.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<Trust.TypeEnum?>(Trust.TypeEnum.FromStringOrDefault(typeRawValue) ?? (Trust.TypeEnum)typeRawValue);
                             break;
                         case "dateOfIncorporation":
                             dateOfIncorporation = new Option<string?>(utf8JsonReader.GetString()!);
@@ -727,7 +727,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "vatAbsenceReason":
                             string? vatAbsenceReasonRawValue = utf8JsonReader.GetString();
-                            vatAbsenceReason = new Option<Trust.VatAbsenceReasonEnum?>(Trust.VatAbsenceReasonEnum.FromStringOrDefault(vatAbsenceReasonRawValue));
+                            vatAbsenceReason = new Option<Trust.VatAbsenceReasonEnum?>(Trust.VatAbsenceReasonEnum.FromStringOrDefault(vatAbsenceReasonRawValue) ?? (Trust.VatAbsenceReasonEnum)vatAbsenceReasonRawValue);
                             break;
                         case "vatNumber":
                             vatNumber = new Option<string?>(utf8JsonReader.GetString()!);
@@ -754,7 +754,7 @@ namespace Adyen.LegalEntityManagement.Models
             trust.CountryOfGoverningLaw = countryOfGoverningLaw.Value!;
             trust.Name = name.Value!;
             trust.RegisteredAddress = registeredAddress.Value!;
-            trust.Type = type.Value!.Value;
+            trust.Type = type.Value!;
             if (dateOfIncorporation.IsSet)
                 trust.DateOfIncorporation = dateOfIncorporation.Value;
             if (description.IsSet)

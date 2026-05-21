@@ -148,7 +148,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.UNDEFINED)
                     return "UNDEFINED";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -279,7 +279,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<DocumentPage.TypeEnum?>(DocumentPage.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<DocumentPage.TypeEnum?>(DocumentPage.TypeEnum.FromStringOrDefault(typeRawValue) ?? (DocumentPage.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

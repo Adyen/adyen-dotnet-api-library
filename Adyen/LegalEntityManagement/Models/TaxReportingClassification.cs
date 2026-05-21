@@ -176,7 +176,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == BusinessTypeEnum.FinancialInstitution)
                     return "financialInstitution";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -340,7 +340,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == MainSourceOfIncomeEnum.Other)
                     return "other";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -495,7 +495,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.NonFinancialPassive)
                     return "nonFinancialPassive";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -611,18 +611,18 @@ namespace Adyen.LegalEntityManagement.Models
                     {
                         case "businessType":
                             string? businessTypeRawValue = utf8JsonReader.GetString();
-                            businessType = new Option<TaxReportingClassification.BusinessTypeEnum?>(TaxReportingClassification.BusinessTypeEnum.FromStringOrDefault(businessTypeRawValue));
+                            businessType = new Option<TaxReportingClassification.BusinessTypeEnum?>(TaxReportingClassification.BusinessTypeEnum.FromStringOrDefault(businessTypeRawValue) ?? (TaxReportingClassification.BusinessTypeEnum)businessTypeRawValue);
                             break;
                         case "financialInstitutionNumber":
                             financialInstitutionNumber = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "mainSourceOfIncome":
                             string? mainSourceOfIncomeRawValue = utf8JsonReader.GetString();
-                            mainSourceOfIncome = new Option<TaxReportingClassification.MainSourceOfIncomeEnum?>(TaxReportingClassification.MainSourceOfIncomeEnum.FromStringOrDefault(mainSourceOfIncomeRawValue));
+                            mainSourceOfIncome = new Option<TaxReportingClassification.MainSourceOfIncomeEnum?>(TaxReportingClassification.MainSourceOfIncomeEnum.FromStringOrDefault(mainSourceOfIncomeRawValue) ?? (TaxReportingClassification.MainSourceOfIncomeEnum)mainSourceOfIncomeRawValue);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<TaxReportingClassification.TypeEnum?>(TaxReportingClassification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<TaxReportingClassification.TypeEnum?>(TaxReportingClassification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TaxReportingClassification.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

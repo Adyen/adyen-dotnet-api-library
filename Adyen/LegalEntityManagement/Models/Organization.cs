@@ -275,7 +275,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == InstitutionalSectorEnum.NonProfitInstitutionsServingHouseholds)
                     return "nonProfitInstitutionsServingHouseholds";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -430,7 +430,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == StatusOfLegalProceedingEnum.OtherLegalMeasures)
                     return "otherLegalMeasures";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -603,7 +603,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.PrivateCompany)
                     return "privateCompany";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -740,7 +740,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == VatAbsenceReasonEnum.BelowTaxThreshold)
                     return "belowTaxThreshold";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1244,7 +1244,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "institutionalSector":
                             string? institutionalSectorRawValue = utf8JsonReader.GetString();
-                            institutionalSector = new Option<Organization.InstitutionalSectorEnum?>(Organization.InstitutionalSectorEnum.FromStringOrDefault(institutionalSectorRawValue));
+                            institutionalSector = new Option<Organization.InstitutionalSectorEnum?>(Organization.InstitutionalSectorEnum.FromStringOrDefault(institutionalSectorRawValue) ?? (Organization.InstitutionalSectorEnum)institutionalSectorRawValue);
                             break;
                         case "legalForm":
                             legalForm = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1263,7 +1263,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "statusOfLegalProceeding":
                             string? statusOfLegalProceedingRawValue = utf8JsonReader.GetString();
-                            statusOfLegalProceeding = new Option<Organization.StatusOfLegalProceedingEnum?>(Organization.StatusOfLegalProceedingEnum.FromStringOrDefault(statusOfLegalProceedingRawValue));
+                            statusOfLegalProceeding = new Option<Organization.StatusOfLegalProceedingEnum?>(Organization.StatusOfLegalProceedingEnum.FromStringOrDefault(statusOfLegalProceedingRawValue) ?? (Organization.StatusOfLegalProceedingEnum)statusOfLegalProceedingRawValue);
                             break;
                         case "stockData":
                             stockData = new Option<StockData?>(JsonSerializer.Deserialize<StockData>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -1279,11 +1279,11 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<Organization.TypeEnum?>(Organization.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<Organization.TypeEnum?>(Organization.TypeEnum.FromStringOrDefault(typeRawValue) ?? (Organization.TypeEnum)typeRawValue);
                             break;
                         case "vatAbsenceReason":
                             string? vatAbsenceReasonRawValue = utf8JsonReader.GetString();
-                            vatAbsenceReason = new Option<Organization.VatAbsenceReasonEnum?>(Organization.VatAbsenceReasonEnum.FromStringOrDefault(vatAbsenceReasonRawValue));
+                            vatAbsenceReason = new Option<Organization.VatAbsenceReasonEnum?>(Organization.VatAbsenceReasonEnum.FromStringOrDefault(vatAbsenceReasonRawValue) ?? (Organization.VatAbsenceReasonEnum)vatAbsenceReasonRawValue);
                             break;
                         case "vatNumber":
                             vatNumber = new Option<string?>(utf8JsonReader.GetString()!);

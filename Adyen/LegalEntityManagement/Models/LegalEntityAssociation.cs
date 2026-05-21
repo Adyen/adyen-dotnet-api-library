@@ -284,7 +284,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.UnincorporatedPartnership)
                     return "unincorporatedPartnership";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -500,7 +500,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<LegalEntityAssociation.TypeEnum?>(LegalEntityAssociation.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<LegalEntityAssociation.TypeEnum?>(LegalEntityAssociation.TypeEnum.FromStringOrDefault(typeRawValue) ?? (LegalEntityAssociation.TypeEnum)typeRawValue);
                             break;
                         case "associatorId":
                             associatorId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -537,7 +537,7 @@ namespace Adyen.LegalEntityManagement.Models
 
             var legalEntityAssociation = new LegalEntityAssociation();
             legalEntityAssociation.LegalEntityId = legalEntityId.Value!;
-            legalEntityAssociation.Type = type.Value!.Value;
+            legalEntityAssociation.Type = type.Value!;
             if (associatorId.IsSet)
                 legalEntityAssociation.AssociatorId = associatorId.Value;
             if (entityType.IsSet)

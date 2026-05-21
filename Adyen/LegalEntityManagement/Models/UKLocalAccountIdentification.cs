@@ -131,7 +131,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.UkLocal)
                     return "ukLocal";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -244,7 +244,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<UKLocalAccountIdentification.TypeEnum?>(UKLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<UKLocalAccountIdentification.TypeEnum?>(UKLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (UKLocalAccountIdentification.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -264,7 +264,7 @@ namespace Adyen.LegalEntityManagement.Models
             var uKLocalAccountIdentification = new UKLocalAccountIdentification();
             uKLocalAccountIdentification.AccountNumber = accountNumber.Value!;
             uKLocalAccountIdentification.SortCode = sortCode.Value!;
-            uKLocalAccountIdentification.Type = type.Value!.Value;
+            uKLocalAccountIdentification.Type = type.Value!;
             return uKLocalAccountIdentification;
         }
 

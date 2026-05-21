@@ -140,7 +140,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == VatAbsenceReasonEnum.BelowTaxThreshold)
                     return "belowTaxThreshold";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -438,7 +438,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "vatAbsenceReason":
                             string? vatAbsenceReasonRawValue = utf8JsonReader.GetString();
-                            vatAbsenceReason = new Option<SoleProprietorship.VatAbsenceReasonEnum?>(SoleProprietorship.VatAbsenceReasonEnum.FromStringOrDefault(vatAbsenceReasonRawValue));
+                            vatAbsenceReason = new Option<SoleProprietorship.VatAbsenceReasonEnum?>(SoleProprietorship.VatAbsenceReasonEnum.FromStringOrDefault(vatAbsenceReasonRawValue) ?? (SoleProprietorship.VatAbsenceReasonEnum)vatAbsenceReasonRawValue);
                             break;
                         case "vatNumber":
                             vatNumber = new Option<string?>(utf8JsonReader.GetString()!);

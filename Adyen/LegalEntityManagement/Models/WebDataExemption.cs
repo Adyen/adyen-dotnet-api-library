@@ -140,7 +140,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == ReasonEnum.NotCollectedDuringOnboarding)
                     return "notCollectedDuringOnboarding";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -236,7 +236,7 @@ namespace Adyen.LegalEntityManagement.Models
                     {
                         case "reason":
                             string? reasonRawValue = utf8JsonReader.GetString();
-                            reason = new Option<WebDataExemption.ReasonEnum?>(WebDataExemption.ReasonEnum.FromStringOrDefault(reasonRawValue));
+                            reason = new Option<WebDataExemption.ReasonEnum?>(WebDataExemption.ReasonEnum.FromStringOrDefault(reasonRawValue) ?? (WebDataExemption.ReasonEnum)reasonRawValue);
                             break;
                         default:
                             break;
