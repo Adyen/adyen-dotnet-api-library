@@ -221,7 +221,7 @@ namespace Adyen.Payment.Models
                 if (value == ResponseEnum.Error)
                     return "Error";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -338,7 +338,7 @@ namespace Adyen.Payment.Models
                             break;
                         case "response":
                             string? responseRawValue = utf8JsonReader.GetString();
-                            response = new Option<ModificationResult.ResponseEnum?>(ModificationResult.ResponseEnum.FromStringOrDefault(responseRawValue));
+                            response = new Option<ModificationResult.ResponseEnum?>(ModificationResult.ResponseEnum.FromStringOrDefault(responseRawValue) ?? (ModificationResult.ResponseEnum)responseRawValue);
                             break;
                         case "additionalData":
                             additionalData = new Option<Dictionary<string, string>?>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -357,7 +357,7 @@ namespace Adyen.Payment.Models
 
             var modificationResult = new ModificationResult();
             modificationResult.PspReference = pspReference.Value!;
-            modificationResult.Response = response.Value!.Value;
+            modificationResult.Response = response.Value!;
             if (additionalData.IsSet)
                 modificationResult.AdditionalData = additionalData.Value;
             return modificationResult;

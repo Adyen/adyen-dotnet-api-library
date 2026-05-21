@@ -167,7 +167,7 @@ namespace Adyen.Payment.Models
                 if (value == ChallengeWindowSizeEnum._05)
                     return "05";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -346,7 +346,7 @@ namespace Adyen.Payment.Models
                             break;
                         case "challengeWindowSize":
                             string? challengeWindowSizeRawValue = utf8JsonReader.GetString();
-                            challengeWindowSize = new Option<AdditionalData3DSecure.ChallengeWindowSizeEnum?>(AdditionalData3DSecure.ChallengeWindowSizeEnum.FromStringOrDefault(challengeWindowSizeRawValue));
+                            challengeWindowSize = new Option<AdditionalData3DSecure.ChallengeWindowSizeEnum?>(AdditionalData3DSecure.ChallengeWindowSizeEnum.FromStringOrDefault(challengeWindowSizeRawValue) ?? (AdditionalData3DSecure.ChallengeWindowSizeEnum)challengeWindowSizeRawValue);
                             break;
                         case "executeThreeD":
                             executeThreeD = new Option<string?>(utf8JsonReader.GetString()!);

@@ -176,7 +176,7 @@ namespace Adyen.Payment.Models
                 if (value == ThreeDSReqAuthMethodEnum._06)
                     return "06";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -307,7 +307,7 @@ namespace Adyen.Payment.Models
                             break;
                         case "threeDSReqAuthMethod":
                             string? threeDSReqAuthMethodRawValue = utf8JsonReader.GetString();
-                            threeDSReqAuthMethod = new Option<ThreeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethodEnum?>(ThreeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethodEnum.FromStringOrDefault(threeDSReqAuthMethodRawValue));
+                            threeDSReqAuthMethod = new Option<ThreeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethodEnum?>(ThreeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethodEnum.FromStringOrDefault(threeDSReqAuthMethodRawValue) ?? (ThreeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethodEnum)threeDSReqAuthMethodRawValue);
                             break;
                         case "threeDSReqAuthTimestamp":
                             threeDSReqAuthTimestamp = new Option<string?>(utf8JsonReader.GetString()!);

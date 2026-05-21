@@ -167,7 +167,7 @@ namespace Adyen.Payment.Models
                 if (value == ChAccAgeIndEnum._05)
                     return "05";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -322,7 +322,7 @@ namespace Adyen.Payment.Models
                 if (value == ChAccChangeIndEnum._04)
                     return "04";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -486,7 +486,7 @@ namespace Adyen.Payment.Models
                 if (value == ChAccPwChangeIndEnum._05)
                     return "05";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -650,7 +650,7 @@ namespace Adyen.Payment.Models
                 if (value == PaymentAccIndEnum._05)
                     return "05";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -805,7 +805,7 @@ namespace Adyen.Payment.Models
                 if (value == ShipAddressUsageIndEnum._04)
                     return "04";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -942,7 +942,7 @@ namespace Adyen.Payment.Models
                 if (value == ShipNameIndicatorEnum._02)
                     return "02";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1079,7 +1079,7 @@ namespace Adyen.Payment.Models
                 if (value == SuspiciousAccActivityEnum._02)
                     return "02";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1331,21 +1331,21 @@ namespace Adyen.Payment.Models
                     {
                         case "chAccAgeInd":
                             string? chAccAgeIndRawValue = utf8JsonReader.GetString();
-                            chAccAgeInd = new Option<AcctInfo.ChAccAgeIndEnum?>(AcctInfo.ChAccAgeIndEnum.FromStringOrDefault(chAccAgeIndRawValue));
+                            chAccAgeInd = new Option<AcctInfo.ChAccAgeIndEnum?>(AcctInfo.ChAccAgeIndEnum.FromStringOrDefault(chAccAgeIndRawValue) ?? (AcctInfo.ChAccAgeIndEnum)chAccAgeIndRawValue);
                             break;
                         case "chAccChange":
                             chAccChange = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "chAccChangeInd":
                             string? chAccChangeIndRawValue = utf8JsonReader.GetString();
-                            chAccChangeInd = new Option<AcctInfo.ChAccChangeIndEnum?>(AcctInfo.ChAccChangeIndEnum.FromStringOrDefault(chAccChangeIndRawValue));
+                            chAccChangeInd = new Option<AcctInfo.ChAccChangeIndEnum?>(AcctInfo.ChAccChangeIndEnum.FromStringOrDefault(chAccChangeIndRawValue) ?? (AcctInfo.ChAccChangeIndEnum)chAccChangeIndRawValue);
                             break;
                         case "chAccPwChange":
                             chAccPwChange = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "chAccPwChangeInd":
                             string? chAccPwChangeIndRawValue = utf8JsonReader.GetString();
-                            chAccPwChangeInd = new Option<AcctInfo.ChAccPwChangeIndEnum?>(AcctInfo.ChAccPwChangeIndEnum.FromStringOrDefault(chAccPwChangeIndRawValue));
+                            chAccPwChangeInd = new Option<AcctInfo.ChAccPwChangeIndEnum?>(AcctInfo.ChAccPwChangeIndEnum.FromStringOrDefault(chAccPwChangeIndRawValue) ?? (AcctInfo.ChAccPwChangeIndEnum)chAccPwChangeIndRawValue);
                             break;
                         case "chAccString":
                             chAccString = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1358,7 +1358,7 @@ namespace Adyen.Payment.Models
                             break;
                         case "paymentAccInd":
                             string? paymentAccIndRawValue = utf8JsonReader.GetString();
-                            paymentAccInd = new Option<AcctInfo.PaymentAccIndEnum?>(AcctInfo.PaymentAccIndEnum.FromStringOrDefault(paymentAccIndRawValue));
+                            paymentAccInd = new Option<AcctInfo.PaymentAccIndEnum?>(AcctInfo.PaymentAccIndEnum.FromStringOrDefault(paymentAccIndRawValue) ?? (AcctInfo.PaymentAccIndEnum)paymentAccIndRawValue);
                             break;
                         case "provisionAttemptsDay":
                             provisionAttemptsDay = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1368,15 +1368,15 @@ namespace Adyen.Payment.Models
                             break;
                         case "shipAddressUsageInd":
                             string? shipAddressUsageIndRawValue = utf8JsonReader.GetString();
-                            shipAddressUsageInd = new Option<AcctInfo.ShipAddressUsageIndEnum?>(AcctInfo.ShipAddressUsageIndEnum.FromStringOrDefault(shipAddressUsageIndRawValue));
+                            shipAddressUsageInd = new Option<AcctInfo.ShipAddressUsageIndEnum?>(AcctInfo.ShipAddressUsageIndEnum.FromStringOrDefault(shipAddressUsageIndRawValue) ?? (AcctInfo.ShipAddressUsageIndEnum)shipAddressUsageIndRawValue);
                             break;
                         case "shipNameIndicator":
                             string? shipNameIndicatorRawValue = utf8JsonReader.GetString();
-                            shipNameIndicator = new Option<AcctInfo.ShipNameIndicatorEnum?>(AcctInfo.ShipNameIndicatorEnum.FromStringOrDefault(shipNameIndicatorRawValue));
+                            shipNameIndicator = new Option<AcctInfo.ShipNameIndicatorEnum?>(AcctInfo.ShipNameIndicatorEnum.FromStringOrDefault(shipNameIndicatorRawValue) ?? (AcctInfo.ShipNameIndicatorEnum)shipNameIndicatorRawValue);
                             break;
                         case "suspiciousAccActivity":
                             string? suspiciousAccActivityRawValue = utf8JsonReader.GetString();
-                            suspiciousAccActivity = new Option<AcctInfo.SuspiciousAccActivityEnum?>(AcctInfo.SuspiciousAccActivityEnum.FromStringOrDefault(suspiciousAccActivityRawValue));
+                            suspiciousAccActivity = new Option<AcctInfo.SuspiciousAccActivityEnum?>(AcctInfo.SuspiciousAccActivityEnum.FromStringOrDefault(suspiciousAccActivityRawValue) ?? (AcctInfo.SuspiciousAccActivityEnum)suspiciousAccActivityRawValue);
                             break;
                         case "txnActivityDay":
                             txnActivityDay = new Option<string?>(utf8JsonReader.GetString()!);

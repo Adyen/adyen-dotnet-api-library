@@ -149,7 +149,7 @@ namespace Adyen.Payment.Models
                 if (value == RecurringProcessingModelEnum.UnscheduledCardOnFile)
                     return "UnscheduledCardOnFile";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -304,7 +304,7 @@ namespace Adyen.Payment.Models
                 if (value == ShopperInteractionEnum.POS)
                     return "POS";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1141,7 +1141,7 @@ namespace Adyen.Payment.Models
                             break;
                         case "recurringProcessingModel":
                             string? recurringProcessingModelRawValue = utf8JsonReader.GetString();
-                            recurringProcessingModel = new Option<PaymentRequest3d.RecurringProcessingModelEnum?>(PaymentRequest3d.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue));
+                            recurringProcessingModel = new Option<PaymentRequest3d.RecurringProcessingModelEnum?>(PaymentRequest3d.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue) ?? (PaymentRequest3d.RecurringProcessingModelEnum)recurringProcessingModelRawValue);
                             break;
                         case "reference":
                             reference = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1163,7 +1163,7 @@ namespace Adyen.Payment.Models
                             break;
                         case "shopperInteraction":
                             string? shopperInteractionRawValue = utf8JsonReader.GetString();
-                            shopperInteraction = new Option<PaymentRequest3d.ShopperInteractionEnum?>(PaymentRequest3d.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue));
+                            shopperInteraction = new Option<PaymentRequest3d.ShopperInteractionEnum?>(PaymentRequest3d.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue) ?? (PaymentRequest3d.ShopperInteractionEnum)shopperInteractionRawValue);
                             break;
                         case "shopperLocale":
                             shopperLocale = new Option<string?>(utf8JsonReader.GetString()!);

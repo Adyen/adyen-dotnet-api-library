@@ -266,7 +266,7 @@ namespace Adyen.Payment.Models
                 if (value == TypeEnum.VAT)
                     return "VAT";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -418,7 +418,7 @@ namespace Adyen.Payment.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<Split.TypeEnum?>(Split.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<Split.TypeEnum?>(Split.TypeEnum.FromStringOrDefault(typeRawValue) ?? (Split.TypeEnum)typeRawValue);
                             break;
                         case "account":
                             account = new Option<string?>(utf8JsonReader.GetString()!);
@@ -442,7 +442,7 @@ namespace Adyen.Payment.Models
                 throw new ArgumentException("Property is required for class Split.", nameof(type));
 
             var split = new Split();
-            split.Type = type.Value!.Value;
+            split.Type = type.Value!;
             if (account.IsSet)
                 split.Account = account.Value;
             if (amount.IsSet)

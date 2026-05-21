@@ -194,7 +194,7 @@ namespace Adyen.Payment.Models
                 if (value == FrequencyEnum.Yearly)
                     return "yearly";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -324,7 +324,7 @@ namespace Adyen.Payment.Models
                 if (value == AmountRuleEnum.Exact)
                     return "exact";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -470,7 +470,7 @@ namespace Adyen.Payment.Models
                 if (value == BillingAttemptsRuleEnum.After)
                     return "after";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -658,15 +658,15 @@ namespace Adyen.Payment.Models
                             break;
                         case "frequency":
                             string? frequencyRawValue = utf8JsonReader.GetString();
-                            frequency = new Option<Mandate.FrequencyEnum?>(Mandate.FrequencyEnum.FromStringOrDefault(frequencyRawValue));
+                            frequency = new Option<Mandate.FrequencyEnum?>(Mandate.FrequencyEnum.FromStringOrDefault(frequencyRawValue) ?? (Mandate.FrequencyEnum)frequencyRawValue);
                             break;
                         case "amountRule":
                             string? amountRuleRawValue = utf8JsonReader.GetString();
-                            amountRule = new Option<Mandate.AmountRuleEnum?>(Mandate.AmountRuleEnum.FromStringOrDefault(amountRuleRawValue));
+                            amountRule = new Option<Mandate.AmountRuleEnum?>(Mandate.AmountRuleEnum.FromStringOrDefault(amountRuleRawValue) ?? (Mandate.AmountRuleEnum)amountRuleRawValue);
                             break;
                         case "billingAttemptsRule":
                             string? billingAttemptsRuleRawValue = utf8JsonReader.GetString();
-                            billingAttemptsRule = new Option<Mandate.BillingAttemptsRuleEnum?>(Mandate.BillingAttemptsRuleEnum.FromStringOrDefault(billingAttemptsRuleRawValue));
+                            billingAttemptsRule = new Option<Mandate.BillingAttemptsRuleEnum?>(Mandate.BillingAttemptsRuleEnum.FromStringOrDefault(billingAttemptsRuleRawValue) ?? (Mandate.BillingAttemptsRuleEnum)billingAttemptsRuleRawValue);
                             break;
                         case "billingDay":
                             billingDay = new Option<string?>(utf8JsonReader.GetString()!);
@@ -698,7 +698,7 @@ namespace Adyen.Payment.Models
             var mandate = new Mandate();
             mandate.Amount = amount.Value!;
             mandate.EndsAt = endsAt.Value!;
-            mandate.Frequency = frequency.Value!.Value;
+            mandate.Frequency = frequency.Value!;
             if (amountRule.IsSet)
                 mandate.AmountRule = amountRule.Value;
             if (billingAttemptsRule.IsSet)

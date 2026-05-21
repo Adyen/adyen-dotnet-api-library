@@ -248,7 +248,7 @@ namespace Adyen.Payment.Models
                 if (value == ResultCodeEnum.Success)
                     return "Success";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -532,7 +532,7 @@ namespace Adyen.Payment.Models
                             break;
                         case "resultCode":
                             string? resultCodeRawValue = utf8JsonReader.GetString();
-                            resultCode = new Option<PaymentResult.ResultCodeEnum?>(PaymentResult.ResultCodeEnum.FromStringOrDefault(resultCodeRawValue));
+                            resultCode = new Option<PaymentResult.ResultCodeEnum?>(PaymentResult.ResultCodeEnum.FromStringOrDefault(resultCodeRawValue) ?? (PaymentResult.ResultCodeEnum)resultCodeRawValue);
                             break;
                         default:
                             break;

@@ -140,7 +140,7 @@ namespace Adyen.Payment.Models
                 if (value == SchemeEnum.Visa)
                     return "visa";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -328,7 +328,7 @@ namespace Adyen.Payment.Models
                             break;
                         case "scheme":
                             string? schemeRawValue = utf8JsonReader.GetString();
-                            scheme = new Option<SecureRemoteCommerceCheckoutData.SchemeEnum?>(SecureRemoteCommerceCheckoutData.SchemeEnum.FromStringOrDefault(schemeRawValue));
+                            scheme = new Option<SecureRemoteCommerceCheckoutData.SchemeEnum?>(SecureRemoteCommerceCheckoutData.SchemeEnum.FromStringOrDefault(schemeRawValue) ?? (SecureRemoteCommerceCheckoutData.SchemeEnum)schemeRawValue);
                             break;
                         case "tokenReference":
                             tokenReference = new Option<string?>(utf8JsonReader.GetString()!);
