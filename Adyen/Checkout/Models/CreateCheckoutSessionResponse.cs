@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.Checkout.Client;
 
 namespace Adyen.Checkout.Models
@@ -32,6 +33,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// CreateCheckoutSessionResponse.
     /// </summary>
+    [JsonConverter(typeof(CreateCheckoutSessionResponseJsonConverter))]
     public partial class CreateCheckoutSessionResponse
     {
         /// <summary>

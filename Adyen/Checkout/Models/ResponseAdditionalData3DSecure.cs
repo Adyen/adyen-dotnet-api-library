@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.Checkout.Client;
 
 namespace Adyen.Checkout.Models
@@ -32,6 +33,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// ResponseAdditionalData3DSecure.
     /// </summary>
+    [JsonConverter(typeof(ResponseAdditionalData3DSecureJsonConverter))]
     public partial class ResponseAdditionalData3DSecure
     {
         /// <summary>
