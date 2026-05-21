@@ -158,7 +158,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == AllowedLevelEnum.NotApplicable)
                     return "notApplicable";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -314,7 +314,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == RequestedLevelEnum.NotApplicable)
                     return "notApplicable";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -514,7 +514,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "allowedLevel":
                             string? allowedLevelRawValue = utf8JsonReader.GetString();
-                            allowedLevel = new Option<LegalEntityCapability.AllowedLevelEnum?>(LegalEntityCapability.AllowedLevelEnum.FromStringOrDefault(allowedLevelRawValue));
+                            allowedLevel = new Option<LegalEntityCapability.AllowedLevelEnum?>(LegalEntityCapability.AllowedLevelEnum.FromStringOrDefault(allowedLevelRawValue) ?? (LegalEntityCapability.AllowedLevelEnum)allowedLevelRawValue);
                             break;
                         case "allowedSettings":
                             allowedSettings = new Option<CapabilitySettings?>(JsonSerializer.Deserialize<CapabilitySettings>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -524,7 +524,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "requestedLevel":
                             string? requestedLevelRawValue = utf8JsonReader.GetString();
-                            requestedLevel = new Option<LegalEntityCapability.RequestedLevelEnum?>(LegalEntityCapability.RequestedLevelEnum.FromStringOrDefault(requestedLevelRawValue));
+                            requestedLevel = new Option<LegalEntityCapability.RequestedLevelEnum?>(LegalEntityCapability.RequestedLevelEnum.FromStringOrDefault(requestedLevelRawValue) ?? (LegalEntityCapability.RequestedLevelEnum)requestedLevelRawValue);
                             break;
                         case "requestedSettings":
                             requestedSettings = new Option<CapabilitySettings?>(JsonSerializer.Deserialize<CapabilitySettings>(ref utf8JsonReader, jsonSerializerOptions)!);

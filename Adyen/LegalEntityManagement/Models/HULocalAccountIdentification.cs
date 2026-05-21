@@ -131,7 +131,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.HuLocal)
                     return "huLocal";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -232,7 +232,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<HULocalAccountIdentification.TypeEnum?>(HULocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<HULocalAccountIdentification.TypeEnum?>(HULocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (HULocalAccountIdentification.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -248,7 +248,7 @@ namespace Adyen.LegalEntityManagement.Models
 
             var hULocalAccountIdentification = new HULocalAccountIdentification();
             hULocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            hULocalAccountIdentification.Type = type.Value!.Value;
+            hULocalAccountIdentification.Type = type.Value!;
             return hULocalAccountIdentification;
         }
 

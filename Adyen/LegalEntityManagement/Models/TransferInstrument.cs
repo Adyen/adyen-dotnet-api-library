@@ -140,7 +140,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.RecurringDetail)
                     return "recurringDetail";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -313,7 +313,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<TransferInstrument.TypeEnum?>(TransferInstrument.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<TransferInstrument.TypeEnum?>(TransferInstrument.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TransferInstrument.TypeEnum)typeRawValue);
                             break;
                         case "capabilities":
                             capabilities = new Option<Dictionary<string, SupportingEntityCapability>?>(JsonSerializer.Deserialize<Dictionary<string, SupportingEntityCapability>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -346,7 +346,7 @@ namespace Adyen.LegalEntityManagement.Models
             transferInstrument.BankAccount = bankAccount.Value!;
             transferInstrument.Id = id.Value!;
             transferInstrument.LegalEntityId = legalEntityId.Value!;
-            transferInstrument.Type = type.Value!.Value;
+            transferInstrument.Type = type.Value!;
             if (capabilities.IsSet)
                 transferInstrument.Capabilities = capabilities.Value;
             if (documentDetails.IsSet)

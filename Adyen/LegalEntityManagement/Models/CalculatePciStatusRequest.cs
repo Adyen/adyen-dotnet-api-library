@@ -157,7 +157,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == AdditionalSalesChannelsEnum.PosMoto)
                     return "posMoto";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>

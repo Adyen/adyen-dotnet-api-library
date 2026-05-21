@@ -167,7 +167,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.UnincorporatedPartnership)
                     return "unincorporatedPartnership";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -423,7 +423,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<LegalEntityInfo.TypeEnum?>(LegalEntityInfo.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<LegalEntityInfo.TypeEnum?>(LegalEntityInfo.TypeEnum.FromStringOrDefault(typeRawValue) ?? (LegalEntityInfo.TypeEnum)typeRawValue);
                             break;
                         case "unincorporatedPartnership":
                             unincorporatedPartnership = new Option<UnincorporatedPartnership?>(JsonSerializer.Deserialize<UnincorporatedPartnership>(ref utf8JsonReader, jsonSerializerOptions)!);

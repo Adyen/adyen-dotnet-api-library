@@ -257,7 +257,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.GamblingWinnings)
                     return "gamblingWinnings";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -580,7 +580,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<SourceOfFunds.TypeEnum?>(SourceOfFunds.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<SourceOfFunds.TypeEnum?>(SourceOfFunds.TypeEnum.FromStringOrDefault(typeRawValue) ?? (SourceOfFunds.TypeEnum)typeRawValue);
                             break;
                         case "website":
                             website = new Option<string?>(utf8JsonReader.GetString()!);

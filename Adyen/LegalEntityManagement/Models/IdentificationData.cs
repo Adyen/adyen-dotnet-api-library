@@ -158,7 +158,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.IdentityCard)
                     return "identityCard";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -345,7 +345,7 @@ namespace Adyen.LegalEntityManagement.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<IdentificationData.TypeEnum?>(IdentificationData.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<IdentificationData.TypeEnum?>(IdentificationData.TypeEnum.FromStringOrDefault(typeRawValue) ?? (IdentificationData.TypeEnum)typeRawValue);
                             break;
                         case "cardNumber":
                             cardNumber = new Option<string?>(utf8JsonReader.GetString()!);
@@ -375,7 +375,7 @@ namespace Adyen.LegalEntityManagement.Models
                 throw new ArgumentException("Property is required for class IdentificationData.", nameof(type));
 
             var identificationData = new IdentificationData();
-            identificationData.Type = type.Value!.Value;
+            identificationData.Type = type.Value!;
             if (cardNumber.IsSet)
                 identificationData.CardNumber = cardNumber.Value;
             if (expiryDate.IsSet)

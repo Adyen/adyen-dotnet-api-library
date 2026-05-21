@@ -211,7 +211,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TermsOfServiceTypesEnum.KycOnInvite)
                     return "kycOnInvite";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>

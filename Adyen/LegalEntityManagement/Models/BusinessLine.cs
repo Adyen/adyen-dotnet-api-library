@@ -149,7 +149,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == ServiceEnum.Banking)
                     return "banking";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -370,7 +370,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "service":
                             string? serviceRawValue = utf8JsonReader.GetString();
-                            service = new Option<BusinessLine.ServiceEnum?>(BusinessLine.ServiceEnum.FromStringOrDefault(serviceRawValue));
+                            service = new Option<BusinessLine.ServiceEnum?>(BusinessLine.ServiceEnum.FromStringOrDefault(serviceRawValue) ?? (BusinessLine.ServiceEnum)serviceRawValue);
                             break;
                         case "industryCodeDescription":
                             industryCodeDescription = new Option<string?>(utf8JsonReader.GetString()!);
@@ -412,7 +412,7 @@ namespace Adyen.LegalEntityManagement.Models
             businessLine.Id = id.Value!;
             businessLine.IndustryCode = industryCode.Value!;
             businessLine.LegalEntityId = legalEntityId.Value!;
-            businessLine.Service = service.Value!.Value;
+            businessLine.Service = service.Value!;
             if (industryCodeDescription.IsSet)
                 businessLine.IndustryCodeDescription = industryCodeDescription.Value;
             if (problems.IsSet)

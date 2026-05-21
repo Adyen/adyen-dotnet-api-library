@@ -148,7 +148,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == FundingSourceEnum.Prepaid)
                     return "prepaid";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -280,7 +280,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == IntervalEnum.Weekly)
                     return "weekly";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -448,7 +448,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "interval":
                             string? intervalRawValue = utf8JsonReader.GetString();
-                            interval = new Option<CapabilitySettings.IntervalEnum?>(CapabilitySettings.IntervalEnum.FromStringOrDefault(intervalRawValue));
+                            interval = new Option<CapabilitySettings.IntervalEnum?>(CapabilitySettings.IntervalEnum.FromStringOrDefault(intervalRawValue) ?? (CapabilitySettings.IntervalEnum)intervalRawValue);
                             break;
                         case "maxAmount":
                             maxAmount = new Option<Amount?>(JsonSerializer.Deserialize<Amount>(ref utf8JsonReader, jsonSerializerOptions)!);

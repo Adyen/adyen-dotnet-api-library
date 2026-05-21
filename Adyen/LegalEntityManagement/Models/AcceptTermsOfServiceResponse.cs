@@ -212,7 +212,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.KycOnInvite)
                     return "kycOnInvite";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -403,7 +403,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<AcceptTermsOfServiceResponse.TypeEnum?>(AcceptTermsOfServiceResponse.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<AcceptTermsOfServiceResponse.TypeEnum?>(AcceptTermsOfServiceResponse.TypeEnum.FromStringOrDefault(typeRawValue) ?? (AcceptTermsOfServiceResponse.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

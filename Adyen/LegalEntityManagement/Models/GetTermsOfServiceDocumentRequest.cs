@@ -212,7 +212,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.KycOnInvite)
                     return "kycOnInvite";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -329,7 +329,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<GetTermsOfServiceDocumentRequest.TypeEnum?>(GetTermsOfServiceDocumentRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<GetTermsOfServiceDocumentRequest.TypeEnum?>(GetTermsOfServiceDocumentRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (GetTermsOfServiceDocumentRequest.TypeEnum)typeRawValue);
                             break;
                         case "termsOfServiceDocumentFormat":
                             termsOfServiceDocumentFormat = new Option<string?>(utf8JsonReader.GetString()!);
@@ -348,7 +348,7 @@ namespace Adyen.LegalEntityManagement.Models
 
             var getTermsOfServiceDocumentRequest = new GetTermsOfServiceDocumentRequest();
             getTermsOfServiceDocumentRequest.Language = language.Value!;
-            getTermsOfServiceDocumentRequest.Type = type.Value!.Value;
+            getTermsOfServiceDocumentRequest.Type = type.Value!;
             if (termsOfServiceDocumentFormat.IsSet)
                 getTermsOfServiceDocumentRequest.TermsOfServiceDocumentFormat = termsOfServiceDocumentFormat.Value;
             return getTermsOfServiceDocumentRequest;

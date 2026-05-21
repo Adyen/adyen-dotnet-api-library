@@ -149,7 +149,7 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TermsOfServiceDocumentFormatEnum.TXT)
                     return "TXT";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -302,7 +302,7 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "termsOfServiceDocumentFormat":
                             string? termsOfServiceDocumentFormatRawValue = utf8JsonReader.GetString();
-                            termsOfServiceDocumentFormat = new Option<GetAcceptedTermsOfServiceDocumentResponse.TermsOfServiceDocumentFormatEnum?>(GetAcceptedTermsOfServiceDocumentResponse.TermsOfServiceDocumentFormatEnum.FromStringOrDefault(termsOfServiceDocumentFormatRawValue));
+                            termsOfServiceDocumentFormat = new Option<GetAcceptedTermsOfServiceDocumentResponse.TermsOfServiceDocumentFormatEnum?>(GetAcceptedTermsOfServiceDocumentResponse.TermsOfServiceDocumentFormatEnum.FromStringOrDefault(termsOfServiceDocumentFormatRawValue) ?? (GetAcceptedTermsOfServiceDocumentResponse.TermsOfServiceDocumentFormatEnum)termsOfServiceDocumentFormatRawValue);
                             break;
                         default:
                             break;
