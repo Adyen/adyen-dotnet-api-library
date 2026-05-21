@@ -140,7 +140,7 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == TypeEnum.BalancePlatformTransferUpdated)
                     return "balancePlatform.transfer.updated";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -283,7 +283,7 @@ namespace Adyen.TransferWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<TransferNotificationRequest.TypeEnum?>(TransferNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<TransferNotificationRequest.TypeEnum?>(TransferNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TransferNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

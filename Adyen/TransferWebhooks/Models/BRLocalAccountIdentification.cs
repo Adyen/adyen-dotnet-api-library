@@ -131,7 +131,7 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == TypeEnum.BrLocal)
                     return "brLocal";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -275,7 +275,7 @@ namespace Adyen.TransferWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<BRLocalAccountIdentification.TypeEnum?>(BRLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<BRLocalAccountIdentification.TypeEnum?>(BRLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (BRLocalAccountIdentification.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -301,7 +301,7 @@ namespace Adyen.TransferWebhooks.Models
             bRLocalAccountIdentification.BranchNumber = branchNumber.Value!;
             if (ispb.IsSet)
                 bRLocalAccountIdentification.Ispb = ispb.Value;
-            bRLocalAccountIdentification.Type = type.Value!.Value;
+            bRLocalAccountIdentification.Type = type.Value!;
             return bRLocalAccountIdentification;
         }
 

@@ -140,7 +140,7 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == SourceOfFundsEnum.DEPOSITACCOUNT)
                     return "DEPOSIT_ACCOUNT";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -292,7 +292,7 @@ namespace Adyen.TransferWebhooks.Models
                             break;
                         case "sourceOfFunds":
                             string? sourceOfFundsRawValue = utf8JsonReader.GetString();
-                            sourceOfFunds = new Option<FundingInstrument.SourceOfFundsEnum?>(FundingInstrument.SourceOfFundsEnum.FromStringOrDefault(sourceOfFundsRawValue));
+                            sourceOfFunds = new Option<FundingInstrument.SourceOfFundsEnum?>(FundingInstrument.SourceOfFundsEnum.FromStringOrDefault(sourceOfFundsRawValue) ?? (FundingInstrument.SourceOfFundsEnum)sourceOfFundsRawValue);
                             break;
                         default:
                             break;

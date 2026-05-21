@@ -752,7 +752,7 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == StatusEnum.Undefined)
                     return "undefined";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -921,7 +921,7 @@ namespace Adyen.TransferWebhooks.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<Modification.StatusEnum?>(Modification.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<Modification.StatusEnum?>(Modification.StatusEnum.FromStringOrDefault(statusRawValue) ?? (Modification.StatusEnum)statusRawValue);
                             break;
                         case "type":
                             type = new Option<string?>(utf8JsonReader.GetString()!);

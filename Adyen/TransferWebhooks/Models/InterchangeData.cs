@@ -131,7 +131,7 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == TypeEnum.InterchangeData)
                     return "interchangeData";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -257,7 +257,7 @@ namespace Adyen.TransferWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<InterchangeData.TypeEnum?>(InterchangeData.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<InterchangeData.TypeEnum?>(InterchangeData.TypeEnum.FromStringOrDefault(typeRawValue) ?? (InterchangeData.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -273,7 +273,7 @@ namespace Adyen.TransferWebhooks.Models
                 interchangeData.InterchangeAmount = interchangeAmount.Value;
             if (interchangeRateIndicator.IsSet)
                 interchangeData.InterchangeRateIndicator = interchangeRateIndicator.Value;
-            interchangeData.Type = type.Value!.Value;
+            interchangeData.Type = type.Value!;
             return interchangeData;
         }
 

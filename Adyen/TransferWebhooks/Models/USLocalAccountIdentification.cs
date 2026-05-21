@@ -141,7 +141,7 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == AccountTypeEnum.Savings)
                     return "savings";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -269,7 +269,7 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == TypeEnum.UsLocal)
                     return "usLocal";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -384,11 +384,11 @@ namespace Adyen.TransferWebhooks.Models
                             break;
                         case "accountType":
                             string? accountTypeRawValue = utf8JsonReader.GetString();
-                            accountType = new Option<USLocalAccountIdentification.AccountTypeEnum?>(USLocalAccountIdentification.AccountTypeEnum.FromStringOrDefault(accountTypeRawValue));
+                            accountType = new Option<USLocalAccountIdentification.AccountTypeEnum?>(USLocalAccountIdentification.AccountTypeEnum.FromStringOrDefault(accountTypeRawValue) ?? (USLocalAccountIdentification.AccountTypeEnum)accountTypeRawValue);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<USLocalAccountIdentification.TypeEnum?>(USLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<USLocalAccountIdentification.TypeEnum?>(USLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (USLocalAccountIdentification.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -410,7 +410,7 @@ namespace Adyen.TransferWebhooks.Models
             uSLocalAccountIdentification.RoutingNumber = routingNumber.Value!;
             if (accountType.IsSet)
                 uSLocalAccountIdentification.AccountType = accountType.Value;
-            uSLocalAccountIdentification.Type = type.Value!.Value;
+            uSLocalAccountIdentification.Type = type.Value!;
             return uSLocalAccountIdentification;
         }
 
