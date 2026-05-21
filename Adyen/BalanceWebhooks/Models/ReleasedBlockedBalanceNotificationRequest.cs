@@ -131,7 +131,7 @@ namespace Adyen.BalanceWebhooks.Models
                 if (value == TypeEnum.BalancePlatformBalanceAccountBalanceBlockReleased)
                     return "balancePlatform.balanceAccount.balance.block.released";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -264,7 +264,7 @@ namespace Adyen.BalanceWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<ReleasedBlockedBalanceNotificationRequest.TypeEnum?>(ReleasedBlockedBalanceNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<ReleasedBlockedBalanceNotificationRequest.TypeEnum?>(ReleasedBlockedBalanceNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (ReleasedBlockedBalanceNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         case "timestamp":
                             timestamp = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -287,7 +287,7 @@ namespace Adyen.BalanceWebhooks.Models
             var releasedBlockedBalanceNotificationRequest = new ReleasedBlockedBalanceNotificationRequest();
             releasedBlockedBalanceNotificationRequest.Data = data.Value!;
             releasedBlockedBalanceNotificationRequest.Environment = environment.Value!;
-            releasedBlockedBalanceNotificationRequest.Type = type.Value!.Value;
+            releasedBlockedBalanceNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 releasedBlockedBalanceNotificationRequest.Timestamp = timestamp.Value;
             return releasedBlockedBalanceNotificationRequest;
