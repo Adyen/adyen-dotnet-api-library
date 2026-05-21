@@ -212,7 +212,7 @@ namespace Adyen.Payment.Models
                 if (value == PlanEnum.WithInterest)
                     return "with_interest";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -339,7 +339,7 @@ namespace Adyen.Payment.Models
                             break;
                         case "plan":
                             string? planRawValue = utf8JsonReader.GetString();
-                            plan = new Option<Installments.PlanEnum?>(Installments.PlanEnum.FromStringOrDefault(planRawValue));
+                            plan = new Option<Installments.PlanEnum?>(Installments.PlanEnum.FromStringOrDefault(planRawValue) ?? (Installments.PlanEnum)planRawValue);
                             break;
                         default:
                             break;

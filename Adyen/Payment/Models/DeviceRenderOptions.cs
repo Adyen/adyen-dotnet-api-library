@@ -150,7 +150,7 @@ namespace Adyen.Payment.Models
                 if (value == SdkInterfaceEnum.Both)
                     return "both";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -313,7 +313,7 @@ namespace Adyen.Payment.Models
                 if (value == SdkUiTypeEnum.Text)
                     return "text";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -411,7 +411,7 @@ namespace Adyen.Payment.Models
                     {
                         case "sdkInterface":
                             string? sdkInterfaceRawValue = utf8JsonReader.GetString();
-                            sdkInterface = new Option<DeviceRenderOptions.SdkInterfaceEnum?>(DeviceRenderOptions.SdkInterfaceEnum.FromStringOrDefault(sdkInterfaceRawValue));
+                            sdkInterface = new Option<DeviceRenderOptions.SdkInterfaceEnum?>(DeviceRenderOptions.SdkInterfaceEnum.FromStringOrDefault(sdkInterfaceRawValue) ?? (DeviceRenderOptions.SdkInterfaceEnum)sdkInterfaceRawValue);
                             break;
                         case "sdkUiType":
                             sdkUiType = new Option<List<DeviceRenderOptions.SdkUiTypeEnum>?>(JsonSerializer.Deserialize<List<DeviceRenderOptions.SdkUiTypeEnum>>(ref utf8JsonReader, jsonSerializerOptions)!);
