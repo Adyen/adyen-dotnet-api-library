@@ -140,7 +140,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 if (value == TypeEnum.Mobile)
                     return "mobile";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -241,7 +241,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<Phone.TypeEnum?>(Phone.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<Phone.TypeEnum?>(Phone.TypeEnum.FromStringOrDefault(typeRawValue) ?? (Phone.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -257,7 +257,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
 
             var phone = new Phone();
             phone.Number = number.Value!;
-            phone.Type = type.Value!.Value;
+            phone.Type = type.Value!;
             return phone;
         }
 
