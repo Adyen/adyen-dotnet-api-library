@@ -131,7 +131,7 @@ namespace Adyen.AcsWebhooks.Models
                 if (value == TypeEnum.BalancePlatformAuthenticationRelayed)
                     return "balancePlatform.authentication.relayed";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -304,7 +304,7 @@ namespace Adyen.AcsWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<RelayedAuthenticationRequest.TypeEnum?>(RelayedAuthenticationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<RelayedAuthenticationRequest.TypeEnum?>(RelayedAuthenticationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (RelayedAuthenticationRequest.TypeEnum)typeRawValue);
                             break;
                         case "threeDSRequestorAppURL":
                             threeDSRequestorAppURL = new Option<string?>(utf8JsonReader.GetString()!);
@@ -338,7 +338,7 @@ namespace Adyen.AcsWebhooks.Models
             relayedAuthenticationRequest.Id = id.Value!;
             relayedAuthenticationRequest.PaymentInstrumentId = paymentInstrumentId.Value!;
             relayedAuthenticationRequest.Purchase = purchase.Value!;
-            relayedAuthenticationRequest.Type = type.Value!.Value;
+            relayedAuthenticationRequest.Type = type.Value!;
             if (threeDSRequestorAppURL.IsSet)
                 relayedAuthenticationRequest.ThreeDSRequestorAppURL = threeDSRequestorAppURL.Value;
             if (timestamp.IsSet)

@@ -140,7 +140,7 @@ namespace Adyen.AcsWebhooks.Models
                 if (value == StatusEnum.Refused)
                     return "refused";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -229,7 +229,7 @@ namespace Adyen.AcsWebhooks.Models
                     {
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<AuthenticationDecision.StatusEnum?>(AuthenticationDecision.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<AuthenticationDecision.StatusEnum?>(AuthenticationDecision.StatusEnum.FromStringOrDefault(statusRawValue) ?? (AuthenticationDecision.StatusEnum)statusRawValue);
                             break;
                         default:
                             break;
@@ -241,7 +241,7 @@ namespace Adyen.AcsWebhooks.Models
                 throw new ArgumentException("Property is required for class AuthenticationDecision.", nameof(status));
 
             var authenticationDecision = new AuthenticationDecision();
-            authenticationDecision.Status = status.Value!.Value;
+            authenticationDecision.Status = status.Value!;
             return authenticationDecision;
         }
 

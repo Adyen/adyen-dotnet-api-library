@@ -149,7 +149,7 @@ namespace Adyen.AcsWebhooks.Models
                 if (value == FlowEnum.OOBTRIGGERFL)
                     return "OOB_TRIGGER_FL";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -342,7 +342,7 @@ namespace Adyen.AcsWebhooks.Models
                 if (value == ChallengeCancelEnum._08)
                     return "08";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -502,14 +502,14 @@ namespace Adyen.AcsWebhooks.Models
                     {
                         case "flow":
                             string? flowRawValue = utf8JsonReader.GetString();
-                            flow = new Option<ChallengeInfo.FlowEnum?>(ChallengeInfo.FlowEnum.FromStringOrDefault(flowRawValue));
+                            flow = new Option<ChallengeInfo.FlowEnum?>(ChallengeInfo.FlowEnum.FromStringOrDefault(flowRawValue) ?? (ChallengeInfo.FlowEnum)flowRawValue);
                             break;
                         case "lastInteraction":
                             lastInteraction = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "challengeCancel":
                             string? challengeCancelRawValue = utf8JsonReader.GetString();
-                            challengeCancel = new Option<ChallengeInfo.ChallengeCancelEnum?>(ChallengeInfo.ChallengeCancelEnum.FromStringOrDefault(challengeCancelRawValue));
+                            challengeCancel = new Option<ChallengeInfo.ChallengeCancelEnum?>(ChallengeInfo.ChallengeCancelEnum.FromStringOrDefault(challengeCancelRawValue) ?? (ChallengeInfo.ChallengeCancelEnum)challengeCancelRawValue);
                             break;
                         case "phoneNumber":
                             phoneNumber = new Option<string?>(utf8JsonReader.GetString()!);
@@ -533,7 +533,7 @@ namespace Adyen.AcsWebhooks.Models
                 throw new ArgumentException("Property is required for class ChallengeInfo.", nameof(lastInteraction));
 
             var challengeInfo = new ChallengeInfo();
-            challengeInfo.Flow = flow.Value!.Value;
+            challengeInfo.Flow = flow.Value!;
             challengeInfo.LastInteraction = lastInteraction.Value!.Value;
             if (challengeCancel.IsSet)
                 challengeInfo.ChallengeCancel = challengeCancel.Value;

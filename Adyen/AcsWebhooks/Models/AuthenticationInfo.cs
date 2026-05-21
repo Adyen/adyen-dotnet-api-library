@@ -212,7 +212,7 @@ namespace Adyen.AcsWebhooks.Models
                 if (value == ChallengeIndicatorEnum._82)
                     return "82";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -351,7 +351,7 @@ namespace Adyen.AcsWebhooks.Models
                 if (value == DeviceChannelEnum.ThreeDSRequestorInitiated)
                     return "ThreeDSRequestorInitiated";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -481,7 +481,7 @@ namespace Adyen.AcsWebhooks.Models
                 if (value == MessageCategoryEnum.NonPayment)
                     return "nonPayment";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -638,7 +638,7 @@ namespace Adyen.AcsWebhooks.Models
                 if (value == TransStatusEnum.U)
                     return "U";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -768,7 +768,7 @@ namespace Adyen.AcsWebhooks.Models
                 if (value == TypeEnum.Challenge)
                     return "challenge";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -943,7 +943,7 @@ namespace Adyen.AcsWebhooks.Models
                 if (value == ExemptionIndicatorEnum.VisaDAFExemption)
                     return "visaDAFExemption";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1377,7 +1377,7 @@ namespace Adyen.AcsWebhooks.Models
                 if (value == TransStatusReasonEnum._88)
                     return "88";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1578,14 +1578,14 @@ namespace Adyen.AcsWebhooks.Models
                             break;
                         case "challengeIndicator":
                             string? challengeIndicatorRawValue = utf8JsonReader.GetString();
-                            challengeIndicator = new Option<AuthenticationInfo.ChallengeIndicatorEnum?>(AuthenticationInfo.ChallengeIndicatorEnum.FromStringOrDefault(challengeIndicatorRawValue));
+                            challengeIndicator = new Option<AuthenticationInfo.ChallengeIndicatorEnum?>(AuthenticationInfo.ChallengeIndicatorEnum.FromStringOrDefault(challengeIndicatorRawValue) ?? (AuthenticationInfo.ChallengeIndicatorEnum)challengeIndicatorRawValue);
                             break;
                         case "createdAt":
                             createdAt = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "deviceChannel":
                             string? deviceChannelRawValue = utf8JsonReader.GetString();
-                            deviceChannel = new Option<AuthenticationInfo.DeviceChannelEnum?>(AuthenticationInfo.DeviceChannelEnum.FromStringOrDefault(deviceChannelRawValue));
+                            deviceChannel = new Option<AuthenticationInfo.DeviceChannelEnum?>(AuthenticationInfo.DeviceChannelEnum.FromStringOrDefault(deviceChannelRawValue) ?? (AuthenticationInfo.DeviceChannelEnum)deviceChannelRawValue);
                             break;
                         case "dsTransID":
                             dsTransID = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1595,7 +1595,7 @@ namespace Adyen.AcsWebhooks.Models
                             break;
                         case "messageCategory":
                             string? messageCategoryRawValue = utf8JsonReader.GetString();
-                            messageCategory = new Option<AuthenticationInfo.MessageCategoryEnum?>(AuthenticationInfo.MessageCategoryEnum.FromStringOrDefault(messageCategoryRawValue));
+                            messageCategory = new Option<AuthenticationInfo.MessageCategoryEnum?>(AuthenticationInfo.MessageCategoryEnum.FromStringOrDefault(messageCategoryRawValue) ?? (AuthenticationInfo.MessageCategoryEnum)messageCategoryRawValue);
                             break;
                         case "messageVersion":
                             messageVersion = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1605,25 +1605,25 @@ namespace Adyen.AcsWebhooks.Models
                             break;
                         case "transStatus":
                             string? transStatusRawValue = utf8JsonReader.GetString();
-                            transStatus = new Option<AuthenticationInfo.TransStatusEnum?>(AuthenticationInfo.TransStatusEnum.FromStringOrDefault(transStatusRawValue));
+                            transStatus = new Option<AuthenticationInfo.TransStatusEnum?>(AuthenticationInfo.TransStatusEnum.FromStringOrDefault(transStatusRawValue) ?? (AuthenticationInfo.TransStatusEnum)transStatusRawValue);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<AuthenticationInfo.TypeEnum?>(AuthenticationInfo.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<AuthenticationInfo.TypeEnum?>(AuthenticationInfo.TypeEnum.FromStringOrDefault(typeRawValue) ?? (AuthenticationInfo.TypeEnum)typeRawValue);
                             break;
                         case "challenge":
                             challenge = new Option<ChallengeInfo?>(JsonSerializer.Deserialize<ChallengeInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "exemptionIndicator":
                             string? exemptionIndicatorRawValue = utf8JsonReader.GetString();
-                            exemptionIndicator = new Option<AuthenticationInfo.ExemptionIndicatorEnum?>(AuthenticationInfo.ExemptionIndicatorEnum.FromStringOrDefault(exemptionIndicatorRawValue));
+                            exemptionIndicator = new Option<AuthenticationInfo.ExemptionIndicatorEnum?>(AuthenticationInfo.ExemptionIndicatorEnum.FromStringOrDefault(exemptionIndicatorRawValue) ?? (AuthenticationInfo.ExemptionIndicatorEnum)exemptionIndicatorRawValue);
                             break;
                         case "riskScore":
                             riskScore = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "transStatusReason":
                             string? transStatusReasonRawValue = utf8JsonReader.GetString();
-                            transStatusReason = new Option<AuthenticationInfo.TransStatusReasonEnum?>(AuthenticationInfo.TransStatusReasonEnum.FromStringOrDefault(transStatusReasonRawValue));
+                            transStatusReason = new Option<AuthenticationInfo.TransStatusReasonEnum?>(AuthenticationInfo.TransStatusReasonEnum.FromStringOrDefault(transStatusReasonRawValue) ?? (AuthenticationInfo.TransStatusReasonEnum)transStatusReasonRawValue);
                             break;
                         default:
                             break;
@@ -1666,16 +1666,16 @@ namespace Adyen.AcsWebhooks.Models
 
             var authenticationInfo = new AuthenticationInfo();
             authenticationInfo.AcsTransId = acsTransId.Value!;
-            authenticationInfo.ChallengeIndicator = challengeIndicator.Value!.Value;
+            authenticationInfo.ChallengeIndicator = challengeIndicator.Value!;
             authenticationInfo.CreatedAt = createdAt.Value!.Value;
-            authenticationInfo.DeviceChannel = deviceChannel.Value!.Value;
+            authenticationInfo.DeviceChannel = deviceChannel.Value!;
             authenticationInfo.DsTransID = dsTransID.Value!;
             authenticationInfo.InPSD2Scope = inPSD2Scope.Value!.Value;
-            authenticationInfo.MessageCategory = messageCategory.Value!.Value;
+            authenticationInfo.MessageCategory = messageCategory.Value!;
             authenticationInfo.MessageVersion = messageVersion.Value!;
             authenticationInfo.ThreeDSServerTransID = threeDSServerTransID.Value!;
-            authenticationInfo.TransStatus = transStatus.Value!.Value;
-            authenticationInfo.Type = type.Value!.Value;
+            authenticationInfo.TransStatus = transStatus.Value!;
+            authenticationInfo.Type = type.Value!;
             if (challenge.IsSet)
                 authenticationInfo.Challenge = challenge.Value;
             if (exemptionIndicator.IsSet)
