@@ -1,0 +1,21 @@
+{
+  "type": "balancePlatform.transfer.created",
+  "environment": "test",
+  "timestamp": "2026-05-20T09:15:33Z",
+  "data": {
+    "category": "unknown-value-grants",
+    "status": "booked",
+    "id": "EVJN42272224224B5JN8H8B4G",
+    "amount": {
+      "value": 1000000,
+      "currency": "EUR"
+    },
+    "reference": "your-reference",
+    "accountHolder": {
+      "id": "AH00000000000000000000001"
+    },
+    "balanceAccount": {
+      "id": "BA00000000000000000000001"
+    }
+  }
+}
