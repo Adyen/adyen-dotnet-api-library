@@ -43,7 +43,7 @@ namespace Adyen.Test.Capital
             var accountHolderId = "AH00000000000001";
             
             _grantsOffersService.GetAllGrantOffersAsync(
-                    Arg.Any<Option<string>>(),
+                    Arg.Any<string>(),
                     Arg.Any<RequestOptions?>(), 
                     Arg.Any<CancellationToken>())
                 .Returns(
