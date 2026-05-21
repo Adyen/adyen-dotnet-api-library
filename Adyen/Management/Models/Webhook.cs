@@ -149,7 +149,7 @@ namespace Adyen.Management.Models
                 if (value == CommunicationFormatEnum.Soap)
                     return "soap";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -289,7 +289,7 @@ namespace Adyen.Management.Models
                 if (value == EncryptionProtocolEnum.TLSv13)
                     return "TLSv1.3";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -436,7 +436,7 @@ namespace Adyen.Management.Models
                 if (value == FilterMerchantAccountTypeEnum.IncludeAccounts)
                     return "includeAccounts";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -573,7 +573,7 @@ namespace Adyen.Management.Models
                 if (value == NetworkTypeEnum.Public)
                     return "public";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -944,7 +944,7 @@ namespace Adyen.Management.Models
                             break;
                         case "communicationFormat":
                             string? communicationFormatRawValue = utf8JsonReader.GetString();
-                            communicationFormat = new Option<Webhook.CommunicationFormatEnum?>(Webhook.CommunicationFormatEnum.FromStringOrDefault(communicationFormatRawValue));
+                            communicationFormat = new Option<Webhook.CommunicationFormatEnum?>(Webhook.CommunicationFormatEnum.FromStringOrDefault(communicationFormatRawValue) ?? (Webhook.CommunicationFormatEnum)communicationFormatRawValue);
                             break;
                         case "type":
                             type = new Option<string?>(utf8JsonReader.GetString()!);
@@ -978,11 +978,11 @@ namespace Adyen.Management.Models
                             break;
                         case "encryptionProtocol":
                             string? encryptionProtocolRawValue = utf8JsonReader.GetString();
-                            encryptionProtocol = new Option<Webhook.EncryptionProtocolEnum?>(Webhook.EncryptionProtocolEnum.FromStringOrDefault(encryptionProtocolRawValue));
+                            encryptionProtocol = new Option<Webhook.EncryptionProtocolEnum?>(Webhook.EncryptionProtocolEnum.FromStringOrDefault(encryptionProtocolRawValue) ?? (Webhook.EncryptionProtocolEnum)encryptionProtocolRawValue);
                             break;
                         case "filterMerchantAccountType":
                             string? filterMerchantAccountTypeRawValue = utf8JsonReader.GetString();
-                            filterMerchantAccountType = new Option<Webhook.FilterMerchantAccountTypeEnum?>(Webhook.FilterMerchantAccountTypeEnum.FromStringOrDefault(filterMerchantAccountTypeRawValue));
+                            filterMerchantAccountType = new Option<Webhook.FilterMerchantAccountTypeEnum?>(Webhook.FilterMerchantAccountTypeEnum.FromStringOrDefault(filterMerchantAccountTypeRawValue) ?? (Webhook.FilterMerchantAccountTypeEnum)filterMerchantAccountTypeRawValue);
                             break;
                         case "filterMerchantAccounts":
                             filterMerchantAccounts = new Option<List<string>?>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -1001,7 +1001,7 @@ namespace Adyen.Management.Models
                             break;
                         case "networkType":
                             string? networkTypeRawValue = utf8JsonReader.GetString();
-                            networkType = new Option<Webhook.NetworkTypeEnum?>(Webhook.NetworkTypeEnum.FromStringOrDefault(networkTypeRawValue));
+                            networkType = new Option<Webhook.NetworkTypeEnum?>(Webhook.NetworkTypeEnum.FromStringOrDefault(networkTypeRawValue) ?? (Webhook.NetworkTypeEnum)networkTypeRawValue);
                             break;
                         case "populateSoapActionHeader":
                             populateSoapActionHeader = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
@@ -1029,7 +1029,7 @@ namespace Adyen.Management.Models
 
             var webhook = new Webhook();
             webhook.Active = active.Value!.Value;
-            webhook.CommunicationFormat = communicationFormat.Value!.Value;
+            webhook.CommunicationFormat = communicationFormat.Value!;
             webhook.Type = type.Value!;
             webhook.Url = url.Value!;
             if (links.IsSet)

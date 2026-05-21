@@ -149,7 +149,7 @@ namespace Adyen.Management.Models
                 if (value == CategoryEnum.Empty)
                     return "";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -309,7 +309,7 @@ namespace Adyen.Management.Models
                     {
                         case "category":
                             string? categoryRawValue = utf8JsonReader.GetString();
-                            category = new Option<Notification.CategoryEnum?>(Notification.CategoryEnum.FromStringOrDefault(categoryRawValue));
+                            category = new Option<Notification.CategoryEnum?>(Notification.CategoryEnum.FromStringOrDefault(categoryRawValue) ?? (Notification.CategoryEnum)categoryRawValue);
                             break;
                         case "details":
                             details = new Option<string?>(utf8JsonReader.GetString()!);

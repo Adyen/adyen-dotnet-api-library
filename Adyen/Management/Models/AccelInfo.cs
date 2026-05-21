@@ -149,7 +149,7 @@ namespace Adyen.Management.Models
                 if (value == ProcessingTypeEnum.Pos)
                     return "pos";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -253,7 +253,7 @@ namespace Adyen.Management.Models
                     {
                         case "processingType":
                             string? processingTypeRawValue = utf8JsonReader.GetString();
-                            processingType = new Option<AccelInfo.ProcessingTypeEnum?>(AccelInfo.ProcessingTypeEnum.FromStringOrDefault(processingTypeRawValue));
+                            processingType = new Option<AccelInfo.ProcessingTypeEnum?>(AccelInfo.ProcessingTypeEnum.FromStringOrDefault(processingTypeRawValue) ?? (AccelInfo.ProcessingTypeEnum)processingTypeRawValue);
                             break;
                         case "transactionDescription":
                             transactionDescription = new Option<TransactionDescriptionInfo?>(JsonSerializer.Deserialize<TransactionDescriptionInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -268,7 +268,7 @@ namespace Adyen.Management.Models
                 throw new ArgumentException("Property is required for class AccelInfo.", nameof(processingType));
 
             var accelInfo = new AccelInfo();
-            accelInfo.ProcessingType = processingType.Value!.Value;
+            accelInfo.ProcessingType = processingType.Value!;
             if (transactionDescription.IsSet)
                 accelInfo.TransactionDescription = transactionDescription.Value;
             return accelInfo;

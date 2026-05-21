@@ -176,7 +176,7 @@ namespace Adyen.Management.Models
                 if (value == FundingSourceEnum.ANY)
                     return "ANY";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -333,7 +333,7 @@ namespace Adyen.Management.Models
                 if (value == ShopperInteractionEnum.ANY)
                     return "ANY";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -499,7 +499,7 @@ namespace Adyen.Management.Models
                 if (value == CardRegionEnum.ANY)
                     return "ANY";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -645,21 +645,21 @@ namespace Adyen.Management.Models
                             break;
                         case "fundingSource":
                             string? fundingSourceRawValue = utf8JsonReader.GetString();
-                            fundingSource = new Option<SplitConfigurationRule.FundingSourceEnum?>(SplitConfigurationRule.FundingSourceEnum.FromStringOrDefault(fundingSourceRawValue));
+                            fundingSource = new Option<SplitConfigurationRule.FundingSourceEnum?>(SplitConfigurationRule.FundingSourceEnum.FromStringOrDefault(fundingSourceRawValue) ?? (SplitConfigurationRule.FundingSourceEnum)fundingSourceRawValue);
                             break;
                         case "paymentMethod":
                             paymentMethod = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "shopperInteraction":
                             string? shopperInteractionRawValue = utf8JsonReader.GetString();
-                            shopperInteraction = new Option<SplitConfigurationRule.ShopperInteractionEnum?>(SplitConfigurationRule.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue));
+                            shopperInteraction = new Option<SplitConfigurationRule.ShopperInteractionEnum?>(SplitConfigurationRule.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue) ?? (SplitConfigurationRule.ShopperInteractionEnum)shopperInteractionRawValue);
                             break;
                         case "splitLogic":
                             splitLogic = new Option<SplitConfigurationLogic?>(JsonSerializer.Deserialize<SplitConfigurationLogic>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "cardRegion":
                             string? cardRegionRawValue = utf8JsonReader.GetString();
-                            cardRegion = new Option<SplitConfigurationRule.CardRegionEnum?>(SplitConfigurationRule.CardRegionEnum.FromStringOrDefault(cardRegionRawValue));
+                            cardRegion = new Option<SplitConfigurationRule.CardRegionEnum?>(SplitConfigurationRule.CardRegionEnum.FromStringOrDefault(cardRegionRawValue) ?? (SplitConfigurationRule.CardRegionEnum)cardRegionRawValue);
                             break;
                         case "ruleId":
                             ruleId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -687,9 +687,9 @@ namespace Adyen.Management.Models
 
             var splitConfigurationRule = new SplitConfigurationRule();
             splitConfigurationRule.Currency = currency.Value!;
-            splitConfigurationRule.FundingSource = fundingSource.Value!.Value;
+            splitConfigurationRule.FundingSource = fundingSource.Value!;
             splitConfigurationRule.PaymentMethod = paymentMethod.Value!;
-            splitConfigurationRule.ShopperInteraction = shopperInteraction.Value!.Value;
+            splitConfigurationRule.ShopperInteraction = shopperInteraction.Value!;
             splitConfigurationRule.SplitLogic = splitLogic.Value!;
             if (cardRegion.IsSet)
                 splitConfigurationRule.CardRegion = cardRegion.Value;

@@ -132,7 +132,7 @@ namespace Adyen.Management.Models
                 if (value == TypeEnum.InstallAndroidApp)
                     return "InstallAndroidApp";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -247,7 +247,7 @@ namespace Adyen.Management.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<InstallAndroidAppDetails.TypeEnum?>(InstallAndroidAppDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<InstallAndroidAppDetails.TypeEnum?>(InstallAndroidAppDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (InstallAndroidAppDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

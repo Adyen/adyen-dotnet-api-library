@@ -167,7 +167,7 @@ namespace Adyen.Management.Models
                 if (value == StatusEnum.Ready)
                     return "ready";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -382,7 +382,7 @@ namespace Adyen.Management.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<AndroidApp.StatusEnum?>(AndroidApp.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<AndroidApp.StatusEnum?>(AndroidApp.StatusEnum.FromStringOrDefault(statusRawValue) ?? (AndroidApp.StatusEnum)statusRawValue);
                             break;
                         case "description":
                             description = new Option<string?>(utf8JsonReader.GetString()!);
@@ -419,7 +419,7 @@ namespace Adyen.Management.Models
 
             var androidApp = new AndroidApp();
             androidApp.Id = id.Value!;
-            androidApp.Status = status.Value!.Value;
+            androidApp.Status = status.Value!;
             if (description.IsSet)
                 androidApp.Description = description.Value;
             if (errorCode.IsSet)

@@ -149,7 +149,7 @@ namespace Adyen.Management.Models
                 if (value == CommunicationFormatEnum.Soap)
                     return "soap";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -296,7 +296,7 @@ namespace Adyen.Management.Models
                 if (value == EncryptionProtocolEnum.TLSv13)
                     return "TLSv1.3";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -434,7 +434,7 @@ namespace Adyen.Management.Models
                 if (value == NetworkTypeEnum.Public)
                     return "public";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -709,18 +709,18 @@ namespace Adyen.Management.Models
                             break;
                         case "communicationFormat":
                             string? communicationFormatRawValue = utf8JsonReader.GetString();
-                            communicationFormat = new Option<UpdateMerchantWebhookRequest.CommunicationFormatEnum?>(UpdateMerchantWebhookRequest.CommunicationFormatEnum.FromStringOrDefault(communicationFormatRawValue));
+                            communicationFormat = new Option<UpdateMerchantWebhookRequest.CommunicationFormatEnum?>(UpdateMerchantWebhookRequest.CommunicationFormatEnum.FromStringOrDefault(communicationFormatRawValue) ?? (UpdateMerchantWebhookRequest.CommunicationFormatEnum)communicationFormatRawValue);
                             break;
                         case "description":
                             description = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "encryptionProtocol":
                             string? encryptionProtocolRawValue = utf8JsonReader.GetString();
-                            encryptionProtocol = new Option<UpdateMerchantWebhookRequest.EncryptionProtocolEnum?>(UpdateMerchantWebhookRequest.EncryptionProtocolEnum.FromStringOrDefault(encryptionProtocolRawValue));
+                            encryptionProtocol = new Option<UpdateMerchantWebhookRequest.EncryptionProtocolEnum?>(UpdateMerchantWebhookRequest.EncryptionProtocolEnum.FromStringOrDefault(encryptionProtocolRawValue) ?? (UpdateMerchantWebhookRequest.EncryptionProtocolEnum)encryptionProtocolRawValue);
                             break;
                         case "networkType":
                             string? networkTypeRawValue = utf8JsonReader.GetString();
-                            networkType = new Option<UpdateMerchantWebhookRequest.NetworkTypeEnum?>(UpdateMerchantWebhookRequest.NetworkTypeEnum.FromStringOrDefault(networkTypeRawValue));
+                            networkType = new Option<UpdateMerchantWebhookRequest.NetworkTypeEnum?>(UpdateMerchantWebhookRequest.NetworkTypeEnum.FromStringOrDefault(networkTypeRawValue) ?? (UpdateMerchantWebhookRequest.NetworkTypeEnum)networkTypeRawValue);
                             break;
                         case "password":
                             password = new Option<string?>(utf8JsonReader.GetString()!);

@@ -149,7 +149,7 @@ namespace Adyen.Management.Models
                 if (value == StatusEnum.Inactive)
                     return "inactive";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -484,7 +484,7 @@ namespace Adyen.Management.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<Store.StatusEnum?>(Store.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<Store.StatusEnum?>(Store.StatusEnum.FromStringOrDefault(statusRawValue) ?? (Store.StatusEnum)statusRawValue);
                             break;
                         case "subMerchantData":
                             subMerchantData = new Option<SubMerchantData?>(JsonSerializer.Deserialize<SubMerchantData>(ref utf8JsonReader, jsonSerializerOptions)!);

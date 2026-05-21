@@ -140,7 +140,7 @@ namespace Adyen.Management.Models
                 if (value == PinSupportEnum.NOPIN)
                     return "NO PIN";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -273,7 +273,7 @@ namespace Adyen.Management.Models
                             break;
                         case "pinSupport":
                             string? pinSupportRawValue = utf8JsonReader.GetString();
-                            pinSupport = new Option<ValuelinkResponseInfo.PinSupportEnum?>(ValuelinkResponseInfo.PinSupportEnum.FromStringOrDefault(pinSupportRawValue));
+                            pinSupport = new Option<ValuelinkResponseInfo.PinSupportEnum?>(ValuelinkResponseInfo.PinSupportEnum.FromStringOrDefault(pinSupportRawValue) ?? (ValuelinkResponseInfo.PinSupportEnum)pinSupportRawValue);
                             break;
                         case "submitterId":
                             submitterId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -295,7 +295,7 @@ namespace Adyen.Management.Models
 
             var valuelinkResponseInfo = new ValuelinkResponseInfo();
             valuelinkResponseInfo.AuthorisationMid = authorisationMid.Value!;
-            valuelinkResponseInfo.PinSupport = pinSupport.Value!.Value;
+            valuelinkResponseInfo.PinSupport = pinSupport.Value!;
             if (submitterId.IsSet)
                 valuelinkResponseInfo.SubmitterId = submitterId.Value;
             if (terminalId.IsSet)

@@ -149,7 +149,7 @@ namespace Adyen.Management.Models
                 if (value == ServiceLevelEnum.PaymentDesignatorContract)
                     return "paymentDesignatorContract";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -270,7 +270,7 @@ namespace Adyen.Management.Models
                     {
                         case "serviceLevel":
                             string? serviceLevelRawValue = utf8JsonReader.GetString();
-                            serviceLevel = new Option<AmexInfo.ServiceLevelEnum?>(AmexInfo.ServiceLevelEnum.FromStringOrDefault(serviceLevelRawValue));
+                            serviceLevel = new Option<AmexInfo.ServiceLevelEnum?>(AmexInfo.ServiceLevelEnum.FromStringOrDefault(serviceLevelRawValue) ?? (AmexInfo.ServiceLevelEnum)serviceLevelRawValue);
                             break;
                         case "midNumber":
                             midNumber = new Option<string?>(utf8JsonReader.GetString()!);
@@ -288,7 +288,7 @@ namespace Adyen.Management.Models
                 throw new ArgumentException("Property is required for class AmexInfo.", nameof(serviceLevel));
 
             var amexInfo = new AmexInfo();
-            amexInfo.ServiceLevel = serviceLevel.Value!.Value;
+            amexInfo.ServiceLevel = serviceLevel.Value!;
             if (midNumber.IsSet)
                 amexInfo.MidNumber = midNumber.Value;
             if (reuseMidNumber.IsSet)

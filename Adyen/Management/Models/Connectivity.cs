@@ -140,7 +140,7 @@ namespace Adyen.Management.Models
                 if (value == SimcardStatusEnum.INVENTORY)
                     return "INVENTORY";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -251,7 +251,7 @@ namespace Adyen.Management.Models
                     {
                         case "simcardStatus":
                             string? simcardStatusRawValue = utf8JsonReader.GetString();
-                            simcardStatus = new Option<Connectivity.SimcardStatusEnum?>(Connectivity.SimcardStatusEnum.FromStringOrDefault(simcardStatusRawValue));
+                            simcardStatus = new Option<Connectivity.SimcardStatusEnum?>(Connectivity.SimcardStatusEnum.FromStringOrDefault(simcardStatusRawValue) ?? (Connectivity.SimcardStatusEnum)simcardStatusRawValue);
                             break;
                         case "terminalIPAddressURL":
                             terminalIPAddressURL = new Option<EventUrl?>(JsonSerializer.Deserialize<EventUrl>(ref utf8JsonReader, jsonSerializerOptions)!);

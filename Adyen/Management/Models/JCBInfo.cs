@@ -149,7 +149,7 @@ namespace Adyen.Management.Models
                 if (value == ServiceLevelEnum.PaymentDesignatorContract)
                     return "paymentDesignatorContract";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -298,7 +298,7 @@ namespace Adyen.Management.Models
                             break;
                         case "serviceLevel":
                             string? serviceLevelRawValue = utf8JsonReader.GetString();
-                            serviceLevel = new Option<JCBInfo.ServiceLevelEnum?>(JCBInfo.ServiceLevelEnum.FromStringOrDefault(serviceLevelRawValue));
+                            serviceLevel = new Option<JCBInfo.ServiceLevelEnum?>(JCBInfo.ServiceLevelEnum.FromStringOrDefault(serviceLevelRawValue) ?? (JCBInfo.ServiceLevelEnum)serviceLevelRawValue);
                             break;
                         case "transactionDescription":
                             transactionDescription = new Option<TransactionDescriptionInfo?>(JsonSerializer.Deserialize<TransactionDescriptionInfo>(ref utf8JsonReader, jsonSerializerOptions)!);

@@ -1445,7 +1445,7 @@ namespace Adyen.Management.Models
                 if (value == TypeEnum.WechatpayPos)
                     return "wechatpay_pos";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1593,7 +1593,7 @@ namespace Adyen.Management.Models
                 if (value == ShopperInteractionEnum.ContAuth)
                     return "contAuth";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -2462,7 +2462,7 @@ namespace Adyen.Management.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PaymentMethodSetupInfo.TypeEnum?>(PaymentMethodSetupInfo.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<PaymentMethodSetupInfo.TypeEnum?>(PaymentMethodSetupInfo.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PaymentMethodSetupInfo.TypeEnum)typeRawValue);
                             break;
                         case "accel":
                             accel = new Option<AccelInfo?>(JsonSerializer.Deserialize<AccelInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -2580,7 +2580,7 @@ namespace Adyen.Management.Models
                             break;
                         case "shopperInteraction":
                             string? shopperInteractionRawValue = utf8JsonReader.GetString();
-                            shopperInteraction = new Option<PaymentMethodSetupInfo.ShopperInteractionEnum?>(PaymentMethodSetupInfo.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue));
+                            shopperInteraction = new Option<PaymentMethodSetupInfo.ShopperInteractionEnum?>(PaymentMethodSetupInfo.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue) ?? (PaymentMethodSetupInfo.ShopperInteractionEnum)shopperInteractionRawValue);
                             break;
                         case "sodexo":
                             sodexo = new Option<SodexoInfo?>(JsonSerializer.Deserialize<SodexoInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -2631,7 +2631,7 @@ namespace Adyen.Management.Models
                 throw new ArgumentException("Property is required for class PaymentMethodSetupInfo.", nameof(type));
 
             var paymentMethodSetupInfo = new PaymentMethodSetupInfo();
-            paymentMethodSetupInfo.Type = type.Value!.Value;
+            paymentMethodSetupInfo.Type = type.Value!;
             if (accel.IsSet)
                 paymentMethodSetupInfo.Accel = accel.Value;
             if (affirm.IsSet)

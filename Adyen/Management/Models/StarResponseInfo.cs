@@ -149,7 +149,7 @@ namespace Adyen.Management.Models
                 if (value == ProcessingTypeEnum.Pos)
                     return "pos";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -253,7 +253,7 @@ namespace Adyen.Management.Models
                     {
                         case "processingType":
                             string? processingTypeRawValue = utf8JsonReader.GetString();
-                            processingType = new Option<StarResponseInfo.ProcessingTypeEnum?>(StarResponseInfo.ProcessingTypeEnum.FromStringOrDefault(processingTypeRawValue));
+                            processingType = new Option<StarResponseInfo.ProcessingTypeEnum?>(StarResponseInfo.ProcessingTypeEnum.FromStringOrDefault(processingTypeRawValue) ?? (StarResponseInfo.ProcessingTypeEnum)processingTypeRawValue);
                             break;
                         case "transactionDescription":
                             transactionDescription = new Option<TransactionDescriptionResponseInfo?>(JsonSerializer.Deserialize<TransactionDescriptionResponseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -268,7 +268,7 @@ namespace Adyen.Management.Models
                 throw new ArgumentException("Property is required for class StarResponseInfo.", nameof(processingType));
 
             var starResponseInfo = new StarResponseInfo();
-            starResponseInfo.ProcessingType = processingType.Value!.Value;
+            starResponseInfo.ProcessingType = processingType.Value!;
             if (transactionDescription.IsSet)
                 starResponseInfo.TransactionDescription = transactionDescription.Value;
             return starResponseInfo;

@@ -1444,7 +1444,7 @@ namespace Adyen.Management.Models
                 if (value == TypesWithErrorsEnum.WechatpayPos)
                     return "wechatpay_pos";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>

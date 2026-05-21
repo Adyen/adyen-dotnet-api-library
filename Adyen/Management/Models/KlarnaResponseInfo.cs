@@ -158,7 +158,7 @@ namespace Adyen.Management.Models
                 if (value == RegionEnum.NA)
                     return "NA";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -308,7 +308,7 @@ namespace Adyen.Management.Models
                             break;
                         case "region":
                             string? regionRawValue = utf8JsonReader.GetString();
-                            region = new Option<KlarnaResponseInfo.RegionEnum?>(KlarnaResponseInfo.RegionEnum.FromStringOrDefault(regionRawValue));
+                            region = new Option<KlarnaResponseInfo.RegionEnum?>(KlarnaResponseInfo.RegionEnum.FromStringOrDefault(regionRawValue) ?? (KlarnaResponseInfo.RegionEnum)regionRawValue);
                             break;
                         case "supportEmail":
                             supportEmail = new Option<string?>(utf8JsonReader.GetString()!);

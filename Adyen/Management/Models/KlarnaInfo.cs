@@ -158,7 +158,7 @@ namespace Adyen.Management.Models
                 if (value == RegionEnum.AU)
                     return "AU";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -284,7 +284,7 @@ namespace Adyen.Management.Models
                             break;
                         case "region":
                             string? regionRawValue = utf8JsonReader.GetString();
-                            region = new Option<KlarnaInfo.RegionEnum?>(KlarnaInfo.RegionEnum.FromStringOrDefault(regionRawValue));
+                            region = new Option<KlarnaInfo.RegionEnum?>(KlarnaInfo.RegionEnum.FromStringOrDefault(regionRawValue) ?? (KlarnaInfo.RegionEnum)regionRawValue);
                             break;
                         case "supportEmail":
                             supportEmail = new Option<string?>(utf8JsonReader.GetString()!);
@@ -309,7 +309,7 @@ namespace Adyen.Management.Models
 
             var klarnaInfo = new KlarnaInfo();
             klarnaInfo.DisputeEmail = disputeEmail.Value!;
-            klarnaInfo.Region = region.Value!.Value;
+            klarnaInfo.Region = region.Value!;
             klarnaInfo.SupportEmail = supportEmail.Value!;
             if (autoCapture.IsSet)
                 klarnaInfo.AutoCapture = autoCapture.Value;

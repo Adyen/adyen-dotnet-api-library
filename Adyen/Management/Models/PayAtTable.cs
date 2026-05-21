@@ -140,7 +140,7 @@ namespace Adyen.Management.Models
                 if (value == AuthenticationMethodEnum.MKE)
                     return "MKE";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -277,7 +277,7 @@ namespace Adyen.Management.Models
                 if (value == PaymentInstrumentEnum.Card)
                     return "Card";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -391,14 +391,14 @@ namespace Adyen.Management.Models
                     {
                         case "authenticationMethod":
                             string? authenticationMethodRawValue = utf8JsonReader.GetString();
-                            authenticationMethod = new Option<PayAtTable.AuthenticationMethodEnum?>(PayAtTable.AuthenticationMethodEnum.FromStringOrDefault(authenticationMethodRawValue));
+                            authenticationMethod = new Option<PayAtTable.AuthenticationMethodEnum?>(PayAtTable.AuthenticationMethodEnum.FromStringOrDefault(authenticationMethodRawValue) ?? (PayAtTable.AuthenticationMethodEnum)authenticationMethodRawValue);
                             break;
                         case "enablePayAtTable":
                             enablePayAtTable = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "paymentInstrument":
                             string? paymentInstrumentRawValue = utf8JsonReader.GetString();
-                            paymentInstrument = new Option<PayAtTable.PaymentInstrumentEnum?>(PayAtTable.PaymentInstrumentEnum.FromStringOrDefault(paymentInstrumentRawValue));
+                            paymentInstrument = new Option<PayAtTable.PaymentInstrumentEnum?>(PayAtTable.PaymentInstrumentEnum.FromStringOrDefault(paymentInstrumentRawValue) ?? (PayAtTable.PaymentInstrumentEnum)paymentInstrumentRawValue);
                             break;
                         default:
                             break;

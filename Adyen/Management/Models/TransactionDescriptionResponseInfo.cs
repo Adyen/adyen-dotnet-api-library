@@ -150,7 +150,7 @@ namespace Adyen.Management.Models
                 if (value == TypeEnum.Fixed)
                     return "fixed";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -265,7 +265,7 @@ namespace Adyen.Management.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<TransactionDescriptionResponseInfo.TypeEnum?>(TransactionDescriptionResponseInfo.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<TransactionDescriptionResponseInfo.TypeEnum?>(TransactionDescriptionResponseInfo.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TransactionDescriptionResponseInfo.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

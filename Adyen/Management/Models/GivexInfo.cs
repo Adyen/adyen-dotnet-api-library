@@ -140,7 +140,7 @@ namespace Adyen.Management.Models
                 if (value == PaymentFlowEnum.POS)
                     return "POS";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -262,7 +262,7 @@ namespace Adyen.Management.Models
                             break;
                         case "paymentFlow":
                             string? paymentFlowRawValue = utf8JsonReader.GetString();
-                            paymentFlow = new Option<GivexInfo.PaymentFlowEnum?>(GivexInfo.PaymentFlowEnum.FromStringOrDefault(paymentFlowRawValue));
+                            paymentFlow = new Option<GivexInfo.PaymentFlowEnum?>(GivexInfo.PaymentFlowEnum.FromStringOrDefault(paymentFlowRawValue) ?? (GivexInfo.PaymentFlowEnum)paymentFlowRawValue);
                             break;
                         case "username":
                             username = new Option<string?>(utf8JsonReader.GetString()!);
@@ -288,7 +288,7 @@ namespace Adyen.Management.Models
             var givexInfo = new GivexInfo();
             givexInfo.CurrencyCode = currencyCode.Value!;
             givexInfo.Password = password.Value!;
-            givexInfo.PaymentFlow = paymentFlow.Value!.Value;
+            givexInfo.PaymentFlow = paymentFlow.Value!;
             givexInfo.Username = username.Value!;
             return givexInfo;
         }

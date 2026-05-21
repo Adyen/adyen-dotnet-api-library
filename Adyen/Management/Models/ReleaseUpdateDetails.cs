@@ -132,7 +132,7 @@ namespace Adyen.Management.Models
                 if (value == TypeEnum.ReleaseUpdate)
                     return "ReleaseUpdate";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -244,7 +244,7 @@ namespace Adyen.Management.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<ReleaseUpdateDetails.TypeEnum?>(ReleaseUpdateDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<ReleaseUpdateDetails.TypeEnum?>(ReleaseUpdateDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (ReleaseUpdateDetails.TypeEnum)typeRawValue);
                             break;
                         case "updateAtFirstMaintenanceCall":
                             updateAtFirstMaintenanceCall = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
