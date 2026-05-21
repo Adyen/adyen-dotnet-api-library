@@ -158,7 +158,7 @@ namespace Adyen.StoredValue.Models
                 if (value == ShopperInteractionEnum.POS)
                     return "POS";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -369,7 +369,7 @@ namespace Adyen.StoredValue.Models
                             break;
                         case "shopperInteraction":
                             string? shopperInteractionRawValue = utf8JsonReader.GetString();
-                            shopperInteraction = new Option<StoredValueBalanceMergeRequest.ShopperInteractionEnum?>(StoredValueBalanceMergeRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue));
+                            shopperInteraction = new Option<StoredValueBalanceMergeRequest.ShopperInteractionEnum?>(StoredValueBalanceMergeRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue) ?? (StoredValueBalanceMergeRequest.ShopperInteractionEnum)shopperInteractionRawValue);
                             break;
                         case "shopperReference":
                             shopperReference = new Option<string?>(utf8JsonReader.GetString()!);

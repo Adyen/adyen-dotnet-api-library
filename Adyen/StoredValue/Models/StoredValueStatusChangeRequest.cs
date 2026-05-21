@@ -140,7 +140,7 @@ namespace Adyen.StoredValue.Models
                 if (value == StatusEnum.Inactive)
                     return "inactive";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -288,7 +288,7 @@ namespace Adyen.StoredValue.Models
                 if (value == ShopperInteractionEnum.POS)
                     return "POS";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -483,7 +483,7 @@ namespace Adyen.StoredValue.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<StoredValueStatusChangeRequest.StatusEnum?>(StoredValueStatusChangeRequest.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<StoredValueStatusChangeRequest.StatusEnum?>(StoredValueStatusChangeRequest.StatusEnum.FromStringOrDefault(statusRawValue) ?? (StoredValueStatusChangeRequest.StatusEnum)statusRawValue);
                             break;
                         case "amount":
                             amount = new Option<Amount?>(JsonSerializer.Deserialize<Amount>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -493,7 +493,7 @@ namespace Adyen.StoredValue.Models
                             break;
                         case "shopperInteraction":
                             string? shopperInteractionRawValue = utf8JsonReader.GetString();
-                            shopperInteraction = new Option<StoredValueStatusChangeRequest.ShopperInteractionEnum?>(StoredValueStatusChangeRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue));
+                            shopperInteraction = new Option<StoredValueStatusChangeRequest.ShopperInteractionEnum?>(StoredValueStatusChangeRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue) ?? (StoredValueStatusChangeRequest.ShopperInteractionEnum)shopperInteractionRawValue);
                             break;
                         case "shopperReference":
                             shopperReference = new Option<string?>(utf8JsonReader.GetString()!);
@@ -523,7 +523,7 @@ namespace Adyen.StoredValue.Models
             storedValueStatusChangeRequest.MerchantAccount = merchantAccount.Value!;
             storedValueStatusChangeRequest.PaymentMethod = paymentMethod.Value!;
             storedValueStatusChangeRequest.Reference = reference.Value!;
-            storedValueStatusChangeRequest.Status = status.Value!.Value;
+            storedValueStatusChangeRequest.Status = status.Value!;
             if (amount.IsSet)
                 storedValueStatusChangeRequest.Amount = amount.Value;
             if (recurringDetailReference.IsSet)

@@ -140,7 +140,7 @@ namespace Adyen.StoredValue.Models
                 if (value == LoadTypeEnum.Load)
                     return "load";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -295,7 +295,7 @@ namespace Adyen.StoredValue.Models
                 if (value == ShopperInteractionEnum.POS)
                     return "POS";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -486,14 +486,14 @@ namespace Adyen.StoredValue.Models
                             break;
                         case "loadType":
                             string? loadTypeRawValue = utf8JsonReader.GetString();
-                            loadType = new Option<StoredValueLoadRequest.LoadTypeEnum?>(StoredValueLoadRequest.LoadTypeEnum.FromStringOrDefault(loadTypeRawValue));
+                            loadType = new Option<StoredValueLoadRequest.LoadTypeEnum?>(StoredValueLoadRequest.LoadTypeEnum.FromStringOrDefault(loadTypeRawValue) ?? (StoredValueLoadRequest.LoadTypeEnum)loadTypeRawValue);
                             break;
                         case "recurringDetailReference":
                             recurringDetailReference = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "shopperInteraction":
                             string? shopperInteractionRawValue = utf8JsonReader.GetString();
-                            shopperInteraction = new Option<StoredValueLoadRequest.ShopperInteractionEnum?>(StoredValueLoadRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue));
+                            shopperInteraction = new Option<StoredValueLoadRequest.ShopperInteractionEnum?>(StoredValueLoadRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue) ?? (StoredValueLoadRequest.ShopperInteractionEnum)shopperInteractionRawValue);
                             break;
                         case "shopperReference":
                             shopperReference = new Option<string?>(utf8JsonReader.GetString()!);
