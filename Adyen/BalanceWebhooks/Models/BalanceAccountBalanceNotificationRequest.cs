@@ -131,7 +131,7 @@ namespace Adyen.BalanceWebhooks.Models
                 if (value == TypeEnum.BalancePlatformBalanceAccountBalanceUpdated)
                     return "balancePlatform.balanceAccount.balance.updated";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -264,7 +264,7 @@ namespace Adyen.BalanceWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<BalanceAccountBalanceNotificationRequest.TypeEnum?>(BalanceAccountBalanceNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<BalanceAccountBalanceNotificationRequest.TypeEnum?>(BalanceAccountBalanceNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (BalanceAccountBalanceNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         case "timestamp":
                             timestamp = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -287,7 +287,7 @@ namespace Adyen.BalanceWebhooks.Models
             var balanceAccountBalanceNotificationRequest = new BalanceAccountBalanceNotificationRequest();
             balanceAccountBalanceNotificationRequest.Data = data.Value!;
             balanceAccountBalanceNotificationRequest.Environment = environment.Value!;
-            balanceAccountBalanceNotificationRequest.Type = type.Value!.Value;
+            balanceAccountBalanceNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 balanceAccountBalanceNotificationRequest.Timestamp = timestamp.Value;
             return balanceAccountBalanceNotificationRequest;
