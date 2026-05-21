@@ -131,7 +131,7 @@ namespace Adyen.ManagementWebhooks.Models
                 if (value == TypeEnum.PaymentMethodCreated)
                     return "paymentMethod.created";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -260,7 +260,7 @@ namespace Adyen.ManagementWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PaymentMethodCreatedNotificationRequest.TypeEnum?>(PaymentMethodCreatedNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<PaymentMethodCreatedNotificationRequest.TypeEnum?>(PaymentMethodCreatedNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PaymentMethodCreatedNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -284,7 +284,7 @@ namespace Adyen.ManagementWebhooks.Models
             paymentMethodCreatedNotificationRequest.CreatedAt = createdAt.Value!.Value;
             paymentMethodCreatedNotificationRequest.Data = data.Value!;
             paymentMethodCreatedNotificationRequest.Environment = environment.Value!;
-            paymentMethodCreatedNotificationRequest.Type = type.Value!.Value;
+            paymentMethodCreatedNotificationRequest.Type = type.Value!;
             return paymentMethodCreatedNotificationRequest;
         }
 

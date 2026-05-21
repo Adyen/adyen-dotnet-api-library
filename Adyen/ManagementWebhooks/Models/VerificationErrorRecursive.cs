@@ -158,7 +158,7 @@ namespace Adyen.ManagementWebhooks.Models
                 if (value == TypeEnum.PendingStatus)
                     return "pendingStatus";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -308,7 +308,7 @@ namespace Adyen.ManagementWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<VerificationErrorRecursive.TypeEnum?>(VerificationErrorRecursive.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<VerificationErrorRecursive.TypeEnum?>(VerificationErrorRecursive.TypeEnum.FromStringOrDefault(typeRawValue) ?? (VerificationErrorRecursive.TypeEnum)typeRawValue);
                             break;
                         case "remediatingActions":
                             remediatingActions = new Option<List<RemediatingAction>?>(JsonSerializer.Deserialize<List<RemediatingAction>>(ref utf8JsonReader, jsonSerializerOptions)!);

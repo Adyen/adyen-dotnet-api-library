@@ -131,7 +131,7 @@ namespace Adyen.ManagementWebhooks.Models
                 if (value == TypeEnum.MerchantUpdated)
                     return "merchant.updated";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -260,7 +260,7 @@ namespace Adyen.ManagementWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<MerchantUpdatedNotificationRequest.TypeEnum?>(MerchantUpdatedNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<MerchantUpdatedNotificationRequest.TypeEnum?>(MerchantUpdatedNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (MerchantUpdatedNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -284,7 +284,7 @@ namespace Adyen.ManagementWebhooks.Models
             merchantUpdatedNotificationRequest.CreatedAt = createdAt.Value!.Value;
             merchantUpdatedNotificationRequest.Data = data.Value!;
             merchantUpdatedNotificationRequest.Environment = environment.Value!;
-            merchantUpdatedNotificationRequest.Type = type.Value!.Value;
+            merchantUpdatedNotificationRequest.Type = type.Value!;
             return merchantUpdatedNotificationRequest;
         }
 

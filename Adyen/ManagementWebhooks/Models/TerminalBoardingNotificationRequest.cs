@@ -131,7 +131,7 @@ namespace Adyen.ManagementWebhooks.Models
                 if (value == TypeEnum.TerminalBoardingTriggered)
                     return "terminalBoarding.triggered";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -260,7 +260,7 @@ namespace Adyen.ManagementWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<TerminalBoardingNotificationRequest.TypeEnum?>(TerminalBoardingNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<TerminalBoardingNotificationRequest.TypeEnum?>(TerminalBoardingNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TerminalBoardingNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -284,7 +284,7 @@ namespace Adyen.ManagementWebhooks.Models
             terminalBoardingNotificationRequest.CreatedAt = createdAt.Value!.Value;
             terminalBoardingNotificationRequest.Data = data.Value!;
             terminalBoardingNotificationRequest.Environment = environment.Value!;
-            terminalBoardingNotificationRequest.Type = type.Value!.Value;
+            terminalBoardingNotificationRequest.Type = type.Value!;
             return terminalBoardingNotificationRequest;
         }
 
