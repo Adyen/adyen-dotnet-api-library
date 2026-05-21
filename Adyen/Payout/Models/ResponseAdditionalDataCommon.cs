@@ -149,7 +149,7 @@ namespace Adyen.Payout.Models
                 if (value == FraudResultTypeEnum.RED)
                     return "RED";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -313,7 +313,7 @@ namespace Adyen.Payout.Models
                 if (value == FraudRiskLevelEnum.VeryHigh)
                     return "veryHigh";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -459,7 +459,7 @@ namespace Adyen.Payout.Models
                 if (value == RecurringProcessingModelEnum.UnscheduledCardOnFile)
                     return "UnscheduledCardOnFile";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -605,7 +605,7 @@ namespace Adyen.Payout.Models
                 if (value == TokenizationStoreOperationTypeEnum.AlreadyExisting)
                     return "alreadyExisting";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1739,11 +1739,11 @@ namespace Adyen.Payout.Models
                             break;
                         case "fraudResultType":
                             string? fraudResultTypeRawValue = utf8JsonReader.GetString();
-                            fraudResultType = new Option<ResponseAdditionalDataCommon.FraudResultTypeEnum?>(ResponseAdditionalDataCommon.FraudResultTypeEnum.FromStringOrDefault(fraudResultTypeRawValue));
+                            fraudResultType = new Option<ResponseAdditionalDataCommon.FraudResultTypeEnum?>(ResponseAdditionalDataCommon.FraudResultTypeEnum.FromStringOrDefault(fraudResultTypeRawValue) ?? (ResponseAdditionalDataCommon.FraudResultTypeEnum)fraudResultTypeRawValue);
                             break;
                         case "fraudRiskLevel":
                             string? fraudRiskLevelRawValue = utf8JsonReader.GetString();
-                            fraudRiskLevel = new Option<ResponseAdditionalDataCommon.FraudRiskLevelEnum?>(ResponseAdditionalDataCommon.FraudRiskLevelEnum.FromStringOrDefault(fraudRiskLevelRawValue));
+                            fraudRiskLevel = new Option<ResponseAdditionalDataCommon.FraudRiskLevelEnum?>(ResponseAdditionalDataCommon.FraudRiskLevelEnum.FromStringOrDefault(fraudRiskLevelRawValue) ?? (ResponseAdditionalDataCommon.FraudRiskLevelEnum)fraudRiskLevelRawValue);
                             break;
                         case "fundingSource":
                             fundingSource = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1813,7 +1813,7 @@ namespace Adyen.Payout.Models
                             break;
                         case "recurringProcessingModel":
                             string? recurringProcessingModelRawValue = utf8JsonReader.GetString();
-                            recurringProcessingModel = new Option<ResponseAdditionalDataCommon.RecurringProcessingModelEnum?>(ResponseAdditionalDataCommon.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue));
+                            recurringProcessingModel = new Option<ResponseAdditionalDataCommon.RecurringProcessingModelEnum?>(ResponseAdditionalDataCommon.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue) ?? (ResponseAdditionalDataCommon.RecurringProcessingModelEnum)recurringProcessingModelRawValue);
                             break;
                         case "referred":
                             referred = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1856,7 +1856,7 @@ namespace Adyen.Payout.Models
                             break;
                         case "tokenization.store.operationType":
                             string? tokenizationStoreOperationTypeRawValue = utf8JsonReader.GetString();
-                            tokenizationStoreOperationType = new Option<ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum?>(ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum.FromStringOrDefault(tokenizationStoreOperationTypeRawValue));
+                            tokenizationStoreOperationType = new Option<ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum?>(ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum.FromStringOrDefault(tokenizationStoreOperationTypeRawValue) ?? (ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum)tokenizationStoreOperationTypeRawValue);
                             break;
                         case "tokenization.storedPaymentMethodId":
                             tokenizationStoredPaymentMethodId = new Option<string?>(utf8JsonReader.GetString()!);

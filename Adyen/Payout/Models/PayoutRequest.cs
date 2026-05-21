@@ -158,7 +158,7 @@ namespace Adyen.Payout.Models
                 if (value == ShopperInteractionEnum.POS)
                     return "POS";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -465,7 +465,7 @@ namespace Adyen.Payout.Models
                             break;
                         case "shopperInteraction":
                             string? shopperInteractionRawValue = utf8JsonReader.GetString();
-                            shopperInteraction = new Option<PayoutRequest.ShopperInteractionEnum?>(PayoutRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue));
+                            shopperInteraction = new Option<PayoutRequest.ShopperInteractionEnum?>(PayoutRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue) ?? (PayoutRequest.ShopperInteractionEnum)shopperInteractionRawValue);
                             break;
                         case "shopperName":
                             shopperName = new Option<Name?>(JsonSerializer.Deserialize<Name>(ref utf8JsonReader, jsonSerializerOptions)!);
