@@ -131,7 +131,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 if (value == TypeEnum.BalancePlatformAuthorisationRelayed)
                     return "balancePlatform.authorisation.relayed";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -671,7 +671,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<RelayedAuthorisationRequest.TypeEnum?>(RelayedAuthorisationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<RelayedAuthorisationRequest.TypeEnum?>(RelayedAuthorisationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (RelayedAuthorisationRequest.TypeEnum)typeRawValue);
                             break;
                         case "validationResult":
                             validationResult = new Option<List<ValidationResult>?>(JsonSerializer.Deserialize<List<ValidationResult>>(ref utf8JsonReader, jsonSerializerOptions)!);

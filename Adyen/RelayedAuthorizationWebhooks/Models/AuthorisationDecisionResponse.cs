@@ -140,7 +140,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 if (value == StatusEnum.Refused)
                     return "Refused";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -245,7 +245,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                     {
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<AuthorisationDecisionResponse.StatusEnum?>(AuthorisationDecisionResponse.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<AuthorisationDecisionResponse.StatusEnum?>(AuthorisationDecisionResponse.StatusEnum.FromStringOrDefault(statusRawValue) ?? (AuthorisationDecisionResponse.StatusEnum)statusRawValue);
                             break;
                         case "refusalReason":
                             refusalReason = new Option<string?>(utf8JsonReader.GetString()!);
@@ -260,7 +260,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 throw new ArgumentException("Property is required for class AuthorisationDecisionResponse.", nameof(status));
 
             var authorisationDecisionResponse = new AuthorisationDecisionResponse();
-            authorisationDecisionResponse.Status = status.Value!.Value;
+            authorisationDecisionResponse.Status = status.Value!;
             if (refusalReason.IsSet)
                 authorisationDecisionResponse.RefusalReason = refusalReason.Value;
             return authorisationDecisionResponse;
