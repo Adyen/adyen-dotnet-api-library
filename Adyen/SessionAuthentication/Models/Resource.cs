@@ -39,7 +39,7 @@ namespace Adyen.SessionAuthentication.Models
         /// </summary>
         public Resource()
         {
-            Type = (ResourceType)Enum.Parse(typeof(ResourceType), this.GetType().Name);
+            Type = (ResourceType)this.GetType().Name;
             OnCreated();
         }
 
@@ -117,8 +117,7 @@ namespace Adyen.SessionAuthentication.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                                type = new Option<ResourceType?>(ResourceTypeValueConverter.FromStringOrDefault(typeRawValue));
+                            type = new Option<ResourceType?>(ResourceType.FromStringOrDefault(typeRawValue) ?? (ResourceType)typeRawValue);
                             break;
                         default:
                             break;
@@ -172,7 +171,7 @@ namespace Adyen.SessionAuthentication.Models
         {
             
             if (resource.Type != null)
-    writer.WriteString("type", ResourceTypeValueConverter.ToJsonValue(resource.Type));
+    writer.WriteString("type", ResourceType.ToJsonValue(resource.Type));
         }
     }
 }

@@ -123,9 +123,9 @@ namespace Adyen.SessionAuthentication.Client
             if (obj is bool boolean)
                 return boolean ? "true" : "false";
             if (obj is Models.ProductType productType)
-                return ProductTypeValueConverter.ToJsonValue(productType);
+                return ProductType.ToJsonValue(productType);
             if (obj is Models.ResourceType resourceType)
-                return ResourceTypeValueConverter.ToJsonValue(resourceType);
+                return ResourceType.ToJsonValue(resourceType);
             if (obj is ICollection collection)
             {
                 List<string?> entries = new();

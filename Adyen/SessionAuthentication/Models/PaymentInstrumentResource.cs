@@ -110,8 +110,7 @@ namespace Adyen.SessionAuthentication.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                                type = new Option<ResourceType?>(ResourceTypeValueConverter.FromStringOrDefault(typeRawValue));
+                            type = new Option<ResourceType?>(ResourceType.FromStringOrDefault(typeRawValue) ?? (ResourceType)typeRawValue);
                             break;
                         default:
                             break;
@@ -157,7 +156,7 @@ namespace Adyen.SessionAuthentication.Models
                 writer.WriteString("paymentInstrumentId", paymentInstrumentResource.PaymentInstrumentId);
 
             if (paymentInstrumentResource.Type != null)
-    writer.WriteString("type", ResourceTypeValueConverter.ToJsonValue(paymentInstrumentResource.Type));
+    writer.WriteString("type", ResourceType.ToJsonValue(paymentInstrumentResource.Type));
         }
     }
 }

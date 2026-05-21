@@ -128,8 +128,7 @@ namespace Adyen.SessionAuthentication.Models
                             break;
                         case "product":
                             string? productRawValue = utf8JsonReader.GetString();
-                            if (productRawValue != null)
-                                product = new Option<ProductType?>(ProductTypeValueConverter.FromStringOrDefault(productRawValue));
+                            product = new Option<ProductType?>(ProductType.FromStringOrDefault(productRawValue) ?? (ProductType)productRawValue);
                             break;
                         default:
                             break;
@@ -149,7 +148,7 @@ namespace Adyen.SessionAuthentication.Models
             var authenticationSessionRequest = new AuthenticationSessionRequest();
             authenticationSessionRequest.AllowOrigin = allowOrigin.Value!;
             authenticationSessionRequest.Policy = policy.Value!;
-            authenticationSessionRequest.Product = product.Value!.Value;
+            authenticationSessionRequest.Product = product.Value!;
             return authenticationSessionRequest;
         }
 
@@ -184,7 +183,7 @@ namespace Adyen.SessionAuthentication.Models
 
             writer.WritePropertyName("policy");
             JsonSerializer.Serialize(writer, authenticationSessionRequest.Policy, jsonSerializerOptions);
-            var productRawValue = ProductTypeValueConverter.ToJsonValue(authenticationSessionRequest.Product);
+            var productRawValue = ProductType.ToJsonValue(authenticationSessionRequest.Product);
             writer.WriteString("product", productRawValue);
         }
     }
