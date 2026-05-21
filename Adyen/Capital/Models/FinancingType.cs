@@ -30,118 +30,118 @@ using Adyen.Capital.Client;
 namespace Adyen.Capital.Models
 {
     /// <summary>
-    /// Defines FundsCollectionType
+    /// Defines FinancingType
     /// </summary>
-    [JsonConverter(typeof(FundsCollectionType.FundsCollectionTypeJsonConverter))]
-    public class FundsCollectionType : IEnum
+    [JsonConverter(typeof(FinancingType.FinancingTypeJsonConverter))]
+    public class FinancingType : IEnum
     {
         /// <summary>
-        /// Returns the value of the FundsCollectionType.
+        /// Returns the value of the FinancingType.
         /// </summary>
         public string? Value { get; set; }
 
         /// <summary>
-        /// FundsCollectionType.UnscheduledRepayment - UnscheduledRepayment
+        /// FinancingType.HardwareFinancing - hardwareFinancing
         /// </summary>
-        public static readonly FundsCollectionType UnscheduledRepayment = new("UnscheduledRepayment");
+        public static readonly FinancingType HardwareFinancing = new("hardwareFinancing");
 
         /// <summary>
-        /// FundsCollectionType.Revocation - Revocation
+        /// FinancingType.BusinessFinancing - businessFinancing
         /// </summary>
-        public static readonly FundsCollectionType Revocation = new("Revocation");
+        public static readonly FinancingType BusinessFinancing = new("businessFinancing");
 
-        private FundsCollectionType(string? value)
+        private FinancingType(string? value)
         {
             Value = value;
         }
 
         /// <summary>
-        /// Converts a string to a <see cref="FundsCollectionType"/> implicitly.
+        /// Converts a string to a <see cref="FinancingType"/> implicitly.
         /// </summary>
-        public static implicit operator FundsCollectionType?(string? value) => value == null ? null : new FundsCollectionType(value);
+        public static implicit operator FinancingType?(string? value) => value == null ? null : new FinancingType(value);
 
         /// <summary>
-        /// Converts a <see cref="FundsCollectionType"/> instance to a string implicitly.
+        /// Converts a <see cref="FinancingType"/> instance to a string implicitly.
         /// </summary>
-        public static implicit operator string?(FundsCollectionType? option) => option?.Value;
+        public static implicit operator string?(FinancingType? option) => option?.Value;
 
         /// <summary>
-        /// Compares two <see cref="FundsCollectionType"/> instances for equality.
+        /// Compares two <see cref="FinancingType"/> instances for equality.
         /// </summary>
-        public static bool operator ==(FundsCollectionType? left, FundsCollectionType? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+        public static bool operator ==(FinancingType? left, FinancingType? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
         /// <summary>
-        /// Compares two <see cref="FundsCollectionType"/> instances for inequality.
+        /// Compares two <see cref="FinancingType"/> instances for inequality.
         /// </summary>
-        public static bool operator !=(FundsCollectionType? left, FundsCollectionType? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+        public static bool operator !=(FinancingType? left, FinancingType? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
 
         /// <summary>
-        /// Returns true if the given object is equal to this <see cref="FundsCollectionType"/> instance.
+        /// Returns true if the given object is equal to this <see cref="FinancingType"/> instance.
         /// </summary>
-        public override bool Equals(object? obj) => obj is FundsCollectionType other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+        public override bool Equals(object? obj) => obj is FinancingType other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
 
         /// <summary>
-        /// Returns a hash code for this <see cref="FundsCollectionType"/> instance.
+        /// Returns a hash code for this <see cref="FinancingType"/> instance.
         /// </summary>
         public override int GetHashCode() => Value?.GetHashCode() ?? 0;
 
         /// <summary>
-        /// Returns the string value of the <see cref="FundsCollectionType"/> instance.
+        /// Returns the string value of the <see cref="FinancingType"/> instance.
         /// </summary>
         public override string ToString() => Value ?? string.Empty;
 
         /// <summary>
-        /// Returns a <see cref="FundsCollectionType?"/>, or null if the value is not recognized.
+        /// Returns a <see cref="FinancingType?"/>, or null if the value is not recognized.
         /// </summary>
-        public static FundsCollectionType? FromStringOrDefault(string? value)
+        public static FinancingType? FromStringOrDefault(string? value)
         {
             return value switch {
-                "UnscheduledRepayment" => FundsCollectionType.UnscheduledRepayment,
-                "Revocation" => FundsCollectionType.Revocation,
+                "hardwareFinancing" => FinancingType.HardwareFinancing,
+                "businessFinancing" => FinancingType.BusinessFinancing,
                 _ => null,
             };
         }
 
         /// <summary>
-        /// Converts the <see cref="FundsCollectionType"/> to the json value.
+        /// Converts the <see cref="FinancingType"/> to the json value.
         /// Returns the raw string value, preserving unknown values for round-trip safety.
         /// </summary>
-        public static string? ToJsonValue(FundsCollectionType? value)
+        public static string? ToJsonValue(FinancingType? value)
         {
             if (value == null)
                 return null;
 
-            if (value == FundsCollectionType.UnscheduledRepayment)
-                return "UnscheduledRepayment";
+            if (value == FinancingType.HardwareFinancing)
+                return "hardwareFinancing";
 
-            if (value == FundsCollectionType.Revocation)
-                return "Revocation";
+            if (value == FinancingType.BusinessFinancing)
+                return "businessFinancing";
 
             return value.Value;
         }
 
         /// <summary>
-        /// JsonConverter for <see cref="FundsCollectionType"/>.
+        /// JsonConverter for <see cref="FinancingType"/>.
         /// Preserves unknown values instead of throwing an exception.
         /// </summary>
-        public class FundsCollectionTypeJsonConverter : JsonConverter<FundsCollectionType>
+        public class FinancingTypeJsonConverter : JsonConverter<FinancingType>
         {
             /// <summary>
-            /// Deserializes a <see cref="FundsCollectionType"/> from JSON.
+            /// Deserializes a <see cref="FinancingType"/> from JSON.
             /// Unknown values are preserved as-is rather than throwing an exception.
             /// </summary>
-            public override FundsCollectionType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            public override FinancingType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
             {
                 string? rawValue = reader.GetString();
-                return rawValue == null ? null : FundsCollectionType.FromStringOrDefault(rawValue) ?? new FundsCollectionType(rawValue);
+                return rawValue == null ? null : FinancingType.FromStringOrDefault(rawValue) ?? new FinancingType(rawValue);
             }
 
             /// <summary>
-            /// Serializes a <see cref="FundsCollectionType"/> to JSON.
+            /// Serializes a <see cref="FinancingType"/> to JSON.
             /// </summary>
-            public override void Write(Utf8JsonWriter writer, FundsCollectionType value, JsonSerializerOptions options)
+            public override void Write(Utf8JsonWriter writer, FinancingType value, JsonSerializerOptions options)
             {
-                writer.WriteStringValue(FundsCollectionType.ToJsonValue(value));
+                writer.WriteStringValue(FinancingType.ToJsonValue(value));
             }
         }
     }

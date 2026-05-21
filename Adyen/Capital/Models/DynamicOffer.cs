@@ -30,14 +30,14 @@ using Adyen.Capital.Client;
 namespace Adyen.Capital.Models
 {
     /// <summary>
-    /// GrantOffer.
+    /// DynamicOffer.
     /// </summary>
-    public partial class GrantOffer
+    public partial class DynamicOffer
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GrantOffer" /> class.
+        /// Initializes a new instance of the <see cref="DynamicOffer" /> class.
         /// </summary>
-        public GrantOffer()
+        public DynamicOffer()
         {
             OnCreated();
         }
@@ -168,106 +168,63 @@ namespace Adyen.Capital.Models
         }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="ContractType"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<ContractTypeEnum?> _ContractTypeOption { get; private set; }
-
-        /// <summary>
         /// The contract type of the offer.  Possible values: * **loan** * **cashAdvance**
         /// </summary>
         /// <value>The contract type of the offer.  Possible values: * **loan** * **cashAdvance**</value>
         [JsonPropertyName("contractType")]
-        public ContractTypeEnum? ContractType { get { return this._ContractTypeOption; } set { this._ContractTypeOption = new(value); } }
+        public ContractTypeEnum ContractType { get; set; }
 
         /// <summary>
-        /// The unique identifier of the account holder to which the grant is offered.
+        /// <see cref="FinancingType"/>.
         /// </summary>
-        /// <value>The unique identifier of the account holder to which the grant is offered.</value>
+        [JsonPropertyName("financingType")]
+        public FinancingType FinancingType { get; set; }
+
+        /// <summary>
+        /// The unique identifier of the account holder that the dynamic offer is for.
+        /// </summary>
+        /// <value>The unique identifier of the account holder that the dynamic offer is for.</value>
         [JsonPropertyName("accountHolderId")]
         public string AccountHolderId { get; set; }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Amount?> _AmountOption { get; private set; }
-
-        /// <summary>
-        /// <see cref="Amount"/>.
-        /// </summary>
-        [JsonPropertyName("amount")]
-        public Amount? Amount { get { return this._AmountOption; } set { this._AmountOption = new(value); } }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="ExpiresAt"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<DateTimeOffset?> _ExpiresAtOption { get; private set; }
 
         /// <summary>
         /// The expiration date and time of the offer validity period.
         /// </summary>
         /// <value>The expiration date and time of the offer validity period.</value>
         [JsonPropertyName("expiresAt")]
-        public DateTimeOffset? ExpiresAt { get { return this._ExpiresAtOption; } set { this._ExpiresAtOption = new(value); } }
+        public DateTimeOffset ExpiresAt { get; set; }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Fee"/> will be populated.
+        /// The unique identifier of the dynamic offer.
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<GrantOfferFee?> _FeeOption { get; private set; }
-
-        /// <summary>
-        /// <see cref="Fee"/>.
-        /// </summary>
-        [JsonPropertyName("fee")]
-        public GrantOfferFee? Fee { get { return this._FeeOption; } set { this._FeeOption = new(value); } }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _IdOption { get; private set; }
-
-        /// <summary>
-        /// The unique identifier of the offer.
-        /// </summary>
-        /// <value>The unique identifier of the offer.</value>
+        /// <value>The unique identifier of the dynamic offer.</value>
         [JsonPropertyName("id")]
-        public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
+        public string Id { get; set; }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Repayment"/> will be populated.
+        /// <see cref="MaximumAmount"/>.
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Repayment?> _RepaymentOption { get; private set; }
+        [JsonPropertyName("maximumAmount")]
+        public Amount MaximumAmount { get; set; }
+
+        /// <summary>
+        /// <see cref="MinimumAmount"/>.
+        /// </summary>
+        [JsonPropertyName("minimumAmount")]
+        public Amount MinimumAmount { get; set; }
 
         /// <summary>
         /// <see cref="Repayment"/>.
         /// </summary>
         [JsonPropertyName("repayment")]
-        public Repayment? Repayment { get { return this._RepaymentOption; } set { this._RepaymentOption = new(value); } }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="StartsAt"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<DateTimeOffset?> _StartsAtOption { get; private set; }
+        public DynamicOfferRepayment Repayment { get; set; }
 
         /// <summary>
         /// The starting date and time of the offer validity period.
         /// </summary>
         /// <value>The starting date and time of the offer validity period.</value>
         [JsonPropertyName("startsAt")]
-        public DateTimeOffset? StartsAt { get { return this._StartsAtOption; } set { this._StartsAtOption = new(value); } }
+        public DateTimeOffset StartsAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -276,13 +233,14 @@ namespace Adyen.Capital.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GrantOffer {\n");
+            sb.Append("class DynamicOffer {\n");
             sb.Append("  AccountHolderId: ").Append(AccountHolderId).Append("\n");
-            sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  ContractType: ").Append(ContractType).Append("\n");
             sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
-            sb.Append("  Fee: ").Append(Fee).Append("\n");
+            sb.Append("  FinancingType: ").Append(FinancingType).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  MaximumAmount: ").Append(MaximumAmount).Append("\n");
+            sb.Append("  MinimumAmount: ").Append(MinimumAmount).Append("\n");
             sb.Append("  Repayment: ").Append(Repayment).Append("\n");
             sb.Append("  StartsAt: ").Append(StartsAt).Append("\n");
             sb.Append("}\n");
@@ -291,9 +249,9 @@ namespace Adyen.Capital.Models
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="GrantOffer" />
+    /// A Json converter for type <see cref="DynamicOffer" />
     /// </summary>
-    public class GrantOfferJsonConverter : JsonConverter<GrantOffer>
+    public class DynamicOfferJsonConverter : JsonConverter<DynamicOffer>
     {
         /// <summary>
         /// The format to use to serialize ExpiresAt.
@@ -306,14 +264,14 @@ namespace Adyen.Capital.Models
         public static string StartsAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
-        /// Deserializes json to <see cref="GrantOffer"/>.
+        /// Deserializes json to <see cref="DynamicOffer"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="GrantOffer"/>.</returns>
+        /// <returns><see cref="DynamicOffer"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override GrantOffer Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override DynamicOffer Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -323,12 +281,13 @@ namespace Adyen.Capital.Models
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string?> accountHolderId = default;
-            Option<Amount?> amount = default;
-            Option<GrantOffer.ContractTypeEnum?> contractType = default;
+            Option<DynamicOffer.ContractTypeEnum?> contractType = default;
             Option<DateTimeOffset?> expiresAt = default;
-            Option<GrantOfferFee?> fee = default;
+            Option<FinancingType?> financingType = default;
             Option<string?> id = default;
-            Option<Repayment?> repayment = default;
+            Option<Amount?> maximumAmount = default;
+            Option<Amount?> minimumAmount = default;
+            Option<DynamicOfferRepayment?> repayment = default;
             Option<DateTimeOffset?> startsAt = default;
 
             while (utf8JsonReader.Read())
@@ -349,24 +308,28 @@ namespace Adyen.Capital.Models
                         case "accountHolderId":
                             accountHolderId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
-                        case "amount":
-                            amount = new Option<Amount?>(JsonSerializer.Deserialize<Amount>(ref utf8JsonReader, jsonSerializerOptions)!);
-                            break;
                         case "contractType":
                             string? contractTypeRawValue = utf8JsonReader.GetString();
-                            contractType = new Option<GrantOffer.ContractTypeEnum?>(GrantOffer.ContractTypeEnum.FromStringOrDefault(contractTypeRawValue) ?? (GrantOffer.ContractTypeEnum)contractTypeRawValue);
+                            contractType = new Option<DynamicOffer.ContractTypeEnum?>(DynamicOffer.ContractTypeEnum.FromStringOrDefault(contractTypeRawValue) ?? (DynamicOffer.ContractTypeEnum)contractTypeRawValue);
                             break;
                         case "expiresAt":
                             expiresAt = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "fee":
-                            fee = new Option<GrantOfferFee?>(JsonSerializer.Deserialize<GrantOfferFee>(ref utf8JsonReader, jsonSerializerOptions)!);
+                        case "financingType":
+                            string? financingTypeRawValue = utf8JsonReader.GetString();
+                            financingType = new Option<FinancingType?>(FinancingType.FromStringOrDefault(financingTypeRawValue) ?? (FinancingType)financingTypeRawValue);
                             break;
                         case "id":
                             id = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "maximumAmount":
+                            maximumAmount = new Option<Amount?>(JsonSerializer.Deserialize<Amount>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "minimumAmount":
+                            minimumAmount = new Option<Amount?>(JsonSerializer.Deserialize<Amount>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "repayment":
-                            repayment = new Option<Repayment?>(JsonSerializer.Deserialize<Repayment>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            repayment = new Option<DynamicOfferRepayment?>(JsonSerializer.Deserialize<DynamicOfferRepayment>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "startsAt":
                             startsAt = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -378,88 +341,95 @@ namespace Adyen.Capital.Models
             }
             
             if (!accountHolderId.IsSet)
-                throw new ArgumentException("Property is required for class GrantOffer.", nameof(accountHolderId));
+                throw new ArgumentException("Property is required for class DynamicOffer.", nameof(accountHolderId));
 
-            var grantOffer = new GrantOffer();
-            grantOffer.AccountHolderId = accountHolderId.Value!;
-            if (amount.IsSet)
-                grantOffer.Amount = amount.Value;
-            if (contractType.IsSet)
-                grantOffer.ContractType = contractType.Value;
-            if (expiresAt.IsSet)
-                grantOffer.ExpiresAt = expiresAt.Value;
-            if (fee.IsSet)
-                grantOffer.Fee = fee.Value;
-            if (id.IsSet)
-                grantOffer.Id = id.Value;
-            if (repayment.IsSet)
-                grantOffer.Repayment = repayment.Value;
-            if (startsAt.IsSet)
-                grantOffer.StartsAt = startsAt.Value;
-            return grantOffer;
+            if (!contractType.IsSet)
+                throw new ArgumentException("Property is required for class DynamicOffer.", nameof(contractType));
+
+            if (!expiresAt.IsSet)
+                throw new ArgumentException("Property is required for class DynamicOffer.", nameof(expiresAt));
+
+            if (!financingType.IsSet)
+                throw new ArgumentException("Property is required for class DynamicOffer.", nameof(financingType));
+
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class DynamicOffer.", nameof(id));
+
+            if (!maximumAmount.IsSet)
+                throw new ArgumentException("Property is required for class DynamicOffer.", nameof(maximumAmount));
+
+            if (!minimumAmount.IsSet)
+                throw new ArgumentException("Property is required for class DynamicOffer.", nameof(minimumAmount));
+
+            if (!repayment.IsSet)
+                throw new ArgumentException("Property is required for class DynamicOffer.", nameof(repayment));
+
+            if (!startsAt.IsSet)
+                throw new ArgumentException("Property is required for class DynamicOffer.", nameof(startsAt));
+
+            var dynamicOffer = new DynamicOffer();
+            dynamicOffer.AccountHolderId = accountHolderId.Value!;
+            dynamicOffer.ContractType = contractType.Value!;
+            dynamicOffer.ExpiresAt = expiresAt.Value!.Value;
+            dynamicOffer.FinancingType = financingType.Value!;
+            dynamicOffer.Id = id.Value!;
+            dynamicOffer.MaximumAmount = maximumAmount.Value!;
+            dynamicOffer.MinimumAmount = minimumAmount.Value!;
+            dynamicOffer.Repayment = repayment.Value!;
+            dynamicOffer.StartsAt = startsAt.Value!.Value;
+            return dynamicOffer;
         }
 
         /// <summary>
-        /// Serializes a <see cref="GrantOffer"/>.
+        /// Serializes a <see cref="DynamicOffer"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="grantOffer"></param>
+        /// <param name="dynamicOffer"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, GrantOffer grantOffer, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, DynamicOffer dynamicOffer, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, grantOffer, jsonSerializerOptions);
+            WriteProperties(writer, dynamicOffer, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="GrantOffer"/>.
+        /// Serializes the properties of <see cref="DynamicOffer"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="grantOffer"></param>
+        /// <param name="dynamicOffer"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, GrantOffer grantOffer, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, DynamicOffer dynamicOffer, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (grantOffer.AccountHolderId != null)
-                writer.WriteString("accountHolderId", grantOffer.AccountHolderId);
+            if (dynamicOffer.AccountHolderId != null)
+                writer.WriteString("accountHolderId", dynamicOffer.AccountHolderId);
 
-            if (grantOffer._AmountOption.IsSet)
+            if (dynamicOffer.ContractType != null) 
             {
-                writer.WritePropertyName("amount");
-                JsonSerializer.Serialize(writer, grantOffer.Amount, jsonSerializerOptions);
-            }
-            if (grantOffer._ContractTypeOption.IsSet && grantOffer.ContractType != null) 
-            {
-                string? contractTypeRawValue = GrantOffer.ContractTypeEnum.ToJsonValue(grantOffer._ContractTypeOption.Value!.Value);
+                string? contractTypeRawValue = DynamicOffer.ContractTypeEnum.ToJsonValue(dynamicOffer.ContractType);
                 writer.WriteString("contractType", contractTypeRawValue);
             }
             
-            if (grantOffer._ExpiresAtOption.IsSet)
-                if (grantOffer._ExpiresAtOption.Value != null)
-                    writer.WriteString("expiresAt", grantOffer._ExpiresAtOption.Value!.Value.ToString(ExpiresAtFormat));
+            writer.WriteString("expiresAt", dynamicOffer.ExpiresAt.ToString(ExpiresAtFormat));
 
-            if (grantOffer._FeeOption.IsSet)
-            {
-                writer.WritePropertyName("fee");
-                JsonSerializer.Serialize(writer, grantOffer.Fee, jsonSerializerOptions);
-            }
-            if (grantOffer._IdOption.IsSet)
-                if (grantOffer.Id != null)
-                    writer.WriteString("id", grantOffer.Id);
+            var financingTypeRawValue = FinancingType.ToJsonValue(dynamicOffer.FinancingType);
+            writer.WriteString("financingType", financingTypeRawValue);
 
-            if (grantOffer._RepaymentOption.IsSet)
-            {
-                writer.WritePropertyName("repayment");
-                JsonSerializer.Serialize(writer, grantOffer.Repayment, jsonSerializerOptions);
-            }
-            if (grantOffer._StartsAtOption.IsSet)
-                if (grantOffer._StartsAtOption.Value != null)
-                    writer.WriteString("startsAt", grantOffer._StartsAtOption.Value!.Value.ToString(StartsAtFormat));
+            if (dynamicOffer.Id != null)
+                writer.WriteString("id", dynamicOffer.Id);
+
+            writer.WritePropertyName("maximumAmount");
+            JsonSerializer.Serialize(writer, dynamicOffer.MaximumAmount, jsonSerializerOptions);
+            writer.WritePropertyName("minimumAmount");
+            JsonSerializer.Serialize(writer, dynamicOffer.MinimumAmount, jsonSerializerOptions);
+            writer.WritePropertyName("repayment");
+            JsonSerializer.Serialize(writer, dynamicOffer.Repayment, jsonSerializerOptions);
+            writer.WriteString("startsAt", dynamicOffer.StartsAt.ToString(StartsAtFormat));
         }
     }
 }

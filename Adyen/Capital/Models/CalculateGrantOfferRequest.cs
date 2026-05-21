@@ -30,14 +30,14 @@ using Adyen.Capital.Client;
 namespace Adyen.Capital.Models
 {
     /// <summary>
-    /// ThresholdRepayment.
+    /// CalculateGrantOfferRequest.
     /// </summary>
-    public partial class ThresholdRepayment
+    public partial class CalculateGrantOfferRequest
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ThresholdRepayment" /> class.
+        /// Initializes a new instance of the <see cref="CalculateGrantOfferRequest" /> class.
         /// </summary>
-        public ThresholdRepayment()
+        public CalculateGrantOfferRequest()
         {
             OnCreated();
         }
@@ -57,7 +57,7 @@ namespace Adyen.Capital.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ThresholdRepayment {\n");
+            sb.Append("class CalculateGrantOfferRequest {\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -65,19 +65,19 @@ namespace Adyen.Capital.Models
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="ThresholdRepayment" />
+    /// A Json converter for type <see cref="CalculateGrantOfferRequest" />
     /// </summary>
-    public class ThresholdRepaymentJsonConverter : JsonConverter<ThresholdRepayment>
+    public class CalculateGrantOfferRequestJsonConverter : JsonConverter<CalculateGrantOfferRequest>
     {
         /// <summary>
-        /// Deserializes json to <see cref="ThresholdRepayment"/>.
+        /// Deserializes json to <see cref="CalculateGrantOfferRequest"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="ThresholdRepayment"/>.</returns>
+        /// <returns><see cref="CalculateGrantOfferRequest"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override ThresholdRepayment Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override CalculateGrantOfferRequest Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -113,41 +113,41 @@ namespace Adyen.Capital.Models
             }
             
             if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class ThresholdRepayment.", nameof(amount));
+                throw new ArgumentException("Property is required for class CalculateGrantOfferRequest.", nameof(amount));
 
-            var thresholdRepayment = new ThresholdRepayment();
-            thresholdRepayment.Amount = amount.Value!;
-            return thresholdRepayment;
+            var calculateGrantOfferRequest = new CalculateGrantOfferRequest();
+            calculateGrantOfferRequest.Amount = amount.Value!;
+            return calculateGrantOfferRequest;
         }
 
         /// <summary>
-        /// Serializes a <see cref="ThresholdRepayment"/>.
+        /// Serializes a <see cref="CalculateGrantOfferRequest"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="thresholdRepayment"></param>
+        /// <param name="calculateGrantOfferRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, ThresholdRepayment thresholdRepayment, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, CalculateGrantOfferRequest calculateGrantOfferRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, thresholdRepayment, jsonSerializerOptions);
+            WriteProperties(writer, calculateGrantOfferRequest, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="ThresholdRepayment"/>.
+        /// Serializes the properties of <see cref="CalculateGrantOfferRequest"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="thresholdRepayment"></param>
+        /// <param name="calculateGrantOfferRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, ThresholdRepayment thresholdRepayment, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, CalculateGrantOfferRequest calculateGrantOfferRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WritePropertyName("amount");
-            JsonSerializer.Serialize(writer, thresholdRepayment.Amount, jsonSerializerOptions);
+            JsonSerializer.Serialize(writer, calculateGrantOfferRequest.Amount, jsonSerializerOptions);
         }
     }
 }

@@ -30,14 +30,14 @@ using Adyen.Capital.Client;
 namespace Adyen.Capital.Models
 {
     /// <summary>
-    /// ThresholdRepayment.
+    /// GetDynamicOffersResponse.
     /// </summary>
-    public partial class ThresholdRepayment
+    public partial class GetDynamicOffersResponse
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ThresholdRepayment" /> class.
+        /// Initializes a new instance of the <see cref="GetDynamicOffersResponse" /> class.
         /// </summary>
-        public ThresholdRepayment()
+        public GetDynamicOffersResponse()
         {
             OnCreated();
         }
@@ -45,10 +45,11 @@ namespace Adyen.Capital.Models
         partial void OnCreated();
 
         /// <summary>
-        /// <see cref="Amount"/>.
+        /// Contains a list of available dynamic offers for the specified account holder.
         /// </summary>
-        [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        /// <value>Contains a list of available dynamic offers for the specified account holder.</value>
+        [JsonPropertyName("dynamicOffers")]
+        public List<DynamicOffer> DynamicOffers { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -57,27 +58,27 @@ namespace Adyen.Capital.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ThresholdRepayment {\n");
-            sb.Append("  Amount: ").Append(Amount).Append("\n");
+            sb.Append("class GetDynamicOffersResponse {\n");
+            sb.Append("  DynamicOffers: ").Append(DynamicOffers).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="ThresholdRepayment" />
+    /// A Json converter for type <see cref="GetDynamicOffersResponse" />
     /// </summary>
-    public class ThresholdRepaymentJsonConverter : JsonConverter<ThresholdRepayment>
+    public class GetDynamicOffersResponseJsonConverter : JsonConverter<GetDynamicOffersResponse>
     {
         /// <summary>
-        /// Deserializes json to <see cref="ThresholdRepayment"/>.
+        /// Deserializes json to <see cref="GetDynamicOffersResponse"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="ThresholdRepayment"/>.</returns>
+        /// <returns><see cref="GetDynamicOffersResponse"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override ThresholdRepayment Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override GetDynamicOffersResponse Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -86,7 +87,7 @@ namespace Adyen.Capital.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<Amount?> amount = default;
+            Option<List<DynamicOffer>?> dynamicOffers = default;
 
             while (utf8JsonReader.Read())
             {
@@ -103,8 +104,8 @@ namespace Adyen.Capital.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "amount":
-                            amount = new Option<Amount?>(JsonSerializer.Deserialize<Amount>(ref utf8JsonReader, jsonSerializerOptions)!);
+                        case "dynamicOffers":
+                            dynamicOffers = new Option<List<DynamicOffer>?>(JsonSerializer.Deserialize<List<DynamicOffer>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         default:
                             break;
@@ -112,42 +113,42 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class ThresholdRepayment.", nameof(amount));
+            if (!dynamicOffers.IsSet)
+                throw new ArgumentException("Property is required for class GetDynamicOffersResponse.", nameof(dynamicOffers));
 
-            var thresholdRepayment = new ThresholdRepayment();
-            thresholdRepayment.Amount = amount.Value!;
-            return thresholdRepayment;
+            var getDynamicOffersResponse = new GetDynamicOffersResponse();
+            getDynamicOffersResponse.DynamicOffers = dynamicOffers.Value!;
+            return getDynamicOffersResponse;
         }
 
         /// <summary>
-        /// Serializes a <see cref="ThresholdRepayment"/>.
+        /// Serializes a <see cref="GetDynamicOffersResponse"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="thresholdRepayment"></param>
+        /// <param name="getDynamicOffersResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, ThresholdRepayment thresholdRepayment, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, GetDynamicOffersResponse getDynamicOffersResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, thresholdRepayment, jsonSerializerOptions);
+            WriteProperties(writer, getDynamicOffersResponse, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="ThresholdRepayment"/>.
+        /// Serializes the properties of <see cref="GetDynamicOffersResponse"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="thresholdRepayment"></param>
+        /// <param name="getDynamicOffersResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, ThresholdRepayment thresholdRepayment, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, GetDynamicOffersResponse getDynamicOffersResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            writer.WritePropertyName("amount");
-            JsonSerializer.Serialize(writer, thresholdRepayment.Amount, jsonSerializerOptions);
+            writer.WritePropertyName("dynamicOffers");
+            JsonSerializer.Serialize(writer, getDynamicOffersResponse.DynamicOffers, jsonSerializerOptions);
         }
     }
 }
