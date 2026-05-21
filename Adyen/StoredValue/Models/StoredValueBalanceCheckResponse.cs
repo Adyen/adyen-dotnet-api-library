@@ -158,7 +158,7 @@ namespace Adyen.StoredValue.Models
                 if (value == ResultCodeEnum.NotEnoughBalance)
                     return "NotEnoughBalance";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -326,7 +326,7 @@ namespace Adyen.StoredValue.Models
                             break;
                         case "resultCode":
                             string? resultCodeRawValue = utf8JsonReader.GetString();
-                            resultCode = new Option<StoredValueBalanceCheckResponse.ResultCodeEnum?>(StoredValueBalanceCheckResponse.ResultCodeEnum.FromStringOrDefault(resultCodeRawValue));
+                            resultCode = new Option<StoredValueBalanceCheckResponse.ResultCodeEnum?>(StoredValueBalanceCheckResponse.ResultCodeEnum.FromStringOrDefault(resultCodeRawValue) ?? (StoredValueBalanceCheckResponse.ResultCodeEnum)resultCodeRawValue);
                             break;
                         case "thirdPartyRefusalReason":
                             thirdPartyRefusalReason = new Option<string?>(utf8JsonReader.GetString()!);
