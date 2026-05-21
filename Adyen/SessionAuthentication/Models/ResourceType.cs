@@ -32,75 +32,91 @@ namespace Adyen.SessionAuthentication.Models
     /// <summary>
     /// Defines ResourceType
     /// </summary>
-    public enum ResourceType
+    [JsonConverter(typeof(ResourceType.ResourceTypeJsonConverter))]
+    public class ResourceType : IEnum
     {
         /// <summary>
-        /// Enum LegalEntity for value: legalEntity
+        /// Returns the value of the ResourceType.
         /// </summary>
-        LegalEntity = 1,
+        public string? Value { get; set; }
 
         /// <summary>
-        /// Enum AccountHolder for value: accountHolder
+        /// ResourceType.LegalEntity - legalEntity
         /// </summary>
-        AccountHolder = 2,
+        public static readonly ResourceType LegalEntity = new("legalEntity");
 
         /// <summary>
-        /// Enum PaymentInstrument for value: paymentInstrument
+        /// ResourceType.AccountHolder - accountHolder
         /// </summary>
-        PaymentInstrument = 3
-    }
+        public static readonly ResourceType AccountHolder = new("accountHolder");
 
-    /// <summary>
-    /// Converts <see cref="ResourceType"/> to and from the JSON value
-    /// </summary>
-    public static class ResourceTypeValueConverter
-    {
         /// <summary>
-        /// Parses a given value to <see cref="ResourceType"/>
+        /// ResourceType.PaymentInstrument - paymentInstrument
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static ResourceType FromString(string value)
+        public static readonly ResourceType PaymentInstrument = new("paymentInstrument");
+
+        private ResourceType(string? value)
         {
-            if (value.Equals("legalEntity"))
-                return ResourceType.LegalEntity;
-
-            if (value.Equals("accountHolder"))
-                return ResourceType.AccountHolder;
-
-            if (value.Equals("paymentInstrument"))
-                return ResourceType.PaymentInstrument;
-
-            throw new NotImplementedException($"Could not convert value to type ResourceType: '{value}'");
+            Value = value;
         }
 
         /// <summary>
-        /// Parses a given value to <see cref="ResourceType"/>
+        /// Converts a string to a <see cref="ResourceType"/> implicitly.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static ResourceType? FromStringOrDefault(string value)
+        public static implicit operator ResourceType?(string? value) => value == null ? null : new ResourceType(value);
+
+        /// <summary>
+        /// Converts a <see cref="ResourceType"/> instance to a string implicitly.
+        /// </summary>
+        public static implicit operator string?(ResourceType? option) => option?.Value;
+
+        /// <summary>
+        /// Compares two <see cref="ResourceType"/> instances for equality.
+        /// </summary>
+        public static bool operator ==(ResourceType? left, ResourceType? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Compares two <see cref="ResourceType"/> instances for inequality.
+        /// </summary>
+        public static bool operator !=(ResourceType? left, ResourceType? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns true if the given object is equal to this <see cref="ResourceType"/> instance.
+        /// </summary>
+        public override bool Equals(object? obj) => obj is ResourceType other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns a hash code for this <see cref="ResourceType"/> instance.
+        /// </summary>
+        public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+        /// <summary>
+        /// Returns the string value of the <see cref="ResourceType"/> instance.
+        /// </summary>
+        public override string ToString() => Value ?? string.Empty;
+
+        /// <summary>
+        /// Returns a <see cref="ResourceType?"/>, or null if the value is not recognized.
+        /// </summary>
+        public static ResourceType? FromStringOrDefault(string? value)
         {
-            if (value.Equals("legalEntity"))
-                return ResourceType.LegalEntity;
-
-            if (value.Equals("accountHolder"))
-                return ResourceType.AccountHolder;
-
-            if (value.Equals("paymentInstrument"))
-                return ResourceType.PaymentInstrument;
-
-            return null;
+            return value switch {
+                "legalEntity" => ResourceType.LegalEntity,
+                "accountHolder" => ResourceType.AccountHolder,
+                "paymentInstrument" => ResourceType.PaymentInstrument,
+                _ => null,
+            };
         }
 
         /// <summary>
-        /// Converts the <see cref="ResourceType"/> to the json value
+        /// Converts the <see cref="ResourceType"/> to the json value.
+        /// Returns the raw string value, preserving unknown values for round-trip safety.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string ToJsonValue(ResourceType value)
+        public static string? ToJsonValue(ResourceType? value)
         {
+            if (value == null)
+                return null;
+
             if (value == ResourceType.LegalEntity)
                 return "legalEntity";
 
@@ -110,84 +126,32 @@ namespace Adyen.SessionAuthentication.Models
             if (value == ResourceType.PaymentInstrument)
                 return "paymentInstrument";
 
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-    }
-
-    /// <summary>
-    /// A Json converter for type <see cref="ResourceType"/>
-    /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    public class ResourceTypeJsonConverter : JsonConverter<ResourceType>
-    {
-        /// <summary>
-        /// Returns a  from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override ResourceType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            ResourceType? result = rawValue == null
-                ? null
-                : ResourceTypeValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
+            return value.Value;
         }
 
         /// <summary>
-        /// Writes the ResourceType to the json writer
+        /// JsonConverter for <see cref="ResourceType"/>.
+        /// Preserves unknown values instead of throwing an exception.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="resourceType"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, ResourceType resourceType, JsonSerializerOptions options)
+        public class ResourceTypeJsonConverter : JsonConverter<ResourceType>
         {
-            writer.WriteStringValue(ResourceTypeValueConverter.ToJsonValue(resourceType).ToString());
-        }
-    }
+            /// <summary>
+            /// Deserializes a <see cref="ResourceType"/> from JSON.
+            /// Unknown values are preserved as-is rather than throwing an exception.
+            /// </summary>
+            public override ResourceType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                string? rawValue = reader.GetString();
+                return rawValue == null ? null : ResourceType.FromStringOrDefault(rawValue) ?? new ResourceType(rawValue);
+            }
 
-    /// <summary>
-    /// A Json converter for type <see cref="ResourceType"/>
-    /// </summary>
-    public class ResourceTypeNullableJsonConverter : JsonConverter<ResourceType?>
-    {
-        /// <summary>
-        /// Returns a ResourceType from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override ResourceType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            ResourceType? result = rawValue == null
-                ? null
-                : ResourceTypeValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
-        }
-
-        /// <summary>
-        /// Writes the ResourceType to the json writer
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="resourceType"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, ResourceType? resourceType, JsonSerializerOptions options)
-        {
-            writer.WriteStringValue(resourceType.HasValue ? ResourceTypeValueConverter.ToJsonValue(resourceType.Value).ToString() : "null");
+            /// <summary>
+            /// Serializes a <see cref="ResourceType"/> to JSON.
+            /// </summary>
+            public override void Write(Utf8JsonWriter writer, ResourceType value, JsonSerializerOptions options)
+            {
+                writer.WriteStringValue(ResourceType.ToJsonValue(value));
+            }
         }
     }
 }

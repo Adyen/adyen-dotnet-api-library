@@ -32,75 +32,91 @@ namespace Adyen.SessionAuthentication.Models
     /// <summary>
     /// Defines ProductType
     /// </summary>
-    public enum ProductType
+    [JsonConverter(typeof(ProductType.ProductTypeJsonConverter))]
+    public class ProductType : IEnum
     {
         /// <summary>
-        /// Enum Onboarding for value: onboarding
+        /// Returns the value of the ProductType.
         /// </summary>
-        Onboarding = 1,
+        public string? Value { get; set; }
 
         /// <summary>
-        /// Enum Platform for value: platform
+        /// ProductType.Onboarding - onboarding
         /// </summary>
-        Platform = 2,
+        public static readonly ProductType Onboarding = new("onboarding");
 
         /// <summary>
-        /// Enum Bank for value: bank
+        /// ProductType.Platform - platform
         /// </summary>
-        Bank = 3
-    }
+        public static readonly ProductType Platform = new("platform");
 
-    /// <summary>
-    /// Converts <see cref="ProductType"/> to and from the JSON value
-    /// </summary>
-    public static class ProductTypeValueConverter
-    {
         /// <summary>
-        /// Parses a given value to <see cref="ProductType"/>
+        /// ProductType.Bank - bank
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static ProductType FromString(string value)
+        public static readonly ProductType Bank = new("bank");
+
+        private ProductType(string? value)
         {
-            if (value.Equals("onboarding"))
-                return ProductType.Onboarding;
-
-            if (value.Equals("platform"))
-                return ProductType.Platform;
-
-            if (value.Equals("bank"))
-                return ProductType.Bank;
-
-            throw new NotImplementedException($"Could not convert value to type ProductType: '{value}'");
+            Value = value;
         }
 
         /// <summary>
-        /// Parses a given value to <see cref="ProductType"/>
+        /// Converts a string to a <see cref="ProductType"/> implicitly.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static ProductType? FromStringOrDefault(string value)
+        public static implicit operator ProductType?(string? value) => value == null ? null : new ProductType(value);
+
+        /// <summary>
+        /// Converts a <see cref="ProductType"/> instance to a string implicitly.
+        /// </summary>
+        public static implicit operator string?(ProductType? option) => option?.Value;
+
+        /// <summary>
+        /// Compares two <see cref="ProductType"/> instances for equality.
+        /// </summary>
+        public static bool operator ==(ProductType? left, ProductType? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Compares two <see cref="ProductType"/> instances for inequality.
+        /// </summary>
+        public static bool operator !=(ProductType? left, ProductType? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns true if the given object is equal to this <see cref="ProductType"/> instance.
+        /// </summary>
+        public override bool Equals(object? obj) => obj is ProductType other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns a hash code for this <see cref="ProductType"/> instance.
+        /// </summary>
+        public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+        /// <summary>
+        /// Returns the string value of the <see cref="ProductType"/> instance.
+        /// </summary>
+        public override string ToString() => Value ?? string.Empty;
+
+        /// <summary>
+        /// Returns a <see cref="ProductType?"/>, or null if the value is not recognized.
+        /// </summary>
+        public static ProductType? FromStringOrDefault(string? value)
         {
-            if (value.Equals("onboarding"))
-                return ProductType.Onboarding;
-
-            if (value.Equals("platform"))
-                return ProductType.Platform;
-
-            if (value.Equals("bank"))
-                return ProductType.Bank;
-
-            return null;
+            return value switch {
+                "onboarding" => ProductType.Onboarding,
+                "platform" => ProductType.Platform,
+                "bank" => ProductType.Bank,
+                _ => null,
+            };
         }
 
         /// <summary>
-        /// Converts the <see cref="ProductType"/> to the json value
+        /// Converts the <see cref="ProductType"/> to the json value.
+        /// Returns the raw string value, preserving unknown values for round-trip safety.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string ToJsonValue(ProductType value)
+        public static string? ToJsonValue(ProductType? value)
         {
+            if (value == null)
+                return null;
+
             if (value == ProductType.Onboarding)
                 return "onboarding";
 
@@ -110,84 +126,32 @@ namespace Adyen.SessionAuthentication.Models
             if (value == ProductType.Bank)
                 return "bank";
 
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-    }
-
-    /// <summary>
-    /// A Json converter for type <see cref="ProductType"/>
-    /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    public class ProductTypeJsonConverter : JsonConverter<ProductType>
-    {
-        /// <summary>
-        /// Returns a  from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override ProductType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            ProductType? result = rawValue == null
-                ? null
-                : ProductTypeValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
+            return value.Value;
         }
 
         /// <summary>
-        /// Writes the ProductType to the json writer
+        /// JsonConverter for <see cref="ProductType"/>.
+        /// Preserves unknown values instead of throwing an exception.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="productType"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, ProductType productType, JsonSerializerOptions options)
+        public class ProductTypeJsonConverter : JsonConverter<ProductType>
         {
-            writer.WriteStringValue(ProductTypeValueConverter.ToJsonValue(productType).ToString());
-        }
-    }
+            /// <summary>
+            /// Deserializes a <see cref="ProductType"/> from JSON.
+            /// Unknown values are preserved as-is rather than throwing an exception.
+            /// </summary>
+            public override ProductType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                string? rawValue = reader.GetString();
+                return rawValue == null ? null : ProductType.FromStringOrDefault(rawValue) ?? new ProductType(rawValue);
+            }
 
-    /// <summary>
-    /// A Json converter for type <see cref="ProductType"/>
-    /// </summary>
-    public class ProductTypeNullableJsonConverter : JsonConverter<ProductType?>
-    {
-        /// <summary>
-        /// Returns a ProductType from the Json object
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public override ProductType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            string? rawValue = reader.GetString();
-
-            ProductType? result = rawValue == null
-                ? null
-                : ProductTypeValueConverter.FromStringOrDefault(rawValue);
-
-            if (result != null)
-                return result.Value;
-
-            throw new JsonException();
-        }
-
-        /// <summary>
-        /// Writes the ProductType to the json writer
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="productType"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, ProductType? productType, JsonSerializerOptions options)
-        {
-            writer.WriteStringValue(productType.HasValue ? ProductTypeValueConverter.ToJsonValue(productType.Value).ToString() : "null");
+            /// <summary>
+            /// Serializes a <see cref="ProductType"/> to JSON.
+            /// </summary>
+            public override void Write(Utf8JsonWriter writer, ProductType value, JsonSerializerOptions options)
+            {
+                writer.WriteStringValue(ProductType.ToJsonValue(value));
+            }
         }
     }
 }

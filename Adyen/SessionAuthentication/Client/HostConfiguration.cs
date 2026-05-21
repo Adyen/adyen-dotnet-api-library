@@ -66,11 +66,9 @@ namespace Adyen.SessionAuthentication.Client
             _jsonOptions.Converters.Add(new LegalEntityResourceJsonConverter());
             _jsonOptions.Converters.Add(new PaymentInstrumentResourceJsonConverter());
             _jsonOptions.Converters.Add(new PolicyJsonConverter());
-            _jsonOptions.Converters.Add(new ProductTypeJsonConverter());
-            _jsonOptions.Converters.Add(new ProductTypeNullableJsonConverter());
+            _jsonOptions.Converters.Add(new ProductType.ProductTypeJsonConverter());
             _jsonOptions.Converters.Add(new ResourceJsonConverter());
-            _jsonOptions.Converters.Add(new ResourceTypeJsonConverter());
-            _jsonOptions.Converters.Add(new ResourceTypeNullableJsonConverter());
+            _jsonOptions.Converters.Add(new ResourceType.ResourceTypeJsonConverter());
             JsonSerializerOptionsProvider jsonSerializerOptionsProvider = new(_jsonOptions);
             _services.AddSingleton(jsonSerializerOptionsProvider);
         }
