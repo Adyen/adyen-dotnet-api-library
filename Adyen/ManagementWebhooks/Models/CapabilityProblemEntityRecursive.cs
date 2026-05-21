@@ -149,7 +149,7 @@ namespace Adyen.ManagementWebhooks.Models
                 if (value == TypeEnum.LegalEntity)
                     return "LegalEntity";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -283,7 +283,7 @@ namespace Adyen.ManagementWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CapabilityProblemEntityRecursive.TypeEnum?>(CapabilityProblemEntityRecursive.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CapabilityProblemEntityRecursive.TypeEnum?>(CapabilityProblemEntityRecursive.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CapabilityProblemEntityRecursive.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

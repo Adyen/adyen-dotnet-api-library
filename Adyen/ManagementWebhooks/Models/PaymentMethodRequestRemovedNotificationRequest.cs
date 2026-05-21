@@ -131,7 +131,7 @@ namespace Adyen.ManagementWebhooks.Models
                 if (value == TypeEnum.PaymentMethodRequestRemoved)
                     return "paymentMethodRequest.removed";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -260,7 +260,7 @@ namespace Adyen.ManagementWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PaymentMethodRequestRemovedNotificationRequest.TypeEnum?>(PaymentMethodRequestRemovedNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<PaymentMethodRequestRemovedNotificationRequest.TypeEnum?>(PaymentMethodRequestRemovedNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PaymentMethodRequestRemovedNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -284,7 +284,7 @@ namespace Adyen.ManagementWebhooks.Models
             paymentMethodRequestRemovedNotificationRequest.CreatedAt = createdAt.Value!.Value;
             paymentMethodRequestRemovedNotificationRequest.Data = data.Value!;
             paymentMethodRequestRemovedNotificationRequest.Environment = environment.Value!;
-            paymentMethodRequestRemovedNotificationRequest.Type = type.Value!.Value;
+            paymentMethodRequestRemovedNotificationRequest.Type = type.Value!;
             return paymentMethodRequestRemovedNotificationRequest;
         }
 

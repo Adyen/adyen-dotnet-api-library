@@ -158,7 +158,7 @@ namespace Adyen.ManagementWebhooks.Models
                 if (value == TypeEnum.PendingStatus)
                     return "pendingStatus";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -329,7 +329,7 @@ namespace Adyen.ManagementWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<VerificationError.TypeEnum?>(VerificationError.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<VerificationError.TypeEnum?>(VerificationError.TypeEnum.FromStringOrDefault(typeRawValue) ?? (VerificationError.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

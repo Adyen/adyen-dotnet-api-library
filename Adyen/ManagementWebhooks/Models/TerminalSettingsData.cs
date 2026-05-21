@@ -140,7 +140,7 @@ namespace Adyen.ManagementWebhooks.Models
                 if (value == UpdateSourceEnum.ManagementApi)
                     return "Management Api";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -302,7 +302,7 @@ namespace Adyen.ManagementWebhooks.Models
                     {
                         case "updateSource":
                             string? updateSourceRawValue = utf8JsonReader.GetString();
-                            updateSource = new Option<TerminalSettingsData.UpdateSourceEnum?>(TerminalSettingsData.UpdateSourceEnum.FromStringOrDefault(updateSourceRawValue));
+                            updateSource = new Option<TerminalSettingsData.UpdateSourceEnum?>(TerminalSettingsData.UpdateSourceEnum.FromStringOrDefault(updateSourceRawValue) ?? (TerminalSettingsData.UpdateSourceEnum)updateSourceRawValue);
                             break;
                         case "user":
                             user = new Option<string?>(utf8JsonReader.GetString()!);
@@ -332,7 +332,7 @@ namespace Adyen.ManagementWebhooks.Models
                 throw new ArgumentException("Property is required for class TerminalSettingsData.", nameof(user));
 
             var terminalSettingsData = new TerminalSettingsData();
-            terminalSettingsData.UpdateSource = updateSource.Value!.Value;
+            terminalSettingsData.UpdateSource = updateSource.Value!;
             terminalSettingsData.User = user.Value!;
             if (companyId.IsSet)
                 terminalSettingsData.CompanyId = companyId.Value;

@@ -167,7 +167,7 @@ namespace Adyen.ManagementWebhooks.Models
                 if (value == StatusEnum.UpdatesExpected)
                     return "updatesExpected";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -315,7 +315,7 @@ namespace Adyen.ManagementWebhooks.Models
                 if (value == VerificationStatusEnum.Rejected)
                     return "rejected";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -510,7 +510,7 @@ namespace Adyen.ManagementWebhooks.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<MidServiceNotificationData.StatusEnum?>(MidServiceNotificationData.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<MidServiceNotificationData.StatusEnum?>(MidServiceNotificationData.StatusEnum.FromStringOrDefault(statusRawValue) ?? (MidServiceNotificationData.StatusEnum)statusRawValue);
                             break;
                         case "type":
                             type = new Option<string?>(utf8JsonReader.GetString()!);
@@ -529,7 +529,7 @@ namespace Adyen.ManagementWebhooks.Models
                             break;
                         case "verificationStatus":
                             string? verificationStatusRawValue = utf8JsonReader.GetString();
-                            verificationStatus = new Option<MidServiceNotificationData.VerificationStatusEnum?>(MidServiceNotificationData.VerificationStatusEnum.FromStringOrDefault(verificationStatusRawValue));
+                            verificationStatus = new Option<MidServiceNotificationData.VerificationStatusEnum?>(MidServiceNotificationData.VerificationStatusEnum.FromStringOrDefault(verificationStatusRawValue) ?? (MidServiceNotificationData.VerificationStatusEnum)verificationStatusRawValue);
                             break;
                         default:
                             break;
@@ -552,7 +552,7 @@ namespace Adyen.ManagementWebhooks.Models
             var midServiceNotificationData = new MidServiceNotificationData();
             midServiceNotificationData.Id = id.Value!;
             midServiceNotificationData.MerchantId = merchantId.Value!;
-            midServiceNotificationData.Status = status.Value!.Value;
+            midServiceNotificationData.Status = status.Value!;
             midServiceNotificationData.Type = type.Value!;
             if (allowed.IsSet)
                 midServiceNotificationData.Allowed = allowed.Value;

@@ -131,7 +131,7 @@ namespace Adyen.ManagementWebhooks.Models
                 if (value == TypeEnum.TerminalSettingsModified)
                     return "terminalSettings.modified";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -260,7 +260,7 @@ namespace Adyen.ManagementWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<TerminalSettingsNotificationRequest.TypeEnum?>(TerminalSettingsNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<TerminalSettingsNotificationRequest.TypeEnum?>(TerminalSettingsNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TerminalSettingsNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -284,7 +284,7 @@ namespace Adyen.ManagementWebhooks.Models
             terminalSettingsNotificationRequest.CreatedAt = createdAt.Value!.Value;
             terminalSettingsNotificationRequest.Data = data.Value!;
             terminalSettingsNotificationRequest.Environment = environment.Value!;
-            terminalSettingsNotificationRequest.Type = type.Value!.Value;
+            terminalSettingsNotificationRequest.Type = type.Value!;
             return terminalSettingsNotificationRequest;
         }
 
