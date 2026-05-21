@@ -176,7 +176,7 @@ namespace Adyen.BalanceControl.Models
                 if (value == TypeEnum.Adjustment)
                     return "adjustment";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -332,7 +332,7 @@ namespace Adyen.BalanceControl.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<BalanceTransferRequest.TypeEnum?>(BalanceTransferRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<BalanceTransferRequest.TypeEnum?>(BalanceTransferRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (BalanceTransferRequest.TypeEnum)typeRawValue);
                             break;
                         case "description":
                             description = new Option<string?>(utf8JsonReader.GetString()!);
@@ -362,7 +362,7 @@ namespace Adyen.BalanceControl.Models
             balanceTransferRequest.Amount = amount.Value!;
             balanceTransferRequest.FromMerchant = fromMerchant.Value!;
             balanceTransferRequest.ToMerchant = toMerchant.Value!;
-            balanceTransferRequest.Type = type.Value!.Value;
+            balanceTransferRequest.Type = type.Value!;
             if (description.IsSet)
                 balanceTransferRequest.Description = description.Value;
             if (reference.IsSet)
