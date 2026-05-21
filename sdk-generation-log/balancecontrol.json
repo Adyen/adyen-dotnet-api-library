@@ -1,8 +1,8 @@
 {
   "service": "balancecontrol",
   "project": "dotnet",
-  "generatedAt": "2026-05-12T08:05:54Z",
-  "openapiCommitSha": "c17deb734dee105f2d25e50825bed55fdbd71c50",
-  "automationCommitSha": "0b7ef4e0ed6a7963ab005efe76eab748250edafc",
-  "libraryCommitSha": "ed5b5b7be2fa4a88becfee9716bba894bdfe61b6"
+  "generatedAt": "2026-05-21T12:55:19Z",
+  "openapiCommitSha": "e5eedc5cba69416331333d4b0e90cb4871715517",
+  "automationCommitSha": "6f06b47d0661f0891defe6b85461d2c367fbd284",
+  "libraryCommitSha": "73a83cb23fb8e432b81d23291bd9be4e7fcc0d2f"
 }

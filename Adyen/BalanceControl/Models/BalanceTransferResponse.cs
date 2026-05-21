@@ -158,7 +158,7 @@ namespace Adyen.BalanceControl.Models
                 if (value == StatusEnum.Transferred)
                     return "transferred";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -324,7 +324,7 @@ namespace Adyen.BalanceControl.Models
                 if (value == TypeEnum.Adjustment)
                     return "adjustment";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -508,14 +508,14 @@ namespace Adyen.BalanceControl.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<BalanceTransferResponse.StatusEnum?>(BalanceTransferResponse.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<BalanceTransferResponse.StatusEnum?>(BalanceTransferResponse.StatusEnum.FromStringOrDefault(statusRawValue) ?? (BalanceTransferResponse.StatusEnum)statusRawValue);
                             break;
                         case "toMerchant":
                             toMerchant = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<BalanceTransferResponse.TypeEnum?>(BalanceTransferResponse.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<BalanceTransferResponse.TypeEnum?>(BalanceTransferResponse.TypeEnum.FromStringOrDefault(typeRawValue) ?? (BalanceTransferResponse.TypeEnum)typeRawValue);
                             break;
                         case "description":
                             description = new Option<string?>(utf8JsonReader.GetString()!);
@@ -555,9 +555,9 @@ namespace Adyen.BalanceControl.Models
             balanceTransferResponse.CreatedAt = createdAt.Value!.Value;
             balanceTransferResponse.FromMerchant = fromMerchant.Value!;
             balanceTransferResponse.PspReference = pspReference.Value!;
-            balanceTransferResponse.Status = status.Value!.Value;
+            balanceTransferResponse.Status = status.Value!;
             balanceTransferResponse.ToMerchant = toMerchant.Value!;
-            balanceTransferResponse.Type = type.Value!.Value;
+            balanceTransferResponse.Type = type.Value!;
             if (description.IsSet)
                 balanceTransferResponse.Description = description.Value;
             if (reference.IsSet)
