@@ -158,7 +158,7 @@ namespace Adyen.BinLookup.Models
                 if (value == ShopperInteractionEnum.POS)
                     return "POS";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -404,7 +404,7 @@ namespace Adyen.BinLookup.Models
                             break;
                         case "shopperInteraction":
                             string? shopperInteractionRawValue = utf8JsonReader.GetString();
-                            shopperInteraction = new Option<CostEstimateRequest.ShopperInteractionEnum?>(CostEstimateRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue));
+                            shopperInteraction = new Option<CostEstimateRequest.ShopperInteractionEnum?>(CostEstimateRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue) ?? (CostEstimateRequest.ShopperInteractionEnum)shopperInteractionRawValue);
                             break;
                         case "shopperReference":
                             shopperReference = new Option<string?>(utf8JsonReader.GetString()!);
