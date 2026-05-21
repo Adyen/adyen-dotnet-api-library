@@ -131,7 +131,7 @@ namespace Adyen.ReportWebhooks.Models
                 if (value == TypeEnum.BalancePlatformReportCreated)
                     return "balancePlatform.report.created";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -264,7 +264,7 @@ namespace Adyen.ReportWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<ReportNotificationRequest.TypeEnum?>(ReportNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<ReportNotificationRequest.TypeEnum?>(ReportNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (ReportNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         case "timestamp":
                             timestamp = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -287,7 +287,7 @@ namespace Adyen.ReportWebhooks.Models
             var reportNotificationRequest = new ReportNotificationRequest();
             reportNotificationRequest.Data = data.Value!;
             reportNotificationRequest.Environment = environment.Value!;
-            reportNotificationRequest.Type = type.Value!.Value;
+            reportNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 reportNotificationRequest.Timestamp = timestamp.Value;
             return reportNotificationRequest;
