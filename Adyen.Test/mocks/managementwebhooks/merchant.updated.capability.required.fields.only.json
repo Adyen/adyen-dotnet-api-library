@@ -1,0 +1,15 @@
+{
+  "type": "merchant.updated",
+  "environment": "test",
+  "createdAt": "2022-09-20T13:42:31+02:00",
+  "data": {
+    "capabilities": {
+      "receivePayments": {
+        "requested": true,
+        "requestedLevel": "notApplicable"
+      }
+    },
+    "merchantId": "YOUR_MERCHANT_ID",
+    "status": "PreActive"
+  }
+}
