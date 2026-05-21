@@ -149,7 +149,7 @@ namespace Adyen.AcsWebhooks.Models
                 if (value == StatusEnum.Error)
                     return "error";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -300,7 +300,7 @@ namespace Adyen.AcsWebhooks.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<AuthenticationNotificationData.StatusEnum?>(AuthenticationNotificationData.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<AuthenticationNotificationData.StatusEnum?>(AuthenticationNotificationData.StatusEnum.FromStringOrDefault(statusRawValue) ?? (AuthenticationNotificationData.StatusEnum)statusRawValue);
                             break;
                         case "balancePlatform":
                             balancePlatform = new Option<string?>(utf8JsonReader.GetString()!);
@@ -331,7 +331,7 @@ namespace Adyen.AcsWebhooks.Models
             authenticationNotificationData.Id = id.Value!;
             authenticationNotificationData.PaymentInstrumentId = paymentInstrumentId.Value!;
             authenticationNotificationData.Purchase = purchase.Value!;
-            authenticationNotificationData.Status = status.Value!.Value;
+            authenticationNotificationData.Status = status.Value!;
             if (balancePlatform.IsSet)
                 authenticationNotificationData.BalancePlatform = balancePlatform.Value;
             return authenticationNotificationData;

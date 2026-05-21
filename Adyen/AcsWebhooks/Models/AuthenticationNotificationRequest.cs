@@ -131,7 +131,7 @@ namespace Adyen.AcsWebhooks.Models
                 if (value == TypeEnum.BalancePlatformAuthenticationCreated)
                     return "balancePlatform.authentication.created";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -264,7 +264,7 @@ namespace Adyen.AcsWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<AuthenticationNotificationRequest.TypeEnum?>(AuthenticationNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<AuthenticationNotificationRequest.TypeEnum?>(AuthenticationNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (AuthenticationNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         case "timestamp":
                             timestamp = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -287,7 +287,7 @@ namespace Adyen.AcsWebhooks.Models
             var authenticationNotificationRequest = new AuthenticationNotificationRequest();
             authenticationNotificationRequest.Data = data.Value!;
             authenticationNotificationRequest.Environment = environment.Value!;
-            authenticationNotificationRequest.Type = type.Value!.Value;
+            authenticationNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 authenticationNotificationRequest.Timestamp = timestamp.Value;
             return authenticationNotificationRequest;
