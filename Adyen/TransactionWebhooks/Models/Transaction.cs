@@ -140,7 +140,7 @@ namespace Adyen.TransactionWebhooks.Models
                 if (value == StatusEnum.Pending)
                     return "pending";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -400,7 +400,7 @@ namespace Adyen.TransactionWebhooks.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<Transaction.StatusEnum?>(Transaction.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<Transaction.StatusEnum?>(Transaction.StatusEnum.FromStringOrDefault(statusRawValue) ?? (Transaction.StatusEnum)statusRawValue);
                             break;
                         case "valueDate":
                             valueDate = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -457,7 +457,7 @@ namespace Adyen.TransactionWebhooks.Models
             transaction.BalancePlatform = balancePlatform.Value!;
             transaction.BookingDate = bookingDate.Value!.Value;
             transaction.Id = id.Value!;
-            transaction.Status = status.Value!.Value;
+            transaction.Status = status.Value!;
             transaction.ValueDate = valueDate.Value!.Value;
             if (creationDate.IsSet)
                 transaction.CreationDate = creationDate.Value;

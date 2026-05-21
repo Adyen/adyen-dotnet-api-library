@@ -132,7 +132,7 @@ namespace Adyen.TransactionWebhooks.Models
                 if (value == TypeEnum.Internal)
                     return "internal";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -266,7 +266,7 @@ namespace Adyen.TransactionWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<InternalCategoryData.TypeEnum?>(InternalCategoryData.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<InternalCategoryData.TypeEnum?>(InternalCategoryData.TypeEnum.FromStringOrDefault(typeRawValue) ?? (InternalCategoryData.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

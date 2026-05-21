@@ -177,7 +177,7 @@ namespace Adyen.TransactionWebhooks.Models
                 if (value == PriorityEnum.Wire)
                     return "wire";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -305,7 +305,7 @@ namespace Adyen.TransactionWebhooks.Models
                 if (value == TypeEnum.Bank)
                     return "bank";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -403,11 +403,11 @@ namespace Adyen.TransactionWebhooks.Models
                     {
                         case "priority":
                             string? priorityRawValue = utf8JsonReader.GetString();
-                            priority = new Option<BankCategoryData.PriorityEnum?>(BankCategoryData.PriorityEnum.FromStringOrDefault(priorityRawValue));
+                            priority = new Option<BankCategoryData.PriorityEnum?>(BankCategoryData.PriorityEnum.FromStringOrDefault(priorityRawValue) ?? (BankCategoryData.PriorityEnum)priorityRawValue);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<BankCategoryData.TypeEnum?>(BankCategoryData.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<BankCategoryData.TypeEnum?>(BankCategoryData.TypeEnum.FromStringOrDefault(typeRawValue) ?? (BankCategoryData.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

@@ -190,16 +190,16 @@ namespace Adyen.TransactionWebhooks.Models
                 }
             }
             
-            if (bankCategoryData?.Type != null)
+            if (bankCategoryData?.Type != null && BankCategoryData.TypeEnum.FromStringOrDefault((string?)bankCategoryData.Type) != null)
                 return new TransferViewCategoryData(bankCategoryData);
 
-            if (internalCategoryData?.Type != null)
+            if (internalCategoryData?.Type != null && InternalCategoryData.TypeEnum.FromStringOrDefault((string?)internalCategoryData.Type) != null)
                 return new TransferViewCategoryData(internalCategoryData);
 
-            if (issuedCard?.Type != null)
+            if (issuedCard?.Type != null && IssuedCard.TypeEnum.FromStringOrDefault((string?)issuedCard.Type) != null)
                 return new TransferViewCategoryData(issuedCard);
 
-            if (platformPayment?.Type != null)
+            if (platformPayment?.Type != null && PlatformPayment.TypeEnum.FromStringOrDefault((string?)platformPayment.Type) != null)
                 return new TransferViewCategoryData(platformPayment);
 
             throw new JsonException();

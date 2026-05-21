@@ -285,7 +285,7 @@ namespace Adyen.TransactionWebhooks.Models
                 if (value == PlatformPaymentTypeEnum.VAT)
                     return "VAT";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -413,7 +413,7 @@ namespace Adyen.TransactionWebhooks.Models
                 if (value == TypeEnum.PlatformPayment)
                     return "platformPayment";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -584,14 +584,14 @@ namespace Adyen.TransactionWebhooks.Models
                             break;
                         case "platformPaymentType":
                             string? platformPaymentTypeRawValue = utf8JsonReader.GetString();
-                            platformPaymentType = new Option<PlatformPayment.PlatformPaymentTypeEnum?>(PlatformPayment.PlatformPaymentTypeEnum.FromStringOrDefault(platformPaymentTypeRawValue));
+                            platformPaymentType = new Option<PlatformPayment.PlatformPaymentTypeEnum?>(PlatformPayment.PlatformPaymentTypeEnum.FromStringOrDefault(platformPaymentTypeRawValue) ?? (PlatformPayment.PlatformPaymentTypeEnum)platformPaymentTypeRawValue);
                             break;
                         case "pspPaymentReference":
                             pspPaymentReference = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PlatformPayment.TypeEnum?>(PlatformPayment.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<PlatformPayment.TypeEnum?>(PlatformPayment.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PlatformPayment.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

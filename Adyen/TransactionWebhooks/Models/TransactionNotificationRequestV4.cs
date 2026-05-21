@@ -131,7 +131,7 @@ namespace Adyen.TransactionWebhooks.Models
                 if (value == TypeEnum.BalancePlatformTransactionCreated)
                     return "balancePlatform.transaction.created";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -274,7 +274,7 @@ namespace Adyen.TransactionWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<TransactionNotificationRequestV4.TypeEnum?>(TransactionNotificationRequestV4.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<TransactionNotificationRequestV4.TypeEnum?>(TransactionNotificationRequestV4.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TransactionNotificationRequestV4.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
