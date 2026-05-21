@@ -1,0 +1,16 @@
+{
+  "allowOrigin": "https://www.your-website.com",
+  "product": "onboarding",
+  "policy": {
+    "resources": [
+      {
+        "type": "LegalEntityResource",
+        "legalEntityId": "LE00000000000000000000001"
+      }
+    ],
+    "roles": [
+      "createTransferInstrumentComponent",
+      "manageTransferInstrumentComponent"
+    ]
+  }
+}
