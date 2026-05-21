@@ -158,7 +158,7 @@ namespace Adyen.DisputeWebhooks.Models
                 if (value == TypeEnum.Other)
                     return "other";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -429,7 +429,7 @@ namespace Adyen.DisputeWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<DisputeEventNotification.TypeEnum?>(DisputeEventNotification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<DisputeEventNotification.TypeEnum?>(DisputeEventNotification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (DisputeEventNotification.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

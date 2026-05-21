@@ -140,7 +140,7 @@ namespace Adyen.DisputeWebhooks.Models
                 if (value == TypeEnum.BalancePlatformDisputeUpdated)
                     return "balancePlatform.dispute.updated";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -240,7 +240,7 @@ namespace Adyen.DisputeWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<DisputeNotificationRequest.TypeEnum?>(DisputeNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<DisputeNotificationRequest.TypeEnum?>(DisputeNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (DisputeNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -256,7 +256,7 @@ namespace Adyen.DisputeWebhooks.Models
 
             var disputeNotificationRequest = new DisputeNotificationRequest();
             disputeNotificationRequest.Data = data.Value!;
-            disputeNotificationRequest.Type = type.Value!.Value;
+            disputeNotificationRequest.Type = type.Value!;
             return disputeNotificationRequest;
         }
 
