@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.LegalEntityManagement.Client;
 
 namespace Adyen.LegalEntityManagement.Models
@@ -32,6 +33,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// Attachment.
     /// </summary>
+    [JsonConverter(typeof(AttachmentJsonConverter))]
     public partial class Attachment
     {
         /// <summary>
@@ -173,7 +175,7 @@ namespace Adyen.LegalEntityManagement.Models
                     switch (jsonPropertyName)
                     {
                         case "content":
-                            content = new Option<byte[]?>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            content = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
                             break;
                         case "contentType":
                             contentType = new Option<string?>(utf8JsonReader.GetString()!);
@@ -236,7 +238,7 @@ namespace Adyen.LegalEntityManagement.Models
         {
             
             writer.WritePropertyName("content");
-            JsonSerializer.Serialize(writer, attachment.Content, jsonSerializerOptions);
+            new ByteArrayConverter().Write(writer, attachment.Content, jsonSerializerOptions);
             if (attachment._ContentTypeOption.IsSet)
                 if (attachment.ContentType != null)
                     writer.WriteString("contentType", attachment.ContentType);

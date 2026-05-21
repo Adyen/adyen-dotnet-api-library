@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.LegalEntityManagement.Client;
 
 namespace Adyen.LegalEntityManagement.Models
@@ -32,6 +33,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// GetAcceptedTermsOfServiceDocumentResponse.
     /// </summary>
+    [JsonConverter(typeof(GetAcceptedTermsOfServiceDocumentResponseJsonConverter))]
     public partial class GetAcceptedTermsOfServiceDocumentResponse
     {
         /// <summary>
@@ -292,7 +294,7 @@ namespace Adyen.LegalEntityManagement.Models
                     switch (jsonPropertyName)
                     {
                         case "document":
-                            document = new Option<byte[]?>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            document = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
                             break;
                         case "id":
                             id = new Option<string?>(utf8JsonReader.GetString()!);
@@ -351,7 +353,7 @@ namespace Adyen.LegalEntityManagement.Models
             if (getAcceptedTermsOfServiceDocumentResponse._DocumentOption.IsSet)
             {
                 writer.WritePropertyName("document");
-                JsonSerializer.Serialize(writer, getAcceptedTermsOfServiceDocumentResponse.Document, jsonSerializerOptions);
+                new ByteArrayConverter().Write(writer, getAcceptedTermsOfServiceDocumentResponse.Document, jsonSerializerOptions);
             }
             if (getAcceptedTermsOfServiceDocumentResponse._IdOption.IsSet)
                 if (getAcceptedTermsOfServiceDocumentResponse.Id != null)

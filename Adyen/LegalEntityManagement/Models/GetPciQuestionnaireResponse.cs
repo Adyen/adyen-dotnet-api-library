@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.LegalEntityManagement.Client;
 
 namespace Adyen.LegalEntityManagement.Models
@@ -32,6 +33,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// GetPciQuestionnaireResponse.
     /// </summary>
+    [JsonConverter(typeof(GetPciQuestionnaireResponseJsonConverter))]
     public partial class GetPciQuestionnaireResponse
     {
         /// <summary>
@@ -170,7 +172,7 @@ namespace Adyen.LegalEntityManagement.Models
                     switch (jsonPropertyName)
                     {
                         case "content":
-                            content = new Option<byte[]?>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            content = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
                             break;
                         case "createdAt":
                             createdAt = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -228,7 +230,7 @@ namespace Adyen.LegalEntityManagement.Models
             if (getPciQuestionnaireResponse._ContentOption.IsSet)
             {
                 writer.WritePropertyName("content");
-                JsonSerializer.Serialize(writer, getPciQuestionnaireResponse.Content, jsonSerializerOptions);
+                new ByteArrayConverter().Write(writer, getPciQuestionnaireResponse.Content, jsonSerializerOptions);
             }
             if (getPciQuestionnaireResponse._CreatedAtOption.IsSet)
                 if (getPciQuestionnaireResponse._CreatedAtOption.Value != null)
