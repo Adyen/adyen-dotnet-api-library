@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.LegalEntityManagement.Client;
 
 namespace Adyen.LegalEntityManagement.Models
@@ -32,6 +33,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// GeneratePciDescriptionResponse.
     /// </summary>
+    [JsonConverter(typeof(GeneratePciDescriptionResponseJsonConverter))]
     public partial class GeneratePciDescriptionResponse
     {
         /// <summary>
@@ -144,7 +146,7 @@ namespace Adyen.LegalEntityManagement.Models
                     switch (jsonPropertyName)
                     {
                         case "content":
-                            content = new Option<byte[]?>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            content = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
                             break;
                         case "language":
                             language = new Option<string?>(utf8JsonReader.GetString()!);
@@ -197,7 +199,7 @@ namespace Adyen.LegalEntityManagement.Models
             if (generatePciDescriptionResponse._ContentOption.IsSet)
             {
                 writer.WritePropertyName("content");
-                JsonSerializer.Serialize(writer, generatePciDescriptionResponse.Content, jsonSerializerOptions);
+                new ByteArrayConverter().Write(writer, generatePciDescriptionResponse.Content, jsonSerializerOptions);
             }
             if (generatePciDescriptionResponse._LanguageOption.IsSet)
                 if (generatePciDescriptionResponse.Language != null)

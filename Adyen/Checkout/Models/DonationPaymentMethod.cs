@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.Checkout.Client;
 
 namespace Adyen.Checkout.Models
@@ -32,6 +33,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// The type and required details of a payment method to use.  When `donationToken` is provided, the payment method is derived from the token and this field becomes optional.  If you are [PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide), and make donations using raw card details, you must explicitly provide the payment method details..
     /// </summary>
+    [JsonConverter(typeof(DonationPaymentMethodJsonConverter))]
     public partial class DonationPaymentMethod
     {
         /// <summary>

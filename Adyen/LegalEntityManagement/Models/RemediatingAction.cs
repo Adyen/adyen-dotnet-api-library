@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.LegalEntityManagement.Client;
 
 namespace Adyen.LegalEntityManagement.Models
@@ -32,6 +33,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// RemediatingAction.
     /// </summary>
+    [JsonConverter(typeof(RemediatingActionJsonConverter))]
     public partial class RemediatingAction
     {
         /// <summary>
