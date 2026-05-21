@@ -167,7 +167,7 @@ namespace Adyen.Recurring.Models
                 if (value == ContractEnum.EXTERNAL)
                     return "EXTERNAL";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -322,7 +322,7 @@ namespace Adyen.Recurring.Models
                 if (value == TokenServiceEnum.TOKENSHARING)
                     return "TOKEN_SHARING";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -473,7 +473,7 @@ namespace Adyen.Recurring.Models
                     {
                         case "contract":
                             string? contractRawValue = utf8JsonReader.GetString();
-                            contract = new Option<Recurring.ContractEnum?>(Recurring.ContractEnum.FromStringOrDefault(contractRawValue));
+                            contract = new Option<Recurring.ContractEnum?>(Recurring.ContractEnum.FromStringOrDefault(contractRawValue) ?? (Recurring.ContractEnum)contractRawValue);
                             break;
                         case "recurringDetailName":
                             recurringDetailName = new Option<string?>(utf8JsonReader.GetString()!);
@@ -486,7 +486,7 @@ namespace Adyen.Recurring.Models
                             break;
                         case "tokenService":
                             string? tokenServiceRawValue = utf8JsonReader.GetString();
-                            tokenService = new Option<Recurring.TokenServiceEnum?>(Recurring.TokenServiceEnum.FromStringOrDefault(tokenServiceRawValue));
+                            tokenService = new Option<Recurring.TokenServiceEnum?>(Recurring.TokenServiceEnum.FromStringOrDefault(tokenServiceRawValue) ?? (Recurring.TokenServiceEnum)tokenServiceRawValue);
                             break;
                         default:
                             break;
