@@ -140,7 +140,7 @@ namespace Adyen.Management.Models
                 if (value == AcquiringFeesEnum.DeductFromOneBalanceAccount)
                     return "deductFromOneBalanceAccount";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -277,7 +277,7 @@ namespace Adyen.Management.Models
                 if (value == AdyenCommissionEnum.DeductFromOneBalanceAccount)
                     return "deductFromOneBalanceAccount";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -414,7 +414,7 @@ namespace Adyen.Management.Models
                 if (value == AdyenFeesEnum.DeductFromOneBalanceAccount)
                     return "deductFromOneBalanceAccount";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -551,7 +551,7 @@ namespace Adyen.Management.Models
                 if (value == AdyenMarkupEnum.DeductFromOneBalanceAccount)
                     return "deductFromOneBalanceAccount";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -697,7 +697,7 @@ namespace Adyen.Management.Models
                 if (value == ChargebackEnum.DeductAccordingToSplitRatio)
                     return "deductAccordingToSplitRatio";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -834,7 +834,7 @@ namespace Adyen.Management.Models
                 if (value == ChargebackCostAllocationEnum.DeductFromOneBalanceAccount)
                     return "deductFromOneBalanceAccount";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -971,7 +971,7 @@ namespace Adyen.Management.Models
                 if (value == InterchangeEnum.DeductFromOneBalanceAccount)
                     return "deductFromOneBalanceAccount";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1108,7 +1108,7 @@ namespace Adyen.Management.Models
                 if (value == PaymentFeeEnum.DeductFromOneBalanceAccount)
                     return "deductFromOneBalanceAccount";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1254,7 +1254,7 @@ namespace Adyen.Management.Models
                 if (value == RefundEnum.DeductAccordingToSplitRatio)
                     return "deductAccordingToSplitRatio";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1391,7 +1391,7 @@ namespace Adyen.Management.Models
                 if (value == RefundCostAllocationEnum.DeductFromOneBalanceAccount)
                     return "deductFromOneBalanceAccount";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1528,7 +1528,7 @@ namespace Adyen.Management.Models
                 if (value == RemainderEnum.AddToOneBalanceAccount)
                     return "addToOneBalanceAccount";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1665,7 +1665,7 @@ namespace Adyen.Management.Models
                 if (value == SchemeFeeEnum.DeductFromOneBalanceAccount)
                     return "deductFromOneBalanceAccount";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1802,7 +1802,7 @@ namespace Adyen.Management.Models
                 if (value == SurchargeEnum.AddToOneBalanceAccount)
                     return "addToOneBalanceAccount";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1939,7 +1939,7 @@ namespace Adyen.Management.Models
                 if (value == TipEnum.AddToOneBalanceAccount)
                     return "addToOneBalanceAccount";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -2104,65 +2104,65 @@ namespace Adyen.Management.Models
                             break;
                         case "acquiringFees":
                             string? acquiringFeesRawValue = utf8JsonReader.GetString();
-                            acquiringFees = new Option<SplitConfigurationLogic.AcquiringFeesEnum?>(SplitConfigurationLogic.AcquiringFeesEnum.FromStringOrDefault(acquiringFeesRawValue));
+                            acquiringFees = new Option<SplitConfigurationLogic.AcquiringFeesEnum?>(SplitConfigurationLogic.AcquiringFeesEnum.FromStringOrDefault(acquiringFeesRawValue) ?? (SplitConfigurationLogic.AcquiringFeesEnum)acquiringFeesRawValue);
                             break;
                         case "additionalCommission":
                             additionalCommission = new Option<AdditionalCommission?>(JsonSerializer.Deserialize<AdditionalCommission>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "adyenCommission":
                             string? adyenCommissionRawValue = utf8JsonReader.GetString();
-                            adyenCommission = new Option<SplitConfigurationLogic.AdyenCommissionEnum?>(SplitConfigurationLogic.AdyenCommissionEnum.FromStringOrDefault(adyenCommissionRawValue));
+                            adyenCommission = new Option<SplitConfigurationLogic.AdyenCommissionEnum?>(SplitConfigurationLogic.AdyenCommissionEnum.FromStringOrDefault(adyenCommissionRawValue) ?? (SplitConfigurationLogic.AdyenCommissionEnum)adyenCommissionRawValue);
                             break;
                         case "adyenFees":
                             string? adyenFeesRawValue = utf8JsonReader.GetString();
-                            adyenFees = new Option<SplitConfigurationLogic.AdyenFeesEnum?>(SplitConfigurationLogic.AdyenFeesEnum.FromStringOrDefault(adyenFeesRawValue));
+                            adyenFees = new Option<SplitConfigurationLogic.AdyenFeesEnum?>(SplitConfigurationLogic.AdyenFeesEnum.FromStringOrDefault(adyenFeesRawValue) ?? (SplitConfigurationLogic.AdyenFeesEnum)adyenFeesRawValue);
                             break;
                         case "adyenMarkup":
                             string? adyenMarkupRawValue = utf8JsonReader.GetString();
-                            adyenMarkup = new Option<SplitConfigurationLogic.AdyenMarkupEnum?>(SplitConfigurationLogic.AdyenMarkupEnum.FromStringOrDefault(adyenMarkupRawValue));
+                            adyenMarkup = new Option<SplitConfigurationLogic.AdyenMarkupEnum?>(SplitConfigurationLogic.AdyenMarkupEnum.FromStringOrDefault(adyenMarkupRawValue) ?? (SplitConfigurationLogic.AdyenMarkupEnum)adyenMarkupRawValue);
                             break;
                         case "chargeback":
                             string? chargebackRawValue = utf8JsonReader.GetString();
-                            chargeback = new Option<SplitConfigurationLogic.ChargebackEnum?>(SplitConfigurationLogic.ChargebackEnum.FromStringOrDefault(chargebackRawValue));
+                            chargeback = new Option<SplitConfigurationLogic.ChargebackEnum?>(SplitConfigurationLogic.ChargebackEnum.FromStringOrDefault(chargebackRawValue) ?? (SplitConfigurationLogic.ChargebackEnum)chargebackRawValue);
                             break;
                         case "chargebackCostAllocation":
                             string? chargebackCostAllocationRawValue = utf8JsonReader.GetString();
-                            chargebackCostAllocation = new Option<SplitConfigurationLogic.ChargebackCostAllocationEnum?>(SplitConfigurationLogic.ChargebackCostAllocationEnum.FromStringOrDefault(chargebackCostAllocationRawValue));
+                            chargebackCostAllocation = new Option<SplitConfigurationLogic.ChargebackCostAllocationEnum?>(SplitConfigurationLogic.ChargebackCostAllocationEnum.FromStringOrDefault(chargebackCostAllocationRawValue) ?? (SplitConfigurationLogic.ChargebackCostAllocationEnum)chargebackCostAllocationRawValue);
                             break;
                         case "interchange":
                             string? interchangeRawValue = utf8JsonReader.GetString();
-                            interchange = new Option<SplitConfigurationLogic.InterchangeEnum?>(SplitConfigurationLogic.InterchangeEnum.FromStringOrDefault(interchangeRawValue));
+                            interchange = new Option<SplitConfigurationLogic.InterchangeEnum?>(SplitConfigurationLogic.InterchangeEnum.FromStringOrDefault(interchangeRawValue) ?? (SplitConfigurationLogic.InterchangeEnum)interchangeRawValue);
                             break;
                         case "paymentFee":
                             string? paymentFeeRawValue = utf8JsonReader.GetString();
-                            paymentFee = new Option<SplitConfigurationLogic.PaymentFeeEnum?>(SplitConfigurationLogic.PaymentFeeEnum.FromStringOrDefault(paymentFeeRawValue));
+                            paymentFee = new Option<SplitConfigurationLogic.PaymentFeeEnum?>(SplitConfigurationLogic.PaymentFeeEnum.FromStringOrDefault(paymentFeeRawValue) ?? (SplitConfigurationLogic.PaymentFeeEnum)paymentFeeRawValue);
                             break;
                         case "refund":
                             string? refundRawValue = utf8JsonReader.GetString();
-                            refund = new Option<SplitConfigurationLogic.RefundEnum?>(SplitConfigurationLogic.RefundEnum.FromStringOrDefault(refundRawValue));
+                            refund = new Option<SplitConfigurationLogic.RefundEnum?>(SplitConfigurationLogic.RefundEnum.FromStringOrDefault(refundRawValue) ?? (SplitConfigurationLogic.RefundEnum)refundRawValue);
                             break;
                         case "refundCostAllocation":
                             string? refundCostAllocationRawValue = utf8JsonReader.GetString();
-                            refundCostAllocation = new Option<SplitConfigurationLogic.RefundCostAllocationEnum?>(SplitConfigurationLogic.RefundCostAllocationEnum.FromStringOrDefault(refundCostAllocationRawValue));
+                            refundCostAllocation = new Option<SplitConfigurationLogic.RefundCostAllocationEnum?>(SplitConfigurationLogic.RefundCostAllocationEnum.FromStringOrDefault(refundCostAllocationRawValue) ?? (SplitConfigurationLogic.RefundCostAllocationEnum)refundCostAllocationRawValue);
                             break;
                         case "remainder":
                             string? remainderRawValue = utf8JsonReader.GetString();
-                            remainder = new Option<SplitConfigurationLogic.RemainderEnum?>(SplitConfigurationLogic.RemainderEnum.FromStringOrDefault(remainderRawValue));
+                            remainder = new Option<SplitConfigurationLogic.RemainderEnum?>(SplitConfigurationLogic.RemainderEnum.FromStringOrDefault(remainderRawValue) ?? (SplitConfigurationLogic.RemainderEnum)remainderRawValue);
                             break;
                         case "schemeFee":
                             string? schemeFeeRawValue = utf8JsonReader.GetString();
-                            schemeFee = new Option<SplitConfigurationLogic.SchemeFeeEnum?>(SplitConfigurationLogic.SchemeFeeEnum.FromStringOrDefault(schemeFeeRawValue));
+                            schemeFee = new Option<SplitConfigurationLogic.SchemeFeeEnum?>(SplitConfigurationLogic.SchemeFeeEnum.FromStringOrDefault(schemeFeeRawValue) ?? (SplitConfigurationLogic.SchemeFeeEnum)schemeFeeRawValue);
                             break;
                         case "splitLogicId":
                             splitLogicId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "surcharge":
                             string? surchargeRawValue = utf8JsonReader.GetString();
-                            surcharge = new Option<SplitConfigurationLogic.SurchargeEnum?>(SplitConfigurationLogic.SurchargeEnum.FromStringOrDefault(surchargeRawValue));
+                            surcharge = new Option<SplitConfigurationLogic.SurchargeEnum?>(SplitConfigurationLogic.SurchargeEnum.FromStringOrDefault(surchargeRawValue) ?? (SplitConfigurationLogic.SurchargeEnum)surchargeRawValue);
                             break;
                         case "tip":
                             string? tipRawValue = utf8JsonReader.GetString();
-                            tip = new Option<SplitConfigurationLogic.TipEnum?>(SplitConfigurationLogic.TipEnum.FromStringOrDefault(tipRawValue));
+                            tip = new Option<SplitConfigurationLogic.TipEnum?>(SplitConfigurationLogic.TipEnum.FromStringOrDefault(tipRawValue) ?? (SplitConfigurationLogic.TipEnum)tipRawValue);
                             break;
                         default:
                             break;

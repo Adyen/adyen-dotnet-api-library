@@ -132,7 +132,7 @@ namespace Adyen.Management.Models
                 if (value == TypeEnum.UninstallAndroidCertificate)
                     return "UninstallAndroidCertificate";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -247,7 +247,7 @@ namespace Adyen.Management.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<UninstallAndroidCertificateDetails.TypeEnum?>(UninstallAndroidCertificateDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<UninstallAndroidCertificateDetails.TypeEnum?>(UninstallAndroidCertificateDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (UninstallAndroidCertificateDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

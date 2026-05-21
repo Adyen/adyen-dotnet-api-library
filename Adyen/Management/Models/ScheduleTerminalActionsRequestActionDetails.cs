@@ -232,22 +232,22 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (forceRebootDetails?.Type != null)
+            if (forceRebootDetails?.Type != null && ForceRebootDetails.TypeEnum.FromStringOrDefault((string?)forceRebootDetails.Type) != null)
                 return new ScheduleTerminalActionsRequestActionDetails(forceRebootDetails);
 
-            if (installAndroidAppDetails?.Type != null)
+            if (installAndroidAppDetails?.Type != null && InstallAndroidAppDetails.TypeEnum.FromStringOrDefault((string?)installAndroidAppDetails.Type) != null)
                 return new ScheduleTerminalActionsRequestActionDetails(installAndroidAppDetails);
 
-            if (installAndroidCertificateDetails?.Type != null)
+            if (installAndroidCertificateDetails?.Type != null && InstallAndroidCertificateDetails.TypeEnum.FromStringOrDefault((string?)installAndroidCertificateDetails.Type) != null)
                 return new ScheduleTerminalActionsRequestActionDetails(installAndroidCertificateDetails);
 
-            if (releaseUpdateDetails?.Type != null)
+            if (releaseUpdateDetails?.Type != null && ReleaseUpdateDetails.TypeEnum.FromStringOrDefault((string?)releaseUpdateDetails.Type) != null)
                 return new ScheduleTerminalActionsRequestActionDetails(releaseUpdateDetails);
 
-            if (uninstallAndroidAppDetails?.Type != null)
+            if (uninstallAndroidAppDetails?.Type != null && UninstallAndroidAppDetails.TypeEnum.FromStringOrDefault((string?)uninstallAndroidAppDetails.Type) != null)
                 return new ScheduleTerminalActionsRequestActionDetails(uninstallAndroidAppDetails);
 
-            if (uninstallAndroidCertificateDetails?.Type != null)
+            if (uninstallAndroidCertificateDetails?.Type != null && UninstallAndroidCertificateDetails.TypeEnum.FromStringOrDefault((string?)uninstallAndroidCertificateDetails.Type) != null)
                 return new ScheduleTerminalActionsRequestActionDetails(uninstallAndroidCertificateDetails);
 
             throw new JsonException();

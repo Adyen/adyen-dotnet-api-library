@@ -140,7 +140,7 @@ namespace Adyen.Management.Models
                 if (value == ServiceLevelEnum.GatewayContract)
                     return "gatewayContract";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -282,7 +282,7 @@ namespace Adyen.Management.Models
                             break;
                         case "serviceLevel":
                             string? serviceLevelRawValue = utf8JsonReader.GetString();
-                            serviceLevel = new Option<DinersInfo.ServiceLevelEnum?>(DinersInfo.ServiceLevelEnum.FromStringOrDefault(serviceLevelRawValue));
+                            serviceLevel = new Option<DinersInfo.ServiceLevelEnum?>(DinersInfo.ServiceLevelEnum.FromStringOrDefault(serviceLevelRawValue) ?? (DinersInfo.ServiceLevelEnum)serviceLevelRawValue);
                             break;
                         case "transactionDescription":
                             transactionDescription = new Option<TransactionDescriptionInfo?>(JsonSerializer.Deserialize<TransactionDescriptionInfo>(ref utf8JsonReader, jsonSerializerOptions)!);

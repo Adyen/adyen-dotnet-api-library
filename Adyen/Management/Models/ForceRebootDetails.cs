@@ -132,7 +132,7 @@ namespace Adyen.Management.Models
                 if (value == TypeEnum.ForceReboot)
                     return "ForceReboot";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -228,7 +228,7 @@ namespace Adyen.Management.Models
                     {
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<ForceRebootDetails.TypeEnum?>(ForceRebootDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<ForceRebootDetails.TypeEnum?>(ForceRebootDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (ForceRebootDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

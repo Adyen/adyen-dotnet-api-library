@@ -132,7 +132,7 @@ namespace Adyen.Management.Models
                 if (value == TypeEnum.InstallAndroidCertificate)
                     return "InstallAndroidCertificate";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -247,7 +247,7 @@ namespace Adyen.Management.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<InstallAndroidCertificateDetails.TypeEnum?>(InstallAndroidCertificateDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<InstallAndroidCertificateDetails.TypeEnum?>(InstallAndroidCertificateDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (InstallAndroidCertificateDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

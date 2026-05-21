@@ -158,7 +158,7 @@ namespace Adyen.Management.Models
                 if (value == VerificationStatusEnum.Rejected)
                     return "rejected";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1254,7 +1254,7 @@ namespace Adyen.Management.Models
                             break;
                         case "verificationStatus":
                             string? verificationStatusRawValue = utf8JsonReader.GetString();
-                            verificationStatus = new Option<PaymentMethod.VerificationStatusEnum?>(PaymentMethod.VerificationStatusEnum.FromStringOrDefault(verificationStatusRawValue));
+                            verificationStatus = new Option<PaymentMethod.VerificationStatusEnum?>(PaymentMethod.VerificationStatusEnum.FromStringOrDefault(verificationStatusRawValue) ?? (PaymentMethod.VerificationStatusEnum)verificationStatusRawValue);
                             break;
                         case "vipps":
                             vipps = new Option<VippsResponseInfo?>(JsonSerializer.Deserialize<VippsResponseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);

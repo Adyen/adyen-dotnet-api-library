@@ -149,7 +149,7 @@ namespace Adyen.Management.Models
                 if (value == PriorityEnum.Urgent)
                     return "urgent";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -304,7 +304,7 @@ namespace Adyen.Management.Models
                 if (value == VerificationStatusEnum.Valid)
                     return "valid";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -483,11 +483,11 @@ namespace Adyen.Management.Models
                             break;
                         case "priority":
                             string? priorityRawValue = utf8JsonReader.GetString();
-                            priority = new Option<PayoutSettings.PriorityEnum?>(PayoutSettings.PriorityEnum.FromStringOrDefault(priorityRawValue));
+                            priority = new Option<PayoutSettings.PriorityEnum?>(PayoutSettings.PriorityEnum.FromStringOrDefault(priorityRawValue) ?? (PayoutSettings.PriorityEnum)priorityRawValue);
                             break;
                         case "verificationStatus":
                             string? verificationStatusRawValue = utf8JsonReader.GetString();
-                            verificationStatus = new Option<PayoutSettings.VerificationStatusEnum?>(PayoutSettings.VerificationStatusEnum.FromStringOrDefault(verificationStatusRawValue));
+                            verificationStatus = new Option<PayoutSettings.VerificationStatusEnum?>(PayoutSettings.VerificationStatusEnum.FromStringOrDefault(verificationStatusRawValue) ?? (PayoutSettings.VerificationStatusEnum)verificationStatusRawValue);
                             break;
                         default:
                             break;

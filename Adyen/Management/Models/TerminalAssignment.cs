@@ -158,7 +158,7 @@ namespace Adyen.Management.Models
                 if (value == StatusEnum.ReassignmentInProgress)
                     return "reassignmentInProgress";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -306,7 +306,7 @@ namespace Adyen.Management.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<TerminalAssignment.StatusEnum?>(TerminalAssignment.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<TerminalAssignment.StatusEnum?>(TerminalAssignment.StatusEnum.FromStringOrDefault(statusRawValue) ?? (TerminalAssignment.StatusEnum)statusRawValue);
                             break;
                         case "merchantId":
                             merchantId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -331,7 +331,7 @@ namespace Adyen.Management.Models
 
             var terminalAssignment = new TerminalAssignment();
             terminalAssignment.CompanyId = companyId.Value!;
-            terminalAssignment.Status = status.Value!.Value;
+            terminalAssignment.Status = status.Value!;
             if (merchantId.IsSet)
                 terminalAssignment.MerchantId = merchantId.Value;
             if (reassignmentTarget.IsSet)

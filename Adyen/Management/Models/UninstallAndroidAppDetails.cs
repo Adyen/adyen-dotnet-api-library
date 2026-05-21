@@ -132,7 +132,7 @@ namespace Adyen.Management.Models
                 if (value == TypeEnum.UninstallAndroidApp)
                     return "UninstallAndroidApp";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -247,7 +247,7 @@ namespace Adyen.Management.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<UninstallAndroidAppDetails.TypeEnum?>(UninstallAndroidAppDetails.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<UninstallAndroidAppDetails.TypeEnum?>(UninstallAndroidAppDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (UninstallAndroidAppDetails.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

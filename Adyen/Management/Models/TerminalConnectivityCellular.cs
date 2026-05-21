@@ -167,7 +167,7 @@ namespace Adyen.Management.Models
                 if (value == StatusEnum.ReadyForActivation)
                     return "readyForActivation";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -301,7 +301,7 @@ namespace Adyen.Management.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<TerminalConnectivityCellular.StatusEnum?>(TerminalConnectivityCellular.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<TerminalConnectivityCellular.StatusEnum?>(TerminalConnectivityCellular.StatusEnum.FromStringOrDefault(statusRawValue) ?? (TerminalConnectivityCellular.StatusEnum)statusRawValue);
                             break;
                         default:
                             break;
