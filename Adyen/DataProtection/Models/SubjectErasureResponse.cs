@@ -158,7 +158,7 @@ namespace Adyen.DataProtection.Models
                 if (value == ResultEnum.SUCCESS)
                     return "SUCCESS";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -254,7 +254,7 @@ namespace Adyen.DataProtection.Models
                     {
                         case "result":
                             string? resultRawValue = utf8JsonReader.GetString();
-                            result = new Option<SubjectErasureResponse.ResultEnum?>(SubjectErasureResponse.ResultEnum.FromStringOrDefault(resultRawValue));
+                            result = new Option<SubjectErasureResponse.ResultEnum?>(SubjectErasureResponse.ResultEnum.FromStringOrDefault(resultRawValue) ?? (SubjectErasureResponse.ResultEnum)resultRawValue);
                             break;
                         default:
                             break;
