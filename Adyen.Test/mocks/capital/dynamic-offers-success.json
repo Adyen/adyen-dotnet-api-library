@@ -1,0 +1,25 @@
+{
+  "dynamicOffers": [
+    {
+      "id": "DO00000000000000000000001",
+      "accountHolderId": "AH00000000000000000000001",
+      "contractType": "cashAdvance",
+      "financingType": "businessFinancing",
+      "minimumAmount": {
+        "currency": "EUR",
+        "value": 5000
+      },
+      "maximumAmount": {
+        "currency": "EUR",
+        "value": 25000
+      },
+      "repayment": {
+        "term": {
+          "estimatedDays": 90
+        }
+      },
+      "startsAt": "2024-01-01T00:00:00.0000000Z",
+      "expiresAt": "2024-12-31T00:00:00.0000000Z"
+    }
+  ]
+}
