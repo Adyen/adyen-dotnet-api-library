@@ -131,7 +131,7 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
                 if (value == TypeEnum.BalancePlatformNegativeBalanceCompensationWarningScheduled)
                     return "balancePlatform.negativeBalanceCompensationWarning.scheduled";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -264,7 +264,7 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<NegativeBalanceCompensationWarningNotificationRequest.TypeEnum?>(NegativeBalanceCompensationWarningNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<NegativeBalanceCompensationWarningNotificationRequest.TypeEnum?>(NegativeBalanceCompensationWarningNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (NegativeBalanceCompensationWarningNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         case "timestamp":
                             timestamp = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -287,7 +287,7 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
             var negativeBalanceCompensationWarningNotificationRequest = new NegativeBalanceCompensationWarningNotificationRequest();
             negativeBalanceCompensationWarningNotificationRequest.Data = data.Value!;
             negativeBalanceCompensationWarningNotificationRequest.Environment = environment.Value!;
-            negativeBalanceCompensationWarningNotificationRequest.Type = type.Value!.Value;
+            negativeBalanceCompensationWarningNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 negativeBalanceCompensationWarningNotificationRequest.Timestamp = timestamp.Value;
             return negativeBalanceCompensationWarningNotificationRequest;
