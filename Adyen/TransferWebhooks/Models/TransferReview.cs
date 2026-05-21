@@ -149,7 +149,7 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == ScaOnApprovalEnum.Required)
                     return "required";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -264,7 +264,7 @@ namespace Adyen.TransferWebhooks.Models
                             break;
                         case "scaOnApproval":
                             string? scaOnApprovalRawValue = utf8JsonReader.GetString();
-                            scaOnApproval = new Option<TransferReview.ScaOnApprovalEnum?>(TransferReview.ScaOnApprovalEnum.FromStringOrDefault(scaOnApprovalRawValue));
+                            scaOnApproval = new Option<TransferReview.ScaOnApprovalEnum?>(TransferReview.ScaOnApprovalEnum.FromStringOrDefault(scaOnApprovalRawValue) ?? (TransferReview.ScaOnApprovalEnum)scaOnApprovalRawValue);
                             break;
                         default:
                             break;

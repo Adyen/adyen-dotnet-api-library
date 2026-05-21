@@ -131,7 +131,7 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == TypeEnum.IssuingTransactionData)
                     return "issuingTransactionData";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -239,7 +239,7 @@ namespace Adyen.TransferWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<IssuingTransactionData.TypeEnum?>(IssuingTransactionData.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<IssuingTransactionData.TypeEnum?>(IssuingTransactionData.TypeEnum.FromStringOrDefault(typeRawValue) ?? (IssuingTransactionData.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -253,7 +253,7 @@ namespace Adyen.TransferWebhooks.Models
             var issuingTransactionData = new IssuingTransactionData();
             if (captureCycleId.IsSet)
                 issuingTransactionData.CaptureCycleId = captureCycleId.Value;
-            issuingTransactionData.Type = type.Value!.Value;
+            issuingTransactionData.Type = type.Value!;
             return issuingTransactionData;
         }
 

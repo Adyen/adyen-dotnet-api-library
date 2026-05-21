@@ -887,7 +887,7 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == ReasonEnum.WithdrawalCountExceeded)
                     return "withdrawalCountExceeded";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1636,7 +1636,7 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == StatusEnum.Undefined)
                     return "undefined";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1782,7 +1782,7 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == TypeEnum.Tracking)
                     return "tracking";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -2170,11 +2170,11 @@ namespace Adyen.TransferWebhooks.Models
                             break;
                         case "reason":
                             string? reasonRawValue = utf8JsonReader.GetString();
-                            reason = new Option<TransferEvent.ReasonEnum?>(TransferEvent.ReasonEnum.FromStringOrDefault(reasonRawValue));
+                            reason = new Option<TransferEvent.ReasonEnum?>(TransferEvent.ReasonEnum.FromStringOrDefault(reasonRawValue) ?? (TransferEvent.ReasonEnum)reasonRawValue);
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<TransferEvent.StatusEnum?>(TransferEvent.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<TransferEvent.StatusEnum?>(TransferEvent.StatusEnum.FromStringOrDefault(statusRawValue) ?? (TransferEvent.StatusEnum)statusRawValue);
                             break;
                         case "trackingData":
                             trackingData = new Option<TransferEventTrackingData?>(JsonSerializer.Deserialize<TransferEventTrackingData>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -2184,7 +2184,7 @@ namespace Adyen.TransferWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<TransferEvent.TypeEnum?>(TransferEvent.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<TransferEvent.TypeEnum?>(TransferEvent.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TransferEvent.TypeEnum)typeRawValue);
                             break;
                         case "updateDate":
                             updateDate = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));

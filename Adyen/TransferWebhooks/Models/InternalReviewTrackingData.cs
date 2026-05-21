@@ -140,7 +140,7 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == StatusEnum.Failed)
                     return "failed";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -261,7 +261,7 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == ReasonEnum.RefusedForRegulatoryReasons)
                     return "refusedForRegulatoryReasons";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -389,7 +389,7 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == TypeEnum.InternalReview)
                     return "internalReview";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -482,15 +482,15 @@ namespace Adyen.TransferWebhooks.Models
                     {
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<InternalReviewTrackingData.StatusEnum?>(InternalReviewTrackingData.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<InternalReviewTrackingData.StatusEnum?>(InternalReviewTrackingData.StatusEnum.FromStringOrDefault(statusRawValue) ?? (InternalReviewTrackingData.StatusEnum)statusRawValue);
                             break;
                         case "reason":
                             string? reasonRawValue = utf8JsonReader.GetString();
-                            reason = new Option<InternalReviewTrackingData.ReasonEnum?>(InternalReviewTrackingData.ReasonEnum.FromStringOrDefault(reasonRawValue));
+                            reason = new Option<InternalReviewTrackingData.ReasonEnum?>(InternalReviewTrackingData.ReasonEnum.FromStringOrDefault(reasonRawValue) ?? (InternalReviewTrackingData.ReasonEnum)reasonRawValue);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<InternalReviewTrackingData.TypeEnum?>(InternalReviewTrackingData.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<InternalReviewTrackingData.TypeEnum?>(InternalReviewTrackingData.TypeEnum.FromStringOrDefault(typeRawValue) ?? (InternalReviewTrackingData.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -505,10 +505,10 @@ namespace Adyen.TransferWebhooks.Models
                 throw new ArgumentException("Property is required for class InternalReviewTrackingData.", nameof(type));
 
             var internalReviewTrackingData = new InternalReviewTrackingData();
-            internalReviewTrackingData.Status = status.Value!.Value;
+            internalReviewTrackingData.Status = status.Value!;
             if (reason.IsSet)
                 internalReviewTrackingData.Reason = reason.Value;
-            internalReviewTrackingData.Type = type.Value!.Value;
+            internalReviewTrackingData.Type = type.Value!;
             return internalReviewTrackingData;
         }
 

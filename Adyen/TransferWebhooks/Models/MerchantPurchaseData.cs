@@ -131,7 +131,7 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == TypeEnum.MerchantPurchaseData)
                     return "merchantPurchaseData";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -257,7 +257,7 @@ namespace Adyen.TransferWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<MerchantPurchaseData.TypeEnum?>(MerchantPurchaseData.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<MerchantPurchaseData.TypeEnum?>(MerchantPurchaseData.TypeEnum.FromStringOrDefault(typeRawValue) ?? (MerchantPurchaseData.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -273,7 +273,7 @@ namespace Adyen.TransferWebhooks.Models
                 merchantPurchaseData.Airline = airline.Value;
             if (lodging.IsSet)
                 merchantPurchaseData.Lodging = lodging.Value;
-            merchantPurchaseData.Type = type.Value!.Value;
+            merchantPurchaseData.Type = type.Value!;
             return merchantPurchaseData;
         }
 

@@ -158,7 +158,7 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == AmountAdjustmentTypeEnum.ForexMarkup)
                     return "forexMarkup";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -288,7 +288,7 @@ namespace Adyen.TransferWebhooks.Models
                             break;
                         case "amountAdjustmentType":
                             string? amountAdjustmentTypeRawValue = utf8JsonReader.GetString();
-                            amountAdjustmentType = new Option<AmountAdjustment.AmountAdjustmentTypeEnum?>(AmountAdjustment.AmountAdjustmentTypeEnum.FromStringOrDefault(amountAdjustmentTypeRawValue));
+                            amountAdjustmentType = new Option<AmountAdjustment.AmountAdjustmentTypeEnum?>(AmountAdjustment.AmountAdjustmentTypeEnum.FromStringOrDefault(amountAdjustmentTypeRawValue) ?? (AmountAdjustment.AmountAdjustmentTypeEnum)amountAdjustmentTypeRawValue);
                             break;
                         case "basepoints":
                             basepoints = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
