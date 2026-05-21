@@ -140,7 +140,7 @@ namespace Adyen.TokenizationWebhooks.Models
                 if (value == EnvironmentEnum.Live)
                     return "live";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -262,7 +262,7 @@ namespace Adyen.TokenizationWebhooks.Models
                 if (value == TypeEnum.RecurringTokenAlreadyExisting)
                     return "recurring.token.alreadyExisting";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -408,14 +408,14 @@ namespace Adyen.TokenizationWebhooks.Models
                             break;
                         case "environment":
                             string? environmentRawValue = utf8JsonReader.GetString();
-                            environment = new Option<TokenizationAlreadyExistingDetailsNotificationRequest.EnvironmentEnum?>(TokenizationAlreadyExistingDetailsNotificationRequest.EnvironmentEnum.FromStringOrDefault(environmentRawValue));
+                            environment = new Option<TokenizationAlreadyExistingDetailsNotificationRequest.EnvironmentEnum?>(TokenizationAlreadyExistingDetailsNotificationRequest.EnvironmentEnum.FromStringOrDefault(environmentRawValue) ?? (TokenizationAlreadyExistingDetailsNotificationRequest.EnvironmentEnum)environmentRawValue);
                             break;
                         case "eventId":
                             eventId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<TokenizationAlreadyExistingDetailsNotificationRequest.TypeEnum?>(TokenizationAlreadyExistingDetailsNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<TokenizationAlreadyExistingDetailsNotificationRequest.TypeEnum?>(TokenizationAlreadyExistingDetailsNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TokenizationAlreadyExistingDetailsNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         case "version":
                             version = new Option<string?>(utf8JsonReader.GetString()!);
@@ -444,9 +444,9 @@ namespace Adyen.TokenizationWebhooks.Models
             var tokenizationAlreadyExistingDetailsNotificationRequest = new TokenizationAlreadyExistingDetailsNotificationRequest();
             tokenizationAlreadyExistingDetailsNotificationRequest.CreatedAt = createdAt.Value!.Value;
             tokenizationAlreadyExistingDetailsNotificationRequest.Data = data.Value!;
-            tokenizationAlreadyExistingDetailsNotificationRequest.Environment = environment.Value!.Value;
+            tokenizationAlreadyExistingDetailsNotificationRequest.Environment = environment.Value!;
             tokenizationAlreadyExistingDetailsNotificationRequest.EventId = eventId.Value!;
-            tokenizationAlreadyExistingDetailsNotificationRequest.Type = type.Value!.Value;
+            tokenizationAlreadyExistingDetailsNotificationRequest.Type = type.Value!;
             if (version.IsSet)
                 tokenizationAlreadyExistingDetailsNotificationRequest.Version = version.Value;
             return tokenizationAlreadyExistingDetailsNotificationRequest;
