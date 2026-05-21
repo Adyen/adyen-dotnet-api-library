@@ -140,7 +140,7 @@ namespace Adyen.Payout.Models
                 if (value == EntityTypeEnum.Company)
                     return "Company";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -440,7 +440,7 @@ namespace Adyen.Payout.Models
                             break;
                         case "entityType":
                             string? entityTypeRawValue = utf8JsonReader.GetString();
-                            entityType = new Option<SubmitRequest.EntityTypeEnum?>(SubmitRequest.EntityTypeEnum.FromStringOrDefault(entityTypeRawValue));
+                            entityType = new Option<SubmitRequest.EntityTypeEnum?>(SubmitRequest.EntityTypeEnum.FromStringOrDefault(entityTypeRawValue) ?? (SubmitRequest.EntityTypeEnum)entityTypeRawValue);
                             break;
                         case "fraudOffset":
                             fraudOffset = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());

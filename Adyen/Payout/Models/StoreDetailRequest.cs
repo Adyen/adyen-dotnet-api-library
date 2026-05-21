@@ -140,7 +140,7 @@ namespace Adyen.Payout.Models
                 if (value == EntityTypeEnum.Company)
                     return "Company";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -430,7 +430,7 @@ namespace Adyen.Payout.Models
                             break;
                         case "entityType":
                             string? entityTypeRawValue = utf8JsonReader.GetString();
-                            entityType = new Option<StoreDetailRequest.EntityTypeEnum?>(StoreDetailRequest.EntityTypeEnum.FromStringOrDefault(entityTypeRawValue));
+                            entityType = new Option<StoreDetailRequest.EntityTypeEnum?>(StoreDetailRequest.EntityTypeEnum.FromStringOrDefault(entityTypeRawValue) ?? (StoreDetailRequest.EntityTypeEnum)entityTypeRawValue);
                             break;
                         case "merchantAccount":
                             merchantAccount = new Option<string?>(utf8JsonReader.GetString()!);
@@ -503,7 +503,7 @@ namespace Adyen.Payout.Models
 
             var storeDetailRequest = new StoreDetailRequest();
             storeDetailRequest.DateOfBirth = dateOfBirth.Value!.Value;
-            storeDetailRequest.EntityType = entityType.Value!.Value;
+            storeDetailRequest.EntityType = entityType.Value!;
             storeDetailRequest.MerchantAccount = merchantAccount.Value!;
             storeDetailRequest.Nationality = nationality.Value!;
             storeDetailRequest.Recurring = recurring.Value!;
