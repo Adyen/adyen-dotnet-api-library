@@ -131,7 +131,7 @@ namespace Adyen.Transfers.Models
                 if (value == TypeEnum.Estimation)
                     return "estimation";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -237,7 +237,7 @@ namespace Adyen.Transfers.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<EstimationTrackingData.TypeEnum?>(EstimationTrackingData.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<EstimationTrackingData.TypeEnum?>(EstimationTrackingData.TypeEnum.FromStringOrDefault(typeRawValue) ?? (EstimationTrackingData.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -253,7 +253,7 @@ namespace Adyen.Transfers.Models
 
             var estimationTrackingData = new EstimationTrackingData();
             estimationTrackingData.EstimatedArrivalTime = estimatedArrivalTime.Value!.Value;
-            estimationTrackingData.Type = type.Value!.Value;
+            estimationTrackingData.Type = type.Value!;
             return estimationTrackingData;
         }
 

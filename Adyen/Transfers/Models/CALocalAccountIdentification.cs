@@ -141,7 +141,7 @@ namespace Adyen.Transfers.Models
                 if (value == AccountTypeEnum.Savings)
                     return "savings";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -269,7 +269,7 @@ namespace Adyen.Transfers.Models
                 if (value == TypeEnum.CaLocal)
                     return "caLocal";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -396,11 +396,11 @@ namespace Adyen.Transfers.Models
                             break;
                         case "accountType":
                             string? accountTypeRawValue = utf8JsonReader.GetString();
-                            accountType = new Option<CALocalAccountIdentification.AccountTypeEnum?>(CALocalAccountIdentification.AccountTypeEnum.FromStringOrDefault(accountTypeRawValue));
+                            accountType = new Option<CALocalAccountIdentification.AccountTypeEnum?>(CALocalAccountIdentification.AccountTypeEnum.FromStringOrDefault(accountTypeRawValue) ?? (CALocalAccountIdentification.AccountTypeEnum)accountTypeRawValue);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CALocalAccountIdentification.TypeEnum?>(CALocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CALocalAccountIdentification.TypeEnum?>(CALocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CALocalAccountIdentification.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -426,7 +426,7 @@ namespace Adyen.Transfers.Models
             cALocalAccountIdentification.TransitNumber = transitNumber.Value!;
             if (accountType.IsSet)
                 cALocalAccountIdentification.AccountType = accountType.Value;
-            cALocalAccountIdentification.Type = type.Value!.Value;
+            cALocalAccountIdentification.Type = type.Value!;
             return cALocalAccountIdentification;
         }
 

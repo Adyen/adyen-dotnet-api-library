@@ -176,7 +176,7 @@ namespace Adyen.Transfers.Models
                 if (value == CategoryEnum.TopUp)
                     return "topUp";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -341,7 +341,7 @@ namespace Adyen.Transfers.Models
                 if (value == PrioritiesEnum.Wire)
                     return "wire";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -500,7 +500,7 @@ namespace Adyen.Transfers.Models
                 if (value == PriorityEnum.Wire)
                     return "wire";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -646,7 +646,7 @@ namespace Adyen.Transfers.Models
                 if (value == TypeEnum.InternalDirectDebit)
                     return "internalDirectDebit";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -906,7 +906,7 @@ namespace Adyen.Transfers.Models
                             break;
                         case "category":
                             string? categoryRawValue = utf8JsonReader.GetString();
-                            category = new Option<TransferInfo.CategoryEnum?>(TransferInfo.CategoryEnum.FromStringOrDefault(categoryRawValue));
+                            category = new Option<TransferInfo.CategoryEnum?>(TransferInfo.CategoryEnum.FromStringOrDefault(categoryRawValue) ?? (TransferInfo.CategoryEnum)categoryRawValue);
                             break;
                         case "counterparty":
                             counterparty = new Option<CounterpartyInfoV3?>(JsonSerializer.Deserialize<CounterpartyInfoV3>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -928,7 +928,7 @@ namespace Adyen.Transfers.Models
                             break;
                         case "priority":
                             string? priorityRawValue = utf8JsonReader.GetString();
-                            priority = new Option<TransferInfo.PriorityEnum?>(TransferInfo.PriorityEnum.FromStringOrDefault(priorityRawValue));
+                            priority = new Option<TransferInfo.PriorityEnum?>(TransferInfo.PriorityEnum.FromStringOrDefault(priorityRawValue) ?? (TransferInfo.PriorityEnum)priorityRawValue);
                             break;
                         case "reference":
                             reference = new Option<string?>(utf8JsonReader.GetString()!);
@@ -941,7 +941,7 @@ namespace Adyen.Transfers.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<TransferInfo.TypeEnum?>(TransferInfo.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<TransferInfo.TypeEnum?>(TransferInfo.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TransferInfo.TypeEnum)typeRawValue);
                             break;
                         case "ultimateParty":
                             ultimateParty = new Option<UltimatePartyIdentification?>(JsonSerializer.Deserialize<UltimatePartyIdentification>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -963,7 +963,7 @@ namespace Adyen.Transfers.Models
 
             var transferInfo = new TransferInfo();
             transferInfo.Amount = amount.Value!;
-            transferInfo.Category = category.Value!.Value;
+            transferInfo.Category = category.Value!;
             transferInfo.Counterparty = counterparty.Value!;
             if (balanceAccountId.IsSet)
                 transferInfo.BalanceAccountId = balanceAccountId.Value;

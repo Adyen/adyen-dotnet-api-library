@@ -176,7 +176,7 @@ namespace Adyen.Transfers.Models
                 if (value == PriorityEnum.Wire)
                     return "wire";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -326,7 +326,7 @@ namespace Adyen.Transfers.Models
                             break;
                         case "priority":
                             string? priorityRawValue = utf8JsonReader.GetString();
-                            priority = new Option<RoutingDetails.PriorityEnum?>(RoutingDetails.PriorityEnum.FromStringOrDefault(priorityRawValue));
+                            priority = new Option<RoutingDetails.PriorityEnum?>(RoutingDetails.PriorityEnum.FromStringOrDefault(priorityRawValue) ?? (RoutingDetails.PriorityEnum)priorityRawValue);
                             break;
                         case "title":
                             title = new Option<string?>(utf8JsonReader.GetString()!);

@@ -140,7 +140,7 @@ namespace Adyen.Transfers.Models
                 if (value == StatusEnum.Declined)
                     return "Declined";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -290,7 +290,7 @@ namespace Adyen.Transfers.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<ReturnTransferResponse.StatusEnum?>(ReturnTransferResponse.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<ReturnTransferResponse.StatusEnum?>(ReturnTransferResponse.StatusEnum.FromStringOrDefault(statusRawValue) ?? (ReturnTransferResponse.StatusEnum)statusRawValue);
                             break;
                         case "transferId":
                             transferId = new Option<string?>(utf8JsonReader.GetString()!);

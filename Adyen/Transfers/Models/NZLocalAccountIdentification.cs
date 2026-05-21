@@ -131,7 +131,7 @@ namespace Adyen.Transfers.Models
                 if (value == TypeEnum.NzLocal)
                     return "nzLocal";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -232,7 +232,7 @@ namespace Adyen.Transfers.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<NZLocalAccountIdentification.TypeEnum?>(NZLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<NZLocalAccountIdentification.TypeEnum?>(NZLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (NZLocalAccountIdentification.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -248,7 +248,7 @@ namespace Adyen.Transfers.Models
 
             var nZLocalAccountIdentification = new NZLocalAccountIdentification();
             nZLocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            nZLocalAccountIdentification.Type = type.Value!.Value;
+            nZLocalAccountIdentification.Type = type.Value!;
             return nZLocalAccountIdentification;
         }
 
