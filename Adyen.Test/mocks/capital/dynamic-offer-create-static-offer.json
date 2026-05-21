@@ -1,0 +1,9 @@
+{
+  "id": "GO00000000000000000000002",
+  "accountHolderId": "AH00000000000000000000001",
+  "contractType": "cashAdvance",
+  "amount": {
+    "currency": "EUR",
+    "value": 10000
+  }
+}
