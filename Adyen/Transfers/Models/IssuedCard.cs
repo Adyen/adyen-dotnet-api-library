@@ -186,7 +186,7 @@ namespace Adyen.Transfers.Models
                 if (value == PanEntryModeEnum.Token)
                     return "token";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -377,7 +377,7 @@ namespace Adyen.Transfers.Models
                 if (value == ProcessingTypeEnum.Token)
                     return "token";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -505,7 +505,7 @@ namespace Adyen.Transfers.Models
                 if (value == TypeEnum.IssuedCard)
                     return "issuedCard";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -702,11 +702,11 @@ namespace Adyen.Transfers.Models
                             break;
                         case "panEntryMode":
                             string? panEntryModeRawValue = utf8JsonReader.GetString();
-                            panEntryMode = new Option<IssuedCard.PanEntryModeEnum?>(IssuedCard.PanEntryModeEnum.FromStringOrDefault(panEntryModeRawValue));
+                            panEntryMode = new Option<IssuedCard.PanEntryModeEnum?>(IssuedCard.PanEntryModeEnum.FromStringOrDefault(panEntryModeRawValue) ?? (IssuedCard.PanEntryModeEnum)panEntryModeRawValue);
                             break;
                         case "processingType":
                             string? processingTypeRawValue = utf8JsonReader.GetString();
-                            processingType = new Option<IssuedCard.ProcessingTypeEnum?>(IssuedCard.ProcessingTypeEnum.FromStringOrDefault(processingTypeRawValue));
+                            processingType = new Option<IssuedCard.ProcessingTypeEnum?>(IssuedCard.ProcessingTypeEnum.FromStringOrDefault(processingTypeRawValue) ?? (IssuedCard.ProcessingTypeEnum)processingTypeRawValue);
                             break;
                         case "relayedAuthorisationData":
                             relayedAuthorisationData = new Option<RelayedAuthorisationData?>(JsonSerializer.Deserialize<RelayedAuthorisationData>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -722,7 +722,7 @@ namespace Adyen.Transfers.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<IssuedCard.TypeEnum?>(IssuedCard.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<IssuedCard.TypeEnum?>(IssuedCard.TypeEnum.FromStringOrDefault(typeRawValue) ?? (IssuedCard.TypeEnum)typeRawValue);
                             break;
                         case "validationFacts":
                             validationFacts = new Option<List<TransferNotificationValidationFact>?>(JsonSerializer.Deserialize<List<TransferNotificationValidationFact>>(ref utf8JsonReader, jsonSerializerOptions)!);

@@ -131,7 +131,7 @@ namespace Adyen.Transfers.Models
                 if (value == TypeEnum.Iban)
                     return "iban";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -251,7 +251,7 @@ namespace Adyen.Transfers.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<IbanAccountIdentification.TypeEnum?>(IbanAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<IbanAccountIdentification.TypeEnum?>(IbanAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (IbanAccountIdentification.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -269,7 +269,7 @@ namespace Adyen.Transfers.Models
             ibanAccountIdentification.Iban = iban.Value!;
             if (bic.IsSet)
                 ibanAccountIdentification.Bic = bic.Value;
-            ibanAccountIdentification.Type = type.Value!.Value;
+            ibanAccountIdentification.Type = type.Value!;
             return ibanAccountIdentification;
         }
 

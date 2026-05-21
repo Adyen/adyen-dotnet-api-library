@@ -131,7 +131,7 @@ namespace Adyen.Transfers.Models
                 if (value == TypeEnum.DkLocal)
                     return "dkLocal";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -244,7 +244,7 @@ namespace Adyen.Transfers.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<DKLocalAccountIdentification.TypeEnum?>(DKLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<DKLocalAccountIdentification.TypeEnum?>(DKLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (DKLocalAccountIdentification.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -264,7 +264,7 @@ namespace Adyen.Transfers.Models
             var dKLocalAccountIdentification = new DKLocalAccountIdentification();
             dKLocalAccountIdentification.AccountNumber = accountNumber.Value!;
             dKLocalAccountIdentification.BankCode = bankCode.Value!;
-            dKLocalAccountIdentification.Type = type.Value!.Value;
+            dKLocalAccountIdentification.Type = type.Value!;
             return dKLocalAccountIdentification;
         }
 

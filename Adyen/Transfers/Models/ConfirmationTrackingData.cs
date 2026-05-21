@@ -140,7 +140,7 @@ namespace Adyen.Transfers.Models
                 if (value == StatusEnum.Accepted)
                     return "accepted";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -261,7 +261,7 @@ namespace Adyen.Transfers.Models
                 if (value == TypeEnum.Confirmation)
                     return "confirmation";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -352,11 +352,11 @@ namespace Adyen.Transfers.Models
                     {
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<ConfirmationTrackingData.StatusEnum?>(ConfirmationTrackingData.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<ConfirmationTrackingData.StatusEnum?>(ConfirmationTrackingData.StatusEnum.FromStringOrDefault(statusRawValue) ?? (ConfirmationTrackingData.StatusEnum)statusRawValue);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<ConfirmationTrackingData.TypeEnum?>(ConfirmationTrackingData.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<ConfirmationTrackingData.TypeEnum?>(ConfirmationTrackingData.TypeEnum.FromStringOrDefault(typeRawValue) ?? (ConfirmationTrackingData.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -371,8 +371,8 @@ namespace Adyen.Transfers.Models
                 throw new ArgumentException("Property is required for class ConfirmationTrackingData.", nameof(type));
 
             var confirmationTrackingData = new ConfirmationTrackingData();
-            confirmationTrackingData.Status = status.Value!.Value;
-            confirmationTrackingData.Type = type.Value!.Value;
+            confirmationTrackingData.Status = status.Value!;
+            confirmationTrackingData.Type = type.Value!;
             return confirmationTrackingData;
         }
 

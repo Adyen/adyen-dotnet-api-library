@@ -169,13 +169,13 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (interchangeData?.Type != null)
+            if (interchangeData?.Type != null && InterchangeData.TypeEnum.FromStringOrDefault((string?)interchangeData.Type) != null)
                 return new TransferEventEventsDataInner(interchangeData);
 
-            if (issuingTransactionData?.Type != null)
+            if (issuingTransactionData?.Type != null && IssuingTransactionData.TypeEnum.FromStringOrDefault((string?)issuingTransactionData.Type) != null)
                 return new TransferEventEventsDataInner(issuingTransactionData);
 
-            if (merchantPurchaseData?.Type != null)
+            if (merchantPurchaseData?.Type != null && MerchantPurchaseData.TypeEnum.FromStringOrDefault((string?)merchantPurchaseData.Type) != null)
                 return new TransferEventEventsDataInner(merchantPurchaseData);
 
             throw new JsonException();

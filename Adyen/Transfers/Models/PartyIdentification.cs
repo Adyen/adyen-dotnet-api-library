@@ -150,7 +150,7 @@ namespace Adyen.Transfers.Models
                 if (value == TypeEnum.Unknown)
                     return "unknown";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -399,7 +399,7 @@ namespace Adyen.Transfers.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PartyIdentification.TypeEnum?>(PartyIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<PartyIdentification.TypeEnum?>(PartyIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PartyIdentification.TypeEnum)typeRawValue);
                             break;
                         case "url":
                             url = new Option<string?>(utf8JsonReader.GetString()!);

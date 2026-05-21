@@ -169,13 +169,13 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (confirmationTrackingData?.Type != null)
+            if (confirmationTrackingData?.Type != null && ConfirmationTrackingData.TypeEnum.FromStringOrDefault((string?)confirmationTrackingData.Type) != null)
                 return new TransferEventTrackingData(confirmationTrackingData);
 
-            if (estimationTrackingData?.Type != null)
+            if (estimationTrackingData?.Type != null && EstimationTrackingData.TypeEnum.FromStringOrDefault((string?)estimationTrackingData.Type) != null)
                 return new TransferEventTrackingData(estimationTrackingData);
 
-            if (internalReviewTrackingData?.Type != null)
+            if (internalReviewTrackingData?.Type != null && InternalReviewTrackingData.TypeEnum.FromStringOrDefault((string?)internalReviewTrackingData.Type) != null)
                 return new TransferEventTrackingData(internalReviewTrackingData);
 
             throw new JsonException();

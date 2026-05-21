@@ -176,7 +176,7 @@ namespace Adyen.Transfers.Models
                 if (value == StatusEnum.Revoked)
                     return "Revoked";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -372,7 +372,7 @@ namespace Adyen.Transfers.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<CapitalGrant.StatusEnum?>(CapitalGrant.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<CapitalGrant.StatusEnum?>(CapitalGrant.StatusEnum.FromStringOrDefault(statusRawValue) ?? (CapitalGrant.StatusEnum)statusRawValue);
                             break;
                         case "amount":
                             amount = new Option<Amount?>(JsonSerializer.Deserialize<Amount>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -412,7 +412,7 @@ namespace Adyen.Transfers.Models
             capitalGrant.GrantAccountId = grantAccountId.Value!;
             capitalGrant.GrantOfferId = grantOfferId.Value!;
             capitalGrant.Id = id.Value!;
-            capitalGrant.Status = status.Value!.Value;
+            capitalGrant.Status = status.Value!;
             if (amount.IsSet)
                 capitalGrant.Amount = amount.Value;
             if (counterparty.IsSet)
