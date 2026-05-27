@@ -1,0 +1,20 @@
+{
+  "paymentsApps": [
+    {
+      "installationId": "install-merchant-001",
+      "merchantAccountCode": "TestMerchantAccount",
+      "status": "BOARDED",
+      "merchantStoreCode": "TestStore"
+    },
+    {
+      "installationId": "install-merchant-002",
+      "merchantAccountCode": "TestMerchantAccount",
+      "status": "BOARDING"
+    },
+    {
+      "installationId": "install-merchant-003",
+      "merchantAccountCode": "TestMerchantAccount",
+      "status": "REVOKED"
+    }
+  ]
+}
