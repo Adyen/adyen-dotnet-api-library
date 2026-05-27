@@ -1,0 +1,7 @@
+{
+  "status": 400,
+  "title": "Invalid request",
+  "errorCode": "PAYMENTAPP_001",
+  "detail": "The request is invalid.",
+  "type": "https://docs.adyen.com/errors/invalid-request"
+}

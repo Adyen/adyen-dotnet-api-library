@@ -362,6 +362,13 @@ namespace {{packageName}}.{{apiPackage}}
                     {{/isKeyInCookie}}
                     {{/isApiKey}}
                     {{/authMethods}}
+                    {{^authMethods}}
+                    {{#hasApiKeyMethods}}
+                    // Add authorization token to the HttpRequestMessage header
+                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
+
+                    {{/hasApiKeyMethods}}
+                    {{/authMethods}}
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
                     {{#authMethods}}
                     {{#isBasicBearer}}
