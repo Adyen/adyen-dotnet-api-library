@@ -89,14 +89,9 @@ namespace Adyen.BalancePlatform.Client
             _jsonOptions.Converters.Add(new BalanceJsonConverter());
             _jsonOptions.Converters.Add(new BalanceAccountJsonConverter());
             _jsonOptions.Converters.Add(new BalanceAccountBaseJsonConverter());
-            _jsonOptions.Converters.Add(new BalanceAccountConfigurationJsonConverter());
-            _jsonOptions.Converters.Add(new BalanceAccountConfigurationRequestJsonConverter());
-            _jsonOptions.Converters.Add(new BalanceAccountConfigurationsJsonConverter());
             _jsonOptions.Converters.Add(new BalanceAccountInfoJsonConverter());
             _jsonOptions.Converters.Add(new BalanceAccountUpdateRequestJsonConverter());
             _jsonOptions.Converters.Add(new BalancePlatformJsonConverter());
-            _jsonOptions.Converters.Add(new BalancePlatformConfigurationJsonConverter());
-            _jsonOptions.Converters.Add(new BalancePlatformConfigurationsJsonConverter());
             _jsonOptions.Converters.Add(new BalanceSweepConfigurationsResponseJsonConverter());
             _jsonOptions.Converters.Add(new BalanceWebhookSettingJsonConverter());
             _jsonOptions.Converters.Add(new BalanceWebhookSettingInfoJsonConverter());
@@ -147,7 +142,6 @@ namespace Adyen.BalancePlatform.Client
             _jsonOptions.Converters.Add(new DifferentCurrenciesRestrictionJsonConverter());
             _jsonOptions.Converters.Add(new DurationJsonConverter());
             _jsonOptions.Converters.Add(new EntryModesRestrictionJsonConverter());
-            _jsonOptions.Converters.Add(new ExecutionResult.ExecutionResultJsonConverter());
             _jsonOptions.Converters.Add(new ExpiryJsonConverter());
             _jsonOptions.Converters.Add(new FeeJsonConverter());
             _jsonOptions.Converters.Add(new FinishScaDeviceRegistrationRequestJsonConverter());
@@ -169,7 +163,6 @@ namespace Adyen.BalancePlatform.Client
             _jsonOptions.Converters.Add(new ListAssociationsResponseJsonConverter());
             _jsonOptions.Converters.Add(new ListMandatesResponseJsonConverter());
             _jsonOptions.Converters.Add(new ListNetworkTokensResponseJsonConverter());
-            _jsonOptions.Converters.Add(new LocalTimeJsonConverter());
             _jsonOptions.Converters.Add(new MandateJsonConverter());
             _jsonOptions.Converters.Add(new MandateAccountIdentificationJsonConverter());
             _jsonOptions.Converters.Add(new MandateBankAccountJsonConverter());
@@ -197,7 +190,6 @@ namespace Adyen.BalancePlatform.Client
             _jsonOptions.Converters.Add(new PaginatedGetCardOrderItemResponseJsonConverter());
             _jsonOptions.Converters.Add(new PaginatedGetCardOrderResponseJsonConverter());
             _jsonOptions.Converters.Add(new PaginatedPaymentInstrumentsResponseJsonConverter());
-            _jsonOptions.Converters.Add(new PatchableBalanceAccountConfigurationRequestJsonConverter());
             _jsonOptions.Converters.Add(new PaymentInstrumentJsonConverter());
             _jsonOptions.Converters.Add(new PaymentInstrumentAdditionalBankAccountIdentificationsInnerJsonConverter());
             _jsonOptions.Converters.Add(new PaymentInstrumentGroupJsonConverter());
@@ -208,9 +200,6 @@ namespace Adyen.BalancePlatform.Client
             _jsonOptions.Converters.Add(new PaymentInstrumentRevealRequestJsonConverter());
             _jsonOptions.Converters.Add(new PaymentInstrumentRevealResponseJsonConverter());
             _jsonOptions.Converters.Add(new PaymentInstrumentUpdateRequestJsonConverter());
-            _jsonOptions.Converters.Add(new PayoutScheduleExecutionJsonConverter());
-            _jsonOptions.Converters.Add(new PayoutScheduleExecutionDetailsJsonConverter());
-            _jsonOptions.Converters.Add(new PayoutScheduleExecutionsJsonConverter());
             _jsonOptions.Converters.Add(new PhoneJsonConverter());
             _jsonOptions.Converters.Add(new PhoneInfoJsonConverter());
             _jsonOptions.Converters.Add(new PhoneNumberJsonConverter());

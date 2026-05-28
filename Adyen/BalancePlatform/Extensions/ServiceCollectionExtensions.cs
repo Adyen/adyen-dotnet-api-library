@@ -31,7 +31,7 @@ namespace Adyen.BalancePlatform.Extensions
 
         /// <summary>
         /// Add all BalancePlatform services using the extension methods in <see cref="ServiceCollectionExtensions"/> and configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
-        /// See: <see cref="AccountHoldersService"/>, <see cref="AuthorizedCardUsersService"/>, <see cref="BalanceAccountsService"/>, <see cref="BalancesService"/>, <see cref="BankAccountValidationService"/>, <see cref="CardOrdersService"/>, <see cref="CustomPayoutSchedulesSweepsService"/>, <see cref="DirectDebitMandatesService"/>, <see cref="GrantAccountsService"/>, <see cref="GrantOffersService"/>, <see cref="ManageCardPINService"/>, <see cref="ManageSCADevicesService"/>, <see cref="ManagedPayoutSchedulesService"/>, <see cref="NetworkTokensService"/>, <see cref="PaymentInstrumentGroupsService"/>, <see cref="PaymentInstrumentsService"/>, <see cref="PlatformService"/>, <see cref="SCAAssociationManagementService"/>, <see cref="SCADeviceManagementService"/>, <see cref="TransactionRulesService"/>, <see cref="TransferLimitsBalanceAccountLevelService"/>, <see cref="TransferLimitsBalancePlatformLevelService"/>, <see cref="TransferRoutesService"/>, 
+        /// See: <see cref="AccountHoldersService"/>, <see cref="AuthorizedCardUsersService"/>, <see cref="BalanceAccountsService"/>, <see cref="BalancesService"/>, <see cref="BankAccountValidationService"/>, <see cref="CardOrdersService"/>, <see cref="DirectDebitMandatesService"/>, <see cref="GrantAccountsService"/>, <see cref="GrantOffersService"/>, <see cref="ManageCardPINService"/>, <see cref="ManageSCADevicesService"/>, <see cref="NetworkTokensService"/>, <see cref="PaymentInstrumentGroupsService"/>, <see cref="PaymentInstrumentsService"/>, <see cref="PlatformService"/>, <see cref="SCAAssociationManagementService"/>, <see cref="SCADeviceManagementService"/>, <see cref="TransactionRulesService"/>, <see cref="TransferLimitsBalanceAccountLevelService"/>, <see cref="TransferLimitsBalancePlatformLevelService"/>, <see cref="TransferRoutesService"/>, 
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/>.</param>
         /// <param name="serviceLifetime"><see cref="ServiceLifetime"/>.</param>
@@ -46,13 +46,11 @@ namespace Adyen.BalancePlatform.Extensions
             services.AddBalancesService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddBankAccountValidationService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddCardOrdersService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
-            services.AddCustomPayoutSchedulesSweepsService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddDirectDebitMandatesService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddGrantAccountsService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddGrantOffersService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddManageCardPINService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddManageSCADevicesService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
-            services.AddManagedPayoutSchedulesService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddNetworkTokensService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddPaymentInstrumentGroupsService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddPaymentInstrumentsService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
@@ -196,27 +194,6 @@ namespace Adyen.BalancePlatform.Extensions
         }
 
         /// <summary>
-        /// Add <see cref="CustomPayoutSchedulesSweepsService"/> as the implementation of <see cref="ICustomPayoutSchedulesSweepsService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
-        /// </summary>
-        /// <param name="services"><see cref="IServiceCollection"/>.</param>
-        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
-        /// <returns><see cref="IServiceCollection"/>.</returns>
-        public static IServiceCollection AddCustomPayoutSchedulesSweepsService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
-        {
-            services.AddSingleton<CustomPayoutSchedulesSweepsServiceEvents>();
-
-            services.Add(new ServiceDescriptor(typeof(ICustomPayoutSchedulesSweepsService), typeof(CustomPayoutSchedulesSweepsService), serviceLifetime));
-
-            IHttpClientBuilder builder = services.AddHttpClient<ICustomPayoutSchedulesSweepsService, CustomPayoutSchedulesSweepsService>(typeof(ICustomPayoutSchedulesSweepsService).FullName!, httpClient =>
-            {
-                httpClientOptions?.Invoke(httpClient);
-            });
-
-            httpClientBuilderOptions?.Invoke(builder);
-            return services;
-        }
-
-        /// <summary>
         /// Add <see cref="DirectDebitMandatesService"/> as the implementation of <see cref="IDirectDebitMandatesService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/>.</param>
@@ -313,27 +290,6 @@ namespace Adyen.BalancePlatform.Extensions
             services.Add(new ServiceDescriptor(typeof(IManageSCADevicesService), typeof(ManageSCADevicesService), serviceLifetime));
 
             IHttpClientBuilder builder = services.AddHttpClient<IManageSCADevicesService, ManageSCADevicesService>(typeof(IManageSCADevicesService).FullName!, httpClient =>
-            {
-                httpClientOptions?.Invoke(httpClient);
-            });
-
-            httpClientBuilderOptions?.Invoke(builder);
-            return services;
-        }
-
-        /// <summary>
-        /// Add <see cref="ManagedPayoutSchedulesService"/> as the implementation of <see cref="IManagedPayoutSchedulesService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
-        /// </summary>
-        /// <param name="services"><see cref="IServiceCollection"/>.</param>
-        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
-        /// <returns><see cref="IServiceCollection"/>.</returns>
-        public static IServiceCollection AddManagedPayoutSchedulesService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
-        {
-            services.AddSingleton<ManagedPayoutSchedulesServiceEvents>();
-
-            services.Add(new ServiceDescriptor(typeof(IManagedPayoutSchedulesService), typeof(ManagedPayoutSchedulesService), serviceLifetime));
-
-            IHttpClientBuilder builder = services.AddHttpClient<IManagedPayoutSchedulesService, ManagedPayoutSchedulesService>(typeof(IManagedPayoutSchedulesService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });
