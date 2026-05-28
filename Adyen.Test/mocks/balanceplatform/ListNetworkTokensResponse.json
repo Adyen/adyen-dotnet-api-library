@@ -1,0 +1,10 @@
+{
+  "networkTokens": [
+    {
+      "id": "NT3227C223222B5GFSNSXFFL9",
+      "paymentInstrumentId": "PI32272223222B59M5TM658DT",
+      "status": "active",
+      "tokenLastFour": "1234"
+    }
+  ]
+}

@@ -24,6 +24,8 @@ namespace Adyen.IntegrationTest.Management
                 .ConfigureManagement(
                     (context, services, config) =>
                     {
+                        Assert.IsNotNull(context.Configuration["ADYEN_API_KEY"], "env var ADYEN_API_KEY is undefined");
+
                         config.ConfigureAdyenOptions(options =>
                         {
                             options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
