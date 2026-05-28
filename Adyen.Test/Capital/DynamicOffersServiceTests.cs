@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Net;
 using System.Text;
 using Adyen.Core.Options;
@@ -33,7 +34,11 @@ namespace Adyen.Test.Capital
             IHost testHost = Host.CreateDefaultBuilder()
                 .ConfigureCapital((context, services, config) =>
                 {
-                    config.ConfigureAdyenOptions(options => { options.Environment = AdyenEnvironment.Test; });
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.Environment = AdyenEnvironment.Test;
+                        options.AdyenApiKey = "test-api-key";
+                    });
                     services.AddDynamicOffersService(httpClientBuilderOptions: builder =>
                     {
                         builder.AddHttpMessageHandler(() => mockHandler);
@@ -63,6 +68,8 @@ namespace Adyen.Test.Capital
             Assert.IsNotNull(capturedRequest.RequestUri);
             Assert.AreEqual("/capital/v1/dynamicOffers", capturedRequest.RequestUri.AbsolutePath);
             StringAssert.Contains(capturedRequest.RequestUri.Query, $"accountHolderId={accountHolderId}");
+            Assert.IsTrue(capturedRequest.Headers.TryGetValues("X-API-Key", out var getValues));
+            Assert.AreEqual("test-api-key", getValues.First());
         }
 
         [TestMethod]
@@ -86,7 +93,11 @@ namespace Adyen.Test.Capital
             IHost testHost = Host.CreateDefaultBuilder()
                 .ConfigureCapital((context, services, config) =>
                 {
-                    config.ConfigureAdyenOptions(options => { options.Environment = AdyenEnvironment.Test; });
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.Environment = AdyenEnvironment.Test;
+                        options.AdyenApiKey = "test-api-key";
+                    });
                     services.AddDynamicOffersService(httpClientBuilderOptions: builder =>
                     {
                         builder.AddHttpMessageHandler(() => mockHandler);
@@ -113,6 +124,8 @@ namespace Adyen.Test.Capital
             Assert.AreEqual(HttpMethod.Post, capturedRequest.Method);
             Assert.IsNotNull(capturedRequest.RequestUri);
             Assert.AreEqual($"/capital/v1/dynamicOffers/{dynamicOfferId}/calculate", capturedRequest.RequestUri.AbsolutePath);
+            Assert.IsTrue(capturedRequest.Headers.TryGetValues("X-API-Key", out var calculateValues));
+            Assert.AreEqual("test-api-key", calculateValues.First());
         }
 
         [TestMethod]
@@ -136,7 +149,11 @@ namespace Adyen.Test.Capital
             IHost testHost = Host.CreateDefaultBuilder()
                 .ConfigureCapital((context, services, config) =>
                 {
-                    config.ConfigureAdyenOptions(options => { options.Environment = AdyenEnvironment.Test; });
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.Environment = AdyenEnvironment.Test;
+                        options.AdyenApiKey = "test-api-key";
+                    });
                     services.AddDynamicOffersService(httpClientBuilderOptions: builder =>
                     {
                         builder.AddHttpMessageHandler(() => mockHandler);
@@ -163,6 +180,8 @@ namespace Adyen.Test.Capital
             Assert.AreEqual(HttpMethod.Post, capturedRequest.Method);
             Assert.IsNotNull(capturedRequest.RequestUri);
             Assert.AreEqual($"/capital/v1/dynamicOffers/{dynamicOfferId}/grantOffer", capturedRequest.RequestUri.AbsolutePath);
+            Assert.IsTrue(capturedRequest.Headers.TryGetValues("X-API-Key", out var createValues));
+            Assert.AreEqual("test-api-key", createValues.First());
         }
     }
 }
