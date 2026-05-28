@@ -52,9 +52,9 @@ namespace Adyen.Management.Models
         public Option<bool?> _EnableDccOption { get; private set; }
 
         /// <summary>
-        /// Enable Dynamic Currency Conversion (DCC).
+        /// Enable Dynamic Currency Conversion (DCC). When you enable DCC, you are responsible for complying with [DCC receipt requirements and terms of use](https://help.adyen.com/en_US/knowledge/in-person-payments/terminal-features/dynamic-currency-conversion-dcc-rules-regulations).
         /// </summary>
-        /// <value>Enable Dynamic Currency Conversion (DCC).</value>
+        /// <value>Enable Dynamic Currency Conversion (DCC). When you enable DCC, you are responsible for complying with [DCC receipt requirements and terms of use](https://help.adyen.com/en_US/knowledge/in-person-payments/terminal-features/dynamic-currency-conversion-dcc-rules-regulations).</value>
         [JsonPropertyName("enableDcc")]
         public bool? EnableDcc { get { return this._EnableDccOption; } set { this._EnableDccOption = new(value); } }
 
