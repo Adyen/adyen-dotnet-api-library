@@ -462,6 +462,20 @@ namespace Adyen.Checkout.Models
         public string? SubMerchantTaxId { get { return this._SubMerchantTaxIdOption; } set { this._SubMerchantTaxIdOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="TransactionLinkId"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _TransactionLinkIdOption { get; private set; }
+
+        /// <summary>
+        /// Allows you to link the transaction to the original or previous one in a subscription/card-on-file chain For Mastercard payments. This field is required for token-based transactions where Adyen does not tokenize the card.  Transaction identifier from Mastercard.  Submit the original transaction ID of the contract in your payment request if you are not tokenizing card details with Adyen and are making a merchant-initiated transaction (MIT) for subsequent charges.  Make sure you are sending &#x60;shopperInteraction&#x60; **ContAuth** and &#x60;recurringProcessingModel&#x60; **Subscription** or **UnscheduledCardOnFile** to ensure that the transaction is classified as MIT.
+        /// </summary>
+        /// <value>Allows you to link the transaction to the original or previous one in a subscription/card-on-file chain For Mastercard payments. This field is required for token-based transactions where Adyen does not tokenize the card.  Transaction identifier from Mastercard.  Submit the original transaction ID of the contract in your payment request if you are not tokenizing card details with Adyen and are making a merchant-initiated transaction (MIT) for subsequent charges.  Make sure you are sending `shopperInteraction` **ContAuth** and `recurringProcessingModel` **Subscription** or **UnscheduledCardOnFile** to ensure that the transaction is classified as MIT.</value>
+        [JsonPropertyName("transactionLinkId")]
+        public string? TransactionLinkId { get { return this._TransactionLinkIdOption; } set { this._TransactionLinkIdOption = new(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -490,6 +504,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  SubMerchantState: ").Append(SubMerchantState).Append("\n");
             sb.Append("  SubMerchantStreet: ").Append(SubMerchantStreet).Append("\n");
             sb.Append("  SubMerchantTaxId: ").Append(SubMerchantTaxId).Append("\n");
+            sb.Append("  TransactionLinkId: ").Append(TransactionLinkId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -538,6 +553,7 @@ namespace Adyen.Checkout.Models
             Option<string?> subMerchantState = default;
             Option<string?> subMerchantStreet = default;
             Option<string?> subMerchantTaxId = default;
+            Option<string?> transactionLinkId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -618,6 +634,9 @@ namespace Adyen.Checkout.Models
                         case "subMerchantTaxId":
                             subMerchantTaxId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "transactionLinkId":
+                            transactionLinkId = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         default:
                             break;
                     }
@@ -667,6 +686,8 @@ namespace Adyen.Checkout.Models
                 additionalDataCommon.SubMerchantStreet = subMerchantStreet.Value;
             if (subMerchantTaxId.IsSet)
                 additionalDataCommon.SubMerchantTaxId = subMerchantTaxId.Value;
+            if (transactionLinkId.IsSet)
+                additionalDataCommon.TransactionLinkId = transactionLinkId.Value;
             return additionalDataCommon;
         }
 
@@ -781,6 +802,10 @@ namespace Adyen.Checkout.Models
             if (additionalDataCommon._SubMerchantTaxIdOption.IsSet)
                 if (additionalDataCommon.SubMerchantTaxId != null)
                     writer.WriteString("subMerchantTaxId", additionalDataCommon.SubMerchantTaxId);
+
+            if (additionalDataCommon._TransactionLinkIdOption.IsSet)
+                if (additionalDataCommon.TransactionLinkId != null)
+                    writer.WriteString("transactionLinkId", additionalDataCommon.TransactionLinkId);
         }
     }
 }

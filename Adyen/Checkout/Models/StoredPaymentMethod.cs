@@ -87,6 +87,20 @@ namespace Adyen.Checkout.Models
         public string? Brand { get { return this._BrandOption; } set { this._BrandOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Cashtag"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _CashtagOption { get; private set; }
+
+        /// <summary>
+        /// The shopper’s Cash App Pay Cashtag.
+        /// </summary>
+        /// <value>The shopper’s Cash App Pay Cashtag.</value>
+        [JsonPropertyName("cashtag")]
+        public string? Cashtag { get { return this._CashtagOption; } set { this._CashtagOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ExpiryMonth"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -293,6 +307,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  BankAccountNumber: ").Append(BankAccountNumber).Append("\n");
             sb.Append("  BankLocationId: ").Append(BankLocationId).Append("\n");
             sb.Append("  Brand: ").Append(Brand).Append("\n");
+            sb.Append("  Cashtag: ").Append(Cashtag).Append("\n");
             sb.Append("  ExpiryMonth: ").Append(ExpiryMonth).Append("\n");
             sb.Append("  ExpiryYear: ").Append(ExpiryYear).Append("\n");
             sb.Append("  HolderName: ").Append(HolderName).Append("\n");
@@ -337,6 +352,7 @@ namespace Adyen.Checkout.Models
             Option<string?> bankAccountNumber = default;
             Option<string?> bankLocationId = default;
             Option<string?> brand = default;
+            Option<string?> cashtag = default;
             Option<string?> expiryMonth = default;
             Option<string?> expiryYear = default;
             Option<string?> holderName = default;
@@ -375,6 +391,9 @@ namespace Adyen.Checkout.Models
                             break;
                         case "brand":
                             brand = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "cashtag":
+                            cashtag = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "expiryMonth":
                             expiryMonth = new Option<string?>(utf8JsonReader.GetString()!);
@@ -431,6 +450,8 @@ namespace Adyen.Checkout.Models
                 storedPaymentMethod.BankLocationId = bankLocationId.Value;
             if (brand.IsSet)
                 storedPaymentMethod.Brand = brand.Value;
+            if (cashtag.IsSet)
+                storedPaymentMethod.Cashtag = cashtag.Value;
             if (expiryMonth.IsSet)
                 storedPaymentMethod.ExpiryMonth = expiryMonth.Value;
             if (expiryYear.IsSet)
@@ -499,6 +520,10 @@ namespace Adyen.Checkout.Models
             if (storedPaymentMethod._BrandOption.IsSet)
                 if (storedPaymentMethod.Brand != null)
                     writer.WriteString("brand", storedPaymentMethod.Brand);
+
+            if (storedPaymentMethod._CashtagOption.IsSet)
+                if (storedPaymentMethod.Cashtag != null)
+                    writer.WriteString("cashtag", storedPaymentMethod.Cashtag);
 
             if (storedPaymentMethod._ExpiryMonthOption.IsSet)
                 if (storedPaymentMethod.ExpiryMonth != null)

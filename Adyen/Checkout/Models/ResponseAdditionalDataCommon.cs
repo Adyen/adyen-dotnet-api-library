@@ -1465,6 +1465,20 @@ namespace Adyen.Checkout.Models
         public string? TokenizationStoredPaymentMethodId { get { return this._TokenizationStoredPaymentMethodIdOption; } set { this._TokenizationStoredPaymentMethodIdOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="TransactionLinkId"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _TransactionLinkIdOption { get; private set; }
+
+        /// <summary>
+        /// Returned in the response for Mastercard payments.  This contains the Mastercard Transaction Link Identifier (TLID).
+        /// </summary>
+        /// <value>Returned in the response for Mastercard payments.  This contains the Mastercard Transaction Link Identifier (TLID).</value>
+        [JsonPropertyName("transactionLinkId")]
+        public string? TransactionLinkId { get { return this._TransactionLinkIdOption; } set { this._TransactionLinkIdOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="VisaTransactionId"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -1562,6 +1576,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  TokenizationShopperReference: ").Append(TokenizationShopperReference).Append("\n");
             sb.Append("  TokenizationStoreOperationType: ").Append(TokenizationStoreOperationType).Append("\n");
             sb.Append("  TokenizationStoredPaymentMethodId: ").Append(TokenizationStoredPaymentMethodId).Append("\n");
+            sb.Append("  TransactionLinkId: ").Append(TransactionLinkId).Append("\n");
             sb.Append("  VisaTransactionId: ").Append(VisaTransactionId).Append("\n");
             sb.Append("  Xid: ").Append(Xid).Append("\n");
             sb.Append("}\n");
@@ -1653,6 +1668,7 @@ namespace Adyen.Checkout.Models
             Option<string?> tokenizationShopperReference = default;
             Option<ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum?> tokenizationStoreOperationType = default;
             Option<string?> tokenizationStoredPaymentMethodId = default;
+            Option<string?> transactionLinkId = default;
             Option<string?> visaTransactionId = default;
             Option<string?> xid = default;
 
@@ -1861,6 +1877,9 @@ namespace Adyen.Checkout.Models
                         case "tokenization.storedPaymentMethodId":
                             tokenizationStoredPaymentMethodId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "transactionLinkId":
+                            transactionLinkId = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "visaTransactionId":
                             visaTransactionId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -1998,6 +2017,8 @@ namespace Adyen.Checkout.Models
                 responseAdditionalDataCommon.TokenizationStoreOperationType = tokenizationStoreOperationType.Value;
             if (tokenizationStoredPaymentMethodId.IsSet)
                 responseAdditionalDataCommon.TokenizationStoredPaymentMethodId = tokenizationStoredPaymentMethodId.Value;
+            if (transactionLinkId.IsSet)
+                responseAdditionalDataCommon.TransactionLinkId = transactionLinkId.Value;
             if (visaTransactionId.IsSet)
                 responseAdditionalDataCommon.VisaTransactionId = visaTransactionId.Value;
             if (xid.IsSet)
@@ -2286,6 +2307,10 @@ namespace Adyen.Checkout.Models
             if (responseAdditionalDataCommon._TokenizationStoredPaymentMethodIdOption.IsSet)
                 if (responseAdditionalDataCommon.TokenizationStoredPaymentMethodId != null)
                     writer.WriteString("tokenization.storedPaymentMethodId", responseAdditionalDataCommon.TokenizationStoredPaymentMethodId);
+
+            if (responseAdditionalDataCommon._TransactionLinkIdOption.IsSet)
+                if (responseAdditionalDataCommon.TransactionLinkId != null)
+                    writer.WriteString("transactionLinkId", responseAdditionalDataCommon.TransactionLinkId);
 
             if (responseAdditionalDataCommon._VisaTransactionIdOption.IsSet)
                 if (responseAdditionalDataCommon.VisaTransactionId != null)

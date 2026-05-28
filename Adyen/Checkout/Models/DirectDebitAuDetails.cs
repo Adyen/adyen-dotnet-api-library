@@ -216,6 +216,20 @@ namespace Adyen.Checkout.Models
         public string? CheckoutAttemptId { get { return this._CheckoutAttemptIdOption; } set { this._CheckoutAttemptIdOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="HolderName"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _HolderNameOption { get; private set; }
+
+        /// <summary>
+        /// The name of the bank account holder.
+        /// </summary>
+        /// <value>The name of the bank account holder.</value>
+        [JsonPropertyName("holderName")]
+        public string? HolderName { get { return this._HolderNameOption; } set { this._HolderNameOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="RecurringDetailReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -270,6 +284,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  BankAccountNumber: ").Append(BankAccountNumber).Append("\n");
             sb.Append("  BankBranchCode: ").Append(BankBranchCode).Append("\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
+            sb.Append("  HolderName: ").Append(HolderName).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  SdkData: ").Append(SdkData).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
@@ -304,6 +319,7 @@ namespace Adyen.Checkout.Models
             Option<string?> bankAccountNumber = default;
             Option<string?> bankBranchCode = default;
             Option<string?> checkoutAttemptId = default;
+            Option<string?> holderName = default;
             Option<string?> recurringDetailReference = default;
             Option<string?> sdkData = default;
             Option<string?> storedPaymentMethodId = default;
@@ -333,6 +349,9 @@ namespace Adyen.Checkout.Models
                         case "checkoutAttemptId":
                             checkoutAttemptId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "holderName":
+                            holderName = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "recurringDetailReference":
                             recurringDetailReference = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -359,6 +378,8 @@ namespace Adyen.Checkout.Models
                 directDebitAuDetails.BankBranchCode = bankBranchCode.Value;
             if (checkoutAttemptId.IsSet)
                 directDebitAuDetails.CheckoutAttemptId = checkoutAttemptId.Value;
+            if (holderName.IsSet)
+                directDebitAuDetails.HolderName = holderName.Value;
             if (recurringDetailReference.IsSet)
                 directDebitAuDetails.RecurringDetailReference = recurringDetailReference.Value;
             if (sdkData.IsSet)
@@ -407,6 +428,10 @@ namespace Adyen.Checkout.Models
             if (directDebitAuDetails._CheckoutAttemptIdOption.IsSet)
                 if (directDebitAuDetails.CheckoutAttemptId != null)
                     writer.WriteString("checkoutAttemptId", directDebitAuDetails.CheckoutAttemptId);
+
+            if (directDebitAuDetails._HolderNameOption.IsSet)
+                if (directDebitAuDetails.HolderName != null)
+                    writer.WriteString("holderName", directDebitAuDetails.HolderName);
 
             if (directDebitAuDetails._RecurringDetailReferenceOption.IsSet)
                 if (directDebitAuDetails.RecurringDetailReference != null)
