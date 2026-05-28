@@ -1,74 +1,66 @@
+using System.Linq;
 using System.Net;
-using Adyen.Core;
+using System.Text;
 using Adyen.Core.Options;
-
-using Microsoft.Extensions.Hosting;
-
-using Adyen.Capital.Client;
 using Adyen.Capital.Extensions;
-using Adyen.Capital.Models;
 using Adyen.Capital.Services;
-using Adyen.Core.Client;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
 
 namespace Adyen.Test.Capital
 {
     [TestClass]
     public class GrantsAccountsServiceTests
     {
-        private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
-        private readonly IGrantAccountsService _grantAccountsService;
-
-        public GrantsAccountsServiceTests()
-        {
-            IHost testHost = Host.CreateDefaultBuilder()
-                .ConfigureCapital((context, services, config) =>
-                {
-                    config.ConfigureAdyenOptions(options => { options.Environment = AdyenEnvironment.Test; });
-                })
-                .Build();
-
-            _jsonSerializerOptionsProvider = testHost.Services.GetRequiredService<JsonSerializerOptionsProvider>();
-            _grantAccountsService = Substitute.For<IGrantAccountsService>();
-        }
-
         [TestMethod]
-        public async Task GetGrantAccountInformationAsync_Success()
+        public async Task GetGrantAccountInformationAsync_Returns200Ok_WithCorrectVerbAndPath()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/capital/get-grant-account-success.json");
-
             var id = "GA000000011111";
-            
-            _grantAccountsService.GetGrantAccountInformationAsync(
-                    Arg.Any<string>(),
-                    Arg.Any<RequestOptions?>(), 
-                    Arg.Any<CancellationToken>())
-                .Returns(
-                    Task.FromResult<IGetGrantAccountInformationApiResponse>(
-                        new GrantAccountsService.GetGrantAccountInformationApiResponse(
-                            Substitute.For<Microsoft.Extensions.Logging.ILogger<GrantAccountsService.GetGrantAccountInformationApiResponse>>(),
-                            new HttpRequestMessage(),
-                            new HttpResponseMessage { StatusCode = HttpStatusCode.OK },
-                            json,
-                            $"/grantAccounts/{id}",
-                            DateTime.UtcNow,
-                            _jsonSerializerOptionsProvider.Options)
-                    ));
+
+            HttpRequestMessage? capturedRequest = null;
+            var mockHandler = new MockDelegatingHandler(request =>
+            {
+                capturedRequest = request;
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StringContent(json, Encoding.UTF8, "application/json")
+                };
+            });
+
+            IHost testHost = Host.CreateDefaultBuilder()
+                .ConfigureCapital((context, services, config) =>
+                {
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.Environment = AdyenEnvironment.Test;
+                        options.AdyenApiKey = "test-api-key";
+                    });
+                    services.AddGrantAccountsService(httpClientBuilderOptions: builder =>
+                    {
+                        builder.AddHttpMessageHandler(() => mockHandler);
+                    });
+                })
+                .Build();
+
+            var grantAccountsService = testHost.Services.GetRequiredService<IGrantAccountsService>();
 
             // Act
-            var response = await _grantAccountsService.GetGrantAccountInformationAsync(id);
+            var response = await grantAccountsService.GetGrantAccountInformationAsync(id);
 
-            // Assert
-            Assert.IsTrue(response.IsOk);
-            Assert.IsNotNull(response.Ok());
-            var grantOffers = response.Ok();
-            //Assert.AreEqual(1, grantOffers.VarGrantOffers.Count);
-            //Assert.AreEqual("GO00000000000000000000001", grantOffers.VarGrantOffers[0].Id);
-            //Assert.AreEqual("AH00000000000001", grantOffers.VarGrantOffers[0].AccountHolderId);
+            // Assert - response
+            Assert.IsTrue(response.TryDeserializeOkResponse(out var result));
+            Assert.IsNotNull(result);
+
+            // Assert - HTTP verb and path
+            Assert.IsNotNull(capturedRequest);
+            Assert.AreEqual(HttpMethod.Get, capturedRequest.Method);
+            Assert.IsNotNull(capturedRequest.RequestUri);
+            Assert.AreEqual($"/capital/v1/grantAccounts/{id}", capturedRequest.RequestUri.AbsolutePath);
+            Assert.IsTrue(capturedRequest.Headers.TryGetValues("X-API-Key", out var values));
+            Assert.AreEqual("test-api-key", values.First());
         }
-
     }
 }
