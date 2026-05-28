@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using Adyen.Core.Utilities;
 using Adyen.Webhooks.Models;
 
 namespace Adyen.Util
@@ -124,24 +125,12 @@ namespace Adyen.Util
             }
             var expectedSign = CalculateHmac(notificationRequestItem, hmacKey);
             var merchantSign = notificationRequestItem.AdditionalData[HmacSignature];
-            return TimeSafeEquals(Encoding.UTF8.GetBytes(expectedSign),
-                                  Encoding.UTF8.GetBytes(merchantSign));
-        }
-
-        /// <summary>
-        /// Length-independent byte-array equality, mirroring the existing
-        /// <see cref="Adyen.Core.Utilities.HmacValidatorUtility"/> helper so the
-        /// Payments webhook signature check compares signatures the same way the
-        /// rest of the SDK already does.
-        /// </summary>
-        private static bool TimeSafeEquals(byte[] a, byte[] b)
-        {
-            uint diff = (uint)a.Length ^ (uint)b.Length;
-            for (int i = 0; i < a.Length && i < b.Length; i++)
+            if (string.IsNullOrEmpty(merchantSign))
             {
-                diff |= (uint)(a[i] ^ b[i]);
+                return false;
             }
-            return diff == 0;
+            return HmacValidatorUtility.TimeSafeEquals(Encoding.UTF8.GetBytes(expectedSign),
+                                                       Encoding.UTF8.GetBytes(merchantSign));
         }
     }
 }
