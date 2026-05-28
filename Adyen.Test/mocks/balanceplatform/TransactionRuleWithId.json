@@ -1,0 +1,26 @@
+{
+  "description": "Allow only point-of-sale transactions",
+  "entityKey": {
+    "entityReference": "PI3227C223222B5FG88SB8BHR",
+    "entityType": "paymentInstrument"
+  },
+  "interval": {
+    "timeZone": "UTC",
+    "type": "perTransaction"
+  },
+  "outcomeType": "hardBlock",
+  "reference": "YOUR_REFERENCE_4F7346",
+  "requestType": "authorization",
+  "ruleRestrictions": {
+    "processingTypes": {
+      "operation": "noneMatch",
+      "value": [
+        "pos"
+      ]
+    }
+  },
+  "startDate": "2023-06-29T22:34:36.173226192+02:00",
+  "status": "active",
+  "type": "blockList",
+  "id": "TR3227C223222H5J4D9ML9V4D"
+}

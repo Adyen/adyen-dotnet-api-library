@@ -23,6 +23,8 @@ namespace Adyen.IntegrationTest.LegalEntityManagement
                 .ConfigureLegalEntityManagement(
                     (context, services, config) =>
                     {
+                        Assert.IsNotNull(context.Configuration["LEM_API_KEY"], "env var LEM_API_KEY is undefined");
+
                         config.ConfigureAdyenOptions(options =>
                         {
                             options.AdyenApiKey = context.Configuration["LEM_API_KEY"];
