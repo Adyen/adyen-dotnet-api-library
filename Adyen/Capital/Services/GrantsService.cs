@@ -471,6 +471,9 @@ namespace Adyen.Capital.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+                    // Add authorization token to the HttpRequestMessage header
+                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
+
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -720,6 +723,9 @@ namespace Adyen.Capital.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+                    // Add authorization token to the HttpRequestMessage header
+                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
+
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -964,6 +970,9 @@ namespace Adyen.Capital.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+                    // Add authorization token to the HttpRequestMessage header
+                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
+
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -1210,6 +1219,9 @@ namespace Adyen.Capital.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+                    // Add authorization token to the HttpRequestMessage header
+                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
+
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -1456,6 +1468,9 @@ namespace Adyen.Capital.Services
                     httpRequestMessage.Content = (grantInfo as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(grantInfo, _jsonSerializerOptions));
+                    // Add authorization token to the HttpRequestMessage header
+                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
+
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {
@@ -1681,6 +1696,9 @@ namespace Adyen.Capital.Services
                     httpRequestMessage.Content = (disbursementInfoUpdate as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(disbursementInfoUpdate, _jsonSerializerOptions));
+                    // Add authorization token to the HttpRequestMessage header
+                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
+
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {
