@@ -36,117 +36,91 @@ namespace Adyen.BalancePlatform.Services
     /// Represents a collection of functions to interact with the API endpoints.
     /// This class is registered as transient.
     /// </summary>
-    public interface IAccountHoldersService : IAdyenApiService
+    public interface ICustomPayoutSchedulesSweepsService : IAdyenApiService
     {
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        AccountHoldersServiceEvents? Events { get; }
+        CustomPayoutSchedulesSweepsServiceEvents? Events { get; }
 
         /// <summary>
-        /// Create an account holder
+        /// Create a sweep
         /// </summary>
         /// <remarks>
-        /// Creates an account holder linked to a [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities).  
+        /// Creates a sweep that results in moving funds from or to a balance account.  A sweep pulls in or pushes out funds based on a defined schedule, amount, currency, and a source or a destination.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="accountHolderInfo"></param>
+        /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
+        /// <param name="createSweepConfigurationV2"></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICreateAccountHolderApiResponse"/>.</returns>
-        Task<ICreateAccountHolderApiResponse> CreateAccountHolderAsync(AccountHolderInfo accountHolderInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/> of <see cref="ICreateSweepApiResponse"/>.</returns>
+        Task<ICreateSweepApiResponse> CreateSweepAsync(string balanceAccountId, CreateSweepConfigurationV2 createSweepConfigurationV2,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get an account holder
+        /// Delete a sweep
         /// </summary>
         /// <remarks>
-        /// Returns an account holder.
+        /// Deletes a sweep for a balance account.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="id">The unique identifier of the account holder.</param>
+        /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
+        /// <param name="sweepId">The unique identifier of the sweep.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAccountHolderApiResponse"/>.</returns>
-        Task<IGetAccountHolderApiResponse> GetAccountHolderAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/> of <see cref="IDeleteSweepApiResponse"/>.</returns>
+        Task<IDeleteSweepApiResponse> DeleteSweepAsync(string balanceAccountId, string sweepId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get all balance accounts of an account holder
+        /// Get all sweeps for a balance account
         /// </summary>
         /// <remarks>
-        /// Returns a paginated list of the balance accounts associated with an account holder. To fetch multiple pages, use the query parameters.   For example, to limit the page to 5 balance accounts and skip the first 10, use &#x60;/accountHolders/{id}/balanceAccounts?limit&#x3D;5&amp;offset&#x3D;10&#x60;.
+        /// Returns a list of the sweeps configured for a balance account.  To fetch multiple pages, use the query parameters. For example, to limit the page to 5 sweeps and to skip the first 10, use &#x60;/balanceAccounts/{balanceAccountId}/sweeps?limit&#x3D;5&amp;offset&#x3D;10&#x60;.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="id">The unique identifier of the account holder.</param>
+        /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
         /// <param name="offset">The number of items that you want to skip.</param>
         /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAllBalanceAccountsOfAccountHolderApiResponse"/>.</returns>
-        Task<IGetAllBalanceAccountsOfAccountHolderApiResponse> GetAllBalanceAccountsOfAccountHolderAsync(string id, Option<int> offset = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/> of <see cref="IGetAllSweepsForBalanceAccountApiResponse"/>.</returns>
+        Task<IGetAllSweepsForBalanceAccountApiResponse> GetAllSweepsForBalanceAccountAsync(string balanceAccountId, Option<int> offset = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get all transaction rules for an account holder
+        /// Get a sweep
         /// </summary>
         /// <remarks>
-        /// Returns a list of transaction rules associated with an account holder.
+        /// Returns a sweep.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="id">The unique identifier of the account holder.</param>
+        /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
+        /// <param name="sweepId">The unique identifier of the sweep.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAllTransactionRulesForAccountHolderApiResponse"/>.</returns>
-        Task<IGetAllTransactionRulesForAccountHolderApiResponse> GetAllTransactionRulesForAccountHolderAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/> of <see cref="IGetSweepApiResponse"/>.</returns>
+        Task<IGetSweepApiResponse> GetSweepAsync(string balanceAccountId, string sweepId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get a tax form
+        /// Update a sweep
         /// </summary>
         /// <remarks>
-        /// Generates a tax form for account holders operating in the US. For more information, refer to US tax forms for [marketplaces](https://docs.adyen.com/marketplaces/us-tax-forms/) or [platforms](https://docs.adyen.com/platforms/us-tax-forms/) .
+        /// Updates a sweep. When updating a sweep resource, note that if a request parameter is not provided, the parameter is left unchanged.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="id">The unique identifier of the account holder.</param>
-        /// <param name="formType">The type of tax form you want to retrieve. Accepted values are **US1099k** and **US1099nec**.</param>
-        /// <param name="year">The tax year in **YYYY** format for the tax form you want to retrieve.</param>
-        /// <param name="legalEntityId">The legal entity reference whose tax form you want to retrieve.</param>
+        /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
+        /// <param name="sweepId">The unique identifier of the sweep.</param>
+        /// <param name="updateSweepConfigurationV2"></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetTaxFormApiResponse"/>.</returns>
-        Task<IGetTaxFormApiResponse> GetTaxFormAsync(string id, string formType, int year, Option<string> legalEntityId = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Get summary of tax forms for an account holder
-        /// </summary>
-        /// <remarks>
-        /// Returns a summary of all tax forms for an account holder.
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="id">The unique identifier of the account holder.</param>
-        /// <param name="formType">The type of tax form you want a summary for. Accepted values are **US1099k** and **US1099nec**.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetTaxFormSummaryApiResponse"/>.</returns>
-        Task<IGetTaxFormSummaryApiResponse> GetTaxFormSummaryAsync(string id, string formType,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Update an account holder
-        /// </summary>
-        /// <remarks>
-        /// Updates an account holder. When updating an account holder resource, if a parameter is not provided in the request, it is left unchanged.
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="id">The unique identifier of the account holder.</param>
-        /// <param name="accountHolderUpdateRequest"></param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdateAccountHolderApiResponse"/>.</returns>
-        Task<IUpdateAccountHolderApiResponse> UpdateAccountHolderAsync(string id, AccountHolderUpdateRequest accountHolderUpdateRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/> of <see cref="IUpdateSweepApiResponse"/>.</returns>
+        Task<IUpdateSweepApiResponse> UpdateSweepAsync(string balanceAccountId, string sweepId, UpdateSweepConfigurationV2 updateSweepConfigurationV2,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="ICreateAccountHolderApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.AccountHolder"/>.
+    /// The <see cref="ICreateSweepApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/>.
     /// </summary>
-    public interface ICreateAccountHolderApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.AccountHolder?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
+    public interface ICreateSweepApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.SweepConfigurationV2?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -186,9 +160,51 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetAccountHolderApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.AccountHolder"/>.
+    /// The <see cref="IDeleteSweepApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
-    public interface IGetAccountHolderApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.AccountHolder?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
+    public interface IDeleteSweepApiResponse : Adyen.Core.Client.IApiResponse, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
+    {
+        /// <summary>
+        /// Returns true if the response is 204 NoContent.
+        /// </summary>
+        /// <returns></returns>
+        bool IsNoContent { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest.
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized.
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 403 Forbidden.
+        /// </summary>
+        /// <returns></returns>
+        bool IsForbidden { get; }
+
+        /// <summary>
+        /// Returns true if the response is 422 UnprocessableContent.
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnprocessableContent { get; }
+
+        /// <summary>
+        /// Returns true if the response is 500 InternalServerError.
+        /// </summary>
+        /// <returns></returns>
+        bool IsInternalServerError { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IGetAllSweepsForBalanceAccountApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.BalanceSweepConfigurationsResponse"/>.
+    /// </summary>
+    public interface IGetAllSweepsForBalanceAccountApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.BalanceSweepConfigurationsResponse?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -228,9 +244,9 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetAllBalanceAccountsOfAccountHolderApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.PaginatedBalanceAccountsResponse"/>.
+    /// The <see cref="IGetSweepApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/>.
     /// </summary>
-    public interface IGetAllBalanceAccountsOfAccountHolderApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.PaginatedBalanceAccountsResponse?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
+    public interface IGetSweepApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.SweepConfigurationV2?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -270,111 +286,9 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetAllTransactionRulesForAccountHolderApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/>.
+    /// The <see cref="IUpdateSweepApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/>.
     /// </summary>
-    public interface IGetAllTransactionRulesForAccountHolderApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.TransactionRulesResponse?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok.
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-
-        /// <summary>
-        /// Returns true if the response is 400 BadRequest.
-        /// </summary>
-        /// <returns></returns>
-        bool IsBadRequest { get; }
-
-        /// <summary>
-        /// Returns true if the response is 401 Unauthorized.
-        /// </summary>
-        /// <returns></returns>
-        bool IsUnauthorized { get; }
-
-        /// <summary>
-        /// Returns true if the response is 403 Forbidden.
-        /// </summary>
-        /// <returns></returns>
-        bool IsForbidden { get; }
-
-        /// <summary>
-        /// Returns true if the response is 422 UnprocessableContent.
-        /// </summary>
-        /// <returns></returns>
-        bool IsUnprocessableContent { get; }
-
-        /// <summary>
-        /// Returns true if the response is 500 InternalServerError.
-        /// </summary>
-        /// <returns></returns>
-        bool IsInternalServerError { get; }
-    }
-
-    /// <summary>
-    /// The <see cref="IGetTaxFormApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.GetTaxFormResponse"/>.
-    /// </summary>
-    public interface IGetTaxFormApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.GetTaxFormResponse?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, INotFound<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok.
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-
-        /// <summary>
-        /// Returns true if the response is 400 BadRequest.
-        /// </summary>
-        /// <returns></returns>
-        bool IsBadRequest { get; }
-
-        /// <summary>
-        /// Returns true if the response is 401 Unauthorized.
-        /// </summary>
-        /// <returns></returns>
-        bool IsUnauthorized { get; }
-
-        /// <summary>
-        /// Returns true if the response is 403 Forbidden.
-        /// </summary>
-        /// <returns></returns>
-        bool IsForbidden { get; }
-
-        /// <summary>
-        /// Returns true if the response is 404 NotFound.
-        /// </summary>
-        /// <returns></returns>
-        bool IsNotFound { get; }
-
-        /// <summary>
-        /// Returns true if the response is 422 UnprocessableContent.
-        /// </summary>
-        /// <returns></returns>
-        bool IsUnprocessableContent { get; }
-
-        /// <summary>
-        /// Returns true if the response is 500 InternalServerError.
-        /// </summary>
-        /// <returns></returns>
-        bool IsInternalServerError { get; }
-    }
-
-    /// <summary>
-    /// The <see cref="IGetTaxFormSummaryApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.TaxFormSummaryResponse"/>.
-    /// </summary>
-    public interface IGetTaxFormSummaryApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.TaxFormSummaryResponse?>
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok.
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-    }
-
-    /// <summary>
-    /// The <see cref="IUpdateAccountHolderApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.AccountHolder"/>.
-    /// </summary>
-    public interface IUpdateAccountHolderApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.AccountHolder?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
+    public interface IUpdateSweepApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.SweepConfigurationV2?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -416,153 +330,113 @@ namespace Adyen.BalancePlatform.Services
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints.
     /// </summary>
-    public class AccountHoldersServiceEvents
+    public class CustomPayoutSchedulesSweepsServiceEvents
     {
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateAccountHolder;
+        public event EventHandler<ApiResponseEventArgs>? OnCreateSweep;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateAccountHolder;
+        public event EventHandler<ExceptionEventArgs>? OnErrorCreateSweep;
 
-        internal void ExecuteOnCreateAccountHolder(AccountHoldersService.CreateAccountHolderApiResponse apiResponse)
+        internal void ExecuteOnCreateSweep(CustomPayoutSchedulesSweepsService.CreateSweepApiResponse apiResponse)
         {
-            OnCreateAccountHolder?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnCreateSweep?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateAccountHolder(Exception exception)
+        internal void ExecuteOnErrorCreateSweep(Exception exception)
         {
-            OnErrorCreateAccountHolder?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorCreateSweep?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetAccountHolder;
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteSweep;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetAccountHolder;
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteSweep;
 
-        internal void ExecuteOnGetAccountHolder(AccountHoldersService.GetAccountHolderApiResponse apiResponse)
+        internal void ExecuteOnDeleteSweep(CustomPayoutSchedulesSweepsService.DeleteSweepApiResponse apiResponse)
         {
-            OnGetAccountHolder?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnDeleteSweep?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetAccountHolder(Exception exception)
+        internal void ExecuteOnErrorDeleteSweep(Exception exception)
         {
-            OnErrorGetAccountHolder?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorDeleteSweep?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetAllBalanceAccountsOfAccountHolder;
+        public event EventHandler<ApiResponseEventArgs>? OnGetAllSweepsForBalanceAccount;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetAllBalanceAccountsOfAccountHolder;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetAllSweepsForBalanceAccount;
 
-        internal void ExecuteOnGetAllBalanceAccountsOfAccountHolder(AccountHoldersService.GetAllBalanceAccountsOfAccountHolderApiResponse apiResponse)
+        internal void ExecuteOnGetAllSweepsForBalanceAccount(CustomPayoutSchedulesSweepsService.GetAllSweepsForBalanceAccountApiResponse apiResponse)
         {
-            OnGetAllBalanceAccountsOfAccountHolder?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetAllSweepsForBalanceAccount?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetAllBalanceAccountsOfAccountHolder(Exception exception)
+        internal void ExecuteOnErrorGetAllSweepsForBalanceAccount(Exception exception)
         {
-            OnErrorGetAllBalanceAccountsOfAccountHolder?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetAllSweepsForBalanceAccount?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetAllTransactionRulesForAccountHolder;
+        public event EventHandler<ApiResponseEventArgs>? OnGetSweep;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetAllTransactionRulesForAccountHolder;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetSweep;
 
-        internal void ExecuteOnGetAllTransactionRulesForAccountHolder(AccountHoldersService.GetAllTransactionRulesForAccountHolderApiResponse apiResponse)
+        internal void ExecuteOnGetSweep(CustomPayoutSchedulesSweepsService.GetSweepApiResponse apiResponse)
         {
-            OnGetAllTransactionRulesForAccountHolder?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetSweep?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetAllTransactionRulesForAccountHolder(Exception exception)
+        internal void ExecuteOnErrorGetSweep(Exception exception)
         {
-            OnErrorGetAllTransactionRulesForAccountHolder?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetSweep?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetTaxForm;
+        public event EventHandler<ApiResponseEventArgs>? OnUpdateSweep;
 
         /// <summary>
         /// The event raised after an error querying the server.
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetTaxForm;
+        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateSweep;
 
-        internal void ExecuteOnGetTaxForm(AccountHoldersService.GetTaxFormApiResponse apiResponse)
+        internal void ExecuteOnUpdateSweep(CustomPayoutSchedulesSweepsService.UpdateSweepApiResponse apiResponse)
         {
-            OnGetTaxForm?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnUpdateSweep?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetTaxForm(Exception exception)
+        internal void ExecuteOnErrorUpdateSweep(Exception exception)
         {
-            OnErrorGetTaxForm?.Invoke(this, new ExceptionEventArgs(exception));
-        }
-
-        /// <summary>
-        /// The event raised after the server response.
-        /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetTaxFormSummary;
-
-        /// <summary>
-        /// The event raised after an error querying the server.
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetTaxFormSummary;
-
-        internal void ExecuteOnGetTaxFormSummary(AccountHoldersService.GetTaxFormSummaryApiResponse apiResponse)
-        {
-            OnGetTaxFormSummary?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorGetTaxFormSummary(Exception exception)
-        {
-            OnErrorGetTaxFormSummary?.Invoke(this, new ExceptionEventArgs(exception));
-        }
-
-        /// <summary>
-        /// The event raised after the server response.
-        /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateAccountHolder;
-
-        /// <summary>
-        /// The event raised after an error querying the server.
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateAccountHolder;
-
-        internal void ExecuteOnUpdateAccountHolder(AccountHoldersService.UpdateAccountHolderApiResponse apiResponse)
-        {
-            OnUpdateAccountHolder?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorUpdateAccountHolder(Exception exception)
-        {
-            OnErrorUpdateAccountHolder?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorUpdateSweep?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints.
     /// </summary>
-    public sealed partial class AccountHoldersService : IAccountHoldersService
+    public sealed partial class CustomPayoutSchedulesSweepsService : ICustomPayoutSchedulesSweepsService
     {
 
         /// <summary>
@@ -581,7 +455,7 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// The logger.
         /// </summary>
-        public ILogger<AccountHoldersService> Logger { get; }
+        public ILogger<CustomPayoutSchedulesSweepsService> Logger { get; }
 
         /// <summary>
         /// The HttpClient.
@@ -591,7 +465,7 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public AccountHoldersServiceEvents? Events { get; }
+        public CustomPayoutSchedulesSweepsServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -599,30 +473,31 @@ namespace Adyen.BalancePlatform.Services
         public ITokenProvider<ApiKeyToken> ApiKeyProvider { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountHoldersService"/> class.
+        /// Initializes a new instance of the <see cref="CustomPayoutSchedulesSweepsService"/> class.
         /// </summary>
-        public AccountHoldersService(AdyenOptionsProvider adyenOptionsProvider, ILogger<AccountHoldersService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, AccountHoldersServiceEvents accountHoldersServiceEvents = null)
+        public CustomPayoutSchedulesSweepsService(AdyenOptionsProvider adyenOptionsProvider, ILogger<CustomPayoutSchedulesSweepsService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, CustomPayoutSchedulesSweepsServiceEvents customPayoutSchedulesSweepsServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<AccountHoldersService>.Instance;
+            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<CustomPayoutSchedulesSweepsService>.Instance;
             // Set BaseAddress if it's not set.
             if (httpClient.BaseAddress == null)
                 httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, BASE_URL));
             HttpClient = httpClient;
-            Events = accountHoldersServiceEvents;
+            Events = customPayoutSchedulesSweepsServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
         
         /// <summary>
-        /// Create an account holder Creates an account holder linked to a [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities).  
+        /// Create a sweep Creates a sweep that results in moving funds from or to a balance account.  A sweep pulls in or pushes out funds based on a defined schedule, amount, currency, and a source or a destination.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="accountHolderInfo"><see cref="AccountHolderInfo"/> ()</param>
+        /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
+        /// <param name="createSweepConfigurationV2"><see cref="CreateSweepConfigurationV2"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICreateAccountHolderApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.AccountHolder"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateAccountHolderApiResponse> CreateAccountHolderAsync(AccountHolderInfo accountHolderInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICreateSweepApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICreateSweepApiResponse> CreateSweepAsync(string balanceAccountId, CreateSweepConfigurationV2 createSweepConfigurationV2,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -634,16 +509,17 @@ namespace Adyen.BalancePlatform.Services
                     uriBuilder.Port = HttpClient.BaseAddress.Port;
                     uriBuilder.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilder.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/accountHolders"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/accountHolders");
+                        ? "/balanceAccounts/{balanceAccountId}/sweeps"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/balanceAccounts/{balanceAccountId}/sweeps");
+                    uriBuilder.Path = uriBuilder.Path.Replace("%7BbalanceAccountId%7D", Uri.EscapeDataString(balanceAccountId.ToString()));
 
                     System.Collections.Specialized.NameValueCollection parseQueryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    httpRequestMessage.Content = (accountHolderInfo as object) is System.IO.Stream stream
+                    httpRequestMessage.Content = (createSweepConfigurationV2 as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
-                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(accountHolderInfo, _jsonSerializerOptions));
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createSweepConfigurationV2, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -681,8 +557,8 @@ namespace Adyen.BalancePlatform.Services
 
                     using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<CreateAccountHolderApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<CreateAccountHolderApiResponse>();
-                        CreateAccountHolderApiResponse apiResponse;
+                        ILogger<CreateSweepApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<CreateSweepApiResponse>();
+                        CreateSweepApiResponse apiResponse;
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
@@ -692,36 +568,36 @@ namespace Adyen.BalancePlatform.Services
 #else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
 #endif
-                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/accountHolders", requestedAt, _jsonSerializerOptions);
+                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/balanceAccounts/{balanceAccountId}/sweeps", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events?.ExecuteOnCreateAccountHolder(apiResponse);
+                        Events?.ExecuteOnCreateSweep(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events?.ExecuteOnErrorCreateAccountHolder(exception);
+                Events?.ExecuteOnErrorCreateSweep(exception);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="CreateAccountHolderApiResponse"/>.
+        /// The <see cref="CreateSweepApiResponse"/>.
         /// </summary>
-        public partial class CreateAccountHolderApiResponse : Adyen.Core.Client.ApiResponse, ICreateAccountHolderApiResponse
+        public partial class CreateSweepApiResponse : Adyen.Core.Client.ApiResponse, ICreateSweepApiResponse
         {
             /// <summary>
-            /// The logger for <see cref="CreateAccountHolderApiResponse"/>.
+            /// The logger for <see cref="CreateSweepApiResponse"/>.
             /// </summary>
-            public ILogger<CreateAccountHolderApiResponse> Logger { get; }
+            public ILogger<CreateSweepApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="CreateAccountHolderApiResponse"/>.
+            /// The <see cref="CreateSweepApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -730,14 +606,14 @@ namespace Adyen.BalancePlatform.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public CreateAccountHolderApiResponse(ILogger<CreateAccountHolderApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public CreateSweepApiResponse(ILogger<CreateSweepApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="CreateAccountHolderApiResponse"/>.
+            /// The <see cref="CreateSweepApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -746,7 +622,7 @@ namespace Adyen.BalancePlatform.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public CreateAccountHolderApiResponse(ILogger<CreateAccountHolderApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public CreateSweepApiResponse(ILogger<CreateSweepApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -764,10 +640,10 @@ namespace Adyen.BalancePlatform.Services
             /// Deserializes the response if the response is 200 Ok.
             /// </summary>
             /// <returns></returns>
-            public Adyen.BalancePlatform.Models.AccountHolder? Ok()
+            public Adyen.BalancePlatform.Models.SweepConfigurationV2? Ok()
             {
                 return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.AccountHolder>(RawContent, _jsonSerializerOptions)
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.SweepConfigurationV2>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
@@ -776,7 +652,7 @@ namespace Adyen.BalancePlatform.Services
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.AccountHolder? result)
+            public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.SweepConfigurationV2? result)
             {
                 result = null;
 
@@ -994,14 +870,15 @@ namespace Adyen.BalancePlatform.Services
         }
         
         /// <summary>
-        /// Get an account holder Returns an account holder.
+        /// Delete a sweep Deletes a sweep for a balance account.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="id">The unique identifier of the account holder.</param>
+        /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
+        /// <param name="sweepId">The unique identifier of the sweep.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAccountHolderApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.AccountHolder"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAccountHolderApiResponse> GetAccountHolderAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IDeleteSweepApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IDeleteSweepApiResponse> DeleteSweepAsync(string balanceAccountId, string sweepId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1013,9 +890,10 @@ namespace Adyen.BalancePlatform.Services
                     uriBuilder.Port = HttpClient.BaseAddress.Port;
                     uriBuilder.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilder.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/accountHolders/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/accountHolders/{id}");
-                    uriBuilder.Path = uriBuilder.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+                        ? "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}");
+                    uriBuilder.Path = uriBuilder.Path.Replace("%7BbalanceAccountId%7D", Uri.EscapeDataString(balanceAccountId.ToString()));
+                    uriBuilder.Path = uriBuilder.Path.Replace("%7BsweepId%7D", Uri.EscapeDataString(sweepId.ToString()));
 
                     System.Collections.Specialized.NameValueCollection parseQueryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
@@ -1036,17 +914,17 @@ namespace Adyen.BalancePlatform.Services
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
 #if NET462 || NETSTANDARD2_0
-                    httpRequestMessage.Method = new HttpMethod("GET");
+                    httpRequestMessage.Method = new HttpMethod("DELETE");
 #else
-                    httpRequestMessage.Method = HttpMethod.Get;
+                    httpRequestMessage.Method = HttpMethod.Delete;
 #endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<GetAccountHolderApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<GetAccountHolderApiResponse>();
-                        GetAccountHolderApiResponse apiResponse;
+                        ILogger<DeleteSweepApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<DeleteSweepApiResponse>();
+                        DeleteSweepApiResponse apiResponse;
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
@@ -1056,36 +934,36 @@ namespace Adyen.BalancePlatform.Services
 #else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
 #endif
-                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/accountHolders/{id}", requestedAt, _jsonSerializerOptions);
+                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events?.ExecuteOnGetAccountHolder(apiResponse);
+                        Events?.ExecuteOnDeleteSweep(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events?.ExecuteOnErrorGetAccountHolder(exception);
+                Events?.ExecuteOnErrorDeleteSweep(exception);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetAccountHolderApiResponse"/>.
+        /// The <see cref="DeleteSweepApiResponse"/>.
         /// </summary>
-        public partial class GetAccountHolderApiResponse : Adyen.Core.Client.ApiResponse, IGetAccountHolderApiResponse
+        public partial class DeleteSweepApiResponse : Adyen.Core.Client.ApiResponse, IDeleteSweepApiResponse
         {
             /// <summary>
-            /// The logger for <see cref="GetAccountHolderApiResponse"/>.
+            /// The logger for <see cref="DeleteSweepApiResponse"/>.
             /// </summary>
-            public ILogger<GetAccountHolderApiResponse> Logger { get; }
+            public ILogger<DeleteSweepApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetAccountHolderApiResponse"/>.
+            /// The <see cref="DeleteSweepApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -1094,14 +972,14 @@ namespace Adyen.BalancePlatform.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public GetAccountHolderApiResponse(ILogger<GetAccountHolderApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public DeleteSweepApiResponse(ILogger<DeleteSweepApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetAccountHolderApiResponse"/>.
+            /// The <see cref="DeleteSweepApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -1110,7 +988,7 @@ namespace Adyen.BalancePlatform.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public GetAccountHolderApiResponse(ILogger<GetAccountHolderApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public DeleteSweepApiResponse(ILogger<DeleteSweepApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1119,42 +997,10 @@ namespace Adyen.BalancePlatform.Services
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok.
+            /// Returns true if the response is 204 NoContent.
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.BalancePlatform.Models.AccountHolder? Ok()
-            {
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.AccountHolder>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.AccountHolder? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
+            public bool IsNoContent => 204 == (int)StatusCode;
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest.
@@ -1358,16 +1204,16 @@ namespace Adyen.BalancePlatform.Services
         }
         
         /// <summary>
-        /// Get all balance accounts of an account holder Returns a paginated list of the balance accounts associated with an account holder. To fetch multiple pages, use the query parameters.   For example, to limit the page to 5 balance accounts and skip the first 10, use &#x60;/accountHolders/{id}/balanceAccounts?limit&#x3D;5&amp;offset&#x3D;10&#x60;.
+        /// Get all sweeps for a balance account Returns a list of the sweeps configured for a balance account.  To fetch multiple pages, use the query parameters. For example, to limit the page to 5 sweeps and to skip the first 10, use &#x60;/balanceAccounts/{balanceAccountId}/sweeps?limit&#x3D;5&amp;offset&#x3D;10&#x60;.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="id">The unique identifier of the account holder.</param>
+        /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
         /// <param name="offset">The number of items that you want to skip. ()</param>
         /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAllBalanceAccountsOfAccountHolderApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.PaginatedBalanceAccountsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAllBalanceAccountsOfAccountHolderApiResponse> GetAllBalanceAccountsOfAccountHolderAsync(string id, Option<int> offset = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetAllSweepsForBalanceAccountApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.BalanceSweepConfigurationsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetAllSweepsForBalanceAccountApiResponse> GetAllSweepsForBalanceAccountAsync(string balanceAccountId, Option<int> offset = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1379,9 +1225,9 @@ namespace Adyen.BalancePlatform.Services
                     uriBuilder.Port = HttpClient.BaseAddress.Port;
                     uriBuilder.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilder.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/accountHolders/{id}/balanceAccounts"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/accountHolders/{id}/balanceAccounts");
-                    uriBuilder.Path = uriBuilder.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+                        ? "/balanceAccounts/{balanceAccountId}/sweeps"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/balanceAccounts/{balanceAccountId}/sweeps");
+                    uriBuilder.Path = uriBuilder.Path.Replace("%7BbalanceAccountId%7D", Uri.EscapeDataString(balanceAccountId.ToString()));
 
                     System.Collections.Specialized.NameValueCollection parseQueryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
@@ -1419,8 +1265,8 @@ namespace Adyen.BalancePlatform.Services
 
                     using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<GetAllBalanceAccountsOfAccountHolderApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<GetAllBalanceAccountsOfAccountHolderApiResponse>();
-                        GetAllBalanceAccountsOfAccountHolderApiResponse apiResponse;
+                        ILogger<GetAllSweepsForBalanceAccountApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<GetAllSweepsForBalanceAccountApiResponse>();
+                        GetAllSweepsForBalanceAccountApiResponse apiResponse;
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
@@ -1430,36 +1276,36 @@ namespace Adyen.BalancePlatform.Services
 #else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
 #endif
-                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/accountHolders/{id}/balanceAccounts", requestedAt, _jsonSerializerOptions);
+                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/balanceAccounts/{balanceAccountId}/sweeps", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events?.ExecuteOnGetAllBalanceAccountsOfAccountHolder(apiResponse);
+                        Events?.ExecuteOnGetAllSweepsForBalanceAccount(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events?.ExecuteOnErrorGetAllBalanceAccountsOfAccountHolder(exception);
+                Events?.ExecuteOnErrorGetAllSweepsForBalanceAccount(exception);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetAllBalanceAccountsOfAccountHolderApiResponse"/>.
+        /// The <see cref="GetAllSweepsForBalanceAccountApiResponse"/>.
         /// </summary>
-        public partial class GetAllBalanceAccountsOfAccountHolderApiResponse : Adyen.Core.Client.ApiResponse, IGetAllBalanceAccountsOfAccountHolderApiResponse
+        public partial class GetAllSweepsForBalanceAccountApiResponse : Adyen.Core.Client.ApiResponse, IGetAllSweepsForBalanceAccountApiResponse
         {
             /// <summary>
-            /// The logger for <see cref="GetAllBalanceAccountsOfAccountHolderApiResponse"/>.
+            /// The logger for <see cref="GetAllSweepsForBalanceAccountApiResponse"/>.
             /// </summary>
-            public ILogger<GetAllBalanceAccountsOfAccountHolderApiResponse> Logger { get; }
+            public ILogger<GetAllSweepsForBalanceAccountApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetAllBalanceAccountsOfAccountHolderApiResponse"/>.
+            /// The <see cref="GetAllSweepsForBalanceAccountApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -1468,14 +1314,14 @@ namespace Adyen.BalancePlatform.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public GetAllBalanceAccountsOfAccountHolderApiResponse(ILogger<GetAllBalanceAccountsOfAccountHolderApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetAllSweepsForBalanceAccountApiResponse(ILogger<GetAllSweepsForBalanceAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetAllBalanceAccountsOfAccountHolderApiResponse"/>.
+            /// The <see cref="GetAllSweepsForBalanceAccountApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -1484,7 +1330,7 @@ namespace Adyen.BalancePlatform.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public GetAllBalanceAccountsOfAccountHolderApiResponse(ILogger<GetAllBalanceAccountsOfAccountHolderApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetAllSweepsForBalanceAccountApiResponse(ILogger<GetAllSweepsForBalanceAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1502,10 +1348,10 @@ namespace Adyen.BalancePlatform.Services
             /// Deserializes the response if the response is 200 Ok.
             /// </summary>
             /// <returns></returns>
-            public Adyen.BalancePlatform.Models.PaginatedBalanceAccountsResponse? Ok()
+            public Adyen.BalancePlatform.Models.BalanceSweepConfigurationsResponse? Ok()
             {
                 return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.PaginatedBalanceAccountsResponse>(RawContent, _jsonSerializerOptions)
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.BalanceSweepConfigurationsResponse>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
@@ -1514,7 +1360,7 @@ namespace Adyen.BalancePlatform.Services
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.PaginatedBalanceAccountsResponse? result)
+            public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.BalanceSweepConfigurationsResponse? result)
             {
                 result = null;
 
@@ -1732,14 +1578,15 @@ namespace Adyen.BalancePlatform.Services
         }
         
         /// <summary>
-        /// Get all transaction rules for an account holder Returns a list of transaction rules associated with an account holder.
+        /// Get a sweep Returns a sweep.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="id">The unique identifier of the account holder.</param>
+        /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
+        /// <param name="sweepId">The unique identifier of the sweep.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAllTransactionRulesForAccountHolderApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAllTransactionRulesForAccountHolderApiResponse> GetAllTransactionRulesForAccountHolderAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetSweepApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetSweepApiResponse> GetSweepAsync(string balanceAccountId, string sweepId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1751,9 +1598,10 @@ namespace Adyen.BalancePlatform.Services
                     uriBuilder.Port = HttpClient.BaseAddress.Port;
                     uriBuilder.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilder.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/accountHolders/{id}/transactionRules"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/accountHolders/{id}/transactionRules");
-                    uriBuilder.Path = uriBuilder.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+                        ? "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}");
+                    uriBuilder.Path = uriBuilder.Path.Replace("%7BbalanceAccountId%7D", Uri.EscapeDataString(balanceAccountId.ToString()));
+                    uriBuilder.Path = uriBuilder.Path.Replace("%7BsweepId%7D", Uri.EscapeDataString(sweepId.ToString()));
 
                     System.Collections.Specialized.NameValueCollection parseQueryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
@@ -1783,8 +1631,8 @@ namespace Adyen.BalancePlatform.Services
 
                     using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<GetAllTransactionRulesForAccountHolderApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<GetAllTransactionRulesForAccountHolderApiResponse>();
-                        GetAllTransactionRulesForAccountHolderApiResponse apiResponse;
+                        ILogger<GetSweepApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<GetSweepApiResponse>();
+                        GetSweepApiResponse apiResponse;
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
@@ -1794,36 +1642,36 @@ namespace Adyen.BalancePlatform.Services
 #else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
 #endif
-                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/accountHolders/{id}/transactionRules", requestedAt, _jsonSerializerOptions);
+                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events?.ExecuteOnGetAllTransactionRulesForAccountHolder(apiResponse);
+                        Events?.ExecuteOnGetSweep(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events?.ExecuteOnErrorGetAllTransactionRulesForAccountHolder(exception);
+                Events?.ExecuteOnErrorGetSweep(exception);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetAllTransactionRulesForAccountHolderApiResponse"/>.
+        /// The <see cref="GetSweepApiResponse"/>.
         /// </summary>
-        public partial class GetAllTransactionRulesForAccountHolderApiResponse : Adyen.Core.Client.ApiResponse, IGetAllTransactionRulesForAccountHolderApiResponse
+        public partial class GetSweepApiResponse : Adyen.Core.Client.ApiResponse, IGetSweepApiResponse
         {
             /// <summary>
-            /// The logger for <see cref="GetAllTransactionRulesForAccountHolderApiResponse"/>.
+            /// The logger for <see cref="GetSweepApiResponse"/>.
             /// </summary>
-            public ILogger<GetAllTransactionRulesForAccountHolderApiResponse> Logger { get; }
+            public ILogger<GetSweepApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetAllTransactionRulesForAccountHolderApiResponse"/>.
+            /// The <see cref="GetSweepApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -1832,14 +1680,14 @@ namespace Adyen.BalancePlatform.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public GetAllTransactionRulesForAccountHolderApiResponse(ILogger<GetAllTransactionRulesForAccountHolderApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetSweepApiResponse(ILogger<GetSweepApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetAllTransactionRulesForAccountHolderApiResponse"/>.
+            /// The <see cref="GetSweepApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -1848,7 +1696,7 @@ namespace Adyen.BalancePlatform.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public GetAllTransactionRulesForAccountHolderApiResponse(ILogger<GetAllTransactionRulesForAccountHolderApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetSweepApiResponse(ILogger<GetSweepApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1866,10 +1714,10 @@ namespace Adyen.BalancePlatform.Services
             /// Deserializes the response if the response is 200 Ok.
             /// </summary>
             /// <returns></returns>
-            public Adyen.BalancePlatform.Models.TransactionRulesResponse? Ok()
+            public Adyen.BalancePlatform.Models.SweepConfigurationV2? Ok()
             {
                 return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.TransactionRulesResponse>(RawContent, _jsonSerializerOptions)
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.SweepConfigurationV2>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
@@ -1878,7 +1726,7 @@ namespace Adyen.BalancePlatform.Services
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.TransactionRulesResponse? result)
+            public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.SweepConfigurationV2? result)
             {
                 result = null;
 
@@ -2096,17 +1944,16 @@ namespace Adyen.BalancePlatform.Services
         }
         
         /// <summary>
-        /// Get a tax form Generates a tax form for account holders operating in the US. For more information, refer to US tax forms for [marketplaces](https://docs.adyen.com/marketplaces/us-tax-forms/) or [platforms](https://docs.adyen.com/platforms/us-tax-forms/) .
+        /// Update a sweep Updates a sweep. When updating a sweep resource, note that if a request parameter is not provided, the parameter is left unchanged.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="id">The unique identifier of the account holder.</param>
-        /// <param name="formType">The type of tax form you want to retrieve. Accepted values are **US1099k** and **US1099nec**.</param>
-        /// <param name="year">The tax year in **YYYY** format for the tax form you want to retrieve.</param>
-        /// <param name="legalEntityId">The legal entity reference whose tax form you want to retrieve. ()</param>
+        /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
+        /// <param name="sweepId">The unique identifier of the sweep.</param>
+        /// <param name="updateSweepConfigurationV2"><see cref="UpdateSweepConfigurationV2"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetTaxFormApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.GetTaxFormResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetTaxFormApiResponse> GetTaxFormAsync(string id, string formType, int year, Option<string> legalEntityId = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IUpdateSweepApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IUpdateSweepApiResponse> UpdateSweepAsync(string balanceAccountId, string sweepId, UpdateSweepConfigurationV2 updateSweepConfigurationV2,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2118,606 +1965,18 @@ namespace Adyen.BalancePlatform.Services
                     uriBuilder.Port = HttpClient.BaseAddress.Port;
                     uriBuilder.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilder.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/accountHolders/{id}/taxForms"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/accountHolders/{id}/taxForms");
-                    uriBuilder.Path = uriBuilder.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
-
-                    System.Collections.Specialized.NameValueCollection parseQueryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
-
-                    parseQueryString["formType"] = ClientUtils.ParameterToString(formType);
-                    parseQueryString["year"] = ClientUtils.ParameterToString(year);
-
-                    if (legalEntityId.IsSet)
-                        parseQueryString["legalEntityId"] = ClientUtils.ParameterToString(legalEntityId.Value);
-
-                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
-
-                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
-                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-
-                    // Add authorization token to the HttpRequestMessage header
-                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
-                    
-                    httpRequestMessage.RequestUri = uriBuilder.Uri;
-
-                    string[] accepts = new string[] {
-                        "application/json"
-                    };
-
-                    string? accept = ClientUtils.SelectHeaderAccept(accepts);
-
-                    if (accept != null)
-                        httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-#if NET462 || NETSTANDARD2_0
-                    httpRequestMessage.Method = new HttpMethod("GET");
-#else
-                    httpRequestMessage.Method = HttpMethod.Get;
-#endif
-
-                    DateTime requestedAt = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
-                    {
-                        ILogger<GetTaxFormApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<GetTaxFormApiResponse>();
-                        GetTaxFormApiResponse apiResponse;
-
-                        switch ((int)httpResponseMessage.StatusCode) {
-                            default: {
-#if NET462 || NETSTANDARD2_0
-                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
-                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-#else
-                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-#endif
-                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/accountHolders/{id}/taxForms", requestedAt, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-                        
-                        Events?.ExecuteOnGetTaxForm(apiResponse);
-                        return apiResponse;
-                    }
-                }
-            }
-            catch(Exception exception)
-            {
-                Events?.ExecuteOnErrorGetTaxForm(exception);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="GetTaxFormApiResponse"/>.
-        /// </summary>
-        public partial class GetTaxFormApiResponse : Adyen.Core.Client.ApiResponse, IGetTaxFormApiResponse
-        {
-            /// <summary>
-            /// The logger for <see cref="GetTaxFormApiResponse"/>.
-            /// </summary>
-            public ILogger<GetTaxFormApiResponse> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="GetTaxFormApiResponse"/>.
-            /// </summary>
-            /// <param name="logger"><see cref="ILogger"/>.</param>
-            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
-            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
-            /// <param name="rawContent">The raw data.</param>
-            /// <param name="path">The path used when making the request.</param>
-            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
-            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public GetTaxFormApiResponse(ILogger<GetTaxFormApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="GetTaxFormApiResponse"/>.
-            /// </summary>
-            /// <param name="logger"><see cref="ILogger"/>.</param>
-            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
-            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
-            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
-            /// <param name="path">The path used when making the request.</param>
-            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
-            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public GetTaxFormApiResponse(ILogger<GetTaxFormApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.BalancePlatform.Models.GetTaxFormResponse? Ok()
-            {
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.GetTaxFormResponse>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.GetTaxFormResponse? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 400 BadRequest.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsBadRequest => 400 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 400 BadRequest.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.BalancePlatform.Models.RestServiceError? BadRequest()
-            {
-                return IsBadRequest
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.RestServiceError>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 400 BadRequest and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeBadRequestResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.RestServiceError? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = BadRequest();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)400);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 401 Unauthorized.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsUnauthorized => 401 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 401 Unauthorized.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.BalancePlatform.Models.RestServiceError? Unauthorized()
-            {
-                return IsUnauthorized
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.RestServiceError>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeUnauthorizedResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.RestServiceError? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Unauthorized();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)401);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsForbidden => 403 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.BalancePlatform.Models.RestServiceError? Forbidden()
-            {
-                return IsForbidden
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.RestServiceError>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeForbiddenResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.RestServiceError? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Forbidden();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)403);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 404 NotFound.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsNotFound => 404 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 404 NotFound.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.BalancePlatform.Models.RestServiceError? NotFound()
-            {
-                return IsNotFound
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.RestServiceError>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 404 NotFound and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeNotFoundResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.RestServiceError? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = NotFound();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)404);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 422 UnprocessableContent.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsUnprocessableContent => 422 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 422 UnprocessableContent.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.BalancePlatform.Models.RestServiceError? UnprocessableContent()
-            {
-                return IsUnprocessableContent
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.RestServiceError>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 422 UnprocessableContent and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeUnprocessableContentResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.RestServiceError? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = UnprocessableContent();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)422);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 500 InternalServerError.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsInternalServerError => 500 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 500 InternalServerError.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.BalancePlatform.Models.RestServiceError? InternalServerError()
-            {
-                return IsInternalServerError
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.RestServiceError>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 500 InternalServerError and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeInternalServerErrorResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.RestServiceError? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = InternalServerError();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)500);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationError(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-        
-        /// <summary>
-        /// Get summary of tax forms for an account holder Returns a summary of all tax forms for an account holder.
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="id">The unique identifier of the account holder.</param>
-        /// <param name="formType">The type of tax form you want a summary for. Accepted values are **US1099k** and **US1099nec**.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetTaxFormSummaryApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.TaxFormSummaryResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetTaxFormSummaryApiResponse> GetTaxFormSummaryAsync(string id, string formType,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilder = new UriBuilder();
-
-            try
-            {
-                using (HttpRequestMessage httpRequestMessage = new HttpRequestMessage())
-                {
-                    uriBuilder.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilder.Port = HttpClient.BaseAddress.Port;
-                    uriBuilder.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilder.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/accountHolders/{id}/taxFormSummary"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/accountHolders/{id}/taxFormSummary");
-                    uriBuilder.Path = uriBuilder.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
-
-                    System.Collections.Specialized.NameValueCollection parseQueryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
-
-                    parseQueryString["formType"] = ClientUtils.ParameterToString(formType);
-
-                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
-
-                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
-                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    // Add authorization token to the HttpRequestMessage header
-                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
-
-                    httpRequestMessage.RequestUri = uriBuilder.Uri;
-
-                    string[] accepts = new string[] {
-                        "application/json"
-                    };
-
-                    string? accept = ClientUtils.SelectHeaderAccept(accepts);
-
-                    if (accept != null)
-                        httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-#if NET462 || NETSTANDARD2_0
-                    httpRequestMessage.Method = new HttpMethod("GET");
-#else
-                    httpRequestMessage.Method = HttpMethod.Get;
-#endif
-
-                    DateTime requestedAt = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
-                    {
-                        ILogger<GetTaxFormSummaryApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<GetTaxFormSummaryApiResponse>();
-                        GetTaxFormSummaryApiResponse apiResponse;
-
-                        switch ((int)httpResponseMessage.StatusCode) {
-                            default: {
-#if NET462 || NETSTANDARD2_0
-                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
-                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-#else
-                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-#endif
-                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/accountHolders/{id}/taxFormSummary", requestedAt, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-                        
-                        Events?.ExecuteOnGetTaxFormSummary(apiResponse);
-                        return apiResponse;
-                    }
-                }
-            }
-            catch(Exception exception)
-            {
-                Events?.ExecuteOnErrorGetTaxFormSummary(exception);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="GetTaxFormSummaryApiResponse"/>.
-        /// </summary>
-        public partial class GetTaxFormSummaryApiResponse : Adyen.Core.Client.ApiResponse, IGetTaxFormSummaryApiResponse
-        {
-            /// <summary>
-            /// The logger for <see cref="GetTaxFormSummaryApiResponse"/>.
-            /// </summary>
-            public ILogger<GetTaxFormSummaryApiResponse> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="GetTaxFormSummaryApiResponse"/>.
-            /// </summary>
-            /// <param name="logger"><see cref="ILogger"/>.</param>
-            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
-            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
-            /// <param name="rawContent">The raw data.</param>
-            /// <param name="path">The path used when making the request.</param>
-            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
-            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public GetTaxFormSummaryApiResponse(ILogger<GetTaxFormSummaryApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="GetTaxFormSummaryApiResponse"/>.
-            /// </summary>
-            /// <param name="logger"><see cref="ILogger"/>.</param>
-            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
-            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
-            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
-            /// <param name="path">The path used when making the request.</param>
-            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
-            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public GetTaxFormSummaryApiResponse(ILogger<GetTaxFormSummaryApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.BalancePlatform.Models.TaxFormSummaryResponse? Ok()
-            {
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.TaxFormSummaryResponse>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.TaxFormSummaryResponse? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationError(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-        
-        /// <summary>
-        /// Update an account holder Updates an account holder. When updating an account holder resource, if a parameter is not provided in the request, it is left unchanged.
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="id">The unique identifier of the account holder.</param>
-        /// <param name="accountHolderUpdateRequest"><see cref="AccountHolderUpdateRequest"/> ()</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdateAccountHolderApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.AccountHolder"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateAccountHolderApiResponse> UpdateAccountHolderAsync(string id, AccountHolderUpdateRequest accountHolderUpdateRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilder = new UriBuilder();
-
-            try
-            {
-                using (HttpRequestMessage httpRequestMessage = new HttpRequestMessage())
-                {
-                    uriBuilder.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilder.Port = HttpClient.BaseAddress.Port;
-                    uriBuilder.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilder.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/accountHolders/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/accountHolders/{id}");
-                    uriBuilder.Path = uriBuilder.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+                        ? "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}");
+                    uriBuilder.Path = uriBuilder.Path.Replace("%7BbalanceAccountId%7D", Uri.EscapeDataString(balanceAccountId.ToString()));
+                    uriBuilder.Path = uriBuilder.Path.Replace("%7BsweepId%7D", Uri.EscapeDataString(sweepId.ToString()));
 
                     System.Collections.Specialized.NameValueCollection parseQueryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    httpRequestMessage.Content = (accountHolderUpdateRequest as object) is System.IO.Stream stream
+                    httpRequestMessage.Content = (updateSweepConfigurationV2 as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
-                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(accountHolderUpdateRequest, _jsonSerializerOptions));
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(updateSweepConfigurationV2, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -2755,8 +2014,8 @@ namespace Adyen.BalancePlatform.Services
 
                     using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<UpdateAccountHolderApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<UpdateAccountHolderApiResponse>();
-                        UpdateAccountHolderApiResponse apiResponse;
+                        ILogger<UpdateSweepApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<UpdateSweepApiResponse>();
+                        UpdateSweepApiResponse apiResponse;
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
@@ -2766,36 +2025,36 @@ namespace Adyen.BalancePlatform.Services
 #else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
 #endif
-                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/accountHolders/{id}", requestedAt, _jsonSerializerOptions);
+                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events?.ExecuteOnUpdateAccountHolder(apiResponse);
+                        Events?.ExecuteOnUpdateSweep(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events?.ExecuteOnErrorUpdateAccountHolder(exception);
+                Events?.ExecuteOnErrorUpdateSweep(exception);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateAccountHolderApiResponse"/>.
+        /// The <see cref="UpdateSweepApiResponse"/>.
         /// </summary>
-        public partial class UpdateAccountHolderApiResponse : Adyen.Core.Client.ApiResponse, IUpdateAccountHolderApiResponse
+        public partial class UpdateSweepApiResponse : Adyen.Core.Client.ApiResponse, IUpdateSweepApiResponse
         {
             /// <summary>
-            /// The logger for <see cref="UpdateAccountHolderApiResponse"/>.
+            /// The logger for <see cref="UpdateSweepApiResponse"/>.
             /// </summary>
-            public ILogger<UpdateAccountHolderApiResponse> Logger { get; }
+            public ILogger<UpdateSweepApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateAccountHolderApiResponse"/>.
+            /// The <see cref="UpdateSweepApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -2804,14 +2063,14 @@ namespace Adyen.BalancePlatform.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public UpdateAccountHolderApiResponse(ILogger<UpdateAccountHolderApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public UpdateSweepApiResponse(ILogger<UpdateSweepApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateAccountHolderApiResponse"/>.
+            /// The <see cref="UpdateSweepApiResponse"/>.
             /// </summary>
             /// <param name="logger"><see cref="ILogger"/>.</param>
             /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
@@ -2820,7 +2079,7 @@ namespace Adyen.BalancePlatform.Services
             /// <param name="path">The path used when making the request.</param>
             /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
             /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
-            public UpdateAccountHolderApiResponse(ILogger<UpdateAccountHolderApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public UpdateSweepApiResponse(ILogger<UpdateSweepApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2838,10 +2097,10 @@ namespace Adyen.BalancePlatform.Services
             /// Deserializes the response if the response is 200 Ok.
             /// </summary>
             /// <returns></returns>
-            public Adyen.BalancePlatform.Models.AccountHolder? Ok()
+            public Adyen.BalancePlatform.Models.SweepConfigurationV2? Ok()
             {
                 return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.AccountHolder>(RawContent, _jsonSerializerOptions)
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.SweepConfigurationV2>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
@@ -2850,7 +2109,7 @@ namespace Adyen.BalancePlatform.Services
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.AccountHolder? result)
+            public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.SweepConfigurationV2? result)
             {
                 result = null;
 
