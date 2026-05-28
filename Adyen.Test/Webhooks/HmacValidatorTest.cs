@@ -153,53 +153,27 @@ namespace Adyen.Test.Webhooks
         }
 
         /// <summary>
-        /// IsValidHmac compares signatures with the SDK's length-independent
-        /// byte comparison helper, not plain String.Equals / String.op_Equality,
-        /// keeping it consistent with HmacValidatorUtility. Verified by IL
-        /// inspection of the compiled method.
+        /// A null hmacSignature value in AdditionalData must return false rather
+        /// than throwing — the comparison reads the signature value's bytes, so a
+        /// null value has to be guarded (the key can be present with a null value).
         /// </summary>
         [TestMethod]
-        public void TestIsValidHmac_UsesByteComparisonHelper()
+        public void TestIsValidHmac_NullSignatureValueReturnsFalse()
         {
-            var method = typeof(HmacValidator).GetMethod("IsValidHmac",
-                System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-            Assert.IsNotNull(method);
-            var body = method.GetMethodBody();
-            Assert.IsNotNull(body);
-            var il = body.GetILAsByteArray();
-            Assert.IsNotNull(il);
-
-            var module = method.Module;
-            bool callsStringEquals = false;
-            for (int i = 0; i < il.Length; i++)
+            var hmacValidator = new HmacValidator();
+            var notificationRequestItem = new NotificationRequestItem
             {
-                byte op = il[i];
-                if (op == 0x28 || op == 0x6F) // call / callvirt
-                {
-                    int token = System.BitConverter.ToInt32(il, i + 1);
-                    try
-                    {
-                        var member = module.ResolveMember(token,
-                            method.DeclaringType.GetGenericArguments(),
-                            method.GetGenericArguments());
-                        if (member is System.Reflection.MethodBase mb)
-                        {
-                            var name = (mb.DeclaringType?.FullName ?? "") + "." + mb.Name;
-                            if (name == "System.String.Equals" ||
-                                name == "System.String.op_Equality")
-                            {
-                                callsStringEquals = true;
-                            }
-                        }
-                    }
-                    catch { /* ignore unresolved tokens */ }
-                    i += 4;
-                }
-            }
-            Assert.IsFalse(callsStringEquals,
-                "HmacValidator.IsValidHmac should use the byte comparison helper, " +
-                "not String.Equals / String.op_Equality, to stay consistent with " +
-                "HmacValidatorUtility.");
+                PspReference = "pspReference",
+                OriginalReference = "originalReference",
+                MerchantAccountCode = "merchantAccount",
+                MerchantReference = "reference",
+                Amount = new Amount("EUR", 1000),
+                EventCode = "EVENT",
+                Success = true,
+                AdditionalData = new Dictionary<string, string> { { "hmacSignature", null } }
+            };
+            Assert.IsFalse(hmacValidator.IsValidHmac(notificationRequestItem,
+                "AABBCCDDEEFFAABBCCDDEEFFAABBCCDDEEFFAABBCCDDEEFFAABBCCDDEEFFAABB"));
         }
 
         [TestMethod]

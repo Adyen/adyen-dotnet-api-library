@@ -75,7 +75,7 @@ namespace Adyen.Core.Utilities
         /// This method compares two bytestrings in constant time based on length of shortest bytestring to prevent timing attacks.
         /// </summary>
         /// <returns>True if there's a difference.</returns>
-        private static bool TimeSafeEquals(byte[] a, byte[] b)
+        internal static bool TimeSafeEquals(byte[] a, byte[] b)
         {
             uint diff = (uint)a.Length ^ (uint)b.Length;
             for (int i = 0; i < a.Length && i < b.Length; i++) { diff |= (uint)(a[i] ^ b[i]); }
