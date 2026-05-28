@@ -168,6 +168,8 @@ namespace Adyen.BalancePlatform.Client
                 return Models.BalanceAccount.StatusEnum.ToJsonValue(balanceAccountStatusEnum);
             if (obj is Models.BalanceAccountBase.StatusEnum balanceAccountBaseStatusEnum)
                 return Models.BalanceAccountBase.StatusEnum.ToJsonValue(balanceAccountBaseStatusEnum);
+            if (obj is Models.BalanceAccountConfigurationRequest.FrequencyEnum balanceAccountConfigurationRequestFrequencyEnum)
+                return Models.BalanceAccountConfigurationRequest.FrequencyEnum.ToJsonValue(balanceAccountConfigurationRequestFrequencyEnum);
             if (obj is Models.BalanceAccountUpdateRequest.StatusEnum balanceAccountUpdateRequestStatusEnum)
                 return Models.BalanceAccountUpdateRequest.StatusEnum.ToJsonValue(balanceAccountUpdateRequestStatusEnum);
             if (obj is Models.BalanceWebhookSettingInfo.StatusEnum balanceWebhookSettingInfoStatusEnum)
@@ -234,6 +236,8 @@ namespace Adyen.BalancePlatform.Client
                 return Models.Duration.UnitEnum.ToJsonValue(durationUnitEnum);
             if (obj is Models.EntryModesRestriction.ValueEnum entryModesRestrictionValueEnum)
                 return EntryModesRestriction.ValueEnum.ToJsonValue(entryModesRestrictionValueEnum);
+            if (obj is Models.ExecutionResult executionResult)
+                return ExecutionResult.ToJsonValue(executionResult);
             if (obj is Models.GetTaxFormResponse.ContentTypeEnum getTaxFormResponseContentTypeEnum)
                 return Models.GetTaxFormResponse.ContentTypeEnum.ToJsonValue(getTaxFormResponseContentTypeEnum);
             if (obj is Models.GrantOffer.ContractTypeEnum grantOfferContractTypeEnum)
@@ -264,6 +268,8 @@ namespace Adyen.BalancePlatform.Client
                 return Models.NumberAndBicAccountIdentification.TypeEnum.ToJsonValue(numberAndBicAccountIdentificationTypeEnum);
             if (obj is Models.PLLocalAccountIdentification.TypeEnum pLLocalAccountIdentificationTypeEnum)
                 return Models.PLLocalAccountIdentification.TypeEnum.ToJsonValue(pLLocalAccountIdentificationTypeEnum);
+            if (obj is Models.PatchableBalanceAccountConfigurationRequest.FrequencyEnum patchableBalanceAccountConfigurationRequestFrequencyEnum)
+                return Models.PatchableBalanceAccountConfigurationRequest.FrequencyEnum.ToJsonValue(patchableBalanceAccountConfigurationRequestFrequencyEnum);
             if (obj is Models.PaymentInstrument.TypeEnum paymentInstrumentTypeEnum)
                 return Models.PaymentInstrument.TypeEnum.ToJsonValue(paymentInstrumentTypeEnum);
             if (obj is Models.PaymentInstrument.StatusEnum paymentInstrumentStatusEnum)

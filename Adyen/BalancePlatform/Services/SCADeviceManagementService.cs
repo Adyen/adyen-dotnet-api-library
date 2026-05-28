@@ -373,6 +373,9 @@ namespace Adyen.BalancePlatform.Services
                     httpRequestMessage.Content = (beginScaDeviceRegistrationRequest as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(beginScaDeviceRegistrationRequest, _jsonSerializerOptions));
+                    // Add authorization token to the HttpRequestMessage header
+                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
+
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {
@@ -748,6 +751,9 @@ namespace Adyen.BalancePlatform.Services
                     httpRequestMessage.Content = (finishScaDeviceRegistrationRequest as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(finishScaDeviceRegistrationRequest, _jsonSerializerOptions));
+                    // Add authorization token to the HttpRequestMessage header
+                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
+
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {
@@ -1161,6 +1167,9 @@ namespace Adyen.BalancePlatform.Services
                     httpRequestMessage.Content = (submitScaAssociationRequest as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(submitScaAssociationRequest, _jsonSerializerOptions));
+                    // Add authorization token to the HttpRequestMessage header
+                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
+
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {
