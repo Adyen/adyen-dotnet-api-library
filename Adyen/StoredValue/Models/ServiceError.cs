@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.StoredValue.Client;
 
 namespace Adyen.StoredValue.Models
@@ -32,6 +33,7 @@ namespace Adyen.StoredValue.Models
     /// <summary>
     /// ServiceError.
     /// </summary>
+    [JsonConverter(typeof(ServiceErrorJsonConverter))]
     public partial class ServiceError
     {
         /// <summary>
