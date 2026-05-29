@@ -226,7 +226,7 @@ namespace Adyen.Checkout.Models
             if (payWithGoogleDonations?.Type != null && PayWithGoogleDonations.TypeEnum.FromStringOrDefault((string?)payWithGoogleDonations.Type) != null)
                 return new DonationPaymentMethod(payWithGoogleDonations);
 
-            throw new JsonException();
+            return null!;
         }
 
         /// <summary>
