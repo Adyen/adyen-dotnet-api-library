@@ -178,7 +178,7 @@ namespace Adyen.Transfers.Models
             if (internalReviewTrackingData?.Type != null && InternalReviewTrackingData.TypeEnum.FromStringOrDefault((string?)internalReviewTrackingData.Type) != null)
                 return new TransferDataTracking(internalReviewTrackingData);
 
-            throw new JsonException();
+            return null!;
         }
 
         /// <summary>
