@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.ReportWebhooks.Client;
 
 namespace Adyen.ReportWebhooks.Models
@@ -32,6 +33,7 @@ namespace Adyen.ReportWebhooks.Models
     /// <summary>
     /// ReportNotificationData.
     /// </summary>
+    [JsonConverter(typeof(ReportNotificationDataJsonConverter))]
     public partial class ReportNotificationData
     {
         /// <summary>
