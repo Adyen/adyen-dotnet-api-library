@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.BalancePlatform.Client;
 
 namespace Adyen.BalancePlatform.Models
@@ -32,6 +33,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// GetTaxFormResponse.
     /// </summary>
+    [JsonConverter(typeof(GetTaxFormResponseJsonConverter))]
     public partial class GetTaxFormResponse
     {
         /// <summary>
@@ -235,7 +237,7 @@ namespace Adyen.BalancePlatform.Models
                     switch (jsonPropertyName)
                     {
                         case "content":
-                            content = new Option<byte[]?>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            content = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
                             break;
                         case "contentType":
                             string? contentTypeRawValue = utf8JsonReader.GetString();
@@ -284,7 +286,7 @@ namespace Adyen.BalancePlatform.Models
         {
             
             writer.WritePropertyName("content");
-            JsonSerializer.Serialize(writer, getTaxFormResponse.Content, jsonSerializerOptions);
+            new ByteArrayConverter().Write(writer, getTaxFormResponse.Content, jsonSerializerOptions);
             if (getTaxFormResponse._ContentTypeOption.IsSet && getTaxFormResponse.ContentType != null) 
             {
                 string? contentTypeRawValue = GetTaxFormResponse.ContentTypeEnum.ToJsonValue(getTaxFormResponse._ContentTypeOption.Value!.Value);

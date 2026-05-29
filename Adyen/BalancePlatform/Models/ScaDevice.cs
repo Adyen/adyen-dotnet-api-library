@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.BalancePlatform.Client;
 
 namespace Adyen.BalancePlatform.Models
@@ -32,6 +33,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// A resource that contains information about a device, including its unique ID, name, and type..
     /// </summary>
+    [JsonConverter(typeof(ScaDeviceJsonConverter))]
     public partial class ScaDevice
     {
         /// <summary>
