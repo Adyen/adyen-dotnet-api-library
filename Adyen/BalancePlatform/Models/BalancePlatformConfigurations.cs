@@ -30,26 +30,26 @@ using Adyen.BalancePlatform.Client;
 namespace Adyen.BalancePlatform.Models
 {
     /// <summary>
-    /// PaymentInstrumentAdditionalBankAccountIdentificationsInner.
+    /// BalancePlatformConfigurations.
     /// </summary>
-    public partial class PaymentInstrumentAdditionalBankAccountIdentificationsInner
+    public partial class BalancePlatformConfigurations
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentInstrumentAdditionalBankAccountIdentificationsInner" /> class.
+        /// Initializes a new instance of the <see cref="BalancePlatformConfigurations" /> class.
         /// </summary>
-        /// <param name="ibanAccountIdentification"></param>
-        public PaymentInstrumentAdditionalBankAccountIdentificationsInner(IbanAccountIdentification ibanAccountIdentification)
+        public BalancePlatformConfigurations()
         {
-            IbanAccountIdentification = ibanAccountIdentification;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// <see cref="IbanAccountIdentification"/>..
+        /// Contains a list of the payout schedules configured in your balance platform.
         /// </summary>
-        public IbanAccountIdentification? IbanAccountIdentification { get; set; }
+        /// <value>Contains a list of the payout schedules configured in your balance platform.</value>
+        [JsonPropertyName("balancePlatformPayoutSchedules")]
+        public List<BalancePlatformConfiguration> BalancePlatformPayoutSchedules { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -58,28 +58,27 @@ namespace Adyen.BalancePlatform.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PaymentInstrumentAdditionalBankAccountIdentificationsInner {\n");
-            if (this.IbanAccountIdentification != null)
-                sb.Append(IbanAccountIdentification.ToString().Replace("\n", "\n  "));
+            sb.Append("class BalancePlatformConfigurations {\n");
+            sb.Append("  BalancePlatformPayoutSchedules: ").Append(BalancePlatformPayoutSchedules).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="PaymentInstrumentAdditionalBankAccountIdentificationsInner" />
+    /// A Json converter for type <see cref="BalancePlatformConfigurations" />
     /// </summary>
-    public class PaymentInstrumentAdditionalBankAccountIdentificationsInnerJsonConverter : JsonConverter<PaymentInstrumentAdditionalBankAccountIdentificationsInner>
+    public class BalancePlatformConfigurationsJsonConverter : JsonConverter<BalancePlatformConfigurations>
     {
         /// <summary>
-        /// Deserializes json to <see cref="PaymentInstrumentAdditionalBankAccountIdentificationsInner"/>.
+        /// Deserializes json to <see cref="BalancePlatformConfigurations"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="PaymentInstrumentAdditionalBankAccountIdentificationsInner"/>.</returns>
+        /// <returns><see cref="BalancePlatformConfigurations"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override PaymentInstrumentAdditionalBankAccountIdentificationsInner Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override BalancePlatformConfigurations Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -88,23 +87,7 @@ namespace Adyen.BalancePlatform.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            IbanAccountIdentification? ibanAccountIdentification = default;
-
-            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
-            while (utf8JsonReaderOneOf.Read())
-            {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
-                    break;
-
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
-                    break;
-
-                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
-                {
-                    Utf8JsonReader utf8JsonReaderIbanAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<IbanAccountIdentification?>(ref utf8JsonReaderIbanAccountIdentification, jsonSerializerOptions, out ibanAccountIdentification);
-                }
-            }
+            Option<List<BalancePlatformConfiguration>?> balancePlatformPayoutSchedules = default;
 
             while (utf8JsonReader.Read())
             {
@@ -121,46 +104,51 @@ namespace Adyen.BalancePlatform.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "balancePlatformPayoutSchedules":
+                            balancePlatformPayoutSchedules = new Option<List<BalancePlatformConfiguration>?>(JsonSerializer.Deserialize<List<BalancePlatformConfiguration>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         default:
                             break;
                     }
                 }
             }
             
-            if (ibanAccountIdentification?.Type != null && IbanAccountIdentification.TypeEnum.FromStringOrDefault((string?)ibanAccountIdentification.Type) != null)
-                return new PaymentInstrumentAdditionalBankAccountIdentificationsInner(ibanAccountIdentification);
+            if (!balancePlatformPayoutSchedules.IsSet)
+                throw new ArgumentException("Property is required for class BalancePlatformConfigurations.", nameof(balancePlatformPayoutSchedules));
 
-            return null!;
+            var balancePlatformConfigurations = new BalancePlatformConfigurations();
+            balancePlatformConfigurations.BalancePlatformPayoutSchedules = balancePlatformPayoutSchedules.Value!;
+            return balancePlatformConfigurations;
         }
 
         /// <summary>
-        /// Serializes a <see cref="PaymentInstrumentAdditionalBankAccountIdentificationsInner"/>.
+        /// Serializes a <see cref="BalancePlatformConfigurations"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="paymentInstrumentAdditionalBankAccountIdentificationsInner"></param>
+        /// <param name="balancePlatformConfigurations"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, PaymentInstrumentAdditionalBankAccountIdentificationsInner paymentInstrumentAdditionalBankAccountIdentificationsInner, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, BalancePlatformConfigurations balancePlatformConfigurations, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (paymentInstrumentAdditionalBankAccountIdentificationsInner.IbanAccountIdentification != null)
-                JsonSerializer.Serialize(writer, paymentInstrumentAdditionalBankAccountIdentificationsInner.IbanAccountIdentification, jsonSerializerOptions);
-            /* 
+            
             writer.WriteStartObject();
-             */
-            WriteProperties(writer, paymentInstrumentAdditionalBankAccountIdentificationsInner, jsonSerializerOptions);
-            /* 
+            
+            WriteProperties(writer, balancePlatformConfigurations, jsonSerializerOptions);
+            
             writer.WriteEndObject();
-             */
+            
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="PaymentInstrumentAdditionalBankAccountIdentificationsInner"/>.
+        /// Serializes the properties of <see cref="BalancePlatformConfigurations"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="paymentInstrumentAdditionalBankAccountIdentificationsInner"></param>
+        /// <param name="balancePlatformConfigurations"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, PaymentInstrumentAdditionalBankAccountIdentificationsInner paymentInstrumentAdditionalBankAccountIdentificationsInner, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, BalancePlatformConfigurations balancePlatformConfigurations, JsonSerializerOptions jsonSerializerOptions)
         {
-
+            
+            writer.WritePropertyName("balancePlatformPayoutSchedules");
+            JsonSerializer.Serialize(writer, balancePlatformConfigurations.BalancePlatformPayoutSchedules, jsonSerializerOptions);
         }
     }
 }

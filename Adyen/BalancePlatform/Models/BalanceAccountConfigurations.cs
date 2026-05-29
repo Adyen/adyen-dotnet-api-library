@@ -30,26 +30,32 @@ using Adyen.BalancePlatform.Client;
 namespace Adyen.BalancePlatform.Models
 {
     /// <summary>
-    /// PaymentInstrumentAdditionalBankAccountIdentificationsInner.
+    /// BalanceAccountConfigurations.
     /// </summary>
-    public partial class PaymentInstrumentAdditionalBankAccountIdentificationsInner
+    public partial class BalanceAccountConfigurations
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentInstrumentAdditionalBankAccountIdentificationsInner" /> class.
+        /// Initializes a new instance of the <see cref="BalanceAccountConfigurations" /> class.
         /// </summary>
-        /// <param name="ibanAccountIdentification"></param>
-        public PaymentInstrumentAdditionalBankAccountIdentificationsInner(IbanAccountIdentification ibanAccountIdentification)
+        public BalanceAccountConfigurations()
         {
-            IbanAccountIdentification = ibanAccountIdentification;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// <see cref="IbanAccountIdentification"/>..
+        /// Contains a list of the Balance Account payout schedules.
         /// </summary>
-        public IbanAccountIdentification? IbanAccountIdentification { get; set; }
+        /// <value>Contains a list of the Balance Account payout schedules.</value>
+        [JsonPropertyName("balanceAccountPayoutSchedules")]
+        public List<BalanceAccountConfiguration> BalanceAccountPayoutSchedules { get; set; }
+
+        /// <summary>
+        /// <see cref="Link"/>.
+        /// </summary>
+        [JsonPropertyName("link")]
+        public Link Link { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -58,28 +64,28 @@ namespace Adyen.BalancePlatform.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PaymentInstrumentAdditionalBankAccountIdentificationsInner {\n");
-            if (this.IbanAccountIdentification != null)
-                sb.Append(IbanAccountIdentification.ToString().Replace("\n", "\n  "));
+            sb.Append("class BalanceAccountConfigurations {\n");
+            sb.Append("  BalanceAccountPayoutSchedules: ").Append(BalanceAccountPayoutSchedules).Append("\n");
+            sb.Append("  Link: ").Append(Link).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="PaymentInstrumentAdditionalBankAccountIdentificationsInner" />
+    /// A Json converter for type <see cref="BalanceAccountConfigurations" />
     /// </summary>
-    public class PaymentInstrumentAdditionalBankAccountIdentificationsInnerJsonConverter : JsonConverter<PaymentInstrumentAdditionalBankAccountIdentificationsInner>
+    public class BalanceAccountConfigurationsJsonConverter : JsonConverter<BalanceAccountConfigurations>
     {
         /// <summary>
-        /// Deserializes json to <see cref="PaymentInstrumentAdditionalBankAccountIdentificationsInner"/>.
+        /// Deserializes json to <see cref="BalanceAccountConfigurations"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="PaymentInstrumentAdditionalBankAccountIdentificationsInner"/>.</returns>
+        /// <returns><see cref="BalanceAccountConfigurations"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override PaymentInstrumentAdditionalBankAccountIdentificationsInner Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override BalanceAccountConfigurations Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -88,23 +94,8 @@ namespace Adyen.BalancePlatform.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            IbanAccountIdentification? ibanAccountIdentification = default;
-
-            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
-            while (utf8JsonReaderOneOf.Read())
-            {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
-                    break;
-
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
-                    break;
-
-                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
-                {
-                    Utf8JsonReader utf8JsonReaderIbanAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<IbanAccountIdentification?>(ref utf8JsonReaderIbanAccountIdentification, jsonSerializerOptions, out ibanAccountIdentification);
-                }
-            }
+            Option<List<BalanceAccountConfiguration>?> balanceAccountPayoutSchedules = default;
+            Option<Link?> link = default;
 
             while (utf8JsonReader.Read())
             {
@@ -121,46 +112,60 @@ namespace Adyen.BalancePlatform.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "balanceAccountPayoutSchedules":
+                            balanceAccountPayoutSchedules = new Option<List<BalanceAccountConfiguration>?>(JsonSerializer.Deserialize<List<BalanceAccountConfiguration>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "link":
+                            link = new Option<Link?>(JsonSerializer.Deserialize<Link>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         default:
                             break;
                     }
                 }
             }
             
-            if (ibanAccountIdentification?.Type != null && IbanAccountIdentification.TypeEnum.FromStringOrDefault((string?)ibanAccountIdentification.Type) != null)
-                return new PaymentInstrumentAdditionalBankAccountIdentificationsInner(ibanAccountIdentification);
+            if (!balanceAccountPayoutSchedules.IsSet)
+                throw new ArgumentException("Property is required for class BalanceAccountConfigurations.", nameof(balanceAccountPayoutSchedules));
 
-            return null!;
+            if (!link.IsSet)
+                throw new ArgumentException("Property is required for class BalanceAccountConfigurations.", nameof(link));
+
+            var balanceAccountConfigurations = new BalanceAccountConfigurations();
+            balanceAccountConfigurations.BalanceAccountPayoutSchedules = balanceAccountPayoutSchedules.Value!;
+            balanceAccountConfigurations.Link = link.Value!;
+            return balanceAccountConfigurations;
         }
 
         /// <summary>
-        /// Serializes a <see cref="PaymentInstrumentAdditionalBankAccountIdentificationsInner"/>.
+        /// Serializes a <see cref="BalanceAccountConfigurations"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="paymentInstrumentAdditionalBankAccountIdentificationsInner"></param>
+        /// <param name="balanceAccountConfigurations"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, PaymentInstrumentAdditionalBankAccountIdentificationsInner paymentInstrumentAdditionalBankAccountIdentificationsInner, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, BalanceAccountConfigurations balanceAccountConfigurations, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (paymentInstrumentAdditionalBankAccountIdentificationsInner.IbanAccountIdentification != null)
-                JsonSerializer.Serialize(writer, paymentInstrumentAdditionalBankAccountIdentificationsInner.IbanAccountIdentification, jsonSerializerOptions);
-            /* 
+            
             writer.WriteStartObject();
-             */
-            WriteProperties(writer, paymentInstrumentAdditionalBankAccountIdentificationsInner, jsonSerializerOptions);
-            /* 
+            
+            WriteProperties(writer, balanceAccountConfigurations, jsonSerializerOptions);
+            
             writer.WriteEndObject();
-             */
+            
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="PaymentInstrumentAdditionalBankAccountIdentificationsInner"/>.
+        /// Serializes the properties of <see cref="BalanceAccountConfigurations"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="paymentInstrumentAdditionalBankAccountIdentificationsInner"></param>
+        /// <param name="balanceAccountConfigurations"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, PaymentInstrumentAdditionalBankAccountIdentificationsInner paymentInstrumentAdditionalBankAccountIdentificationsInner, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, BalanceAccountConfigurations balanceAccountConfigurations, JsonSerializerOptions jsonSerializerOptions)
         {
-
+            
+            writer.WritePropertyName("balanceAccountPayoutSchedules");
+            JsonSerializer.Serialize(writer, balanceAccountConfigurations.BalanceAccountPayoutSchedules, jsonSerializerOptions);
+            writer.WritePropertyName("link");
+            JsonSerializer.Serialize(writer, balanceAccountConfigurations.Link, jsonSerializerOptions);
         }
     }
 }
