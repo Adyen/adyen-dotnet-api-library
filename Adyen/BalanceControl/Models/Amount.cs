@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.BalanceControl.Client;
 
 namespace Adyen.BalanceControl.Models
@@ -32,6 +33,7 @@ namespace Adyen.BalanceControl.Models
     /// <summary>
     /// Amount.
     /// </summary>
+    [JsonConverter(typeof(AmountJsonConverter))]
     public partial class Amount
     {
         /// <summary>
