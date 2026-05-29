@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.Payout.Client;
 
 namespace Adyen.Payout.Models
@@ -32,6 +33,7 @@ namespace Adyen.Payout.Models
     /// <summary>
     /// ResponseAdditionalDataBillingAddress.
     /// </summary>
+    [JsonConverter(typeof(ResponseAdditionalDataBillingAddressJsonConverter))]
     public partial class ResponseAdditionalDataBillingAddress
     {
         /// <summary>
