@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.Payment.Client;
 
 namespace Adyen.Payment.Models
@@ -32,6 +33,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// ThreeDSecureData.
     /// </summary>
+    [JsonConverter(typeof(ThreeDSecureDataJsonConverter))]
     public partial class ThreeDSecureData
     {
         /// <summary>
@@ -778,7 +780,7 @@ namespace Adyen.Payment.Models
                             authenticationResponse = new Option<ThreeDSecureData.AuthenticationResponseEnum?>(ThreeDSecureData.AuthenticationResponseEnum.FromStringOrDefault(authenticationResponseRawValue) ?? (ThreeDSecureData.AuthenticationResponseEnum)authenticationResponseRawValue);
                             break;
                         case "cavv":
-                            cavv = new Option<byte[]?>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            cavv = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
                             break;
                         case "cavvAlgorithm":
                             cavvAlgorithm = new Option<string?>(utf8JsonReader.GetString()!);
@@ -804,13 +806,13 @@ namespace Adyen.Payment.Models
                             threeDSVersion = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "tokenAuthenticationVerificationValue":
-                            tokenAuthenticationVerificationValue = new Option<byte[]?>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            tokenAuthenticationVerificationValue = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
                             break;
                         case "transStatusReason":
                             transStatusReason = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "xid":
-                            xid = new Option<byte[]?>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            xid = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -881,7 +883,7 @@ namespace Adyen.Payment.Models
             if (threeDSecureData._CavvOption.IsSet)
             {
                 writer.WritePropertyName("cavv");
-                JsonSerializer.Serialize(writer, threeDSecureData.Cavv, jsonSerializerOptions);
+                new ByteArrayConverter().Write(writer, threeDSecureData.Cavv, jsonSerializerOptions);
             }
             if (threeDSecureData._CavvAlgorithmOption.IsSet)
                 if (threeDSecureData.CavvAlgorithm != null)
@@ -918,7 +920,7 @@ namespace Adyen.Payment.Models
             if (threeDSecureData._TokenAuthenticationVerificationValueOption.IsSet)
             {
                 writer.WritePropertyName("tokenAuthenticationVerificationValue");
-                JsonSerializer.Serialize(writer, threeDSecureData.TokenAuthenticationVerificationValue, jsonSerializerOptions);
+                new ByteArrayConverter().Write(writer, threeDSecureData.TokenAuthenticationVerificationValue, jsonSerializerOptions);
             }
             if (threeDSecureData._TransStatusReasonOption.IsSet)
                 if (threeDSecureData.TransStatusReason != null)
@@ -927,7 +929,7 @@ namespace Adyen.Payment.Models
             if (threeDSecureData._XidOption.IsSet)
             {
                 writer.WritePropertyName("xid");
-                JsonSerializer.Serialize(writer, threeDSecureData.Xid, jsonSerializerOptions);
+                new ByteArrayConverter().Write(writer, threeDSecureData.Xid, jsonSerializerOptions);
             }
         }
     }
