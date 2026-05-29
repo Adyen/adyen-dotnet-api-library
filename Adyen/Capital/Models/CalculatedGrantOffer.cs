@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.Capital.Client;
 
 namespace Adyen.Capital.Models
@@ -32,6 +33,7 @@ namespace Adyen.Capital.Models
     /// <summary>
     /// CalculatedGrantOffer.
     /// </summary>
+    [JsonConverter(typeof(CalculatedGrantOfferJsonConverter))]
     public partial class CalculatedGrantOffer
     {
         /// <summary>
