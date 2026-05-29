@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.BinLookup.Client;
 
 namespace Adyen.BinLookup.Models
@@ -32,6 +33,7 @@ namespace Adyen.BinLookup.Models
     /// <summary>
     /// DSPublicKeyDetail.
     /// </summary>
+    [JsonConverter(typeof(DSPublicKeyDetailJsonConverter))]
     public partial class DSPublicKeyDetail
     {
         /// <summary>
@@ -185,7 +187,7 @@ namespace Adyen.BinLookup.Models
                             fromSDKVersion = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "publicKey":
-                            publicKey = new Option<byte[]?>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            publicKey = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
                             break;
                         case "rootCertificates":
                             rootCertificates = new Option<string?>(utf8JsonReader.GetString()!);
@@ -251,7 +253,7 @@ namespace Adyen.BinLookup.Models
             if (dSPublicKeyDetail._PublicKeyOption.IsSet)
             {
                 writer.WritePropertyName("publicKey");
-                JsonSerializer.Serialize(writer, dSPublicKeyDetail.PublicKey, jsonSerializerOptions);
+                new ByteArrayConverter().Write(writer, dSPublicKeyDetail.PublicKey, jsonSerializerOptions);
             }
             if (dSPublicKeyDetail._RootCertificatesOption.IsSet)
                 if (dSPublicKeyDetail.RootCertificates != null)
