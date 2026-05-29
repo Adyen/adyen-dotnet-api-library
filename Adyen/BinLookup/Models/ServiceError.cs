@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.BinLookup.Client;
 
 namespace Adyen.BinLookup.Models
@@ -32,6 +33,7 @@ namespace Adyen.BinLookup.Models
     /// <summary>
     /// ServiceError.
     /// </summary>
+    [JsonConverter(typeof(ServiceErrorJsonConverter))]
     public partial class ServiceError
     {
         /// <summary>
