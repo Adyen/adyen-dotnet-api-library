@@ -130,7 +130,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
             if (ibanAccountIdentification?.Type != null && IbanAccountIdentification.TypeEnum.FromStringOrDefault((string?)ibanAccountIdentification.Type) != null)
                 return new PaymentInstrumentAdditionalBankAccountIdentificationsInner(ibanAccountIdentification);
 
-            throw new JsonException();
+            return null!;
         }
 
         /// <summary>
