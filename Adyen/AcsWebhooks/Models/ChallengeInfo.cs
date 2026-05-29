@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.AcsWebhooks.Client;
 
 namespace Adyen.AcsWebhooks.Models
@@ -32,6 +33,7 @@ namespace Adyen.AcsWebhooks.Models
     /// <summary>
     /// ChallengeInfo.
     /// </summary>
+    [JsonConverter(typeof(ChallengeInfoJsonConverter))]
     public partial class ChallengeInfo
     {
         /// <summary>
