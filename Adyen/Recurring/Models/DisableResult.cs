@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.Recurring.Client;
 
 namespace Adyen.Recurring.Models
@@ -32,6 +33,7 @@ namespace Adyen.Recurring.Models
     /// <summary>
     /// DisableResult.
     /// </summary>
+    [JsonConverter(typeof(DisableResultJsonConverter))]
     public partial class DisableResult
     {
         /// <summary>
