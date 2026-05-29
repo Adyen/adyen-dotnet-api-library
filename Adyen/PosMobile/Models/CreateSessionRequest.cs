@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.PosMobile.Client;
 
 namespace Adyen.PosMobile.Models
@@ -32,6 +33,7 @@ namespace Adyen.PosMobile.Models
     /// <summary>
     /// CreateSessionRequest.
     /// </summary>
+    [JsonConverter(typeof(CreateSessionRequestJsonConverter))]
     public partial class CreateSessionRequest
     {
         /// <summary>
