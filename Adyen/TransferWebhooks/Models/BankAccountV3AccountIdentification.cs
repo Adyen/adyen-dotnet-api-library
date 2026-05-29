@@ -490,7 +490,7 @@ namespace Adyen.TransferWebhooks.Models
             if (uSLocalAccountIdentification?.Type != null && USLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)uSLocalAccountIdentification.Type) != null)
                 return new BankAccountV3AccountIdentification(uSLocalAccountIdentification);
 
-            throw new JsonException();
+            return null!;
         }
 
         /// <summary>
