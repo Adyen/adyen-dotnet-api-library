@@ -30,14 +30,14 @@ using Adyen.ConfigurationWebhooks.Client;
 namespace Adyen.ConfigurationWebhooks.Models
 {
     /// <summary>
-    /// CapabilityProblemEntity.
+    /// PayoutScheduleBANotificationRequest.
     /// </summary>
-    public partial class CapabilityProblemEntity
+    public partial class PayoutScheduleBANotificationRequest
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CapabilityProblemEntity" /> class.
+        /// Initializes a new instance of the <see cref="PayoutScheduleBANotificationRequest" /> class.
         /// </summary>
-        public CapabilityProblemEntity()
+        public PayoutScheduleBANotificationRequest()
         {
             OnCreated();
         }
@@ -45,9 +45,9 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Type of entity.   Possible values: **LegalEntity**, **BankAccount**, **Document**.
+        /// Type of webhook.
         /// </summary>
-        /// <value>Type of entity.   Possible values: **LegalEntity**, **BankAccount**, **Document**.</value>
+        /// <value>Type of webhook.</value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
         public class TypeEnum : IEnum
         {
@@ -57,19 +57,19 @@ namespace Adyen.ConfigurationWebhooks.Models
             public string? Value { get; set; }
 
             /// <summary>
-            /// TypeEnum.BankAccount - BankAccount
+            /// TypeEnum.BalancePlatformBalanceAccountPayoutScheduleCreated - balancePlatform.balanceAccountPayoutSchedule.created
             /// </summary>
-            public static readonly TypeEnum BankAccount = new("BankAccount");
+            public static readonly TypeEnum BalancePlatformBalanceAccountPayoutScheduleCreated = new("balancePlatform.balanceAccountPayoutSchedule.created");
 
             /// <summary>
-            /// TypeEnum.Document - Document
+            /// TypeEnum.BalancePlatformBalanceAccountPayoutScheduleUpdated - balancePlatform.balanceAccountPayoutSchedule.updated
             /// </summary>
-            public static readonly TypeEnum Document = new("Document");
+            public static readonly TypeEnum BalancePlatformBalanceAccountPayoutScheduleUpdated = new("balancePlatform.balanceAccountPayoutSchedule.updated");
 
             /// <summary>
-            /// TypeEnum.LegalEntity - LegalEntity
+            /// TypeEnum.BalancePlatformBalanceAccountPayoutScheduleDeleted - balancePlatform.balanceAccountPayoutSchedule.deleted
             /// </summary>
-            public static readonly TypeEnum LegalEntity = new("LegalEntity");
+            public static readonly TypeEnum BalancePlatformBalanceAccountPayoutScheduleDeleted = new("balancePlatform.balanceAccountPayoutSchedule.deleted");
         
             private TypeEnum(string? value)
             {
@@ -123,9 +123,9 @@ namespace Adyen.ConfigurationWebhooks.Models
             public static TypeEnum? FromStringOrDefault(string value)
             {
                 return value switch {
-                    "BankAccount" => TypeEnum.BankAccount,
-                    "Document" => TypeEnum.Document,
-                    "LegalEntity" => TypeEnum.LegalEntity,
+                    "balancePlatform.balanceAccountPayoutSchedule.created" => TypeEnum.BalancePlatformBalanceAccountPayoutScheduleCreated,
+                    "balancePlatform.balanceAccountPayoutSchedule.updated" => TypeEnum.BalancePlatformBalanceAccountPayoutScheduleUpdated,
+                    "balancePlatform.balanceAccountPayoutSchedule.deleted" => TypeEnum.BalancePlatformBalanceAccountPayoutScheduleDeleted,
                     _ => null,
                 };
             }
@@ -140,14 +140,14 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == null)
                     return null;
             
-                if (value == TypeEnum.BankAccount)
-                    return "BankAccount";
+                if (value == TypeEnum.BalancePlatformBalanceAccountPayoutScheduleCreated)
+                    return "balancePlatform.balanceAccountPayoutSchedule.created";
                 
-                if (value == TypeEnum.Document)
-                    return "Document";
+                if (value == TypeEnum.BalancePlatformBalanceAccountPayoutScheduleUpdated)
+                    return "balancePlatform.balanceAccountPayoutSchedule.updated";
                 
-                if (value == TypeEnum.LegalEntity)
-                    return "LegalEntity";
+                if (value == TypeEnum.BalancePlatformBalanceAccountPayoutScheduleDeleted)
+                    return "balancePlatform.balanceAccountPayoutSchedule.deleted";
                 
                 return value.Value;
             }
@@ -177,59 +177,38 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// Type of webhook.
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<TypeEnum?> _TypeOption { get; private set; }
-
-        /// <summary>
-        /// Type of entity.   Possible values: **LegalEntity**, **BankAccount**, **Document**.
-        /// </summary>
-        /// <value>Type of entity.   Possible values: **LegalEntity**, **BankAccount**, **Document**.</value>
+        /// <value>Type of webhook.</value>
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
+        public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Documents"/> will be populated.
+        /// <see cref="Data"/>.
+        /// </summary>
+        [JsonPropertyName("data")]
+        public AccountPayoutConfigWebhookData Data { get; set; }
+
+        /// <summary>
+        /// The environment from which the webhook originated.  Possible values: **test**, **live**.
+        /// </summary>
+        /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
+        [JsonPropertyName("environment")]
+        public string Environment { get; set; }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Timestamp"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>?> _DocumentsOption { get; private set; }
+        public Option<DateTimeOffset?> _TimestampOption { get; private set; }
 
         /// <summary>
-        /// List of document IDs to which the verification errors related to the capabilities correspond to.
+        /// When the event was queued.
         /// </summary>
-        /// <value>List of document IDs to which the verification errors related to the capabilities correspond to.</value>
-        [JsonPropertyName("documents")]
-        public List<string>? Documents { get { return this._DocumentsOption; } set { this._DocumentsOption = new(value); } }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _IdOption { get; private set; }
-
-        /// <summary>
-        /// The ID of the entity.
-        /// </summary>
-        /// <value>The ID of the entity.</value>
-        [JsonPropertyName("id")]
-        public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Owner"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<CapabilityProblemEntityRecursive?> _OwnerOption { get; private set; }
-
-        /// <summary>
-        /// <see cref="Owner"/>.
-        /// </summary>
-        [JsonPropertyName("owner")]
-        public CapabilityProblemEntityRecursive? Owner { get { return this._OwnerOption; } set { this._OwnerOption = new(value); } }
+        /// <value>When the event was queued.</value>
+        [JsonPropertyName("timestamp")]
+        public DateTimeOffset? Timestamp { get { return this._TimestampOption; } set { this._TimestampOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -238,30 +217,35 @@ namespace Adyen.ConfigurationWebhooks.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CapabilityProblemEntity {\n");
-            sb.Append("  Documents: ").Append(Documents).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Owner: ").Append(Owner).Append("\n");
+            sb.Append("class PayoutScheduleBANotificationRequest {\n");
+            sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  Environment: ").Append(Environment).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="CapabilityProblemEntity" />
+    /// A Json converter for type <see cref="PayoutScheduleBANotificationRequest" />
     /// </summary>
-    public class CapabilityProblemEntityJsonConverter : JsonConverter<CapabilityProblemEntity>
+    public class PayoutScheduleBANotificationRequestJsonConverter : JsonConverter<PayoutScheduleBANotificationRequest>
     {
         /// <summary>
-        /// Deserializes json to <see cref="CapabilityProblemEntity"/>.
+        /// The format to use to serialize Timestamp.
+        /// </summary>
+        public static string TimestampFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+
+        /// <summary>
+        /// Deserializes json to <see cref="PayoutScheduleBANotificationRequest"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="CapabilityProblemEntity"/>.</returns>
+        /// <returns><see cref="PayoutScheduleBANotificationRequest"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override CapabilityProblemEntity Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override PayoutScheduleBANotificationRequest Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -270,10 +254,10 @@ namespace Adyen.ConfigurationWebhooks.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<List<string>?> documents = default;
-            Option<string?> id = default;
-            Option<CapabilityProblemEntityRecursive?> owner = default;
-            Option<CapabilityProblemEntity.TypeEnum?> type = default;
+            Option<AccountPayoutConfigWebhookData?> data = default;
+            Option<string?> environment = default;
+            Option<PayoutScheduleBANotificationRequest.TypeEnum?> type = default;
+            Option<DateTimeOffset?> timestamp = default;
 
             while (utf8JsonReader.Read())
             {
@@ -290,18 +274,18 @@ namespace Adyen.ConfigurationWebhooks.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "documents":
-                            documents = new Option<List<string>?>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                        case "data":
+                            data = new Option<AccountPayoutConfigWebhookData?>(JsonSerializer.Deserialize<AccountPayoutConfigWebhookData>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
-                        case "id":
-                            id = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
-                        case "owner":
-                            owner = new Option<CapabilityProblemEntityRecursive?>(JsonSerializer.Deserialize<CapabilityProblemEntityRecursive>(ref utf8JsonReader, jsonSerializerOptions)!);
+                        case "environment":
+                            environment = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CapabilityProblemEntity.TypeEnum?>(CapabilityProblemEntity.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CapabilityProblemEntity.TypeEnum)typeRawValue);
+                            type = new Option<PayoutScheduleBANotificationRequest.TypeEnum?>(PayoutScheduleBANotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PayoutScheduleBANotificationRequest.TypeEnum)typeRawValue);
+                            break;
+                        case "timestamp":
+                            timestamp = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -309,63 +293,64 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            var capabilityProblemEntity = new CapabilityProblemEntity();
-            if (documents.IsSet)
-                capabilityProblemEntity.Documents = documents.Value;
-            if (id.IsSet)
-                capabilityProblemEntity.Id = id.Value;
-            if (owner.IsSet)
-                capabilityProblemEntity.Owner = owner.Value;
-            if (type.IsSet)
-                capabilityProblemEntity.Type = type.Value;
-            return capabilityProblemEntity;
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class PayoutScheduleBANotificationRequest.", nameof(data));
+
+            if (!environment.IsSet)
+                throw new ArgumentException("Property is required for class PayoutScheduleBANotificationRequest.", nameof(environment));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class PayoutScheduleBANotificationRequest.", nameof(type));
+
+            var payoutScheduleBANotificationRequest = new PayoutScheduleBANotificationRequest();
+            payoutScheduleBANotificationRequest.Data = data.Value!;
+            payoutScheduleBANotificationRequest.Environment = environment.Value!;
+            payoutScheduleBANotificationRequest.Type = type.Value!;
+            if (timestamp.IsSet)
+                payoutScheduleBANotificationRequest.Timestamp = timestamp.Value;
+            return payoutScheduleBANotificationRequest;
         }
 
         /// <summary>
-        /// Serializes a <see cref="CapabilityProblemEntity"/>.
+        /// Serializes a <see cref="PayoutScheduleBANotificationRequest"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="capabilityProblemEntity"></param>
+        /// <param name="payoutScheduleBANotificationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, CapabilityProblemEntity capabilityProblemEntity, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, PayoutScheduleBANotificationRequest payoutScheduleBANotificationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, capabilityProblemEntity, jsonSerializerOptions);
+            WriteProperties(writer, payoutScheduleBANotificationRequest, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="CapabilityProblemEntity"/>.
+        /// Serializes the properties of <see cref="PayoutScheduleBANotificationRequest"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="capabilityProblemEntity"></param>
+        /// <param name="payoutScheduleBANotificationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, CapabilityProblemEntity capabilityProblemEntity, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, PayoutScheduleBANotificationRequest payoutScheduleBANotificationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (capabilityProblemEntity._DocumentsOption.IsSet)
-            {
-                writer.WritePropertyName("documents");
-                JsonSerializer.Serialize(writer, capabilityProblemEntity.Documents, jsonSerializerOptions);
-            }
-            if (capabilityProblemEntity._IdOption.IsSet)
-                if (capabilityProblemEntity.Id != null)
-                    writer.WriteString("id", capabilityProblemEntity.Id);
+            writer.WritePropertyName("data");
+            JsonSerializer.Serialize(writer, payoutScheduleBANotificationRequest.Data, jsonSerializerOptions);
+            if (payoutScheduleBANotificationRequest.Environment != null)
+                writer.WriteString("environment", payoutScheduleBANotificationRequest.Environment);
 
-            if (capabilityProblemEntity._OwnerOption.IsSet)
+            if (payoutScheduleBANotificationRequest.Type != null) 
             {
-                writer.WritePropertyName("owner");
-                JsonSerializer.Serialize(writer, capabilityProblemEntity.Owner, jsonSerializerOptions);
-            }
-            if (capabilityProblemEntity._TypeOption.IsSet && capabilityProblemEntity.Type != null) 
-            {
-                string? typeRawValue = CapabilityProblemEntity.TypeEnum.ToJsonValue(capabilityProblemEntity._TypeOption.Value!.Value);
+                string? typeRawValue = PayoutScheduleBANotificationRequest.TypeEnum.ToJsonValue(payoutScheduleBANotificationRequest.Type);
                 writer.WriteString("type", typeRawValue);
             }
+            
+            if (payoutScheduleBANotificationRequest._TimestampOption.IsSet)
+                if (payoutScheduleBANotificationRequest._TimestampOption.Value != null)
+                    writer.WriteString("timestamp", payoutScheduleBANotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
         }
     }
 }

@@ -131,7 +131,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == TypeEnum.BalancePlatformScoreTriggered)
                     return "balancePlatform.score.triggered";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -264,7 +264,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<ScoreNotificationRequest.TypeEnum?>(ScoreNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<ScoreNotificationRequest.TypeEnum?>(ScoreNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (ScoreNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         case "timestamp":
                             timestamp = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -287,7 +287,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             var scoreNotificationRequest = new ScoreNotificationRequest();
             scoreNotificationRequest.Data = data.Value!;
             scoreNotificationRequest.Environment = environment.Value!;
-            scoreNotificationRequest.Type = type.Value!.Value;
+            scoreNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 scoreNotificationRequest.Timestamp = timestamp.Value;
             return scoreNotificationRequest;

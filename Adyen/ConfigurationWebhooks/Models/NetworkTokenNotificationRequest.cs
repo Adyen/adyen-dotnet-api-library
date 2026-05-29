@@ -140,7 +140,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == TypeEnum.BalancePlatformNetworkTokenUpdated)
                     return "balancePlatform.networkToken.updated";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -273,7 +273,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<NetworkTokenNotificationRequest.TypeEnum?>(NetworkTokenNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<NetworkTokenNotificationRequest.TypeEnum?>(NetworkTokenNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (NetworkTokenNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         case "timestamp":
                             timestamp = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -296,7 +296,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             var networkTokenNotificationRequest = new NetworkTokenNotificationRequest();
             networkTokenNotificationRequest.Data = data.Value!;
             networkTokenNotificationRequest.Environment = environment.Value!;
-            networkTokenNotificationRequest.Type = type.Value!.Value;
+            networkTokenNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 networkTokenNotificationRequest.Timestamp = timestamp.Value;
             return networkTokenNotificationRequest;

@@ -132,6 +132,8 @@ namespace Adyen.ConfigurationWebhooks.Client
                 return Models.AccountHolderCapability.VerificationStatusEnum.ToJsonValue(accountHolderCapabilityVerificationStatusEnum);
             if (obj is Models.AccountHolderNotificationRequest.TypeEnum accountHolderNotificationRequestTypeEnum)
                 return Models.AccountHolderNotificationRequest.TypeEnum.ToJsonValue(accountHolderNotificationRequestTypeEnum);
+            if (obj is Models.AccountPayoutAutoApplicationNotificationRequest.TypeEnum accountPayoutAutoApplicationNotificationRequestTypeEnum)
+                return Models.AccountPayoutAutoApplicationNotificationRequest.TypeEnum.ToJsonValue(accountPayoutAutoApplicationNotificationRequestTypeEnum);
             if (obj is Models.AccountSupportingEntityCapability.AllowedLevelEnum accountSupportingEntityCapabilityAllowedLevelEnum)
                 return Models.AccountSupportingEntityCapability.AllowedLevelEnum.ToJsonValue(accountSupportingEntityCapabilityAllowedLevelEnum);
             if (obj is Models.AccountSupportingEntityCapability.RequestedLevelEnum accountSupportingEntityCapabilityRequestedLevelEnum)
@@ -174,6 +176,14 @@ namespace Adyen.ConfigurationWebhooks.Client
                 return Models.PaymentInstrument.StatusReasonEnum.ToJsonValue(paymentInstrumentStatusReasonEnum);
             if (obj is Models.PaymentNotificationRequest.TypeEnum paymentNotificationRequestTypeEnum)
                 return Models.PaymentNotificationRequest.TypeEnum.ToJsonValue(paymentNotificationRequestTypeEnum);
+            if (obj is Models.PayoutScheduleBANotificationRequest.TypeEnum payoutScheduleBANotificationRequestTypeEnum)
+                return Models.PayoutScheduleBANotificationRequest.TypeEnum.ToJsonValue(payoutScheduleBANotificationRequestTypeEnum);
+            if (obj is Models.PayoutScheduleBPNotificationRequest.TypeEnum payoutScheduleBPNotificationRequestTypeEnum)
+                return Models.PayoutScheduleBPNotificationRequest.TypeEnum.ToJsonValue(payoutScheduleBPNotificationRequestTypeEnum);
+            if (obj is Models.PayoutScheduleStateNotificationRequest.TypeEnum payoutScheduleStateNotificationRequestTypeEnum)
+                return Models.PayoutScheduleStateNotificationRequest.TypeEnum.ToJsonValue(payoutScheduleStateNotificationRequestTypeEnum);
+            if (obj is Models.PayoutStateWebhookData.ResultEnum payoutStateWebhookDataResultEnum)
+                return Models.PayoutStateWebhookData.ResultEnum.ToJsonValue(payoutStateWebhookDataResultEnum);
             if (obj is Models.Phone.TypeEnum phoneTypeEnum)
                 return Models.Phone.TypeEnum.ToJsonValue(phoneTypeEnum);
             if (obj is Models.PhoneNumber.PhoneTypeEnum phoneNumberPhoneTypeEnum)

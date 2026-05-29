@@ -140,7 +140,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == TypeEnum.BalancePlatformCardorderUpdated)
                     return "balancePlatform.cardorder.updated";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -273,7 +273,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<CardOrderNotificationRequest.TypeEnum?>(CardOrderNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<CardOrderNotificationRequest.TypeEnum?>(CardOrderNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CardOrderNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         case "timestamp":
                             timestamp = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -296,7 +296,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             var cardOrderNotificationRequest = new CardOrderNotificationRequest();
             cardOrderNotificationRequest.Data = data.Value!;
             cardOrderNotificationRequest.Environment = environment.Value!;
-            cardOrderNotificationRequest.Type = type.Value!.Value;
+            cardOrderNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 cardOrderNotificationRequest.Timestamp = timestamp.Value;
             return cardOrderNotificationRequest;

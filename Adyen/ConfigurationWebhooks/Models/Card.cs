@@ -149,7 +149,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == FormFactorEnum.Virtual)
                     return "virtual";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -430,7 +430,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             break;
                         case "formFactor":
                             string? formFactorRawValue = utf8JsonReader.GetString();
-                            formFactor = new Option<Card.FormFactorEnum?>(Card.FormFactorEnum.FromStringOrDefault(formFactorRawValue));
+                            formFactor = new Option<Card.FormFactorEnum?>(Card.FormFactorEnum.FromStringOrDefault(formFactorRawValue) ?? (Card.FormFactorEnum)formFactorRawValue);
                             break;
                         case "authentication":
                             authentication = new Option<Authentication?>(JsonSerializer.Deserialize<Authentication>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -484,7 +484,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             card.Brand = brand.Value!;
             card.BrandVariant = brandVariant.Value!;
             card.CardholderName = cardholderName.Value!;
-            card.FormFactor = formFactor.Value!.Value;
+            card.FormFactor = formFactor.Value!;
             if (authentication.IsSet)
                 card.Authentication = authentication.Value;
             if (bin.IsSet)

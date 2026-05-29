@@ -30,14 +30,14 @@ using Adyen.ConfigurationWebhooks.Client;
 namespace Adyen.ConfigurationWebhooks.Models
 {
     /// <summary>
-    /// ValidationFacts.
+    /// PayoutStateWebhookData.
     /// </summary>
-    public partial class ValidationFacts
+    public partial class PayoutStateWebhookData
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ValidationFacts" /> class.
+        /// Initializes a new instance of the <see cref="PayoutStateWebhookData" /> class.
         /// </summary>
-        public ValidationFacts()
+        public PayoutStateWebhookData()
         {
             OnCreated();
         }
@@ -45,9 +45,9 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The evaluation result of the validation facts.  Possible values: **valid**, **invalid**, **notValidated**, **notApplicable**.
+        /// The result of the execution.
         /// </summary>
-        /// <value>The evaluation result of the validation facts.  Possible values: **valid**, **invalid**, **notValidated**, **notApplicable**.</value>
+        /// <value>The result of the execution.</value>
         [JsonConverter(typeof(ResultEnumJsonConverter))]
         public class ResultEnum : IEnum
         {
@@ -57,24 +57,19 @@ namespace Adyen.ConfigurationWebhooks.Models
             public string? Value { get; set; }
 
             /// <summary>
-            /// ResultEnum.Invalid - invalid
+            /// ResultEnum.Failed - failed
             /// </summary>
-            public static readonly ResultEnum Invalid = new("invalid");
+            public static readonly ResultEnum Failed = new("failed");
 
             /// <summary>
-            /// ResultEnum.NotApplicable - notApplicable
+            /// ResultEnum.Skipped - skipped
             /// </summary>
-            public static readonly ResultEnum NotApplicable = new("notApplicable");
+            public static readonly ResultEnum Skipped = new("skipped");
 
             /// <summary>
-            /// ResultEnum.NotValidated - notValidated
+            /// ResultEnum.Succeeded - succeeded
             /// </summary>
-            public static readonly ResultEnum NotValidated = new("notValidated");
-
-            /// <summary>
-            /// ResultEnum.Valid - valid
-            /// </summary>
-            public static readonly ResultEnum Valid = new("valid");
+            public static readonly ResultEnum Succeeded = new("succeeded");
         
             private ResultEnum(string? value)
             {
@@ -128,10 +123,9 @@ namespace Adyen.ConfigurationWebhooks.Models
             public static ResultEnum? FromStringOrDefault(string value)
             {
                 return value switch {
-                    "invalid" => ResultEnum.Invalid,
-                    "notApplicable" => ResultEnum.NotApplicable,
-                    "notValidated" => ResultEnum.NotValidated,
-                    "valid" => ResultEnum.Valid,
+                    "failed" => ResultEnum.Failed,
+                    "skipped" => ResultEnum.Skipped,
+                    "succeeded" => ResultEnum.Succeeded,
                     _ => null,
                 };
             }
@@ -146,17 +140,14 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == null)
                     return null;
             
-                if (value == ResultEnum.Invalid)
-                    return "invalid";
+                if (value == ResultEnum.Failed)
+                    return "failed";
                 
-                if (value == ResultEnum.NotApplicable)
-                    return "notApplicable";
+                if (value == ResultEnum.Skipped)
+                    return "skipped";
                 
-                if (value == ResultEnum.NotValidated)
-                    return "notValidated";
-                
-                if (value == ResultEnum.Valid)
-                    return "valid";
+                if (value == ResultEnum.Succeeded)
+                    return "succeeded";
                 
                 return value.Value;
             }
@@ -193,39 +184,80 @@ namespace Adyen.ConfigurationWebhooks.Models
         public Option<ResultEnum?> _ResultOption { get; private set; }
 
         /// <summary>
-        /// The evaluation result of the validation facts.  Possible values: **valid**, **invalid**, **notValidated**, **notApplicable**.
+        /// The result of the execution.
         /// </summary>
-        /// <value>The evaluation result of the validation facts.  Possible values: **valid**, **invalid**, **notValidated**, **notApplicable**.</value>
+        /// <value>The result of the execution.</value>
         [JsonPropertyName("result")]
         public ResultEnum? Result { get { return this._ResultOption; } set { this._ResultOption = new(value); } }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Reasons"/> will be populated.
+        /// This is used to track if an optional field is set. If set, <see cref="BalanceAccountId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>?> _ReasonsOption { get; private set; }
+        public Option<string?> _BalanceAccountIdOption { get; private set; }
 
         /// <summary>
-        /// The reason for the &#x60;result&#x60; of the validations.  This field is only sent for &#x60;validationFacts.type&#x60; **walletValidation**, when &#x60;validationFacts.result&#x60; is **invalid**.
+        /// The unique identifier of the balance account from which the payout is initiated.
         /// </summary>
-        /// <value>The reason for the `result` of the validations.  This field is only sent for `validationFacts.type` **walletValidation**, when `validationFacts.result` is **invalid**.</value>
-        [JsonPropertyName("reasons")]
-        public List<string>? Reasons { get { return this._ReasonsOption; } set { this._ReasonsOption = new(value); } }
+        /// <value>The unique identifier of the balance account from which the payout is initiated.</value>
+        [JsonPropertyName("balanceAccountId")]
+        public string? BalanceAccountId { get { return this._BalanceAccountIdOption; } set { this._BalanceAccountIdOption = new(value); } }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// This is used to track if an optional field is set. If set, <see cref="BalanceAccountPayoutScheduleId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _TypeOption { get; private set; }
+        public Option<string?> _BalanceAccountPayoutScheduleIdOption { get; private set; }
 
         /// <summary>
-        /// The type of the validation fact.
+        /// The unique identifier of the managed payout schedule.
         /// </summary>
-        /// <value>The type of the validation fact.</value>
-        [JsonPropertyName("type")]
-        public string? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
+        /// <value>The unique identifier of the managed payout schedule.</value>
+        [JsonPropertyName("balanceAccountPayoutScheduleId")]
+        public string? BalanceAccountPayoutScheduleId { get { return this._BalanceAccountPayoutScheduleIdOption; } set { this._BalanceAccountPayoutScheduleIdOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="BalancePlatform"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _BalancePlatformOption { get; private set; }
+
+        /// <summary>
+        /// The unique identifier of the balance platform.
+        /// </summary>
+        /// <value>The unique identifier of the balance platform.</value>
+        [JsonPropertyName("balancePlatform")]
+        public string? BalancePlatform { get { return this._BalancePlatformOption; } set { this._BalancePlatformOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ResultDetails"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<ResultDetails?> _ResultDetailsOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="ResultDetails"/>.
+        /// </summary>
+        [JsonPropertyName("resultDetails")]
+        public ResultDetails? ResultDetails { get { return this._ResultDetailsOption; } set { this._ResultDetailsOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="TriggeredAt"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DateTimeOffset?> _TriggeredAtOption { get; private set; }
+
+        /// <summary>
+        /// The timestamp of the moment when the execution was triggered.
+        /// </summary>
+        /// <value>The timestamp of the moment when the execution was triggered.</value>
+        [JsonPropertyName("triggeredAt")]
+        public DateTimeOffset? TriggeredAt { get { return this._TriggeredAtOption; } set { this._TriggeredAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -234,29 +266,37 @@ namespace Adyen.ConfigurationWebhooks.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ValidationFacts {\n");
-            sb.Append("  Reasons: ").Append(Reasons).Append("\n");
+            sb.Append("class PayoutStateWebhookData {\n");
+            sb.Append("  BalanceAccountId: ").Append(BalanceAccountId).Append("\n");
+            sb.Append("  BalanceAccountPayoutScheduleId: ").Append(BalanceAccountPayoutScheduleId).Append("\n");
+            sb.Append("  BalancePlatform: ").Append(BalancePlatform).Append("\n");
             sb.Append("  Result: ").Append(Result).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  ResultDetails: ").Append(ResultDetails).Append("\n");
+            sb.Append("  TriggeredAt: ").Append(TriggeredAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="ValidationFacts" />
+    /// A Json converter for type <see cref="PayoutStateWebhookData" />
     /// </summary>
-    public class ValidationFactsJsonConverter : JsonConverter<ValidationFacts>
+    public class PayoutStateWebhookDataJsonConverter : JsonConverter<PayoutStateWebhookData>
     {
         /// <summary>
-        /// Deserializes json to <see cref="ValidationFacts"/>.
+        /// The format to use to serialize TriggeredAt.
+        /// </summary>
+        public static string TriggeredAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+
+        /// <summary>
+        /// Deserializes json to <see cref="PayoutStateWebhookData"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="ValidationFacts"/>.</returns>
+        /// <returns><see cref="PayoutStateWebhookData"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override ValidationFacts Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override PayoutStateWebhookData Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -265,9 +305,12 @@ namespace Adyen.ConfigurationWebhooks.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<List<string>?> reasons = default;
-            Option<ValidationFacts.ResultEnum?> result = default;
-            Option<string?> type = default;
+            Option<string?> balanceAccountId = default;
+            Option<string?> balanceAccountPayoutScheduleId = default;
+            Option<string?> balancePlatform = default;
+            Option<PayoutStateWebhookData.ResultEnum?> result = default;
+            Option<ResultDetails?> resultDetails = default;
+            Option<DateTimeOffset?> triggeredAt = default;
 
             while (utf8JsonReader.Read())
             {
@@ -284,15 +327,24 @@ namespace Adyen.ConfigurationWebhooks.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "reasons":
-                            reasons = new Option<List<string>?>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                        case "balanceAccountId":
+                            balanceAccountId = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "balanceAccountPayoutScheduleId":
+                            balanceAccountPayoutScheduleId = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "balancePlatform":
+                            balancePlatform = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "result":
                             string? resultRawValue = utf8JsonReader.GetString();
-                            result = new Option<ValidationFacts.ResultEnum?>(ValidationFacts.ResultEnum.FromStringOrDefault(resultRawValue) ?? (ValidationFacts.ResultEnum)resultRawValue);
+                            result = new Option<PayoutStateWebhookData.ResultEnum?>(PayoutStateWebhookData.ResultEnum.FromStringOrDefault(resultRawValue) ?? (PayoutStateWebhookData.ResultEnum)resultRawValue);
                             break;
-                        case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "resultDetails":
+                            resultDetails = new Option<ResultDetails?>(JsonSerializer.Deserialize<ResultDetails>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "triggeredAt":
+                            triggeredAt = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -300,56 +352,74 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            var validationFacts = new ValidationFacts();
-            if (reasons.IsSet)
-                validationFacts.Reasons = reasons.Value;
+            var payoutStateWebhookData = new PayoutStateWebhookData();
+            if (balanceAccountId.IsSet)
+                payoutStateWebhookData.BalanceAccountId = balanceAccountId.Value;
+            if (balanceAccountPayoutScheduleId.IsSet)
+                payoutStateWebhookData.BalanceAccountPayoutScheduleId = balanceAccountPayoutScheduleId.Value;
+            if (balancePlatform.IsSet)
+                payoutStateWebhookData.BalancePlatform = balancePlatform.Value;
             if (result.IsSet)
-                validationFacts.Result = result.Value;
-            if (type.IsSet)
-                validationFacts.Type = type.Value;
-            return validationFacts;
+                payoutStateWebhookData.Result = result.Value;
+            if (resultDetails.IsSet)
+                payoutStateWebhookData.ResultDetails = resultDetails.Value;
+            if (triggeredAt.IsSet)
+                payoutStateWebhookData.TriggeredAt = triggeredAt.Value;
+            return payoutStateWebhookData;
         }
 
         /// <summary>
-        /// Serializes a <see cref="ValidationFacts"/>.
+        /// Serializes a <see cref="PayoutStateWebhookData"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="validationFacts"></param>
+        /// <param name="payoutStateWebhookData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, ValidationFacts validationFacts, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, PayoutStateWebhookData payoutStateWebhookData, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, validationFacts, jsonSerializerOptions);
+            WriteProperties(writer, payoutStateWebhookData, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="ValidationFacts"/>.
+        /// Serializes the properties of <see cref="PayoutStateWebhookData"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="validationFacts"></param>
+        /// <param name="payoutStateWebhookData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, ValidationFacts validationFacts, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, PayoutStateWebhookData payoutStateWebhookData, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (validationFacts._ReasonsOption.IsSet)
+            if (payoutStateWebhookData._BalanceAccountIdOption.IsSet)
+                if (payoutStateWebhookData.BalanceAccountId != null)
+                    writer.WriteString("balanceAccountId", payoutStateWebhookData.BalanceAccountId);
+
+            if (payoutStateWebhookData._BalanceAccountPayoutScheduleIdOption.IsSet)
+                if (payoutStateWebhookData.BalanceAccountPayoutScheduleId != null)
+                    writer.WriteString("balanceAccountPayoutScheduleId", payoutStateWebhookData.BalanceAccountPayoutScheduleId);
+
+            if (payoutStateWebhookData._BalancePlatformOption.IsSet)
+                if (payoutStateWebhookData.BalancePlatform != null)
+                    writer.WriteString("balancePlatform", payoutStateWebhookData.BalancePlatform);
+
+            if (payoutStateWebhookData._ResultOption.IsSet && payoutStateWebhookData.Result != null) 
             {
-                writer.WritePropertyName("reasons");
-                JsonSerializer.Serialize(writer, validationFacts.Reasons, jsonSerializerOptions);
-            }
-            if (validationFacts._ResultOption.IsSet && validationFacts.Result != null) 
-            {
-                string? resultRawValue = ValidationFacts.ResultEnum.ToJsonValue(validationFacts._ResultOption.Value!.Value);
+                string? resultRawValue = PayoutStateWebhookData.ResultEnum.ToJsonValue(payoutStateWebhookData._ResultOption.Value!.Value);
                 writer.WriteString("result", resultRawValue);
             }
             
-            if (validationFacts._TypeOption.IsSet)
-                if (validationFacts.Type != null)
-                    writer.WriteString("type", validationFacts.Type);
+            if (payoutStateWebhookData._ResultDetailsOption.IsSet)
+            {
+                writer.WritePropertyName("resultDetails");
+                JsonSerializer.Serialize(writer, payoutStateWebhookData.ResultDetails, jsonSerializerOptions);
+            }
+            if (payoutStateWebhookData._TriggeredAtOption.IsSet)
+                if (payoutStateWebhookData._TriggeredAtOption.Value != null)
+                    writer.WriteString("triggeredAt", payoutStateWebhookData._TriggeredAtOption.Value!.Value.ToString(TriggeredAtFormat));
         }
     }
 }

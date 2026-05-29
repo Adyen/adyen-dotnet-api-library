@@ -140,7 +140,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == TypeEnum.BalancePlatformAccountHolderCreated)
                     return "balancePlatform.accountHolder.created";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -273,7 +273,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<AccountHolderNotificationRequest.TypeEnum?>(AccountHolderNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<AccountHolderNotificationRequest.TypeEnum?>(AccountHolderNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (AccountHolderNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         case "timestamp":
                             timestamp = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -296,7 +296,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             var accountHolderNotificationRequest = new AccountHolderNotificationRequest();
             accountHolderNotificationRequest.Data = data.Value!;
             accountHolderNotificationRequest.Environment = environment.Value!;
-            accountHolderNotificationRequest.Type = type.Value!.Value;
+            accountHolderNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 accountHolderNotificationRequest.Timestamp = timestamp.Value;
             return accountHolderNotificationRequest;

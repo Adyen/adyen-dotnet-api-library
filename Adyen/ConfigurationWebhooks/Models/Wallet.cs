@@ -490,7 +490,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == RecommendationReasonsEnum.WalletAccountHolderNameOnFileDoesNotMatchCardholderEnteredName)
                     return "walletAccountHolderNameOnFileDoesNotMatchCardholderEnteredName";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>

@@ -131,7 +131,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == TypeEnum.UkLocal)
                     return "ukLocal";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -244,7 +244,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<UKLocalMandateAccountIdentification.TypeEnum?>(UKLocalMandateAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<UKLocalMandateAccountIdentification.TypeEnum?>(UKLocalMandateAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (UKLocalMandateAccountIdentification.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -264,7 +264,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             var uKLocalMandateAccountIdentification = new UKLocalMandateAccountIdentification();
             uKLocalMandateAccountIdentification.AccountNumber = accountNumber.Value!;
             uKLocalMandateAccountIdentification.SortCode = sortCode.Value!;
-            uKLocalMandateAccountIdentification.Type = type.Value!.Value;
+            uKLocalMandateAccountIdentification.Type = type.Value!;
             return uKLocalMandateAccountIdentification;
         }
 

@@ -149,7 +149,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == TypeEnum.BalancePlatformBalanceAccountSweepDeleted)
                     return "balancePlatform.balanceAccountSweep.deleted";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -282,7 +282,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<SweepConfigurationNotificationRequest.TypeEnum?>(SweepConfigurationNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<SweepConfigurationNotificationRequest.TypeEnum?>(SweepConfigurationNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (SweepConfigurationNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         case "timestamp":
                             timestamp = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -305,7 +305,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             var sweepConfigurationNotificationRequest = new SweepConfigurationNotificationRequest();
             sweepConfigurationNotificationRequest.Data = data.Value!;
             sweepConfigurationNotificationRequest.Environment = environment.Value!;
-            sweepConfigurationNotificationRequest.Type = type.Value!.Value;
+            sweepConfigurationNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 sweepConfigurationNotificationRequest.Timestamp = timestamp.Value;
             return sweepConfigurationNotificationRequest;

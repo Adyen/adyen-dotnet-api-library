@@ -149,7 +149,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == StatusEnum.Pending)
                     return "pending";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -277,7 +277,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == TypeEnum.Bacs)
                     return "bacs";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -483,11 +483,11 @@ namespace Adyen.ConfigurationWebhooks.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<Mandate.StatusEnum?>(Mandate.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<Mandate.StatusEnum?>(Mandate.StatusEnum.FromStringOrDefault(statusRawValue) ?? (Mandate.StatusEnum)statusRawValue);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<Mandate.TypeEnum?>(Mandate.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<Mandate.TypeEnum?>(Mandate.TypeEnum.FromStringOrDefault(typeRawValue) ?? (Mandate.TypeEnum)typeRawValue);
                             break;
                         case "updatedAt":
                             updatedAt = new Option<Object?>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions)!);
