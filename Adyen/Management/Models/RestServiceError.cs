@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.Management.Client;
 
 namespace Adyen.Management.Models
@@ -32,6 +33,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// RestServiceError.
     /// </summary>
+    [JsonConverter(typeof(RestServiceErrorJsonConverter))]
     public partial class RestServiceError
     {
         /// <summary>

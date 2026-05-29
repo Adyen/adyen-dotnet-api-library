@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.Management.Client;
 
 namespace Adyen.Management.Models
@@ -32,6 +33,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// TestWebhookResponse.
     /// </summary>
+    [JsonConverter(typeof(TestWebhookResponseJsonConverter))]
     public partial class TestWebhookResponse
     {
         /// <summary>
