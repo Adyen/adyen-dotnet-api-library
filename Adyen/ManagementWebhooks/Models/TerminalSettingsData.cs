@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.ManagementWebhooks.Client;
 
 namespace Adyen.ManagementWebhooks.Models
@@ -32,6 +33,7 @@ namespace Adyen.ManagementWebhooks.Models
     /// <summary>
     /// TerminalSettingsData.
     /// </summary>
+    [JsonConverter(typeof(TerminalSettingsDataJsonConverter))]
     public partial class TerminalSettingsData
     {
         /// <summary>
