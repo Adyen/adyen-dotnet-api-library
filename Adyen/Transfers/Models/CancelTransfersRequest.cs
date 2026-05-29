@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.Transfers.Client;
 
 namespace Adyen.Transfers.Models
@@ -32,6 +33,7 @@ namespace Adyen.Transfers.Models
     /// <summary>
     /// CancelTransfersRequest.
     /// </summary>
+    [JsonConverter(typeof(CancelTransfersRequestJsonConverter))]
     public partial class CancelTransfersRequest
     {
         /// <summary>

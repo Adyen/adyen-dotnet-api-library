@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.Transfers.Client;
 
 namespace Adyen.Transfers.Models
@@ -32,6 +33,7 @@ namespace Adyen.Transfers.Models
     /// <summary>
     /// TransferData.
     /// </summary>
+    [JsonConverter(typeof(TransferDataJsonConverter))]
     public partial class TransferData
     {
         /// <summary>
