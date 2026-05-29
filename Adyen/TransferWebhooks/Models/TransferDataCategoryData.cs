@@ -202,7 +202,7 @@ namespace Adyen.TransferWebhooks.Models
             if (platformPayment?.Type != null && PlatformPayment.TypeEnum.FromStringOrDefault((string?)platformPayment.Type) != null)
                 return new TransferDataCategoryData(platformPayment);
 
-            throw new JsonException();
+            return null!;
         }
 
         /// <summary>

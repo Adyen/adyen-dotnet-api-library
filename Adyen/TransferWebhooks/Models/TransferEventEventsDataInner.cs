@@ -178,7 +178,7 @@ namespace Adyen.TransferWebhooks.Models
             if (merchantPurchaseData?.Type != null && MerchantPurchaseData.TypeEnum.FromStringOrDefault((string?)merchantPurchaseData.Type) != null)
                 return new TransferEventEventsDataInner(merchantPurchaseData);
 
-            throw new JsonException();
+            return null!;
         }
 
         /// <summary>
