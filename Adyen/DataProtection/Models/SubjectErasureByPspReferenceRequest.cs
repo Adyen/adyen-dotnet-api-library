@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.DataProtection.Client;
 
 namespace Adyen.DataProtection.Models
@@ -32,6 +33,7 @@ namespace Adyen.DataProtection.Models
     /// <summary>
     /// SubjectErasureByPspReferenceRequest.
     /// </summary>
+    [JsonConverter(typeof(SubjectErasureByPspReferenceRequestJsonConverter))]
     public partial class SubjectErasureByPspReferenceRequest
     {
         /// <summary>
