@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.TokenizationWebhooks.Client;
 
 namespace Adyen.TokenizationWebhooks.Models
@@ -32,6 +33,7 @@ namespace Adyen.TokenizationWebhooks.Models
     /// <summary>
     /// RecurringTokenStoreOperation.
     /// </summary>
+    [JsonConverter(typeof(RecurringTokenStoreOperationJsonConverter))]
     public partial class RecurringTokenStoreOperation
     {
         /// <summary>
