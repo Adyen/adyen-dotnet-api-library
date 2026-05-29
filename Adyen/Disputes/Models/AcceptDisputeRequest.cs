@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.Disputes.Client;
 
 namespace Adyen.Disputes.Models
@@ -32,6 +33,7 @@ namespace Adyen.Disputes.Models
     /// <summary>
     /// AcceptDisputeRequest.
     /// </summary>
+    [JsonConverter(typeof(AcceptDisputeRequestJsonConverter))]
     public partial class AcceptDisputeRequest
     {
         /// <summary>
