@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.TransferWebhooks.Client;
 
 namespace Adyen.TransferWebhooks.Models
@@ -32,6 +33,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// Additional information for the tracking event..
     /// </summary>
+    [JsonConverter(typeof(TransferEventTrackingDataJsonConverter))]
     public partial class TransferEventTrackingData
     {
         /// <summary>
