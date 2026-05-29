@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.SessionAuthentication.Client;
 
 namespace Adyen.SessionAuthentication.Models
@@ -32,6 +33,7 @@ namespace Adyen.SessionAuthentication.Models
     /// <summary>
     /// PaymentInstrumentResource.
     /// </summary>
+    [JsonConverter(typeof(PaymentInstrumentResourceJsonConverter))]
     public partial class PaymentInstrumentResource : Resource
     {
         /// <summary>
