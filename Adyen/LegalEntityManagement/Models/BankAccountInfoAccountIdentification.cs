@@ -466,7 +466,7 @@ namespace Adyen.LegalEntityManagement.Models
             if (uSLocalAccountIdentification?.Type != null && USLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)uSLocalAccountIdentification.Type) != null)
                 return new BankAccountInfoAccountIdentification(uSLocalAccountIdentification);
 
-            throw new JsonException();
+            return null!;
         }
 
         /// <summary>

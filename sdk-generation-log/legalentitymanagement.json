@@ -1,8 +1,8 @@
 {
   "service": "legalentitymanagement",
   "project": "dotnet",
-  "generatedAt": "2026-05-28T09:01:48Z",
+  "generatedAt": "2026-05-29T06:29:48Z",
   "openapiCommitSha": "1e3919b0fb3a780c92f1b11f8ca3d829a641066c",
   "automationCommitSha": "6f06b47d0661f0891defe6b85461d2c367fbd284",
-  "libraryCommitSha": "e7ceadd1c0d5125aca77a768b22b42a0ee581eda"
+  "libraryCommitSha": "a0d039c2604216a065ab7faa1f34c583e627d10d"
 }
