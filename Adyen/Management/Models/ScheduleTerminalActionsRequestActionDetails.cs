@@ -250,7 +250,7 @@ namespace Adyen.Management.Models
             if (uninstallAndroidCertificateDetails?.Type != null && UninstallAndroidCertificateDetails.TypeEnum.FromStringOrDefault((string?)uninstallAndroidCertificateDetails.Type) != null)
                 return new ScheduleTerminalActionsRequestActionDetails(uninstallAndroidCertificateDetails);
 
-            throw new JsonException();
+            return null!;
         }
 
         /// <summary>
