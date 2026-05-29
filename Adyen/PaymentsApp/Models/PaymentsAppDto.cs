@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.PaymentsApp.Client;
 
 namespace Adyen.PaymentsApp.Models
@@ -32,6 +33,7 @@ namespace Adyen.PaymentsApp.Models
     /// <summary>
     /// PaymentsAppDto.
     /// </summary>
+    [JsonConverter(typeof(PaymentsAppDtoJsonConverter))]
     public partial class PaymentsAppDto
     {
         /// <summary>
