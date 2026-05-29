@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.RelayedAuthorizationWebhooks.Client;
 
 namespace Adyen.RelayedAuthorizationWebhooks.Models
@@ -32,6 +33,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
     /// <summary>
     /// CardConfiguration.
     /// </summary>
+    [JsonConverter(typeof(CardConfigurationJsonConverter))]
     public partial class CardConfiguration
     {
         /// <summary>
