@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.Disputes.Client;
 
 namespace Adyen.Disputes.Models
@@ -32,6 +33,7 @@ namespace Adyen.Disputes.Models
     /// <summary>
     /// DefenseDocument.
     /// </summary>
+    [JsonConverter(typeof(DefenseDocumentJsonConverter))]
     public partial class DefenseDocument
     {
         /// <summary>
@@ -123,7 +125,7 @@ namespace Adyen.Disputes.Models
                     switch (jsonPropertyName)
                     {
                         case "content":
-                            content = new Option<byte[]?>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            content = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
                             break;
                         case "contentType":
                             contentType = new Option<string?>(utf8JsonReader.GetString()!);
@@ -180,7 +182,7 @@ namespace Adyen.Disputes.Models
         {
             
             writer.WritePropertyName("content");
-            JsonSerializer.Serialize(writer, defenseDocument.Content, jsonSerializerOptions);
+            new ByteArrayConverter().Write(writer, defenseDocument.Content, jsonSerializerOptions);
             if (defenseDocument.ContentType != null)
                 writer.WriteString("contentType", defenseDocument.ContentType);
 
