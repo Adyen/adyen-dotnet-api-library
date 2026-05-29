@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.BalancePlatform.Client;
 
 namespace Adyen.BalancePlatform.Models
@@ -32,6 +33,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// MandatePartyIdentification.
     /// </summary>
+    [JsonConverter(typeof(MandatePartyIdentificationJsonConverter))]
     public partial class MandatePartyIdentification
     {
         /// <summary>
