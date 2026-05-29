@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.ConfigurationWebhooks.Client;
 
 namespace Adyen.ConfigurationWebhooks.Models
@@ -32,6 +33,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// UKLocalMandateAccountIdentification.
     /// </summary>
+    [JsonConverter(typeof(UKLocalMandateAccountIdentificationJsonConverter))]
     public partial class UKLocalMandateAccountIdentification
     {
         /// <summary>
