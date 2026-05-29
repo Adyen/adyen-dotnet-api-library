@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Adyen.Core;
+using Adyen.Core.Converters;
 using Adyen.NegativeBalanceWarningWebhooks.Client;
 
 namespace Adyen.NegativeBalanceWarningWebhooks.Models
@@ -32,6 +33,7 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
     /// <summary>
     /// ResourceReference.
     /// </summary>
+    [JsonConverter(typeof(ResourceReferenceJsonConverter))]
     public partial class ResourceReference
     {
         /// <summary>
