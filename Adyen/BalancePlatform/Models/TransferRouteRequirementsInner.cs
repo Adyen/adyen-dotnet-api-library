@@ -346,7 +346,7 @@ namespace Adyen.BalancePlatform.Models
             if (uSInternationalAchPriorityRequirement?.Type != null && USInternationalAchPriorityRequirement.TypeEnum.FromStringOrDefault((string?)uSInternationalAchPriorityRequirement.Type) != null)
                 return new TransferRouteRequirementsInner(uSInternationalAchPriorityRequirement);
 
-            throw new JsonException();
+            return null!;
         }
 
         /// <summary>

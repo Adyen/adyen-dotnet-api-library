@@ -490,7 +490,7 @@ namespace Adyen.BalancePlatform.Models
             if (uSLocalAccountIdentification?.Type != null && USLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)uSLocalAccountIdentification.Type) != null)
                 return new BankAccountAccountIdentification(uSLocalAccountIdentification);
 
-            throw new JsonException();
+            return null!;
         }
 
         /// <summary>
