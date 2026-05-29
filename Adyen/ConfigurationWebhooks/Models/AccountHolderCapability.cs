@@ -158,7 +158,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == AllowedLevelEnum.NotApplicable)
                     return "notApplicable";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -313,7 +313,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == RequestedLevelEnum.NotApplicable)
                     return "notApplicable";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -468,7 +468,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == VerificationStatusEnum.Valid)
                     return "valid";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -681,7 +681,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             break;
                         case "allowedLevel":
                             string? allowedLevelRawValue = utf8JsonReader.GetString();
-                            allowedLevel = new Option<AccountHolderCapability.AllowedLevelEnum?>(AccountHolderCapability.AllowedLevelEnum.FromStringOrDefault(allowedLevelRawValue));
+                            allowedLevel = new Option<AccountHolderCapability.AllowedLevelEnum?>(AccountHolderCapability.AllowedLevelEnum.FromStringOrDefault(allowedLevelRawValue) ?? (AccountHolderCapability.AllowedLevelEnum)allowedLevelRawValue);
                             break;
                         case "allowedSettings":
                             allowedSettings = new Option<CapabilitySettings?>(JsonSerializer.Deserialize<CapabilitySettings>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -697,7 +697,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             break;
                         case "requestedLevel":
                             string? requestedLevelRawValue = utf8JsonReader.GetString();
-                            requestedLevel = new Option<AccountHolderCapability.RequestedLevelEnum?>(AccountHolderCapability.RequestedLevelEnum.FromStringOrDefault(requestedLevelRawValue));
+                            requestedLevel = new Option<AccountHolderCapability.RequestedLevelEnum?>(AccountHolderCapability.RequestedLevelEnum.FromStringOrDefault(requestedLevelRawValue) ?? (AccountHolderCapability.RequestedLevelEnum)requestedLevelRawValue);
                             break;
                         case "requestedSettings":
                             requestedSettings = new Option<CapabilitySettings?>(JsonSerializer.Deserialize<CapabilitySettings>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -707,7 +707,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             break;
                         case "verificationStatus":
                             string? verificationStatusRawValue = utf8JsonReader.GetString();
-                            verificationStatus = new Option<AccountHolderCapability.VerificationStatusEnum?>(AccountHolderCapability.VerificationStatusEnum.FromStringOrDefault(verificationStatusRawValue));
+                            verificationStatus = new Option<AccountHolderCapability.VerificationStatusEnum?>(AccountHolderCapability.VerificationStatusEnum.FromStringOrDefault(verificationStatusRawValue) ?? (AccountHolderCapability.VerificationStatusEnum)verificationStatusRawValue);
                             break;
                         default:
                             break;

@@ -140,7 +140,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == TypeEnum.BalancePlatformMandateUpdated)
                     return "balancePlatform.mandate.updated";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -273,7 +273,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<MandateNotificationRequest.TypeEnum?>(MandateNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<MandateNotificationRequest.TypeEnum?>(MandateNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (MandateNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         case "timestamp":
                             timestamp = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -296,7 +296,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             var mandateNotificationRequest = new MandateNotificationRequest();
             mandateNotificationRequest.Data = data.Value!;
             mandateNotificationRequest.Environment = environment.Value!;
-            mandateNotificationRequest.Type = type.Value!.Value;
+            mandateNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 mandateNotificationRequest.Timestamp = timestamp.Value;
             return mandateNotificationRequest;

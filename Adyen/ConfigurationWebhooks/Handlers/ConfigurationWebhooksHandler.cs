@@ -39,6 +39,13 @@ namespace Adyen.ConfigurationWebhooks.Handlers
         AccountHolderNotificationRequest? DeserializeAccountHolderNotificationRequest(string json);
             
         /// <summary>
+        /// Uses <see cref="Adyen.ConfigurationWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="AccountPayoutAutoApplicationNotificationRequest"/>.
+        /// </summary>
+        /// <param name="json">The full webhook payload.</param>
+        /// <exception cref="JsonException"></exception>
+        AccountPayoutAutoApplicationNotificationRequest? DeserializeAccountPayoutAutoApplicationNotificationRequest(string json);
+            
+        /// <summary>
         /// Uses <see cref="Adyen.ConfigurationWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="BalanceAccountNotificationRequest"/>.
         /// </summary>
         /// <param name="json">The full webhook payload.</param>
@@ -72,6 +79,27 @@ namespace Adyen.ConfigurationWebhooks.Handlers
         /// <param name="json">The full webhook payload.</param>
         /// <exception cref="JsonException"></exception>
         PaymentNotificationRequest? DeserializePaymentNotificationRequest(string json);
+            
+        /// <summary>
+        /// Uses <see cref="Adyen.ConfigurationWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="PayoutScheduleBANotificationRequest"/>.
+        /// </summary>
+        /// <param name="json">The full webhook payload.</param>
+        /// <exception cref="JsonException"></exception>
+        PayoutScheduleBANotificationRequest? DeserializePayoutScheduleBANotificationRequest(string json);
+            
+        /// <summary>
+        /// Uses <see cref="Adyen.ConfigurationWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="PayoutScheduleBPNotificationRequest"/>.
+        /// </summary>
+        /// <param name="json">The full webhook payload.</param>
+        /// <exception cref="JsonException"></exception>
+        PayoutScheduleBPNotificationRequest? DeserializePayoutScheduleBPNotificationRequest(string json);
+            
+        /// <summary>
+        /// Uses <see cref="Adyen.ConfigurationWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="PayoutScheduleStateNotificationRequest"/>.
+        /// </summary>
+        /// <param name="json">The full webhook payload.</param>
+        /// <exception cref="JsonException"></exception>
+        PayoutScheduleStateNotificationRequest? DeserializePayoutScheduleStateNotificationRequest(string json);
             
         /// <summary>
         /// Uses <see cref="Adyen.ConfigurationWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="ScoreNotificationRequest"/>.
@@ -128,6 +156,12 @@ namespace Adyen.ConfigurationWebhooks.Handlers
         }
 
         /// <inheritdoc/>
+        public AccountPayoutAutoApplicationNotificationRequest? DeserializeAccountPayoutAutoApplicationNotificationRequest(string json)
+        {
+            return JsonSerializer.Deserialize<AccountPayoutAutoApplicationNotificationRequest>(json, JsonSerializerOptionsProvider.Options);
+        }
+
+        /// <inheritdoc/>
         public BalanceAccountNotificationRequest? DeserializeBalanceAccountNotificationRequest(string json)
         {
             return JsonSerializer.Deserialize<BalanceAccountNotificationRequest>(json, JsonSerializerOptionsProvider.Options);
@@ -155,6 +189,24 @@ namespace Adyen.ConfigurationWebhooks.Handlers
         public PaymentNotificationRequest? DeserializePaymentNotificationRequest(string json)
         {
             return JsonSerializer.Deserialize<PaymentNotificationRequest>(json, JsonSerializerOptionsProvider.Options);
+        }
+
+        /// <inheritdoc/>
+        public PayoutScheduleBANotificationRequest? DeserializePayoutScheduleBANotificationRequest(string json)
+        {
+            return JsonSerializer.Deserialize<PayoutScheduleBANotificationRequest>(json, JsonSerializerOptionsProvider.Options);
+        }
+
+        /// <inheritdoc/>
+        public PayoutScheduleBPNotificationRequest? DeserializePayoutScheduleBPNotificationRequest(string json)
+        {
+            return JsonSerializer.Deserialize<PayoutScheduleBPNotificationRequest>(json, JsonSerializerOptionsProvider.Options);
+        }
+
+        /// <inheritdoc/>
+        public PayoutScheduleStateNotificationRequest? DeserializePayoutScheduleStateNotificationRequest(string json)
+        {
+            return JsonSerializer.Deserialize<PayoutScheduleStateNotificationRequest>(json, JsonSerializerOptionsProvider.Options);
         }
 
         /// <inheritdoc/>

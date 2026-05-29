@@ -150,7 +150,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == CategoryEnum.PlatformPayment)
                     return "platformPayment";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -322,7 +322,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == PrioritiesEnum.Wire)
                     return "wire";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -571,7 +571,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == ReasonEnum.Unknown)
                     return "unknown";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -708,7 +708,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == StatusEnum.Inactive)
                     return "inactive";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -845,7 +845,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == TypeEnum.Push)
                     return "push";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1118,7 +1118,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             break;
                         case "category":
                             string? categoryRawValue = utf8JsonReader.GetString();
-                            category = new Option<SweepConfigurationV2.CategoryEnum?>(SweepConfigurationV2.CategoryEnum.FromStringOrDefault(categoryRawValue));
+                            category = new Option<SweepConfigurationV2.CategoryEnum?>(SweepConfigurationV2.CategoryEnum.FromStringOrDefault(categoryRawValue) ?? (SweepConfigurationV2.CategoryEnum)categoryRawValue);
                             break;
                         case "description":
                             description = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1128,7 +1128,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             break;
                         case "reason":
                             string? reasonRawValue = utf8JsonReader.GetString();
-                            reason = new Option<SweepConfigurationV2.ReasonEnum?>(SweepConfigurationV2.ReasonEnum.FromStringOrDefault(reasonRawValue));
+                            reason = new Option<SweepConfigurationV2.ReasonEnum?>(SweepConfigurationV2.ReasonEnum.FromStringOrDefault(reasonRawValue) ?? (SweepConfigurationV2.ReasonEnum)reasonRawValue);
                             break;
                         case "reasonDetail":
                             reasonDetail = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1141,7 +1141,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
-                            status = new Option<SweepConfigurationV2.StatusEnum?>(SweepConfigurationV2.StatusEnum.FromStringOrDefault(statusRawValue));
+                            status = new Option<SweepConfigurationV2.StatusEnum?>(SweepConfigurationV2.StatusEnum.FromStringOrDefault(statusRawValue) ?? (SweepConfigurationV2.StatusEnum)statusRawValue);
                             break;
                         case "sweepAmount":
                             sweepAmount = new Option<Amount?>(JsonSerializer.Deserialize<Amount>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -1154,7 +1154,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<SweepConfigurationV2.TypeEnum?>(SweepConfigurationV2.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<SweepConfigurationV2.TypeEnum?>(SweepConfigurationV2.TypeEnum.FromStringOrDefault(typeRawValue) ?? (SweepConfigurationV2.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;

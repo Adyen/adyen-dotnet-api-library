@@ -140,7 +140,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == TypeEnum.BalancePlatformPaymentInstrumentUpdated)
                     return "balancePlatform.paymentInstrument.updated";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -273,7 +273,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PaymentNotificationRequest.TypeEnum?>(PaymentNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<PaymentNotificationRequest.TypeEnum?>(PaymentNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PaymentNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         case "timestamp":
                             timestamp = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -296,7 +296,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             var paymentNotificationRequest = new PaymentNotificationRequest();
             paymentNotificationRequest.Data = data.Value!;
             paymentNotificationRequest.Environment = environment.Value!;
-            paymentNotificationRequest.Type = type.Value!.Value;
+            paymentNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 paymentNotificationRequest.Timestamp = timestamp.Value;
             return paymentNotificationRequest;

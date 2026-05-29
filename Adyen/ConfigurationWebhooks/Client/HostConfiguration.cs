@@ -62,6 +62,9 @@ namespace Adyen.ConfigurationWebhooks.Client
             _jsonOptions.Converters.Add(new AccountHolderCapabilityJsonConverter());
             _jsonOptions.Converters.Add(new AccountHolderNotificationDataJsonConverter());
             _jsonOptions.Converters.Add(new AccountHolderNotificationRequestJsonConverter());
+            _jsonOptions.Converters.Add(new AccountPayoutAutoApplicationNotificationRequestJsonConverter());
+            _jsonOptions.Converters.Add(new AccountPayoutAutoApplicationWebhookDataJsonConverter());
+            _jsonOptions.Converters.Add(new AccountPayoutConfigWebhookDataJsonConverter());
             _jsonOptions.Converters.Add(new AccountSupportingEntityCapabilityJsonConverter());
             _jsonOptions.Converters.Add(new AddressJsonConverter());
             _jsonOptions.Converters.Add(new AmountJsonConverter());
@@ -106,12 +109,18 @@ namespace Adyen.ConfigurationWebhooks.Client
             _jsonOptions.Converters.Add(new PaymentInstrumentAdditionalBankAccountIdentificationsInnerJsonConverter());
             _jsonOptions.Converters.Add(new PaymentInstrumentNotificationDataJsonConverter());
             _jsonOptions.Converters.Add(new PaymentNotificationRequestJsonConverter());
+            _jsonOptions.Converters.Add(new PayoutScheduleBANotificationRequestJsonConverter());
+            _jsonOptions.Converters.Add(new PayoutScheduleBPNotificationRequestJsonConverter());
+            _jsonOptions.Converters.Add(new PayoutScheduleStateNotificationRequestJsonConverter());
+            _jsonOptions.Converters.Add(new PayoutStateWebhookDataJsonConverter());
             _jsonOptions.Converters.Add(new PhoneJsonConverter());
             _jsonOptions.Converters.Add(new PhoneNumberJsonConverter());
             _jsonOptions.Converters.Add(new PlatformPaymentConfigurationJsonConverter());
+            _jsonOptions.Converters.Add(new PlatformPayoutConfigWebhookDataJsonConverter());
             _jsonOptions.Converters.Add(new RemediatingActionJsonConverter());
             _jsonOptions.Converters.Add(new ResourceJsonConverter());
             _jsonOptions.Converters.Add(new ResourceReferenceJsonConverter());
+            _jsonOptions.Converters.Add(new ResultDetailsJsonConverter());
             _jsonOptions.Converters.Add(new ScoreNotificationRequestJsonConverter());
             _jsonOptions.Converters.Add(new SweepConfigurationNotificationDataJsonConverter());
             _jsonOptions.Converters.Add(new SweepConfigurationNotificationRequestJsonConverter());

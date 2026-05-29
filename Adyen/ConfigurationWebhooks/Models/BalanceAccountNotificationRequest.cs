@@ -140,7 +140,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == TypeEnum.BalancePlatformBalanceAccountCreated)
                     return "balancePlatform.balanceAccount.created";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -273,7 +273,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<BalanceAccountNotificationRequest.TypeEnum?>(BalanceAccountNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<BalanceAccountNotificationRequest.TypeEnum?>(BalanceAccountNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (BalanceAccountNotificationRequest.TypeEnum)typeRawValue);
                             break;
                         case "timestamp":
                             timestamp = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -296,7 +296,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             var balanceAccountNotificationRequest = new BalanceAccountNotificationRequest();
             balanceAccountNotificationRequest.Data = data.Value!;
             balanceAccountNotificationRequest.Environment = environment.Value!;
-            balanceAccountNotificationRequest.Type = type.Value!.Value;
+            balanceAccountNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 balanceAccountNotificationRequest.Timestamp = timestamp.Value;
             return balanceAccountNotificationRequest;
