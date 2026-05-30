@@ -172,7 +172,7 @@ namespace Adyen.LegalEntityManagement.Models
                     switch (jsonPropertyName)
                     {
                         case "content":
-                            content = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
+                            content = new Option<byte[]?>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "createdAt":
                             createdAt = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -230,7 +230,7 @@ namespace Adyen.LegalEntityManagement.Models
             if (getPciQuestionnaireResponse._ContentOption.IsSet)
             {
                 writer.WritePropertyName("content");
-                new ByteArrayConverter().Write(writer, getPciQuestionnaireResponse.Content, jsonSerializerOptions);
+                JsonSerializer.Serialize(writer, getPciQuestionnaireResponse.Content, jsonSerializerOptions);
             }
             if (getPciQuestionnaireResponse._CreatedAtOption.IsSet)
                 if (getPciQuestionnaireResponse._CreatedAtOption.Value != null)

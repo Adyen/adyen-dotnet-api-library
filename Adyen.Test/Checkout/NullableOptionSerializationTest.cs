@@ -206,28 +206,31 @@ namespace Adyen.Test.Checkout
         }
 
         [TestMethod]
-        public void Given_ThreeDSecureData_ByteArray_Bare_And_DI_Produce_Same_Bytes()
+        public void Given_ThreeDSecureData_ByteArray_Bare_Produces_Base64DecodedBytes()
         {
-            // Both bare and DI mode use ByteArrayConverter (UTF-8), so results must be identical.
+            // Bare mode uses STJ default: base64-decodes the JSON string.
+            // "dGVzdA==" decodes to "test".
             string json = "{\"cavv\":\"dGVzdA==\"}";
-
-            var bareResult = JsonSerializer.Deserialize<ThreeDSecureData>(json);
-            var diResult = JsonSerializer.Deserialize<ThreeDSecureData>(json, _jsonSerializerOptionsProvider.Options);
-
-            CollectionAssert.AreEqual(diResult.Cavv, bareResult.Cavv,
-                "Bare and DI deserialization must produce identical byte[] values.");
-        }
-
-        [TestMethod]
-        public void Given_ThreeDSecureData_ByteArray_Bare_Produces_UTF8_Bytes()
-        {
-            string json = "{\"cavv\":\"dGVzdA==\"}";
-            byte[] expected = Encoding.UTF8.GetBytes("dGVzdA==");
+            byte[] expected = Encoding.UTF8.GetBytes("test");
 
             var result = JsonSerializer.Deserialize<ThreeDSecureData>(json);
 
             CollectionAssert.AreEqual(expected, result.Cavv,
-                "Bare deserialization must use UTF-8 encoding (ByteArrayConverter semantics), not Base64.");
+                "Bare deserialization uses STJ default base64 decoding.");
+        }
+
+        [TestMethod]
+        public void Given_ThreeDSecureData_ByteArray_DI_Produces_UTF8_Bytes()
+        {
+            // DI mode uses ByteArrayConverter registered in HostConfiguration: UTF-8 string preservation.
+            // "dGVzdA==" is treated as a UTF-8 string and stored as its bytes.
+            string json = "{\"cavv\":\"dGVzdA==\"}";
+            byte[] expected = Encoding.UTF8.GetBytes("dGVzdA==");
+
+            var result = JsonSerializer.Deserialize<ThreeDSecureData>(json, _jsonSerializerOptionsProvider.Options);
+
+            CollectionAssert.AreEqual(expected, result.Cavv,
+                "DI deserialization uses ByteArrayConverter (UTF-8 string preservation).");
         }
     }
 }

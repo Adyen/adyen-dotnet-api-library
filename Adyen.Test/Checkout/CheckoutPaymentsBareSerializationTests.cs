@@ -110,8 +110,10 @@ namespace Adyen.Test.Checkout
         [TestMethod]
         public void Given_ThreeDSecureData_When_BareSerialize_Then_ByteArray_IsCorrect()
         {
-            byte[] base64Bytes = Encoding.ASCII.GetBytes(Convert.ToBase64String(Encoding.ASCII.GetBytes("Bytes-To-Be-Encoded")));
-            var threeDSecure = new ThreeDSecureData { Cavv = base64Bytes, Xid = base64Bytes };
+            // STJ default: byte[] is base64-encoded. Encoding.UTF8.GetBytes("Bytes-To-Be-Encoded")
+            // base64-encodes to "Qnl0ZXMtVG8tQmUtRW5jb2RlZA==".
+            byte[] rawBytes = Encoding.UTF8.GetBytes("Bytes-To-Be-Encoded");
+            var threeDSecure = new ThreeDSecureData { Cavv = rawBytes, Xid = rawBytes };
 
             string result = JsonSerializer.Serialize(threeDSecure);
 
@@ -121,12 +123,13 @@ namespace Adyen.Test.Checkout
         [TestMethod]
         public void Given_ThreeDSecureData_When_BareDeserialize_Then_ByteArray_IsCorrect()
         {
+            // STJ default: base64-decodes the JSON string. "Qnl0ZXMtVG8tQmUtRW5jb2RlZA==" decodes to "Bytes-To-Be-Encoded".
             string json = "{\"cavv\":\"Qnl0ZXMtVG8tQmUtRW5jb2RlZA==\",\"xid\":\"Qnl0ZXMtVG8tQmUtRW5jb2RlZA==\"}";
 
             var result = JsonSerializer.Deserialize<ThreeDSecureData>(json);
 
-            Assert.AreEqual("Qnl0ZXMtVG8tQmUtRW5jb2RlZA==", Encoding.ASCII.GetString(result.Cavv));
-            Assert.AreEqual("Qnl0ZXMtVG8tQmUtRW5jb2RlZA==", Encoding.ASCII.GetString(result.Xid));
+            Assert.AreEqual("Bytes-To-Be-Encoded", Encoding.UTF8.GetString(result.Cavv));
+            Assert.AreEqual("Bytes-To-Be-Encoded", Encoding.UTF8.GetString(result.Xid));
         }
 
         #endregion

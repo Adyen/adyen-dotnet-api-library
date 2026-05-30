@@ -125,7 +125,7 @@ namespace Adyen.Disputes.Models
                     switch (jsonPropertyName)
                     {
                         case "content":
-                            content = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
+                            content = new Option<byte[]?>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "contentType":
                             contentType = new Option<string?>(utf8JsonReader.GetString()!);
@@ -182,7 +182,7 @@ namespace Adyen.Disputes.Models
         {
             
             writer.WritePropertyName("content");
-            new ByteArrayConverter().Write(writer, defenseDocument.Content, jsonSerializerOptions);
+            JsonSerializer.Serialize(writer, defenseDocument.Content, jsonSerializerOptions);
             if (defenseDocument.ContentType != null)
                 writer.WriteString("contentType", defenseDocument.ContentType);
 
