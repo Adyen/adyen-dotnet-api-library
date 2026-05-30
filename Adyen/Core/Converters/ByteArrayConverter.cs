@@ -9,6 +9,8 @@ namespace Adyen.Core.Converters
     /// </summary>
     public class ByteArrayConverter : JsonConverter<byte[]>
     {
+        public static readonly ByteArrayConverter Instance = new();
+
         /// <summary>
         /// Reads a byte array during deserialization.
         /// </summary>
