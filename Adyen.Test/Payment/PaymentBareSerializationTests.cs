@@ -66,6 +66,69 @@ namespace Adyen.Test.Payment
         }
 
         [TestMethod]
+        public void Given_PaymentRequest_With_MpiData_When_BareSerialize_Then_CavvIsBase64Encoded()
+        {
+            byte[] cavvBytes = Convert.FromBase64String("3q2+78r+ur7erb7vyv66vv////8=");
+            var request = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                Reference = "YOUR_ORDER_NUMBER",
+                MpiData = new ThreeDSecureData
+                {
+                    Cavv = cavvBytes,
+                    Eci = "05",
+                    DsTransID = "c4e59ceb-a382-4d6a-bc87-385d591fa09d",
+                    DirectoryResponse = ThreeDSecureData.DirectoryResponseEnum.C,
+                    AuthenticationResponse = ThreeDSecureData.AuthenticationResponseEnum.Y,
+                    ThreeDSVersion = "2.1.0",
+                },
+            };
+
+            string result = JsonSerializer.Serialize(request);
+
+            using JsonDocument json = JsonDocument.Parse(result);
+            JsonElement mpiData = json.RootElement.GetProperty("mpiData");
+            Assert.AreEqual("3q2+78r+ur7erb7vyv66vv////8=", mpiData.GetProperty("cavv").GetString());
+            Assert.AreEqual("05", mpiData.GetProperty("eci").GetString());
+            Assert.AreEqual("c4e59ceb-a382-4d6a-bc87-385d591fa09d", mpiData.GetProperty("dsTransID").GetString());
+            Assert.AreEqual("C", mpiData.GetProperty("directoryResponse").GetString());
+            Assert.AreEqual("Y", mpiData.GetProperty("authenticationResponse").GetString());
+            Assert.AreEqual("2.1.0", mpiData.GetProperty("threeDSVersion").GetString());
+        }
+
+        [TestMethod]
+        public void Given_PaymentRequest_Json_With_MpiData_When_BareDeserialize_Then_CavvBytesAreCorrect()
+        {
+            string json = """
+                {
+                  "amount": { "currency": "EUR", "value": 1000 },
+                  "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+                  "reference": "YOUR_ORDER_NUMBER",
+                  "mpiData": {
+                    "cavv": "3q2+78r+ur7erb7vyv66vv////8=",
+                    "eci": "05",
+                    "dsTransID": "c4e59ceb-a382-4d6a-bc87-385d591fa09d",
+                    "directoryResponse": "C",
+                    "authenticationResponse": "Y",
+                    "threeDSVersion": "2.1.0"
+                  }
+                }
+                """;
+
+            var result = JsonSerializer.Deserialize<PaymentRequest>(json);
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.MpiData);
+            CollectionAssert.AreEqual(Convert.FromBase64String("3q2+78r+ur7erb7vyv66vv////8="), result.MpiData.Cavv);
+            Assert.AreEqual("05", result.MpiData.Eci);
+            Assert.AreEqual("c4e59ceb-a382-4d6a-bc87-385d591fa09d", result.MpiData.DsTransID);
+            Assert.AreEqual(ThreeDSecureData.DirectoryResponseEnum.C, result.MpiData.DirectoryResponse);
+            Assert.AreEqual(ThreeDSecureData.AuthenticationResponseEnum.Y, result.MpiData.AuthenticationResponse);
+            Assert.AreEqual("2.1.0", result.MpiData.ThreeDSVersion);
+        }
+
+        [TestMethod]
         public void Given_ThreeDSecureDataObject_When_BareSerialize_Then_DoesNotThrow()
         {
             var data = new ThreeDSecureData
