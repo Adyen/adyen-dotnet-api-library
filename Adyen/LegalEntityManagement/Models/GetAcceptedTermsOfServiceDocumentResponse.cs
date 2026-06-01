@@ -294,7 +294,7 @@ namespace Adyen.LegalEntityManagement.Models
                     switch (jsonPropertyName)
                     {
                         case "document":
-                            document = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
+                            document = new Option<byte[]?>(ByteArrayConverter.Instance.Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
                             break;
                         case "id":
                             id = new Option<string?>(utf8JsonReader.GetString()!);
@@ -353,7 +353,7 @@ namespace Adyen.LegalEntityManagement.Models
             if (getAcceptedTermsOfServiceDocumentResponse._DocumentOption.IsSet)
             {
                 writer.WritePropertyName("document");
-                new ByteArrayConverter().Write(writer, getAcceptedTermsOfServiceDocumentResponse.Document, jsonSerializerOptions);
+                ByteArrayConverter.Instance.Write(writer, getAcceptedTermsOfServiceDocumentResponse.Document, jsonSerializerOptions);
             }
             if (getAcceptedTermsOfServiceDocumentResponse._IdOption.IsSet)
                 if (getAcceptedTermsOfServiceDocumentResponse.Id != null)

@@ -53,7 +53,7 @@ namespace Adyen.PaymentsApp.Client
             if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateTimeNullableJsonConverter)) == null)
                 _jsonOptions.Converters.Add(new DateTimeNullableJsonConverter());
             if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(ByteArrayConverter)) == null)
-                _jsonOptions.Converters.Add(new ByteArrayConverter());
+                _jsonOptions.Converters.Add(ByteArrayConverter.Instance);
             if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateOnlyJsonConverter)) == null)
                 _jsonOptions.Converters.Add(new DateOnlyJsonConverter());
             if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateOnlyNullableJsonConverter)) == null)
