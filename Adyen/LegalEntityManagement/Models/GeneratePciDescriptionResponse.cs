@@ -146,7 +146,7 @@ namespace Adyen.LegalEntityManagement.Models
                     switch (jsonPropertyName)
                     {
                         case "content":
-                            content = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
+                            content = new Option<byte[]?>(ByteArrayConverter.Instance.Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
                             break;
                         case "language":
                             language = new Option<string?>(utf8JsonReader.GetString()!);
@@ -199,7 +199,7 @@ namespace Adyen.LegalEntityManagement.Models
             if (generatePciDescriptionResponse._ContentOption.IsSet)
             {
                 writer.WritePropertyName("content");
-                new ByteArrayConverter().Write(writer, generatePciDescriptionResponse.Content, jsonSerializerOptions);
+                ByteArrayConverter.Instance.Write(writer, generatePciDescriptionResponse.Content, jsonSerializerOptions);
             }
             if (generatePciDescriptionResponse._LanguageOption.IsSet)
                 if (generatePciDescriptionResponse.Language != null)

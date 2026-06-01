@@ -187,7 +187,7 @@ namespace Adyen.BinLookup.Models
                             fromSDKVersion = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "publicKey":
-                            publicKey = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
+                            publicKey = new Option<byte[]?>(ByteArrayConverter.Instance.Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
                             break;
                         case "rootCertificates":
                             rootCertificates = new Option<string?>(utf8JsonReader.GetString()!);
@@ -253,7 +253,7 @@ namespace Adyen.BinLookup.Models
             if (dSPublicKeyDetail._PublicKeyOption.IsSet)
             {
                 writer.WritePropertyName("publicKey");
-                new ByteArrayConverter().Write(writer, dSPublicKeyDetail.PublicKey, jsonSerializerOptions);
+                ByteArrayConverter.Instance.Write(writer, dSPublicKeyDetail.PublicKey, jsonSerializerOptions);
             }
             if (dSPublicKeyDetail._RootCertificatesOption.IsSet)
                 if (dSPublicKeyDetail.RootCertificates != null)

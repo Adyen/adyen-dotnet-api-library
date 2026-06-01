@@ -175,7 +175,7 @@ namespace Adyen.LegalEntityManagement.Models
                     switch (jsonPropertyName)
                     {
                         case "content":
-                            content = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
+                            content = new Option<byte[]?>(ByteArrayConverter.Instance.Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
                             break;
                         case "contentType":
                             contentType = new Option<string?>(utf8JsonReader.GetString()!);
@@ -238,7 +238,7 @@ namespace Adyen.LegalEntityManagement.Models
         {
             
             writer.WritePropertyName("content");
-            new ByteArrayConverter().Write(writer, attachment.Content, jsonSerializerOptions);
+            ByteArrayConverter.Instance.Write(writer, attachment.Content, jsonSerializerOptions);
             if (attachment._ContentTypeOption.IsSet)
                 if (attachment.ContentType != null)
                     writer.WriteString("contentType", attachment.ContentType);
