@@ -22,7 +22,7 @@ namespace Adyen.Test.Core.Serialization
         private static JsonSerializerOptions BuildDiOptions()
         {
             var options = new JsonSerializerOptions();
-            options.Converters.Add(new ByteArrayConverter());
+            options.Converters.Add(ByteArrayConverter.Instance);
             options.Converters.Add(new ThreeDSecureDataJsonConverter());
             return options;
         }
