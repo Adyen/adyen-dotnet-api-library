@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.Serialization;
 using Adyen.Exceptions;
 using Adyen.Model.TerminalApi;
@@ -24,8 +25,10 @@ namespace Adyen.ApiSerialization
 
             CheckForTerminalError(saleToPoiMessageSecuredJObject);
 
-            var saleToPoiMessageSecuredJObjectRoot = saleToPoiMessageSecuredJObject.First;
-            var saleToPoiMessageSecuredJObjectWithoutRoot = saleToPoiMessageSecuredJObjectRoot?.First;
+            var saleToPoiMessageSecuredJObjectWithoutRoot = saleToPoiMessageSecuredJObject
+                .Properties()
+                .FirstOrDefault(p => p.Value.Type == JTokenType.Object)
+                ?.Value;
             if (saleToPoiMessageSecuredJObjectWithoutRoot != null)
             {
                 return ParseSaleToPoiMessageSecured(saleToPoiMessageSecuredJObjectWithoutRoot);

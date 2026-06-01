@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Adyen.Model.TerminalApi;
 using Adyen.Model.TerminalApi.Message;
 using Adyen.Security;
@@ -19,8 +20,10 @@ namespace Adyen.ApiSerialization
         public SaleToPOIResponse Deserialize(string saleToPoiMessageDto)
         {
             var saleToPoiMessageJObject = JObject.Parse(saleToPoiMessageDto);
-            var saleToPoiMessageRootJToken = saleToPoiMessageJObject.First;
-            var saleToPoiMessageWithoutRootJToken = saleToPoiMessageRootJToken.First;
+            var saleToPoiMessageWithoutRootJToken = saleToPoiMessageJObject
+                .Properties()
+                .FirstOrDefault(p => p.Value.Type == JTokenType.Object)
+                ?.Value ?? throw new ArgumentException("Root object (e.g., SaleToPOIResponse) not found in the JSON payload.", nameof(saleToPoiMessageDto));
             //Messageheader
             var messageHeader = DeserializeMessageHeader(saleToPoiMessageWithoutRootJToken);
             //Message payload
@@ -47,9 +50,11 @@ namespace Adyen.ApiSerialization
         {
             // Parse JsonObject
             var saleToPoiRequestJson = JObject.Parse(terminalNotificationJson);
-            var saleToPoiRequestItem = saleToPoiRequestJson.First;
-            var saleToPoiRequestType = saleToPoiRequestItem?.First;
-            var saleToPoiString = saleToPoiRequestType?.ToString() ?? throw new ArgumentNullException(nameof(terminalNotificationJson));
+            var saleToPoiRequestType = saleToPoiRequestJson
+                .Properties()
+                .FirstOrDefault(p => p.Value.Type == JTokenType.Object)
+                ?.Value ?? throw new ArgumentException("Root object (e.g., SaleToPOIRequest) not found in the JSON payload.", nameof(terminalNotificationJson));
+            var saleToPoiString = saleToPoiRequestType.ToString();
 
             // Get Message Header
             var messageHeader = DeserializeMessageHeader(saleToPoiRequestType);
