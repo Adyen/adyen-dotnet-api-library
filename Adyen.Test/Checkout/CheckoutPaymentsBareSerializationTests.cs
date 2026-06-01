@@ -320,6 +320,109 @@ namespace Adyen.Test.Checkout
         }
 
         [TestMethod]
+        public void Given_PaymentRequest_With_MpiData_When_BareSerialize_Then_CavvIsBase64Encoded()
+        {
+            // "3q2+78r+ur7erb7vyv66vv////8=" is the CAVV from the Adyen 3DS mpiData docs sample.
+            // ByteArrayConverter stores the UTF-8 bytes of the base64 string, so when written back
+            // it produces the same base64 string in JSON.
+            byte[] cavvBytes = Encoding.UTF8.GetBytes("3q2+78r+ur7erb7vyv66vv////8=");
+            var request = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                Reference = "YOUR_ORDER_NUMBER",
+                Channel = PaymentRequest.ChannelEnum.Web,
+                PaymentMethod = new CheckoutPaymentMethod(new CardDetails { Type = CardDetails.TypeEnum.Card }),
+                ReturnUrl = "https://your-company.com/checkout",
+                MpiData = new ThreeDSecureData
+                {
+                    Cavv = cavvBytes,
+                    Eci = "05",
+                    DsTransID = "c4e59ceb-a382-4d6a-bc87-385d591fa09d",
+                    DirectoryResponse = ThreeDSecureData.DirectoryResponseEnum.C,
+                    AuthenticationResponse = ThreeDSecureData.AuthenticationResponseEnum.Y,
+                    ThreeDSVersion = "2.1.0",
+                },
+            };
+
+            string result = JsonSerializer.Serialize(request);
+
+            using JsonDocument json = JsonDocument.Parse(result);
+            JsonElement mpiData = json.RootElement.GetProperty("mpiData");
+            Assert.AreEqual("3q2+78r+ur7erb7vyv66vv////8=", mpiData.GetProperty("cavv").GetString());
+            Assert.AreEqual("05", mpiData.GetProperty("eci").GetString());
+            Assert.AreEqual("c4e59ceb-a382-4d6a-bc87-385d591fa09d", mpiData.GetProperty("dsTransID").GetString());
+            Assert.AreEqual("C", mpiData.GetProperty("directoryResponse").GetString());
+            Assert.AreEqual("Y", mpiData.GetProperty("authenticationResponse").GetString());
+            Assert.AreEqual("2.1.0", mpiData.GetProperty("threeDSVersion").GetString());
+        }
+
+        [TestMethod]
+        public void Given_PaymentRequest_Json_With_MpiData_When_BareDeserialize_Then_CavvBytesAreCorrect()
+        {
+            string json = """
+                {
+                  "amount": { "currency": "EUR", "value": 1000 },
+                  "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+                  "reference": "YOUR_ORDER_NUMBER",
+                  "channel": "Web",
+                  "mpiData": {
+                    "cavv": "3q2+78r+ur7erb7vyv66vv////8=",
+                    "eci": "05",
+                    "dsTransID": "c4e59ceb-a382-4d6a-bc87-385d591fa09d",
+                    "directoryResponse": "C",
+                    "authenticationResponse": "Y",
+                    "threeDSVersion": "2.1.0"
+                  },
+                  "paymentMethod": { "type": "card" },
+                  "returnUrl": "https://your-company.com/checkout"
+                }
+                """;
+
+            var result = JsonSerializer.Deserialize<PaymentRequest>(json);
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.MpiData);
+            CollectionAssert.AreEqual(Encoding.UTF8.GetBytes("3q2+78r+ur7erb7vyv66vv////8="), result.MpiData.Cavv);
+            Assert.AreEqual("05", result.MpiData.Eci);
+            Assert.AreEqual("c4e59ceb-a382-4d6a-bc87-385d591fa09d", result.MpiData.DsTransID);
+            Assert.AreEqual(ThreeDSecureData.DirectoryResponseEnum.C, result.MpiData.DirectoryResponse);
+            Assert.AreEqual(ThreeDSecureData.AuthenticationResponseEnum.Y, result.MpiData.AuthenticationResponse);
+            Assert.AreEqual("2.1.0", result.MpiData.ThreeDSVersion);
+        }
+
+        [TestMethod]
+        public void Given_ThreeDSecureData_With_TokenAuthenticationVerificationValue_When_BareRoundTrip_Then_ValuesPreserved()
+        {
+            byte[] tavvBytes = Encoding.UTF8.GetBytes("3q2+78r+ur7erb7vyv66vv////8=");
+            var original = new ThreeDSecureData
+            {
+                Cavv = tavvBytes,
+                TokenAuthenticationVerificationValue = tavvBytes,
+                Xid = tavvBytes,
+            };
+
+            string json = JsonSerializer.Serialize(original);
+            var deserialized = JsonSerializer.Deserialize<ThreeDSecureData>(json);
+
+            Assert.IsNotNull(deserialized);
+            CollectionAssert.AreEqual(tavvBytes, deserialized.Cavv);
+            CollectionAssert.AreEqual(tavvBytes, deserialized.TokenAuthenticationVerificationValue);
+            CollectionAssert.AreEqual(tavvBytes, deserialized.Xid);
+        }
+
+        [TestMethod]
+        public void Given_ThreeDSecureData_With_NullCavv_When_BareSerialize_Then_CavvIsJsonNull()
+        {
+            var data = new ThreeDSecureData { Cavv = null };
+
+            string result = JsonSerializer.Serialize(data);
+
+            using JsonDocument json = JsonDocument.Parse(result);
+            Assert.AreEqual(JsonValueKind.Null, json.RootElement.GetProperty("cavv").ValueKind);
+        }
+
+        [TestMethod]
         public void Given_PaymentRequest_When_BareSerialize_AccountInfo_NotSet_Then_KeyIsAbsent()
         {
             var request = new PaymentRequest
