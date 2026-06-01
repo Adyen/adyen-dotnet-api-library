@@ -128,6 +128,26 @@ namespace Adyen.Test.Payment
         }
 
         [TestMethod]
+        public void Given_ThreeDSecureData_With_TokenAuthenticationVerificationValue_When_BareRoundTrip_Then_ValuesPreserved()
+        {
+            byte[] tavvBytes = Encoding.UTF8.GetBytes("3q2+78r+ur7erb7vyv66vv////8=");
+            var original = new ThreeDSecureData
+            {
+                Cavv = tavvBytes,
+                TokenAuthenticationVerificationValue = tavvBytes,
+                Xid = tavvBytes,
+            };
+
+            string json = JsonSerializer.Serialize(original);
+            var deserialized = JsonSerializer.Deserialize<ThreeDSecureData>(json);
+
+            Assert.IsNotNull(deserialized);
+            CollectionAssert.AreEqual(tavvBytes, deserialized.Cavv);
+            CollectionAssert.AreEqual(tavvBytes, deserialized.TokenAuthenticationVerificationValue);
+            CollectionAssert.AreEqual(tavvBytes, deserialized.Xid);
+        }
+
+        [TestMethod]
         public void Given_ThreeDSecureDataObject_When_BareSerialize_Then_DoesNotThrow()
         {
             var data = new ThreeDSecureData
