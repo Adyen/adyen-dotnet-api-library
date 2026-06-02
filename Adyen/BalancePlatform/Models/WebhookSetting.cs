@@ -41,7 +41,11 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         public WebhookSetting()
         {
-            Type = (SettingType)this.GetType().Name;
+            Type = this.GetType().Name switch
+            {
+                "BalanceWebhookSetting" => (SettingType)"balance",
+                var n => (SettingType)n,
+            };
             OnCreated();
         }
 
@@ -127,7 +131,7 @@ namespace Adyen.BalancePlatform.Models
 
             string? discriminator = ClientUtils.GetDiscriminator(utf8JsonReader, "type");
 
-            if (discriminator != null && discriminator.Equals("BalanceWebhookSetting"))
+            if (discriminator != null && discriminator.Equals("balance"))
                 return JsonSerializer.Deserialize<BalanceWebhookSetting>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
             while (utf8JsonReader.Read())

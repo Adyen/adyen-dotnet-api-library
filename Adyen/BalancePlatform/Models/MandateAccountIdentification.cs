@@ -41,7 +41,11 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         public MandateAccountIdentification()
         {
-            Type = this.GetType().Name;
+            Type = this.GetType().Name switch
+            {
+                "UKLocalMandateAccountIdentification" => "ukLocal",
+                var n => n,
+            };
             OnCreated();
         }
 
@@ -93,7 +97,7 @@ namespace Adyen.BalancePlatform.Models
 
             string? discriminator = ClientUtils.GetDiscriminator(utf8JsonReader, "type");
 
-            if (discriminator != null && discriminator.Equals("UKLocalMandateAccountIdentification"))
+            if (discriminator != null && discriminator.Equals("ukLocal"))
                 return JsonSerializer.Deserialize<UKLocalMandateAccountIdentification>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
             while (utf8JsonReader.Read())

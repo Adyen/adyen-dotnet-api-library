@@ -31,15 +31,15 @@ using Adyen.BalancePlatform.Client;
 namespace Adyen.BalancePlatform.Models
 {
     /// <summary>
-    /// PatchableBalanceAccountConfigurationRequest.
+    /// BalanceAccountConfigurationUpdate.
     /// </summary>
-    [JsonConverter(typeof(PatchableBalanceAccountConfigurationRequestJsonConverter))]
-    public partial class PatchableBalanceAccountConfigurationRequest
+    [JsonConverter(typeof(BalanceAccountConfigurationUpdateJsonConverter))]
+    public partial class BalanceAccountConfigurationUpdate
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PatchableBalanceAccountConfigurationRequest" /> class.
+        /// Initializes a new instance of the <see cref="BalanceAccountConfigurationUpdate" /> class.
         /// </summary>
-        public PatchableBalanceAccountConfigurationRequest()
+        public BalanceAccountConfigurationUpdate()
         {
             OnCreated();
         }
@@ -350,7 +350,7 @@ namespace Adyen.BalancePlatform.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PatchableBalanceAccountConfigurationRequest {\n");
+            sb.Append("class BalanceAccountConfigurationUpdate {\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Enabled: ").Append(Enabled).Append("\n");
             sb.Append("  Frequency: ").Append(Frequency).Append("\n");
@@ -368,19 +368,19 @@ namespace Adyen.BalancePlatform.Models
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="PatchableBalanceAccountConfigurationRequest" />
+    /// A Json converter for type <see cref="BalanceAccountConfigurationUpdate" />
     /// </summary>
-    public class PatchableBalanceAccountConfigurationRequestJsonConverter : JsonConverter<PatchableBalanceAccountConfigurationRequest>
+    public class BalanceAccountConfigurationUpdateJsonConverter : JsonConverter<BalanceAccountConfigurationUpdate>
     {
         /// <summary>
-        /// Deserializes json to <see cref="PatchableBalanceAccountConfigurationRequest"/>.
+        /// Deserializes json to <see cref="BalanceAccountConfigurationUpdate"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="PatchableBalanceAccountConfigurationRequest"/>.</returns>
+        /// <returns><see cref="BalanceAccountConfigurationUpdate"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override PatchableBalanceAccountConfigurationRequest Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override BalanceAccountConfigurationUpdate Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -391,7 +391,7 @@ namespace Adyen.BalancePlatform.Models
 
             Option<Object?> description = default;
             Option<Object?> enabled = default;
-            Option<PatchableBalanceAccountConfigurationRequest.FrequencyEnum?> frequency = default;
+            Option<BalanceAccountConfigurationUpdate.FrequencyEnum?> frequency = default;
             Option<Object?> frequencyValue = default;
             Option<Object?> maxPayoutAmount = default;
             Option<Object?> minPayoutAmount = default;
@@ -424,7 +424,7 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "frequency":
                             string? frequencyRawValue = utf8JsonReader.GetString();
-                            frequency = new Option<PatchableBalanceAccountConfigurationRequest.FrequencyEnum?>(PatchableBalanceAccountConfigurationRequest.FrequencyEnum.FromStringOrDefault(frequencyRawValue) ?? (PatchableBalanceAccountConfigurationRequest.FrequencyEnum)frequencyRawValue);
+                            frequency = new Option<BalanceAccountConfigurationUpdate.FrequencyEnum?>(BalanceAccountConfigurationUpdate.FrequencyEnum.FromStringOrDefault(frequencyRawValue) ?? (BalanceAccountConfigurationUpdate.FrequencyEnum)frequencyRawValue);
                             break;
                         case "frequencyValue":
                             frequencyValue = new Option<Object?>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
@@ -456,135 +456,135 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            var patchableBalanceAccountConfigurationRequest = new PatchableBalanceAccountConfigurationRequest();
+            var balanceAccountConfigurationUpdate = new BalanceAccountConfigurationUpdate();
             if (description.IsSet)
-                patchableBalanceAccountConfigurationRequest.Description = description.Value;
+                balanceAccountConfigurationUpdate.Description = description.Value;
             if (enabled.IsSet)
-                patchableBalanceAccountConfigurationRequest.Enabled = enabled.Value;
+                balanceAccountConfigurationUpdate.Enabled = enabled.Value;
             if (frequency.IsSet)
-                patchableBalanceAccountConfigurationRequest.Frequency = frequency.Value;
+                balanceAccountConfigurationUpdate.Frequency = frequency.Value;
             if (frequencyValue.IsSet)
-                patchableBalanceAccountConfigurationRequest.FrequencyValue = frequencyValue.Value;
+                balanceAccountConfigurationUpdate.FrequencyValue = frequencyValue.Value;
             if (maxPayoutAmount.IsSet)
-                patchableBalanceAccountConfigurationRequest.MaxPayoutAmount = maxPayoutAmount.Value;
+                balanceAccountConfigurationUpdate.MaxPayoutAmount = maxPayoutAmount.Value;
             if (minPayoutAmount.IsSet)
-                patchableBalanceAccountConfigurationRequest.MinPayoutAmount = minPayoutAmount.Value;
+                balanceAccountConfigurationUpdate.MinPayoutAmount = minPayoutAmount.Value;
             if (reference.IsSet)
-                patchableBalanceAccountConfigurationRequest.Reference = reference.Value;
+                balanceAccountConfigurationUpdate.Reference = reference.Value;
             if (referenceForBeneficiary.IsSet)
-                patchableBalanceAccountConfigurationRequest.ReferenceForBeneficiary = referenceForBeneficiary.Value;
+                balanceAccountConfigurationUpdate.ReferenceForBeneficiary = referenceForBeneficiary.Value;
             if (retainedAmount.IsSet)
-                patchableBalanceAccountConfigurationRequest.RetainedAmount = retainedAmount.Value;
+                balanceAccountConfigurationUpdate.RetainedAmount = retainedAmount.Value;
             if (salesDayClosingTime.IsSet)
-                patchableBalanceAccountConfigurationRequest.SalesDayClosingTime = salesDayClosingTime.Value;
+                balanceAccountConfigurationUpdate.SalesDayClosingTime = salesDayClosingTime.Value;
             if (transferInstrumentId.IsSet)
-                patchableBalanceAccountConfigurationRequest.TransferInstrumentId = transferInstrumentId.Value;
-            return patchableBalanceAccountConfigurationRequest;
+                balanceAccountConfigurationUpdate.TransferInstrumentId = transferInstrumentId.Value;
+            return balanceAccountConfigurationUpdate;
         }
 
         /// <summary>
-        /// Serializes a <see cref="PatchableBalanceAccountConfigurationRequest"/>.
+        /// Serializes a <see cref="BalanceAccountConfigurationUpdate"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="patchableBalanceAccountConfigurationRequest"></param>
+        /// <param name="balanceAccountConfigurationUpdate"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, PatchableBalanceAccountConfigurationRequest patchableBalanceAccountConfigurationRequest, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, BalanceAccountConfigurationUpdate balanceAccountConfigurationUpdate, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, patchableBalanceAccountConfigurationRequest, jsonSerializerOptions);
+            WriteProperties(writer, balanceAccountConfigurationUpdate, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="PatchableBalanceAccountConfigurationRequest"/>.
+        /// Serializes the properties of <see cref="BalanceAccountConfigurationUpdate"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="patchableBalanceAccountConfigurationRequest"></param>
+        /// <param name="balanceAccountConfigurationUpdate"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, PatchableBalanceAccountConfigurationRequest patchableBalanceAccountConfigurationRequest, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, BalanceAccountConfigurationUpdate balanceAccountConfigurationUpdate, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (patchableBalanceAccountConfigurationRequest._DescriptionOption.IsSet)
-                if (patchableBalanceAccountConfigurationRequest._DescriptionOption.Value != null)
+            if (balanceAccountConfigurationUpdate._DescriptionOption.IsSet)
+                if (balanceAccountConfigurationUpdate._DescriptionOption.Value != null)
                 {
                     writer.WritePropertyName("description");
-                    JsonSerializer.Serialize(writer, patchableBalanceAccountConfigurationRequest.Description, jsonSerializerOptions);
+                    JsonSerializer.Serialize(writer, balanceAccountConfigurationUpdate.Description, jsonSerializerOptions);
                 }
                 else
                     writer.WriteNull("description");
-            if (patchableBalanceAccountConfigurationRequest._EnabledOption.IsSet)
-                if (patchableBalanceAccountConfigurationRequest._EnabledOption.Value != null)
+            if (balanceAccountConfigurationUpdate._EnabledOption.IsSet)
+                if (balanceAccountConfigurationUpdate._EnabledOption.Value != null)
                 {
                     writer.WritePropertyName("enabled");
-                    JsonSerializer.Serialize(writer, patchableBalanceAccountConfigurationRequest.Enabled, jsonSerializerOptions);
+                    JsonSerializer.Serialize(writer, balanceAccountConfigurationUpdate.Enabled, jsonSerializerOptions);
                 }
                 else
                     writer.WriteNull("enabled");
-            if (patchableBalanceAccountConfigurationRequest._FrequencyOption.IsSet && patchableBalanceAccountConfigurationRequest.Frequency != null) 
+            if (balanceAccountConfigurationUpdate._FrequencyOption.IsSet && balanceAccountConfigurationUpdate.Frequency != null) 
             {
-                string? frequencyRawValue = PatchableBalanceAccountConfigurationRequest.FrequencyEnum.ToJsonValue(patchableBalanceAccountConfigurationRequest._FrequencyOption.Value!.Value);
+                string? frequencyRawValue = BalanceAccountConfigurationUpdate.FrequencyEnum.ToJsonValue(balanceAccountConfigurationUpdate._FrequencyOption.Value!.Value);
                 writer.WriteString("frequency", frequencyRawValue);
             }
             
-            if (patchableBalanceAccountConfigurationRequest._FrequencyValueOption.IsSet)
-                if (patchableBalanceAccountConfigurationRequest._FrequencyValueOption.Value != null)
+            if (balanceAccountConfigurationUpdate._FrequencyValueOption.IsSet)
+                if (balanceAccountConfigurationUpdate._FrequencyValueOption.Value != null)
                 {
                     writer.WritePropertyName("frequencyValue");
-                    JsonSerializer.Serialize(writer, patchableBalanceAccountConfigurationRequest.FrequencyValue, jsonSerializerOptions);
+                    JsonSerializer.Serialize(writer, balanceAccountConfigurationUpdate.FrequencyValue, jsonSerializerOptions);
                 }
                 else
                     writer.WriteNull("frequencyValue");
-            if (patchableBalanceAccountConfigurationRequest._MaxPayoutAmountOption.IsSet)
-                if (patchableBalanceAccountConfigurationRequest._MaxPayoutAmountOption.Value != null)
+            if (balanceAccountConfigurationUpdate._MaxPayoutAmountOption.IsSet)
+                if (balanceAccountConfigurationUpdate._MaxPayoutAmountOption.Value != null)
                 {
                     writer.WritePropertyName("maxPayoutAmount");
-                    JsonSerializer.Serialize(writer, patchableBalanceAccountConfigurationRequest.MaxPayoutAmount, jsonSerializerOptions);
+                    JsonSerializer.Serialize(writer, balanceAccountConfigurationUpdate.MaxPayoutAmount, jsonSerializerOptions);
                 }
                 else
                     writer.WriteNull("maxPayoutAmount");
-            if (patchableBalanceAccountConfigurationRequest._MinPayoutAmountOption.IsSet)
-                if (patchableBalanceAccountConfigurationRequest._MinPayoutAmountOption.Value != null)
+            if (balanceAccountConfigurationUpdate._MinPayoutAmountOption.IsSet)
+                if (balanceAccountConfigurationUpdate._MinPayoutAmountOption.Value != null)
                 {
                     writer.WritePropertyName("minPayoutAmount");
-                    JsonSerializer.Serialize(writer, patchableBalanceAccountConfigurationRequest.MinPayoutAmount, jsonSerializerOptions);
+                    JsonSerializer.Serialize(writer, balanceAccountConfigurationUpdate.MinPayoutAmount, jsonSerializerOptions);
                 }
                 else
                     writer.WriteNull("minPayoutAmount");
-            if (patchableBalanceAccountConfigurationRequest._ReferenceOption.IsSet)
-                if (patchableBalanceAccountConfigurationRequest._ReferenceOption.Value != null)
+            if (balanceAccountConfigurationUpdate._ReferenceOption.IsSet)
+                if (balanceAccountConfigurationUpdate._ReferenceOption.Value != null)
                 {
                     writer.WritePropertyName("reference");
-                    JsonSerializer.Serialize(writer, patchableBalanceAccountConfigurationRequest.Reference, jsonSerializerOptions);
+                    JsonSerializer.Serialize(writer, balanceAccountConfigurationUpdate.Reference, jsonSerializerOptions);
                 }
                 else
                     writer.WriteNull("reference");
-            if (patchableBalanceAccountConfigurationRequest._ReferenceForBeneficiaryOption.IsSet)
-                if (patchableBalanceAccountConfigurationRequest._ReferenceForBeneficiaryOption.Value != null)
+            if (balanceAccountConfigurationUpdate._ReferenceForBeneficiaryOption.IsSet)
+                if (balanceAccountConfigurationUpdate._ReferenceForBeneficiaryOption.Value != null)
                 {
                     writer.WritePropertyName("referenceForBeneficiary");
-                    JsonSerializer.Serialize(writer, patchableBalanceAccountConfigurationRequest.ReferenceForBeneficiary, jsonSerializerOptions);
+                    JsonSerializer.Serialize(writer, balanceAccountConfigurationUpdate.ReferenceForBeneficiary, jsonSerializerOptions);
                 }
                 else
                     writer.WriteNull("referenceForBeneficiary");
-            if (patchableBalanceAccountConfigurationRequest._RetainedAmountOption.IsSet)
-                if (patchableBalanceAccountConfigurationRequest._RetainedAmountOption.Value != null)
+            if (balanceAccountConfigurationUpdate._RetainedAmountOption.IsSet)
+                if (balanceAccountConfigurationUpdate._RetainedAmountOption.Value != null)
                 {
                     writer.WritePropertyName("retainedAmount");
-                    JsonSerializer.Serialize(writer, patchableBalanceAccountConfigurationRequest.RetainedAmount, jsonSerializerOptions);
+                    JsonSerializer.Serialize(writer, balanceAccountConfigurationUpdate.RetainedAmount, jsonSerializerOptions);
                 }
                 else
                     writer.WriteNull("retainedAmount");
-            if (patchableBalanceAccountConfigurationRequest._SalesDayClosingTimeOption.IsSet)
-                if (patchableBalanceAccountConfigurationRequest.SalesDayClosingTime != null)
-                    writer.WriteString("salesDayClosingTime", patchableBalanceAccountConfigurationRequest.SalesDayClosingTime);
+            if (balanceAccountConfigurationUpdate._SalesDayClosingTimeOption.IsSet)
+                if (balanceAccountConfigurationUpdate.SalesDayClosingTime != null)
+                    writer.WriteString("salesDayClosingTime", balanceAccountConfigurationUpdate.SalesDayClosingTime);
 
-            if (patchableBalanceAccountConfigurationRequest._TransferInstrumentIdOption.IsSet)
-                if (patchableBalanceAccountConfigurationRequest.TransferInstrumentId != null)
-                    writer.WriteString("transferInstrumentId", patchableBalanceAccountConfigurationRequest.TransferInstrumentId);
+            if (balanceAccountConfigurationUpdate._TransferInstrumentIdOption.IsSet)
+                if (balanceAccountConfigurationUpdate.TransferInstrumentId != null)
+                    writer.WriteString("transferInstrumentId", balanceAccountConfigurationUpdate.TransferInstrumentId);
         }
     }
 }
