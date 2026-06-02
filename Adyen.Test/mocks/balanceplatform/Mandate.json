@@ -9,7 +9,7 @@
       "fullName": "Example Merchant Ltd"
     },
     "accountIdentification": {
-      "type": "UKLocalMandateAccountIdentification",
+      "type": "ukLocal",
       "accountNumber": "12345678",
       "sortCode": "123456"
     }

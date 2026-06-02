@@ -79,6 +79,43 @@ namespace Adyen.Test.BalancePlatform.DirectDebitMandates
         }
 
         [TestMethod]
+        public void Given_UKLocalMandateAccountIdentification_When_Serialized_Then_TypeIsApiWireValue()
+        {
+            // Arrange
+            var accountId = new UKLocalMandateAccountIdentification
+            {
+                AccountNumber = "12345678",
+                SortCode = "123456"
+            };
+
+            // Act
+            string result = JsonSerializer.Serialize<MandateAccountIdentification>(accountId, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            using JsonDocument json = JsonDocument.Parse(result);
+            Assert.AreEqual("ukLocal", json.RootElement.GetProperty("type").GetString(),
+                "Expected wire value 'ukLocal' but got: " + result);
+        }
+
+        [TestMethod]
+        public void Given_UKLocalMandateAccountIdentificationJson_When_Deserialized_Then_Returns_UKLocalMandateAccountIdentification()
+        {
+            // Arrange
+            string json = @"{""type"":""ukLocal"",""accountNumber"":""12345678"",""sortCode"":""123456""}";
+
+            // Act
+            var result = JsonSerializer.Deserialize<MandateAccountIdentification>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(UKLocalMandateAccountIdentification),
+                "Expected UKLocalMandateAccountIdentification but got: " + result.GetType().Name);
+            var ukLocal = (UKLocalMandateAccountIdentification)result;
+            Assert.AreEqual("12345678", ukLocal.AccountNumber);
+            Assert.AreEqual("123456", ukLocal.SortCode);
+        }
+
+        [TestMethod]
         public void Given_MandateUpdate_When_Serialized_Then_PaymentInstrumentId_Is_Present()
         {
             // Arrange
