@@ -77,6 +77,17 @@ namespace Adyen.Test.SessionAuthentication
                 "Expected wire value 'accountHolder' but got: " + json);
         }
 
+        [TestMethod]
+        public void Given_PaymentInstrumentResource_When_Serialize_Then_TypeIsApiWireValue()
+        {
+            var resource = new PaymentInstrumentResource { PaymentInstrumentId = "PI00000000000000000000001" };
+
+            string json = JsonSerializer.Serialize<Resource>(resource);
+
+            Assert.IsTrue(json.Contains("\"type\":\"paymentInstrument\""),
+                "Expected wire value 'paymentInstrument' but got: " + json);
+        }
+
         // ── Full request round-trip (OpenAPI examples) ───────────────────────────────
 
         [TestMethod]
