@@ -41,7 +41,12 @@ namespace Adyen.Checkout.Models
         /// </summary>
         public ShopperIdPaymentMethod()
         {
-            Type = this.GetType().Name;
+            Type = this.GetType().Name switch
+            {
+                "PayToPaymentMethod" => "payTo",
+                "UPIPaymentMethod" => "upi_collect",
+                var n => n,
+            };
             OnCreated();
         }
 
@@ -93,10 +98,10 @@ namespace Adyen.Checkout.Models
 
             string? discriminator = ClientUtils.GetDiscriminator(utf8JsonReader, "type");
 
-            if (discriminator != null && discriminator.Equals("PayToPaymentMethod"))
+            if (discriminator != null && discriminator.Equals("payTo"))
                 return JsonSerializer.Deserialize<PayToPaymentMethod>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
-            if (discriminator != null && discriminator.Equals("UPIPaymentMethod"))
+            if (discriminator != null && discriminator.Equals("upi_collect"))
                 return JsonSerializer.Deserialize<UPIPaymentMethod>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
             while (utf8JsonReader.Read())
