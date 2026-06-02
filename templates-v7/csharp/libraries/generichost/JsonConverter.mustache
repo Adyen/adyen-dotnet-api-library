@@ -45,15 +45,15 @@
             {{/-last}}
             {{/allVars}}
             {{#discriminator}}
-            {{#children}}
+            {{#mappedModels}}
             {{#-first}}
             string{{nrt?}} discriminator = ClientUtils.GetDiscriminator(utf8JsonReader, "{{discriminator.propertyBaseName}}");
 
             {{/-first}}
-            if (discriminator != null && discriminator.Equals("{{name}}"))
-                return JsonSerializer.Deserialize<{{{classname}}}>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
+            if (discriminator != null && discriminator.Equals("{{mappingName}}"))
+                return JsonSerializer.Deserialize<{{{model.classname}}}>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
-            {{/children}}
+            {{/mappedModels}}
             {{/discriminator}}
             {{#model.discriminator}}
             {{#model.hasDiscriminatorWithNonEmptyMapping}}
