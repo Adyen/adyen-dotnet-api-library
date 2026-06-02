@@ -1,0 +1,17 @@
+{
+  "id": "PSAC00000000000000000000000001",
+  "balancePlatformPayoutScheduleId": "PSPC00000000000000000000000001",
+  "balanceAccountId": "BA000000000000000000001",
+  "transferInstrumentId": "SE00000000000000000000001",
+  "currency": "EUR",
+  "reference": "Monthly payout",
+  "description": "Scheduled payout to merchant bank account",
+  "referenceForBeneficiary": "PAYOUT-REF-001",
+  "retainedAmount": 10000,
+  "minPayoutAmount": 1000,
+  "maxPayoutAmount": 100000000,
+  "createdAt": "2024-01-15T10:30:00Z",
+  "enabled": true,
+  "frequency": "monthly",
+  "frequencyValue": 1
+}

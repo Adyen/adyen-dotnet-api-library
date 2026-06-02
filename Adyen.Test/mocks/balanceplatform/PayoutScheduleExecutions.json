@@ -1,0 +1,21 @@
+{
+  "payoutScheduleExecutions": [
+    {
+      "id": "PS0000000000001",
+      "result": "skipped",
+      "triggeredAt": "2026-03-11T08:00:00Z",
+      "resultDetails": {
+        "reasonCode": "noBalanceToPayOut",
+        "reason": "No balance to pay out"
+      }
+    },
+    {
+      "id": "PS0000000000002",
+      "result": "succeeded",
+      "triggeredAt": "2026-03-12T08:00:00Z",
+      "resultDetails": {
+        "transferId": "A0A0A0A0A0A0A0A0"
+      }
+    }
+  ]
+}
