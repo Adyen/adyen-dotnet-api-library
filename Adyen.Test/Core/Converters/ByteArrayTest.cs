@@ -8,7 +8,7 @@ namespace Adyen.Test.Core.Converters
     [TestClass]
     public class ByteArrayTest
     {
-        private readonly ByteArrayConverter _converter = ByteArrayConverter.Instance;
+        private readonly ByteArrayConverter _converter = new ByteArrayConverter();
         
         [TestMethod]
         public void Given_ByteArray_When_Write_Then_Result_Should_Write_UTF8_String()
