@@ -170,6 +170,8 @@ namespace Adyen.BalancePlatform.Client
                 return Models.BalanceAccountBase.StatusEnum.ToJsonValue(balanceAccountBaseStatusEnum);
             if (obj is Models.BalanceAccountConfigurationRequest.FrequencyEnum balanceAccountConfigurationRequestFrequencyEnum)
                 return Models.BalanceAccountConfigurationRequest.FrequencyEnum.ToJsonValue(balanceAccountConfigurationRequestFrequencyEnum);
+            if (obj is Models.BalanceAccountConfigurationUpdate.FrequencyEnum balanceAccountConfigurationUpdateFrequencyEnum)
+                return Models.BalanceAccountConfigurationUpdate.FrequencyEnum.ToJsonValue(balanceAccountConfigurationUpdateFrequencyEnum);
             if (obj is Models.BalanceAccountUpdateRequest.StatusEnum balanceAccountUpdateRequestStatusEnum)
                 return Models.BalanceAccountUpdateRequest.StatusEnum.ToJsonValue(balanceAccountUpdateRequestStatusEnum);
             if (obj is Models.BalanceWebhookSettingInfo.StatusEnum balanceWebhookSettingInfoStatusEnum)
@@ -268,8 +270,6 @@ namespace Adyen.BalancePlatform.Client
                 return Models.NumberAndBicAccountIdentification.TypeEnum.ToJsonValue(numberAndBicAccountIdentificationTypeEnum);
             if (obj is Models.PLLocalAccountIdentification.TypeEnum pLLocalAccountIdentificationTypeEnum)
                 return Models.PLLocalAccountIdentification.TypeEnum.ToJsonValue(pLLocalAccountIdentificationTypeEnum);
-            if (obj is Models.PatchableBalanceAccountConfigurationRequest.FrequencyEnum patchableBalanceAccountConfigurationRequestFrequencyEnum)
-                return Models.PatchableBalanceAccountConfigurationRequest.FrequencyEnum.ToJsonValue(patchableBalanceAccountConfigurationRequestFrequencyEnum);
             if (obj is Models.PaymentInstrument.TypeEnum paymentInstrumentTypeEnum)
                 return Models.PaymentInstrument.TypeEnum.ToJsonValue(paymentInstrumentTypeEnum);
             if (obj is Models.PaymentInstrument.StatusEnum paymentInstrumentStatusEnum)

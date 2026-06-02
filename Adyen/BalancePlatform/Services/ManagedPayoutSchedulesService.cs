@@ -156,11 +156,11 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
         /// <param name="id">The unique identifier of the payout schedule applied to the balance account.</param>
-        /// <param name="patchableBalanceAccountConfigurationRequest"></param>
+        /// <param name="balanceAccountConfigurationUpdate"></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateBalanceAccountManagedScheduleApiResponse"/>.</returns>
-        Task<IUpdateBalanceAccountManagedScheduleApiResponse> UpdateBalanceAccountManagedScheduleAsync(string balanceAccountId, string id, PatchableBalanceAccountConfigurationRequest patchableBalanceAccountConfigurationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateBalanceAccountManagedScheduleApiResponse> UpdateBalanceAccountManagedScheduleAsync(string balanceAccountId, string id, BalanceAccountConfigurationUpdate balanceAccountConfigurationUpdate,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
@@ -3290,11 +3290,11 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
         /// <param name="id">The unique identifier of the payout schedule applied to the balance account.</param>
-        /// <param name="patchableBalanceAccountConfigurationRequest"><see cref="PatchableBalanceAccountConfigurationRequest"/></param>
+        /// <param name="balanceAccountConfigurationUpdate"><see cref="BalanceAccountConfigurationUpdate"/></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateBalanceAccountManagedScheduleApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.BalanceAccountConfiguration"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateBalanceAccountManagedScheduleApiResponse> UpdateBalanceAccountManagedScheduleAsync(string balanceAccountId, string id, PatchableBalanceAccountConfigurationRequest patchableBalanceAccountConfigurationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateBalanceAccountManagedScheduleApiResponse> UpdateBalanceAccountManagedScheduleAsync(string balanceAccountId, string id, BalanceAccountConfigurationUpdate balanceAccountConfigurationUpdate,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -3313,9 +3313,9 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    httpRequestMessage.Content = (patchableBalanceAccountConfigurationRequest as object) is System.IO.Stream stream
+                    httpRequestMessage.Content = (balanceAccountConfigurationUpdate as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
-                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(patchableBalanceAccountConfigurationRequest, _jsonSerializerOptions));
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(balanceAccountConfigurationUpdate, _jsonSerializerOptions));
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
 
