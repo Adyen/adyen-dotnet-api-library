@@ -41,7 +41,26 @@ namespace Adyen.Capital.Models
         /// </summary>
         public BankAccountIdentification()
         {
-            Type = this.GetType().Name;
+            Type = this.GetType().Name switch
+            {
+                "AULocalAccountIdentification" => "auLocal",
+                "BRLocalAccountIdentification" => "brLocal",
+                "CALocalAccountIdentification" => "caLocal",
+                "CZLocalAccountIdentification" => "czLocal",
+                "DKLocalAccountIdentification" => "dkLocal",
+                "HKLocalAccountIdentification" => "hkLocal",
+                "HULocalAccountIdentification" => "huLocal",
+                "IbanAccountIdentification" => "iban",
+                "NOLocalAccountIdentification" => "noLocal",
+                "NumberAndBicAccountIdentification" => "numberAndBic",
+                "NZLocalAccountIdentification" => "nzLocal",
+                "PLLocalAccountIdentification" => "plLocal",
+                "SELocalAccountIdentification" => "seLocal",
+                "SGLocalAccountIdentification" => "sgLocal",
+                "UKLocalAccountIdentification" => "ukLocal",
+                "USLocalAccountIdentification" => "usLocal",
+                var n => n,
+            };
             OnCreated();
         }
 
@@ -93,52 +112,52 @@ namespace Adyen.Capital.Models
 
             string? discriminator = ClientUtils.GetDiscriminator(utf8JsonReader, "type");
 
-            if (discriminator != null && discriminator.Equals("AULocalAccountIdentification"))
+            if (discriminator != null && discriminator.Equals("auLocal"))
                 return JsonSerializer.Deserialize<AULocalAccountIdentification>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
-            if (discriminator != null && discriminator.Equals("BRLocalAccountIdentification"))
+            if (discriminator != null && discriminator.Equals("brLocal"))
                 return JsonSerializer.Deserialize<BRLocalAccountIdentification>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
-            if (discriminator != null && discriminator.Equals("CALocalAccountIdentification"))
+            if (discriminator != null && discriminator.Equals("caLocal"))
                 return JsonSerializer.Deserialize<CALocalAccountIdentification>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
-            if (discriminator != null && discriminator.Equals("CZLocalAccountIdentification"))
+            if (discriminator != null && discriminator.Equals("czLocal"))
                 return JsonSerializer.Deserialize<CZLocalAccountIdentification>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
-            if (discriminator != null && discriminator.Equals("DKLocalAccountIdentification"))
+            if (discriminator != null && discriminator.Equals("dkLocal"))
                 return JsonSerializer.Deserialize<DKLocalAccountIdentification>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
-            if (discriminator != null && discriminator.Equals("HKLocalAccountIdentification"))
+            if (discriminator != null && discriminator.Equals("hkLocal"))
                 return JsonSerializer.Deserialize<HKLocalAccountIdentification>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
-            if (discriminator != null && discriminator.Equals("HULocalAccountIdentification"))
+            if (discriminator != null && discriminator.Equals("huLocal"))
                 return JsonSerializer.Deserialize<HULocalAccountIdentification>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
-            if (discriminator != null && discriminator.Equals("IbanAccountIdentification"))
+            if (discriminator != null && discriminator.Equals("iban"))
                 return JsonSerializer.Deserialize<IbanAccountIdentification>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
-            if (discriminator != null && discriminator.Equals("NOLocalAccountIdentification"))
+            if (discriminator != null && discriminator.Equals("noLocal"))
                 return JsonSerializer.Deserialize<NOLocalAccountIdentification>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
-            if (discriminator != null && discriminator.Equals("NZLocalAccountIdentification"))
-                return JsonSerializer.Deserialize<NZLocalAccountIdentification>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
-
-            if (discriminator != null && discriminator.Equals("NumberAndBicAccountIdentification"))
+            if (discriminator != null && discriminator.Equals("numberAndBic"))
                 return JsonSerializer.Deserialize<NumberAndBicAccountIdentification>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
-            if (discriminator != null && discriminator.Equals("PLLocalAccountIdentification"))
+            if (discriminator != null && discriminator.Equals("nzLocal"))
+                return JsonSerializer.Deserialize<NZLocalAccountIdentification>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
+
+            if (discriminator != null && discriminator.Equals("plLocal"))
                 return JsonSerializer.Deserialize<PLLocalAccountIdentification>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
-            if (discriminator != null && discriminator.Equals("SELocalAccountIdentification"))
+            if (discriminator != null && discriminator.Equals("seLocal"))
                 return JsonSerializer.Deserialize<SELocalAccountIdentification>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
-            if (discriminator != null && discriminator.Equals("SGLocalAccountIdentification"))
+            if (discriminator != null && discriminator.Equals("sgLocal"))
                 return JsonSerializer.Deserialize<SGLocalAccountIdentification>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
-            if (discriminator != null && discriminator.Equals("UKLocalAccountIdentification"))
+            if (discriminator != null && discriminator.Equals("ukLocal"))
                 return JsonSerializer.Deserialize<UKLocalAccountIdentification>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
-            if (discriminator != null && discriminator.Equals("USLocalAccountIdentification"))
+            if (discriminator != null && discriminator.Equals("usLocal"))
                 return JsonSerializer.Deserialize<USLocalAccountIdentification>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
             while (utf8JsonReader.Read())
