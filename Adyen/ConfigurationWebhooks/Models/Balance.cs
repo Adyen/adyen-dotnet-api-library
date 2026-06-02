@@ -89,6 +89,20 @@ namespace Adyen.ConfigurationWebhooks.Models
         public long? Pending { get { return this._PendingOption; } set { this._PendingOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="PendingAvailable"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> _PendingAvailableOption { get; private set; }
+
+        /// <summary>
+        /// The balance that will become the available balance after the pending balance is settled.  The pending available balance is equal to the lower of the following: - The &#x60;pending&#x60; balance - The &#x60;pending&#x60; balance plus the &#x60;available&#x60; balance.
+        /// </summary>
+        /// <value>The balance that will become the available balance after the pending balance is settled.  The pending available balance is equal to the lower of the following: - The `pending` balance - The `pending` balance plus the `available` balance.</value>
+        [JsonPropertyName("pendingAvailable")]
+        public long? PendingAvailable { get { return this._PendingAvailableOption; } set { this._PendingAvailableOption = new(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -101,6 +115,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  Reserved: ").Append(Reserved).Append("\n");
             sb.Append("  Pending: ").Append(Pending).Append("\n");
+            sb.Append("  PendingAvailable: ").Append(PendingAvailable).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -133,6 +148,7 @@ namespace Adyen.ConfigurationWebhooks.Models
             Option<string?> currency = default;
             Option<long?> reserved = default;
             Option<long?> pending = default;
+            Option<long?> pendingAvailable = default;
 
             while (utf8JsonReader.Read())
             {
@@ -164,6 +180,9 @@ namespace Adyen.ConfigurationWebhooks.Models
                         case "pending":
                             pending = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
+                        case "pendingAvailable":
+                            pendingAvailable = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
                         default:
                             break;
                     }
@@ -189,6 +208,8 @@ namespace Adyen.ConfigurationWebhooks.Models
             balance.Reserved = reserved.Value!.Value;
             if (pending.IsSet)
                 balance.Pending = pending.Value;
+            if (pendingAvailable.IsSet)
+                balance.PendingAvailable = pendingAvailable.Value;
             return balance;
         }
 
@@ -230,6 +251,10 @@ namespace Adyen.ConfigurationWebhooks.Models
             if (balance._PendingOption.IsSet)
                 if (balance._PendingOption.Value != null)
                     writer.WriteNumber("pending", balance._PendingOption.Value!.Value);
+
+            if (balance._PendingAvailableOption.IsSet)
+                if (balance._PendingAvailableOption.Value != null)
+                    writer.WriteNumber("pendingAvailable", balance._PendingAvailableOption.Value!.Value);
         }
     }
 }
