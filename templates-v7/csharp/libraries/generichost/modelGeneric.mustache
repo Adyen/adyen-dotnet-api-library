@@ -58,7 +58,13 @@
             {{#vendorExtensions.x-is-base-or-new-discriminator}}
             {{^model.composedSchemas.anyOf}}
             {{^model.composedSchemas.oneOf}}
-            {{name}} = {{^isEnum}}this.GetType().Name{{/isEnum}}{{#isEnum}}({{{datatypeWithEnum}}})this.GetType().Name{{/isEnum}};
+            {{name}} = this.GetType().Name switch
+            {
+            {{#model.discriminator.mappedModels}}
+                "{{model.classname}}" => {{^isEnum}}"{{mappingName}}"{{/isEnum}}{{#isEnum}}({{{datatypeWithEnum}}})"{{mappingName}}"{{/isEnum}},
+            {{/model.discriminator.mappedModels}}
+                var n => {{^isEnum}}n{{/isEnum}}{{#isEnum}}({{{datatypeWithEnum}}})n{{/isEnum}},
+            };
             {{/model.composedSchemas.oneOf}}
             {{/model.composedSchemas.anyOf}}
             {{/vendorExtensions.x-is-base-or-new-discriminator}}

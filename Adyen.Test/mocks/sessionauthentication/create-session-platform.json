@@ -1,0 +1,16 @@
+{
+  "allowOrigin": "https://www.your-website.com",
+  "product": "platform",
+  "policy": {
+    "resources": [
+      {
+        "type": "accountHolder",
+        "accountHolderId": "AH00000000000000000000001"
+      }
+    ],
+    "roles": [
+      "Transactions Overview Component: View",
+      "Payouts Overview Component: View"
+    ]
+  }
+}

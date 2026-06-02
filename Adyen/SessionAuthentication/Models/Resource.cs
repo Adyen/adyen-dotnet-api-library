@@ -41,7 +41,13 @@ namespace Adyen.SessionAuthentication.Models
         /// </summary>
         public Resource()
         {
-            Type = (ResourceType)this.GetType().Name;
+            Type = this.GetType().Name switch
+            {
+                "AccountHolderResource" => (ResourceType)"accountHolder",
+                "LegalEntityResource" => (ResourceType)"legalEntity",
+                "PaymentInstrumentResource" => (ResourceType)"paymentInstrument",
+                var n => (ResourceType)n,
+            };
             OnCreated();
         }
 
@@ -93,13 +99,13 @@ namespace Adyen.SessionAuthentication.Models
 
             string? discriminator = ClientUtils.GetDiscriminator(utf8JsonReader, "type");
 
-            if (discriminator != null && discriminator.Equals("AccountHolderResource"))
+            if (discriminator != null && discriminator.Equals("accountHolder"))
                 return JsonSerializer.Deserialize<AccountHolderResource>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
-            if (discriminator != null && discriminator.Equals("LegalEntityResource"))
+            if (discriminator != null && discriminator.Equals("legalEntity"))
                 return JsonSerializer.Deserialize<LegalEntityResource>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
-            if (discriminator != null && discriminator.Equals("PaymentInstrumentResource"))
+            if (discriminator != null && discriminator.Equals("paymentInstrument"))
                 return JsonSerializer.Deserialize<PaymentInstrumentResource>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
 
             while (utf8JsonReader.Read())
