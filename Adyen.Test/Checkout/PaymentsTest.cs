@@ -1249,6 +1249,70 @@ namespace Adyen.Test.Checkout
 
         #endregion
 
+        #region allOf discriminator wire values (regression #1717)
+
+        [TestMethod]
+        public void Given_PayToPaymentMethodJson_When_DeserializeAsShopperIdPaymentMethod_Then_Returns_PayToPaymentMethod()
+        {
+            // Arrange
+            string json = @"{""type"":""payTo""}";
+
+            // Act
+            var result = JsonSerializer.Deserialize<ShopperIdPaymentMethod>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(PayToPaymentMethod),
+                "Expected PayToPaymentMethod but got: " + result.GetType().Name);
+        }
+
+        [TestMethod]
+        public void Given_UPIPaymentMethodJson_When_DeserializeAsShopperIdPaymentMethod_Then_Returns_UPIPaymentMethod()
+        {
+            // Arrange
+            string json = @"{""type"":""upi_collect""}";
+
+            // Act
+            var result = JsonSerializer.Deserialize<ShopperIdPaymentMethod>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(UPIPaymentMethod),
+                "Expected UPIPaymentMethod but got: " + result.GetType().Name);
+        }
+
+        [TestMethod]
+        public void Given_PayToPaymentMethod_When_Serialize_Then_TypeIsApiWireValue()
+        {
+            // Arrange
+            var payTo = new PayToPaymentMethod();
+
+            // Act
+            string json = JsonSerializer.Serialize<ShopperIdPaymentMethod>(payTo, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            using var doc = JsonDocument.Parse(json);
+            Assert.AreEqual("payTo", doc.RootElement.GetProperty("type").GetString(),
+                "Expected wire value 'payTo' but got: " + json);
+        }
+
+        [TestMethod]
+        public void Given_UPIPaymentMethod_When_Serialize_Then_TypeIsApiWireValue()
+        {
+            // Arrange
+            var upi = new UPIPaymentMethod();
+
+            // Act
+            string json = JsonSerializer.Serialize<ShopperIdPaymentMethod>(upi, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            using var doc = JsonDocument.Parse(json);
+            Assert.AreEqual("upi_collect", doc.RootElement.GetProperty("type").GetString(),
+                "Expected wire value 'upi_collect' but got: " + json);
+        }
+
+        #endregion
+
         #region oneOf unknown type
 
         [TestMethod]
