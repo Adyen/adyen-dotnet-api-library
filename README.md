@@ -135,6 +135,28 @@ long? rounded = AmountUtil.AmountToMinorUnits(12.345m, "EUR"); // Returns 1234
 decimal? amount = AmountUtil.MinorUnitsToAmount(1234L, "EUR"); // Returns 12.34
 ```
 
+### Working with `byte[]` fields
+
+Some API fields (e.g. `cavv`, `xid`, `tokenAuthenticationVerificationValue` on `ThreeDSecureData`) are typed as `byte[]`. The library serializes these using a UTF-8 pass-through: bytes are written as a UTF-8 string in JSON and read back as UTF-8 bytes — **no base64 encoding/decoding is applied by the library**.
+
+Because the Adyen API expects these values as base64 strings in JSON, you must assign the **UTF-8 bytes of the base64 string** (not the raw decoded binary):
+
+```csharp
+// Correct: store the UTF-8 bytes of the base64 string
+request.MpiData = new ThreeDSecureData
+{
+    Cavv = Encoding.UTF8.GetBytes("3q2+78r+ur7erb7vyv66vv////8="),
+};
+
+// Incorrect: raw binary bytes would produce garbled JSON
+request.MpiData = new ThreeDSecureData
+{
+    Cavv = Convert.FromBase64String("3q2+78r+ur7erb7vyv66vv////8="),
+};
+```
+
+The same applies to all other `byte[]` fields in the library.
+
 ### Serializing and Deserializing JSON Strings
 The library uses custom JSON converters for all model types, handling oneOf polymorphism, optional-field omission, enum mapping, and more. Each model carries a class-level `[JsonConverter]` attribute, so `System.Text.Json` (STJ) discovers and applies the correct converter automatically — no explicit options are required for most models.
 
