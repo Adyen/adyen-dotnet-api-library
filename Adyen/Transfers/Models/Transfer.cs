@@ -213,9 +213,9 @@ namespace Adyen.Transfers.Models
         public CategoryEnum Category { get; set; }
 
         /// <summary>
-        /// The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Lack of funds in the balance account.   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user's balance account.  - **failed**: the transfer is rejected by the counterparty's bank. - **returned**: the transfer is returned by the counterparty's bank.
+        /// The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user's balance account.  - **failed**: the transfer is rejected by the counterparty's bank. - **returned**: the transfer is returned by the counterparty's bank.
         /// </summary>
-        /// <value>The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Lack of funds in the balance account.   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user&#39;s balance account.  - **failed**: the transfer is rejected by the counterparty&#39;s bank. - **returned**: the transfer is returned by the counterparty&#39;s bank.</value>
+        /// <value>The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user&#39;s balance account.  - **failed**: the transfer is rejected by the counterparty&#39;s bank. - **returned**: the transfer is returned by the counterparty&#39;s bank.</value>
         [JsonConverter(typeof(StatusEnumJsonConverter))]
         public class StatusEnum : IEnum
         {
@@ -223,6 +223,16 @@ namespace Adyen.Transfers.Models
             /// Returns the value of the StatusEnum.
             /// </summary>
             public string? Value { get; set; }
+
+            /// <summary>
+            /// StatusEnum.AdviceAuthorised - adviceAuthorised
+            /// </summary>
+            public static readonly StatusEnum AdviceAuthorised = new("adviceAuthorised");
+
+            /// <summary>
+            /// StatusEnum.AdviceRefused - adviceRefused
+            /// </summary>
+            public static readonly StatusEnum AdviceRefused = new("adviceRefused");
 
             /// <summary>
             /// StatusEnum.ApprovalPending - approvalPending
@@ -626,6 +636,8 @@ namespace Adyen.Transfers.Models
             public static StatusEnum? FromStringOrDefault(string value)
             {
                 return value switch {
+                    "adviceAuthorised" => StatusEnum.AdviceAuthorised,
+                    "adviceRefused" => StatusEnum.AdviceRefused,
                     "approvalPending" => StatusEnum.ApprovalPending,
                     "atmWithdrawal" => StatusEnum.AtmWithdrawal,
                     "atmWithdrawalReversalPending" => StatusEnum.AtmWithdrawalReversalPending,
@@ -710,6 +722,12 @@ namespace Adyen.Transfers.Models
                 if (value == null)
                     return null;
             
+                if (value == StatusEnum.AdviceAuthorised)
+                    return "adviceAuthorised";
+                
+                if (value == StatusEnum.AdviceRefused)
+                    return "adviceRefused";
+                
                 if (value == StatusEnum.ApprovalPending)
                     return "approvalPending";
                 
@@ -948,9 +966,9 @@ namespace Adyen.Transfers.Models
         }
 
         /// <summary>
-        /// The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Lack of funds in the balance account.   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user's balance account.  - **failed**: the transfer is rejected by the counterparty's bank. - **returned**: the transfer is returned by the counterparty's bank.
+        /// The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user's balance account.  - **failed**: the transfer is rejected by the counterparty's bank. - **returned**: the transfer is returned by the counterparty's bank.
         /// </summary>
-        /// <value>The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Lack of funds in the balance account.   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user&#39;s balance account.  - **failed**: the transfer is rejected by the counterparty&#39;s bank. - **returned**: the transfer is returned by the counterparty&#39;s bank.</value>
+        /// <value>The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user&#39;s balance account.  - **failed**: the transfer is rejected by the counterparty&#39;s bank. - **returned**: the transfer is returned by the counterparty&#39;s bank.</value>
         [JsonPropertyName("status")]
         public StatusEnum Status { get; set; }
 

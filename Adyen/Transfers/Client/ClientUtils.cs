@@ -130,6 +130,8 @@ namespace Adyen.Transfers.Client
                 return Models.AmountAdjustment.AmountAdjustmentTypeEnum.ToJsonValue(amountAdjustmentAmountAdjustmentTypeEnum);
             if (obj is Models.BRLocalAccountIdentification.TypeEnum bRLocalAccountIdentificationTypeEnum)
                 return Models.BRLocalAccountIdentification.TypeEnum.ToJsonValue(bRLocalAccountIdentificationTypeEnum);
+            if (obj is Models.BankAccountV3AccountIdentification.TypeEnum bankAccountV3AccountIdentificationTypeEnum)
+                return Models.BankAccountV3AccountIdentification.TypeEnum.ToJsonValue(bankAccountV3AccountIdentificationTypeEnum);
             if (obj is Models.BankCategoryData.PriorityEnum bankCategoryDataPriorityEnum)
                 return Models.BankCategoryData.PriorityEnum.ToJsonValue(bankCategoryDataPriorityEnum);
             if (obj is Models.BankCategoryData.TypeEnum bankCategoryDataTypeEnum)
@@ -142,6 +144,8 @@ namespace Adyen.Transfers.Client
                 return Models.CZLocalAccountIdentification.TypeEnum.ToJsonValue(cZLocalAccountIdentificationTypeEnum);
             if (obj is Models.CapitalGrant.StatusEnum capitalGrantStatusEnum)
                 return Models.CapitalGrant.StatusEnum.ToJsonValue(capitalGrantStatusEnum);
+            if (obj is Models.CashOutTransfer.TypeEnum cashOutTransferTypeEnum)
+                return Models.CashOutTransfer.TypeEnum.ToJsonValue(cashOutTransferTypeEnum);
             if (obj is Models.ConfirmationTrackingData.StatusEnum confirmationTrackingDataStatusEnum)
                 return Models.ConfirmationTrackingData.StatusEnum.ToJsonValue(confirmationTrackingDataStatusEnum);
             if (obj is Models.ConfirmationTrackingData.TypeEnum confirmationTrackingDataTypeEnum)
@@ -214,6 +218,8 @@ namespace Adyen.Transfers.Client
                 return Models.Transfer.ReasonEnum.ToJsonValue(transferReasonEnum);
             if (obj is Models.Transfer.TypeEnum transferTypeEnum)
                 return Models.Transfer.TypeEnum.ToJsonValue(transferTypeEnum);
+            if (obj is Models.TransferCategoryData.TypeEnum transferCategoryDataTypeEnum)
+                return Models.TransferCategoryData.TypeEnum.ToJsonValue(transferCategoryDataTypeEnum);
             if (obj is Models.TransferData.CategoryEnum transferDataCategoryEnum)
                 return Models.TransferData.CategoryEnum.ToJsonValue(transferDataCategoryEnum);
             if (obj is Models.TransferData.StatusEnum transferDataStatusEnum)
@@ -224,12 +230,18 @@ namespace Adyen.Transfers.Client
                 return Models.TransferData.ReasonEnum.ToJsonValue(transferDataReasonEnum);
             if (obj is Models.TransferData.TypeEnum transferDataTypeEnum)
                 return Models.TransferData.TypeEnum.ToJsonValue(transferDataTypeEnum);
+            if (obj is Models.TransferDataTracking.TypeEnum transferDataTrackingTypeEnum)
+                return Models.TransferDataTracking.TypeEnum.ToJsonValue(transferDataTrackingTypeEnum);
             if (obj is Models.TransferEvent.ReasonEnum transferEventReasonEnum)
                 return Models.TransferEvent.ReasonEnum.ToJsonValue(transferEventReasonEnum);
             if (obj is Models.TransferEvent.StatusEnum transferEventStatusEnum)
                 return Models.TransferEvent.StatusEnum.ToJsonValue(transferEventStatusEnum);
             if (obj is Models.TransferEvent.TypeEnum transferEventTypeEnum)
                 return Models.TransferEvent.TypeEnum.ToJsonValue(transferEventTypeEnum);
+            if (obj is Models.TransferEventEventsDataInner.TypeEnum transferEventEventsDataInnerTypeEnum)
+                return Models.TransferEventEventsDataInner.TypeEnum.ToJsonValue(transferEventEventsDataInnerTypeEnum);
+            if (obj is Models.TransferEventTrackingData.TypeEnum transferEventTrackingDataTypeEnum)
+                return Models.TransferEventTrackingData.TypeEnum.ToJsonValue(transferEventTrackingDataTypeEnum);
             if (obj is Models.TransferInfo.CategoryEnum transferInfoCategoryEnum)
                 return Models.TransferInfo.CategoryEnum.ToJsonValue(transferInfoCategoryEnum);
             if (obj is Models.TransferInfo.PrioritiesEnum transferInfoPrioritiesEnum)

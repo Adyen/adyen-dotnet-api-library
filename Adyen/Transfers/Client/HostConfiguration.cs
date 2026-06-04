@@ -79,10 +79,15 @@ namespace Adyen.Transfers.Client
             _jsonOptions.Converters.Add(new CapitalGrantsJsonConverter());
             _jsonOptions.Converters.Add(new CardJsonConverter());
             _jsonOptions.Converters.Add(new CardIdentificationJsonConverter());
+            _jsonOptions.Converters.Add(new CashOutJsonConverter());
+            _jsonOptions.Converters.Add(new CashOutInfoJsonConverter());
+            _jsonOptions.Converters.Add(new CashOutInfoCounterpartyJsonConverter());
+            _jsonOptions.Converters.Add(new CashOutTransferJsonConverter());
             _jsonOptions.Converters.Add(new ConfirmationTrackingDataJsonConverter());
             _jsonOptions.Converters.Add(new CounterpartyInfoV3JsonConverter());
             _jsonOptions.Converters.Add(new CounterpartyV3JsonConverter());
             _jsonOptions.Converters.Add(new DKLocalAccountIdentificationJsonConverter());
+            _jsonOptions.Converters.Add(new DefaultErrorResponseEntityJsonConverter());
             _jsonOptions.Converters.Add(new DirectDebitInformationJsonConverter());
             _jsonOptions.Converters.Add(new EstimationTrackingDataJsonConverter());
             _jsonOptions.Converters.Add(new ExecutionDateJsonConverter());

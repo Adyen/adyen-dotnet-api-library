@@ -69,6 +69,138 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
+        /// The type of events data.   Possible values:    - **interchangeData**: information about the interchange fee applied to a transaction.
+        /// </summary>
+        /// <value>The type of events data.   Possible values:    - **interchangeData**: information about the interchange fee applied to a transaction.</value>
+        [JsonConverter(typeof(TypeEnumJsonConverter))]
+        public class TypeEnum : IEnum
+        {
+            /// <summary>
+            /// Returns the value of the TypeEnum.
+            /// </summary>
+            public string? Value { get; set; }
+
+            /// <summary>
+            /// TypeEnum.InterchangeData - interchangeData
+            /// </summary>
+            public static readonly TypeEnum InterchangeData = new("interchangeData");
+
+            /// <summary>
+            /// TypeEnum.IssuingTransactionData - issuingTransactionData
+            /// </summary>
+            public static readonly TypeEnum IssuingTransactionData = new("issuingTransactionData");
+
+            /// <summary>
+            /// TypeEnum.MerchantPurchaseData - merchantPurchaseData
+            /// </summary>
+            public static readonly TypeEnum MerchantPurchaseData = new("merchantPurchaseData");
+        
+            private TypeEnum(string? value)
+            {
+                Value = value;
+            }
+
+            /// <summary>
+            /// Converts a string to a <see cref="TypeEnum"/> implicitly.
+            /// </summary>
+            /// <param name="value">The string value to convert. Defaults to null.</param>
+            /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
+            public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
+    
+            /// <summary>
+            /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
+            /// </summary>
+            /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
+            /// <returns>String value of the <see cref="TypeEnum"/> instance.</returns>
+            public static implicit operator string?(TypeEnum? option) => option?.Value;
+        
+            /// <summary>
+            /// Compares two <see cref="TypeEnum"/> instances for equality.
+            /// </summary>
+            public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Compares two <see cref="TypeEnum"/> instances for inequality.
+            /// </summary>
+            public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns true if the given object is equal to this <see cref="TypeEnum"/> instance.
+            /// </summary>
+            public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns a hash code for this <see cref="TypeEnum"/> instance.
+            /// </summary>
+            public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+            /// <summary>
+            /// Returns the string value of the <see cref="TypeEnum"/> instance.
+            /// </summary>
+            public override string ToString() => Value ?? string.Empty;
+        
+            /// <summary>
+            /// Returns a <see cref="TypeEnum?"/>.
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns><see cref="TypeEnum"/> or null.</returns>
+            public static TypeEnum? FromStringOrDefault(string value)
+            {
+                return value switch {
+                    "interchangeData" => TypeEnum.InterchangeData,
+                    "issuingTransactionData" => TypeEnum.IssuingTransactionData,
+                    "merchantPurchaseData" => TypeEnum.MerchantPurchaseData,
+                    _ => null,
+                };
+            }
+    
+            /// <summary>
+            /// Converts the <see cref="TypeEnum"/> to the json value.
+            /// </summary>
+            /// <param name="value"><see cref="TypeEnum"/></param>
+            /// <returns>String value of the enum.</returns>
+            public static string? ToJsonValue(TypeEnum? value)
+            {
+                if (value == null)
+                    return null;
+            
+                if (value == TypeEnum.InterchangeData)
+                    return "interchangeData";
+                
+                if (value == TypeEnum.IssuingTransactionData)
+                    return "issuingTransactionData";
+                
+                if (value == TypeEnum.MerchantPurchaseData)
+                    return "merchantPurchaseData";
+                
+                return value.Value;
+            }
+            
+            /// <summary>
+            /// JsonConverter for writing TypeEnum.               
+            /// </summary>
+            public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
+            {
+                /// <summary>
+                /// Deserializes a <see cref="TypeEnum"/> from JSON.
+                /// </summary>
+                public override TypeEnum? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions jsonOptions)
+                {
+                    string value = reader.GetString();
+                    return value == null ? null : TypeEnum.FromStringOrDefault(value) ?? new TypeEnum(value);
+                }
+
+                /// <summary>
+                /// Serializes a <see cref="TypeEnum"/> to JSON.
+                /// </summary>
+                public override void Write(Utf8JsonWriter writer, TypeEnum value, JsonSerializerOptions jsonOptions)
+                {
+                    writer.WriteStringValue(TypeEnum.ToJsonValue(value));
+                }
+            }
+        }
+
+        /// <summary>
         /// <see cref="InterchangeData"/>..
         /// </summary>
         public InterchangeData? InterchangeData { get; set; }
@@ -124,29 +256,55 @@ namespace Adyen.Transfers.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            InterchangeData? interchangeData = default;
-            IssuingTransactionData? issuingTransactionData = default;
-            MerchantPurchaseData? merchantPurchaseData = default;
+            Option<TransferEventEventsDataInner.TypeEnum?> type = default;
 
-            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
-            while (utf8JsonReaderOneOf.Read())
+            string? discriminator = ClientUtils.GetDiscriminator(utf8JsonReader, "type");
+
+            if (discriminator != null && discriminator.Equals("interchangeData"))
+                return JsonSerializer.Deserialize<InterchangeData>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
+
+            if (discriminator != null && discriminator.Equals("issuingTransactionData"))
+                return JsonSerializer.Deserialize<IssuingTransactionData>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
+
+            if (discriminator != null && discriminator.Equals("merchantPurchaseData"))
+                return JsonSerializer.Deserialize<MerchantPurchaseData>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
+
+            InterchangeData? interchangeData = null;
+            IssuingTransactionData? issuingTransactionData = null;
+            MerchantPurchaseData? merchantPurchaseData = null;
+
+            Utf8JsonReader utf8JsonReaderDiscriminator = utf8JsonReader;
+            while (utf8JsonReaderDiscriminator.Read())
             {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
+                if (utf8JsonReaderDiscriminator.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth - 1)
                 {
-                    Utf8JsonReader utf8JsonReaderInterchangeData = utf8JsonReader;
-                    ClientUtils.TryDeserialize<InterchangeData?>(ref utf8JsonReaderInterchangeData, jsonSerializerOptions, out interchangeData);
-
-                    Utf8JsonReader utf8JsonReaderIssuingTransactionData = utf8JsonReader;
-                    ClientUtils.TryDeserialize<IssuingTransactionData?>(ref utf8JsonReaderIssuingTransactionData, jsonSerializerOptions, out issuingTransactionData);
-
-                    Utf8JsonReader utf8JsonReaderMerchantPurchaseData = utf8JsonReader;
-                    ClientUtils.TryDeserialize<MerchantPurchaseData?>(ref utf8JsonReaderMerchantPurchaseData, jsonSerializerOptions, out merchantPurchaseData);
+                    string? jsonPropertyName = utf8JsonReaderDiscriminator.GetString();
+                    utf8JsonReaderDiscriminator.Read();
+                    if (jsonPropertyName?.Equals("type") ?? false)
+                    {
+                        string? discriminator = utf8JsonReaderDiscriminator.GetString();
+                        if (discriminator?.Equals("interchangeData") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderInterchangeData = utf8JsonReader;
+                            interchangeData = JsonSerializer.Deserialize<InterchangeData>(ref utf8JsonReaderInterchangeData, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("issuingTransactionData") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderIssuingTransactionData = utf8JsonReader;
+                            issuingTransactionData = JsonSerializer.Deserialize<IssuingTransactionData>(ref utf8JsonReaderIssuingTransactionData, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("merchantPurchaseData") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderMerchantPurchaseData = utf8JsonReader;
+                            merchantPurchaseData = JsonSerializer.Deserialize<MerchantPurchaseData>(ref utf8JsonReaderMerchantPurchaseData, jsonSerializerOptions);
+                        }
+                    }
                 }
             }
 
@@ -165,19 +323,26 @@ namespace Adyen.Transfers.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "type":
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            type = new Option<TransferEventEventsDataInner.TypeEnum?>(TransferEventEventsDataInner.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TransferEventEventsDataInner.TypeEnum)typeRawValue);
+                            break;
                         default:
                             break;
                     }
                 }
             }
             
-            if (interchangeData?.Type != null && InterchangeData.TypeEnum.FromStringOrDefault((string?)interchangeData.Type) != null)
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class TransferEventEventsDataInner.", nameof(type));
+
+            if (interchangeData != null)
                 return new TransferEventEventsDataInner(interchangeData);
 
-            if (issuingTransactionData?.Type != null && IssuingTransactionData.TypeEnum.FromStringOrDefault((string?)issuingTransactionData.Type) != null)
+            if (issuingTransactionData != null)
                 return new TransferEventEventsDataInner(issuingTransactionData);
 
-            if (merchantPurchaseData?.Type != null && MerchantPurchaseData.TypeEnum.FromStringOrDefault((string?)merchantPurchaseData.Type) != null)
+            if (merchantPurchaseData != null)
                 return new TransferEventEventsDataInner(merchantPurchaseData);
 
             return null!;
@@ -191,19 +356,31 @@ namespace Adyen.Transfers.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, TransferEventEventsDataInner transferEventEventsDataInner, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (transferEventEventsDataInner.InterchangeData != null)
-                JsonSerializer.Serialize(writer, transferEventEventsDataInner.InterchangeData, jsonSerializerOptions);
-            if (transferEventEventsDataInner.IssuingTransactionData != null)
-                JsonSerializer.Serialize(writer, transferEventEventsDataInner.IssuingTransactionData, jsonSerializerOptions);
-            if (transferEventEventsDataInner.MerchantPurchaseData != null)
-                JsonSerializer.Serialize(writer, transferEventEventsDataInner.MerchantPurchaseData, jsonSerializerOptions);
-            /* 
+            
             writer.WriteStartObject();
-             */
+            
+            if (transferEventEventsDataInner.InterchangeData != null)
+            {
+                InterchangeDataJsonConverter interchangeDataJsonConverter = (InterchangeDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferEventEventsDataInner.InterchangeData.GetType()));
+                interchangeDataJsonConverter.WriteProperties(writer, transferEventEventsDataInner.InterchangeData, jsonSerializerOptions);
+            }
+
+            if (transferEventEventsDataInner.IssuingTransactionData != null)
+            {
+                IssuingTransactionDataJsonConverter issuingTransactionDataJsonConverter = (IssuingTransactionDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferEventEventsDataInner.IssuingTransactionData.GetType()));
+                issuingTransactionDataJsonConverter.WriteProperties(writer, transferEventEventsDataInner.IssuingTransactionData, jsonSerializerOptions);
+            }
+
+            if (transferEventEventsDataInner.MerchantPurchaseData != null)
+            {
+                MerchantPurchaseDataJsonConverter merchantPurchaseDataJsonConverter = (MerchantPurchaseDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferEventEventsDataInner.MerchantPurchaseData.GetType()));
+                merchantPurchaseDataJsonConverter.WriteProperties(writer, transferEventEventsDataInner.MerchantPurchaseData, jsonSerializerOptions);
+            }
+
             WriteProperties(writer, transferEventEventsDataInner, jsonSerializerOptions);
-            /* 
+            
             writer.WriteEndObject();
-             */
+            
         }
 
         /// <summary>
