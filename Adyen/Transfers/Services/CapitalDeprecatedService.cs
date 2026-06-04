@@ -36,12 +36,12 @@ namespace Adyen.Transfers.Services
     /// Represents a collection of functions to interact with the API endpoints.
     /// This class is registered as transient.
     /// </summary>
-    public interface ICapitalService : IAdyenApiService
+    public interface ICapitalDeprecatedService : IAdyenApiService
     {
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        CapitalServiceEvents? Events { get; }
+        CapitalDeprecatedServiceEvents? Events { get; }
 
         /// <summary>
         /// Get a capital account
@@ -238,7 +238,7 @@ namespace Adyen.Transfers.Services
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints.
     /// </summary>
-    public class CapitalServiceEvents
+    public class CapitalDeprecatedServiceEvents
     {
         /// <summary>
         /// The event raised after the server response.
@@ -250,7 +250,7 @@ namespace Adyen.Transfers.Services
         /// </summary>
         public event EventHandler<ExceptionEventArgs>? OnErrorGetCapitalAccount;
 
-        internal void ExecuteOnGetCapitalAccount(CapitalService.GetCapitalAccountApiResponse apiResponse)
+        internal void ExecuteOnGetCapitalAccount(CapitalDeprecatedService.GetCapitalAccountApiResponse apiResponse)
         {
             OnGetCapitalAccount?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
@@ -270,7 +270,7 @@ namespace Adyen.Transfers.Services
         /// </summary>
         public event EventHandler<ExceptionEventArgs>? OnErrorGetGrantReferenceDetails;
 
-        internal void ExecuteOnGetGrantReferenceDetails(CapitalService.GetGrantReferenceDetailsApiResponse apiResponse)
+        internal void ExecuteOnGetGrantReferenceDetails(CapitalDeprecatedService.GetGrantReferenceDetailsApiResponse apiResponse)
         {
             OnGetGrantReferenceDetails?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
@@ -290,7 +290,7 @@ namespace Adyen.Transfers.Services
         /// </summary>
         public event EventHandler<ExceptionEventArgs>? OnErrorRequestGrantPayout;
 
-        internal void ExecuteOnRequestGrantPayout(CapitalService.RequestGrantPayoutApiResponse apiResponse)
+        internal void ExecuteOnRequestGrantPayout(CapitalDeprecatedService.RequestGrantPayoutApiResponse apiResponse)
         {
             OnRequestGrantPayout?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
@@ -304,7 +304,7 @@ namespace Adyen.Transfers.Services
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints.
     /// </summary>
-    public sealed partial class CapitalService : ICapitalService
+    public sealed partial class CapitalDeprecatedService : ICapitalDeprecatedService
     {
 
         /// <summary>
@@ -323,7 +323,7 @@ namespace Adyen.Transfers.Services
         /// <summary>
         /// The logger.
         /// </summary>
-        public ILogger<CapitalService> Logger { get; }
+        public ILogger<CapitalDeprecatedService> Logger { get; }
 
         /// <summary>
         /// The HttpClient.
@@ -333,7 +333,7 @@ namespace Adyen.Transfers.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public CapitalServiceEvents? Events { get; }
+        public CapitalDeprecatedServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -341,18 +341,18 @@ namespace Adyen.Transfers.Services
         public ITokenProvider<ApiKeyToken> ApiKeyProvider { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CapitalService"/> class.
+        /// Initializes a new instance of the <see cref="CapitalDeprecatedService"/> class.
         /// </summary>
-        public CapitalService(AdyenOptionsProvider adyenOptionsProvider, ILogger<CapitalService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, CapitalServiceEvents capitalServiceEvents = null)
+        public CapitalDeprecatedService(AdyenOptionsProvider adyenOptionsProvider, ILogger<CapitalDeprecatedService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, CapitalDeprecatedServiceEvents capitalDeprecatedServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<CapitalService>.Instance;
+            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<CapitalDeprecatedService>.Instance;
             // Set BaseAddress if it's not set.
             if (httpClient.BaseAddress == null)
                 httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, BASE_URL));
             HttpClient = httpClient;
-            Events = capitalServiceEvents;
+            Events = capitalDeprecatedServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
         

@@ -31,47 +31,25 @@ using Adyen.Transfers.Client;
 namespace Adyen.Transfers.Models
 {
     /// <summary>
-    /// The latest tracking information of the transfer..
+    /// CashOutTransfer.
     /// </summary>
-    [JsonConverter(typeof(TransferDataTrackingJsonConverter))]
-    public partial class TransferDataTracking
+    [JsonConverter(typeof(CashOutTransferJsonConverter))]
+    public partial class CashOutTransfer
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransferDataTracking" /> class.
+        /// Initializes a new instance of the <see cref="CashOutTransfer" /> class.
         /// </summary>
-        /// <param name="confirmationTrackingData"></param>
-        public TransferDataTracking(ConfirmationTrackingData confirmationTrackingData)
+        public CashOutTransfer()
         {
-            ConfirmationTrackingData = confirmationTrackingData;
-            OnCreated();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TransferDataTracking" /> class.
-        /// </summary>
-        /// <param name="estimationTrackingData"></param>
-        public TransferDataTracking(EstimationTrackingData estimationTrackingData)
-        {
-            EstimationTrackingData = estimationTrackingData;
-            OnCreated();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TransferDataTracking" /> class.
-        /// </summary>
-        /// <param name="internalReviewTrackingData"></param>
-        public TransferDataTracking(InternalReviewTrackingData internalReviewTrackingData)
-        {
-            InternalReviewTrackingData = internalReviewTrackingData;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen's internal review.
+        /// The type of the cashout transfer.  Possible values:  - **cashoutRepayment**: Corresponds to the transfer created to deduct the cashout amount after settlement. - **cashoutFee**: Corresponds to the transfer created to debit the cashout fee form the user's balance account.
         /// </summary>
-        /// <value>The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen&#39;s internal review.</value>
+        /// <value>The type of the cashout transfer.  Possible values:  - **cashoutRepayment**: Corresponds to the transfer created to deduct the cashout amount after settlement. - **cashoutFee**: Corresponds to the transfer created to debit the cashout fee form the user&#39;s balance account.</value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
         public class TypeEnum : IEnum
         {
@@ -81,19 +59,14 @@ namespace Adyen.Transfers.Models
             public string? Value { get; set; }
 
             /// <summary>
-            /// TypeEnum.Confirmation - confirmation
+            /// TypeEnum.CashoutRepayment - cashoutRepayment
             /// </summary>
-            public static readonly TypeEnum Confirmation = new("confirmation");
+            public static readonly TypeEnum CashoutRepayment = new("cashoutRepayment");
 
             /// <summary>
-            /// TypeEnum.Estimation - estimation
+            /// TypeEnum.CashoutFee - cashoutFee
             /// </summary>
-            public static readonly TypeEnum Estimation = new("estimation");
-
-            /// <summary>
-            /// TypeEnum.InternalReview - internalReview
-            /// </summary>
-            public static readonly TypeEnum InternalReview = new("internalReview");
+            public static readonly TypeEnum CashoutFee = new("cashoutFee");
         
             private TypeEnum(string? value)
             {
@@ -147,9 +120,8 @@ namespace Adyen.Transfers.Models
             public static TypeEnum? FromStringOrDefault(string value)
             {
                 return value switch {
-                    "confirmation" => TypeEnum.Confirmation,
-                    "estimation" => TypeEnum.Estimation,
-                    "internalReview" => TypeEnum.InternalReview,
+                    "cashoutRepayment" => TypeEnum.CashoutRepayment,
+                    "cashoutFee" => TypeEnum.CashoutFee,
                     _ => null,
                 };
             }
@@ -164,14 +136,11 @@ namespace Adyen.Transfers.Models
                 if (value == null)
                     return null;
             
-                if (value == TypeEnum.Confirmation)
-                    return "confirmation";
+                if (value == TypeEnum.CashoutRepayment)
+                    return "cashoutRepayment";
                 
-                if (value == TypeEnum.Estimation)
-                    return "estimation";
-                
-                if (value == TypeEnum.InternalReview)
-                    return "internalReview";
+                if (value == TypeEnum.CashoutFee)
+                    return "cashoutFee";
                 
                 return value.Value;
             }
@@ -201,19 +170,24 @@ namespace Adyen.Transfers.Models
         }
 
         /// <summary>
-        /// <see cref="ConfirmationTrackingData"/>..
+        /// The type of the cashout transfer.  Possible values:  - **cashoutRepayment**: Corresponds to the transfer created to deduct the cashout amount after settlement. - **cashoutFee**: Corresponds to the transfer created to debit the cashout fee form the user's balance account.
         /// </summary>
-        public ConfirmationTrackingData? ConfirmationTrackingData { get; set; }
+        /// <value>The type of the cashout transfer.  Possible values:  - **cashoutRepayment**: Corresponds to the transfer created to deduct the cashout amount after settlement. - **cashoutFee**: Corresponds to the transfer created to debit the cashout fee form the user&#39;s balance account.</value>
+        [JsonPropertyName("type")]
+        public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// <see cref="EstimationTrackingData"/>..
+        /// <see cref="Amount"/>.
         /// </summary>
-        public EstimationTrackingData? EstimationTrackingData { get; set; }
+        [JsonPropertyName("amount")]
+        public Amount Amount { get; set; }
 
         /// <summary>
-        /// <see cref="InternalReviewTrackingData"/>..
+        /// The reference of the cashout transfer.
         /// </summary>
-        public InternalReviewTrackingData? InternalReviewTrackingData { get; set; }
+        /// <value>The reference of the cashout transfer.</value>
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -222,32 +196,29 @@ namespace Adyen.Transfers.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TransferDataTracking {\n");
-            if (this.ConfirmationTrackingData != null)
-                sb.Append(ConfirmationTrackingData.ToString().Replace("\n", "\n  "));
-            if (this.EstimationTrackingData != null)
-                sb.Append(EstimationTrackingData.ToString().Replace("\n", "\n  "));
-            if (this.InternalReviewTrackingData != null)
-                sb.Append(InternalReviewTrackingData.ToString().Replace("\n", "\n  "));
+            sb.Append("class CashOutTransfer {\n");
+            sb.Append("  Amount: ").Append(Amount).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="TransferDataTracking" />
+    /// A Json converter for type <see cref="CashOutTransfer" />
     /// </summary>
-    public class TransferDataTrackingJsonConverter : JsonConverter<TransferDataTracking>
+    public class CashOutTransferJsonConverter : JsonConverter<CashOutTransfer>
     {
         /// <summary>
-        /// Deserializes json to <see cref="TransferDataTracking"/>.
+        /// Deserializes json to <see cref="CashOutTransfer"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="TransferDataTracking"/>.</returns>
+        /// <returns><see cref="CashOutTransfer"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override TransferDataTracking Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override CashOutTransfer Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -256,57 +227,9 @@ namespace Adyen.Transfers.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<TransferDataTracking.TypeEnum?> type = default;
-
-            string? discriminator = ClientUtils.GetDiscriminator(utf8JsonReader, "type");
-
-            if (discriminator != null && discriminator.Equals("confirmation"))
-                return JsonSerializer.Deserialize<ConfirmationTrackingData>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
-
-            if (discriminator != null && discriminator.Equals("estimation"))
-                return JsonSerializer.Deserialize<EstimationTrackingData>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
-
-            if (discriminator != null && discriminator.Equals("internalReview"))
-                return JsonSerializer.Deserialize<InternalReviewTrackingData>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
-
-            ConfirmationTrackingData? confirmationTrackingData = null;
-            EstimationTrackingData? estimationTrackingData = null;
-            InternalReviewTrackingData? internalReviewTrackingData = null;
-
-            Utf8JsonReader utf8JsonReaderDiscriminator = utf8JsonReader;
-            while (utf8JsonReaderDiscriminator.Read())
-            {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
-                    break;
-
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
-                    break;
-
-                if (utf8JsonReaderDiscriminator.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth - 1)
-                {
-                    string? jsonPropertyName = utf8JsonReaderDiscriminator.GetString();
-                    utf8JsonReaderDiscriminator.Read();
-                    if (jsonPropertyName?.Equals("type") ?? false)
-                    {
-                        string? discriminator = utf8JsonReaderDiscriminator.GetString();
-                        if (discriminator?.Equals("confirmation") ?? false)
-                        {
-                            Utf8JsonReader utf8JsonReaderConfirmationTrackingData = utf8JsonReader;
-                            confirmationTrackingData = JsonSerializer.Deserialize<ConfirmationTrackingData>(ref utf8JsonReaderConfirmationTrackingData, jsonSerializerOptions);
-                        }
-                        if (discriminator?.Equals("estimation") ?? false)
-                        {
-                            Utf8JsonReader utf8JsonReaderEstimationTrackingData = utf8JsonReader;
-                            estimationTrackingData = JsonSerializer.Deserialize<EstimationTrackingData>(ref utf8JsonReaderEstimationTrackingData, jsonSerializerOptions);
-                        }
-                        if (discriminator?.Equals("internalReview") ?? false)
-                        {
-                            Utf8JsonReader utf8JsonReaderInternalReviewTrackingData = utf8JsonReader;
-                            internalReviewTrackingData = JsonSerializer.Deserialize<InternalReviewTrackingData>(ref utf8JsonReaderInternalReviewTrackingData, jsonSerializerOptions);
-                        }
-                    }
-                }
-            }
+            Option<Amount?> amount = default;
+            Option<string?> id = default;
+            Option<CashOutTransfer.TypeEnum?> type = default;
 
             while (utf8JsonReader.Read())
             {
@@ -323,9 +246,15 @@ namespace Adyen.Transfers.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "amount":
+                            amount = new Option<Amount?>(JsonSerializer.Deserialize<Amount>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "id":
+                            id = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<TransferDataTracking.TypeEnum?>(TransferDataTracking.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TransferDataTracking.TypeEnum)typeRawValue);
+                            type = new Option<CashOutTransfer.TypeEnum?>(CashOutTransfer.TypeEnum.FromStringOrDefault(typeRawValue) ?? (CashOutTransfer.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -333,65 +262,58 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class CashOutTransfer.", nameof(amount));
+
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class CashOutTransfer.", nameof(id));
+
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TransferDataTracking.", nameof(type));
+                throw new ArgumentException("Property is required for class CashOutTransfer.", nameof(type));
 
-            if (confirmationTrackingData != null)
-                return new TransferDataTracking(confirmationTrackingData);
-
-            if (estimationTrackingData != null)
-                return new TransferDataTracking(estimationTrackingData);
-
-            if (internalReviewTrackingData != null)
-                return new TransferDataTracking(internalReviewTrackingData);
-
-            return null!;
+            var cashOutTransfer = new CashOutTransfer();
+            cashOutTransfer.Amount = amount.Value!;
+            cashOutTransfer.Id = id.Value!;
+            cashOutTransfer.Type = type.Value!;
+            return cashOutTransfer;
         }
 
         /// <summary>
-        /// Serializes a <see cref="TransferDataTracking"/>.
+        /// Serializes a <see cref="CashOutTransfer"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="transferDataTracking"></param>
+        /// <param name="cashOutTransfer"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, TransferDataTracking transferDataTracking, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, CashOutTransfer cashOutTransfer, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            if (transferDataTracking.ConfirmationTrackingData != null)
-            {
-                ConfirmationTrackingDataJsonConverter confirmationTrackingDataJsonConverter = (ConfirmationTrackingDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferDataTracking.ConfirmationTrackingData.GetType()));
-                confirmationTrackingDataJsonConverter.WriteProperties(writer, transferDataTracking.ConfirmationTrackingData, jsonSerializerOptions);
-            }
-
-            if (transferDataTracking.EstimationTrackingData != null)
-            {
-                EstimationTrackingDataJsonConverter estimationTrackingDataJsonConverter = (EstimationTrackingDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferDataTracking.EstimationTrackingData.GetType()));
-                estimationTrackingDataJsonConverter.WriteProperties(writer, transferDataTracking.EstimationTrackingData, jsonSerializerOptions);
-            }
-
-            if (transferDataTracking.InternalReviewTrackingData != null)
-            {
-                InternalReviewTrackingDataJsonConverter internalReviewTrackingDataJsonConverter = (InternalReviewTrackingDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferDataTracking.InternalReviewTrackingData.GetType()));
-                internalReviewTrackingDataJsonConverter.WriteProperties(writer, transferDataTracking.InternalReviewTrackingData, jsonSerializerOptions);
-            }
-
-            WriteProperties(writer, transferDataTracking, jsonSerializerOptions);
+            WriteProperties(writer, cashOutTransfer, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="TransferDataTracking"/>.
+        /// Serializes the properties of <see cref="CashOutTransfer"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="transferDataTracking"></param>
+        /// <param name="cashOutTransfer"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, TransferDataTracking transferDataTracking, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, CashOutTransfer cashOutTransfer, JsonSerializerOptions jsonSerializerOptions)
         {
+            
+            writer.WritePropertyName("amount");
+            JsonSerializer.Serialize(writer, cashOutTransfer.Amount, jsonSerializerOptions);
+            if (cashOutTransfer.Id != null)
+                writer.WriteString("id", cashOutTransfer.Id);
 
+            if (cashOutTransfer.Type != null) 
+            {
+                string? typeRawValue = CashOutTransfer.TypeEnum.ToJsonValue(cashOutTransfer.Type);
+                writer.WriteString("type", typeRawValue);
+            }
         }
     }
 }

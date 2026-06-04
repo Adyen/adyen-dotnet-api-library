@@ -79,6 +79,147 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
+        /// **bank**
+        /// </summary>
+        /// <value>**bank**</value>
+        [JsonConverter(typeof(TypeEnumJsonConverter))]
+        public class TypeEnum : IEnum
+        {
+            /// <summary>
+            /// Returns the value of the TypeEnum.
+            /// </summary>
+            public string? Value { get; set; }
+
+            /// <summary>
+            /// TypeEnum.Bank - bank
+            /// </summary>
+            public static readonly TypeEnum Bank = new("bank");
+
+            /// <summary>
+            /// TypeEnum.Internal - internal
+            /// </summary>
+            public static readonly TypeEnum Internal = new("internal");
+
+            /// <summary>
+            /// TypeEnum.IssuedCard - issuedCard
+            /// </summary>
+            public static readonly TypeEnum IssuedCard = new("issuedCard");
+
+            /// <summary>
+            /// TypeEnum.PlatformPayment - platformPayment
+            /// </summary>
+            public static readonly TypeEnum PlatformPayment = new("platformPayment");
+        
+            private TypeEnum(string? value)
+            {
+                Value = value;
+            }
+
+            /// <summary>
+            /// Converts a string to a <see cref="TypeEnum"/> implicitly.
+            /// </summary>
+            /// <param name="value">The string value to convert. Defaults to null.</param>
+            /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
+            public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
+    
+            /// <summary>
+            /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
+            /// </summary>
+            /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
+            /// <returns>String value of the <see cref="TypeEnum"/> instance.</returns>
+            public static implicit operator string?(TypeEnum? option) => option?.Value;
+        
+            /// <summary>
+            /// Compares two <see cref="TypeEnum"/> instances for equality.
+            /// </summary>
+            public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Compares two <see cref="TypeEnum"/> instances for inequality.
+            /// </summary>
+            public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns true if the given object is equal to this <see cref="TypeEnum"/> instance.
+            /// </summary>
+            public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns a hash code for this <see cref="TypeEnum"/> instance.
+            /// </summary>
+            public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+            /// <summary>
+            /// Returns the string value of the <see cref="TypeEnum"/> instance.
+            /// </summary>
+            public override string ToString() => Value ?? string.Empty;
+        
+            /// <summary>
+            /// Returns a <see cref="TypeEnum?"/>.
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns><see cref="TypeEnum"/> or null.</returns>
+            public static TypeEnum? FromStringOrDefault(string value)
+            {
+                return value switch {
+                    "bank" => TypeEnum.Bank,
+                    "internal" => TypeEnum.Internal,
+                    "issuedCard" => TypeEnum.IssuedCard,
+                    "platformPayment" => TypeEnum.PlatformPayment,
+                    _ => null,
+                };
+            }
+    
+            /// <summary>
+            /// Converts the <see cref="TypeEnum"/> to the json value.
+            /// </summary>
+            /// <param name="value"><see cref="TypeEnum"/></param>
+            /// <returns>String value of the enum.</returns>
+            public static string? ToJsonValue(TypeEnum? value)
+            {
+                if (value == null)
+                    return null;
+            
+                if (value == TypeEnum.Bank)
+                    return "bank";
+                
+                if (value == TypeEnum.Internal)
+                    return "internal";
+                
+                if (value == TypeEnum.IssuedCard)
+                    return "issuedCard";
+                
+                if (value == TypeEnum.PlatformPayment)
+                    return "platformPayment";
+                
+                return value.Value;
+            }
+            
+            /// <summary>
+            /// JsonConverter for writing TypeEnum.               
+            /// </summary>
+            public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
+            {
+                /// <summary>
+                /// Deserializes a <see cref="TypeEnum"/> from JSON.
+                /// </summary>
+                public override TypeEnum? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions jsonOptions)
+                {
+                    string value = reader.GetString();
+                    return value == null ? null : TypeEnum.FromStringOrDefault(value) ?? new TypeEnum(value);
+                }
+
+                /// <summary>
+                /// Serializes a <see cref="TypeEnum"/> to JSON.
+                /// </summary>
+                public override void Write(Utf8JsonWriter writer, TypeEnum value, JsonSerializerOptions jsonOptions)
+                {
+                    writer.WriteStringValue(TypeEnum.ToJsonValue(value));
+                }
+            }
+        }
+
+        /// <summary>
         /// <see cref="BankCategoryData"/>..
         /// </summary>
         public BankCategoryData? BankCategoryData { get; set; }
@@ -141,33 +282,64 @@ namespace Adyen.Transfers.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            BankCategoryData? bankCategoryData = default;
-            InternalCategoryData? internalCategoryData = default;
-            IssuedCard? issuedCard = default;
-            PlatformPayment? platformPayment = default;
+            Option<TransferCategoryData.TypeEnum?> type = default;
 
-            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
-            while (utf8JsonReaderOneOf.Read())
+            string? discriminator = ClientUtils.GetDiscriminator(utf8JsonReader, "type");
+
+            if (discriminator != null && discriminator.Equals("bank"))
+                return JsonSerializer.Deserialize<BankCategoryData>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
+
+            if (discriminator != null && discriminator.Equals("internal"))
+                return JsonSerializer.Deserialize<InternalCategoryData>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
+
+            if (discriminator != null && discriminator.Equals("issuedCard"))
+                return JsonSerializer.Deserialize<IssuedCard>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
+
+            if (discriminator != null && discriminator.Equals("platformPayment"))
+                return JsonSerializer.Deserialize<PlatformPayment>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
+
+            BankCategoryData? bankCategoryData = null;
+            InternalCategoryData? internalCategoryData = null;
+            IssuedCard? issuedCard = null;
+            PlatformPayment? platformPayment = null;
+
+            Utf8JsonReader utf8JsonReaderDiscriminator = utf8JsonReader;
+            while (utf8JsonReaderDiscriminator.Read())
             {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
+                if (utf8JsonReaderDiscriminator.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth - 1)
                 {
-                    Utf8JsonReader utf8JsonReaderBankCategoryData = utf8JsonReader;
-                    ClientUtils.TryDeserialize<BankCategoryData?>(ref utf8JsonReaderBankCategoryData, jsonSerializerOptions, out bankCategoryData);
-
-                    Utf8JsonReader utf8JsonReaderInternalCategoryData = utf8JsonReader;
-                    ClientUtils.TryDeserialize<InternalCategoryData?>(ref utf8JsonReaderInternalCategoryData, jsonSerializerOptions, out internalCategoryData);
-
-                    Utf8JsonReader utf8JsonReaderIssuedCard = utf8JsonReader;
-                    ClientUtils.TryDeserialize<IssuedCard?>(ref utf8JsonReaderIssuedCard, jsonSerializerOptions, out issuedCard);
-
-                    Utf8JsonReader utf8JsonReaderPlatformPayment = utf8JsonReader;
-                    ClientUtils.TryDeserialize<PlatformPayment?>(ref utf8JsonReaderPlatformPayment, jsonSerializerOptions, out platformPayment);
+                    string? jsonPropertyName = utf8JsonReaderDiscriminator.GetString();
+                    utf8JsonReaderDiscriminator.Read();
+                    if (jsonPropertyName?.Equals("type") ?? false)
+                    {
+                        string? discriminator = utf8JsonReaderDiscriminator.GetString();
+                        if (discriminator?.Equals("bank") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderBankCategoryData = utf8JsonReader;
+                            bankCategoryData = JsonSerializer.Deserialize<BankCategoryData>(ref utf8JsonReaderBankCategoryData, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("internal") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderInternalCategoryData = utf8JsonReader;
+                            internalCategoryData = JsonSerializer.Deserialize<InternalCategoryData>(ref utf8JsonReaderInternalCategoryData, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("issuedCard") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderIssuedCard = utf8JsonReader;
+                            issuedCard = JsonSerializer.Deserialize<IssuedCard>(ref utf8JsonReaderIssuedCard, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("platformPayment") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderPlatformPayment = utf8JsonReader;
+                            platformPayment = JsonSerializer.Deserialize<PlatformPayment>(ref utf8JsonReaderPlatformPayment, jsonSerializerOptions);
+                        }
+                    }
                 }
             }
 
@@ -186,22 +358,26 @@ namespace Adyen.Transfers.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "type":
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            type = new Option<TransferCategoryData.TypeEnum?>(TransferCategoryData.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TransferCategoryData.TypeEnum)typeRawValue);
+                            break;
                         default:
                             break;
                     }
                 }
             }
             
-            if (bankCategoryData?.Type != null && BankCategoryData.TypeEnum.FromStringOrDefault((string?)bankCategoryData.Type) != null)
+            if (bankCategoryData != null)
                 return new TransferCategoryData(bankCategoryData);
 
-            if (internalCategoryData?.Type != null && InternalCategoryData.TypeEnum.FromStringOrDefault((string?)internalCategoryData.Type) != null)
+            if (internalCategoryData != null)
                 return new TransferCategoryData(internalCategoryData);
 
-            if (issuedCard?.Type != null && IssuedCard.TypeEnum.FromStringOrDefault((string?)issuedCard.Type) != null)
+            if (issuedCard != null)
                 return new TransferCategoryData(issuedCard);
 
-            if (platformPayment?.Type != null && PlatformPayment.TypeEnum.FromStringOrDefault((string?)platformPayment.Type) != null)
+            if (platformPayment != null)
                 return new TransferCategoryData(platformPayment);
 
             return null!;
@@ -215,21 +391,37 @@ namespace Adyen.Transfers.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, TransferCategoryData transferCategoryData, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (transferCategoryData.BankCategoryData != null)
-                JsonSerializer.Serialize(writer, transferCategoryData.BankCategoryData, jsonSerializerOptions);
-            if (transferCategoryData.InternalCategoryData != null)
-                JsonSerializer.Serialize(writer, transferCategoryData.InternalCategoryData, jsonSerializerOptions);
-            if (transferCategoryData.IssuedCard != null)
-                JsonSerializer.Serialize(writer, transferCategoryData.IssuedCard, jsonSerializerOptions);
-            if (transferCategoryData.PlatformPayment != null)
-                JsonSerializer.Serialize(writer, transferCategoryData.PlatformPayment, jsonSerializerOptions);
-            /* 
+            
             writer.WriteStartObject();
-             */
+            
+            if (transferCategoryData.BankCategoryData != null)
+            {
+                BankCategoryDataJsonConverter bankCategoryDataJsonConverter = (BankCategoryDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferCategoryData.BankCategoryData.GetType()));
+                bankCategoryDataJsonConverter.WriteProperties(writer, transferCategoryData.BankCategoryData, jsonSerializerOptions);
+            }
+
+            if (transferCategoryData.InternalCategoryData != null)
+            {
+                InternalCategoryDataJsonConverter internalCategoryDataJsonConverter = (InternalCategoryDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferCategoryData.InternalCategoryData.GetType()));
+                internalCategoryDataJsonConverter.WriteProperties(writer, transferCategoryData.InternalCategoryData, jsonSerializerOptions);
+            }
+
+            if (transferCategoryData.IssuedCard != null)
+            {
+                IssuedCardJsonConverter issuedCardJsonConverter = (IssuedCardJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferCategoryData.IssuedCard.GetType()));
+                issuedCardJsonConverter.WriteProperties(writer, transferCategoryData.IssuedCard, jsonSerializerOptions);
+            }
+
+            if (transferCategoryData.PlatformPayment != null)
+            {
+                PlatformPaymentJsonConverter platformPaymentJsonConverter = (PlatformPaymentJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferCategoryData.PlatformPayment.GetType()));
+                platformPaymentJsonConverter.WriteProperties(writer, transferCategoryData.PlatformPayment, jsonSerializerOptions);
+            }
+
             WriteProperties(writer, transferCategoryData, jsonSerializerOptions);
-            /* 
+            
             writer.WriteEndObject();
-             */
+            
         }
 
         /// <summary>
