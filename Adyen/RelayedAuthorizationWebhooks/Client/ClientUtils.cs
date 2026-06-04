@@ -136,6 +136,8 @@ namespace Adyen.RelayedAuthorizationWebhooks.Client
                 return Models.PaymentInstrument.StatusEnum.ToJsonValue(paymentInstrumentStatusEnum);
             if (obj is Models.PaymentInstrument.StatusReasonEnum paymentInstrumentStatusReasonEnum)
                 return Models.PaymentInstrument.StatusReasonEnum.ToJsonValue(paymentInstrumentStatusReasonEnum);
+            if (obj is Models.PaymentInstrumentAdditionalBankAccountIdentificationsInner.TypeEnum paymentInstrumentAdditionalBankAccountIdentificationsInnerTypeEnum)
+                return Models.PaymentInstrumentAdditionalBankAccountIdentificationsInner.TypeEnum.ToJsonValue(paymentInstrumentAdditionalBankAccountIdentificationsInnerTypeEnum);
             if (obj is Models.Phone.TypeEnum phoneTypeEnum)
                 return Models.Phone.TypeEnum.ToJsonValue(phoneTypeEnum);
             if (obj is Models.RelayedAuthorisationRequest.TypeEnum relayedAuthorisationRequestTypeEnum)
