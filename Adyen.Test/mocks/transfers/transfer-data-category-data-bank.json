@@ -1,0 +1,16 @@
+{
+  "id": "1W1UG35U8A9J5ZLG",
+  "amount": {
+    "value": 110000,
+    "currency": "EUR"
+  },
+  "balanceAccountId": "BAB8B2C3D4E5F6G7H8D9J6GD4",
+  "category": "bank",
+  "direction": "outgoing",
+  "reason": "approved",
+  "status": "authorised",
+  "categoryData": {
+    "type": "bank",
+    "priority": "wire"
+  }
+}

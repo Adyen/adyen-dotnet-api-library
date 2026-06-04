@@ -1,0 +1,10 @@
+{
+  "accountHolder": {
+    "fullName": "A. Klaassen"
+  },
+  "accountIdentification": {
+    "type": "numberAndBic",
+    "accountNumber": "123456789",
+    "bic": "BOFAUS3NXXX"
+  }
+}
