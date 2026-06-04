@@ -142,6 +142,8 @@ namespace Adyen.TransactionWebhooks.Client
                 return Models.Transaction.StatusEnum.ToJsonValue(transactionStatusEnum);
             if (obj is Models.TransactionNotificationRequestV4.TypeEnum transactionNotificationRequestV4TypeEnum)
                 return Models.TransactionNotificationRequestV4.TypeEnum.ToJsonValue(transactionNotificationRequestV4TypeEnum);
+            if (obj is Models.TransferViewCategoryData.TypeEnum transferViewCategoryDataTypeEnum)
+                return Models.TransferViewCategoryData.TypeEnum.ToJsonValue(transferViewCategoryDataTypeEnum);
             if (obj is ICollection collection)
             {
                 List<string?> entries = new();
