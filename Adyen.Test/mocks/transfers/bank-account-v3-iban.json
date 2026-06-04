@@ -1,0 +1,9 @@
+{
+  "accountHolder": {
+    "fullName": "A. Klaassen"
+  },
+  "accountIdentification": {
+    "type": "iban",
+    "iban": "GB29NWBK60161331926819"
+  }
+}

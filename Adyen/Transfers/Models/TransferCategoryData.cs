@@ -284,20 +284,6 @@ namespace Adyen.Transfers.Models
 
             Option<TransferCategoryData.TypeEnum?> type = default;
 
-            string? discriminator = ClientUtils.GetDiscriminator(utf8JsonReader, "type");
-
-            if (discriminator != null && discriminator.Equals("bank"))
-                return JsonSerializer.Deserialize<BankCategoryData>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
-
-            if (discriminator != null && discriminator.Equals("internal"))
-                return JsonSerializer.Deserialize<InternalCategoryData>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
-
-            if (discriminator != null && discriminator.Equals("issuedCard"))
-                return JsonSerializer.Deserialize<IssuedCard>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
-
-            if (discriminator != null && discriminator.Equals("platformPayment"))
-                return JsonSerializer.Deserialize<PlatformPayment>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
-
             BankCategoryData? bankCategoryData = null;
             InternalCategoryData? internalCategoryData = null;
             IssuedCard? issuedCard = null;

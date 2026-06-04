@@ -258,17 +258,6 @@ namespace Adyen.Transfers.Models
 
             Option<TransferEventEventsDataInner.TypeEnum?> type = default;
 
-            string? discriminator = ClientUtils.GetDiscriminator(utf8JsonReader, "type");
-
-            if (discriminator != null && discriminator.Equals("interchangeData"))
-                return JsonSerializer.Deserialize<InterchangeData>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
-
-            if (discriminator != null && discriminator.Equals("issuingTransactionData"))
-                return JsonSerializer.Deserialize<IssuingTransactionData>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
-
-            if (discriminator != null && discriminator.Equals("merchantPurchaseData"))
-                return JsonSerializer.Deserialize<MerchantPurchaseData>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
-
             InterchangeData? interchangeData = null;
             IssuingTransactionData? issuingTransactionData = null;
             MerchantPurchaseData? merchantPurchaseData = null;

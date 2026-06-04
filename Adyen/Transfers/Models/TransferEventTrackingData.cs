@@ -258,17 +258,6 @@ namespace Adyen.Transfers.Models
 
             Option<TransferEventTrackingData.TypeEnum?> type = default;
 
-            string? discriminator = ClientUtils.GetDiscriminator(utf8JsonReader, "type");
-
-            if (discriminator != null && discriminator.Equals("confirmation"))
-                return JsonSerializer.Deserialize<ConfirmationTrackingData>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
-
-            if (discriminator != null && discriminator.Equals("estimation"))
-                return JsonSerializer.Deserialize<EstimationTrackingData>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
-
-            if (discriminator != null && discriminator.Equals("internalReview"))
-                return JsonSerializer.Deserialize<InternalReviewTrackingData>(ref utf8JsonReader, jsonSerializerOptions) ?? throw new JsonException("The result was an unexpected value.");
-
             ConfirmationTrackingData? confirmationTrackingData = null;
             EstimationTrackingData? estimationTrackingData = null;
             InternalReviewTrackingData? internalReviewTrackingData = null;
