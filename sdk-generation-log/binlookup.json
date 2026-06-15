@@ -1,8 +1,8 @@
 {
   "service": "binlookup",
   "project": "dotnet",
-  "generatedAt": "2026-05-29T13:48:59Z",
-  "openapiCommitSha": "1e3919b0fb3a780c92f1b11f8ca3d829a641066c",
+  "generatedAt": "2026-06-15T16:42:40Z",
+  "openapiCommitSha": "fe790646de44602c0531c3ebd57c966876c7a1c7",
   "automationCommitSha": "6f06b47d0661f0891defe6b85461d2c367fbd284",
-  "libraryCommitSha": "84f9ab669938e6b22eea94bba39b6588cfef461d"
+  "libraryCommitSha": "7d3e4452e320d90ce16098da49a0dc2128a8f7c7"
 }
