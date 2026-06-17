@@ -2,7 +2,7 @@
 /*
  * Adyen Payout API
  *
- * > The **Payout API is deprecated** and no longer supports new integrations. Do one of the following: >- If you are building a new integration, use the [Transfers API](https://docs.adyen.com/api-explorer/transfers/latest/overview) instead. > - If you are already using the Payout API, reach out to your Adyen contact to learn how to migrate to the Transfers API. > > With the Transfers API, you can: > - Handle multiple payout use cases with a single API. > - Use new payout functionalities, such as instant payouts to bank accounts. > - Receive webhooks with more details and defined transfer states. > > For more information about the payout features of the Transfers API, see our [Payouts](https://docs.adyen.com/payouts/payout-service) documentation.   A set of API endpoints that allow you to store payout details, confirm, or decline a payout.  For more information, refer to [Online payouts](https://docs.adyen.com/online-payments/online-payouts). ## Authentication To use the Payout API, you need to have [two API credentials](https://docs.adyen.com/online-payments/online-payouts#payouts-to-bank-accounts-and-wallets): one for storing payout details and submitting payouts, and another one for confirming or declining payouts. If you don't have the required API credentials, contact our [Support Team](https://www.adyen.help/hc/en-us/requests/new).  If using an API key, add an `X-API-Key` header with the API key as the value, for example:   ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ```  Alternatively, you can use the username and password to connect to the API using [basic authentication](https://docs.adyen.com/development-resources/api-credentials#basic-authentication).  The following example shows how to authenticate your request with basic authentication when submitting a payout:  ``` curl -U \"storePayout@Company.YOUR_COMPANY_ACCOUNT\":\"YOUR_BASIC_AUTHENTICATION_PASSWORD\" \\ -H \"Content-Type: application/json\" \\ ... ```  ## Versioning Payout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://pal-test.adyen.com/pal/servlet/Payout/v68/payout ```  ## Going live  To authenticate to the live endpoints, you need [API credentials](https://docs.adyen.com/development-resources/api-credentials) from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account: ```  https://{PREFIX}-pal-live.adyenpayments.com/pal/servlet/Payout/v68/payout ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.
+ * > The **Payout API is deprecated** and no longer supports new integrations. Do one of the following: >- If you are building a new integration, use the [Transfers API](https://docs.adyen.com/api-explorer/transfers/latest/overview) instead. > - If you are already using the Payout API, reach out to your Adyen contact to learn how to migrate to the Transfers API. > > With the Transfers API, you can: > - Handle multiple payout use cases with a single API. > - Use new payout functionalities, such as instant payouts to bank accounts. > - Receive webhooks with more details and defined transfer states. > > For more information about the payout features of the Transfers API, see our [Payouts](https://docs.adyen.com/payouts/payout-service) documentation.   A set of API endpoints that allow you to store payout details, confirm, or decline a payout.  For more information, refer to [Online payouts](https://docs.adyen.com/online-payments/online-payouts). ## Authentication To use the Payout API, you need to have [two API credentials](https://docs.adyen.com/online-payments/online-payouts#payouts-to-bank-accounts-and-wallets): one for storing payout details and submitting payouts, and another one for confirming or declining payouts. If you don't have the required API credentials, contact our [Support Team](https://www.adyen.help/hc/en-us/requests/new).  If using an API key, add an `X-API-Key` header with the API key as the value, for example:   ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ```  Alternatively, you can use the username and password to connect to the API using [basic authentication](https://docs.adyen.com/development-resources/api-credentials#basic-authentication).  The following example shows how to authenticate your request with basic authentication when submitting a payout:  ``` curl -u \"storePayout@Company.YOUR_COMPANY_ACCOUNT\":\"YOUR_BASIC_AUTHENTICATION_PASSWORD\" \\ -H \"Content-Type: application/json\" \\ ... ```  ## Versioning Payout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://pal-test.adyen.com/pal/servlet/Payout/v68/payout ```  ## Going live  To authenticate to the live endpoints, you need [API credentials](https://docs.adyen.com/development-resources/api-credentials) from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account: ```  https://{PREFIX}-pal-live.adyenpayments.com/pal/servlet/Payout/v68/payout ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.
  *
  * The version of the OpenAPI document: 68
  *
@@ -1467,6 +1467,20 @@ namespace Adyen.Payout.Models
         public string? TokenizationStoredPaymentMethodId { get { return this._TokenizationStoredPaymentMethodIdOption; } set { this._TokenizationStoredPaymentMethodIdOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="TransactionLinkId"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _TransactionLinkIdOption { get; private set; }
+
+        /// <summary>
+        /// Returned in the response for Mastercard payments.  This contains the Mastercard Transaction Link Identifier (TLID).
+        /// </summary>
+        /// <value>Returned in the response for Mastercard payments.  This contains the Mastercard Transaction Link Identifier (TLID).</value>
+        [JsonPropertyName("transactionLinkId")]
+        public string? TransactionLinkId { get { return this._TransactionLinkIdOption; } set { this._TransactionLinkIdOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="VisaTransactionId"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -1564,6 +1578,7 @@ namespace Adyen.Payout.Models
             sb.Append("  TokenizationShopperReference: ").Append(TokenizationShopperReference).Append("\n");
             sb.Append("  TokenizationStoreOperationType: ").Append(TokenizationStoreOperationType).Append("\n");
             sb.Append("  TokenizationStoredPaymentMethodId: ").Append(TokenizationStoredPaymentMethodId).Append("\n");
+            sb.Append("  TransactionLinkId: ").Append(TransactionLinkId).Append("\n");
             sb.Append("  VisaTransactionId: ").Append(VisaTransactionId).Append("\n");
             sb.Append("  Xid: ").Append(Xid).Append("\n");
             sb.Append("}\n");
@@ -1655,6 +1670,7 @@ namespace Adyen.Payout.Models
             Option<string?> tokenizationShopperReference = default;
             Option<ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum?> tokenizationStoreOperationType = default;
             Option<string?> tokenizationStoredPaymentMethodId = default;
+            Option<string?> transactionLinkId = default;
             Option<string?> visaTransactionId = default;
             Option<string?> xid = default;
 
@@ -1863,6 +1879,9 @@ namespace Adyen.Payout.Models
                         case "tokenization.storedPaymentMethodId":
                             tokenizationStoredPaymentMethodId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "transactionLinkId":
+                            transactionLinkId = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "visaTransactionId":
                             visaTransactionId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -2000,6 +2019,8 @@ namespace Adyen.Payout.Models
                 responseAdditionalDataCommon.TokenizationStoreOperationType = tokenizationStoreOperationType.Value;
             if (tokenizationStoredPaymentMethodId.IsSet)
                 responseAdditionalDataCommon.TokenizationStoredPaymentMethodId = tokenizationStoredPaymentMethodId.Value;
+            if (transactionLinkId.IsSet)
+                responseAdditionalDataCommon.TransactionLinkId = transactionLinkId.Value;
             if (visaTransactionId.IsSet)
                 responseAdditionalDataCommon.VisaTransactionId = visaTransactionId.Value;
             if (xid.IsSet)
@@ -2288,6 +2309,10 @@ namespace Adyen.Payout.Models
             if (responseAdditionalDataCommon._TokenizationStoredPaymentMethodIdOption.IsSet)
                 if (responseAdditionalDataCommon.TokenizationStoredPaymentMethodId != null)
                     writer.WriteString("tokenization.storedPaymentMethodId", responseAdditionalDataCommon.TokenizationStoredPaymentMethodId);
+
+            if (responseAdditionalDataCommon._TransactionLinkIdOption.IsSet)
+                if (responseAdditionalDataCommon.TransactionLinkId != null)
+                    writer.WriteString("transactionLinkId", responseAdditionalDataCommon.TransactionLinkId);
 
             if (responseAdditionalDataCommon._VisaTransactionIdOption.IsSet)
                 if (responseAdditionalDataCommon.VisaTransactionId != null)
