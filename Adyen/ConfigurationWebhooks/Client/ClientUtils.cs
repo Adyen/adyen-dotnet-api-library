@@ -174,6 +174,8 @@ namespace Adyen.ConfigurationWebhooks.Client
                 return Models.PaymentInstrument.StatusEnum.ToJsonValue(paymentInstrumentStatusEnum);
             if (obj is Models.PaymentInstrument.StatusReasonEnum paymentInstrumentStatusReasonEnum)
                 return Models.PaymentInstrument.StatusReasonEnum.ToJsonValue(paymentInstrumentStatusReasonEnum);
+            if (obj is Models.PaymentInstrumentAdditionalBankAccountIdentificationsInner.TypeEnum paymentInstrumentAdditionalBankAccountIdentificationsInnerTypeEnum)
+                return Models.PaymentInstrumentAdditionalBankAccountIdentificationsInner.TypeEnum.ToJsonValue(paymentInstrumentAdditionalBankAccountIdentificationsInnerTypeEnum);
             if (obj is Models.PaymentNotificationRequest.TypeEnum paymentNotificationRequestTypeEnum)
                 return Models.PaymentNotificationRequest.TypeEnum.ToJsonValue(paymentNotificationRequestTypeEnum);
             if (obj is Models.PayoutScheduleBANotificationRequest.TypeEnum payoutScheduleBANotificationRequestTypeEnum)
