@@ -69,6 +69,138 @@ namespace Adyen.TransferWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
+        /// The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen's internal review.
+        /// </summary>
+        /// <value>The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen&#39;s internal review.</value>
+        [JsonConverter(typeof(TypeEnumJsonConverter))]
+        public class TypeEnum : IEnum
+        {
+            /// <summary>
+            /// Returns the value of the TypeEnum.
+            /// </summary>
+            public string? Value { get; set; }
+
+            /// <summary>
+            /// TypeEnum.Confirmation - confirmation
+            /// </summary>
+            public static readonly TypeEnum Confirmation = new("confirmation");
+
+            /// <summary>
+            /// TypeEnum.Estimation - estimation
+            /// </summary>
+            public static readonly TypeEnum Estimation = new("estimation");
+
+            /// <summary>
+            /// TypeEnum.InternalReview - internalReview
+            /// </summary>
+            public static readonly TypeEnum InternalReview = new("internalReview");
+        
+            private TypeEnum(string? value)
+            {
+                Value = value;
+            }
+
+            /// <summary>
+            /// Converts a string to a <see cref="TypeEnum"/> implicitly.
+            /// </summary>
+            /// <param name="value">The string value to convert. Defaults to null.</param>
+            /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
+            public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
+    
+            /// <summary>
+            /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
+            /// </summary>
+            /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
+            /// <returns>String value of the <see cref="TypeEnum"/> instance.</returns>
+            public static implicit operator string?(TypeEnum? option) => option?.Value;
+        
+            /// <summary>
+            /// Compares two <see cref="TypeEnum"/> instances for equality.
+            /// </summary>
+            public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Compares two <see cref="TypeEnum"/> instances for inequality.
+            /// </summary>
+            public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns true if the given object is equal to this <see cref="TypeEnum"/> instance.
+            /// </summary>
+            public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns a hash code for this <see cref="TypeEnum"/> instance.
+            /// </summary>
+            public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+            /// <summary>
+            /// Returns the string value of the <see cref="TypeEnum"/> instance.
+            /// </summary>
+            public override string ToString() => Value ?? string.Empty;
+        
+            /// <summary>
+            /// Returns a <see cref="TypeEnum?"/>.
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns><see cref="TypeEnum"/> or null.</returns>
+            public static TypeEnum? FromStringOrDefault(string value)
+            {
+                return value switch {
+                    "confirmation" => TypeEnum.Confirmation,
+                    "estimation" => TypeEnum.Estimation,
+                    "internalReview" => TypeEnum.InternalReview,
+                    _ => null,
+                };
+            }
+    
+            /// <summary>
+            /// Converts the <see cref="TypeEnum"/> to the json value.
+            /// </summary>
+            /// <param name="value"><see cref="TypeEnum"/></param>
+            /// <returns>String value of the enum.</returns>
+            public static string? ToJsonValue(TypeEnum? value)
+            {
+                if (value == null)
+                    return null;
+            
+                if (value == TypeEnum.Confirmation)
+                    return "confirmation";
+                
+                if (value == TypeEnum.Estimation)
+                    return "estimation";
+                
+                if (value == TypeEnum.InternalReview)
+                    return "internalReview";
+                
+                return value.Value;
+            }
+            
+            /// <summary>
+            /// JsonConverter for writing TypeEnum.               
+            /// </summary>
+            public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
+            {
+                /// <summary>
+                /// Deserializes a <see cref="TypeEnum"/> from JSON.
+                /// </summary>
+                public override TypeEnum? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions jsonOptions)
+                {
+                    string value = reader.GetString();
+                    return value == null ? null : TypeEnum.FromStringOrDefault(value) ?? new TypeEnum(value);
+                }
+
+                /// <summary>
+                /// Serializes a <see cref="TypeEnum"/> to JSON.
+                /// </summary>
+                public override void Write(Utf8JsonWriter writer, TypeEnum value, JsonSerializerOptions jsonOptions)
+                {
+                    writer.WriteStringValue(TypeEnum.ToJsonValue(value));
+                }
+            }
+        }
+
+        /// <summary>
         /// <see cref="ConfirmationTrackingData"/>..
         /// </summary>
         public ConfirmationTrackingData? ConfirmationTrackingData { get; set; }
@@ -124,29 +256,44 @@ namespace Adyen.TransferWebhooks.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            ConfirmationTrackingData? confirmationTrackingData = default;
-            EstimationTrackingData? estimationTrackingData = default;
-            InternalReviewTrackingData? internalReviewTrackingData = default;
+            Option<TransferEventTrackingData.TypeEnum?> type = default;
 
-            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
-            while (utf8JsonReaderOneOf.Read())
+            ConfirmationTrackingData? confirmationTrackingData = null;
+            EstimationTrackingData? estimationTrackingData = null;
+            InternalReviewTrackingData? internalReviewTrackingData = null;
+
+            Utf8JsonReader utf8JsonReaderDiscriminator = utf8JsonReader;
+            while (utf8JsonReaderDiscriminator.Read())
             {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
+                if (utf8JsonReaderDiscriminator.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth - 1)
                 {
-                    Utf8JsonReader utf8JsonReaderConfirmationTrackingData = utf8JsonReader;
-                    ClientUtils.TryDeserialize<ConfirmationTrackingData?>(ref utf8JsonReaderConfirmationTrackingData, jsonSerializerOptions, out confirmationTrackingData);
-
-                    Utf8JsonReader utf8JsonReaderEstimationTrackingData = utf8JsonReader;
-                    ClientUtils.TryDeserialize<EstimationTrackingData?>(ref utf8JsonReaderEstimationTrackingData, jsonSerializerOptions, out estimationTrackingData);
-
-                    Utf8JsonReader utf8JsonReaderInternalReviewTrackingData = utf8JsonReader;
-                    ClientUtils.TryDeserialize<InternalReviewTrackingData?>(ref utf8JsonReaderInternalReviewTrackingData, jsonSerializerOptions, out internalReviewTrackingData);
+                    string? jsonPropertyName = utf8JsonReaderDiscriminator.GetString();
+                    utf8JsonReaderDiscriminator.Read();
+                    if (jsonPropertyName?.Equals("type") ?? false)
+                    {
+                        string? discriminator = utf8JsonReaderDiscriminator.GetString();
+                        if (discriminator?.Equals("confirmation") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderConfirmationTrackingData = utf8JsonReader;
+                            confirmationTrackingData = JsonSerializer.Deserialize<ConfirmationTrackingData>(ref utf8JsonReaderConfirmationTrackingData, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("estimation") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderEstimationTrackingData = utf8JsonReader;
+                            estimationTrackingData = JsonSerializer.Deserialize<EstimationTrackingData>(ref utf8JsonReaderEstimationTrackingData, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("internalReview") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderInternalReviewTrackingData = utf8JsonReader;
+                            internalReviewTrackingData = JsonSerializer.Deserialize<InternalReviewTrackingData>(ref utf8JsonReaderInternalReviewTrackingData, jsonSerializerOptions);
+                        }
+                    }
                 }
             }
 
@@ -165,19 +312,26 @@ namespace Adyen.TransferWebhooks.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "type":
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            type = new Option<TransferEventTrackingData.TypeEnum?>(TransferEventTrackingData.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TransferEventTrackingData.TypeEnum)typeRawValue);
+                            break;
                         default:
                             break;
                     }
                 }
             }
             
-            if (confirmationTrackingData?.Type != null && ConfirmationTrackingData.TypeEnum.FromStringOrDefault((string?)confirmationTrackingData.Type) != null)
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class TransferEventTrackingData.", nameof(type));
+
+            if (confirmationTrackingData != null)
                 return new TransferEventTrackingData(confirmationTrackingData);
 
-            if (estimationTrackingData?.Type != null && EstimationTrackingData.TypeEnum.FromStringOrDefault((string?)estimationTrackingData.Type) != null)
+            if (estimationTrackingData != null)
                 return new TransferEventTrackingData(estimationTrackingData);
 
-            if (internalReviewTrackingData?.Type != null && InternalReviewTrackingData.TypeEnum.FromStringOrDefault((string?)internalReviewTrackingData.Type) != null)
+            if (internalReviewTrackingData != null)
                 return new TransferEventTrackingData(internalReviewTrackingData);
 
             return null!;
@@ -191,19 +345,31 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, TransferEventTrackingData transferEventTrackingData, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (transferEventTrackingData.ConfirmationTrackingData != null)
-                JsonSerializer.Serialize(writer, transferEventTrackingData.ConfirmationTrackingData, jsonSerializerOptions);
-            if (transferEventTrackingData.EstimationTrackingData != null)
-                JsonSerializer.Serialize(writer, transferEventTrackingData.EstimationTrackingData, jsonSerializerOptions);
-            if (transferEventTrackingData.InternalReviewTrackingData != null)
-                JsonSerializer.Serialize(writer, transferEventTrackingData.InternalReviewTrackingData, jsonSerializerOptions);
-            /* 
+            
             writer.WriteStartObject();
-             */
+            
+            if (transferEventTrackingData.ConfirmationTrackingData != null)
+            {
+                ConfirmationTrackingDataJsonConverter confirmationTrackingDataJsonConverter = (ConfirmationTrackingDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferEventTrackingData.ConfirmationTrackingData.GetType()));
+                confirmationTrackingDataJsonConverter.WriteProperties(writer, transferEventTrackingData.ConfirmationTrackingData, jsonSerializerOptions);
+            }
+
+            if (transferEventTrackingData.EstimationTrackingData != null)
+            {
+                EstimationTrackingDataJsonConverter estimationTrackingDataJsonConverter = (EstimationTrackingDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferEventTrackingData.EstimationTrackingData.GetType()));
+                estimationTrackingDataJsonConverter.WriteProperties(writer, transferEventTrackingData.EstimationTrackingData, jsonSerializerOptions);
+            }
+
+            if (transferEventTrackingData.InternalReviewTrackingData != null)
+            {
+                InternalReviewTrackingDataJsonConverter internalReviewTrackingDataJsonConverter = (InternalReviewTrackingDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferEventTrackingData.InternalReviewTrackingData.GetType()));
+                internalReviewTrackingDataJsonConverter.WriteProperties(writer, transferEventTrackingData.InternalReviewTrackingData, jsonSerializerOptions);
+            }
+
             WriteProperties(writer, transferEventTrackingData, jsonSerializerOptions);
-            /* 
+            
             writer.WriteEndObject();
-             */
+            
         }
 
         /// <summary>

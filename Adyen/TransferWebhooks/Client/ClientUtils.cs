@@ -130,6 +130,8 @@ namespace Adyen.TransferWebhooks.Client
                 return Models.AmountAdjustment.AmountAdjustmentTypeEnum.ToJsonValue(amountAdjustmentAmountAdjustmentTypeEnum);
             if (obj is Models.BRLocalAccountIdentification.TypeEnum bRLocalAccountIdentificationTypeEnum)
                 return Models.BRLocalAccountIdentification.TypeEnum.ToJsonValue(bRLocalAccountIdentificationTypeEnum);
+            if (obj is Models.BankAccountV3AccountIdentification.TypeEnum bankAccountV3AccountIdentificationTypeEnum)
+                return Models.BankAccountV3AccountIdentification.TypeEnum.ToJsonValue(bankAccountV3AccountIdentificationTypeEnum);
             if (obj is Models.BankCategoryData.PriorityEnum bankCategoryDataPriorityEnum)
                 return Models.BankCategoryData.PriorityEnum.ToJsonValue(bankCategoryDataPriorityEnum);
             if (obj is Models.BankCategoryData.TypeEnum bankCategoryDataTypeEnum)
@@ -206,12 +208,20 @@ namespace Adyen.TransferWebhooks.Client
                 return Models.TransferData.ReasonEnum.ToJsonValue(transferDataReasonEnum);
             if (obj is Models.TransferData.TypeEnum transferDataTypeEnum)
                 return Models.TransferData.TypeEnum.ToJsonValue(transferDataTypeEnum);
+            if (obj is Models.TransferDataCategoryData.TypeEnum transferDataCategoryDataTypeEnum)
+                return Models.TransferDataCategoryData.TypeEnum.ToJsonValue(transferDataCategoryDataTypeEnum);
+            if (obj is Models.TransferDataTracking.TypeEnum transferDataTrackingTypeEnum)
+                return Models.TransferDataTracking.TypeEnum.ToJsonValue(transferDataTrackingTypeEnum);
             if (obj is Models.TransferEvent.ReasonEnum transferEventReasonEnum)
                 return Models.TransferEvent.ReasonEnum.ToJsonValue(transferEventReasonEnum);
             if (obj is Models.TransferEvent.StatusEnum transferEventStatusEnum)
                 return Models.TransferEvent.StatusEnum.ToJsonValue(transferEventStatusEnum);
             if (obj is Models.TransferEvent.TypeEnum transferEventTypeEnum)
                 return Models.TransferEvent.TypeEnum.ToJsonValue(transferEventTypeEnum);
+            if (obj is Models.TransferEventEventsDataInner.TypeEnum transferEventEventsDataInnerTypeEnum)
+                return Models.TransferEventEventsDataInner.TypeEnum.ToJsonValue(transferEventEventsDataInnerTypeEnum);
+            if (obj is Models.TransferEventTrackingData.TypeEnum transferEventTrackingDataTypeEnum)
+                return Models.TransferEventTrackingData.TypeEnum.ToJsonValue(transferEventTrackingDataTypeEnum);
             if (obj is Models.TransferNotificationRequest.TypeEnum transferNotificationRequestTypeEnum)
                 return Models.TransferNotificationRequest.TypeEnum.ToJsonValue(transferNotificationRequestTypeEnum);
             if (obj is Models.TransferReview.ScaOnApprovalEnum transferReviewScaOnApprovalEnum)
