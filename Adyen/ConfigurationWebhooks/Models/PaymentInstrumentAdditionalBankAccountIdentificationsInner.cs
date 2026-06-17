@@ -49,6 +49,120 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
+        /// **iban**
+        /// </summary>
+        /// <value>**iban**</value>
+        [JsonConverter(typeof(TypeEnumJsonConverter))]
+        public class TypeEnum : IEnum
+        {
+            /// <summary>
+            /// Returns the value of the TypeEnum.
+            /// </summary>
+            public string? Value { get; set; }
+
+            /// <summary>
+            /// TypeEnum.Iban - iban
+            /// </summary>
+            public static readonly TypeEnum Iban = new("iban");
+        
+            private TypeEnum(string? value)
+            {
+                Value = value;
+            }
+
+            /// <summary>
+            /// Converts a string to a <see cref="TypeEnum"/> implicitly.
+            /// </summary>
+            /// <param name="value">The string value to convert. Defaults to null.</param>
+            /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
+            public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
+    
+            /// <summary>
+            /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
+            /// </summary>
+            /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
+            /// <returns>String value of the <see cref="TypeEnum"/> instance.</returns>
+            public static implicit operator string?(TypeEnum? option) => option?.Value;
+        
+            /// <summary>
+            /// Compares two <see cref="TypeEnum"/> instances for equality.
+            /// </summary>
+            public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Compares two <see cref="TypeEnum"/> instances for inequality.
+            /// </summary>
+            public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns true if the given object is equal to this <see cref="TypeEnum"/> instance.
+            /// </summary>
+            public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns a hash code for this <see cref="TypeEnum"/> instance.
+            /// </summary>
+            public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+            /// <summary>
+            /// Returns the string value of the <see cref="TypeEnum"/> instance.
+            /// </summary>
+            public override string ToString() => Value ?? string.Empty;
+        
+            /// <summary>
+            /// Returns a <see cref="TypeEnum?"/>.
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns><see cref="TypeEnum"/> or null.</returns>
+            public static TypeEnum? FromStringOrDefault(string value)
+            {
+                return value switch {
+                    "iban" => TypeEnum.Iban,
+                    _ => null,
+                };
+            }
+    
+            /// <summary>
+            /// Converts the <see cref="TypeEnum"/> to the json value.
+            /// </summary>
+            /// <param name="value"><see cref="TypeEnum"/></param>
+            /// <returns>String value of the enum.</returns>
+            public static string? ToJsonValue(TypeEnum? value)
+            {
+                if (value == null)
+                    return null;
+            
+                if (value == TypeEnum.Iban)
+                    return "iban";
+                
+                return value.Value;
+            }
+            
+            /// <summary>
+            /// JsonConverter for writing TypeEnum.               
+            /// </summary>
+            public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
+            {
+                /// <summary>
+                /// Deserializes a <see cref="TypeEnum"/> from JSON.
+                /// </summary>
+                public override TypeEnum? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions jsonOptions)
+                {
+                    string value = reader.GetString();
+                    return value == null ? null : TypeEnum.FromStringOrDefault(value) ?? new TypeEnum(value);
+                }
+
+                /// <summary>
+                /// Serializes a <see cref="TypeEnum"/> to JSON.
+                /// </summary>
+                public override void Write(Utf8JsonWriter writer, TypeEnum value, JsonSerializerOptions jsonOptions)
+                {
+                    writer.WriteStringValue(TypeEnum.ToJsonValue(value));
+                }
+            }
+        }
+
+        /// <summary>
         /// <see cref="IbanAccountIdentification"/>..
         /// </summary>
         public IbanAccountIdentification? IbanAccountIdentification { get; set; }
@@ -90,21 +204,32 @@ namespace Adyen.ConfigurationWebhooks.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            IbanAccountIdentification? ibanAccountIdentification = default;
+            Option<PaymentInstrumentAdditionalBankAccountIdentificationsInner.TypeEnum?> type = default;
 
-            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
-            while (utf8JsonReaderOneOf.Read())
+            IbanAccountIdentification? ibanAccountIdentification = null;
+
+            Utf8JsonReader utf8JsonReaderDiscriminator = utf8JsonReader;
+            while (utf8JsonReaderDiscriminator.Read())
             {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
+                if (utf8JsonReaderDiscriminator.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth - 1)
                 {
-                    Utf8JsonReader utf8JsonReaderIbanAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<IbanAccountIdentification?>(ref utf8JsonReaderIbanAccountIdentification, jsonSerializerOptions, out ibanAccountIdentification);
+                    string? jsonPropertyName = utf8JsonReaderDiscriminator.GetString();
+                    utf8JsonReaderDiscriminator.Read();
+                    if (jsonPropertyName?.Equals("type") ?? false)
+                    {
+                        string? discriminator = utf8JsonReaderDiscriminator.GetString();
+                        if (discriminator?.Equals("iban") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderIbanAccountIdentification = utf8JsonReader;
+                            ibanAccountIdentification = JsonSerializer.Deserialize<IbanAccountIdentification>(ref utf8JsonReaderIbanAccountIdentification, jsonSerializerOptions);
+                        }
+                    }
                 }
             }
 
@@ -123,13 +248,20 @@ namespace Adyen.ConfigurationWebhooks.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "type":
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            type = new Option<PaymentInstrumentAdditionalBankAccountIdentificationsInner.TypeEnum?>(PaymentInstrumentAdditionalBankAccountIdentificationsInner.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PaymentInstrumentAdditionalBankAccountIdentificationsInner.TypeEnum)typeRawValue);
+                            break;
                         default:
                             break;
                     }
                 }
             }
             
-            if (ibanAccountIdentification?.Type != null && IbanAccountIdentification.TypeEnum.FromStringOrDefault((string?)ibanAccountIdentification.Type) != null)
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class PaymentInstrumentAdditionalBankAccountIdentificationsInner.", nameof(type));
+
+            if (ibanAccountIdentification != null)
                 return new PaymentInstrumentAdditionalBankAccountIdentificationsInner(ibanAccountIdentification);
 
             return null!;
@@ -143,15 +275,19 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, PaymentInstrumentAdditionalBankAccountIdentificationsInner paymentInstrumentAdditionalBankAccountIdentificationsInner, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (paymentInstrumentAdditionalBankAccountIdentificationsInner.IbanAccountIdentification != null)
-                JsonSerializer.Serialize(writer, paymentInstrumentAdditionalBankAccountIdentificationsInner.IbanAccountIdentification, jsonSerializerOptions);
-            /* 
+            
             writer.WriteStartObject();
-             */
+            
+            if (paymentInstrumentAdditionalBankAccountIdentificationsInner.IbanAccountIdentification != null)
+            {
+                IbanAccountIdentificationJsonConverter ibanAccountIdentificationJsonConverter = (IbanAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(paymentInstrumentAdditionalBankAccountIdentificationsInner.IbanAccountIdentification.GetType()));
+                ibanAccountIdentificationJsonConverter.WriteProperties(writer, paymentInstrumentAdditionalBankAccountIdentificationsInner.IbanAccountIdentification, jsonSerializerOptions);
+            }
+
             WriteProperties(writer, paymentInstrumentAdditionalBankAccountIdentificationsInner, jsonSerializerOptions);
-            /* 
+            
             writer.WriteEndObject();
-             */
+            
         }
 
         /// <summary>
