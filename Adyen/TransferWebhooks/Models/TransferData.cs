@@ -225,6 +225,16 @@ namespace Adyen.TransferWebhooks.Models
             public string? Value { get; set; }
 
             /// <summary>
+            /// StatusEnum.AdviceAuthorised - adviceAuthorised
+            /// </summary>
+            public static readonly StatusEnum AdviceAuthorised = new("adviceAuthorised");
+
+            /// <summary>
+            /// StatusEnum.AdviceRefused - adviceRefused
+            /// </summary>
+            public static readonly StatusEnum AdviceRefused = new("adviceRefused");
+
+            /// <summary>
             /// StatusEnum.ApprovalPending - approvalPending
             /// </summary>
             public static readonly StatusEnum ApprovalPending = new("approvalPending");
@@ -626,6 +636,8 @@ namespace Adyen.TransferWebhooks.Models
             public static StatusEnum? FromStringOrDefault(string value)
             {
                 return value switch {
+                    "adviceAuthorised" => StatusEnum.AdviceAuthorised,
+                    "adviceRefused" => StatusEnum.AdviceRefused,
                     "approvalPending" => StatusEnum.ApprovalPending,
                     "atmWithdrawal" => StatusEnum.AtmWithdrawal,
                     "atmWithdrawalReversalPending" => StatusEnum.AtmWithdrawalReversalPending,
@@ -710,6 +722,12 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == null)
                     return null;
             
+                if (value == StatusEnum.AdviceAuthorised)
+                    return "adviceAuthorised";
+                
+                if (value == StatusEnum.AdviceRefused)
+                    return "adviceRefused";
+                
                 if (value == StatusEnum.ApprovalPending)
                     return "approvalPending";
                 
