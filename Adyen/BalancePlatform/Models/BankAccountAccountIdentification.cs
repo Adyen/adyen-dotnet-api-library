@@ -199,6 +199,255 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
+        /// **auLocal**
+        /// </summary>
+        /// <value>**auLocal**</value>
+        [JsonConverter(typeof(TypeEnumJsonConverter))]
+        public class TypeEnum : IEnum
+        {
+            /// <summary>
+            /// Returns the value of the TypeEnum.
+            /// </summary>
+            public string? Value { get; set; }
+
+            /// <summary>
+            /// TypeEnum.AuLocal - auLocal
+            /// </summary>
+            public static readonly TypeEnum AuLocal = new("auLocal");
+
+            /// <summary>
+            /// TypeEnum.BrLocal - brLocal
+            /// </summary>
+            public static readonly TypeEnum BrLocal = new("brLocal");
+
+            /// <summary>
+            /// TypeEnum.CaLocal - caLocal
+            /// </summary>
+            public static readonly TypeEnum CaLocal = new("caLocal");
+
+            /// <summary>
+            /// TypeEnum.CzLocal - czLocal
+            /// </summary>
+            public static readonly TypeEnum CzLocal = new("czLocal");
+
+            /// <summary>
+            /// TypeEnum.DkLocal - dkLocal
+            /// </summary>
+            public static readonly TypeEnum DkLocal = new("dkLocal");
+
+            /// <summary>
+            /// TypeEnum.HkLocal - hkLocal
+            /// </summary>
+            public static readonly TypeEnum HkLocal = new("hkLocal");
+
+            /// <summary>
+            /// TypeEnum.HuLocal - huLocal
+            /// </summary>
+            public static readonly TypeEnum HuLocal = new("huLocal");
+
+            /// <summary>
+            /// TypeEnum.Iban - iban
+            /// </summary>
+            public static readonly TypeEnum Iban = new("iban");
+
+            /// <summary>
+            /// TypeEnum.NoLocal - noLocal
+            /// </summary>
+            public static readonly TypeEnum NoLocal = new("noLocal");
+
+            /// <summary>
+            /// TypeEnum.NzLocal - nzLocal
+            /// </summary>
+            public static readonly TypeEnum NzLocal = new("nzLocal");
+
+            /// <summary>
+            /// TypeEnum.NumberAndBic - numberAndBic
+            /// </summary>
+            public static readonly TypeEnum NumberAndBic = new("numberAndBic");
+
+            /// <summary>
+            /// TypeEnum.PlLocal - plLocal
+            /// </summary>
+            public static readonly TypeEnum PlLocal = new("plLocal");
+
+            /// <summary>
+            /// TypeEnum.SeLocal - seLocal
+            /// </summary>
+            public static readonly TypeEnum SeLocal = new("seLocal");
+
+            /// <summary>
+            /// TypeEnum.SgLocal - sgLocal
+            /// </summary>
+            public static readonly TypeEnum SgLocal = new("sgLocal");
+
+            /// <summary>
+            /// TypeEnum.UkLocal - ukLocal
+            /// </summary>
+            public static readonly TypeEnum UkLocal = new("ukLocal");
+
+            /// <summary>
+            /// TypeEnum.UsLocal - usLocal
+            /// </summary>
+            public static readonly TypeEnum UsLocal = new("usLocal");
+        
+            private TypeEnum(string? value)
+            {
+                Value = value;
+            }
+
+            /// <summary>
+            /// Converts a string to a <see cref="TypeEnum"/> implicitly.
+            /// </summary>
+            /// <param name="value">The string value to convert. Defaults to null.</param>
+            /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
+            public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
+    
+            /// <summary>
+            /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
+            /// </summary>
+            /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
+            /// <returns>String value of the <see cref="TypeEnum"/> instance.</returns>
+            public static implicit operator string?(TypeEnum? option) => option?.Value;
+        
+            /// <summary>
+            /// Compares two <see cref="TypeEnum"/> instances for equality.
+            /// </summary>
+            public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Compares two <see cref="TypeEnum"/> instances for inequality.
+            /// </summary>
+            public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns true if the given object is equal to this <see cref="TypeEnum"/> instance.
+            /// </summary>
+            public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns a hash code for this <see cref="TypeEnum"/> instance.
+            /// </summary>
+            public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+            /// <summary>
+            /// Returns the string value of the <see cref="TypeEnum"/> instance.
+            /// </summary>
+            public override string ToString() => Value ?? string.Empty;
+        
+            /// <summary>
+            /// Returns a <see cref="TypeEnum?"/>.
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns><see cref="TypeEnum"/> or null.</returns>
+            public static TypeEnum? FromStringOrDefault(string value)
+            {
+                return value switch {
+                    "auLocal" => TypeEnum.AuLocal,
+                    "brLocal" => TypeEnum.BrLocal,
+                    "caLocal" => TypeEnum.CaLocal,
+                    "czLocal" => TypeEnum.CzLocal,
+                    "dkLocal" => TypeEnum.DkLocal,
+                    "hkLocal" => TypeEnum.HkLocal,
+                    "huLocal" => TypeEnum.HuLocal,
+                    "iban" => TypeEnum.Iban,
+                    "noLocal" => TypeEnum.NoLocal,
+                    "nzLocal" => TypeEnum.NzLocal,
+                    "numberAndBic" => TypeEnum.NumberAndBic,
+                    "plLocal" => TypeEnum.PlLocal,
+                    "seLocal" => TypeEnum.SeLocal,
+                    "sgLocal" => TypeEnum.SgLocal,
+                    "ukLocal" => TypeEnum.UkLocal,
+                    "usLocal" => TypeEnum.UsLocal,
+                    _ => null,
+                };
+            }
+    
+            /// <summary>
+            /// Converts the <see cref="TypeEnum"/> to the json value.
+            /// </summary>
+            /// <param name="value"><see cref="TypeEnum"/></param>
+            /// <returns>String value of the enum.</returns>
+            public static string? ToJsonValue(TypeEnum? value)
+            {
+                if (value == null)
+                    return null;
+            
+                if (value == TypeEnum.AuLocal)
+                    return "auLocal";
+                
+                if (value == TypeEnum.BrLocal)
+                    return "brLocal";
+                
+                if (value == TypeEnum.CaLocal)
+                    return "caLocal";
+                
+                if (value == TypeEnum.CzLocal)
+                    return "czLocal";
+                
+                if (value == TypeEnum.DkLocal)
+                    return "dkLocal";
+                
+                if (value == TypeEnum.HkLocal)
+                    return "hkLocal";
+                
+                if (value == TypeEnum.HuLocal)
+                    return "huLocal";
+                
+                if (value == TypeEnum.Iban)
+                    return "iban";
+                
+                if (value == TypeEnum.NoLocal)
+                    return "noLocal";
+                
+                if (value == TypeEnum.NzLocal)
+                    return "nzLocal";
+                
+                if (value == TypeEnum.NumberAndBic)
+                    return "numberAndBic";
+                
+                if (value == TypeEnum.PlLocal)
+                    return "plLocal";
+                
+                if (value == TypeEnum.SeLocal)
+                    return "seLocal";
+                
+                if (value == TypeEnum.SgLocal)
+                    return "sgLocal";
+                
+                if (value == TypeEnum.UkLocal)
+                    return "ukLocal";
+                
+                if (value == TypeEnum.UsLocal)
+                    return "usLocal";
+                
+                return value.Value;
+            }
+            
+            /// <summary>
+            /// JsonConverter for writing TypeEnum.               
+            /// </summary>
+            public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
+            {
+                /// <summary>
+                /// Deserializes a <see cref="TypeEnum"/> from JSON.
+                /// </summary>
+                public override TypeEnum? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions jsonOptions)
+                {
+                    string value = reader.GetString();
+                    return value == null ? null : TypeEnum.FromStringOrDefault(value) ?? new TypeEnum(value);
+                }
+
+                /// <summary>
+                /// Serializes a <see cref="TypeEnum"/> to JSON.
+                /// </summary>
+                public override void Write(Utf8JsonWriter writer, TypeEnum value, JsonSerializerOptions jsonOptions)
+                {
+                    writer.WriteStringValue(TypeEnum.ToJsonValue(value));
+                }
+            }
+        }
+
+        /// <summary>
         /// <see cref="AULocalAccountIdentification"/>..
         /// </summary>
         public AULocalAccountIdentification? AULocalAccountIdentification { get; set; }
@@ -345,81 +594,122 @@ namespace Adyen.BalancePlatform.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            AULocalAccountIdentification? aULocalAccountIdentification = default;
-            BRLocalAccountIdentification? bRLocalAccountIdentification = default;
-            CALocalAccountIdentification? cALocalAccountIdentification = default;
-            CZLocalAccountIdentification? cZLocalAccountIdentification = default;
-            DKLocalAccountIdentification? dKLocalAccountIdentification = default;
-            HKLocalAccountIdentification? hKLocalAccountIdentification = default;
-            HULocalAccountIdentification? hULocalAccountIdentification = default;
-            IbanAccountIdentification? ibanAccountIdentification = default;
-            NOLocalAccountIdentification? nOLocalAccountIdentification = default;
-            NZLocalAccountIdentification? nZLocalAccountIdentification = default;
-            NumberAndBicAccountIdentification? numberAndBicAccountIdentification = default;
-            PLLocalAccountIdentification? pLLocalAccountIdentification = default;
-            SELocalAccountIdentification? sELocalAccountIdentification = default;
-            SGLocalAccountIdentification? sGLocalAccountIdentification = default;
-            UKLocalAccountIdentification? uKLocalAccountIdentification = default;
-            USLocalAccountIdentification? uSLocalAccountIdentification = default;
+            Option<BankAccountAccountIdentification.TypeEnum?> type = default;
 
-            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
-            while (utf8JsonReaderOneOf.Read())
+            AULocalAccountIdentification? aULocalAccountIdentification = null;
+            BRLocalAccountIdentification? bRLocalAccountIdentification = null;
+            CALocalAccountIdentification? cALocalAccountIdentification = null;
+            CZLocalAccountIdentification? cZLocalAccountIdentification = null;
+            DKLocalAccountIdentification? dKLocalAccountIdentification = null;
+            HKLocalAccountIdentification? hKLocalAccountIdentification = null;
+            HULocalAccountIdentification? hULocalAccountIdentification = null;
+            IbanAccountIdentification? ibanAccountIdentification = null;
+            NOLocalAccountIdentification? nOLocalAccountIdentification = null;
+            NZLocalAccountIdentification? nZLocalAccountIdentification = null;
+            NumberAndBicAccountIdentification? numberAndBicAccountIdentification = null;
+            PLLocalAccountIdentification? pLLocalAccountIdentification = null;
+            SELocalAccountIdentification? sELocalAccountIdentification = null;
+            SGLocalAccountIdentification? sGLocalAccountIdentification = null;
+            UKLocalAccountIdentification? uKLocalAccountIdentification = null;
+            USLocalAccountIdentification? uSLocalAccountIdentification = null;
+
+            Utf8JsonReader utf8JsonReaderDiscriminator = utf8JsonReader;
+            while (utf8JsonReaderDiscriminator.Read())
             {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
+                if (utf8JsonReaderDiscriminator.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth - 1)
                 {
-                    Utf8JsonReader utf8JsonReaderAULocalAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<AULocalAccountIdentification?>(ref utf8JsonReaderAULocalAccountIdentification, jsonSerializerOptions, out aULocalAccountIdentification);
-
-                    Utf8JsonReader utf8JsonReaderBRLocalAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<BRLocalAccountIdentification?>(ref utf8JsonReaderBRLocalAccountIdentification, jsonSerializerOptions, out bRLocalAccountIdentification);
-
-                    Utf8JsonReader utf8JsonReaderCALocalAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CALocalAccountIdentification?>(ref utf8JsonReaderCALocalAccountIdentification, jsonSerializerOptions, out cALocalAccountIdentification);
-
-                    Utf8JsonReader utf8JsonReaderCZLocalAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CZLocalAccountIdentification?>(ref utf8JsonReaderCZLocalAccountIdentification, jsonSerializerOptions, out cZLocalAccountIdentification);
-
-                    Utf8JsonReader utf8JsonReaderDKLocalAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<DKLocalAccountIdentification?>(ref utf8JsonReaderDKLocalAccountIdentification, jsonSerializerOptions, out dKLocalAccountIdentification);
-
-                    Utf8JsonReader utf8JsonReaderHKLocalAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<HKLocalAccountIdentification?>(ref utf8JsonReaderHKLocalAccountIdentification, jsonSerializerOptions, out hKLocalAccountIdentification);
-
-                    Utf8JsonReader utf8JsonReaderHULocalAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<HULocalAccountIdentification?>(ref utf8JsonReaderHULocalAccountIdentification, jsonSerializerOptions, out hULocalAccountIdentification);
-
-                    Utf8JsonReader utf8JsonReaderIbanAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<IbanAccountIdentification?>(ref utf8JsonReaderIbanAccountIdentification, jsonSerializerOptions, out ibanAccountIdentification);
-
-                    Utf8JsonReader utf8JsonReaderNOLocalAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<NOLocalAccountIdentification?>(ref utf8JsonReaderNOLocalAccountIdentification, jsonSerializerOptions, out nOLocalAccountIdentification);
-
-                    Utf8JsonReader utf8JsonReaderNZLocalAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<NZLocalAccountIdentification?>(ref utf8JsonReaderNZLocalAccountIdentification, jsonSerializerOptions, out nZLocalAccountIdentification);
-
-                    Utf8JsonReader utf8JsonReaderNumberAndBicAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<NumberAndBicAccountIdentification?>(ref utf8JsonReaderNumberAndBicAccountIdentification, jsonSerializerOptions, out numberAndBicAccountIdentification);
-
-                    Utf8JsonReader utf8JsonReaderPLLocalAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<PLLocalAccountIdentification?>(ref utf8JsonReaderPLLocalAccountIdentification, jsonSerializerOptions, out pLLocalAccountIdentification);
-
-                    Utf8JsonReader utf8JsonReaderSELocalAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<SELocalAccountIdentification?>(ref utf8JsonReaderSELocalAccountIdentification, jsonSerializerOptions, out sELocalAccountIdentification);
-
-                    Utf8JsonReader utf8JsonReaderSGLocalAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<SGLocalAccountIdentification?>(ref utf8JsonReaderSGLocalAccountIdentification, jsonSerializerOptions, out sGLocalAccountIdentification);
-
-                    Utf8JsonReader utf8JsonReaderUKLocalAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<UKLocalAccountIdentification?>(ref utf8JsonReaderUKLocalAccountIdentification, jsonSerializerOptions, out uKLocalAccountIdentification);
-
-                    Utf8JsonReader utf8JsonReaderUSLocalAccountIdentification = utf8JsonReader;
-                    ClientUtils.TryDeserialize<USLocalAccountIdentification?>(ref utf8JsonReaderUSLocalAccountIdentification, jsonSerializerOptions, out uSLocalAccountIdentification);
+                    string? jsonPropertyName = utf8JsonReaderDiscriminator.GetString();
+                    utf8JsonReaderDiscriminator.Read();
+                    if (jsonPropertyName?.Equals("type") ?? false)
+                    {
+                        string? discriminator = utf8JsonReaderDiscriminator.GetString();
+                        if (discriminator?.Equals("auLocal") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderAULocalAccountIdentification = utf8JsonReader;
+                            aULocalAccountIdentification = JsonSerializer.Deserialize<AULocalAccountIdentification>(ref utf8JsonReaderAULocalAccountIdentification, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("brLocal") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderBRLocalAccountIdentification = utf8JsonReader;
+                            bRLocalAccountIdentification = JsonSerializer.Deserialize<BRLocalAccountIdentification>(ref utf8JsonReaderBRLocalAccountIdentification, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("caLocal") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderCALocalAccountIdentification = utf8JsonReader;
+                            cALocalAccountIdentification = JsonSerializer.Deserialize<CALocalAccountIdentification>(ref utf8JsonReaderCALocalAccountIdentification, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("czLocal") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderCZLocalAccountIdentification = utf8JsonReader;
+                            cZLocalAccountIdentification = JsonSerializer.Deserialize<CZLocalAccountIdentification>(ref utf8JsonReaderCZLocalAccountIdentification, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("dkLocal") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderDKLocalAccountIdentification = utf8JsonReader;
+                            dKLocalAccountIdentification = JsonSerializer.Deserialize<DKLocalAccountIdentification>(ref utf8JsonReaderDKLocalAccountIdentification, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("hkLocal") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderHKLocalAccountIdentification = utf8JsonReader;
+                            hKLocalAccountIdentification = JsonSerializer.Deserialize<HKLocalAccountIdentification>(ref utf8JsonReaderHKLocalAccountIdentification, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("huLocal") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderHULocalAccountIdentification = utf8JsonReader;
+                            hULocalAccountIdentification = JsonSerializer.Deserialize<HULocalAccountIdentification>(ref utf8JsonReaderHULocalAccountIdentification, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("iban") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderIbanAccountIdentification = utf8JsonReader;
+                            ibanAccountIdentification = JsonSerializer.Deserialize<IbanAccountIdentification>(ref utf8JsonReaderIbanAccountIdentification, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("noLocal") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderNOLocalAccountIdentification = utf8JsonReader;
+                            nOLocalAccountIdentification = JsonSerializer.Deserialize<NOLocalAccountIdentification>(ref utf8JsonReaderNOLocalAccountIdentification, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("numberAndBic") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderNumberAndBicAccountIdentification = utf8JsonReader;
+                            numberAndBicAccountIdentification = JsonSerializer.Deserialize<NumberAndBicAccountIdentification>(ref utf8JsonReaderNumberAndBicAccountIdentification, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("nzLocal") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderNZLocalAccountIdentification = utf8JsonReader;
+                            nZLocalAccountIdentification = JsonSerializer.Deserialize<NZLocalAccountIdentification>(ref utf8JsonReaderNZLocalAccountIdentification, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("plLocal") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderPLLocalAccountIdentification = utf8JsonReader;
+                            pLLocalAccountIdentification = JsonSerializer.Deserialize<PLLocalAccountIdentification>(ref utf8JsonReaderPLLocalAccountIdentification, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("seLocal") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderSELocalAccountIdentification = utf8JsonReader;
+                            sELocalAccountIdentification = JsonSerializer.Deserialize<SELocalAccountIdentification>(ref utf8JsonReaderSELocalAccountIdentification, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("sgLocal") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderSGLocalAccountIdentification = utf8JsonReader;
+                            sGLocalAccountIdentification = JsonSerializer.Deserialize<SGLocalAccountIdentification>(ref utf8JsonReaderSGLocalAccountIdentification, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("ukLocal") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderUKLocalAccountIdentification = utf8JsonReader;
+                            uKLocalAccountIdentification = JsonSerializer.Deserialize<UKLocalAccountIdentification>(ref utf8JsonReaderUKLocalAccountIdentification, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("usLocal") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderUSLocalAccountIdentification = utf8JsonReader;
+                            uSLocalAccountIdentification = JsonSerializer.Deserialize<USLocalAccountIdentification>(ref utf8JsonReaderUSLocalAccountIdentification, jsonSerializerOptions);
+                        }
+                    }
                 }
             }
 
@@ -438,58 +728,65 @@ namespace Adyen.BalancePlatform.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "type":
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            type = new Option<BankAccountAccountIdentification.TypeEnum?>(BankAccountAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (BankAccountAccountIdentification.TypeEnum)typeRawValue);
+                            break;
                         default:
                             break;
                     }
                 }
             }
             
-            if (aULocalAccountIdentification?.Type != null && AULocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)aULocalAccountIdentification.Type) != null)
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class BankAccountAccountIdentification.", nameof(type));
+
+            if (aULocalAccountIdentification != null)
                 return new BankAccountAccountIdentification(aULocalAccountIdentification);
 
-            if (bRLocalAccountIdentification?.Type != null && BRLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)bRLocalAccountIdentification.Type) != null)
+            if (bRLocalAccountIdentification != null)
                 return new BankAccountAccountIdentification(bRLocalAccountIdentification);
 
-            if (cALocalAccountIdentification?.Type != null && CALocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)cALocalAccountIdentification.Type) != null)
+            if (cALocalAccountIdentification != null)
                 return new BankAccountAccountIdentification(cALocalAccountIdentification);
 
-            if (cZLocalAccountIdentification?.Type != null && CZLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)cZLocalAccountIdentification.Type) != null)
+            if (cZLocalAccountIdentification != null)
                 return new BankAccountAccountIdentification(cZLocalAccountIdentification);
 
-            if (dKLocalAccountIdentification?.Type != null && DKLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)dKLocalAccountIdentification.Type) != null)
+            if (dKLocalAccountIdentification != null)
                 return new BankAccountAccountIdentification(dKLocalAccountIdentification);
 
-            if (hKLocalAccountIdentification?.Type != null && HKLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)hKLocalAccountIdentification.Type) != null)
+            if (hKLocalAccountIdentification != null)
                 return new BankAccountAccountIdentification(hKLocalAccountIdentification);
 
-            if (hULocalAccountIdentification?.Type != null && HULocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)hULocalAccountIdentification.Type) != null)
+            if (hULocalAccountIdentification != null)
                 return new BankAccountAccountIdentification(hULocalAccountIdentification);
 
-            if (ibanAccountIdentification?.Type != null && IbanAccountIdentification.TypeEnum.FromStringOrDefault((string?)ibanAccountIdentification.Type) != null)
+            if (ibanAccountIdentification != null)
                 return new BankAccountAccountIdentification(ibanAccountIdentification);
 
-            if (nOLocalAccountIdentification?.Type != null && NOLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)nOLocalAccountIdentification.Type) != null)
+            if (nOLocalAccountIdentification != null)
                 return new BankAccountAccountIdentification(nOLocalAccountIdentification);
 
-            if (nZLocalAccountIdentification?.Type != null && NZLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)nZLocalAccountIdentification.Type) != null)
+            if (nZLocalAccountIdentification != null)
                 return new BankAccountAccountIdentification(nZLocalAccountIdentification);
 
-            if (numberAndBicAccountIdentification?.Type != null && NumberAndBicAccountIdentification.TypeEnum.FromStringOrDefault((string?)numberAndBicAccountIdentification.Type) != null)
+            if (numberAndBicAccountIdentification != null)
                 return new BankAccountAccountIdentification(numberAndBicAccountIdentification);
 
-            if (pLLocalAccountIdentification?.Type != null && PLLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)pLLocalAccountIdentification.Type) != null)
+            if (pLLocalAccountIdentification != null)
                 return new BankAccountAccountIdentification(pLLocalAccountIdentification);
 
-            if (sELocalAccountIdentification?.Type != null && SELocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)sELocalAccountIdentification.Type) != null)
+            if (sELocalAccountIdentification != null)
                 return new BankAccountAccountIdentification(sELocalAccountIdentification);
 
-            if (sGLocalAccountIdentification?.Type != null && SGLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)sGLocalAccountIdentification.Type) != null)
+            if (sGLocalAccountIdentification != null)
                 return new BankAccountAccountIdentification(sGLocalAccountIdentification);
 
-            if (uKLocalAccountIdentification?.Type != null && UKLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)uKLocalAccountIdentification.Type) != null)
+            if (uKLocalAccountIdentification != null)
                 return new BankAccountAccountIdentification(uKLocalAccountIdentification);
 
-            if (uSLocalAccountIdentification?.Type != null && USLocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)uSLocalAccountIdentification.Type) != null)
+            if (uSLocalAccountIdentification != null)
                 return new BankAccountAccountIdentification(uSLocalAccountIdentification);
 
             return null!;
@@ -503,45 +800,109 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, BankAccountAccountIdentification bankAccountAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (bankAccountAccountIdentification.AULocalAccountIdentification != null)
-                JsonSerializer.Serialize(writer, bankAccountAccountIdentification.AULocalAccountIdentification, jsonSerializerOptions);
-            if (bankAccountAccountIdentification.BRLocalAccountIdentification != null)
-                JsonSerializer.Serialize(writer, bankAccountAccountIdentification.BRLocalAccountIdentification, jsonSerializerOptions);
-            if (bankAccountAccountIdentification.CALocalAccountIdentification != null)
-                JsonSerializer.Serialize(writer, bankAccountAccountIdentification.CALocalAccountIdentification, jsonSerializerOptions);
-            if (bankAccountAccountIdentification.CZLocalAccountIdentification != null)
-                JsonSerializer.Serialize(writer, bankAccountAccountIdentification.CZLocalAccountIdentification, jsonSerializerOptions);
-            if (bankAccountAccountIdentification.DKLocalAccountIdentification != null)
-                JsonSerializer.Serialize(writer, bankAccountAccountIdentification.DKLocalAccountIdentification, jsonSerializerOptions);
-            if (bankAccountAccountIdentification.HKLocalAccountIdentification != null)
-                JsonSerializer.Serialize(writer, bankAccountAccountIdentification.HKLocalAccountIdentification, jsonSerializerOptions);
-            if (bankAccountAccountIdentification.HULocalAccountIdentification != null)
-                JsonSerializer.Serialize(writer, bankAccountAccountIdentification.HULocalAccountIdentification, jsonSerializerOptions);
-            if (bankAccountAccountIdentification.IbanAccountIdentification != null)
-                JsonSerializer.Serialize(writer, bankAccountAccountIdentification.IbanAccountIdentification, jsonSerializerOptions);
-            if (bankAccountAccountIdentification.NOLocalAccountIdentification != null)
-                JsonSerializer.Serialize(writer, bankAccountAccountIdentification.NOLocalAccountIdentification, jsonSerializerOptions);
-            if (bankAccountAccountIdentification.NZLocalAccountIdentification != null)
-                JsonSerializer.Serialize(writer, bankAccountAccountIdentification.NZLocalAccountIdentification, jsonSerializerOptions);
-            if (bankAccountAccountIdentification.NumberAndBicAccountIdentification != null)
-                JsonSerializer.Serialize(writer, bankAccountAccountIdentification.NumberAndBicAccountIdentification, jsonSerializerOptions);
-            if (bankAccountAccountIdentification.PLLocalAccountIdentification != null)
-                JsonSerializer.Serialize(writer, bankAccountAccountIdentification.PLLocalAccountIdentification, jsonSerializerOptions);
-            if (bankAccountAccountIdentification.SELocalAccountIdentification != null)
-                JsonSerializer.Serialize(writer, bankAccountAccountIdentification.SELocalAccountIdentification, jsonSerializerOptions);
-            if (bankAccountAccountIdentification.SGLocalAccountIdentification != null)
-                JsonSerializer.Serialize(writer, bankAccountAccountIdentification.SGLocalAccountIdentification, jsonSerializerOptions);
-            if (bankAccountAccountIdentification.UKLocalAccountIdentification != null)
-                JsonSerializer.Serialize(writer, bankAccountAccountIdentification.UKLocalAccountIdentification, jsonSerializerOptions);
-            if (bankAccountAccountIdentification.USLocalAccountIdentification != null)
-                JsonSerializer.Serialize(writer, bankAccountAccountIdentification.USLocalAccountIdentification, jsonSerializerOptions);
-            /* 
+            
             writer.WriteStartObject();
-             */
+            
+            if (bankAccountAccountIdentification.AULocalAccountIdentification != null)
+            {
+                AULocalAccountIdentificationJsonConverter aULocalAccountIdentificationJsonConverter = (AULocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.AULocalAccountIdentification.GetType()));
+                aULocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.AULocalAccountIdentification, jsonSerializerOptions);
+            }
+
+            if (bankAccountAccountIdentification.BRLocalAccountIdentification != null)
+            {
+                BRLocalAccountIdentificationJsonConverter bRLocalAccountIdentificationJsonConverter = (BRLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.BRLocalAccountIdentification.GetType()));
+                bRLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.BRLocalAccountIdentification, jsonSerializerOptions);
+            }
+
+            if (bankAccountAccountIdentification.CALocalAccountIdentification != null)
+            {
+                CALocalAccountIdentificationJsonConverter cALocalAccountIdentificationJsonConverter = (CALocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.CALocalAccountIdentification.GetType()));
+                cALocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.CALocalAccountIdentification, jsonSerializerOptions);
+            }
+
+            if (bankAccountAccountIdentification.CZLocalAccountIdentification != null)
+            {
+                CZLocalAccountIdentificationJsonConverter cZLocalAccountIdentificationJsonConverter = (CZLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.CZLocalAccountIdentification.GetType()));
+                cZLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.CZLocalAccountIdentification, jsonSerializerOptions);
+            }
+
+            if (bankAccountAccountIdentification.DKLocalAccountIdentification != null)
+            {
+                DKLocalAccountIdentificationJsonConverter dKLocalAccountIdentificationJsonConverter = (DKLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.DKLocalAccountIdentification.GetType()));
+                dKLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.DKLocalAccountIdentification, jsonSerializerOptions);
+            }
+
+            if (bankAccountAccountIdentification.HKLocalAccountIdentification != null)
+            {
+                HKLocalAccountIdentificationJsonConverter hKLocalAccountIdentificationJsonConverter = (HKLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.HKLocalAccountIdentification.GetType()));
+                hKLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.HKLocalAccountIdentification, jsonSerializerOptions);
+            }
+
+            if (bankAccountAccountIdentification.HULocalAccountIdentification != null)
+            {
+                HULocalAccountIdentificationJsonConverter hULocalAccountIdentificationJsonConverter = (HULocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.HULocalAccountIdentification.GetType()));
+                hULocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.HULocalAccountIdentification, jsonSerializerOptions);
+            }
+
+            if (bankAccountAccountIdentification.IbanAccountIdentification != null)
+            {
+                IbanAccountIdentificationJsonConverter ibanAccountIdentificationJsonConverter = (IbanAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.IbanAccountIdentification.GetType()));
+                ibanAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.IbanAccountIdentification, jsonSerializerOptions);
+            }
+
+            if (bankAccountAccountIdentification.NOLocalAccountIdentification != null)
+            {
+                NOLocalAccountIdentificationJsonConverter nOLocalAccountIdentificationJsonConverter = (NOLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.NOLocalAccountIdentification.GetType()));
+                nOLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.NOLocalAccountIdentification, jsonSerializerOptions);
+            }
+
+            if (bankAccountAccountIdentification.NZLocalAccountIdentification != null)
+            {
+                NZLocalAccountIdentificationJsonConverter nZLocalAccountIdentificationJsonConverter = (NZLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.NZLocalAccountIdentification.GetType()));
+                nZLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.NZLocalAccountIdentification, jsonSerializerOptions);
+            }
+
+            if (bankAccountAccountIdentification.NumberAndBicAccountIdentification != null)
+            {
+                NumberAndBicAccountIdentificationJsonConverter numberAndBicAccountIdentificationJsonConverter = (NumberAndBicAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.NumberAndBicAccountIdentification.GetType()));
+                numberAndBicAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.NumberAndBicAccountIdentification, jsonSerializerOptions);
+            }
+
+            if (bankAccountAccountIdentification.PLLocalAccountIdentification != null)
+            {
+                PLLocalAccountIdentificationJsonConverter pLLocalAccountIdentificationJsonConverter = (PLLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.PLLocalAccountIdentification.GetType()));
+                pLLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.PLLocalAccountIdentification, jsonSerializerOptions);
+            }
+
+            if (bankAccountAccountIdentification.SELocalAccountIdentification != null)
+            {
+                SELocalAccountIdentificationJsonConverter sELocalAccountIdentificationJsonConverter = (SELocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.SELocalAccountIdentification.GetType()));
+                sELocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.SELocalAccountIdentification, jsonSerializerOptions);
+            }
+
+            if (bankAccountAccountIdentification.SGLocalAccountIdentification != null)
+            {
+                SGLocalAccountIdentificationJsonConverter sGLocalAccountIdentificationJsonConverter = (SGLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.SGLocalAccountIdentification.GetType()));
+                sGLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.SGLocalAccountIdentification, jsonSerializerOptions);
+            }
+
+            if (bankAccountAccountIdentification.UKLocalAccountIdentification != null)
+            {
+                UKLocalAccountIdentificationJsonConverter uKLocalAccountIdentificationJsonConverter = (UKLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.UKLocalAccountIdentification.GetType()));
+                uKLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.UKLocalAccountIdentification, jsonSerializerOptions);
+            }
+
+            if (bankAccountAccountIdentification.USLocalAccountIdentification != null)
+            {
+                USLocalAccountIdentificationJsonConverter uSLocalAccountIdentificationJsonConverter = (USLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.USLocalAccountIdentification.GetType()));
+                uSLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.USLocalAccountIdentification, jsonSerializerOptions);
+            }
+
             WriteProperties(writer, bankAccountAccountIdentification, jsonSerializerOptions);
-            /* 
+            
             writer.WriteEndObject();
-             */
+            
         }
 
         /// <summary>

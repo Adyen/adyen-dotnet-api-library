@@ -139,6 +139,201 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
+        /// **additionalBankIdentificationRequirement**
+        /// </summary>
+        /// <value>**additionalBankIdentificationRequirement**</value>
+        [JsonConverter(typeof(TypeEnumJsonConverter))]
+        public class TypeEnum : IEnum
+        {
+            /// <summary>
+            /// Returns the value of the TypeEnum.
+            /// </summary>
+            public string? Value { get; set; }
+
+            /// <summary>
+            /// TypeEnum.AdditionalBankIdentificationRequirement - additionalBankIdentificationRequirement
+            /// </summary>
+            public static readonly TypeEnum AdditionalBankIdentificationRequirement = new("additionalBankIdentificationRequirement");
+
+            /// <summary>
+            /// TypeEnum.AddressRequirement - addressRequirement
+            /// </summary>
+            public static readonly TypeEnum AddressRequirement = new("addressRequirement");
+
+            /// <summary>
+            /// TypeEnum.AmountMinMaxRequirement - amountMinMaxRequirement
+            /// </summary>
+            public static readonly TypeEnum AmountMinMaxRequirement = new("amountMinMaxRequirement");
+
+            /// <summary>
+            /// TypeEnum.AmountNonZeroDecimalsRequirement - amountNonZeroDecimalsRequirement
+            /// </summary>
+            public static readonly TypeEnum AmountNonZeroDecimalsRequirement = new("amountNonZeroDecimalsRequirement");
+
+            /// <summary>
+            /// TypeEnum.BankAccountIdentificationTypeRequirement - bankAccountIdentificationTypeRequirement
+            /// </summary>
+            public static readonly TypeEnum BankAccountIdentificationTypeRequirement = new("bankAccountIdentificationTypeRequirement");
+
+            /// <summary>
+            /// TypeEnum.IbanAccountIdentificationRequirement - ibanAccountIdentificationRequirement
+            /// </summary>
+            public static readonly TypeEnum IbanAccountIdentificationRequirement = new("ibanAccountIdentificationRequirement");
+
+            /// <summary>
+            /// TypeEnum.PaymentInstrumentRequirement - paymentInstrumentRequirement
+            /// </summary>
+            public static readonly TypeEnum PaymentInstrumentRequirement = new("paymentInstrumentRequirement");
+
+            /// <summary>
+            /// TypeEnum.UsInstantPayoutAddressRequirement - usInstantPayoutAddressRequirement
+            /// </summary>
+            public static readonly TypeEnum UsInstantPayoutAddressRequirement = new("usInstantPayoutAddressRequirement");
+
+            /// <summary>
+            /// TypeEnum.UsInternationalAchAddressRequirement - usInternationalAchAddressRequirement
+            /// </summary>
+            public static readonly TypeEnum UsInternationalAchAddressRequirement = new("usInternationalAchAddressRequirement");
+
+            /// <summary>
+            /// TypeEnum.UsInternationalAchPriorityRequirement - usInternationalAchPriorityRequirement
+            /// </summary>
+            public static readonly TypeEnum UsInternationalAchPriorityRequirement = new("usInternationalAchPriorityRequirement");
+        
+            private TypeEnum(string? value)
+            {
+                Value = value;
+            }
+
+            /// <summary>
+            /// Converts a string to a <see cref="TypeEnum"/> implicitly.
+            /// </summary>
+            /// <param name="value">The string value to convert. Defaults to null.</param>
+            /// <returns>A new <see cref="TypeEnum"/> instance initialized with the string value.</returns>
+            public static implicit operator TypeEnum?(string? value) => value == null ? null : new TypeEnum(value);
+    
+            /// <summary>
+            /// Converts a <see cref="TypeEnum"/> instance to a string implicitly.
+            /// </summary>
+            /// <param name="option">The <see cref="TypeEnum"/> instance. Default to null.</param>
+            /// <returns>String value of the <see cref="TypeEnum"/> instance.</returns>
+            public static implicit operator string?(TypeEnum? option) => option?.Value;
+        
+            /// <summary>
+            /// Compares two <see cref="TypeEnum"/> instances for equality.
+            /// </summary>
+            public static bool operator ==(TypeEnum? left, TypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Compares two <see cref="TypeEnum"/> instances for inequality.
+            /// </summary>
+            public static bool operator !=(TypeEnum? left, TypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns true if the given object is equal to this <see cref="TypeEnum"/> instance.
+            /// </summary>
+            public override bool Equals(object? obj) => obj is TypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns a hash code for this <see cref="TypeEnum"/> instance.
+            /// </summary>
+            public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+            /// <summary>
+            /// Returns the string value of the <see cref="TypeEnum"/> instance.
+            /// </summary>
+            public override string ToString() => Value ?? string.Empty;
+        
+            /// <summary>
+            /// Returns a <see cref="TypeEnum?"/>.
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns><see cref="TypeEnum"/> or null.</returns>
+            public static TypeEnum? FromStringOrDefault(string value)
+            {
+                return value switch {
+                    "additionalBankIdentificationRequirement" => TypeEnum.AdditionalBankIdentificationRequirement,
+                    "addressRequirement" => TypeEnum.AddressRequirement,
+                    "amountMinMaxRequirement" => TypeEnum.AmountMinMaxRequirement,
+                    "amountNonZeroDecimalsRequirement" => TypeEnum.AmountNonZeroDecimalsRequirement,
+                    "bankAccountIdentificationTypeRequirement" => TypeEnum.BankAccountIdentificationTypeRequirement,
+                    "ibanAccountIdentificationRequirement" => TypeEnum.IbanAccountIdentificationRequirement,
+                    "paymentInstrumentRequirement" => TypeEnum.PaymentInstrumentRequirement,
+                    "usInstantPayoutAddressRequirement" => TypeEnum.UsInstantPayoutAddressRequirement,
+                    "usInternationalAchAddressRequirement" => TypeEnum.UsInternationalAchAddressRequirement,
+                    "usInternationalAchPriorityRequirement" => TypeEnum.UsInternationalAchPriorityRequirement,
+                    _ => null,
+                };
+            }
+    
+            /// <summary>
+            /// Converts the <see cref="TypeEnum"/> to the json value.
+            /// </summary>
+            /// <param name="value"><see cref="TypeEnum"/></param>
+            /// <returns>String value of the enum.</returns>
+            public static string? ToJsonValue(TypeEnum? value)
+            {
+                if (value == null)
+                    return null;
+            
+                if (value == TypeEnum.AdditionalBankIdentificationRequirement)
+                    return "additionalBankIdentificationRequirement";
+                
+                if (value == TypeEnum.AddressRequirement)
+                    return "addressRequirement";
+                
+                if (value == TypeEnum.AmountMinMaxRequirement)
+                    return "amountMinMaxRequirement";
+                
+                if (value == TypeEnum.AmountNonZeroDecimalsRequirement)
+                    return "amountNonZeroDecimalsRequirement";
+                
+                if (value == TypeEnum.BankAccountIdentificationTypeRequirement)
+                    return "bankAccountIdentificationTypeRequirement";
+                
+                if (value == TypeEnum.IbanAccountIdentificationRequirement)
+                    return "ibanAccountIdentificationRequirement";
+                
+                if (value == TypeEnum.PaymentInstrumentRequirement)
+                    return "paymentInstrumentRequirement";
+                
+                if (value == TypeEnum.UsInstantPayoutAddressRequirement)
+                    return "usInstantPayoutAddressRequirement";
+                
+                if (value == TypeEnum.UsInternationalAchAddressRequirement)
+                    return "usInternationalAchAddressRequirement";
+                
+                if (value == TypeEnum.UsInternationalAchPriorityRequirement)
+                    return "usInternationalAchPriorityRequirement";
+                
+                return value.Value;
+            }
+            
+            /// <summary>
+            /// JsonConverter for writing TypeEnum.               
+            /// </summary>
+            public class TypeEnumJsonConverter : JsonConverter<TypeEnum>
+            {
+                /// <summary>
+                /// Deserializes a <see cref="TypeEnum"/> from JSON.
+                /// </summary>
+                public override TypeEnum? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions jsonOptions)
+                {
+                    string value = reader.GetString();
+                    return value == null ? null : TypeEnum.FromStringOrDefault(value) ?? new TypeEnum(value);
+                }
+
+                /// <summary>
+                /// Serializes a <see cref="TypeEnum"/> to JSON.
+                /// </summary>
+                public override void Write(Utf8JsonWriter writer, TypeEnum value, JsonSerializerOptions jsonOptions)
+                {
+                    writer.WriteStringValue(TypeEnum.ToJsonValue(value));
+                }
+            }
+        }
+
+        /// <summary>
         /// <see cref="AdditionalBankIdentificationRequirement"/>..
         /// </summary>
         public AdditionalBankIdentificationRequirement? AdditionalBankIdentificationRequirement { get; set; }
@@ -243,57 +438,86 @@ namespace Adyen.BalancePlatform.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            AdditionalBankIdentificationRequirement? additionalBankIdentificationRequirement = default;
-            AddressRequirement? addressRequirement = default;
-            AmountMinMaxRequirement? amountMinMaxRequirement = default;
-            AmountNonZeroDecimalsRequirement? amountNonZeroDecimalsRequirement = default;
-            BankAccountIdentificationTypeRequirement? bankAccountIdentificationTypeRequirement = default;
-            IbanAccountIdentificationRequirement? ibanAccountIdentificationRequirement = default;
-            PaymentInstrumentRequirement? paymentInstrumentRequirement = default;
-            USInstantPayoutAddressRequirement? uSInstantPayoutAddressRequirement = default;
-            USInternationalAchAddressRequirement? uSInternationalAchAddressRequirement = default;
-            USInternationalAchPriorityRequirement? uSInternationalAchPriorityRequirement = default;
+            Option<TransferRouteRequirementsInner.TypeEnum?> type = default;
 
-            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
-            while (utf8JsonReaderOneOf.Read())
+            AdditionalBankIdentificationRequirement? additionalBankIdentificationRequirement = null;
+            AddressRequirement? addressRequirement = null;
+            AmountMinMaxRequirement? amountMinMaxRequirement = null;
+            AmountNonZeroDecimalsRequirement? amountNonZeroDecimalsRequirement = null;
+            BankAccountIdentificationTypeRequirement? bankAccountIdentificationTypeRequirement = null;
+            IbanAccountIdentificationRequirement? ibanAccountIdentificationRequirement = null;
+            PaymentInstrumentRequirement? paymentInstrumentRequirement = null;
+            USInstantPayoutAddressRequirement? uSInstantPayoutAddressRequirement = null;
+            USInternationalAchAddressRequirement? uSInternationalAchAddressRequirement = null;
+            USInternationalAchPriorityRequirement? uSInternationalAchPriorityRequirement = null;
+
+            Utf8JsonReader utf8JsonReaderDiscriminator = utf8JsonReader;
+            while (utf8JsonReaderDiscriminator.Read())
             {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
+                if (utf8JsonReaderDiscriminator.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth - 1)
                 {
-                    Utf8JsonReader utf8JsonReaderAdditionalBankIdentificationRequirement = utf8JsonReader;
-                    ClientUtils.TryDeserialize<AdditionalBankIdentificationRequirement?>(ref utf8JsonReaderAdditionalBankIdentificationRequirement, jsonSerializerOptions, out additionalBankIdentificationRequirement);
-
-                    Utf8JsonReader utf8JsonReaderAddressRequirement = utf8JsonReader;
-                    ClientUtils.TryDeserialize<AddressRequirement?>(ref utf8JsonReaderAddressRequirement, jsonSerializerOptions, out addressRequirement);
-
-                    Utf8JsonReader utf8JsonReaderAmountMinMaxRequirement = utf8JsonReader;
-                    ClientUtils.TryDeserialize<AmountMinMaxRequirement?>(ref utf8JsonReaderAmountMinMaxRequirement, jsonSerializerOptions, out amountMinMaxRequirement);
-
-                    Utf8JsonReader utf8JsonReaderAmountNonZeroDecimalsRequirement = utf8JsonReader;
-                    ClientUtils.TryDeserialize<AmountNonZeroDecimalsRequirement?>(ref utf8JsonReaderAmountNonZeroDecimalsRequirement, jsonSerializerOptions, out amountNonZeroDecimalsRequirement);
-
-                    Utf8JsonReader utf8JsonReaderBankAccountIdentificationTypeRequirement = utf8JsonReader;
-                    ClientUtils.TryDeserialize<BankAccountIdentificationTypeRequirement?>(ref utf8JsonReaderBankAccountIdentificationTypeRequirement, jsonSerializerOptions, out bankAccountIdentificationTypeRequirement);
-
-                    Utf8JsonReader utf8JsonReaderIbanAccountIdentificationRequirement = utf8JsonReader;
-                    ClientUtils.TryDeserialize<IbanAccountIdentificationRequirement?>(ref utf8JsonReaderIbanAccountIdentificationRequirement, jsonSerializerOptions, out ibanAccountIdentificationRequirement);
-
-                    Utf8JsonReader utf8JsonReaderPaymentInstrumentRequirement = utf8JsonReader;
-                    ClientUtils.TryDeserialize<PaymentInstrumentRequirement?>(ref utf8JsonReaderPaymentInstrumentRequirement, jsonSerializerOptions, out paymentInstrumentRequirement);
-
-                    Utf8JsonReader utf8JsonReaderUSInstantPayoutAddressRequirement = utf8JsonReader;
-                    ClientUtils.TryDeserialize<USInstantPayoutAddressRequirement?>(ref utf8JsonReaderUSInstantPayoutAddressRequirement, jsonSerializerOptions, out uSInstantPayoutAddressRequirement);
-
-                    Utf8JsonReader utf8JsonReaderUSInternationalAchAddressRequirement = utf8JsonReader;
-                    ClientUtils.TryDeserialize<USInternationalAchAddressRequirement?>(ref utf8JsonReaderUSInternationalAchAddressRequirement, jsonSerializerOptions, out uSInternationalAchAddressRequirement);
-
-                    Utf8JsonReader utf8JsonReaderUSInternationalAchPriorityRequirement = utf8JsonReader;
-                    ClientUtils.TryDeserialize<USInternationalAchPriorityRequirement?>(ref utf8JsonReaderUSInternationalAchPriorityRequirement, jsonSerializerOptions, out uSInternationalAchPriorityRequirement);
+                    string? jsonPropertyName = utf8JsonReaderDiscriminator.GetString();
+                    utf8JsonReaderDiscriminator.Read();
+                    if (jsonPropertyName?.Equals("type") ?? false)
+                    {
+                        string? discriminator = utf8JsonReaderDiscriminator.GetString();
+                        if (discriminator?.Equals("additionalBankIdentificationRequirement") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderAdditionalBankIdentificationRequirement = utf8JsonReader;
+                            additionalBankIdentificationRequirement = JsonSerializer.Deserialize<AdditionalBankIdentificationRequirement>(ref utf8JsonReaderAdditionalBankIdentificationRequirement, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("addressRequirement") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderAddressRequirement = utf8JsonReader;
+                            addressRequirement = JsonSerializer.Deserialize<AddressRequirement>(ref utf8JsonReaderAddressRequirement, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("amountMinMaxRequirement") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderAmountMinMaxRequirement = utf8JsonReader;
+                            amountMinMaxRequirement = JsonSerializer.Deserialize<AmountMinMaxRequirement>(ref utf8JsonReaderAmountMinMaxRequirement, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("amountNonZeroDecimalsRequirement") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderAmountNonZeroDecimalsRequirement = utf8JsonReader;
+                            amountNonZeroDecimalsRequirement = JsonSerializer.Deserialize<AmountNonZeroDecimalsRequirement>(ref utf8JsonReaderAmountNonZeroDecimalsRequirement, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("bankAccountIdentificationTypeRequirement") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderBankAccountIdentificationTypeRequirement = utf8JsonReader;
+                            bankAccountIdentificationTypeRequirement = JsonSerializer.Deserialize<BankAccountIdentificationTypeRequirement>(ref utf8JsonReaderBankAccountIdentificationTypeRequirement, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("ibanAccountIdentificationRequirement") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderIbanAccountIdentificationRequirement = utf8JsonReader;
+                            ibanAccountIdentificationRequirement = JsonSerializer.Deserialize<IbanAccountIdentificationRequirement>(ref utf8JsonReaderIbanAccountIdentificationRequirement, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("paymentInstrumentRequirement") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderPaymentInstrumentRequirement = utf8JsonReader;
+                            paymentInstrumentRequirement = JsonSerializer.Deserialize<PaymentInstrumentRequirement>(ref utf8JsonReaderPaymentInstrumentRequirement, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("usInstantPayoutAddressRequirement") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderUSInstantPayoutAddressRequirement = utf8JsonReader;
+                            uSInstantPayoutAddressRequirement = JsonSerializer.Deserialize<USInstantPayoutAddressRequirement>(ref utf8JsonReaderUSInstantPayoutAddressRequirement, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("usInternationalAchAddressRequirement") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderUSInternationalAchAddressRequirement = utf8JsonReader;
+                            uSInternationalAchAddressRequirement = JsonSerializer.Deserialize<USInternationalAchAddressRequirement>(ref utf8JsonReaderUSInternationalAchAddressRequirement, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("usInternationalAchPriorityRequirement") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderUSInternationalAchPriorityRequirement = utf8JsonReader;
+                            uSInternationalAchPriorityRequirement = JsonSerializer.Deserialize<USInternationalAchPriorityRequirement>(ref utf8JsonReaderUSInternationalAchPriorityRequirement, jsonSerializerOptions);
+                        }
+                    }
                 }
             }
 
@@ -312,40 +536,47 @@ namespace Adyen.BalancePlatform.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "type":
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            type = new Option<TransferRouteRequirementsInner.TypeEnum?>(TransferRouteRequirementsInner.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TransferRouteRequirementsInner.TypeEnum)typeRawValue);
+                            break;
                         default:
                             break;
                     }
                 }
             }
             
-            if (additionalBankIdentificationRequirement?.Type != null && AdditionalBankIdentificationRequirement.TypeEnum.FromStringOrDefault((string?)additionalBankIdentificationRequirement.Type) != null)
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class TransferRouteRequirementsInner.", nameof(type));
+
+            if (additionalBankIdentificationRequirement != null)
                 return new TransferRouteRequirementsInner(additionalBankIdentificationRequirement);
 
-            if (addressRequirement?.Type != null && AddressRequirement.TypeEnum.FromStringOrDefault((string?)addressRequirement.Type) != null)
+            if (addressRequirement != null)
                 return new TransferRouteRequirementsInner(addressRequirement);
 
-            if (amountMinMaxRequirement?.Type != null && AmountMinMaxRequirement.TypeEnum.FromStringOrDefault((string?)amountMinMaxRequirement.Type) != null)
+            if (amountMinMaxRequirement != null)
                 return new TransferRouteRequirementsInner(amountMinMaxRequirement);
 
-            if (amountNonZeroDecimalsRequirement?.Type != null && AmountNonZeroDecimalsRequirement.TypeEnum.FromStringOrDefault((string?)amountNonZeroDecimalsRequirement.Type) != null)
+            if (amountNonZeroDecimalsRequirement != null)
                 return new TransferRouteRequirementsInner(amountNonZeroDecimalsRequirement);
 
-            if (bankAccountIdentificationTypeRequirement?.Type != null && BankAccountIdentificationTypeRequirement.TypeEnum.FromStringOrDefault((string?)bankAccountIdentificationTypeRequirement.Type) != null)
+            if (bankAccountIdentificationTypeRequirement != null)
                 return new TransferRouteRequirementsInner(bankAccountIdentificationTypeRequirement);
 
-            if (ibanAccountIdentificationRequirement?.Type != null && IbanAccountIdentificationRequirement.TypeEnum.FromStringOrDefault((string?)ibanAccountIdentificationRequirement.Type) != null)
+            if (ibanAccountIdentificationRequirement != null)
                 return new TransferRouteRequirementsInner(ibanAccountIdentificationRequirement);
 
-            if (paymentInstrumentRequirement?.Type != null && PaymentInstrumentRequirement.TypeEnum.FromStringOrDefault((string?)paymentInstrumentRequirement.Type) != null)
+            if (paymentInstrumentRequirement != null)
                 return new TransferRouteRequirementsInner(paymentInstrumentRequirement);
 
-            if (uSInstantPayoutAddressRequirement?.Type != null && USInstantPayoutAddressRequirement.TypeEnum.FromStringOrDefault((string?)uSInstantPayoutAddressRequirement.Type) != null)
+            if (uSInstantPayoutAddressRequirement != null)
                 return new TransferRouteRequirementsInner(uSInstantPayoutAddressRequirement);
 
-            if (uSInternationalAchAddressRequirement?.Type != null && USInternationalAchAddressRequirement.TypeEnum.FromStringOrDefault((string?)uSInternationalAchAddressRequirement.Type) != null)
+            if (uSInternationalAchAddressRequirement != null)
                 return new TransferRouteRequirementsInner(uSInternationalAchAddressRequirement);
 
-            if (uSInternationalAchPriorityRequirement?.Type != null && USInternationalAchPriorityRequirement.TypeEnum.FromStringOrDefault((string?)uSInternationalAchPriorityRequirement.Type) != null)
+            if (uSInternationalAchPriorityRequirement != null)
                 return new TransferRouteRequirementsInner(uSInternationalAchPriorityRequirement);
 
             return null!;
@@ -359,33 +590,73 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         public override void Write(Utf8JsonWriter writer, TransferRouteRequirementsInner transferRouteRequirementsInner, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (transferRouteRequirementsInner.AdditionalBankIdentificationRequirement != null)
-                JsonSerializer.Serialize(writer, transferRouteRequirementsInner.AdditionalBankIdentificationRequirement, jsonSerializerOptions);
-            if (transferRouteRequirementsInner.AddressRequirement != null)
-                JsonSerializer.Serialize(writer, transferRouteRequirementsInner.AddressRequirement, jsonSerializerOptions);
-            if (transferRouteRequirementsInner.AmountMinMaxRequirement != null)
-                JsonSerializer.Serialize(writer, transferRouteRequirementsInner.AmountMinMaxRequirement, jsonSerializerOptions);
-            if (transferRouteRequirementsInner.AmountNonZeroDecimalsRequirement != null)
-                JsonSerializer.Serialize(writer, transferRouteRequirementsInner.AmountNonZeroDecimalsRequirement, jsonSerializerOptions);
-            if (transferRouteRequirementsInner.BankAccountIdentificationTypeRequirement != null)
-                JsonSerializer.Serialize(writer, transferRouteRequirementsInner.BankAccountIdentificationTypeRequirement, jsonSerializerOptions);
-            if (transferRouteRequirementsInner.IbanAccountIdentificationRequirement != null)
-                JsonSerializer.Serialize(writer, transferRouteRequirementsInner.IbanAccountIdentificationRequirement, jsonSerializerOptions);
-            if (transferRouteRequirementsInner.PaymentInstrumentRequirement != null)
-                JsonSerializer.Serialize(writer, transferRouteRequirementsInner.PaymentInstrumentRequirement, jsonSerializerOptions);
-            if (transferRouteRequirementsInner.USInstantPayoutAddressRequirement != null)
-                JsonSerializer.Serialize(writer, transferRouteRequirementsInner.USInstantPayoutAddressRequirement, jsonSerializerOptions);
-            if (transferRouteRequirementsInner.USInternationalAchAddressRequirement != null)
-                JsonSerializer.Serialize(writer, transferRouteRequirementsInner.USInternationalAchAddressRequirement, jsonSerializerOptions);
-            if (transferRouteRequirementsInner.USInternationalAchPriorityRequirement != null)
-                JsonSerializer.Serialize(writer, transferRouteRequirementsInner.USInternationalAchPriorityRequirement, jsonSerializerOptions);
-            /* 
+            
             writer.WriteStartObject();
-             */
+            
+            if (transferRouteRequirementsInner.AdditionalBankIdentificationRequirement != null)
+            {
+                AdditionalBankIdentificationRequirementJsonConverter additionalBankIdentificationRequirementJsonConverter = (AdditionalBankIdentificationRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.AdditionalBankIdentificationRequirement.GetType()));
+                additionalBankIdentificationRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.AdditionalBankIdentificationRequirement, jsonSerializerOptions);
+            }
+
+            if (transferRouteRequirementsInner.AddressRequirement != null)
+            {
+                AddressRequirementJsonConverter addressRequirementJsonConverter = (AddressRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.AddressRequirement.GetType()));
+                addressRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.AddressRequirement, jsonSerializerOptions);
+            }
+
+            if (transferRouteRequirementsInner.AmountMinMaxRequirement != null)
+            {
+                AmountMinMaxRequirementJsonConverter amountMinMaxRequirementJsonConverter = (AmountMinMaxRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.AmountMinMaxRequirement.GetType()));
+                amountMinMaxRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.AmountMinMaxRequirement, jsonSerializerOptions);
+            }
+
+            if (transferRouteRequirementsInner.AmountNonZeroDecimalsRequirement != null)
+            {
+                AmountNonZeroDecimalsRequirementJsonConverter amountNonZeroDecimalsRequirementJsonConverter = (AmountNonZeroDecimalsRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.AmountNonZeroDecimalsRequirement.GetType()));
+                amountNonZeroDecimalsRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.AmountNonZeroDecimalsRequirement, jsonSerializerOptions);
+            }
+
+            if (transferRouteRequirementsInner.BankAccountIdentificationTypeRequirement != null)
+            {
+                BankAccountIdentificationTypeRequirementJsonConverter bankAccountIdentificationTypeRequirementJsonConverter = (BankAccountIdentificationTypeRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.BankAccountIdentificationTypeRequirement.GetType()));
+                bankAccountIdentificationTypeRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.BankAccountIdentificationTypeRequirement, jsonSerializerOptions);
+            }
+
+            if (transferRouteRequirementsInner.IbanAccountIdentificationRequirement != null)
+            {
+                IbanAccountIdentificationRequirementJsonConverter ibanAccountIdentificationRequirementJsonConverter = (IbanAccountIdentificationRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.IbanAccountIdentificationRequirement.GetType()));
+                ibanAccountIdentificationRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.IbanAccountIdentificationRequirement, jsonSerializerOptions);
+            }
+
+            if (transferRouteRequirementsInner.PaymentInstrumentRequirement != null)
+            {
+                PaymentInstrumentRequirementJsonConverter paymentInstrumentRequirementJsonConverter = (PaymentInstrumentRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.PaymentInstrumentRequirement.GetType()));
+                paymentInstrumentRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.PaymentInstrumentRequirement, jsonSerializerOptions);
+            }
+
+            if (transferRouteRequirementsInner.USInstantPayoutAddressRequirement != null)
+            {
+                USInstantPayoutAddressRequirementJsonConverter uSInstantPayoutAddressRequirementJsonConverter = (USInstantPayoutAddressRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.USInstantPayoutAddressRequirement.GetType()));
+                uSInstantPayoutAddressRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.USInstantPayoutAddressRequirement, jsonSerializerOptions);
+            }
+
+            if (transferRouteRequirementsInner.USInternationalAchAddressRequirement != null)
+            {
+                USInternationalAchAddressRequirementJsonConverter uSInternationalAchAddressRequirementJsonConverter = (USInternationalAchAddressRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.USInternationalAchAddressRequirement.GetType()));
+                uSInternationalAchAddressRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.USInternationalAchAddressRequirement, jsonSerializerOptions);
+            }
+
+            if (transferRouteRequirementsInner.USInternationalAchPriorityRequirement != null)
+            {
+                USInternationalAchPriorityRequirementJsonConverter uSInternationalAchPriorityRequirementJsonConverter = (USInternationalAchPriorityRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.USInternationalAchPriorityRequirement.GetType()));
+                uSInternationalAchPriorityRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.USInternationalAchPriorityRequirement, jsonSerializerOptions);
+            }
+
             WriteProperties(writer, transferRouteRequirementsInner, jsonSerializerOptions);
-            /* 
+            
             writer.WriteEndObject();
-             */
+            
         }
 
         /// <summary>

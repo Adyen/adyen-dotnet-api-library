@@ -182,10 +182,14 @@ namespace Adyen.BalancePlatform.Client
                 return Models.BalanceWebhookSettingInfoUpdate.StatusEnum.ToJsonValue(balanceWebhookSettingInfoUpdateStatusEnum);
             if (obj is Models.BalanceWebhookSettingInfoUpdate.TypeEnum balanceWebhookSettingInfoUpdateTypeEnum)
                 return Models.BalanceWebhookSettingInfoUpdate.TypeEnum.ToJsonValue(balanceWebhookSettingInfoUpdateTypeEnum);
+            if (obj is Models.BankAccountAccountIdentification.TypeEnum bankAccountAccountIdentificationTypeEnum)
+                return Models.BankAccountAccountIdentification.TypeEnum.ToJsonValue(bankAccountAccountIdentificationTypeEnum);
             if (obj is Models.BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum bankAccountIdentificationTypeRequirementBankAccountIdentificationTypesEnum)
                 return BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum.ToJsonValue(bankAccountIdentificationTypeRequirementBankAccountIdentificationTypesEnum);
             if (obj is Models.BankAccountIdentificationTypeRequirement.TypeEnum bankAccountIdentificationTypeRequirementTypeEnum)
                 return Models.BankAccountIdentificationTypeRequirement.TypeEnum.ToJsonValue(bankAccountIdentificationTypeRequirementTypeEnum);
+            if (obj is Models.BankAccountIdentificationValidationRequestAccountIdentification.TypeEnum bankAccountIdentificationValidationRequestAccountIdentificationTypeEnum)
+                return Models.BankAccountIdentificationValidationRequestAccountIdentification.TypeEnum.ToJsonValue(bankAccountIdentificationValidationRequestAccountIdentificationTypeEnum);
             if (obj is Models.BankAccountModel.FormFactorEnum bankAccountModelFormFactorEnum)
                 return Models.BankAccountModel.FormFactorEnum.ToJsonValue(bankAccountModelFormFactorEnum);
             if (obj is Models.BankIdentification.IdentificationTypeEnum bankIdentificationIdentificationTypeEnum)
@@ -276,6 +280,8 @@ namespace Adyen.BalancePlatform.Client
                 return Models.PaymentInstrument.StatusEnum.ToJsonValue(paymentInstrumentStatusEnum);
             if (obj is Models.PaymentInstrument.StatusReasonEnum paymentInstrumentStatusReasonEnum)
                 return Models.PaymentInstrument.StatusReasonEnum.ToJsonValue(paymentInstrumentStatusReasonEnum);
+            if (obj is Models.PaymentInstrumentAdditionalBankAccountIdentificationsInner.TypeEnum paymentInstrumentAdditionalBankAccountIdentificationsInnerTypeEnum)
+                return Models.PaymentInstrumentAdditionalBankAccountIdentificationsInner.TypeEnum.ToJsonValue(paymentInstrumentAdditionalBankAccountIdentificationsInnerTypeEnum);
             if (obj is Models.PaymentInstrumentInfo.TypeEnum paymentInstrumentInfoTypeEnum)
                 return Models.PaymentInstrumentInfo.TypeEnum.ToJsonValue(paymentInstrumentInfoTypeEnum);
             if (obj is Models.PaymentInstrumentInfo.StatusEnum paymentInstrumentInfoStatusEnum)
@@ -366,6 +372,8 @@ namespace Adyen.BalancePlatform.Client
                 return Models.TransferRouteRequest.CategoryEnum.ToJsonValue(transferRouteRequestCategoryEnum);
             if (obj is Models.TransferRouteRequest.PrioritiesEnum transferRouteRequestPrioritiesEnum)
                 return TransferRouteRequest.PrioritiesEnum.ToJsonValue(transferRouteRequestPrioritiesEnum);
+            if (obj is Models.TransferRouteRequirementsInner.TypeEnum transferRouteRequirementsInnerTypeEnum)
+                return Models.TransferRouteRequirementsInner.TypeEnum.ToJsonValue(transferRouteRequirementsInnerTypeEnum);
             if (obj is Models.TransferType transferType)
                 return TransferType.ToJsonValue(transferType);
             if (obj is Models.UKLocalAccountIdentification.TypeEnum uKLocalAccountIdentificationTypeEnum)
