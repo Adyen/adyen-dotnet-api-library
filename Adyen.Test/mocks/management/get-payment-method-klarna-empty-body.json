@@ -1,0 +1,12 @@
+{
+  "klarna": {},
+  "id": "PM3224Q22322225G9BLD5DJ3B",
+  "type": "klarna_US",
+  "storeIds": [],
+  "enabled": true,
+  "countries": [],
+  "currencies": [
+    "USD"
+  ],
+  "customRoutingFlags": []
+}

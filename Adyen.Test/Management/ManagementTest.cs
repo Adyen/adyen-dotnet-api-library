@@ -86,6 +86,63 @@ namespace Adyen.Test.Management
             Assert.AreEqual("pck1", response.Data?.First(o => o.Id == "S1F2-000150183300032").InstalledAPKs?[0].PackageName);
         }
         
+        /// <summary>
+        /// Reproduces the customer-reported issue: the Adyen API can return payment method details
+        /// where payment-method-specific objects (e.g. "klarna": {}) have no properties populated.
+        /// KlarnaResponseInfo has only optional fields, so deserialization should succeed.
+        /// </summary>
+        [TestMethod]
+        public void Given_Deserialize_When_PaymentMethod_KlarnaWithEmptyBody_Should_Succeed()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/management/get-payment-method-klarna-empty-body.json");
+
+            // Act
+            var result = JsonSerializer.Deserialize<PaymentMethod>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("PM3224Q22322225G9BLD5DJ3B", result.Id);
+            Assert.AreEqual("klarna_US", result.Type);
+            Assert.IsTrue(result.Enabled);
+            Assert.IsNotNull(result.Klarna);
+        }
+
+        [TestMethod]
+        public void Given_Deserialize_When_PaymentMethod_PayPalWithEmptyBody_Should_Succeed_With_Null_Properties()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/management/get-payment-method-paypal-empty-body.json");
+
+            // Act
+            var result = JsonSerializer.Deserialize<PaymentMethod>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("PM3293722322655L83TSBC3C6", result.Id);
+            Assert.AreEqual("paypal", result.Type);
+            Assert.IsNotNull(result.Paypal);
+            Assert.IsNull(result.Paypal.PayerId);
+            Assert.IsNull(result.Paypal.Subject);
+        }
+
+        [TestMethod]
+        public void Given_Deserialize_When_PaymentMethod_AccelWithEmptyBody_Should_Succeed_With_Null_Properties()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/management/get-payment-method-accel-empty-body.json");
+
+            // Act
+            var result = JsonSerializer.Deserialize<PaymentMethod>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("PM329C322322855PJFHWPF45T", result.Id);
+            Assert.AreEqual("accel", result.Type);
+            Assert.IsNotNull(result.Accel);
+            Assert.IsNull(result.Accel.ProcessingType);
+        }
+
         [TestMethod]
         public void Given_Serialize_When_TerminalSettings_Includes_Null_Surcharge()
         {
