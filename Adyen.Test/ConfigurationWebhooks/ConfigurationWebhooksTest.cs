@@ -275,7 +275,7 @@ namespace Adyen.Test.ConfigurationWebhooks
 
             var additionalId = r.Data.PaymentInstrument.AdditionalBankAccountIdentifications[0];
             Assert.IsNotNull(additionalId.IbanAccountIdentification);
-            Assert.AreEqual(PaymentInstrumentAdditionalBankAccountIdentificationsInner.TypeEnum.Iban, additionalId.IbanAccountIdentification.Type);
+            Assert.AreEqual(IbanAccountIdentification.TypeEnum.Iban, additionalId.IbanAccountIdentification.Type);
             Assert.AreEqual("GB29NWBK60161331926819", additionalId.IbanAccountIdentification.Iban);
             Assert.AreEqual("NWBKGB2L", additionalId.IbanAccountIdentification.Bic);
         }
