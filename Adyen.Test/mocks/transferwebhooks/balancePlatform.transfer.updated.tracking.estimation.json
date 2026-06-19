@@ -1,0 +1,83 @@
+{
+  "type": "balancePlatform.transfer.updated",
+  "environment": "test",
+  "timestamp": "2023-02-28T13:27:05+02:00",
+  "data": {
+    "accountHolder": {
+      "description": "Your description of the account holder",
+      "id": "AH00000000000000000000001",
+      "reference": "Your reference for the account holder"
+    },
+    "amount": {
+      "currency": "EUR",
+      "value": 10000
+    },
+    "balanceAccount": {
+      "description": "Your description of the balance account",
+      "id": "BA00000000000000000000001",
+      "reference": "Your reference for the balance account"
+    },
+    "balancePlatform": "YOUR_BALANCE_PLATFORM",
+    "balances": [
+      {
+        "currency": "EUR",
+        "received": 0,
+        "reserved": -10000
+      }
+    ],
+    "category": "bank",
+    "categoryData": {
+      "priority": "regular",
+      "type": "bank"
+    },
+    "counterparty": {
+      "transferInstrumentId": "SE00000000000000000000001"
+    },
+    "creationDate": "2023-02-28T13:30:05+02:00",
+    "direction": "outgoing",
+    "events": [
+      {
+        "bookingDate": "2023-02-28T13:30:18+02:00",
+        "id": "EVJN00000000000000000000000001",
+        "mutations": [
+          {
+            "currency": "EUR",
+            "received": -10000
+          }
+        ],
+        "status": "received",
+        "type": "accounting"
+      },
+      {
+        "bookingDate": "2023-02-28T13:30:18+02:00",
+        "id": "EVJN00000000000000000000000002",
+        "mutations": [
+          {
+            "currency": "EUR",
+            "received": 10000,
+            "reserved": -10000
+          }
+        ],
+        "status": "authorised",
+        "type": "accounting"
+      },
+      {
+        "bookingDate": "2023-02-28T13:30:19+02:00",
+        "id": "EVJN00000000000000000000000003",
+        "status": "bankTransferPending",
+        "trackingData": {
+          "estimatedArrivalTime": "2023-03-01T12:00:00+01:00",
+          "type": "estimation"
+        },
+        "type": "tracking",
+        "updateDate": "2023-02-28T13:30:19+02:00"
+      }
+    ],
+    "id": "6JKRLZ8LOT47J7RY",
+    "reason": "approved",
+    "reference": "Your reference for the transfer",
+    "sequenceNumber": 3,
+    "status": "bankTransferPending",
+    "type": "bankTransfer"
+  }
+}

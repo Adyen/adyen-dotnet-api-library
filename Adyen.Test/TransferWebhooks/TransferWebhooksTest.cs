@@ -105,6 +105,107 @@ namespace Adyen.Test.TransferWebhooks
         }
 
         [TestMethod]
+        public void Given_Deserialize_When_DirectDebit_Booked_With_BankCategoryData_And_IbanAccountIdentification_Returns_Not_Null()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/transferwebhooks/balancePlatform.transfer.updated.directDebit.booked.json");
+
+            // Act
+            TransferNotificationRequest r = _transferWebhooksHandler.DeserializeTransferNotificationRequest(json);
+
+            // Assert
+            Assert.IsNotNull(r);
+            Assert.AreEqual(TransferNotificationRequest.TypeEnum.BalancePlatformTransferUpdated, r.Type);
+            Assert.AreEqual("test", r.Environment);
+
+            Assert.AreEqual(TransferData.CategoryEnum.Bank, r.Data.Category);
+            Assert.IsNotNull(r.Data.CategoryData.BankCategoryData);
+            Assert.IsNull(r.Data.CategoryData.BankCategoryData.Priority);
+
+            Assert.IsNotNull(r.Data.Counterparty);
+            Assert.IsNotNull(r.Data.Counterparty.BankAccount);
+            Assert.AreEqual("John Smith", r.Data.Counterparty.BankAccount.AccountHolder.FullName);
+
+            var accountIdentification = r.Data.Counterparty.BankAccount.AccountIdentification;
+            Assert.IsNotNull(accountIdentification);
+            Assert.IsNotNull(accountIdentification.IbanAccountIdentification);
+            Assert.AreEqual("FR0000000000000000000000117", accountIdentification.IbanAccountIdentification.Iban);
+
+            Assert.AreEqual("2WT1N05XXY7P9XH9", r.Data.Id);
+            Assert.AreEqual(TransferData.StatusEnum.Booked, r.Data.Status);
+            Assert.AreEqual(3, r.Data.SequenceNumber);
+            Assert.AreEqual(3, r.Data.Events.Count);
+        }
+
+        [TestMethod]
+        public void Given_Deserialize_When_Transfer_Updated_With_EstimationTrackingData_In_Event_Returns_Not_Null()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/transferwebhooks/balancePlatform.transfer.updated.tracking.estimation.json");
+
+            // Act
+            TransferNotificationRequest r = _transferWebhooksHandler.DeserializeTransferNotificationRequest(json);
+
+            // Assert
+            Assert.IsNotNull(r);
+            Assert.AreEqual(TransferNotificationRequest.TypeEnum.BalancePlatformTransferUpdated, r.Type);
+            Assert.AreEqual(TransferData.CategoryEnum.Bank, r.Data.Category);
+            Assert.AreEqual(3, r.Data.Events.Count);
+
+            var trackingEvent = r.Data.Events[2];
+            Assert.AreEqual(TransferEvent.TypeEnum.Tracking, trackingEvent.Type);
+            Assert.IsNotNull(trackingEvent.TrackingData);
+            Assert.IsNotNull(trackingEvent.TrackingData.EstimationTrackingData);
+            Assert.AreEqual(
+                DateTimeOffset.Parse("2023-03-01T12:00:00+01:00"),
+                trackingEvent.TrackingData.EstimationTrackingData.EstimatedArrivalTime
+            );
+        }
+
+        [TestMethod]
+        public void Given_Deserialize_When_Transfer_Updated_With_ConfirmationTrackingData_In_Event_Returns_Not_Null()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/transferwebhooks/balancePlatform.transfer.updated.tracking.confirmation.json");
+
+            // Act
+            TransferNotificationRequest r = _transferWebhooksHandler.DeserializeTransferNotificationRequest(json);
+
+            // Assert
+            Assert.IsNotNull(r);
+            Assert.AreEqual(TransferNotificationRequest.TypeEnum.BalancePlatformTransferUpdated, r.Type);
+            Assert.AreEqual(1, r.Data.Events.Count);
+
+            var trackingEvent = r.Data.Events[0];
+            Assert.AreEqual(TransferEvent.TypeEnum.Tracking, trackingEvent.Type);
+            Assert.IsNotNull(trackingEvent.TrackingData);
+            Assert.IsNotNull(trackingEvent.TrackingData.ConfirmationTrackingData);
+            Assert.AreEqual(ConfirmationTrackingData.StatusEnum.Credited, trackingEvent.TrackingData.ConfirmationTrackingData.Status);
+        }
+
+        [TestMethod]
+        public void Given_Deserialize_When_Transfer_Updated_With_TopLevel_EstimationTracking_Returns_Not_Null()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/transferwebhooks/balancePlatform.transfer.updated.toplevel.tracking.json");
+
+            // Act
+            TransferNotificationRequest r = _transferWebhooksHandler.DeserializeTransferNotificationRequest(json);
+
+            // Assert
+            Assert.IsNotNull(r);
+            Assert.AreEqual(TransferNotificationRequest.TypeEnum.BalancePlatformTransferUpdated, r.Type);
+            Assert.AreEqual(TransferData.CategoryEnum.Bank, r.Data.Category);
+
+            Assert.IsNotNull(r.Data.Tracking);
+            Assert.IsNotNull(r.Data.Tracking.EstimationTrackingData);
+            Assert.AreEqual(
+                DateTimeOffset.Parse("2023-03-01T12:00:00+01:00"),
+                r.Data.Tracking.EstimationTrackingData.EstimatedArrivalTime
+            );
+        }
+
+        [TestMethod]
         public void Given_Deserialize_When_Transfer_Webhook_With_UnknownCategoryEnum_Returns_Not_Null()
         {
             // Arrange
