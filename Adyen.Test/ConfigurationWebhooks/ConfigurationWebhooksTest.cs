@@ -207,6 +207,9 @@ namespace Adyen.Test.ConfigurationWebhooks
             Assert.IsNotNull(r.Data.Mandate.Counterparty.AccountHolder);
             Assert.AreEqual("Creditor Name", r.Data.Mandate.Counterparty.AccountHolder.FullName);
 
+            Assert.AreEqual(DateTimeOffset.Parse("2025-09-16T07:33:50.076Z"), r.Data.Mandate.CreatedAt);
+            Assert.AreEqual(DateTimeOffset.Parse("2025-09-16T07:33:50.076Z"), r.Data.Mandate.UpdatedAt);
+
             Assert.IsNotNull(r.Data.Mandate.Counterparty.AccountIdentification);
             Assert.AreEqual("10809699", r.Data.Mandate.Counterparty.AccountIdentification.AccountNumber);
             Assert.AreEqual("405081", r.Data.Mandate.Counterparty.AccountIdentification.SortCode);
