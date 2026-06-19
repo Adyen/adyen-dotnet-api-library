@@ -352,13 +352,14 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Object?> _CreatedAtOption { get; private set; }
+        public Option<DateTimeOffset?> _CreatedAtOption { get; private set; }
 
         /// <summary>
-        /// <see cref="CreatedAt"/>.
+        /// The date when the mandate was created.
         /// </summary>
+        /// <value>The date when the mandate was created.</value>
         [JsonPropertyName("createdAt")]
-        public Object? CreatedAt { get { return this._CreatedAtOption; } set { this._CreatedAtOption = new(value); } }
+        public DateTimeOffset? CreatedAt { get { return this._CreatedAtOption; } set { this._CreatedAtOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
@@ -393,13 +394,14 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Object?> _UpdatedAtOption { get; private set; }
+        public Option<DateTimeOffset?> _UpdatedAtOption { get; private set; }
 
         /// <summary>
-        /// <see cref="UpdatedAt"/>.
+        /// The date when the mandate was updated.
         /// </summary>
+        /// <value>The date when the mandate was updated.</value>
         [JsonPropertyName("updatedAt")]
-        public Object? UpdatedAt { get { return this._UpdatedAtOption; } set { this._UpdatedAtOption = new(value); } }
+        public DateTimeOffset? UpdatedAt { get { return this._UpdatedAtOption; } set { this._UpdatedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -428,6 +430,16 @@ namespace Adyen.ConfigurationWebhooks.Models
     public class MandateJsonConverter : JsonConverter<Mandate>
     {
         /// <summary>
+        /// The format to use to serialize CreatedAt.
+        /// </summary>
+        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+
+        /// <summary>
+        /// The format to use to serialize UpdatedAt.
+        /// </summary>
+        public static string UpdatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+
+        /// <summary>
         /// Deserializes json to <see cref="Mandate"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
@@ -446,12 +458,12 @@ namespace Adyen.ConfigurationWebhooks.Models
 
             Option<string?> balanceAccountId = default;
             Option<MandateBankAccount?> counterparty = default;
-            Option<Object?> createdAt = default;
+            Option<DateTimeOffset?> createdAt = default;
             Option<string?> id = default;
             Option<string?> paymentInstrumentId = default;
             Option<Mandate.StatusEnum?> status = default;
             Option<Mandate.TypeEnum?> type = default;
-            Option<Object?> updatedAt = default;
+            Option<DateTimeOffset?> updatedAt = default;
 
             while (utf8JsonReader.Read())
             {
@@ -475,7 +487,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             counterparty = new Option<MandateBankAccount?>(JsonSerializer.Deserialize<MandateBankAccount>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "createdAt":
-                            createdAt = new Option<Object?>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            createdAt = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "id":
                             id = new Option<string?>(utf8JsonReader.GetString()!);
@@ -492,7 +504,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                             type = new Option<Mandate.TypeEnum?>(Mandate.TypeEnum.FromStringOrDefault(typeRawValue) ?? (Mandate.TypeEnum)typeRawValue);
                             break;
                         case "updatedAt":
-                            updatedAt = new Option<Object?>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            updatedAt = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -556,10 +568,9 @@ namespace Adyen.ConfigurationWebhooks.Models
                 JsonSerializer.Serialize(writer, mandate.Counterparty, jsonSerializerOptions);
             }
             if (mandate._CreatedAtOption.IsSet)
-            {
-                writer.WritePropertyName("createdAt");
-                JsonSerializer.Serialize(writer, mandate.CreatedAt, jsonSerializerOptions);
-            }
+                if (mandate._CreatedAtOption.Value != null)
+                    writer.WriteString("createdAt", mandate._CreatedAtOption.Value!.Value.ToString(CreatedAtFormat));
+
             if (mandate._IdOption.IsSet)
                 if (mandate.Id != null)
                     writer.WriteString("id", mandate.Id);
@@ -581,10 +592,8 @@ namespace Adyen.ConfigurationWebhooks.Models
             }
             
             if (mandate._UpdatedAtOption.IsSet)
-            {
-                writer.WritePropertyName("updatedAt");
-                JsonSerializer.Serialize(writer, mandate.UpdatedAt, jsonSerializerOptions);
-            }
+                if (mandate._UpdatedAtOption.Value != null)
+                    writer.WriteString("updatedAt", mandate._UpdatedAtOption.Value!.Value.ToString(UpdatedAtFormat));
         }
     }
 }
