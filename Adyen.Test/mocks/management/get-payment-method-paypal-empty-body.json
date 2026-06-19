@@ -1,0 +1,15 @@
+{
+  "paypal": {},
+  "id": "PM3293722322655L83TSBC3C6",
+  "type": "paypal",
+  "storeIds": [],
+  "enabled": false,
+  "countries": [],
+  "currencies": [
+    "CHF", "MXN", "VND", "THB", "AUD", "ILS", "JPY", "PLN", "GBP", "HUF",
+    "PHP", "RUB", "TWD", "HKD", "EUR", "DKK", "USD", "MYR", "CAD", "BGN",
+    "NOK", "EGP", "RON", "SGD", "CZK", "SEK", "NZD", "BRL"
+  ],
+  "customRoutingFlags": [],
+  "reference": "dd53827e-56cb-49d4-9b17-e52663c95293"
+}
