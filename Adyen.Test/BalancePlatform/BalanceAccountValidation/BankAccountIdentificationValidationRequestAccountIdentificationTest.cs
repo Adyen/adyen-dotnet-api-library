@@ -133,5 +133,62 @@ namespace Adyen.Test.BalancePlatform.BalanceAccountValidation
             
         }
 
+        [TestMethod]
+        public void Given_Deserialize_When_BankAccountIdentificationValidationRequest_Is_Iban()
+        {
+            string json = """
+                {
+                    "accountIdentification": {
+                        "type": "iban",
+                        "iban": "NL91ABNA0417164300"
+                    }
+                }
+                """;
+
+            var response = JsonSerializer.Deserialize<BankAccountIdentificationValidationRequest>(
+                json, _jsonSerializerOptionsProvider.Options);
+
+            Assert.IsNotNull(response);
+            Assert.IsNotNull(response.AccountIdentification.IbanAccountIdentification);
+            Assert.AreEqual("NL91ABNA0417164300", response.AccountIdentification.IbanAccountIdentification.Iban);
+            Assert.IsNull(response.AccountIdentification.BRLocalAccountIdentification);
+        }
+
+        [TestMethod]
+        public void Given_Serialize_When_BankAccountIdentificationValidationRequest_Is_Iban()
+        {
+            var iban = new IbanAccountIdentification
+            {
+                Iban = "NL91ABNA0417164300",
+                Type = IbanAccountIdentification.TypeEnum.Iban
+            };
+            var request = new BankAccountIdentificationValidationRequest
+            {
+                AccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(iban)
+            };
+
+            string json = JsonSerializer.Serialize(request, _jsonSerializerOptionsProvider.Options);
+
+            using var doc = JsonDocument.Parse(json);
+            JsonElement root = doc.RootElement;
+            JsonElement accountId = root.GetProperty("accountIdentification");
+            Assert.AreEqual(JsonValueKind.Object, accountId.ValueKind);
+            Assert.AreEqual("iban", accountId.GetProperty("type").GetString());
+            Assert.AreEqual("NL91ABNA0417164300", accountId.GetProperty("iban").GetString());
+        }
+
+        [TestMethod]
+        public void Given_TypeEnum_Values_Are_Correct()
+        {
+            Assert.AreEqual("iban",
+                (string?)BankAccountIdentificationValidationRequestAccountIdentification.TypeEnum.Iban);
+            Assert.AreEqual("brLocal",
+                (string?)BankAccountIdentificationValidationRequestAccountIdentification.TypeEnum.BrLocal);
+            Assert.AreEqual("ukLocal",
+                (string?)BankAccountIdentificationValidationRequestAccountIdentification.TypeEnum.UkLocal);
+            Assert.AreEqual("usLocal",
+                (string?)BankAccountIdentificationValidationRequestAccountIdentification.TypeEnum.UsLocal);
+        }
+
     }
 }

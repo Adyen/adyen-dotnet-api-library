@@ -1,0 +1,27 @@
+{
+  "transferRoutes": [
+    {
+      "country": "US",
+      "currency": "USD",
+      "priority": "wire",
+      "requirements": [
+        {
+          "type": "amountMinMaxRequirement",
+          "description": "Amount must be between 1 and 9999999",
+          "min": 1,
+          "max": 9999999
+        },
+        {
+          "type": "bankAccountIdentificationTypeRequirement",
+          "description": "Bank account identification type must be iban or numberAndBic",
+          "bankAccountIdentificationTypes": ["iban", "numberAndBic"]
+        },
+        {
+          "type": "addressRequirement",
+          "description": "Country, street and city is required.",
+          "requiredAddressFields": ["line1", "city", "country"]
+        }
+      ]
+    }
+  ]
+}
