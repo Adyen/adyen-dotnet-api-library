@@ -243,5 +243,41 @@ namespace Adyen.Test.ConfigurationWebhooks
             Assert.IsNotNull(r.Data.PaymentInstrument.Card);
             Assert.AreEqual("Carl Holden", r.Data.PaymentInstrument.Card.CardholderName);
         }
+
+        [TestMethod]
+        public void Given_Deserialize_When_Event_Is_PaymentInstrument_Created_With_AdditionalBankAccountIdentifications()
+        {
+            // Arrange
+            string json =
+                TestUtilities.GetTestFileContent(
+                    "mocks/configurationwebhooks/balancePlatform.paymentInstrument.created-bank-account-with-additional-iban.json");
+
+            // Act
+            var r = _configurationWebhooksHandler.DeserializePaymentNotificationRequest(json);
+
+            // Assert
+            Assert.IsNotNull(r);
+            Assert.AreEqual("test", r.Environment);
+            Assert.AreEqual(PaymentNotificationRequest.TypeEnum.BalancePlatformPaymentInstrumentCreated, r.Type);
+
+            Assert.IsNotNull(r.Data);
+            Assert.AreEqual("YOUR_BALANCE_PLATFORM", r.Data.BalancePlatform);
+
+            Assert.IsNotNull(r.Data.PaymentInstrument);
+            Assert.AreEqual("BA00000000000000000001", r.Data.PaymentInstrument.BalanceAccountId);
+            Assert.AreEqual("NL", r.Data.PaymentInstrument.IssuingCountryCode);
+            Assert.AreEqual(PaymentInstrument.StatusEnum.Active, r.Data.PaymentInstrument.Status);
+            Assert.AreEqual(PaymentInstrument.TypeEnum.BankAccount, r.Data.PaymentInstrument.Type);
+            Assert.AreEqual("PI00000000000000000001", r.Data.PaymentInstrument.Id);
+
+            Assert.IsNotNull(r.Data.PaymentInstrument.AdditionalBankAccountIdentifications);
+            Assert.AreEqual(1, r.Data.PaymentInstrument.AdditionalBankAccountIdentifications.Count);
+
+            var additionalId = r.Data.PaymentInstrument.AdditionalBankAccountIdentifications[0];
+            Assert.IsNotNull(additionalId.IbanAccountIdentification);
+            Assert.AreEqual(PaymentInstrumentAdditionalBankAccountIdentificationsInner.TypeEnum.Iban, additionalId.IbanAccountIdentification.Type);
+            Assert.AreEqual("GB29NWBK60161331926819", additionalId.IbanAccountIdentification.Iban);
+            Assert.AreEqual("NWBKGB2L", additionalId.IbanAccountIdentification.Bic);
+        }
     }
 }
