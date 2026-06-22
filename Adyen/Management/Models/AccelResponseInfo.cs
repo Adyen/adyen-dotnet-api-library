@@ -267,7 +267,8 @@ namespace Adyen.Management.Models
             }
             
             var accelResponseInfo = new AccelResponseInfo();
-            accelResponseInfo.ProcessingType = processingType.Value!;
+            if (processingType.IsSet)
+                accelResponseInfo.ProcessingType = processingType.Value!;
             if (transactionDescription.IsSet)
                 accelResponseInfo.TransactionDescription = transactionDescription.Value;
             return accelResponseInfo;
