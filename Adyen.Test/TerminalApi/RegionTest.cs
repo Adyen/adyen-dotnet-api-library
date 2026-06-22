@@ -73,5 +73,35 @@ namespace Adyen.Test
             // Assert that the India region endpoint maps to null.
             Assert.IsNull(actualUrl);
         }
+
+        [TestMethod]
+        public void TestDeviceApiEndpointsMapping()
+        {
+            Dictionary<Region, string> expected = RegionMapping.DEVICE_API_ENDPOINTS_MAPPING
+                                    .ToDictionary(
+                                        entry => entry.Key,
+                                        entry => entry.Value
+                                    );
+
+            var actual = new Dictionary<Region, string>
+            {
+                { Region.EU, "https://device-api-live.adyen.com" },
+                { Region.AU, "https://device-api-live-au.adyen.com" },
+                { Region.US, "https://device-api-live-us.adyen.com" },
+                { Region.APSE, "https://device-api-live-apse.adyen.com" },
+            };
+
+            CollectionAssert.AreEquivalent(actual, expected);
+        }
+
+        [TestMethod]
+        public void TestDeviceApiClientConfigConstants()
+        {
+            Assert.AreEqual("https://device-api-test.adyen.com", ClientConfig.DeviceApiEndPointTest);
+            Assert.AreEqual("https://device-api-live.adyen.com", ClientConfig.DeviceApiEndPointEULive);
+            Assert.AreEqual("https://device-api-live-au.adyen.com", ClientConfig.DeviceApiEndPointAULive);
+            Assert.AreEqual("https://device-api-live-us.adyen.com", ClientConfig.DeviceApiEndPointUSLive);
+            Assert.AreEqual("https://device-api-live-apse.adyen.com", ClientConfig.DeviceApiEndPointAPSELive);
+        }
     }
 }
