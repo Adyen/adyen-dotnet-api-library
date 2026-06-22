@@ -147,8 +147,10 @@ namespace Adyen.Management.Models
             }
             
             var payPalResponseInfo = new PayPalResponseInfo();
-            payPalResponseInfo.PayerId = payerId.Value!;
-            payPalResponseInfo.Subject = subject.Value!;
+            if (payerId.IsSet)
+                payPalResponseInfo.PayerId = payerId.Value!;
+            if (subject.IsSet)
+                payPalResponseInfo.Subject = subject.Value!;
             if (directCapture.IsSet)
                 payPalResponseInfo.DirectCapture = directCapture.Value;
             return payPalResponseInfo;
