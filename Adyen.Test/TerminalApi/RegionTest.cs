@@ -77,11 +77,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestDeviceApiEndpointsMapping()
         {
-            Dictionary<Region, string> expected = RegionMapping.DEVICE_API_ENDPOINTS_MAPPING
-                                    .ToDictionary(
-                                        entry => entry.Key,
-                                        entry => entry.Value
-                                    );
+            var expected = RegionMapping.DEVICE_API_ENDPOINTS_MAPPING;
 
             var actual = new Dictionary<Region, string>
             {

@@ -53,7 +53,7 @@ namespace Adyen.Constants
         /// <summary>
         /// Maps regions to their respective Cloud Device API live endpoints.
         /// </summary>
-        public static readonly Dictionary<Region, string> DEVICE_API_ENDPOINTS_MAPPING = new Dictionary<Region, string>()
+        public static readonly IReadOnlyDictionary<Region, string> DEVICE_API_ENDPOINTS_MAPPING = new Dictionary<Region, string>()
         {
             { Region.EU, "https://device-api-live.adyen.com" },
             { Region.AU, "https://device-api-live-au.adyen.com" },
