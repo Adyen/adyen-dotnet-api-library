@@ -340,7 +340,7 @@ namespace Adyen.Test.Core
 
         public override bool Equals(object? obj) => obj is ExampleEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
 
-        public override int GetHashCode() => StringComparer.OrdinalIgnoreCase.GetHashCode(Value ?? string.Empty);
+        public override int GetHashCode() => Value != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Value) : 0;
 
         public static bool operator ==(ExampleEnum? left, ExampleEnum? right) =>
             string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
