@@ -79,7 +79,7 @@
             /// </summary>
             /// <param name="value"></param>
             /// <returns><see cref="{{datatypeWithEnum}}"/> or null.</returns>
-            public static {{datatypeWithEnum}}? FromStringOrDefault(string value)
+            public static {{datatypeWithEnum}}? FromStringOrDefault(string? value)
             {
                 return value switch {
                     {{#allowableValues}}{{#enumVars}}{{#isString}}"{{{value}}}"{{/isString}} => {{datatypeWithEnum}}.{{name}},

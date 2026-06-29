@@ -227,6 +227,12 @@
                         {{#isEnum}}
                         {{^isMap}}
                         {{#isNumeric}}
+                            {{#required}}
+                            {{^isNullable}}
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("The '{{baseName}}' property cannot be null for {{classname}}.");
+                            {{/isNullable}}
+                            {{/required}}
                             {{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}} = {{>OptionProperty}}utf8JsonReader.TokenType == JsonTokenType.Null ? ({{#isInnerEnum}}{{classname}}.{{/isInnerEnum}}{{{datatypeWithEnum}}}?)null : ({{#isInnerEnum}}{{classname}}.{{/isInnerEnum}}{{{datatypeWithEnum}}})utf8JsonReader.Get{{#vendorExtensions.x-unsigned}}U{{/vendorExtensions.x-unsigned}}Int32());
                         {{/isNumeric}}
                         {{^isNumeric}}
