@@ -231,6 +231,12 @@
                         {{/isNumeric}}
                         {{^isNumeric}}
                             string{{nrt?}} {{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}RawValue = utf8JsonReader.GetString();
+                            {{#required}}
+                            {{^isNullable}}
+                            if ({{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}RawValue == null)
+                                throw new JsonException("The '{{baseName}}' property cannot be null for {{classname}}.");
+                            {{/isNullable}}
+                            {{/required}}
                             {{^isInnerEnum}}
                             {{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}} = {{>OptionProperty}}{{{datatypeWithEnum}}}.FromStringOrDefault({{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}RawValue) ?? ({{{datatypeWithEnum}}}){{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}RawValue);
                             {{/isInnerEnum}}
