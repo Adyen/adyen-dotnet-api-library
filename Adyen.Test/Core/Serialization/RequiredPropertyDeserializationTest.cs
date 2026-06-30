@@ -145,5 +145,21 @@ namespace Adyen.Test.Core.Serialization
             Assert.AreEqual("MERCHANT123", roundTripped.PayerId);
             Assert.AreEqual("merchant@example.com", roundTripped.Subject);
         }
+
+        [TestMethod]
+        public void Given_PayPalResponseInfo_When_EmptyBody_RoundTrip_Should_Not_Throw()
+        {
+            // Now that required reference types are nullable (string?), a model deserialized from
+            // an empty body must serialize back without throwing. Null required fields are simply
+            // omitted from the output by the existing null guards in WriteProperties.
+            var result = JsonSerializer.Deserialize<PayPalResponseInfo>("{}");
+            Assert.IsNotNull(result);
+
+            string serialized = JsonSerializer.Serialize(result);
+
+            Assert.IsNotNull(serialized);
+            Assert.IsFalse(serialized.Contains("payerId"));
+            Assert.IsFalse(serialized.Contains("subject"));
+        }
     }
 }
