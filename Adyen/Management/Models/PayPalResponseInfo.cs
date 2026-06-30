@@ -51,14 +51,14 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>PayPal Merchant ID. Character length and limitations: 13 single-byte alphanumeric characters.</value>
         [JsonPropertyName("payerId")]
-        public string PayerId { get; set; }
+        public string? PayerId { get; set; }
 
         /// <summary>
         /// Your business email address.
         /// </summary>
         /// <value>Your business email address.</value>
         [JsonPropertyName("subject")]
-        public string Subject { get; set; }
+        public string? Subject { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="DirectCapture"/> will be populated.
