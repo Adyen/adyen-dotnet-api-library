@@ -255,6 +255,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var itemDetailLine = new ItemDetailLine();
             if (commodityCode.IsSet)
                 itemDetailLine.CommodityCode = commodityCode.Value;

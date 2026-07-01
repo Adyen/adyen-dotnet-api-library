@@ -122,6 +122,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var additionalDataOpi = new AdditionalDataOpi();
             if (opiIncludeTransToken.IsSet)
                 additionalDataOpi.OpiIncludeTransToken = opiIncludeTransToken.Value;

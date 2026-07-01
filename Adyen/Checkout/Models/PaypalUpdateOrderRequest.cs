@@ -215,6 +215,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var paypalUpdateOrderRequest = new PaypalUpdateOrderRequest();
             if (amount.IsSet)
                 paypalUpdateOrderRequest.Amount = amount.Value;

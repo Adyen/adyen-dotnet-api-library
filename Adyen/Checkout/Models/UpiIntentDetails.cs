@@ -365,8 +365,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class UpiIntentDetails.", nameof(type));
 
             var upiIntentDetails = new UpiIntentDetails();
             if (appId.IsSet)
@@ -383,7 +381,8 @@ namespace Adyen.Checkout.Models
                 upiIntentDetails.ShopperNotificationReference = shopperNotificationReference.Value;
             if (storedPaymentMethodId.IsSet)
                 upiIntentDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            upiIntentDetails.Type = type.Value!;
+            if (type.IsSet)
+                upiIntentDetails.Type = type.Value!;
             return upiIntentDetails;
         }
 

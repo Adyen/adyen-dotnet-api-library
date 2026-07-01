@@ -326,7 +326,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The Visa Click to Pay Call ID value. When your shopper selects a payment and/or a shipping address from Visa Click to Pay, you will receive a Visa Click to Pay Call ID.</value>
         [JsonPropertyName("visaCheckoutCallId")]
-        public string VisaCheckoutCallId { get; set; }
+        public string? VisaCheckoutCallId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
@@ -440,11 +440,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!visaCheckoutCallId.IsSet)
-                throw new ArgumentException("Property is required for class VisaCheckoutDetails.", nameof(visaCheckoutCallId));
 
             var visaCheckoutDetails = new VisaCheckoutDetails();
-            visaCheckoutDetails.VisaCheckoutCallId = visaCheckoutCallId.Value!;
+            if (visaCheckoutCallId.IsSet)
+                visaCheckoutDetails.VisaCheckoutCallId = visaCheckoutCallId.Value!;
             if (checkoutAttemptId.IsSet)
                 visaCheckoutDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (fundingSource.IsSet)

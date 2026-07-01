@@ -51,14 +51,14 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The first name.</value>
         [JsonPropertyName("firstName")]
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
         /// <summary>
         /// The last name.
         /// </summary>
         /// <value>The last name.</value>
         [JsonPropertyName("lastName")]
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!firstName.IsSet)
-                throw new ArgumentException("Property is required for class ShopperName.", nameof(firstName));
-
-            if (!lastName.IsSet)
-                throw new ArgumentException("Property is required for class ShopperName.", nameof(lastName));
 
             var shopperName = new ShopperName();
-            shopperName.FirstName = firstName.Value!;
-            shopperName.LastName = lastName.Value!;
+            if (firstName.IsSet)
+                shopperName.FirstName = firstName.Value!;
+            if (lastName.IsSet)
+                shopperName.LastName = lastName.Value!;
             return shopperName;
         }
 

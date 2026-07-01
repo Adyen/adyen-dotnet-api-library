@@ -449,8 +449,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RivertyDetails.", nameof(type));
 
             var rivertyDetails = new RivertyDetails();
             if (billingAddress.IsSet)
@@ -473,7 +471,8 @@ namespace Adyen.Checkout.Models
                 rivertyDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
             if (subtype.IsSet)
                 rivertyDetails.Subtype = subtype.Value;
-            rivertyDetails.Type = type.Value!;
+            if (type.IsSet)
+                rivertyDetails.Type = type.Value!;
             return rivertyDetails;
         }
 

@@ -346,8 +346,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PayUUpiDetails.", nameof(type));
 
             var payUUpiDetails = new PayUUpiDetails();
             if (checkoutAttemptId.IsSet)
@@ -360,7 +358,8 @@ namespace Adyen.Checkout.Models
                 payUUpiDetails.ShopperNotificationReference = shopperNotificationReference.Value;
             if (storedPaymentMethodId.IsSet)
                 payUUpiDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            payUUpiDetails.Type = type.Value!;
+            if (type.IsSet)
+                payUUpiDetails.Type = type.Value!;
             if (virtualPaymentAddress.IsSet)
                 payUUpiDetails.VirtualPaymentAddress = virtualPaymentAddress.Value;
             return payUUpiDetails;

@@ -51,21 +51,21 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>This is the name that your shoppers will see in the Apple Pay interface.  The value returned as `configuration.merchantName` field from the [`/paymentMethods`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.</value>
         [JsonPropertyName("displayName")]
-        public string DisplayName { get; set; }
+        public string? DisplayName { get; set; }
 
         /// <summary>
         /// The domain name you provided when you added Apple Pay in your Customer Area.  This must match the &#x60;window.location.hostname&#x60; of the web shop.
         /// </summary>
         /// <value>The domain name you provided when you added Apple Pay in your Customer Area.  This must match the `window.location.hostname` of the web shop.</value>
         [JsonPropertyName("domainName")]
-        public string DomainName { get; set; }
+        public string? DomainName { get; set; }
 
         /// <summary>
         /// Your merchant identifier registered with Apple Pay.  Use the value of the &#x60;configuration.merchantId&#x60; field from the [&#x60;/paymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.
         /// </summary>
         /// <value>Your merchant identifier registered with Apple Pay.  Use the value of the `configuration.merchantId` field from the [`/paymentMethods`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.</value>
         [JsonPropertyName("merchantIdentifier")]
-        public string MerchantIdentifier { get; set; }
+        public string? MerchantIdentifier { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,19 +139,14 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!displayName.IsSet)
-                throw new ArgumentException("Property is required for class ApplePaySessionRequest.", nameof(displayName));
-
-            if (!domainName.IsSet)
-                throw new ArgumentException("Property is required for class ApplePaySessionRequest.", nameof(domainName));
-
-            if (!merchantIdentifier.IsSet)
-                throw new ArgumentException("Property is required for class ApplePaySessionRequest.", nameof(merchantIdentifier));
 
             var applePaySessionRequest = new ApplePaySessionRequest();
-            applePaySessionRequest.DisplayName = displayName.Value!;
-            applePaySessionRequest.DomainName = domainName.Value!;
-            applePaySessionRequest.MerchantIdentifier = merchantIdentifier.Value!;
+            if (displayName.IsSet)
+                applePaySessionRequest.DisplayName = displayName.Value!;
+            if (domainName.IsSet)
+                applePaySessionRequest.DomainName = domainName.Value!;
+            if (merchantIdentifier.IsSet)
+                applePaySessionRequest.MerchantIdentifier = merchantIdentifier.Value!;
             return applePaySessionRequest;
         }
 

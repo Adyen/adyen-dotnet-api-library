@@ -179,6 +179,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var sDKEphemPubKey = new SDKEphemPubKey();
             if (crv.IsSet)
                 sDKEphemPubKey.Crv = crv.Value;

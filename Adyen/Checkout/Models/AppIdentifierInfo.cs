@@ -141,6 +141,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var appIdentifierInfo = new AppIdentifierInfo();
             if (androidPackageId.IsSet)
                 appIdentifierInfo.AndroidPackageId = androidPackageId.Value;

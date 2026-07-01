@@ -645,6 +645,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var additionalDataCommon = new AdditionalDataCommon();
             if (requestedTestAcquirerResponseCode.IsSet)
                 additionalDataCommon.RequestedTestAcquirerResponseCode = requestedTestAcquirerResponseCode.Value;

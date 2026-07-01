@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The `pspReference` that belongs to the order.</value>
         [JsonPropertyName("pspReference")]
-        public string PspReference { get; set; }
+        public string? PspReference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
@@ -208,11 +208,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!pspReference.IsSet)
-                throw new ArgumentException("Property is required for class CheckoutOrderResponse.", nameof(pspReference));
 
             var checkoutOrderResponse = new CheckoutOrderResponse();
-            checkoutOrderResponse.PspReference = pspReference.Value!;
+            if (pspReference.IsSet)
+                checkoutOrderResponse.PspReference = pspReference.Value!;
             if (amount.IsSet)
                 checkoutOrderResponse.Amount = amount.Value;
             if (expiresAt.IsSet)

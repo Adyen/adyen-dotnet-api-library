@@ -391,6 +391,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var openInvoiceDetails = new OpenInvoiceDetails();
             if (billingAddress.IsSet)
                 openInvoiceDetails.BillingAddress = billingAddress.Value;

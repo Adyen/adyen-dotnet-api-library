@@ -50,7 +50,7 @@ namespace Adyen.Checkout.Models
         /// <see cref="Response"/>.
         /// </summary>
         [JsonPropertyName("response")]
-        public CheckoutForwardResponseFromUrl Response { get; set; }
+        public CheckoutForwardResponseFromUrl? Response { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="MerchantReference"/> will be populated.
@@ -171,11 +171,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!response.IsSet)
-                throw new ArgumentException("Property is required for class CheckoutForwardResponse.", nameof(response));
 
             var checkoutForwardResponse = new CheckoutForwardResponse();
-            checkoutForwardResponse.Response = response.Value!;
+            if (response.IsSet)
+                checkoutForwardResponse.Response = response.Value!;
             if (merchantReference.IsSet)
                 checkoutForwardResponse.MerchantReference = merchantReference.Value;
             if (pspReference.IsSet)

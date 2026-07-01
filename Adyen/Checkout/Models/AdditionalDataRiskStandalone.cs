@@ -388,6 +388,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var additionalDataRiskStandalone = new AdditionalDataRiskStandalone();
             if (payPalCountryCode.IsSet)
                 additionalDataRiskStandalone.PayPalCountryCode = payPalCountryCode.Value;

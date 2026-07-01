@@ -320,6 +320,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var threeDSRequestorAuthenticationInfo = new ThreeDSRequestorAuthenticationInfo();
             if (threeDSReqAuthData.IsSet)
                 threeDSRequestorAuthenticationInfo.ThreeDSReqAuthData = threeDSReqAuthData.Value;

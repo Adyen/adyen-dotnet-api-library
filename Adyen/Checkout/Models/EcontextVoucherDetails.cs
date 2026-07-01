@@ -208,28 +208,28 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The shopper's first name.</value>
         [JsonPropertyName("firstName")]
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
         /// <summary>
         /// The shopper&#39;s last name.
         /// </summary>
         /// <value>The shopper's last name.</value>
         [JsonPropertyName("lastName")]
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
         /// <summary>
         /// The shopper&#39;s email.
         /// </summary>
         /// <value>The shopper's email.</value>
         [JsonPropertyName("shopperEmail")]
-        public string ShopperEmail { get; set; }
+        public string? ShopperEmail { get; set; }
 
         /// <summary>
         /// The shopper&#39;s contact number. It must have an international number format, for example **+31 20 779 1846**. Formats like **+31 (0)20 779 1846** or **0031 20 779 1846** are not accepted.
         /// </summary>
         /// <value>The shopper's contact number. It must have an international number format, for example **+31 20 779 1846**. Formats like **+31 (0)20 779 1846** or **0031 20 779 1846** are not accepted.</value>
         [JsonPropertyName("telephoneNumber")]
-        public string TelephoneNumber { get; set; }
+        public string? TelephoneNumber { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
@@ -352,27 +352,18 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!firstName.IsSet)
-                throw new ArgumentException("Property is required for class EcontextVoucherDetails.", nameof(firstName));
-
-            if (!lastName.IsSet)
-                throw new ArgumentException("Property is required for class EcontextVoucherDetails.", nameof(lastName));
-
-            if (!shopperEmail.IsSet)
-                throw new ArgumentException("Property is required for class EcontextVoucherDetails.", nameof(shopperEmail));
-
-            if (!telephoneNumber.IsSet)
-                throw new ArgumentException("Property is required for class EcontextVoucherDetails.", nameof(telephoneNumber));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class EcontextVoucherDetails.", nameof(type));
 
             var econtextVoucherDetails = new EcontextVoucherDetails();
-            econtextVoucherDetails.FirstName = firstName.Value!;
-            econtextVoucherDetails.LastName = lastName.Value!;
-            econtextVoucherDetails.ShopperEmail = shopperEmail.Value!;
-            econtextVoucherDetails.TelephoneNumber = telephoneNumber.Value!;
-            econtextVoucherDetails.Type = type.Value!;
+            if (firstName.IsSet)
+                econtextVoucherDetails.FirstName = firstName.Value!;
+            if (lastName.IsSet)
+                econtextVoucherDetails.LastName = lastName.Value!;
+            if (shopperEmail.IsSet)
+                econtextVoucherDetails.ShopperEmail = shopperEmail.Value!;
+            if (telephoneNumber.IsSet)
+                econtextVoucherDetails.TelephoneNumber = telephoneNumber.Value!;
+            if (type.IsSet)
+                econtextVoucherDetails.Type = type.Value!;
             if (checkoutAttemptId.IsSet)
                 econtextVoucherDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (sdkData.IsSet)

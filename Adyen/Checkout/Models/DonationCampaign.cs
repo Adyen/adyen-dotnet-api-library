@@ -310,6 +310,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var donationCampaign = new DonationCampaign();
             if (amounts.IsSet)
                 donationCampaign.Amounts = amounts.Value;

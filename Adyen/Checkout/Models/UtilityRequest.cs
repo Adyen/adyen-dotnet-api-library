@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The list of origin domains, for which origin keys are requested.</value>
         [JsonPropertyName("originDomains")]
-        public List<string> OriginDomains { get; set; }
+        public List<string>? OriginDomains { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!originDomains.IsSet)
-                throw new ArgumentException("Property is required for class UtilityRequest.", nameof(originDomains));
 
             var utilityRequest = new UtilityRequest();
-            utilityRequest.OriginDomains = originDomains.Value!;
+            if (originDomains.IsSet)
+                utilityRequest.OriginDomains = originDomains.Value!;
             return utilityRequest;
         }
 

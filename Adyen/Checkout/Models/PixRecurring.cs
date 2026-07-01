@@ -442,6 +442,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var pixRecurring = new PixRecurring();
             if (billingDate.IsSet)
                 pixRecurring.BillingDate = billingDate.Value;

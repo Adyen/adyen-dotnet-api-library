@@ -336,6 +336,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var checkoutSessionThreeDS2RequestData = new CheckoutSessionThreeDS2RequestData();
             if (homePhone.IsSet)
                 checkoutSessionThreeDS2RequestData.HomePhone = homePhone.Value;

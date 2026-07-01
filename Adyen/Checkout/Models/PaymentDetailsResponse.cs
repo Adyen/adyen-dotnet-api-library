@@ -650,6 +650,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var paymentDetailsResponse = new PaymentDetailsResponse();
             if (action.IsSet)
                 paymentDetailsResponse.Action = action.Value;

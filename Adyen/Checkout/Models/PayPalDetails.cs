@@ -536,8 +536,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PayPalDetails.", nameof(type));
 
             var payPalDetails = new PayPalDetails();
             if (checkoutAttemptId.IsSet)
@@ -558,7 +556,8 @@ namespace Adyen.Checkout.Models
                 payPalDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
             if (subtype.IsSet)
                 payPalDetails.Subtype = subtype.Value;
-            payPalDetails.Type = type.Value!;
+            if (type.IsSet)
+                payPalDetails.Type = type.Value!;
             return payPalDetails;
         }
 

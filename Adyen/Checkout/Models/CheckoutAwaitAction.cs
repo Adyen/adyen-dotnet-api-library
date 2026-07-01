@@ -287,11 +287,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CheckoutAwaitAction.", nameof(type));
 
             var checkoutAwaitAction = new CheckoutAwaitAction();
-            checkoutAwaitAction.Type = type.Value!;
+            if (type.IsSet)
+                checkoutAwaitAction.Type = type.Value!;
             if (paymentData.IsSet)
                 checkoutAwaitAction.PaymentData = paymentData.Value;
             if (paymentMethodType.IsSet)

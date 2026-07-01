@@ -122,6 +122,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var donationCampaignsResponse = new DonationCampaignsResponse();
             if (donationCampaigns.IsSet)
                 donationCampaignsResponse.DonationCampaigns = donationCampaigns.Value;

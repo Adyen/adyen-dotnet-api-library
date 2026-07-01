@@ -287,8 +287,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PayByBankDetails.", nameof(type));
 
             var payByBankDetails = new PayByBankDetails();
             if (checkoutAttemptId.IsSet)
@@ -297,7 +295,8 @@ namespace Adyen.Checkout.Models
                 payByBankDetails.Issuer = issuer.Value;
             if (sdkData.IsSet)
                 payByBankDetails.SdkData = sdkData.Value;
-            payByBankDetails.Type = type.Value!;
+            if (type.IsSet)
+                payByBankDetails.Type = type.Value!;
             return payByBankDetails;
         }
 

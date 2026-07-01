@@ -346,8 +346,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class UpiQrDetails.", nameof(type));
 
             var upiQrDetails = new UpiQrDetails();
             if (billingSequenceNumber.IsSet)
@@ -362,7 +360,8 @@ namespace Adyen.Checkout.Models
                 upiQrDetails.ShopperNotificationReference = shopperNotificationReference.Value;
             if (storedPaymentMethodId.IsSet)
                 upiQrDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            upiQrDetails.Type = type.Value!;
+            if (type.IsSet)
+                upiQrDetails.Type = type.Value!;
             return upiQrDetails;
         }
 

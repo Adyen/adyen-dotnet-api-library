@@ -51,14 +51,14 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The encrypted order data.</value>
         [JsonPropertyName("orderData")]
-        public string OrderData { get; set; }
+        public string? OrderData { get; set; }
 
         /// <summary>
         /// The &#x60;pspReference&#x60; that belongs to the order.
         /// </summary>
         /// <value>The `pspReference` that belongs to the order.</value>
         [JsonPropertyName("pspReference")]
-        public string PspReference { get; set; }
+        public string? PspReference { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!orderData.IsSet)
-                throw new ArgumentException("Property is required for class EncryptedOrderData.", nameof(orderData));
-
-            if (!pspReference.IsSet)
-                throw new ArgumentException("Property is required for class EncryptedOrderData.", nameof(pspReference));
 
             var encryptedOrderData = new EncryptedOrderData();
-            encryptedOrderData.OrderData = orderData.Value!;
-            encryptedOrderData.PspReference = pspReference.Value!;
+            if (orderData.IsSet)
+                encryptedOrderData.OrderData = orderData.Value!;
+            if (pspReference.IsSet)
+                encryptedOrderData.PspReference = pspReference.Value!;
             return encryptedOrderData;
         }
 

@@ -820,6 +820,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var threeDSecureData = new ThreeDSecureData();
             if (authenticationResponse.IsSet)
                 threeDSecureData.AuthenticationResponse = authenticationResponse.Value;

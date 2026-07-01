@@ -139,6 +139,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var confidenceScore = new ConfidenceScore();
             if (errors.IsSet)
                 confidenceScore.Errors = errors.Value;

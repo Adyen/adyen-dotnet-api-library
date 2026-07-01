@@ -141,6 +141,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var validateShopperIdResponse = new ValidateShopperIdResponse();
             if (reason.IsSet)
                 validateShopperIdResponse.Reason = reason.Value;

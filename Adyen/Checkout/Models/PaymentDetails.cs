@@ -1049,6 +1049,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var paymentDetails = new PaymentDetails();
             if (checkoutAttemptId.IsSet)
                 paymentDetails.CheckoutAttemptId = checkoutAttemptId.Value;

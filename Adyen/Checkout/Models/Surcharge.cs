@@ -115,11 +115,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!value.IsSet)
-                throw new ArgumentException("Property is required for class Surcharge.", nameof(value));
 
             var surcharge = new Surcharge();
-            surcharge.Value = value.Value!.Value;
+            if (value.IsSet)
+                surcharge.Value = value.Value!.Value;
             return surcharge;
         }
 

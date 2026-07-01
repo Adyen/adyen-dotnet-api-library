@@ -141,6 +141,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var paymentMethodsResponse = new PaymentMethodsResponse();
             if (paymentMethods.IsSet)
                 paymentMethodsResponse.PaymentMethods = paymentMethods.Value;

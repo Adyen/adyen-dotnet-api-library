@@ -179,6 +179,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var riskData = new RiskData();
             if (clientData.IsSet)
                 riskData.ClientData = clientData.Value;

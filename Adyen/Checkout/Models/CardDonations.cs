@@ -932,6 +932,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var cardDonations = new CardDonations();
             if (billingSequenceNumber.IsSet)
                 cardDonations.BillingSequenceNumber = billingSequenceNumber.Value;

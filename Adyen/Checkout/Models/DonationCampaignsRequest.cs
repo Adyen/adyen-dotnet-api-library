@@ -51,14 +51,14 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes/).</value>
         [JsonPropertyName("currency")]
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         /// <summary>
         /// Your merchant account identifier.
         /// </summary>
         /// <value>Your merchant account identifier.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Locale"/> will be populated.
@@ -165,15 +165,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class DonationCampaignsRequest.", nameof(currency));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class DonationCampaignsRequest.", nameof(merchantAccount));
 
             var donationCampaignsRequest = new DonationCampaignsRequest();
-            donationCampaignsRequest.Currency = currency.Value!;
-            donationCampaignsRequest.MerchantAccount = merchantAccount.Value!;
+            if (currency.IsSet)
+                donationCampaignsRequest.Currency = currency.Value!;
+            if (merchantAccount.IsSet)
+                donationCampaignsRequest.MerchantAccount = merchantAccount.Value!;
             if (locale.IsSet)
                 donationCampaignsRequest.Locale = locale.Value;
             if (store.IsSet)

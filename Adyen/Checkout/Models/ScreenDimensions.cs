@@ -139,6 +139,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var screenDimensions = new ScreenDimensions();
             if (height.IsSet)
                 screenDimensions.Height = height.Value;

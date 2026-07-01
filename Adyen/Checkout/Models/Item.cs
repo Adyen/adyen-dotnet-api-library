@@ -141,6 +141,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var item = new Item();
             if (id.IsSet)
                 item.Id = id.Value;

@@ -445,6 +445,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var additionalDataOpenInvoice = new AdditionalDataOpenInvoice();
             if (openinvoicedataMerchantData.IsSet)
                 additionalDataOpenInvoice.OpeninvoicedataMerchantData = openinvoicedataMerchantData.Value;

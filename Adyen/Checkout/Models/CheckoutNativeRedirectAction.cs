@@ -325,11 +325,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CheckoutNativeRedirectAction.", nameof(type));
 
             var checkoutNativeRedirectAction = new CheckoutNativeRedirectAction();
-            checkoutNativeRedirectAction.Type = type.Value!;
+            if (type.IsSet)
+                checkoutNativeRedirectAction.Type = type.Value!;
             if (data.IsSet)
                 checkoutNativeRedirectAction.Data = data.Value;
             if (method.IsSet)

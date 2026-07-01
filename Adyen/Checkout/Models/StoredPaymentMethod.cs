@@ -445,6 +445,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var storedPaymentMethod = new StoredPaymentMethod();
             if (bankAccountNumber.IsSet)
                 storedPaymentMethod.BankAccountNumber = bankAccountNumber.Value;

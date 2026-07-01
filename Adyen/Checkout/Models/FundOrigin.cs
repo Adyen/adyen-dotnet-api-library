@@ -196,6 +196,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var fundOrigin = new FundOrigin();
             if (billingAddress.IsSet)
                 fundOrigin.BillingAddress = billingAddress.Value;

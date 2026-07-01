@@ -318,15 +318,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!basePoints.IsSet)
-                throw new ArgumentException("Property is required for class ForexQuote.", nameof(basePoints));
-
-            if (!validTill.IsSet)
-                throw new ArgumentException("Property is required for class ForexQuote.", nameof(validTill));
 
             var forexQuote = new ForexQuote();
-            forexQuote.BasePoints = basePoints.Value!.Value;
-            forexQuote.ValidTill = validTill.Value!.Value;
+            if (basePoints.IsSet)
+                forexQuote.BasePoints = basePoints.Value!.Value;
+            if (validTill.IsSet)
+                forexQuote.ValidTill = validTill.Value!.Value;
             if (account.IsSet)
                 forexQuote.Account = account.Value;
             if (accountType.IsSet)

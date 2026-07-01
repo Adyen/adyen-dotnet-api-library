@@ -321,6 +321,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var threeDSRequestorPriorAuthenticationInfo = new ThreeDSRequestorPriorAuthenticationInfo();
             if (threeDSReqPriorAuthData.IsSet)
                 threeDSRequestorPriorAuthenticationInfo.ThreeDSReqPriorAuthData = threeDSReqPriorAuthData.Value;

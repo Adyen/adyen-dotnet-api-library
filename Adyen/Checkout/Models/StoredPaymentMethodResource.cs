@@ -501,6 +501,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var storedPaymentMethodResource = new StoredPaymentMethodResource();
             if (alias.IsSet)
                 storedPaymentMethodResource.Alias = alias.Value;

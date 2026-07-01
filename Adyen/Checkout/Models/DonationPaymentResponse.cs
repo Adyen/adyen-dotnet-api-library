@@ -367,6 +367,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var donationPaymentResponse = new DonationPaymentResponse();
             if (amount.IsSet)
                 donationPaymentResponse.Amount = amount.Value;

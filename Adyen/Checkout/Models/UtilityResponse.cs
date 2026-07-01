@@ -122,6 +122,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var utilityResponse = new UtilityResponse();
             if (originKeys.IsSet)
                 utilityResponse.OriginKeys = originKeys.Value;

@@ -276,6 +276,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var affirmDetails = new AffirmDetails();
             if (checkoutAttemptId.IsSet)
                 affirmDetails.CheckoutAttemptId = checkoutAttemptId.Value;

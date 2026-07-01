@@ -160,6 +160,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var responseAdditionalDataNetworkTokens = new ResponseAdditionalDataNetworkTokens();
             if (networkTokenAvailable.IsSet)
                 responseAdditionalDataNetworkTokens.NetworkTokenAvailable = networkTokenAvailable.Value;

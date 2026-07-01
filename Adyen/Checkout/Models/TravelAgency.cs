@@ -141,6 +141,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var travelAgency = new TravelAgency();
             if (code.IsSet)
                 travelAgency.Code = code.Value;

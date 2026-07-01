@@ -285,6 +285,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var weChatPayDetails = new WeChatPayDetails();
             if (checkoutAttemptId.IsSet)
                 weChatPayDetails.CheckoutAttemptId = checkoutAttemptId.Value;

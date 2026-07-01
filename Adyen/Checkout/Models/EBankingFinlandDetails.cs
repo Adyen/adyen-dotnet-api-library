@@ -287,8 +287,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class EBankingFinlandDetails.", nameof(type));
 
             var eBankingFinlandDetails = new EBankingFinlandDetails();
             if (checkoutAttemptId.IsSet)
@@ -297,7 +295,8 @@ namespace Adyen.Checkout.Models
                 eBankingFinlandDetails.Issuer = issuer.Value;
             if (sdkData.IsSet)
                 eBankingFinlandDetails.SdkData = sdkData.Value;
-            eBankingFinlandDetails.Type = type.Value!;
+            if (type.IsSet)
+                eBankingFinlandDetails.Type = type.Value!;
             return eBankingFinlandDetails;
         }
 

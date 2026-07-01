@@ -65,7 +65,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The name of the risk check.</value>
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,19 +139,14 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!accountScore.IsSet)
-                throw new ArgumentException("Property is required for class FraudCheckResult.", nameof(accountScore));
-
-            if (!checkId.IsSet)
-                throw new ArgumentException("Property is required for class FraudCheckResult.", nameof(checkId));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class FraudCheckResult.", nameof(name));
 
             var fraudCheckResult = new FraudCheckResult();
-            fraudCheckResult.AccountScore = accountScore.Value!.Value;
-            fraudCheckResult.CheckId = checkId.Value!.Value;
-            fraudCheckResult.Name = name.Value!;
+            if (accountScore.IsSet)
+                fraudCheckResult.AccountScore = accountScore.Value!.Value;
+            if (checkId.IsSet)
+                fraudCheckResult.CheckId = checkId.Value!.Value;
+            if (name.IsSet)
+                fraudCheckResult.Name = name.Value!;
             return fraudCheckResult;
         }
 

@@ -51,35 +51,35 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The name of the city. Maximum length: 3000 characters.</value>
         [JsonPropertyName("city")]
-        public string City { get; set; }
+        public string? City { get; set; }
 
         /// <summary>
         /// The two-character ISO-3166-1 alpha-2 country code. For example, **US**. &gt; If you don&#39;t know the country or are not collecting the country from the shopper, provide &#x60;country&#x60; as &#x60;ZZ&#x60;.
         /// </summary>
         /// <value>The two-character ISO-3166-1 alpha-2 country code. For example, **US**. > If you don't know the country or are not collecting the country from the shopper, provide `country` as `ZZ`.</value>
         [JsonPropertyName("country")]
-        public string Country { get; set; }
+        public string? Country { get; set; }
 
         /// <summary>
         /// The number or name of the house. Maximum length: 3000 characters.
         /// </summary>
         /// <value>The number or name of the house. Maximum length: 3000 characters.</value>
         [JsonPropertyName("houseNumberOrName")]
-        public string HouseNumberOrName { get; set; }
+        public string? HouseNumberOrName { get; set; }
 
         /// <summary>
         /// A maximum of five digits for an address in the US, or a maximum of ten characters for an address in all other countries.
         /// </summary>
         /// <value>A maximum of five digits for an address in the US, or a maximum of ten characters for an address in all other countries.</value>
         [JsonPropertyName("postalCode")]
-        public string PostalCode { get; set; }
+        public string? PostalCode { get; set; }
 
         /// <summary>
         /// The name of the street. Maximum length: 3000 characters. &gt; The house number should not be included in this field; it should be separately provided via &#x60;houseNumberOrName&#x60;.
         /// </summary>
         /// <value>The name of the street. Maximum length: 3000 characters. > The house number should not be included in this field; it should be separately provided via `houseNumberOrName`.</value>
         [JsonPropertyName("street")]
-        public string Street { get; set; }
+        public string? Street { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="StateOrProvince"/> will be populated.
@@ -182,27 +182,18 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!city.IsSet)
-                throw new ArgumentException("Property is required for class BillingAddress.", nameof(city));
-
-            if (!country.IsSet)
-                throw new ArgumentException("Property is required for class BillingAddress.", nameof(country));
-
-            if (!houseNumberOrName.IsSet)
-                throw new ArgumentException("Property is required for class BillingAddress.", nameof(houseNumberOrName));
-
-            if (!postalCode.IsSet)
-                throw new ArgumentException("Property is required for class BillingAddress.", nameof(postalCode));
-
-            if (!street.IsSet)
-                throw new ArgumentException("Property is required for class BillingAddress.", nameof(street));
 
             var billingAddress = new BillingAddress();
-            billingAddress.City = city.Value!;
-            billingAddress.Country = country.Value!;
-            billingAddress.HouseNumberOrName = houseNumberOrName.Value!;
-            billingAddress.PostalCode = postalCode.Value!;
-            billingAddress.Street = street.Value!;
+            if (city.IsSet)
+                billingAddress.City = city.Value!;
+            if (country.IsSet)
+                billingAddress.Country = country.Value!;
+            if (houseNumberOrName.IsSet)
+                billingAddress.HouseNumberOrName = houseNumberOrName.Value!;
+            if (postalCode.IsSet)
+                billingAddress.PostalCode = postalCode.Value!;
+            if (street.IsSet)
+                billingAddress.Street = street.Value!;
             if (stateOrProvince.IsSet)
                 billingAddress.StateOrProvince = stateOrProvince.Value;
             return billingAddress;

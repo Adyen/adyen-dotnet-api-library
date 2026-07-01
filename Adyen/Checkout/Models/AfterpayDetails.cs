@@ -392,8 +392,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AfterpayDetails.", nameof(type));
 
             var afterpayDetails = new AfterpayDetails();
             if (billingAddress.IsSet)
@@ -410,7 +408,8 @@ namespace Adyen.Checkout.Models
                 afterpayDetails.SdkData = sdkData.Value;
             if (storedPaymentMethodId.IsSet)
                 afterpayDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            afterpayDetails.Type = type.Value!;
+            if (type.IsSet)
+                afterpayDetails.Type = type.Value!;
             return afterpayDetails;
         }
 

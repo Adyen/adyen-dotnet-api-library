@@ -373,6 +373,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var installmentOption = new InstallmentOption();
             if (maxValue.IsSet)
                 installmentOption.MaxValue = maxValue.Value;

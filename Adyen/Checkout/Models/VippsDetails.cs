@@ -179,7 +179,7 @@ namespace Adyen.Checkout.Models
         /// <see cref="TelephoneNumber"/>.
         /// </summary>
         [JsonPropertyName("telephoneNumber")]
-        public string TelephoneNumber { get; set; }
+        public string? TelephoneNumber { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
@@ -327,11 +327,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!telephoneNumber.IsSet)
-                throw new ArgumentException("Property is required for class VippsDetails.", nameof(telephoneNumber));
 
             var vippsDetails = new VippsDetails();
-            vippsDetails.TelephoneNumber = telephoneNumber.Value!;
+            if (telephoneNumber.IsSet)
+                vippsDetails.TelephoneNumber = telephoneNumber.Value!;
             if (checkoutAttemptId.IsSet)
                 vippsDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (recurringDetailReference.IsSet)

@@ -51,27 +51,27 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The base URL of the third party API, where Adyen will send the request to forward the payment details.</value>
         [JsonPropertyName("baseUrl")]
-        public string BaseUrl { get; set; }
+        public string? BaseUrl { get; set; }
 
         /// <summary>
         /// Your merchant account.
         /// </summary>
         /// <value>Your merchant account.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// <see cref="Request"/>.
         /// </summary>
         [JsonPropertyName("request")]
-        public CheckoutOutgoingForwardRequest Request { get; set; }
+        public CheckoutOutgoingForwardRequest? Request { get; set; }
 
         /// <summary>
         /// Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.
         /// </summary>
         /// <value>Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.</value>
         [JsonPropertyName("shopperReference")]
-        public string ShopperReference { get; set; }
+        public string? ShopperReference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
@@ -242,23 +242,16 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!baseUrl.IsSet)
-                throw new ArgumentException("Property is required for class CheckoutForwardRequest.", nameof(baseUrl));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class CheckoutForwardRequest.", nameof(merchantAccount));
-
-            if (!request.IsSet)
-                throw new ArgumentException("Property is required for class CheckoutForwardRequest.", nameof(request));
-
-            if (!shopperReference.IsSet)
-                throw new ArgumentException("Property is required for class CheckoutForwardRequest.", nameof(shopperReference));
 
             var checkoutForwardRequest = new CheckoutForwardRequest();
-            checkoutForwardRequest.BaseUrl = baseUrl.Value!;
-            checkoutForwardRequest.MerchantAccount = merchantAccount.Value!;
-            checkoutForwardRequest.Request = request.Value!;
-            checkoutForwardRequest.ShopperReference = shopperReference.Value!;
+            if (baseUrl.IsSet)
+                checkoutForwardRequest.BaseUrl = baseUrl.Value!;
+            if (merchantAccount.IsSet)
+                checkoutForwardRequest.MerchantAccount = merchantAccount.Value!;
+            if (request.IsSet)
+                checkoutForwardRequest.Request = request.Value!;
+            if (shopperReference.IsSet)
+                checkoutForwardRequest.ShopperReference = shopperReference.Value!;
             if (amount.IsSet)
                 checkoutForwardRequest.Amount = amount.Value;
             if (merchantReference.IsSet)

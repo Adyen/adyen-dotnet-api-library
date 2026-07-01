@@ -51,14 +51,14 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code associated with the provided tax identification number. Currently used only for Indian PA-CB tax verification, when applicable.</value>
         [JsonPropertyName("taxCountryCode")]
-        public string TaxCountryCode { get; set; }
+        public string? TaxCountryCode { get; set; }
 
         /// <summary>
         /// The shopper’s tax identification number.
         /// </summary>
         /// <value>The shopper’s tax identification number.</value>
         [JsonPropertyName("taxIdentificationNumber")]
-        public string TaxIdentificationNumber { get; set; }
+        public string? TaxIdentificationNumber { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!taxCountryCode.IsSet)
-                throw new ArgumentException("Property is required for class ShopperTaxInfo.", nameof(taxCountryCode));
-
-            if (!taxIdentificationNumber.IsSet)
-                throw new ArgumentException("Property is required for class ShopperTaxInfo.", nameof(taxIdentificationNumber));
 
             var shopperTaxInfo = new ShopperTaxInfo();
-            shopperTaxInfo.TaxCountryCode = taxCountryCode.Value!;
-            shopperTaxInfo.TaxIdentificationNumber = taxIdentificationNumber.Value!;
+            if (taxCountryCode.IsSet)
+                shopperTaxInfo.TaxCountryCode = taxCountryCode.Value!;
+            if (taxIdentificationNumber.IsSet)
+                shopperTaxInfo.TaxIdentificationNumber = taxIdentificationNumber.Value!;
             return shopperTaxInfo;
         }
 

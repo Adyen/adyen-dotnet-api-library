@@ -171,27 +171,27 @@ namespace Adyen.Checkout.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The date that the order will expire.
         /// </summary>
         /// <value>The date that the order will expire.</value>
         [JsonPropertyName("expiresAt")]
-        public string ExpiresAt { get; set; }
+        public string? ExpiresAt { get; set; }
 
         /// <summary>
         /// The encrypted data that will be used by merchant for adding payments to the order.
         /// </summary>
         /// <value>The encrypted data that will be used by merchant for adding payments to the order.</value>
         [JsonPropertyName("orderData")]
-        public string OrderData { get; set; }
+        public string? OrderData { get; set; }
 
         /// <summary>
         /// <see cref="RemainingAmount"/>.
         /// </summary>
         [JsonPropertyName("remainingAmount")]
-        public Amount RemainingAmount { get; set; }
+        public Amount? RemainingAmount { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
@@ -370,27 +370,18 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class CreateOrderResponse.", nameof(amount));
-
-            if (!expiresAt.IsSet)
-                throw new ArgumentException("Property is required for class CreateOrderResponse.", nameof(expiresAt));
-
-            if (!orderData.IsSet)
-                throw new ArgumentException("Property is required for class CreateOrderResponse.", nameof(orderData));
-
-            if (!remainingAmount.IsSet)
-                throw new ArgumentException("Property is required for class CreateOrderResponse.", nameof(remainingAmount));
-
-            if (!resultCode.IsSet)
-                throw new ArgumentException("Property is required for class CreateOrderResponse.", nameof(resultCode));
 
             var createOrderResponse = new CreateOrderResponse();
-            createOrderResponse.Amount = amount.Value!;
-            createOrderResponse.ExpiresAt = expiresAt.Value!;
-            createOrderResponse.OrderData = orderData.Value!;
-            createOrderResponse.RemainingAmount = remainingAmount.Value!;
-            createOrderResponse.ResultCode = resultCode.Value!;
+            if (amount.IsSet)
+                createOrderResponse.Amount = amount.Value!;
+            if (expiresAt.IsSet)
+                createOrderResponse.ExpiresAt = expiresAt.Value!;
+            if (orderData.IsSet)
+                createOrderResponse.OrderData = orderData.Value!;
+            if (remainingAmount.IsSet)
+                createOrderResponse.RemainingAmount = remainingAmount.Value!;
+            if (resultCode.IsSet)
+                createOrderResponse.ResultCode = resultCode.Value!;
             if (additionalData.IsSet)
                 createOrderResponse.AdditionalData = additionalData.Value;
             if (fraudResult.IsSet)

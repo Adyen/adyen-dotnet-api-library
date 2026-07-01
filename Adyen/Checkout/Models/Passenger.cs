@@ -203,6 +203,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var passenger = new Passenger();
             if (dateOfBirth.IsSet)
                 passenger.DateOfBirth = dateOfBirth.Value;

@@ -216,6 +216,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var checkoutForwardRequestOptions = new CheckoutForwardRequestOptions();
             if (accountUpdate.IsSet)
                 checkoutForwardRequestOptions.AccountUpdate = accountUpdate.Value;

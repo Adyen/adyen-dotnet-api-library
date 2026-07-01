@@ -354,6 +354,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var checkoutSessionInstallmentOption = new CheckoutSessionInstallmentOption();
             if (plans.IsSet)
                 checkoutSessionInstallmentOption.Plans = plans.Value;

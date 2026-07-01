@@ -199,7 +199,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The Dragonpay issuer value of the shopper's selected bank. Set this to an **id** of a Dragonpay issuer to preselect it.</value>
         [JsonPropertyName("issuer")]
-        public string Issuer { get; set; }
+        public string? Issuer { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
@@ -326,15 +326,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!issuer.IsSet)
-                throw new ArgumentException("Property is required for class DragonpayDetails.", nameof(issuer));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class DragonpayDetails.", nameof(type));
 
             var dragonpayDetails = new DragonpayDetails();
-            dragonpayDetails.Issuer = issuer.Value!;
-            dragonpayDetails.Type = type.Value!;
+            if (issuer.IsSet)
+                dragonpayDetails.Issuer = issuer.Value!;
+            if (type.IsSet)
+                dragonpayDetails.Type = type.Value!;
             if (checkoutAttemptId.IsSet)
                 dragonpayDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (sdkData.IsSet)

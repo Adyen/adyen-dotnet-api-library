@@ -279,6 +279,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var leg = new Leg();
             if (carrierCode.IsSet)
                 leg.CarrierCode = carrierCode.Value;

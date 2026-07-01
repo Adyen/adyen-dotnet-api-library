@@ -312,6 +312,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var deliveryMethod = new DeliveryMethod();
             if (amount.IsSet)
                 deliveryMethod.Amount = amount.Value;

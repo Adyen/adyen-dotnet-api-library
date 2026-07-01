@@ -491,21 +491,21 @@ namespace Adyen.Checkout.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The merchant account identifier for which the payment link is created.
         /// </summary>
         /// <value>The merchant account identifier for which the payment link is created.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// A reference that is used to uniquely identify the payment in future communications about the payment status.
         /// </summary>
         /// <value>A reference that is used to uniquely identify the payment in future communications about the payment status.</value>
         [JsonPropertyName("reference")]
-        public string Reference { get; set; }
+        public string? Reference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AllowedPaymentMethods"/> will be populated.
@@ -1300,19 +1300,14 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentLinkRequest.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentLinkRequest.", nameof(merchantAccount));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class PaymentLinkRequest.", nameof(reference));
 
             var paymentLinkRequest = new PaymentLinkRequest();
-            paymentLinkRequest.Amount = amount.Value!;
-            paymentLinkRequest.MerchantAccount = merchantAccount.Value!;
-            paymentLinkRequest.Reference = reference.Value!;
+            if (amount.IsSet)
+                paymentLinkRequest.Amount = amount.Value!;
+            if (merchantAccount.IsSet)
+                paymentLinkRequest.MerchantAccount = merchantAccount.Value!;
+            if (reference.IsSet)
+                paymentLinkRequest.Reference = reference.Value!;
             if (allowedPaymentMethods.IsSet)
                 paymentLinkRequest.AllowedPaymentMethods = allowedPaymentMethods.Value;
             if (applicationInfo.IsSet)

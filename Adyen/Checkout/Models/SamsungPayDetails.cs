@@ -326,7 +326,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The payload you received from the Samsung Pay SDK response.</value>
         [JsonPropertyName("samsungPayToken")]
-        public string SamsungPayToken { get; set; }
+        public string? SamsungPayToken { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
@@ -480,11 +480,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!samsungPayToken.IsSet)
-                throw new ArgumentException("Property is required for class SamsungPayDetails.", nameof(samsungPayToken));
 
             var samsungPayDetails = new SamsungPayDetails();
-            samsungPayDetails.SamsungPayToken = samsungPayToken.Value!;
+            if (samsungPayToken.IsSet)
+                samsungPayDetails.SamsungPayToken = samsungPayToken.Value!;
             if (checkoutAttemptId.IsSet)
                 samsungPayDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (fundingSource.IsSet)

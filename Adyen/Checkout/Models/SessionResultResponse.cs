@@ -358,6 +358,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var sessionResultResponse = new SessionResultResponse();
             if (additionalData.IsSet)
                 sessionResultResponse.AdditionalData = additionalData.Value;

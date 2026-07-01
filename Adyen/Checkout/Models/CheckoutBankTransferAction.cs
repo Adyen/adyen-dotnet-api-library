@@ -495,11 +495,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CheckoutBankTransferAction.", nameof(type));
 
             var checkoutBankTransferAction = new CheckoutBankTransferAction();
-            checkoutBankTransferAction.Type = type.Value!;
+            if (type.IsSet)
+                checkoutBankTransferAction.Type = type.Value!;
             if (accountNumber.IsSet)
                 checkoutBankTransferAction.AccountNumber = accountNumber.Value;
             if (bankCode.IsSet)

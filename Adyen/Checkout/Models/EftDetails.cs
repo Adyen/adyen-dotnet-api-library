@@ -392,6 +392,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var eftDetails = new EftDetails();
             if (bankAccountNumber.IsSet)
                 eftDetails.BankAccountNumber = bankAccountNumber.Value;

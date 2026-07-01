@@ -333,6 +333,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var pixDetails = new PixDetails();
             if (checkoutAttemptId.IsSet)
                 pixDetails.CheckoutAttemptId = checkoutAttemptId.Value;

@@ -141,6 +141,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var responsePaymentMethod = new ResponsePaymentMethod();
             if (brand.IsSet)
                 responsePaymentMethod.Brand = brand.Value;

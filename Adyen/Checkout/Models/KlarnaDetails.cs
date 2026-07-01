@@ -438,8 +438,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class KlarnaDetails.", nameof(type));
 
             var klarnaDetails = new KlarnaDetails();
             if (billingAddress.IsSet)
@@ -458,7 +456,8 @@ namespace Adyen.Checkout.Models
                 klarnaDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
             if (subtype.IsSet)
                 klarnaDetails.Subtype = subtype.Value;
-            klarnaDetails.Type = type.Value!;
+            if (type.IsSet)
+                klarnaDetails.Type = type.Value!;
             return klarnaDetails;
         }
 

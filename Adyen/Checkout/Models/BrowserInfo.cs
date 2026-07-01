@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The accept header value of the shopper's browser.</value>
         [JsonPropertyName("acceptHeader")]
-        public string AcceptHeader { get; set; }
+        public string? AcceptHeader { get; set; }
 
         /// <summary>
         /// The color depth of the shopper&#39;s browser in bits per pixel. This should be obtained by using the browser&#39;s &#x60;screen.colorDepth&#x60; property. Accepted values: 1, 4, 8, 15, 16, 24, 30, 32 or 48 bit color depth.
@@ -72,7 +72,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The `navigator.language` value of the shopper's browser (as defined in IETF BCP 47).</value>
         [JsonPropertyName("language")]
-        public string Language { get; set; }
+        public string? Language { get; set; }
 
         /// <summary>
         /// The total height of the shopper&#39;s device screen in pixels.
@@ -100,7 +100,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The user agent value of the shopper's browser.</value>
         [JsonPropertyName("userAgent")]
-        public string UserAgent { get; set; }
+        public string? UserAgent { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="JavaScriptEnabled"/> will be populated.
@@ -218,39 +218,24 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!acceptHeader.IsSet)
-                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(acceptHeader));
-
-            if (!colorDepth.IsSet)
-                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(colorDepth));
-
-            if (!javaEnabled.IsSet)
-                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(javaEnabled));
-
-            if (!language.IsSet)
-                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(language));
-
-            if (!screenHeight.IsSet)
-                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(screenHeight));
-
-            if (!screenWidth.IsSet)
-                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(screenWidth));
-
-            if (!timeZoneOffset.IsSet)
-                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(timeZoneOffset));
-
-            if (!userAgent.IsSet)
-                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(userAgent));
 
             var browserInfo = new BrowserInfo();
-            browserInfo.AcceptHeader = acceptHeader.Value!;
-            browserInfo.ColorDepth = colorDepth.Value!.Value;
-            browserInfo.JavaEnabled = javaEnabled.Value!.Value;
-            browserInfo.Language = language.Value!;
-            browserInfo.ScreenHeight = screenHeight.Value!.Value;
-            browserInfo.ScreenWidth = screenWidth.Value!.Value;
-            browserInfo.TimeZoneOffset = timeZoneOffset.Value!.Value;
-            browserInfo.UserAgent = userAgent.Value!;
+            if (acceptHeader.IsSet)
+                browserInfo.AcceptHeader = acceptHeader.Value!;
+            if (colorDepth.IsSet)
+                browserInfo.ColorDepth = colorDepth.Value!.Value;
+            if (javaEnabled.IsSet)
+                browserInfo.JavaEnabled = javaEnabled.Value!.Value;
+            if (language.IsSet)
+                browserInfo.Language = language.Value!;
+            if (screenHeight.IsSet)
+                browserInfo.ScreenHeight = screenHeight.Value!.Value;
+            if (screenWidth.IsSet)
+                browserInfo.ScreenWidth = screenWidth.Value!.Value;
+            if (timeZoneOffset.IsSet)
+                browserInfo.TimeZoneOffset = timeZoneOffset.Value!.Value;
+            if (userAgent.IsSet)
+                browserInfo.UserAgent = userAgent.Value!;
             if (javaScriptEnabled.IsSet)
                 browserInfo.JavaScriptEnabled = javaScriptEnabled.Value;
             return browserInfo;

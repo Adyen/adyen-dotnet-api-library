@@ -172,7 +172,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The encoded fastlane data blob</value>
         [JsonPropertyName("fastlaneData")]
-        public string FastlaneData { get; set; }
+        public string? FastlaneData { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
@@ -320,14 +320,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!fastlaneData.IsSet)
-                throw new ArgumentException("Property is required for class FastlaneDetails.", nameof(fastlaneData));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class FastlaneDetails.", nameof(type));
 
             var fastlaneDetails = new FastlaneDetails();
-            fastlaneDetails.FastlaneData = fastlaneData.Value!;
+            if (fastlaneData.IsSet)
+                fastlaneDetails.FastlaneData = fastlaneData.Value!;
             if (checkoutAttemptId.IsSet)
                 fastlaneDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (recurringDetailReference.IsSet)
@@ -336,7 +332,8 @@ namespace Adyen.Checkout.Models
                 fastlaneDetails.SdkData = sdkData.Value;
             if (storedPaymentMethodId.IsSet)
                 fastlaneDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            fastlaneDetails.Type = type.Value!;
+            if (type.IsSet)
+                fastlaneDetails.Type = type.Value!;
             return fastlaneDetails;
         }
 

@@ -50,21 +50,21 @@ namespace Adyen.Checkout.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The merchant account identifier, with which you want to process the order.
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the order.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// A custom reference identifying the order.
         /// </summary>
         /// <value>A custom reference identifying the order.</value>
         [JsonPropertyName("reference")]
-        public string Reference { get; set; }
+        public string? Reference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ExpiresAt"/> will be populated.
@@ -157,19 +157,14 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class CreateOrderRequest.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class CreateOrderRequest.", nameof(merchantAccount));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class CreateOrderRequest.", nameof(reference));
 
             var createOrderRequest = new CreateOrderRequest();
-            createOrderRequest.Amount = amount.Value!;
-            createOrderRequest.MerchantAccount = merchantAccount.Value!;
-            createOrderRequest.Reference = reference.Value!;
+            if (amount.IsSet)
+                createOrderRequest.Amount = amount.Value!;
+            if (merchantAccount.IsSet)
+                createOrderRequest.MerchantAccount = merchantAccount.Value!;
+            if (reference.IsSet)
+                createOrderRequest.Reference = reference.Value!;
             if (expiresAt.IsSet)
                 createOrderRequest.ExpiresAt = expiresAt.Value;
             return createOrderRequest;

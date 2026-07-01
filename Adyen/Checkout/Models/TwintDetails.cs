@@ -334,6 +334,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var twintDetails = new TwintDetails();
             if (checkoutAttemptId.IsSet)
                 twintDetails.CheckoutAttemptId = checkoutAttemptId.Value;

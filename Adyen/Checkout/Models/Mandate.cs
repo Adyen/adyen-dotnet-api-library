@@ -518,14 +518,14 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The billing amount (in minor units) of the recurring transactions.</value>
         [JsonPropertyName("amount")]
-        public string Amount { get; set; }
+        public string? Amount { get; set; }
 
         /// <summary>
         /// End date of the billing plan, in YYYY-MM-DD format.
         /// </summary>
         /// <value>End date of the billing plan, in YYYY-MM-DD format.</value>
         [JsonPropertyName("endsAt")]
-        public string EndsAt { get; set; }
+        public string? EndsAt { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="BillingDay"/> will be populated.
@@ -688,19 +688,14 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class Mandate.", nameof(amount));
-
-            if (!endsAt.IsSet)
-                throw new ArgumentException("Property is required for class Mandate.", nameof(endsAt));
-
-            if (!frequency.IsSet)
-                throw new ArgumentException("Property is required for class Mandate.", nameof(frequency));
 
             var mandate = new Mandate();
-            mandate.Amount = amount.Value!;
-            mandate.EndsAt = endsAt.Value!;
-            mandate.Frequency = frequency.Value!;
+            if (amount.IsSet)
+                mandate.Amount = amount.Value!;
+            if (endsAt.IsSet)
+                mandate.EndsAt = endsAt.Value!;
+            if (frequency.IsSet)
+                mandate.Frequency = frequency.Value!;
             if (amountRule.IsSet)
                 mandate.AmountRule = amountRule.Value;
             if (billingAttemptsRule.IsSet)

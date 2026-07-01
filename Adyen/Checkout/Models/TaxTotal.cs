@@ -121,6 +121,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var taxTotal = new TaxTotal();
             if (amount.IsSet)
                 taxTotal.Amount = amount.Value;

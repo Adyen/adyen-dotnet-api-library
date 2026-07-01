@@ -426,6 +426,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var additionalDataLevel23 = new AdditionalDataLevel23();
             if (enhancedSchemeDataCustomerReference.IsSet)
                 additionalDataLevel23.EnhancedSchemeDataCustomerReference = enhancedSchemeDataCustomerReference.Value;

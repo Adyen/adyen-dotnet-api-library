@@ -217,6 +217,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var company = new Company();
             if (homepage.IsSet)
                 company.Homepage = homepage.Value;

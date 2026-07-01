@@ -247,6 +247,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var pixPayByBankRiskSignals = new PixPayByBankRiskSignals();
             if (confidenceScore.IsSet)
                 pixPayByBankRiskSignals.ConfidenceScore = confidenceScore.Value;

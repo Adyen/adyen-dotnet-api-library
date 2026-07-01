@@ -262,21 +262,21 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The shopper's first name.</value>
         [JsonPropertyName("firstName")]
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
         /// <summary>
         /// The shopper&#39;s last name.
         /// </summary>
         /// <value>The shopper's last name.</value>
         [JsonPropertyName("lastName")]
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
         /// <summary>
         /// The shopper&#39;s email.
         /// </summary>
         /// <value>The shopper's email.</value>
         [JsonPropertyName("shopperEmail")]
-        public string ShopperEmail { get; set; }
+        public string? ShopperEmail { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
@@ -394,23 +394,16 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!firstName.IsSet)
-                throw new ArgumentException("Property is required for class DokuDetails.", nameof(firstName));
-
-            if (!lastName.IsSet)
-                throw new ArgumentException("Property is required for class DokuDetails.", nameof(lastName));
-
-            if (!shopperEmail.IsSet)
-                throw new ArgumentException("Property is required for class DokuDetails.", nameof(shopperEmail));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class DokuDetails.", nameof(type));
 
             var dokuDetails = new DokuDetails();
-            dokuDetails.FirstName = firstName.Value!;
-            dokuDetails.LastName = lastName.Value!;
-            dokuDetails.ShopperEmail = shopperEmail.Value!;
-            dokuDetails.Type = type.Value!;
+            if (firstName.IsSet)
+                dokuDetails.FirstName = firstName.Value!;
+            if (lastName.IsSet)
+                dokuDetails.LastName = lastName.Value!;
+            if (shopperEmail.IsSet)
+                dokuDetails.ShopperEmail = shopperEmail.Value!;
+            if (type.IsSet)
+                dokuDetails.Type = type.Value!;
             if (checkoutAttemptId.IsSet)
                 dokuDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (sdkData.IsSet)

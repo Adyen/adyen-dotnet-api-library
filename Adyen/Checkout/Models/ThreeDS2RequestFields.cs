@@ -1645,6 +1645,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var threeDS2RequestFields = new ThreeDS2RequestFields();
             if (acctInfo.IsSet)
                 threeDS2RequestFields.AcctInfo = acctInfo.Value;

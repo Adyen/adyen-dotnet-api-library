@@ -181,7 +181,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The updated paymentData.</value>
         [JsonPropertyName("paymentData")]
-        public string PaymentData { get; set; }
+        public string? PaymentData { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -251,15 +251,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!paymentData.IsSet)
-                throw new ArgumentException("Property is required for class PaypalUpdateOrderResponse.", nameof(paymentData));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class PaypalUpdateOrderResponse.", nameof(status));
 
             var paypalUpdateOrderResponse = new PaypalUpdateOrderResponse();
-            paypalUpdateOrderResponse.PaymentData = paymentData.Value!;
-            paypalUpdateOrderResponse.Status = status.Value!;
+            if (paymentData.IsSet)
+                paypalUpdateOrderResponse.PaymentData = paymentData.Value!;
+            if (status.IsSet)
+                paypalUpdateOrderResponse.Status = status.Value!;
             return paypalUpdateOrderResponse;
         }
 

@@ -141,6 +141,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var responseAdditionalDataDomesticError = new ResponseAdditionalDataDomesticError();
             if (domesticRefusalReasonRaw.IsSet)
                 responseAdditionalDataDomesticError.DomesticRefusalReasonRaw = domesticRefusalReasonRaw.Value;
