@@ -268,6 +268,7 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
                 }
             }
             
+
             var negativeBalanceCompensationWarningNotificationData = new NegativeBalanceCompensationWarningNotificationData();
             if (accountHolder.IsSet)
                 negativeBalanceCompensationWarningNotificationData.AccountHolder = accountHolder.Value;
