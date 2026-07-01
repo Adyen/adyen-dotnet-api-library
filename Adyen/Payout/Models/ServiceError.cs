@@ -217,6 +217,7 @@ namespace Adyen.Payout.Models
                 }
             }
             
+
             var serviceError = new ServiceError();
             if (additionalData.IsSet)
                 serviceError.AdditionalData = additionalData.Value;

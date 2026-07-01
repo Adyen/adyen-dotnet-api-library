@@ -51,14 +51,14 @@ namespace Adyen.Payout.Models
         /// </summary>
         /// <value>The first name.</value>
         [JsonPropertyName("firstName")]
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
         /// <summary>
         /// The last name.
         /// </summary>
         /// <value>The last name.</value>
         [JsonPropertyName("lastName")]
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.Payout.Models
                 }
             }
             
-            if (!firstName.IsSet)
-                throw new ArgumentException("Property is required for class Name.", nameof(firstName));
-
-            if (!lastName.IsSet)
-                throw new ArgumentException("Property is required for class Name.", nameof(lastName));
 
             var name = new Name();
-            name.FirstName = firstName.Value!;
-            name.LastName = lastName.Value!;
+            if (firstName.IsSet)
+                name.FirstName = firstName.Value!;
+            if (lastName.IsSet)
+                name.LastName = lastName.Value!;
             return name;
         }
 

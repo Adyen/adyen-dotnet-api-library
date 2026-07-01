@@ -331,6 +331,7 @@ namespace Adyen.Payout.Models
                 }
             }
             
+
             var responseAdditionalDataInstallments = new ResponseAdditionalDataInstallments();
             if (installmentPaymentDataInstallmentType.IsSet)
                 responseAdditionalDataInstallments.InstallmentPaymentDataInstallmentType = installmentPaymentDataInstallmentType.Value;

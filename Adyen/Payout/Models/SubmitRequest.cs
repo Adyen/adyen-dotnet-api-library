@@ -187,48 +187,48 @@ namespace Adyen.Payout.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The merchant account identifier you want to process the transaction request with.
         /// </summary>
         /// <value>The merchant account identifier you want to process the transaction request with.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// <see cref="Recurring"/>.
         /// </summary>
         [JsonPropertyName("recurring")]
-        public Recurring Recurring { get; set; }
+        public Recurring? Recurring { get; set; }
 
         /// <summary>
         /// The merchant reference for this payout. This reference will be used in all communication to the merchant about the status of the payout. Although it is a good idea to make sure it is unique, this is not a requirement.
         /// </summary>
         /// <value>The merchant reference for this payout. This reference will be used in all communication to the merchant about the status of the payout. Although it is a good idea to make sure it is unique, this is not a requirement.</value>
         [JsonPropertyName("reference")]
-        public string Reference { get; set; }
+        public string? Reference { get; set; }
 
         /// <summary>
         /// This is the &#x60;recurringDetailReference&#x60; you want to use for this payout.  You can use the value LATEST to select the most recently used recurring detail.
         /// </summary>
         /// <value>This is the `recurringDetailReference` you want to use for this payout.  You can use the value LATEST to select the most recently used recurring detail.</value>
         [JsonPropertyName("selectedRecurringDetailReference")]
-        public string SelectedRecurringDetailReference { get; set; }
+        public string? SelectedRecurringDetailReference { get; set; }
 
         /// <summary>
         /// The shopper&#39;s email address.
         /// </summary>
         /// <value>The shopper's email address.</value>
         [JsonPropertyName("shopperEmail")]
-        public string ShopperEmail { get; set; }
+        public string? ShopperEmail { get; set; }
 
         /// <summary>
         /// The shopper&#39;s reference for the payout transaction.
         /// </summary>
         /// <value>The shopper's reference for the payout transaction.</value>
         [JsonPropertyName("shopperReference")]
-        public string ShopperReference { get; set; }
+        public string? ShopperReference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
@@ -465,35 +465,22 @@ namespace Adyen.Payout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class SubmitRequest.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class SubmitRequest.", nameof(merchantAccount));
-
-            if (!recurring.IsSet)
-                throw new ArgumentException("Property is required for class SubmitRequest.", nameof(recurring));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class SubmitRequest.", nameof(reference));
-
-            if (!selectedRecurringDetailReference.IsSet)
-                throw new ArgumentException("Property is required for class SubmitRequest.", nameof(selectedRecurringDetailReference));
-
-            if (!shopperEmail.IsSet)
-                throw new ArgumentException("Property is required for class SubmitRequest.", nameof(shopperEmail));
-
-            if (!shopperReference.IsSet)
-                throw new ArgumentException("Property is required for class SubmitRequest.", nameof(shopperReference));
 
             var submitRequest = new SubmitRequest();
-            submitRequest.Amount = amount.Value!;
-            submitRequest.MerchantAccount = merchantAccount.Value!;
-            submitRequest.Recurring = recurring.Value!;
-            submitRequest.Reference = reference.Value!;
-            submitRequest.SelectedRecurringDetailReference = selectedRecurringDetailReference.Value!;
-            submitRequest.ShopperEmail = shopperEmail.Value!;
-            submitRequest.ShopperReference = shopperReference.Value!;
+            if (amount.IsSet)
+                submitRequest.Amount = amount.Value!;
+            if (merchantAccount.IsSet)
+                submitRequest.MerchantAccount = merchantAccount.Value!;
+            if (recurring.IsSet)
+                submitRequest.Recurring = recurring.Value!;
+            if (reference.IsSet)
+                submitRequest.Reference = reference.Value!;
+            if (selectedRecurringDetailReference.IsSet)
+                submitRequest.SelectedRecurringDetailReference = selectedRecurringDetailReference.Value!;
+            if (shopperEmail.IsSet)
+                submitRequest.ShopperEmail = shopperEmail.Value!;
+            if (shopperReference.IsSet)
+                submitRequest.ShopperReference = shopperReference.Value!;
             if (additionalData.IsSet)
                 submitRequest.AdditionalData = additionalData.Value;
             if (dateOfBirth.IsSet)

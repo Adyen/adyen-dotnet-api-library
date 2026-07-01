@@ -293,6 +293,7 @@ namespace Adyen.Payout.Models
                 }
             }
             
+
             var responseAdditionalDataCard = new ResponseAdditionalDataCard();
             if (cardAltID.IsSet)
                 responseAdditionalDataCard.CardAltID = cardAltID.Value;

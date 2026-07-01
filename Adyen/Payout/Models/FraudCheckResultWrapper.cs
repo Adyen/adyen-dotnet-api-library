@@ -121,6 +121,7 @@ namespace Adyen.Payout.Models
                 }
             }
             
+
             var fraudCheckResultWrapper = new FraudCheckResultWrapper();
             if (fraudCheckResult.IsSet)
                 fraudCheckResultWrapper.FraudCheckResult = fraudCheckResult.Value;
