@@ -172,14 +172,14 @@ namespace Adyen.TransferWebhooks.Models
         /// </summary>
         /// <value>The 2- to 16-digit bank account number (Číslo účtu) in the following format:  - The optional prefix (předčíslí).  - The required second part (základní část) which must be at least two non-zero digits.  Examples:  - **19-123457** (with prefix)  - **123457** (without prefix)  - **000019-0000123457** (with prefix, normalized)  - **000000-0000123457** (without prefix, normalized)</value>
         [JsonPropertyName("accountNumber")]
-        public string AccountNumber { get; set; }
+        public string? AccountNumber { get; set; }
 
         /// <summary>
         /// The 4-digit bank code (Kód banky), without separators or whitespace.
         /// </summary>
         /// <value>The 4-digit bank code (Kód banky), without separators or whitespace.</value>
         [JsonPropertyName("bankCode")]
-        public string BankCode { get; set; }
+        public string? BankCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -254,19 +254,14 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class CZLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!bankCode.IsSet)
-                throw new ArgumentException("Property is required for class CZLocalAccountIdentification.", nameof(bankCode));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CZLocalAccountIdentification.", nameof(type));
 
             var cZLocalAccountIdentification = new CZLocalAccountIdentification();
-            cZLocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            cZLocalAccountIdentification.BankCode = bankCode.Value!;
-            cZLocalAccountIdentification.Type = type.Value!;
+            if (accountNumber.IsSet)
+                cZLocalAccountIdentification.AccountNumber = accountNumber.Value!;
+            if (bankCode.IsSet)
+                cZLocalAccountIdentification.BankCode = bankCode.Value!;
+            if (type.IsSet)
+                cZLocalAccountIdentification.Type = type.Value!;
             return cZLocalAccountIdentification;
         }
 

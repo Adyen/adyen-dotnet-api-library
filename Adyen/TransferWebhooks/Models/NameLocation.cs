@@ -217,6 +217,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var nameLocation = new NameLocation();
             if (city.IsSet)
                 nameLocation.City = city.Value;

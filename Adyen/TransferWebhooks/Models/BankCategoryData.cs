@@ -417,6 +417,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var bankCategoryData = new BankCategoryData();
             if (priority.IsSet)
                 bankCategoryData.Priority = priority.Value;

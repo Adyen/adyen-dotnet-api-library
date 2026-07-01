@@ -198,6 +198,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var transactionRuleReference = new TransactionRuleReference();
             if (description.IsSet)
                 transactionRuleReference.Description = description.Value;

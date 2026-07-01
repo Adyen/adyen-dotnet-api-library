@@ -322,8 +322,6 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TransferDataTracking.", nameof(type));
 
             if (confirmationTrackingData != null)
                 return new TransferDataTracking(confirmationTrackingData);

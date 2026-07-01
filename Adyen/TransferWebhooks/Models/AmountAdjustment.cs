@@ -301,6 +301,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var amountAdjustment = new AmountAdjustment();
             if (amount.IsSet)
                 amountAdjustment.Amount = amount.Value;

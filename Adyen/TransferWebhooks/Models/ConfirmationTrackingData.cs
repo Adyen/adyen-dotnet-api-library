@@ -366,15 +366,12 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class ConfirmationTrackingData.", nameof(status));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class ConfirmationTrackingData.", nameof(type));
 
             var confirmationTrackingData = new ConfirmationTrackingData();
-            confirmationTrackingData.Status = status.Value!;
-            confirmationTrackingData.Type = type.Value!;
+            if (status.IsSet)
+                confirmationTrackingData.Status = status.Value!;
+            if (type.IsSet)
+                confirmationTrackingData.Type = type.Value!;
             return confirmationTrackingData;
         }
 

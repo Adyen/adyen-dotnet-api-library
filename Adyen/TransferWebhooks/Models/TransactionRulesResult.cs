@@ -179,6 +179,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var transactionRulesResult = new TransactionRulesResult();
             if (advice.IsSet)
                 transactionRulesResult.Advice = advice.Value;

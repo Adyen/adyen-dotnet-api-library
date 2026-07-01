@@ -283,6 +283,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var additionalBankIdentification = new AdditionalBankIdentification();
             if (code.IsSet)
                 additionalBankIdentification.Code = code.Value;

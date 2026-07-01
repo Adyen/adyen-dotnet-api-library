@@ -247,15 +247,12 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!estimatedArrivalTime.IsSet)
-                throw new ArgumentException("Property is required for class EstimationTrackingData.", nameof(estimatedArrivalTime));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class EstimationTrackingData.", nameof(type));
 
             var estimationTrackingData = new EstimationTrackingData();
-            estimationTrackingData.EstimatedArrivalTime = estimatedArrivalTime.Value!.Value;
-            estimationTrackingData.Type = type.Value!;
+            if (estimatedArrivalTime.IsSet)
+                estimationTrackingData.EstimatedArrivalTime = estimatedArrivalTime.Value!.Value;
+            if (type.IsSet)
+                estimationTrackingData.Type = type.Value!;
             return estimationTrackingData;
         }
 

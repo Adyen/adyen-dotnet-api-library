@@ -187,14 +187,14 @@ namespace Adyen.TransferWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public TransferData Data { get; set; }
+        public TransferData? Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
         /// </summary>
         /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
         [JsonPropertyName("environment")]
-        public string Environment { get; set; }
+        public string? Environment { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Timestamp"/> will be populated.
@@ -293,15 +293,12 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class TransferNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class TransferNotificationRequest.", nameof(environment));
 
             var transferNotificationRequest = new TransferNotificationRequest();
-            transferNotificationRequest.Data = data.Value!;
-            transferNotificationRequest.Environment = environment.Value!;
+            if (data.IsSet)
+                transferNotificationRequest.Data = data.Value!;
+            if (environment.IsSet)
+                transferNotificationRequest.Environment = environment.Value!;
             if (timestamp.IsSet)
                 transferNotificationRequest.Timestamp = timestamp.Value;
             if (type.IsSet)

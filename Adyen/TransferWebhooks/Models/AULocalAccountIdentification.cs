@@ -172,14 +172,14 @@ namespace Adyen.TransferWebhooks.Models
         /// </summary>
         /// <value>The bank account number, without separators or whitespace.</value>
         [JsonPropertyName("accountNumber")]
-        public string AccountNumber { get; set; }
+        public string? AccountNumber { get; set; }
 
         /// <summary>
         /// The 6-digit [Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or whitespace.
         /// </summary>
         /// <value>The 6-digit [Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or whitespace.</value>
         [JsonPropertyName("bsbCode")]
-        public string BsbCode { get; set; }
+        public string? BsbCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -254,19 +254,14 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class AULocalAccountIdentification.", nameof(accountNumber));
-
-            if (!bsbCode.IsSet)
-                throw new ArgumentException("Property is required for class AULocalAccountIdentification.", nameof(bsbCode));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AULocalAccountIdentification.", nameof(type));
 
             var aULocalAccountIdentification = new AULocalAccountIdentification();
-            aULocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            aULocalAccountIdentification.BsbCode = bsbCode.Value!;
-            aULocalAccountIdentification.Type = type.Value!;
+            if (accountNumber.IsSet)
+                aULocalAccountIdentification.AccountNumber = accountNumber.Value!;
+            if (bsbCode.IsSet)
+                aULocalAccountIdentification.BsbCode = bsbCode.Value!;
+            if (type.IsSet)
+                aULocalAccountIdentification.Type = type.Value!;
             return aULocalAccountIdentification;
         }
 

@@ -160,6 +160,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var externalReason = new ExternalReason();
             if (code.IsSet)
                 externalReason.Code = code.Value;

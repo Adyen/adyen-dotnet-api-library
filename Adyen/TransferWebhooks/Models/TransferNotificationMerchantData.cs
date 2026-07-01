@@ -255,6 +255,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var transferNotificationMerchantData = new TransferNotificationMerchantData();
             if (acquirerId.IsSet)
                 transferNotificationMerchantData.AcquirerId = acquirerId.Value;

@@ -274,6 +274,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var transferReview = new TransferReview();
             if (numberOfApprovalsRequired.IsSet)
                 transferReview.NumberOfApprovalsRequired = numberOfApprovalsRequired.Value;

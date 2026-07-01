@@ -276,6 +276,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var internalCategoryData = new InternalCategoryData();
             if (modificationMerchantReference.IsSet)
                 internalCategoryData.ModificationMerchantReference = modificationMerchantReference.Value;

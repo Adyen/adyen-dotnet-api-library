@@ -141,6 +141,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var lodging = new Lodging();
             if (checkInDate.IsSet)
                 lodging.CheckInDate = checkInDate.Value;

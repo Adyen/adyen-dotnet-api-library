@@ -217,6 +217,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var leg = new Leg();
             if (arrivalAirportCode.IsSet)
                 leg.ArrivalAirportCode = arrivalAirportCode.Value;

@@ -165,6 +165,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var resource = new Resource();
             if (balancePlatform.IsSet)
                 resource.BalancePlatform = balancePlatform.Value;
