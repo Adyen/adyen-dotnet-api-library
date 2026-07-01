@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.</value>
         [JsonPropertyName("legalEntityId")]
-        public string LegalEntityId { get; set; }
+        public string? LegalEntityId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="BalancePlatform"/> will be populated.
@@ -269,11 +269,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!legalEntityId.IsSet)
-                throw new ArgumentException("Property is required for class AccountHolderInfo.", nameof(legalEntityId));
 
             var accountHolderInfo = new AccountHolderInfo();
-            accountHolderInfo.LegalEntityId = legalEntityId.Value!;
+            if (legalEntityId.IsSet)
+                accountHolderInfo.LegalEntityId = legalEntityId.Value!;
             if (balancePlatform.IsSet)
                 accountHolderInfo.BalancePlatform = balancePlatform.Value;
             if (capabilities.IsSet)

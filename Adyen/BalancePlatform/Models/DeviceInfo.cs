@@ -159,6 +159,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var deviceInfo = new DeviceInfo();
             if (formFactor.IsSet)
                 deviceInfo.FormFactor = formFactor.Value;

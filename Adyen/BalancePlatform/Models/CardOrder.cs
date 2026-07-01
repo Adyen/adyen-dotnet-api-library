@@ -399,6 +399,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var cardOrder = new CardOrder();
             if (beginDate.IsSet)
                 cardOrder.BeginDate = beginDate.Value;

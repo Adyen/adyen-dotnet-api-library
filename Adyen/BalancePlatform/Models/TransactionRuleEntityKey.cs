@@ -141,6 +141,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var transactionRuleEntityKey = new TransactionRuleEntityKey();
             if (entityReference.IsSet)
                 transactionRuleEntityKey.EntityReference = entityReference.Value;

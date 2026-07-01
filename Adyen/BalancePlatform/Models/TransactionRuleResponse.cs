@@ -121,6 +121,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var transactionRuleResponse = new TransactionRuleResponse();
             if (transactionRule.IsSet)
                 transactionRuleResponse.TransactionRule = transactionRule.Value;

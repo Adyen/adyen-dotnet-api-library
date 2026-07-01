@@ -160,6 +160,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var phoneInfo = new PhoneInfo();
             if (hashedNumber.IsSet)
                 phoneInfo.HashedNumber = hashedNumber.Value;

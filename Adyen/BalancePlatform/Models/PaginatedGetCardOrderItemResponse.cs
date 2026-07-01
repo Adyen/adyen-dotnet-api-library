@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>List of card order items in the card order batch.</value>
         [JsonPropertyName("data")]
-        public List<CardOrderItem> Data { get; set; }
+        public List<CardOrderItem>? Data { get; set; }
 
         /// <summary>
         /// Indicates whether there are more items on the next page.
@@ -139,19 +139,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedGetCardOrderItemResponse.", nameof(data));
-
-            if (!hasNext.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedGetCardOrderItemResponse.", nameof(hasNext));
-
-            if (!hasPrevious.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedGetCardOrderItemResponse.", nameof(hasPrevious));
 
             var paginatedGetCardOrderItemResponse = new PaginatedGetCardOrderItemResponse();
-            paginatedGetCardOrderItemResponse.Data = data.Value!;
-            paginatedGetCardOrderItemResponse.HasNext = hasNext.Value!.Value;
-            paginatedGetCardOrderItemResponse.HasPrevious = hasPrevious.Value!.Value;
+            if (data.IsSet)
+                paginatedGetCardOrderItemResponse.Data = data.Value!;
+            if (hasNext.IsSet)
+                paginatedGetCardOrderItemResponse.HasNext = hasNext.Value!.Value;
+            if (hasPrevious.IsSet)
+                paginatedGetCardOrderItemResponse.HasPrevious = hasPrevious.Value!.Value;
             return paginatedGetCardOrderItemResponse;
         }
 

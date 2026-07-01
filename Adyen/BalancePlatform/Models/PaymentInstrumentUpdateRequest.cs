@@ -526,6 +526,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var paymentInstrumentUpdateRequest = new PaymentInstrumentUpdateRequest();
             if (balanceAccountId.IsSet)
                 paymentInstrumentUpdateRequest.BalanceAccountId = balanceAccountId.Value;

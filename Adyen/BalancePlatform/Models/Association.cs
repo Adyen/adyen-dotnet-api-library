@@ -63,7 +63,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The unique identifier of the entity.</value>
         [JsonPropertyName("entityId")]
-        public string EntityId { get; set; }
+        public string? EntityId { get; set; }
 
         /// <summary>
         /// The unique identifier for the SCA device.
@@ -71,7 +71,7 @@ namespace Adyen.BalancePlatform.Models
         /// <value>The unique identifier for the SCA device.</value>
         /* <example>BSDR11111111111A1AAA1AAAAA1AA1</example> */
         [JsonPropertyName("scaDeviceId")]
-        public string ScaDeviceId { get; set; }
+        public string? ScaDeviceId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -152,23 +152,16 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!entityId.IsSet)
-                throw new ArgumentException("Property is required for class Association.", nameof(entityId));
-
-            if (!entityType.IsSet)
-                throw new ArgumentException("Property is required for class Association.", nameof(entityType));
-
-            if (!scaDeviceId.IsSet)
-                throw new ArgumentException("Property is required for class Association.", nameof(scaDeviceId));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class Association.", nameof(status));
 
             var association = new Association();
-            association.EntityId = entityId.Value!;
-            association.EntityType = entityType.Value!;
-            association.ScaDeviceId = scaDeviceId.Value!;
-            association.Status = status.Value!;
+            if (entityId.IsSet)
+                association.EntityId = entityId.Value!;
+            if (entityType.IsSet)
+                association.EntityType = entityType.Value!;
+            if (scaDeviceId.IsSet)
+                association.ScaDeviceId = scaDeviceId.Value!;
+            if (status.IsSet)
+                association.Status = status.Value!;
             return association;
         }
 

@@ -172,7 +172,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The list of unique identifiers of the resources that you are associating with the SCA device.  Maximum: 5 strings.</value>
         [JsonPropertyName("ids")]
-        public List<string> Ids { get; set; }
+        public List<string>? Ids { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -242,15 +242,12 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!ids.IsSet)
-                throw new ArgumentException("Property is required for class AssociationInitiateRequest.", nameof(ids));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AssociationInitiateRequest.", nameof(type));
 
             var associationInitiateRequest = new AssociationInitiateRequest();
-            associationInitiateRequest.Ids = ids.Value!;
-            associationInitiateRequest.Type = type.Value!;
+            if (ids.IsSet)
+                associationInitiateRequest.Ids = ids.Value!;
+            if (type.IsSet)
+                associationInitiateRequest.Type = type.Value!;
             return associationInitiateRequest;
         }
 

@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The data encrypted using the `encryptedKey`.</value>
         [JsonPropertyName("encryptedData")]
-        public string EncryptedData { get; set; }
+        public string? EncryptedData { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!encryptedData.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrumentRevealResponse.", nameof(encryptedData));
 
             var paymentInstrumentRevealResponse = new PaymentInstrumentRevealResponse();
-            paymentInstrumentRevealResponse.EncryptedData = encryptedData.Value!;
+            if (encryptedData.IsSet)
+                paymentInstrumentRevealResponse.EncryptedData = encryptedData.Value!;
             return paymentInstrumentRevealResponse;
         }
 

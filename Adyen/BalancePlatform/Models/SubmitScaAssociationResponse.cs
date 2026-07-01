@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>List of associations created to the entities and their statuses.</value>
         [JsonPropertyName("scaAssociations")]
-        public List<Association> ScaAssociations { get; set; }
+        public List<Association>? ScaAssociations { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!scaAssociations.IsSet)
-                throw new ArgumentException("Property is required for class SubmitScaAssociationResponse.", nameof(scaAssociations));
 
             var submitScaAssociationResponse = new SubmitScaAssociationResponse();
-            submitScaAssociationResponse.ScaAssociations = scaAssociations.Value!;
+            if (scaAssociations.IsSet)
+                submitScaAssociationResponse.ScaAssociations = scaAssociations.Value!;
             return submitScaAssociationResponse;
         }
 

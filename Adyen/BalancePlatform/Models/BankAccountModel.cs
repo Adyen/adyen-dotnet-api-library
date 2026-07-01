@@ -256,6 +256,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var bankAccountModel = new BankAccountModel();
             if (formFactor.IsSet)
                 bankAccountModel.FormFactor = formFactor.Value;

@@ -292,6 +292,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var duration = new Duration();
             if (unit.IsSet)
                 duration.Unit = unit.Value;

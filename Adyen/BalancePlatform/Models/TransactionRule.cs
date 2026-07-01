@@ -810,32 +810,32 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>Your description for the transaction rule.</value>
         [JsonPropertyName("description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         /// <summary>
         /// <see cref="EntityKey"/>.
         /// </summary>
         [JsonPropertyName("entityKey")]
-        public TransactionRuleEntityKey EntityKey { get; set; }
+        public TransactionRuleEntityKey? EntityKey { get; set; }
 
         /// <summary>
         /// <see cref="Interval"/>.
         /// </summary>
         [JsonPropertyName("interval")]
-        public TransactionRuleInterval Interval { get; set; }
+        public TransactionRuleInterval? Interval { get; set; }
 
         /// <summary>
         /// Your reference for the transaction rule.
         /// </summary>
         /// <value>Your reference for the transaction rule.</value>
         [JsonPropertyName("reference")]
-        public string Reference { get; set; }
+        public string? Reference { get; set; }
 
         /// <summary>
         /// <see cref="RuleRestrictions"/>.
         /// </summary>
         [JsonPropertyName("ruleRestrictions")]
-        public TransactionRuleRestrictions RuleRestrictions { get; set; }
+        public TransactionRuleRestrictions? RuleRestrictions { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AggregationLevel"/> will be populated.
@@ -1044,31 +1044,20 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!description.IsSet)
-                throw new ArgumentException("Property is required for class TransactionRule.", nameof(description));
-
-            if (!entityKey.IsSet)
-                throw new ArgumentException("Property is required for class TransactionRule.", nameof(entityKey));
-
-            if (!interval.IsSet)
-                throw new ArgumentException("Property is required for class TransactionRule.", nameof(interval));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class TransactionRule.", nameof(reference));
-
-            if (!ruleRestrictions.IsSet)
-                throw new ArgumentException("Property is required for class TransactionRule.", nameof(ruleRestrictions));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TransactionRule.", nameof(type));
 
             var transactionRule = new TransactionRule();
-            transactionRule.Description = description.Value!;
-            transactionRule.EntityKey = entityKey.Value!;
-            transactionRule.Interval = interval.Value!;
-            transactionRule.Reference = reference.Value!;
-            transactionRule.RuleRestrictions = ruleRestrictions.Value!;
-            transactionRule.Type = type.Value!;
+            if (description.IsSet)
+                transactionRule.Description = description.Value!;
+            if (entityKey.IsSet)
+                transactionRule.EntityKey = entityKey.Value!;
+            if (interval.IsSet)
+                transactionRule.Interval = interval.Value!;
+            if (reference.IsSet)
+                transactionRule.Reference = reference.Value!;
+            if (ruleRestrictions.IsSet)
+                transactionRule.RuleRestrictions = ruleRestrictions.Value!;
+            if (type.IsSet)
+                transactionRule.Type = type.Value!;
             if (aggregationLevel.IsSet)
                 transactionRule.AggregationLevel = aggregationLevel.Value;
             if (endDate.IsSet)

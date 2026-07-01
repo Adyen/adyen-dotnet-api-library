@@ -122,6 +122,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var authorisedCardUsers = new AuthorisedCardUsers();
             if (legalEntityIds.IsSet)
                 authorisedCardUsers.LegalEntityIds = legalEntityIds.Value;

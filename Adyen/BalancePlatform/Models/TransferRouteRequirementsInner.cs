@@ -546,8 +546,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TransferRouteRequirementsInner.", nameof(type));
 
             if (additionalBankIdentificationRequirement != null)
                 return new TransferRouteRequirementsInner(additionalBankIdentificationRequirement);

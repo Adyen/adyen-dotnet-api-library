@@ -536,21 +536,21 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/v1/post/balanceAccounts__resParam_id) associated with the payment instrument.</value>
         [JsonPropertyName("balanceAccountId")]
-        public string BalanceAccountId { get; set; }
+        public string? BalanceAccountId { get; set; }
 
         /// <summary>
         /// The unique identifier of the payment instrument.
         /// </summary>
         /// <value>The unique identifier of the payment instrument.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the payment instrument is issued. For example, **NL** or **US**.
         /// </summary>
         /// <value>The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the payment instrument is issued. For example, **NL** or **US**.</value>
         [JsonPropertyName("issuingCountryCode")]
-        public string IssuingCountryCode { get; set; }
+        public string? IssuingCountryCode { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalBankAccountIdentifications"/> will be populated.
@@ -813,23 +813,16 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!balanceAccountId.IsSet)
-                throw new ArgumentException("Property is required for class UpdatePaymentInstrument.", nameof(balanceAccountId));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class UpdatePaymentInstrument.", nameof(id));
-
-            if (!issuingCountryCode.IsSet)
-                throw new ArgumentException("Property is required for class UpdatePaymentInstrument.", nameof(issuingCountryCode));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class UpdatePaymentInstrument.", nameof(type));
 
             var updatePaymentInstrument = new UpdatePaymentInstrument();
-            updatePaymentInstrument.BalanceAccountId = balanceAccountId.Value!;
-            updatePaymentInstrument.Id = id.Value!;
-            updatePaymentInstrument.IssuingCountryCode = issuingCountryCode.Value!;
-            updatePaymentInstrument.Type = type.Value!;
+            if (balanceAccountId.IsSet)
+                updatePaymentInstrument.BalanceAccountId = balanceAccountId.Value!;
+            if (id.IsSet)
+                updatePaymentInstrument.Id = id.Value!;
+            if (issuingCountryCode.IsSet)
+                updatePaymentInstrument.IssuingCountryCode = issuingCountryCode.Value!;
+            if (type.IsSet)
+                updatePaymentInstrument.Type = type.Value!;
             if (additionalBankAccountIdentifications.IsSet)
                 updatePaymentInstrument.AdditionalBankAccountIdentifications = additionalBankAccountIdentifications.Value;
             if (bankAccount.IsSet)

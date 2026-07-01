@@ -172,14 +172,14 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The 9- to 17-digit bank account number, without separators or whitespace. Starts with the 3-digit branch code.</value>
         [JsonPropertyName("accountNumber")]
-        public string AccountNumber { get; set; }
+        public string? AccountNumber { get; set; }
 
         /// <summary>
         /// The 3-digit clearing code, without separators or whitespace.
         /// </summary>
         /// <value>The 3-digit clearing code, without separators or whitespace.</value>
         [JsonPropertyName("clearingCode")]
-        public string ClearingCode { get; set; }
+        public string? ClearingCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -254,19 +254,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class HKLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!clearingCode.IsSet)
-                throw new ArgumentException("Property is required for class HKLocalAccountIdentification.", nameof(clearingCode));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class HKLocalAccountIdentification.", nameof(type));
 
             var hKLocalAccountIdentification = new HKLocalAccountIdentification();
-            hKLocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            hKLocalAccountIdentification.ClearingCode = clearingCode.Value!;
-            hKLocalAccountIdentification.Type = type.Value!;
+            if (accountNumber.IsSet)
+                hKLocalAccountIdentification.AccountNumber = accountNumber.Value!;
+            if (clearingCode.IsSet)
+                hKLocalAccountIdentification.ClearingCode = clearingCode.Value!;
+            if (type.IsSet)
+                hKLocalAccountIdentification.Type = type.Value!;
             return hKLocalAccountIdentification;
         }
 

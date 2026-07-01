@@ -141,6 +141,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var createScaInformation = new CreateScaInformation();
             if (exemption.IsSet)
                 createScaInformation.Exemption = exemption.Value;

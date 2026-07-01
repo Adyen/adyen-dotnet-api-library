@@ -51,14 +51,14 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The name of the SCA device that you are registering. You can use it to help your users identify the device.</value>
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// A base64-encoded block with the data required to register the SCA device. You obtain this information by using Adyen&#39;s authentication SDK.
         /// </summary>
         /// <value>A base64-encoded block with the data required to register the SCA device. You obtain this information by using Adyen's authentication SDK.</value>
         [JsonPropertyName("sdkOutput")]
-        public string SdkOutput { get; set; }
+        public string? SdkOutput { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class BeginScaDeviceRegistrationRequest.", nameof(name));
-
-            if (!sdkOutput.IsSet)
-                throw new ArgumentException("Property is required for class BeginScaDeviceRegistrationRequest.", nameof(sdkOutput));
 
             var beginScaDeviceRegistrationRequest = new BeginScaDeviceRegistrationRequest();
-            beginScaDeviceRegistrationRequest.Name = name.Value!;
-            beginScaDeviceRegistrationRequest.SdkOutput = sdkOutput.Value!;
+            if (name.IsSet)
+                beginScaDeviceRegistrationRequest.Name = name.Value!;
+            if (sdkOutput.IsSet)
+                beginScaDeviceRegistrationRequest.SdkOutput = sdkOutput.Value!;
             return beginScaDeviceRegistrationRequest;
         }
 

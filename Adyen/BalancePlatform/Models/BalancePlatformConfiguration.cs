@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The balance platform to which the payout schedule applies.</value>
         [JsonPropertyName("balancePlatformId")]
-        public string BalancePlatformId { get; set; }
+        public string? BalancePlatformId { get; set; }
 
         /// <summary>
         /// The date when the payout schedule was created.
@@ -65,7 +65,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The type of payout schedule. This type indicates how fast funds are paid out to your user.  Possible values: - **Standard**: The funds arrive in your user's transfer instrument two days after the funds are settled. - **Accelerated**: The funds arrive to your user's transfer instrument the day after the funds are settled.</value>
         [JsonPropertyName("payoutScheduleDescription")]
-        public string PayoutScheduleDescription { get; set; }
+        public string? PayoutScheduleDescription { get; set; }
 
         /// <summary>
         /// The default [settlement delay](https://docs.adyen.com/platforms/settle-funds/#settlement-delay) for this payout schedule.
@@ -78,14 +78,14 @@ namespace Adyen.BalancePlatform.Models
         /// <see cref="UserSettlementTime"/>.
         /// </summary>
         [JsonPropertyName("userSettlementTime")]
-        public LocalTime UserSettlementTime { get; set; }
+        public LocalTime? UserSettlementTime { get; set; }
 
         /// <summary>
         /// The timezone of the &#x60;userSettlementTime&#x60;.
         /// </summary>
         /// <value>The timezone of the `userSettlementTime`.</value>
         [JsonPropertyName("userSettlementTimeZone")]
-        public string UserSettlementTimeZone { get; set; }
+        public string? UserSettlementTimeZone { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AutomaticApplication"/> will be populated.
@@ -449,31 +449,20 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!balancePlatformId.IsSet)
-                throw new ArgumentException("Property is required for class BalancePlatformConfiguration.", nameof(balancePlatformId));
-
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class BalancePlatformConfiguration.", nameof(createdAt));
-
-            if (!payoutScheduleDescription.IsSet)
-                throw new ArgumentException("Property is required for class BalancePlatformConfiguration.", nameof(payoutScheduleDescription));
-
-            if (!userSettlementDelay.IsSet)
-                throw new ArgumentException("Property is required for class BalancePlatformConfiguration.", nameof(userSettlementDelay));
-
-            if (!userSettlementTime.IsSet)
-                throw new ArgumentException("Property is required for class BalancePlatformConfiguration.", nameof(userSettlementTime));
-
-            if (!userSettlementTimeZone.IsSet)
-                throw new ArgumentException("Property is required for class BalancePlatformConfiguration.", nameof(userSettlementTimeZone));
 
             var balancePlatformConfiguration = new BalancePlatformConfiguration();
-            balancePlatformConfiguration.BalancePlatformId = balancePlatformId.Value!;
-            balancePlatformConfiguration.CreatedAt = createdAt.Value!.Value;
-            balancePlatformConfiguration.PayoutScheduleDescription = payoutScheduleDescription.Value!;
-            balancePlatformConfiguration.UserSettlementDelay = userSettlementDelay.Value!.Value;
-            balancePlatformConfiguration.UserSettlementTime = userSettlementTime.Value!;
-            balancePlatformConfiguration.UserSettlementTimeZone = userSettlementTimeZone.Value!;
+            if (balancePlatformId.IsSet)
+                balancePlatformConfiguration.BalancePlatformId = balancePlatformId.Value!;
+            if (createdAt.IsSet)
+                balancePlatformConfiguration.CreatedAt = createdAt.Value!.Value;
+            if (payoutScheduleDescription.IsSet)
+                balancePlatformConfiguration.PayoutScheduleDescription = payoutScheduleDescription.Value!;
+            if (userSettlementDelay.IsSet)
+                balancePlatformConfiguration.UserSettlementDelay = userSettlementDelay.Value!.Value;
+            if (userSettlementTime.IsSet)
+                balancePlatformConfiguration.UserSettlementTime = userSettlementTime.Value!;
+            if (userSettlementTimeZone.IsSet)
+                balancePlatformConfiguration.UserSettlementTimeZone = userSettlementTimeZone.Value!;
             if (automaticApplication.IsSet)
                 balancePlatformConfiguration.AutomaticApplication = automaticApplication.Value;
             if (countryCode.IsSet)

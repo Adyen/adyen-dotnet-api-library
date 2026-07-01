@@ -190,7 +190,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The unique identifier of the `target.type`. This can be the ID of your:  * balance platform * account holder * account holder's balance account</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -260,15 +260,12 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Target.", nameof(id));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class Target.", nameof(type));
 
             var target = new Target();
-            target.Id = id.Value!;
-            target.Type = type.Value!;
+            if (id.IsSet)
+                target.Id = id.Value!;
+            if (type.IsSet)
+                target.Type = type.Value!;
             return target;
         }
 

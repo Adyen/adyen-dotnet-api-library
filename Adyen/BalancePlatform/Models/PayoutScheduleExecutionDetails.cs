@@ -160,6 +160,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var payoutScheduleExecutionDetails = new PayoutScheduleExecutionDetails();
             if (reason.IsSet)
                 payoutScheduleExecutionDetails.Reason = reason.Value;

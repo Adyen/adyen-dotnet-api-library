@@ -188,7 +188,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The identifier of the account holder to which the grant is offered.</value>
         [JsonPropertyName("accountHolderId")]
-        public string AccountHolderId { get; set; }
+        public string? AccountHolderId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
@@ -379,11 +379,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!accountHolderId.IsSet)
-                throw new ArgumentException("Property is required for class GrantOffer.", nameof(accountHolderId));
 
             var grantOffer = new GrantOffer();
-            grantOffer.AccountHolderId = accountHolderId.Value!;
+            if (accountHolderId.IsSet)
+                grantOffer.AccountHolderId = accountHolderId.Value!;
             if (amount.IsSet)
                 grantOffer.Amount = amount.Value;
             if (contractType.IsSet)

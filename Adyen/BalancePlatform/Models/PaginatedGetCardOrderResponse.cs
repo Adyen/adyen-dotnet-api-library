@@ -146,15 +146,12 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!hasNext.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedGetCardOrderResponse.", nameof(hasNext));
-
-            if (!hasPrevious.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedGetCardOrderResponse.", nameof(hasPrevious));
 
             var paginatedGetCardOrderResponse = new PaginatedGetCardOrderResponse();
-            paginatedGetCardOrderResponse.HasNext = hasNext.Value!.Value;
-            paginatedGetCardOrderResponse.HasPrevious = hasPrevious.Value!.Value;
+            if (hasNext.IsSet)
+                paginatedGetCardOrderResponse.HasNext = hasNext.Value!.Value;
+            if (hasPrevious.IsSet)
+                paginatedGetCardOrderResponse.HasPrevious = hasPrevious.Value!.Value;
             if (cardOrders.IsSet)
                 paginatedGetCardOrderResponse.CardOrders = cardOrders.Value;
             return paginatedGetCardOrderResponse;

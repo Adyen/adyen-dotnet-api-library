@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>Contains a list of executions of the payout schedule.</value>
         [JsonPropertyName("payoutScheduleExecutions")]
-        public List<PayoutScheduleExecution> VarPayoutScheduleExecutions { get; set; }
+        public List<PayoutScheduleExecution>? VarPayoutScheduleExecutions { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!varPayoutScheduleExecutions.IsSet)
-                throw new ArgumentException("Property is required for class PayoutScheduleExecutions.", nameof(varPayoutScheduleExecutions));
 
             var payoutScheduleExecutions = new PayoutScheduleExecutions();
-            payoutScheduleExecutions.VarPayoutScheduleExecutions = varPayoutScheduleExecutions.Value!;
+            if (varPayoutScheduleExecutions.IsSet)
+                payoutScheduleExecutions.VarPayoutScheduleExecutions = varPayoutScheduleExecutions.Value!;
             return payoutScheduleExecutions;
         }
 

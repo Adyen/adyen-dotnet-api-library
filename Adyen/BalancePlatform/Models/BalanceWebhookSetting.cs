@@ -144,26 +144,16 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class BalanceWebhookSetting.", nameof(currency));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class BalanceWebhookSetting.", nameof(id));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class BalanceWebhookSetting.", nameof(status));
-
-            if (!target.IsSet)
-                throw new ArgumentException("Property is required for class BalanceWebhookSetting.", nameof(target));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class BalanceWebhookSetting.", nameof(type));
 
             var balanceWebhookSetting = new BalanceWebhookSetting();
-            balanceWebhookSetting.Currency = currency.Value!;
-            balanceWebhookSetting.Id = id.Value!;
-            balanceWebhookSetting.Status = status.Value!;
-            balanceWebhookSetting.Target = target.Value!;
+            if (currency.IsSet)
+                balanceWebhookSetting.Currency = currency.Value!;
+            if (id.IsSet)
+                balanceWebhookSetting.Id = id.Value!;
+            if (status.IsSet)
+                balanceWebhookSetting.Status = status.Value!;
+            if (target.IsSet)
+                balanceWebhookSetting.Target = target.Value!;
             if (conditions.IsSet)
                 balanceWebhookSetting.Conditions = conditions.Value;
             return balanceWebhookSetting;

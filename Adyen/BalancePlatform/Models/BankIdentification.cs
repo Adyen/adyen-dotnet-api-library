@@ -302,6 +302,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var bankIdentification = new BankIdentification();
             if (country.IsSet)
                 bankIdentification.Country = country.Value;

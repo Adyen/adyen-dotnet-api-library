@@ -377,6 +377,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var balanceAccountUpdateRequest = new BalanceAccountUpdateRequest();
             if (accountHolderId.IsSet)
                 balanceAccountUpdateRequest.AccountHolderId = accountHolderId.Value;

@@ -179,6 +179,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var capitalGrantAccount = new CapitalGrantAccount();
             if (balances.IsSet)
                 capitalGrantAccount.Balances = balances.Value;

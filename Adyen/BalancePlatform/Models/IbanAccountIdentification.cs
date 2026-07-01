@@ -172,7 +172,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.</value>
         [JsonPropertyName("iban")]
-        public string Iban { get; set; }
+        public string? Iban { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Bic"/> will be populated.
@@ -261,17 +261,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!iban.IsSet)
-                throw new ArgumentException("Property is required for class IbanAccountIdentification.", nameof(iban));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class IbanAccountIdentification.", nameof(type));
 
             var ibanAccountIdentification = new IbanAccountIdentification();
-            ibanAccountIdentification.Iban = iban.Value!;
+            if (iban.IsSet)
+                ibanAccountIdentification.Iban = iban.Value!;
             if (bic.IsSet)
                 ibanAccountIdentification.Bic = bic.Value;
-            ibanAccountIdentification.Type = type.Value!;
+            if (type.IsSet)
+                ibanAccountIdentification.Type = type.Value!;
             return ibanAccountIdentification;
         }
 

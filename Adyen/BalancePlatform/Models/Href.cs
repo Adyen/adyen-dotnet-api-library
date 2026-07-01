@@ -121,6 +121,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var href = new Href();
             if (varHref.IsSet)
                 href.VarHref = varHref.Value;

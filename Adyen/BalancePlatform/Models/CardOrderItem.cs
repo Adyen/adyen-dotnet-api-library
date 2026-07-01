@@ -259,6 +259,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var cardOrderItem = new CardOrderItem();
             if (balancePlatform.IsSet)
                 cardOrderItem.BalancePlatform = balancePlatform.Value;

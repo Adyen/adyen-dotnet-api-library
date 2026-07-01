@@ -122,6 +122,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var networkTokenActivationDataResponse = new NetworkTokenActivationDataResponse();
             if (sdkInput.IsSet)
                 networkTokenActivationDataResponse.SdkInput = sdkInput.Value;

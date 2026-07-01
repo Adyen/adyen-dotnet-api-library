@@ -122,6 +122,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var associationInitiateResponse = new AssociationInitiateResponse();
             if (sdkInput.IsSet)
                 associationInitiateResponse.SdkInput = sdkInput.Value;

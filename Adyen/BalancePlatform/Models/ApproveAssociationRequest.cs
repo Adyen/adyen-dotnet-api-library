@@ -63,14 +63,14 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The unique identifier of the entity.</value>
         [JsonPropertyName("entityId")]
-        public string EntityId { get; set; }
+        public string? EntityId { get; set; }
 
         /// <summary>
         /// List of device ids associated to the entity that will be approved.
         /// </summary>
         /// <value>List of device ids associated to the entity that will be approved.</value>
         [JsonPropertyName("scaDeviceIds")]
-        public List<string> ScaDeviceIds { get; set; }
+        public List<string>? ScaDeviceIds { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -151,23 +151,16 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!entityId.IsSet)
-                throw new ArgumentException("Property is required for class ApproveAssociationRequest.", nameof(entityId));
-
-            if (!entityType.IsSet)
-                throw new ArgumentException("Property is required for class ApproveAssociationRequest.", nameof(entityType));
-
-            if (!scaDeviceIds.IsSet)
-                throw new ArgumentException("Property is required for class ApproveAssociationRequest.", nameof(scaDeviceIds));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class ApproveAssociationRequest.", nameof(status));
 
             var approveAssociationRequest = new ApproveAssociationRequest();
-            approveAssociationRequest.EntityId = entityId.Value!;
-            approveAssociationRequest.EntityType = entityType.Value!;
-            approveAssociationRequest.ScaDeviceIds = scaDeviceIds.Value!;
-            approveAssociationRequest.Status = status.Value!;
+            if (entityId.IsSet)
+                approveAssociationRequest.EntityId = entityId.Value!;
+            if (entityType.IsSet)
+                approveAssociationRequest.EntityType = entityType.Value!;
+            if (scaDeviceIds.IsSet)
+                approveAssociationRequest.ScaDeviceIds = scaDeviceIds.Value!;
+            if (status.IsSet)
+                approveAssociationRequest.Status = status.Value!;
             return approveAssociationRequest;
         }
 

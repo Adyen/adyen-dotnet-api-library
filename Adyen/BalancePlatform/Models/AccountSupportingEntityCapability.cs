@@ -666,6 +666,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var accountSupportingEntityCapability = new AccountSupportingEntityCapability();
             if (allowed.IsSet)
                 accountSupportingEntityCapability.Allowed = allowed.Value;

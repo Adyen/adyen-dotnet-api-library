@@ -51,13 +51,13 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>Contains a list of the Balance Account payout schedules.</value>
         [JsonPropertyName("balanceAccountPayoutSchedules")]
-        public List<BalanceAccountConfiguration> BalanceAccountPayoutSchedules { get; set; }
+        public List<BalanceAccountConfiguration>? BalanceAccountPayoutSchedules { get; set; }
 
         /// <summary>
         /// <see cref="Link"/>.
         /// </summary>
         [JsonPropertyName("link")]
-        public Link Link { get; set; }
+        public Link? Link { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -126,15 +126,12 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!balanceAccountPayoutSchedules.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccountConfigurations.", nameof(balanceAccountPayoutSchedules));
-
-            if (!link.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccountConfigurations.", nameof(link));
 
             var balanceAccountConfigurations = new BalanceAccountConfigurations();
-            balanceAccountConfigurations.BalanceAccountPayoutSchedules = balanceAccountPayoutSchedules.Value!;
-            balanceAccountConfigurations.Link = link.Value!;
+            if (balanceAccountPayoutSchedules.IsSet)
+                balanceAccountConfigurations.BalanceAccountPayoutSchedules = balanceAccountPayoutSchedules.Value!;
+            if (link.IsSet)
+                balanceAccountConfigurations.Link = link.Value!;
             return balanceAccountConfigurations;
         }
 

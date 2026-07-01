@@ -50,14 +50,14 @@ namespace Adyen.BalancePlatform.Models
         /// <see cref="Link"/>.
         /// </summary>
         [JsonPropertyName("link")]
-        public Link Link { get; set; }
+        public Link? Link { get; set; }
 
         /// <summary>
         /// Contains a list of the mandates.
         /// </summary>
         /// <value>Contains a list of the mandates.</value>
         [JsonPropertyName("mandates")]
-        public List<Mandate> Mandates { get; set; }
+        public List<Mandate>? Mandates { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -126,15 +126,12 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!link.IsSet)
-                throw new ArgumentException("Property is required for class ListMandatesResponse.", nameof(link));
-
-            if (!mandates.IsSet)
-                throw new ArgumentException("Property is required for class ListMandatesResponse.", nameof(mandates));
 
             var listMandatesResponse = new ListMandatesResponse();
-            listMandatesResponse.Link = link.Value!;
-            listMandatesResponse.Mandates = mandates.Value!;
+            if (link.IsSet)
+                listMandatesResponse.Link = link.Value!;
+            if (mandates.IsSet)
+                listMandatesResponse.Mandates = mandates.Value!;
             return listMandatesResponse;
         }
 

@@ -283,6 +283,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var stringMatch = new StringMatch();
             if (operation.IsSet)
                 stringMatch.Operation = operation.Value;

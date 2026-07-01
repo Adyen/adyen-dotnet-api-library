@@ -249,13 +249,12 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AmountNonZeroDecimalsRequirement.", nameof(type));
 
             var amountNonZeroDecimalsRequirement = new AmountNonZeroDecimalsRequirement();
             if (description.IsSet)
                 amountNonZeroDecimalsRequirement.Description = description.Value;
-            amountNonZeroDecimalsRequirement.Type = type.Value!;
+            if (type.IsSet)
+                amountNonZeroDecimalsRequirement.Type = type.Value!;
             return amountNonZeroDecimalsRequirement;
         }
 

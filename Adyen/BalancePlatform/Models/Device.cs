@@ -312,6 +312,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var device = new Device();
             if (id.IsSet)
                 device.Id = id.Value;

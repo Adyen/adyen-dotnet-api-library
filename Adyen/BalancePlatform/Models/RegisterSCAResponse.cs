@@ -179,6 +179,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var registerSCAResponse = new RegisterSCAResponse();
             if (id.IsSet)
                 registerSCAResponse.Id = id.Value;

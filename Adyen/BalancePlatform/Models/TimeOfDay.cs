@@ -141,6 +141,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var timeOfDay = new TimeOfDay();
             if (endTime.IsSet)
                 timeOfDay.EndTime = endTime.Value;

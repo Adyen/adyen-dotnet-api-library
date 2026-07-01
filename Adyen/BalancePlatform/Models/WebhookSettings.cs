@@ -122,6 +122,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var webhookSettings = new WebhookSettings();
             if (varWebhookSettings.IsSet)
                 webhookSettings.VarWebhookSettings = varWebhookSettings.Value;

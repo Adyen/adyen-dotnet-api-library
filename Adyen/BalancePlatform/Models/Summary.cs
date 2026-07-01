@@ -51,14 +51,14 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The unique identifier of the legal entity.</value>
         [JsonPropertyName("legalEntityId")]
-        public string LegalEntityId { get; set; }
+        public string? LegalEntityId { get; set; }
 
         /// <summary>
         /// The tax years for which the legal entity has a tax form.
         /// </summary>
         /// <value>The tax years for which the legal entity has a tax form.</value>
         [JsonPropertyName("taxYears")]
-        public List<int> TaxYears { get; set; }
+        public List<int>? TaxYears { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!legalEntityId.IsSet)
-                throw new ArgumentException("Property is required for class Summary.", nameof(legalEntityId));
-
-            if (!taxYears.IsSet)
-                throw new ArgumentException("Property is required for class Summary.", nameof(taxYears));
 
             var summary = new Summary();
-            summary.LegalEntityId = legalEntityId.Value!;
-            summary.TaxYears = taxYears.Value!;
+            if (legalEntityId.IsSet)
+                summary.LegalEntityId = legalEntityId.Value!;
+            if (taxYears.IsSet)
+                summary.TaxYears = taxYears.Value!;
             return summary;
         }
 

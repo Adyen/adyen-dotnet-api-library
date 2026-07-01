@@ -124,8 +124,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class MandateAccountIdentification.", nameof(type));
 
             var mandateAccountIdentification = new MandateAccountIdentification();
             return mandateAccountIdentification;

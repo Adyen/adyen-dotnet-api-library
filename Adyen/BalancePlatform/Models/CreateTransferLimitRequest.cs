@@ -62,7 +62,7 @@ namespace Adyen.BalancePlatform.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="EndsAt"/> will be populated.
@@ -223,19 +223,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class CreateTransferLimitRequest.", nameof(amount));
-
-            if (!scope.IsSet)
-                throw new ArgumentException("Property is required for class CreateTransferLimitRequest.", nameof(scope));
-
-            if (!transferType.IsSet)
-                throw new ArgumentException("Property is required for class CreateTransferLimitRequest.", nameof(transferType));
 
             var createTransferLimitRequest = new CreateTransferLimitRequest();
-            createTransferLimitRequest.Amount = amount.Value!;
-            createTransferLimitRequest.Scope = scope.Value!;
-            createTransferLimitRequest.TransferType = transferType.Value!;
+            if (amount.IsSet)
+                createTransferLimitRequest.Amount = amount.Value!;
+            if (scope.IsSet)
+                createTransferLimitRequest.Scope = scope.Value!;
+            if (transferType.IsSet)
+                createTransferLimitRequest.TransferType = transferType.Value!;
             if (endsAt.IsSet)
                 createTransferLimitRequest.EndsAt = endsAt.Value;
             if (reference.IsSet)

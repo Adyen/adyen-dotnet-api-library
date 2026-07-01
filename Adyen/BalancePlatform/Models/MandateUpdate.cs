@@ -122,6 +122,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var mandateUpdate = new MandateUpdate();
             if (paymentInstrumentId.IsSet)
                 mandateUpdate.PaymentInstrumentId = paymentInstrumentId.Value;

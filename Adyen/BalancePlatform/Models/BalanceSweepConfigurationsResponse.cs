@@ -65,7 +65,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>List of sweeps associated with the balance account.</value>
         [JsonPropertyName("sweeps")]
-        public List<SweepConfigurationV2> Sweeps { get; set; }
+        public List<SweepConfigurationV2>? Sweeps { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,19 +139,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!hasNext.IsSet)
-                throw new ArgumentException("Property is required for class BalanceSweepConfigurationsResponse.", nameof(hasNext));
-
-            if (!hasPrevious.IsSet)
-                throw new ArgumentException("Property is required for class BalanceSweepConfigurationsResponse.", nameof(hasPrevious));
-
-            if (!sweeps.IsSet)
-                throw new ArgumentException("Property is required for class BalanceSweepConfigurationsResponse.", nameof(sweeps));
 
             var balanceSweepConfigurationsResponse = new BalanceSweepConfigurationsResponse();
-            balanceSweepConfigurationsResponse.HasNext = hasNext.Value!.Value;
-            balanceSweepConfigurationsResponse.HasPrevious = hasPrevious.Value!.Value;
-            balanceSweepConfigurationsResponse.Sweeps = sweeps.Value!;
+            if (hasNext.IsSet)
+                balanceSweepConfigurationsResponse.HasNext = hasNext.Value!.Value;
+            if (hasPrevious.IsSet)
+                balanceSweepConfigurationsResponse.HasPrevious = hasPrevious.Value!.Value;
+            if (sweeps.IsSet)
+                balanceSweepConfigurationsResponse.Sweeps = sweeps.Value!;
             return balanceSweepConfigurationsResponse;
         }
 

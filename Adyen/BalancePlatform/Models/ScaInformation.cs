@@ -134,11 +134,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class ScaInformation.", nameof(status));
 
             var scaInformation = new ScaInformation();
-            scaInformation.Status = status.Value!;
+            if (status.IsSet)
+                scaInformation.Status = status.Value!;
             if (exemption.IsSet)
                 scaInformation.Exemption = exemption.Value;
             return scaInformation;

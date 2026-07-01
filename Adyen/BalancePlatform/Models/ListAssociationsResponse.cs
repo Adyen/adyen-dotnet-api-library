@@ -50,14 +50,14 @@ namespace Adyen.BalancePlatform.Models
         /// <see cref="Links"/>.
         /// </summary>
         [JsonPropertyName("_links")]
-        public Link Links { get; set; }
+        public Link? Links { get; set; }
 
         /// <summary>
         /// Contains a list of associations and their corresponding details.
         /// </summary>
         /// <value>Contains a list of associations and their corresponding details.</value>
         [JsonPropertyName("data")]
-        public List<AssociationListing> Data { get; set; }
+        public List<AssociationListing>? Data { get; set; }
 
         /// <summary>
         /// The total number of items available.
@@ -152,23 +152,16 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!links.IsSet)
-                throw new ArgumentException("Property is required for class ListAssociationsResponse.", nameof(links));
-
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ListAssociationsResponse.", nameof(data));
-
-            if (!itemsTotal.IsSet)
-                throw new ArgumentException("Property is required for class ListAssociationsResponse.", nameof(itemsTotal));
-
-            if (!pagesTotal.IsSet)
-                throw new ArgumentException("Property is required for class ListAssociationsResponse.", nameof(pagesTotal));
 
             var listAssociationsResponse = new ListAssociationsResponse();
-            listAssociationsResponse.Links = links.Value!;
-            listAssociationsResponse.Data = data.Value!;
-            listAssociationsResponse.ItemsTotal = itemsTotal.Value!.Value;
-            listAssociationsResponse.PagesTotal = pagesTotal.Value!.Value;
+            if (links.IsSet)
+                listAssociationsResponse.Links = links.Value!;
+            if (data.IsSet)
+                listAssociationsResponse.Data = data.Value!;
+            if (itemsTotal.IsSet)
+                listAssociationsResponse.ItemsTotal = itemsTotal.Value!.Value;
+            if (pagesTotal.IsSet)
+                listAssociationsResponse.PagesTotal = pagesTotal.Value!.Value;
             return listAssociationsResponse;
         }
 

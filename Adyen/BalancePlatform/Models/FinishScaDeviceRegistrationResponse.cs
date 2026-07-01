@@ -121,6 +121,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var finishScaDeviceRegistrationResponse = new FinishScaDeviceRegistrationResponse();
             if (scaDevice.IsSet)
                 finishScaDeviceRegistrationResponse.ScaDevice = scaDevice.Value;

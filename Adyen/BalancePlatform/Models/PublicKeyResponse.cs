@@ -51,14 +51,14 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The public key you need for encrypting a symmetric session key.</value>
         [JsonPropertyName("publicKey")]
-        public string PublicKey { get; set; }
+        public string? PublicKey { get; set; }
 
         /// <summary>
         /// The expiry date of the public key.
         /// </summary>
         /// <value>The expiry date of the public key.</value>
         [JsonPropertyName("publicKeyExpiryDate")]
-        public string PublicKeyExpiryDate { get; set; }
+        public string? PublicKeyExpiryDate { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!publicKey.IsSet)
-                throw new ArgumentException("Property is required for class PublicKeyResponse.", nameof(publicKey));
-
-            if (!publicKeyExpiryDate.IsSet)
-                throw new ArgumentException("Property is required for class PublicKeyResponse.", nameof(publicKeyExpiryDate));
 
             var publicKeyResponse = new PublicKeyResponse();
-            publicKeyResponse.PublicKey = publicKey.Value!;
-            publicKeyResponse.PublicKeyExpiryDate = publicKeyExpiryDate.Value!;
+            if (publicKey.IsSet)
+                publicKeyResponse.PublicKey = publicKey.Value!;
+            if (publicKeyExpiryDate.IsSet)
+                publicKeyResponse.PublicKeyExpiryDate = publicKeyExpiryDate.Value!;
             return publicKeyResponse;
         }
 

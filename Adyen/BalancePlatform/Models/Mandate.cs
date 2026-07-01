@@ -264,6 +264,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var mandate = new Mandate();
             if (balanceAccountId.IsSet)
                 mandate.BalanceAccountId = balanceAccountId.Value;

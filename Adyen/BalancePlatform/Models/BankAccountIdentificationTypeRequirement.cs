@@ -561,15 +561,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class BankAccountIdentificationTypeRequirement.", nameof(type));
 
             var bankAccountIdentificationTypeRequirement = new BankAccountIdentificationTypeRequirement();
             if (bankAccountIdentificationTypes.IsSet)
                 bankAccountIdentificationTypeRequirement.BankAccountIdentificationTypes = bankAccountIdentificationTypes.Value;
             if (description.IsSet)
                 bankAccountIdentificationTypeRequirement.Description = description.Value;
-            bankAccountIdentificationTypeRequirement.Type = type.Value!;
+            if (type.IsSet)
+                bankAccountIdentificationTypeRequirement.Type = type.Value!;
             return bankAccountIdentificationTypeRequirement;
         }
 

@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>A list of tax form summaries, where each summary consists of the legal entity and the tax years in which the legal entity has a tax form.</value>
         [JsonPropertyName("data")]
-        public List<Summary> Data { get; set; }
+        public List<Summary>? Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class TaxFormSummaryResponse.", nameof(data));
 
             var taxFormSummaryResponse = new TaxFormSummaryResponse();
-            taxFormSummaryResponse.Data = data.Value!;
+            if (data.IsSet)
+                taxFormSummaryResponse.Data = data.Value!;
             return taxFormSummaryResponse;
         }
 

@@ -141,6 +141,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var riskScores = new RiskScores();
             if (mastercard.IsSet)
                 riskScores.Mastercard = mastercard.Value;

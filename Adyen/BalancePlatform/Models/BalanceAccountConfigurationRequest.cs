@@ -199,14 +199,14 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The unique identifier of the payout schedule that is applied to the balance account.</value>
         [JsonPropertyName("balancePlatformPayoutScheduleId")]
-        public string BalancePlatformPayoutScheduleId { get; set; }
+        public string? BalancePlatformPayoutScheduleId { get; set; }
 
         /// <summary>
         /// The unique identifier of the transfer instrument to which the funds are paid out.
         /// </summary>
         /// <value>The unique identifier of the transfer instrument to which the funds are paid out.</value>
         [JsonPropertyName("transferInstrumentId")]
-        public string TransferInstrumentId { get; set; }
+        public string? TransferInstrumentId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Currency"/> will be populated.
@@ -473,19 +473,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!balancePlatformPayoutScheduleId.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccountConfigurationRequest.", nameof(balancePlatformPayoutScheduleId));
-
-            if (!frequency.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccountConfigurationRequest.", nameof(frequency));
-
-            if (!transferInstrumentId.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccountConfigurationRequest.", nameof(transferInstrumentId));
 
             var balanceAccountConfigurationRequest = new BalanceAccountConfigurationRequest();
-            balanceAccountConfigurationRequest.BalancePlatformPayoutScheduleId = balancePlatformPayoutScheduleId.Value!;
-            balanceAccountConfigurationRequest.Frequency = frequency.Value!;
-            balanceAccountConfigurationRequest.TransferInstrumentId = transferInstrumentId.Value!;
+            if (balancePlatformPayoutScheduleId.IsSet)
+                balanceAccountConfigurationRequest.BalancePlatformPayoutScheduleId = balancePlatformPayoutScheduleId.Value!;
+            if (frequency.IsSet)
+                balanceAccountConfigurationRequest.Frequency = frequency.Value!;
+            if (transferInstrumentId.IsSet)
+                balanceAccountConfigurationRequest.TransferInstrumentId = transferInstrumentId.Value!;
             if (currency.IsSet)
                 balanceAccountConfigurationRequest.Currency = currency.Value;
             if (description.IsSet)

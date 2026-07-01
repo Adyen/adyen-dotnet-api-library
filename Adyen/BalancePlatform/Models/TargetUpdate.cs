@@ -274,6 +274,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var targetUpdate = new TargetUpdate();
             if (id.IsSet)
                 targetUpdate.Id = id.Value;

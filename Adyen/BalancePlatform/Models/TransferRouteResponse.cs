@@ -122,6 +122,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var transferRouteResponse = new TransferRouteResponse();
             if (transferRoutes.IsSet)
                 transferRouteResponse.TransferRoutes = transferRoutes.Value;

@@ -893,20 +893,20 @@ namespace Adyen.BalancePlatform.Models
         /// <see cref="Counterparty"/>.
         /// </summary>
         [JsonPropertyName("counterparty")]
-        public SweepCounterparty Counterparty { get; set; }
+        public SweepCounterparty? Counterparty { get; set; }
 
         /// <summary>
         /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**.  The sweep currency must match any of the [balances currencies](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__resParam_balances).
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**.  The sweep currency must match any of the [balances currencies](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__resParam_balances).</value>
         [JsonPropertyName("currency")]
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         /// <summary>
         /// <see cref="Schedule"/>.
         /// </summary>
         [JsonPropertyName("schedule")]
-        public SweepSchedule Schedule { get; set; }
+        public SweepSchedule? Schedule { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
@@ -1154,19 +1154,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!counterparty.IsSet)
-                throw new ArgumentException("Property is required for class CreateSweepConfigurationV2.", nameof(counterparty));
-
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class CreateSweepConfigurationV2.", nameof(currency));
-
-            if (!schedule.IsSet)
-                throw new ArgumentException("Property is required for class CreateSweepConfigurationV2.", nameof(schedule));
 
             var createSweepConfigurationV2 = new CreateSweepConfigurationV2();
-            createSweepConfigurationV2.Counterparty = counterparty.Value!;
-            createSweepConfigurationV2.Currency = currency.Value!;
-            createSweepConfigurationV2.Schedule = schedule.Value!;
+            if (counterparty.IsSet)
+                createSweepConfigurationV2.Counterparty = counterparty.Value!;
+            if (currency.IsSet)
+                createSweepConfigurationV2.Currency = currency.Value!;
+            if (schedule.IsSet)
+                createSweepConfigurationV2.Schedule = schedule.Value!;
             if (category.IsSet)
                 createSweepConfigurationV2.Category = category.Value;
             if (description.IsSet)

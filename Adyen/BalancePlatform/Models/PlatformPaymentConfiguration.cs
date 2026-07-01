@@ -141,6 +141,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var platformPaymentConfiguration = new PlatformPaymentConfiguration();
             if (salesDayClosingTime.IsSet)
                 platformPaymentConfiguration.SalesDayClosingTime = salesDayClosingTime.Value;

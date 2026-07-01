@@ -554,6 +554,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var transferRoute = new TransferRoute();
             if (category.IsSet)
                 transferRoute.Category = category.Value;

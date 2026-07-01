@@ -68,14 +68,14 @@ namespace Adyen.BalancePlatform.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The unique identifier of the transfer limit.
         /// </summary>
         /// <value>The unique identifier of the transfer limit.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// The date and time when the transfer limit becomes active. If you specify a date in the future, we will schedule a transfer limit.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): **YYYY-MM-DDThh:mm:ss.sssTZD**
@@ -240,31 +240,20 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class TransferLimit.", nameof(amount));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class TransferLimit.", nameof(id));
-
-            if (!limitStatus.IsSet)
-                throw new ArgumentException("Property is required for class TransferLimit.", nameof(limitStatus));
-
-            if (!scope.IsSet)
-                throw new ArgumentException("Property is required for class TransferLimit.", nameof(scope));
-
-            if (!startsAt.IsSet)
-                throw new ArgumentException("Property is required for class TransferLimit.", nameof(startsAt));
-
-            if (!transferType.IsSet)
-                throw new ArgumentException("Property is required for class TransferLimit.", nameof(transferType));
 
             var transferLimit = new TransferLimit();
-            transferLimit.Amount = amount.Value!;
-            transferLimit.Id = id.Value!;
-            transferLimit.LimitStatus = limitStatus.Value!;
-            transferLimit.Scope = scope.Value!;
-            transferLimit.StartsAt = startsAt.Value!.Value;
-            transferLimit.TransferType = transferType.Value!;
+            if (amount.IsSet)
+                transferLimit.Amount = amount.Value!;
+            if (id.IsSet)
+                transferLimit.Id = id.Value!;
+            if (limitStatus.IsSet)
+                transferLimit.LimitStatus = limitStatus.Value!;
+            if (scope.IsSet)
+                transferLimit.Scope = scope.Value!;
+            if (startsAt.IsSet)
+                transferLimit.StartsAt = startsAt.Value!.Value;
+            if (transferType.IsSet)
+                transferLimit.TransferType = transferType.Value!;
             if (endsAt.IsSet)
                 transferLimit.EndsAt = endsAt.Value;
             if (reference.IsSet)

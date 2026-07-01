@@ -76,7 +76,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The unique identifier of the entity.</value>
         [JsonPropertyName("entityId")]
-        public string EntityId { get; set; }
+        public string? EntityId { get; set; }
 
         /// <summary>
         /// The unique identifier of the SCA device.
@@ -84,7 +84,7 @@ namespace Adyen.BalancePlatform.Models
         /// <value>The unique identifier of the SCA device.</value>
         /* <example>BSDR11111111111A1AAA1AAAAA1AA1</example> */
         [JsonPropertyName("scaDeviceId")]
-        public string ScaDeviceId { get; set; }
+        public string? ScaDeviceId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ScaDeviceName"/> will be populated.
@@ -200,31 +200,20 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class AssociationListing.", nameof(createdAt));
-
-            if (!entityId.IsSet)
-                throw new ArgumentException("Property is required for class AssociationListing.", nameof(entityId));
-
-            if (!entityType.IsSet)
-                throw new ArgumentException("Property is required for class AssociationListing.", nameof(entityType));
-
-            if (!scaDeviceId.IsSet)
-                throw new ArgumentException("Property is required for class AssociationListing.", nameof(scaDeviceId));
-
-            if (!scaDeviceType.IsSet)
-                throw new ArgumentException("Property is required for class AssociationListing.", nameof(scaDeviceType));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class AssociationListing.", nameof(status));
 
             var associationListing = new AssociationListing();
-            associationListing.CreatedAt = createdAt.Value!.Value;
-            associationListing.EntityId = entityId.Value!;
-            associationListing.EntityType = entityType.Value!;
-            associationListing.ScaDeviceId = scaDeviceId.Value!;
-            associationListing.ScaDeviceType = scaDeviceType.Value!;
-            associationListing.Status = status.Value!;
+            if (createdAt.IsSet)
+                associationListing.CreatedAt = createdAt.Value!.Value;
+            if (entityId.IsSet)
+                associationListing.EntityId = entityId.Value!;
+            if (entityType.IsSet)
+                associationListing.EntityType = entityType.Value!;
+            if (scaDeviceId.IsSet)
+                associationListing.ScaDeviceId = scaDeviceId.Value!;
+            if (scaDeviceType.IsSet)
+                associationListing.ScaDeviceType = scaDeviceType.Value!;
+            if (status.IsSet)
+                associationListing.Status = status.Value!;
             if (scaDeviceName.IsSet)
                 associationListing.ScaDeviceName = scaDeviceName.Value;
             return associationListing;

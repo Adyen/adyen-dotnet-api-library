@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>A base64-encoded block with the data required to register the SCA device. You obtain this information by using Adyen's authentication SDK.</value>
         [JsonPropertyName("sdkOutput")]
-        public string SdkOutput { get; set; }
+        public string? SdkOutput { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!sdkOutput.IsSet)
-                throw new ArgumentException("Property is required for class FinishScaDeviceRegistrationRequest.", nameof(sdkOutput));
 
             var finishScaDeviceRegistrationRequest = new FinishScaDeviceRegistrationRequest();
-            finishScaDeviceRegistrationRequest.SdkOutput = sdkOutput.Value!;
+            if (sdkOutput.IsSet)
+                finishScaDeviceRegistrationRequest.SdkOutput = sdkOutput.Value!;
             return finishScaDeviceRegistrationRequest;
         }
 

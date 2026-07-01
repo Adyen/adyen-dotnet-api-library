@@ -172,7 +172,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The 26-digit bank account number ([Numer rachunku](https://pl.wikipedia.org/wiki/Numer_Rachunku_Bankowego)), without separators or whitespace.</value>
         [JsonPropertyName("accountNumber")]
-        public string AccountNumber { get; set; }
+        public string? AccountNumber { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -242,15 +242,12 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class PLLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PLLocalAccountIdentification.", nameof(type));
 
             var pLLocalAccountIdentification = new PLLocalAccountIdentification();
-            pLLocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            pLLocalAccountIdentification.Type = type.Value!;
+            if (accountNumber.IsSet)
+                pLLocalAccountIdentification.AccountNumber = accountNumber.Value!;
+            if (type.IsSet)
+                pLLocalAccountIdentification.Type = type.Value!;
             return pLLocalAccountIdentification;
         }
 

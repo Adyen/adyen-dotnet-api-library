@@ -330,14 +330,14 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The unique identifier assigned to the balance platform associated with the account holder.</value>
         [JsonPropertyName("balancePlatform")]
-        public string BalancePlatform { get; set; }
+        public string? BalancePlatform { get; set; }
 
         /// <summary>
         /// The three-character ISO currency code of transfer. For example, **USD** or **EUR**.
         /// </summary>
         /// <value>The three-character ISO currency code of transfer. For example, **USD** or **EUR**.</value>
         [JsonPropertyName("currency")]
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="BalanceAccountId"/> will be populated.
@@ -487,19 +487,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!balancePlatform.IsSet)
-                throw new ArgumentException("Property is required for class TransferRouteRequest.", nameof(balancePlatform));
-
-            if (!category.IsSet)
-                throw new ArgumentException("Property is required for class TransferRouteRequest.", nameof(category));
-
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class TransferRouteRequest.", nameof(currency));
 
             var transferRouteRequest = new TransferRouteRequest();
-            transferRouteRequest.BalancePlatform = balancePlatform.Value!;
-            transferRouteRequest.Category = category.Value!;
-            transferRouteRequest.Currency = currency.Value!;
+            if (balancePlatform.IsSet)
+                transferRouteRequest.BalancePlatform = balancePlatform.Value!;
+            if (category.IsSet)
+                transferRouteRequest.Category = category.Value!;
+            if (currency.IsSet)
+                transferRouteRequest.Currency = currency.Value!;
             if (balanceAccountId.IsSet)
                 transferRouteRequest.BalanceAccountId = balanceAccountId.Value;
             if (counterparty.IsSet)

@@ -51,14 +51,14 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The unique identifier of the [balance platform](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balancePlatforms/{id}__queryParam_id) to which the payment instrument group belongs.</value>
         [JsonPropertyName("balancePlatform")]
-        public string BalancePlatform { get; set; }
+        public string? BalancePlatform { get; set; }
 
         /// <summary>
         /// The tx variant of the payment instrument group.
         /// </summary>
         /// <value>The tx variant of the payment instrument group.</value>
         [JsonPropertyName("txVariant")]
-        public string TxVariant { get; set; }
+        public string? TxVariant { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
@@ -203,15 +203,12 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!balancePlatform.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrumentGroup.", nameof(balancePlatform));
-
-            if (!txVariant.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrumentGroup.", nameof(txVariant));
 
             var paymentInstrumentGroup = new PaymentInstrumentGroup();
-            paymentInstrumentGroup.BalancePlatform = balancePlatform.Value!;
-            paymentInstrumentGroup.TxVariant = txVariant.Value!;
+            if (balancePlatform.IsSet)
+                paymentInstrumentGroup.BalancePlatform = balancePlatform.Value!;
+            if (txVariant.IsSet)
+                paymentInstrumentGroup.TxVariant = txVariant.Value!;
             if (description.IsSet)
                 paymentInstrumentGroup.Description = description.Value;
             if (id.IsSet)

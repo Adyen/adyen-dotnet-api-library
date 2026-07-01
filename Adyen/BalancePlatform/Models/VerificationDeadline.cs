@@ -651,7 +651,7 @@ namespace Adyen.BalancePlatform.Models
         /// <value>The names of the capabilities to be disallowed.</value>
         /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("capabilities")]
-        public List<VerificationDeadline.CapabilitiesEnum> Capabilities { get; set; }
+        public List<VerificationDeadline.CapabilitiesEnum>? Capabilities { get; set; }
 
         /// <summary>
         /// The date that verification is due by before capabilities are disallowed.
@@ -753,15 +753,12 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!capabilities.IsSet)
-                throw new ArgumentException("Property is required for class VerificationDeadline.", nameof(capabilities));
-
-            if (!expiresAt.IsSet)
-                throw new ArgumentException("Property is required for class VerificationDeadline.", nameof(expiresAt));
 
             var verificationDeadline = new VerificationDeadline();
-            verificationDeadline.Capabilities = capabilities.Value!;
-            verificationDeadline.ExpiresAt = expiresAt.Value!.Value;
+            if (capabilities.IsSet)
+                verificationDeadline.Capabilities = capabilities.Value!;
+            if (expiresAt.IsSet)
+                verificationDeadline.ExpiresAt = expiresAt.Value!.Value;
             if (entityIds.IsSet)
                 verificationDeadline.EntityIds = entityIds.Value;
             return verificationDeadline;
