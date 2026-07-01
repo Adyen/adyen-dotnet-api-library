@@ -952,6 +952,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var modification = new Modification();
             if (direction.IsSet)
                 modification.Direction = direction.Value;

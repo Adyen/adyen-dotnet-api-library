@@ -500,17 +500,14 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class InternalReviewTrackingData.", nameof(status));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class InternalReviewTrackingData.", nameof(type));
 
             var internalReviewTrackingData = new InternalReviewTrackingData();
-            internalReviewTrackingData.Status = status.Value!;
+            if (status.IsSet)
+                internalReviewTrackingData.Status = status.Value!;
             if (reason.IsSet)
                 internalReviewTrackingData.Reason = reason.Value;
-            internalReviewTrackingData.Type = type.Value!;
+            if (type.IsSet)
+                internalReviewTrackingData.Type = type.Value!;
             return internalReviewTrackingData;
         }
 

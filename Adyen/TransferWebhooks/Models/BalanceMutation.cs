@@ -179,6 +179,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var balanceMutation = new BalanceMutation();
             if (balance.IsSet)
                 balanceMutation.Balance = balance.Value;

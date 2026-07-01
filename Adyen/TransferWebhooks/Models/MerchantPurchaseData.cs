@@ -267,15 +267,14 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class MerchantPurchaseData.", nameof(type));
 
             var merchantPurchaseData = new MerchantPurchaseData();
             if (airline.IsSet)
                 merchantPurchaseData.Airline = airline.Value;
             if (lodging.IsSet)
                 merchantPurchaseData.Lodging = lodging.Value;
-            merchantPurchaseData.Type = type.Value!;
+            if (type.IsSet)
+                merchantPurchaseData.Type = type.Value!;
             return merchantPurchaseData;
         }
 

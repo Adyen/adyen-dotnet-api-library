@@ -601,6 +601,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var platformPayment = new PlatformPayment();
             if (modificationMerchantReference.IsSet)
                 platformPayment.ModificationMerchantReference = modificationMerchantReference.Value;

@@ -122,6 +122,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var threeDSecure = new ThreeDSecure();
             if (acsTransactionId.IsSet)
                 threeDSecure.AcsTransactionId = acsTransactionId.Value;

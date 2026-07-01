@@ -195,6 +195,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var counterpartyV3 = new CounterpartyV3();
             if (balanceAccountId.IsSet)
                 counterpartyV3.BalanceAccountId = balanceAccountId.Value;

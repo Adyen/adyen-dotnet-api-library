@@ -267,15 +267,14 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class InterchangeData.", nameof(type));
 
             var interchangeData = new InterchangeData();
             if (interchangeAmount.IsSet)
                 interchangeData.InterchangeAmount = interchangeAmount.Value;
             if (interchangeRateIndicator.IsSet)
                 interchangeData.InterchangeRateIndicator = interchangeRateIndicator.Value;
-            interchangeData.Type = type.Value!;
+            if (type.IsSet)
+                interchangeData.Type = type.Value!;
             return interchangeData;
         }
 

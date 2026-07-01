@@ -189,6 +189,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var directDebitInformation = new DirectDebitInformation();
             if (dateOfSignature.IsSet)
                 directDebitInformation.DateOfSignature = dateOfSignature.Value;

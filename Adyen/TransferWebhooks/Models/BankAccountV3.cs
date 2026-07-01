@@ -50,13 +50,13 @@ namespace Adyen.TransferWebhooks.Models
         /// <see cref="AccountHolder"/>.
         /// </summary>
         [JsonPropertyName("accountHolder")]
-        public PartyIdentification AccountHolder { get; set; }
+        public PartyIdentification? AccountHolder { get; set; }
 
         /// <summary>
         /// <see cref="AccountIdentification"/>.
         /// </summary>
         [JsonPropertyName("accountIdentification")]
-        public BankAccountV3AccountIdentification AccountIdentification { get; set; }
+        public BankAccountV3AccountIdentification? AccountIdentification { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="StoredPaymentMethodId"/> will be populated.
@@ -144,15 +144,12 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!accountHolder.IsSet)
-                throw new ArgumentException("Property is required for class BankAccountV3.", nameof(accountHolder));
-
-            if (!accountIdentification.IsSet)
-                throw new ArgumentException("Property is required for class BankAccountV3.", nameof(accountIdentification));
 
             var bankAccountV3 = new BankAccountV3();
-            bankAccountV3.AccountHolder = accountHolder.Value!;
-            bankAccountV3.AccountIdentification = accountIdentification.Value!;
+            if (accountHolder.IsSet)
+                bankAccountV3.AccountHolder = accountHolder.Value!;
+            if (accountIdentification.IsSet)
+                bankAccountV3.AccountIdentification = accountIdentification.Value!;
             if (storedPaymentMethodId.IsSet)
                 bankAccountV3.StoredPaymentMethodId = storedPaymentMethodId.Value;
             return bankAccountV3;

@@ -172,7 +172,7 @@ namespace Adyen.TransferWebhooks.Models
         /// </summary>
         /// <value>The 24-digit bank account number, without separators or whitespace.</value>
         [JsonPropertyName("accountNumber")]
-        public string AccountNumber { get; set; }
+        public string? AccountNumber { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -242,15 +242,12 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class HULocalAccountIdentification.", nameof(accountNumber));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class HULocalAccountIdentification.", nameof(type));
 
             var hULocalAccountIdentification = new HULocalAccountIdentification();
-            hULocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            hULocalAccountIdentification.Type = type.Value!;
+            if (accountNumber.IsSet)
+                hULocalAccountIdentification.AccountNumber = accountNumber.Value!;
+            if (type.IsSet)
+                hULocalAccountIdentification.Type = type.Value!;
             return hULocalAccountIdentification;
         }
 

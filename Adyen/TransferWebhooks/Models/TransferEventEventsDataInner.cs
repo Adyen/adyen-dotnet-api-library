@@ -322,8 +322,6 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TransferEventEventsDataInner.", nameof(type));
 
             if (interchangeData != null)
                 return new TransferEventEventsDataInner(interchangeData);

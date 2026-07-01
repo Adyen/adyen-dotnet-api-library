@@ -430,6 +430,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var ultimatePartyIdentification = new UltimatePartyIdentification();
             if (address.IsSet)
                 ultimatePartyIdentification.Address = address.Value;

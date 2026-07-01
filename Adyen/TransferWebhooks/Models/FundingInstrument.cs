@@ -302,6 +302,7 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+
             var fundingInstrument = new FundingInstrument();
             if (cardIdentification.IsSet)
                 fundingInstrument.CardIdentification = cardIdentification.Value;

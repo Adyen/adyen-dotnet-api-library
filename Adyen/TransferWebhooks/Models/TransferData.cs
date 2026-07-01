@@ -2458,7 +2458,7 @@ namespace Adyen.TransferWebhooks.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AccountHolder"/> will be populated.
@@ -3013,19 +3013,14 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class TransferData.", nameof(amount));
-
-            if (!category.IsSet)
-                throw new ArgumentException("Property is required for class TransferData.", nameof(category));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class TransferData.", nameof(status));
 
             var transferData = new TransferData();
-            transferData.Amount = amount.Value!;
-            transferData.Category = category.Value!;
-            transferData.Status = status.Value!;
+            if (amount.IsSet)
+                transferData.Amount = amount.Value!;
+            if (category.IsSet)
+                transferData.Category = category.Value!;
+            if (status.IsSet)
+                transferData.Status = status.Value!;
             if (accountHolder.IsSet)
                 transferData.AccountHolder = accountHolder.Value;
             if (balanceAccount.IsSet)
