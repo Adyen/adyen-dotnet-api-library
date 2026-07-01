@@ -51,21 +51,21 @@ namespace Adyen.Disputes.Models
         /// </summary>
         /// <value>The defense reason code that was selected to defend this dispute.</value>
         [JsonPropertyName("defenseReasonCode")]
-        public string DefenseReasonCode { get; set; }
+        public string? DefenseReasonCode { get; set; }
 
         /// <summary>
         /// The PSP reference assigned to the dispute.
         /// </summary>
         /// <value>The PSP reference assigned to the dispute.</value>
         [JsonPropertyName("disputePspReference")]
-        public string DisputePspReference { get; set; }
+        public string? DisputePspReference { get; set; }
 
         /// <summary>
         /// The merchant account identifier, for which you want to process the dispute transaction.
         /// </summary>
         /// <value>The merchant account identifier, for which you want to process the dispute transaction.</value>
         [JsonPropertyName("merchantAccountCode")]
-        public string MerchantAccountCode { get; set; }
+        public string? MerchantAccountCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,19 +139,14 @@ namespace Adyen.Disputes.Models
                 }
             }
             
-            if (!defenseReasonCode.IsSet)
-                throw new ArgumentException("Property is required for class DefendDisputeRequest.", nameof(defenseReasonCode));
-
-            if (!disputePspReference.IsSet)
-                throw new ArgumentException("Property is required for class DefendDisputeRequest.", nameof(disputePspReference));
-
-            if (!merchantAccountCode.IsSet)
-                throw new ArgumentException("Property is required for class DefendDisputeRequest.", nameof(merchantAccountCode));
 
             var defendDisputeRequest = new DefendDisputeRequest();
-            defendDisputeRequest.DefenseReasonCode = defenseReasonCode.Value!;
-            defendDisputeRequest.DisputePspReference = disputePspReference.Value!;
-            defendDisputeRequest.MerchantAccountCode = merchantAccountCode.Value!;
+            if (defenseReasonCode.IsSet)
+                defendDisputeRequest.DefenseReasonCode = defenseReasonCode.Value!;
+            if (disputePspReference.IsSet)
+                defendDisputeRequest.DisputePspReference = disputePspReference.Value!;
+            if (merchantAccountCode.IsSet)
+                defendDisputeRequest.MerchantAccountCode = merchantAccountCode.Value!;
             return defendDisputeRequest;
         }
 

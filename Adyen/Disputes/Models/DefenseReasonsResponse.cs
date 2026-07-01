@@ -50,7 +50,7 @@ namespace Adyen.Disputes.Models
         /// <see cref="DisputeServiceResult"/>.
         /// </summary>
         [JsonPropertyName("disputeServiceResult")]
-        public DisputeServiceResult DisputeServiceResult { get; set; }
+        public DisputeServiceResult? DisputeServiceResult { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="DefenseReasons"/> will be populated.
@@ -133,11 +133,10 @@ namespace Adyen.Disputes.Models
                 }
             }
             
-            if (!disputeServiceResult.IsSet)
-                throw new ArgumentException("Property is required for class DefenseReasonsResponse.", nameof(disputeServiceResult));
 
             var defenseReasonsResponse = new DefenseReasonsResponse();
-            defenseReasonsResponse.DisputeServiceResult = disputeServiceResult.Value!;
+            if (disputeServiceResult.IsSet)
+                defenseReasonsResponse.DisputeServiceResult = disputeServiceResult.Value!;
             if (defenseReasons.IsSet)
                 defenseReasonsResponse.DefenseReasons = defenseReasons.Value;
             return defenseReasonsResponse;

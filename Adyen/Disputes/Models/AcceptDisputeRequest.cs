@@ -51,14 +51,14 @@ namespace Adyen.Disputes.Models
         /// </summary>
         /// <value>The PSP reference assigned to the dispute.</value>
         [JsonPropertyName("disputePspReference")]
-        public string DisputePspReference { get; set; }
+        public string? DisputePspReference { get; set; }
 
         /// <summary>
         /// The merchant account identifier, for which you want to process the dispute transaction.
         /// </summary>
         /// <value>The merchant account identifier, for which you want to process the dispute transaction.</value>
         [JsonPropertyName("merchantAccountCode")]
-        public string MerchantAccountCode { get; set; }
+        public string? MerchantAccountCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.Disputes.Models
                 }
             }
             
-            if (!disputePspReference.IsSet)
-                throw new ArgumentException("Property is required for class AcceptDisputeRequest.", nameof(disputePspReference));
-
-            if (!merchantAccountCode.IsSet)
-                throw new ArgumentException("Property is required for class AcceptDisputeRequest.", nameof(merchantAccountCode));
 
             var acceptDisputeRequest = new AcceptDisputeRequest();
-            acceptDisputeRequest.DisputePspReference = disputePspReference.Value!;
-            acceptDisputeRequest.MerchantAccountCode = merchantAccountCode.Value!;
+            if (disputePspReference.IsSet)
+                acceptDisputeRequest.DisputePspReference = disputePspReference.Value!;
+            if (merchantAccountCode.IsSet)
+                acceptDisputeRequest.MerchantAccountCode = merchantAccountCode.Value!;
             return acceptDisputeRequest;
         }
 
