@@ -439,6 +439,7 @@ namespace Adyen.DisputeWebhooks.Models
                 }
             }
             
+
             var disputeEventNotification = new DisputeEventNotification();
             if (arn.IsSet)
                 disputeEventNotification.Arn = arn.Value;
