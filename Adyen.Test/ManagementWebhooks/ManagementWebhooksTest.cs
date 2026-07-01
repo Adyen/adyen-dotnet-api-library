@@ -172,16 +172,18 @@ namespace Adyen.Test.ManagementWebhooks
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_Required_Fields_Are_Missing_Then_Throws_ArgumentException()
+        public void Given_Deserialize_When_Required_Fields_Are_Missing_Then_Returns_Null_Properties()
         {
             // Arrange
             string json = @"{ ""type"": ""merchant.created"" }"; // No data, no environment (which are required)!
 
-            // Act & Assert
-            Assert.ThrowsException<ArgumentException>(() =>
-            {
-                _managementWebhooksHandler.DeserializeMerchantCreatedNotificationRequest(json);
-            });
+            // Act
+            var result = _managementWebhooksHandler.DeserializeMerchantCreatedNotificationRequest(json);
+
+            // Assert - lenient deserialization: missing required fields result in null properties, not exceptions
+            Assert.IsNotNull(result);
+            Assert.IsNull(result.Data);
+            Assert.IsNull(result.Environment);
         }
 
         [TestMethod]
