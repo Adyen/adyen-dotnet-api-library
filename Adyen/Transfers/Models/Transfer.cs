@@ -2458,13 +2458,13 @@ namespace Adyen.Transfers.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// <see cref="Counterparty"/>.
         /// </summary>
         [JsonPropertyName("counterparty")]
-        public CounterpartyV3 Counterparty { get; set; }
+        public CounterpartyV3? Counterparty { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AccountHolder"/> will be populated.
@@ -2833,23 +2833,16 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class Transfer.", nameof(amount));
-
-            if (!category.IsSet)
-                throw new ArgumentException("Property is required for class Transfer.", nameof(category));
-
-            if (!counterparty.IsSet)
-                throw new ArgumentException("Property is required for class Transfer.", nameof(counterparty));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class Transfer.", nameof(status));
 
             var transfer = new Transfer();
-            transfer.Amount = amount.Value!;
-            transfer.Category = category.Value!;
-            transfer.Counterparty = counterparty.Value!;
-            transfer.Status = status.Value!;
+            if (amount.IsSet)
+                transfer.Amount = amount.Value!;
+            if (category.IsSet)
+                transfer.Category = category.Value!;
+            if (counterparty.IsSet)
+                transfer.Counterparty = counterparty.Value!;
+            if (status.IsSet)
+                transfer.Status = status.Value!;
             if (accountHolder.IsSet)
                 transfer.AccountHolder = accountHolder.Value;
             if (balanceAccount.IsSet)

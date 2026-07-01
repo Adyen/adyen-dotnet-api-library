@@ -51,14 +51,14 @@ namespace Adyen.Transfers.Models
         /// </summary>
         /// <value>The identifier of the grant account used for the grant.</value>
         [JsonPropertyName("grantAccountId")]
-        public string GrantAccountId { get; set; }
+        public string? GrantAccountId { get; set; }
 
         /// <summary>
         /// The identifier of the grant offer that has been selected and from which the grant details will be used.
         /// </summary>
         /// <value>The identifier of the grant offer that has been selected and from which the grant details will be used.</value>
         [JsonPropertyName("grantOfferId")]
-        public string GrantOfferId { get; set; }
+        public string? GrantOfferId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Counterparty"/> will be populated.
@@ -145,15 +145,12 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!grantAccountId.IsSet)
-                throw new ArgumentException("Property is required for class CapitalGrantInfo.", nameof(grantAccountId));
-
-            if (!grantOfferId.IsSet)
-                throw new ArgumentException("Property is required for class CapitalGrantInfo.", nameof(grantOfferId));
 
             var capitalGrantInfo = new CapitalGrantInfo();
-            capitalGrantInfo.GrantAccountId = grantAccountId.Value!;
-            capitalGrantInfo.GrantOfferId = grantOfferId.Value!;
+            if (grantAccountId.IsSet)
+                capitalGrantInfo.GrantAccountId = grantAccountId.Value!;
+            if (grantOfferId.IsSet)
+                capitalGrantInfo.GrantOfferId = grantOfferId.Value!;
             if (counterparty.IsSet)
                 capitalGrantInfo.Counterparty = counterparty.Value;
             return capitalGrantInfo;

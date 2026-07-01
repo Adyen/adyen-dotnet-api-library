@@ -354,6 +354,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             if (bankCategoryData != null)
                 return new TransferCategoryData(bankCategoryData);
 

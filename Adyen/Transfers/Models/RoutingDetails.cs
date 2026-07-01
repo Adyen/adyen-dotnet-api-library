@@ -339,6 +339,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var routingDetails = new RoutingDetails();
             if (detail.IsSet)
                 routingDetails.Detail = detail.Value;

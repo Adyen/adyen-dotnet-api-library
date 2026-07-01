@@ -122,6 +122,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var link = new Link();
             if (href.IsSet)
                 link.Href = href.Value;

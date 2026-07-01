@@ -50,7 +50,7 @@ namespace Adyen.Transfers.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
@@ -133,11 +133,10 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class ReturnTransferRequest.", nameof(amount));
 
             var returnTransferRequest = new ReturnTransferRequest();
-            returnTransferRequest.Amount = amount.Value!;
+            if (amount.IsSet)
+                returnTransferRequest.Amount = amount.Value!;
             if (reference.IsSet)
                 returnTransferRequest.Reference = reference.Value;
             return returnTransferRequest;

@@ -122,6 +122,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var cashOutInfoCounterparty = new CashOutInfoCounterparty();
             if (transferInstrumentId.IsSet)
                 cashOutInfoCounterparty.TransferInstrumentId = transferInstrumentId.Value;

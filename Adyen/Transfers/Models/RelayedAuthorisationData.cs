@@ -141,6 +141,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var relayedAuthorisationData = new RelayedAuthorisationData();
             if (metadata.IsSet)
                 relayedAuthorisationData.Metadata = metadata.Value;

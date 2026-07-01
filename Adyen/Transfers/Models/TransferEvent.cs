@@ -2218,6 +2218,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var transferEvent = new TransferEvent();
             if (amount.IsSet)
                 transferEvent.Amount = amount.Value;

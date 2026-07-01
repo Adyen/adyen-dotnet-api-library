@@ -303,6 +303,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var returnTransferResponse = new ReturnTransferResponse();
             if (id.IsSet)
                 returnTransferResponse.Id = id.Value;

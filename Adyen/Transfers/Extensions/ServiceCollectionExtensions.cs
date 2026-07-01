@@ -31,7 +31,7 @@ namespace Adyen.Transfers.Extensions
 
         /// <summary>
         /// Add all Transfers services using the extension methods in <see cref="ServiceCollectionExtensions"/> and configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
-        /// See: <see cref="CapitalService"/>, <see cref="CashOutService"/>, <see cref="TransactionsService"/>, <see cref="TransfersService"/>, 
+        /// See: <see cref="CapitalDeprecatedService"/>, <see cref="CashOutService"/>, <see cref="TransactionsService"/>, <see cref="TransfersService"/>, 
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/>.</param>
         /// <param name="serviceLifetime"><see cref="ServiceLifetime"/>.</param>
@@ -40,7 +40,7 @@ namespace Adyen.Transfers.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddAllTransfersServices(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {            
-            services.AddCapitalService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddCapitalDeprecatedService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddCashOutService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddTransactionsService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddTransfersService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
@@ -51,18 +51,18 @@ namespace Adyen.Transfers.Extensions
 
 
         /// <summary>
-        /// Add <see cref="CapitalService"/> as the implementation of <see cref="ICapitalService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// Add <see cref="CapitalDeprecatedService"/> as the implementation of <see cref="ICapitalDeprecatedService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/>.</param>
         /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
         /// <returns><see cref="IServiceCollection"/>.</returns>
-        public static IServiceCollection AddCapitalService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        public static IServiceCollection AddCapitalDeprecatedService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<CapitalServiceEvents>();
+            services.AddSingleton<CapitalDeprecatedServiceEvents>();
 
-            services.Add(new ServiceDescriptor(typeof(ICapitalService), typeof(CapitalService), serviceLifetime));
+            services.Add(new ServiceDescriptor(typeof(ICapitalDeprecatedService), typeof(CapitalDeprecatedService), serviceLifetime));
 
-            IHttpClientBuilder builder = services.AddHttpClient<ICapitalService, CapitalService>(typeof(ICapitalService).FullName!, httpClient =>
+            IHttpClientBuilder builder = services.AddHttpClient<ICapitalDeprecatedService, CapitalDeprecatedService>(typeof(ICapitalDeprecatedService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });

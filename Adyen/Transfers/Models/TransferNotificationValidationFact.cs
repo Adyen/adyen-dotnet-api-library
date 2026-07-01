@@ -141,6 +141,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var transferNotificationValidationFact = new TransferNotificationValidationFact();
             if (result.IsSet)
                 transferNotificationValidationFact.Result = result.Value;

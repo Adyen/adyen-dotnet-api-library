@@ -50,7 +50,7 @@ namespace Adyen.Transfers.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -114,11 +114,10 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class Fee.", nameof(amount));
 
             var fee = new Fee();
-            fee.Amount = amount.Value!;
+            if (amount.IsSet)
+                fee.Amount = amount.Value!;
             return fee;
         }
 

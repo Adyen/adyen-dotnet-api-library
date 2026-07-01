@@ -140,6 +140,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var transactionSearchResponse = new TransactionSearchResponse();
             if (links.IsSet)
                 transactionSearchResponse.Links = links.Value;

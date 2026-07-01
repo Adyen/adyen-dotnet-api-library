@@ -51,14 +51,14 @@ namespace Adyen.Transfers.Models
         /// </summary>
         /// <value>A human-readable explanation specific to this occurrence of the problem.</value>
         [JsonPropertyName("detail")]
-        public string Detail { get; set; }
+        public string? Detail { get; set; }
 
         /// <summary>
         /// A code that identifies the problem type.
         /// </summary>
         /// <value>A code that identifies the problem type.</value>
         [JsonPropertyName("errorCode")]
-        public string ErrorCode { get; set; }
+        public string? ErrorCode { get; set; }
 
         /// <summary>
         /// The HTTP status code.
@@ -72,14 +72,14 @@ namespace Adyen.Transfers.Models
         /// </summary>
         /// <value>A short, human-readable summary of the problem type.</value>
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         /// <summary>
         /// A URI that identifies the problem type, pointing to human-readable documentation on this problem type.
         /// </summary>
         /// <value>A URI that identifies the problem type, pointing to human-readable documentation on this problem type.</value>
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Instance"/> will be populated.
@@ -257,27 +257,18 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!detail.IsSet)
-                throw new ArgumentException("Property is required for class TransferServiceRestServiceError.", nameof(detail));
-
-            if (!errorCode.IsSet)
-                throw new ArgumentException("Property is required for class TransferServiceRestServiceError.", nameof(errorCode));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class TransferServiceRestServiceError.", nameof(status));
-
-            if (!title.IsSet)
-                throw new ArgumentException("Property is required for class TransferServiceRestServiceError.", nameof(title));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TransferServiceRestServiceError.", nameof(type));
 
             var transferServiceRestServiceError = new TransferServiceRestServiceError();
-            transferServiceRestServiceError.Detail = detail.Value!;
-            transferServiceRestServiceError.ErrorCode = errorCode.Value!;
-            transferServiceRestServiceError.Status = status.Value!.Value;
-            transferServiceRestServiceError.Title = title.Value!;
-            transferServiceRestServiceError.Type = type.Value!;
+            if (detail.IsSet)
+                transferServiceRestServiceError.Detail = detail.Value!;
+            if (errorCode.IsSet)
+                transferServiceRestServiceError.ErrorCode = errorCode.Value!;
+            if (status.IsSet)
+                transferServiceRestServiceError.Status = status.Value!.Value;
+            if (title.IsSet)
+                transferServiceRestServiceError.Title = title.Value!;
+            if (type.IsSet)
+                transferServiceRestServiceError.Type = type.Value!;
             if (instance.IsSet)
                 transferServiceRestServiceError.Instance = instance.Value;
             if (invalidFields.IsSet)

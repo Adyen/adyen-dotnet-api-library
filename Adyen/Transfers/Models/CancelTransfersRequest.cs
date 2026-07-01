@@ -122,6 +122,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var cancelTransfersRequest = new CancelTransfersRequest();
             if (transferIds.IsSet)
                 cancelTransfersRequest.TransferIds = transferIds.Value;

@@ -51,7 +51,7 @@ namespace Adyen.Transfers.Models
         /// </summary>
         /// <value>The unique identifier of the grant.</value>
         [JsonPropertyName("grants")]
-        public List<CapitalGrant> Grants { get; set; }
+        public List<CapitalGrant>? Grants { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!grants.IsSet)
-                throw new ArgumentException("Property is required for class CapitalGrants.", nameof(grants));
 
             var capitalGrants = new CapitalGrants();
-            capitalGrants.Grants = grants.Value!;
+            if (grants.IsSet)
+                capitalGrants.Grants = grants.Value!;
             return capitalGrants;
         }
 

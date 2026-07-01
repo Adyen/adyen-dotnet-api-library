@@ -139,6 +139,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var links = new Links();
             if (next.IsSet)
                 links.Next = next.Value;

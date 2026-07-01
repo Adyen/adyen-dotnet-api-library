@@ -50,13 +50,13 @@ namespace Adyen.Transfers.Models
         /// <see cref="CardHolder"/>.
         /// </summary>
         [JsonPropertyName("cardHolder")]
-        public PartyIdentification CardHolder { get; set; }
+        public PartyIdentification? CardHolder { get; set; }
 
         /// <summary>
         /// <see cref="CardIdentification"/>.
         /// </summary>
         [JsonPropertyName("cardIdentification")]
-        public CardIdentification CardIdentification { get; set; }
+        public CardIdentification? CardIdentification { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -125,15 +125,12 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!cardHolder.IsSet)
-                throw new ArgumentException("Property is required for class Card.", nameof(cardHolder));
-
-            if (!cardIdentification.IsSet)
-                throw new ArgumentException("Property is required for class Card.", nameof(cardIdentification));
 
             var card = new Card();
-            card.CardHolder = cardHolder.Value!;
-            card.CardIdentification = cardIdentification.Value!;
+            if (cardHolder.IsSet)
+                card.CardHolder = cardHolder.Value!;
+            if (cardIdentification.IsSet)
+                card.CardIdentification = cardIdentification.Value!;
             return card;
         }
 
