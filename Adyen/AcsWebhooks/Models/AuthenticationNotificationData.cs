@@ -189,27 +189,27 @@ namespace Adyen.AcsWebhooks.Models
         /// <see cref="Authentication"/>.
         /// </summary>
         [JsonPropertyName("authentication")]
-        public AuthenticationInfo Authentication { get; set; }
+        public AuthenticationInfo? Authentication { get; set; }
 
         /// <summary>
         /// The unique identifier of the authentication.
         /// </summary>
         /// <value>The unique identifier of the authentication.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// The unique identifier of the payment instrument that was used for the authentication.
         /// </summary>
         /// <value>The unique identifier of the payment instrument that was used for the authentication.</value>
         [JsonPropertyName("paymentInstrumentId")]
-        public string PaymentInstrumentId { get; set; }
+        public string? PaymentInstrumentId { get; set; }
 
         /// <summary>
         /// <see cref="Purchase"/>.
         /// </summary>
         [JsonPropertyName("purchase")]
-        public PurchaseInfo Purchase { get; set; }
+        public PurchaseInfo? Purchase { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="BalancePlatform"/> will be populated.
@@ -313,27 +313,18 @@ namespace Adyen.AcsWebhooks.Models
                 }
             }
             
-            if (!authentication.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationNotificationData.", nameof(authentication));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationNotificationData.", nameof(id));
-
-            if (!paymentInstrumentId.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationNotificationData.", nameof(paymentInstrumentId));
-
-            if (!purchase.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationNotificationData.", nameof(purchase));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationNotificationData.", nameof(status));
 
             var authenticationNotificationData = new AuthenticationNotificationData();
-            authenticationNotificationData.Authentication = authentication.Value!;
-            authenticationNotificationData.Id = id.Value!;
-            authenticationNotificationData.PaymentInstrumentId = paymentInstrumentId.Value!;
-            authenticationNotificationData.Purchase = purchase.Value!;
-            authenticationNotificationData.Status = status.Value!;
+            if (authentication.IsSet)
+                authenticationNotificationData.Authentication = authentication.Value!;
+            if (id.IsSet)
+                authenticationNotificationData.Id = id.Value!;
+            if (paymentInstrumentId.IsSet)
+                authenticationNotificationData.PaymentInstrumentId = paymentInstrumentId.Value!;
+            if (purchase.IsSet)
+                authenticationNotificationData.Purchase = purchase.Value!;
+            if (status.IsSet)
+                authenticationNotificationData.Status = status.Value!;
             if (balancePlatform.IsSet)
                 authenticationNotificationData.BalancePlatform = balancePlatform.Value;
             return authenticationNotificationData;

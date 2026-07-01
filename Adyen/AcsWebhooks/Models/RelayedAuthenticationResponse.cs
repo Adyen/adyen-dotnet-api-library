@@ -50,7 +50,7 @@ namespace Adyen.AcsWebhooks.Models
         /// <see cref="AuthenticationDecision"/>.
         /// </summary>
         [JsonPropertyName("authenticationDecision")]
-        public AuthenticationDecision AuthenticationDecision { get; set; }
+        public AuthenticationDecision? AuthenticationDecision { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -114,11 +114,10 @@ namespace Adyen.AcsWebhooks.Models
                 }
             }
             
-            if (!authenticationDecision.IsSet)
-                throw new ArgumentException("Property is required for class RelayedAuthenticationResponse.", nameof(authenticationDecision));
 
             var relayedAuthenticationResponse = new RelayedAuthenticationResponse();
-            relayedAuthenticationResponse.AuthenticationDecision = authenticationDecision.Value!;
+            if (authenticationDecision.IsSet)
+                relayedAuthenticationResponse.AuthenticationDecision = authenticationDecision.Value!;
             return relayedAuthenticationResponse;
         }
 

@@ -51,20 +51,20 @@ namespace Adyen.AcsWebhooks.Models
         /// </summary>
         /// <value>The date of the purchase.</value>
         [JsonPropertyName("date")]
-        public string Date { get; set; }
+        public string? Date { get; set; }
 
         /// <summary>
         /// The name of the business that the cardholder purchased from.
         /// </summary>
         /// <value>The name of the business that the cardholder purchased from.</value>
         [JsonPropertyName("merchantName")]
-        public string MerchantName { get; set; }
+        public string? MerchantName { get; set; }
 
         /// <summary>
         /// <see cref="OriginalAmount"/>.
         /// </summary>
         [JsonPropertyName("originalAmount")]
-        public Amount OriginalAmount { get; set; }
+        public Amount? OriginalAmount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -138,19 +138,14 @@ namespace Adyen.AcsWebhooks.Models
                 }
             }
             
-            if (!date.IsSet)
-                throw new ArgumentException("Property is required for class PurchaseInfo.", nameof(date));
-
-            if (!merchantName.IsSet)
-                throw new ArgumentException("Property is required for class PurchaseInfo.", nameof(merchantName));
-
-            if (!originalAmount.IsSet)
-                throw new ArgumentException("Property is required for class PurchaseInfo.", nameof(originalAmount));
 
             var purchaseInfo = new PurchaseInfo();
-            purchaseInfo.Date = date.Value!;
-            purchaseInfo.MerchantName = merchantName.Value!;
-            purchaseInfo.OriginalAmount = originalAmount.Value!;
+            if (date.IsSet)
+                purchaseInfo.Date = date.Value!;
+            if (merchantName.IsSet)
+                purchaseInfo.MerchantName = merchantName.Value!;
+            if (originalAmount.IsSet)
+                purchaseInfo.OriginalAmount = originalAmount.Value!;
             return purchaseInfo;
         }
 
