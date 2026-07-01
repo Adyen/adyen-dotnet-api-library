@@ -648,7 +648,7 @@ namespace Adyen.Checkout.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// A unique identifier of the payment link.
@@ -656,21 +656,21 @@ namespace Adyen.Checkout.Models
         /// <value>A unique identifier of the payment link.</value>
         /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// The merchant account identifier for which the payment link is created.
         /// </summary>
         /// <value>The merchant account identifier for which the payment link is created.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// A reference that is used to uniquely identify the payment in future communications about the payment status.
         /// </summary>
         /// <value>A reference that is used to uniquely identify the payment in future communications about the payment status.</value>
         [JsonPropertyName("reference")]
-        public string Reference { get; set; }
+        public string? Reference { get; set; }
 
         /// <summary>
         /// The URL at which the shopper can complete the payment.
@@ -678,7 +678,7 @@ namespace Adyen.Checkout.Models
         /// <value>The URL at which the shopper can complete the payment.</value>
         /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("url")]
-        public string Url { get; set; }
+        public string? Url { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AllowedPaymentMethods"/> will be populated.
@@ -1513,31 +1513,20 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentLinkResponse.", nameof(amount));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class PaymentLinkResponse.", nameof(id));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentLinkResponse.", nameof(merchantAccount));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class PaymentLinkResponse.", nameof(reference));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class PaymentLinkResponse.", nameof(status));
-
-            if (!url.IsSet)
-                throw new ArgumentException("Property is required for class PaymentLinkResponse.", nameof(url));
 
             var paymentLinkResponse = new PaymentLinkResponse();
-            paymentLinkResponse.Amount = amount.Value!;
-            paymentLinkResponse.Id = id.Value!;
-            paymentLinkResponse.MerchantAccount = merchantAccount.Value!;
-            paymentLinkResponse.Reference = reference.Value!;
-            paymentLinkResponse.Status = status.Value!;
-            paymentLinkResponse.Url = url.Value!;
+            if (amount.IsSet)
+                paymentLinkResponse.Amount = amount.Value!;
+            if (id.IsSet)
+                paymentLinkResponse.Id = id.Value!;
+            if (merchantAccount.IsSet)
+                paymentLinkResponse.MerchantAccount = merchantAccount.Value!;
+            if (reference.IsSet)
+                paymentLinkResponse.Reference = reference.Value!;
+            if (status.IsSet)
+                paymentLinkResponse.Status = status.Value!;
+            if (url.IsSet)
+                paymentLinkResponse.Url = url.Value!;
             if (allowedPaymentMethods.IsSet)
                 paymentLinkResponse.AllowedPaymentMethods = allowedPaymentMethods.Value;
             if (applicationInfo.IsSet)

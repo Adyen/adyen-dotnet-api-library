@@ -478,6 +478,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var fundRecipient = new FundRecipient();
             if (iBAN.IsSet)
                 fundRecipient.IBAN = iBAN.Value;

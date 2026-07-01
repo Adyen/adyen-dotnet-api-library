@@ -462,6 +462,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var checkoutBankAccount = new CheckoutBankAccount();
             if (accountType.IsSet)
                 checkoutBankAccount.AccountType = accountType.Value;

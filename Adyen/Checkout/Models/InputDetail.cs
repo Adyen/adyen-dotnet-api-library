@@ -276,6 +276,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var inputDetail = new InputDetail();
             if (configuration.IsSet)
                 inputDetail.Configuration = configuration.Value;

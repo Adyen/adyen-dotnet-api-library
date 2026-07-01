@@ -214,14 +214,14 @@ namespace Adyen.Checkout.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The merchant account that is used to process the payment.
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ApplicationInfo"/> will be populated.
@@ -427,15 +427,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentRefundRequest.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentRefundRequest.", nameof(merchantAccount));
 
             var paymentRefundRequest = new PaymentRefundRequest();
-            paymentRefundRequest.Amount = amount.Value!;
-            paymentRefundRequest.MerchantAccount = merchantAccount.Value!;
+            if (amount.IsSet)
+                paymentRefundRequest.Amount = amount.Value!;
+            if (merchantAccount.IsSet)
+                paymentRefundRequest.MerchantAccount = merchantAccount.Value!;
             if (applicationInfo.IsSet)
                 paymentRefundRequest.ApplicationInfo = applicationInfo.Value;
             if (capturePspReference.IsSet)

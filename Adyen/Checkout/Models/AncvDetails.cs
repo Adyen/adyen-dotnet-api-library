@@ -334,6 +334,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var ancvDetails = new AncvDetails();
             if (beneficiaryId.IsSet)
                 ancvDetails.BeneficiaryId = beneficiaryId.Value;

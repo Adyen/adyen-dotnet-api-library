@@ -331,6 +331,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var paymentMethodToStore = new PaymentMethodToStore();
             if (brand.IsSet)
                 paymentMethodToStore.Brand = brand.Value;

@@ -141,6 +141,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var phone = new Phone();
             if (cc.IsSet)
                 phone.Cc = cc.Value;

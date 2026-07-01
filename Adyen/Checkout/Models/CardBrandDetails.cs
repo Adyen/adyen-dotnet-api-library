@@ -141,6 +141,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var cardBrandDetails = new CardBrandDetails();
             if (supported.IsSet)
                 cardBrandDetails.Supported = supported.Value;

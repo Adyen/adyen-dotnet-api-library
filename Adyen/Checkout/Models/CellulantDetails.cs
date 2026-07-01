@@ -295,6 +295,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var cellulantDetails = new CellulantDetails();
             if (checkoutAttemptId.IsSet)
                 cellulantDetails.CheckoutAttemptId = checkoutAttemptId.Value;

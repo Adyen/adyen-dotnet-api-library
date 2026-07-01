@@ -326,7 +326,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The stringified and base64 encoded `paymentData` you retrieved from the Apple framework.</value>
         [JsonPropertyName("applePayToken")]
-        public string ApplePayToken { get; set; }
+        public string? ApplePayToken { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
@@ -480,11 +480,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!applePayToken.IsSet)
-                throw new ArgumentException("Property is required for class ApplePayDetails.", nameof(applePayToken));
 
             var applePayDetails = new ApplePayDetails();
-            applePayDetails.ApplePayToken = applePayToken.Value!;
+            if (applePayToken.IsSet)
+                applePayDetails.ApplePayToken = applePayToken.Value!;
             if (checkoutAttemptId.IsSet)
                 applePayDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (fundingSource.IsSet)

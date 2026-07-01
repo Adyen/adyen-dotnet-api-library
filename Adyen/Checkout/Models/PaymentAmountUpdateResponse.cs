@@ -317,35 +317,35 @@ namespace Adyen.Checkout.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The merchant account that is used to process the payment.
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to update. 
         /// </summary>
         /// <value>The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to update. </value>
         [JsonPropertyName("paymentPspReference")]
-        public string PaymentPspReference { get; set; }
+        public string? PaymentPspReference { get; set; }
 
         /// <summary>
         /// Adyen&#39;s 16-character reference associated with the amount update request.
         /// </summary>
         /// <value>Adyen's 16-character reference associated with the amount update request.</value>
         [JsonPropertyName("pspReference")]
-        public string PspReference { get; set; }
+        public string? PspReference { get; set; }
 
         /// <summary>
         /// Your reference for the amount update request. Maximum length: 80 characters.
         /// </summary>
         /// <value>Your reference for the amount update request. Maximum length: 80 characters.</value>
         [JsonPropertyName("reference")]
-        public string Reference { get; set; }
+        public string? Reference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="LineItems"/> will be populated.
@@ -479,31 +479,20 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentAmountUpdateResponse.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentAmountUpdateResponse.", nameof(merchantAccount));
-
-            if (!paymentPspReference.IsSet)
-                throw new ArgumentException("Property is required for class PaymentAmountUpdateResponse.", nameof(paymentPspReference));
-
-            if (!pspReference.IsSet)
-                throw new ArgumentException("Property is required for class PaymentAmountUpdateResponse.", nameof(pspReference));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class PaymentAmountUpdateResponse.", nameof(reference));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class PaymentAmountUpdateResponse.", nameof(status));
 
             var paymentAmountUpdateResponse = new PaymentAmountUpdateResponse();
-            paymentAmountUpdateResponse.Amount = amount.Value!;
-            paymentAmountUpdateResponse.MerchantAccount = merchantAccount.Value!;
-            paymentAmountUpdateResponse.PaymentPspReference = paymentPspReference.Value!;
-            paymentAmountUpdateResponse.PspReference = pspReference.Value!;
-            paymentAmountUpdateResponse.Reference = reference.Value!;
-            paymentAmountUpdateResponse.Status = status.Value!;
+            if (amount.IsSet)
+                paymentAmountUpdateResponse.Amount = amount.Value!;
+            if (merchantAccount.IsSet)
+                paymentAmountUpdateResponse.MerchantAccount = merchantAccount.Value!;
+            if (paymentPspReference.IsSet)
+                paymentAmountUpdateResponse.PaymentPspReference = paymentPspReference.Value!;
+            if (pspReference.IsSet)
+                paymentAmountUpdateResponse.PspReference = pspReference.Value!;
+            if (reference.IsSet)
+                paymentAmountUpdateResponse.Reference = reference.Value!;
+            if (status.IsSet)
+                paymentAmountUpdateResponse.Status = status.Value!;
             if (industryUsage.IsSet)
                 paymentAmountUpdateResponse.IndustryUsage = industryUsage.Value;
             if (lineItems.IsSet)

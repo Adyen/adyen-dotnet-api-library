@@ -189,7 +189,7 @@ namespace Adyen.Checkout.Models
         /// <see cref="Balance"/>.
         /// </summary>
         [JsonPropertyName("balance")]
-        public Amount Balance { get; set; }
+        public Amount? Balance { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
@@ -352,15 +352,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!balance.IsSet)
-                throw new ArgumentException("Property is required for class BalanceCheckResponse.", nameof(balance));
-
-            if (!resultCode.IsSet)
-                throw new ArgumentException("Property is required for class BalanceCheckResponse.", nameof(resultCode));
 
             var balanceCheckResponse = new BalanceCheckResponse();
-            balanceCheckResponse.Balance = balance.Value!;
-            balanceCheckResponse.ResultCode = resultCode.Value!;
+            if (balance.IsSet)
+                balanceCheckResponse.Balance = balance.Value!;
+            if (resultCode.IsSet)
+                balanceCheckResponse.ResultCode = resultCode.Value!;
             if (additionalData.IsSet)
                 balanceCheckResponse.AdditionalData = additionalData.Value;
             if (fraudResult.IsSet)

@@ -160,6 +160,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var checkoutForwardResponseFromUrl = new CheckoutForwardResponseFromUrl();
             if (body.IsSet)
                 checkoutForwardResponseFromUrl.Body = body.Value;

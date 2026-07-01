@@ -308,8 +308,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PayByBankAISDirectDebitDetails.", nameof(type));
 
             var payByBankAISDirectDebitDetails = new PayByBankAISDirectDebitDetails();
             if (checkoutAttemptId.IsSet)
@@ -320,7 +318,8 @@ namespace Adyen.Checkout.Models
                 payByBankAISDirectDebitDetails.SdkData = sdkData.Value;
             if (storedPaymentMethodId.IsSet)
                 payByBankAISDirectDebitDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            payByBankAISDirectDebitDetails.Type = type.Value!;
+            if (type.IsSet)
+                payByBankAISDirectDebitDetails.Type = type.Value!;
             return payByBankAISDirectDebitDetails;
         }
 

@@ -297,6 +297,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             if (checkoutAwaitAction?.Type != null && CheckoutAwaitAction.TypeEnum.FromStringOrDefault((string?)checkoutAwaitAction.Type) != null)
                 return new PaymentResponseAction(checkoutAwaitAction);
 

@@ -179,6 +179,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var cardDetailsResponse = new CardDetailsResponse();
             if (brands.IsSet)
                 cardDetailsResponse.Brands = brands.Value;

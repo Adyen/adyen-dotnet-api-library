@@ -344,6 +344,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var zipDetails = new ZipDetails();
             if (checkoutAttemptId.IsSet)
                 zipDetails.CheckoutAttemptId = checkoutAttemptId.Value;

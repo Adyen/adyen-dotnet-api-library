@@ -445,6 +445,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var threeDS2ResponseData = new ThreeDS2ResponseData();
             if (acsChallengeMandated.IsSet)
                 threeDS2ResponseData.AcsChallengeMandated = acsChallengeMandated.Value;

@@ -190,7 +190,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The request body that you want Adyen to forward to the third party on your behalf, in string format.  Include key value pairs to specify the payment details, and use [placeholders](https://docs.adyen.com/online-payments/tokenization/forward-payment-details#placeholders) for the values. Adyen replaces the placeholders with the payment details when making the request to the third party.  When forwarding a network token, include a [condition](https://docs.adyen.com/online-payments/tokenization/forward-payment-details#conditional-placeholders) that checks if the network token exists, and informs Adyen of which fields to send depending on the outcome.</value>
         [JsonPropertyName("body")]
-        public string Body { get; set; }
+        public string? Body { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Credentials"/> will be populated.
@@ -317,15 +317,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!body.IsSet)
-                throw new ArgumentException("Property is required for class CheckoutOutgoingForwardRequest.", nameof(body));
-
-            if (!httpMethod.IsSet)
-                throw new ArgumentException("Property is required for class CheckoutOutgoingForwardRequest.", nameof(httpMethod));
 
             var checkoutOutgoingForwardRequest = new CheckoutOutgoingForwardRequest();
-            checkoutOutgoingForwardRequest.Body = body.Value!;
-            checkoutOutgoingForwardRequest.HttpMethod = httpMethod.Value!;
+            if (body.IsSet)
+                checkoutOutgoingForwardRequest.Body = body.Value!;
+            if (httpMethod.IsSet)
+                checkoutOutgoingForwardRequest.HttpMethod = httpMethod.Value!;
             if (credentials.IsSet)
                 checkoutOutgoingForwardRequest.Credentials = credentials.Value;
             if (headers.IsSet)

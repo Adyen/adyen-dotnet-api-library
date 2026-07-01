@@ -51,13 +51,13 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The merchant account identifier that orderData belongs to.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// <see cref="Order"/>.
         /// </summary>
         [JsonPropertyName("order")]
-        public EncryptedOrderData Order { get; set; }
+        public EncryptedOrderData? Order { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -126,15 +126,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class CancelOrderRequest.", nameof(merchantAccount));
-
-            if (!order.IsSet)
-                throw new ArgumentException("Property is required for class CancelOrderRequest.", nameof(order));
 
             var cancelOrderRequest = new CancelOrderRequest();
-            cancelOrderRequest.MerchantAccount = merchantAccount.Value!;
-            cancelOrderRequest.Order = order.Value!;
+            if (merchantAccount.IsSet)
+                cancelOrderRequest.MerchantAccount = merchantAccount.Value!;
+            if (order.IsSet)
+                cancelOrderRequest.Order = order.Value!;
             return cancelOrderRequest;
         }
 

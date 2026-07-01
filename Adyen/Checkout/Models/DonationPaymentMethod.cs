@@ -213,6 +213,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             if (applePayDonations?.Type != null && ApplePayDonations.TypeEnum.FromStringOrDefault((string?)applePayDonations.Type) != null)
                 return new DonationPaymentMethod(applePayDonations);
 

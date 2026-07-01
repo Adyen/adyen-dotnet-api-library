@@ -430,6 +430,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var cashAppDetails = new CashAppDetails();
             if (cashtag.IsSet)
                 cashAppDetails.Cashtag = cashtag.Value;

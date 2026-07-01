@@ -1,8 +1,8 @@
 {
   "service": "checkout",
   "project": "dotnet",
-  "generatedAt": "2026-06-02T15:29:34Z",
-  "openapiCommitSha": "f3894fd6b47d9076841b04852378251de3bba2de",
-  "automationCommitSha": "6f06b47d0661f0891defe6b85461d2c367fbd284",
-  "libraryCommitSha": "0bd0453c2d8dec1d18f40ba90e8faf4af2505a48"
+  "generatedAt": "2026-07-01T13:12:13Z",
+  "openapiCommitSha": "28ffef4cd4f884082b1ed2e2c6b452a10481cab0",
+  "automationCommitSha": "5f1d5ab9643886ef722a2626e23afef8db5d52a6",
+  "libraryCommitSha": "11195aa91ab55cb9b2f3d5aa1dbbec22d971407d"
 }

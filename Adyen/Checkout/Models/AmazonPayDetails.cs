@@ -314,6 +314,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var amazonPayDetails = new AmazonPayDetails();
             if (amazonPayToken.IsSet)
                 amazonPayDetails.AmazonPayToken = amazonPayToken.Value;

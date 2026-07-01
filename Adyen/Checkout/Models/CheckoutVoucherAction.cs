@@ -607,11 +607,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CheckoutVoucherAction.", nameof(type));
 
             var checkoutVoucherAction = new CheckoutVoucherAction();
-            checkoutVoucherAction.Type = type.Value!;
+            if (type.IsSet)
+                checkoutVoucherAction.Type = type.Value!;
             if (alternativeReference.IsSet)
                 checkoutVoucherAction.AlternativeReference = alternativeReference.Value;
             if (collectionInstitutionNumber.IsSet)

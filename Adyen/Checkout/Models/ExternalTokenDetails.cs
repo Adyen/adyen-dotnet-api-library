@@ -293,7 +293,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>Identifier used to fetch the token from the external service</value>
         [JsonPropertyName("storedPaymentMethodId")]
-        public string StoredPaymentMethodId { get; set; }
+        public string? StoredPaymentMethodId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
@@ -464,18 +464,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!storedPaymentMethodId.IsSet)
-                throw new ArgumentException("Property is required for class ExternalTokenDetails.", nameof(storedPaymentMethodId));
-
-            if (!subtype.IsSet)
-                throw new ArgumentException("Property is required for class ExternalTokenDetails.", nameof(subtype));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class ExternalTokenDetails.", nameof(type));
 
             var externalTokenDetails = new ExternalTokenDetails();
-            externalTokenDetails.StoredPaymentMethodId = storedPaymentMethodId.Value!;
-            externalTokenDetails.Subtype = subtype.Value!;
+            if (storedPaymentMethodId.IsSet)
+                externalTokenDetails.StoredPaymentMethodId = storedPaymentMethodId.Value!;
+            if (subtype.IsSet)
+                externalTokenDetails.Subtype = subtype.Value!;
             if (checkoutAttemptId.IsSet)
                 externalTokenDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (expiryMonth.IsSet)
@@ -486,7 +480,8 @@ namespace Adyen.Checkout.Models
                 externalTokenDetails.HolderName = holderName.Value;
             if (number.IsSet)
                 externalTokenDetails.Number = number.Value;
-            externalTokenDetails.Type = type.Value!;
+            if (type.IsSet)
+                externalTokenDetails.Type = type.Value!;
             return externalTokenDetails;
         }
 

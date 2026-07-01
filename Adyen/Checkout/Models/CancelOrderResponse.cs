@@ -172,7 +172,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>A unique reference of the cancellation request.</value>
         [JsonPropertyName("pspReference")]
-        public string PspReference { get; set; }
+        public string? PspReference { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -242,15 +242,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!pspReference.IsSet)
-                throw new ArgumentException("Property is required for class CancelOrderResponse.", nameof(pspReference));
-
-            if (!resultCode.IsSet)
-                throw new ArgumentException("Property is required for class CancelOrderResponse.", nameof(resultCode));
 
             var cancelOrderResponse = new CancelOrderResponse();
-            cancelOrderResponse.PspReference = pspReference.Value!;
-            cancelOrderResponse.ResultCode = resultCode.Value!;
+            if (pspReference.IsSet)
+                cancelOrderResponse.PspReference = pspReference.Value!;
+            if (resultCode.IsSet)
+                cancelOrderResponse.ResultCode = resultCode.Value!;
             return cancelOrderResponse;
         }
 

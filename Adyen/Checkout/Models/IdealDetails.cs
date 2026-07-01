@@ -335,6 +335,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var idealDetails = new IdealDetails();
             if (checkoutAttemptId.IsSet)
                 idealDetails.CheckoutAttemptId = checkoutAttemptId.Value;

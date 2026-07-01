@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The passenger's name, initials, and title. * Format: last name + first name or initials + title * Example: *FLYER / MARY MS* * minLength: 1 character * maxLength: 20 characters * If you send more than 20 characters, the name is truncated * Must not start with a space or be all spaces. * Must not be all zeros.</value>
         [JsonPropertyName("passengerName")]
-        public string PassengerName { get; set; }
+        public string? PassengerName { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Agency"/> will be populated.
@@ -343,11 +343,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!passengerName.IsSet)
-                throw new ArgumentException("Property is required for class Airline.", nameof(passengerName));
 
             var airline = new Airline();
-            airline.PassengerName = passengerName.Value!;
+            if (passengerName.IsSet)
+                airline.PassengerName = passengerName.Value!;
             if (agency.IsSet)
                 airline.Agency = agency.Value;
             if (boardingFee.IsSet)

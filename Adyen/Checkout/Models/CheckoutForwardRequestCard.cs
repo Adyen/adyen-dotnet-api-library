@@ -409,6 +409,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var checkoutForwardRequestCard = new CheckoutForwardRequestCard();
             if (cvc.IsSet)
                 checkoutForwardRequestCard.Cvc = cvc.Value;

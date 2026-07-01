@@ -334,6 +334,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var blikDetails = new BlikDetails();
             if (blikCode.IsSet)
                 blikDetails.BlikCode = blikCode.Value;

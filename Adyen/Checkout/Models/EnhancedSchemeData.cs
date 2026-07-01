@@ -139,6 +139,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var enhancedSchemeData = new EnhancedSchemeData();
             if (airline.IsSet)
                 enhancedSchemeData.Airline = airline.Value;

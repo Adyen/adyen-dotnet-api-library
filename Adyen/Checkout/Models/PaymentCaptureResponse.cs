@@ -171,28 +171,28 @@ namespace Adyen.Checkout.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The merchant account that is used to process the payment.
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to capture. 
         /// </summary>
         /// <value>The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to capture. </value>
         [JsonPropertyName("paymentPspReference")]
-        public string PaymentPspReference { get; set; }
+        public string? PaymentPspReference { get; set; }
 
         /// <summary>
         /// Adyen&#39;s 16-character reference associated with the capture request.
         /// </summary>
         /// <value>Adyen's 16-character reference associated with the capture request.</value>
         [JsonPropertyName("pspReference")]
-        public string PspReference { get; set; }
+        public string? PspReference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="LineItems"/> will be populated.
@@ -371,27 +371,18 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentCaptureResponse.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentCaptureResponse.", nameof(merchantAccount));
-
-            if (!paymentPspReference.IsSet)
-                throw new ArgumentException("Property is required for class PaymentCaptureResponse.", nameof(paymentPspReference));
-
-            if (!pspReference.IsSet)
-                throw new ArgumentException("Property is required for class PaymentCaptureResponse.", nameof(pspReference));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class PaymentCaptureResponse.", nameof(status));
 
             var paymentCaptureResponse = new PaymentCaptureResponse();
-            paymentCaptureResponse.Amount = amount.Value!;
-            paymentCaptureResponse.MerchantAccount = merchantAccount.Value!;
-            paymentCaptureResponse.PaymentPspReference = paymentPspReference.Value!;
-            paymentCaptureResponse.PspReference = pspReference.Value!;
-            paymentCaptureResponse.Status = status.Value!;
+            if (amount.IsSet)
+                paymentCaptureResponse.Amount = amount.Value!;
+            if (merchantAccount.IsSet)
+                paymentCaptureResponse.MerchantAccount = merchantAccount.Value!;
+            if (paymentPspReference.IsSet)
+                paymentCaptureResponse.PaymentPspReference = paymentPspReference.Value!;
+            if (pspReference.IsSet)
+                paymentCaptureResponse.PspReference = pspReference.Value!;
+            if (status.IsSet)
+                paymentCaptureResponse.Status = status.Value!;
             if (lineItems.IsSet)
                 paymentCaptureResponse.LineItems = lineItems.Value;
             if (platformChargebackLogic.IsSet)

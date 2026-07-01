@@ -51,14 +51,14 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The unique identifier of this app, to submit in requests to /payments.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// A localized name of the app.
         /// </summary>
         /// <value>A localized name of the app.</value>
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AppIdentifierInfo"/> will be populated.
@@ -145,15 +145,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodUPIApps.", nameof(id));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodUPIApps.", nameof(name));
 
             var paymentMethodUPIApps = new PaymentMethodUPIApps();
-            paymentMethodUPIApps.Id = id.Value!;
-            paymentMethodUPIApps.Name = name.Value!;
+            if (id.IsSet)
+                paymentMethodUPIApps.Id = id.Value!;
+            if (name.IsSet)
+                paymentMethodUPIApps.Name = name.Value!;
             if (appIdentifierInfo.IsSet)
                 paymentMethodUPIApps.AppIdentifierInfo = appIdentifierInfo.Value;
             return paymentMethodUPIApps;

@@ -160,6 +160,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var additionalDataRetry = new AdditionalDataRetry();
             if (retryChainAttemptNumber.IsSet)
                 additionalDataRetry.RetryChainAttemptNumber = retryChainAttemptNumber.Value;

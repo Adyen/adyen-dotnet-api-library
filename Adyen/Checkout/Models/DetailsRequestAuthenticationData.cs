@@ -122,6 +122,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var detailsRequestAuthenticationData = new DetailsRequestAuthenticationData();
             if (authenticationOnly.IsSet)
                 detailsRequestAuthenticationData.AuthenticationOnly = authenticationOnly.Value;

@@ -655,49 +655,49 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The billing amount (in minor units) of the recurring transactions.</value>
         [JsonPropertyName("amount")]
-        public string Amount { get; set; }
+        public string? Amount { get; set; }
 
         /// <summary>
         /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).</value>
         [JsonPropertyName("currency")]
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         /// <summary>
         /// End date of the billing plan, in YYYY-MM-DD format.
         /// </summary>
         /// <value>End date of the billing plan, in YYYY-MM-DD format.</value>
         [JsonPropertyName("endsAt")]
-        public string EndsAt { get; set; }
+        public string? EndsAt { get; set; }
 
         /// <summary>
         /// The unique identifier of the mandate.
         /// </summary>
         /// <value>The unique identifier of the mandate.</value>
         [JsonPropertyName("mandateId")]
-        public string MandateId { get; set; }
+        public string? MandateId { get; set; }
 
         /// <summary>
         /// The provider-specific identifier for this mandate.
         /// </summary>
         /// <value>The provider-specific identifier for this mandate.</value>
         [JsonPropertyName("providerId")]
-        public string ProviderId { get; set; }
+        public string? ProviderId { get; set; }
 
         /// <summary>
         /// The status of the mandate. Examples : active, revoked, completed, expired
         /// </summary>
         /// <value>The status of the mandate. Examples : active, revoked, completed, expired</value>
         [JsonPropertyName("status")]
-        public string Status { get; set; }
+        public string? Status { get; set; }
 
         /// <summary>
         /// The transaction variant used for this mandate.
         /// </summary>
         /// <value>The transaction variant used for this mandate.</value>
         [JsonPropertyName("txVariant")]
-        public string TxVariant { get; set; }
+        public string? TxVariant { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AccountIdType"/> will be populated.
@@ -986,39 +986,24 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class TokenMandate.", nameof(amount));
-
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class TokenMandate.", nameof(currency));
-
-            if (!endsAt.IsSet)
-                throw new ArgumentException("Property is required for class TokenMandate.", nameof(endsAt));
-
-            if (!frequency.IsSet)
-                throw new ArgumentException("Property is required for class TokenMandate.", nameof(frequency));
-
-            if (!mandateId.IsSet)
-                throw new ArgumentException("Property is required for class TokenMandate.", nameof(mandateId));
-
-            if (!providerId.IsSet)
-                throw new ArgumentException("Property is required for class TokenMandate.", nameof(providerId));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class TokenMandate.", nameof(status));
-
-            if (!txVariant.IsSet)
-                throw new ArgumentException("Property is required for class TokenMandate.", nameof(txVariant));
 
             var tokenMandate = new TokenMandate();
-            tokenMandate.Amount = amount.Value!;
-            tokenMandate.Currency = currency.Value!;
-            tokenMandate.EndsAt = endsAt.Value!;
-            tokenMandate.Frequency = frequency.Value!;
-            tokenMandate.MandateId = mandateId.Value!;
-            tokenMandate.ProviderId = providerId.Value!;
-            tokenMandate.Status = status.Value!;
-            tokenMandate.TxVariant = txVariant.Value!;
+            if (amount.IsSet)
+                tokenMandate.Amount = amount.Value!;
+            if (currency.IsSet)
+                tokenMandate.Currency = currency.Value!;
+            if (endsAt.IsSet)
+                tokenMandate.EndsAt = endsAt.Value!;
+            if (frequency.IsSet)
+                tokenMandate.Frequency = frequency.Value!;
+            if (mandateId.IsSet)
+                tokenMandate.MandateId = mandateId.Value!;
+            if (providerId.IsSet)
+                tokenMandate.ProviderId = providerId.Value!;
+            if (status.IsSet)
+                tokenMandate.Status = status.Value!;
+            if (txVariant.IsSet)
+                tokenMandate.TxVariant = txVariant.Value!;
             if (accountIdType.IsSet)
                 tokenMandate.AccountIdType = accountIdType.Value;
             if (amountRule.IsSet)

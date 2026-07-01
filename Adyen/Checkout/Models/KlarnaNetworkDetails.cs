@@ -346,8 +346,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class KlarnaNetworkDetails.", nameof(type));
 
             var klarnaNetworkDetails = new KlarnaNetworkDetails();
             if (checkoutAttemptId.IsSet)
@@ -362,7 +360,8 @@ namespace Adyen.Checkout.Models
                 klarnaNetworkDetails.SdkData = sdkData.Value;
             if (storedPaymentMethodId.IsSet)
                 klarnaNetworkDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            klarnaNetworkDetails.Type = type.Value!;
+            if (type.IsSet)
+                klarnaNetworkDetails.Type = type.Value!;
             return klarnaNetworkDetails;
         }
 

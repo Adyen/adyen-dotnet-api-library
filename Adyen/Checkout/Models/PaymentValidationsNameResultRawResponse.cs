@@ -198,6 +198,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var paymentValidationsNameResultRawResponse = new PaymentValidationsNameResultRawResponse();
             if (firstName.IsSet)
                 paymentValidationsNameResultRawResponse.FirstName = firstName.Value;

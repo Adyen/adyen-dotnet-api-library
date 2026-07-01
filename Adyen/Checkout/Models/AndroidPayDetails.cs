@@ -276,6 +276,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var androidPayDetails = new AndroidPayDetails();
             if (checkoutAttemptId.IsSet)
                 androidPayDetails.CheckoutAttemptId = checkoutAttemptId.Value;

@@ -160,6 +160,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var paymentMethodGroup = new PaymentMethodGroup();
             if (name.IsSet)
                 paymentMethodGroup.Name = name.Value;

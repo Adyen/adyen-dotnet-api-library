@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CardNumber"/> will be populated.
@@ -191,11 +191,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class CardDetailsRequest.", nameof(merchantAccount));
 
             var cardDetailsRequest = new CardDetailsRequest();
-            cardDetailsRequest.MerchantAccount = merchantAccount.Value!;
+            if (merchantAccount.IsSet)
+                cardDetailsRequest.MerchantAccount = merchantAccount.Value!;
             if (cardNumber.IsSet)
                 cardDetailsRequest.CardNumber = cardNumber.Value;
             if (countryCode.IsSet)

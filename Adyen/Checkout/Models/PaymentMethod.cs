@@ -446,6 +446,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var paymentMethod = new PaymentMethod();
             if (apps.IsSet)
                 paymentMethod.Apps = apps.Value;

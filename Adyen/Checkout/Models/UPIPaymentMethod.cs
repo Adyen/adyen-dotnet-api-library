@@ -126,8 +126,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class UPIPaymentMethod.", nameof(type));
 
             var uPIPaymentMethod = new UPIPaymentMethod();
             if (virtualPaymentAddress.IsSet)

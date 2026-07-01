@@ -293,6 +293,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var platformChargebackLogic = new PlatformChargebackLogic();
             if (behavior.IsSet)
                 platformChargebackLogic.Behavior = behavior.Value;

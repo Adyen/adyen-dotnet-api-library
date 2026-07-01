@@ -141,6 +141,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var agency = new Agency();
             if (invoiceNumber.IsSet)
                 agency.InvoiceNumber = invoiceNumber.Value;

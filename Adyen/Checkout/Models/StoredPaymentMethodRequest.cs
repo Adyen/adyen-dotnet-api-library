@@ -190,20 +190,20 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// <see cref="PaymentMethod"/>.
         /// </summary>
         [JsonPropertyName("paymentMethod")]
-        public PaymentMethodToStore PaymentMethod { get; set; }
+        public PaymentMethodToStore? PaymentMethod { get; set; }
 
         /// <summary>
         /// A unique identifier for the shopper (for example, user ID or account ID).
         /// </summary>
         /// <value>A unique identifier for the shopper (for example, user ID or account ID).</value>
         [JsonPropertyName("shopperReference")]
-        public string ShopperReference { get; set; }
+        public string? ShopperReference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ShopperEmail"/> will be populated.
@@ -321,23 +321,16 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class StoredPaymentMethodRequest.", nameof(merchantAccount));
-
-            if (!paymentMethod.IsSet)
-                throw new ArgumentException("Property is required for class StoredPaymentMethodRequest.", nameof(paymentMethod));
-
-            if (!recurringProcessingModel.IsSet)
-                throw new ArgumentException("Property is required for class StoredPaymentMethodRequest.", nameof(recurringProcessingModel));
-
-            if (!shopperReference.IsSet)
-                throw new ArgumentException("Property is required for class StoredPaymentMethodRequest.", nameof(shopperReference));
 
             var storedPaymentMethodRequest = new StoredPaymentMethodRequest();
-            storedPaymentMethodRequest.MerchantAccount = merchantAccount.Value!;
-            storedPaymentMethodRequest.PaymentMethod = paymentMethod.Value!;
-            storedPaymentMethodRequest.RecurringProcessingModel = recurringProcessingModel.Value!;
-            storedPaymentMethodRequest.ShopperReference = shopperReference.Value!;
+            if (merchantAccount.IsSet)
+                storedPaymentMethodRequest.MerchantAccount = merchantAccount.Value!;
+            if (paymentMethod.IsSet)
+                storedPaymentMethodRequest.PaymentMethod = paymentMethod.Value!;
+            if (recurringProcessingModel.IsSet)
+                storedPaymentMethodRequest.RecurringProcessingModel = recurringProcessingModel.Value!;
+            if (shopperReference.IsSet)
+                storedPaymentMethodRequest.ShopperReference = shopperReference.Value!;
             if (shopperEmail.IsSet)
                 storedPaymentMethodRequest.ShopperEmail = shopperEmail.Value;
             if (shopperIP.IsSet)

@@ -141,6 +141,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var checkoutNetworkTokenOption = new CheckoutNetworkTokenOption();
             if (includeCryptogram.IsSet)
                 checkoutNetworkTokenOption.IncludeCryptogram = includeCryptogram.Value;

@@ -316,6 +316,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var rakutenPayDetails = new RakutenPayDetails();
             if (checkoutAttemptId.IsSet)
                 rakutenPayDetails.CheckoutAttemptId = checkoutAttemptId.Value;

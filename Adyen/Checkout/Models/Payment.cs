@@ -310,6 +310,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var payment = new Payment();
             if (amount.IsSet)
                 payment.Amount = amount.Value;

@@ -351,21 +351,21 @@ namespace Adyen.Checkout.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The collection that contains the type of the payment method and its specific information.
         /// </summary>
         /// <value>The collection that contains the type of the payment method and its specific information.</value>
         [JsonPropertyName("paymentMethod")]
-        public Dictionary<string, string> PaymentMethod { get; set; }
+        public Dictionary<string, string>? PaymentMethod { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AccountInfo"/> will be populated.
@@ -1192,19 +1192,14 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class BalanceCheckRequest.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class BalanceCheckRequest.", nameof(merchantAccount));
-
-            if (!paymentMethod.IsSet)
-                throw new ArgumentException("Property is required for class BalanceCheckRequest.", nameof(paymentMethod));
 
             var balanceCheckRequest = new BalanceCheckRequest();
-            balanceCheckRequest.Amount = amount.Value!;
-            balanceCheckRequest.MerchantAccount = merchantAccount.Value!;
-            balanceCheckRequest.PaymentMethod = paymentMethod.Value!;
+            if (amount.IsSet)
+                balanceCheckRequest.Amount = amount.Value!;
+            if (merchantAccount.IsSet)
+                balanceCheckRequest.MerchantAccount = merchantAccount.Value!;
+            if (paymentMethod.IsSet)
+                balanceCheckRequest.PaymentMethod = paymentMethod.Value!;
             if (accountInfo.IsSet)
                 balanceCheckRequest.AccountInfo = accountInfo.Value;
             if (additionalAmount.IsSet)

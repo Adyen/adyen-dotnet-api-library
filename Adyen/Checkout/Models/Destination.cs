@@ -160,6 +160,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var destination = new Destination();
             if (countryCode.IsSet)
                 destination.CountryCode = countryCode.Value;

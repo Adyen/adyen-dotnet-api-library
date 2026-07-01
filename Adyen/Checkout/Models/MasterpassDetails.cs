@@ -326,7 +326,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The Masterpass transaction ID.</value>
         [JsonPropertyName("masterpassTransactionId")]
-        public string MasterpassTransactionId { get; set; }
+        public string? MasterpassTransactionId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
@@ -440,11 +440,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!masterpassTransactionId.IsSet)
-                throw new ArgumentException("Property is required for class MasterpassDetails.", nameof(masterpassTransactionId));
 
             var masterpassDetails = new MasterpassDetails();
-            masterpassDetails.MasterpassTransactionId = masterpassTransactionId.Value!;
+            if (masterpassTransactionId.IsSet)
+                masterpassDetails.MasterpassTransactionId = masterpassTransactionId.Value!;
             if (checkoutAttemptId.IsSet)
                 masterpassDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (fundingSource.IsSet)

@@ -770,6 +770,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var achDetails = new AchDetails();
             if (accountHolderType.IsSet)
                 achDetails.AccountHolderType = accountHolderType.Value;

@@ -51,14 +51,14 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes/).</value>
         [JsonPropertyName("currency")]
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         /// <summary>
         /// The amounts of the donation (in [minor units](https://docs.adyen.com/development-resources/currency-codes/)).
         /// </summary>
         /// <value>The amounts of the donation (in [minor units](https://docs.adyen.com/development-resources/currency-codes/)).</value>
         [JsonPropertyName("values")]
-        public List<long> Values { get; set; }
+        public List<long>? Values { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class Amounts.", nameof(currency));
-
-            if (!values.IsSet)
-                throw new ArgumentException("Property is required for class Amounts.", nameof(values));
 
             var amounts = new Amounts();
-            amounts.Currency = currency.Value!;
-            amounts.Values = values.Value!;
+            if (currency.IsSet)
+                amounts.Currency = currency.Value!;
+            if (values.IsSet)
+                amounts.Values = values.Value!;
             return amounts;
         }
 

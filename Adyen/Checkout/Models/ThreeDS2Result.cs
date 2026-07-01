@@ -840,6 +840,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var threeDS2Result = new ThreeDS2Result();
             if (authenticationValue.IsSet)
                 threeDS2Result.AuthenticationValue = authenticationValue.Value;

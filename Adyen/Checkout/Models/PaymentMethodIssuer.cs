@@ -51,14 +51,14 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The unique identifier of this issuer, to submit in requests to /payments.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// A localized name of the issuer.
         /// </summary>
         /// <value>A localized name of the issuer.</value>
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Disabled"/> will be populated.
@@ -146,15 +146,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodIssuer.", nameof(id));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodIssuer.", nameof(name));
 
             var paymentMethodIssuer = new PaymentMethodIssuer();
-            paymentMethodIssuer.Id = id.Value!;
-            paymentMethodIssuer.Name = name.Value!;
+            if (id.IsSet)
+                paymentMethodIssuer.Id = id.Value!;
+            if (name.IsSet)
+                paymentMethodIssuer.Name = name.Value!;
             if (disabled.IsSet)
                 paymentMethodIssuer.Disabled = disabled.Value;
             return paymentMethodIssuer;

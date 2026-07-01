@@ -179,28 +179,28 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The shopper's bank.</value>
         [JsonPropertyName("bank")]
-        public string Bank { get; set; }
+        public string? Bank { get; set; }
 
         /// <summary>
         /// The client type.
         /// </summary>
         /// <value>The client type.</value>
         [JsonPropertyName("clientType")]
-        public string ClientType { get; set; }
+        public string? ClientType { get; set; }
 
         /// <summary>
         /// The identification code.
         /// </summary>
         /// <value>The identification code.</value>
         [JsonPropertyName("identification")]
-        public string Identification { get; set; }
+        public string? Identification { get; set; }
 
         /// <summary>
         /// The identification type.
         /// </summary>
         /// <value>The identification type.</value>
         [JsonPropertyName("identificationType")]
-        public string IdentificationType { get; set; }
+        public string? IdentificationType { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
@@ -323,23 +323,16 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!bank.IsSet)
-                throw new ArgumentException("Property is required for class PseDetails.", nameof(bank));
-
-            if (!clientType.IsSet)
-                throw new ArgumentException("Property is required for class PseDetails.", nameof(clientType));
-
-            if (!identification.IsSet)
-                throw new ArgumentException("Property is required for class PseDetails.", nameof(identification));
-
-            if (!identificationType.IsSet)
-                throw new ArgumentException("Property is required for class PseDetails.", nameof(identificationType));
 
             var pseDetails = new PseDetails();
-            pseDetails.Bank = bank.Value!;
-            pseDetails.ClientType = clientType.Value!;
-            pseDetails.Identification = identification.Value!;
-            pseDetails.IdentificationType = identificationType.Value!;
+            if (bank.IsSet)
+                pseDetails.Bank = bank.Value!;
+            if (clientType.IsSet)
+                pseDetails.ClientType = clientType.Value!;
+            if (identification.IsSet)
+                pseDetails.Identification = identification.Value!;
+            if (identificationType.IsSet)
+                pseDetails.IdentificationType = identificationType.Value!;
             if (checkoutAttemptId.IsSet)
                 pseDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (sdkData.IsSet)

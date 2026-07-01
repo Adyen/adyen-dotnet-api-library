@@ -780,34 +780,34 @@ namespace Adyen.Checkout.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// <see cref="PaymentMethod"/>.
         /// </summary>
         [JsonPropertyName("paymentMethod")]
-        public CheckoutPaymentMethod PaymentMethod { get; set; }
+        public CheckoutPaymentMethod? PaymentMethod { get; set; }
 
         /// <summary>
         /// The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. To provide multiple references for one transaction, separate the reference values with the hyphen (&#x60;-&#x60;) character.We strongly recommend that you use a unique value for each transaction. Maximum length: 80 characters.
         /// </summary>
         /// <value>The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. To provide multiple references for one transaction, separate the reference values with the hyphen (`-`) character.We strongly recommend that you use a unique value for each transaction. Maximum length: 80 characters.</value>
         [JsonPropertyName("reference")]
-        public string Reference { get; set; }
+        public string? Reference { get; set; }
 
         /// <summary>
         /// The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol &#x60;http://&#x60; or &#x60;https://&#x60;. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: &#x60;https://your-company.example.com/checkout?shopperOrder&#x3D;12xy&#x60; * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: &#x60;my-app://&#x60; * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: &#x60;my-app://your.package.name&#x60;  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value.  We strongly recommend that you use a maximum of 1024 characters.  &gt; The URL must not include personally identifiable information (PII), for example name or email address.
         /// </summary>
         /// <value>The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol `http://` or `https://`. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: `https://your-company.example.com/checkout?shopperOrder=12xy` * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: `my-app://` * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: `my-app://your.package.name`  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value.  We strongly recommend that you use a maximum of 1024 characters.  > The URL must not include personally identifiable information (PII), for example name or email address.</value>
         [JsonPropertyName("returnUrl")]
-        public string ReturnUrl { get; set; }
+        public string? ReturnUrl { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AccountInfo"/> will be populated.
@@ -2133,27 +2133,18 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentRequest.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentRequest.", nameof(merchantAccount));
-
-            if (!paymentMethod.IsSet)
-                throw new ArgumentException("Property is required for class PaymentRequest.", nameof(paymentMethod));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class PaymentRequest.", nameof(reference));
-
-            if (!returnUrl.IsSet)
-                throw new ArgumentException("Property is required for class PaymentRequest.", nameof(returnUrl));
 
             var paymentRequest = new PaymentRequest();
-            paymentRequest.Amount = amount.Value!;
-            paymentRequest.MerchantAccount = merchantAccount.Value!;
-            paymentRequest.PaymentMethod = paymentMethod.Value!;
-            paymentRequest.Reference = reference.Value!;
-            paymentRequest.ReturnUrl = returnUrl.Value!;
+            if (amount.IsSet)
+                paymentRequest.Amount = amount.Value!;
+            if (merchantAccount.IsSet)
+                paymentRequest.MerchantAccount = merchantAccount.Value!;
+            if (paymentMethod.IsSet)
+                paymentRequest.PaymentMethod = paymentMethod.Value!;
+            if (reference.IsSet)
+                paymentRequest.Reference = reference.Value!;
+            if (returnUrl.IsSet)
+                paymentRequest.ReturnUrl = returnUrl.Value!;
             if (accountInfo.IsSet)
                 paymentRequest.AccountInfo = accountInfo.Value;
             if (additionalAmount.IsSet)

@@ -370,6 +370,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var pixPayByBankDetails = new PixPayByBankDetails();
             if (checkoutAttemptId.IsSet)
                 pixPayByBankDetails.CheckoutAttemptId = checkoutAttemptId.Value;

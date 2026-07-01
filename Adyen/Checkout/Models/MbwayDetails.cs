@@ -179,13 +179,13 @@ namespace Adyen.Checkout.Models
         /// <see cref="ShopperEmail"/>.
         /// </summary>
         [JsonPropertyName("shopperEmail")]
-        public string ShopperEmail { get; set; }
+        public string? ShopperEmail { get; set; }
 
         /// <summary>
         /// <see cref="TelephoneNumber"/>.
         /// </summary>
         [JsonPropertyName("telephoneNumber")]
-        public string TelephoneNumber { get; set; }
+        public string? TelephoneNumber { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
@@ -298,15 +298,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!shopperEmail.IsSet)
-                throw new ArgumentException("Property is required for class MbwayDetails.", nameof(shopperEmail));
-
-            if (!telephoneNumber.IsSet)
-                throw new ArgumentException("Property is required for class MbwayDetails.", nameof(telephoneNumber));
 
             var mbwayDetails = new MbwayDetails();
-            mbwayDetails.ShopperEmail = shopperEmail.Value!;
-            mbwayDetails.TelephoneNumber = telephoneNumber.Value!;
+            if (shopperEmail.IsSet)
+                mbwayDetails.ShopperEmail = shopperEmail.Value!;
+            if (telephoneNumber.IsSet)
+                mbwayDetails.TelephoneNumber = telephoneNumber.Value!;
             if (checkoutAttemptId.IsSet)
                 mbwayDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (sdkData.IsSet)

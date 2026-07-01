@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ApplicationInfo"/> will be populated.
@@ -170,11 +170,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentReversalRequest.", nameof(merchantAccount));
 
             var paymentReversalRequest = new PaymentReversalRequest();
-            paymentReversalRequest.MerchantAccount = merchantAccount.Value!;
+            if (merchantAccount.IsSet)
+                paymentReversalRequest.MerchantAccount = merchantAccount.Value!;
             if (applicationInfo.IsSet)
                 paymentReversalRequest.ApplicationInfo = applicationInfo.Value;
             if (enhancedSchemeData.IsSet)

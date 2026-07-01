@@ -51,35 +51,35 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The name of the city. Maximum length: 3000 characters.</value>
         [JsonPropertyName("city")]
-        public string City { get; set; }
+        public string? City { get; set; }
 
         /// <summary>
         /// The two-character ISO-3166-1 alpha-2 country code. For example, **US**. &gt; If you don&#39;t know the country or are not collecting the country from the shopper, provide &#x60;country&#x60; as &#x60;ZZ&#x60;.
         /// </summary>
         /// <value>The two-character ISO-3166-1 alpha-2 country code. For example, **US**. > If you don't know the country or are not collecting the country from the shopper, provide `country` as `ZZ`.</value>
         [JsonPropertyName("country")]
-        public string Country { get; set; }
+        public string? Country { get; set; }
 
         /// <summary>
         /// The number or name of the house. Maximum length: 3000 characters.
         /// </summary>
         /// <value>The number or name of the house. Maximum length: 3000 characters.</value>
         [JsonPropertyName("houseNumberOrName")]
-        public string HouseNumberOrName { get; set; }
+        public string? HouseNumberOrName { get; set; }
 
         /// <summary>
         /// A maximum of five digits for an address in the US, or a maximum of ten characters for an address in all other countries.
         /// </summary>
         /// <value>A maximum of five digits for an address in the US, or a maximum of ten characters for an address in all other countries.</value>
         [JsonPropertyName("postalCode")]
-        public string PostalCode { get; set; }
+        public string? PostalCode { get; set; }
 
         /// <summary>
         /// The name of the street. Maximum length: 3000 characters. &gt; The house number should not be included in this field; it should be separately provided via &#x60;houseNumberOrName&#x60;.
         /// </summary>
         /// <value>The name of the street. Maximum length: 3000 characters. > The house number should not be included in this field; it should be separately provided via `houseNumberOrName`.</value>
         [JsonPropertyName("street")]
-        public string Street { get; set; }
+        public string? Street { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="FirstName"/> will be populated.
@@ -218,27 +218,18 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!city.IsSet)
-                throw new ArgumentException("Property is required for class DeliveryAddress.", nameof(city));
-
-            if (!country.IsSet)
-                throw new ArgumentException("Property is required for class DeliveryAddress.", nameof(country));
-
-            if (!houseNumberOrName.IsSet)
-                throw new ArgumentException("Property is required for class DeliveryAddress.", nameof(houseNumberOrName));
-
-            if (!postalCode.IsSet)
-                throw new ArgumentException("Property is required for class DeliveryAddress.", nameof(postalCode));
-
-            if (!street.IsSet)
-                throw new ArgumentException("Property is required for class DeliveryAddress.", nameof(street));
 
             var deliveryAddress = new DeliveryAddress();
-            deliveryAddress.City = city.Value!;
-            deliveryAddress.Country = country.Value!;
-            deliveryAddress.HouseNumberOrName = houseNumberOrName.Value!;
-            deliveryAddress.PostalCode = postalCode.Value!;
-            deliveryAddress.Street = street.Value!;
+            if (city.IsSet)
+                deliveryAddress.City = city.Value!;
+            if (country.IsSet)
+                deliveryAddress.Country = country.Value!;
+            if (houseNumberOrName.IsSet)
+                deliveryAddress.HouseNumberOrName = houseNumberOrName.Value!;
+            if (postalCode.IsSet)
+                deliveryAddress.PostalCode = postalCode.Value!;
+            if (street.IsSet)
+                deliveryAddress.Street = street.Value!;
             if (firstName.IsSet)
                 deliveryAddress.FirstName = firstName.Value;
             if (lastName.IsSet)

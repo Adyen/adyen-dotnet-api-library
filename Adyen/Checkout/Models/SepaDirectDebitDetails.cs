@@ -189,14 +189,14 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The International Bank Account Number (IBAN).</value>
         [JsonPropertyName("iban")]
-        public string Iban { get; set; }
+        public string? Iban { get; set; }
 
         /// <summary>
         /// The name of the bank account holder.
         /// </summary>
         /// <value>The name of the bank account holder.</value>
         [JsonPropertyName("ownerName")]
-        public string OwnerName { get; set; }
+        public string? OwnerName { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
@@ -387,15 +387,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!iban.IsSet)
-                throw new ArgumentException("Property is required for class SepaDirectDebitDetails.", nameof(iban));
-
-            if (!ownerName.IsSet)
-                throw new ArgumentException("Property is required for class SepaDirectDebitDetails.", nameof(ownerName));
 
             var sepaDirectDebitDetails = new SepaDirectDebitDetails();
-            sepaDirectDebitDetails.Iban = iban.Value!;
-            sepaDirectDebitDetails.OwnerName = ownerName.Value!;
+            if (iban.IsSet)
+                sepaDirectDebitDetails.Iban = iban.Value!;
+            if (ownerName.IsSet)
+                sepaDirectDebitDetails.OwnerName = ownerName.Value!;
             if (checkoutAttemptId.IsSet)
                 sepaDirectDebitDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (dueDate.IsSet)

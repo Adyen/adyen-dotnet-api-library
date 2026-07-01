@@ -373,6 +373,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var directDebitAuDetails = new DirectDebitAuDetails();
             if (bankAccountNumber.IsSet)
                 directDebitAuDetails.BankAccountNumber = bankAccountNumber.Value;

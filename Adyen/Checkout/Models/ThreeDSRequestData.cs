@@ -702,6 +702,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var threeDSRequestData = new ThreeDSRequestData();
             if (challengeWindowSize.IsSet)
                 threeDSRequestData.ChallengeWindowSize = challengeWindowSize.Value;

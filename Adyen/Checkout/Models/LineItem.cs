@@ -445,6 +445,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var lineItem = new LineItem();
             if (amountExcludingTax.IsSet)
                 lineItem.AmountExcludingTax = amountExcludingTax.Value;

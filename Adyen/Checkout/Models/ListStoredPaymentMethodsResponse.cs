@@ -160,6 +160,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var listStoredPaymentMethodsResponse = new ListStoredPaymentMethodsResponse();
             if (merchantAccount.IsSet)
                 listStoredPaymentMethodsResponse.MerchantAccount = merchantAccount.Value;

@@ -50,7 +50,7 @@ namespace Adyen.Checkout.Models
         /// <see cref="Details"/>.
         /// </summary>
         [JsonPropertyName("details")]
-        public PaymentCompletionDetails Details { get; set; }
+        public PaymentCompletionDetails? Details { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AuthenticationData"/> will be populated.
@@ -172,11 +172,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!details.IsSet)
-                throw new ArgumentException("Property is required for class PaymentDetailsRequest.", nameof(details));
 
             var paymentDetailsRequest = new PaymentDetailsRequest();
-            paymentDetailsRequest.Details = details.Value!;
+            if (details.IsSet)
+                paymentDetailsRequest.Details = details.Value!;
             if (authenticationData.IsSet)
                 paymentDetailsRequest.AuthenticationData = authenticationData.Value;
             if (paymentData.IsSet)

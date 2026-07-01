@@ -181,7 +181,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The shopper's bank. Specify this with the issuer value that corresponds to this bank.</value>
         [JsonPropertyName("issuer")]
-        public string Issuer { get; set; }
+        public string? Issuer { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
@@ -289,15 +289,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!issuer.IsSet)
-                throw new ArgumentException("Property is required for class MolPayDetails.", nameof(issuer));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class MolPayDetails.", nameof(type));
 
             var molPayDetails = new MolPayDetails();
-            molPayDetails.Issuer = issuer.Value!;
-            molPayDetails.Type = type.Value!;
+            if (issuer.IsSet)
+                molPayDetails.Issuer = issuer.Value!;
+            if (type.IsSet)
+                molPayDetails.Type = type.Value!;
             if (checkoutAttemptId.IsSet)
                 molPayDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (sdkData.IsSet)

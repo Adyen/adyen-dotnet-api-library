@@ -1392,6 +1392,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var acctInfo = new AcctInfo();
             if (chAccAgeInd.IsSet)
                 acctInfo.ChAccAgeInd = chAccAgeInd.Value;

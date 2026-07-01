@@ -426,6 +426,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var additionalDataLodging = new AdditionalDataLodging();
             if (lodgingSpecialProgramCode.IsSet)
                 additionalDataLodging.LodgingSpecialProgramCode = lodgingSpecialProgramCode.Value;

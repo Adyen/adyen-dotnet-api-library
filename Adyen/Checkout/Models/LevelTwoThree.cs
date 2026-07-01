@@ -259,6 +259,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var levelTwoThree = new LevelTwoThree();
             if (customerReferenceNumber.IsSet)
                 levelTwoThree.CustomerReferenceNumber = customerReferenceNumber.Value;

@@ -418,6 +418,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var almaDetails = new AlmaDetails();
             if (checkoutAttemptId.IsSet)
                 almaDetails.CheckoutAttemptId = checkoutAttemptId.Value;

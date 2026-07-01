@@ -179,6 +179,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var responseAdditionalDataSepa = new ResponseAdditionalDataSepa();
             if (sepadirectdebitDateOfSignature.IsSet)
                 responseAdditionalDataSepa.SepadirectdebitDateOfSignature = sepadirectdebitDateOfSignature.Value;

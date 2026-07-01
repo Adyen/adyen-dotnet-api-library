@@ -1326,6 +1326,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             if (achDetails?.Type != null && AchDetails.TypeEnum.FromStringOrDefault((string?)achDetails.Type) != null)
                 return new CheckoutPaymentMethod(achDetails);
 

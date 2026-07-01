@@ -51,14 +51,14 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The [&#x60;reference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_reference) of the payment that you want to cancel.
         /// </summary>
         /// <value>The [`reference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_reference) of the payment that you want to cancel.</value>
         [JsonPropertyName("paymentReference")]
-        public string PaymentReference { get; set; }
+        public string? PaymentReference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ApplicationInfo"/> will be populated.
@@ -182,15 +182,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class StandalonePaymentCancelRequest.", nameof(merchantAccount));
-
-            if (!paymentReference.IsSet)
-                throw new ArgumentException("Property is required for class StandalonePaymentCancelRequest.", nameof(paymentReference));
 
             var standalonePaymentCancelRequest = new StandalonePaymentCancelRequest();
-            standalonePaymentCancelRequest.MerchantAccount = merchantAccount.Value!;
-            standalonePaymentCancelRequest.PaymentReference = paymentReference.Value!;
+            if (merchantAccount.IsSet)
+                standalonePaymentCancelRequest.MerchantAccount = merchantAccount.Value!;
+            if (paymentReference.IsSet)
+                standalonePaymentCancelRequest.PaymentReference = paymentReference.Value!;
             if (applicationInfo.IsSet)
                 standalonePaymentCancelRequest.ApplicationInfo = applicationInfo.Value;
             if (enhancedSchemeData.IsSet)

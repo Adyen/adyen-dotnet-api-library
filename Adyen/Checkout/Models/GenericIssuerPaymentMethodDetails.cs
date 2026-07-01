@@ -208,7 +208,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The issuer id of the shopper's selected bank.</value>
         [JsonPropertyName("issuer")]
-        public string Issuer { get; set; }
+        public string? Issuer { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
@@ -356,15 +356,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!issuer.IsSet)
-                throw new ArgumentException("Property is required for class GenericIssuerPaymentMethodDetails.", nameof(issuer));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class GenericIssuerPaymentMethodDetails.", nameof(type));
 
             var genericIssuerPaymentMethodDetails = new GenericIssuerPaymentMethodDetails();
-            genericIssuerPaymentMethodDetails.Issuer = issuer.Value!;
-            genericIssuerPaymentMethodDetails.Type = type.Value!;
+            if (issuer.IsSet)
+                genericIssuerPaymentMethodDetails.Issuer = issuer.Value!;
+            if (type.IsSet)
+                genericIssuerPaymentMethodDetails.Type = type.Value!;
             if (checkoutAttemptId.IsSet)
                 genericIssuerPaymentMethodDetails.CheckoutAttemptId = checkoutAttemptId.Value;
             if (recurringDetailReference.IsSet)

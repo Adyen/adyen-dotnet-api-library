@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>Base64 encoded data you need to [complete the Apple Pay merchant validation](https://docs.adyen.com/payment-methods/apple-pay/api-only?tab=adyen-certificate-validation_1#complete-apple-pay-session-validation).</value>
         [JsonPropertyName("data")]
-        public string Data { get; set; }
+        public string? Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ApplePaySessionResponse.", nameof(data));
 
             var applePaySessionResponse = new ApplePaySessionResponse();
-            applePaySessionResponse.Data = data.Value!;
+            if (data.IsSet)
+                applePaySessionResponse.Data = data.Value!;
             return applePaySessionResponse;
         }
 

@@ -51,21 +51,21 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes/).</value>
         [JsonPropertyName("currency")]
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         /// <summary>
         /// The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donations amounts that the shopper can select from.
         /// </summary>
         /// <value>The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donations amounts that the shopper can select from.</value>
         [JsonPropertyName("donationType")]
-        public string DonationType { get; set; }
+        public string? DonationType { get; set; }
 
         /// <summary>
         /// The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donation amounts that the shopper can select from.
         /// </summary>
         /// <value>The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donation amounts that the shopper can select from.</value>
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="MaxRoundupAmount"/> will be populated.
@@ -177,19 +177,14 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class Donation.", nameof(currency));
-
-            if (!donationType.IsSet)
-                throw new ArgumentException("Property is required for class Donation.", nameof(donationType));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class Donation.", nameof(type));
 
             var donation = new Donation();
-            donation.Currency = currency.Value!;
-            donation.DonationType = donationType.Value!;
-            donation.Type = type.Value!;
+            if (currency.IsSet)
+                donation.Currency = currency.Value!;
+            if (donationType.IsSet)
+                donation.DonationType = donationType.Value!;
+            if (type.IsSet)
+                donation.Type = type.Value!;
             if (maxRoundupAmount.IsSet)
                 donation.MaxRoundupAmount = maxRoundupAmount.Value;
             if (values.IsSet)

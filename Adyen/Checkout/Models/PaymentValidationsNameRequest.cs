@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>Set to **requested** to request a [name validation](https://docs.adyen.com/payment-methods/cards/name-validation) to verify if the cardholder name provided by the shopper matches the cardholder name on file at the issuing bank.</value>
         [JsonPropertyName("status")]
-        public string Status { get; set; }
+        public string? Status { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class PaymentValidationsNameRequest.", nameof(status));
 
             var paymentValidationsNameRequest = new PaymentValidationsNameRequest();
-            paymentValidationsNameRequest.Status = status.Value!;
+            if (status.IsSet)
+                paymentValidationsNameRequest.Status = status.Value!;
             return paymentValidationsNameRequest;
         }
 

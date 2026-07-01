@@ -1365,6 +1365,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var accountInfo = new AccountInfo();
             if (accountAgeIndicator.IsSet)
                 accountInfo.AccountAgeIndicator = accountAgeIndicator.Value;

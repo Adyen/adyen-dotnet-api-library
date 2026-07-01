@@ -424,6 +424,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var deviceRenderOptions = new DeviceRenderOptions();
             if (sdkInterface.IsSet)
                 deviceRenderOptions.SdkInterface = sdkInterface.Value;

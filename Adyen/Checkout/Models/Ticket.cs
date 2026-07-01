@@ -165,6 +165,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var ticket = new Ticket();
             if (issueAddress.IsSet)
                 ticket.IssueAddress = issueAddress.Value;

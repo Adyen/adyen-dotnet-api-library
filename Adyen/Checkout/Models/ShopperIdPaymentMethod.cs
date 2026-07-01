@@ -128,8 +128,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class ShopperIdPaymentMethod.", nameof(type));
 
             var shopperIdPaymentMethod = new ShopperIdPaymentMethod();
             return shopperIdPaymentMethod;

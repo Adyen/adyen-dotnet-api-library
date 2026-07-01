@@ -51,13 +51,13 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// <see cref="PaymentMethod"/>.
         /// </summary>
         [JsonPropertyName("paymentMethod")]
-        public ShopperIdPaymentMethod PaymentMethod { get; set; }
+        public ShopperIdPaymentMethod? PaymentMethod { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ShopperEmail"/> will be populated.
@@ -180,15 +180,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class ValidateShopperIdRequest.", nameof(merchantAccount));
-
-            if (!paymentMethod.IsSet)
-                throw new ArgumentException("Property is required for class ValidateShopperIdRequest.", nameof(paymentMethod));
 
             var validateShopperIdRequest = new ValidateShopperIdRequest();
-            validateShopperIdRequest.MerchantAccount = merchantAccount.Value!;
-            validateShopperIdRequest.PaymentMethod = paymentMethod.Value!;
+            if (merchantAccount.IsSet)
+                validateShopperIdRequest.MerchantAccount = merchantAccount.Value!;
+            if (paymentMethod.IsSet)
+                validateShopperIdRequest.PaymentMethod = paymentMethod.Value!;
             if (shopperEmail.IsSet)
                 validateShopperIdRequest.ShopperEmail = shopperEmail.Value;
             if (shopperIP.IsSet)

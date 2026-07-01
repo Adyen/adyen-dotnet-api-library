@@ -352,6 +352,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var weChatPayMiniProgramDetails = new WeChatPayMiniProgramDetails();
             if (appId.IsSet)
                 weChatPayMiniProgramDetails.AppId = appId.Value;

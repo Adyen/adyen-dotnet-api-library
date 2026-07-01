@@ -126,8 +126,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PayToPaymentMethod.", nameof(type));
 
             var payToPaymentMethod = new PayToPaymentMethod();
             if (shopperReference.IsSet)

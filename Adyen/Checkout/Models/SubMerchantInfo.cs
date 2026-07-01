@@ -290,6 +290,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var subMerchantInfo = new SubMerchantInfo();
             if (address.IsSet)
                 subMerchantInfo.Address = address.Value;

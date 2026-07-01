@@ -374,8 +374,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RatepayDetails.", nameof(type));
 
             var ratepayDetails = new RatepayDetails();
             if (billingAddress.IsSet)
@@ -392,7 +390,8 @@ namespace Adyen.Checkout.Models
                 ratepayDetails.SdkData = sdkData.Value;
             if (storedPaymentMethodId.IsSet)
                 ratepayDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
-            ratepayDetails.Type = type.Value!;
+            if (type.IsSet)
+                ratepayDetails.Type = type.Value!;
             return ratepayDetails;
         }
 

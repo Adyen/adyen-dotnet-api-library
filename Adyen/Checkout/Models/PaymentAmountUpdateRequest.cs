@@ -196,14 +196,14 @@ namespace Adyen.Checkout.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The merchant account that is used to process the payment.
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ApplicationInfo"/> will be populated.
@@ -371,15 +371,12 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentAmountUpdateRequest.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentAmountUpdateRequest.", nameof(merchantAccount));
 
             var paymentAmountUpdateRequest = new PaymentAmountUpdateRequest();
-            paymentAmountUpdateRequest.Amount = amount.Value!;
-            paymentAmountUpdateRequest.MerchantAccount = merchantAccount.Value!;
+            if (amount.IsSet)
+                paymentAmountUpdateRequest.Amount = amount.Value!;
+            if (merchantAccount.IsSet)
+                paymentAmountUpdateRequest.MerchantAccount = merchantAccount.Value!;
             if (applicationInfo.IsSet)
                 paymentAmountUpdateRequest.ApplicationInfo = applicationInfo.Value;
             if (enhancedSchemeData.IsSet)

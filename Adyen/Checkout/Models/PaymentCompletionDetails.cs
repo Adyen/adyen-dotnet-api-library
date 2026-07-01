@@ -482,6 +482,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var paymentCompletionDetails = new PaymentCompletionDetails();
             if (mD.IsSet)
                 paymentCompletionDetails.MD = mD.Value;

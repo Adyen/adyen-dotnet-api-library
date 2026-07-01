@@ -172,21 +172,21 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to cancel. 
         /// </summary>
         /// <value>The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to cancel. </value>
         [JsonPropertyName("paymentPspReference")]
-        public string PaymentPspReference { get; set; }
+        public string? PaymentPspReference { get; set; }
 
         /// <summary>
         /// Adyen&#39;s 16-character reference associated with the cancel request.
         /// </summary>
         /// <value>Adyen's 16-character reference associated with the cancel request.</value>
         [JsonPropertyName("pspReference")]
-        public string PspReference { get; set; }
+        public string? PspReference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
@@ -285,23 +285,16 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentCancelResponse.", nameof(merchantAccount));
-
-            if (!paymentPspReference.IsSet)
-                throw new ArgumentException("Property is required for class PaymentCancelResponse.", nameof(paymentPspReference));
-
-            if (!pspReference.IsSet)
-                throw new ArgumentException("Property is required for class PaymentCancelResponse.", nameof(pspReference));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class PaymentCancelResponse.", nameof(status));
 
             var paymentCancelResponse = new PaymentCancelResponse();
-            paymentCancelResponse.MerchantAccount = merchantAccount.Value!;
-            paymentCancelResponse.PaymentPspReference = paymentPspReference.Value!;
-            paymentCancelResponse.PspReference = pspReference.Value!;
-            paymentCancelResponse.Status = status.Value!;
+            if (merchantAccount.IsSet)
+                paymentCancelResponse.MerchantAccount = merchantAccount.Value!;
+            if (paymentPspReference.IsSet)
+                paymentCancelResponse.PaymentPspReference = paymentPspReference.Value!;
+            if (pspReference.IsSet)
+                paymentCancelResponse.PspReference = pspReference.Value!;
+            if (status.IsSet)
+                paymentCancelResponse.Status = status.Value!;
             if (reference.IsSet)
                 paymentCancelResponse.Reference = reference.Value;
             return paymentCancelResponse;

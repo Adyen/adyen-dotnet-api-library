@@ -326,7 +326,7 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The `token` that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) `PaymentData` response.</value>
         [JsonPropertyName("googlePayToken")]
-        public string GooglePayToken { get; set; }
+        public string? GooglePayToken { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
@@ -499,11 +499,10 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!googlePayToken.IsSet)
-                throw new ArgumentException("Property is required for class PayWithGoogleDonations.", nameof(googlePayToken));
 
             var payWithGoogleDonations = new PayWithGoogleDonations();
-            payWithGoogleDonations.GooglePayToken = googlePayToken.Value!;
+            if (googlePayToken.IsSet)
+                payWithGoogleDonations.GooglePayToken = googlePayToken.Value!;
             if (checkoutAttemptId.IsSet)
                 payWithGoogleDonations.CheckoutAttemptId = checkoutAttemptId.Value;
             if (fundingSource.IsSet)

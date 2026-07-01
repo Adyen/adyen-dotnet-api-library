@@ -335,6 +335,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var idealDonations = new IdealDonations();
             if (checkoutAttemptId.IsSet)
                 idealDonations.CheckoutAttemptId = checkoutAttemptId.Value;

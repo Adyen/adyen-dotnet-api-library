@@ -576,6 +576,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var storedPaymentMethodDetails = new StoredPaymentMethodDetails();
             if (checkoutAttemptId.IsSet)
                 storedPaymentMethodDetails.CheckoutAttemptId = checkoutAttemptId.Value;

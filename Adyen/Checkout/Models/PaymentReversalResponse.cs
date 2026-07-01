@@ -172,21 +172,21 @@ namespace Adyen.Checkout.Models
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to reverse. 
         /// </summary>
         /// <value>The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to reverse. </value>
         [JsonPropertyName("paymentPspReference")]
-        public string PaymentPspReference { get; set; }
+        public string? PaymentPspReference { get; set; }
 
         /// <summary>
         /// Adyen&#39;s 16-character reference associated with the reversal request.
         /// </summary>
         /// <value>Adyen's 16-character reference associated with the reversal request.</value>
         [JsonPropertyName("pspReference")]
-        public string PspReference { get; set; }
+        public string? PspReference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
@@ -285,23 +285,16 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentReversalResponse.", nameof(merchantAccount));
-
-            if (!paymentPspReference.IsSet)
-                throw new ArgumentException("Property is required for class PaymentReversalResponse.", nameof(paymentPspReference));
-
-            if (!pspReference.IsSet)
-                throw new ArgumentException("Property is required for class PaymentReversalResponse.", nameof(pspReference));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class PaymentReversalResponse.", nameof(status));
 
             var paymentReversalResponse = new PaymentReversalResponse();
-            paymentReversalResponse.MerchantAccount = merchantAccount.Value!;
-            paymentReversalResponse.PaymentPspReference = paymentPspReference.Value!;
-            paymentReversalResponse.PspReference = pspReference.Value!;
-            paymentReversalResponse.Status = status.Value!;
+            if (merchantAccount.IsSet)
+                paymentReversalResponse.MerchantAccount = merchantAccount.Value!;
+            if (paymentPspReference.IsSet)
+                paymentReversalResponse.PaymentPspReference = paymentPspReference.Value!;
+            if (pspReference.IsSet)
+                paymentReversalResponse.PspReference = pspReference.Value!;
+            if (status.IsSet)
+                paymentReversalResponse.Status = status.Value!;
             if (reference.IsSet)
                 paymentReversalResponse.Reference = reference.Value;
             return paymentReversalResponse;

@@ -540,6 +540,7 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+
             var additionalDataCarRental = new AdditionalDataCarRental();
             if (carRentalCheckOutDate.IsSet)
                 additionalDataCarRental.CarRentalCheckOutDate = carRentalCheckOutDate.Value;
