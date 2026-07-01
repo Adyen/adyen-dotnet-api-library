@@ -121,16 +121,15 @@ namespace Adyen.Test.BalancePlatform.BalanceAccountValidation
         }
         
         [TestMethod]
-        public void Given_Deserialize_When_IbanAccountIdentification_Is_Provided_Without_Type_Throws_Exception()
+        public void Given_Deserialize_When_IbanAccountIdentification_Is_Provided_Without_Type_Then_Type_Is_Null()
         {
-            
-            string json =  TestUtilities.GetTestFileContent("mocks/balanceplatform/IbanAccountIdentificationWithoutType.json");
+            string json = TestUtilities.GetTestFileContent("mocks/balanceplatform/IbanAccountIdentificationWithoutType.json");
 
-            Assert.Throws<ArgumentException>(() =>
-            {
-                var response = JsonSerializer.Deserialize<IbanAccountIdentification>(json, _jsonSerializerOptionsProvider.Options);
-            });
-            
+            var response = JsonSerializer.Deserialize<IbanAccountIdentification>(json, _jsonSerializerOptionsProvider.Options);
+
+            Assert.IsNotNull(response);
+            Assert.AreEqual("NL12345", response.Iban);
+            Assert.IsNull(response.Type);
         }
 
         [TestMethod]
