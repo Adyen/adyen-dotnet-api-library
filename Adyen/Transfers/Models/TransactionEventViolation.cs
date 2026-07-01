@@ -158,6 +158,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var transactionEventViolation = new TransactionEventViolation();
             if (reason.IsSet)
                 transactionEventViolation.Reason = reason.Value;

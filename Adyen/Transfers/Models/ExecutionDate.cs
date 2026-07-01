@@ -146,6 +146,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var executionDate = new ExecutionDate();
             if (date.IsSet)
                 executionDate.Date = date.Value;

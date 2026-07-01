@@ -738,8 +738,6 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class BankAccountV3AccountIdentification.", nameof(type));
 
             if (aULocalAccountIdentification != null)
                 return new BankAccountV3AccountIdentification(aULocalAccountIdentification);

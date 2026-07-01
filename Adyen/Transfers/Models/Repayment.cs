@@ -151,11 +151,10 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!basisPoints.IsSet)
-                throw new ArgumentException("Property is required for class Repayment.", nameof(basisPoints));
 
             var repayment = new Repayment();
-            repayment.BasisPoints = basisPoints.Value!.Value;
+            if (basisPoints.IsSet)
+                repayment.BasisPoints = basisPoints.Value!.Value;
             if (term.IsSet)
                 repayment.Term = term.Value;
             if (threshold.IsSet)

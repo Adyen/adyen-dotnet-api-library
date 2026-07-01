@@ -236,6 +236,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var cardIdentification = new CardIdentification();
             if (expiryMonth.IsSet)
                 cardIdentification.ExpiryMonth = expiryMonth.Value;

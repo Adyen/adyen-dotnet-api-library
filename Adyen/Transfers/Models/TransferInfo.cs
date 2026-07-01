@@ -693,13 +693,13 @@ namespace Adyen.Transfers.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// <see cref="Counterparty"/>.
         /// </summary>
         [JsonPropertyName("counterparty")]
-        public CounterpartyInfoV3 Counterparty { get; set; }
+        public CounterpartyInfoV3? Counterparty { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="BalanceAccountId"/> will be populated.
@@ -954,19 +954,14 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class TransferInfo.", nameof(amount));
-
-            if (!category.IsSet)
-                throw new ArgumentException("Property is required for class TransferInfo.", nameof(category));
-
-            if (!counterparty.IsSet)
-                throw new ArgumentException("Property is required for class TransferInfo.", nameof(counterparty));
 
             var transferInfo = new TransferInfo();
-            transferInfo.Amount = amount.Value!;
-            transferInfo.Category = category.Value!;
-            transferInfo.Counterparty = counterparty.Value!;
+            if (amount.IsSet)
+                transferInfo.Amount = amount.Value!;
+            if (category.IsSet)
+                transferInfo.Category = category.Value!;
+            if (counterparty.IsSet)
+                transferInfo.Counterparty = counterparty.Value!;
             if (balanceAccountId.IsSet)
                 transferInfo.BalanceAccountId = balanceAccountId.Value;
             if (description.IsSet)

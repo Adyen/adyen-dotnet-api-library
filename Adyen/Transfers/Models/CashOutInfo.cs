@@ -50,14 +50,14 @@ namespace Adyen.Transfers.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The unique identifier of the balance account that initiates the cashout request.
         /// </summary>
         /// <value>The unique identifier of the balance account that initiates the cashout request.</value>
         [JsonPropertyName("instructingBalanceAccountId")]
-        public string InstructingBalanceAccountId { get; set; }
+        public string? InstructingBalanceAccountId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Counterparty"/> will be populated.
@@ -241,15 +241,12 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class CashOutInfo.", nameof(amount));
-
-            if (!instructingBalanceAccountId.IsSet)
-                throw new ArgumentException("Property is required for class CashOutInfo.", nameof(instructingBalanceAccountId));
 
             var cashOutInfo = new CashOutInfo();
-            cashOutInfo.Amount = amount.Value!;
-            cashOutInfo.InstructingBalanceAccountId = instructingBalanceAccountId.Value!;
+            if (amount.IsSet)
+                cashOutInfo.Amount = amount.Value!;
+            if (instructingBalanceAccountId.IsSet)
+                cashOutInfo.InstructingBalanceAccountId = instructingBalanceAccountId.Value!;
             if (counterparty.IsSet)
                 cashOutInfo.Counterparty = counterparty.Value;
             if (description.IsSet)

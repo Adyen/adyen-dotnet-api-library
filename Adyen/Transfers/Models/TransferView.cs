@@ -51,7 +51,7 @@ namespace Adyen.Transfers.Models
         /// </summary>
         /// <value>The [`reference`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_reference) from the `/transfers` request. If you haven't provided any, Adyen generates a unique reference.</value>
         [JsonPropertyName("reference")]
-        public string Reference { get; set; }
+        public string? Reference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CategoryData"/> will be populated.
@@ -152,11 +152,10 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class TransferView.", nameof(reference));
 
             var transferView = new TransferView();
-            transferView.Reference = reference.Value!;
+            if (reference.IsSet)
+                transferView.Reference = reference.Value!;
             if (categoryData.IsSet)
                 transferView.CategoryData = categoryData.Value;
             if (id.IsSet)

@@ -249,13 +249,12 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class IssuingTransactionData.", nameof(type));
 
             var issuingTransactionData = new IssuingTransactionData();
             if (captureCycleId.IsSet)
                 issuingTransactionData.CaptureCycleId = captureCycleId.Value;
-            issuingTransactionData.Type = type.Value!;
+            if (type.IsSet)
+                issuingTransactionData.Type = type.Value!;
             return issuingTransactionData;
         }
 

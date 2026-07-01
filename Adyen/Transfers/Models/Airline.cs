@@ -141,6 +141,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var airline = new Airline();
             if (legs.IsSet)
                 airline.Legs = legs.Value;

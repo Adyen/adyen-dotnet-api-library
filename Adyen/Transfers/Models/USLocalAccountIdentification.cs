@@ -310,14 +310,14 @@ namespace Adyen.Transfers.Models
         /// </summary>
         /// <value>The bank account number, without separators or whitespace.</value>
         [JsonPropertyName("accountNumber")]
-        public string AccountNumber { get; set; }
+        public string? AccountNumber { get; set; }
 
         /// <summary>
         /// The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace.
         /// </summary>
         /// <value>The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace.</value>
         [JsonPropertyName("routingNumber")]
-        public string RoutingNumber { get; set; }
+        public string? RoutingNumber { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -398,21 +398,16 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class USLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!routingNumber.IsSet)
-                throw new ArgumentException("Property is required for class USLocalAccountIdentification.", nameof(routingNumber));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class USLocalAccountIdentification.", nameof(type));
 
             var uSLocalAccountIdentification = new USLocalAccountIdentification();
-            uSLocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            uSLocalAccountIdentification.RoutingNumber = routingNumber.Value!;
+            if (accountNumber.IsSet)
+                uSLocalAccountIdentification.AccountNumber = accountNumber.Value!;
+            if (routingNumber.IsSet)
+                uSLocalAccountIdentification.RoutingNumber = routingNumber.Value!;
             if (accountType.IsSet)
                 uSLocalAccountIdentification.AccountType = accountType.Value;
-            uSLocalAccountIdentification.Type = type.Value!;
+            if (type.IsSet)
+                uSLocalAccountIdentification.Type = type.Value!;
             return uSLocalAccountIdentification;
         }
 

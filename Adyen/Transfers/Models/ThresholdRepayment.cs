@@ -50,7 +50,7 @@ namespace Adyen.Transfers.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -114,11 +114,10 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class ThresholdRepayment.", nameof(amount));
 
             var thresholdRepayment = new ThresholdRepayment();
-            thresholdRepayment.Amount = amount.Value!;
+            if (amount.IsSet)
+                thresholdRepayment.Amount = amount.Value!;
             return thresholdRepayment;
         }
 

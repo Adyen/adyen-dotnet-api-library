@@ -195,6 +195,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var transferNotificationCounterParty = new TransferNotificationCounterParty();
             if (balanceAccountId.IsSet)
                 transferNotificationCounterParty.BalanceAccountId = balanceAccountId.Value;

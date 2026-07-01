@@ -216,28 +216,28 @@ namespace Adyen.Transfers.Models
         /// <see cref="Balances"/>.
         /// </summary>
         [JsonPropertyName("balances")]
-        public CapitalBalance Balances { get; set; }
+        public CapitalBalance? Balances { get; set; }
 
         /// <summary>
         /// The identifier of the grant account used for the grant.
         /// </summary>
         /// <value>The identifier of the grant account used for the grant.</value>
         [JsonPropertyName("grantAccountId")]
-        public string GrantAccountId { get; set; }
+        public string? GrantAccountId { get; set; }
 
         /// <summary>
         /// The identifier of the grant offer that has been selected and from which the grant details will be used.
         /// </summary>
         /// <value>The identifier of the grant offer that has been selected and from which the grant details will be used.</value>
         [JsonPropertyName("grantOfferId")]
-        public string GrantOfferId { get; set; }
+        public string? GrantOfferId { get; set; }
 
         /// <summary>
         /// The identifier of the grant reference.
         /// </summary>
         /// <value>The identifier of the grant reference.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
@@ -394,27 +394,18 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!balances.IsSet)
-                throw new ArgumentException("Property is required for class CapitalGrant.", nameof(balances));
-
-            if (!grantAccountId.IsSet)
-                throw new ArgumentException("Property is required for class CapitalGrant.", nameof(grantAccountId));
-
-            if (!grantOfferId.IsSet)
-                throw new ArgumentException("Property is required for class CapitalGrant.", nameof(grantOfferId));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CapitalGrant.", nameof(id));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class CapitalGrant.", nameof(status));
 
             var capitalGrant = new CapitalGrant();
-            capitalGrant.Balances = balances.Value!;
-            capitalGrant.GrantAccountId = grantAccountId.Value!;
-            capitalGrant.GrantOfferId = grantOfferId.Value!;
-            capitalGrant.Id = id.Value!;
-            capitalGrant.Status = status.Value!;
+            if (balances.IsSet)
+                capitalGrant.Balances = balances.Value!;
+            if (grantAccountId.IsSet)
+                capitalGrant.GrantAccountId = grantAccountId.Value!;
+            if (grantOfferId.IsSet)
+                capitalGrant.GrantOfferId = grantOfferId.Value!;
+            if (id.IsSet)
+                capitalGrant.Id = id.Value!;
+            if (status.IsSet)
+                capitalGrant.Status = status.Value!;
             if (amount.IsSet)
                 capitalGrant.Amount = amount.Value;
             if (counterparty.IsSet)

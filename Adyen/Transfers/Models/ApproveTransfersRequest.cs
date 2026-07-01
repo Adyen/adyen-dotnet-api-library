@@ -122,6 +122,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var approveTransfersRequest = new ApproveTransfersRequest();
             if (transferIds.IsSet)
                 approveTransfersRequest.TransferIds = transferIds.Value;

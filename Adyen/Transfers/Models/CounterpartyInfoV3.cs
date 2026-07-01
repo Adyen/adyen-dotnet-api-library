@@ -177,6 +177,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var counterpartyInfoV3 = new CounterpartyInfoV3();
             if (balanceAccountId.IsSet)
                 counterpartyInfoV3.BalanceAccountId = balanceAccountId.Value;

@@ -274,6 +274,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var transferReview = new TransferReview();
             if (numberOfApprovalsRequired.IsSet)
                 transferReview.NumberOfApprovalsRequired = numberOfApprovalsRequired.Value;

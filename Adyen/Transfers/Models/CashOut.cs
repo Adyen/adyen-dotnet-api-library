@@ -50,28 +50,28 @@ namespace Adyen.Transfers.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The unique identifier of the cashout reference.
         /// </summary>
         /// <value>The unique identifier of the cashout reference.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// The unique identifier of the balance account that initiates the cashout request.
         /// </summary>
         /// <value>The unique identifier of the balance account that initiates the cashout request.</value>
         [JsonPropertyName("instructingBalanceAccountId")]
-        public string InstructingBalanceAccountId { get; set; }
+        public string? InstructingBalanceAccountId { get; set; }
 
         /// <summary>
         /// The list of transfers related to cashout.
         /// </summary>
         /// <value>The list of transfers related to cashout.</value>
         [JsonPropertyName("transfers")]
-        public List<CashOutTransfer> Transfers { get; set; }
+        public List<CashOutTransfer>? Transfers { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Counterparty"/> will be populated.
@@ -245,23 +245,16 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class CashOut.", nameof(amount));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CashOut.", nameof(id));
-
-            if (!instructingBalanceAccountId.IsSet)
-                throw new ArgumentException("Property is required for class CashOut.", nameof(instructingBalanceAccountId));
-
-            if (!transfers.IsSet)
-                throw new ArgumentException("Property is required for class CashOut.", nameof(transfers));
 
             var cashOut = new CashOut();
-            cashOut.Amount = amount.Value!;
-            cashOut.Id = id.Value!;
-            cashOut.InstructingBalanceAccountId = instructingBalanceAccountId.Value!;
-            cashOut.Transfers = transfers.Value!;
+            if (amount.IsSet)
+                cashOut.Amount = amount.Value!;
+            if (id.IsSet)
+                cashOut.Id = id.Value!;
+            if (instructingBalanceAccountId.IsSet)
+                cashOut.InstructingBalanceAccountId = instructingBalanceAccountId.Value!;
+            if (transfers.IsSet)
+                cashOut.Transfers = transfers.Value!;
             if (counterparty.IsSet)
                 cashOut.Counterparty = counterparty.Value;
             if (description.IsSet)

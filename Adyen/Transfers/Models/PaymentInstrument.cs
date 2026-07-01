@@ -179,6 +179,7 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+
             var paymentInstrument = new PaymentInstrument();
             if (description.IsSet)
                 paymentInstrument.Description = description.Value;

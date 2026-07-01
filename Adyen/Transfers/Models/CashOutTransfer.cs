@@ -180,14 +180,14 @@ namespace Adyen.Transfers.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The reference of the cashout transfer.
         /// </summary>
         /// <value>The reference of the cashout transfer.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -262,19 +262,14 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class CashOutTransfer.", nameof(amount));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CashOutTransfer.", nameof(id));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CashOutTransfer.", nameof(type));
 
             var cashOutTransfer = new CashOutTransfer();
-            cashOutTransfer.Amount = amount.Value!;
-            cashOutTransfer.Id = id.Value!;
-            cashOutTransfer.Type = type.Value!;
+            if (amount.IsSet)
+                cashOutTransfer.Amount = amount.Value!;
+            if (id.IsSet)
+                cashOutTransfer.Id = id.Value!;
+            if (type.IsSet)
+                cashOutTransfer.Type = type.Value!;
             return cashOutTransfer;
         }
 
