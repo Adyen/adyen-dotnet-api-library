@@ -57,13 +57,13 @@ namespace Adyen.SessionAuthentication.Models
         /// </summary>
         /// <value>The URL where the component will appear. In your live environment, you must protect the URL with an SSL certificate and ensure that it starts with `https://`.</value>
         [JsonPropertyName("allowOrigin")]
-        public string AllowOrigin { get; set; }
+        public string? AllowOrigin { get; set; }
 
         /// <summary>
         /// <see cref="Policy"/>.
         /// </summary>
         [JsonPropertyName("policy")]
-        public Policy Policy { get; set; }
+        public Policy? Policy { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -138,19 +138,14 @@ namespace Adyen.SessionAuthentication.Models
                 }
             }
             
-            if (!allowOrigin.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationSessionRequest.", nameof(allowOrigin));
-
-            if (!policy.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationSessionRequest.", nameof(policy));
-
-            if (!product.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationSessionRequest.", nameof(product));
 
             var authenticationSessionRequest = new AuthenticationSessionRequest();
-            authenticationSessionRequest.AllowOrigin = allowOrigin.Value!;
-            authenticationSessionRequest.Policy = policy.Value!;
-            authenticationSessionRequest.Product = product.Value!;
+            if (allowOrigin.IsSet)
+                authenticationSessionRequest.AllowOrigin = allowOrigin.Value!;
+            if (policy.IsSet)
+                authenticationSessionRequest.Policy = policy.Value!;
+            if (product.IsSet)
+                authenticationSessionRequest.Product = product.Value!;
             return authenticationSessionRequest;
         }
 

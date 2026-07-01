@@ -133,6 +133,7 @@ namespace Adyen.SessionAuthentication.Models
                 }
             }
             
+
             var resource = new Resource();
             return resource;
         }

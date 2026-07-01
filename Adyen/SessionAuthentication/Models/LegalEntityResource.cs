@@ -51,7 +51,7 @@ namespace Adyen.SessionAuthentication.Models
         /// </summary>
         /// <value>The unique identifier of the resource connected to the component. For [Onboarding components](https://docs.adyen.com/platforms/onboard-users/components), this is the legal entity that has a contractual relationship with your platform and owns the [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments). For sole proprietorships, this is the legal entity of the individual owner.</value>
         [JsonPropertyName("legalEntityId")]
-        public string LegalEntityId { get; set; }
+        public string? LegalEntityId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -121,11 +121,10 @@ namespace Adyen.SessionAuthentication.Models
                 }
             }
             
-            if (!legalEntityId.IsSet)
-                throw new ArgumentException("Property is required for class LegalEntityResource.", nameof(legalEntityId));
 
             var legalEntityResource = new LegalEntityResource();
-            legalEntityResource.LegalEntityId = legalEntityId.Value!;
+            if (legalEntityId.IsSet)
+                legalEntityResource.LegalEntityId = legalEntityId.Value!;
             return legalEntityResource;
         }
 

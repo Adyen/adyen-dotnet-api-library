@@ -51,7 +51,7 @@ namespace Adyen.SessionAuthentication.Models
         /// </summary>
         /// <value>The unique identifier of the resource connected to the component. For [Platform Experience components](https://docs.adyen.com/platforms/build-user-dashboards), this is the account holder linked to the balance account shown in the component.</value>
         [JsonPropertyName("accountHolderId")]
-        public string AccountHolderId { get; set; }
+        public string? AccountHolderId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -121,11 +121,10 @@ namespace Adyen.SessionAuthentication.Models
                 }
             }
             
-            if (!accountHolderId.IsSet)
-                throw new ArgumentException("Property is required for class AccountHolderResource.", nameof(accountHolderId));
 
             var accountHolderResource = new AccountHolderResource();
-            accountHolderResource.AccountHolderId = accountHolderId.Value!;
+            if (accountHolderId.IsSet)
+                accountHolderResource.AccountHolderId = accountHolderId.Value!;
             return accountHolderResource;
         }
 
