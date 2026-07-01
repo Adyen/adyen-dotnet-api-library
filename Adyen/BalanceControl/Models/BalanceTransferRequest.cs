@@ -216,21 +216,21 @@ namespace Adyen.BalanceControl.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The unique identifier of the source merchant account from which funds are deducted.
         /// </summary>
         /// <value>The unique identifier of the source merchant account from which funds are deducted.</value>
         [JsonPropertyName("fromMerchant")]
-        public string FromMerchant { get; set; }
+        public string? FromMerchant { get; set; }
 
         /// <summary>
         /// The unique identifier of the destination merchant account from which funds are transferred.
         /// </summary>
         /// <value>The unique identifier of the destination merchant account from which funds are transferred.</value>
         [JsonPropertyName("toMerchant")]
-        public string ToMerchant { get; set; }
+        public string? ToMerchant { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
@@ -348,23 +348,16 @@ namespace Adyen.BalanceControl.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferRequest.", nameof(amount));
-
-            if (!fromMerchant.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferRequest.", nameof(fromMerchant));
-
-            if (!toMerchant.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferRequest.", nameof(toMerchant));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferRequest.", nameof(type));
 
             var balanceTransferRequest = new BalanceTransferRequest();
-            balanceTransferRequest.Amount = amount.Value!;
-            balanceTransferRequest.FromMerchant = fromMerchant.Value!;
-            balanceTransferRequest.ToMerchant = toMerchant.Value!;
-            balanceTransferRequest.Type = type.Value!;
+            if (amount.IsSet)
+                balanceTransferRequest.Amount = amount.Value!;
+            if (fromMerchant.IsSet)
+                balanceTransferRequest.FromMerchant = fromMerchant.Value!;
+            if (toMerchant.IsSet)
+                balanceTransferRequest.ToMerchant = toMerchant.Value!;
+            if (type.IsSet)
+                balanceTransferRequest.Type = type.Value!;
             if (description.IsSet)
                 balanceTransferRequest.Description = description.Value;
             if (reference.IsSet)

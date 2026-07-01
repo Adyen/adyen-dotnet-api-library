@@ -364,7 +364,7 @@ namespace Adyen.BalanceControl.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The date when the balance transfer was requested.
@@ -378,21 +378,21 @@ namespace Adyen.BalanceControl.Models
         /// </summary>
         /// <value>The unique identifier of the source merchant account from which funds are deducted.</value>
         [JsonPropertyName("fromMerchant")]
-        public string FromMerchant { get; set; }
+        public string? FromMerchant { get; set; }
 
         /// <summary>
         /// Adyen&#39;s 16-character string reference associated with the balance transfer.
         /// </summary>
         /// <value>Adyen's 16-character string reference associated with the balance transfer.</value>
         [JsonPropertyName("pspReference")]
-        public string PspReference { get; set; }
+        public string? PspReference { get; set; }
 
         /// <summary>
         /// The unique identifier of the destination merchant account from which funds are transferred.
         /// </summary>
         /// <value>The unique identifier of the destination merchant account from which funds are transferred.</value>
         [JsonPropertyName("toMerchant")]
-        public string ToMerchant { get; set; }
+        public string? ToMerchant { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
@@ -531,35 +531,22 @@ namespace Adyen.BalanceControl.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferResponse.", nameof(amount));
-
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferResponse.", nameof(createdAt));
-
-            if (!fromMerchant.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferResponse.", nameof(fromMerchant));
-
-            if (!pspReference.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferResponse.", nameof(pspReference));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferResponse.", nameof(status));
-
-            if (!toMerchant.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferResponse.", nameof(toMerchant));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferResponse.", nameof(type));
 
             var balanceTransferResponse = new BalanceTransferResponse();
-            balanceTransferResponse.Amount = amount.Value!;
-            balanceTransferResponse.CreatedAt = createdAt.Value!.Value;
-            balanceTransferResponse.FromMerchant = fromMerchant.Value!;
-            balanceTransferResponse.PspReference = pspReference.Value!;
-            balanceTransferResponse.Status = status.Value!;
-            balanceTransferResponse.ToMerchant = toMerchant.Value!;
-            balanceTransferResponse.Type = type.Value!;
+            if (amount.IsSet)
+                balanceTransferResponse.Amount = amount.Value!;
+            if (createdAt.IsSet)
+                balanceTransferResponse.CreatedAt = createdAt.Value!.Value;
+            if (fromMerchant.IsSet)
+                balanceTransferResponse.FromMerchant = fromMerchant.Value!;
+            if (pspReference.IsSet)
+                balanceTransferResponse.PspReference = pspReference.Value!;
+            if (status.IsSet)
+                balanceTransferResponse.Status = status.Value!;
+            if (toMerchant.IsSet)
+                balanceTransferResponse.ToMerchant = toMerchant.Value!;
+            if (type.IsSet)
+                balanceTransferResponse.Type = type.Value!;
             if (description.IsSet)
                 balanceTransferResponse.Description = description.Value;
             if (reference.IsSet)
