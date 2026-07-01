@@ -44,15 +44,14 @@ namespace Adyen.Test.BalancePlatform.PaymentInstruments
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_Type_Is_Missing_Then_ArgumentException_Is_Thrown()
+        public void Given_Deserialize_When_Type_Is_Missing_Then_Returns_Null()
         {
             string json = """{"iban": "NL91ABNA0417164300"}""";
 
-            Assert.Throws<ArgumentException>(() =>
-            {
-                JsonSerializer.Deserialize<PaymentInstrumentAdditionalBankAccountIdentificationsInner>(
-                    json, _jsonSerializerOptionsProvider.Options);
-            });
+            var result = JsonSerializer.Deserialize<PaymentInstrumentAdditionalBankAccountIdentificationsInner>(
+                json, _jsonSerializerOptionsProvider.Options);
+
+            Assert.IsNull(result);
         }
 
         [TestMethod]
