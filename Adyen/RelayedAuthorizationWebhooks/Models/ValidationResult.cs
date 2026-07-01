@@ -141,6 +141,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
+
             var validationResult = new ValidationResult();
             if (result.IsSet)
                 validationResult.Result = result.Value;

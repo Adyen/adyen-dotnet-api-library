@@ -195,6 +195,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
+
             var balanceMutation = new BalanceMutation();
             if (balanceAfter.IsSet)
                 balanceMutation.BalanceAfter = balanceAfter.Value;

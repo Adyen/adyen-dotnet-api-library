@@ -141,6 +141,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
+
             var transactionRuleSource = new TransactionRuleSource();
             if (id.IsSet)
                 transactionRuleSource.Id = id.Value;

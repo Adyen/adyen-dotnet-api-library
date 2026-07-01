@@ -141,6 +141,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
+
             var expiry = new Expiry();
             if (month.IsSet)
                 expiry.Month = month.Value;

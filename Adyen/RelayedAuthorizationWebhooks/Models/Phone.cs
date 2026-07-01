@@ -181,7 +181,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
         /// </summary>
         /// <value>The full phone number provided as a single string.  For example, **\"0031 6 11 22 33 44\"**, **\"+316/1122-3344\"**,    or **\"(0031) 611223344\"**.</value>
         [JsonPropertyName("number")]
-        public string Number { get; set; }
+        public string? Number { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -251,15 +251,12 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
-            if (!number.IsSet)
-                throw new ArgumentException("Property is required for class Phone.", nameof(number));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class Phone.", nameof(type));
 
             var phone = new Phone();
-            phone.Number = number.Value!;
-            phone.Type = type.Value!;
+            if (number.IsSet)
+                phone.Number = number.Value!;
+            if (type.IsSet)
+                phone.Type = type.Value!;
             return phone;
         }
 

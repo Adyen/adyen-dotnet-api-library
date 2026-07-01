@@ -159,6 +159,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
+
             var authentication = new Authentication();
             if (email.IsSet)
                 authentication.Email = email.Value;

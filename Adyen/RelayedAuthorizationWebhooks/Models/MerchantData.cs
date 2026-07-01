@@ -197,6 +197,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
+
             var merchantData = new MerchantData();
             if (acquirerId.IsSet)
                 merchantData.AcquirerId = acquirerId.Value;

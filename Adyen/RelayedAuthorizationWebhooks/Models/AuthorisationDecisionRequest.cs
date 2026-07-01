@@ -160,6 +160,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
+
             var authorisationDecisionRequest = new AuthorisationDecisionRequest();
             if (reasonCode.IsSet)
                 authorisationDecisionRequest.ReasonCode = reasonCode.Value;
