@@ -122,6 +122,7 @@ namespace Adyen.TokenizationWebhooks.Models
                 }
             }
             
+
             var tokenizationNotificationResponse = new TokenizationNotificationResponse();
             if (notificationResponse.IsSet)
                 tokenizationNotificationResponse.NotificationResponse = notificationResponse.Value;

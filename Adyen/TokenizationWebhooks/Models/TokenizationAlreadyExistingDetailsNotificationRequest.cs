@@ -310,14 +310,14 @@ namespace Adyen.TokenizationWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public RecurringTokenStoreOperation Data { get; set; }
+        public RecurringTokenStoreOperation? Data { get; set; }
 
         /// <summary>
         /// The PSP reference of the event that triggered the webhook.
         /// </summary>
         /// <value>The PSP reference of the event that triggered the webhook.</value>
         [JsonPropertyName("eventId")]
-        public string EventId { get; set; }
+        public string? EventId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Version"/> will be populated.
@@ -428,27 +428,18 @@ namespace Adyen.TokenizationWebhooks.Models
                 }
             }
             
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class TokenizationAlreadyExistingDetailsNotificationRequest.", nameof(createdAt));
-
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class TokenizationAlreadyExistingDetailsNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class TokenizationAlreadyExistingDetailsNotificationRequest.", nameof(environment));
-
-            if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class TokenizationAlreadyExistingDetailsNotificationRequest.", nameof(eventId));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TokenizationAlreadyExistingDetailsNotificationRequest.", nameof(type));
 
             var tokenizationAlreadyExistingDetailsNotificationRequest = new TokenizationAlreadyExistingDetailsNotificationRequest();
-            tokenizationAlreadyExistingDetailsNotificationRequest.CreatedAt = createdAt.Value!.Value;
-            tokenizationAlreadyExistingDetailsNotificationRequest.Data = data.Value!;
-            tokenizationAlreadyExistingDetailsNotificationRequest.Environment = environment.Value!;
-            tokenizationAlreadyExistingDetailsNotificationRequest.EventId = eventId.Value!;
-            tokenizationAlreadyExistingDetailsNotificationRequest.Type = type.Value!;
+            if (createdAt.IsSet)
+                tokenizationAlreadyExistingDetailsNotificationRequest.CreatedAt = createdAt.Value!.Value;
+            if (data.IsSet)
+                tokenizationAlreadyExistingDetailsNotificationRequest.Data = data.Value!;
+            if (environment.IsSet)
+                tokenizationAlreadyExistingDetailsNotificationRequest.Environment = environment.Value!;
+            if (eventId.IsSet)
+                tokenizationAlreadyExistingDetailsNotificationRequest.EventId = eventId.Value!;
+            if (type.IsSet)
+                tokenizationAlreadyExistingDetailsNotificationRequest.Type = type.Value!;
             if (version.IsSet)
                 tokenizationAlreadyExistingDetailsNotificationRequest.Version = version.Value;
             return tokenizationAlreadyExistingDetailsNotificationRequest;
