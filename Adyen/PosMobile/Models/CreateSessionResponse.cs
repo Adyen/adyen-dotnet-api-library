@@ -198,6 +198,7 @@ namespace Adyen.PosMobile.Models
                 }
             }
             
+
             var createSessionResponse = new CreateSessionResponse();
             if (id.IsSet)
                 createSessionResponse.Id = id.Value;
