@@ -51,21 +51,21 @@ namespace Adyen.Disputes.Models
         /// </summary>
         /// <value>An array containing a list of the defense documents.</value>
         [JsonPropertyName("defenseDocuments")]
-        public List<DefenseDocument> DefenseDocuments { get; set; }
+        public List<DefenseDocument>? DefenseDocuments { get; set; }
 
         /// <summary>
         /// The PSP reference assigned to the dispute.
         /// </summary>
         /// <value>The PSP reference assigned to the dispute.</value>
         [JsonPropertyName("disputePspReference")]
-        public string DisputePspReference { get; set; }
+        public string? DisputePspReference { get; set; }
 
         /// <summary>
         /// The merchant account identifier, for which you want to process the dispute transaction.
         /// </summary>
         /// <value>The merchant account identifier, for which you want to process the dispute transaction.</value>
         [JsonPropertyName("merchantAccountCode")]
-        public string MerchantAccountCode { get; set; }
+        public string? MerchantAccountCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,19 +139,14 @@ namespace Adyen.Disputes.Models
                 }
             }
             
-            if (!defenseDocuments.IsSet)
-                throw new ArgumentException("Property is required for class SupplyDefenseDocumentRequest.", nameof(defenseDocuments));
-
-            if (!disputePspReference.IsSet)
-                throw new ArgumentException("Property is required for class SupplyDefenseDocumentRequest.", nameof(disputePspReference));
-
-            if (!merchantAccountCode.IsSet)
-                throw new ArgumentException("Property is required for class SupplyDefenseDocumentRequest.", nameof(merchantAccountCode));
 
             var supplyDefenseDocumentRequest = new SupplyDefenseDocumentRequest();
-            supplyDefenseDocumentRequest.DefenseDocuments = defenseDocuments.Value!;
-            supplyDefenseDocumentRequest.DisputePspReference = disputePspReference.Value!;
-            supplyDefenseDocumentRequest.MerchantAccountCode = merchantAccountCode.Value!;
+            if (defenseDocuments.IsSet)
+                supplyDefenseDocumentRequest.DefenseDocuments = defenseDocuments.Value!;
+            if (disputePspReference.IsSet)
+                supplyDefenseDocumentRequest.DisputePspReference = disputePspReference.Value!;
+            if (merchantAccountCode.IsSet)
+                supplyDefenseDocumentRequest.MerchantAccountCode = merchantAccountCode.Value!;
             return supplyDefenseDocumentRequest;
         }
 

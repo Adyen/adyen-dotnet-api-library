@@ -51,21 +51,21 @@ namespace Adyen.Disputes.Models
         /// </summary>
         /// <value>The content of the defense document.</value>
         [JsonPropertyName("content")]
-        public byte[] Content { get; set; }
+        public byte[]? Content { get; set; }
 
         /// <summary>
         /// The content type of the defense document.
         /// </summary>
         /// <value>The content type of the defense document.</value>
         [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
+        public string? ContentType { get; set; }
 
         /// <summary>
         /// The document type code of the defense document.
         /// </summary>
         /// <value>The document type code of the defense document.</value>
         [JsonPropertyName("defenseDocumentTypeCode")]
-        public string DefenseDocumentTypeCode { get; set; }
+        public string? DefenseDocumentTypeCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,19 +139,14 @@ namespace Adyen.Disputes.Models
                 }
             }
             
-            if (!content.IsSet)
-                throw new ArgumentException("Property is required for class DefenseDocument.", nameof(content));
-
-            if (!contentType.IsSet)
-                throw new ArgumentException("Property is required for class DefenseDocument.", nameof(contentType));
-
-            if (!defenseDocumentTypeCode.IsSet)
-                throw new ArgumentException("Property is required for class DefenseDocument.", nameof(defenseDocumentTypeCode));
 
             var defenseDocument = new DefenseDocument();
-            defenseDocument.Content = content.Value!;
-            defenseDocument.ContentType = contentType.Value!;
-            defenseDocument.DefenseDocumentTypeCode = defenseDocumentTypeCode.Value!;
+            if (content.IsSet)
+                defenseDocument.Content = content.Value!;
+            if (contentType.IsSet)
+                defenseDocument.ContentType = contentType.Value!;
+            if (defenseDocumentTypeCode.IsSet)
+                defenseDocument.DefenseDocumentTypeCode = defenseDocumentTypeCode.Value!;
             return defenseDocument;
         }
 

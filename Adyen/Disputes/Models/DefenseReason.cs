@@ -51,7 +51,7 @@ namespace Adyen.Disputes.Models
         /// </summary>
         /// <value>The defense reason code that was selected to defend this dispute.</value>
         [JsonPropertyName("defenseReasonCode")]
-        public string DefenseReasonCode { get; set; }
+        public string? DefenseReasonCode { get; set; }
 
         /// <summary>
         /// Indicates if sufficient defense material has been supplied.
@@ -146,15 +146,12 @@ namespace Adyen.Disputes.Models
                 }
             }
             
-            if (!defenseReasonCode.IsSet)
-                throw new ArgumentException("Property is required for class DefenseReason.", nameof(defenseReasonCode));
-
-            if (!satisfied.IsSet)
-                throw new ArgumentException("Property is required for class DefenseReason.", nameof(satisfied));
 
             var defenseReason = new DefenseReason();
-            defenseReason.DefenseReasonCode = defenseReasonCode.Value!;
-            defenseReason.Satisfied = satisfied.Value!.Value;
+            if (defenseReasonCode.IsSet)
+                defenseReason.DefenseReasonCode = defenseReasonCode.Value!;
+            if (satisfied.IsSet)
+                defenseReason.Satisfied = satisfied.Value!.Value;
             if (defenseDocumentTypes.IsSet)
                 defenseReason.DefenseDocumentTypes = defenseDocumentTypes.Value;
             return defenseReason;

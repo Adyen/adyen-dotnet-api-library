@@ -134,11 +134,10 @@ namespace Adyen.Disputes.Models
                 }
             }
             
-            if (!success.IsSet)
-                throw new ArgumentException("Property is required for class DisputeServiceResult.", nameof(success));
 
             var disputeServiceResult = new DisputeServiceResult();
-            disputeServiceResult.Success = success.Value!.Value;
+            if (success.IsSet)
+                disputeServiceResult.Success = success.Value!.Value;
             if (errorMessage.IsSet)
                 disputeServiceResult.ErrorMessage = errorMessage.Value;
             return disputeServiceResult;

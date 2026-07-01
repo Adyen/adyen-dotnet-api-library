@@ -51,21 +51,21 @@ namespace Adyen.Disputes.Models
         /// </summary>
         /// <value>The document type code of the defense document.</value>
         [JsonPropertyName("defenseDocumentType")]
-        public string DefenseDocumentType { get; set; }
+        public string? DefenseDocumentType { get; set; }
 
         /// <summary>
         /// The PSP reference assigned to the dispute.
         /// </summary>
         /// <value>The PSP reference assigned to the dispute.</value>
         [JsonPropertyName("disputePspReference")]
-        public string DisputePspReference { get; set; }
+        public string? DisputePspReference { get; set; }
 
         /// <summary>
         /// The merchant account identifier, for which you want to process the dispute transaction.
         /// </summary>
         /// <value>The merchant account identifier, for which you want to process the dispute transaction.</value>
         [JsonPropertyName("merchantAccountCode")]
-        public string MerchantAccountCode { get; set; }
+        public string? MerchantAccountCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,19 +139,14 @@ namespace Adyen.Disputes.Models
                 }
             }
             
-            if (!defenseDocumentType.IsSet)
-                throw new ArgumentException("Property is required for class DeleteDefenseDocumentRequest.", nameof(defenseDocumentType));
-
-            if (!disputePspReference.IsSet)
-                throw new ArgumentException("Property is required for class DeleteDefenseDocumentRequest.", nameof(disputePspReference));
-
-            if (!merchantAccountCode.IsSet)
-                throw new ArgumentException("Property is required for class DeleteDefenseDocumentRequest.", nameof(merchantAccountCode));
 
             var deleteDefenseDocumentRequest = new DeleteDefenseDocumentRequest();
-            deleteDefenseDocumentRequest.DefenseDocumentType = defenseDocumentType.Value!;
-            deleteDefenseDocumentRequest.DisputePspReference = disputePspReference.Value!;
-            deleteDefenseDocumentRequest.MerchantAccountCode = merchantAccountCode.Value!;
+            if (defenseDocumentType.IsSet)
+                deleteDefenseDocumentRequest.DefenseDocumentType = defenseDocumentType.Value!;
+            if (disputePspReference.IsSet)
+                deleteDefenseDocumentRequest.DisputePspReference = disputePspReference.Value!;
+            if (merchantAccountCode.IsSet)
+                deleteDefenseDocumentRequest.MerchantAccountCode = merchantAccountCode.Value!;
             return deleteDefenseDocumentRequest;
         }
 

@@ -58,14 +58,14 @@ namespace Adyen.Disputes.Models
         /// </summary>
         /// <value>The document type code of the defense document.</value>
         [JsonPropertyName("defenseDocumentTypeCode")]
-        public string DefenseDocumentTypeCode { get; set; }
+        public string? DefenseDocumentTypeCode { get; set; }
 
         /// <summary>
         /// Indicates to what extent the defense document is required in the defense process.  Possible values:   * **Required**: You must supply the document.   * **OneOrMore**: You must supply at least one of the documents with this label.  * **Optional**: You can choose to supply the document.  * **AlternativeRequired**: You must supply a generic defense document. To enable this functionality, contact our Support Team. When enabled, you can supply a generic defense document for all schemes.
         /// </summary>
         /// <value>Indicates to what extent the defense document is required in the defense process.  Possible values:   * **Required**: You must supply the document.   * **OneOrMore**: You must supply at least one of the documents with this label.  * **Optional**: You can choose to supply the document.  * **AlternativeRequired**: You must supply a generic defense document. To enable this functionality, contact our Support Team. When enabled, you can supply a generic defense document for all schemes.</value>
         [JsonPropertyName("requirementLevel")]
-        public string RequirementLevel { get; set; }
+        public string? RequirementLevel { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,19 +139,14 @@ namespace Adyen.Disputes.Models
                 }
             }
             
-            if (!available.IsSet)
-                throw new ArgumentException("Property is required for class DefenseDocumentType.", nameof(available));
-
-            if (!defenseDocumentTypeCode.IsSet)
-                throw new ArgumentException("Property is required for class DefenseDocumentType.", nameof(defenseDocumentTypeCode));
-
-            if (!requirementLevel.IsSet)
-                throw new ArgumentException("Property is required for class DefenseDocumentType.", nameof(requirementLevel));
 
             var defenseDocumentType = new DefenseDocumentType();
-            defenseDocumentType.Available = available.Value!.Value;
-            defenseDocumentType.DefenseDocumentTypeCode = defenseDocumentTypeCode.Value!;
-            defenseDocumentType.RequirementLevel = requirementLevel.Value!;
+            if (available.IsSet)
+                defenseDocumentType.Available = available.Value!.Value;
+            if (defenseDocumentTypeCode.IsSet)
+                defenseDocumentType.DefenseDocumentTypeCode = defenseDocumentTypeCode.Value!;
+            if (requirementLevel.IsSet)
+                defenseDocumentType.RequirementLevel = requirementLevel.Value!;
             return defenseDocumentType;
         }
 

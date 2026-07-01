@@ -50,7 +50,7 @@ namespace Adyen.Disputes.Models
         /// <see cref="DisputeServiceResult"/>.
         /// </summary>
         [JsonPropertyName("disputeServiceResult")]
-        public DisputeServiceResult DisputeServiceResult { get; set; }
+        public DisputeServiceResult? DisputeServiceResult { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -114,11 +114,10 @@ namespace Adyen.Disputes.Models
                 }
             }
             
-            if (!disputeServiceResult.IsSet)
-                throw new ArgumentException("Property is required for class AcceptDisputeResponse.", nameof(disputeServiceResult));
 
             var acceptDisputeResponse = new AcceptDisputeResponse();
-            acceptDisputeResponse.DisputeServiceResult = disputeServiceResult.Value!;
+            if (disputeServiceResult.IsSet)
+                acceptDisputeResponse.DisputeServiceResult = disputeServiceResult.Value!;
             return acceptDisputeResponse;
         }
 
