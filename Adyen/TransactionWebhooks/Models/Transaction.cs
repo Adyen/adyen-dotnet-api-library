@@ -180,26 +180,26 @@ namespace Adyen.TransactionWebhooks.Models
         /// <see cref="AccountHolder"/>.
         /// </summary>
         [JsonPropertyName("accountHolder")]
-        public ResourceReference AccountHolder { get; set; }
+        public ResourceReference? AccountHolder { get; set; }
 
         /// <summary>
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// <see cref="BalanceAccount"/>.
         /// </summary>
         [JsonPropertyName("balanceAccount")]
-        public ResourceReference BalanceAccount { get; set; }
+        public ResourceReference? BalanceAccount { get; set; }
 
         /// <summary>
         /// The unique identifier of the balance platform.
         /// </summary>
         /// <value>The unique identifier of the balance platform.</value>
         [JsonPropertyName("balancePlatform")]
-        public string BalancePlatform { get; set; }
+        public string? BalancePlatform { get; set; }
 
         /// <summary>
         /// The date the transaction was booked into the balance account.
@@ -213,7 +213,7 @@ namespace Adyen.TransactionWebhooks.Models
         /// </summary>
         /// <value>The unique identifier of the transaction.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// The date the transfer amount becomes available in the balance account.
@@ -428,39 +428,24 @@ namespace Adyen.TransactionWebhooks.Models
                 }
             }
             
-            if (!accountHolder.IsSet)
-                throw new ArgumentException("Property is required for class Transaction.", nameof(accountHolder));
-
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class Transaction.", nameof(amount));
-
-            if (!balanceAccount.IsSet)
-                throw new ArgumentException("Property is required for class Transaction.", nameof(balanceAccount));
-
-            if (!balancePlatform.IsSet)
-                throw new ArgumentException("Property is required for class Transaction.", nameof(balancePlatform));
-
-            if (!bookingDate.IsSet)
-                throw new ArgumentException("Property is required for class Transaction.", nameof(bookingDate));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Transaction.", nameof(id));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class Transaction.", nameof(status));
-
-            if (!valueDate.IsSet)
-                throw new ArgumentException("Property is required for class Transaction.", nameof(valueDate));
 
             var transaction = new Transaction();
-            transaction.AccountHolder = accountHolder.Value!;
-            transaction.Amount = amount.Value!;
-            transaction.BalanceAccount = balanceAccount.Value!;
-            transaction.BalancePlatform = balancePlatform.Value!;
-            transaction.BookingDate = bookingDate.Value!.Value;
-            transaction.Id = id.Value!;
-            transaction.Status = status.Value!;
-            transaction.ValueDate = valueDate.Value!.Value;
+            if (accountHolder.IsSet)
+                transaction.AccountHolder = accountHolder.Value!;
+            if (amount.IsSet)
+                transaction.Amount = amount.Value!;
+            if (balanceAccount.IsSet)
+                transaction.BalanceAccount = balanceAccount.Value!;
+            if (balancePlatform.IsSet)
+                transaction.BalancePlatform = balancePlatform.Value!;
+            if (bookingDate.IsSet)
+                transaction.BookingDate = bookingDate.Value!.Value;
+            if (id.IsSet)
+                transaction.Id = id.Value!;
+            if (status.IsSet)
+                transaction.Status = status.Value!;
+            if (valueDate.IsSet)
+                transaction.ValueDate = valueDate.Value!.Value;
             if (creationDate.IsSet)
                 transaction.CreationDate = creationDate.Value;
             if (description.IsSet)

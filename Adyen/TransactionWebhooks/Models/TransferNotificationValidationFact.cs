@@ -141,6 +141,7 @@ namespace Adyen.TransactionWebhooks.Models
                 }
             }
             
+
             var transferNotificationValidationFact = new TransferNotificationValidationFact();
             if (result.IsSet)
                 transferNotificationValidationFact.Result = result.Value;

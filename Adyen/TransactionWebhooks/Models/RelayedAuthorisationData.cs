@@ -141,6 +141,7 @@ namespace Adyen.TransactionWebhooks.Models
                 }
             }
             
+
             var relayedAuthorisationData = new RelayedAuthorisationData();
             if (metadata.IsSet)
                 relayedAuthorisationData.Metadata = metadata.Value;
