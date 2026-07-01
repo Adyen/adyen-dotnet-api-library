@@ -171,14 +171,14 @@ namespace Adyen.BalanceWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public ReleaseBlockedBalanceNotificationData Data { get; set; }
+        public ReleaseBlockedBalanceNotificationData? Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
         /// </summary>
         /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
         [JsonPropertyName("environment")]
-        public string Environment { get; set; }
+        public string? Environment { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Timestamp"/> will be populated.
@@ -277,19 +277,14 @@ namespace Adyen.BalanceWebhooks.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ReleasedBlockedBalanceNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class ReleasedBlockedBalanceNotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class ReleasedBlockedBalanceNotificationRequest.", nameof(type));
 
             var releasedBlockedBalanceNotificationRequest = new ReleasedBlockedBalanceNotificationRequest();
-            releasedBlockedBalanceNotificationRequest.Data = data.Value!;
-            releasedBlockedBalanceNotificationRequest.Environment = environment.Value!;
-            releasedBlockedBalanceNotificationRequest.Type = type.Value!;
+            if (data.IsSet)
+                releasedBlockedBalanceNotificationRequest.Data = data.Value!;
+            if (environment.IsSet)
+                releasedBlockedBalanceNotificationRequest.Environment = environment.Value!;
+            if (type.IsSet)
+                releasedBlockedBalanceNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 releasedBlockedBalanceNotificationRequest.Timestamp = timestamp.Value;
             return releasedBlockedBalanceNotificationRequest;
