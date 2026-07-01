@@ -51,35 +51,35 @@ namespace Adyen.TokenizationWebhooks.Models
         /// </summary>
         /// <value>The identifier of the merchant account related to the event that triggered the webhook.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// A text description that provides details about the operation, intended for audit purposes.
         /// </summary>
         /// <value>A text description that provides details about the operation, intended for audit purposes.</value>
         [JsonPropertyName("operation")]
-        public string Operation { get; set; }
+        public string? Operation { get; set; }
 
         /// <summary>
         /// Your unique shopper reference that is associated with the &#x60;storedPaymentMethodId&#x60;.
         /// </summary>
         /// <value>Your unique shopper reference that is associated with the `storedPaymentMethodId`.</value>
         [JsonPropertyName("shopperReference")]
-        public string ShopperReference { get; set; }
+        public string? ShopperReference { get; set; }
 
         /// <summary>
         /// The ID of the token.
         /// </summary>
         /// <value>The ID of the token.</value>
         [JsonPropertyName("storedPaymentMethodId")]
-        public string StoredPaymentMethodId { get; set; }
+        public string? StoredPaymentMethodId { get; set; }
 
         /// <summary>
         /// The type of the payment method.
         /// </summary>
         /// <value>The type of the payment method.</value>
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -163,27 +163,18 @@ namespace Adyen.TokenizationWebhooks.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class RecurringTokenStoreOperation.", nameof(merchantAccount));
-
-            if (!operation.IsSet)
-                throw new ArgumentException("Property is required for class RecurringTokenStoreOperation.", nameof(operation));
-
-            if (!shopperReference.IsSet)
-                throw new ArgumentException("Property is required for class RecurringTokenStoreOperation.", nameof(shopperReference));
-
-            if (!storedPaymentMethodId.IsSet)
-                throw new ArgumentException("Property is required for class RecurringTokenStoreOperation.", nameof(storedPaymentMethodId));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RecurringTokenStoreOperation.", nameof(type));
 
             var recurringTokenStoreOperation = new RecurringTokenStoreOperation();
-            recurringTokenStoreOperation.MerchantAccount = merchantAccount.Value!;
-            recurringTokenStoreOperation.Operation = operation.Value!;
-            recurringTokenStoreOperation.ShopperReference = shopperReference.Value!;
-            recurringTokenStoreOperation.StoredPaymentMethodId = storedPaymentMethodId.Value!;
-            recurringTokenStoreOperation.Type = type.Value!;
+            if (merchantAccount.IsSet)
+                recurringTokenStoreOperation.MerchantAccount = merchantAccount.Value!;
+            if (operation.IsSet)
+                recurringTokenStoreOperation.Operation = operation.Value!;
+            if (shopperReference.IsSet)
+                recurringTokenStoreOperation.ShopperReference = shopperReference.Value!;
+            if (storedPaymentMethodId.IsSet)
+                recurringTokenStoreOperation.StoredPaymentMethodId = storedPaymentMethodId.Value!;
+            if (type.IsSet)
+                recurringTokenStoreOperation.Type = type.Value!;
             return recurringTokenStoreOperation;
         }
 

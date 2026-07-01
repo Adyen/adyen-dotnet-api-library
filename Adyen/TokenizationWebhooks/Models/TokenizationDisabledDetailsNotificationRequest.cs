@@ -310,14 +310,14 @@ namespace Adyen.TokenizationWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public RecurringToken Data { get; set; }
+        public RecurringToken? Data { get; set; }
 
         /// <summary>
         /// The PSP reference of the event that triggered the webhook.
         /// </summary>
         /// <value>The PSP reference of the event that triggered the webhook.</value>
         [JsonPropertyName("eventId")]
-        public string EventId { get; set; }
+        public string? EventId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Version"/> will be populated.
@@ -428,27 +428,18 @@ namespace Adyen.TokenizationWebhooks.Models
                 }
             }
             
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class TokenizationDisabledDetailsNotificationRequest.", nameof(createdAt));
-
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class TokenizationDisabledDetailsNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class TokenizationDisabledDetailsNotificationRequest.", nameof(environment));
-
-            if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class TokenizationDisabledDetailsNotificationRequest.", nameof(eventId));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TokenizationDisabledDetailsNotificationRequest.", nameof(type));
 
             var tokenizationDisabledDetailsNotificationRequest = new TokenizationDisabledDetailsNotificationRequest();
-            tokenizationDisabledDetailsNotificationRequest.CreatedAt = createdAt.Value!.Value;
-            tokenizationDisabledDetailsNotificationRequest.Data = data.Value!;
-            tokenizationDisabledDetailsNotificationRequest.Environment = environment.Value!;
-            tokenizationDisabledDetailsNotificationRequest.EventId = eventId.Value!;
-            tokenizationDisabledDetailsNotificationRequest.Type = type.Value!;
+            if (createdAt.IsSet)
+                tokenizationDisabledDetailsNotificationRequest.CreatedAt = createdAt.Value!.Value;
+            if (data.IsSet)
+                tokenizationDisabledDetailsNotificationRequest.Data = data.Value!;
+            if (environment.IsSet)
+                tokenizationDisabledDetailsNotificationRequest.Environment = environment.Value!;
+            if (eventId.IsSet)
+                tokenizationDisabledDetailsNotificationRequest.EventId = eventId.Value!;
+            if (type.IsSet)
+                tokenizationDisabledDetailsNotificationRequest.Type = type.Value!;
             if (version.IsSet)
                 tokenizationDisabledDetailsNotificationRequest.Version = version.Value;
             return tokenizationDisabledDetailsNotificationRequest;
