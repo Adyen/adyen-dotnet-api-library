@@ -140,6 +140,7 @@ namespace Adyen.Capital.Models
                 }
             }
             
+
             var fundsCollection = new FundsCollection();
             if (accountIdentification.IsSet)
                 fundsCollection.AccountIdentification = accountIdentification.Value;

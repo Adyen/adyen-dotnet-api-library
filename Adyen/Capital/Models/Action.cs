@@ -51,7 +51,7 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <value>The code identifying the action that needs to be completed.</value>
         [JsonPropertyName("actionCode")]
-        public string ActionCode { get; set; }
+        public string? ActionCode { get; set; }
 
         /// <summary>
         /// Indicates whether this action has been successfully completed.
@@ -127,15 +127,12 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!actionCode.IsSet)
-                throw new ArgumentException("Property is required for class Action.", nameof(actionCode));
-
-            if (!resolved.IsSet)
-                throw new ArgumentException("Property is required for class Action.", nameof(resolved));
 
             var action = new Action();
-            action.ActionCode = actionCode.Value!;
-            action.Resolved = resolved.Value!.Value;
+            if (actionCode.IsSet)
+                action.ActionCode = actionCode.Value!;
+            if (resolved.IsSet)
+                action.Resolved = resolved.Value!.Value;
             return action;
         }
 

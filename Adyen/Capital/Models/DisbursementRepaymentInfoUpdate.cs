@@ -142,6 +142,7 @@ namespace Adyen.Capital.Models
                 }
             }
             
+
             var disbursementRepaymentInfoUpdate = new DisbursementRepaymentInfoUpdate();
             if (basisPoints.IsSet)
                 disbursementRepaymentInfoUpdate.BasisPoints = basisPoints.Value;

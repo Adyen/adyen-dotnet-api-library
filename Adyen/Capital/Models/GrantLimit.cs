@@ -121,6 +121,7 @@ namespace Adyen.Capital.Models
                 }
             }
             
+
             var grantLimit = new GrantLimit();
             if (amount.IsSet)
                 grantLimit.Amount = amount.Value;

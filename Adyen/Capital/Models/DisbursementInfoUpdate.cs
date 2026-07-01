@@ -121,6 +121,7 @@ namespace Adyen.Capital.Models
                 }
             }
             
+
             var disbursementInfoUpdate = new DisbursementInfoUpdate();
             if (repayment.IsSet)
                 disbursementInfoUpdate.Repayment = repayment.Value;

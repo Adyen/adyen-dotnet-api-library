@@ -184,6 +184,7 @@ namespace Adyen.Capital.Models
                 }
             }
             
+
             var bankAccountIdentification = new BankAccountIdentification();
             return bankAccountIdentification;
         }

@@ -51,14 +51,14 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <value>The 7- to 10-digit bank account number ([Bankkontonummer](https://sv.wikipedia.org/wiki/Bankkonto)), without the clearing number, separators, or whitespace.</value>
         [JsonPropertyName("accountNumber")]
-        public string AccountNumber { get; set; }
+        public string? AccountNumber { get; set; }
 
         /// <summary>
         /// The 4- to 5-digit clearing number ([Clearingnummer](https://sv.wikipedia.org/wiki/Clearingnummer)), without separators or whitespace.
         /// </summary>
         /// <value>The 4- to 5-digit clearing number ([Clearingnummer](https://sv.wikipedia.org/wiki/Clearingnummer)), without separators or whitespace.</value>
         [JsonPropertyName("clearingNumber")]
-        public string ClearingNumber { get; set; }
+        public string? ClearingNumber { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,18 +132,12 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class SELocalAccountIdentification.", nameof(accountNumber));
-
-            if (!clearingNumber.IsSet)
-                throw new ArgumentException("Property is required for class SELocalAccountIdentification.", nameof(clearingNumber));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class SELocalAccountIdentification.", nameof(type));
 
             var sELocalAccountIdentification = new SELocalAccountIdentification();
-            sELocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            sELocalAccountIdentification.ClearingNumber = clearingNumber.Value!;
+            if (accountNumber.IsSet)
+                sELocalAccountIdentification.AccountNumber = accountNumber.Value!;
+            if (clearingNumber.IsSet)
+                sELocalAccountIdentification.ClearingNumber = clearingNumber.Value!;
             return sELocalAccountIdentification;
         }
 

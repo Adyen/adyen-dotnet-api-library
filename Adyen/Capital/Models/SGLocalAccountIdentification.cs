@@ -51,14 +51,14 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <value>The 4- to 19-digit bank account number, without separators or whitespace.</value>
         [JsonPropertyName("accountNumber")]
-        public string AccountNumber { get; set; }
+        public string? AccountNumber { get; set; }
 
         /// <summary>
         /// The bank&#39;s 8- or 11-character BIC or SWIFT code.
         /// </summary>
         /// <value>The bank's 8- or 11-character BIC or SWIFT code.</value>
         [JsonPropertyName("bic")]
-        public string Bic { get; set; }
+        public string? Bic { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,15 +132,12 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class SGLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!bic.IsSet)
-                throw new ArgumentException("Property is required for class SGLocalAccountIdentification.", nameof(bic));
 
             var sGLocalAccountIdentification = new SGLocalAccountIdentification();
-            sGLocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            sGLocalAccountIdentification.Bic = bic.Value!;
+            if (accountNumber.IsSet)
+                sGLocalAccountIdentification.AccountNumber = accountNumber.Value!;
+            if (bic.IsSet)
+                sGLocalAccountIdentification.Bic = bic.Value!;
             return sGLocalAccountIdentification;
         }
 

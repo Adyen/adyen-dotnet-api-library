@@ -51,7 +51,7 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <value>Contains a list of all disbursements related to the specified grant.</value>
         [JsonPropertyName("disbursements")]
-        public List<Disbursement> VarDisbursements { get; set; }
+        public List<Disbursement>? VarDisbursements { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!varDisbursements.IsSet)
-                throw new ArgumentException("Property is required for class Disbursements.", nameof(varDisbursements));
 
             var disbursements = new Disbursements();
-            disbursements.VarDisbursements = varDisbursements.Value!;
+            if (varDisbursements.IsSet)
+                disbursements.VarDisbursements = varDisbursements.Value!;
             return disbursements;
         }
 

@@ -255,6 +255,7 @@ namespace Adyen.Capital.Models
                 }
             }
             
+
             var defaultErrorResponseEntity = new DefaultErrorResponseEntity();
             if (detail.IsSet)
                 defaultErrorResponseEntity.Detail = detail.Value;

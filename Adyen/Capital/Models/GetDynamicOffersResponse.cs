@@ -51,7 +51,7 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <value>Contains a list of available dynamic offers for the specified account holder.</value>
         [JsonPropertyName("dynamicOffers")]
-        public List<DynamicOffer> DynamicOffers { get; set; }
+        public List<DynamicOffer>? DynamicOffers { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!dynamicOffers.IsSet)
-                throw new ArgumentException("Property is required for class GetDynamicOffersResponse.", nameof(dynamicOffers));
 
             var getDynamicOffersResponse = new GetDynamicOffersResponse();
-            getDynamicOffersResponse.DynamicOffers = dynamicOffers.Value!;
+            if (dynamicOffers.IsSet)
+                getDynamicOffersResponse.DynamicOffers = dynamicOffers.Value!;
             return getDynamicOffersResponse;
         }
 

@@ -51,14 +51,14 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <value>The bank account number, without separators or whitespace. The length and format depends on the bank or country.</value>
         [JsonPropertyName("accountNumber")]
-        public string AccountNumber { get; set; }
+        public string? AccountNumber { get; set; }
 
         /// <summary>
         /// The bank&#39;s 8- or 11-character BIC or SWIFT code.
         /// </summary>
         /// <value>The bank's 8- or 11-character BIC or SWIFT code.</value>
         [JsonPropertyName("bic")]
-        public string Bic { get; set; }
+        public string? Bic { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalBankIdentification"/> will be populated.
@@ -150,18 +150,12 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class NumberAndBicAccountIdentification.", nameof(accountNumber));
-
-            if (!bic.IsSet)
-                throw new ArgumentException("Property is required for class NumberAndBicAccountIdentification.", nameof(bic));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class NumberAndBicAccountIdentification.", nameof(type));
 
             var numberAndBicAccountIdentification = new NumberAndBicAccountIdentification();
-            numberAndBicAccountIdentification.AccountNumber = accountNumber.Value!;
-            numberAndBicAccountIdentification.Bic = bic.Value!;
+            if (accountNumber.IsSet)
+                numberAndBicAccountIdentification.AccountNumber = accountNumber.Value!;
+            if (bic.IsSet)
+                numberAndBicAccountIdentification.Bic = bic.Value!;
             if (additionalBankIdentification.IsSet)
                 numberAndBicAccountIdentification.AdditionalBankIdentification = additionalBankIdentification.Value;
             return numberAndBicAccountIdentification;

@@ -50,34 +50,34 @@ namespace Adyen.Capital.Models
         /// <see cref="Balances"/>.
         /// </summary>
         [JsonPropertyName("balances")]
-        public Balance Balances { get; set; }
+        public Balance? Balances { get; set; }
 
         /// <summary>
         /// The unique identifier of the grant account that tracks this grant.
         /// </summary>
         /// <value>The unique identifier of the grant account that tracks this grant.</value>
         [JsonPropertyName("grantAccountId")]
-        public string GrantAccountId { get; set; }
+        public string? GrantAccountId { get; set; }
 
         /// <summary>
         /// The unique identifier of the selected offer. Adyen uses the details of the selected offer to create a grant.
         /// </summary>
         /// <value>The unique identifier of the selected offer. Adyen uses the details of the selected offer to create a grant.</value>
         [JsonPropertyName("grantOfferId")]
-        public string GrantOfferId { get; set; }
+        public string? GrantOfferId { get; set; }
 
         /// <summary>
         /// The unique identifier of the grant reference.
         /// </summary>
         /// <value>The unique identifier of the grant reference.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// <see cref="Status"/>.
         /// </summary>
         [JsonPropertyName("status")]
-        public Status Status { get; set; }
+        public Status? Status { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Counterparty"/> will be populated.
@@ -179,27 +179,18 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!balances.IsSet)
-                throw new ArgumentException("Property is required for class Grant.", nameof(balances));
-
-            if (!grantAccountId.IsSet)
-                throw new ArgumentException("Property is required for class Grant.", nameof(grantAccountId));
-
-            if (!grantOfferId.IsSet)
-                throw new ArgumentException("Property is required for class Grant.", nameof(grantOfferId));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Grant.", nameof(id));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class Grant.", nameof(status));
 
             var grant = new Grant();
-            grant.Balances = balances.Value!;
-            grant.GrantAccountId = grantAccountId.Value!;
-            grant.GrantOfferId = grantOfferId.Value!;
-            grant.Id = id.Value!;
-            grant.Status = status.Value!;
+            if (balances.IsSet)
+                grant.Balances = balances.Value!;
+            if (grantAccountId.IsSet)
+                grant.GrantAccountId = grantAccountId.Value!;
+            if (grantOfferId.IsSet)
+                grant.GrantOfferId = grantOfferId.Value!;
+            if (id.IsSet)
+                grant.Id = id.Value!;
+            if (status.IsSet)
+                grant.Status = status.Value!;
             if (counterparty.IsSet)
                 grant.Counterparty = counterparty.Value;
             return grant;

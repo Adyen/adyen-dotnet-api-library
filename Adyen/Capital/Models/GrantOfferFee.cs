@@ -50,7 +50,7 @@ namespace Adyen.Capital.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AprBasisPoints"/> will be populated.
@@ -133,11 +133,10 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class GrantOfferFee.", nameof(amount));
 
             var grantOfferFee = new GrantOfferFee();
-            grantOfferFee.Amount = amount.Value!;
+            if (amount.IsSet)
+                grantOfferFee.Amount = amount.Value!;
             if (aprBasisPoints.IsSet)
                 grantOfferFee.AprBasisPoints = aprBasisPoints.Value;
             return grantOfferFee;

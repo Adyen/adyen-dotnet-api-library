@@ -51,52 +51,52 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <value>The unique identifier of the account holder that received the disbursement.</value>
         [JsonPropertyName("accountHolderId")]
-        public string AccountHolderId { get; set; }
+        public string? AccountHolderId { get; set; }
 
         /// <summary>
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The unique identifier of the balance account that received the disbursement.
         /// </summary>
         /// <value>The unique identifier of the balance account that received the disbursement.</value>
         [JsonPropertyName("balanceAccountId")]
-        public string BalanceAccountId { get; set; }
+        public string? BalanceAccountId { get; set; }
 
         /// <summary>
         /// <see cref="Balances"/>.
         /// </summary>
         [JsonPropertyName("balances")]
-        public Balance Balances { get; set; }
+        public Balance? Balances { get; set; }
 
         /// <summary>
         /// <see cref="Fee"/>.
         /// </summary>
         [JsonPropertyName("fee")]
-        public Fee Fee { get; set; }
+        public Fee? Fee { get; set; }
 
         /// <summary>
         /// The unique identifier of the grant related to the disbursement.
         /// </summary>
         /// <value>The unique identifier of the grant related to the disbursement.</value>
         [JsonPropertyName("grantId")]
-        public string GrantId { get; set; }
+        public string? GrantId { get; set; }
 
         /// <summary>
         /// The unique identifier of the disbursement.
         /// </summary>
         /// <value>The unique identifier of the disbursement.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// <see cref="Repayment"/>.
         /// </summary>
         [JsonPropertyName("repayment")]
-        public DisbursementRepayment Repayment { get; set; }
+        public DisbursementRepayment? Repayment { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="FundsCollections"/> will be populated.
@@ -214,39 +214,24 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!accountHolderId.IsSet)
-                throw new ArgumentException("Property is required for class Disbursement.", nameof(accountHolderId));
-
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class Disbursement.", nameof(amount));
-
-            if (!balanceAccountId.IsSet)
-                throw new ArgumentException("Property is required for class Disbursement.", nameof(balanceAccountId));
-
-            if (!balances.IsSet)
-                throw new ArgumentException("Property is required for class Disbursement.", nameof(balances));
-
-            if (!fee.IsSet)
-                throw new ArgumentException("Property is required for class Disbursement.", nameof(fee));
-
-            if (!grantId.IsSet)
-                throw new ArgumentException("Property is required for class Disbursement.", nameof(grantId));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Disbursement.", nameof(id));
-
-            if (!repayment.IsSet)
-                throw new ArgumentException("Property is required for class Disbursement.", nameof(repayment));
 
             var disbursement = new Disbursement();
-            disbursement.AccountHolderId = accountHolderId.Value!;
-            disbursement.Amount = amount.Value!;
-            disbursement.BalanceAccountId = balanceAccountId.Value!;
-            disbursement.Balances = balances.Value!;
-            disbursement.Fee = fee.Value!;
-            disbursement.GrantId = grantId.Value!;
-            disbursement.Id = id.Value!;
-            disbursement.Repayment = repayment.Value!;
+            if (accountHolderId.IsSet)
+                disbursement.AccountHolderId = accountHolderId.Value!;
+            if (amount.IsSet)
+                disbursement.Amount = amount.Value!;
+            if (balanceAccountId.IsSet)
+                disbursement.BalanceAccountId = balanceAccountId.Value!;
+            if (balances.IsSet)
+                disbursement.Balances = balances.Value!;
+            if (fee.IsSet)
+                disbursement.Fee = fee.Value!;
+            if (grantId.IsSet)
+                disbursement.GrantId = grantId.Value!;
+            if (id.IsSet)
+                disbursement.Id = id.Value!;
+            if (repayment.IsSet)
+                disbursement.Repayment = repayment.Value!;
             if (fundsCollections.IsSet)
                 disbursement.FundsCollections = fundsCollections.Value;
             return disbursement;

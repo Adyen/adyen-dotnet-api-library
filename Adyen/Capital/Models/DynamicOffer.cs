@@ -187,7 +187,7 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <value>The unique identifier of the account holder that the dynamic offer is for.</value>
         [JsonPropertyName("accountHolderId")]
-        public string AccountHolderId { get; set; }
+        public string? AccountHolderId { get; set; }
 
         /// <summary>
         /// The expiration date and time of the offer validity period.
@@ -201,25 +201,25 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <value>The unique identifier of the dynamic offer.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// <see cref="MaximumAmount"/>.
         /// </summary>
         [JsonPropertyName("maximumAmount")]
-        public Amount MaximumAmount { get; set; }
+        public Amount? MaximumAmount { get; set; }
 
         /// <summary>
         /// <see cref="MinimumAmount"/>.
         /// </summary>
         [JsonPropertyName("minimumAmount")]
-        public Amount MinimumAmount { get; set; }
+        public Amount? MinimumAmount { get; set; }
 
         /// <summary>
         /// <see cref="Repayment"/>.
         /// </summary>
         [JsonPropertyName("repayment")]
-        public DynamicOfferRepayment Repayment { get; set; }
+        public DynamicOfferRepayment? Repayment { get; set; }
 
         /// <summary>
         /// The starting date and time of the offer validity period.
@@ -342,43 +342,26 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!accountHolderId.IsSet)
-                throw new ArgumentException("Property is required for class DynamicOffer.", nameof(accountHolderId));
-
-            if (!contractType.IsSet)
-                throw new ArgumentException("Property is required for class DynamicOffer.", nameof(contractType));
-
-            if (!expiresAt.IsSet)
-                throw new ArgumentException("Property is required for class DynamicOffer.", nameof(expiresAt));
-
-            if (!financingType.IsSet)
-                throw new ArgumentException("Property is required for class DynamicOffer.", nameof(financingType));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class DynamicOffer.", nameof(id));
-
-            if (!maximumAmount.IsSet)
-                throw new ArgumentException("Property is required for class DynamicOffer.", nameof(maximumAmount));
-
-            if (!minimumAmount.IsSet)
-                throw new ArgumentException("Property is required for class DynamicOffer.", nameof(minimumAmount));
-
-            if (!repayment.IsSet)
-                throw new ArgumentException("Property is required for class DynamicOffer.", nameof(repayment));
-
-            if (!startsAt.IsSet)
-                throw new ArgumentException("Property is required for class DynamicOffer.", nameof(startsAt));
 
             var dynamicOffer = new DynamicOffer();
-            dynamicOffer.AccountHolderId = accountHolderId.Value!;
-            dynamicOffer.ContractType = contractType.Value!;
-            dynamicOffer.ExpiresAt = expiresAt.Value!.Value;
-            dynamicOffer.FinancingType = financingType.Value!;
-            dynamicOffer.Id = id.Value!;
-            dynamicOffer.MaximumAmount = maximumAmount.Value!;
-            dynamicOffer.MinimumAmount = minimumAmount.Value!;
-            dynamicOffer.Repayment = repayment.Value!;
-            dynamicOffer.StartsAt = startsAt.Value!.Value;
+            if (accountHolderId.IsSet)
+                dynamicOffer.AccountHolderId = accountHolderId.Value!;
+            if (contractType.IsSet)
+                dynamicOffer.ContractType = contractType.Value!;
+            if (expiresAt.IsSet)
+                dynamicOffer.ExpiresAt = expiresAt.Value!.Value;
+            if (financingType.IsSet)
+                dynamicOffer.FinancingType = financingType.Value!;
+            if (id.IsSet)
+                dynamicOffer.Id = id.Value!;
+            if (maximumAmount.IsSet)
+                dynamicOffer.MaximumAmount = maximumAmount.Value!;
+            if (minimumAmount.IsSet)
+                dynamicOffer.MinimumAmount = minimumAmount.Value!;
+            if (repayment.IsSet)
+                dynamicOffer.Repayment = repayment.Value!;
+            if (startsAt.IsSet)
+                dynamicOffer.StartsAt = startsAt.Value!.Value;
             return dynamicOffer;
         }
 

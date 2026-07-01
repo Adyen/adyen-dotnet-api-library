@@ -141,6 +141,7 @@ namespace Adyen.Capital.Models
                 }
             }
             
+
             var grantInfoCounterparty = new GrantInfoCounterparty();
             if (balanceAccountId.IsSet)
                 grantInfoCounterparty.BalanceAccountId = balanceAccountId.Value;

@@ -51,21 +51,21 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <value>The bank account number, without separators or whitespace.</value>
         [JsonPropertyName("accountNumber")]
-        public string AccountNumber { get; set; }
+        public string? AccountNumber { get; set; }
 
         /// <summary>
         /// The 3-digit bank code, with leading zeros.
         /// </summary>
         /// <value>The 3-digit bank code, with leading zeros.</value>
         [JsonPropertyName("bankCode")]
-        public string BankCode { get; set; }
+        public string? BankCode { get; set; }
 
         /// <summary>
         /// The bank account branch number, without separators or whitespace.
         /// </summary>
         /// <value>The bank account branch number, without separators or whitespace.</value>
         [JsonPropertyName("branchNumber")]
-        public string BranchNumber { get; set; }
+        public string? BranchNumber { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Ispb"/> will be populated.
@@ -163,22 +163,14 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class BRLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!bankCode.IsSet)
-                throw new ArgumentException("Property is required for class BRLocalAccountIdentification.", nameof(bankCode));
-
-            if (!branchNumber.IsSet)
-                throw new ArgumentException("Property is required for class BRLocalAccountIdentification.", nameof(branchNumber));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class BRLocalAccountIdentification.", nameof(type));
 
             var bRLocalAccountIdentification = new BRLocalAccountIdentification();
-            bRLocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            bRLocalAccountIdentification.BankCode = bankCode.Value!;
-            bRLocalAccountIdentification.BranchNumber = branchNumber.Value!;
+            if (accountNumber.IsSet)
+                bRLocalAccountIdentification.AccountNumber = accountNumber.Value!;
+            if (bankCode.IsSet)
+                bRLocalAccountIdentification.BankCode = bankCode.Value!;
+            if (branchNumber.IsSet)
+                bRLocalAccountIdentification.BranchNumber = branchNumber.Value!;
             if (ispb.IsSet)
                 bRLocalAccountIdentification.Ispb = ispb.Value;
             return bRLocalAccountIdentification;

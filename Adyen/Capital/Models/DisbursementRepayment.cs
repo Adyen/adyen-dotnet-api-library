@@ -59,7 +59,7 @@ namespace Adyen.Capital.Models
         [JsonPropertyName("updateDescription")]
         /* Deprecated */
         [Obsolete("")]
-        public string UpdateDescription { get; set; }
+        public string? UpdateDescription { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -128,15 +128,12 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!basisPoints.IsSet)
-                throw new ArgumentException("Property is required for class DisbursementRepayment.", nameof(basisPoints));
-
-            if (!updateDescription.IsSet)
-                throw new ArgumentException("Property is required for class DisbursementRepayment.", nameof(updateDescription));
 
             var disbursementRepayment = new DisbursementRepayment();
-            disbursementRepayment.BasisPoints = basisPoints.Value!.Value;
-            disbursementRepayment.UpdateDescription = updateDescription.Value!;
+            if (basisPoints.IsSet)
+                disbursementRepayment.BasisPoints = basisPoints.Value!.Value;
+            if (updateDescription.IsSet)
+                disbursementRepayment.UpdateDescription = updateDescription.Value!;
             return disbursementRepayment;
         }
 

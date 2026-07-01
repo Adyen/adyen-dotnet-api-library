@@ -51,7 +51,7 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <value>The 11-digit bank account number, without separators or whitespace.</value>
         [JsonPropertyName("accountNumber")]
-        public string AccountNumber { get; set; }
+        public string? AccountNumber { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -120,14 +120,10 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class NOLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class NOLocalAccountIdentification.", nameof(type));
 
             var nOLocalAccountIdentification = new NOLocalAccountIdentification();
-            nOLocalAccountIdentification.AccountNumber = accountNumber.Value!;
+            if (accountNumber.IsSet)
+                nOLocalAccountIdentification.AccountNumber = accountNumber.Value!;
             return nOLocalAccountIdentification;
         }
 

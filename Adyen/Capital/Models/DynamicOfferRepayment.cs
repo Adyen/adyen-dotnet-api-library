@@ -50,7 +50,7 @@ namespace Adyen.Capital.Models
         /// <see cref="Term"/>.
         /// </summary>
         [JsonPropertyName("term")]
-        public RepaymentTerm Term { get; set; }
+        public RepaymentTerm? Term { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -114,11 +114,10 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!term.IsSet)
-                throw new ArgumentException("Property is required for class DynamicOfferRepayment.", nameof(term));
 
             var dynamicOfferRepayment = new DynamicOfferRepayment();
-            dynamicOfferRepayment.Term = term.Value!;
+            if (term.IsSet)
+                dynamicOfferRepayment.Term = term.Value!;
             return dynamicOfferRepayment;
         }
 
