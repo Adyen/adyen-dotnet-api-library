@@ -106,17 +106,18 @@ namespace Adyen.Test.AcsWebhooks
         }
         
         [TestMethod]
-        public void Given_AccountHolder_Webhook_When_Required_Fields_Are_Unspecified_Result_Should_Throw_ArgumentException()
+        public void Given_AccountHolder_Webhook_When_Required_Fields_Are_Unspecified_Result_Should_Have_Null_Properties()
         {
             // Arrange
             string json = @"{ ""type"": ""unknowntype"" }"; // No Data, no Environment values (which are required)!
             
             // Act
-            // Assert
-            Assert.Throws<ArgumentException>(() =>
-            {
-                _acsWebhooksHandler.DeserializeAuthenticationNotificationRequest(json);
-            });
+            var result = _acsWebhooksHandler.DeserializeAuthenticationNotificationRequest(json);
+
+            // Assert - lenient deserialization: missing required fields result in null properties, not exceptions
+            Assert.IsNotNull(result);
+            Assert.IsNull(result.Data);
+            Assert.IsNull(result.Environment);
         }
 
         [TestMethod]
