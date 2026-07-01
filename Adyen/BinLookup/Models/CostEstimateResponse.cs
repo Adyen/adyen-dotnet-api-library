@@ -177,6 +177,7 @@ namespace Adyen.BinLookup.Models
                 }
             }
             
+
             var costEstimateResponse = new CostEstimateResponse();
             if (cardBin.IsSet)
                 costEstimateResponse.CardBin = cardBin.Value;

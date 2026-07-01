@@ -217,6 +217,7 @@ namespace Adyen.BinLookup.Models
                 }
             }
             
+
             var threeDS2CardRangeDetail = new ThreeDS2CardRangeDetail();
             if (acsInfoInd.IsSet)
                 threeDS2CardRangeDetail.AcsInfoInd = acsInfoInd.Value;

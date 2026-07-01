@@ -197,6 +197,7 @@ namespace Adyen.BinLookup.Models
                 }
             }
             
+
             var threeDSAvailabilityResponse = new ThreeDSAvailabilityResponse();
             if (binDetails.IsSet)
                 threeDSAvailabilityResponse.BinDetails = binDetails.Value;

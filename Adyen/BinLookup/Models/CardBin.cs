@@ -312,6 +312,7 @@ namespace Adyen.BinLookup.Models
                 }
             }
             
+
             var cardBin = new CardBin();
             if (bin.IsSet)
                 cardBin.Bin = bin.Value;

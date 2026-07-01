@@ -160,6 +160,7 @@ namespace Adyen.BinLookup.Models
                 }
             }
             
+
             var costEstimateAssumptions = new CostEstimateAssumptions();
             if (assume3DSecureAuthenticated.IsSet)
                 costEstimateAssumptions.Assume3DSecureAuthenticated = assume3DSecureAuthenticated.Value;
