@@ -171,14 +171,14 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public NegativeBalanceCompensationWarningNotificationData Data { get; set; }
+        public NegativeBalanceCompensationWarningNotificationData? Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
         /// </summary>
         /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
         [JsonPropertyName("environment")]
-        public string Environment { get; set; }
+        public string? Environment { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Timestamp"/> will be populated.
@@ -277,19 +277,14 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class NegativeBalanceCompensationWarningNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class NegativeBalanceCompensationWarningNotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class NegativeBalanceCompensationWarningNotificationRequest.", nameof(type));
 
             var negativeBalanceCompensationWarningNotificationRequest = new NegativeBalanceCompensationWarningNotificationRequest();
-            negativeBalanceCompensationWarningNotificationRequest.Data = data.Value!;
-            negativeBalanceCompensationWarningNotificationRequest.Environment = environment.Value!;
-            negativeBalanceCompensationWarningNotificationRequest.Type = type.Value!;
+            if (data.IsSet)
+                negativeBalanceCompensationWarningNotificationRequest.Data = data.Value!;
+            if (environment.IsSet)
+                negativeBalanceCompensationWarningNotificationRequest.Environment = environment.Value!;
+            if (type.IsSet)
+                negativeBalanceCompensationWarningNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 negativeBalanceCompensationWarningNotificationRequest.Timestamp = timestamp.Value;
             return negativeBalanceCompensationWarningNotificationRequest;
