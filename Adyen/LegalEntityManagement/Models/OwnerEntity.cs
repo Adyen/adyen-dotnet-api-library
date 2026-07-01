@@ -51,14 +51,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <value>Unique identifier of the resource that owns the document. For `type` **legalEntity**, this value is the unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id). For `type` **bankAccount**, this value is the unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id).</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// Type of resource that owns the document.  Possible values: **legalEntity**, **bankAccount**.
         /// </summary>
         /// <value>Type of resource that owns the document.  Possible values: **legalEntity**, **bankAccount**.</value>
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class OwnerEntity.", nameof(id));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class OwnerEntity.", nameof(type));
 
             var ownerEntity = new OwnerEntity();
-            ownerEntity.Id = id.Value!;
-            ownerEntity.Type = type.Value!;
+            if (id.IsSet)
+                ownerEntity.Id = id.Value!;
+            if (type.IsSet)
+                ownerEntity.Type = type.Value!;
             return ownerEntity;
         }
 

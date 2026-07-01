@@ -967,6 +967,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var verificationError = new VerificationError();
             if (capabilities.IsSet)
                 verificationError.Capabilities = capabilities.Value;

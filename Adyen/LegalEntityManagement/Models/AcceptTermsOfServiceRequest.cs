@@ -51,7 +51,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <value>The legal entity ID of the user accepting the Terms of Service.  For organizations, this must be the individual legal entity ID of an authorized signatory for the organization.  For sole proprietorships, this must be the individual legal entity ID of the owner.  For individuals, this must be the individual legal entity id of either the individual, parent, or guardian.  </value>
         [JsonPropertyName("acceptedBy")]
-        public string AcceptedBy { get; set; }
+        public string? AcceptedBy { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="IpAddress"/> will be populated.
@@ -134,11 +134,10 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!acceptedBy.IsSet)
-                throw new ArgumentException("Property is required for class AcceptTermsOfServiceRequest.", nameof(acceptedBy));
 
             var acceptTermsOfServiceRequest = new AcceptTermsOfServiceRequest();
-            acceptTermsOfServiceRequest.AcceptedBy = acceptedBy.Value!;
+            if (acceptedBy.IsSet)
+                acceptTermsOfServiceRequest.AcceptedBy = acceptedBy.Value!;
             if (ipAddress.IsSet)
                 acceptTermsOfServiceRequest.IpAddress = ipAddress.Value;
             return acceptTermsOfServiceRequest;

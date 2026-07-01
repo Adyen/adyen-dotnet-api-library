@@ -189,6 +189,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var getPciQuestionnaireResponse = new GetPciQuestionnaireResponse();
             if (content.IsSet)
                 getPciQuestionnaireResponse.Content = content.Value;

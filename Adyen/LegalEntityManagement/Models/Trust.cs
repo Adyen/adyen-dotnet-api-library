@@ -471,20 +471,20 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <value>The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country.</value>
         [JsonPropertyName("countryOfGoverningLaw")]
-        public string CountryOfGoverningLaw { get; set; }
+        public string? CountryOfGoverningLaw { get; set; }
 
         /// <summary>
         /// The legal name.
         /// </summary>
         /// <value>The legal name.</value>
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// <see cref="RegisteredAddress"/>.
         /// </summary>
         [JsonPropertyName("registeredAddress")]
-        public Address RegisteredAddress { get; set; }
+        public Address? RegisteredAddress { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="DateOfIncorporation"/> will be populated.
@@ -740,23 +740,16 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!countryOfGoverningLaw.IsSet)
-                throw new ArgumentException("Property is required for class Trust.", nameof(countryOfGoverningLaw));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class Trust.", nameof(name));
-
-            if (!registeredAddress.IsSet)
-                throw new ArgumentException("Property is required for class Trust.", nameof(registeredAddress));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class Trust.", nameof(type));
 
             var trust = new Trust();
-            trust.CountryOfGoverningLaw = countryOfGoverningLaw.Value!;
-            trust.Name = name.Value!;
-            trust.RegisteredAddress = registeredAddress.Value!;
-            trust.Type = type.Value!;
+            if (countryOfGoverningLaw.IsSet)
+                trust.CountryOfGoverningLaw = countryOfGoverningLaw.Value!;
+            if (name.IsSet)
+                trust.Name = name.Value!;
+            if (registeredAddress.IsSet)
+                trust.RegisteredAddress = registeredAddress.Value!;
+            if (type.IsSet)
+                trust.Type = type.Value!;
             if (dateOfIncorporation.IsSet)
                 trust.DateOfIncorporation = dateOfIncorporation.Value;
             if (description.IsSet)

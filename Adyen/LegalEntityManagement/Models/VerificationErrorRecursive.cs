@@ -948,6 +948,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var verificationErrorRecursive = new VerificationErrorRecursive();
             if (capabilities.IsSet)
                 verificationErrorRecursive.Capabilities = capabilities.Value;

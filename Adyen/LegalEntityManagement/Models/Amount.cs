@@ -141,6 +141,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var amount = new Amount();
             if (currency.IsSet)
                 amount.Currency = currency.Value;

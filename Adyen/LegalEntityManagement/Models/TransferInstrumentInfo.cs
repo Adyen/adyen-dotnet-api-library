@@ -180,14 +180,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// <see cref="BankAccount"/>.
         /// </summary>
         [JsonPropertyName("bankAccount")]
-        public BankAccountInfo BankAccount { get; set; }
+        public BankAccountInfo? BankAccount { get; set; }
 
         /// <summary>
         /// The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) that owns the transfer instrument.
         /// </summary>
         /// <value>The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) that owns the transfer instrument.</value>
         [JsonPropertyName("legalEntityId")]
-        public string LegalEntityId { get; set; }
+        public string? LegalEntityId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -262,19 +262,14 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!bankAccount.IsSet)
-                throw new ArgumentException("Property is required for class TransferInstrumentInfo.", nameof(bankAccount));
-
-            if (!legalEntityId.IsSet)
-                throw new ArgumentException("Property is required for class TransferInstrumentInfo.", nameof(legalEntityId));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TransferInstrumentInfo.", nameof(type));
 
             var transferInstrumentInfo = new TransferInstrumentInfo();
-            transferInstrumentInfo.BankAccount = bankAccount.Value!;
-            transferInstrumentInfo.LegalEntityId = legalEntityId.Value!;
-            transferInstrumentInfo.Type = type.Value!;
+            if (bankAccount.IsSet)
+                transferInstrumentInfo.BankAccount = bankAccount.Value!;
+            if (legalEntityId.IsSet)
+                transferInstrumentInfo.LegalEntityId = legalEntityId.Value!;
+            if (type.IsSet)
+                transferInstrumentInfo.Type = type.Value!;
             return transferInstrumentInfo;
         }
 

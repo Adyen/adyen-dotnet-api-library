@@ -246,6 +246,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var webDataExemption = new WebDataExemption();
             if (reason.IsSet)
                 webDataExemption.Reason = reason.Value;

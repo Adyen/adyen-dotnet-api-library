@@ -51,7 +51,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <value>List of business lines.</value>
         [JsonPropertyName("businessLines")]
-        public List<BusinessLine> VarBusinessLines { get; set; }
+        public List<BusinessLine>? VarBusinessLines { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!varBusinessLines.IsSet)
-                throw new ArgumentException("Property is required for class BusinessLines.", nameof(varBusinessLines));
 
             var businessLines = new BusinessLines();
-            businessLines.VarBusinessLines = varBusinessLines.Value!;
+            if (varBusinessLines.IsSet)
+                businessLines.VarBusinessLines = varBusinessLines.Value!;
             return businessLines;
         }
 

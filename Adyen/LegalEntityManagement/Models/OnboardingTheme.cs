@@ -58,14 +58,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <value>The unique identifier of the theme.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// The properties of the theme.
         /// </summary>
         /// <value>The properties of the theme.</value>
         [JsonPropertyName("properties")]
-        public Dictionary<string, string> Properties { get; set; }
+        public Dictionary<string, string>? Properties { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
@@ -187,19 +187,14 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class OnboardingTheme.", nameof(createdAt));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class OnboardingTheme.", nameof(id));
-
-            if (!properties.IsSet)
-                throw new ArgumentException("Property is required for class OnboardingTheme.", nameof(properties));
 
             var onboardingTheme = new OnboardingTheme();
-            onboardingTheme.CreatedAt = createdAt.Value!.Value;
-            onboardingTheme.Id = id.Value!;
-            onboardingTheme.Properties = properties.Value!;
+            if (createdAt.IsSet)
+                onboardingTheme.CreatedAt = createdAt.Value!.Value;
+            if (id.IsSet)
+                onboardingTheme.Id = id.Value!;
+            if (properties.IsSet)
+                onboardingTheme.Properties = properties.Value!;
             if (description.IsSet)
                 onboardingTheme.Description = description.Value;
             if (updatedAt.IsSet)

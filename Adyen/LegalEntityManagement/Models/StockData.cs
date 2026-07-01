@@ -160,6 +160,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var stockData = new StockData();
             if (marketIdentifier.IsSet)
                 stockData.MarketIdentifier = marketIdentifier.Value;

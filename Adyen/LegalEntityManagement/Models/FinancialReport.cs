@@ -217,6 +217,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var financialReport = new FinancialReport();
             if (annualTurnover.IsSet)
                 financialReport.AnnualTurnover = annualTurnover.Value;

@@ -543,6 +543,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var legalEntityCapability = new LegalEntityCapability();
             if (allowed.IsSet)
                 legalEntityCapability.Allowed = allowed.Value;

@@ -122,6 +122,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var onboardingLink = new OnboardingLink();
             if (url.IsSet)
                 onboardingLink.Url = url.Value;

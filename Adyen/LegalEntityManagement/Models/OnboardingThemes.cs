@@ -51,7 +51,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <value>List of onboarding themes.</value>
         [JsonPropertyName("themes")]
-        public List<OnboardingTheme> Themes { get; set; }
+        public List<OnboardingTheme>? Themes { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Next"/> will be populated.
@@ -153,11 +153,10 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!themes.IsSet)
-                throw new ArgumentException("Property is required for class OnboardingThemes.", nameof(themes));
 
             var onboardingThemes = new OnboardingThemes();
-            onboardingThemes.Themes = themes.Value!;
+            if (themes.IsSet)
+                onboardingThemes.Themes = themes.Value!;
             if (next.IsSet)
                 onboardingThemes.Next = next.Value;
             if (previous.IsSet)

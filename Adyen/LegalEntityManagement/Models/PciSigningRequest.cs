@@ -51,14 +51,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <value>The array of Adyen-generated unique identifiers for the questionnaires.</value>
         [JsonPropertyName("pciTemplateReferences")]
-        public List<string> PciTemplateReferences { get; set; }
+        public List<string>? PciTemplateReferences { get; set; }
 
         /// <summary>
         /// The [legal entity ID](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) of the individual who signs the PCI questionnaire.
         /// </summary>
         /// <value>The [legal entity ID](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) of the individual who signs the PCI questionnaire.</value>
         [JsonPropertyName("signedBy")]
-        public string SignedBy { get; set; }
+        public string? SignedBy { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!pciTemplateReferences.IsSet)
-                throw new ArgumentException("Property is required for class PciSigningRequest.", nameof(pciTemplateReferences));
-
-            if (!signedBy.IsSet)
-                throw new ArgumentException("Property is required for class PciSigningRequest.", nameof(signedBy));
 
             var pciSigningRequest = new PciSigningRequest();
-            pciSigningRequest.PciTemplateReferences = pciTemplateReferences.Value!;
-            pciSigningRequest.SignedBy = signedBy.Value!;
+            if (pciTemplateReferences.IsSet)
+                pciSigningRequest.PciTemplateReferences = pciTemplateReferences.Value!;
+            if (signedBy.IsSet)
+                pciSigningRequest.SignedBy = signedBy.Value!;
             return pciSigningRequest;
         }
 

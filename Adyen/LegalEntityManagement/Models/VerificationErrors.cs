@@ -122,6 +122,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var verificationErrors = new VerificationErrors();
             if (problems.IsSet)
                 verificationErrors.Problems = problems.Value;

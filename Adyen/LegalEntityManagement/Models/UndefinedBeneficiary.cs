@@ -142,6 +142,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var undefinedBeneficiary = new UndefinedBeneficiary();
             if (description.IsSet)
                 undefinedBeneficiary.Description = description.Value;

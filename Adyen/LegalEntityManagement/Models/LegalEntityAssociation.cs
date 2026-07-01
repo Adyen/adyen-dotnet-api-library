@@ -325,7 +325,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <value>The unique identifier of the associated [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id).</value>
         [JsonPropertyName("legalEntityId")]
-        public string LegalEntityId { get; set; }
+        public string? LegalEntityId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AssociatorId"/> will be populated.
@@ -531,15 +531,12 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!legalEntityId.IsSet)
-                throw new ArgumentException("Property is required for class LegalEntityAssociation.", nameof(legalEntityId));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class LegalEntityAssociation.", nameof(type));
 
             var legalEntityAssociation = new LegalEntityAssociation();
-            legalEntityAssociation.LegalEntityId = legalEntityId.Value!;
-            legalEntityAssociation.Type = type.Value!;
+            if (legalEntityId.IsSet)
+                legalEntityAssociation.LegalEntityId = legalEntityId.Value!;
+            if (type.IsSet)
+                legalEntityAssociation.Type = type.Value!;
             if (associatorId.IsSet)
                 legalEntityAssociation.AssociatorId = associatorId.Value;
             if (entityType.IsSet)

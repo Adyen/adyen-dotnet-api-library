@@ -262,6 +262,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var calculatePciStatusRequest = new CalculatePciStatusRequest();
             if (additionalSalesChannels.IsSet)
                 calculatePciStatusRequest.AdditionalSalesChannels = additionalSalesChannels.Value;

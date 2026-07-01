@@ -122,6 +122,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var birthData = new BirthData();
             if (dateOfBirth.IsSet)
                 birthData.DateOfBirth = dateOfBirth.Value;

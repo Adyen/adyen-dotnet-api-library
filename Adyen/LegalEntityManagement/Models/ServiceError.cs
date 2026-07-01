@@ -198,6 +198,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var serviceError = new ServiceError();
             if (errorCode.IsSet)
                 serviceError.ErrorCode = errorCode.Value;

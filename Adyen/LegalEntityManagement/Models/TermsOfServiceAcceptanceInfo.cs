@@ -423,6 +423,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var termsOfServiceAcceptanceInfo = new TermsOfServiceAcceptanceInfo();
             if (acceptedBy.IsSet)
                 termsOfServiceAcceptanceInfo.AcceptedBy = acceptedBy.Value;

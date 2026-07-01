@@ -216,7 +216,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// <value>The unique identifier of the legal entity.</value>
         /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Capabilities"/> will be populated.
@@ -551,11 +551,10 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class LegalEntity.", nameof(id));
 
             var legalEntity = new LegalEntity();
-            legalEntity.Id = id.Value!;
+            if (id.IsSet)
+                legalEntity.Id = id.Value!;
             if (capabilities.IsSet)
                 legalEntity.Capabilities = capabilities.Value;
             if (documentDetails.IsSet)

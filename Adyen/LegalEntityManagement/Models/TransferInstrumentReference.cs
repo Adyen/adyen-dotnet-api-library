@@ -51,14 +51,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <value>The masked IBAN or bank account number.</value>
         [JsonPropertyName("accountIdentifier")]
-        public string AccountIdentifier { get; set; }
+        public string? AccountIdentifier { get; set; }
 
         /// <summary>
         /// The unique identifier of the resource.
         /// </summary>
         /// <value>The unique identifier of the resource.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="RealLastFour"/> will be populated.
@@ -166,15 +166,12 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!accountIdentifier.IsSet)
-                throw new ArgumentException("Property is required for class TransferInstrumentReference.", nameof(accountIdentifier));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class TransferInstrumentReference.", nameof(id));
 
             var transferInstrumentReference = new TransferInstrumentReference();
-            transferInstrumentReference.AccountIdentifier = accountIdentifier.Value!;
-            transferInstrumentReference.Id = id.Value!;
+            if (accountIdentifier.IsSet)
+                transferInstrumentReference.AccountIdentifier = accountIdentifier.Value!;
+            if (id.IsSet)
+                transferInstrumentReference.Id = id.Value!;
             if (realLastFour.IsSet)
                 transferInstrumentReference.RealLastFour = realLastFour.Value;
             if (trustedSource.IsSet)

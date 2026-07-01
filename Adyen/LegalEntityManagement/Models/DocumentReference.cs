@@ -241,6 +241,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var documentReference = new DocumentReference();
             if (active.IsSet)
                 documentReference.Active = active.Value;

@@ -50,13 +50,13 @@ namespace Adyen.LegalEntityManagement.Models
         /// <see cref="Name"/>.
         /// </summary>
         [JsonPropertyName("name")]
-        public Name Name { get; set; }
+        public Name? Name { get; set; }
 
         /// <summary>
         /// <see cref="ResidentialAddress"/>.
         /// </summary>
         [JsonPropertyName("residentialAddress")]
-        public Address ResidentialAddress { get; set; }
+        public Address? ResidentialAddress { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="BirthData"/> will be populated.
@@ -272,15 +272,12 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class Individual.", nameof(name));
-
-            if (!residentialAddress.IsSet)
-                throw new ArgumentException("Property is required for class Individual.", nameof(residentialAddress));
 
             var individual = new Individual();
-            individual.Name = name.Value!;
-            individual.ResidentialAddress = residentialAddress.Value!;
+            if (name.IsSet)
+                individual.Name = name.Value!;
+            if (residentialAddress.IsSet)
+                individual.ResidentialAddress = residentialAddress.Value!;
             if (birthData.IsSet)
                 individual.BirthData = birthData.Value;
             if (email.IsSet)

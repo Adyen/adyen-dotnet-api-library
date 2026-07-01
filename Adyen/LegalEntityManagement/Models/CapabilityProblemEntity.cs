@@ -317,6 +317,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var capabilityProblemEntity = new CapabilityProblemEntity();
             if (documents.IsSet)
                 capabilityProblemEntity.Documents = documents.Value;

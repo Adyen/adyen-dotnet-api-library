@@ -51,14 +51,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <value>The individual's first name. Must not be blank.</value>
         [JsonPropertyName("firstName")]
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
         /// <summary>
         /// The individual&#39;s last name. Must not be blank.
         /// </summary>
         /// <value>The individual's last name. Must not be blank.</value>
         [JsonPropertyName("lastName")]
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Infix"/> will be populated.
@@ -146,15 +146,12 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!firstName.IsSet)
-                throw new ArgumentException("Property is required for class Name.", nameof(firstName));
-
-            if (!lastName.IsSet)
-                throw new ArgumentException("Property is required for class Name.", nameof(lastName));
 
             var name = new Name();
-            name.FirstName = firstName.Value!;
-            name.LastName = lastName.Value!;
+            if (firstName.IsSet)
+                name.FirstName = firstName.Value!;
+            if (lastName.IsSet)
+                name.LastName = lastName.Value!;
             if (infix.IsSet)
                 name.Infix = infix.Value;
             return name;

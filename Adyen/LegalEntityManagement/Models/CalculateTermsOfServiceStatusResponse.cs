@@ -316,6 +316,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var calculateTermsOfServiceStatusResponse = new CalculateTermsOfServiceStatusResponse();
             if (termsOfServiceTypes.IsSet)
                 calculateTermsOfServiceStatusResponse.TermsOfServiceTypes = termsOfServiceTypes.Value;

@@ -312,6 +312,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var getAcceptedTermsOfServiceDocumentResponse = new GetAcceptedTermsOfServiceDocumentResponse();
             if (document.IsSet)
                 getAcceptedTermsOfServiceDocumentResponse.Document = document.Value;
