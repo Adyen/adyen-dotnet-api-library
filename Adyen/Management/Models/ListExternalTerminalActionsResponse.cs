@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var listExternalTerminalActionsResponse = new ListExternalTerminalActionsResponse();
             if (data.IsSet)
                 listExternalTerminalActionsResponse.Data = data.Value;

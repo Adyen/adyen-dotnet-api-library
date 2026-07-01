@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var splitConfigurationList = new SplitConfigurationList();
             if (data.IsSet)
                 splitConfigurationList.Data = data.Value;

@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Cartes Bancaires SIRET. Format: 14 digits.</value>
         [JsonPropertyName("siret")]
-        public string Siret { get; set; }
+        public string? Siret { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="TransactionDescription"/> will be populated.
@@ -133,11 +133,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!siret.IsSet)
-                throw new ArgumentException("Property is required for class CartesBancairesInfo.", nameof(siret));
 
             var cartesBancairesInfo = new CartesBancairesInfo();
-            cartesBancairesInfo.Siret = siret.Value!;
+            if (siret.IsSet)
+                cartesBancairesInfo.Siret = siret.Value!;
             if (transactionDescription.IsSet)
                 cartesBancairesInfo.TransactionDescription = transactionDescription.Value;
             return cartesBancairesInfo;

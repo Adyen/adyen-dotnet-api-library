@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Twint logo. Format: Base64-encoded string.</value>
         [JsonPropertyName("logo")]
-        public string Logo { get; set; }
+        public string? Logo { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!logo.IsSet)
-                throw new ArgumentException("Property is required for class TwintResponseInfo.", nameof(logo));
 
             var twintResponseInfo = new TwintResponseInfo();
-            twintResponseInfo.Logo = logo.Value!;
+            if (logo.IsSet)
+                twintResponseInfo.Logo = logo.Value!;
             return twintResponseInfo;
         }
 

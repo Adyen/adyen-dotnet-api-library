@@ -178,6 +178,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var dinersResponseInfo = new DinersResponseInfo();
             if (midNumber.IsSet)
                 dinersResponseInfo.MidNumber = midNumber.Value;

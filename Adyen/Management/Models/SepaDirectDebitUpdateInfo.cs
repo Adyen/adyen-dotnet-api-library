@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var sepaDirectDebitUpdateInfo = new SepaDirectDebitUpdateInfo();
             if (transactionDescription.IsSet)
                 sepaDirectDebitUpdateInfo.TransactionDescription = transactionDescription.Value;

@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var payByBankPlaidUpdateInfo = new PayByBankPlaidUpdateInfo();
             if (transactionDescription.IsSet)
                 payByBankPlaidUpdateInfo.TransactionDescription = transactionDescription.Value;

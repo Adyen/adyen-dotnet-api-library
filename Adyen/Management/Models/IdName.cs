@@ -141,6 +141,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var idName = new IdName();
             if (id.IsSet)
                 idName.Id = id.Value;

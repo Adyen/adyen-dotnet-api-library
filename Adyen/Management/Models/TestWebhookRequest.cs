@@ -140,6 +140,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var testWebhookRequest = new TestWebhookRequest();
             if (notification.IsSet)
                 testWebhookRequest.Notification = notification.Value;

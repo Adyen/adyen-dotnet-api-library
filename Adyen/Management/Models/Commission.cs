@@ -141,6 +141,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var commission = new Commission();
             if (fixedAmount.IsSet)
                 commission.FixedAmount = fixedAmount.Value;

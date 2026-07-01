@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Merchant support email used to manage disputes.</value>
         [JsonPropertyName("supportEmail")]
-        public string SupportEmail { get; set; }
+        public string? SupportEmail { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="PricePlan"/> will be populated.
@@ -134,11 +134,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!supportEmail.IsSet)
-                throw new ArgumentException("Property is required for class AffirmInfo.", nameof(supportEmail));
 
             var affirmInfo = new AffirmInfo();
-            affirmInfo.SupportEmail = supportEmail.Value!;
+            if (supportEmail.IsSet)
+                affirmInfo.SupportEmail = supportEmail.Value!;
             if (pricePlan.IsSet)
                 affirmInfo.PricePlan = pricePlan.Value;
             return affirmInfo;

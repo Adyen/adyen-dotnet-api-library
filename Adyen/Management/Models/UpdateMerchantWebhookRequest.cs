@@ -742,6 +742,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var updateMerchantWebhookRequest = new UpdateMerchantWebhookRequest();
             if (acceptsExpiredCertificate.IsSet)
                 updateMerchantWebhookRequest.AcceptsExpiredCertificate = acceptsExpiredCertificate.Value;

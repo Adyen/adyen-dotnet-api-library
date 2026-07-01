@@ -181,7 +181,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Authorisation Mid</value>
         [JsonPropertyName("authorisationMid")]
-        public string AuthorisationMid { get; set; }
+        public string? AuthorisationMid { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="SubmitterId"/> will be populated.
@@ -289,15 +289,12 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!authorisationMid.IsSet)
-                throw new ArgumentException("Property is required for class ValuelinkInfo.", nameof(authorisationMid));
-
-            if (!pinSupport.IsSet)
-                throw new ArgumentException("Property is required for class ValuelinkInfo.", nameof(pinSupport));
 
             var valuelinkInfo = new ValuelinkInfo();
-            valuelinkInfo.AuthorisationMid = authorisationMid.Value!;
-            valuelinkInfo.PinSupport = pinSupport.Value!;
+            if (authorisationMid.IsSet)
+                valuelinkInfo.AuthorisationMid = authorisationMid.Value!;
+            if (pinSupport.IsSet)
+                valuelinkInfo.PinSupport = pinSupport.Value!;
             if (submitterId.IsSet)
                 valuelinkInfo.SubmitterId = submitterId.Value;
             if (terminalId.IsSet)

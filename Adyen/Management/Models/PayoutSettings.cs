@@ -352,14 +352,14 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The unique identifier of the payout setting.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments) that contains the details of the bank account.
         /// </summary>
         /// <value>The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments) that contains the details of the bank account.</value>
         [JsonPropertyName("transferInstrumentId")]
-        public string TransferInstrumentId { get; set; }
+        public string? TransferInstrumentId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Allowed"/> will be populated.
@@ -497,15 +497,12 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class PayoutSettings.", nameof(id));
-
-            if (!transferInstrumentId.IsSet)
-                throw new ArgumentException("Property is required for class PayoutSettings.", nameof(transferInstrumentId));
 
             var payoutSettings = new PayoutSettings();
-            payoutSettings.Id = id.Value!;
-            payoutSettings.TransferInstrumentId = transferInstrumentId.Value!;
+            if (id.IsSet)
+                payoutSettings.Id = id.Value!;
+            if (transferInstrumentId.IsSet)
+                payoutSettings.TransferInstrumentId = transferInstrumentId.Value!;
             if (allowed.IsSet)
                 payoutSettings.Allowed = allowed.Value;
             if (enabled.IsSet)

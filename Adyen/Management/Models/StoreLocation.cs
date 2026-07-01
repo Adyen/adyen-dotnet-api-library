@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The two-letter country code in [ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.</value>
         [JsonPropertyName("country")]
-        public string Country { get; set; }
+        public string? Country { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="City"/> will be populated.
@@ -229,11 +229,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!country.IsSet)
-                throw new ArgumentException("Property is required for class StoreLocation.", nameof(country));
 
             var storeLocation = new StoreLocation();
-            storeLocation.Country = country.Value!;
+            if (country.IsSet)
+                storeLocation.Country = country.Value!;
             if (city.IsSet)
                 storeLocation.City = city.Value;
             if (line1.IsSet)

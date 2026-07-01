@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var cartesBancairesUpdateInfo = new CartesBancairesUpdateInfo();
             if (transactionDescription.IsSet)
                 cartesBancairesUpdateInfo.TransactionDescription = transactionDescription.Value;

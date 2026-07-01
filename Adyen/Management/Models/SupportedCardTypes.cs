@@ -198,6 +198,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var supportedCardTypes = new SupportedCardTypes();
             if (credit.IsSet)
                 supportedCardTypes.Credit = credit.Value;

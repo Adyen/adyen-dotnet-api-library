@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var idealResponseInfo = new IdealResponseInfo();
             if (transactionDescription.IsSet)
                 idealResponseInfo.TransactionDescription = transactionDescription.Value;

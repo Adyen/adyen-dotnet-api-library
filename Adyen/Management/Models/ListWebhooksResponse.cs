@@ -183,15 +183,12 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!itemsTotal.IsSet)
-                throw new ArgumentException("Property is required for class ListWebhooksResponse.", nameof(itemsTotal));
-
-            if (!pagesTotal.IsSet)
-                throw new ArgumentException("Property is required for class ListWebhooksResponse.", nameof(pagesTotal));
 
             var listWebhooksResponse = new ListWebhooksResponse();
-            listWebhooksResponse.ItemsTotal = itemsTotal.Value!.Value;
-            listWebhooksResponse.PagesTotal = pagesTotal.Value!.Value;
+            if (itemsTotal.IsSet)
+                listWebhooksResponse.ItemsTotal = itemsTotal.Value!.Value;
+            if (pagesTotal.IsSet)
+                listWebhooksResponse.PagesTotal = pagesTotal.Value!.Value;
             if (links.IsSet)
                 listWebhooksResponse.Links = links.Value;
             if (accountReference.IsSet)

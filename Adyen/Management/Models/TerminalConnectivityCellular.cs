@@ -311,6 +311,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var terminalConnectivityCellular = new TerminalConnectivityCellular();
             if (iccid.IsSet)
                 terminalConnectivityCellular.Iccid = iccid.Value;

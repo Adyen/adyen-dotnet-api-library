@@ -141,6 +141,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var androidAppError = new AndroidAppError();
             if (errorCode.IsSet)
                 androidAppError.ErrorCode = errorCode.Value;

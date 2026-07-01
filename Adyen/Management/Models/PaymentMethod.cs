@@ -206,7 +206,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The identifier of the resource.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Accel"/> will be populated.
@@ -1276,11 +1276,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethod.", nameof(id));
 
             var paymentMethod = new PaymentMethod();
-            paymentMethod.Id = id.Value!;
+            if (id.IsSet)
+                paymentMethod.Id = id.Value!;
             if (accel.IsSet)
                 paymentMethod.Accel = accel.Value;
             if (affirm.IsSet)

@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var shippingLocationsResponse = new ShippingLocationsResponse();
             if (data.IsSet)
                 shippingLocationsResponse.Data = data.Value;

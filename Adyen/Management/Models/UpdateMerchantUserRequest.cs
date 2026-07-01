@@ -235,6 +235,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var updateMerchantUserRequest = new UpdateMerchantUserRequest();
             if (accountGroups.IsSet)
                 updateMerchantUserRequest.AccountGroups = accountGroups.Value;

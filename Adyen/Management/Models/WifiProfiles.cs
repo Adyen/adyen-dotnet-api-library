@@ -140,6 +140,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var wifiProfiles = new WifiProfiles();
             if (profiles.IsSet)
                 wifiProfiles.Profiles = profiles.Value;

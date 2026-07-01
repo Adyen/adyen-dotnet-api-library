@@ -164,15 +164,12 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!itemsTotal.IsSet)
-                throw new ArgumentException("Property is required for class ListTerminalsResponse.", nameof(itemsTotal));
-
-            if (!pagesTotal.IsSet)
-                throw new ArgumentException("Property is required for class ListTerminalsResponse.", nameof(pagesTotal));
 
             var listTerminalsResponse = new ListTerminalsResponse();
-            listTerminalsResponse.ItemsTotal = itemsTotal.Value!.Value;
-            listTerminalsResponse.PagesTotal = pagesTotal.Value!.Value;
+            if (itemsTotal.IsSet)
+                listTerminalsResponse.ItemsTotal = itemsTotal.Value!.Value;
+            if (pagesTotal.IsSet)
+                listTerminalsResponse.PagesTotal = pagesTotal.Value!.Value;
             if (links.IsSet)
                 listTerminalsResponse.Links = links.Value;
             if (data.IsSet)

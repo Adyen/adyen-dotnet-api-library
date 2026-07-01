@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var ticketResponseInfo = new TicketResponseInfo();
             if (requestorId.IsSet)
                 ticketResponseInfo.RequestorId = requestorId.Value;

@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var eftPosAustraliaResponseInfo = new EftPosAustraliaResponseInfo();
             if (transactionDescription.IsSet)
                 eftPosAustraliaResponseInfo.TransactionDescription = transactionDescription.Value;

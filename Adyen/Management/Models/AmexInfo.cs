@@ -286,11 +286,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!serviceLevel.IsSet)
-                throw new ArgumentException("Property is required for class AmexInfo.", nameof(serviceLevel));
 
             var amexInfo = new AmexInfo();
-            amexInfo.ServiceLevel = serviceLevel.Value!;
+            if (serviceLevel.IsSet)
+                amexInfo.ServiceLevel = serviceLevel.Value!;
             if (midNumber.IsSet)
                 amexInfo.MidNumber = midNumber.Value;
             if (reuseMidNumber.IsSet)

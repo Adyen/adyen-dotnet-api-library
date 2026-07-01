@@ -633,6 +633,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var updatePaymentMethodInfo = new UpdatePaymentMethodInfo();
             if (accel.IsSet)
                 updatePaymentMethodInfo.Accel = accel.Value;

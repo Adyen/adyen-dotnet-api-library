@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Generated client key</value>
         [JsonPropertyName("clientKey")]
-        public string ClientKey { get; set; }
+        public string? ClientKey { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!clientKey.IsSet)
-                throw new ArgumentException("Property is required for class GenerateClientKeyResponse.", nameof(clientKey));
 
             var generateClientKeyResponse = new GenerateClientKeyResponse();
-            generateClientKeyResponse.ClientKey = clientKey.Value!;
+            if (clientKey.IsSet)
+                generateClientKeyResponse.ClientKey = clientKey.Value!;
             return generateClientKeyResponse;
         }
 

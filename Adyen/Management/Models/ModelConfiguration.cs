@@ -51,14 +51,14 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Payment method, like **eftpos_australia** or **mc**. See the [possible values](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api). </value>
         [JsonPropertyName("brand")]
-        public string Brand { get; set; }
+        public string? Brand { get; set; }
 
         /// <summary>
         /// Currency and percentage or amount of the surcharge.
         /// </summary>
         /// <value>Currency and percentage or amount of the surcharge.</value>
         [JsonPropertyName("currencies")]
-        public List<Currency> Currencies { get; set; }
+        public List<Currency>? Currencies { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Commercial"/> will be populated.
@@ -184,15 +184,12 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!brand.IsSet)
-                throw new ArgumentException("Property is required for class ModelConfiguration.", nameof(brand));
-
-            if (!currencies.IsSet)
-                throw new ArgumentException("Property is required for class ModelConfiguration.", nameof(currencies));
 
             var modelConfiguration = new ModelConfiguration();
-            modelConfiguration.Brand = brand.Value!;
-            modelConfiguration.Currencies = currencies.Value!;
+            if (brand.IsSet)
+                modelConfiguration.Brand = brand.Value!;
+            if (currencies.IsSet)
+                modelConfiguration.Currencies = currencies.Value!;
             if (commercial.IsSet)
                 modelConfiguration.Commercial = commercial.Value;
             if (country.IsSet)

@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var offlineProcessing = new OfflineProcessing();
             if (chipFloorLimit.IsSet)
                 offlineProcessing.ChipFloorLimit = chipFloorLimit.Value;

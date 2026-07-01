@@ -160,6 +160,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var terminalConnectivityWifi = new TerminalConnectivityWifi();
             if (ipAddress.IsSet)
                 terminalConnectivityWifi.IpAddress = ipAddress.Value;

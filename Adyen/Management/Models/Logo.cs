@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var logo = new Logo();
             if (data.IsSet)
                 logo.Data = data.Value;

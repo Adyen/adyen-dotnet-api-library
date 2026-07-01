@@ -160,6 +160,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var amexResponseInfo = new AmexResponseInfo();
             if (midNumber.IsSet)
                 amexResponseInfo.MidNumber = midNumber.Value;

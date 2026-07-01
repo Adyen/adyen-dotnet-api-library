@@ -141,6 +141,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var terminalProductPrice = new TerminalProductPrice();
             if (currency.IsSet)
                 terminalProductPrice.Currency = currency.Value;

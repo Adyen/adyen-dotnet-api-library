@@ -140,6 +140,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var cartesBancairesResponseInfo = new CartesBancairesResponseInfo();
             if (siret.IsSet)
                 cartesBancairesResponseInfo.Siret = siret.Value;

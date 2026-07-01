@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The status of the test request. Possible values are: * **success**, `data.responseCode`: **2xx**. * **failed**, in all other cases.  You can use the value of the [`output`](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/webhooks/{id}/test__resParam_data-output) field together with the [`responseCode`](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/webhooks/{id}/test__resParam_data-responseCode) value to troubleshoot failed test webhooks.</value>
         [JsonPropertyName("status")]
-        public string Status { get; set; }
+        public string? Status { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="MerchantId"/> will be populated.
@@ -211,11 +211,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class TestOutput.", nameof(status));
 
             var testOutput = new TestOutput();
-            testOutput.Status = status.Value!;
+            if (status.IsSet)
+                testOutput.Status = status.Value!;
             if (merchantId.IsSet)
                 testOutput.MerchantId = merchantId.Value;
             if (output.IsSet)

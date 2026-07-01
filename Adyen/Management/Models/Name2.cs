@@ -141,6 +141,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var name2 = new Name2();
             if (firstName.IsSet)
                 name2.FirstName = firstName.Value;

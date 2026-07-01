@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var cupResponseInfo = new CupResponseInfo();
             if (transactionDescription.IsSet)
                 cupResponseInfo.TransactionDescription = transactionDescription.Value;

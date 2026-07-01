@@ -181,21 +181,21 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The three-character ISO currency code, such as **EUR**.</value>
         [JsonPropertyName("currencyCode")]
-        public string CurrencyCode { get; set; }
+        public string? CurrencyCode { get; set; }
 
         /// <summary>
         /// The password provided by the acquirer.
         /// </summary>
         /// <value>The password provided by the acquirer.</value>
         [JsonPropertyName("password")]
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         /// <summary>
         /// The username provided by the acquirer.
         /// </summary>
         /// <value>The username provided by the acquirer.</value>
         [JsonPropertyName("username")]
-        public string Username { get; set; }
+        public string? Username { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -275,23 +275,16 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!currencyCode.IsSet)
-                throw new ArgumentException("Property is required for class GivexInfo.", nameof(currencyCode));
-
-            if (!password.IsSet)
-                throw new ArgumentException("Property is required for class GivexInfo.", nameof(password));
-
-            if (!paymentFlow.IsSet)
-                throw new ArgumentException("Property is required for class GivexInfo.", nameof(paymentFlow));
-
-            if (!username.IsSet)
-                throw new ArgumentException("Property is required for class GivexInfo.", nameof(username));
 
             var givexInfo = new GivexInfo();
-            givexInfo.CurrencyCode = currencyCode.Value!;
-            givexInfo.Password = password.Value!;
-            givexInfo.PaymentFlow = paymentFlow.Value!;
-            givexInfo.Username = username.Value!;
+            if (currencyCode.IsSet)
+                givexInfo.CurrencyCode = currencyCode.Value!;
+            if (password.IsSet)
+                givexInfo.Password = password.Value!;
+            if (paymentFlow.IsSet)
+                givexInfo.PaymentFlow = paymentFlow.Value!;
+            if (username.IsSet)
+                givexInfo.Username = username.Value!;
             return givexInfo;
         }
 

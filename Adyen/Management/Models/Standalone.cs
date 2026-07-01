@@ -160,6 +160,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var standalone = new Standalone();
             if (currencyCode.IsSet)
                 standalone.CurrencyCode = currencyCode.Value;

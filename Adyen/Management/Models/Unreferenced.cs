@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var unreferenced = new Unreferenced();
             if (enableUnreferencedRefunds.IsSet)
                 unreferenced.EnableUnreferencedRefunds = enableUnreferencedRefunds.Value;

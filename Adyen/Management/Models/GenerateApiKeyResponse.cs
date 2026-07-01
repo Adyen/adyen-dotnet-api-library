@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The generated API key.</value>
         [JsonPropertyName("apiKey")]
-        public string ApiKey { get; set; }
+        public string? ApiKey { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!apiKey.IsSet)
-                throw new ArgumentException("Property is required for class GenerateApiKeyResponse.", nameof(apiKey));
 
             var generateApiKeyResponse = new GenerateApiKeyResponse();
-            generateApiKeyResponse.ApiKey = apiKey.Value!;
+            if (apiKey.IsSet)
+                generateApiKeyResponse.ApiKey = apiKey.Value!;
             return generateApiKeyResponse;
         }
 

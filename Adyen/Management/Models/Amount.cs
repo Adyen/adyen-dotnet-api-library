@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.</value>
         [JsonPropertyName("currency")]
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         /// <summary>
         /// The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
@@ -127,15 +127,12 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class Amount.", nameof(currency));
-
-            if (!value.IsSet)
-                throw new ArgumentException("Property is required for class Amount.", nameof(value));
 
             var amount = new Amount();
-            amount.Currency = currency.Value!;
-            amount.Value = value.Value!.Value;
+            if (currency.IsSet)
+                amount.Currency = currency.Value!;
+            if (value.IsSet)
+                amount.Value = value.Value!.Value;
             return amount;
         }
 

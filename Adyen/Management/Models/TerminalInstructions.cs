@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var terminalInstructions = new TerminalInstructions();
             if (adyenAppRestart.IsSet)
                 terminalInstructions.AdyenAppRestart = adyenAppRestart.Value;

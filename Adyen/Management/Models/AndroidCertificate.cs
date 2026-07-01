@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The unique identifier of the certificate.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
@@ -239,11 +239,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AndroidCertificate.", nameof(id));
 
             var androidCertificate = new AndroidCertificate();
-            androidCertificate.Id = id.Value!;
+            if (id.IsSet)
+                androidCertificate.Id = id.Value!;
             if (description.IsSet)
                 androidCertificate.Description = description.Value;
             if (extension.IsSet)

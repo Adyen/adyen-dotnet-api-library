@@ -141,6 +141,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var additionalSettings = new AdditionalSettings();
             if (includeEventCodes.IsSet)
                 additionalSettings.IncludeEventCodes = includeEventCodes.Value;

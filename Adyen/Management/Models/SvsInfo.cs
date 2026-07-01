@@ -51,14 +51,14 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The merchant ID (MID) that the acquirer recognizes you by.</value>
         [JsonPropertyName("authorisationMid")]
-        public string AuthorisationMid { get; set; }
+        public string? AuthorisationMid { get; set; }
 
         /// <summary>
         /// The three-character ISO currency code, example **USD**
         /// </summary>
         /// <value>The three-character ISO currency code, example **USD**</value>
         [JsonPropertyName("currencyCode")]
-        public string CurrencyCode { get; set; }
+        public string? CurrencyCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!authorisationMid.IsSet)
-                throw new ArgumentException("Property is required for class SvsInfo.", nameof(authorisationMid));
-
-            if (!currencyCode.IsSet)
-                throw new ArgumentException("Property is required for class SvsInfo.", nameof(currencyCode));
 
             var svsInfo = new SvsInfo();
-            svsInfo.AuthorisationMid = authorisationMid.Value!;
-            svsInfo.CurrencyCode = currencyCode.Value!;
+            if (authorisationMid.IsSet)
+                svsInfo.AuthorisationMid = authorisationMid.Value!;
+            if (currencyCode.IsSet)
+                svsInfo.CurrencyCode = currencyCode.Value!;
             return svsInfo;
         }
 

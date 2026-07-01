@@ -160,6 +160,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var hardware = new Hardware();
             if (displayMaximumBackLight.IsSet)
                 hardware.DisplayMaximumBackLight = displayMaximumBackLight.Value;

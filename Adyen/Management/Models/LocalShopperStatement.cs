@@ -51,14 +51,14 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The character set of the local shopper statement.  Possible values: **ja-Hani**, **ja-Kana**.</value>
         [JsonPropertyName("script")]
-        public string Script { get; set; }
+        public string? Script { get; set; }
 
         /// <summary>
         /// The text of the local shopper statement in the specified character set.
         /// </summary>
         /// <value>The text of the local shopper statement in the specified character set.</value>
         [JsonPropertyName("value")]
-        public string Value { get; set; }
+        public string? Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!script.IsSet)
-                throw new ArgumentException("Property is required for class LocalShopperStatement.", nameof(script));
-
-            if (!value.IsSet)
-                throw new ArgumentException("Property is required for class LocalShopperStatement.", nameof(value));
 
             var localShopperStatement = new LocalShopperStatement();
-            localShopperStatement.Script = script.Value!;
-            localShopperStatement.Value = value.Value!;
+            if (script.IsSet)
+                localShopperStatement.Script = script.Value!;
+            if (value.IsSet)
+                localShopperStatement.Value = value.Value!;
             return localShopperStatement;
         }
 

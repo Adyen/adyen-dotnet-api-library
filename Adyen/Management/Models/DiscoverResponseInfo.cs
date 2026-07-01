@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var discoverResponseInfo = new DiscoverResponseInfo();
             if (transactionDescription.IsSet)
                 discoverResponseInfo.TransactionDescription = transactionDescription.Value;

@@ -159,6 +159,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var testCompanyWebhookRequest = new TestCompanyWebhookRequest();
             if (merchantIds.IsSet)
                 testCompanyWebhookRequest.MerchantIds = merchantIds.Value;

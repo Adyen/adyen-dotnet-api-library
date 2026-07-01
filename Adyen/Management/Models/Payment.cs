@@ -141,6 +141,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var payment = new Payment();
             if (contactlessCurrency.IsSet)
                 payment.ContactlessCurrency = contactlessCurrency.Value;

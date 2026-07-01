@@ -141,6 +141,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var terminalActionScheduleDetail = new TerminalActionScheduleDetail();
             if (id.IsSet)
                 terminalActionScheduleDetail.Id = id.Value;

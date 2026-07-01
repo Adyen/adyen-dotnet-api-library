@@ -160,6 +160,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var localization = new Localization();
             if (language.IsSet)
                 localization.Language = language.Value;

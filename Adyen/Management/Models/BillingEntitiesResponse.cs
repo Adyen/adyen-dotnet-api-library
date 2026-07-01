@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var billingEntitiesResponse = new BillingEntitiesResponse();
             if (data.IsSet)
                 billingEntitiesResponse.Data = data.Value;

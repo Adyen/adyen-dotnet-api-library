@@ -51,35 +51,35 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The email address of the user.</value>
         [JsonPropertyName("email")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         /// <summary>
         /// The unique identifier of the user.
         /// </summary>
         /// <value>The unique identifier of the user.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// The list of [roles](https://docs.adyen.com/account/user-roles) for this user.
         /// </summary>
         /// <value>The list of [roles](https://docs.adyen.com/account/user-roles) for this user.</value>
         [JsonPropertyName("roles")]
-        public List<string> Roles { get; set; }
+        public List<string>? Roles { get; set; }
 
         /// <summary>
         /// The [tz database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) of the time zone of the user. For example, **Europe/Amsterdam**.
         /// </summary>
         /// <value>The [tz database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) of the time zone of the user. For example, **Europe/Amsterdam**.</value>
         [JsonPropertyName("timeZoneCode")]
-        public string TimeZoneCode { get; set; }
+        public string? TimeZoneCode { get; set; }
 
         /// <summary>
         /// The username for this user.
         /// </summary>
         /// <value>The username for this user.</value>
         [JsonPropertyName("username")]
-        public string Username { get; set; }
+        public string? Username { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Links"/> will be populated.
@@ -275,27 +275,18 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!email.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyUserResponse.", nameof(email));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyUserResponse.", nameof(id));
-
-            if (!roles.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyUserResponse.", nameof(roles));
-
-            if (!timeZoneCode.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyUserResponse.", nameof(timeZoneCode));
-
-            if (!username.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyUserResponse.", nameof(username));
 
             var createCompanyUserResponse = new CreateCompanyUserResponse();
-            createCompanyUserResponse.Email = email.Value!;
-            createCompanyUserResponse.Id = id.Value!;
-            createCompanyUserResponse.Roles = roles.Value!;
-            createCompanyUserResponse.TimeZoneCode = timeZoneCode.Value!;
-            createCompanyUserResponse.Username = username.Value!;
+            if (email.IsSet)
+                createCompanyUserResponse.Email = email.Value!;
+            if (id.IsSet)
+                createCompanyUserResponse.Id = id.Value!;
+            if (roles.IsSet)
+                createCompanyUserResponse.Roles = roles.Value!;
+            if (timeZoneCode.IsSet)
+                createCompanyUserResponse.TimeZoneCode = timeZoneCode.Value!;
+            if (username.IsSet)
+                createCompanyUserResponse.Username = username.Value!;
             if (links.IsSet)
                 createCompanyUserResponse.Links = links.Value;
             if (accountGroups.IsSet)

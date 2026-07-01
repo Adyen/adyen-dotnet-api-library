@@ -178,6 +178,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var scheduleTerminalActionsRequest = new ScheduleTerminalActionsRequest();
             if (actionDetails.IsSet)
                 scheduleTerminalActionsRequest.ActionDetails = actionDetails.Value;

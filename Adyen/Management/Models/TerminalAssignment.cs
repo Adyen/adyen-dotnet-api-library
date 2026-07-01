@@ -199,7 +199,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The unique identifier of the company account to which terminal is assigned.</value>
         [JsonPropertyName("companyId")]
-        public string CompanyId { get; set; }
+        public string? CompanyId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="MerchantId"/> will be populated.
@@ -325,15 +325,12 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!companyId.IsSet)
-                throw new ArgumentException("Property is required for class TerminalAssignment.", nameof(companyId));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class TerminalAssignment.", nameof(status));
 
             var terminalAssignment = new TerminalAssignment();
-            terminalAssignment.CompanyId = companyId.Value!;
-            terminalAssignment.Status = status.Value!;
+            if (companyId.IsSet)
+                terminalAssignment.CompanyId = companyId.Value!;
+            if (status.IsSet)
+                terminalAssignment.Status = status.Value!;
             if (merchantId.IsSet)
                 terminalAssignment.MerchantId = merchantId.Value;
             if (reassignmentTarget.IsSet)

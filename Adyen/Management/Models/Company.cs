@@ -235,6 +235,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var company = new Company();
             if (links.IsSet)
                 company.Links = links.Value;

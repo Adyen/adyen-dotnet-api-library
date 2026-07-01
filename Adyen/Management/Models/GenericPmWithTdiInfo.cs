@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var genericPmWithTdiInfo = new GenericPmWithTdiInfo();
             if (transactionDescription.IsSet)
                 genericPmWithTdiInfo.TransactionDescription = transactionDescription.Value;

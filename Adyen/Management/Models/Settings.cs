@@ -160,6 +160,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var settings = new Settings();
             if (band.IsSet)
                 settings.Band = band.Value;

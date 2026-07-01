@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var tapToPay = new TapToPay();
             if (merchantDisplayName.IsSet)
                 tapToPay.MerchantDisplayName = merchantDisplayName.Value;

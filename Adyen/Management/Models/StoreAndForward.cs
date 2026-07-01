@@ -159,6 +159,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var storeAndForward = new StoreAndForward();
             if (maxAmount.IsSet)
                 storeAndForward.MaxAmount = maxAmount.Value;

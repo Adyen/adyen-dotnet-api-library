@@ -50,19 +50,19 @@ namespace Adyen.Management.Models
         /// <see cref="First"/>.
         /// </summary>
         [JsonPropertyName("first")]
-        public LinksElement First { get; set; }
+        public LinksElement? First { get; set; }
 
         /// <summary>
         /// <see cref="Last"/>.
         /// </summary>
         [JsonPropertyName("last")]
-        public LinksElement Last { get; set; }
+        public LinksElement? Last { get; set; }
 
         /// <summary>
         /// <see cref="Self"/>.
         /// </summary>
         [JsonPropertyName("self")]
-        public LinksElement Self { get; set; }
+        public LinksElement? Self { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Next"/> will be populated.
@@ -172,19 +172,14 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!first.IsSet)
-                throw new ArgumentException("Property is required for class PaginationLinks.", nameof(first));
-
-            if (!last.IsSet)
-                throw new ArgumentException("Property is required for class PaginationLinks.", nameof(last));
-
-            if (!self.IsSet)
-                throw new ArgumentException("Property is required for class PaginationLinks.", nameof(self));
 
             var paginationLinks = new PaginationLinks();
-            paginationLinks.First = first.Value!;
-            paginationLinks.Last = last.Value!;
-            paginationLinks.Self = self.Value!;
+            if (first.IsSet)
+                paginationLinks.First = first.Value!;
+            if (last.IsSet)
+                paginationLinks.Last = last.Value!;
+            if (self.IsSet)
+                paginationLinks.Self = self.Value!;
             if (next.IsSet)
                 paginationLinks.Next = next.Value;
             if (prev.IsSet)

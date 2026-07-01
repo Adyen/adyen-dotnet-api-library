@@ -196,6 +196,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var nexo = new Nexo();
             if (displayUrls.IsSet)
                 nexo.DisplayUrls = displayUrls.Value;

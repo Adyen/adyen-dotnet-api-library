@@ -266,11 +266,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!processingType.IsSet)
-                throw new ArgumentException("Property is required for class PulseInfo.", nameof(processingType));
 
             var pulseInfo = new PulseInfo();
-            pulseInfo.ProcessingType = processingType.Value!;
+            if (processingType.IsSet)
+                pulseInfo.ProcessingType = processingType.Value!;
             if (transactionDescription.IsSet)
                 pulseInfo.TransactionDescription = transactionDescription.Value;
             return pulseInfo;

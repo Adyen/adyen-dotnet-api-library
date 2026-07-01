@@ -51,14 +51,14 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Sofort currency code. For example, **EUR**.</value>
         [JsonPropertyName("currencyCode")]
-        public string CurrencyCode { get; set; }
+        public string? CurrencyCode { get; set; }
 
         /// <summary>
         /// Sofort logo. Format: Base64-encoded string.
         /// </summary>
         /// <value>Sofort logo. Format: Base64-encoded string.</value>
         [JsonPropertyName("logo")]
-        public string Logo { get; set; }
+        public string? Logo { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!currencyCode.IsSet)
-                throw new ArgumentException("Property is required for class SofortInfo.", nameof(currencyCode));
-
-            if (!logo.IsSet)
-                throw new ArgumentException("Property is required for class SofortInfo.", nameof(logo));
 
             var sofortInfo = new SofortInfo();
-            sofortInfo.CurrencyCode = currencyCode.Value!;
-            sofortInfo.Logo = logo.Value!;
+            if (currencyCode.IsSet)
+                sofortInfo.CurrencyCode = currencyCode.Value!;
+            if (logo.IsSet)
+                sofortInfo.Logo = logo.Value!;
             return sofortInfo;
         }
 

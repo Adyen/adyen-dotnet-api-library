@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var maestroUSAResponseInfo = new MaestroUSAResponseInfo();
             if (transactionDescription.IsSet)
                 maestroUSAResponseInfo.TransactionDescription = transactionDescription.Value;

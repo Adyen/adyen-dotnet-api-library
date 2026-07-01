@@ -257,6 +257,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var uninstallAndroidAppDetails = new UninstallAndroidAppDetails();
             if (appId.IsSet)
                 uninstallAndroidAppDetails.AppId = appId.Value;

@@ -408,6 +408,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var payAtTable = new PayAtTable();
             if (authenticationMethod.IsSet)
                 payAtTable.AuthenticationMethod = authenticationMethod.Value;

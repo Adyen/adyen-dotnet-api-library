@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var terminalModelsResponse = new TerminalModelsResponse();
             if (data.IsSet)
                 terminalModelsResponse.Data = data.Value;

@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var cardholderReceipt = new CardholderReceipt();
             if (headerForAuthorizedReceipt.IsSet)
                 cardholderReceipt.HeaderForAuthorizedReceipt = headerForAuthorizedReceipt.Value;

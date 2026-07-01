@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var timeouts = new Timeouts();
             if (fromActiveToSleep.IsSet)
                 timeouts.FromActiveToSleep = fromActiveToSleep.Value;

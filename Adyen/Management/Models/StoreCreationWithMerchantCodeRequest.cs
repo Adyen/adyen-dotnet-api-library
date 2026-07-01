@@ -50,35 +50,35 @@ namespace Adyen.Management.Models
         /// <see cref="Address"/>.
         /// </summary>
         [JsonPropertyName("address")]
-        public StoreLocation Address { get; set; }
+        public StoreLocation? Address { get; set; }
 
         /// <summary>
         /// Your description of the store.
         /// </summary>
         /// <value>Your description of the store.</value>
         [JsonPropertyName("description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         /// <summary>
         /// The unique identifier of the merchant account that the store belongs to.
         /// </summary>
         /// <value>The unique identifier of the merchant account that the store belongs to.</value>
         [JsonPropertyName("merchantId")]
-        public string MerchantId { get; set; }
+        public string? MerchantId { get; set; }
 
         /// <summary>
         /// The phone number of the store, including &#39;+&#39; and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. 
         /// </summary>
         /// <value>The phone number of the store, including '+' and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. </value>
         [JsonPropertyName("phoneNumber")]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         /// <summary>
         /// The store name to be shown on the shopper&#39;s bank or credit card statement and on the shopper receipt. Maximum length: 22 characters; can&#39;t be all numbers.
         /// </summary>
         /// <value>The store name to be shown on the shopper's bank or credit card statement and on the shopper receipt. Maximum length: 22 characters; can't be all numbers.</value>
         [JsonPropertyName("shopperStatement")]
-        public string ShopperStatement { get; set; }
+        public string? ShopperStatement { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="BusinessLineIds"/> will be populated.
@@ -273,27 +273,18 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!address.IsSet)
-                throw new ArgumentException("Property is required for class StoreCreationWithMerchantCodeRequest.", nameof(address));
-
-            if (!description.IsSet)
-                throw new ArgumentException("Property is required for class StoreCreationWithMerchantCodeRequest.", nameof(description));
-
-            if (!merchantId.IsSet)
-                throw new ArgumentException("Property is required for class StoreCreationWithMerchantCodeRequest.", nameof(merchantId));
-
-            if (!phoneNumber.IsSet)
-                throw new ArgumentException("Property is required for class StoreCreationWithMerchantCodeRequest.", nameof(phoneNumber));
-
-            if (!shopperStatement.IsSet)
-                throw new ArgumentException("Property is required for class StoreCreationWithMerchantCodeRequest.", nameof(shopperStatement));
 
             var storeCreationWithMerchantCodeRequest = new StoreCreationWithMerchantCodeRequest();
-            storeCreationWithMerchantCodeRequest.Address = address.Value!;
-            storeCreationWithMerchantCodeRequest.Description = description.Value!;
-            storeCreationWithMerchantCodeRequest.MerchantId = merchantId.Value!;
-            storeCreationWithMerchantCodeRequest.PhoneNumber = phoneNumber.Value!;
-            storeCreationWithMerchantCodeRequest.ShopperStatement = shopperStatement.Value!;
+            if (address.IsSet)
+                storeCreationWithMerchantCodeRequest.Address = address.Value!;
+            if (description.IsSet)
+                storeCreationWithMerchantCodeRequest.Description = description.Value!;
+            if (merchantId.IsSet)
+                storeCreationWithMerchantCodeRequest.MerchantId = merchantId.Value!;
+            if (phoneNumber.IsSet)
+                storeCreationWithMerchantCodeRequest.PhoneNumber = phoneNumber.Value!;
+            if (shopperStatement.IsSet)
+                storeCreationWithMerchantCodeRequest.ShopperStatement = shopperStatement.Value!;
             if (businessLineIds.IsSet)
                 storeCreationWithMerchantCodeRequest.BusinessLineIds = businessLineIds.Value;
             if (externalReferenceId.IsSet)

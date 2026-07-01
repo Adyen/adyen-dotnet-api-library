@@ -146,6 +146,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var payPalResponseInfo = new PayPalResponseInfo();
             if (payerId.IsSet)
                 payPalResponseInfo.PayerId = payerId.Value!;

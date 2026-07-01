@@ -51,28 +51,28 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The type of Wi-Fi network. Possible values: **wpa-psk**, **wpa2-psk**, **wpa-eap**, **wpa2-eap**.</value>
         [JsonPropertyName("authType")]
-        public string AuthType { get; set; }
+        public string? AuthType { get; set; }
 
         /// <summary>
         /// Use **infra** for infrastructure-based networks. This applies to most networks. Use **adhoc** only if the communication is p2p-based between base stations.
         /// </summary>
         /// <value>Use **infra** for infrastructure-based networks. This applies to most networks. Use **adhoc** only if the communication is p2p-based between base stations.</value>
         [JsonPropertyName("bssType")]
-        public string BssType { get; set; }
+        public string? BssType { get; set; }
 
         /// <summary>
         /// The name of the wireless network.
         /// </summary>
         /// <value>The name of the wireless network.</value>
         [JsonPropertyName("ssid")]
-        public string Ssid { get; set; }
+        public string? Ssid { get; set; }
 
         /// <summary>
         /// The type of encryption. Possible values: **auto**, **ccmp** (recommended), **tkip**
         /// </summary>
         /// <value>The type of encryption. Possible values: **auto**, **ccmp** (recommended), **tkip**</value>
         [JsonPropertyName("wsec")]
-        public string Wsec { get; set; }
+        public string? Wsec { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AutoWifi"/> will be populated.
@@ -432,23 +432,16 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!authType.IsSet)
-                throw new ArgumentException("Property is required for class Profile.", nameof(authType));
-
-            if (!bssType.IsSet)
-                throw new ArgumentException("Property is required for class Profile.", nameof(bssType));
-
-            if (!ssid.IsSet)
-                throw new ArgumentException("Property is required for class Profile.", nameof(ssid));
-
-            if (!wsec.IsSet)
-                throw new ArgumentException("Property is required for class Profile.", nameof(wsec));
 
             var profile = new Profile();
-            profile.AuthType = authType.Value!;
-            profile.BssType = bssType.Value!;
-            profile.Ssid = ssid.Value!;
-            profile.Wsec = wsec.Value!;
+            if (authType.IsSet)
+                profile.AuthType = authType.Value!;
+            if (bssType.IsSet)
+                profile.BssType = bssType.Value!;
+            if (ssid.IsSet)
+                profile.Ssid = ssid.Value!;
+            if (wsec.IsSet)
+                profile.Wsec = wsec.Value!;
             if (autoWifi.IsSet)
                 profile.AutoWifi = autoWifi.Value;
             if (channel.IsSet)

@@ -199,14 +199,14 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The email address for disputes.</value>
         [JsonPropertyName("disputeEmail")]
-        public string DisputeEmail { get; set; }
+        public string? DisputeEmail { get; set; }
 
         /// <summary>
         /// The email address of merchant support.
         /// </summary>
         /// <value>The email address of merchant support.</value>
         [JsonPropertyName("supportEmail")]
-        public string SupportEmail { get; set; }
+        public string? SupportEmail { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AutoCapture"/> will be populated.
@@ -300,19 +300,14 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!disputeEmail.IsSet)
-                throw new ArgumentException("Property is required for class KlarnaInfo.", nameof(disputeEmail));
-
-            if (!region.IsSet)
-                throw new ArgumentException("Property is required for class KlarnaInfo.", nameof(region));
-
-            if (!supportEmail.IsSet)
-                throw new ArgumentException("Property is required for class KlarnaInfo.", nameof(supportEmail));
 
             var klarnaInfo = new KlarnaInfo();
-            klarnaInfo.DisputeEmail = disputeEmail.Value!;
-            klarnaInfo.Region = region.Value!;
-            klarnaInfo.SupportEmail = supportEmail.Value!;
+            if (disputeEmail.IsSet)
+                klarnaInfo.DisputeEmail = disputeEmail.Value!;
+            if (region.IsSet)
+                klarnaInfo.Region = region.Value!;
+            if (supportEmail.IsSet)
+                klarnaInfo.SupportEmail = supportEmail.Value!;
             if (autoCapture.IsSet)
                 klarnaInfo.AutoCapture = autoCapture.Value;
             return klarnaInfo;

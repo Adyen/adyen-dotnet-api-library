@@ -217,6 +217,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var updateCompanyApiCredentialRequest = new UpdateCompanyApiCredentialRequest();
             if (active.IsSet)
                 updateCompanyApiCredentialRequest.Active = active.Value;

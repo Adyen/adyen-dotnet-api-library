@@ -179,6 +179,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var terminalReassignmentRequest = new TerminalReassignmentRequest();
             if (companyId.IsSet)
                 terminalReassignmentRequest.CompanyId = companyId.Value;

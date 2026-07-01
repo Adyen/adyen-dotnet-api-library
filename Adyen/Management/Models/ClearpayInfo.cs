@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Support Url</value>
         [JsonPropertyName("supportUrl")]
-        public string SupportUrl { get; set; }
+        public string? SupportUrl { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!supportUrl.IsSet)
-                throw new ArgumentException("Property is required for class ClearpayInfo.", nameof(supportUrl));
 
             var clearpayInfo = new ClearpayInfo();
-            clearpayInfo.SupportUrl = supportUrl.Value!;
+            if (supportUrl.IsSet)
+                clearpayInfo.SupportUrl = supportUrl.Value!;
             return clearpayInfo;
         }
 

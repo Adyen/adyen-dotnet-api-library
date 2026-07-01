@@ -572,6 +572,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var terminalSettings = new TerminalSettings();
             if (cardholderReceipt.IsSet)
                 terminalSettings.CardholderReceipt = cardholderReceipt.Value;

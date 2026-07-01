@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, **AUD**.</value>
         [JsonPropertyName("currencyCode")]
-        public string CurrencyCode { get; set; }
+        public string? CurrencyCode { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
@@ -172,11 +172,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!currencyCode.IsSet)
-                throw new ArgumentException("Property is required for class Currency.", nameof(currencyCode));
 
             var currency = new Currency();
-            currency.CurrencyCode = currencyCode.Value!;
+            if (currencyCode.IsSet)
+                currency.CurrencyCode = currencyCode.Value!;
             if (amount.IsSet)
                 currency.Amount = amount.Value;
             if (maxAmount.IsSet)

@@ -141,6 +141,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var storeSplitConfiguration = new StoreSplitConfiguration();
             if (balanceAccountId.IsSet)
                 storeSplitConfiguration.BalanceAccountId = balanceAccountId.Value;

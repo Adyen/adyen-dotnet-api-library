@@ -50,19 +50,19 @@ namespace Adyen.Management.Models
         /// <see cref="GenerateHmac"/>.
         /// </summary>
         [JsonPropertyName("generateHmac")]
-        public LinksElement GenerateHmac { get; set; }
+        public LinksElement? GenerateHmac { get; set; }
 
         /// <summary>
         /// <see cref="Self"/>.
         /// </summary>
         [JsonPropertyName("self")]
-        public LinksElement Self { get; set; }
+        public LinksElement? Self { get; set; }
 
         /// <summary>
         /// <see cref="TestWebhook"/>.
         /// </summary>
         [JsonPropertyName("testWebhook")]
-        public LinksElement TestWebhook { get; set; }
+        public LinksElement? TestWebhook { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Company"/> will be populated.
@@ -172,19 +172,14 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!generateHmac.IsSet)
-                throw new ArgumentException("Property is required for class WebhookLinks.", nameof(generateHmac));
-
-            if (!self.IsSet)
-                throw new ArgumentException("Property is required for class WebhookLinks.", nameof(self));
-
-            if (!testWebhook.IsSet)
-                throw new ArgumentException("Property is required for class WebhookLinks.", nameof(testWebhook));
 
             var webhookLinks = new WebhookLinks();
-            webhookLinks.GenerateHmac = generateHmac.Value!;
-            webhookLinks.Self = self.Value!;
-            webhookLinks.TestWebhook = testWebhook.Value!;
+            if (generateHmac.IsSet)
+                webhookLinks.GenerateHmac = generateHmac.Value!;
+            if (self.IsSet)
+                webhookLinks.Self = self.Value!;
+            if (testWebhook.IsSet)
+                webhookLinks.TestWebhook = testWebhook.Value!;
             if (company.IsSet)
                 webhookLinks.Company = company.Value;
             if (merchant.IsSet)

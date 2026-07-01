@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var girocardResponseInfo = new GirocardResponseInfo();
             if (transactionDescription.IsSet)
                 girocardResponseInfo.TransactionDescription = transactionDescription.Value;

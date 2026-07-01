@@ -197,6 +197,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var billingEntity = new BillingEntity();
             if (address.IsSet)
                 billingEntity.Address = address.Value;

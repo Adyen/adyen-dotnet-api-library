@@ -160,6 +160,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var key = new Key();
             if (identifier.IsSet)
                 key.Identifier = identifier.Value;

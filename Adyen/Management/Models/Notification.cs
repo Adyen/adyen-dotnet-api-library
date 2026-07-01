@@ -331,6 +331,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var notification = new Notification();
             if (category.IsSet)
                 notification.Category = category.Value;

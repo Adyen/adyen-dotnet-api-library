@@ -52,7 +52,7 @@ namespace Adyen.Management.Models
         /// <value>Domain of the allowed origin.</value>
         /* <example>https://adyen.com</example> */
         [JsonPropertyName("domain")]
-        public string Domain { get; set; }
+        public string? Domain { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Links"/> will be populated.
@@ -153,11 +153,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!domain.IsSet)
-                throw new ArgumentException("Property is required for class AllowedOrigin.", nameof(domain));
 
             var allowedOrigin = new AllowedOrigin();
-            allowedOrigin.Domain = domain.Value!;
+            if (domain.IsSet)
+                allowedOrigin.Domain = domain.Value!;
             if (links.IsSet)
                 allowedOrigin.Links = links.Value;
             if (id.IsSet)

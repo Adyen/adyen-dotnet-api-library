@@ -264,6 +264,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var connectivity = new Connectivity();
             if (simcardStatus.IsSet)
                 connectivity.SimcardStatus = simcardStatus.Value;

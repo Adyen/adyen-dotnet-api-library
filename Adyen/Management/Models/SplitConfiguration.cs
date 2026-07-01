@@ -51,14 +51,14 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Your description for the split configuration.</value>
         [JsonPropertyName("description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         /// <summary>
         /// Array of rules that define the split configuration behavior.
         /// </summary>
         /// <value>Array of rules that define the split configuration behavior.</value>
         [JsonPropertyName("rules")]
-        public List<SplitConfigurationRule> Rules { get; set; }
+        public List<SplitConfigurationRule>? Rules { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="SplitConfigurationId"/> will be populated.
@@ -147,15 +147,12 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!description.IsSet)
-                throw new ArgumentException("Property is required for class SplitConfiguration.", nameof(description));
-
-            if (!rules.IsSet)
-                throw new ArgumentException("Property is required for class SplitConfiguration.", nameof(rules));
 
             var splitConfiguration = new SplitConfiguration();
-            splitConfiguration.Description = description.Value!;
-            splitConfiguration.Rules = rules.Value!;
+            if (description.IsSet)
+                splitConfiguration.Description = description.Value!;
+            if (rules.IsSet)
+                splitConfiguration.Rules = rules.Value!;
             if (splitConfigurationId.IsSet)
                 splitConfiguration.SplitConfigurationId = splitConfigurationId.Value;
             return splitConfiguration;

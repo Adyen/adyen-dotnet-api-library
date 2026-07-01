@@ -497,6 +497,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var store = new Store();
             if (links.IsSet)
                 store.Links = links.Value;

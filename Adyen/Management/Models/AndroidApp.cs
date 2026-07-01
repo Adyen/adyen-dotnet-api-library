@@ -208,7 +208,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The unique identifier of the app.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
@@ -413,15 +413,12 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AndroidApp.", nameof(id));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class AndroidApp.", nameof(status));
 
             var androidApp = new AndroidApp();
-            androidApp.Id = id.Value!;
-            androidApp.Status = status.Value!;
+            if (id.IsSet)
+                androidApp.Id = id.Value!;
+            if (status.IsSet)
+                androidApp.Status = status.Value!;
             if (description.IsSet)
                 androidApp.Description = description.Value;
             if (errorCode.IsSet)

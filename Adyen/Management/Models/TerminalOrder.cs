@@ -253,6 +253,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var terminalOrder = new TerminalOrder();
             if (billingEntity.IsSet)
                 terminalOrder.BillingEntity = billingEntity.Value;

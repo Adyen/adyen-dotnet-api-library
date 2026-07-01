@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var payoutSettingsResponse = new PayoutSettingsResponse();
             if (data.IsSet)
                 payoutSettingsResponse.Data = data.Value;

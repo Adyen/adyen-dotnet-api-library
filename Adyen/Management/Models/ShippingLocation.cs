@@ -177,6 +177,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var shippingLocation = new ShippingLocation();
             if (address.IsSet)
                 shippingLocation.Address = address.Value;

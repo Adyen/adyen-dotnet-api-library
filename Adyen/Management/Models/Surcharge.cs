@@ -160,6 +160,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var surcharge = new Surcharge();
             if (askConfirmation.IsSet)
                 surcharge.AskConfirmation = askConfirmation.Value;

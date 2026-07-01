@@ -164,15 +164,12 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!itemsTotal.IsSet)
-                throw new ArgumentException("Property is required for class ListMerchantApiCredentialsResponse.", nameof(itemsTotal));
-
-            if (!pagesTotal.IsSet)
-                throw new ArgumentException("Property is required for class ListMerchantApiCredentialsResponse.", nameof(pagesTotal));
 
             var listMerchantApiCredentialsResponse = new ListMerchantApiCredentialsResponse();
-            listMerchantApiCredentialsResponse.ItemsTotal = itemsTotal.Value!.Value;
-            listMerchantApiCredentialsResponse.PagesTotal = pagesTotal.Value!.Value;
+            if (itemsTotal.IsSet)
+                listMerchantApiCredentialsResponse.ItemsTotal = itemsTotal.Value!.Value;
+            if (pagesTotal.IsSet)
+                listMerchantApiCredentialsResponse.PagesTotal = pagesTotal.Value!.Value;
             if (links.IsSet)
                 listMerchantApiCredentialsResponse.Links = links.Value;
             if (data.IsSet)

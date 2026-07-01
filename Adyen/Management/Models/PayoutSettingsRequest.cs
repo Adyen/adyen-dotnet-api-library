@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments) that contains the details of the bank account.</value>
         [JsonPropertyName("transferInstrumentId")]
-        public string TransferInstrumentId { get; set; }
+        public string? TransferInstrumentId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Enabled"/> will be populated.
@@ -153,11 +153,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!transferInstrumentId.IsSet)
-                throw new ArgumentException("Property is required for class PayoutSettingsRequest.", nameof(transferInstrumentId));
 
             var payoutSettingsRequest = new PayoutSettingsRequest();
-            payoutSettingsRequest.TransferInstrumentId = transferInstrumentId.Value!;
+            if (transferInstrumentId.IsSet)
+                payoutSettingsRequest.TransferInstrumentId = transferInstrumentId.Value!;
             if (enabled.IsSet)
                 payoutSettingsRequest.Enabled = enabled.Value;
             if (enabledFromDate.IsSet)

@@ -257,6 +257,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var uninstallAndroidCertificateDetails = new UninstallAndroidCertificateDetails();
             if (certificateId.IsSet)
                 uninstallAndroidCertificateDetails.CertificateId = certificateId.Value;

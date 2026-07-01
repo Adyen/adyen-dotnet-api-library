@@ -165,6 +165,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var installedAPKs = new InstalledAPKs();
             if (confirmationDate.IsSet)
                 installedAPKs.ConfirmationDate = confirmationDate.Value;

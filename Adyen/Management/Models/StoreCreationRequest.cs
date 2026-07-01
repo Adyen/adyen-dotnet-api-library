@@ -50,28 +50,28 @@ namespace Adyen.Management.Models
         /// <see cref="Address"/>.
         /// </summary>
         [JsonPropertyName("address")]
-        public StoreLocation Address { get; set; }
+        public StoreLocation? Address { get; set; }
 
         /// <summary>
         /// Your description of the store.
         /// </summary>
         /// <value>Your description of the store.</value>
         [JsonPropertyName("description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         /// <summary>
         /// The phone number of the store, including &#39;+&#39; and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. 
         /// </summary>
         /// <value>The phone number of the store, including '+' and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. </value>
         [JsonPropertyName("phoneNumber")]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         /// <summary>
         /// The store name to be shown on the shopper&#39;s bank or credit card statement and on the shopper receipt. Maximum length: 22 characters; can&#39;t be all numbers.
         /// </summary>
         /// <value>The store name to be shown on the shopper's bank or credit card statement and on the shopper receipt. Maximum length: 22 characters; can't be all numbers.</value>
         [JsonPropertyName("shopperStatement")]
-        public string ShopperStatement { get; set; }
+        public string? ShopperStatement { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="BusinessLineIds"/> will be populated.
@@ -261,23 +261,16 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!address.IsSet)
-                throw new ArgumentException("Property is required for class StoreCreationRequest.", nameof(address));
-
-            if (!description.IsSet)
-                throw new ArgumentException("Property is required for class StoreCreationRequest.", nameof(description));
-
-            if (!phoneNumber.IsSet)
-                throw new ArgumentException("Property is required for class StoreCreationRequest.", nameof(phoneNumber));
-
-            if (!shopperStatement.IsSet)
-                throw new ArgumentException("Property is required for class StoreCreationRequest.", nameof(shopperStatement));
 
             var storeCreationRequest = new StoreCreationRequest();
-            storeCreationRequest.Address = address.Value!;
-            storeCreationRequest.Description = description.Value!;
-            storeCreationRequest.PhoneNumber = phoneNumber.Value!;
-            storeCreationRequest.ShopperStatement = shopperStatement.Value!;
+            if (address.IsSet)
+                storeCreationRequest.Address = address.Value!;
+            if (description.IsSet)
+                storeCreationRequest.Description = description.Value!;
+            if (phoneNumber.IsSet)
+                storeCreationRequest.PhoneNumber = phoneNumber.Value!;
+            if (shopperStatement.IsSet)
+                storeCreationRequest.ShopperStatement = shopperStatement.Value!;
             if (businessLineIds.IsSet)
                 storeCreationRequest.BusinessLineIds = businessLineIds.Value;
             if (externalReferenceId.IsSet)

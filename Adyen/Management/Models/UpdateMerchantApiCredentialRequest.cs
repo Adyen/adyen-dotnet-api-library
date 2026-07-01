@@ -198,6 +198,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var updateMerchantApiCredentialRequest = new UpdateMerchantApiCredentialRequest();
             if (active.IsSet)
                 updateMerchantApiCredentialRequest.Active = active.Value;

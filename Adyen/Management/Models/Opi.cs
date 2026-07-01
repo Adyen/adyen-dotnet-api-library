@@ -160,6 +160,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var opi = new Opi();
             if (enablePayAtTable.IsSet)
                 opi.EnablePayAtTable = enablePayAtTable.Value;

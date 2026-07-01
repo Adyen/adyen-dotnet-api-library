@@ -217,6 +217,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var terminalOrderRequest = new TerminalOrderRequest();
             if (billingEntityId.IsSet)
                 terminalOrderRequest.BillingEntityId = billingEntityId.Value;

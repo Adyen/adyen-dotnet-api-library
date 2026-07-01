@@ -1986,7 +1986,7 @@ namespace Adyen.Management.Models
         /// <see cref="Commission"/>.
         /// </summary>
         [JsonPropertyName("commission")]
-        public Commission Commission { get; set; }
+        public Commission? Commission { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalCommission"/> will be populated.
@@ -2172,11 +2172,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!commission.IsSet)
-                throw new ArgumentException("Property is required for class SplitConfigurationLogic.", nameof(commission));
 
             var splitConfigurationLogic = new SplitConfigurationLogic();
-            splitConfigurationLogic.Commission = commission.Value!;
+            if (commission.IsSet)
+                splitConfigurationLogic.Commission = commission.Value!;
             if (acquiringFees.IsSet)
                 splitConfigurationLogic.AcquiringFees = acquiringFees.Value;
             if (additionalCommission.IsSet)
