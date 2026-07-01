@@ -58,13 +58,13 @@ namespace Adyen.AcsWebhooks.Models
         /// </summary>
         /// <value>The name of the merchant.</value>
         [JsonPropertyName("merchantName")]
-        public string MerchantName { get; set; }
+        public string? MerchantName { get; set; }
 
         /// <summary>
         /// <see cref="OriginalAmount"/>.
         /// </summary>
         [JsonPropertyName("originalAmount")]
-        public Amount OriginalAmount { get; set; }
+        public Amount? OriginalAmount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -143,19 +143,14 @@ namespace Adyen.AcsWebhooks.Models
                 }
             }
             
-            if (!date.IsSet)
-                throw new ArgumentException("Property is required for class Purchase.", nameof(date));
-
-            if (!merchantName.IsSet)
-                throw new ArgumentException("Property is required for class Purchase.", nameof(merchantName));
-
-            if (!originalAmount.IsSet)
-                throw new ArgumentException("Property is required for class Purchase.", nameof(originalAmount));
 
             var purchase = new Purchase();
-            purchase.Date = date.Value!.Value;
-            purchase.MerchantName = merchantName.Value!;
-            purchase.OriginalAmount = originalAmount.Value!;
+            if (date.IsSet)
+                purchase.Date = date.Value!.Value;
+            if (merchantName.IsSet)
+                purchase.MerchantName = merchantName.Value!;
+            if (originalAmount.IsSet)
+                purchase.OriginalAmount = originalAmount.Value!;
             return purchase;
         }
 

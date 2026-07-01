@@ -1425,7 +1425,7 @@ namespace Adyen.AcsWebhooks.Models
         /// </summary>
         /// <value>Universally unique transaction identifier assigned by the Access Control Server (ACS) to identify a single transaction.</value>
         [JsonPropertyName("acsTransId")]
-        public string AcsTransId { get; set; }
+        public string? AcsTransId { get; set; }
 
         /// <summary>
         /// Date and time in UTC of the cardholder authentication.   [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.
@@ -1439,7 +1439,7 @@ namespace Adyen.AcsWebhooks.Models
         /// </summary>
         /// <value>Universally unique transaction identifier assigned by the DS (card scheme) to identify a single transaction.</value>
         [JsonPropertyName("dsTransID")]
-        public string DsTransID { get; set; }
+        public string? DsTransID { get; set; }
 
         /// <summary>
         /// Indicates if the purchase was in the PSD2 scope.
@@ -1453,14 +1453,14 @@ namespace Adyen.AcsWebhooks.Models
         /// </summary>
         /// <value>The `messageVersion` value as defined in the 3D Secure 2 specification.</value>
         [JsonPropertyName("messageVersion")]
-        public string MessageVersion { get; set; }
+        public string? MessageVersion { get; set; }
 
         /// <summary>
         /// The &#x60;threeDSServerTransID&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
         /// <value>The `threeDSServerTransID` value as defined in the 3D Secure 2 specification.</value>
         [JsonPropertyName("threeDSServerTransID")]
-        public string ThreeDSServerTransID { get; set; }
+        public string? ThreeDSServerTransID { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Challenge"/> will be populated.
@@ -1633,51 +1633,30 @@ namespace Adyen.AcsWebhooks.Models
                 }
             }
             
-            if (!acsTransId.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(acsTransId));
-
-            if (!challengeIndicator.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(challengeIndicator));
-
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(createdAt));
-
-            if (!deviceChannel.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(deviceChannel));
-
-            if (!dsTransID.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(dsTransID));
-
-            if (!inPSD2Scope.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(inPSD2Scope));
-
-            if (!messageCategory.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(messageCategory));
-
-            if (!messageVersion.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(messageVersion));
-
-            if (!threeDSServerTransID.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(threeDSServerTransID));
-
-            if (!transStatus.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(transStatus));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(type));
 
             var authenticationInfo = new AuthenticationInfo();
-            authenticationInfo.AcsTransId = acsTransId.Value!;
-            authenticationInfo.ChallengeIndicator = challengeIndicator.Value!;
-            authenticationInfo.CreatedAt = createdAt.Value!.Value;
-            authenticationInfo.DeviceChannel = deviceChannel.Value!;
-            authenticationInfo.DsTransID = dsTransID.Value!;
-            authenticationInfo.InPSD2Scope = inPSD2Scope.Value!.Value;
-            authenticationInfo.MessageCategory = messageCategory.Value!;
-            authenticationInfo.MessageVersion = messageVersion.Value!;
-            authenticationInfo.ThreeDSServerTransID = threeDSServerTransID.Value!;
-            authenticationInfo.TransStatus = transStatus.Value!;
-            authenticationInfo.Type = type.Value!;
+            if (acsTransId.IsSet)
+                authenticationInfo.AcsTransId = acsTransId.Value!;
+            if (challengeIndicator.IsSet)
+                authenticationInfo.ChallengeIndicator = challengeIndicator.Value!;
+            if (createdAt.IsSet)
+                authenticationInfo.CreatedAt = createdAt.Value!.Value;
+            if (deviceChannel.IsSet)
+                authenticationInfo.DeviceChannel = deviceChannel.Value!;
+            if (dsTransID.IsSet)
+                authenticationInfo.DsTransID = dsTransID.Value!;
+            if (inPSD2Scope.IsSet)
+                authenticationInfo.InPSD2Scope = inPSD2Scope.Value!.Value;
+            if (messageCategory.IsSet)
+                authenticationInfo.MessageCategory = messageCategory.Value!;
+            if (messageVersion.IsSet)
+                authenticationInfo.MessageVersion = messageVersion.Value!;
+            if (threeDSServerTransID.IsSet)
+                authenticationInfo.ThreeDSServerTransID = threeDSServerTransID.Value!;
+            if (transStatus.IsSet)
+                authenticationInfo.TransStatus = transStatus.Value!;
+            if (type.IsSet)
+                authenticationInfo.Type = type.Value!;
             if (challenge.IsSet)
                 authenticationInfo.Challenge = challenge.Value;
             if (exemptionIndicator.IsSet)

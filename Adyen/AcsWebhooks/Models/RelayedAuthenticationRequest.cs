@@ -172,27 +172,27 @@ namespace Adyen.AcsWebhooks.Models
         /// </summary>
         /// <value>The environment from which the webhook originated. Possible values: **test**, **live**. </value>
         [JsonPropertyName("environment")]
-        public string Environment { get; set; }
+        public string? Environment { get; set; }
 
         /// <summary>
         /// The unique identifier of the challenge.
         /// </summary>
         /// <value>The unique identifier of the challenge.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_) used for the purchase.
         /// </summary>
         /// <value>The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_) used for the purchase.</value>
         [JsonPropertyName("paymentInstrumentId")]
-        public string PaymentInstrumentId { get; set; }
+        public string? PaymentInstrumentId { get; set; }
 
         /// <summary>
         /// <see cref="Purchase"/>.
         /// </summary>
         [JsonPropertyName("purchase")]
-        public Purchase Purchase { get; set; }
+        public Purchase? Purchase { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ThreeDSRequestorAppURL"/> will be populated.
@@ -320,27 +320,18 @@ namespace Adyen.AcsWebhooks.Models
                 }
             }
             
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class RelayedAuthenticationRequest.", nameof(environment));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class RelayedAuthenticationRequest.", nameof(id));
-
-            if (!paymentInstrumentId.IsSet)
-                throw new ArgumentException("Property is required for class RelayedAuthenticationRequest.", nameof(paymentInstrumentId));
-
-            if (!purchase.IsSet)
-                throw new ArgumentException("Property is required for class RelayedAuthenticationRequest.", nameof(purchase));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RelayedAuthenticationRequest.", nameof(type));
 
             var relayedAuthenticationRequest = new RelayedAuthenticationRequest();
-            relayedAuthenticationRequest.Environment = environment.Value!;
-            relayedAuthenticationRequest.Id = id.Value!;
-            relayedAuthenticationRequest.PaymentInstrumentId = paymentInstrumentId.Value!;
-            relayedAuthenticationRequest.Purchase = purchase.Value!;
-            relayedAuthenticationRequest.Type = type.Value!;
+            if (environment.IsSet)
+                relayedAuthenticationRequest.Environment = environment.Value!;
+            if (id.IsSet)
+                relayedAuthenticationRequest.Id = id.Value!;
+            if (paymentInstrumentId.IsSet)
+                relayedAuthenticationRequest.PaymentInstrumentId = paymentInstrumentId.Value!;
+            if (purchase.IsSet)
+                relayedAuthenticationRequest.Purchase = purchase.Value!;
+            if (type.IsSet)
+                relayedAuthenticationRequest.Type = type.Value!;
             if (threeDSRequestorAppURL.IsSet)
                 relayedAuthenticationRequest.ThreeDSRequestorAppURL = threeDSRequestorAppURL.Value;
             if (timestamp.IsSet)
