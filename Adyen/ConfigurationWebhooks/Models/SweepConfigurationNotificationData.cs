@@ -159,6 +159,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var sweepConfigurationNotificationData = new SweepConfigurationNotificationData();
             if (accountId.IsSet)
                 sweepConfigurationNotificationData.AccountId = accountId.Value;

@@ -122,6 +122,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var balancePlatformNotificationResponse = new BalancePlatformNotificationResponse();
             if (notificationResponse.IsSet)
                 balancePlatformNotificationResponse.NotificationResponse = notificationResponse.Value;

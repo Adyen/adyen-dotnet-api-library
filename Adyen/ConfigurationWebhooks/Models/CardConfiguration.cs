@@ -51,7 +51,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// </summary>
         /// <value>The unique identifier of the card configuration profile that contains the settings that are applied to the card. For example, the envelope and PIN mailer designs or the logistics company handling the shipment.  You can override some of the existing settings in the configuration profile by providing the corresponding fields in the `configuration` object. For example, send the `shipmentMethod` to override the logistics company defined in the card configuration profile.</value>
         [JsonPropertyName("configurationProfileId")]
-        public string ConfigurationProfileId { get; set; }
+        public string? ConfigurationProfileId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Activation"/> will be populated.
@@ -380,11 +380,10 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!configurationProfileId.IsSet)
-                throw new ArgumentException("Property is required for class CardConfiguration.", nameof(configurationProfileId));
 
             var cardConfiguration = new CardConfiguration();
-            cardConfiguration.ConfigurationProfileId = configurationProfileId.Value!;
+            if (configurationProfileId.IsSet)
+                cardConfiguration.ConfigurationProfileId = configurationProfileId.Value!;
             if (activation.IsSet)
                 cardConfiguration.Activation = activation.Value;
             if (activationUrl.IsSet)

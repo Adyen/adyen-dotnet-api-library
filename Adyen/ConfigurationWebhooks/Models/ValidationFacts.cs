@@ -302,6 +302,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var validationFacts = new ValidationFacts();
             if (reasons.IsSet)
                 validationFacts.Reasons = reasons.Value;

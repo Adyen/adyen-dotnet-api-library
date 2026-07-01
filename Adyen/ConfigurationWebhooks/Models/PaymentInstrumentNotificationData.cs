@@ -140,6 +140,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var paymentInstrumentNotificationData = new PaymentInstrumentNotificationData();
             if (balancePlatform.IsSet)
                 paymentInstrumentNotificationData.BalancePlatform = balancePlatform.Value;

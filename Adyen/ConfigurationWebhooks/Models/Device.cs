@@ -160,6 +160,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var device = new Device();
             if (deviceId.IsSet)
                 device.DeviceId = deviceId.Value;

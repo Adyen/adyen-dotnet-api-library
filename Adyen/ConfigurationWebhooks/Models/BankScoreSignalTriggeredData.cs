@@ -278,6 +278,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var bankScoreSignalTriggeredData = new BankScoreSignalTriggeredData();
             if (accountHolder.IsSet)
                 bankScoreSignalTriggeredData.AccountHolder = accountHolder.Value;

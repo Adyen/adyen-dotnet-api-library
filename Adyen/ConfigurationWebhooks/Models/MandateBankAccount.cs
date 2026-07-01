@@ -50,13 +50,13 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <see cref="AccountHolder"/>.
         /// </summary>
         [JsonPropertyName("accountHolder")]
-        public MandatePartyIdentification AccountHolder { get; set; }
+        public MandatePartyIdentification? AccountHolder { get; set; }
 
         /// <summary>
         /// <see cref="AccountIdentification"/>.
         /// </summary>
         [JsonPropertyName("accountIdentification")]
-        public UKLocalMandateAccountIdentification AccountIdentification { get; set; }
+        public UKLocalMandateAccountIdentification? AccountIdentification { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -125,15 +125,12 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!accountHolder.IsSet)
-                throw new ArgumentException("Property is required for class MandateBankAccount.", nameof(accountHolder));
-
-            if (!accountIdentification.IsSet)
-                throw new ArgumentException("Property is required for class MandateBankAccount.", nameof(accountIdentification));
 
             var mandateBankAccount = new MandateBankAccount();
-            mandateBankAccount.AccountHolder = accountHolder.Value!;
-            mandateBankAccount.AccountIdentification = accountIdentification.Value!;
+            if (accountHolder.IsSet)
+                mandateBankAccount.AccountHolder = accountHolder.Value!;
+            if (accountIdentification.IsSet)
+                mandateBankAccount.AccountIdentification = accountIdentification.Value!;
             return mandateBankAccount;
         }
 

@@ -158,6 +158,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var networkTokenTriggeredRiskRule = new NetworkTokenTriggeredRiskRule();
             if (reason.IsSet)
                 networkTokenTriggeredRiskRule.Reason = reason.Value;

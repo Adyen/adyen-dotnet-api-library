@@ -141,6 +141,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var networkTokenRiskRuleSource = new NetworkTokenRiskRuleSource();
             if (id.IsSet)
                 networkTokenRiskRuleSource.Id = id.Value;

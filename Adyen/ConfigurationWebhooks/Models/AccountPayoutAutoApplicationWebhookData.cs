@@ -198,6 +198,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var accountPayoutAutoApplicationWebhookData = new AccountPayoutAutoApplicationWebhookData();
             if (balanceAccountId.IsSet)
                 accountPayoutAutoApplicationWebhookData.BalanceAccountId = balanceAccountId.Value;

@@ -198,6 +198,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var networkTokenRiskRuleData = new NetworkTokenRiskRuleData();
             if (description.IsSet)
                 networkTokenRiskRuleData.Description = description.Value;

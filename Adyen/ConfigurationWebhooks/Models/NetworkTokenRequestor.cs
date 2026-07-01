@@ -141,6 +141,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var networkTokenRequestor = new NetworkTokenRequestor();
             if (id.IsSet)
                 networkTokenRequestor.Id = id.Value;

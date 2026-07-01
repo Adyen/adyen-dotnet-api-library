@@ -171,14 +171,14 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public AccountPayoutAutoApplicationWebhookData Data { get; set; }
+        public AccountPayoutAutoApplicationWebhookData? Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
         /// </summary>
         /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
         [JsonPropertyName("environment")]
-        public string Environment { get; set; }
+        public string? Environment { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Timestamp"/> will be populated.
@@ -277,19 +277,14 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class AccountPayoutAutoApplicationNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class AccountPayoutAutoApplicationNotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AccountPayoutAutoApplicationNotificationRequest.", nameof(type));
 
             var accountPayoutAutoApplicationNotificationRequest = new AccountPayoutAutoApplicationNotificationRequest();
-            accountPayoutAutoApplicationNotificationRequest.Data = data.Value!;
-            accountPayoutAutoApplicationNotificationRequest.Environment = environment.Value!;
-            accountPayoutAutoApplicationNotificationRequest.Type = type.Value!;
+            if (data.IsSet)
+                accountPayoutAutoApplicationNotificationRequest.Data = data.Value!;
+            if (environment.IsSet)
+                accountPayoutAutoApplicationNotificationRequest.Environment = environment.Value!;
+            if (type.IsSet)
+                accountPayoutAutoApplicationNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 accountPayoutAutoApplicationNotificationRequest.Timestamp = timestamp.Value;
             return accountPayoutAutoApplicationNotificationRequest;

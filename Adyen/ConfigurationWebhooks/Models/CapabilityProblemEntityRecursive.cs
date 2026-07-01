@@ -293,6 +293,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var capabilityProblemEntityRecursive = new CapabilityProblemEntityRecursive();
             if (documents.IsSet)
                 capabilityProblemEntityRecursive.Documents = documents.Value;

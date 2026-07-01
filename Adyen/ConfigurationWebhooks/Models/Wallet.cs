@@ -691,6 +691,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var wallet = new Wallet();
             if (accountScore.IsSet)
                 wallet.AccountScore = accountScore.Value;

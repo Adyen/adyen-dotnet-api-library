@@ -197,14 +197,14 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// </summary>
         /// <value>The unique identifier of the account holder.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.
         /// </summary>
         /// <value>The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.</value>
         [JsonPropertyName("legalEntityId")]
-        public string LegalEntityId { get; set; }
+        public string? LegalEntityId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="BalancePlatform"/> will be populated.
@@ -470,15 +470,12 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AccountHolder.", nameof(id));
-
-            if (!legalEntityId.IsSet)
-                throw new ArgumentException("Property is required for class AccountHolder.", nameof(legalEntityId));
 
             var accountHolder = new AccountHolder();
-            accountHolder.Id = id.Value!;
-            accountHolder.LegalEntityId = legalEntityId.Value!;
+            if (id.IsSet)
+                accountHolder.Id = id.Value!;
+            if (legalEntityId.IsSet)
+                accountHolder.LegalEntityId = legalEntityId.Value!;
             if (balancePlatform.IsSet)
                 accountHolder.BalancePlatform = balancePlatform.Value;
             if (capabilities.IsSet)

@@ -331,6 +331,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var platformPayoutConfigWebhookData = new PlatformPayoutConfigWebhookData();
             if (balancePlatform.IsSet)
                 platformPayoutConfigWebhookData.BalancePlatform = balancePlatform.Value;
