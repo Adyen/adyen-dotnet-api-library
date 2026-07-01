@@ -51,14 +51,14 @@ namespace Adyen.StoredValue.Models
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The original pspReference of the payment to modify.
         /// </summary>
         /// <value>The original pspReference of the payment to modify.</value>
         [JsonPropertyName("originalReference")]
-        public string OriginalReference { get; set; }
+        public string? OriginalReference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
@@ -203,15 +203,12 @@ namespace Adyen.StoredValue.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class StoredValueVoidRequest.", nameof(merchantAccount));
-
-            if (!originalReference.IsSet)
-                throw new ArgumentException("Property is required for class StoredValueVoidRequest.", nameof(originalReference));
 
             var storedValueVoidRequest = new StoredValueVoidRequest();
-            storedValueVoidRequest.MerchantAccount = merchantAccount.Value!;
-            storedValueVoidRequest.OriginalReference = originalReference.Value!;
+            if (merchantAccount.IsSet)
+                storedValueVoidRequest.MerchantAccount = merchantAccount.Value!;
+            if (originalReference.IsSet)
+                storedValueVoidRequest.OriginalReference = originalReference.Value!;
             if (reference.IsSet)
                 storedValueVoidRequest.Reference = reference.Value;
             if (store.IsSet)

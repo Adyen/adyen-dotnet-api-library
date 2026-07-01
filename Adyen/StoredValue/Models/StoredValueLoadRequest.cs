@@ -342,28 +342,28 @@ namespace Adyen.StoredValue.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The collection that contains the type of the payment method and its specific information if available
         /// </summary>
         /// <value>The collection that contains the type of the payment method and its specific information if available</value>
         [JsonPropertyName("paymentMethod")]
-        public Dictionary<string, string> PaymentMethod { get; set; }
+        public Dictionary<string, string>? PaymentMethod { get; set; }
 
         /// <summary>
         /// The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.
         /// </summary>
         /// <value>The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). Maximum length: 80 characters.</value>
         [JsonPropertyName("reference")]
-        public string Reference { get; set; }
+        public string? Reference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="RecurringDetailReference"/> will be populated.
@@ -509,23 +509,16 @@ namespace Adyen.StoredValue.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class StoredValueLoadRequest.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class StoredValueLoadRequest.", nameof(merchantAccount));
-
-            if (!paymentMethod.IsSet)
-                throw new ArgumentException("Property is required for class StoredValueLoadRequest.", nameof(paymentMethod));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class StoredValueLoadRequest.", nameof(reference));
 
             var storedValueLoadRequest = new StoredValueLoadRequest();
-            storedValueLoadRequest.Amount = amount.Value!;
-            storedValueLoadRequest.MerchantAccount = merchantAccount.Value!;
-            storedValueLoadRequest.PaymentMethod = paymentMethod.Value!;
-            storedValueLoadRequest.Reference = reference.Value!;
+            if (amount.IsSet)
+                storedValueLoadRequest.Amount = amount.Value!;
+            if (merchantAccount.IsSet)
+                storedValueLoadRequest.MerchantAccount = merchantAccount.Value!;
+            if (paymentMethod.IsSet)
+                storedValueLoadRequest.PaymentMethod = paymentMethod.Value!;
+            if (reference.IsSet)
+                storedValueLoadRequest.Reference = reference.Value!;
             if (loadType.IsSet)
                 storedValueLoadRequest.LoadType = loadType.Value;
             if (recurringDetailReference.IsSet)

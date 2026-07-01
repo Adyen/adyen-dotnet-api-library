@@ -358,6 +358,7 @@ namespace Adyen.StoredValue.Models
                 }
             }
             
+
             var storedValueBalanceMergeResponse = new StoredValueBalanceMergeResponse();
             if (authCode.IsSet)
                 storedValueBalanceMergeResponse.AuthCode = authCode.Value;
