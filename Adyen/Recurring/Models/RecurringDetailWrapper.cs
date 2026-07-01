@@ -121,6 +121,7 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+
             var recurringDetailWrapper = new RecurringDetailWrapper();
             if (recurringDetail.IsSet)
                 recurringDetailWrapper.RecurringDetail = recurringDetail.Value;

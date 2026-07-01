@@ -141,6 +141,7 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+
             var createPermitResult = new CreatePermitResult();
             if (permitResultList.IsSet)
                 createPermitResult.PermitResultList = permitResultList.Value;

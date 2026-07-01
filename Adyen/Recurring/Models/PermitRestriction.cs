@@ -158,6 +158,7 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+
             var permitRestriction = new PermitRestriction();
             if (maxAmount.IsSet)
                 permitRestriction.MaxAmount = maxAmount.Value;

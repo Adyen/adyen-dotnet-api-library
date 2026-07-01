@@ -50,28 +50,28 @@ namespace Adyen.Recurring.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The merchant account identifier with which you want to process the transaction.
         /// </summary>
         /// <value>The merchant account identifier with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// Pre-debit notification reference sent by the merchant. This is a mandatory field
         /// </summary>
         /// <value>Pre-debit notification reference sent by the merchant. This is a mandatory field</value>
         [JsonPropertyName("reference")]
-        public string Reference { get; set; }
+        public string? Reference { get; set; }
 
         /// <summary>
         /// The ID that uniquely identifies the shopper.  This &#x60;shopperReference&#x60; must be the same as the &#x60;shopperReference&#x60; used in the initial payment.
         /// </summary>
         /// <value>The ID that uniquely identifies the shopper.  This `shopperReference` must be the same as the `shopperReference` used in the initial payment.</value>
         [JsonPropertyName("shopperReference")]
-        public string ShopperReference { get; set; }
+        public string? ShopperReference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="BillingDate"/> will be populated.
@@ -245,23 +245,16 @@ namespace Adyen.Recurring.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class NotifyShopperRequest.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class NotifyShopperRequest.", nameof(merchantAccount));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class NotifyShopperRequest.", nameof(reference));
-
-            if (!shopperReference.IsSet)
-                throw new ArgumentException("Property is required for class NotifyShopperRequest.", nameof(shopperReference));
 
             var notifyShopperRequest = new NotifyShopperRequest();
-            notifyShopperRequest.Amount = amount.Value!;
-            notifyShopperRequest.MerchantAccount = merchantAccount.Value!;
-            notifyShopperRequest.Reference = reference.Value!;
-            notifyShopperRequest.ShopperReference = shopperReference.Value!;
+            if (amount.IsSet)
+                notifyShopperRequest.Amount = amount.Value!;
+            if (merchantAccount.IsSet)
+                notifyShopperRequest.MerchantAccount = merchantAccount.Value!;
+            if (reference.IsSet)
+                notifyShopperRequest.Reference = reference.Value!;
+            if (shopperReference.IsSet)
+                notifyShopperRequest.ShopperReference = shopperReference.Value!;
             if (billingDate.IsSet)
                 notifyShopperRequest.BillingDate = billingDate.Value;
             if (billingSequenceNumber.IsSet)

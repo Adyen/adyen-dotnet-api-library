@@ -51,14 +51,14 @@ namespace Adyen.Recurring.Models
         /// </summary>
         /// <value>Account of the merchant.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// A reference that merchants can apply for the call.
         /// </summary>
         /// <value>A reference that merchants can apply for the call.</value>
         [JsonPropertyName("reference")]
-        public string Reference { get; set; }
+        public string? Reference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
@@ -202,15 +202,12 @@ namespace Adyen.Recurring.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class ScheduleAccountUpdaterRequest.", nameof(merchantAccount));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class ScheduleAccountUpdaterRequest.", nameof(reference));
 
             var scheduleAccountUpdaterRequest = new ScheduleAccountUpdaterRequest();
-            scheduleAccountUpdaterRequest.MerchantAccount = merchantAccount.Value!;
-            scheduleAccountUpdaterRequest.Reference = reference.Value!;
+            if (merchantAccount.IsSet)
+                scheduleAccountUpdaterRequest.MerchantAccount = merchantAccount.Value!;
+            if (reference.IsSet)
+                scheduleAccountUpdaterRequest.Reference = reference.Value!;
             if (additionalData.IsSet)
                 scheduleAccountUpdaterRequest.AdditionalData = additionalData.Value;
             if (card.IsSet)

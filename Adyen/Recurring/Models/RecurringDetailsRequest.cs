@@ -51,14 +51,14 @@ namespace Adyen.Recurring.Models
         /// </summary>
         /// <value>The merchant account identifier you want to process the (transaction) request with.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The reference you use to uniquely identify the shopper (e.g. user ID or account ID).
         /// </summary>
         /// <value>The reference you use to uniquely identify the shopper (e.g. user ID or account ID).</value>
         [JsonPropertyName("shopperReference")]
-        public string ShopperReference { get; set; }
+        public string? ShopperReference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Recurring"/> will be populated.
@@ -145,15 +145,12 @@ namespace Adyen.Recurring.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class RecurringDetailsRequest.", nameof(merchantAccount));
-
-            if (!shopperReference.IsSet)
-                throw new ArgumentException("Property is required for class RecurringDetailsRequest.", nameof(shopperReference));
 
             var recurringDetailsRequest = new RecurringDetailsRequest();
-            recurringDetailsRequest.MerchantAccount = merchantAccount.Value!;
-            recurringDetailsRequest.ShopperReference = shopperReference.Value!;
+            if (merchantAccount.IsSet)
+                recurringDetailsRequest.MerchantAccount = merchantAccount.Value!;
+            if (shopperReference.IsSet)
+                recurringDetailsRequest.ShopperReference = shopperReference.Value!;
             if (recurring.IsSet)
                 recurringDetailsRequest.Recurring = recurring.Value;
             return recurringDetailsRequest;

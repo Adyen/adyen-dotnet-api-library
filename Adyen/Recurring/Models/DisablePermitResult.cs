@@ -141,6 +141,7 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+
             var disablePermitResult = new DisablePermitResult();
             if (pspReference.IsSet)
                 disablePermitResult.PspReference = pspReference.Value;

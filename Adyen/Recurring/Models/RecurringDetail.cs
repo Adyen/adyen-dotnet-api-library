@@ -51,14 +51,14 @@ namespace Adyen.Recurring.Models
         /// </summary>
         /// <value>The reference that uniquely identifies the recurring detail.</value>
         [JsonPropertyName("recurringDetailReference")]
-        public string RecurringDetailReference { get; set; }
+        public string? RecurringDetailReference { get; set; }
 
         /// <summary>
         /// The payment method, such as “mc\&quot;, \&quot;visa\&quot;, \&quot;ideal\&quot;, \&quot;paypal\&quot;.
         /// </summary>
         /// <value>The payment method, such as “mc\", \"visa\", \"ideal\", \"paypal\".</value>
         [JsonPropertyName("variant")]
-        public string Variant { get; set; }
+        public string? Variant { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
@@ -431,15 +431,12 @@ namespace Adyen.Recurring.Models
                 }
             }
             
-            if (!recurringDetailReference.IsSet)
-                throw new ArgumentException("Property is required for class RecurringDetail.", nameof(recurringDetailReference));
-
-            if (!variant.IsSet)
-                throw new ArgumentException("Property is required for class RecurringDetail.", nameof(variant));
 
             var recurringDetail = new RecurringDetail();
-            recurringDetail.RecurringDetailReference = recurringDetailReference.Value!;
-            recurringDetail.Variant = variant.Value!;
+            if (recurringDetailReference.IsSet)
+                recurringDetail.RecurringDetailReference = recurringDetailReference.Value!;
+            if (variant.IsSet)
+                recurringDetail.Variant = variant.Value!;
             if (additionalData.IsSet)
                 recurringDetail.AdditionalData = additionalData.Value;
             if (alias.IsSet)

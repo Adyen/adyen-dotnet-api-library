@@ -236,6 +236,7 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+
             var notifyShopperResult = new NotifyShopperResult();
             if (displayedReference.IsSet)
                 notifyShopperResult.DisplayedReference = displayedReference.Value;

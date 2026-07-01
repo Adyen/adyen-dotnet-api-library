@@ -51,28 +51,28 @@ namespace Adyen.Recurring.Models
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The permits to create for this recurring contract.
         /// </summary>
         /// <value>The permits to create for this recurring contract.</value>
         [JsonPropertyName("permits")]
-        public List<Permit> Permits { get; set; }
+        public List<Permit>? Permits { get; set; }
 
         /// <summary>
         /// The recurring contract the new permits will use.
         /// </summary>
         /// <value>The recurring contract the new permits will use.</value>
         [JsonPropertyName("recurringDetailReference")]
-        public string RecurringDetailReference { get; set; }
+        public string? RecurringDetailReference { get; set; }
 
         /// <summary>
         /// The shopper&#39;s reference to uniquely identify this shopper (e.g. user ID or account ID).
         /// </summary>
         /// <value>The shopper's reference to uniquely identify this shopper (e.g. user ID or account ID).</value>
         [JsonPropertyName("shopperReference")]
-        public string ShopperReference { get; set; }
+        public string? ShopperReference { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -151,23 +151,16 @@ namespace Adyen.Recurring.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class CreatePermitRequest.", nameof(merchantAccount));
-
-            if (!permits.IsSet)
-                throw new ArgumentException("Property is required for class CreatePermitRequest.", nameof(permits));
-
-            if (!recurringDetailReference.IsSet)
-                throw new ArgumentException("Property is required for class CreatePermitRequest.", nameof(recurringDetailReference));
-
-            if (!shopperReference.IsSet)
-                throw new ArgumentException("Property is required for class CreatePermitRequest.", nameof(shopperReference));
 
             var createPermitRequest = new CreatePermitRequest();
-            createPermitRequest.MerchantAccount = merchantAccount.Value!;
-            createPermitRequest.Permits = permits.Value!;
-            createPermitRequest.RecurringDetailReference = recurringDetailReference.Value!;
-            createPermitRequest.ShopperReference = shopperReference.Value!;
+            if (merchantAccount.IsSet)
+                createPermitRequest.MerchantAccount = merchantAccount.Value!;
+            if (permits.IsSet)
+                createPermitRequest.Permits = permits.Value!;
+            if (recurringDetailReference.IsSet)
+                createPermitRequest.RecurringDetailReference = recurringDetailReference.Value!;
+            if (shopperReference.IsSet)
+                createPermitRequest.ShopperReference = shopperReference.Value!;
             return createPermitRequest;
         }
 

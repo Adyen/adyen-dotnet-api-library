@@ -51,14 +51,14 @@ namespace Adyen.Recurring.Models
         /// </summary>
         /// <value>Adyen's 16-character unique reference associated with the transaction. This value is globally unique; quote it when communicating with us about this request.</value>
         [JsonPropertyName("pspReference")]
-        public string PspReference { get; set; }
+        public string? PspReference { get; set; }
 
         /// <summary>
         /// The result of scheduling an Account Updater. If scheduling was successful, this field returns **Success**; otherwise it contains the error message.
         /// </summary>
         /// <value>The result of scheduling an Account Updater. If scheduling was successful, this field returns **Success**; otherwise it contains the error message.</value>
         [JsonPropertyName("result")]
-        public string Result { get; set; }
+        public string? Result { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.Recurring.Models
                 }
             }
             
-            if (!pspReference.IsSet)
-                throw new ArgumentException("Property is required for class ScheduleAccountUpdaterResult.", nameof(pspReference));
-
-            if (!result.IsSet)
-                throw new ArgumentException("Property is required for class ScheduleAccountUpdaterResult.", nameof(result));
 
             var scheduleAccountUpdaterResult = new ScheduleAccountUpdaterResult();
-            scheduleAccountUpdaterResult.PspReference = pspReference.Value!;
-            scheduleAccountUpdaterResult.Result = result.Value!;
+            if (pspReference.IsSet)
+                scheduleAccountUpdaterResult.PspReference = pspReference.Value!;
+            if (result.IsSet)
+                scheduleAccountUpdaterResult.Result = result.Value!;
             return scheduleAccountUpdaterResult;
         }
 
