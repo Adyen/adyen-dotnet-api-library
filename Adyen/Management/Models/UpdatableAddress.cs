@@ -217,6 +217,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var updatableAddress = new UpdatableAddress();
             if (city.IsSet)
                 updatableAddress.City = city.Value;

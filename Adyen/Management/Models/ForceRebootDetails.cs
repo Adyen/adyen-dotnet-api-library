@@ -238,6 +238,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var forceRebootDetails = new ForceRebootDetails();
             if (type.IsSet)
                 forceRebootDetails.Type = type.Value;

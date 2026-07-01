@@ -160,6 +160,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var createMerchantApiCredentialRequest = new CreateMerchantApiCredentialRequest();
             if (allowedOrigins.IsSet)
                 createMerchantApiCredentialRequest.AllowedOrigins = allowedOrigins.Value;

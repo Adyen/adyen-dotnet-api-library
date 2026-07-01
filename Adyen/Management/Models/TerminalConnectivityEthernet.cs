@@ -160,6 +160,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var terminalConnectivityEthernet = new TerminalConnectivityEthernet();
             if (ipAddress.IsSet)
                 terminalConnectivityEthernet.IpAddress = ipAddress.Value;

@@ -51,28 +51,28 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The email associated with the sub-merchant's account.</value>
         [JsonPropertyName("email")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         /// <summary>
         /// A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant. * Format: Alphanumeric * Maximum length: 15 characters
         /// </summary>
         /// <value>A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant. * Format: Alphanumeric * Maximum length: 15 characters</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// The sub-merchant&#39;s 4-digit Merchant Category Code (MCC). * Format: Numeric * Fixed length: 4 digits
         /// </summary>
         /// <value>The sub-merchant's 4-digit Merchant Category Code (MCC). * Format: Numeric * Fixed length: 4 digits</value>
         [JsonPropertyName("mcc")]
-        public string Mcc { get; set; }
+        public string? Mcc { get; set; }
 
         /// <summary>
         /// The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters
         /// </summary>
         /// <value>The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters</value>
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -151,23 +151,16 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!email.IsSet)
-                throw new ArgumentException("Property is required for class SubMerchantData.", nameof(email));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class SubMerchantData.", nameof(id));
-
-            if (!mcc.IsSet)
-                throw new ArgumentException("Property is required for class SubMerchantData.", nameof(mcc));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class SubMerchantData.", nameof(name));
 
             var subMerchantData = new SubMerchantData();
-            subMerchantData.Email = email.Value!;
-            subMerchantData.Id = id.Value!;
-            subMerchantData.Mcc = mcc.Value!;
-            subMerchantData.Name = name.Value!;
+            if (email.IsSet)
+                subMerchantData.Email = email.Value!;
+            if (id.IsSet)
+                subMerchantData.Id = id.Value!;
+            if (mcc.IsSet)
+                subMerchantData.Mcc = mcc.Value!;
+            if (name.IsSet)
+                subMerchantData.Name = name.Value!;
             return subMerchantData;
         }
 

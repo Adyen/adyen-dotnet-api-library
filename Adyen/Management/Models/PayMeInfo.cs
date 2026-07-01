@@ -51,21 +51,21 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Merchant display name</value>
         [JsonPropertyName("displayName")]
-        public string DisplayName { get; set; }
+        public string? DisplayName { get; set; }
 
         /// <summary>
         /// Merchant logo. Format: Base64-encoded string.
         /// </summary>
         /// <value>Merchant logo. Format: Base64-encoded string.</value>
         [JsonPropertyName("logo")]
-        public string Logo { get; set; }
+        public string? Logo { get; set; }
 
         /// <summary>
         /// The email address of merchant support.
         /// </summary>
         /// <value>The email address of merchant support.</value>
         [JsonPropertyName("supportEmail")]
-        public string SupportEmail { get; set; }
+        public string? SupportEmail { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,19 +139,14 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!displayName.IsSet)
-                throw new ArgumentException("Property is required for class PayMeInfo.", nameof(displayName));
-
-            if (!logo.IsSet)
-                throw new ArgumentException("Property is required for class PayMeInfo.", nameof(logo));
-
-            if (!supportEmail.IsSet)
-                throw new ArgumentException("Property is required for class PayMeInfo.", nameof(supportEmail));
 
             var payMeInfo = new PayMeInfo();
-            payMeInfo.DisplayName = displayName.Value!;
-            payMeInfo.Logo = logo.Value!;
-            payMeInfo.SupportEmail = supportEmail.Value!;
+            if (displayName.IsSet)
+                payMeInfo.DisplayName = displayName.Value!;
+            if (logo.IsSet)
+                payMeInfo.Logo = logo.Value!;
+            if (supportEmail.IsSet)
+                payMeInfo.SupportEmail = supportEmail.Value!;
             return payMeInfo;
         }
 

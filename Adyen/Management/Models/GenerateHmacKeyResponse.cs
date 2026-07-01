@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The HMAC key generated for this webhook.</value>
         [JsonPropertyName("hmacKey")]
-        public string HmacKey { get; set; }
+        public string? HmacKey { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!hmacKey.IsSet)
-                throw new ArgumentException("Property is required for class GenerateHmacKeyResponse.", nameof(hmacKey));
 
             var generateHmacKeyResponse = new GenerateHmacKeyResponse();
-            generateHmacKeyResponse.HmacKey = hmacKey.Value!;
+            if (hmacKey.IsSet)
+                generateHmacKeyResponse.HmacKey = hmacKey.Value!;
             return generateHmacKeyResponse;
         }
 

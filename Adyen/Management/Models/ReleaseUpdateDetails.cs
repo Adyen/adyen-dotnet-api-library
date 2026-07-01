@@ -257,6 +257,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var releaseUpdateDetails = new ReleaseUpdateDetails();
             if (type.IsSet)
                 releaseUpdateDetails.Type = type.Value;

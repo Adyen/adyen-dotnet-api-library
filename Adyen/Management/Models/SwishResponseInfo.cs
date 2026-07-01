@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Swish number. Format: 10 digits without spaces. For example, **1231111111**.</value>
         [JsonPropertyName("swishNumber")]
-        public string SwishNumber { get; set; }
+        public string? SwishNumber { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!swishNumber.IsSet)
-                throw new ArgumentException("Property is required for class SwishResponseInfo.", nameof(swishNumber));
 
             var swishResponseInfo = new SwishResponseInfo();
-            swishResponseInfo.SwishNumber = swishNumber.Value!;
+            if (swishNumber.IsSet)
+                swishResponseInfo.SwishNumber = swishNumber.Value!;
             return swishResponseInfo;
         }
 

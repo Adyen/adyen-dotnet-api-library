@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var nyceUpdateInfo = new NyceUpdateInfo();
             if (transactionDescription.IsSet)
                 nyceUpdateInfo.TransactionDescription = transactionDescription.Value;

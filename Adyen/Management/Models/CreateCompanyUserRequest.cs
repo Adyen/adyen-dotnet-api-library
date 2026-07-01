@@ -51,20 +51,20 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The email address of the user.</value>
         [JsonPropertyName("email")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         /// <summary>
         /// <see cref="Name"/>.
         /// </summary>
         [JsonPropertyName("name")]
-        public Name Name { get; set; }
+        public Name? Name { get; set; }
 
         /// <summary>
         /// The user&#39;s email address that will be their username. Must be the same as the one in the &#x60;email&#x60; field.
         /// </summary>
         /// <value>The user's email address that will be their username. Must be the same as the one in the `email` field.</value>
         [JsonPropertyName("username")]
-        public string Username { get; set; }
+        public string? Username { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AccountGroups"/> will be populated.
@@ -233,19 +233,14 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!email.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyUserRequest.", nameof(email));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyUserRequest.", nameof(name));
-
-            if (!username.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyUserRequest.", nameof(username));
 
             var createCompanyUserRequest = new CreateCompanyUserRequest();
-            createCompanyUserRequest.Email = email.Value!;
-            createCompanyUserRequest.Name = name.Value!;
-            createCompanyUserRequest.Username = username.Value!;
+            if (email.IsSet)
+                createCompanyUserRequest.Email = email.Value!;
+            if (name.IsSet)
+                createCompanyUserRequest.Name = name.Value!;
+            if (username.IsSet)
+                createCompanyUserRequest.Username = username.Value!;
             if (accountGroups.IsSet)
                 createCompanyUserRequest.AccountGroups = accountGroups.Value;
             if (associatedMerchantAccounts.IsSet)

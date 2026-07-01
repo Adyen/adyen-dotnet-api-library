@@ -178,6 +178,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var jCBResponseInfo = new JCBResponseInfo();
             if (midNumber.IsSet)
                 jCBResponseInfo.MidNumber = midNumber.Value;

@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var affirmResponseInfo = new AffirmResponseInfo();
             if (publicApiKey.IsSet)
                 affirmResponseInfo.PublicApiKey = publicApiKey.Value;

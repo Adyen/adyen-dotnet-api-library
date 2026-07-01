@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var dcc = new Dcc();
             if (enableDcc.IsSet)
                 dcc.EnableDcc = enableDcc.Value;

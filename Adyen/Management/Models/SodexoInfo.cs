@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Sodexo merchantContactPhone</value>
         [JsonPropertyName("merchantContactPhone")]
-        public string MerchantContactPhone { get; set; }
+        public string? MerchantContactPhone { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!merchantContactPhone.IsSet)
-                throw new ArgumentException("Property is required for class SodexoInfo.", nameof(merchantContactPhone));
 
             var sodexoInfo = new SodexoInfo();
-            sodexoInfo.MerchantContactPhone = merchantContactPhone.Value!;
+            if (merchantContactPhone.IsSet)
+                sodexoInfo.MerchantContactPhone = merchantContactPhone.Value!;
             return sodexoInfo;
         }
 

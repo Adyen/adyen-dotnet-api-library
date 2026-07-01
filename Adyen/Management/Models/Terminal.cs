@@ -339,6 +339,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var terminal = new Terminal();
             if (assignment.IsSet)
                 terminal.Assignment = assignment.Value;

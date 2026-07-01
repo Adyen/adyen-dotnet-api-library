@@ -368,6 +368,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var merchant = new Merchant();
             if (links.IsSet)
                 merchant.Links = links.Value;

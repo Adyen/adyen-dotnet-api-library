@@ -51,14 +51,14 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The name of the contact person from merchant support.</value>
         [JsonPropertyName("contactPersonName")]
-        public string ContactPersonName { get; set; }
+        public string? ContactPersonName { get; set; }
 
         /// <summary>
         /// The email address of merchant support.
         /// </summary>
         /// <value>The email address of merchant support.</value>
         [JsonPropertyName("email")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!contactPersonName.IsSet)
-                throw new ArgumentException("Property is required for class WeChatPayInfo.", nameof(contactPersonName));
-
-            if (!email.IsSet)
-                throw new ArgumentException("Property is required for class WeChatPayInfo.", nameof(email));
 
             var weChatPayInfo = new WeChatPayInfo();
-            weChatPayInfo.ContactPersonName = contactPersonName.Value!;
-            weChatPayInfo.Email = email.Value!;
+            if (contactPersonName.IsSet)
+                weChatPayInfo.ContactPersonName = contactPersonName.Value!;
+            if (email.IsSet)
+                weChatPayInfo.Email = email.Value!;
             return weChatPayInfo;
         }
 

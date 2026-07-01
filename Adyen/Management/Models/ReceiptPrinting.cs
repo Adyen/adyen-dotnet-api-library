@@ -407,6 +407,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var receiptPrinting = new ReceiptPrinting();
             if (merchantApproved.IsSet)
                 receiptPrinting.MerchantApproved = merchantApproved.Value;

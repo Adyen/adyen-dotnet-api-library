@@ -141,6 +141,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var kioskModeSettings = new KioskModeSettings();
             if (allowedAppsInKioskMode.IsSet)
                 kioskModeSettings.AllowedAppsInKioskMode = allowedAppsInKioskMode.Value;

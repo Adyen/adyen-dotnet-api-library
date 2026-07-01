@@ -50,7 +50,7 @@ namespace Adyen.Management.Models
         /// <see cref="Self"/>.
         /// </summary>
         [JsonPropertyName("self")]
-        public LinksElement Self { get; set; }
+        public LinksElement? Self { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ApiCredentials"/> will be populated.
@@ -168,11 +168,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!self.IsSet)
-                throw new ArgumentException("Property is required for class CompanyLinks.", nameof(self));
 
             var companyLinks = new CompanyLinks();
-            companyLinks.Self = self.Value!;
+            if (self.IsSet)
+                companyLinks.Self = self.Value!;
             if (apiCredentials.IsSet)
                 companyLinks.ApiCredentials = apiCredentials.Value;
             if (users.IsSet)

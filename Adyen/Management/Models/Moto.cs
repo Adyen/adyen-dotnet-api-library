@@ -141,6 +141,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var moto = new Moto();
             if (enableMoto.IsSet)
                 moto.EnableMoto = enableMoto.Value;

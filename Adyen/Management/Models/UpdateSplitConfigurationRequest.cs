@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Your description for the split configuration.</value>
         [JsonPropertyName("description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!description.IsSet)
-                throw new ArgumentException("Property is required for class UpdateSplitConfigurationRequest.", nameof(description));
 
             var updateSplitConfigurationRequest = new UpdateSplitConfigurationRequest();
-            updateSplitConfigurationRequest.Description = description.Value!;
+            if (description.IsSet)
+                updateSplitConfigurationRequest.Description = description.Value!;
             return updateSplitConfigurationRequest;
         }
 

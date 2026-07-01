@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var eFTDirectDebitCAResponseInfo = new EFTDirectDebitCAResponseInfo();
             if (transactionDescription.IsSet)
                 eFTDirectDebitCAResponseInfo.TransactionDescription = transactionDescription.Value;

@@ -139,6 +139,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var refunds = new Refunds();
             if (referenced.IsSet)
                 refunds.Referenced = referenced.Value;

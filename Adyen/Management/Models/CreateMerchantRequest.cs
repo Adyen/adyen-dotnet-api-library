@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The unique identifier of the company account.</value>
         [JsonPropertyName("companyId")]
-        public string CompanyId { get; set; }
+        public string? CompanyId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="BusinessLineId"/> will be populated.
@@ -229,11 +229,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!companyId.IsSet)
-                throw new ArgumentException("Property is required for class CreateMerchantRequest.", nameof(companyId));
 
             var createMerchantRequest = new CreateMerchantRequest();
-            createMerchantRequest.CompanyId = companyId.Value!;
+            if (companyId.IsSet)
+                createMerchantRequest.CompanyId = companyId.Value!;
             if (businessLineId.IsSet)
                 createMerchantRequest.BusinessLineId = businessLineId.Value;
             if (description.IsSet)

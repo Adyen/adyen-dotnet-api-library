@@ -240,6 +240,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var customNotification = new CustomNotification();
             if (amount.IsSet)
                 customNotification.Amount = amount.Value;

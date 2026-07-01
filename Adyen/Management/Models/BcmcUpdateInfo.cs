@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var bcmcUpdateInfo = new BcmcUpdateInfo();
             if (transactionDescription.IsSet)
                 bcmcUpdateInfo.TransactionDescription = transactionDescription.Value;

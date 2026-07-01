@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var uploadAndroidCertificateResponse = new UploadAndroidCertificateResponse();
             if (id.IsSet)
                 uploadAndroidCertificateResponse.Id = id.Value;

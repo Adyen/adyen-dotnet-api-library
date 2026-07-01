@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var starUpdateInfo = new StarUpdateInfo();
             if (transactionDescription.IsSet)
                 starUpdateInfo.TransactionDescription = transactionDescription.Value;

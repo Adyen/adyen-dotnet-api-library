@@ -160,6 +160,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var homeScreenSettings = new HomeScreenSettings();
             if (hideNavigationBar.IsSet)
                 homeScreenSettings.HideNavigationBar = hideNavigationBar.Value;

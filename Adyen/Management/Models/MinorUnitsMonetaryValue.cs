@@ -141,6 +141,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var minorUnitsMonetaryValue = new MinorUnitsMonetaryValue();
             if (amount.IsSet)
                 minorUnitsMonetaryValue.Amount = amount.Value;

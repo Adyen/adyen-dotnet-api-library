@@ -257,6 +257,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var installAndroidCertificateDetails = new InstallAndroidCertificateDetails();
             if (certificateId.IsSet)
                 installAndroidCertificateDetails.CertificateId = certificateId.Value;

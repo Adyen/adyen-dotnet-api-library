@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var bcmcInfo = new BcmcInfo();
             if (enableBcmcMobile.IsSet)
                 bcmcInfo.EnableBcmcMobile = enableBcmcMobile.Value;

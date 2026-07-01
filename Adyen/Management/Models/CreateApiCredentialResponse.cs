@@ -58,49 +58,49 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>List of IP addresses from which your client can make requests.  If the list is empty, we allow requests from any IP. If the list is not empty and we get a request from an IP which is not on the list, you get a security error.</value>
         [JsonPropertyName("allowedIpAddresses")]
-        public List<string> AllowedIpAddresses { get; set; }
+        public List<string>? AllowedIpAddresses { get; set; }
 
         /// <summary>
         /// The API key for the API credential that was created.
         /// </summary>
         /// <value>The API key for the API credential that was created.</value>
         [JsonPropertyName("apiKey")]
-        public string ApiKey { get; set; }
+        public string? ApiKey { get; set; }
 
         /// <summary>
         /// Public key used for [client-side authentication](https://docs.adyen.com/development-resources/client-side-authentication). The client key is required for Drop-in and Components integrations.
         /// </summary>
         /// <value>Public key used for [client-side authentication](https://docs.adyen.com/development-resources/client-side-authentication). The client key is required for Drop-in and Components integrations.</value>
         [JsonPropertyName("clientKey")]
-        public string ClientKey { get; set; }
+        public string? ClientKey { get; set; }
 
         /// <summary>
         /// Unique identifier of the API credential.
         /// </summary>
         /// <value>Unique identifier of the API credential.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// The password for the API credential that was created.
         /// </summary>
         /// <value>The password for the API credential that was created.</value>
         [JsonPropertyName("password")]
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         /// <summary>
         /// List of [roles](https://docs.adyen.com/development-resources/api-credentials#roles-1) for the API credential.
         /// </summary>
         /// <value>List of [roles](https://docs.adyen.com/development-resources/api-credentials#roles-1) for the API credential.</value>
         [JsonPropertyName("roles")]
-        public List<string> Roles { get; set; }
+        public List<string>? Roles { get; set; }
 
         /// <summary>
         /// The name of the [API credential](https://docs.adyen.com/development-resources/api-credentials), for example **ws@Company.TestCompany**.
         /// </summary>
         /// <value>The name of the [API credential](https://docs.adyen.com/development-resources/api-credentials), for example **ws@Company.TestCompany**.</value>
         [JsonPropertyName("username")]
-        public string Username { get; set; }
+        public string? Username { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Links"/> will be populated.
@@ -274,39 +274,24 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!active.IsSet)
-                throw new ArgumentException("Property is required for class CreateApiCredentialResponse.", nameof(active));
-
-            if (!allowedIpAddresses.IsSet)
-                throw new ArgumentException("Property is required for class CreateApiCredentialResponse.", nameof(allowedIpAddresses));
-
-            if (!apiKey.IsSet)
-                throw new ArgumentException("Property is required for class CreateApiCredentialResponse.", nameof(apiKey));
-
-            if (!clientKey.IsSet)
-                throw new ArgumentException("Property is required for class CreateApiCredentialResponse.", nameof(clientKey));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CreateApiCredentialResponse.", nameof(id));
-
-            if (!password.IsSet)
-                throw new ArgumentException("Property is required for class CreateApiCredentialResponse.", nameof(password));
-
-            if (!roles.IsSet)
-                throw new ArgumentException("Property is required for class CreateApiCredentialResponse.", nameof(roles));
-
-            if (!username.IsSet)
-                throw new ArgumentException("Property is required for class CreateApiCredentialResponse.", nameof(username));
 
             var createApiCredentialResponse = new CreateApiCredentialResponse();
-            createApiCredentialResponse.Active = active.Value!.Value;
-            createApiCredentialResponse.AllowedIpAddresses = allowedIpAddresses.Value!;
-            createApiCredentialResponse.ApiKey = apiKey.Value!;
-            createApiCredentialResponse.ClientKey = clientKey.Value!;
-            createApiCredentialResponse.Id = id.Value!;
-            createApiCredentialResponse.Password = password.Value!;
-            createApiCredentialResponse.Roles = roles.Value!;
-            createApiCredentialResponse.Username = username.Value!;
+            if (active.IsSet)
+                createApiCredentialResponse.Active = active.Value!.Value;
+            if (allowedIpAddresses.IsSet)
+                createApiCredentialResponse.AllowedIpAddresses = allowedIpAddresses.Value!;
+            if (apiKey.IsSet)
+                createApiCredentialResponse.ApiKey = apiKey.Value!;
+            if (clientKey.IsSet)
+                createApiCredentialResponse.ClientKey = clientKey.Value!;
+            if (id.IsSet)
+                createApiCredentialResponse.Id = id.Value!;
+            if (password.IsSet)
+                createApiCredentialResponse.Password = password.Value!;
+            if (roles.IsSet)
+                createApiCredentialResponse.Roles = roles.Value!;
+            if (username.IsSet)
+                createApiCredentialResponse.Username = username.Value!;
             if (links.IsSet)
                 createApiCredentialResponse.Links = links.Value;
             if (allowedOrigins.IsSet)

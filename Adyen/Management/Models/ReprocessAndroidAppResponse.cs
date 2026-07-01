@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var reprocessAndroidAppResponse = new ReprocessAndroidAppResponse();
             if (message.IsSet)
                 reprocessAndroidAppResponse.Message = message.Value;

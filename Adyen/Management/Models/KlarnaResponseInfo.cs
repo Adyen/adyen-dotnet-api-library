@@ -321,6 +321,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var klarnaResponseInfo = new KlarnaResponseInfo();
             if (autoCapture.IsSet)
                 klarnaResponseInfo.AutoCapture = autoCapture.Value;

@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The list of merchant domains. Maximum: 99 domains per request.  For more information, see [Apple Pay documentation](https://docs.adyen.com/payment-methods/apple-pay/web-drop-in?tab=adyen-certificate-live_1#going-live).</value>
         [JsonPropertyName("domains")]
-        public List<string> Domains { get; set; }
+        public List<string>? Domains { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!domains.IsSet)
-                throw new ArgumentException("Property is required for class ApplePayInfo.", nameof(domains));
 
             var applePayInfo = new ApplePayInfo();
-            applePayInfo.Domains = domains.Value!;
+            if (domains.IsSet)
+                applePayInfo.Domains = domains.Value!;
             return applePayInfo;
         }
 

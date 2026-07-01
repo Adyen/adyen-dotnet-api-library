@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var allowedOriginsResponse = new AllowedOriginsResponse();
             if (data.IsSet)
                 allowedOriginsResponse.Data = data.Value;

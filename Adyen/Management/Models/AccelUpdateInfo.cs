@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var accelUpdateInfo = new AccelUpdateInfo();
             if (transactionDescription.IsSet)
                 accelUpdateInfo.TransactionDescription = transactionDescription.Value;

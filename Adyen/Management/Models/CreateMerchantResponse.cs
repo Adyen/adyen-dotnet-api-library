@@ -236,6 +236,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var createMerchantResponse = new CreateMerchantResponse();
             if (businessLineId.IsSet)
                 createMerchantResponse.BusinessLineId = businessLineId.Value;

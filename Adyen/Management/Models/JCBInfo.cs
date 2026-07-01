@@ -311,6 +311,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var jCBInfo = new JCBInfo();
             if (midNumber.IsSet)
                 jCBInfo.MidNumber = midNumber.Value;

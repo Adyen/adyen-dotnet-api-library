@@ -385,6 +385,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var updateStoreRequest = new UpdateStoreRequest();
             if (address.IsSet)
                 updateStoreRequest.Address = address.Value;

@@ -265,6 +265,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var externalTerminalAction = new ExternalTerminalAction();
             if (actionType.IsSet)
                 externalTerminalAction.ActionType = actionType.Value;

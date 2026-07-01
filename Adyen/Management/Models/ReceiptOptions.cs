@@ -198,6 +198,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var receiptOptions = new ReceiptOptions();
             if (headerLine1.IsSet)
                 receiptOptions.HeaderLine1 = headerLine1.Value;

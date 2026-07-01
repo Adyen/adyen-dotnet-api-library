@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var interacCardResponseInfo = new InteracCardResponseInfo();
             if (transactionDescription.IsSet)
                 interacCardResponseInfo.TransactionDescription = transactionDescription.Value;

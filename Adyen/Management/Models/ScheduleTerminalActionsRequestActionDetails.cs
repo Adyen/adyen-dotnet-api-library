@@ -234,6 +234,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             if (forceRebootDetails?.Type != null && ForceRebootDetails.TypeEnum.FromStringOrDefault((string?)forceRebootDetails.Type) != null)
                 return new ScheduleTerminalActionsRequestActionDetails(forceRebootDetails);
 

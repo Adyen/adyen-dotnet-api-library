@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var androidAppsResponse = new AndroidAppsResponse();
             if (data.IsSet)
                 androidAppsResponse.Data = data.Value;

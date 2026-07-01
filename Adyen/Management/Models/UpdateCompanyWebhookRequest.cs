@@ -913,6 +913,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var updateCompanyWebhookRequest = new UpdateCompanyWebhookRequest();
             if (acceptsExpiredCertificate.IsSet)
                 updateCompanyWebhookRequest.AcceptsExpiredCertificate = acceptsExpiredCertificate.Value;

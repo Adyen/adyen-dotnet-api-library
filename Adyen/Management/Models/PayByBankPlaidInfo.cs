@@ -142,6 +142,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var payByBankPlaidInfo = new PayByBankPlaidInfo();
             if (logo.IsSet)
                 payByBankPlaidInfo.Logo = logo.Value;

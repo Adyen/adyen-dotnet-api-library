@@ -179,6 +179,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var orderItem = new OrderItem();
             if (id.IsSet)
                 orderItem.Id = id.Value;

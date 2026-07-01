@@ -179,6 +179,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var givexResponseInfo = new GivexResponseInfo();
             if (currencyCode.IsSet)
                 givexResponseInfo.CurrencyCode = currencyCode.Value;

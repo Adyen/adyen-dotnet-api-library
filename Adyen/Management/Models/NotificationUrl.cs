@@ -141,6 +141,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var notificationUrl = new NotificationUrl();
             if (localUrls.IsSet)
                 notificationUrl.LocalUrls = localUrls.Value;

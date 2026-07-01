@@ -141,6 +141,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var afterpayTouchResponseInfo = new AfterpayTouchResponseInfo();
             if (supportEmail.IsSet)
                 afterpayTouchResponseInfo.SupportEmail = supportEmail.Value;

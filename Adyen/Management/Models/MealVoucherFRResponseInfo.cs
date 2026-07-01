@@ -160,6 +160,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var mealVoucherFRResponseInfo = new MealVoucherFRResponseInfo();
             if (conecsId.IsSet)
                 mealVoucherFRResponseInfo.ConecsId = conecsId.Value;

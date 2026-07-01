@@ -141,6 +141,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var eventUrl = new EventUrl();
             if (eventLocalUrls.IsSet)
                 eventUrl.EventLocalUrls = eventLocalUrls.Value;

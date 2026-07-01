@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Google Pay [Merchant ID](https://support.google.com/paymentscenter/answer/7163092?hl=en). Character length and limitations: 16 alphanumeric characters or 20 numeric characters.</value>
         [JsonPropertyName("merchantId")]
-        public string MerchantId { get; set; }
+        public string? MerchantId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ReuseMerchantId"/> will be populated.
@@ -134,11 +134,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!merchantId.IsSet)
-                throw new ArgumentException("Property is required for class GooglePayInfo.", nameof(merchantId));
 
             var googlePayInfo = new GooglePayInfo();
-            googlePayInfo.MerchantId = merchantId.Value!;
+            if (merchantId.IsSet)
+                googlePayInfo.MerchantId = merchantId.Value!;
             if (reuseMerchantId.IsSet)
                 googlePayInfo.ReuseMerchantId = reuseMerchantId.Value;
             return googlePayInfo;

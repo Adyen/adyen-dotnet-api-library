@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var carnetResponseInfo = new CarnetResponseInfo();
             if (transactionDescription.IsSet)
                 carnetResponseInfo.TransactionDescription = transactionDescription.Value;

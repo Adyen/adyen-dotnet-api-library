@@ -236,6 +236,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var address = new Address();
             if (city.IsSet)
                 address.City = city.Value;

@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var referenced = new Referenced();
             if (enableStandaloneRefunds.IsSet)
                 referenced.EnableStandaloneRefunds = enableStandaloneRefunds.Value;

@@ -141,6 +141,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var requestActivationResponse = new RequestActivationResponse();
             if (companyId.IsSet)
                 requestActivationResponse.CompanyId = companyId.Value;

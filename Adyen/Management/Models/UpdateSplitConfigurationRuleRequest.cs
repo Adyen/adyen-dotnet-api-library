@@ -51,28 +51,28 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The currency condition that defines whether the split logic applies. Its value must be a three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217).</value>
         [JsonPropertyName("currency")]
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         /// <summary>
         /// The funding source of the payment method.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
         /// </summary>
         /// <value>The funding source of the payment method.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**</value>
         [JsonPropertyName("fundingSource")]
-        public string FundingSource { get; set; }
+        public string? FundingSource { get; set; }
 
         /// <summary>
         /// The payment method condition that defines whether the split logic applies.  Possible values: * [Payment method variant](https://docs.adyen.com/development-resources/paymentmethodvariant): Apply the split logic for a specific payment method. * **ANY**: Apply the split logic for all available payment methods.
         /// </summary>
         /// <value>The payment method condition that defines whether the split logic applies.  Possible values: * [Payment method variant](https://docs.adyen.com/development-resources/paymentmethodvariant): Apply the split logic for a specific payment method. * **ANY**: Apply the split logic for all available payment methods.</value>
         [JsonPropertyName("paymentMethod")]
-        public string PaymentMethod { get; set; }
+        public string? PaymentMethod { get; set; }
 
         /// <summary>
         /// The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: Online transactions where the cardholder is present. * **ContAuth**: Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: Mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: Point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: All sales channels.
         /// </summary>
         /// <value>The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: Online transactions where the cardholder is present. * **ContAuth**: Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: Mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: Point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: All sales channels.</value>
         [JsonPropertyName("shopperInteraction")]
-        public string ShopperInteraction { get; set; }
+        public string? ShopperInteraction { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -151,23 +151,16 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class UpdateSplitConfigurationRuleRequest.", nameof(currency));
-
-            if (!fundingSource.IsSet)
-                throw new ArgumentException("Property is required for class UpdateSplitConfigurationRuleRequest.", nameof(fundingSource));
-
-            if (!paymentMethod.IsSet)
-                throw new ArgumentException("Property is required for class UpdateSplitConfigurationRuleRequest.", nameof(paymentMethod));
-
-            if (!shopperInteraction.IsSet)
-                throw new ArgumentException("Property is required for class UpdateSplitConfigurationRuleRequest.", nameof(shopperInteraction));
 
             var updateSplitConfigurationRuleRequest = new UpdateSplitConfigurationRuleRequest();
-            updateSplitConfigurationRuleRequest.Currency = currency.Value!;
-            updateSplitConfigurationRuleRequest.FundingSource = fundingSource.Value!;
-            updateSplitConfigurationRuleRequest.PaymentMethod = paymentMethod.Value!;
-            updateSplitConfigurationRuleRequest.ShopperInteraction = shopperInteraction.Value!;
+            if (currency.IsSet)
+                updateSplitConfigurationRuleRequest.Currency = currency.Value!;
+            if (fundingSource.IsSet)
+                updateSplitConfigurationRuleRequest.FundingSource = fundingSource.Value!;
+            if (paymentMethod.IsSet)
+                updateSplitConfigurationRuleRequest.PaymentMethod = paymentMethod.Value!;
+            if (shopperInteraction.IsSet)
+                updateSplitConfigurationRuleRequest.ShopperInteraction = shopperInteraction.Value!;
             return updateSplitConfigurationRuleRequest;
         }
 

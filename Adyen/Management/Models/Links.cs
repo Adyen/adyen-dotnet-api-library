@@ -50,7 +50,7 @@ namespace Adyen.Management.Models
         /// <see cref="Self"/>.
         /// </summary>
         [JsonPropertyName("self")]
-        public LinksElement Self { get; set; }
+        public LinksElement? Self { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -114,11 +114,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!self.IsSet)
-                throw new ArgumentException("Property is required for class Links.", nameof(self));
 
             var links = new Links();
-            links.Self = self.Value!;
+            if (self.IsSet)
+                links.Self = self.Value!;
             return links;
         }
 

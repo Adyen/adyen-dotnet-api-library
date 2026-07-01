@@ -51,14 +51,14 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The certificate content converted to a Base64-encoded string.</value>
         [JsonPropertyName("data")]
-        public string Data { get; set; }
+        public string? Data { get; set; }
 
         /// <summary>
         /// The name of the certificate. Must be unique across Wi-Fi profiles.
         /// </summary>
         /// <value>The name of the certificate. Must be unique across Wi-Fi profiles.</value>
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class File.", nameof(data));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class File.", nameof(name));
 
             var file = new File();
-            file.Data = data.Value!;
-            file.Name = name.Value!;
+            if (data.IsSet)
+                file.Data = data.Value!;
+            if (name.IsSet)
+                file.Name = name.Value!;
             return file;
         }
 

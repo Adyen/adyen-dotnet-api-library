@@ -254,6 +254,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var updateCompanyUserRequest = new UpdateCompanyUserRequest();
             if (accountGroups.IsSet)
                 updateCompanyUserRequest.AccountGroups = accountGroups.Value;

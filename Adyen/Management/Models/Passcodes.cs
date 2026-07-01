@@ -179,6 +179,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var passcodes = new Passcodes();
             if (adminMenuPin.IsSet)
                 passcodes.AdminMenuPin = adminMenuPin.Value;

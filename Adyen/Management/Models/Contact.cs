@@ -198,6 +198,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var contact = new Contact();
             if (email.IsSet)
                 contact.Email = email.Value;

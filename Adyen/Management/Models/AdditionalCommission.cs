@@ -160,6 +160,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var additionalCommission = new AdditionalCommission();
             if (balanceAccountId.IsSet)
                 additionalCommission.BalanceAccountId = balanceAccountId.Value;

@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>An array of local shopper statements. Card schemes use this in the bank statement.  For Japan local shopper statements in both ja-Hani and ja-Kana are required.</value>
         [JsonPropertyName("localShopperStatement")]
-        public List<LocalShopperStatement> LocalShopperStatement { get; set; }
+        public List<LocalShopperStatement>? LocalShopperStatement { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!localShopperStatement.IsSet)
-                throw new ArgumentException("Property is required for class LocalizedInformation.", nameof(localShopperStatement));
 
             var localizedInformation = new LocalizedInformation();
-            localizedInformation.LocalShopperStatement = localShopperStatement.Value!;
+            if (localShopperStatement.IsSet)
+                localizedInformation.LocalShopperStatement = localShopperStatement.Value!;
             return localizedInformation;
         }
 

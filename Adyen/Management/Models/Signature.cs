@@ -179,6 +179,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var signature = new Signature();
             if (askSignatureOnScreen.IsSet)
                 signature.AskSignatureOnScreen = askSignatureOnScreen.Value;

@@ -160,6 +160,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var additionalSettingsResponse = new AdditionalSettingsResponse();
             if (excludeEventCodes.IsSet)
                 additionalSettingsResponse.ExcludeEventCodes = excludeEventCodes.Value;

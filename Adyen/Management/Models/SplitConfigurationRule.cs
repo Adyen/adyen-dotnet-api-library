@@ -547,20 +547,20 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The currency condition that defines whether the split logic applies. Its value must be a three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217).</value>
         [JsonPropertyName("currency")]
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         /// <summary>
         /// The payment method condition that defines whether the split logic applies.  Possible values: * [Payment method variant](https://docs.adyen.com/development-resources/paymentmethodvariant): Apply the split logic for a specific payment method. * **ANY**: Apply the split logic for all available payment methods.
         /// </summary>
         /// <value>The payment method condition that defines whether the split logic applies.  Possible values: * [Payment method variant](https://docs.adyen.com/development-resources/paymentmethodvariant): Apply the split logic for a specific payment method. * **ANY**: Apply the split logic for all available payment methods.</value>
         [JsonPropertyName("paymentMethod")]
-        public string PaymentMethod { get; set; }
+        public string? PaymentMethod { get; set; }
 
         /// <summary>
         /// <see cref="SplitLogic"/>.
         /// </summary>
         [JsonPropertyName("splitLogic")]
-        public SplitConfigurationLogic SplitLogic { get; set; }
+        public SplitConfigurationLogic? SplitLogic { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="RuleId"/> will be populated.
@@ -672,27 +672,18 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class SplitConfigurationRule.", nameof(currency));
-
-            if (!fundingSource.IsSet)
-                throw new ArgumentException("Property is required for class SplitConfigurationRule.", nameof(fundingSource));
-
-            if (!paymentMethod.IsSet)
-                throw new ArgumentException("Property is required for class SplitConfigurationRule.", nameof(paymentMethod));
-
-            if (!shopperInteraction.IsSet)
-                throw new ArgumentException("Property is required for class SplitConfigurationRule.", nameof(shopperInteraction));
-
-            if (!splitLogic.IsSet)
-                throw new ArgumentException("Property is required for class SplitConfigurationRule.", nameof(splitLogic));
 
             var splitConfigurationRule = new SplitConfigurationRule();
-            splitConfigurationRule.Currency = currency.Value!;
-            splitConfigurationRule.FundingSource = fundingSource.Value!;
-            splitConfigurationRule.PaymentMethod = paymentMethod.Value!;
-            splitConfigurationRule.ShopperInteraction = shopperInteraction.Value!;
-            splitConfigurationRule.SplitLogic = splitLogic.Value!;
+            if (currency.IsSet)
+                splitConfigurationRule.Currency = currency.Value!;
+            if (fundingSource.IsSet)
+                splitConfigurationRule.FundingSource = fundingSource.Value!;
+            if (paymentMethod.IsSet)
+                splitConfigurationRule.PaymentMethod = paymentMethod.Value!;
+            if (shopperInteraction.IsSet)
+                splitConfigurationRule.ShopperInteraction = shopperInteraction.Value!;
+            if (splitLogic.IsSet)
+                splitConfigurationRule.SplitLogic = splitLogic.Value!;
             if (cardRegion.IsSet)
                 splitConfigurationRule.CardRegion = cardRegion.Value;
             if (ruleId.IsSet)

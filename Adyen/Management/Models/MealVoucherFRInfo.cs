@@ -51,21 +51,21 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Meal Voucher conecsId. Format: digits only</value>
         [JsonPropertyName("conecsId")]
-        public string ConecsId { get; set; }
+        public string? ConecsId { get; set; }
 
         /// <summary>
         /// Meal Voucher siret. Format: 14 digits.
         /// </summary>
         /// <value>Meal Voucher siret. Format: 14 digits.</value>
         [JsonPropertyName("siret")]
-        public string Siret { get; set; }
+        public string? Siret { get; set; }
 
         /// <summary>
         /// The list of additional payment methods. Allowed values: **mealVoucher_FR_edenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.
         /// </summary>
         /// <value>The list of additional payment methods. Allowed values: **mealVoucher_FR_edenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.</value>
         [JsonPropertyName("subTypes")]
-        public List<string> SubTypes { get; set; }
+        public List<string>? SubTypes { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,19 +139,14 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!conecsId.IsSet)
-                throw new ArgumentException("Property is required for class MealVoucherFRInfo.", nameof(conecsId));
-
-            if (!siret.IsSet)
-                throw new ArgumentException("Property is required for class MealVoucherFRInfo.", nameof(siret));
-
-            if (!subTypes.IsSet)
-                throw new ArgumentException("Property is required for class MealVoucherFRInfo.", nameof(subTypes));
 
             var mealVoucherFRInfo = new MealVoucherFRInfo();
-            mealVoucherFRInfo.ConecsId = conecsId.Value!;
-            mealVoucherFRInfo.Siret = siret.Value!;
-            mealVoucherFRInfo.SubTypes = subTypes.Value!;
+            if (conecsId.IsSet)
+                mealVoucherFRInfo.ConecsId = conecsId.Value!;
+            if (siret.IsSet)
+                mealVoucherFRInfo.Siret = siret.Value!;
+            if (subTypes.IsSet)
+                mealVoucherFRInfo.SubTypes = subTypes.Value!;
             return mealVoucherFRInfo;
         }
 

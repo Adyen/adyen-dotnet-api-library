@@ -179,6 +179,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var createCompanyApiCredentialRequest = new CreateCompanyApiCredentialRequest();
             if (allowedOrigins.IsSet)
                 createCompanyApiCredentialRequest.AllowedOrigins = allowedOrigins.Value;

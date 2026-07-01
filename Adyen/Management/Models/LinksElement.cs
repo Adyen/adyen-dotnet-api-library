@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var linksElement = new LinksElement();
             if (href.IsSet)
                 linksElement.Href = href.Value;

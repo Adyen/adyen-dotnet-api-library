@@ -58,35 +58,35 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>List of IP addresses from which your client can make requests.  If the list is empty, we allow requests from any IP. If the list is not empty and we get a request from an IP which is not on the list, you get a security error.</value>
         [JsonPropertyName("allowedIpAddresses")]
-        public List<string> AllowedIpAddresses { get; set; }
+        public List<string>? AllowedIpAddresses { get; set; }
 
         /// <summary>
         /// Public key used for [client-side authentication](https://docs.adyen.com/development-resources/client-side-authentication). The client key is required for Drop-in and Components integrations.
         /// </summary>
         /// <value>Public key used for [client-side authentication](https://docs.adyen.com/development-resources/client-side-authentication). The client key is required for Drop-in and Components integrations.</value>
         [JsonPropertyName("clientKey")]
-        public string ClientKey { get; set; }
+        public string? ClientKey { get; set; }
 
         /// <summary>
         /// Unique identifier of the API credential.
         /// </summary>
         /// <value>Unique identifier of the API credential.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// List of [roles](https://docs.adyen.com/development-resources/api-credentials#roles-1) for the API credential.
         /// </summary>
         /// <value>List of [roles](https://docs.adyen.com/development-resources/api-credentials#roles-1) for the API credential.</value>
         [JsonPropertyName("roles")]
-        public List<string> Roles { get; set; }
+        public List<string>? Roles { get; set; }
 
         /// <summary>
         /// The name of the [API credential](https://docs.adyen.com/development-resources/api-credentials), for example **ws@Company.TestCompany**.
         /// </summary>
         /// <value>The name of the [API credential](https://docs.adyen.com/development-resources/api-credentials), for example **ws@Company.TestCompany**.</value>
         [JsonPropertyName("username")]
-        public string Username { get; set; }
+        public string? Username { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Links"/> will be populated.
@@ -250,31 +250,20 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!active.IsSet)
-                throw new ArgumentException("Property is required for class ApiCredential.", nameof(active));
-
-            if (!allowedIpAddresses.IsSet)
-                throw new ArgumentException("Property is required for class ApiCredential.", nameof(allowedIpAddresses));
-
-            if (!clientKey.IsSet)
-                throw new ArgumentException("Property is required for class ApiCredential.", nameof(clientKey));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ApiCredential.", nameof(id));
-
-            if (!roles.IsSet)
-                throw new ArgumentException("Property is required for class ApiCredential.", nameof(roles));
-
-            if (!username.IsSet)
-                throw new ArgumentException("Property is required for class ApiCredential.", nameof(username));
 
             var apiCredential = new ApiCredential();
-            apiCredential.Active = active.Value!.Value;
-            apiCredential.AllowedIpAddresses = allowedIpAddresses.Value!;
-            apiCredential.ClientKey = clientKey.Value!;
-            apiCredential.Id = id.Value!;
-            apiCredential.Roles = roles.Value!;
-            apiCredential.Username = username.Value!;
+            if (active.IsSet)
+                apiCredential.Active = active.Value!.Value;
+            if (allowedIpAddresses.IsSet)
+                apiCredential.AllowedIpAddresses = allowedIpAddresses.Value!;
+            if (clientKey.IsSet)
+                apiCredential.ClientKey = clientKey.Value!;
+            if (id.IsSet)
+                apiCredential.Id = id.Value!;
+            if (roles.IsSet)
+                apiCredential.Roles = roles.Value!;
+            if (username.IsSet)
+                apiCredential.Username = username.Value!;
             if (links.IsSet)
                 apiCredential.Links = links.Value;
             if (allowedOrigins.IsSet)

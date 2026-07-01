@@ -140,6 +140,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var sepaDirectDebitInfo = new SepaDirectDebitInfo();
             if (creditorId.IsSet)
                 sepaDirectDebitInfo.CreditorId = creditorId.Value;

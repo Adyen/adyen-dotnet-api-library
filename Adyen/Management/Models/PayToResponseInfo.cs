@@ -51,14 +51,14 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Merchant name displayed to the shopper in the Agreements</value>
         [JsonPropertyName("merchantName")]
-        public string MerchantName { get; set; }
+        public string? MerchantName { get; set; }
 
         /// <summary>
         /// Represents the purpose of the Agreements created, it relates to the business type **Allowed values**: mortgage, utility, loan, gambling, retail, salary, personal, government, pension, tax, other
         /// </summary>
         /// <value>Represents the purpose of the Agreements created, it relates to the business type **Allowed values**: mortgage, utility, loan, gambling, retail, salary, personal, government, pension, tax, other</value>
         [JsonPropertyName("payToPurpose")]
-        public string PayToPurpose { get; set; }
+        public string? PayToPurpose { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!merchantName.IsSet)
-                throw new ArgumentException("Property is required for class PayToResponseInfo.", nameof(merchantName));
-
-            if (!payToPurpose.IsSet)
-                throw new ArgumentException("Property is required for class PayToResponseInfo.", nameof(payToPurpose));
 
             var payToResponseInfo = new PayToResponseInfo();
-            payToResponseInfo.MerchantName = merchantName.Value!;
-            payToResponseInfo.PayToPurpose = payToPurpose.Value!;
+            if (merchantName.IsSet)
+                payToResponseInfo.MerchantName = merchantName.Value!;
+            if (payToPurpose.IsSet)
+                payToResponseInfo.PayToPurpose = payToPurpose.Value!;
             return payToResponseInfo;
         }
 

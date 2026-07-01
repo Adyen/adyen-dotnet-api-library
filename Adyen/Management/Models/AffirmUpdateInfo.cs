@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var affirmUpdateInfo = new AffirmUpdateInfo();
             if (pricePlan.IsSet)
                 affirmUpdateInfo.PricePlan = pricePlan.Value;

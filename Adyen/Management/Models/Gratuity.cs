@@ -179,6 +179,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var gratuity = new Gratuity();
             if (allowCustomAmount.IsSet)
                 gratuity.AllowCustomAmount = allowCustomAmount.Value;

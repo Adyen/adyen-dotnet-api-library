@@ -179,6 +179,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var url = new Url();
             if (encrypted.IsSet)
                 url.Encrypted = encrypted.Value;

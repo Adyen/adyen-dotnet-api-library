@@ -482,7 +482,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>The type of webhook that is being created. Possible values are:  - **standard** - **account-settings-notification** - **banktransfer-notification** - **boletobancario-notification** - **directdebit-notification** - **ach-notification-of-change-notification** - **direct-debit-notice-of-change-notification** - **pending-notification** - **ideal-notification** - **ideal-pending-notification** - **report-notification** - **rreq-notification** - **terminal-settings** - **terminal-boarding**  Find out more about [standard webhooks](https://docs.adyen.com/development-resources/webhooks/webhook-types/#event-codes) and [other types of webhooks](https://docs.adyen.com/development-resources/webhooks/webhook-types/#other-webhooks).</value>
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         /// <summary>
         /// Public URL where webhooks will be sent, for example **https://www.domain.com/webhook-endpoint**.
@@ -490,7 +490,7 @@ namespace Adyen.Management.Models
         /// <value>Public URL where webhooks will be sent, for example **https://www.domain.com/webhook-endpoint**.</value>
         /* <example>http://www.adyen.com</example> */
         [JsonPropertyName("url")]
-        public string Url { get; set; }
+        public string? Url { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AcceptsExpiredCertificate"/> will be populated.
@@ -733,23 +733,16 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!active.IsSet)
-                throw new ArgumentException("Property is required for class CreateMerchantWebhookRequest.", nameof(active));
-
-            if (!communicationFormat.IsSet)
-                throw new ArgumentException("Property is required for class CreateMerchantWebhookRequest.", nameof(communicationFormat));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CreateMerchantWebhookRequest.", nameof(type));
-
-            if (!url.IsSet)
-                throw new ArgumentException("Property is required for class CreateMerchantWebhookRequest.", nameof(url));
 
             var createMerchantWebhookRequest = new CreateMerchantWebhookRequest();
-            createMerchantWebhookRequest.Active = active.Value!.Value;
-            createMerchantWebhookRequest.CommunicationFormat = communicationFormat.Value!;
-            createMerchantWebhookRequest.Type = type.Value!;
-            createMerchantWebhookRequest.Url = url.Value!;
+            if (active.IsSet)
+                createMerchantWebhookRequest.Active = active.Value!.Value;
+            if (communicationFormat.IsSet)
+                createMerchantWebhookRequest.CommunicationFormat = communicationFormat.Value!;
+            if (type.IsSet)
+                createMerchantWebhookRequest.Type = type.Value!;
+            if (url.IsSet)
+                createMerchantWebhookRequest.Url = url.Value!;
             if (acceptsExpiredCertificate.IsSet)
                 createMerchantWebhookRequest.AcceptsExpiredCertificate = acceptsExpiredCertificate.Value;
             if (acceptsSelfSignedCertificate.IsSet)

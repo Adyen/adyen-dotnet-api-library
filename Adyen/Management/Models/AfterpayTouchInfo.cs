@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Support Url</value>
         [JsonPropertyName("supportUrl")]
-        public string SupportUrl { get; set; }
+        public string? SupportUrl { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="SupportEmail"/> will be populated.
@@ -134,11 +134,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!supportUrl.IsSet)
-                throw new ArgumentException("Property is required for class AfterpayTouchInfo.", nameof(supportUrl));
 
             var afterpayTouchInfo = new AfterpayTouchInfo();
-            afterpayTouchInfo.SupportUrl = supportUrl.Value!;
+            if (supportUrl.IsSet)
+                afterpayTouchInfo.SupportUrl = supportUrl.Value!;
             if (supportEmail.IsSet)
                 afterpayTouchInfo.SupportEmail = supportEmail.Value;
             return afterpayTouchInfo;

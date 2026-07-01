@@ -175,6 +175,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var terminalConnectivity = new TerminalConnectivity();
             if (bluetooth.IsSet)
                 terminalConnectivity.Bluetooth = bluetooth.Value;

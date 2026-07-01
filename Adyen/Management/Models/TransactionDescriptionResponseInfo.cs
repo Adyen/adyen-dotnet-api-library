@@ -275,6 +275,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var transactionDescriptionResponseInfo = new TransactionDescriptionResponseInfo();
             if (doingBusinessAsName.IsSet)
                 transactionDescriptionResponseInfo.DoingBusinessAsName = doingBusinessAsName.Value;

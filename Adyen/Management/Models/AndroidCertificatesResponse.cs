@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var androidCertificatesResponse = new AndroidCertificatesResponse();
             if (data.IsSet)
                 androidCertificatesResponse.Data = data.Value;

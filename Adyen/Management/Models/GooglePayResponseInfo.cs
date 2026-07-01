@@ -141,6 +141,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var googlePayResponseInfo = new GooglePayResponseInfo();
             if (merchantId.IsSet)
                 googlePayResponseInfo.MerchantId = merchantId.Value;

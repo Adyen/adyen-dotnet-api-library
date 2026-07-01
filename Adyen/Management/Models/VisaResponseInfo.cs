@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var visaResponseInfo = new VisaResponseInfo();
             if (transactionDescription.IsSet)
                 visaResponseInfo.TransactionDescription = transactionDescription.Value;

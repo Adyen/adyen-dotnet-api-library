@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var clearpayResponseInfo = new ClearpayResponseInfo();
             if (supportUrl.IsSet)
                 clearpayResponseInfo.SupportUrl = supportUrl.Value;

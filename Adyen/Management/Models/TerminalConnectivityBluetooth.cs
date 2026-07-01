@@ -141,6 +141,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var terminalConnectivityBluetooth = new TerminalConnectivityBluetooth();
             if (ipAddress.IsSet)
                 terminalConnectivityBluetooth.IpAddress = ipAddress.Value;

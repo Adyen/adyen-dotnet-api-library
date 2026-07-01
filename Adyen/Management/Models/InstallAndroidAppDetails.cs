@@ -257,6 +257,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var installAndroidAppDetails = new InstallAndroidAppDetails();
             if (appId.IsSet)
                 installAndroidAppDetails.AppId = appId.Value;

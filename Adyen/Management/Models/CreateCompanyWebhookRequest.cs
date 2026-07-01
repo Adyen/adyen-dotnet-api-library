@@ -621,14 +621,14 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>A list of merchant account names that are included or excluded from receiving the webhook. Inclusion or exclusion is based on the value defined for `filterMerchantAccountType`.  Required if `filterMerchantAccountType` is either: * **includeAccounts** * **excludeAccounts**  Not needed for `filterMerchantAccountType`: **allAccounts**.</value>
         [JsonPropertyName("filterMerchantAccounts")]
-        public List<string> FilterMerchantAccounts { get; set; }
+        public List<string>? FilterMerchantAccounts { get; set; }
 
         /// <summary>
         /// The type of webhook that is being created. Possible values are:  - **standard** - **account-settings-notification** - **banktransfer-notification** - **boletobancario-notification** - **directdebit-notification** - **ach-notification-of-change-notification** - **direct-debit-notice-of-change-notification** - **pending-notification** - **ideal-notification** - **ideal-pending-notification** - **report-notification** - **rreq-notification** - **terminal-settings** - **terminal-boarding**  Find out more about [standard webhooks](https://docs.adyen.com/development-resources/webhooks/webhook-types/#event-codes) and [other types of webhooks](https://docs.adyen.com/development-resources/webhooks/webhook-types/#other-webhooks).
         /// </summary>
         /// <value>The type of webhook that is being created. Possible values are:  - **standard** - **account-settings-notification** - **banktransfer-notification** - **boletobancario-notification** - **directdebit-notification** - **ach-notification-of-change-notification** - **direct-debit-notice-of-change-notification** - **pending-notification** - **ideal-notification** - **ideal-pending-notification** - **report-notification** - **rreq-notification** - **terminal-settings** - **terminal-boarding**  Find out more about [standard webhooks](https://docs.adyen.com/development-resources/webhooks/webhook-types/#event-codes) and [other types of webhooks](https://docs.adyen.com/development-resources/webhooks/webhook-types/#other-webhooks).</value>
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         /// <summary>
         /// Public URL where webhooks will be sent, for example **https://www.domain.com/webhook-endpoint**.
@@ -636,7 +636,7 @@ namespace Adyen.Management.Models
         /// <value>Public URL where webhooks will be sent, for example **https://www.domain.com/webhook-endpoint**.</value>
         /* <example>http://www.adyen.com</example> */
         [JsonPropertyName("url")]
-        public string Url { get; set; }
+        public string? Url { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AcceptsExpiredCertificate"/> will be populated.
@@ -890,31 +890,20 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!active.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyWebhookRequest.", nameof(active));
-
-            if (!communicationFormat.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyWebhookRequest.", nameof(communicationFormat));
-
-            if (!filterMerchantAccountType.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyWebhookRequest.", nameof(filterMerchantAccountType));
-
-            if (!filterMerchantAccounts.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyWebhookRequest.", nameof(filterMerchantAccounts));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyWebhookRequest.", nameof(type));
-
-            if (!url.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyWebhookRequest.", nameof(url));
 
             var createCompanyWebhookRequest = new CreateCompanyWebhookRequest();
-            createCompanyWebhookRequest.Active = active.Value!.Value;
-            createCompanyWebhookRequest.CommunicationFormat = communicationFormat.Value!;
-            createCompanyWebhookRequest.FilterMerchantAccountType = filterMerchantAccountType.Value!;
-            createCompanyWebhookRequest.FilterMerchantAccounts = filterMerchantAccounts.Value!;
-            createCompanyWebhookRequest.Type = type.Value!;
-            createCompanyWebhookRequest.Url = url.Value!;
+            if (active.IsSet)
+                createCompanyWebhookRequest.Active = active.Value!.Value;
+            if (communicationFormat.IsSet)
+                createCompanyWebhookRequest.CommunicationFormat = communicationFormat.Value!;
+            if (filterMerchantAccountType.IsSet)
+                createCompanyWebhookRequest.FilterMerchantAccountType = filterMerchantAccountType.Value!;
+            if (filterMerchantAccounts.IsSet)
+                createCompanyWebhookRequest.FilterMerchantAccounts = filterMerchantAccounts.Value!;
+            if (type.IsSet)
+                createCompanyWebhookRequest.Type = type.Value!;
+            if (url.IsSet)
+                createCompanyWebhookRequest.Url = url.Value!;
             if (acceptsExpiredCertificate.IsSet)
                 createCompanyWebhookRequest.AcceptsExpiredCertificate = acceptsExpiredCertificate.Value;
             if (acceptsSelfSignedCertificate.IsSet)

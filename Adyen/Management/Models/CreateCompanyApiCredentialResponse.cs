@@ -58,56 +58,56 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>List of IP addresses from which your client can make requests.  If the list is empty, we allow requests from any IP. If the list is not empty and we get a request from an IP which is not on the list, you get a security error.</value>
         [JsonPropertyName("allowedIpAddresses")]
-        public List<string> AllowedIpAddresses { get; set; }
+        public List<string>? AllowedIpAddresses { get; set; }
 
         /// <summary>
         /// The API key for the API credential that was created.
         /// </summary>
         /// <value>The API key for the API credential that was created.</value>
         [JsonPropertyName("apiKey")]
-        public string ApiKey { get; set; }
+        public string? ApiKey { get; set; }
 
         /// <summary>
         /// List of merchant accounts that the API credential has access to.
         /// </summary>
         /// <value>List of merchant accounts that the API credential has access to.</value>
         [JsonPropertyName("associatedMerchantAccounts")]
-        public List<string> AssociatedMerchantAccounts { get; set; }
+        public List<string>? AssociatedMerchantAccounts { get; set; }
 
         /// <summary>
         /// Public key used for [client-side authentication](https://docs.adyen.com/development-resources/client-side-authentication). The client key is required for Drop-in and Components integrations.
         /// </summary>
         /// <value>Public key used for [client-side authentication](https://docs.adyen.com/development-resources/client-side-authentication). The client key is required for Drop-in and Components integrations.</value>
         [JsonPropertyName("clientKey")]
-        public string ClientKey { get; set; }
+        public string? ClientKey { get; set; }
 
         /// <summary>
         /// Unique identifier of the API credential.
         /// </summary>
         /// <value>Unique identifier of the API credential.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// The password for the API credential that was created.
         /// </summary>
         /// <value>The password for the API credential that was created.</value>
         [JsonPropertyName("password")]
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         /// <summary>
         /// List of [roles](https://docs.adyen.com/development-resources/api-credentials#roles-1) for the API credential.
         /// </summary>
         /// <value>List of [roles](https://docs.adyen.com/development-resources/api-credentials#roles-1) for the API credential.</value>
         [JsonPropertyName("roles")]
-        public List<string> Roles { get; set; }
+        public List<string>? Roles { get; set; }
 
         /// <summary>
         /// The name of the [API credential](https://docs.adyen.com/development-resources/api-credentials), for example **ws@Company.TestCompany**.
         /// </summary>
         /// <value>The name of the [API credential](https://docs.adyen.com/development-resources/api-credentials), for example **ws@Company.TestCompany**.</value>
         [JsonPropertyName("username")]
-        public string Username { get; set; }
+        public string? Username { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Links"/> will be populated.
@@ -286,43 +286,26 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!active.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyApiCredentialResponse.", nameof(active));
-
-            if (!allowedIpAddresses.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyApiCredentialResponse.", nameof(allowedIpAddresses));
-
-            if (!apiKey.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyApiCredentialResponse.", nameof(apiKey));
-
-            if (!associatedMerchantAccounts.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyApiCredentialResponse.", nameof(associatedMerchantAccounts));
-
-            if (!clientKey.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyApiCredentialResponse.", nameof(clientKey));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyApiCredentialResponse.", nameof(id));
-
-            if (!password.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyApiCredentialResponse.", nameof(password));
-
-            if (!roles.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyApiCredentialResponse.", nameof(roles));
-
-            if (!username.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyApiCredentialResponse.", nameof(username));
 
             var createCompanyApiCredentialResponse = new CreateCompanyApiCredentialResponse();
-            createCompanyApiCredentialResponse.Active = active.Value!.Value;
-            createCompanyApiCredentialResponse.AllowedIpAddresses = allowedIpAddresses.Value!;
-            createCompanyApiCredentialResponse.ApiKey = apiKey.Value!;
-            createCompanyApiCredentialResponse.AssociatedMerchantAccounts = associatedMerchantAccounts.Value!;
-            createCompanyApiCredentialResponse.ClientKey = clientKey.Value!;
-            createCompanyApiCredentialResponse.Id = id.Value!;
-            createCompanyApiCredentialResponse.Password = password.Value!;
-            createCompanyApiCredentialResponse.Roles = roles.Value!;
-            createCompanyApiCredentialResponse.Username = username.Value!;
+            if (active.IsSet)
+                createCompanyApiCredentialResponse.Active = active.Value!.Value;
+            if (allowedIpAddresses.IsSet)
+                createCompanyApiCredentialResponse.AllowedIpAddresses = allowedIpAddresses.Value!;
+            if (apiKey.IsSet)
+                createCompanyApiCredentialResponse.ApiKey = apiKey.Value!;
+            if (associatedMerchantAccounts.IsSet)
+                createCompanyApiCredentialResponse.AssociatedMerchantAccounts = associatedMerchantAccounts.Value!;
+            if (clientKey.IsSet)
+                createCompanyApiCredentialResponse.ClientKey = clientKey.Value!;
+            if (id.IsSet)
+                createCompanyApiCredentialResponse.Id = id.Value!;
+            if (password.IsSet)
+                createCompanyApiCredentialResponse.Password = password.Value!;
+            if (roles.IsSet)
+                createCompanyApiCredentialResponse.Roles = roles.Value!;
+            if (username.IsSet)
+                createCompanyApiCredentialResponse.Username = username.Value!;
             if (links.IsSet)
                 createCompanyApiCredentialResponse.Links = links.Value;
             if (allowedOrigins.IsSet)

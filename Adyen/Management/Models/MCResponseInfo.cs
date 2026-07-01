@@ -121,6 +121,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var mCResponseInfo = new MCResponseInfo();
             if (transactionDescription.IsSet)
                 mCResponseInfo.TransactionDescription = transactionDescription.Value;

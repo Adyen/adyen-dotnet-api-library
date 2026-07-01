@@ -122,6 +122,7 @@ namespace Adyen.Management.Models
                 }
             }
             
+
             var alipayPlusInfo = new AlipayPlusInfo();
             if (settlementCurrencyCode.IsSet)
                 alipayPlusInfo.SettlementCurrencyCode = settlementCurrencyCode.Value;

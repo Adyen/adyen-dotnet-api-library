@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         /// </summary>
         /// <value>Vipps logo. Format: Base64-encoded string.</value>
         [JsonPropertyName("logo")]
-        public string Logo { get; set; }
+        public string? Logo { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="SubscriptionCancelUrl"/> will be populated.
@@ -134,11 +134,10 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!logo.IsSet)
-                throw new ArgumentException("Property is required for class VippsResponseInfo.", nameof(logo));
 
             var vippsResponseInfo = new VippsResponseInfo();
-            vippsResponseInfo.Logo = logo.Value!;
+            if (logo.IsSet)
+                vippsResponseInfo.Logo = logo.Value!;
             if (subscriptionCancelUrl.IsSet)
                 vippsResponseInfo.SubscriptionCancelUrl = subscriptionCancelUrl.Value;
             return vippsResponseInfo;
