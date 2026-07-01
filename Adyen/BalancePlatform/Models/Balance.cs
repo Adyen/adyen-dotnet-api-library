@@ -65,7 +65,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance.</value>
         [JsonPropertyName("currency")]
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         /// <summary>
         /// The balance currently held in reserve.
@@ -189,23 +189,16 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!available.IsSet)
-                throw new ArgumentException("Property is required for class Balance.", nameof(available));
-
-            if (!varBalance.IsSet)
-                throw new ArgumentException("Property is required for class Balance.", nameof(varBalance));
-
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class Balance.", nameof(currency));
-
-            if (!reserved.IsSet)
-                throw new ArgumentException("Property is required for class Balance.", nameof(reserved));
 
             var balance = new Balance();
-            balance.Available = available.Value!.Value;
-            balance.VarBalance = varBalance.Value!.Value;
-            balance.Currency = currency.Value!;
-            balance.Reserved = reserved.Value!.Value;
+            if (available.IsSet)
+                balance.Available = available.Value!.Value;
+            if (varBalance.IsSet)
+                balance.VarBalance = varBalance.Value!.Value;
+            if (currency.IsSet)
+                balance.Currency = currency.Value!;
+            if (reserved.IsSet)
+                balance.Reserved = reserved.Value!.Value;
             if (pending.IsSet)
                 balance.Pending = pending.Value;
             if (pendingAvailable.IsSet)

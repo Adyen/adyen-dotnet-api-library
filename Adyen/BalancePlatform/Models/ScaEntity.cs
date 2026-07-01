@@ -58,7 +58,7 @@ namespace Adyen.BalancePlatform.Models
         /// <value>The unique identifier of the entity.</value>
         /* <example>AH9999Z99Z999999ZZZZ9999Z</example> */
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -128,15 +128,12 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ScaEntity.", nameof(id));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class ScaEntity.", nameof(type));
 
             var scaEntity = new ScaEntity();
-            scaEntity.Id = id.Value!;
-            scaEntity.Type = type.Value!;
+            if (id.IsSet)
+                scaEntity.Id = id.Value!;
+            if (type.IsSet)
+                scaEntity.Type = type.Value!;
             return scaEntity;
         }
 

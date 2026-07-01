@@ -255,6 +255,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var updateNetworkTokenRequest = new UpdateNetworkTokenRequest();
             if (status.IsSet)
                 updateNetworkTokenRequest.Status = status.Value;

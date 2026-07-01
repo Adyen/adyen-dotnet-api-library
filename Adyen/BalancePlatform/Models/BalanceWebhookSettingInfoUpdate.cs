@@ -436,6 +436,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var balanceWebhookSettingInfoUpdate = new BalanceWebhookSettingInfoUpdate();
             if (conditions.IsSet)
                 balanceWebhookSettingInfoUpdate.Conditions = conditions.Value;

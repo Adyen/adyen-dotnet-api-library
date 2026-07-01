@@ -140,6 +140,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var counterparty = new Counterparty();
             if (bankAccount.IsSet)
                 counterparty.BankAccount = bankAccount.Value;

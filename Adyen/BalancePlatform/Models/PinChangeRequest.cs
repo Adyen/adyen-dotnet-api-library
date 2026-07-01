@@ -51,28 +51,28 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The symmetric session key that you encrypted with the [public key](https://docs.adyen.com/api-explorer/balanceplatform/2/get/publicKey) that you received from Adyen.</value>
         [JsonPropertyName("encryptedKey")]
-        public string EncryptedKey { get; set; }
+        public string? EncryptedKey { get; set; }
 
         /// <summary>
         /// The encrypted [PIN block](https://www.pcisecuritystandards.org/glossary/pin-block).
         /// </summary>
         /// <value>The encrypted [PIN block](https://www.pcisecuritystandards.org/glossary/pin-block).</value>
         [JsonPropertyName("encryptedPinBlock")]
-        public string EncryptedPinBlock { get; set; }
+        public string? EncryptedPinBlock { get; set; }
 
         /// <summary>
         /// The unique identifier of the payment instrument, which is the card for which you are managing the PIN.
         /// </summary>
         /// <value>The unique identifier of the payment instrument, which is the card for which you are managing the PIN.</value>
         [JsonPropertyName("paymentInstrumentId")]
-        public string PaymentInstrumentId { get; set; }
+        public string? PaymentInstrumentId { get; set; }
 
         /// <summary>
         /// The 16-digit token that you used to generate the &#x60;encryptedPinBlock&#x60;.
         /// </summary>
         /// <value>The 16-digit token that you used to generate the `encryptedPinBlock`.</value>
         [JsonPropertyName("token")]
-        public string Token { get; set; }
+        public string? Token { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -151,23 +151,16 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!encryptedKey.IsSet)
-                throw new ArgumentException("Property is required for class PinChangeRequest.", nameof(encryptedKey));
-
-            if (!encryptedPinBlock.IsSet)
-                throw new ArgumentException("Property is required for class PinChangeRequest.", nameof(encryptedPinBlock));
-
-            if (!paymentInstrumentId.IsSet)
-                throw new ArgumentException("Property is required for class PinChangeRequest.", nameof(paymentInstrumentId));
-
-            if (!token.IsSet)
-                throw new ArgumentException("Property is required for class PinChangeRequest.", nameof(token));
 
             var pinChangeRequest = new PinChangeRequest();
-            pinChangeRequest.EncryptedKey = encryptedKey.Value!;
-            pinChangeRequest.EncryptedPinBlock = encryptedPinBlock.Value!;
-            pinChangeRequest.PaymentInstrumentId = paymentInstrumentId.Value!;
-            pinChangeRequest.Token = token.Value!;
+            if (encryptedKey.IsSet)
+                pinChangeRequest.EncryptedKey = encryptedKey.Value!;
+            if (encryptedPinBlock.IsSet)
+                pinChangeRequest.EncryptedPinBlock = encryptedPinBlock.Value!;
+            if (paymentInstrumentId.IsSet)
+                pinChangeRequest.PaymentInstrumentId = paymentInstrumentId.Value!;
+            if (token.IsSet)
+                pinChangeRequest.Token = token.Value!;
             return pinChangeRequest;
         }
 

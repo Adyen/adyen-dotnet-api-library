@@ -50,7 +50,7 @@ namespace Adyen.BalancePlatform.Models
         /// <see cref="Token"/>.
         /// </summary>
         [JsonPropertyName("token")]
-        public NetworkToken Token { get; set; }
+        public NetworkToken? Token { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -114,11 +114,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!token.IsSet)
-                throw new ArgumentException("Property is required for class GetNetworkTokenResponse.", nameof(token));
 
             var getNetworkTokenResponse = new GetNetworkTokenResponse();
-            getNetworkTokenResponse.Token = token.Value!;
+            if (token.IsSet)
+                getNetworkTokenResponse.Token = token.Value!;
             return getNetworkTokenResponse;
         }
 

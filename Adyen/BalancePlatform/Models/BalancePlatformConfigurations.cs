@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>Contains a list of the payout schedules configured in your balance platform.</value>
         [JsonPropertyName("balancePlatformPayoutSchedules")]
-        public List<BalancePlatformConfiguration> BalancePlatformPayoutSchedules { get; set; }
+        public List<BalancePlatformConfiguration>? BalancePlatformPayoutSchedules { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!balancePlatformPayoutSchedules.IsSet)
-                throw new ArgumentException("Property is required for class BalancePlatformConfigurations.", nameof(balancePlatformPayoutSchedules));
 
             var balancePlatformConfigurations = new BalancePlatformConfigurations();
-            balancePlatformConfigurations.BalancePlatformPayoutSchedules = balancePlatformPayoutSchedules.Value!;
+            if (balancePlatformPayoutSchedules.IsSet)
+                balancePlatformConfigurations.BalancePlatformPayoutSchedules = balancePlatformPayoutSchedules.Value!;
             return balancePlatformConfigurations;
         }
 

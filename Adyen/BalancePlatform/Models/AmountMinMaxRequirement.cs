@@ -287,8 +287,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AmountMinMaxRequirement.", nameof(type));
 
             var amountMinMaxRequirement = new AmountMinMaxRequirement();
             if (description.IsSet)
@@ -297,7 +295,8 @@ namespace Adyen.BalancePlatform.Models
                 amountMinMaxRequirement.Max = max.Value;
             if (min.IsSet)
                 amountMinMaxRequirement.Min = min.Value;
-            amountMinMaxRequirement.Type = type.Value!;
+            if (type.IsSet)
+                amountMinMaxRequirement.Type = type.Value!;
             return amountMinMaxRequirement;
         }
 

@@ -65,7 +65,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>List of payment instruments associated with the balance account.</value>
         [JsonPropertyName("paymentInstruments")]
-        public List<PaymentInstrument> PaymentInstruments { get; set; }
+        public List<PaymentInstrument>? PaymentInstruments { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,19 +139,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!hasNext.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedPaymentInstrumentsResponse.", nameof(hasNext));
-
-            if (!hasPrevious.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedPaymentInstrumentsResponse.", nameof(hasPrevious));
-
-            if (!paymentInstruments.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedPaymentInstrumentsResponse.", nameof(paymentInstruments));
 
             var paginatedPaymentInstrumentsResponse = new PaginatedPaymentInstrumentsResponse();
-            paginatedPaymentInstrumentsResponse.HasNext = hasNext.Value!.Value;
-            paginatedPaymentInstrumentsResponse.HasPrevious = hasPrevious.Value!.Value;
-            paginatedPaymentInstrumentsResponse.PaymentInstruments = paymentInstruments.Value!;
+            if (hasNext.IsSet)
+                paginatedPaymentInstrumentsResponse.HasNext = hasNext.Value!.Value;
+            if (hasPrevious.IsSet)
+                paginatedPaymentInstrumentsResponse.HasPrevious = hasPrevious.Value!.Value;
+            if (paymentInstruments.IsSet)
+                paginatedPaymentInstrumentsResponse.PaymentInstruments = paymentInstruments.Value!;
             return paginatedPaymentInstrumentsResponse;
         }
 

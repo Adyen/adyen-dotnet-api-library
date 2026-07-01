@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>A base64-encoded block with the data required to authenticate the request. You obtain this information by using our authentication SDK.</value>
         [JsonPropertyName("sdkOutput")]
-        public string SdkOutput { get; set; }
+        public string? SdkOutput { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!sdkOutput.IsSet)
-                throw new ArgumentException("Property is required for class AssociationDelegatedAuthenticationData.", nameof(sdkOutput));
 
             var associationDelegatedAuthenticationData = new AssociationDelegatedAuthenticationData();
-            associationDelegatedAuthenticationData.SdkOutput = sdkOutput.Value!;
+            if (sdkOutput.IsSet)
+                associationDelegatedAuthenticationData.SdkOutput = sdkOutput.Value!;
             return associationDelegatedAuthenticationData;
         }
 

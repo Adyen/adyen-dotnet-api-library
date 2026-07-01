@@ -51,14 +51,14 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The unique identifier of the balance account to which you apply the payout schedule.</value>
         [JsonPropertyName("balanceAccountId")]
-        public string BalanceAccountId { get; set; }
+        public string? BalanceAccountId { get; set; }
 
         /// <summary>
         /// The unique identifier of the balance platform payout schedule that is applied to the balance account.
         /// </summary>
         /// <value>The unique identifier of the balance platform payout schedule that is applied to the balance account.</value>
         [JsonPropertyName("balancePlatformPayoutScheduleId")]
-        public string BalancePlatformPayoutScheduleId { get; set; }
+        public string? BalancePlatformPayoutScheduleId { get; set; }
 
         /// <summary>
         /// The date and time when the payout schedule was created.
@@ -72,7 +72,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The unique identifier of the transfer instrument to which the funds are paid out.</value>
         [JsonPropertyName("transferInstrumentId")]
-        public string TransferInstrumentId { get; set; }
+        public string? TransferInstrumentId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Currency"/> will be populated.
@@ -409,23 +409,16 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!balanceAccountId.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccountConfiguration.", nameof(balanceAccountId));
-
-            if (!balancePlatformPayoutScheduleId.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccountConfiguration.", nameof(balancePlatformPayoutScheduleId));
-
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccountConfiguration.", nameof(createdAt));
-
-            if (!transferInstrumentId.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccountConfiguration.", nameof(transferInstrumentId));
 
             var balanceAccountConfiguration = new BalanceAccountConfiguration();
-            balanceAccountConfiguration.BalanceAccountId = balanceAccountId.Value!;
-            balanceAccountConfiguration.BalancePlatformPayoutScheduleId = balancePlatformPayoutScheduleId.Value!;
-            balanceAccountConfiguration.CreatedAt = createdAt.Value!.Value;
-            balanceAccountConfiguration.TransferInstrumentId = transferInstrumentId.Value!;
+            if (balanceAccountId.IsSet)
+                balanceAccountConfiguration.BalanceAccountId = balanceAccountId.Value!;
+            if (balancePlatformPayoutScheduleId.IsSet)
+                balanceAccountConfiguration.BalancePlatformPayoutScheduleId = balancePlatformPayoutScheduleId.Value!;
+            if (createdAt.IsSet)
+                balanceAccountConfiguration.CreatedAt = createdAt.Value!.Value;
+            if (transferInstrumentId.IsSet)
+                balanceAccountConfiguration.TransferInstrumentId = transferInstrumentId.Value!;
             if (currency.IsSet)
                 balanceAccountConfiguration.Currency = currency.Value;
             if (description.IsSet)

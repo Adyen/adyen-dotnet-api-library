@@ -449,8 +449,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrumentRequirement.", nameof(type));
 
             var paymentInstrumentRequirement = new PaymentInstrumentRequirement();
             if (description.IsSet)
@@ -463,7 +461,8 @@ namespace Adyen.BalancePlatform.Models
                 paymentInstrumentRequirement.OnlyForCrossBalancePlatform = onlyForCrossBalancePlatform.Value;
             if (paymentInstrumentType.IsSet)
                 paymentInstrumentRequirement.PaymentInstrumentType = paymentInstrumentType.Value;
-            paymentInstrumentRequirement.Type = type.Value!;
+            if (type.IsSet)
+                paymentInstrumentRequirement.Type = type.Value!;
             return paymentInstrumentRequirement;
         }
 

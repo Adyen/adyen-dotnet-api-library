@@ -193,6 +193,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var link = new Link();
             if (first.IsSet)
                 link.First = first.Value;

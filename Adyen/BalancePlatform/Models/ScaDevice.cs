@@ -57,14 +57,14 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The unique identifier of the SCA device you are registering.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// The name of the SCA device that you are registering. You can use it to help your users identify the device.
         /// </summary>
         /// <value>The name of the SCA device that you are registering. You can use it to help your users identify the device.</value>
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,19 +139,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ScaDevice.", nameof(id));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class ScaDevice.", nameof(name));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class ScaDevice.", nameof(type));
 
             var scaDevice = new ScaDevice();
-            scaDevice.Id = id.Value!;
-            scaDevice.Name = name.Value!;
-            scaDevice.Type = type.Value!;
+            if (id.IsSet)
+                scaDevice.Id = id.Value!;
+            if (name.IsSet)
+                scaDevice.Name = name.Value!;
+            if (type.IsSet)
+                scaDevice.Type = type.Value!;
             return scaDevice;
         }
 

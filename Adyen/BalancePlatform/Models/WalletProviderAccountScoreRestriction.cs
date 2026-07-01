@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>Defines how the condition must be evaluated.</value>
         [JsonPropertyName("operation")]
-        public string Operation { get; set; }
+        public string? Operation { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Value"/> will be populated.
@@ -133,11 +133,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!operation.IsSet)
-                throw new ArgumentException("Property is required for class WalletProviderAccountScoreRestriction.", nameof(operation));
 
             var walletProviderAccountScoreRestriction = new WalletProviderAccountScoreRestriction();
-            walletProviderAccountScoreRestriction.Operation = operation.Value!;
+            if (operation.IsSet)
+                walletProviderAccountScoreRestriction.Operation = operation.Value!;
             if (value.IsSet)
                 walletProviderAccountScoreRestriction.Value = value.Value;
             return walletProviderAccountScoreRestriction;

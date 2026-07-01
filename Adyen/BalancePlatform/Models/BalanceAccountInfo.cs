@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/accountHolders#responses-200-id) associated with the balance account.</value>
         [JsonPropertyName("accountHolderId")]
-        public string AccountHolderId { get; set; }
+        public string? AccountHolderId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="DefaultCurrencyCode"/> will be populated.
@@ -248,11 +248,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!accountHolderId.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccountInfo.", nameof(accountHolderId));
 
             var balanceAccountInfo = new BalanceAccountInfo();
-            balanceAccountInfo.AccountHolderId = accountHolderId.Value!;
+            if (accountHolderId.IsSet)
+                balanceAccountInfo.AccountHolderId = accountHolderId.Value!;
             if (defaultCurrencyCode.IsSet)
                 balanceAccountInfo.DefaultCurrencyCode = defaultCurrencyCode.Value;
             if (description.IsSet)

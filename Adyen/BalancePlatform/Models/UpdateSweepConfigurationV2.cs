@@ -1195,6 +1195,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var updateSweepConfigurationV2 = new UpdateSweepConfigurationV2();
             if (category.IsSet)
                 updateSweepConfigurationV2.Category = category.Value;

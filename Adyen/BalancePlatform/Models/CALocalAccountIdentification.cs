@@ -310,21 +310,21 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The 5- to 12-digit bank account number, without separators or whitespace.</value>
         [JsonPropertyName("accountNumber")]
-        public string AccountNumber { get; set; }
+        public string? AccountNumber { get; set; }
 
         /// <summary>
         /// The 3-digit institution number, without separators or whitespace.
         /// </summary>
         /// <value>The 3-digit institution number, without separators or whitespace.</value>
         [JsonPropertyName("institutionNumber")]
-        public string InstitutionNumber { get; set; }
+        public string? InstitutionNumber { get; set; }
 
         /// <summary>
         /// The 5-digit transit number, without separators or whitespace.
         /// </summary>
         /// <value>The 5-digit transit number, without separators or whitespace.</value>
         [JsonPropertyName("transitNumber")]
-        public string TransitNumber { get; set; }
+        public string? TransitNumber { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -410,25 +410,18 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class CALocalAccountIdentification.", nameof(accountNumber));
-
-            if (!institutionNumber.IsSet)
-                throw new ArgumentException("Property is required for class CALocalAccountIdentification.", nameof(institutionNumber));
-
-            if (!transitNumber.IsSet)
-                throw new ArgumentException("Property is required for class CALocalAccountIdentification.", nameof(transitNumber));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CALocalAccountIdentification.", nameof(type));
 
             var cALocalAccountIdentification = new CALocalAccountIdentification();
-            cALocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            cALocalAccountIdentification.InstitutionNumber = institutionNumber.Value!;
-            cALocalAccountIdentification.TransitNumber = transitNumber.Value!;
+            if (accountNumber.IsSet)
+                cALocalAccountIdentification.AccountNumber = accountNumber.Value!;
+            if (institutionNumber.IsSet)
+                cALocalAccountIdentification.InstitutionNumber = institutionNumber.Value!;
+            if (transitNumber.IsSet)
+                cALocalAccountIdentification.TransitNumber = transitNumber.Value!;
             if (accountType.IsSet)
                 cALocalAccountIdentification.AccountType = accountType.Value;
-            cALocalAccountIdentification.Type = type.Value!;
+            if (type.IsSet)
+                cALocalAccountIdentification.Type = type.Value!;
             return cALocalAccountIdentification;
         }
 

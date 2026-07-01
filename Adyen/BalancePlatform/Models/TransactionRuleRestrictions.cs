@@ -553,6 +553,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var transactionRuleRestrictions = new TransactionRuleRestrictions();
             if (activeNetworkTokens.IsSet)
                 transactionRuleRestrictions.ActiveNetworkTokens = activeNetworkTokens.Value;

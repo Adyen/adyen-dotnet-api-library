@@ -51,14 +51,14 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>A human-readable explanation specific to this occurrence of the problem.</value>
         [JsonPropertyName("detail")]
-        public string Detail { get; set; }
+        public string? Detail { get; set; }
 
         /// <summary>
         /// A code that identifies the problem type.
         /// </summary>
         /// <value>A code that identifies the problem type.</value>
         [JsonPropertyName("errorCode")]
-        public string ErrorCode { get; set; }
+        public string? ErrorCode { get; set; }
 
         /// <summary>
         /// The HTTP status code.
@@ -72,14 +72,14 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>A short, human-readable summary of the problem type.</value>
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         /// <summary>
         /// A URI that identifies the problem type, pointing to human-readable documentation on this problem type.
         /// </summary>
         /// <value>A URI that identifies the problem type, pointing to human-readable documentation on this problem type.</value>
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Instance"/> will be populated.
@@ -238,27 +238,18 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!detail.IsSet)
-                throw new ArgumentException("Property is required for class RestServiceError.", nameof(detail));
-
-            if (!errorCode.IsSet)
-                throw new ArgumentException("Property is required for class RestServiceError.", nameof(errorCode));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class RestServiceError.", nameof(status));
-
-            if (!title.IsSet)
-                throw new ArgumentException("Property is required for class RestServiceError.", nameof(title));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RestServiceError.", nameof(type));
 
             var restServiceError = new RestServiceError();
-            restServiceError.Detail = detail.Value!;
-            restServiceError.ErrorCode = errorCode.Value!;
-            restServiceError.Status = status.Value!.Value;
-            restServiceError.Title = title.Value!;
-            restServiceError.Type = type.Value!;
+            if (detail.IsSet)
+                restServiceError.Detail = detail.Value!;
+            if (errorCode.IsSet)
+                restServiceError.ErrorCode = errorCode.Value!;
+            if (status.IsSet)
+                restServiceError.Status = status.Value!.Value;
+            if (title.IsSet)
+                restServiceError.Title = title.Value!;
+            if (type.IsSet)
+                restServiceError.Type = type.Value!;
             if (instance.IsSet)
                 restServiceError.Instance = instance.Value;
             if (invalidFields.IsSet)

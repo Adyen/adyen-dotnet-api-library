@@ -536,14 +536,14 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/v1/post/balanceAccounts__resParam_id) associated with the payment instrument.</value>
         [JsonPropertyName("balanceAccountId")]
-        public string BalanceAccountId { get; set; }
+        public string? BalanceAccountId { get; set; }
 
         /// <summary>
         /// The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the payment instrument is issued. For example, **NL** or **US**.
         /// </summary>
         /// <value>The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the payment instrument is issued. For example, **NL** or **US**.</value>
         [JsonPropertyName("issuingCountryCode")]
-        public string IssuingCountryCode { get; set; }
+        public string? IssuingCountryCode { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="BankAccount"/> will be populated.
@@ -742,19 +742,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!balanceAccountId.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrumentInfo.", nameof(balanceAccountId));
-
-            if (!issuingCountryCode.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrumentInfo.", nameof(issuingCountryCode));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrumentInfo.", nameof(type));
 
             var paymentInstrumentInfo = new PaymentInstrumentInfo();
-            paymentInstrumentInfo.BalanceAccountId = balanceAccountId.Value!;
-            paymentInstrumentInfo.IssuingCountryCode = issuingCountryCode.Value!;
-            paymentInstrumentInfo.Type = type.Value!;
+            if (balanceAccountId.IsSet)
+                paymentInstrumentInfo.BalanceAccountId = balanceAccountId.Value!;
+            if (issuingCountryCode.IsSet)
+                paymentInstrumentInfo.IssuingCountryCode = issuingCountryCode.Value!;
+            if (type.IsSet)
+                paymentInstrumentInfo.Type = type.Value!;
             if (bankAccount.IsSet)
                 paymentInstrumentInfo.BankAccount = bankAccount.Value;
             if (card.IsSet)

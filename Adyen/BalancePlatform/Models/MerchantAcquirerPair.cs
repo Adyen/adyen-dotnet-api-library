@@ -141,6 +141,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var merchantAcquirerPair = new MerchantAcquirerPair();
             if (acquirerId.IsSet)
                 merchantAcquirerPair.AcquirerId = acquirerId.Value;

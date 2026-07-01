@@ -417,15 +417,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AddressRequirement.", nameof(type));
 
             var addressRequirement = new AddressRequirement();
             if (description.IsSet)
                 addressRequirement.Description = description.Value;
             if (requiredAddressFields.IsSet)
                 addressRequirement.RequiredAddressFields = requiredAddressFields.Value;
-            addressRequirement.Type = type.Value!;
+            if (type.IsSet)
+                addressRequirement.Type = type.Value!;
             return addressRequirement;
         }
 

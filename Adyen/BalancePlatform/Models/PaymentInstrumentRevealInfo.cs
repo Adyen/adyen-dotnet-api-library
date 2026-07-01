@@ -51,20 +51,20 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The CVC2 value of the card.</value>
         [JsonPropertyName("cvc")]
-        public string Cvc { get; set; }
+        public string? Cvc { get; set; }
 
         /// <summary>
         /// <see cref="Expiration"/>.
         /// </summary>
         [JsonPropertyName("expiration")]
-        public Expiry Expiration { get; set; }
+        public Expiry? Expiration { get; set; }
 
         /// <summary>
         /// The primary account number (PAN) of the card.
         /// </summary>
         /// <value>The primary account number (PAN) of the card.</value>
         [JsonPropertyName("pan")]
-        public string Pan { get; set; }
+        public string? Pan { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -138,19 +138,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!cvc.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrumentRevealInfo.", nameof(cvc));
-
-            if (!expiration.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrumentRevealInfo.", nameof(expiration));
-
-            if (!pan.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrumentRevealInfo.", nameof(pan));
 
             var paymentInstrumentRevealInfo = new PaymentInstrumentRevealInfo();
-            paymentInstrumentRevealInfo.Cvc = cvc.Value!;
-            paymentInstrumentRevealInfo.Expiration = expiration.Value!;
-            paymentInstrumentRevealInfo.Pan = pan.Value!;
+            if (cvc.IsSet)
+                paymentInstrumentRevealInfo.Cvc = cvc.Value!;
+            if (expiration.IsSet)
+                paymentInstrumentRevealInfo.Expiration = expiration.Value!;
+            if (pan.IsSet)
+                paymentInstrumentRevealInfo.Pan = pan.Value!;
             return paymentInstrumentRevealInfo;
         }
 

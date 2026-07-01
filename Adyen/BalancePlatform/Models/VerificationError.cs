@@ -958,6 +958,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var verificationError = new VerificationError();
             if (capabilities.IsSet)
                 verificationError.Capabilities = capabilities.Value;

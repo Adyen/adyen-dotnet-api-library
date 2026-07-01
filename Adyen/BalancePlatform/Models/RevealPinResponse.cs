@@ -51,14 +51,14 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The encrypted [PIN block](https://www.pcisecuritystandards.org/glossary/pin-block).</value>
         [JsonPropertyName("encryptedPinBlock")]
-        public string EncryptedPinBlock { get; set; }
+        public string? EncryptedPinBlock { get; set; }
 
         /// <summary>
         /// The 16-digit token that you need to extract the &#x60;encryptedPinBlock&#x60;.
         /// </summary>
         /// <value>The 16-digit token that you need to extract the `encryptedPinBlock`.</value>
         [JsonPropertyName("token")]
-        public string Token { get; set; }
+        public string? Token { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!encryptedPinBlock.IsSet)
-                throw new ArgumentException("Property is required for class RevealPinResponse.", nameof(encryptedPinBlock));
-
-            if (!token.IsSet)
-                throw new ArgumentException("Property is required for class RevealPinResponse.", nameof(token));
 
             var revealPinResponse = new RevealPinResponse();
-            revealPinResponse.EncryptedPinBlock = encryptedPinBlock.Value!;
-            revealPinResponse.Token = token.Value!;
+            if (encryptedPinBlock.IsSet)
+                revealPinResponse.EncryptedPinBlock = encryptedPinBlock.Value!;
+            if (token.IsSet)
+                revealPinResponse.Token = token.Value!;
             return revealPinResponse;
         }
 

@@ -122,6 +122,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var listNetworkTokensResponse = new ListNetworkTokensResponse();
             if (networkTokens.IsSet)
                 listNetworkTokensResponse.NetworkTokens = networkTokens.Value;

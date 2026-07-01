@@ -172,13 +172,13 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The list of unique identifiers of the resources that you are associating with the SCA device.  Maximum: 5 strings.</value>
         [JsonPropertyName("ids")]
-        public List<string> Ids { get; set; }
+        public List<string>? Ids { get; set; }
 
         /// <summary>
         /// <see cref="StrongCustomerAuthentication"/>.
         /// </summary>
         [JsonPropertyName("strongCustomerAuthentication")]
-        public AssociationDelegatedAuthenticationData StrongCustomerAuthentication { get; set; }
+        public AssociationDelegatedAuthenticationData? StrongCustomerAuthentication { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -253,19 +253,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!ids.IsSet)
-                throw new ArgumentException("Property is required for class AssociationFinaliseRequest.", nameof(ids));
-
-            if (!strongCustomerAuthentication.IsSet)
-                throw new ArgumentException("Property is required for class AssociationFinaliseRequest.", nameof(strongCustomerAuthentication));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AssociationFinaliseRequest.", nameof(type));
 
             var associationFinaliseRequest = new AssociationFinaliseRequest();
-            associationFinaliseRequest.Ids = ids.Value!;
-            associationFinaliseRequest.StrongCustomerAuthentication = strongCustomerAuthentication.Value!;
-            associationFinaliseRequest.Type = type.Value!;
+            if (ids.IsSet)
+                associationFinaliseRequest.Ids = ids.Value!;
+            if (strongCustomerAuthentication.IsSet)
+                associationFinaliseRequest.StrongCustomerAuthentication = strongCustomerAuthentication.Value!;
+            if (type.IsSet)
+                associationFinaliseRequest.Type = type.Value!;
             return associationFinaliseRequest;
         }
 

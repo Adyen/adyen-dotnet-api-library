@@ -178,6 +178,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var searchRegisteredDevicesResponse = new SearchRegisteredDevicesResponse();
             if (data.IsSet)
                 searchRegisteredDevicesResponse.Data = data.Value;

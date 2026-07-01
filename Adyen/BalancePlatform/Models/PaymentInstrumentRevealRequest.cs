@@ -51,14 +51,14 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The symmetric session key that you encrypted with the [public key](https://docs.adyen.com/api-explorer/balanceplatform/2/get/publicKey) that you received from Adyen.</value>
         [JsonPropertyName("encryptedKey")]
-        public string EncryptedKey { get; set; }
+        public string? EncryptedKey { get; set; }
 
         /// <summary>
         /// The unique identifier of the payment instrument, which is the card for which you are managing the PIN.
         /// </summary>
         /// <value>The unique identifier of the payment instrument, which is the card for which you are managing the PIN.</value>
         [JsonPropertyName("paymentInstrumentId")]
-        public string PaymentInstrumentId { get; set; }
+        public string? PaymentInstrumentId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!encryptedKey.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrumentRevealRequest.", nameof(encryptedKey));
-
-            if (!paymentInstrumentId.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrumentRevealRequest.", nameof(paymentInstrumentId));
 
             var paymentInstrumentRevealRequest = new PaymentInstrumentRevealRequest();
-            paymentInstrumentRevealRequest.EncryptedKey = encryptedKey.Value!;
-            paymentInstrumentRevealRequest.PaymentInstrumentId = paymentInstrumentId.Value!;
+            if (encryptedKey.IsSet)
+                paymentInstrumentRevealRequest.EncryptedKey = encryptedKey.Value!;
+            if (paymentInstrumentId.IsSet)
+                paymentInstrumentRevealRequest.PaymentInstrumentId = paymentInstrumentId.Value!;
             return paymentInstrumentRevealRequest;
         }
 

@@ -134,11 +134,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!estimatedDays.IsSet)
-                throw new ArgumentException("Property is required for class RepaymentTerm.", nameof(estimatedDays));
 
             var repaymentTerm = new RepaymentTerm();
-            repaymentTerm.EstimatedDays = estimatedDays.Value!.Value;
+            if (estimatedDays.IsSet)
+                repaymentTerm.EstimatedDays = estimatedDays.Value!.Value;
             if (maximumDays.IsSet)
                 repaymentTerm.MaximumDays = maximumDays.Value;
             return repaymentTerm;

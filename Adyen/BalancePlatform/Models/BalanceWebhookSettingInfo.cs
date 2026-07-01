@@ -302,13 +302,13 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance.</value>
         [JsonPropertyName("currency")]
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         /// <summary>
         /// <see cref="Target"/>.
         /// </summary>
         [JsonPropertyName("target")]
-        public Target Target { get; set; }
+        public Target? Target { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Conditions"/> will be populated.
@@ -408,23 +408,16 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class BalanceWebhookSettingInfo.", nameof(currency));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class BalanceWebhookSettingInfo.", nameof(status));
-
-            if (!target.IsSet)
-                throw new ArgumentException("Property is required for class BalanceWebhookSettingInfo.", nameof(target));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class BalanceWebhookSettingInfo.", nameof(type));
 
             var balanceWebhookSettingInfo = new BalanceWebhookSettingInfo();
-            balanceWebhookSettingInfo.Currency = currency.Value!;
-            balanceWebhookSettingInfo.Status = status.Value!;
-            balanceWebhookSettingInfo.Target = target.Value!;
-            balanceWebhookSettingInfo.Type = type.Value!;
+            if (currency.IsSet)
+                balanceWebhookSettingInfo.Currency = currency.Value!;
+            if (status.IsSet)
+                balanceWebhookSettingInfo.Status = status.Value!;
+            if (target.IsSet)
+                balanceWebhookSettingInfo.Target = target.Value!;
+            if (type.IsSet)
+                balanceWebhookSettingInfo.Type = type.Value!;
             if (conditions.IsSet)
                 balanceWebhookSettingInfo.Conditions = conditions.Value;
             return balanceWebhookSettingInfo;

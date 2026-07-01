@@ -140,6 +140,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var capabilityProblem = new CapabilityProblem();
             if (entity.IsSet)
                 capabilityProblem.Entity = entity.Value;

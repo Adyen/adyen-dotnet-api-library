@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>List of available transfer limits.</value>
         [JsonPropertyName("transferLimits")]
-        public List<TransferLimit> TransferLimits { get; set; }
+        public List<TransferLimit>? TransferLimits { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!transferLimits.IsSet)
-                throw new ArgumentException("Property is required for class TransferLimitListResponse.", nameof(transferLimits));
 
             var transferLimitListResponse = new TransferLimitListResponse();
-            transferLimitListResponse.TransferLimits = transferLimits.Value!;
+            if (transferLimits.IsSet)
+                transferLimitListResponse.TransferLimits = transferLimits.Value!;
             return transferLimitListResponse;
         }
 

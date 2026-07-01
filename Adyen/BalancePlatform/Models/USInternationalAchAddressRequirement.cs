@@ -249,13 +249,12 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class USInternationalAchAddressRequirement.", nameof(type));
 
             var uSInternationalAchAddressRequirement = new USInternationalAchAddressRequirement();
             if (description.IsSet)
                 uSInternationalAchAddressRequirement.Description = description.Value;
-            uSInternationalAchAddressRequirement.Type = type.Value!;
+            if (type.IsSet)
+                uSInternationalAchAddressRequirement.Type = type.Value!;
             return uSInternationalAchAddressRequirement;
         }
 

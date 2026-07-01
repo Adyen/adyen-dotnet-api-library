@@ -338,6 +338,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var cardOrderItemDeliveryStatus = new CardOrderItemDeliveryStatus();
             if (errorMessage.IsSet)
                 cardOrderItemDeliveryStatus.ErrorMessage = errorMessage.Value;

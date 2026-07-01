@@ -141,6 +141,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var remediatingAction = new RemediatingAction();
             if (code.IsSet)
                 remediatingAction.Code = code.Value;

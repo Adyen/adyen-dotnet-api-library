@@ -179,7 +179,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The content of the tax form in Base64 format.</value>
         [JsonPropertyName("content")]
-        public byte[] Content { get; set; }
+        public byte[]? Content { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -249,11 +249,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!content.IsSet)
-                throw new ArgumentException("Property is required for class GetTaxFormResponse.", nameof(content));
 
             var getTaxFormResponse = new GetTaxFormResponse();
-            getTaxFormResponse.Content = content.Value!;
+            if (content.IsSet)
+                getTaxFormResponse.Content = content.Value!;
             if (contentType.IsSet)
                 getTaxFormResponse.ContentType = contentType.Value;
             return getTaxFormResponse;

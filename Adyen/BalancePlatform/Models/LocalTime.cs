@@ -175,6 +175,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var localTime = new LocalTime();
             if (hour.IsSet)
                 localTime.Hour = hour.Value;

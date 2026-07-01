@@ -419,6 +419,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var networkToken = new NetworkToken();
             if (brandVariant.IsSet)
                 networkToken.BrandVariant = brandVariant.Value;

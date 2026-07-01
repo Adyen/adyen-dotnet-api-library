@@ -249,13 +249,12 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class USInstantPayoutAddressRequirement.", nameof(type));
 
             var uSInstantPayoutAddressRequirement = new USInstantPayoutAddressRequirement();
             if (description.IsSet)
                 uSInstantPayoutAddressRequirement.Description = description.Value;
-            uSInstantPayoutAddressRequirement.Type = type.Value!;
+            if (type.IsSet)
+                uSInstantPayoutAddressRequirement.Type = type.Value!;
             return uSInstantPayoutAddressRequirement;
         }
 

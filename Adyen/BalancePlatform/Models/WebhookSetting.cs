@@ -56,26 +56,26 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance.</value>
         [JsonPropertyName("currency")]
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         /// <summary>
         /// The unique identifier of the webhook setting.
         /// </summary>
         /// <value>The unique identifier of the webhook setting.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// <see cref="Status"/>.
         /// </summary>
         [JsonPropertyName("status")]
-        public string Status { get; set; }
+        public string? Status { get; set; }
 
         /// <summary>
         /// <see cref="Target"/>.
         /// </summary>
         [JsonPropertyName("target")]
-        public Target Target { get; set; }
+        public Target? Target { get; set; }
 
         /// <summary>
         /// The discriminator.
@@ -171,26 +171,16 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class WebhookSetting.", nameof(currency));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class WebhookSetting.", nameof(id));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class WebhookSetting.", nameof(status));
-
-            if (!target.IsSet)
-                throw new ArgumentException("Property is required for class WebhookSetting.", nameof(target));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class WebhookSetting.", nameof(type));
 
             var webhookSetting = new WebhookSetting();
-            webhookSetting.Currency = currency.Value!;
-            webhookSetting.Id = id.Value!;
-            webhookSetting.Status = status.Value!;
-            webhookSetting.Target = target.Value!;
+            if (currency.IsSet)
+                webhookSetting.Currency = currency.Value!;
+            if (id.IsSet)
+                webhookSetting.Id = id.Value!;
+            if (status.IsSet)
+                webhookSetting.Status = status.Value!;
+            if (target.IsSet)
+                webhookSetting.Target = target.Value!;
             return webhookSetting;
         }
 

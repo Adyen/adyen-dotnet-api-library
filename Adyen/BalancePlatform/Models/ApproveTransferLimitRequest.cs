@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>A list that includes the `transferLimitId` of all the pending transfer limits you want to approve.</value>
         [JsonPropertyName("transferLimitIds")]
-        public List<string> TransferLimitIds { get; set; }
+        public List<string>? TransferLimitIds { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!transferLimitIds.IsSet)
-                throw new ArgumentException("Property is required for class ApproveTransferLimitRequest.", nameof(transferLimitIds));
 
             var approveTransferLimitRequest = new ApproveTransferLimitRequest();
-            approveTransferLimitRequest.TransferLimitIds = transferLimitIds.Value!;
+            if (transferLimitIds.IsSet)
+                approveTransferLimitRequest.TransferLimitIds = transferLimitIds.Value!;
             return approveTransferLimitRequest;
         }
 

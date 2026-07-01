@@ -122,6 +122,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var registerSCAFinalResponse = new RegisterSCAFinalResponse();
             if (success.IsSet)
                 registerSCAFinalResponse.Success = success.Value;

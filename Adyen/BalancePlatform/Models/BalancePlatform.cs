@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The unique identifier of the balance platform.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
@@ -153,11 +153,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class BalancePlatform.", nameof(id));
 
             var balancePlatform = new BalancePlatform();
-            balancePlatform.Id = id.Value!;
+            if (id.IsSet)
+                balancePlatform.Id = id.Value!;
             if (description.IsSet)
                 balancePlatform.Description = description.Value;
             if (status.IsSet)

@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>List of balance accounts.</value>
         [JsonPropertyName("balanceAccounts")]
-        public List<BalanceAccountBase> BalanceAccounts { get; set; }
+        public List<BalanceAccountBase>? BalanceAccounts { get; set; }
 
         /// <summary>
         /// Indicates whether there are more items on the next page.
@@ -139,19 +139,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!balanceAccounts.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedBalanceAccountsResponse.", nameof(balanceAccounts));
-
-            if (!hasNext.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedBalanceAccountsResponse.", nameof(hasNext));
-
-            if (!hasPrevious.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedBalanceAccountsResponse.", nameof(hasPrevious));
 
             var paginatedBalanceAccountsResponse = new PaginatedBalanceAccountsResponse();
-            paginatedBalanceAccountsResponse.BalanceAccounts = balanceAccounts.Value!;
-            paginatedBalanceAccountsResponse.HasNext = hasNext.Value!.Value;
-            paginatedBalanceAccountsResponse.HasPrevious = hasPrevious.Value!.Value;
+            if (balanceAccounts.IsSet)
+                paginatedBalanceAccountsResponse.BalanceAccounts = balanceAccounts.Value!;
+            if (hasNext.IsSet)
+                paginatedBalanceAccountsResponse.HasNext = hasNext.Value!.Value;
+            if (hasPrevious.IsSet)
+                paginatedBalanceAccountsResponse.HasPrevious = hasPrevious.Value!.Value;
             return paginatedBalanceAccountsResponse;
         }
 

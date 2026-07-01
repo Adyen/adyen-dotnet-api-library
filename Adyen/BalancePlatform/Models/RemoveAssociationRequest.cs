@@ -57,14 +57,14 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The unique identifier of the entity.</value>
         [JsonPropertyName("entityId")]
-        public string EntityId { get; set; }
+        public string? EntityId { get; set; }
 
         /// <summary>
         /// A list of device ids associated with the entity that should be removed.
         /// </summary>
         /// <value>A list of device ids associated with the entity that should be removed.</value>
         [JsonPropertyName("scaDeviceIds")]
-        public List<string> ScaDeviceIds { get; set; }
+        public List<string>? ScaDeviceIds { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,19 +139,14 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!entityId.IsSet)
-                throw new ArgumentException("Property is required for class RemoveAssociationRequest.", nameof(entityId));
-
-            if (!entityType.IsSet)
-                throw new ArgumentException("Property is required for class RemoveAssociationRequest.", nameof(entityType));
-
-            if (!scaDeviceIds.IsSet)
-                throw new ArgumentException("Property is required for class RemoveAssociationRequest.", nameof(scaDeviceIds));
 
             var removeAssociationRequest = new RemoveAssociationRequest();
-            removeAssociationRequest.EntityId = entityId.Value!;
-            removeAssociationRequest.EntityType = entityType.Value!;
-            removeAssociationRequest.ScaDeviceIds = scaDeviceIds.Value!;
+            if (entityId.IsSet)
+                removeAssociationRequest.EntityId = entityId.Value!;
+            if (entityType.IsSet)
+                removeAssociationRequest.EntityType = entityType.Value!;
+            if (scaDeviceIds.IsSet)
+                removeAssociationRequest.ScaDeviceIds = scaDeviceIds.Value!;
             return removeAssociationRequest;
         }
 

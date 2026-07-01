@@ -722,6 +722,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var accountHolderCapability = new AccountHolderCapability();
             if (allowed.IsSet)
                 accountHolderCapability.Allowed = allowed.Value;

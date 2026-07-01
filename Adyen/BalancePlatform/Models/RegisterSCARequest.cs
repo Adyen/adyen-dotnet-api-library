@@ -51,13 +51,13 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <value>The unique identifier of the payment instrument for which you are registering the SCA device.</value>
         [JsonPropertyName("paymentInstrumentId")]
-        public string PaymentInstrumentId { get; set; }
+        public string? PaymentInstrumentId { get; set; }
 
         /// <summary>
         /// <see cref="StrongCustomerAuthentication"/>.
         /// </summary>
         [JsonPropertyName("strongCustomerAuthentication")]
-        public DelegatedAuthenticationData StrongCustomerAuthentication { get; set; }
+        public DelegatedAuthenticationData? StrongCustomerAuthentication { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Name"/> will be populated.
@@ -145,15 +145,12 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!paymentInstrumentId.IsSet)
-                throw new ArgumentException("Property is required for class RegisterSCARequest.", nameof(paymentInstrumentId));
-
-            if (!strongCustomerAuthentication.IsSet)
-                throw new ArgumentException("Property is required for class RegisterSCARequest.", nameof(strongCustomerAuthentication));
 
             var registerSCARequest = new RegisterSCARequest();
-            registerSCARequest.PaymentInstrumentId = paymentInstrumentId.Value!;
-            registerSCARequest.StrongCustomerAuthentication = strongCustomerAuthentication.Value!;
+            if (paymentInstrumentId.IsSet)
+                registerSCARequest.PaymentInstrumentId = paymentInstrumentId.Value!;
+            if (strongCustomerAuthentication.IsSet)
+                registerSCARequest.StrongCustomerAuthentication = strongCustomerAuthentication.Value!;
             if (name.IsSet)
                 registerSCARequest.Name = name.Value;
             return registerSCARequest;

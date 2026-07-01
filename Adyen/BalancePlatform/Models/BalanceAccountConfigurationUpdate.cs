@@ -456,6 +456,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var balanceAccountConfigurationUpdate = new BalanceAccountConfigurationUpdate();
             if (description.IsSet)
                 balanceAccountConfigurationUpdate.Description = description.Value;

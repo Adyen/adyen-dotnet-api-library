@@ -456,6 +456,7 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
+
             var capabilitySettings = new CapabilitySettings();
             if (amountPerIndustry.IsSet)
                 capabilitySettings.AmountPerIndustry = amountPerIndustry.Value;

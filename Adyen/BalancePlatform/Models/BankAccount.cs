@@ -50,7 +50,7 @@ namespace Adyen.BalancePlatform.Models
         /// <see cref="AccountIdentification"/>.
         /// </summary>
         [JsonPropertyName("accountIdentification")]
-        public BankAccountAccountIdentification AccountIdentification { get; set; }
+        public BankAccountAccountIdentification? AccountIdentification { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -114,11 +114,10 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!accountIdentification.IsSet)
-                throw new ArgumentException("Property is required for class BankAccount.", nameof(accountIdentification));
 
             var bankAccount = new BankAccount();
-            bankAccount.AccountIdentification = accountIdentification.Value!;
+            if (accountIdentification.IsSet)
+                bankAccount.AccountIdentification = accountIdentification.Value!;
             return bankAccount;
         }
 
