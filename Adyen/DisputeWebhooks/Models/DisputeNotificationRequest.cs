@@ -180,7 +180,7 @@ namespace Adyen.DisputeWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public DisputeEventNotification Data { get; set; }
+        public DisputeEventNotification? Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -250,15 +250,12 @@ namespace Adyen.DisputeWebhooks.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class DisputeNotificationRequest.", nameof(data));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class DisputeNotificationRequest.", nameof(type));
 
             var disputeNotificationRequest = new DisputeNotificationRequest();
-            disputeNotificationRequest.Data = data.Value!;
-            disputeNotificationRequest.Type = type.Value!;
+            if (data.IsSet)
+                disputeNotificationRequest.Data = data.Value!;
+            if (type.IsSet)
+                disputeNotificationRequest.Type = type.Value!;
             return disputeNotificationRequest;
         }
 
