@@ -336,21 +336,21 @@ namespace Adyen.StoredValue.Models
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The collection that contains the type of the payment method and its specific information if available
         /// </summary>
         /// <value>The collection that contains the type of the payment method and its specific information if available</value>
         [JsonPropertyName("paymentMethod")]
-        public Dictionary<string, string> PaymentMethod { get; set; }
+        public Dictionary<string, string>? PaymentMethod { get; set; }
 
         /// <summary>
         /// The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.
         /// </summary>
         /// <value>The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). Maximum length: 80 characters.</value>
         [JsonPropertyName("reference")]
-        public string Reference { get; set; }
+        public string? Reference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
@@ -509,23 +509,16 @@ namespace Adyen.StoredValue.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class StoredValueStatusChangeRequest.", nameof(merchantAccount));
-
-            if (!paymentMethod.IsSet)
-                throw new ArgumentException("Property is required for class StoredValueStatusChangeRequest.", nameof(paymentMethod));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class StoredValueStatusChangeRequest.", nameof(reference));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class StoredValueStatusChangeRequest.", nameof(status));
 
             var storedValueStatusChangeRequest = new StoredValueStatusChangeRequest();
-            storedValueStatusChangeRequest.MerchantAccount = merchantAccount.Value!;
-            storedValueStatusChangeRequest.PaymentMethod = paymentMethod.Value!;
-            storedValueStatusChangeRequest.Reference = reference.Value!;
-            storedValueStatusChangeRequest.Status = status.Value!;
+            if (merchantAccount.IsSet)
+                storedValueStatusChangeRequest.MerchantAccount = merchantAccount.Value!;
+            if (paymentMethod.IsSet)
+                storedValueStatusChangeRequest.PaymentMethod = paymentMethod.Value!;
+            if (reference.IsSet)
+                storedValueStatusChangeRequest.Reference = reference.Value!;
+            if (status.IsSet)
+                storedValueStatusChangeRequest.Status = status.Value!;
             if (amount.IsSet)
                 storedValueStatusChangeRequest.Amount = amount.Value;
             if (recurringDetailReference.IsSet)

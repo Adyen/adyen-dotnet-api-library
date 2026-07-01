@@ -339,6 +339,7 @@ namespace Adyen.StoredValue.Models
                 }
             }
             
+
             var storedValueBalanceCheckResponse = new StoredValueBalanceCheckResponse();
             if (currentBalance.IsSet)
                 storedValueBalanceCheckResponse.CurrentBalance = currentBalance.Value;

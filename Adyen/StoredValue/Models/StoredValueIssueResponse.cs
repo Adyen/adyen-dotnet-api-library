@@ -377,6 +377,7 @@ namespace Adyen.StoredValue.Models
                 }
             }
             
+
             var storedValueIssueResponse = new StoredValueIssueResponse();
             if (authCode.IsSet)
                 storedValueIssueResponse.AuthCode = authCode.Value;

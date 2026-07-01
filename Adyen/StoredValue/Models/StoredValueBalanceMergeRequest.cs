@@ -206,28 +206,28 @@ namespace Adyen.StoredValue.Models
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The collection that contains the type of the payment method and its specific information if available
         /// </summary>
         /// <value>The collection that contains the type of the payment method and its specific information if available</value>
         [JsonPropertyName("paymentMethod")]
-        public Dictionary<string, string> PaymentMethod { get; set; }
+        public Dictionary<string, string>? PaymentMethod { get; set; }
 
         /// <summary>
         /// The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.
         /// </summary>
         /// <value>The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). Maximum length: 80 characters.</value>
         [JsonPropertyName("reference")]
-        public string Reference { get; set; }
+        public string? Reference { get; set; }
 
         /// <summary>
         /// The collection that contains the source payment method and its specific information if available. Note that type should not be included since it is inferred from the (target) payment method
         /// </summary>
         /// <value>The collection that contains the source payment method and its specific information if available. Note that type should not be included since it is inferred from the (target) payment method</value>
         [JsonPropertyName("sourcePaymentMethod")]
-        public Dictionary<string, string> SourcePaymentMethod { get; set; }
+        public Dictionary<string, string>? SourcePaymentMethod { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
@@ -385,23 +385,16 @@ namespace Adyen.StoredValue.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class StoredValueBalanceMergeRequest.", nameof(merchantAccount));
-
-            if (!paymentMethod.IsSet)
-                throw new ArgumentException("Property is required for class StoredValueBalanceMergeRequest.", nameof(paymentMethod));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class StoredValueBalanceMergeRequest.", nameof(reference));
-
-            if (!sourcePaymentMethod.IsSet)
-                throw new ArgumentException("Property is required for class StoredValueBalanceMergeRequest.", nameof(sourcePaymentMethod));
 
             var storedValueBalanceMergeRequest = new StoredValueBalanceMergeRequest();
-            storedValueBalanceMergeRequest.MerchantAccount = merchantAccount.Value!;
-            storedValueBalanceMergeRequest.PaymentMethod = paymentMethod.Value!;
-            storedValueBalanceMergeRequest.Reference = reference.Value!;
-            storedValueBalanceMergeRequest.SourcePaymentMethod = sourcePaymentMethod.Value!;
+            if (merchantAccount.IsSet)
+                storedValueBalanceMergeRequest.MerchantAccount = merchantAccount.Value!;
+            if (paymentMethod.IsSet)
+                storedValueBalanceMergeRequest.PaymentMethod = paymentMethod.Value!;
+            if (reference.IsSet)
+                storedValueBalanceMergeRequest.Reference = reference.Value!;
+            if (sourcePaymentMethod.IsSet)
+                storedValueBalanceMergeRequest.SourcePaymentMethod = sourcePaymentMethod.Value!;
             if (amount.IsSet)
                 storedValueBalanceMergeRequest.Amount = amount.Value;
             if (recurringDetailReference.IsSet)
