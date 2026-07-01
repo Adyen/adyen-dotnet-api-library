@@ -181,13 +181,13 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <value>The unique identifier of the account holder that the dynamic offer is for.</value>
         [JsonPropertyName("accountHolderId")]
-        public string AccountHolderId { get; set; }
+        public string? AccountHolderId { get; set; }
 
         /// <summary>
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The expiration date and time of the offer validity period.
@@ -200,13 +200,13 @@ namespace Adyen.Capital.Models
         /// <see cref="Fee"/>.
         /// </summary>
         [JsonPropertyName("fee")]
-        public GrantOfferFee Fee { get; set; }
+        public GrantOfferFee? Fee { get; set; }
 
         /// <summary>
         /// <see cref="Repayment"/>.
         /// </summary>
         [JsonPropertyName("repayment")]
-        public Repayment Repayment { get; set; }
+        public Repayment? Repayment { get; set; }
 
         /// <summary>
         /// The starting date and time of the offer validity period.
@@ -318,35 +318,22 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!accountHolderId.IsSet)
-                throw new ArgumentException("Property is required for class CalculatedGrantOffer.", nameof(accountHolderId));
-
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class CalculatedGrantOffer.", nameof(amount));
-
-            if (!contractType.IsSet)
-                throw new ArgumentException("Property is required for class CalculatedGrantOffer.", nameof(contractType));
-
-            if (!expiresAt.IsSet)
-                throw new ArgumentException("Property is required for class CalculatedGrantOffer.", nameof(expiresAt));
-
-            if (!fee.IsSet)
-                throw new ArgumentException("Property is required for class CalculatedGrantOffer.", nameof(fee));
-
-            if (!repayment.IsSet)
-                throw new ArgumentException("Property is required for class CalculatedGrantOffer.", nameof(repayment));
-
-            if (!startsAt.IsSet)
-                throw new ArgumentException("Property is required for class CalculatedGrantOffer.", nameof(startsAt));
 
             var calculatedGrantOffer = new CalculatedGrantOffer();
-            calculatedGrantOffer.AccountHolderId = accountHolderId.Value!;
-            calculatedGrantOffer.Amount = amount.Value!;
-            calculatedGrantOffer.ContractType = contractType.Value!;
-            calculatedGrantOffer.ExpiresAt = expiresAt.Value!.Value;
-            calculatedGrantOffer.Fee = fee.Value!;
-            calculatedGrantOffer.Repayment = repayment.Value!;
-            calculatedGrantOffer.StartsAt = startsAt.Value!.Value;
+            if (accountHolderId.IsSet)
+                calculatedGrantOffer.AccountHolderId = accountHolderId.Value!;
+            if (amount.IsSet)
+                calculatedGrantOffer.Amount = amount.Value!;
+            if (contractType.IsSet)
+                calculatedGrantOffer.ContractType = contractType.Value!;
+            if (expiresAt.IsSet)
+                calculatedGrantOffer.ExpiresAt = expiresAt.Value!.Value;
+            if (fee.IsSet)
+                calculatedGrantOffer.Fee = fee.Value!;
+            if (repayment.IsSet)
+                calculatedGrantOffer.Repayment = repayment.Value!;
+            if (startsAt.IsSet)
+                calculatedGrantOffer.StartsAt = startsAt.Value!.Value;
             return calculatedGrantOffer;
         }
 

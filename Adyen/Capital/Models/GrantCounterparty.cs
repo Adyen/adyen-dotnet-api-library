@@ -160,6 +160,7 @@ namespace Adyen.Capital.Models
                 }
             }
             
+
             var grantCounterparty = new GrantCounterparty();
             if (accountHolderId.IsSet)
                 grantCounterparty.AccountHolderId = accountHolderId.Value;

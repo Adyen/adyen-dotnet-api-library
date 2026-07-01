@@ -51,7 +51,7 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <value>Contains a list of available offers for the specified account holder.</value>
         [JsonPropertyName("grantOffers")]
-        public List<GrantOffer> VarGrantOffers { get; set; }
+        public List<GrantOffer>? VarGrantOffers { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!varGrantOffers.IsSet)
-                throw new ArgumentException("Property is required for class GrantOffers.", nameof(varGrantOffers));
 
             var grantOffers = new GrantOffers();
-            grantOffers.VarGrantOffers = varGrantOffers.Value!;
+            if (varGrantOffers.IsSet)
+                grantOffers.VarGrantOffers = varGrantOffers.Value!;
             return grantOffers;
         }
 

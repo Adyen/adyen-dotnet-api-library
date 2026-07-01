@@ -51,14 +51,14 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <value>The 4-10 digits bank account number (Kontonummer) (without separators or whitespace).</value>
         [JsonPropertyName("accountNumber")]
-        public string AccountNumber { get; set; }
+        public string? AccountNumber { get; set; }
 
         /// <summary>
         /// The 4-digit bank code (Registreringsnummer) (without separators or whitespace).
         /// </summary>
         /// <value>The 4-digit bank code (Registreringsnummer) (without separators or whitespace).</value>
         [JsonPropertyName("bankCode")]
-        public string BankCode { get; set; }
+        public string? BankCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,18 +132,12 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class DKLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!bankCode.IsSet)
-                throw new ArgumentException("Property is required for class DKLocalAccountIdentification.", nameof(bankCode));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class DKLocalAccountIdentification.", nameof(type));
 
             var dKLocalAccountIdentification = new DKLocalAccountIdentification();
-            dKLocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            dKLocalAccountIdentification.BankCode = bankCode.Value!;
+            if (accountNumber.IsSet)
+                dKLocalAccountIdentification.AccountNumber = accountNumber.Value!;
+            if (bankCode.IsSet)
+                dKLocalAccountIdentification.BankCode = bankCode.Value!;
             return dKLocalAccountIdentification;
         }
 

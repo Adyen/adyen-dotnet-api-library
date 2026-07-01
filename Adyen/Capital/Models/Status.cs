@@ -339,11 +339,10 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!code.IsSet)
-                throw new ArgumentException("Property is required for class Status.", nameof(code));
 
             var status = new Status();
-            status.Code = code.Value!;
+            if (code.IsSet)
+                status.Code = code.Value!;
             if (actions.IsSet)
                 status.Actions = actions.Value;
             return status;

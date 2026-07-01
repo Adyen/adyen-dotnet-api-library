@@ -179,6 +179,7 @@ namespace Adyen.Capital.Models
                 }
             }
             
+
             var grantAccount = new GrantAccount();
             if (balances.IsSet)
                 grantAccount.Balances = balances.Value;

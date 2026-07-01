@@ -50,7 +50,7 @@ namespace Adyen.Capital.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -114,11 +114,10 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class CalculateGrantOfferRequest.", nameof(amount));
 
             var calculateGrantOfferRequest = new CalculateGrantOfferRequest();
-            calculateGrantOfferRequest.Amount = amount.Value!;
+            if (amount.IsSet)
+                calculateGrantOfferRequest.Amount = amount.Value!;
             return calculateGrantOfferRequest;
         }
 

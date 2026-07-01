@@ -51,7 +51,7 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <value>Contains a list of the grants that the account holder has received.</value>
         [JsonPropertyName("grants")]
-        public List<Grant> VarGrants { get; set; }
+        public List<Grant>? VarGrants { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!varGrants.IsSet)
-                throw new ArgumentException("Property is required for class Grants.", nameof(varGrants));
 
             var grants = new Grants();
-            grants.VarGrants = varGrants.Value!;
+            if (varGrants.IsSet)
+                grants.VarGrants = varGrants.Value!;
             return grants;
         }
 

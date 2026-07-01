@@ -51,7 +51,7 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).</value>
         [JsonPropertyName("currency")]
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         /// <summary>
         /// The amount of the grant fee.
@@ -151,23 +151,16 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class Balance.", nameof(currency));
-
-            if (!fee.IsSet)
-                throw new ArgumentException("Property is required for class Balance.", nameof(fee));
-
-            if (!principal.IsSet)
-                throw new ArgumentException("Property is required for class Balance.", nameof(principal));
-
-            if (!total.IsSet)
-                throw new ArgumentException("Property is required for class Balance.", nameof(total));
 
             var balance = new Balance();
-            balance.Currency = currency.Value!;
-            balance.Fee = fee.Value!.Value;
-            balance.Principal = principal.Value!.Value;
-            balance.Total = total.Value!.Value;
+            if (currency.IsSet)
+                balance.Currency = currency.Value!;
+            if (fee.IsSet)
+                balance.Fee = fee.Value!.Value;
+            if (principal.IsSet)
+                balance.Principal = principal.Value!.Value;
+            if (total.IsSet)
+                balance.Total = total.Value!.Value;
             return balance;
         }
 

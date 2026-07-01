@@ -51,7 +51,7 @@ namespace Adyen.Capital.Models
         /// </summary>
         /// <value>The 15-16 digit bank account number. The first 2 digits are the bank number, the next 4 digits are the branch number, the next 7 digits are the account number, and the final 2-3 digits are the suffix.</value>
         [JsonPropertyName("accountNumber")]
-        public string AccountNumber { get; set; }
+        public string? AccountNumber { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -120,14 +120,10 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class NZLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class NZLocalAccountIdentification.", nameof(type));
 
             var nZLocalAccountIdentification = new NZLocalAccountIdentification();
-            nZLocalAccountIdentification.AccountNumber = accountNumber.Value!;
+            if (accountNumber.IsSet)
+                nZLocalAccountIdentification.AccountNumber = accountNumber.Value!;
             return nZLocalAccountIdentification;
         }
 
