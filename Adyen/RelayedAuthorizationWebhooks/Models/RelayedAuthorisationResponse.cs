@@ -159,6 +159,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
+
             var relayedAuthorisationResponse = new RelayedAuthorisationResponse();
             if (authorisationDecision.IsSet)
                 relayedAuthorisationResponse.AuthorisationDecision = authorisationDecision.Value;

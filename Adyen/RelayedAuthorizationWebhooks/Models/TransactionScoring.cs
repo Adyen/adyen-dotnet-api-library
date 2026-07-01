@@ -141,6 +141,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
+
             var transactionScoring = new TransactionScoring();
             if (type.IsSet)
                 transactionScoring.Type = type.Value;

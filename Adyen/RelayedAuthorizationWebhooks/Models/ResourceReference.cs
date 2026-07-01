@@ -160,6 +160,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
+
             var resourceReference = new ResourceReference();
             if (description.IsSet)
                 resourceReference.Description = description.Value;

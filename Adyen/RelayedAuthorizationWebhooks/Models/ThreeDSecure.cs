@@ -179,6 +179,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
+
             var threeDSecure = new ThreeDSecure();
             if (acsTransactionId.IsSet)
                 threeDSecure.AcsTransactionId = acsTransactionId.Value;

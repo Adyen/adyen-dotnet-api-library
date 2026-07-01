@@ -51,7 +51,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
         /// </summary>
         /// <value>The two-character ISO-3166-1 alpha-2 country code. For example, **US**.</value>
         [JsonPropertyName("country")]
-        public string Country { get; set; }
+        public string? Country { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="City"/> will be populated.
@@ -343,11 +343,10 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
-            if (!country.IsSet)
-                throw new ArgumentException("Property is required for class BulkAddress.", nameof(country));
 
             var bulkAddress = new BulkAddress();
-            bulkAddress.Country = country.Value!;
+            if (country.IsSet)
+                bulkAddress.Country = country.Value!;
             if (city.IsSet)
                 bulkAddress.City = city.Value;
             if (company.IsSet)

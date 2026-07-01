@@ -50,13 +50,13 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
         /// <see cref="Address"/>.
         /// </summary>
         [JsonPropertyName("address")]
-        public DeliveryAddress Address { get; set; }
+        public DeliveryAddress? Address { get; set; }
 
         /// <summary>
         /// <see cref="Name"/>.
         /// </summary>
         [JsonPropertyName("name")]
-        public Name Name { get; set; }
+        public Name? Name { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Company"/> will be populated.
@@ -200,15 +200,12 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
-            if (!address.IsSet)
-                throw new ArgumentException("Property is required for class DeliveryContact.", nameof(address));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class DeliveryContact.", nameof(name));
 
             var deliveryContact = new DeliveryContact();
-            deliveryContact.Address = address.Value!;
-            deliveryContact.Name = name.Value!;
+            if (address.IsSet)
+                deliveryContact.Address = address.Value!;
+            if (name.IsSet)
+                deliveryContact.Name = name.Value!;
             if (company.IsSet)
                 deliveryContact.Company = company.Value;
             if (email.IsSet)

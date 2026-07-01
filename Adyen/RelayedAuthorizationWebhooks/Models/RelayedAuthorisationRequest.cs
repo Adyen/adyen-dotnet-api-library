@@ -684,6 +684,7 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
+
             var relayedAuthorisationRequest = new RelayedAuthorisationRequest();
             if (accountHolder.IsSet)
                 relayedAuthorisationRequest.AccountHolder = accountHolder.Value;
