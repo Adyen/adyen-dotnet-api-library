@@ -217,6 +217,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var responseAdditionalDataBillingAddress = new ResponseAdditionalDataBillingAddress();
             if (billingAddressCity.IsSet)
                 responseAdditionalDataBillingAddress.BillingAddressCity = billingAddressCity.Value;

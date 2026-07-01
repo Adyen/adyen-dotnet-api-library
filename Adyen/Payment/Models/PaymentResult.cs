@@ -542,6 +542,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var paymentResult = new PaymentResult();
             if (additionalData.IsSet)
                 paymentResult.AdditionalData = additionalData.Value;

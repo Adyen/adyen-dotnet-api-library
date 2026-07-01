@@ -502,6 +502,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var additionalDataRisk = new AdditionalDataRisk();
             if (riskdataCustomFieldName.IsSet)
                 additionalDataRisk.RiskdataCustomFieldName = riskdataCustomFieldName.Value;

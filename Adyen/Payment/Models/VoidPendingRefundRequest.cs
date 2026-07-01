@@ -51,7 +51,7 @@ namespace Adyen.Payment.Models
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
@@ -302,11 +302,10 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class VoidPendingRefundRequest.", nameof(merchantAccount));
 
             var voidPendingRefundRequest = new VoidPendingRefundRequest();
-            voidPendingRefundRequest.MerchantAccount = merchantAccount.Value!;
+            if (merchantAccount.IsSet)
+                voidPendingRefundRequest.MerchantAccount = merchantAccount.Value!;
             if (additionalData.IsSet)
                 voidPendingRefundRequest.AdditionalData = additionalData.Value;
             if (modificationAmount.IsSet)

@@ -992,7 +992,7 @@ namespace Adyen.Payment.Models
         /// </summary>
         /// <value>The environment of the shopper. Allowed values: * `app` * `browser`</value>
         [JsonPropertyName("deviceChannel")]
-        public string DeviceChannel { get; set; }
+        public string? DeviceChannel { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AcctInfo"/> will be populated.
@@ -1694,11 +1694,10 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!deviceChannel.IsSet)
-                throw new ArgumentException("Property is required for class ThreeDS2RequestData.", nameof(deviceChannel));
 
             var threeDS2RequestData = new ThreeDS2RequestData();
-            threeDS2RequestData.DeviceChannel = deviceChannel.Value!;
+            if (deviceChannel.IsSet)
+                threeDS2RequestData.DeviceChannel = deviceChannel.Value!;
             if (acctInfo.IsSet)
                 threeDS2RequestData.AcctInfo = acctInfo.Value;
             if (acctType.IsSet)

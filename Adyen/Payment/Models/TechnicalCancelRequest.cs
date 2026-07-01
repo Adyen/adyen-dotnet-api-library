@@ -51,14 +51,14 @@ namespace Adyen.Payment.Models
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The original merchant reference to cancel.
         /// </summary>
         /// <value>The original merchant reference to cancel.</value>
         [JsonPropertyName("originalMerchantReference")]
-        public string OriginalMerchantReference { get; set; }
+        public string? OriginalMerchantReference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
@@ -276,15 +276,12 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class TechnicalCancelRequest.", nameof(merchantAccount));
-
-            if (!originalMerchantReference.IsSet)
-                throw new ArgumentException("Property is required for class TechnicalCancelRequest.", nameof(originalMerchantReference));
 
             var technicalCancelRequest = new TechnicalCancelRequest();
-            technicalCancelRequest.MerchantAccount = merchantAccount.Value!;
-            technicalCancelRequest.OriginalMerchantReference = originalMerchantReference.Value!;
+            if (merchantAccount.IsSet)
+                technicalCancelRequest.MerchantAccount = merchantAccount.Value!;
+            if (originalMerchantReference.IsSet)
+                technicalCancelRequest.OriginalMerchantReference = originalMerchantReference.Value!;
             if (additionalData.IsSet)
                 technicalCancelRequest.AdditionalData = additionalData.Value;
             if (modificationAmount.IsSet)

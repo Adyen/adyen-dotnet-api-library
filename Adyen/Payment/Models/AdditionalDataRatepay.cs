@@ -255,6 +255,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var additionalDataRatepay = new AdditionalDataRatepay();
             if (ratepayInstallmentAmount.IsSet)
                 additionalDataRatepay.RatepayInstallmentAmount = ratepayInstallmentAmount.Value;

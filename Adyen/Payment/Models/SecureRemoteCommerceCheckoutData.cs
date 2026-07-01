@@ -341,6 +341,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var secureRemoteCommerceCheckoutData = new SecureRemoteCommerceCheckoutData();
             if (checkoutPayload.IsSet)
                 secureRemoteCommerceCheckoutData.CheckoutPayload = checkoutPayload.Value;

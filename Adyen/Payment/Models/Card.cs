@@ -255,6 +255,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var card = new Card();
             if (cvc.IsSet)
                 card.Cvc = cvc.Value;

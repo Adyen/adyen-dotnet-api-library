@@ -141,6 +141,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var commonField = new CommonField();
             if (name.IsSet)
                 commonField.Name = name.Value;

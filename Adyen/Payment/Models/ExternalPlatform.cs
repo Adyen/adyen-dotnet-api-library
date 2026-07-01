@@ -160,6 +160,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var externalPlatform = new ExternalPlatform();
             if (integrator.IsSet)
                 externalPlatform.Integrator = integrator.Value;

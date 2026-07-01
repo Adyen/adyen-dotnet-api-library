@@ -274,6 +274,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var additionalDataTemporaryServices = new AdditionalDataTemporaryServices();
             if (enhancedSchemeDataCustomerReference.IsSet)
                 additionalDataTemporaryServices.EnhancedSchemeDataCustomerReference = enhancedSchemeDataCustomerReference.Value;

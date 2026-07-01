@@ -634,21 +634,21 @@ namespace Adyen.Payment.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.
         /// </summary>
         /// <value>The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). Maximum length: 80 characters.</value>
         [JsonPropertyName("reference")]
-        public string Reference { get; set; }
+        public string? Reference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AccountInfo"/> will be populated.
@@ -1629,19 +1629,14 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentRequest.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentRequest.", nameof(merchantAccount));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class PaymentRequest.", nameof(reference));
 
             var paymentRequest = new PaymentRequest();
-            paymentRequest.Amount = amount.Value!;
-            paymentRequest.MerchantAccount = merchantAccount.Value!;
-            paymentRequest.Reference = reference.Value!;
+            if (amount.IsSet)
+                paymentRequest.Amount = amount.Value!;
+            if (merchantAccount.IsSet)
+                paymentRequest.MerchantAccount = merchantAccount.Value!;
+            if (reference.IsSet)
+                paymentRequest.Reference = reference.Value!;
             if (accountInfo.IsSet)
                 paymentRequest.AccountInfo = accountInfo.Value;
             if (additionalAmount.IsSet)

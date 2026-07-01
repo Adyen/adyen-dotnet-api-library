@@ -368,6 +368,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var additionalData3DSecure = new AdditionalData3DSecure();
             if (allow3DS2.IsSet)
                 additionalData3DSecure.Allow3DS2 = allow3DS2.Value;

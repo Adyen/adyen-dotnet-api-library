@@ -51,7 +51,7 @@ namespace Adyen.Payment.Models
         /// </summary>
         /// <value>The passenger's name, initials, and title. * Format: last name + first name or initials + title * Example: *FLYER / MARY MS* * minLength: 1 character * maxLength: 20 characters * If you send more than 20 characters, the name is truncated * Must not be all spaces  * Must not be all zeros.</value>
         [JsonPropertyName("airline.passenger_name")]
-        public string AirlinePassengerName { get; set; }
+        public string? AirlinePassengerName { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AirlineAgencyInvoiceNumber"/> will be populated.
@@ -647,11 +647,10 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!airlinePassengerName.IsSet)
-                throw new ArgumentException("Property is required for class AdditionalDataAirline.", nameof(airlinePassengerName));
 
             var additionalDataAirline = new AdditionalDataAirline();
-            additionalDataAirline.AirlinePassengerName = airlinePassengerName.Value!;
+            if (airlinePassengerName.IsSet)
+                additionalDataAirline.AirlinePassengerName = airlinePassengerName.Value!;
             if (airlineAgencyInvoiceNumber.IsSet)
                 additionalDataAirline.AirlineAgencyInvoiceNumber = airlineAgencyInvoiceNumber.Value;
             if (airlineAgencyPlanName.IsSet)

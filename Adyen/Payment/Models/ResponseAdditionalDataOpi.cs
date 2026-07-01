@@ -122,6 +122,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var responseAdditionalDataOpi = new ResponseAdditionalDataOpi();
             if (opiTransToken.IsSet)
                 responseAdditionalDataOpi.OpiTransToken = opiTransToken.Value;

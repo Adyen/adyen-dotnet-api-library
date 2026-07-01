@@ -352,21 +352,21 @@ namespace Adyen.Payment.Models
         /// </summary>
         /// <value>The payment session identifier returned by the card issuer.</value>
         [JsonPropertyName("md")]
-        public string Md { get; set; }
+        public string? Md { get; set; }
 
         /// <summary>
         /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// Payment authorisation response returned by the card issuer. The &#x60;paResponse&#x60; field holds the PaRes value received from the card issuer.
         /// </summary>
         /// <value>Payment authorisation response returned by the card issuer. The `paResponse` field holds the PaRes value received from the card issuer.</value>
         [JsonPropertyName("paResponse")]
-        public string PaResponse { get; set; }
+        public string? PaResponse { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AccountInfo"/> will be populated.
@@ -1209,19 +1209,14 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!md.IsSet)
-                throw new ArgumentException("Property is required for class PaymentRequest3d.", nameof(md));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentRequest3d.", nameof(merchantAccount));
-
-            if (!paResponse.IsSet)
-                throw new ArgumentException("Property is required for class PaymentRequest3d.", nameof(paResponse));
 
             var paymentRequest3d = new PaymentRequest3d();
-            paymentRequest3d.Md = md.Value!;
-            paymentRequest3d.MerchantAccount = merchantAccount.Value!;
-            paymentRequest3d.PaResponse = paResponse.Value!;
+            if (md.IsSet)
+                paymentRequest3d.Md = md.Value!;
+            if (merchantAccount.IsSet)
+                paymentRequest3d.MerchantAccount = merchantAccount.Value!;
+            if (paResponse.IsSet)
+                paymentRequest3d.PaResponse = paResponse.Value!;
             if (accountInfo.IsSet)
                 paymentRequest3d.AccountInfo = accountInfo.Value;
             if (additionalAmount.IsSet)

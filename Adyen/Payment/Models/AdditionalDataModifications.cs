@@ -122,6 +122,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var additionalDataModifications = new AdditionalDataModifications();
             if (installmentPaymentDataSelectedInstallmentOption.IsSet)
                 additionalDataModifications.InstallmentPaymentDataSelectedInstallmentOption = installmentPaymentDataSelectedInstallmentOption.Value;

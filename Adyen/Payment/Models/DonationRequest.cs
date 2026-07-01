@@ -51,20 +51,20 @@ namespace Adyen.Payment.Models
         /// </summary>
         /// <value>The Adyen account name of the charity.</value>
         [JsonPropertyName("donationAccount")]
-        public string DonationAccount { get; set; }
+        public string? DonationAccount { get; set; }
 
         /// <summary>
         /// The merchant account that is used to process the payment.
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// <see cref="ModificationAmount"/>.
         /// </summary>
         [JsonPropertyName("modificationAmount")]
-        public Amount ModificationAmount { get; set; }
+        public Amount? ModificationAmount { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="OriginalReference"/> will be populated.
@@ -194,19 +194,14 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!donationAccount.IsSet)
-                throw new ArgumentException("Property is required for class DonationRequest.", nameof(donationAccount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class DonationRequest.", nameof(merchantAccount));
-
-            if (!modificationAmount.IsSet)
-                throw new ArgumentException("Property is required for class DonationRequest.", nameof(modificationAmount));
 
             var donationRequest = new DonationRequest();
-            donationRequest.DonationAccount = donationAccount.Value!;
-            donationRequest.MerchantAccount = merchantAccount.Value!;
-            donationRequest.ModificationAmount = modificationAmount.Value!;
+            if (donationAccount.IsSet)
+                donationRequest.DonationAccount = donationAccount.Value!;
+            if (merchantAccount.IsSet)
+                donationRequest.MerchantAccount = merchantAccount.Value!;
+            if (modificationAmount.IsSet)
+                donationRequest.ModificationAmount = modificationAmount.Value!;
             if (originalReference.IsSet)
                 donationRequest.OriginalReference = originalReference.Value;
             if (platformChargebackLogic.IsSet)

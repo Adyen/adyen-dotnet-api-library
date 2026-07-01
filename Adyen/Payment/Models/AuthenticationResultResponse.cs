@@ -139,6 +139,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var authenticationResultResponse = new AuthenticationResultResponse();
             if (threeDS1Result.IsSet)
                 authenticationResultResponse.ThreeDS1Result = threeDS1Result.Value;
