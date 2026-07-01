@@ -122,6 +122,7 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
+
             var terminalAssignmentNotificationResponse = new TerminalAssignmentNotificationResponse();
             if (notificationResponse.IsSet)
                 terminalAssignmentNotificationResponse.NotificationResponse = notificationResponse.Value;

@@ -321,6 +321,7 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
+
             var verificationErrorRecursive = new VerificationErrorRecursive();
             if (code.IsSet)
                 verificationErrorRecursive.Code = code.Value;

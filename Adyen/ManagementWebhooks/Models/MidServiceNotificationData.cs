@@ -363,21 +363,21 @@ namespace Adyen.ManagementWebhooks.Models
         /// </summary>
         /// <value>The unique identifier of the resource.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// The unique identifier of the merchant account.
         /// </summary>
         /// <value>The unique identifier of the merchant account.</value>
         [JsonPropertyName("merchantId")]
-        public string MerchantId { get; set; }
+        public string? MerchantId { get; set; }
 
         /// <summary>
         /// Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
         /// </summary>
         /// <value>Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).</value>
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Allowed"/> will be populated.
@@ -539,23 +539,16 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class MidServiceNotificationData.", nameof(id));
-
-            if (!merchantId.IsSet)
-                throw new ArgumentException("Property is required for class MidServiceNotificationData.", nameof(merchantId));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class MidServiceNotificationData.", nameof(status));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class MidServiceNotificationData.", nameof(type));
 
             var midServiceNotificationData = new MidServiceNotificationData();
-            midServiceNotificationData.Id = id.Value!;
-            midServiceNotificationData.MerchantId = merchantId.Value!;
-            midServiceNotificationData.Status = status.Value!;
-            midServiceNotificationData.Type = type.Value!;
+            if (id.IsSet)
+                midServiceNotificationData.Id = id.Value!;
+            if (merchantId.IsSet)
+                midServiceNotificationData.MerchantId = merchantId.Value!;
+            if (status.IsSet)
+                midServiceNotificationData.Status = status.Value!;
+            if (type.IsSet)
+                midServiceNotificationData.Type = type.Value!;
             if (allowed.IsSet)
                 midServiceNotificationData.Allowed = allowed.Value;
             if (enabled.IsSet)

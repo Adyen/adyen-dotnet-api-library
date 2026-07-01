@@ -181,7 +181,7 @@ namespace Adyen.ManagementWebhooks.Models
         /// </summary>
         /// <value>The user that updated the terminal settings. Can be Adyen or your API credential username.</value>
         [JsonPropertyName("user")]
-        public string User { get; set; }
+        public string? User { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CompanyId"/> will be populated.
@@ -327,15 +327,12 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
-            if (!updateSource.IsSet)
-                throw new ArgumentException("Property is required for class TerminalSettingsData.", nameof(updateSource));
-
-            if (!user.IsSet)
-                throw new ArgumentException("Property is required for class TerminalSettingsData.", nameof(user));
 
             var terminalSettingsData = new TerminalSettingsData();
-            terminalSettingsData.UpdateSource = updateSource.Value!;
-            terminalSettingsData.User = user.Value!;
+            if (updateSource.IsSet)
+                terminalSettingsData.UpdateSource = updateSource.Value!;
+            if (user.IsSet)
+                terminalSettingsData.User = user.Value!;
             if (companyId.IsSet)
                 terminalSettingsData.CompanyId = companyId.Value;
             if (merchantId.IsSet)

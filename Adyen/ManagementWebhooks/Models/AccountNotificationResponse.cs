@@ -122,6 +122,7 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
+
             var accountNotificationResponse = new AccountNotificationResponse();
             if (notificationResponse.IsSet)
                 accountNotificationResponse.NotificationResponse = notificationResponse.Value;

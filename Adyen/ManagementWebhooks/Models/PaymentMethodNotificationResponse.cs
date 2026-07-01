@@ -122,6 +122,7 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
+
             var paymentMethodNotificationResponse = new PaymentMethodNotificationResponse();
             if (notificationResponse.IsSet)
                 paymentMethodNotificationResponse.NotificationResponse = notificationResponse.Value;

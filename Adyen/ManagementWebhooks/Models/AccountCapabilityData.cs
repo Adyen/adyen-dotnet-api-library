@@ -58,7 +58,7 @@ namespace Adyen.ManagementWebhooks.Models
         /// </summary>
         /// <value>The level that you requested for the capability. Some capabilities have different levels which correspond to thresholds. Higher levels may require additional checks and increased monitoring.Possible values: **notApplicable**, **low**, **medium**, **high**.</value>
         [JsonPropertyName("requestedLevel")]
-        public string RequestedLevel { get; set; }
+        public string? RequestedLevel { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Allowed"/> will be populated.
@@ -246,15 +246,12 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
-            if (!requested.IsSet)
-                throw new ArgumentException("Property is required for class AccountCapabilityData.", nameof(requested));
-
-            if (!requestedLevel.IsSet)
-                throw new ArgumentException("Property is required for class AccountCapabilityData.", nameof(requestedLevel));
 
             var accountCapabilityData = new AccountCapabilityData();
-            accountCapabilityData.Requested = requested.Value!.Value;
-            accountCapabilityData.RequestedLevel = requestedLevel.Value!;
+            if (requested.IsSet)
+                accountCapabilityData.Requested = requested.Value!.Value;
+            if (requestedLevel.IsSet)
+                accountCapabilityData.RequestedLevel = requestedLevel.Value!;
             if (allowed.IsSet)
                 accountCapabilityData.Allowed = allowed.Value;
             if (allowedLevel.IsSet)

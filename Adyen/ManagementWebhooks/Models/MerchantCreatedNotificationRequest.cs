@@ -178,14 +178,14 @@ namespace Adyen.ManagementWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public AccountCreateNotificationData Data { get; set; }
+        public AccountCreateNotificationData? Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
         /// </summary>
         /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
         [JsonPropertyName("environment")]
-        public string Environment { get; set; }
+        public string? Environment { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -270,23 +270,16 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class MerchantCreatedNotificationRequest.", nameof(createdAt));
-
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class MerchantCreatedNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class MerchantCreatedNotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class MerchantCreatedNotificationRequest.", nameof(type));
 
             var merchantCreatedNotificationRequest = new MerchantCreatedNotificationRequest();
-            merchantCreatedNotificationRequest.CreatedAt = createdAt.Value!.Value;
-            merchantCreatedNotificationRequest.Data = data.Value!;
-            merchantCreatedNotificationRequest.Environment = environment.Value!;
-            merchantCreatedNotificationRequest.Type = type.Value!;
+            if (createdAt.IsSet)
+                merchantCreatedNotificationRequest.CreatedAt = createdAt.Value!.Value;
+            if (data.IsSet)
+                merchantCreatedNotificationRequest.Data = data.Value!;
+            if (environment.IsSet)
+                merchantCreatedNotificationRequest.Environment = environment.Value!;
+            if (type.IsSet)
+                merchantCreatedNotificationRequest.Type = type.Value!;
             return merchantCreatedNotificationRequest;
         }
 

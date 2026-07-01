@@ -51,28 +51,28 @@ namespace Adyen.ManagementWebhooks.Models
         /// </summary>
         /// <value>Key-value pairs that specify the actions that the merchant account can do and its settings. The key is a capability. For example, the **sendToTransferInstrument** is the capability required before you can pay out funds to the bank account. The value is an object containing the settings for the capability.</value>
         [JsonPropertyName("capabilities")]
-        public Dictionary<string, AccountCapabilityData> Capabilities { get; set; }
+        public Dictionary<string, AccountCapabilityData>? Capabilities { get; set; }
 
         /// <summary>
         /// The unique identifier of the company account.
         /// </summary>
         /// <value>The unique identifier of the company account.</value>
         [JsonPropertyName("companyId")]
-        public string CompanyId { get; set; }
+        public string? CompanyId { get; set; }
 
         /// <summary>
         /// The unique identifier of the merchant account.
         /// </summary>
         /// <value>The unique identifier of the merchant account.</value>
         [JsonPropertyName("merchantId")]
-        public string MerchantId { get; set; }
+        public string? MerchantId { get; set; }
 
         /// <summary>
         /// The status of the merchant account.  Possible values:  * **PreActive**: The merchant account has been created. Users cannot access the merchant account in the Customer Area. The account cannot process payments. * **Active**: Users can access the merchant account in the Customer Area. If the company account is also **Active**, then payment processing and payouts are enabled. * **InactiveWithModifications**: Users can access the merchant account in the Customer Area. The account cannot process new payments but can still modify payments, for example issue refunds. The account can still receive payouts. * **Inactive**: Users can access the merchant account in the Customer Area. Payment processing and payouts are disabled. * **Closed**: The account is closed and this cannot be reversed. Users cannot log in. Payment processing and payouts are disabled.
         /// </summary>
         /// <value>The status of the merchant account.  Possible values:  * **PreActive**: The merchant account has been created. Users cannot access the merchant account in the Customer Area. The account cannot process payments. * **Active**: Users can access the merchant account in the Customer Area. If the company account is also **Active**, then payment processing and payouts are enabled. * **InactiveWithModifications**: Users can access the merchant account in the Customer Area. The account cannot process new payments but can still modify payments, for example issue refunds. The account can still receive payouts. * **Inactive**: Users can access the merchant account in the Customer Area. Payment processing and payouts are disabled. * **Closed**: The account is closed and this cannot be reversed. Users cannot log in. Payment processing and payouts are disabled.</value>
         [JsonPropertyName("status")]
-        public string Status { get; set; }
+        public string? Status { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="LegalEntityId"/> will be populated.
@@ -170,23 +170,16 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
-            if (!capabilities.IsSet)
-                throw new ArgumentException("Property is required for class AccountCreateNotificationData.", nameof(capabilities));
-
-            if (!companyId.IsSet)
-                throw new ArgumentException("Property is required for class AccountCreateNotificationData.", nameof(companyId));
-
-            if (!merchantId.IsSet)
-                throw new ArgumentException("Property is required for class AccountCreateNotificationData.", nameof(merchantId));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class AccountCreateNotificationData.", nameof(status));
 
             var accountCreateNotificationData = new AccountCreateNotificationData();
-            accountCreateNotificationData.Capabilities = capabilities.Value!;
-            accountCreateNotificationData.CompanyId = companyId.Value!;
-            accountCreateNotificationData.MerchantId = merchantId.Value!;
-            accountCreateNotificationData.Status = status.Value!;
+            if (capabilities.IsSet)
+                accountCreateNotificationData.Capabilities = capabilities.Value!;
+            if (companyId.IsSet)
+                accountCreateNotificationData.CompanyId = companyId.Value!;
+            if (merchantId.IsSet)
+                accountCreateNotificationData.MerchantId = merchantId.Value!;
+            if (status.IsSet)
+                accountCreateNotificationData.Status = status.Value!;
             if (legalEntityId.IsSet)
                 accountCreateNotificationData.LegalEntityId = legalEntityId.Value;
             return accountCreateNotificationData;

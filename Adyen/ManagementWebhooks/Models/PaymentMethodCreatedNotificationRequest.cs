@@ -178,14 +178,14 @@ namespace Adyen.ManagementWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public MidServiceNotificationData Data { get; set; }
+        public MidServiceNotificationData? Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
         /// </summary>
         /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
         [JsonPropertyName("environment")]
-        public string Environment { get; set; }
+        public string? Environment { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -270,23 +270,16 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodCreatedNotificationRequest.", nameof(createdAt));
-
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodCreatedNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodCreatedNotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodCreatedNotificationRequest.", nameof(type));
 
             var paymentMethodCreatedNotificationRequest = new PaymentMethodCreatedNotificationRequest();
-            paymentMethodCreatedNotificationRequest.CreatedAt = createdAt.Value!.Value;
-            paymentMethodCreatedNotificationRequest.Data = data.Value!;
-            paymentMethodCreatedNotificationRequest.Environment = environment.Value!;
-            paymentMethodCreatedNotificationRequest.Type = type.Value!;
+            if (createdAt.IsSet)
+                paymentMethodCreatedNotificationRequest.CreatedAt = createdAt.Value!.Value;
+            if (data.IsSet)
+                paymentMethodCreatedNotificationRequest.Data = data.Value!;
+            if (environment.IsSet)
+                paymentMethodCreatedNotificationRequest.Environment = environment.Value!;
+            if (type.IsSet)
+                paymentMethodCreatedNotificationRequest.Type = type.Value!;
             return paymentMethodCreatedNotificationRequest;
         }
 

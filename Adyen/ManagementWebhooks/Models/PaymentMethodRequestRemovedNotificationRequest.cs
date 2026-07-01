@@ -178,14 +178,14 @@ namespace Adyen.ManagementWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public MidServiceNotificationData Data { get; set; }
+        public MidServiceNotificationData? Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
         /// </summary>
         /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
         [JsonPropertyName("environment")]
-        public string Environment { get; set; }
+        public string? Environment { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -270,23 +270,16 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodRequestRemovedNotificationRequest.", nameof(createdAt));
-
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodRequestRemovedNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodRequestRemovedNotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodRequestRemovedNotificationRequest.", nameof(type));
 
             var paymentMethodRequestRemovedNotificationRequest = new PaymentMethodRequestRemovedNotificationRequest();
-            paymentMethodRequestRemovedNotificationRequest.CreatedAt = createdAt.Value!.Value;
-            paymentMethodRequestRemovedNotificationRequest.Data = data.Value!;
-            paymentMethodRequestRemovedNotificationRequest.Environment = environment.Value!;
-            paymentMethodRequestRemovedNotificationRequest.Type = type.Value!;
+            if (createdAt.IsSet)
+                paymentMethodRequestRemovedNotificationRequest.CreatedAt = createdAt.Value!.Value;
+            if (data.IsSet)
+                paymentMethodRequestRemovedNotificationRequest.Data = data.Value!;
+            if (environment.IsSet)
+                paymentMethodRequestRemovedNotificationRequest.Environment = environment.Value!;
+            if (type.IsSet)
+                paymentMethodRequestRemovedNotificationRequest.Type = type.Value!;
             return paymentMethodRequestRemovedNotificationRequest;
         }
 
