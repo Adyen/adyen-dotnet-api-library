@@ -183,6 +183,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var supportingEntityCapability = new SupportingEntityCapability();
             if (allowed.IsSet)
                 supportingEntityCapability.Allowed = allowed.Value;

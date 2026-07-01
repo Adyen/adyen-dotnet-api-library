@@ -122,6 +122,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var getTermsOfServiceAcceptanceInfosResponse = new GetTermsOfServiceAcceptanceInfosResponse();
             if (data.IsSet)
                 getTermsOfServiceAcceptanceInfosResponse.Data = data.Value;

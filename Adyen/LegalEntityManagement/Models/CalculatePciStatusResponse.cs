@@ -122,6 +122,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var calculatePciStatusResponse = new CalculatePciStatusResponse();
             if (signingRequired.IsSet)
                 calculatePciStatusResponse.SigningRequired = signingRequired.Value;

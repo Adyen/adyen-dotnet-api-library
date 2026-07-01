@@ -289,6 +289,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var documentPage = new DocumentPage();
             if (pageName.IsSet)
                 documentPage.PageName = pageName.Value;

@@ -190,14 +190,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <value>A code that represents the industry of the legal entity for [marketplaces](https://docs.adyen.com/marketplaces/verification-requirements/reference-additional-products/#list-industry-codes) or [platforms](https://docs.adyen.com/platforms/verification-requirements/reference-additional-products/#list-industry-codes). For example, **4431A** for computer software stores.</value>
         [JsonPropertyName("industryCode")]
-        public string IndustryCode { get; set; }
+        public string? IndustryCode { get; set; }
 
         /// <summary>
         /// Unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the business line.
         /// </summary>
         /// <value>Unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the business line.</value>
         [JsonPropertyName("legalEntityId")]
-        public string LegalEntityId { get; set; }
+        public string? LegalEntityId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="IndustryCodeDescription"/> will be populated.
@@ -366,19 +366,14 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!industryCode.IsSet)
-                throw new ArgumentException("Property is required for class BusinessLineInfo.", nameof(industryCode));
-
-            if (!legalEntityId.IsSet)
-                throw new ArgumentException("Property is required for class BusinessLineInfo.", nameof(legalEntityId));
-
-            if (!service.IsSet)
-                throw new ArgumentException("Property is required for class BusinessLineInfo.", nameof(service));
 
             var businessLineInfo = new BusinessLineInfo();
-            businessLineInfo.IndustryCode = industryCode.Value!;
-            businessLineInfo.LegalEntityId = legalEntityId.Value!;
-            businessLineInfo.Service = service.Value!;
+            if (industryCode.IsSet)
+                businessLineInfo.IndustryCode = industryCode.Value!;
+            if (legalEntityId.IsSet)
+                businessLineInfo.LegalEntityId = legalEntityId.Value!;
+            if (service.IsSet)
+                businessLineInfo.Service = service.Value!;
             if (industryCodeDescription.IsSet)
                 businessLineInfo.IndustryCodeDescription = industryCodeDescription.Value;
             if (salesChannels.IsSet)

@@ -216,6 +216,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var businessLineInfoUpdate = new BusinessLineInfoUpdate();
             if (industryCode.IsSet)
                 businessLineInfoUpdate.IndustryCode = industryCode.Value;

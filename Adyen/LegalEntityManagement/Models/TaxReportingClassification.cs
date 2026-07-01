@@ -632,6 +632,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var taxReportingClassification = new TaxReportingClassification();
             if (businessType.IsSet)
                 taxReportingClassification.BusinessType = businessType.Value;

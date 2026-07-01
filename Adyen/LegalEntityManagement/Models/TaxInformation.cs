@@ -179,6 +179,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var taxInformation = new TaxInformation();
             if (country.IsSet)
                 taxInformation.Country = country.Value;

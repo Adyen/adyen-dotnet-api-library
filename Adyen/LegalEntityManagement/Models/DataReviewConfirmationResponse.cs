@@ -122,6 +122,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var dataReviewConfirmationResponse = new DataReviewConfirmationResponse();
             if (dataReviewedAt.IsSet)
                 dataReviewConfirmationResponse.DataReviewedAt = dataReviewedAt.Value;

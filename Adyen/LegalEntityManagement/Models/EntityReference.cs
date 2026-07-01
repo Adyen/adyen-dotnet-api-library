@@ -122,6 +122,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var entityReference = new EntityReference();
             if (id.IsSet)
                 entityReference.Id = id.Value;

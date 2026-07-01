@@ -426,6 +426,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var onboardingLinkSettings = new OnboardingLinkSettings();
             if (acceptedCountries.IsSet)
                 onboardingLinkSettings.AcceptedCountries = acceptedCountries.Value;

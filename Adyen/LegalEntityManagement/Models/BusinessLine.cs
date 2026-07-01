@@ -191,21 +191,21 @@ namespace Adyen.LegalEntityManagement.Models
         /// <value>The unique identifier of the business line.</value>
         /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// A code that represents the industry of the legal entity for [marketplaces](https://docs.adyen.com/marketplaces/verification-requirements/reference-additional-products/#list-industry-codes) or [platforms](https://docs.adyen.com/platforms/verification-requirements/reference-additional-products/#list-industry-codes). For example, **4431A** for computer software stores.
         /// </summary>
         /// <value>A code that represents the industry of the legal entity for [marketplaces](https://docs.adyen.com/marketplaces/verification-requirements/reference-additional-products/#list-industry-codes) or [platforms](https://docs.adyen.com/platforms/verification-requirements/reference-additional-products/#list-industry-codes). For example, **4431A** for computer software stores.</value>
         [JsonPropertyName("industryCode")]
-        public string IndustryCode { get; set; }
+        public string? IndustryCode { get; set; }
 
         /// <summary>
         /// Unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the business line.
         /// </summary>
         /// <value>Unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the business line.</value>
         [JsonPropertyName("legalEntityId")]
-        public string LegalEntityId { get; set; }
+        public string? LegalEntityId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="IndustryCodeDescription"/> will be populated.
@@ -398,23 +398,16 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class BusinessLine.", nameof(id));
-
-            if (!industryCode.IsSet)
-                throw new ArgumentException("Property is required for class BusinessLine.", nameof(industryCode));
-
-            if (!legalEntityId.IsSet)
-                throw new ArgumentException("Property is required for class BusinessLine.", nameof(legalEntityId));
-
-            if (!service.IsSet)
-                throw new ArgumentException("Property is required for class BusinessLine.", nameof(service));
 
             var businessLine = new BusinessLine();
-            businessLine.Id = id.Value!;
-            businessLine.IndustryCode = industryCode.Value!;
-            businessLine.LegalEntityId = legalEntityId.Value!;
-            businessLine.Service = service.Value!;
+            if (id.IsSet)
+                businessLine.Id = id.Value!;
+            if (industryCode.IsSet)
+                businessLine.IndustryCode = industryCode.Value!;
+            if (legalEntityId.IsSet)
+                businessLine.LegalEntityId = legalEntityId.Value!;
+            if (service.IsSet)
+                businessLine.Service = service.Value!;
             if (industryCodeDescription.IsSet)
                 businessLine.IndustryCodeDescription = industryCodeDescription.Value;
             if (problems.IsSet)

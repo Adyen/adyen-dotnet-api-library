@@ -50,28 +50,28 @@ namespace Adyen.LegalEntityManagement.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The financier&#39;s first name.
         /// </summary>
         /// <value>The financier's first name.</value>
         [JsonPropertyName("firstName")]
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
         /// <summary>
         /// The financier&#39;s last name.
         /// </summary>
         /// <value>The financier's last name.</value>
         [JsonPropertyName("lastName")]
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
         /// <summary>
         /// The city and country/region where the financier is currently located. For example: Chicago, USA
         /// </summary>
         /// <value>The city and country/region where the financier is currently located. For example: Chicago, USA</value>
         [JsonPropertyName("location")]
-        public string Location { get; set; }
+        public string? Location { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -150,23 +150,16 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class Financier.", nameof(amount));
-
-            if (!firstName.IsSet)
-                throw new ArgumentException("Property is required for class Financier.", nameof(firstName));
-
-            if (!lastName.IsSet)
-                throw new ArgumentException("Property is required for class Financier.", nameof(lastName));
-
-            if (!location.IsSet)
-                throw new ArgumentException("Property is required for class Financier.", nameof(location));
 
             var financier = new Financier();
-            financier.Amount = amount.Value!;
-            financier.FirstName = firstName.Value!;
-            financier.LastName = lastName.Value!;
-            financier.Location = location.Value!;
+            if (amount.IsSet)
+                financier.Amount = amount.Value!;
+            if (firstName.IsSet)
+                financier.FirstName = firstName.Value!;
+            if (lastName.IsSet)
+                financier.LastName = lastName.Value!;
+            if (location.IsSet)
+                financier.Location = location.Value!;
             return financier;
         }
 

@@ -122,6 +122,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var setTaxElectronicDeliveryConsentRequest = new SetTaxElectronicDeliveryConsentRequest();
             if (uS1099k.IsSet)
                 setTaxElectronicDeliveryConsentRequest.US1099k = uS1099k.Value;

@@ -170,6 +170,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var pciDocumentInfo = new PciDocumentInfo();
             if (createdAt.IsSet)
                 pciDocumentInfo.CreatedAt = createdAt.Value;

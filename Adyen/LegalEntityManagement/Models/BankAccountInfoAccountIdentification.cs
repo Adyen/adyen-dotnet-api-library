@@ -423,6 +423,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             if (aULocalAccountIdentification?.Type != null && AULocalAccountIdentification.TypeEnum.FromStringOrDefault((string?)aULocalAccountIdentification.Type) != null)
                 return new BankAccountInfoAccountIdentification(aULocalAccountIdentification);
 

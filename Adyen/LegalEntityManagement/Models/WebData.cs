@@ -142,6 +142,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var webData = new WebData();
             if (webAddress.IsSet)
                 webData.WebAddress = webAddress.Value;

@@ -172,14 +172,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <value>The 8-digit bank account number, without separators or whitespace.</value>
         [JsonPropertyName("accountNumber")]
-        public string AccountNumber { get; set; }
+        public string? AccountNumber { get; set; }
 
         /// <summary>
         /// The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.
         /// </summary>
         /// <value>The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.</value>
         [JsonPropertyName("sortCode")]
-        public string SortCode { get; set; }
+        public string? SortCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -254,19 +254,14 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class UKLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!sortCode.IsSet)
-                throw new ArgumentException("Property is required for class UKLocalAccountIdentification.", nameof(sortCode));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class UKLocalAccountIdentification.", nameof(type));
 
             var uKLocalAccountIdentification = new UKLocalAccountIdentification();
-            uKLocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            uKLocalAccountIdentification.SortCode = sortCode.Value!;
-            uKLocalAccountIdentification.Type = type.Value!;
+            if (accountNumber.IsSet)
+                uKLocalAccountIdentification.AccountNumber = accountNumber.Value!;
+            if (sortCode.IsSet)
+                uKLocalAccountIdentification.SortCode = sortCode.Value!;
+            if (type.IsSet)
+                uKLocalAccountIdentification.Type = type.Value!;
             return uKLocalAccountIdentification;
         }
 

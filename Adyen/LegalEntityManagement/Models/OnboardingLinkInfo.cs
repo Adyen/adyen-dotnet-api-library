@@ -178,6 +178,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var onboardingLinkInfo = new OnboardingLinkInfo();
             if (locale.IsSet)
                 onboardingLinkInfo.Locale = locale.Value;

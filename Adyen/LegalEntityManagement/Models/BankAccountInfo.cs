@@ -200,6 +200,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var bankAccountInfo = new BankAccountInfo();
             if (accountIdentification.IsSet)
                 bankAccountInfo.AccountIdentification = accountIdentification.Value;

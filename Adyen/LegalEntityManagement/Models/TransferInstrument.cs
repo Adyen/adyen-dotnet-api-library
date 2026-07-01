@@ -180,7 +180,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// <see cref="BankAccount"/>.
         /// </summary>
         [JsonPropertyName("bankAccount")]
-        public BankAccountInfo BankAccount { get; set; }
+        public BankAccountInfo? BankAccount { get; set; }
 
         /// <summary>
         /// The unique identifier of the transfer instrument.
@@ -188,14 +188,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// <value>The unique identifier of the transfer instrument.</value>
         /// <remarks>This property is read-only, set by the Adyen API. The value is ignored in requests.</remarks>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) that owns the transfer instrument.
         /// </summary>
         /// <value>The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) that owns the transfer instrument.</value>
         [JsonPropertyName("legalEntityId")]
-        public string LegalEntityId { get; set; }
+        public string? LegalEntityId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Capabilities"/> will be populated.
@@ -332,23 +332,16 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!bankAccount.IsSet)
-                throw new ArgumentException("Property is required for class TransferInstrument.", nameof(bankAccount));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class TransferInstrument.", nameof(id));
-
-            if (!legalEntityId.IsSet)
-                throw new ArgumentException("Property is required for class TransferInstrument.", nameof(legalEntityId));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TransferInstrument.", nameof(type));
 
             var transferInstrument = new TransferInstrument();
-            transferInstrument.BankAccount = bankAccount.Value!;
-            transferInstrument.Id = id.Value!;
-            transferInstrument.LegalEntityId = legalEntityId.Value!;
-            transferInstrument.Type = type.Value!;
+            if (bankAccount.IsSet)
+                transferInstrument.BankAccount = bankAccount.Value!;
+            if (id.IsSet)
+                transferInstrument.Id = id.Value!;
+            if (legalEntityId.IsSet)
+                transferInstrument.LegalEntityId = legalEntityId.Value!;
+            if (type.IsSet)
+                transferInstrument.Type = type.Value!;
             if (capabilities.IsSet)
                 transferInstrument.Capabilities = capabilities.Value;
             if (documentDetails.IsSet)

@@ -51,7 +51,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <value>The full phone number, including the country code. For example, **+3112345678**.</value>
         [JsonPropertyName("number")]
-        public string Number { get; set; }
+        public string? Number { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="PhoneCountryCode"/> will be populated.
@@ -154,11 +154,10 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!number.IsSet)
-                throw new ArgumentException("Property is required for class PhoneNumber.", nameof(number));
 
             var phoneNumber = new PhoneNumber();
-            phoneNumber.Number = number.Value!;
+            if (number.IsSet)
+                phoneNumber.Number = number.Value!;
             if (phoneCountryCode.IsSet)
                 phoneNumber.PhoneCountryCode = phoneCountryCode.Value;
             if (type.IsSet)

@@ -253,7 +253,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <value>The language to be used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible values: **en** for English or **fr** for French.</value>
         [JsonPropertyName("language")]
-        public string Language { get; set; }
+        public string? Language { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="TermsOfServiceDocumentFormat"/> will be populated.
@@ -342,15 +342,12 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!language.IsSet)
-                throw new ArgumentException("Property is required for class GetTermsOfServiceDocumentRequest.", nameof(language));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class GetTermsOfServiceDocumentRequest.", nameof(type));
 
             var getTermsOfServiceDocumentRequest = new GetTermsOfServiceDocumentRequest();
-            getTermsOfServiceDocumentRequest.Language = language.Value!;
-            getTermsOfServiceDocumentRequest.Type = type.Value!;
+            if (language.IsSet)
+                getTermsOfServiceDocumentRequest.Language = language.Value!;
+            if (type.IsSet)
+                getTermsOfServiceDocumentRequest.Type = type.Value!;
             if (termsOfServiceDocumentFormat.IsSet)
                 getTermsOfServiceDocumentRequest.TermsOfServiceDocumentFormat = termsOfServiceDocumentFormat.Value;
             return getTermsOfServiceDocumentRequest;

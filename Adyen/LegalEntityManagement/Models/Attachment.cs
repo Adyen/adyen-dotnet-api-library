@@ -51,7 +51,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <value>The document in Base64-encoded string format.</value>
         [JsonPropertyName("content")]
-        public byte[] Content { get; set; }
+        public byte[]? Content { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ContentType"/> will be populated.
@@ -195,11 +195,10 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!content.IsSet)
-                throw new ArgumentException("Property is required for class Attachment.", nameof(content));
 
             var attachment = new Attachment();
-            attachment.Content = content.Value!;
+            if (content.IsSet)
+                attachment.Content = content.Value!;
             if (contentType.IsSet)
                 attachment.ContentType = contentType.Value;
             if (filename.IsSet)

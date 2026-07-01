@@ -413,6 +413,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var getTermsOfServiceDocumentResponse = new GetTermsOfServiceDocumentResponse();
             if (document.IsSet)
                 getTermsOfServiceDocumentResponse.Document = document.Value;

@@ -788,13 +788,13 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <value>The organization's legal name.</value>
         [JsonPropertyName("legalName")]
-        public string LegalName { get; set; }
+        public string? LegalName { get; set; }
 
         /// <summary>
         /// <see cref="RegisteredAddress"/>.
         /// </summary>
         [JsonPropertyName("registeredAddress")]
-        public Address RegisteredAddress { get; set; }
+        public Address? RegisteredAddress { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CountryOfGoverningLaw"/> will be populated.
@@ -1299,15 +1299,12 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!legalName.IsSet)
-                throw new ArgumentException("Property is required for class Organization.", nameof(legalName));
-
-            if (!registeredAddress.IsSet)
-                throw new ArgumentException("Property is required for class Organization.", nameof(registeredAddress));
 
             var organization = new Organization();
-            organization.LegalName = legalName.Value!;
-            organization.RegisteredAddress = registeredAddress.Value!;
+            if (legalName.IsSet)
+                organization.LegalName = legalName.Value!;
+            if (registeredAddress.IsSet)
+                organization.RegisteredAddress = registeredAddress.Value!;
             if (countryOfGoverningLaw.IsSet)
                 organization.CountryOfGoverningLaw = countryOfGoverningLaw.Value;
             if (dateOfIncorporation.IsSet)

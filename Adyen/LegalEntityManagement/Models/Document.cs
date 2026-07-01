@@ -343,7 +343,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         /// <value>Your description for the document.</value>
         [JsonPropertyName("description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Attachment"/> will be populated.
@@ -639,15 +639,12 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!description.IsSet)
-                throw new ArgumentException("Property is required for class Document.", nameof(description));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class Document.", nameof(type));
 
             var document = new Document();
-            document.Description = description.Value!;
-            document.Type = type.Value!;
+            if (description.IsSet)
+                document.Description = description.Value!;
+            if (type.IsSet)
+                document.Type = type.Value!;
             if (attachment.IsSet)
                 document.Attachment = attachment.Value;
             if (attachments.IsSet)

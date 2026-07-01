@@ -140,6 +140,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var support = new Support();
             if (email.IsSet)
                 support.Email = email.Value;

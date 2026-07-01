@@ -439,6 +439,7 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
+
             var legalEntityInfo = new LegalEntityInfo();
             if (capabilities.IsSet)
                 legalEntityInfo.Capabilities = capabilities.Value;
