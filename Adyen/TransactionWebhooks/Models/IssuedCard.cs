@@ -735,6 +735,7 @@ namespace Adyen.TransactionWebhooks.Models
                 }
             }
             
+
             var issuedCard = new IssuedCard();
             if (authorisationType.IsSet)
                 issuedCard.AuthorisationType = authorisationType.Value;

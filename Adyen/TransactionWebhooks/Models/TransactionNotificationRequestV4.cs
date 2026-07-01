@@ -178,14 +178,14 @@ namespace Adyen.TransactionWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public Transaction Data { get; set; }
+        public Transaction? Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
         /// </summary>
         /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
         [JsonPropertyName("environment")]
-        public string Environment { get; set; }
+        public string? Environment { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Timestamp"/> will be populated.
@@ -284,15 +284,12 @@ namespace Adyen.TransactionWebhooks.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class TransactionNotificationRequestV4.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class TransactionNotificationRequestV4.", nameof(environment));
 
             var transactionNotificationRequestV4 = new TransactionNotificationRequestV4();
-            transactionNotificationRequestV4.Data = data.Value!;
-            transactionNotificationRequestV4.Environment = environment.Value!;
+            if (data.IsSet)
+                transactionNotificationRequestV4.Data = data.Value!;
+            if (environment.IsSet)
+                transactionNotificationRequestV4.Environment = environment.Value!;
             if (timestamp.IsSet)
                 transactionNotificationRequestV4.Timestamp = timestamp.Value;
             if (type.IsSet)

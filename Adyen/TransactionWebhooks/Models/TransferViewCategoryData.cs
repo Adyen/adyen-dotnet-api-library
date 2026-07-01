@@ -354,6 +354,7 @@ namespace Adyen.TransactionWebhooks.Models
                 }
             }
             
+
             if (bankCategoryData != null)
                 return new TransferViewCategoryData(bankCategoryData);
 
