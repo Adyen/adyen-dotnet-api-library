@@ -51,7 +51,7 @@ namespace Adyen.BinLookup.Models
         /// </summary>
         /// <value>The merchant account identifier.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
@@ -210,11 +210,10 @@ namespace Adyen.BinLookup.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class ThreeDSAvailabilityRequest.", nameof(merchantAccount));
 
             var threeDSAvailabilityRequest = new ThreeDSAvailabilityRequest();
-            threeDSAvailabilityRequest.MerchantAccount = merchantAccount.Value!;
+            if (merchantAccount.IsSet)
+                threeDSAvailabilityRequest.MerchantAccount = merchantAccount.Value!;
             if (additionalData.IsSet)
                 threeDSAvailabilityRequest.AdditionalData = additionalData.Value;
             if (brands.IsSet)

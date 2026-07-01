@@ -122,6 +122,7 @@ namespace Adyen.BinLookup.Models
                 }
             }
             
+
             var binDetail = new BinDetail();
             if (issuerCountry.IsSet)
                 binDetail.IssuerCountry = issuerCountry.Value;

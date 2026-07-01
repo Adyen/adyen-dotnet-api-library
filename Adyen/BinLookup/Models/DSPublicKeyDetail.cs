@@ -198,6 +198,7 @@ namespace Adyen.BinLookup.Models
                 }
             }
             
+
             var dSPublicKeyDetail = new DSPublicKeyDetail();
             if (brand.IsSet)
                 dSPublicKeyDetail.Brand = brand.Value;

@@ -160,6 +160,7 @@ namespace Adyen.BinLookup.Models
                 }
             }
             
+
             var merchantDetails = new MerchantDetails();
             if (countryCode.IsSet)
                 merchantDetails.CountryCode = countryCode.Value;

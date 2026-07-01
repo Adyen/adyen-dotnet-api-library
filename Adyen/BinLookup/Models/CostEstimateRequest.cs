@@ -205,14 +205,14 @@ namespace Adyen.BinLookup.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The merchant account identifier you want to process the (transaction) request with.
         /// </summary>
         /// <value>The merchant account identifier you want to process the (transaction) request with.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Assumptions"/> will be populated.
@@ -417,15 +417,12 @@ namespace Adyen.BinLookup.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class CostEstimateRequest.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class CostEstimateRequest.", nameof(merchantAccount));
 
             var costEstimateRequest = new CostEstimateRequest();
-            costEstimateRequest.Amount = amount.Value!;
-            costEstimateRequest.MerchantAccount = merchantAccount.Value!;
+            if (amount.IsSet)
+                costEstimateRequest.Amount = amount.Value!;
+            if (merchantAccount.IsSet)
+                costEstimateRequest.MerchantAccount = merchantAccount.Value!;
             if (assumptions.IsSet)
                 costEstimateRequest.Assumptions = assumptions.Value;
             if (cardNumber.IsSet)
