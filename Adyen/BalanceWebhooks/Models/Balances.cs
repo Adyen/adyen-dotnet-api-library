@@ -179,6 +179,7 @@ namespace Adyen.BalanceWebhooks.Models
                 }
             }
             
+
             var balances = new Balances();
             if (available.IsSet)
                 balances.Available = available.Value;

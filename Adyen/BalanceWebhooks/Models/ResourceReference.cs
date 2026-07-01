@@ -160,6 +160,7 @@ namespace Adyen.BalanceWebhooks.Models
                 }
             }
             
+
             var resourceReference = new ResourceReference();
             if (description.IsSet)
                 resourceReference.Description = description.Value;

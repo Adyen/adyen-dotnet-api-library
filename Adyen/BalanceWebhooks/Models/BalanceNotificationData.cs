@@ -51,27 +51,27 @@ namespace Adyen.BalanceWebhooks.Models
         /// </summary>
         /// <value>The unique identifier of the balance account.</value>
         [JsonPropertyName("balanceAccountId")]
-        public string BalanceAccountId { get; set; }
+        public string? BalanceAccountId { get; set; }
 
         /// <summary>
         /// <see cref="Balances"/>.
         /// </summary>
         [JsonPropertyName("balances")]
-        public Balances Balances { get; set; }
+        public Balances? Balances { get; set; }
 
         /// <summary>
         /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).</value>
         [JsonPropertyName("currency")]
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         /// <summary>
         /// The unique identifier of the balance webhook setting.
         /// </summary>
         /// <value>The unique identifier of the balance webhook setting.</value>
         [JsonPropertyName("settingIds")]
-        public List<string> SettingIds { get; set; }
+        public List<string>? SettingIds { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="BalancePlatform"/> will be populated.
@@ -213,23 +213,16 @@ namespace Adyen.BalanceWebhooks.Models
                 }
             }
             
-            if (!balanceAccountId.IsSet)
-                throw new ArgumentException("Property is required for class BalanceNotificationData.", nameof(balanceAccountId));
-
-            if (!balances.IsSet)
-                throw new ArgumentException("Property is required for class BalanceNotificationData.", nameof(balances));
-
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class BalanceNotificationData.", nameof(currency));
-
-            if (!settingIds.IsSet)
-                throw new ArgumentException("Property is required for class BalanceNotificationData.", nameof(settingIds));
 
             var balanceNotificationData = new BalanceNotificationData();
-            balanceNotificationData.BalanceAccountId = balanceAccountId.Value!;
-            balanceNotificationData.Balances = balances.Value!;
-            balanceNotificationData.Currency = currency.Value!;
-            balanceNotificationData.SettingIds = settingIds.Value!;
+            if (balanceAccountId.IsSet)
+                balanceNotificationData.BalanceAccountId = balanceAccountId.Value!;
+            if (balances.IsSet)
+                balanceNotificationData.Balances = balances.Value!;
+            if (currency.IsSet)
+                balanceNotificationData.Currency = currency.Value!;
+            if (settingIds.IsSet)
+                balanceNotificationData.SettingIds = settingIds.Value!;
             if (balancePlatform.IsSet)
                 balanceNotificationData.BalancePlatform = balancePlatform.Value;
             if (creationDate.IsSet)

@@ -50,19 +50,19 @@ namespace Adyen.BalanceWebhooks.Models
         /// <see cref="AccountHolder"/>.
         /// </summary>
         [JsonPropertyName("accountHolder")]
-        public ResourceReference AccountHolder { get; set; }
+        public ResourceReference? AccountHolder { get; set; }
 
         /// <summary>
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// <see cref="BalanceAccount"/>.
         /// </summary>
         [JsonPropertyName("balanceAccount")]
-        public ResourceReference BalanceAccount { get; set; }
+        public ResourceReference? BalanceAccount { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="BalancePlatform"/> will be populated.
@@ -278,19 +278,14 @@ namespace Adyen.BalanceWebhooks.Models
                 }
             }
             
-            if (!accountHolder.IsSet)
-                throw new ArgumentException("Property is required for class ReleaseBlockedBalanceNotificationData.", nameof(accountHolder));
-
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class ReleaseBlockedBalanceNotificationData.", nameof(amount));
-
-            if (!balanceAccount.IsSet)
-                throw new ArgumentException("Property is required for class ReleaseBlockedBalanceNotificationData.", nameof(balanceAccount));
 
             var releaseBlockedBalanceNotificationData = new ReleaseBlockedBalanceNotificationData();
-            releaseBlockedBalanceNotificationData.AccountHolder = accountHolder.Value!;
-            releaseBlockedBalanceNotificationData.Amount = amount.Value!;
-            releaseBlockedBalanceNotificationData.BalanceAccount = balanceAccount.Value!;
+            if (accountHolder.IsSet)
+                releaseBlockedBalanceNotificationData.AccountHolder = accountHolder.Value!;
+            if (amount.IsSet)
+                releaseBlockedBalanceNotificationData.Amount = amount.Value!;
+            if (balanceAccount.IsSet)
+                releaseBlockedBalanceNotificationData.BalanceAccount = balanceAccount.Value!;
             if (balancePlatform.IsSet)
                 releaseBlockedBalanceNotificationData.BalancePlatform = balancePlatform.Value;
             if (batchReference.IsSet)

@@ -171,14 +171,14 @@ namespace Adyen.BalanceWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public BalanceNotificationData Data { get; set; }
+        public BalanceNotificationData? Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
         /// </summary>
         /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
         [JsonPropertyName("environment")]
-        public string Environment { get; set; }
+        public string? Environment { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Timestamp"/> will be populated.
@@ -277,19 +277,14 @@ namespace Adyen.BalanceWebhooks.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccountBalanceNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccountBalanceNotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccountBalanceNotificationRequest.", nameof(type));
 
             var balanceAccountBalanceNotificationRequest = new BalanceAccountBalanceNotificationRequest();
-            balanceAccountBalanceNotificationRequest.Data = data.Value!;
-            balanceAccountBalanceNotificationRequest.Environment = environment.Value!;
-            balanceAccountBalanceNotificationRequest.Type = type.Value!;
+            if (data.IsSet)
+                balanceAccountBalanceNotificationRequest.Data = data.Value!;
+            if (environment.IsSet)
+                balanceAccountBalanceNotificationRequest.Environment = environment.Value!;
+            if (type.IsSet)
+                balanceAccountBalanceNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 balanceAccountBalanceNotificationRequest.Timestamp = timestamp.Value;
             return balanceAccountBalanceNotificationRequest;
