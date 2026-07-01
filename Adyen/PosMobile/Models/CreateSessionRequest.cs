@@ -51,14 +51,14 @@ namespace Adyen.PosMobile.Models
         /// </summary>
         /// <value>The unique identifier of your merchant account.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The setup token provided by the POS Mobile SDK.  - When using the Android POS Mobile SDK, obtain the token through the &#x60;AuthenticationService.authenticate(setupToken)&#x60; callback of &#x60;AuthenticationService&#x60;.  - When using the iOS POS Mobile SDK, obtain the token through the &#x60;PaymentServiceDelegate.register(with:)&#x60; callback of &#x60;PaymentServiceDelegate&#x60;.
         /// </summary>
         /// <value>The setup token provided by the POS Mobile SDK.  - When using the Android POS Mobile SDK, obtain the token through the `AuthenticationService.authenticate(setupToken)` callback of `AuthenticationService`.  - When using the iOS POS Mobile SDK, obtain the token through the `PaymentServiceDelegate.register(with:)` callback of `PaymentServiceDelegate`.</value>
         [JsonPropertyName("setupToken")]
-        public string SetupToken { get; set; }
+        public string? SetupToken { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Store"/> will be populated.
@@ -146,15 +146,12 @@ namespace Adyen.PosMobile.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class CreateSessionRequest.", nameof(merchantAccount));
-
-            if (!setupToken.IsSet)
-                throw new ArgumentException("Property is required for class CreateSessionRequest.", nameof(setupToken));
 
             var createSessionRequest = new CreateSessionRequest();
-            createSessionRequest.MerchantAccount = merchantAccount.Value!;
-            createSessionRequest.SetupToken = setupToken.Value!;
+            if (merchantAccount.IsSet)
+                createSessionRequest.MerchantAccount = merchantAccount.Value!;
+            if (setupToken.IsSet)
+                createSessionRequest.SetupToken = setupToken.Value!;
             if (store.IsSet)
                 createSessionRequest.Store = store.Value;
             return createSessionRequest;
