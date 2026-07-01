@@ -339,6 +339,7 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
+
             var verificationError = new VerificationError();
             if (code.IsSet)
                 verificationError.Code = code.Value;

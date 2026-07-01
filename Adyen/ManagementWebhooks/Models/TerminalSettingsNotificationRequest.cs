@@ -178,14 +178,14 @@ namespace Adyen.ManagementWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public TerminalSettingsData Data { get; set; }
+        public TerminalSettingsData? Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
         /// </summary>
         /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
         [JsonPropertyName("environment")]
-        public string Environment { get; set; }
+        public string? Environment { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -270,23 +270,16 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class TerminalSettingsNotificationRequest.", nameof(createdAt));
-
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class TerminalSettingsNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class TerminalSettingsNotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TerminalSettingsNotificationRequest.", nameof(type));
 
             var terminalSettingsNotificationRequest = new TerminalSettingsNotificationRequest();
-            terminalSettingsNotificationRequest.CreatedAt = createdAt.Value!.Value;
-            terminalSettingsNotificationRequest.Data = data.Value!;
-            terminalSettingsNotificationRequest.Environment = environment.Value!;
-            terminalSettingsNotificationRequest.Type = type.Value!;
+            if (createdAt.IsSet)
+                terminalSettingsNotificationRequest.CreatedAt = createdAt.Value!.Value;
+            if (data.IsSet)
+                terminalSettingsNotificationRequest.Data = data.Value!;
+            if (environment.IsSet)
+                terminalSettingsNotificationRequest.Environment = environment.Value!;
+            if (type.IsSet)
+                terminalSettingsNotificationRequest.Type = type.Value!;
             return terminalSettingsNotificationRequest;
         }
 

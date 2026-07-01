@@ -51,28 +51,28 @@ namespace Adyen.ManagementWebhooks.Models
         /// </summary>
         /// <value>The unique identifier of the merchant/company account to which the terminal is assigned.</value>
         [JsonPropertyName("assignedToAccount")]
-        public string AssignedToAccount { get; set; }
+        public string? AssignedToAccount { get; set; }
 
         /// <summary>
         /// The date and time when an event has been completed.
         /// </summary>
         /// <value>The date and time when an event has been completed.</value>
         [JsonPropertyName("eventDate")]
-        public string EventDate { get; set; }
+        public string? EventDate { get; set; }
 
         /// <summary>
         /// The PSP reference of the request from which the notification originates.
         /// </summary>
         /// <value>The PSP reference of the request from which the notification originates.</value>
         [JsonPropertyName("pspReference")]
-        public string PspReference { get; set; }
+        public string? PspReference { get; set; }
 
         /// <summary>
         /// The unique identifier of the terminal.
         /// </summary>
         /// <value>The unique identifier of the terminal.</value>
         [JsonPropertyName("uniqueTerminalId")]
-        public string UniqueTerminalId { get; set; }
+        public string? UniqueTerminalId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AssignedToStore"/> will be populated.
@@ -189,23 +189,16 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
-            if (!assignedToAccount.IsSet)
-                throw new ArgumentException("Property is required for class TerminalAssignmentNotificationRequest.", nameof(assignedToAccount));
-
-            if (!eventDate.IsSet)
-                throw new ArgumentException("Property is required for class TerminalAssignmentNotificationRequest.", nameof(eventDate));
-
-            if (!pspReference.IsSet)
-                throw new ArgumentException("Property is required for class TerminalAssignmentNotificationRequest.", nameof(pspReference));
-
-            if (!uniqueTerminalId.IsSet)
-                throw new ArgumentException("Property is required for class TerminalAssignmentNotificationRequest.", nameof(uniqueTerminalId));
 
             var terminalAssignmentNotificationRequest = new TerminalAssignmentNotificationRequest();
-            terminalAssignmentNotificationRequest.AssignedToAccount = assignedToAccount.Value!;
-            terminalAssignmentNotificationRequest.EventDate = eventDate.Value!;
-            terminalAssignmentNotificationRequest.PspReference = pspReference.Value!;
-            terminalAssignmentNotificationRequest.UniqueTerminalId = uniqueTerminalId.Value!;
+            if (assignedToAccount.IsSet)
+                terminalAssignmentNotificationRequest.AssignedToAccount = assignedToAccount.Value!;
+            if (eventDate.IsSet)
+                terminalAssignmentNotificationRequest.EventDate = eventDate.Value!;
+            if (pspReference.IsSet)
+                terminalAssignmentNotificationRequest.PspReference = pspReference.Value!;
+            if (uniqueTerminalId.IsSet)
+                terminalAssignmentNotificationRequest.UniqueTerminalId = uniqueTerminalId.Value!;
             if (assignedToStore.IsSet)
                 terminalAssignmentNotificationRequest.AssignedToStore = assignedToStore.Value;
             if (assignedToStoreId.IsSet)

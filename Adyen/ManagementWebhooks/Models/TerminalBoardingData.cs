@@ -51,14 +51,14 @@ namespace Adyen.ManagementWebhooks.Models
         /// </summary>
         /// <value>The unique identifier of the company account.</value>
         [JsonPropertyName("companyId")]
-        public string CompanyId { get; set; }
+        public string? CompanyId { get; set; }
 
         /// <summary>
         /// The unique identifier of the terminal.
         /// </summary>
         /// <value>The unique identifier of the terminal.</value>
         [JsonPropertyName("uniqueTerminalId")]
-        public string UniqueTerminalId { get; set; }
+        public string? UniqueTerminalId { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="MerchantId"/> will be populated.
@@ -165,15 +165,12 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
-            if (!companyId.IsSet)
-                throw new ArgumentException("Property is required for class TerminalBoardingData.", nameof(companyId));
-
-            if (!uniqueTerminalId.IsSet)
-                throw new ArgumentException("Property is required for class TerminalBoardingData.", nameof(uniqueTerminalId));
 
             var terminalBoardingData = new TerminalBoardingData();
-            terminalBoardingData.CompanyId = companyId.Value!;
-            terminalBoardingData.UniqueTerminalId = uniqueTerminalId.Value!;
+            if (companyId.IsSet)
+                terminalBoardingData.CompanyId = companyId.Value!;
+            if (uniqueTerminalId.IsSet)
+                terminalBoardingData.UniqueTerminalId = uniqueTerminalId.Value!;
             if (merchantId.IsSet)
                 terminalBoardingData.MerchantId = merchantId.Value;
             if (storeId.IsSet)

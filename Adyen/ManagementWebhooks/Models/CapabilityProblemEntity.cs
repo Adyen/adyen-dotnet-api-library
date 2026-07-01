@@ -311,6 +311,7 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
+
             var capabilityProblemEntity = new CapabilityProblemEntity();
             if (documents.IsSet)
                 capabilityProblemEntity.Documents = documents.Value;

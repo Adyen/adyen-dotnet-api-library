@@ -178,14 +178,14 @@ namespace Adyen.ManagementWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public MidServiceNotificationData Data { get; set; }
+        public MidServiceNotificationData? Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
         /// </summary>
         /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
         [JsonPropertyName("environment")]
-        public string Environment { get; set; }
+        public string? Environment { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -270,23 +270,16 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodScheduledForRemovalNotificationRequest.", nameof(createdAt));
-
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodScheduledForRemovalNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodScheduledForRemovalNotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodScheduledForRemovalNotificationRequest.", nameof(type));
 
             var paymentMethodScheduledForRemovalNotificationRequest = new PaymentMethodScheduledForRemovalNotificationRequest();
-            paymentMethodScheduledForRemovalNotificationRequest.CreatedAt = createdAt.Value!.Value;
-            paymentMethodScheduledForRemovalNotificationRequest.Data = data.Value!;
-            paymentMethodScheduledForRemovalNotificationRequest.Environment = environment.Value!;
-            paymentMethodScheduledForRemovalNotificationRequest.Type = type.Value!;
+            if (createdAt.IsSet)
+                paymentMethodScheduledForRemovalNotificationRequest.CreatedAt = createdAt.Value!.Value;
+            if (data.IsSet)
+                paymentMethodScheduledForRemovalNotificationRequest.Data = data.Value!;
+            if (environment.IsSet)
+                paymentMethodScheduledForRemovalNotificationRequest.Environment = environment.Value!;
+            if (type.IsSet)
+                paymentMethodScheduledForRemovalNotificationRequest.Type = type.Value!;
             return paymentMethodScheduledForRemovalNotificationRequest;
         }
 

@@ -178,14 +178,14 @@ namespace Adyen.ManagementWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public TerminalBoardingData Data { get; set; }
+        public TerminalBoardingData? Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
         /// </summary>
         /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
         [JsonPropertyName("environment")]
-        public string Environment { get; set; }
+        public string? Environment { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -270,23 +270,16 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class TerminalBoardingNotificationRequest.", nameof(createdAt));
-
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class TerminalBoardingNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class TerminalBoardingNotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TerminalBoardingNotificationRequest.", nameof(type));
 
             var terminalBoardingNotificationRequest = new TerminalBoardingNotificationRequest();
-            terminalBoardingNotificationRequest.CreatedAt = createdAt.Value!.Value;
-            terminalBoardingNotificationRequest.Data = data.Value!;
-            terminalBoardingNotificationRequest.Environment = environment.Value!;
-            terminalBoardingNotificationRequest.Type = type.Value!;
+            if (createdAt.IsSet)
+                terminalBoardingNotificationRequest.CreatedAt = createdAt.Value!.Value;
+            if (data.IsSet)
+                terminalBoardingNotificationRequest.Data = data.Value!;
+            if (environment.IsSet)
+                terminalBoardingNotificationRequest.Environment = environment.Value!;
+            if (type.IsSet)
+                terminalBoardingNotificationRequest.Type = type.Value!;
             return terminalBoardingNotificationRequest;
         }
 
