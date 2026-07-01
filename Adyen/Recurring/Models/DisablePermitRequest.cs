@@ -51,14 +51,14 @@ namespace Adyen.Recurring.Models
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The permit token to disable.
         /// </summary>
         /// <value>The permit token to disable.</value>
         [JsonPropertyName("token")]
-        public string Token { get; set; }
+        public string? Token { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.Recurring.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class DisablePermitRequest.", nameof(merchantAccount));
-
-            if (!token.IsSet)
-                throw new ArgumentException("Property is required for class DisablePermitRequest.", nameof(token));
 
             var disablePermitRequest = new DisablePermitRequest();
-            disablePermitRequest.MerchantAccount = merchantAccount.Value!;
-            disablePermitRequest.Token = token.Value!;
+            if (merchantAccount.IsSet)
+                disablePermitRequest.MerchantAccount = merchantAccount.Value!;
+            if (token.IsSet)
+                disablePermitRequest.Token = token.Value!;
             return disablePermitRequest;
         }
 

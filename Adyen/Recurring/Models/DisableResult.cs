@@ -122,6 +122,7 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+
             var disableResult = new DisableResult();
             if (response.IsSet)
                 disableResult.Response = response.Value;

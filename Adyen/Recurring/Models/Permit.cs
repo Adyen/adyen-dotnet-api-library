@@ -202,6 +202,7 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+
             var permit = new Permit();
             if (partnerId.IsSet)
                 permit.PartnerId = partnerId.Value;

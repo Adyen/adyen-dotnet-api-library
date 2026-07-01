@@ -274,6 +274,7 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+
             var bankAccount = new BankAccount();
             if (bankAccountNumber.IsSet)
                 bankAccount.BankAccountNumber = bankAccountNumber.Value;

@@ -184,6 +184,7 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+
             var recurringDetailsResult = new RecurringDetailsResult();
             if (creationDate.IsSet)
                 recurringDetailsResult.CreationDate = creationDate.Value;

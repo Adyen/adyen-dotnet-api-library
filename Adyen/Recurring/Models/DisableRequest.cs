@@ -51,14 +51,14 @@ namespace Adyen.Recurring.Models
         /// </summary>
         /// <value>The merchant account identifier with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The ID that uniquely identifies the shopper.  This &#x60;shopperReference&#x60; must be the same as the &#x60;shopperReference&#x60; used in the initial payment.
         /// </summary>
         /// <value>The ID that uniquely identifies the shopper.  This `shopperReference` must be the same as the `shopperReference` used in the initial payment.</value>
         [JsonPropertyName("shopperReference")]
-        public string ShopperReference { get; set; }
+        public string? ShopperReference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Contract"/> will be populated.
@@ -165,15 +165,12 @@ namespace Adyen.Recurring.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class DisableRequest.", nameof(merchantAccount));
-
-            if (!shopperReference.IsSet)
-                throw new ArgumentException("Property is required for class DisableRequest.", nameof(shopperReference));
 
             var disableRequest = new DisableRequest();
-            disableRequest.MerchantAccount = merchantAccount.Value!;
-            disableRequest.ShopperReference = shopperReference.Value!;
+            if (merchantAccount.IsSet)
+                disableRequest.MerchantAccount = merchantAccount.Value!;
+            if (shopperReference.IsSet)
+                disableRequest.ShopperReference = shopperReference.Value!;
             if (contract.IsSet)
                 disableRequest.Contract = contract.Value;
             if (recurringDetailReference.IsSet)

@@ -217,6 +217,7 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+
             var serviceError = new ServiceError();
             if (additionalData.IsSet)
                 serviceError.AdditionalData = additionalData.Value;

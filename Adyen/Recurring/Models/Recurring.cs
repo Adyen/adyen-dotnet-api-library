@@ -496,6 +496,7 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+
             var recurring = new Recurring();
             if (contract.IsSet)
                 recurring.Contract = contract.Value;

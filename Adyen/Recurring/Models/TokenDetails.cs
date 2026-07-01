@@ -139,6 +139,7 @@ namespace Adyen.Recurring.Models
                 }
             }
             
+
             var tokenDetails = new TokenDetails();
             if (tokenData.IsSet)
                 tokenDetails.TokenData = tokenData.Value;
