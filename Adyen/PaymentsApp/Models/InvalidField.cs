@@ -51,21 +51,21 @@ namespace Adyen.PaymentsApp.Models
         /// </summary>
         /// <value>The field that has an invalid value.</value>
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// The invalid value.
         /// </summary>
         /// <value>The invalid value.</value>
         [JsonPropertyName("value")]
-        public string Value { get; set; }
+        public string? Value { get; set; }
 
         /// <summary>
         /// Description of the validation error.
         /// </summary>
         /// <value>Description of the validation error.</value>
         [JsonPropertyName("message")]
-        public string Message { get; set; }
+        public string? Message { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,19 +139,14 @@ namespace Adyen.PaymentsApp.Models
                 }
             }
             
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(name));
-
-            if (!value.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(value));
-
-            if (!message.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(message));
 
             var invalidField = new InvalidField();
-            invalidField.Name = name.Value!;
-            invalidField.Value = value.Value!;
-            invalidField.Message = message.Value!;
+            if (name.IsSet)
+                invalidField.Name = name.Value!;
+            if (value.IsSet)
+                invalidField.Value = value.Value!;
+            if (message.IsSet)
+                invalidField.Message = message.Value!;
             return invalidField;
         }
 

@@ -51,7 +51,7 @@ namespace Adyen.PaymentsApp.Models
         /// </summary>
         /// <value>The boardingToken request token.</value>
         [JsonPropertyName("boardingRequestToken")]
-        public string BoardingRequestToken { get; set; }
+        public string? BoardingRequestToken { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.PaymentsApp.Models
                 }
             }
             
-            if (!boardingRequestToken.IsSet)
-                throw new ArgumentException("Property is required for class BoardingTokenRequest.", nameof(boardingRequestToken));
 
             var boardingTokenRequest = new BoardingTokenRequest();
-            boardingTokenRequest.BoardingRequestToken = boardingRequestToken.Value!;
+            if (boardingRequestToken.IsSet)
+                boardingTokenRequest.BoardingRequestToken = boardingRequestToken.Value!;
             return boardingTokenRequest;
         }
 
