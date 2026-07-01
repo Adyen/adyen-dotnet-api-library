@@ -50,7 +50,7 @@ namespace Adyen.SessionAuthentication.Models
         /// <see cref="PaymentInstrumentId"/>.
         /// </summary>
         [JsonPropertyName("paymentInstrumentId")]
-        public string PaymentInstrumentId { get; set; }
+        public string? PaymentInstrumentId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -120,11 +120,10 @@ namespace Adyen.SessionAuthentication.Models
                 }
             }
             
-            if (!paymentInstrumentId.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrumentResource.", nameof(paymentInstrumentId));
 
             var paymentInstrumentResource = new PaymentInstrumentResource();
-            paymentInstrumentResource.PaymentInstrumentId = paymentInstrumentId.Value!;
+            if (paymentInstrumentId.IsSet)
+                paymentInstrumentResource.PaymentInstrumentId = paymentInstrumentId.Value!;
             return paymentInstrumentResource;
         }
 

@@ -141,6 +141,7 @@ namespace Adyen.SessionAuthentication.Models
                 }
             }
             
+
             var authenticationSessionResponse = new AuthenticationSessionResponse();
             if (id.IsSet)
                 authenticationSessionResponse.Id = id.Value;

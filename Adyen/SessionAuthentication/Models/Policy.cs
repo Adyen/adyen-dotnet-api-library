@@ -141,6 +141,7 @@ namespace Adyen.SessionAuthentication.Models
                 }
             }
             
+
             var policy = new Policy();
             if (resources.IsSet)
                 policy.Resources = resources.Value;
