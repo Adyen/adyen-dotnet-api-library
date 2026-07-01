@@ -51,21 +51,21 @@ namespace Adyen.PaymentsApp.Models
         /// </summary>
         /// <value>The unique identifier of the Payments App instance.</value>
         [JsonPropertyName("installationId")]
-        public string InstallationId { get; set; }
+        public string? InstallationId { get; set; }
 
         /// <summary>
         /// The account code associated with the Payments App instance.
         /// </summary>
         /// <value>The account code associated with the Payments App instance.</value>
         [JsonPropertyName("merchantAccountCode")]
-        public string MerchantAccountCode { get; set; }
+        public string? MerchantAccountCode { get; set; }
 
         /// <summary>
         /// The status of the Payments App instance.
         /// </summary>
         /// <value>The status of the Payments App instance.</value>
         [JsonPropertyName("status")]
-        public string Status { get; set; }
+        public string? Status { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="MerchantStoreCode"/> will be populated.
@@ -158,19 +158,14 @@ namespace Adyen.PaymentsApp.Models
                 }
             }
             
-            if (!installationId.IsSet)
-                throw new ArgumentException("Property is required for class PaymentsAppDto.", nameof(installationId));
-
-            if (!merchantAccountCode.IsSet)
-                throw new ArgumentException("Property is required for class PaymentsAppDto.", nameof(merchantAccountCode));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class PaymentsAppDto.", nameof(status));
 
             var paymentsAppDto = new PaymentsAppDto();
-            paymentsAppDto.InstallationId = installationId.Value!;
-            paymentsAppDto.MerchantAccountCode = merchantAccountCode.Value!;
-            paymentsAppDto.Status = status.Value!;
+            if (installationId.IsSet)
+                paymentsAppDto.InstallationId = installationId.Value!;
+            if (merchantAccountCode.IsSet)
+                paymentsAppDto.MerchantAccountCode = merchantAccountCode.Value!;
+            if (status.IsSet)
+                paymentsAppDto.Status = status.Value!;
             if (merchantStoreCode.IsSet)
                 paymentsAppDto.MerchantStoreCode = merchantStoreCode.Value;
             return paymentsAppDto;

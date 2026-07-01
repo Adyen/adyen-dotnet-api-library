@@ -51,14 +51,14 @@ namespace Adyen.PaymentsApp.Models
         /// </summary>
         /// <value>The boarding token that allows the Payments App to board.</value>
         [JsonPropertyName("boardingToken")]
-        public string BoardingToken { get; set; }
+        public string? BoardingToken { get; set; }
 
         /// <summary>
         /// The unique identifier of the Payments App instance.
         /// </summary>
         /// <value>The unique identifier of the Payments App instance.</value>
         [JsonPropertyName("installationId")]
-        public string InstallationId { get; set; }
+        public string? InstallationId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.PaymentsApp.Models
                 }
             }
             
-            if (!boardingToken.IsSet)
-                throw new ArgumentException("Property is required for class BoardingTokenResponse.", nameof(boardingToken));
-
-            if (!installationId.IsSet)
-                throw new ArgumentException("Property is required for class BoardingTokenResponse.", nameof(installationId));
 
             var boardingTokenResponse = new BoardingTokenResponse();
-            boardingTokenResponse.BoardingToken = boardingToken.Value!;
-            boardingTokenResponse.InstallationId = installationId.Value!;
+            if (boardingToken.IsSet)
+                boardingTokenResponse.BoardingToken = boardingToken.Value!;
+            if (installationId.IsSet)
+                boardingTokenResponse.InstallationId = installationId.Value!;
             return boardingTokenResponse;
         }
 

@@ -51,7 +51,7 @@ namespace Adyen.PaymentsApp.Models
         /// </summary>
         /// <value>List of Payments Apps.</value>
         [JsonPropertyName("paymentsApps")]
-        public List<PaymentsAppDto> PaymentsApps { get; set; }
+        public List<PaymentsAppDto>? PaymentsApps { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,11 +115,10 @@ namespace Adyen.PaymentsApp.Models
                 }
             }
             
-            if (!paymentsApps.IsSet)
-                throw new ArgumentException("Property is required for class PaymentsAppResponse.", nameof(paymentsApps));
 
             var paymentsAppResponse = new PaymentsAppResponse();
-            paymentsAppResponse.PaymentsApps = paymentsApps.Value!;
+            if (paymentsApps.IsSet)
+                paymentsAppResponse.PaymentsApps = paymentsApps.Value!;
             return paymentsAppResponse;
         }
 
