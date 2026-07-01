@@ -214,6 +214,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var fundSource = new FundSource();
             if (additionalData.IsSet)
                 fundSource.AdditionalData = additionalData.Value;

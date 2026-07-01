@@ -51,20 +51,20 @@ namespace Adyen.Payment.Models
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// <see cref="ModificationAmount"/>.
         /// </summary>
         [JsonPropertyName("modificationAmount")]
-        public Amount ModificationAmount { get; set; }
+        public Amount? ModificationAmount { get; set; }
 
         /// <summary>
         /// The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  
         /// </summary>
         /// <value>The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  </value>
         [JsonPropertyName("originalReference")]
-        public string OriginalReference { get; set; }
+        public string? OriginalReference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
@@ -288,19 +288,14 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class RefundRequest.", nameof(merchantAccount));
-
-            if (!modificationAmount.IsSet)
-                throw new ArgumentException("Property is required for class RefundRequest.", nameof(modificationAmount));
-
-            if (!originalReference.IsSet)
-                throw new ArgumentException("Property is required for class RefundRequest.", nameof(originalReference));
 
             var refundRequest = new RefundRequest();
-            refundRequest.MerchantAccount = merchantAccount.Value!;
-            refundRequest.ModificationAmount = modificationAmount.Value!;
-            refundRequest.OriginalReference = originalReference.Value!;
+            if (merchantAccount.IsSet)
+                refundRequest.MerchantAccount = merchantAccount.Value!;
+            if (modificationAmount.IsSet)
+                refundRequest.ModificationAmount = modificationAmount.Value!;
+            if (originalReference.IsSet)
+                refundRequest.OriginalReference = originalReference.Value!;
             if (additionalData.IsSet)
                 refundRequest.AdditionalData = additionalData.Value;
             if (mpiData.IsSet)

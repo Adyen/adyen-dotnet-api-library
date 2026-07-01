@@ -211,6 +211,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var applicationInfo = new ApplicationInfo();
             if (adyenLibrary.IsSet)
                 applicationInfo.AdyenLibrary = adyenLibrary.Value;

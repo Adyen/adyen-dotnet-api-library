@@ -1875,6 +1875,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var responseAdditionalDataCommon = new ResponseAdditionalDataCommon();
             if (acquirerAccountCode.IsSet)
                 responseAdditionalDataCommon.AcquirerAccountCode = acquirerAccountCode.Value;

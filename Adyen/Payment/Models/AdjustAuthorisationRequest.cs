@@ -51,20 +51,20 @@ namespace Adyen.Payment.Models
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// <see cref="ModificationAmount"/>.
         /// </summary>
         [JsonPropertyName("modificationAmount")]
-        public Amount ModificationAmount { get; set; }
+        public Amount? ModificationAmount { get; set; }
 
         /// <summary>
         /// The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  
         /// </summary>
         /// <value>The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  </value>
         [JsonPropertyName("originalReference")]
-        public string OriginalReference { get; set; }
+        public string? OriginalReference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
@@ -288,19 +288,14 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class AdjustAuthorisationRequest.", nameof(merchantAccount));
-
-            if (!modificationAmount.IsSet)
-                throw new ArgumentException("Property is required for class AdjustAuthorisationRequest.", nameof(modificationAmount));
-
-            if (!originalReference.IsSet)
-                throw new ArgumentException("Property is required for class AdjustAuthorisationRequest.", nameof(originalReference));
 
             var adjustAuthorisationRequest = new AdjustAuthorisationRequest();
-            adjustAuthorisationRequest.MerchantAccount = merchantAccount.Value!;
-            adjustAuthorisationRequest.ModificationAmount = modificationAmount.Value!;
-            adjustAuthorisationRequest.OriginalReference = originalReference.Value!;
+            if (merchantAccount.IsSet)
+                adjustAuthorisationRequest.MerchantAccount = merchantAccount.Value!;
+            if (modificationAmount.IsSet)
+                adjustAuthorisationRequest.ModificationAmount = modificationAmount.Value!;
+            if (originalReference.IsSet)
+                adjustAuthorisationRequest.OriginalReference = originalReference.Value!;
             if (additionalData.IsSet)
                 adjustAuthorisationRequest.AdditionalData = additionalData.Value;
             if (mpiData.IsSet)

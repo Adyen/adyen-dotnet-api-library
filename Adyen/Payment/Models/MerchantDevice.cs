@@ -160,6 +160,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var merchantDevice = new MerchantDevice();
             if (os.IsSet)
                 merchantDevice.Os = os.Value;

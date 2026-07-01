@@ -308,6 +308,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var fundDestination = new FundDestination();
             if (iBAN.IsSet)
                 fundDestination.IBAN = iBAN.Value;

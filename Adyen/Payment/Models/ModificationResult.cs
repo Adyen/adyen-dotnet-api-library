@@ -262,7 +262,7 @@ namespace Adyen.Payment.Models
         /// </summary>
         /// <value>Adyen's 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.</value>
         [JsonPropertyName("pspReference")]
-        public string PspReference { get; set; }
+        public string? PspReference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
@@ -351,15 +351,12 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!pspReference.IsSet)
-                throw new ArgumentException("Property is required for class ModificationResult.", nameof(pspReference));
-
-            if (!response.IsSet)
-                throw new ArgumentException("Property is required for class ModificationResult.", nameof(response));
 
             var modificationResult = new ModificationResult();
-            modificationResult.PspReference = pspReference.Value!;
-            modificationResult.Response = response.Value!;
+            if (pspReference.IsSet)
+                modificationResult.PspReference = pspReference.Value!;
+            if (response.IsSet)
+                modificationResult.Response = response.Value!;
             if (additionalData.IsSet)
                 modificationResult.AdditionalData = additionalData.Value;
             return modificationResult;

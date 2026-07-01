@@ -51,14 +51,14 @@ namespace Adyen.Payment.Models
         /// </summary>
         /// <value>The merchant account identifier, with which the authentication was processed.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The pspReference identifier for the transaction.
         /// </summary>
         /// <value>The pspReference identifier for the transaction.</value>
         [JsonPropertyName("pspReference")]
-        public string PspReference { get; set; }
+        public string? PspReference { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,15 +127,12 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationResultRequest.", nameof(merchantAccount));
-
-            if (!pspReference.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationResultRequest.", nameof(pspReference));
 
             var authenticationResultRequest = new AuthenticationResultRequest();
-            authenticationResultRequest.MerchantAccount = merchantAccount.Value!;
-            authenticationResultRequest.PspReference = pspReference.Value!;
+            if (merchantAccount.IsSet)
+                authenticationResultRequest.MerchantAccount = merchantAccount.Value!;
+            if (pspReference.IsSet)
+                authenticationResultRequest.PspReference = pspReference.Value!;
             return authenticationResultRequest;
         }
 

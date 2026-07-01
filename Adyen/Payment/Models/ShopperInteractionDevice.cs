@@ -160,6 +160,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var shopperInteractionDevice = new ShopperInteractionDevice();
             if (locale.IsSet)
                 shopperInteractionDevice.Locale = locale.Value;

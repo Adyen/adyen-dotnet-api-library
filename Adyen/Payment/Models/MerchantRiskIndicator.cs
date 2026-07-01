@@ -686,6 +686,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var merchantRiskIndicator = new MerchantRiskIndicator();
             if (addressMatch.IsSet)
                 merchantRiskIndicator.AddressMatch = addressMatch.Value;

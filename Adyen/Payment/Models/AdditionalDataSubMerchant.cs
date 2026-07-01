@@ -331,6 +331,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var additionalDataSubMerchant = new AdditionalDataSubMerchant();
             if (subMerchantNumberOfSubSellers.IsSet)
                 additionalDataSubMerchant.SubMerchantNumberOfSubSellers = subMerchantNumberOfSubSellers.Value;

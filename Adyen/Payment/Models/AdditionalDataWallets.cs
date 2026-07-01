@@ -217,6 +217,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var additionalDataWallets = new AdditionalDataWallets();
             if (androidpayToken.IsSet)
                 additionalDataWallets.AndroidpayToken = androidpayToken.Value;

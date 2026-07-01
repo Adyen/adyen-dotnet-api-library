@@ -198,6 +198,7 @@ namespace Adyen.Payment.Models
                 }
             }
             
+
             var subMerchant = new SubMerchant();
             if (city.IsSet)
                 subMerchant.City = city.Value;
