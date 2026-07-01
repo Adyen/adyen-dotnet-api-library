@@ -264,6 +264,7 @@ namespace Adyen.DataProtection.Models
                 }
             }
             
+
             var subjectErasureResponse = new SubjectErasureResponse();
             if (result.IsSet)
                 subjectErasureResponse.Result = result.Value;

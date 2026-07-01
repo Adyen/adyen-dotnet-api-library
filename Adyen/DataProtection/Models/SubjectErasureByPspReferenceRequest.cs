@@ -160,6 +160,7 @@ namespace Adyen.DataProtection.Models
                 }
             }
             
+
             var subjectErasureByPspReferenceRequest = new SubjectErasureByPspReferenceRequest();
             if (forceErasure.IsSet)
                 subjectErasureByPspReferenceRequest.ForceErasure = forceErasure.Value;
