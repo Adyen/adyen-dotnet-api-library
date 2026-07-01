@@ -171,14 +171,14 @@ namespace Adyen.ReportWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public ReportNotificationData Data { get; set; }
+        public ReportNotificationData? Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
         /// </summary>
         /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
         [JsonPropertyName("environment")]
-        public string Environment { get; set; }
+        public string? Environment { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Timestamp"/> will be populated.
@@ -277,19 +277,14 @@ namespace Adyen.ReportWebhooks.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ReportNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class ReportNotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class ReportNotificationRequest.", nameof(type));
 
             var reportNotificationRequest = new ReportNotificationRequest();
-            reportNotificationRequest.Data = data.Value!;
-            reportNotificationRequest.Environment = environment.Value!;
-            reportNotificationRequest.Type = type.Value!;
+            if (data.IsSet)
+                reportNotificationRequest.Data = data.Value!;
+            if (environment.IsSet)
+                reportNotificationRequest.Environment = environment.Value!;
+            if (type.IsSet)
+                reportNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 reportNotificationRequest.Timestamp = timestamp.Value;
             return reportNotificationRequest;

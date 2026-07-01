@@ -51,21 +51,21 @@ namespace Adyen.ReportWebhooks.Models
         /// </summary>
         /// <value>The URL at which you can download the report. To download, you must authenticate your GET request with your [API credentials](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/overview).</value>
         [JsonPropertyName("downloadUrl")]
-        public string DownloadUrl { get; set; }
+        public string? DownloadUrl { get; set; }
 
         /// <summary>
         /// The filename of the report.
         /// </summary>
         /// <value>The filename of the report.</value>
         [JsonPropertyName("fileName")]
-        public string FileName { get; set; }
+        public string? FileName { get; set; }
 
         /// <summary>
         /// The type of report. Possible values:  - &#x60;balanceplatform_accounting_interactive_report&#x60; - &#x60;balanceplatform_accounting_report&#x60; - &#x60;balanceplatform_balance_report&#x60; - &#x60;balanceplatform_fee_report&#x60; - &#x60;balanceplatform_payment_instrument_report&#x60; - &#x60;balanceplatform_payout_report&#x60; - &#x60;balanceplatform_statement_report&#x60;  
         /// </summary>
         /// <value>The type of report. Possible values:  - `balanceplatform_accounting_interactive_report` - `balanceplatform_accounting_report` - `balanceplatform_balance_report` - `balanceplatform_fee_report` - `balanceplatform_payment_instrument_report` - `balanceplatform_payout_report` - `balanceplatform_statement_report`  </value>
         [JsonPropertyName("reportType")]
-        public string ReportType { get; set; }
+        public string? ReportType { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AccountHolder"/> will be populated.
@@ -237,19 +237,14 @@ namespace Adyen.ReportWebhooks.Models
                 }
             }
             
-            if (!downloadUrl.IsSet)
-                throw new ArgumentException("Property is required for class ReportNotificationData.", nameof(downloadUrl));
-
-            if (!fileName.IsSet)
-                throw new ArgumentException("Property is required for class ReportNotificationData.", nameof(fileName));
-
-            if (!reportType.IsSet)
-                throw new ArgumentException("Property is required for class ReportNotificationData.", nameof(reportType));
 
             var reportNotificationData = new ReportNotificationData();
-            reportNotificationData.DownloadUrl = downloadUrl.Value!;
-            reportNotificationData.FileName = fileName.Value!;
-            reportNotificationData.ReportType = reportType.Value!;
+            if (downloadUrl.IsSet)
+                reportNotificationData.DownloadUrl = downloadUrl.Value!;
+            if (fileName.IsSet)
+                reportNotificationData.FileName = fileName.Value!;
+            if (reportType.IsSet)
+                reportNotificationData.ReportType = reportType.Value!;
             if (accountHolder.IsSet)
                 reportNotificationData.AccountHolder = accountHolder.Value;
             if (balanceAccount.IsSet)
