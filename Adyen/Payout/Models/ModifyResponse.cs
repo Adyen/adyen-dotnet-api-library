@@ -51,14 +51,14 @@ namespace Adyen.Payout.Models
         /// </summary>
         /// <value>Adyen's 16-character string reference associated with the transaction. This value is globally unique; quote it when communicating with us about this response.</value>
         [JsonPropertyName("pspReference")]
-        public string PspReference { get; set; }
+        public string? PspReference { get; set; }
 
         /// <summary>
         /// The response: * In case of success, it is either &#x60;payout-confirm-received&#x60; or &#x60;payout-decline-received&#x60;. * In case of an error, an informational message is returned.
         /// </summary>
         /// <value>The response: * In case of success, it is either `payout-confirm-received` or `payout-decline-received`. * In case of an error, an informational message is returned.</value>
         [JsonPropertyName("response")]
-        public string Response { get; set; }
+        public string? Response { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
@@ -146,15 +146,12 @@ namespace Adyen.Payout.Models
                 }
             }
             
-            if (!pspReference.IsSet)
-                throw new ArgumentException("Property is required for class ModifyResponse.", nameof(pspReference));
-
-            if (!response.IsSet)
-                throw new ArgumentException("Property is required for class ModifyResponse.", nameof(response));
 
             var modifyResponse = new ModifyResponse();
-            modifyResponse.PspReference = pspReference.Value!;
-            modifyResponse.Response = response.Value!;
+            if (pspReference.IsSet)
+                modifyResponse.PspReference = pspReference.Value!;
+            if (response.IsSet)
+                modifyResponse.Response = response.Value!;
             if (additionalData.IsSet)
                 modifyResponse.AdditionalData = additionalData.Value;
             return modifyResponse;

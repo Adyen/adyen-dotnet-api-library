@@ -51,14 +51,14 @@ namespace Adyen.Payout.Models
         /// </summary>
         /// <value>A new reference to uniquely identify this request.</value>
         [JsonPropertyName("pspReference")]
-        public string PspReference { get; set; }
+        public string? PspReference { get; set; }
 
         /// <summary>
         /// The response:  * In case of success is payout-submit-received. * In case of an error, an informational message is returned.
         /// </summary>
         /// <value>The response:  * In case of success is payout-submit-received. * In case of an error, an informational message is returned.</value>
         [JsonPropertyName("resultCode")]
-        public string ResultCode { get; set; }
+        public string? ResultCode { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
@@ -165,15 +165,12 @@ namespace Adyen.Payout.Models
                 }
             }
             
-            if (!pspReference.IsSet)
-                throw new ArgumentException("Property is required for class StoreDetailAndSubmitResponse.", nameof(pspReference));
-
-            if (!resultCode.IsSet)
-                throw new ArgumentException("Property is required for class StoreDetailAndSubmitResponse.", nameof(resultCode));
 
             var storeDetailAndSubmitResponse = new StoreDetailAndSubmitResponse();
-            storeDetailAndSubmitResponse.PspReference = pspReference.Value!;
-            storeDetailAndSubmitResponse.ResultCode = resultCode.Value!;
+            if (pspReference.IsSet)
+                storeDetailAndSubmitResponse.PspReference = pspReference.Value!;
+            if (resultCode.IsSet)
+                storeDetailAndSubmitResponse.ResultCode = resultCode.Value!;
             if (additionalData.IsSet)
                 storeDetailAndSubmitResponse.AdditionalData = additionalData.Value;
             if (refusalReason.IsSet)

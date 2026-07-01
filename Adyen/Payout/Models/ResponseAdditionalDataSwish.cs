@@ -122,6 +122,7 @@ namespace Adyen.Payout.Models
                 }
             }
             
+
             var responseAdditionalDataSwish = new ResponseAdditionalDataSwish();
             if (swishPayerAlias.IsSet)
                 responseAdditionalDataSwish.SwishPayerAlias = swishPayerAlias.Value;

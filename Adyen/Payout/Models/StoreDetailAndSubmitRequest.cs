@@ -180,7 +180,7 @@ namespace Adyen.Payout.Models
         /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
-        public Amount Amount { get; set; }
+        public Amount? Amount { get; set; }
 
         /// <summary>
         /// The date of birth. Format: [ISO-8601](https://www.w3.org/TR/NOTE-datetime); example: YYYY-MM-DD For Paysafecard it must be the same as used when registering the Paysafecard account. &gt; This field is mandatory for natural persons.
@@ -194,41 +194,41 @@ namespace Adyen.Payout.Models
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The shopper&#39;s nationality.  A valid value is an ISO 2-character country code (e.g. &#39;NL&#39;).
         /// </summary>
         /// <value>The shopper's nationality.  A valid value is an ISO 2-character country code (e.g. 'NL').</value>
         [JsonPropertyName("nationality")]
-        public string Nationality { get; set; }
+        public string? Nationality { get; set; }
 
         /// <summary>
         /// <see cref="Recurring"/>.
         /// </summary>
         [JsonPropertyName("recurring")]
-        public Recurring Recurring { get; set; }
+        public Recurring? Recurring { get; set; }
 
         /// <summary>
         /// The merchant reference for this payment. This reference will be used in all communication to the merchant about the status of the payout. Although it is a good idea to make sure it is unique, this is not a requirement.
         /// </summary>
         /// <value>The merchant reference for this payment. This reference will be used in all communication to the merchant about the status of the payout. Although it is a good idea to make sure it is unique, this is not a requirement.</value>
         [JsonPropertyName("reference")]
-        public string Reference { get; set; }
+        public string? Reference { get; set; }
 
         /// <summary>
         /// The shopper&#39;s email address.
         /// </summary>
         /// <value>The shopper's email address.</value>
         [JsonPropertyName("shopperEmail")]
-        public string ShopperEmail { get; set; }
+        public string? ShopperEmail { get; set; }
 
         /// <summary>
         /// The shopper&#39;s reference for the payment transaction.
         /// </summary>
         /// <value>The shopper's reference for the payment transaction.</value>
         [JsonPropertyName("shopperReference")]
-        public string ShopperReference { get; set; }
+        public string? ShopperReference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
@@ -524,43 +524,26 @@ namespace Adyen.Payout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class StoreDetailAndSubmitRequest.", nameof(amount));
-
-            if (!dateOfBirth.IsSet)
-                throw new ArgumentException("Property is required for class StoreDetailAndSubmitRequest.", nameof(dateOfBirth));
-
-            if (!entityType.IsSet)
-                throw new ArgumentException("Property is required for class StoreDetailAndSubmitRequest.", nameof(entityType));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class StoreDetailAndSubmitRequest.", nameof(merchantAccount));
-
-            if (!nationality.IsSet)
-                throw new ArgumentException("Property is required for class StoreDetailAndSubmitRequest.", nameof(nationality));
-
-            if (!recurring.IsSet)
-                throw new ArgumentException("Property is required for class StoreDetailAndSubmitRequest.", nameof(recurring));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class StoreDetailAndSubmitRequest.", nameof(reference));
-
-            if (!shopperEmail.IsSet)
-                throw new ArgumentException("Property is required for class StoreDetailAndSubmitRequest.", nameof(shopperEmail));
-
-            if (!shopperReference.IsSet)
-                throw new ArgumentException("Property is required for class StoreDetailAndSubmitRequest.", nameof(shopperReference));
 
             var storeDetailAndSubmitRequest = new StoreDetailAndSubmitRequest();
-            storeDetailAndSubmitRequest.Amount = amount.Value!;
-            storeDetailAndSubmitRequest.DateOfBirth = dateOfBirth.Value!.Value;
-            storeDetailAndSubmitRequest.EntityType = entityType.Value!;
-            storeDetailAndSubmitRequest.MerchantAccount = merchantAccount.Value!;
-            storeDetailAndSubmitRequest.Nationality = nationality.Value!;
-            storeDetailAndSubmitRequest.Recurring = recurring.Value!;
-            storeDetailAndSubmitRequest.Reference = reference.Value!;
-            storeDetailAndSubmitRequest.ShopperEmail = shopperEmail.Value!;
-            storeDetailAndSubmitRequest.ShopperReference = shopperReference.Value!;
+            if (amount.IsSet)
+                storeDetailAndSubmitRequest.Amount = amount.Value!;
+            if (dateOfBirth.IsSet)
+                storeDetailAndSubmitRequest.DateOfBirth = dateOfBirth.Value!.Value;
+            if (entityType.IsSet)
+                storeDetailAndSubmitRequest.EntityType = entityType.Value!;
+            if (merchantAccount.IsSet)
+                storeDetailAndSubmitRequest.MerchantAccount = merchantAccount.Value!;
+            if (nationality.IsSet)
+                storeDetailAndSubmitRequest.Nationality = nationality.Value!;
+            if (recurring.IsSet)
+                storeDetailAndSubmitRequest.Recurring = recurring.Value!;
+            if (reference.IsSet)
+                storeDetailAndSubmitRequest.Reference = reference.Value!;
+            if (shopperEmail.IsSet)
+                storeDetailAndSubmitRequest.ShopperEmail = shopperEmail.Value!;
+            if (shopperReference.IsSet)
+                storeDetailAndSubmitRequest.ShopperReference = shopperReference.Value!;
             if (additionalData.IsSet)
                 storeDetailAndSubmitRequest.AdditionalData = additionalData.Value;
             if (bank.IsSet)

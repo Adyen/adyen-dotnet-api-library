@@ -198,6 +198,7 @@ namespace Adyen.Payout.Models
                 }
             }
             
+
             var responseAdditionalData3DSecure = new ResponseAdditionalData3DSecure();
             if (cardHolderInfo.IsSet)
                 responseAdditionalData3DSecure.CardHolderInfo = cardHolderInfo.Value;

@@ -51,14 +51,14 @@ namespace Adyen.Payout.Models
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
-        public string MerchantAccount { get; set; }
+        public string? MerchantAccount { get; set; }
 
         /// <summary>
         /// The PSP reference received in the &#x60;/submitThirdParty&#x60; response.
         /// </summary>
         /// <value>The PSP reference received in the `/submitThirdParty` response.</value>
         [JsonPropertyName("originalReference")]
-        public string OriginalReference { get; set; }
+        public string? OriginalReference { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
@@ -146,15 +146,12 @@ namespace Adyen.Payout.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class ModifyRequest.", nameof(merchantAccount));
-
-            if (!originalReference.IsSet)
-                throw new ArgumentException("Property is required for class ModifyRequest.", nameof(originalReference));
 
             var modifyRequest = new ModifyRequest();
-            modifyRequest.MerchantAccount = merchantAccount.Value!;
-            modifyRequest.OriginalReference = originalReference.Value!;
+            if (merchantAccount.IsSet)
+                modifyRequest.MerchantAccount = merchantAccount.Value!;
+            if (originalReference.IsSet)
+                modifyRequest.OriginalReference = originalReference.Value!;
             if (additionalData.IsSet)
                 modifyRequest.AdditionalData = additionalData.Value;
             return modifyRequest;

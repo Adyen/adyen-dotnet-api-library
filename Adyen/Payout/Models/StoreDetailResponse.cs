@@ -51,21 +51,21 @@ namespace Adyen.Payout.Models
         /// </summary>
         /// <value>A new reference to uniquely identify this request.</value>
         [JsonPropertyName("pspReference")]
-        public string PspReference { get; set; }
+        public string? PspReference { get; set; }
 
         /// <summary>
         /// The token which you can use later on for submitting the payout.
         /// </summary>
         /// <value>The token which you can use later on for submitting the payout.</value>
         [JsonPropertyName("recurringDetailReference")]
-        public string RecurringDetailReference { get; set; }
+        public string? RecurringDetailReference { get; set; }
 
         /// <summary>
         /// The result code of the transaction. &#x60;Success&#x60; indicates that the details were stored successfully.
         /// </summary>
         /// <value>The result code of the transaction. `Success` indicates that the details were stored successfully.</value>
         [JsonPropertyName("resultCode")]
-        public string ResultCode { get; set; }
+        public string? ResultCode { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
@@ -158,19 +158,14 @@ namespace Adyen.Payout.Models
                 }
             }
             
-            if (!pspReference.IsSet)
-                throw new ArgumentException("Property is required for class StoreDetailResponse.", nameof(pspReference));
-
-            if (!recurringDetailReference.IsSet)
-                throw new ArgumentException("Property is required for class StoreDetailResponse.", nameof(recurringDetailReference));
-
-            if (!resultCode.IsSet)
-                throw new ArgumentException("Property is required for class StoreDetailResponse.", nameof(resultCode));
 
             var storeDetailResponse = new StoreDetailResponse();
-            storeDetailResponse.PspReference = pspReference.Value!;
-            storeDetailResponse.RecurringDetailReference = recurringDetailReference.Value!;
-            storeDetailResponse.ResultCode = resultCode.Value!;
+            if (pspReference.IsSet)
+                storeDetailResponse.PspReference = pspReference.Value!;
+            if (recurringDetailReference.IsSet)
+                storeDetailResponse.RecurringDetailReference = recurringDetailReference.Value!;
+            if (resultCode.IsSet)
+                storeDetailResponse.ResultCode = resultCode.Value!;
             if (additionalData.IsSet)
                 storeDetailResponse.AdditionalData = additionalData.Value;
             return storeDetailResponse;
