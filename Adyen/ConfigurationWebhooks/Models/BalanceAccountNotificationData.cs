@@ -140,6 +140,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var balanceAccountNotificationData = new BalanceAccountNotificationData();
             if (balanceAccount.IsSet)
                 balanceAccountNotificationData.BalanceAccount = balanceAccount.Value;

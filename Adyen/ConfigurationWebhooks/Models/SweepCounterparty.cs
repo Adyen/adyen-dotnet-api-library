@@ -160,6 +160,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var sweepCounterparty = new SweepCounterparty();
             if (balanceAccountId.IsSet)
                 sweepCounterparty.BalanceAccountId = balanceAccountId.Value;

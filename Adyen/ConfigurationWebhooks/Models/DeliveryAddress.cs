@@ -51,7 +51,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// </summary>
         /// <value>The two-character ISO-3166-1 alpha-2 country code. For example, **US**. >If you don't know the country or are not collecting the country from the shopper, provide `country` as `ZZ`.</value>
         [JsonPropertyName("country")]
-        public string Country { get; set; }
+        public string? Country { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="City"/> will be populated.
@@ -229,11 +229,10 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!country.IsSet)
-                throw new ArgumentException("Property is required for class DeliveryAddress.", nameof(country));
 
             var deliveryAddress = new DeliveryAddress();
-            deliveryAddress.Country = country.Value!;
+            if (country.IsSet)
+                deliveryAddress.Country = country.Value!;
             if (city.IsSet)
                 deliveryAddress.City = city.Value;
             if (line1.IsSet)

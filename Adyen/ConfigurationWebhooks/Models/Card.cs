@@ -190,21 +190,21 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// </summary>
         /// <value>The brand of the physical or the virtual card. Possible values: **visa**, **mc**.</value>
         [JsonPropertyName("brand")]
-        public string Brand { get; set; }
+        public string? Brand { get; set; }
 
         /// <summary>
         /// The brand variant of the physical or the virtual card. For example, **visadebit** or **mcprepaid**. &gt;Reach out to your Adyen contact to get the values relevant for your integration.
         /// </summary>
         /// <value>The brand variant of the physical or the virtual card. For example, **visadebit** or **mcprepaid**. >Reach out to your Adyen contact to get the values relevant for your integration.</value>
         [JsonPropertyName("brandVariant")]
-        public string BrandVariant { get; set; }
+        public string? BrandVariant { get; set; }
 
         /// <summary>
         /// The name of the cardholder.  Maximum length: 26 characters.
         /// </summary>
         /// <value>The name of the cardholder.  Maximum length: 26 characters.</value>
         [JsonPropertyName("cardholderName")]
-        public string CardholderName { get; set; }
+        public string? CardholderName { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Authentication"/> will be populated.
@@ -470,23 +470,16 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!brand.IsSet)
-                throw new ArgumentException("Property is required for class Card.", nameof(brand));
-
-            if (!brandVariant.IsSet)
-                throw new ArgumentException("Property is required for class Card.", nameof(brandVariant));
-
-            if (!cardholderName.IsSet)
-                throw new ArgumentException("Property is required for class Card.", nameof(cardholderName));
-
-            if (!formFactor.IsSet)
-                throw new ArgumentException("Property is required for class Card.", nameof(formFactor));
 
             var card = new Card();
-            card.Brand = brand.Value!;
-            card.BrandVariant = brandVariant.Value!;
-            card.CardholderName = cardholderName.Value!;
-            card.FormFactor = formFactor.Value!;
+            if (brand.IsSet)
+                card.Brand = brand.Value!;
+            if (brandVariant.IsSet)
+                card.BrandVariant = brandVariant.Value!;
+            if (cardholderName.IsSet)
+                card.CardholderName = cardholderName.Value!;
+            if (formFactor.IsSet)
+                card.FormFactor = formFactor.Value!;
             if (authentication.IsSet)
                 card.Authentication = authentication.Value;
             if (bin.IsSet)

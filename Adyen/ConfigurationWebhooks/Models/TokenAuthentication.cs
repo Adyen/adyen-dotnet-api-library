@@ -141,6 +141,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var tokenAuthentication = new TokenAuthentication();
             if (method.IsSet)
                 tokenAuthentication.Method = method.Value;

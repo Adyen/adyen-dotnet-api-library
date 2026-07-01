@@ -180,14 +180,14 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public PaymentInstrumentNotificationData Data { get; set; }
+        public PaymentInstrumentNotificationData? Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
         /// </summary>
         /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
         [JsonPropertyName("environment")]
-        public string Environment { get; set; }
+        public string? Environment { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Timestamp"/> will be populated.
@@ -286,19 +286,14 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class PaymentNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class PaymentNotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PaymentNotificationRequest.", nameof(type));
 
             var paymentNotificationRequest = new PaymentNotificationRequest();
-            paymentNotificationRequest.Data = data.Value!;
-            paymentNotificationRequest.Environment = environment.Value!;
-            paymentNotificationRequest.Type = type.Value!;
+            if (data.IsSet)
+                paymentNotificationRequest.Data = data.Value!;
+            if (environment.IsSet)
+                paymentNotificationRequest.Environment = environment.Value!;
+            if (type.IsSet)
+                paymentNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 paymentNotificationRequest.Timestamp = timestamp.Value;
             return paymentNotificationRequest;

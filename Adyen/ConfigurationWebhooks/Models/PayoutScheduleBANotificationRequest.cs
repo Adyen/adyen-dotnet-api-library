@@ -189,14 +189,14 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public AccountPayoutConfigWebhookData Data { get; set; }
+        public AccountPayoutConfigWebhookData? Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
         /// </summary>
         /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
         [JsonPropertyName("environment")]
-        public string Environment { get; set; }
+        public string? Environment { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Timestamp"/> will be populated.
@@ -295,19 +295,14 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class PayoutScheduleBANotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class PayoutScheduleBANotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PayoutScheduleBANotificationRequest.", nameof(type));
 
             var payoutScheduleBANotificationRequest = new PayoutScheduleBANotificationRequest();
-            payoutScheduleBANotificationRequest.Data = data.Value!;
-            payoutScheduleBANotificationRequest.Environment = environment.Value!;
-            payoutScheduleBANotificationRequest.Type = type.Value!;
+            if (data.IsSet)
+                payoutScheduleBANotificationRequest.Data = data.Value!;
+            if (environment.IsSet)
+                payoutScheduleBANotificationRequest.Environment = environment.Value!;
+            if (type.IsSet)
+                payoutScheduleBANotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 payoutScheduleBANotificationRequest.Timestamp = timestamp.Value;
             return payoutScheduleBANotificationRequest;

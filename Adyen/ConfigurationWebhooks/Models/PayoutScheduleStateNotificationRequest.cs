@@ -189,14 +189,14 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public PayoutStateWebhookData Data { get; set; }
+        public PayoutStateWebhookData? Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
         /// </summary>
         /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
         [JsonPropertyName("environment")]
-        public string Environment { get; set; }
+        public string? Environment { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Timestamp"/> will be populated.
@@ -295,19 +295,14 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class PayoutScheduleStateNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class PayoutScheduleStateNotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PayoutScheduleStateNotificationRequest.", nameof(type));
 
             var payoutScheduleStateNotificationRequest = new PayoutScheduleStateNotificationRequest();
-            payoutScheduleStateNotificationRequest.Data = data.Value!;
-            payoutScheduleStateNotificationRequest.Environment = environment.Value!;
-            payoutScheduleStateNotificationRequest.Type = type.Value!;
+            if (data.IsSet)
+                payoutScheduleStateNotificationRequest.Data = data.Value!;
+            if (environment.IsSet)
+                payoutScheduleStateNotificationRequest.Environment = environment.Value!;
+            if (type.IsSet)
+                payoutScheduleStateNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 payoutScheduleStateNotificationRequest.Timestamp = timestamp.Value;
             return payoutScheduleStateNotificationRequest;

@@ -140,6 +140,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var mandateNotificationData = new MandateNotificationData();
             if (balancePlatform.IsSet)
                 mandateNotificationData.BalancePlatform = balancePlatform.Value;

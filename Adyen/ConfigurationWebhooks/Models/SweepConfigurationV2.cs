@@ -892,27 +892,27 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <see cref="Counterparty"/>.
         /// </summary>
         [JsonPropertyName("counterparty")]
-        public SweepCounterparty Counterparty { get; set; }
+        public SweepCounterparty? Counterparty { get; set; }
 
         /// <summary>
         /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**.  The sweep currency must match any of the [balances currencies](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__resParam_balances).
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**.  The sweep currency must match any of the [balances currencies](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__resParam_balances).</value>
         [JsonPropertyName("currency")]
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         /// <summary>
         /// The unique identifier of the sweep.
         /// </summary>
         /// <value>The unique identifier of the sweep.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// <see cref="Schedule"/>.
         /// </summary>
         [JsonPropertyName("schedule")]
-        public SweepSchedule Schedule { get; set; }
+        public SweepSchedule? Schedule { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
@@ -1164,23 +1164,16 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!counterparty.IsSet)
-                throw new ArgumentException("Property is required for class SweepConfigurationV2.", nameof(counterparty));
-
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class SweepConfigurationV2.", nameof(currency));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class SweepConfigurationV2.", nameof(id));
-
-            if (!schedule.IsSet)
-                throw new ArgumentException("Property is required for class SweepConfigurationV2.", nameof(schedule));
 
             var sweepConfigurationV2 = new SweepConfigurationV2();
-            sweepConfigurationV2.Counterparty = counterparty.Value!;
-            sweepConfigurationV2.Currency = currency.Value!;
-            sweepConfigurationV2.Id = id.Value!;
-            sweepConfigurationV2.Schedule = schedule.Value!;
+            if (counterparty.IsSet)
+                sweepConfigurationV2.Counterparty = counterparty.Value!;
+            if (currency.IsSet)
+                sweepConfigurationV2.Currency = currency.Value!;
+            if (id.IsSet)
+                sweepConfigurationV2.Id = id.Value!;
+            if (schedule.IsSet)
+                sweepConfigurationV2.Schedule = schedule.Value!;
             if (category.IsSet)
                 sweepConfigurationV2.Category = category.Value;
             if (description.IsSet)

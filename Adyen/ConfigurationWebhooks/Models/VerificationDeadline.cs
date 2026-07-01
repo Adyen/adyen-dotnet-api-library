@@ -650,7 +650,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// </summary>
         /// <value>The names of the capabilities to be disallowed.</value>
         [JsonPropertyName("capabilities")]
-        public List<VerificationDeadline.CapabilitiesEnum> Capabilities { get; set; }
+        public List<VerificationDeadline.CapabilitiesEnum>? Capabilities { get; set; }
 
         /// <summary>
         /// The date that verification is due by before capabilities are disallowed.
@@ -750,15 +750,12 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!capabilities.IsSet)
-                throw new ArgumentException("Property is required for class VerificationDeadline.", nameof(capabilities));
-
-            if (!expiresAt.IsSet)
-                throw new ArgumentException("Property is required for class VerificationDeadline.", nameof(expiresAt));
 
             var verificationDeadline = new VerificationDeadline();
-            verificationDeadline.Capabilities = capabilities.Value!;
-            verificationDeadline.ExpiresAt = expiresAt.Value!.Value;
+            if (capabilities.IsSet)
+                verificationDeadline.Capabilities = capabilities.Value!;
+            if (expiresAt.IsSet)
+                verificationDeadline.ExpiresAt = expiresAt.Value!.Value;
             if (entityIds.IsSet)
                 verificationDeadline.EntityIds = entityIds.Value;
             return verificationDeadline;

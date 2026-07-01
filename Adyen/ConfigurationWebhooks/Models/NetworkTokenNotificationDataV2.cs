@@ -365,6 +365,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var networkTokenNotificationDataV2 = new NetworkTokenNotificationDataV2();
             if (authentication.IsSet)
                 networkTokenNotificationDataV2.Authentication = authentication.Value;

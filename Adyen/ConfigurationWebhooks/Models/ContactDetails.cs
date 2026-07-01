@@ -50,20 +50,20 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <see cref="Address"/>.
         /// </summary>
         [JsonPropertyName("address")]
-        public Address Address { get; set; }
+        public Address? Address { get; set; }
 
         /// <summary>
         /// The email address of the account holder.
         /// </summary>
         /// <value>The email address of the account holder.</value>
         [JsonPropertyName("email")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         /// <summary>
         /// <see cref="Phone"/>.
         /// </summary>
         [JsonPropertyName("phone")]
-        public Phone Phone { get; set; }
+        public Phone? Phone { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="WebAddress"/> will be populated.
@@ -156,19 +156,14 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!address.IsSet)
-                throw new ArgumentException("Property is required for class ContactDetails.", nameof(address));
-
-            if (!email.IsSet)
-                throw new ArgumentException("Property is required for class ContactDetails.", nameof(email));
-
-            if (!phone.IsSet)
-                throw new ArgumentException("Property is required for class ContactDetails.", nameof(phone));
 
             var contactDetails = new ContactDetails();
-            contactDetails.Address = address.Value!;
-            contactDetails.Email = email.Value!;
-            contactDetails.Phone = phone.Value!;
+            if (address.IsSet)
+                contactDetails.Address = address.Value!;
+            if (email.IsSet)
+                contactDetails.Email = email.Value!;
+            if (phone.IsSet)
+                contactDetails.Phone = phone.Value!;
             if (webAddress.IsSet)
                 contactDetails.WebAddress = webAddress.Value;
             return contactDetails;

@@ -172,14 +172,14 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// </summary>
         /// <value>The 8-digit bank account number, without separators or whitespace.</value>
         [JsonPropertyName("accountNumber")]
-        public string AccountNumber { get; set; }
+        public string? AccountNumber { get; set; }
 
         /// <summary>
         /// The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.
         /// </summary>
         /// <value>The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.</value>
         [JsonPropertyName("sortCode")]
-        public string SortCode { get; set; }
+        public string? SortCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -254,19 +254,14 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class UKLocalMandateAccountIdentification.", nameof(accountNumber));
-
-            if (!sortCode.IsSet)
-                throw new ArgumentException("Property is required for class UKLocalMandateAccountIdentification.", nameof(sortCode));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class UKLocalMandateAccountIdentification.", nameof(type));
 
             var uKLocalMandateAccountIdentification = new UKLocalMandateAccountIdentification();
-            uKLocalMandateAccountIdentification.AccountNumber = accountNumber.Value!;
-            uKLocalMandateAccountIdentification.SortCode = sortCode.Value!;
-            uKLocalMandateAccountIdentification.Type = type.Value!;
+            if (accountNumber.IsSet)
+                uKLocalMandateAccountIdentification.AccountNumber = accountNumber.Value!;
+            if (sortCode.IsSet)
+                uKLocalMandateAccountIdentification.SortCode = sortCode.Value!;
+            if (type.IsSet)
+                uKLocalMandateAccountIdentification.Type = type.Value!;
             return uKLocalMandateAccountIdentification;
         }
 

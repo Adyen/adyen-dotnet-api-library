@@ -140,6 +140,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var accountHolderNotificationData = new AccountHolderNotificationData();
             if (accountHolder.IsSet)
                 accountHolderNotificationData.AccountHolder = accountHolder.Value;

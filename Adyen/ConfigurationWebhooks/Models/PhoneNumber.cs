@@ -302,6 +302,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var phoneNumber = new PhoneNumber();
             if (phoneCountryCode.IsSet)
                 phoneNumber.PhoneCountryCode = phoneCountryCode.Value;

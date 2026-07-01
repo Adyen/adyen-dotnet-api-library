@@ -149,7 +149,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// </summary>
         /// <value>**iban** or **usLocal** or **ukLocal**</value>
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -248,8 +248,6 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class BankAccountDetails.", nameof(type));
 
             var bankAccountDetails = new BankAccountDetails();
             if (accountNumber.IsSet)
@@ -266,7 +264,8 @@ namespace Adyen.ConfigurationWebhooks.Models
                 bankAccountDetails.RoutingNumber = routingNumber.Value;
             if (sortCode.IsSet)
                 bankAccountDetails.SortCode = sortCode.Value;
-            bankAccountDetails.Type = type.Value!;
+            if (type.IsSet)
+                bankAccountDetails.Type = type.Value!;
             return bankAccountDetails;
         }
 

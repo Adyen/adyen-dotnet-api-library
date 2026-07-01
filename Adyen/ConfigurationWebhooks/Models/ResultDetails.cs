@@ -160,6 +160,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var resultDetails = new ResultDetails();
             if (reason.IsSet)
                 resultDetails.Reason = reason.Value;

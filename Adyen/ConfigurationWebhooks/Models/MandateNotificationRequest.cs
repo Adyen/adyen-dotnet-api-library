@@ -180,14 +180,14 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public MandateNotificationData Data { get; set; }
+        public MandateNotificationData? Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
         /// </summary>
         /// <value>The environment from which the webhook originated.  Possible values: **test**, **live**.</value>
         [JsonPropertyName("environment")]
-        public string Environment { get; set; }
+        public string? Environment { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Timestamp"/> will be populated.
@@ -286,19 +286,14 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class MandateNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class MandateNotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class MandateNotificationRequest.", nameof(type));
 
             var mandateNotificationRequest = new MandateNotificationRequest();
-            mandateNotificationRequest.Data = data.Value!;
-            mandateNotificationRequest.Environment = environment.Value!;
-            mandateNotificationRequest.Type = type.Value!;
+            if (data.IsSet)
+                mandateNotificationRequest.Data = data.Value!;
+            if (environment.IsSet)
+                mandateNotificationRequest.Environment = environment.Value!;
+            if (type.IsSet)
+                mandateNotificationRequest.Type = type.Value!;
             if (timestamp.IsSet)
                 mandateNotificationRequest.Timestamp = timestamp.Value;
             return mandateNotificationRequest;

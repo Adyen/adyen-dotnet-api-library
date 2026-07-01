@@ -179,6 +179,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var networkTokenTransactionRulesResult = new NetworkTokenTransactionRulesResult();
             if (advice.IsSet)
                 networkTokenTransactionRulesResult.Advice = advice.Value;

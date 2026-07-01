@@ -122,6 +122,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var mandatePartyIdentification = new MandatePartyIdentification();
             if (fullName.IsSet)
                 mandatePartyIdentification.FullName = fullName.Value;

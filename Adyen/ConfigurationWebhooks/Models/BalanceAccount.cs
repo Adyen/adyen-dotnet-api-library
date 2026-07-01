@@ -206,14 +206,14 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// </summary>
         /// <value>The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/accountHolders#responses-200-id) associated with the balance account.</value>
         [JsonPropertyName("accountHolderId")]
-        public string AccountHolderId { get; set; }
+        public string? AccountHolderId { get; set; }
 
         /// <summary>
         /// The unique identifier of the balance account.
         /// </summary>
         /// <value>The unique identifier of the balance account.</value>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Balances"/> will be populated.
@@ -439,15 +439,12 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!accountHolderId.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccount.", nameof(accountHolderId));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccount.", nameof(id));
 
             var balanceAccount = new BalanceAccount();
-            balanceAccount.AccountHolderId = accountHolderId.Value!;
-            balanceAccount.Id = id.Value!;
+            if (accountHolderId.IsSet)
+                balanceAccount.AccountHolderId = accountHolderId.Value!;
+            if (id.IsSet)
+                balanceAccount.Id = id.Value!;
             if (balances.IsSet)
                 balanceAccount.Balances = balances.Value;
             if (defaultCurrencyCode.IsSet)

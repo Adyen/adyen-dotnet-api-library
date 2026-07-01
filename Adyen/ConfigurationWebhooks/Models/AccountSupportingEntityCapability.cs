@@ -662,6 +662,7 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
+
             var accountSupportingEntityCapability = new AccountSupportingEntityCapability();
             if (allowed.IsSet)
                 accountSupportingEntityCapability.Allowed = allowed.Value;
