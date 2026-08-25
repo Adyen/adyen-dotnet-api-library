@@ -189,6 +189,8 @@ namespace Adyen.Checkout.Models
                             acceptHeader = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "colorDepth":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'colorDepth' on 'BrowserInfo' cannot be null.");
                             colorDepth = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "javaEnabled":
@@ -198,12 +200,18 @@ namespace Adyen.Checkout.Models
                             language = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "screenHeight":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'screenHeight' on 'BrowserInfo' cannot be null.");
                             screenHeight = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "screenWidth":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'screenWidth' on 'BrowserInfo' cannot be null.");
                             screenWidth = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "timeZoneOffset":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'timeZoneOffset' on 'BrowserInfo' cannot be null.");
                             timeZoneOffset = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "userAgent":

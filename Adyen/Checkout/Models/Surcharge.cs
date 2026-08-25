@@ -107,6 +107,8 @@ namespace Adyen.Checkout.Models
                     switch (jsonPropertyName)
                     {
                         case "value":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'value' on 'Surcharge' cannot be null.");
                             value = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
