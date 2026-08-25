@@ -194,6 +194,12 @@
                         {{/isBoolean}}
                         {{#isNumeric}}
                         {{^isEnum}}
+                        {{#required}}
+                        {{^isNullable}}
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property '{{baseName}}' on '{{classname}}' cannot be null.");
+                        {{/isNullable}}
+                        {{/required}}
                         {{#isDouble}}
                             {{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}} = {{>OptionProperty}}utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());
                         {{/isDouble}}

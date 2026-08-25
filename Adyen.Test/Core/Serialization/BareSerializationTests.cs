@@ -27,6 +27,50 @@ namespace Adyen.Test.Core.Serialization
         }
 
         [TestMethod]
+        public void Given_AmountJson_When_RequiredValueIsNull_Then_ThrowsJsonException()
+        {
+            string json = "{\"currency\":\"GBP\",\"value\":null}";
+
+            var exception = Assert.ThrowsExactly<JsonException>(() => JsonSerializer.Deserialize<Amount>(json));
+
+            StringAssert.Contains(exception.Message, "Property 'value' on 'Amount' cannot be null.");
+        }
+
+        [TestMethod]
+        public void Given_AmountJson_When_RequiredValueIsMissing_Then_UsesDefaultValue()
+        {
+            string json = "{\"currency\":\"GBP\"}";
+
+            var amount = JsonSerializer.Deserialize<Amount>(json);
+
+            Assert.IsNotNull(amount);
+            Assert.AreEqual("GBP", amount.Currency);
+            Assert.AreEqual(0L, amount.Value);
+        }
+
+        [TestMethod]
+        public void Given_InstallmentsJson_When_RequiredIntValueIsNull_Then_ThrowsJsonException()
+        {
+            string json = "{\"value\":null}";
+
+            var exception = Assert.ThrowsExactly<JsonException>(() => JsonSerializer.Deserialize<Installments>(json));
+
+            StringAssert.Contains(exception.Message, "Property 'value' on 'Installments' cannot be null.");
+        }
+
+        [TestMethod]
+        public void Given_InstallmentsJson_When_OptionalIntValueIsNull_Then_AcceptsNull()
+        {
+            string json = "{\"value\":1,\"extra\":null}";
+
+            var installments = JsonSerializer.Deserialize<Installments>(json);
+
+            Assert.IsNotNull(installments);
+            Assert.AreEqual(1, installments.Value);
+            Assert.IsNull(installments.Extra);
+        }
+
+        [TestMethod]
         public void Given_AmountObject_When_BareSerialize_Then_Returns_CorrectJson()
         {
             var amount = new Amount { Currency = "USD", Value = 500 };
@@ -107,6 +151,14 @@ namespace Adyen.Test.Core.Serialization
             Assert.IsNotNull(request.Amount);
             Assert.AreEqual("EUR", request.Amount.Currency);
             Assert.AreEqual(1000L, request.Amount.Value);
+        }
+
+        [TestMethod]
+        public void Given_PaymentRequestJson_When_NestedAmountValueIsNull_Then_ThrowsJsonException()
+        {
+            string json = "{\"amount\":{\"currency\":\"GBP\",\"value\":null}}";
+
+            Assert.ThrowsExactly<JsonException>(() => JsonSerializer.Deserialize<PaymentRequest>(json));
         }
 
         [TestMethod]

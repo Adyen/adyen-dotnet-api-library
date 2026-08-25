@@ -277,6 +277,8 @@ namespace Adyen.Checkout.Models
                     switch (jsonPropertyName)
                     {
                         case "basePoints":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'basePoints' on 'ForexQuote' cannot be null.");
                             basePoints = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "validTill":

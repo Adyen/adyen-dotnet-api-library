@@ -119,6 +119,8 @@ namespace Adyen.Checkout.Models
                             currency = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "value":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'value' on 'Amount' cannot be null.");
                             value = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
