@@ -137,6 +137,8 @@ namespace Adyen.Capital.Models
                     switch (jsonPropertyName)
                     {
                         case "basisPoints":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'basisPoints' on 'Repayment' cannot be null.");
                             basisPoints = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "term":
