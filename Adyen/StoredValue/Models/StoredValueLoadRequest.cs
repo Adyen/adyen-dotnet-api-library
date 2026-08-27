@@ -47,9 +47,9 @@ namespace Adyen.StoredValue.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The type of load you are trying to do, when absent we default to 'Load'
+        /// The type of load you are trying to do, when absent we default to 'load'
         /// </summary>
-        /// <value>The type of load you are trying to do, when absent we default to &#39;Load&#39;</value>
+        /// <value>The type of load you are trying to do, when absent we default to &#39;load&#39;</value>
         [JsonConverter(typeof(LoadTypeEnumJsonConverter))]
         public class LoadTypeEnum : IEnum
         {
@@ -177,9 +177,9 @@ namespace Adyen.StoredValue.Models
         public Option<LoadTypeEnum?> _LoadTypeOption { get; private set; }
 
         /// <summary>
-        /// The type of load you are trying to do, when absent we default to 'Load'
+        /// The type of load you are trying to do, when absent we default to 'load'
         /// </summary>
-        /// <value>The type of load you are trying to do, when absent we default to &#39;Load&#39;</value>
+        /// <value>The type of load you are trying to do, when absent we default to &#39;load&#39;</value>
         [JsonPropertyName("loadType")]
         public LoadTypeEnum? LoadType { get { return this._LoadTypeOption; } set { this._LoadTypeOption = new(value); } }
 
