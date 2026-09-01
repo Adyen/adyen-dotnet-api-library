@@ -29,15 +29,15 @@ using Adyen.ConfigurationWebhooks.Client;
 namespace Adyen.ConfigurationWebhooks.Models
 {
     /// <summary>
-    /// TokenAuthentication.
+    /// WebhookTopUpAmount.
     /// </summary>
-    [JsonConverter(typeof(TokenAuthenticationJsonConverter))]
-    public partial class TokenAuthentication
+    [JsonConverter(typeof(WebhookTopUpAmountJsonConverter))]
+    public partial class WebhookTopUpAmount
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TokenAuthentication" /> class.
+        /// Initializes a new instance of the <see cref="WebhookTopUpAmount" /> class.
         /// </summary>
-        public TokenAuthentication()
+        public WebhookTopUpAmount()
         {
             OnCreated();
         }
@@ -45,32 +45,30 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Method"/> will be populated.
+        /// This is used to track if an optional field is set. If set, <see cref="FixedAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _MethodOption { get; private set; }
+        public Option<WebhookAmount?> _FixedAmountOption { get; private set; }
 
         /// <summary>
-        /// The method used to complete the authentication process.  Possible values: **sms_OTP**, **email_OTP**.
+        /// <see cref="FixedAmount"/>.
         /// </summary>
-        /// <value>The method used to complete the authentication process.  Possible values: **sms_OTP**, **email_OTP**.</value>
-        [JsonPropertyName("method")]
-        public string? Method { get { return this._MethodOption; } set { this._MethodOption = new(value); } }
+        [JsonPropertyName("fixedAmount")]
+        public WebhookAmount? FixedAmount { get { return this._FixedAmountOption; } set { this._FixedAmountOption = new(value); } }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Result"/> will be populated.
+        /// This is used to track if an optional field is set. If set, <see cref="TargetAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _ResultOption { get; private set; }
+        public Option<WebhookAmount?> _TargetAmountOption { get; private set; }
 
         /// <summary>
-        /// The result of the authentication process.
+        /// <see cref="TargetAmount"/>.
         /// </summary>
-        /// <value>The result of the authentication process.</value>
-        [JsonPropertyName("result")]
-        public string? Result { get { return this._ResultOption; } set { this._ResultOption = new(value); } }
+        [JsonPropertyName("targetAmount")]
+        public WebhookAmount? TargetAmount { get { return this._TargetAmountOption; } set { this._TargetAmountOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -79,28 +77,28 @@ namespace Adyen.ConfigurationWebhooks.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TokenAuthentication {\n");
-            sb.Append("  Method: ").Append(Method).Append("\n");
-            sb.Append("  Result: ").Append(Result).Append("\n");
+            sb.Append("class WebhookTopUpAmount {\n");
+            sb.Append("  FixedAmount: ").Append(FixedAmount).Append("\n");
+            sb.Append("  TargetAmount: ").Append(TargetAmount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="TokenAuthentication" />
+    /// A Json converter for type <see cref="WebhookTopUpAmount" />
     /// </summary>
-    public class TokenAuthenticationJsonConverter : JsonConverter<TokenAuthentication>
+    public class WebhookTopUpAmountJsonConverter : JsonConverter<WebhookTopUpAmount>
     {
         /// <summary>
-        /// Deserializes json to <see cref="TokenAuthentication"/>.
+        /// Deserializes json to <see cref="WebhookTopUpAmount"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="TokenAuthentication"/>.</returns>
+        /// <returns><see cref="WebhookTopUpAmount"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override TokenAuthentication Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override WebhookTopUpAmount Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -109,8 +107,8 @@ namespace Adyen.ConfigurationWebhooks.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> method = default;
-            Option<string?> result = default;
+            Option<WebhookAmount?> fixedAmount = default;
+            Option<WebhookAmount?> targetAmount = default;
 
             while (utf8JsonReader.Read())
             {
@@ -127,11 +125,11 @@ namespace Adyen.ConfigurationWebhooks.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "method":
-                            method = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "fixedAmount":
+                            fixedAmount = new Option<WebhookAmount?>(JsonSerializer.Deserialize<WebhookAmount>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
-                        case "result":
-                            result = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "targetAmount":
+                            targetAmount = new Option<WebhookAmount?>(JsonSerializer.Deserialize<WebhookAmount>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         default:
                             break;
@@ -140,47 +138,50 @@ namespace Adyen.ConfigurationWebhooks.Models
             }
             
 
-            var tokenAuthentication = new TokenAuthentication();
-            if (method.IsSet)
-                tokenAuthentication.Method = method.Value;
-            if (result.IsSet)
-                tokenAuthentication.Result = result.Value;
-            return tokenAuthentication;
+            var webhookTopUpAmount = new WebhookTopUpAmount();
+            if (fixedAmount.IsSet)
+                webhookTopUpAmount.FixedAmount = fixedAmount.Value;
+            if (targetAmount.IsSet)
+                webhookTopUpAmount.TargetAmount = targetAmount.Value;
+            return webhookTopUpAmount;
         }
 
         /// <summary>
-        /// Serializes a <see cref="TokenAuthentication"/>.
+        /// Serializes a <see cref="WebhookTopUpAmount"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="tokenAuthentication"></param>
+        /// <param name="webhookTopUpAmount"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, TokenAuthentication tokenAuthentication, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, WebhookTopUpAmount webhookTopUpAmount, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, tokenAuthentication, jsonSerializerOptions);
+            WriteProperties(writer, webhookTopUpAmount, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="TokenAuthentication"/>.
+        /// Serializes the properties of <see cref="WebhookTopUpAmount"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="tokenAuthentication"></param>
+        /// <param name="webhookTopUpAmount"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, TokenAuthentication tokenAuthentication, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, WebhookTopUpAmount webhookTopUpAmount, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (tokenAuthentication._MethodOption.IsSet)
-                if (tokenAuthentication.Method != null)
-                    writer.WriteString("method", tokenAuthentication.Method);
-
-            if (tokenAuthentication._ResultOption.IsSet)
-                if (tokenAuthentication.Result != null)
-                    writer.WriteString("result", tokenAuthentication.Result);
+            if (webhookTopUpAmount._FixedAmountOption.IsSet)
+            {
+                writer.WritePropertyName("fixedAmount");
+                JsonSerializer.Serialize(writer, webhookTopUpAmount.FixedAmount, jsonSerializerOptions);
+            }
+            if (webhookTopUpAmount._TargetAmountOption.IsSet)
+            {
+                writer.WritePropertyName("targetAmount");
+                JsonSerializer.Serialize(writer, webhookTopUpAmount.TargetAmount, jsonSerializerOptions);
+            }
         }
     }
 }

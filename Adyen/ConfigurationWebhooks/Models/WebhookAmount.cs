@@ -29,15 +29,15 @@ using Adyen.ConfigurationWebhooks.Client;
 namespace Adyen.ConfigurationWebhooks.Models
 {
     /// <summary>
-    /// RemediatingAction.
+    /// WebhookAmount.
     /// </summary>
-    [JsonConverter(typeof(RemediatingActionJsonConverter))]
-    public partial class RemediatingAction
+    [JsonConverter(typeof(WebhookAmountJsonConverter))]
+    public partial class WebhookAmount
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RemediatingAction" /> class.
+        /// Initializes a new instance of the <see cref="WebhookAmount" /> class.
         /// </summary>
-        public RemediatingAction()
+        public WebhookAmount()
         {
             OnCreated();
         }
@@ -45,32 +45,18 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Code"/> will be populated.
+        /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _CodeOption { get; private set; }
+        /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).</value>
+        [JsonPropertyName("currency")]
+        public string? Currency { get; set; }
 
         /// <summary>
-        /// The remediating action code.
+        /// The amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
-        /// <value>The remediating action code.</value>
-        [JsonPropertyName("code")]
-        public string? Code { get { return this._CodeOption; } set { this._CodeOption = new(value); } }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Message"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _MessageOption { get; private set; }
-
-        /// <summary>
-        /// A description of how you can resolve the verification error.
-        /// </summary>
-        /// <value>A description of how you can resolve the verification error.</value>
-        [JsonPropertyName("message")]
-        public string? Message { get { return this._MessageOption; } set { this._MessageOption = new(value); } }
+        /// <value>The amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
+        [JsonPropertyName("value")]
+        public long Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -79,28 +65,28 @@ namespace Adyen.ConfigurationWebhooks.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RemediatingAction {\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("class WebhookAmount {\n");
+            sb.Append("  Currency: ").Append(Currency).Append("\n");
+            sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="RemediatingAction" />
+    /// A Json converter for type <see cref="WebhookAmount" />
     /// </summary>
-    public class RemediatingActionJsonConverter : JsonConverter<RemediatingAction>
+    public class WebhookAmountJsonConverter : JsonConverter<WebhookAmount>
     {
         /// <summary>
-        /// Deserializes json to <see cref="RemediatingAction"/>.
+        /// Deserializes json to <see cref="WebhookAmount"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="RemediatingAction"/>.</returns>
+        /// <returns><see cref="WebhookAmount"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override RemediatingAction Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override WebhookAmount Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -109,8 +95,8 @@ namespace Adyen.ConfigurationWebhooks.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> code = default;
-            Option<string?> message = default;
+            Option<string?> currency = default;
+            Option<long?> value = default;
 
             while (utf8JsonReader.Read())
             {
@@ -127,11 +113,13 @@ namespace Adyen.ConfigurationWebhooks.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "code":
-                            code = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "currency":
+                            currency = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
-                        case "message":
-                            message = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "value":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'value' on 'WebhookAmount' cannot be null.");
+                            value = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;
@@ -140,47 +128,44 @@ namespace Adyen.ConfigurationWebhooks.Models
             }
             
 
-            var remediatingAction = new RemediatingAction();
-            if (code.IsSet)
-                remediatingAction.Code = code.Value;
-            if (message.IsSet)
-                remediatingAction.Message = message.Value;
-            return remediatingAction;
+            var webhookAmount = new WebhookAmount();
+            if (currency.IsSet)
+                webhookAmount.Currency = currency.Value!;
+            if (value.IsSet)
+                webhookAmount.Value = value.Value!.Value;
+            return webhookAmount;
         }
 
         /// <summary>
-        /// Serializes a <see cref="RemediatingAction"/>.
+        /// Serializes a <see cref="WebhookAmount"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="remediatingAction"></param>
+        /// <param name="webhookAmount"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, RemediatingAction remediatingAction, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, WebhookAmount webhookAmount, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, remediatingAction, jsonSerializerOptions);
+            WriteProperties(writer, webhookAmount, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="RemediatingAction"/>.
+        /// Serializes the properties of <see cref="WebhookAmount"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="remediatingAction"></param>
+        /// <param name="webhookAmount"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, RemediatingAction remediatingAction, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, WebhookAmount webhookAmount, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (remediatingAction._CodeOption.IsSet)
-                if (remediatingAction.Code != null)
-                    writer.WriteString("code", remediatingAction.Code);
+            if (webhookAmount.Currency != null)
+                writer.WriteString("currency", webhookAmount.Currency);
 
-            if (remediatingAction._MessageOption.IsSet)
-                if (remediatingAction.Message != null)
-                    writer.WriteString("message", remediatingAction.Message);
+            writer.WriteNumber("value", webhookAmount.Value);
         }
     }
 }
