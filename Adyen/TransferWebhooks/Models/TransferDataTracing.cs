@@ -29,26 +29,37 @@ using Adyen.TransferWebhooks.Client;
 namespace Adyen.TransferWebhooks.Models
 {
     /// <summary>
-    /// SGLocalAccountIdentification.
+    /// Contains information for tracing the transfer after Adyen forwards it to the network..
     /// </summary>
-    [JsonConverter(typeof(SGLocalAccountIdentificationJsonConverter))]
-    public partial class SGLocalAccountIdentification
+    [JsonConverter(typeof(TransferDataTracingJsonConverter))]
+    public partial class TransferDataTracing
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SGLocalAccountIdentification" /> class.
+        /// Initializes a new instance of the <see cref="TransferDataTracing" /> class.
         /// </summary>
-        public SGLocalAccountIdentification()
+        /// <param name="uKFpsTracingData"></param>
+        public TransferDataTracing(UKFpsTracingData uKFpsTracingData)
         {
-            _TypeOption = TypeEnum.SgLocal;
+            UKFpsTracingData = uKFpsTracingData;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransferDataTracing" /> class.
+        /// </summary>
+        /// <param name="uSAchTracingData"></param>
+        public TransferDataTracing(USAchTracingData uSAchTracingData)
+        {
+            USAchTracingData = uSAchTracingData;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// **sgLocal**
+        /// **ukFps**
         /// </summary>
-        /// <value>**sgLocal**</value>
+        /// <value>**ukFps**</value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
         public class TypeEnum : IEnum
         {
@@ -58,9 +69,14 @@ namespace Adyen.TransferWebhooks.Models
             public string? Value { get; set; }
 
             /// <summary>
-            /// TypeEnum.SgLocal - sgLocal
+            /// TypeEnum.UkFps - ukFps
             /// </summary>
-            public static readonly TypeEnum SgLocal = new("sgLocal");
+            public static readonly TypeEnum UkFps = new("ukFps");
+
+            /// <summary>
+            /// TypeEnum.UsAch - usAch
+            /// </summary>
+            public static readonly TypeEnum UsAch = new("usAch");
         
             private TypeEnum(string? value)
             {
@@ -114,7 +130,8 @@ namespace Adyen.TransferWebhooks.Models
             public static TypeEnum? FromStringOrDefault(string value)
             {
                 return value switch {
-                    "sgLocal" => TypeEnum.SgLocal,
+                    "ukFps" => TypeEnum.UkFps,
+                    "usAch" => TypeEnum.UsAch,
                     _ => null,
                 };
             }
@@ -129,8 +146,11 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == null)
                     return null;
             
-                if (value == TypeEnum.SgLocal)
-                    return "sgLocal";
+                if (value == TypeEnum.UkFps)
+                    return "ukFps";
+                
+                if (value == TypeEnum.UsAch)
+                    return "usAch";
                 
                 return value.Value;
             }
@@ -160,32 +180,14 @@ namespace Adyen.TransferWebhooks.Models
         }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// <see cref="UKFpsTracingData"/>..
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<TypeEnum?> _TypeOption { get; private set; }
+        public UKFpsTracingData? UKFpsTracingData { get; set; }
 
         /// <summary>
-        /// **sgLocal**
+        /// <see cref="USAchTracingData"/>..
         /// </summary>
-        /// <value>**sgLocal**</value>
-        [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
-
-        /// <summary>
-        /// The 4- to 19-digit bank account number, without separators or whitespace.
-        /// </summary>
-        /// <value>The 4- to 19-digit bank account number, without separators or whitespace.</value>
-        [JsonPropertyName("accountNumber")]
-        public string? AccountNumber { get; set; }
-
-        /// <summary>
-        /// The bank&#39;s 8- or 11-character BIC or SWIFT code.
-        /// </summary>
-        /// <value>The bank's 8- or 11-character BIC or SWIFT code.</value>
-        [JsonPropertyName("bic")]
-        public string? Bic { get; set; }
+        public USAchTracingData? USAchTracingData { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -194,29 +196,30 @@ namespace Adyen.TransferWebhooks.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SGLocalAccountIdentification {\n");
-            sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
-            sb.Append("  Bic: ").Append(Bic).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("class TransferDataTracing {\n");
+            if (this.UKFpsTracingData != null)
+                sb.Append(UKFpsTracingData.ToString().Replace("\n", "\n  "));
+            if (this.USAchTracingData != null)
+                sb.Append(USAchTracingData.ToString().Replace("\n", "\n  "));
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="SGLocalAccountIdentification" />
+    /// A Json converter for type <see cref="TransferDataTracing" />
     /// </summary>
-    public class SGLocalAccountIdentificationJsonConverter : JsonConverter<SGLocalAccountIdentification>
+    public class TransferDataTracingJsonConverter : JsonConverter<TransferDataTracing>
     {
         /// <summary>
-        /// Deserializes json to <see cref="SGLocalAccountIdentification"/>.
+        /// Deserializes json to <see cref="TransferDataTracing"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="SGLocalAccountIdentification"/>.</returns>
+        /// <returns><see cref="TransferDataTracing"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override SGLocalAccountIdentification Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override TransferDataTracing Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -225,9 +228,40 @@ namespace Adyen.TransferWebhooks.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> accountNumber = default;
-            Option<string?> bic = default;
-            Option<SGLocalAccountIdentification.TypeEnum?> type = default;
+            Option<TransferDataTracing.TypeEnum?> type = default;
+
+            UKFpsTracingData? uKFpsTracingData = null;
+            USAchTracingData? uSAchTracingData = null;
+
+            Utf8JsonReader utf8JsonReaderDiscriminator = utf8JsonReader;
+            while (utf8JsonReaderDiscriminator.Read())
+            {
+                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
+                    break;
+
+                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
+                    break;
+
+                if (utf8JsonReaderDiscriminator.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth - 1)
+                {
+                    string? jsonPropertyName = utf8JsonReaderDiscriminator.GetString();
+                    utf8JsonReaderDiscriminator.Read();
+                    if (jsonPropertyName?.Equals("type") ?? false)
+                    {
+                        string? discriminator = utf8JsonReaderDiscriminator.GetString();
+                        if (discriminator?.Equals("ukFps") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderUKFpsTracingData = utf8JsonReader;
+                            uKFpsTracingData = JsonSerializer.Deserialize<UKFpsTracingData>(ref utf8JsonReaderUKFpsTracingData, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("usAch") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderUSAchTracingData = utf8JsonReader;
+                            uSAchTracingData = JsonSerializer.Deserialize<USAchTracingData>(ref utf8JsonReaderUSAchTracingData, jsonSerializerOptions);
+                        }
+                    }
+                }
+            }
 
             while (utf8JsonReader.Read())
             {
@@ -244,15 +278,9 @@ namespace Adyen.TransferWebhooks.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "accountNumber":
-                            accountNumber = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
-                        case "bic":
-                            bic = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<SGLocalAccountIdentification.TypeEnum?>(SGLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (SGLocalAccountIdentification.TypeEnum)typeRawValue);
+                            type = new Option<TransferDataTracing.TypeEnum?>(TransferDataTracing.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TransferDataTracing.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -261,53 +289,53 @@ namespace Adyen.TransferWebhooks.Models
             }
             
 
-            var sGLocalAccountIdentification = new SGLocalAccountIdentification();
-            if (accountNumber.IsSet)
-                sGLocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            if (bic.IsSet)
-                sGLocalAccountIdentification.Bic = bic.Value!;
-            if (type.IsSet)
-                sGLocalAccountIdentification.Type = type.Value;
-            return sGLocalAccountIdentification;
+            if (uKFpsTracingData != null)
+                return new TransferDataTracing(uKFpsTracingData);
+
+            if (uSAchTracingData != null)
+                return new TransferDataTracing(uSAchTracingData);
+
+            return null!;
         }
 
         /// <summary>
-        /// Serializes a <see cref="SGLocalAccountIdentification"/>.
+        /// Serializes a <see cref="TransferDataTracing"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="sGLocalAccountIdentification"></param>
+        /// <param name="transferDataTracing"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, SGLocalAccountIdentification sGLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, TransferDataTracing transferDataTracing, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, sGLocalAccountIdentification, jsonSerializerOptions);
+            if (transferDataTracing.UKFpsTracingData != null)
+            {
+                UKFpsTracingDataJsonConverter uKFpsTracingDataJsonConverter = (UKFpsTracingDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferDataTracing.UKFpsTracingData.GetType()));
+                uKFpsTracingDataJsonConverter.WriteProperties(writer, transferDataTracing.UKFpsTracingData, jsonSerializerOptions);
+            }
+
+            if (transferDataTracing.USAchTracingData != null)
+            {
+                USAchTracingDataJsonConverter uSAchTracingDataJsonConverter = (USAchTracingDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferDataTracing.USAchTracingData.GetType()));
+                uSAchTracingDataJsonConverter.WriteProperties(writer, transferDataTracing.USAchTracingData, jsonSerializerOptions);
+            }
+
+            WriteProperties(writer, transferDataTracing, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="SGLocalAccountIdentification"/>.
+        /// Serializes the properties of <see cref="TransferDataTracing"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="sGLocalAccountIdentification"></param>
+        /// <param name="transferDataTracing"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, SGLocalAccountIdentification sGLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, TransferDataTracing transferDataTracing, JsonSerializerOptions jsonSerializerOptions)
         {
-            
-            if (sGLocalAccountIdentification.AccountNumber != null)
-                writer.WriteString("accountNumber", sGLocalAccountIdentification.AccountNumber);
 
-            if (sGLocalAccountIdentification.Bic != null)
-                writer.WriteString("bic", sGLocalAccountIdentification.Bic);
-
-            if (sGLocalAccountIdentification._TypeOption.IsSet && sGLocalAccountIdentification.Type != null) 
-            {
-                string? typeRawValue = SGLocalAccountIdentification.TypeEnum.ToJsonValue(sGLocalAccountIdentification._TypeOption.Value!.Value);
-                writer.WriteString("type", typeRawValue);
-            }
         }
     }
 }
