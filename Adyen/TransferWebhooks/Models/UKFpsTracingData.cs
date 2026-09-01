@@ -29,26 +29,25 @@ using Adyen.TransferWebhooks.Client;
 namespace Adyen.TransferWebhooks.Models
 {
     /// <summary>
-    /// SGLocalAccountIdentification.
+    /// UKFpsTracingData.
     /// </summary>
-    [JsonConverter(typeof(SGLocalAccountIdentificationJsonConverter))]
-    public partial class SGLocalAccountIdentification
+    [JsonConverter(typeof(UKFpsTracingDataJsonConverter))]
+    public partial class UKFpsTracingData
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SGLocalAccountIdentification" /> class.
+        /// Initializes a new instance of the <see cref="UKFpsTracingData" /> class.
         /// </summary>
-        public SGLocalAccountIdentification()
+        public UKFpsTracingData()
         {
-            _TypeOption = TypeEnum.SgLocal;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// **sgLocal**
+        /// **ukFps**
         /// </summary>
-        /// <value>**sgLocal**</value>
+        /// <value>**ukFps**</value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
         public class TypeEnum : IEnum
         {
@@ -58,9 +57,9 @@ namespace Adyen.TransferWebhooks.Models
             public string? Value { get; set; }
 
             /// <summary>
-            /// TypeEnum.SgLocal - sgLocal
+            /// TypeEnum.UkFps - ukFps
             /// </summary>
-            public static readonly TypeEnum SgLocal = new("sgLocal");
+            public static readonly TypeEnum UkFps = new("ukFps");
         
             private TypeEnum(string? value)
             {
@@ -114,7 +113,7 @@ namespace Adyen.TransferWebhooks.Models
             public static TypeEnum? FromStringOrDefault(string value)
             {
                 return value switch {
-                    "sgLocal" => TypeEnum.SgLocal,
+                    "ukFps" => TypeEnum.UkFps,
                     _ => null,
                 };
             }
@@ -129,8 +128,8 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == null)
                     return null;
             
-                if (value == TypeEnum.SgLocal)
-                    return "sgLocal";
+                if (value == TypeEnum.UkFps)
+                    return "ukFps";
                 
                 return value.Value;
             }
@@ -160,32 +159,18 @@ namespace Adyen.TransferWebhooks.Models
         }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// **ukFps**
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<TypeEnum?> _TypeOption { get; private set; }
-
-        /// <summary>
-        /// **sgLocal**
-        /// </summary>
-        /// <value>**sgLocal**</value>
+        /// <value>**ukFps**</value>
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
+        public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// The 4- to 19-digit bank account number, without separators or whitespace.
+        /// The FPS trace number. This is a unique identifier assigned to transfers processed by [FPS](https://www.bankofengland.co.uk/payment-systems/services/faster-payments-service).
         /// </summary>
-        /// <value>The 4- to 19-digit bank account number, without separators or whitespace.</value>
-        [JsonPropertyName("accountNumber")]
-        public string? AccountNumber { get; set; }
-
-        /// <summary>
-        /// The bank&#39;s 8- or 11-character BIC or SWIFT code.
-        /// </summary>
-        /// <value>The bank's 8- or 11-character BIC or SWIFT code.</value>
-        [JsonPropertyName("bic")]
-        public string? Bic { get; set; }
+        /// <value>The FPS trace number. This is a unique identifier assigned to transfers processed by [FPS](https://www.bankofengland.co.uk/payment-systems/services/faster-payments-service).</value>
+        [JsonPropertyName("fpid")]
+        public string? Fpid { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -194,9 +179,8 @@ namespace Adyen.TransferWebhooks.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SGLocalAccountIdentification {\n");
-            sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
-            sb.Append("  Bic: ").Append(Bic).Append("\n");
+            sb.Append("class UKFpsTracingData {\n");
+            sb.Append("  Fpid: ").Append(Fpid).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -204,19 +188,19 @@ namespace Adyen.TransferWebhooks.Models
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="SGLocalAccountIdentification" />
+    /// A Json converter for type <see cref="UKFpsTracingData" />
     /// </summary>
-    public class SGLocalAccountIdentificationJsonConverter : JsonConverter<SGLocalAccountIdentification>
+    public class UKFpsTracingDataJsonConverter : JsonConverter<UKFpsTracingData>
     {
         /// <summary>
-        /// Deserializes json to <see cref="SGLocalAccountIdentification"/>.
+        /// Deserializes json to <see cref="UKFpsTracingData"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="SGLocalAccountIdentification"/>.</returns>
+        /// <returns><see cref="UKFpsTracingData"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override SGLocalAccountIdentification Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override UKFpsTracingData Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -225,9 +209,8 @@ namespace Adyen.TransferWebhooks.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> accountNumber = default;
-            Option<string?> bic = default;
-            Option<SGLocalAccountIdentification.TypeEnum?> type = default;
+            Option<string?> fpid = default;
+            Option<UKFpsTracingData.TypeEnum?> type = default;
 
             while (utf8JsonReader.Read())
             {
@@ -244,15 +227,12 @@ namespace Adyen.TransferWebhooks.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "accountNumber":
-                            accountNumber = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
-                        case "bic":
-                            bic = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "fpid":
+                            fpid = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<SGLocalAccountIdentification.TypeEnum?>(SGLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (SGLocalAccountIdentification.TypeEnum)typeRawValue);
+                            type = new Option<UKFpsTracingData.TypeEnum?>(UKFpsTracingData.TypeEnum.FromStringOrDefault(typeRawValue) ?? (UKFpsTracingData.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -261,51 +241,46 @@ namespace Adyen.TransferWebhooks.Models
             }
             
 
-            var sGLocalAccountIdentification = new SGLocalAccountIdentification();
-            if (accountNumber.IsSet)
-                sGLocalAccountIdentification.AccountNumber = accountNumber.Value!;
-            if (bic.IsSet)
-                sGLocalAccountIdentification.Bic = bic.Value!;
+            var uKFpsTracingData = new UKFpsTracingData();
+            if (fpid.IsSet)
+                uKFpsTracingData.Fpid = fpid.Value!;
             if (type.IsSet)
-                sGLocalAccountIdentification.Type = type.Value;
-            return sGLocalAccountIdentification;
+                uKFpsTracingData.Type = type.Value!;
+            return uKFpsTracingData;
         }
 
         /// <summary>
-        /// Serializes a <see cref="SGLocalAccountIdentification"/>.
+        /// Serializes a <see cref="UKFpsTracingData"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="sGLocalAccountIdentification"></param>
+        /// <param name="uKFpsTracingData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, SGLocalAccountIdentification sGLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, UKFpsTracingData uKFpsTracingData, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, sGLocalAccountIdentification, jsonSerializerOptions);
+            WriteProperties(writer, uKFpsTracingData, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="SGLocalAccountIdentification"/>.
+        /// Serializes the properties of <see cref="UKFpsTracingData"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="sGLocalAccountIdentification"></param>
+        /// <param name="uKFpsTracingData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, SGLocalAccountIdentification sGLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, UKFpsTracingData uKFpsTracingData, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (sGLocalAccountIdentification.AccountNumber != null)
-                writer.WriteString("accountNumber", sGLocalAccountIdentification.AccountNumber);
+            if (uKFpsTracingData.Fpid != null)
+                writer.WriteString("fpid", uKFpsTracingData.Fpid);
 
-            if (sGLocalAccountIdentification.Bic != null)
-                writer.WriteString("bic", sGLocalAccountIdentification.Bic);
-
-            if (sGLocalAccountIdentification._TypeOption.IsSet && sGLocalAccountIdentification.Type != null) 
+            if (uKFpsTracingData.Type != null) 
             {
-                string? typeRawValue = SGLocalAccountIdentification.TypeEnum.ToJsonValue(sGLocalAccountIdentification._TypeOption.Value!.Value);
+                string? typeRawValue = UKFpsTracingData.TypeEnum.ToJsonValue(uKFpsTracingData.Type);
                 writer.WriteString("type", typeRawValue);
             }
         }
