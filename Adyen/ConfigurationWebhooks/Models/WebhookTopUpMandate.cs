@@ -29,15 +29,15 @@ using Adyen.ConfigurationWebhooks.Client;
 namespace Adyen.ConfigurationWebhooks.Models
 {
     /// <summary>
-    /// TokenAuthentication.
+    /// WebhookTopUpMandate.
     /// </summary>
-    [JsonConverter(typeof(TokenAuthenticationJsonConverter))]
-    public partial class TokenAuthentication
+    [JsonConverter(typeof(WebhookTopUpMandateJsonConverter))]
+    public partial class WebhookTopUpMandate
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TokenAuthentication" /> class.
+        /// Initializes a new instance of the <see cref="WebhookTopUpMandate" /> class.
         /// </summary>
-        public TokenAuthentication()
+        public WebhookTopUpMandate()
         {
             OnCreated();
         }
@@ -45,32 +45,32 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Method"/> will be populated.
+        /// This is used to track if an optional field is set. If set, <see cref="CreationDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _MethodOption { get; private set; }
+        public Option<DateTimeOffset?> _CreationDateOption { get; private set; }
 
         /// <summary>
-        /// The method used to complete the authentication process.  Possible values: **sms_OTP**, **email_OTP**.
+        /// The date when the mandate was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
         /// </summary>
-        /// <value>The method used to complete the authentication process.  Possible values: **sms_OTP**, **email_OTP**.</value>
-        [JsonPropertyName("method")]
-        public string? Method { get { return this._MethodOption; } set { this._MethodOption = new(value); } }
+        /// <value>The date when the mandate was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.</value>
+        [JsonPropertyName("creationDate")]
+        public DateTimeOffset? CreationDate { get { return this._CreationDateOption; } set { this._CreationDateOption = new(value); } }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Result"/> will be populated.
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _ResultOption { get; private set; }
+        public Option<string?> _ReferenceOption { get; private set; }
 
         /// <summary>
-        /// The result of the authentication process.
+        /// The unique identifier of the mandate.
         /// </summary>
-        /// <value>The result of the authentication process.</value>
-        [JsonPropertyName("result")]
-        public string? Result { get { return this._ResultOption; } set { this._ResultOption = new(value); } }
+        /// <value>The unique identifier of the mandate.</value>
+        [JsonPropertyName("reference")]
+        public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -79,28 +79,33 @@ namespace Adyen.ConfigurationWebhooks.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TokenAuthentication {\n");
-            sb.Append("  Method: ").Append(Method).Append("\n");
-            sb.Append("  Result: ").Append(Result).Append("\n");
+            sb.Append("class WebhookTopUpMandate {\n");
+            sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
+            sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="TokenAuthentication" />
+    /// A Json converter for type <see cref="WebhookTopUpMandate" />
     /// </summary>
-    public class TokenAuthenticationJsonConverter : JsonConverter<TokenAuthentication>
+    public class WebhookTopUpMandateJsonConverter : JsonConverter<WebhookTopUpMandate>
     {
         /// <summary>
-        /// Deserializes json to <see cref="TokenAuthentication"/>.
+        /// The format to use to serialize CreationDate.
+        /// </summary>
+        public static string CreationDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+
+        /// <summary>
+        /// Deserializes json to <see cref="WebhookTopUpMandate"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="TokenAuthentication"/>.</returns>
+        /// <returns><see cref="WebhookTopUpMandate"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override TokenAuthentication Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override WebhookTopUpMandate Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -109,8 +114,8 @@ namespace Adyen.ConfigurationWebhooks.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> method = default;
-            Option<string?> result = default;
+            Option<DateTimeOffset?> creationDate = default;
+            Option<string?> reference = default;
 
             while (utf8JsonReader.Read())
             {
@@ -127,11 +132,11 @@ namespace Adyen.ConfigurationWebhooks.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "method":
-                            method = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "creationDate":
+                            creationDate = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "result":
-                            result = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "reference":
+                            reference = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         default:
                             break;
@@ -140,47 +145,47 @@ namespace Adyen.ConfigurationWebhooks.Models
             }
             
 
-            var tokenAuthentication = new TokenAuthentication();
-            if (method.IsSet)
-                tokenAuthentication.Method = method.Value;
-            if (result.IsSet)
-                tokenAuthentication.Result = result.Value;
-            return tokenAuthentication;
+            var webhookTopUpMandate = new WebhookTopUpMandate();
+            if (creationDate.IsSet)
+                webhookTopUpMandate.CreationDate = creationDate.Value;
+            if (reference.IsSet)
+                webhookTopUpMandate.Reference = reference.Value;
+            return webhookTopUpMandate;
         }
 
         /// <summary>
-        /// Serializes a <see cref="TokenAuthentication"/>.
+        /// Serializes a <see cref="WebhookTopUpMandate"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="tokenAuthentication"></param>
+        /// <param name="webhookTopUpMandate"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, TokenAuthentication tokenAuthentication, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, WebhookTopUpMandate webhookTopUpMandate, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, tokenAuthentication, jsonSerializerOptions);
+            WriteProperties(writer, webhookTopUpMandate, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="TokenAuthentication"/>.
+        /// Serializes the properties of <see cref="WebhookTopUpMandate"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="tokenAuthentication"></param>
+        /// <param name="webhookTopUpMandate"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, TokenAuthentication tokenAuthentication, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, WebhookTopUpMandate webhookTopUpMandate, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (tokenAuthentication._MethodOption.IsSet)
-                if (tokenAuthentication.Method != null)
-                    writer.WriteString("method", tokenAuthentication.Method);
+            if (webhookTopUpMandate._CreationDateOption.IsSet)
+                if (webhookTopUpMandate._CreationDateOption.Value != null)
+                    writer.WriteString("creationDate", webhookTopUpMandate._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
 
-            if (tokenAuthentication._ResultOption.IsSet)
-                if (tokenAuthentication.Result != null)
-                    writer.WriteString("result", tokenAuthentication.Result);
+            if (webhookTopUpMandate._ReferenceOption.IsSet)
+                if (webhookTopUpMandate.Reference != null)
+                    writer.WriteString("reference", webhookTopUpMandate.Reference);
         }
     }
 }

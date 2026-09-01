@@ -29,15 +29,15 @@ using Adyen.ConfigurationWebhooks.Client;
 namespace Adyen.ConfigurationWebhooks.Models
 {
     /// <summary>
-    /// TokenAuthentication.
+    /// WebhookTopUpCounterparty.
     /// </summary>
-    [JsonConverter(typeof(TokenAuthenticationJsonConverter))]
-    public partial class TokenAuthentication
+    [JsonConverter(typeof(WebhookTopUpCounterpartyJsonConverter))]
+    public partial class WebhookTopUpCounterparty
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TokenAuthentication" /> class.
+        /// Initializes a new instance of the <see cref="WebhookTopUpCounterparty" /> class.
         /// </summary>
-        public TokenAuthentication()
+        public WebhookTopUpCounterparty()
         {
             OnCreated();
         }
@@ -45,32 +45,18 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Method"/> will be populated.
+        /// This is used to track if an optional field is set. If set, <see cref="TransferInstrumentId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _MethodOption { get; private set; }
+        public Option<string?> _TransferInstrumentIdOption { get; private set; }
 
         /// <summary>
-        /// The method used to complete the authentication process.  Possible values: **sms_OTP**, **email_OTP**.
+        /// The unique identifier of the transfer instrument that is the source of the funds.
         /// </summary>
-        /// <value>The method used to complete the authentication process.  Possible values: **sms_OTP**, **email_OTP**.</value>
-        [JsonPropertyName("method")]
-        public string? Method { get { return this._MethodOption; } set { this._MethodOption = new(value); } }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Result"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _ResultOption { get; private set; }
-
-        /// <summary>
-        /// The result of the authentication process.
-        /// </summary>
-        /// <value>The result of the authentication process.</value>
-        [JsonPropertyName("result")]
-        public string? Result { get { return this._ResultOption; } set { this._ResultOption = new(value); } }
+        /// <value>The unique identifier of the transfer instrument that is the source of the funds.</value>
+        [JsonPropertyName("transferInstrumentId")]
+        public string? TransferInstrumentId { get { return this._TransferInstrumentIdOption; } set { this._TransferInstrumentIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -79,28 +65,27 @@ namespace Adyen.ConfigurationWebhooks.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TokenAuthentication {\n");
-            sb.Append("  Method: ").Append(Method).Append("\n");
-            sb.Append("  Result: ").Append(Result).Append("\n");
+            sb.Append("class WebhookTopUpCounterparty {\n");
+            sb.Append("  TransferInstrumentId: ").Append(TransferInstrumentId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="TokenAuthentication" />
+    /// A Json converter for type <see cref="WebhookTopUpCounterparty" />
     /// </summary>
-    public class TokenAuthenticationJsonConverter : JsonConverter<TokenAuthentication>
+    public class WebhookTopUpCounterpartyJsonConverter : JsonConverter<WebhookTopUpCounterparty>
     {
         /// <summary>
-        /// Deserializes json to <see cref="TokenAuthentication"/>.
+        /// Deserializes json to <see cref="WebhookTopUpCounterparty"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="TokenAuthentication"/>.</returns>
+        /// <returns><see cref="WebhookTopUpCounterparty"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override TokenAuthentication Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override WebhookTopUpCounterparty Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -109,8 +94,7 @@ namespace Adyen.ConfigurationWebhooks.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> method = default;
-            Option<string?> result = default;
+            Option<string?> transferInstrumentId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -127,11 +111,8 @@ namespace Adyen.ConfigurationWebhooks.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "method":
-                            method = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
-                        case "result":
-                            result = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "transferInstrumentId":
+                            transferInstrumentId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         default:
                             break;
@@ -140,47 +121,41 @@ namespace Adyen.ConfigurationWebhooks.Models
             }
             
 
-            var tokenAuthentication = new TokenAuthentication();
-            if (method.IsSet)
-                tokenAuthentication.Method = method.Value;
-            if (result.IsSet)
-                tokenAuthentication.Result = result.Value;
-            return tokenAuthentication;
+            var webhookTopUpCounterparty = new WebhookTopUpCounterparty();
+            if (transferInstrumentId.IsSet)
+                webhookTopUpCounterparty.TransferInstrumentId = transferInstrumentId.Value;
+            return webhookTopUpCounterparty;
         }
 
         /// <summary>
-        /// Serializes a <see cref="TokenAuthentication"/>.
+        /// Serializes a <see cref="WebhookTopUpCounterparty"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="tokenAuthentication"></param>
+        /// <param name="webhookTopUpCounterparty"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, TokenAuthentication tokenAuthentication, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, WebhookTopUpCounterparty webhookTopUpCounterparty, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, tokenAuthentication, jsonSerializerOptions);
+            WriteProperties(writer, webhookTopUpCounterparty, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="TokenAuthentication"/>.
+        /// Serializes the properties of <see cref="WebhookTopUpCounterparty"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="tokenAuthentication"></param>
+        /// <param name="webhookTopUpCounterparty"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, TokenAuthentication tokenAuthentication, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, WebhookTopUpCounterparty webhookTopUpCounterparty, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (tokenAuthentication._MethodOption.IsSet)
-                if (tokenAuthentication.Method != null)
-                    writer.WriteString("method", tokenAuthentication.Method);
-
-            if (tokenAuthentication._ResultOption.IsSet)
-                if (tokenAuthentication.Result != null)
-                    writer.WriteString("result", tokenAuthentication.Result);
+            if (webhookTopUpCounterparty._TransferInstrumentIdOption.IsSet)
+                if (webhookTopUpCounterparty.TransferInstrumentId != null)
+                    writer.WriteString("transferInstrumentId", webhookTopUpCounterparty.TransferInstrumentId);
         }
     }
 }

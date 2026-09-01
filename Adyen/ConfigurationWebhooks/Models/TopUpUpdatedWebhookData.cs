@@ -29,20 +29,33 @@ using Adyen.ConfigurationWebhooks.Client;
 namespace Adyen.ConfigurationWebhooks.Models
 {
     /// <summary>
-    /// Resource.
+    /// TopUpUpdatedWebhookData.
     /// </summary>
-    [JsonConverter(typeof(ResourceJsonConverter))]
-    public partial class Resource
+    [JsonConverter(typeof(TopUpUpdatedWebhookDataJsonConverter))]
+    public partial class TopUpUpdatedWebhookData
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Resource" /> class.
+        /// Initializes a new instance of the <see cref="TopUpUpdatedWebhookData" /> class.
         /// </summary>
-        public Resource()
+        public TopUpUpdatedWebhookData()
         {
             OnCreated();
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// The unique identifier of the balance account for which the recurring top-up is configured.
+        /// </summary>
+        /// <value>The unique identifier of the balance account for which the recurring top-up is configured.</value>
+        [JsonPropertyName("accountId")]
+        public string? AccountId { get; set; }
+
+        /// <summary>
+        /// <see cref="WebhookTopUpConfiguration"/>.
+        /// </summary>
+        [JsonPropertyName("webhookTopUpConfiguration")]
+        public WebhookTopUpConfigurationUpdated? WebhookTopUpConfiguration { get; set; }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="BalancePlatform"/> will be populated.
@@ -93,7 +106,9 @@ namespace Adyen.ConfigurationWebhooks.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Resource {\n");
+            sb.Append("class TopUpUpdatedWebhookData {\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  WebhookTopUpConfiguration: ").Append(WebhookTopUpConfiguration).Append("\n");
             sb.Append("  BalancePlatform: ").Append(BalancePlatform).Append("\n");
             sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
@@ -103,9 +118,9 @@ namespace Adyen.ConfigurationWebhooks.Models
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="Resource" />
+    /// A Json converter for type <see cref="TopUpUpdatedWebhookData" />
     /// </summary>
-    public class ResourceJsonConverter : JsonConverter<Resource>
+    public class TopUpUpdatedWebhookDataJsonConverter : JsonConverter<TopUpUpdatedWebhookData>
     {
         /// <summary>
         /// The format to use to serialize CreationDate.
@@ -113,14 +128,14 @@ namespace Adyen.ConfigurationWebhooks.Models
         public static string CreationDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
-        /// Deserializes json to <see cref="Resource"/>.
+        /// Deserializes json to <see cref="TopUpUpdatedWebhookData"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="Resource"/>.</returns>
+        /// <returns><see cref="TopUpUpdatedWebhookData"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override Resource Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override TopUpUpdatedWebhookData Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -129,6 +144,8 @@ namespace Adyen.ConfigurationWebhooks.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<string?> accountId = default;
+            Option<WebhookTopUpConfigurationUpdated?> webhookTopUpConfiguration = default;
             Option<string?> balancePlatform = default;
             Option<DateTimeOffset?> creationDate = default;
             Option<string?> id = default;
@@ -148,6 +165,12 @@ namespace Adyen.ConfigurationWebhooks.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "accountId":
+                            accountId = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "webhookTopUpConfiguration":
+                            webhookTopUpConfiguration = new Option<WebhookTopUpConfigurationUpdated?>(JsonSerializer.Deserialize<WebhookTopUpConfigurationUpdated>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "balancePlatform":
                             balancePlatform = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -164,53 +187,62 @@ namespace Adyen.ConfigurationWebhooks.Models
             }
             
 
-            var resource = new Resource();
+            var topUpUpdatedWebhookData = new TopUpUpdatedWebhookData();
+            if (accountId.IsSet)
+                topUpUpdatedWebhookData.AccountId = accountId.Value!;
+            if (webhookTopUpConfiguration.IsSet)
+                topUpUpdatedWebhookData.WebhookTopUpConfiguration = webhookTopUpConfiguration.Value!;
             if (balancePlatform.IsSet)
-                resource.BalancePlatform = balancePlatform.Value;
+                topUpUpdatedWebhookData.BalancePlatform = balancePlatform.Value;
             if (creationDate.IsSet)
-                resource.CreationDate = creationDate.Value;
+                topUpUpdatedWebhookData.CreationDate = creationDate.Value;
             if (id.IsSet)
-                resource.Id = id.Value;
-            return resource;
+                topUpUpdatedWebhookData.Id = id.Value;
+            return topUpUpdatedWebhookData;
         }
 
         /// <summary>
-        /// Serializes a <see cref="Resource"/>.
+        /// Serializes a <see cref="TopUpUpdatedWebhookData"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="resource"></param>
+        /// <param name="topUpUpdatedWebhookData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, Resource resource, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, TopUpUpdatedWebhookData topUpUpdatedWebhookData, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, resource, jsonSerializerOptions);
+            WriteProperties(writer, topUpUpdatedWebhookData, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="Resource"/>.
+        /// Serializes the properties of <see cref="TopUpUpdatedWebhookData"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="resource"></param>
+        /// <param name="topUpUpdatedWebhookData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, Resource resource, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, TopUpUpdatedWebhookData topUpUpdatedWebhookData, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (resource._BalancePlatformOption.IsSet)
-                if (resource.BalancePlatform != null)
-                    writer.WriteString("balancePlatform", resource.BalancePlatform);
+            if (topUpUpdatedWebhookData.AccountId != null)
+                writer.WriteString("accountId", topUpUpdatedWebhookData.AccountId);
 
-            if (resource._CreationDateOption.IsSet)
-                if (resource._CreationDateOption.Value != null)
-                    writer.WriteString("creationDate", resource._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
+            writer.WritePropertyName("webhookTopUpConfiguration");
+            JsonSerializer.Serialize(writer, topUpUpdatedWebhookData.WebhookTopUpConfiguration, jsonSerializerOptions);
+            if (topUpUpdatedWebhookData._BalancePlatformOption.IsSet)
+                if (topUpUpdatedWebhookData.BalancePlatform != null)
+                    writer.WriteString("balancePlatform", topUpUpdatedWebhookData.BalancePlatform);
 
-            if (resource._IdOption.IsSet)
-                if (resource.Id != null)
-                    writer.WriteString("id", resource.Id);
+            if (topUpUpdatedWebhookData._CreationDateOption.IsSet)
+                if (topUpUpdatedWebhookData._CreationDateOption.Value != null)
+                    writer.WriteString("creationDate", topUpUpdatedWebhookData._CreationDateOption.Value!.Value.ToString(CreationDateFormat));
+
+            if (topUpUpdatedWebhookData._IdOption.IsSet)
+                if (topUpUpdatedWebhookData.Id != null)
+                    writer.WriteString("id", topUpUpdatedWebhookData.Id);
         }
     }
 }

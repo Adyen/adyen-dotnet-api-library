@@ -29,15 +29,15 @@ using Adyen.ConfigurationWebhooks.Client;
 namespace Adyen.ConfigurationWebhooks.Models
 {
     /// <summary>
-    /// BalanceAccountNotificationRequest.
+    /// TopUpConfigurationEventRequest.
     /// </summary>
-    [JsonConverter(typeof(BalanceAccountNotificationRequestJsonConverter))]
-    public partial class BalanceAccountNotificationRequest
+    [JsonConverter(typeof(TopUpConfigurationEventRequestJsonConverter))]
+    public partial class TopUpConfigurationEventRequest
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BalanceAccountNotificationRequest" /> class.
+        /// Initializes a new instance of the <see cref="TopUpConfigurationEventRequest" /> class.
         /// </summary>
-        public BalanceAccountNotificationRequest()
+        public TopUpConfigurationEventRequest()
         {
             OnCreated();
         }
@@ -57,14 +57,14 @@ namespace Adyen.ConfigurationWebhooks.Models
             public string? Value { get; set; }
 
             /// <summary>
-            /// TypeEnum.BalancePlatformBalanceAccountUpdated - balancePlatform.balanceAccount.updated
+            /// TypeEnum.BalancePlatformBalanceAccountRecurringTopUpCreated - balancePlatform.balanceAccount.recurringTopUp.created
             /// </summary>
-            public static readonly TypeEnum BalancePlatformBalanceAccountUpdated = new("balancePlatform.balanceAccount.updated");
+            public static readonly TypeEnum BalancePlatformBalanceAccountRecurringTopUpCreated = new("balancePlatform.balanceAccount.recurringTopUp.created");
 
             /// <summary>
-            /// TypeEnum.BalancePlatformBalanceAccountCreated - balancePlatform.balanceAccount.created
+            /// TypeEnum.BalancePlatformBalanceAccountRecurringTopUpDeleted - balancePlatform.balanceAccount.recurringTopUp.deleted
             /// </summary>
-            public static readonly TypeEnum BalancePlatformBalanceAccountCreated = new("balancePlatform.balanceAccount.created");
+            public static readonly TypeEnum BalancePlatformBalanceAccountRecurringTopUpDeleted = new("balancePlatform.balanceAccount.recurringTopUp.deleted");
         
             private TypeEnum(string? value)
             {
@@ -118,8 +118,8 @@ namespace Adyen.ConfigurationWebhooks.Models
             public static TypeEnum? FromStringOrDefault(string value)
             {
                 return value switch {
-                    "balancePlatform.balanceAccount.updated" => TypeEnum.BalancePlatformBalanceAccountUpdated,
-                    "balancePlatform.balanceAccount.created" => TypeEnum.BalancePlatformBalanceAccountCreated,
+                    "balancePlatform.balanceAccount.recurringTopUp.created" => TypeEnum.BalancePlatformBalanceAccountRecurringTopUpCreated,
+                    "balancePlatform.balanceAccount.recurringTopUp.deleted" => TypeEnum.BalancePlatformBalanceAccountRecurringTopUpDeleted,
                     _ => null,
                 };
             }
@@ -134,11 +134,11 @@ namespace Adyen.ConfigurationWebhooks.Models
                 if (value == null)
                     return null;
             
-                if (value == TypeEnum.BalancePlatformBalanceAccountUpdated)
-                    return "balancePlatform.balanceAccount.updated";
+                if (value == TypeEnum.BalancePlatformBalanceAccountRecurringTopUpCreated)
+                    return "balancePlatform.balanceAccount.recurringTopUp.created";
                 
-                if (value == TypeEnum.BalancePlatformBalanceAccountCreated)
-                    return "balancePlatform.balanceAccount.created";
+                if (value == TypeEnum.BalancePlatformBalanceAccountRecurringTopUpDeleted)
+                    return "balancePlatform.balanceAccount.recurringTopUp.deleted";
                 
                 return value.Value;
             }
@@ -178,7 +178,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
-        public BalanceAccountNotificationData? Data { get; set; }
+        public TopUpWebhookData? Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
@@ -208,7 +208,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class BalanceAccountNotificationRequest {\n");
+            sb.Append("class TopUpConfigurationEventRequest {\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  Environment: ").Append(Environment).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -219,9 +219,9 @@ namespace Adyen.ConfigurationWebhooks.Models
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="BalanceAccountNotificationRequest" />
+    /// A Json converter for type <see cref="TopUpConfigurationEventRequest" />
     /// </summary>
-    public class BalanceAccountNotificationRequestJsonConverter : JsonConverter<BalanceAccountNotificationRequest>
+    public class TopUpConfigurationEventRequestJsonConverter : JsonConverter<TopUpConfigurationEventRequest>
     {
         /// <summary>
         /// The format to use to serialize Timestamp.
@@ -229,14 +229,14 @@ namespace Adyen.ConfigurationWebhooks.Models
         public static string TimestampFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
-        /// Deserializes json to <see cref="BalanceAccountNotificationRequest"/>.
+        /// Deserializes json to <see cref="TopUpConfigurationEventRequest"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="BalanceAccountNotificationRequest"/>.</returns>
+        /// <returns><see cref="TopUpConfigurationEventRequest"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override BalanceAccountNotificationRequest Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override TopUpConfigurationEventRequest Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -245,9 +245,9 @@ namespace Adyen.ConfigurationWebhooks.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<BalanceAccountNotificationData?> data = default;
+            Option<TopUpWebhookData?> data = default;
             Option<string?> environment = default;
-            Option<BalanceAccountNotificationRequest.TypeEnum?> type = default;
+            Option<TopUpConfigurationEventRequest.TypeEnum?> type = default;
             Option<DateTimeOffset?> timestamp = default;
 
             while (utf8JsonReader.Read())
@@ -266,14 +266,14 @@ namespace Adyen.ConfigurationWebhooks.Models
                     switch (jsonPropertyName)
                     {
                         case "data":
-                            data = new Option<BalanceAccountNotificationData?>(JsonSerializer.Deserialize<BalanceAccountNotificationData>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            data = new Option<TopUpWebhookData?>(JsonSerializer.Deserialize<TopUpWebhookData>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "environment":
                             environment = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<BalanceAccountNotificationRequest.TypeEnum?>(BalanceAccountNotificationRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (BalanceAccountNotificationRequest.TypeEnum)typeRawValue);
+                            type = new Option<TopUpConfigurationEventRequest.TypeEnum?>(TopUpConfigurationEventRequest.TypeEnum.FromStringOrDefault(typeRawValue) ?? (TopUpConfigurationEventRequest.TypeEnum)typeRawValue);
                             break;
                         case "timestamp":
                             timestamp = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -285,58 +285,58 @@ namespace Adyen.ConfigurationWebhooks.Models
             }
             
 
-            var balanceAccountNotificationRequest = new BalanceAccountNotificationRequest();
+            var topUpConfigurationEventRequest = new TopUpConfigurationEventRequest();
             if (data.IsSet)
-                balanceAccountNotificationRequest.Data = data.Value!;
+                topUpConfigurationEventRequest.Data = data.Value!;
             if (environment.IsSet)
-                balanceAccountNotificationRequest.Environment = environment.Value!;
+                topUpConfigurationEventRequest.Environment = environment.Value!;
             if (type.IsSet)
-                balanceAccountNotificationRequest.Type = type.Value!;
+                topUpConfigurationEventRequest.Type = type.Value!;
             if (timestamp.IsSet)
-                balanceAccountNotificationRequest.Timestamp = timestamp.Value;
-            return balanceAccountNotificationRequest;
+                topUpConfigurationEventRequest.Timestamp = timestamp.Value;
+            return topUpConfigurationEventRequest;
         }
 
         /// <summary>
-        /// Serializes a <see cref="BalanceAccountNotificationRequest"/>.
+        /// Serializes a <see cref="TopUpConfigurationEventRequest"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="balanceAccountNotificationRequest"></param>
+        /// <param name="topUpConfigurationEventRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, BalanceAccountNotificationRequest balanceAccountNotificationRequest, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, TopUpConfigurationEventRequest topUpConfigurationEventRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, balanceAccountNotificationRequest, jsonSerializerOptions);
+            WriteProperties(writer, topUpConfigurationEventRequest, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="BalanceAccountNotificationRequest"/>.
+        /// Serializes the properties of <see cref="TopUpConfigurationEventRequest"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="balanceAccountNotificationRequest"></param>
+        /// <param name="topUpConfigurationEventRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, BalanceAccountNotificationRequest balanceAccountNotificationRequest, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, TopUpConfigurationEventRequest topUpConfigurationEventRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WritePropertyName("data");
-            JsonSerializer.Serialize(writer, balanceAccountNotificationRequest.Data, jsonSerializerOptions);
-            if (balanceAccountNotificationRequest.Environment != null)
-                writer.WriteString("environment", balanceAccountNotificationRequest.Environment);
+            JsonSerializer.Serialize(writer, topUpConfigurationEventRequest.Data, jsonSerializerOptions);
+            if (topUpConfigurationEventRequest.Environment != null)
+                writer.WriteString("environment", topUpConfigurationEventRequest.Environment);
 
-            if (balanceAccountNotificationRequest.Type != null) 
+            if (topUpConfigurationEventRequest.Type != null) 
             {
-                string? typeRawValue = BalanceAccountNotificationRequest.TypeEnum.ToJsonValue(balanceAccountNotificationRequest.Type);
+                string? typeRawValue = TopUpConfigurationEventRequest.TypeEnum.ToJsonValue(topUpConfigurationEventRequest.Type);
                 writer.WriteString("type", typeRawValue);
             }
             
-            if (balanceAccountNotificationRequest._TimestampOption.IsSet)
-                if (balanceAccountNotificationRequest._TimestampOption.Value != null)
-                    writer.WriteString("timestamp", balanceAccountNotificationRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
+            if (topUpConfigurationEventRequest._TimestampOption.IsSet)
+                if (topUpConfigurationEventRequest._TimestampOption.Value != null)
+                    writer.WriteString("timestamp", topUpConfigurationEventRequest._TimestampOption.Value!.Value.ToString(TimestampFormat));
         }
     }
 }
