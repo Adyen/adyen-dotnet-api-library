@@ -29,15 +29,15 @@ using Adyen.Transfers.Client;
 namespace Adyen.Transfers.Models
 {
     /// <summary>
-    /// PLLocalAccountIdentification.
+    /// USAchTracingData.
     /// </summary>
-    [JsonConverter(typeof(PLLocalAccountIdentificationJsonConverter))]
-    public partial class PLLocalAccountIdentification
+    [JsonConverter(typeof(USAchTracingDataJsonConverter))]
+    public partial class USAchTracingData
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PLLocalAccountIdentification" /> class.
+        /// Initializes a new instance of the <see cref="USAchTracingData" /> class.
         /// </summary>
-        public PLLocalAccountIdentification()
+        public USAchTracingData()
         {
             OnCreated();
         }
@@ -45,9 +45,9 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
-        /// **plLocal**
+        /// **usAch**
         /// </summary>
-        /// <value>**plLocal**</value>
+        /// <value>**usAch**</value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
         public class TypeEnum : IEnum
         {
@@ -57,9 +57,9 @@ namespace Adyen.Transfers.Models
             public string? Value { get; set; }
 
             /// <summary>
-            /// TypeEnum.PlLocal - plLocal
+            /// TypeEnum.UsAch - usAch
             /// </summary>
-            public static readonly TypeEnum PlLocal = new("plLocal");
+            public static readonly TypeEnum UsAch = new("usAch");
         
             private TypeEnum(string? value)
             {
@@ -113,7 +113,7 @@ namespace Adyen.Transfers.Models
             public static TypeEnum? FromStringOrDefault(string value)
             {
                 return value switch {
-                    "plLocal" => TypeEnum.PlLocal,
+                    "usAch" => TypeEnum.UsAch,
                     _ => null,
                 };
             }
@@ -128,8 +128,8 @@ namespace Adyen.Transfers.Models
                 if (value == null)
                     return null;
             
-                if (value == TypeEnum.PlLocal)
-                    return "plLocal";
+                if (value == TypeEnum.UsAch)
+                    return "usAch";
                 
                 return value.Value;
             }
@@ -159,18 +159,18 @@ namespace Adyen.Transfers.Models
         }
 
         /// <summary>
-        /// **plLocal**
+        /// **usAch**
         /// </summary>
-        /// <value>**plLocal**</value>
+        /// <value>**usAch**</value>
         [JsonPropertyName("type")]
         public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// The 26-digit bank account number ([Numer rachunku](https://pl.wikipedia.org/wiki/Numer_Rachunku_Bankowego)), without separators or whitespace.
+        /// The ACH trace number. This is a unique 15-digit identifier assigned to transfers processed by [ACH](https://fiscal.treasury.gov/payments-from-government/automated-clearing-house-ach).
         /// </summary>
-        /// <value>The 26-digit bank account number ([Numer rachunku](https://pl.wikipedia.org/wiki/Numer_Rachunku_Bankowego)), without separators or whitespace.</value>
-        [JsonPropertyName("accountNumber")]
-        public string? AccountNumber { get; set; }
+        /// <value>The ACH trace number. This is a unique 15-digit identifier assigned to transfers processed by [ACH](https://fiscal.treasury.gov/payments-from-government/automated-clearing-house-ach).</value>
+        [JsonPropertyName("traceNumber")]
+        public string? TraceNumber { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -179,8 +179,8 @@ namespace Adyen.Transfers.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PLLocalAccountIdentification {\n");
-            sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
+            sb.Append("class USAchTracingData {\n");
+            sb.Append("  TraceNumber: ").Append(TraceNumber).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -188,19 +188,19 @@ namespace Adyen.Transfers.Models
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="PLLocalAccountIdentification" />
+    /// A Json converter for type <see cref="USAchTracingData" />
     /// </summary>
-    public class PLLocalAccountIdentificationJsonConverter : JsonConverter<PLLocalAccountIdentification>
+    public class USAchTracingDataJsonConverter : JsonConverter<USAchTracingData>
     {
         /// <summary>
-        /// Deserializes json to <see cref="PLLocalAccountIdentification"/>.
+        /// Deserializes json to <see cref="USAchTracingData"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="PLLocalAccountIdentification"/>.</returns>
+        /// <returns><see cref="USAchTracingData"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override PLLocalAccountIdentification Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override USAchTracingData Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -209,8 +209,8 @@ namespace Adyen.Transfers.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> accountNumber = default;
-            Option<PLLocalAccountIdentification.TypeEnum?> type = default;
+            Option<string?> traceNumber = default;
+            Option<USAchTracingData.TypeEnum?> type = default;
 
             while (utf8JsonReader.Read())
             {
@@ -227,12 +227,12 @@ namespace Adyen.Transfers.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "accountNumber":
-                            accountNumber = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "traceNumber":
+                            traceNumber = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PLLocalAccountIdentification.TypeEnum?>(PLLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PLLocalAccountIdentification.TypeEnum)typeRawValue);
+                            type = new Option<USAchTracingData.TypeEnum?>(USAchTracingData.TypeEnum.FromStringOrDefault(typeRawValue) ?? (USAchTracingData.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -241,46 +241,46 @@ namespace Adyen.Transfers.Models
             }
             
 
-            var pLLocalAccountIdentification = new PLLocalAccountIdentification();
-            if (accountNumber.IsSet)
-                pLLocalAccountIdentification.AccountNumber = accountNumber.Value!;
+            var uSAchTracingData = new USAchTracingData();
+            if (traceNumber.IsSet)
+                uSAchTracingData.TraceNumber = traceNumber.Value!;
             if (type.IsSet)
-                pLLocalAccountIdentification.Type = type.Value!;
-            return pLLocalAccountIdentification;
+                uSAchTracingData.Type = type.Value!;
+            return uSAchTracingData;
         }
 
         /// <summary>
-        /// Serializes a <see cref="PLLocalAccountIdentification"/>.
+        /// Serializes a <see cref="USAchTracingData"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="pLLocalAccountIdentification"></param>
+        /// <param name="uSAchTracingData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, PLLocalAccountIdentification pLLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, USAchTracingData uSAchTracingData, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, pLLocalAccountIdentification, jsonSerializerOptions);
+            WriteProperties(writer, uSAchTracingData, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="PLLocalAccountIdentification"/>.
+        /// Serializes the properties of <see cref="USAchTracingData"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="pLLocalAccountIdentification"></param>
+        /// <param name="uSAchTracingData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, PLLocalAccountIdentification pLLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, USAchTracingData uSAchTracingData, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (pLLocalAccountIdentification.AccountNumber != null)
-                writer.WriteString("accountNumber", pLLocalAccountIdentification.AccountNumber);
+            if (uSAchTracingData.TraceNumber != null)
+                writer.WriteString("traceNumber", uSAchTracingData.TraceNumber);
 
-            if (pLLocalAccountIdentification.Type != null) 
+            if (uSAchTracingData.Type != null) 
             {
-                string? typeRawValue = PLLocalAccountIdentification.TypeEnum.ToJsonValue(pLLocalAccountIdentification.Type);
+                string? typeRawValue = USAchTracingData.TypeEnum.ToJsonValue(uSAchTracingData.Type);
                 writer.WriteString("type", typeRawValue);
             }
         }

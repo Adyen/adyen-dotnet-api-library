@@ -29,15 +29,15 @@ using Adyen.Transfers.Client;
 namespace Adyen.Transfers.Models
 {
     /// <summary>
-    /// PLLocalAccountIdentification.
+    /// UKFpsTracingData.
     /// </summary>
-    [JsonConverter(typeof(PLLocalAccountIdentificationJsonConverter))]
-    public partial class PLLocalAccountIdentification
+    [JsonConverter(typeof(UKFpsTracingDataJsonConverter))]
+    public partial class UKFpsTracingData
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PLLocalAccountIdentification" /> class.
+        /// Initializes a new instance of the <see cref="UKFpsTracingData" /> class.
         /// </summary>
-        public PLLocalAccountIdentification()
+        public UKFpsTracingData()
         {
             OnCreated();
         }
@@ -45,9 +45,9 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
-        /// **plLocal**
+        /// **ukFps**
         /// </summary>
-        /// <value>**plLocal**</value>
+        /// <value>**ukFps**</value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
         public class TypeEnum : IEnum
         {
@@ -57,9 +57,9 @@ namespace Adyen.Transfers.Models
             public string? Value { get; set; }
 
             /// <summary>
-            /// TypeEnum.PlLocal - plLocal
+            /// TypeEnum.UkFps - ukFps
             /// </summary>
-            public static readonly TypeEnum PlLocal = new("plLocal");
+            public static readonly TypeEnum UkFps = new("ukFps");
         
             private TypeEnum(string? value)
             {
@@ -113,7 +113,7 @@ namespace Adyen.Transfers.Models
             public static TypeEnum? FromStringOrDefault(string value)
             {
                 return value switch {
-                    "plLocal" => TypeEnum.PlLocal,
+                    "ukFps" => TypeEnum.UkFps,
                     _ => null,
                 };
             }
@@ -128,8 +128,8 @@ namespace Adyen.Transfers.Models
                 if (value == null)
                     return null;
             
-                if (value == TypeEnum.PlLocal)
-                    return "plLocal";
+                if (value == TypeEnum.UkFps)
+                    return "ukFps";
                 
                 return value.Value;
             }
@@ -159,18 +159,18 @@ namespace Adyen.Transfers.Models
         }
 
         /// <summary>
-        /// **plLocal**
+        /// **ukFps**
         /// </summary>
-        /// <value>**plLocal**</value>
+        /// <value>**ukFps**</value>
         [JsonPropertyName("type")]
         public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// The 26-digit bank account number ([Numer rachunku](https://pl.wikipedia.org/wiki/Numer_Rachunku_Bankowego)), without separators or whitespace.
+        /// The FPS trace number. This is a unique identifier assigned to transfers processed by [FPS](https://www.bankofengland.co.uk/payment-systems/services/faster-payments-service).
         /// </summary>
-        /// <value>The 26-digit bank account number ([Numer rachunku](https://pl.wikipedia.org/wiki/Numer_Rachunku_Bankowego)), without separators or whitespace.</value>
-        [JsonPropertyName("accountNumber")]
-        public string? AccountNumber { get; set; }
+        /// <value>The FPS trace number. This is a unique identifier assigned to transfers processed by [FPS](https://www.bankofengland.co.uk/payment-systems/services/faster-payments-service).</value>
+        [JsonPropertyName("fpid")]
+        public string? Fpid { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -179,8 +179,8 @@ namespace Adyen.Transfers.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PLLocalAccountIdentification {\n");
-            sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
+            sb.Append("class UKFpsTracingData {\n");
+            sb.Append("  Fpid: ").Append(Fpid).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -188,19 +188,19 @@ namespace Adyen.Transfers.Models
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="PLLocalAccountIdentification" />
+    /// A Json converter for type <see cref="UKFpsTracingData" />
     /// </summary>
-    public class PLLocalAccountIdentificationJsonConverter : JsonConverter<PLLocalAccountIdentification>
+    public class UKFpsTracingDataJsonConverter : JsonConverter<UKFpsTracingData>
     {
         /// <summary>
-        /// Deserializes json to <see cref="PLLocalAccountIdentification"/>.
+        /// Deserializes json to <see cref="UKFpsTracingData"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="PLLocalAccountIdentification"/>.</returns>
+        /// <returns><see cref="UKFpsTracingData"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override PLLocalAccountIdentification Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override UKFpsTracingData Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -209,8 +209,8 @@ namespace Adyen.Transfers.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> accountNumber = default;
-            Option<PLLocalAccountIdentification.TypeEnum?> type = default;
+            Option<string?> fpid = default;
+            Option<UKFpsTracingData.TypeEnum?> type = default;
 
             while (utf8JsonReader.Read())
             {
@@ -227,12 +227,12 @@ namespace Adyen.Transfers.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "accountNumber":
-                            accountNumber = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "fpid":
+                            fpid = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<PLLocalAccountIdentification.TypeEnum?>(PLLocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue) ?? (PLLocalAccountIdentification.TypeEnum)typeRawValue);
+                            type = new Option<UKFpsTracingData.TypeEnum?>(UKFpsTracingData.TypeEnum.FromStringOrDefault(typeRawValue) ?? (UKFpsTracingData.TypeEnum)typeRawValue);
                             break;
                         default:
                             break;
@@ -241,46 +241,46 @@ namespace Adyen.Transfers.Models
             }
             
 
-            var pLLocalAccountIdentification = new PLLocalAccountIdentification();
-            if (accountNumber.IsSet)
-                pLLocalAccountIdentification.AccountNumber = accountNumber.Value!;
+            var uKFpsTracingData = new UKFpsTracingData();
+            if (fpid.IsSet)
+                uKFpsTracingData.Fpid = fpid.Value!;
             if (type.IsSet)
-                pLLocalAccountIdentification.Type = type.Value!;
-            return pLLocalAccountIdentification;
+                uKFpsTracingData.Type = type.Value!;
+            return uKFpsTracingData;
         }
 
         /// <summary>
-        /// Serializes a <see cref="PLLocalAccountIdentification"/>.
+        /// Serializes a <see cref="UKFpsTracingData"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="pLLocalAccountIdentification"></param>
+        /// <param name="uKFpsTracingData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, PLLocalAccountIdentification pLLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, UKFpsTracingData uKFpsTracingData, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, pLLocalAccountIdentification, jsonSerializerOptions);
+            WriteProperties(writer, uKFpsTracingData, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="PLLocalAccountIdentification"/>.
+        /// Serializes the properties of <see cref="UKFpsTracingData"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="pLLocalAccountIdentification"></param>
+        /// <param name="uKFpsTracingData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, PLLocalAccountIdentification pLLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, UKFpsTracingData uKFpsTracingData, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (pLLocalAccountIdentification.AccountNumber != null)
-                writer.WriteString("accountNumber", pLLocalAccountIdentification.AccountNumber);
+            if (uKFpsTracingData.Fpid != null)
+                writer.WriteString("fpid", uKFpsTracingData.Fpid);
 
-            if (pLLocalAccountIdentification.Type != null) 
+            if (uKFpsTracingData.Type != null) 
             {
-                string? typeRawValue = PLLocalAccountIdentification.TypeEnum.ToJsonValue(pLLocalAccountIdentification.Type);
+                string? typeRawValue = UKFpsTracingData.TypeEnum.ToJsonValue(uKFpsTracingData.Type);
                 writer.WriteString("type", typeRawValue);
             }
         }
