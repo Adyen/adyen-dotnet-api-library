@@ -311,13 +311,13 @@ namespace Adyen.TransferWebhooks.Models
             
             if (transferEventTracingData.UKFpsTracingData != null)
             {
-                UKFpsTracingDataJsonConverter uKFpsTracingDataJsonConverter = (UKFpsTracingDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferEventTracingData.UKFpsTracingData.GetType()));
+                UKFpsTracingDataJsonConverter uKFpsTracingDataJsonConverter = (UKFpsTracingDataJsonConverter) jsonSerializerOptions.GetConverter(transferEventTracingData.UKFpsTracingData.GetType());
                 uKFpsTracingDataJsonConverter.WriteProperties(writer, transferEventTracingData.UKFpsTracingData, jsonSerializerOptions);
             }
 
             if (transferEventTracingData.USAchTracingData != null)
             {
-                USAchTracingDataJsonConverter uSAchTracingDataJsonConverter = (USAchTracingDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferEventTracingData.USAchTracingData.GetType()));
+                USAchTracingDataJsonConverter uSAchTracingDataJsonConverter = (USAchTracingDataJsonConverter) jsonSerializerOptions.GetConverter(transferEventTracingData.USAchTracingData.GetType());
                 uSAchTracingDataJsonConverter.WriteProperties(writer, transferEventTracingData.USAchTracingData, jsonSerializerOptions);
             }
 

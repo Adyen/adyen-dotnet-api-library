@@ -346,19 +346,19 @@ namespace Adyen.Transfers.Models
             
             if (transferDataTracking.ConfirmationTrackingData != null)
             {
-                ConfirmationTrackingDataJsonConverter confirmationTrackingDataJsonConverter = (ConfirmationTrackingDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferDataTracking.ConfirmationTrackingData.GetType()));
+                ConfirmationTrackingDataJsonConverter confirmationTrackingDataJsonConverter = (ConfirmationTrackingDataJsonConverter) jsonSerializerOptions.GetConverter(transferDataTracking.ConfirmationTrackingData.GetType());
                 confirmationTrackingDataJsonConverter.WriteProperties(writer, transferDataTracking.ConfirmationTrackingData, jsonSerializerOptions);
             }
 
             if (transferDataTracking.EstimationTrackingData != null)
             {
-                EstimationTrackingDataJsonConverter estimationTrackingDataJsonConverter = (EstimationTrackingDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferDataTracking.EstimationTrackingData.GetType()));
+                EstimationTrackingDataJsonConverter estimationTrackingDataJsonConverter = (EstimationTrackingDataJsonConverter) jsonSerializerOptions.GetConverter(transferDataTracking.EstimationTrackingData.GetType());
                 estimationTrackingDataJsonConverter.WriteProperties(writer, transferDataTracking.EstimationTrackingData, jsonSerializerOptions);
             }
 
             if (transferDataTracking.InternalReviewTrackingData != null)
             {
-                InternalReviewTrackingDataJsonConverter internalReviewTrackingDataJsonConverter = (InternalReviewTrackingDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferDataTracking.InternalReviewTrackingData.GetType()));
+                InternalReviewTrackingDataJsonConverter internalReviewTrackingDataJsonConverter = (InternalReviewTrackingDataJsonConverter) jsonSerializerOptions.GetConverter(transferDataTracking.InternalReviewTrackingData.GetType());
                 internalReviewTrackingDataJsonConverter.WriteProperties(writer, transferDataTracking.InternalReviewTrackingData, jsonSerializerOptions);
             }
 

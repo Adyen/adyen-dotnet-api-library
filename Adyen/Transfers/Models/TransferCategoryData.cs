@@ -381,25 +381,25 @@ namespace Adyen.Transfers.Models
             
             if (transferCategoryData.BankCategoryData != null)
             {
-                BankCategoryDataJsonConverter bankCategoryDataJsonConverter = (BankCategoryDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferCategoryData.BankCategoryData.GetType()));
+                BankCategoryDataJsonConverter bankCategoryDataJsonConverter = (BankCategoryDataJsonConverter) jsonSerializerOptions.GetConverter(transferCategoryData.BankCategoryData.GetType());
                 bankCategoryDataJsonConverter.WriteProperties(writer, transferCategoryData.BankCategoryData, jsonSerializerOptions);
             }
 
             if (transferCategoryData.InternalCategoryData != null)
             {
-                InternalCategoryDataJsonConverter internalCategoryDataJsonConverter = (InternalCategoryDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferCategoryData.InternalCategoryData.GetType()));
+                InternalCategoryDataJsonConverter internalCategoryDataJsonConverter = (InternalCategoryDataJsonConverter) jsonSerializerOptions.GetConverter(transferCategoryData.InternalCategoryData.GetType());
                 internalCategoryDataJsonConverter.WriteProperties(writer, transferCategoryData.InternalCategoryData, jsonSerializerOptions);
             }
 
             if (transferCategoryData.IssuedCard != null)
             {
-                IssuedCardJsonConverter issuedCardJsonConverter = (IssuedCardJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferCategoryData.IssuedCard.GetType()));
+                IssuedCardJsonConverter issuedCardJsonConverter = (IssuedCardJsonConverter) jsonSerializerOptions.GetConverter(transferCategoryData.IssuedCard.GetType());
                 issuedCardJsonConverter.WriteProperties(writer, transferCategoryData.IssuedCard, jsonSerializerOptions);
             }
 
             if (transferCategoryData.PlatformPayment != null)
             {
-                PlatformPaymentJsonConverter platformPaymentJsonConverter = (PlatformPaymentJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferCategoryData.PlatformPayment.GetType()));
+                PlatformPaymentJsonConverter platformPaymentJsonConverter = (PlatformPaymentJsonConverter) jsonSerializerOptions.GetConverter(transferCategoryData.PlatformPayment.GetType());
                 platformPaymentJsonConverter.WriteProperties(writer, transferCategoryData.PlatformPayment, jsonSerializerOptions);
             }
 

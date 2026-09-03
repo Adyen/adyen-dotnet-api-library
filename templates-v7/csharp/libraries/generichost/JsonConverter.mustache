@@ -391,7 +391,7 @@
                 {{/isPrimitiveType}}
                 {{^isPrimitiveType}}
             {
-                {{baseType}}JsonConverter {{#lambda.camelcase_sanitize_param}}{{baseType}}JsonConverter{{/lambda.camelcase_sanitize_param}} = ({{baseType}}JsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert({{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}.GetType()));
+                {{baseType}}JsonConverter {{#lambda.camelcase_sanitize_param}}{{baseType}}JsonConverter{{/lambda.camelcase_sanitize_param}} = ({{baseType}}JsonConverter) jsonSerializerOptions.GetConverter({{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}.GetType());
                 {{#lambda.camelcase_sanitize_param}}{{baseType}}JsonConverter{{/lambda.camelcase_sanitize_param}}.WriteProperties(writer, {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}, jsonSerializerOptions);
             }
                 {{/isPrimitiveType}}
@@ -416,14 +416,14 @@
                 {{/isNumeric}}
                 {{#isEnum}}
             {
-                {{datatypeWithEnum}}JsonConverter {{#lambda.camelcase}}{{datatypeWithEnum}}{{/lambda.camelcase}}JsonConverter = ({{datatypeWithEnum}}JsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert({{#lambda.camelcase_sanitize_param}}{{model.classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}{{^required}}Option.Value{{/required}}.GetType()));
+                {{datatypeWithEnum}}JsonConverter {{#lambda.camelcase}}{{datatypeWithEnum}}{{/lambda.camelcase}}JsonConverter = ({{datatypeWithEnum}}JsonConverter) jsonSerializerOptions.GetConverter({{#lambda.camelcase_sanitize_param}}{{model.classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}{{^required}}Option.Value{{/required}}.GetType());
                 {{#lambda.camelcase}}{{datatypeWithEnum}}{{/lambda.camelcase}}JsonConverter.Write{{^isEnumRef}}Properties{{/isEnumRef}}(writer, {{#lambda.camelcase_sanitize_param}}{{model.classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}{{^required}}Option.Value{{#vendorExtensions.x-is-value-type}}.Value{{/vendorExtensions.x-is-value-type}}{{/required}}, jsonSerializerOptions);
             }
                 {{/isEnum}}
                 {{/isPrimitiveType}}
                 {{^isPrimitiveType}}
             {
-                {{datatypeWithEnum}}JsonConverter {{#lambda.camelcase}}{{datatypeWithEnum}}{{/lambda.camelcase}}JsonConverter = ({{datatypeWithEnum}}JsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert({{#lambda.camelcase_sanitize_param}}{{model.classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}{{^required}}Option.Value{{/required}}.GetType()));
+                {{datatypeWithEnum}}JsonConverter {{#lambda.camelcase}}{{datatypeWithEnum}}{{/lambda.camelcase}}JsonConverter = ({{datatypeWithEnum}}JsonConverter) jsonSerializerOptions.GetConverter({{#lambda.camelcase_sanitize_param}}{{model.classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}{{^required}}Option.Value{{/required}}.GetType());
                 {{#lambda.camelcase}}{{datatypeWithEnum}}{{/lambda.camelcase}}JsonConverter.Write{{^isEnumRef}}Properties{{/isEnumRef}}(writer, {{#lambda.camelcase_sanitize_param}}{{model.classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}{{^required}}Option.Value{{#vendorExtensions.x-is-value-type}}.Value{{/vendorExtensions.x-is-value-type}}{{/required}}, jsonSerializerOptions);
             }
                 {{/isPrimitiveType}}
