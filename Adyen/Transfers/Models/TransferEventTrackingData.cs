@@ -346,19 +346,19 @@ namespace Adyen.Transfers.Models
             
             if (transferEventTrackingData.ConfirmationTrackingData != null)
             {
-                ConfirmationTrackingDataJsonConverter confirmationTrackingDataJsonConverter = (ConfirmationTrackingDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferEventTrackingData.ConfirmationTrackingData.GetType()));
+                ConfirmationTrackingDataJsonConverter confirmationTrackingDataJsonConverter = (ConfirmationTrackingDataJsonConverter) jsonSerializerOptions.GetConverter(transferEventTrackingData.ConfirmationTrackingData.GetType());
                 confirmationTrackingDataJsonConverter.WriteProperties(writer, transferEventTrackingData.ConfirmationTrackingData, jsonSerializerOptions);
             }
 
             if (transferEventTrackingData.EstimationTrackingData != null)
             {
-                EstimationTrackingDataJsonConverter estimationTrackingDataJsonConverter = (EstimationTrackingDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferEventTrackingData.EstimationTrackingData.GetType()));
+                EstimationTrackingDataJsonConverter estimationTrackingDataJsonConverter = (EstimationTrackingDataJsonConverter) jsonSerializerOptions.GetConverter(transferEventTrackingData.EstimationTrackingData.GetType());
                 estimationTrackingDataJsonConverter.WriteProperties(writer, transferEventTrackingData.EstimationTrackingData, jsonSerializerOptions);
             }
 
             if (transferEventTrackingData.InternalReviewTrackingData != null)
             {
-                InternalReviewTrackingDataJsonConverter internalReviewTrackingDataJsonConverter = (InternalReviewTrackingDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferEventTrackingData.InternalReviewTrackingData.GetType()));
+                InternalReviewTrackingDataJsonConverter internalReviewTrackingDataJsonConverter = (InternalReviewTrackingDataJsonConverter) jsonSerializerOptions.GetConverter(transferEventTrackingData.InternalReviewTrackingData.GetType());
                 internalReviewTrackingDataJsonConverter.WriteProperties(writer, transferEventTrackingData.InternalReviewTrackingData, jsonSerializerOptions);
             }
 

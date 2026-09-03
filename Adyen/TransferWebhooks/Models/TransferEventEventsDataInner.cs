@@ -346,19 +346,19 @@ namespace Adyen.TransferWebhooks.Models
             
             if (transferEventEventsDataInner.InterchangeData != null)
             {
-                InterchangeDataJsonConverter interchangeDataJsonConverter = (InterchangeDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferEventEventsDataInner.InterchangeData.GetType()));
+                InterchangeDataJsonConverter interchangeDataJsonConverter = (InterchangeDataJsonConverter) jsonSerializerOptions.GetConverter(transferEventEventsDataInner.InterchangeData.GetType());
                 interchangeDataJsonConverter.WriteProperties(writer, transferEventEventsDataInner.InterchangeData, jsonSerializerOptions);
             }
 
             if (transferEventEventsDataInner.IssuingTransactionData != null)
             {
-                IssuingTransactionDataJsonConverter issuingTransactionDataJsonConverter = (IssuingTransactionDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferEventEventsDataInner.IssuingTransactionData.GetType()));
+                IssuingTransactionDataJsonConverter issuingTransactionDataJsonConverter = (IssuingTransactionDataJsonConverter) jsonSerializerOptions.GetConverter(transferEventEventsDataInner.IssuingTransactionData.GetType());
                 issuingTransactionDataJsonConverter.WriteProperties(writer, transferEventEventsDataInner.IssuingTransactionData, jsonSerializerOptions);
             }
 
             if (transferEventEventsDataInner.MerchantPurchaseData != null)
             {
-                MerchantPurchaseDataJsonConverter merchantPurchaseDataJsonConverter = (MerchantPurchaseDataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferEventEventsDataInner.MerchantPurchaseData.GetType()));
+                MerchantPurchaseDataJsonConverter merchantPurchaseDataJsonConverter = (MerchantPurchaseDataJsonConverter) jsonSerializerOptions.GetConverter(transferEventEventsDataInner.MerchantPurchaseData.GetType());
                 merchantPurchaseDataJsonConverter.WriteProperties(writer, transferEventEventsDataInner.MerchantPurchaseData, jsonSerializerOptions);
             }
 
