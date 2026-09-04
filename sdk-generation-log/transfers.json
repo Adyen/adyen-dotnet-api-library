@@ -1,8 +1,8 @@
 {
   "service": "transfers",
   "project": "dotnet",
-  "generatedAt": "2026-09-01T13:20:33Z",
-  "openapiCommitSha": "4265e8ffe6cc4c35fe6804d5a395598621d3da53",
-  "automationCommitSha": "2f180b958babc6bbd6f0b6b73d7e4c6feefe256e",
-  "libraryCommitSha": "b48e91283309bd4f8b3c877cc621f250ccea5a2f"
+  "generatedAt": "2026-09-04T10:44:13Z",
+  "openapiCommitSha": "f82d1fe674e536cc2c6b0d7946e0e827873a4fbf",
+  "automationCommitSha": "712ab8db80d60bee9054458ea1522cae0073333a",
+  "libraryCommitSha": "c0dd2c6b298aea73e42dcc20bc893a144c4a386e"
 }
