@@ -163,7 +163,7 @@ namespace Adyen.Test.Checkout
             var recurringService = testHost.Services.GetRequiredService<IRecurringService>();
 
             // Assert
-            Assert.AreEqual("https://checkout-test.adyen.com/v71", recurringService.HttpClient.BaseAddress.ToString());
+            Assert.AreEqual("https://checkout-test.adyen.com/v72", recurringService.HttpClient.BaseAddress.ToString());
         }
 
         [TestMethod]
@@ -188,7 +188,7 @@ namespace Adyen.Test.Checkout
             var recurringService = liveHost.Services.GetRequiredService<IRecurringService>();
 
             // Assert
-            Assert.AreEqual("https://prefix-checkout-live.adyenpayments.com/checkout/v71", recurringService.HttpClient.BaseAddress.ToString());
+            Assert.AreEqual("https://prefix-checkout-live.adyenpayments.com/checkout/v72", recurringService.HttpClient.BaseAddress.ToString());
         }
     }
 }
