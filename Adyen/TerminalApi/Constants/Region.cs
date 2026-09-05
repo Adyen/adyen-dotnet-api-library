@@ -49,5 +49,16 @@ namespace Adyen.Constants
             { Region.US, "https://terminal-api-live-us.adyen.com" },
             { Region.APSE, "https://terminal-api-live-apse.adyen.com" }
         };
+
+        /// <summary>
+        /// Maps regions to their respective Cloud Device API live endpoints.
+        /// </summary>
+        public static readonly IReadOnlyDictionary<Region, string> DEVICE_API_ENDPOINTS_MAPPING = new Dictionary<Region, string>()
+        {
+            { Region.EU, "https://device-api-live.adyen.com" },
+            { Region.AU, "https://device-api-live-au.adyen.com" },
+            { Region.US, "https://device-api-live-us.adyen.com" },
+            { Region.APSE, "https://device-api-live-apse.adyen.com" }
+        };
     }
 }

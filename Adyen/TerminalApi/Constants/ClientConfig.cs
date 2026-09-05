@@ -1,4 +1,4 @@
-﻿namespace Adyen.Constants
+namespace Adyen.Constants
 {
     public class ClientConfig
     {
@@ -10,6 +10,15 @@
         public const string CloudApiEndPointAULive = "https://terminal-api-live-au.adyen.com";
         public const string CloudApiEndPointUSLive = "https://terminal-api-live-us.adyen.com";
         public const string CloudApiEndPointAPSELive = "https://terminal-api-live-apse.adyen.com";
+
+        //Test device api endpoints
+        public const string DeviceApiEndPointTest = "https://device-api-test.adyen.com";
+
+        //Live device api endpoints
+        public const string DeviceApiEndPointEULive = "https://device-api-live.adyen.com";
+        public const string DeviceApiEndPointAULive = "https://device-api-live-au.adyen.com";
+        public const string DeviceApiEndPointUSLive = "https://device-api-live-us.adyen.com";
+        public const string DeviceApiEndPointAPSELive = "https://device-api-live-apse.adyen.com";
         
         public const string NexoProtocolVersion = "3.0";
         
