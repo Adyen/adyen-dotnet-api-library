@@ -209,10 +209,149 @@ namespace Adyen.Test.Core
             Assert.AreEqual(ExampleEnum.A, result.ExampleEnum);
         }
 
+        #endregion
+
+        #region Arrange ExampleModelWithRequiredEnum for testing required enum field null rejection
+
+        [TestMethod]
+        public async Task Given_JsonDeserialization_When_RequiredEnum_Is_Null_Then_Throws_JsonException()
+        {
+            // Arrange
+            string json = @"
+{
+    ""requiredEnum"": null
+}";
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(new ExampleEnum.ExampleJsonConverter());
+            options.Converters.Add(new ExampleModelWithRequiredEnum.ExampleModelWithRequiredEnumJsonConverter());
+
+            // Act & Assert
+            var exception = Assert.ThrowsException<JsonException>(() =>
+                JsonSerializer.Deserialize<ExampleModelWithRequiredEnum>(json, options));
+            
+            Assert.IsTrue(exception.Message.Contains("requiredEnum"),
+                $"Exception message should contain 'requiredEnum', but was: {exception.Message}");
+            Assert.IsTrue(exception.Message.Contains("ExampleModelWithRequiredEnum"),
+                $"Exception message should contain 'ExampleModelWithRequiredEnum', but was: {exception.Message}");
+        }
+
+        [TestMethod]
+        public async Task Given_JsonDeserialization_When_RequiredEnum_Is_Valid_Then_Deserialize_Correctly()
+        {
+            // Arrange
+            string json = @"
+{
+    ""requiredEnum"": ""a""
+}";
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(new ExampleEnum.ExampleJsonConverter());
+            options.Converters.Add(new ExampleModelWithRequiredEnum.ExampleModelWithRequiredEnumJsonConverter());
+
+            // Act
+            ExampleModelWithRequiredEnum result = JsonSerializer.Deserialize<ExampleModelWithRequiredEnum>(json, options);
+
+            // Assert
+            Assert.AreEqual(ExampleEnum.A, result.RequiredEnum);
+        }
+
+        [TestMethod]
+        public async Task Given_JsonDeserialization_When_RequiredEnum_Is_Unknown_Value_Then_Deserialize_With_RawValue()
+        {
+            // Arrange
+            string json = @"
+{
+    ""requiredEnum"": ""unknown-value""
+}";
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(new ExampleEnum.ExampleJsonConverter());
+            options.Converters.Add(new ExampleModelWithRequiredEnum.ExampleModelWithRequiredEnumJsonConverter());
+
+            // Act
+            ExampleModelWithRequiredEnum result = JsonSerializer.Deserialize<ExampleModelWithRequiredEnum>(json, options);
+
+            // Assert
+            Assert.IsNotNull(result.RequiredEnum);
+            Assert.AreEqual("unknown-value", result.RequiredEnum.Value);
+        }
+
+        internal class ExampleModelWithRequiredEnum
+        {
+            /// <summary>
+            /// The required enum to test null rejection.
+            /// </summary>
+            [JsonPropertyName("requiredEnum")]
+            public ExampleEnum RequiredEnum { get; set; }
+
+            [JsonConstructor]
+            public ExampleModelWithRequiredEnum(ExampleEnum requiredEnum)
+            {
+                RequiredEnum = requiredEnum;
+            }
+
+            internal class ExampleModelWithRequiredEnumJsonConverter : JsonConverter<ExampleModelWithRequiredEnum>
+            {
+                public override ExampleModelWithRequiredEnum Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+                {
+                    int currentDepth = utf8JsonReader.CurrentDepth;
+
+                    if (utf8JsonReader.TokenType != JsonTokenType.StartObject && utf8JsonReader.TokenType != JsonTokenType.StartArray)
+                        throw new JsonException();
+
+                    JsonTokenType startingTokenType = utf8JsonReader.TokenType;
+
+                    Option<ExampleEnum?> requiredEnum = default;
+
+                    while (utf8JsonReader.Read())
+                    {
+                        if (startingTokenType == JsonTokenType.StartObject && utf8JsonReader.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReader.CurrentDepth)
+                            break;
+
+                        if (startingTokenType == JsonTokenType.StartArray && utf8JsonReader.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReader.CurrentDepth)
+                            break;
+
+                        if (utf8JsonReader.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReader.CurrentDepth - 1)
+                        {
+                            string? jsonPropertyName = utf8JsonReader.GetString();
+                            utf8JsonReader.Read();
+
+                            switch (jsonPropertyName)
+                            {
+                                case "requiredEnum":
+                                    string? requiredEnumRawValue = utf8JsonReader.GetString();
+                                    if (requiredEnumRawValue == null)
+                                        throw new JsonException("The 'requiredEnum' property cannot be null for ExampleModelWithRequiredEnum.");
+                                    requiredEnum = new Option<ExampleEnum?>(ExampleEnum.FromStringOrDefault(requiredEnumRawValue) ?? (ExampleEnum)requiredEnumRawValue);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+
+                    // Note: In the real generated code, there's an IsSet check here, but IsSet is internal
+                    // so we can't access it from the test assembly. The null check above ensures that
+                    // if the property is present in JSON, it won't be null. If missing entirely, 
+                    // we'll get a null Value which will fail the non-null parameter requirement.
+                    if (requiredEnum.Value == null)
+                        throw new ArgumentException("Property is required for class ExampleModelWithRequiredEnum.", nameof(requiredEnum));
+
+                    return new ExampleModelWithRequiredEnum(requiredEnum.Value);
+                }
+
+                public override void Write(Utf8JsonWriter writer, ExampleModelWithRequiredEnum response, JsonSerializerOptions jsonSerializerOptions)
+                {
+                    writer.WriteStartObject();
+                    writer.WritePropertyName("requiredEnum");
+                    JsonSerializer.Serialize(writer, response.RequiredEnum, jsonSerializerOptions);
+                    writer.WriteEndObject();
+                }
+            }
+        }
+
         internal class ExampleModelResponse
         {
             /// <summary>
-            /// The optional enum to test.
+            /// The optional enum to test null acceptance.
             /// </summary>
             [JsonPropertyName("exampleEnum")]
             public ExampleEnum? ExampleEnum
@@ -349,7 +488,7 @@ namespace Adyen.Test.Core
         {
             public override ExampleEnum? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions jsonOptions)
             {
-                string str = reader.GetString();
+                string? str = reader.GetString();
                 return str == null ? null : ExampleEnum.FromStringOrDefault(str) ?? new ExampleEnum(str);
             }
 
