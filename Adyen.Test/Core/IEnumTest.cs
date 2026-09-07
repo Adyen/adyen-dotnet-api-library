@@ -209,6 +209,32 @@ namespace Adyen.Test.Core
             Assert.AreEqual(ExampleEnum.A, result.ExampleEnum);
         }
 
+        [TestMethod]
+        public void Given_GetHashCode_When_SameValueDifferentCase_Then_HashCodesAreEqual()
+        {
+            ExampleEnum lower = (ExampleEnum)"active";
+            ExampleEnum upper = (ExampleEnum)"ACTIVE";
+
+            // Equals must be true (already works)
+            Assert.IsTrue(lower.Equals(upper));
+
+            // GetHashCode must also be equal — this is the contract being fixed
+            Assert.AreEqual(lower.GetHashCode(), upper.GetHashCode());
+        }
+
+        [TestMethod]
+        public void Given_DictionaryWithEnumKey_When_LookupWithDifferentCase_Then_FindsEntry()
+        {
+            var dict = new Dictionary<ExampleEnum, string>
+            {
+                { (ExampleEnum)"active", "found" }
+            };
+
+            // Before the fix this would silently return false — key not found
+            Assert.IsTrue(dict.ContainsKey((ExampleEnum)"ACTIVE"));
+            Assert.AreEqual("found", dict[(ExampleEnum)"ACTIVE"]);
+        }
+
         internal class ExampleModelResponse
         {
             /// <summary>
@@ -314,7 +340,7 @@ namespace Adyen.Test.Core
 
         public override bool Equals(object? obj) => obj is ExampleEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
 
-        public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+        public override int GetHashCode() => Value != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Value) : 0;
 
         public static bool operator ==(ExampleEnum? left, ExampleEnum? right) =>
             string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
