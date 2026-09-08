@@ -1490,7 +1490,7 @@ namespace Adyen.Payment.Models
                             card = new Option<Card?>(JsonSerializer.Deserialize<Card>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "dateOfBirth":
-                            dateOfBirth = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly>(ref utf8JsonReader, jsonSerializerOptions));
+                            dateOfBirth = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "dccQuote":
                             dccQuote = new Option<ForexQuote?>(JsonSerializer.Deserialize<ForexQuote>(ref utf8JsonReader, jsonSerializerOptions)!);

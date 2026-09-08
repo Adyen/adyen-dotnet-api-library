@@ -434,7 +434,7 @@ namespace Adyen.Payout.Models
                             additionalData = new Option<Dictionary<string, string>?>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "dateOfBirth":
-                            dateOfBirth = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly>(ref utf8JsonReader, jsonSerializerOptions));
+                            dateOfBirth = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "entityType":
                             string? entityTypeRawValue = utf8JsonReader.GetString();

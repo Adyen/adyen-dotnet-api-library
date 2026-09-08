@@ -219,7 +219,7 @@ namespace Adyen.Checkout.Models
                             employeeName = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "endDate":
-                            endDate = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly>(ref utf8JsonReader, jsonSerializerOptions));
+                            endDate = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "hourRate":
                             hourRate = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -234,7 +234,7 @@ namespace Adyen.Checkout.Models
                             serviceRequestor = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "startDate":
-                            startDate = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly>(ref utf8JsonReader, jsonSerializerOptions));
+                            startDate = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

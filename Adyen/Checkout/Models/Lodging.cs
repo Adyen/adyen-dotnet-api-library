@@ -459,10 +459,10 @@ namespace Adyen.Checkout.Models
                     switch (jsonPropertyName)
                     {
                         case "checkInDate":
-                            checkInDate = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly>(ref utf8JsonReader, jsonSerializerOptions));
+                            checkInDate = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "checkOutDate":
-                            checkOutDate = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly>(ref utf8JsonReader, jsonSerializerOptions));
+                            checkOutDate = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "customerServicePhoneNumber":
                             customerServicePhoneNumber = new Option<string?>(utf8JsonReader.GetString()!);

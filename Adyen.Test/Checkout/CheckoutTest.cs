@@ -396,6 +396,45 @@ namespace Adyen.Test.Checkout
         }
 
         [TestMethod]
+        public void Given_PaymentLinkResponseWithDateTimeDateOfBirth_When_Deserialize_Then_ReturnsDatePortion()
+        {
+            // Arrange
+            string json = """{"amount":{"currency":"EUR","value":1000},"dateOfBirth":"1990-01-02T00:00:00+02:00","id":"PL1","url":"https://x"}""";
+
+            // Act
+            var response = JsonSerializer.Deserialize<PaymentLinkResponse>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.AreEqual(new DateOnly(1990, 1, 2), response.DateOfBirth);
+        }
+
+        [TestMethod]
+        public void Given_PaymentLinkResponseWithNullDateOfBirth_When_Deserialize_Then_ReturnsNull()
+        {
+            // Arrange
+            string json = """{"amount":{"currency":"EUR","value":1000},"dateOfBirth":null,"id":"PL1","url":"https://x"}""";
+
+            // Act
+            var response = JsonSerializer.Deserialize<PaymentLinkResponse>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNull(response.DateOfBirth);
+        }
+
+        [TestMethod]
+        public void Given_PaymentLinkResponseWithDateOnlyDateOfBirth_When_Deserialize_Then_ReturnsDate()
+        {
+            // Arrange
+            string json = """{"amount":{"currency":"EUR","value":1000},"dateOfBirth":"1990-01-02","id":"PL1","url":"https://x"}""";
+
+            // Act
+            var response = JsonSerializer.Deserialize<PaymentLinkResponse>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.AreEqual(new DateOnly(1990, 1, 2), response.DateOfBirth);
+        }
+
+        [TestMethod]
         public void Given_Deserialize_When_Payments_PayPal_Result_CheckoutSDKAction_Is_Not_Null()
         {
             // Arrange

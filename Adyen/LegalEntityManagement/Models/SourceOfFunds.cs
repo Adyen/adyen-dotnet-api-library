@@ -556,10 +556,10 @@ namespace Adyen.LegalEntityManagement.Models
                             cryptocurrencyExchange = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "dateOfFundsReceived":
-                            dateOfFundsReceived = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly>(ref utf8JsonReader, jsonSerializerOptions));
+                            dateOfFundsReceived = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "dateOfSourceEvent":
-                            dateOfSourceEvent = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly>(ref utf8JsonReader, jsonSerializerOptions));
+                            dateOfSourceEvent = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "description":
                             description = new Option<string?>(utf8JsonReader.GetString()!);

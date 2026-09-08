@@ -1092,7 +1092,7 @@ namespace Adyen.Payment.Models
                             captureDelayHours = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "dateOfBirth":
-                            dateOfBirth = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly>(ref utf8JsonReader, jsonSerializerOptions));
+                            dateOfBirth = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "dccQuote":
                             dccQuote = new Option<ForexQuote?>(JsonSerializer.Deserialize<ForexQuote>(ref utf8JsonReader, jsonSerializerOptions)!);

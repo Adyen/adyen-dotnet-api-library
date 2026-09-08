@@ -224,7 +224,7 @@
                         {{/isEnum}}
                         {{/isNumeric}}
                         {{#isDate}}
-                            {{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}} = {{>OptionProperty}}JsonSerializer.Deserialize<{{#supportsDateOnly}}DateOnly{{/supportsDateOnly}}{{^supportsDateOnly}}DateTime{{/supportsDateOnly}}{{#isNullable}}?{{/isNullable}}>(ref utf8JsonReader, jsonSerializerOptions));
+                            {{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}} = {{>OptionProperty}}JsonSerializer.Deserialize<{{#supportsDateOnly}}DateOnly{{/supportsDateOnly}}{{^supportsDateOnly}}DateTime{{/supportsDateOnly}}{{>NullConditionalProperty}}>(ref utf8JsonReader, jsonSerializerOptions));
                         {{/isDate}}
                         {{#isDateTime}}
                             {{! Fix: Added support for DateTimeOffset, when `useDateTimeOffset=true` }}

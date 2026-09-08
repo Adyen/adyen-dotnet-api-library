@@ -1190,7 +1190,7 @@ namespace Adyen.Checkout.Models
                             countryCode = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "dateOfBirth":
-                            dateOfBirth = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly>(ref utf8JsonReader, jsonSerializerOptions));
+                            dateOfBirth = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "deliverAt":
                             deliverAt = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
