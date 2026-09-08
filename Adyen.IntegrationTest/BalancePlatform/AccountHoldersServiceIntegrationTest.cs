@@ -16,6 +16,7 @@ namespace Adyen.IntegrationTest.BalancePlatform
         private readonly IAccountHoldersService _accountHoldersService;
         private readonly IHost _host;
         private readonly ILogger _logger;
+        private readonly string _accountHolderId;
 
         public AccountHoldersServiceIntegrationTest()
         {
@@ -37,6 +38,7 @@ namespace Adyen.IntegrationTest.BalancePlatform
             _accountHoldersService = _host.Services.GetRequiredService<IAccountHoldersService>();
 
             _logger = _host.Services.GetRequiredService<ILogger<IAccountHoldersService>>();
+            _accountHolderId = Environment.GetEnvironmentVariable("ACCOUNT_HOLDER_ID") ?? "AH00000001";
         }
 
         [TestMethod]
@@ -63,10 +65,8 @@ namespace Adyen.IntegrationTest.BalancePlatform
         [TestMethod]
         public async Task Given_AccountHoldersService_When_GetAccountHolder_Returns_OK()
         {
-            var accountHolderId = "AH00000001";
-
             IGetAccountHolderApiResponse response =
-                await _accountHoldersService.GetAccountHolderAsync(accountHolderId);
+                await _accountHoldersService.GetAccountHolderAsync(_accountHolderId);
 
             _logger.LogInformation(response.RawContent);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -78,10 +78,8 @@ namespace Adyen.IntegrationTest.BalancePlatform
         [TestMethod]
         public async Task Given_AccountHoldersService_When_GetAllBalanceAccountsOfAccountHolder_Returns_OK()
         {
-            var accountHolderId = "AH00000001";
-
             IGetAllBalanceAccountsOfAccountHolderApiResponse response =
-                await _accountHoldersService.GetAllBalanceAccountsOfAccountHolderAsync(accountHolderId);
+                await _accountHoldersService.GetAllBalanceAccountsOfAccountHolderAsync(_accountHolderId);
 
             _logger.LogInformation(response.RawContent);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -93,10 +91,8 @@ namespace Adyen.IntegrationTest.BalancePlatform
         [TestMethod]
         public async Task Given_AccountHoldersService_When_GetAllTransactionRulesForAccountHolder_Returns_OK()
         {
-            var accountHolderId = "AH00000001";
-
             IGetAllTransactionRulesForAccountHolderApiResponse response =
-                await _accountHoldersService.GetAllTransactionRulesForAccountHolderAsync(accountHolderId);
+                await _accountHoldersService.GetAllTransactionRulesForAccountHolderAsync(_accountHolderId);
 
             _logger.LogInformation(response.RawContent);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -108,15 +104,13 @@ namespace Adyen.IntegrationTest.BalancePlatform
         [TestMethod]
         public async Task Given_AccountHoldersService_When_UpdateAccountHolder_Returns_OK()
         {
-            var accountHolderId = "AH00000001";
-
             var request = new AccountHolderUpdateRequest
             {
                 Description = "Updated via integration test"
             };
 
             IUpdateAccountHolderApiResponse response =
-                await _accountHoldersService.UpdateAccountHolderAsync(accountHolderId, request);
+                await _accountHoldersService.UpdateAccountHolderAsync(_accountHolderId, request);
 
             _logger.LogInformation(response.RawContent);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -128,10 +122,8 @@ namespace Adyen.IntegrationTest.BalancePlatform
         [TestMethod]
         public async Task Given_AccountHoldersService_When_GetTaxFormSummary_Returns_OK()
         {
-            var accountHolderId = "AH00000001";
-
             IGetTaxFormSummaryApiResponse response =
-                await _accountHoldersService.GetTaxFormSummaryAsync(accountHolderId, "US1099k");
+                await _accountHoldersService.GetTaxFormSummaryAsync(_accountHolderId, "US1099k");
 
             _logger.LogInformation(response.RawContent);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
