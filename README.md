@@ -248,11 +248,28 @@ var config = new Config
 var client = new Client(config);
 ```
 
-To parse the terminal API notifications, you can use the following custom deserializer. This method will throw an exception for non-notification requests.
+Terminal API async responses and Terminal notifications can arrive at the same endpoint. In this case, choose the deserializer based on the message shape:
+
+- `SaleToPOIResponse` → `Deserialize()`
+- `SaleToPOIRequest` containing `DisplayRequest` or `EventNotification` → `DeserializeNotification()`
+
+For example:
 
 ```csharp
-SaleToPoiMessageSerializer serializer = new SaleToPoiMessageSerializer();
-SaleToPOIRequest saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notification);
+using Newtonsoft.Json.Linq;
+
+var serializer = new SaleToPoiMessageSerializer();
+var message = JObject.Parse(payload);
+
+if (message["SaleToPOIRequest"]?["DisplayRequest"] != null
+    || message["SaleToPOIRequest"]?["EventNotification"] != null)
+{
+    SaleToPOIRequest notification = serializer.DeserializeNotification(payload);
+}
+else if (message["SaleToPOIResponse"] != null)
+{
+    SaleToPOIResponse response = serializer.Deserialize(payload);
+}
 ```
 
 ### Example Cloud Terminal API integration `/sync`-endpoint
@@ -385,7 +402,7 @@ PaymentResponse paymentResponse = response.MessagePayload as PaymentResponse;
 Console.WriteLine(paymentResponse?.Response?.Result);
 ```
 
-To parse the terminal API notifications, use the following custom deserializer. This method will throw an exception for non-notification requests.
+To parse a terminal API notification with a `SaleToPOIRequest` root property containing `DisplayRequest` or `EventNotification`, use the following custom deserializer. Use `Deserialize()` for messages with a `SaleToPOIResponse` root property.
 ```csharp
 var serializer = new SaleToPoiMessageSerializer();
 var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notification);
