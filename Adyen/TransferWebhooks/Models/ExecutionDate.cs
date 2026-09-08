@@ -131,7 +131,7 @@ namespace Adyen.TransferWebhooks.Models
                     switch (jsonPropertyName)
                     {
                         case "date":
-                            date = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly>(ref utf8JsonReader, jsonSerializerOptions));
+                            date = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "timezone":
                             timezone = new Option<string?>(utf8JsonReader.GetString()!);

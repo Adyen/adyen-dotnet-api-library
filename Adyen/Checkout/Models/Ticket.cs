@@ -150,7 +150,7 @@ namespace Adyen.Checkout.Models
                             issueAddress = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "issueDate":
-                            issueDate = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly>(ref utf8JsonReader, jsonSerializerOptions));
+                            issueDate = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "number":
                             number = new Option<string?>(utf8JsonReader.GetString()!);

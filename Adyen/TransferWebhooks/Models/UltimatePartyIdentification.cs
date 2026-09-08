@@ -393,7 +393,7 @@ namespace Adyen.TransferWebhooks.Models
                             address = new Option<Address?>(JsonSerializer.Deserialize<Address>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "dateOfBirth":
-                            dateOfBirth = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly>(ref utf8JsonReader, jsonSerializerOptions));
+                            dateOfBirth = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "email":
                             email = new Option<string?>(utf8JsonReader.GetString()!);

@@ -17,7 +17,6 @@ namespace Adyen.Core.Converters
         public static string[] Formats { get; } = {
             "yyyy'-'MM'-'dd",
             "yyyyMMdd"
-
         };
 
         /// <summary>
@@ -29,7 +28,7 @@ namespace Adyen.Core.Converters
         /// <returns><see cref="DateOnly"/>.</returns>
         public override DateOnly Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
             if (reader.TokenType == JsonTokenType.Null)
-                throw new NotSupportedException();
+                throw new JsonException("Unable to convert null to DateOnly.");
 
             string value = reader.GetString()!;
 
@@ -37,7 +36,10 @@ namespace Adyen.Core.Converters
                 if (DateOnly.TryParseExact(value, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateOnly result))
                     return result;
 
-            throw new NotSupportedException();
+            if (reader.TryGetDateTimeOffset(out DateTimeOffset dateTimeOffset))
+                return DateOnly.FromDateTime(dateTimeOffset.Date);
+
+            throw new JsonException($"Unable to convert \"{value}\" to DateOnly. Expected yyyy-MM-dd, yyyyMMdd, or an RFC 3339 date-time.");
         }
 
         /// <summary>

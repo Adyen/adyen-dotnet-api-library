@@ -241,7 +241,7 @@ namespace Adyen.Checkout.Models
                             itemDetailLines = new Option<List<ItemDetailLine>?>(JsonSerializer.Deserialize<List<ItemDetailLine>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "orderDate":
-                            orderDate = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly>(ref utf8JsonReader, jsonSerializerOptions));
+                            orderDate = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "shipFromPostalCode":
                             shipFromPostalCode = new Option<string?>(utf8JsonReader.GetString()!);

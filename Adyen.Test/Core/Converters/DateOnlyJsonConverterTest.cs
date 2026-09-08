@@ -40,14 +40,14 @@ namespace Adyen.Test.Core.Converters
         }
         
         [TestMethod]
-        public void Given_WrongFormatDateOnlyString_When_Read_Then_ThrowsNotSupportedException()
+        public void Given_WrongFormatDateOnlyString_When_Read_Then_ThrowsJsonException()
         {
             // Arrange
             string json = "\"25-12-2025\""; // Incorrect format dd-MM-yyyy
             
             // Act
             // Assert
-            Assert.ThrowsException<NotSupportedException>(() =>
+            Assert.ThrowsExactly<JsonException>(() =>
             {
                 var reader = new Utf8JsonReader(System.Text.Encoding.UTF8.GetBytes(json));
                 reader.Read();
@@ -71,14 +71,14 @@ namespace Adyen.Test.Core.Converters
         }
         
         [TestMethod]
-        public void Given_NullToken_When_Read_Then_ThrowsNotSupportedException()
+        public void Given_NullToken_When_Read_Then_ThrowsJsonException()
         {
             // Arrange
             string json = "null";
             
             // Act
             // Assert
-            Assert.ThrowsException<NotSupportedException>(() => { 
+            Assert.ThrowsExactly<JsonException>(() => { 
                 Utf8JsonReader reader = new Utf8JsonReader(System.Text.Encoding.UTF8.GetBytes(json));
                 reader.Read();
                 _converter.Read(ref reader, typeof(DateOnly), new JsonSerializerOptions());

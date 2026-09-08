@@ -179,7 +179,7 @@ namespace Adyen.Checkout.Models
                     switch (jsonPropertyName)
                     {
                         case "dateOfBirth":
-                            dateOfBirth = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly>(ref utf8JsonReader, jsonSerializerOptions));
+                            dateOfBirth = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "firstName":
                             firstName = new Option<string?>(utf8JsonReader.GetString()!);
