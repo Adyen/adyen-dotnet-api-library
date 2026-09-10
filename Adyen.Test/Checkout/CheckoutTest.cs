@@ -435,6 +435,19 @@ namespace Adyen.Test.Checkout
         }
 
         [TestMethod]
+        public void Given_PaymentLinkResponseWithCompactDateOfBirth_When_Deserialize_Then_ReturnsDate()
+        {
+            // Arrange
+            string json = """{"amount":{"currency":"EUR","value":1000},"dateOfBirth":"19900102","id":"PL1","url":"https://x"}""";
+
+            // Act
+            var response = JsonSerializer.Deserialize<PaymentLinkResponse>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.AreEqual(new DateOnly(1990, 1, 2), response.DateOfBirth);
+        }
+
+        [TestMethod]
         public void Given_Deserialize_When_Payments_PayPal_Result_CheckoutSDKAction_Is_Not_Null()
         {
             // Arrange
