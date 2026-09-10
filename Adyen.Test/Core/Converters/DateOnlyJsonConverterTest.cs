@@ -38,6 +38,47 @@ namespace Adyen.Test.Core.Converters
             // Assert
             Assert.AreEqual(new DateOnly(2025, 12, 25), result);
         }
+
+        [TestMethod]
+        public void Given_Rfc3339DateTime_When_Deserialize_Then_ReturnsDatePortion()
+        {
+            // Arrange
+            string json = "\"2025-12-25T10:30:00+02:00\"";
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(_converter);
+
+            // Act
+            var result = JsonSerializer.Deserialize<DateOnly>(json, options);
+
+            // Assert
+            Assert.AreEqual(new DateOnly(2025, 12, 25), result);
+        }
+
+        [TestMethod]
+        public void Given_NullDate_When_Deserialize_Then_ThrowsJsonException()
+        {
+            // Arrange
+            string json = "null";
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(_converter);
+
+            // Act
+            // Assert
+            Assert.ThrowsExactly<JsonException>(() => JsonSerializer.Deserialize<DateOnly>(json, options));
+        }
+
+        [TestMethod]
+        public void Given_InvalidCalendarDate_When_Deserialize_Then_ThrowsJsonException()
+        {
+            // Arrange
+            string json = "\"2025-01-40\"";
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(_converter);
+
+            // Act
+            // Assert
+            Assert.ThrowsExactly<JsonException>(() => JsonSerializer.Deserialize<DateOnly>(json, options));
+        }
         
         [TestMethod]
         public void Given_WrongFormatDateOnlyString_When_Read_Then_ThrowsJsonException()
