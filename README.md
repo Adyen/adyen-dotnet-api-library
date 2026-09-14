@@ -110,6 +110,20 @@ if (response.TryDeserializeOkResponse(out var result);
     Console.WriteLine(result); // result.ResultCode 
 }
 ```
+
+To use the Checkout API in the Live environment, set `Environment` to `Live` and provide your live endpoint URL prefix:
+
+```csharp
+config.ConfigureAdyenOptions(options =>
+{
+    options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
+    options.Environment = AdyenEnvironment.Live;
+    options.LiveEndpointUrlPrefix = "your-live-endpoint-url-prefix";
+});
+```
+
+The prefix is the value assigned to your account, not a full URL. For example, the prefix `mycompany` uses the endpoint `https://mycompany-checkout-live.adyenpayments.com/checkout/`.
+
 Use the `RequestOptions` object to pass additional headers like the IdempotencyKey or other custom request header:
 ```csharp
 var response = await paymentsService.PaymentsAsync(request, new RequestOptions().AddIdempotencyKey(Guid.NewGuid().ToString()));
