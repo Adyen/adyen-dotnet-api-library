@@ -50,6 +50,19 @@ namespace Adyen.PaymentsApp.Models
         public string? BoardingRequestToken { get; set; }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantData"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<SubMerchantData?> _SubMerchantDataOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="SubMerchantData"/>.
+        /// </summary>
+        [JsonPropertyName("subMerchantData")]
+        public SubMerchantData? SubMerchantData { get { return this._SubMerchantDataOption; } set { this._SubMerchantDataOption = new(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -58,6 +71,7 @@ namespace Adyen.PaymentsApp.Models
             StringBuilder sb = new StringBuilder();
             sb.Append("class BoardingTokenRequest {\n");
             sb.Append("  BoardingRequestToken: ").Append(BoardingRequestToken).Append("\n");
+            sb.Append("  SubMerchantData: ").Append(SubMerchantData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -86,6 +100,7 @@ namespace Adyen.PaymentsApp.Models
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string?> boardingRequestToken = default;
+            Option<SubMerchantData?> subMerchantData = default;
 
             while (utf8JsonReader.Read())
             {
@@ -105,6 +120,9 @@ namespace Adyen.PaymentsApp.Models
                         case "boardingRequestToken":
                             boardingRequestToken = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "subMerchantData":
+                            subMerchantData = new Option<SubMerchantData?>(JsonSerializer.Deserialize<SubMerchantData>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         default:
                             break;
                     }
@@ -115,6 +133,8 @@ namespace Adyen.PaymentsApp.Models
             var boardingTokenRequest = new BoardingTokenRequest();
             if (boardingRequestToken.IsSet)
                 boardingTokenRequest.BoardingRequestToken = boardingRequestToken.Value!;
+            if (subMerchantData.IsSet)
+                boardingTokenRequest.SubMerchantData = subMerchantData.Value;
             return boardingTokenRequest;
         }
 
@@ -146,6 +166,12 @@ namespace Adyen.PaymentsApp.Models
             
             if (boardingTokenRequest.BoardingRequestToken != null)
                 writer.WriteString("boardingRequestToken", boardingTokenRequest.BoardingRequestToken);
+
+            if (boardingTokenRequest._SubMerchantDataOption.IsSet)
+            {
+                writer.WritePropertyName("subMerchantData");
+                JsonSerializer.Serialize(writer, boardingTokenRequest.SubMerchantData, jsonSerializerOptions);
+            }
         }
     }
 }
