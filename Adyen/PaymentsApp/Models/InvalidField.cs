@@ -43,6 +43,13 @@ namespace Adyen.PaymentsApp.Models
         partial void OnCreated();
 
         /// <summary>
+        /// Description of the validation error.
+        /// </summary>
+        /// <value>Description of the validation error.</value>
+        [JsonPropertyName("message")]
+        public string? Message { get; set; }
+
+        /// <summary>
         /// The field that has an invalid value.
         /// </summary>
         /// <value>The field that has an invalid value.</value>
@@ -57,13 +64,6 @@ namespace Adyen.PaymentsApp.Models
         public string? Value { get; set; }
 
         /// <summary>
-        /// Description of the validation error.
-        /// </summary>
-        /// <value>Description of the validation error.</value>
-        [JsonPropertyName("message")]
-        public string? Message { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -71,9 +71,9 @@ namespace Adyen.PaymentsApp.Models
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class InvalidField {\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -101,9 +101,9 @@ namespace Adyen.PaymentsApp.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<string?> message = default;
             Option<string?> name = default;
             Option<string?> value = default;
-            Option<string?> message = default;
 
             while (utf8JsonReader.Read())
             {
@@ -120,14 +120,14 @@ namespace Adyen.PaymentsApp.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "message":
+                            message = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "name":
                             name = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "value":
                             value = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
-                        case "message":
-                            message = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         default:
                             break;
@@ -137,12 +137,12 @@ namespace Adyen.PaymentsApp.Models
             
 
             var invalidField = new InvalidField();
+            if (message.IsSet)
+                invalidField.Message = message.Value!;
             if (name.IsSet)
                 invalidField.Name = name.Value!;
             if (value.IsSet)
                 invalidField.Value = value.Value!;
-            if (message.IsSet)
-                invalidField.Message = message.Value!;
             return invalidField;
         }
 
@@ -172,14 +172,14 @@ namespace Adyen.PaymentsApp.Models
         public void WriteProperties(Utf8JsonWriter writer, InvalidField invalidField, JsonSerializerOptions jsonSerializerOptions)
         {
             
+            if (invalidField.Message != null)
+                writer.WriteString("message", invalidField.Message);
+
             if (invalidField.Name != null)
                 writer.WriteString("name", invalidField.Name);
 
             if (invalidField.Value != null)
                 writer.WriteString("value", invalidField.Value);
-
-            if (invalidField.Message != null)
-                writer.WriteString("message", invalidField.Message);
         }
     }
 }

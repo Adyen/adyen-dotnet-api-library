@@ -43,7 +43,7 @@ namespace Adyen.PaymentsApp.Services
         /// Create a boarding token - merchant level
         /// </summary>
         /// <remarks>
-        /// Creates a boarding token used to authenticate the installation of a Payments App instance on an Android device. The boarding token is created for the &#x60;boardingRequestToken&#x60; of the Payments App for the merchant account identified in the path.   To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
+        /// Creates a boarding token used to authenticate the installation of a Payments App instance on a device. The boarding token is created for the &#x60;boardingRequestToken&#x60; of the Payments App for the merchant account identified in the path.   To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
@@ -57,7 +57,7 @@ namespace Adyen.PaymentsApp.Services
         /// Create a boarding token - store level
         /// </summary>
         /// <remarks>
-        /// Creates a boarding token used to authenticate the installation of a Payments App instance on an Android device. The boarding token is created for the &#x60;boardingRequestToken&#x60; of the Payments App for the store identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
+        /// Creates a boarding token used to authenticate the installation of a Payments App instance on a device. The boarding token is created for the &#x60;boardingRequestToken&#x60; of the Payments App for the store identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
@@ -482,7 +482,7 @@ namespace Adyen.PaymentsApp.Services
         }
         
         /// <summary>
-        /// Create a boarding token - merchant level Creates a boarding token used to authenticate the installation of a Payments App instance on an Android device. The boarding token is created for the &#x60;boardingRequestToken&#x60; of the Payments App for the merchant account identified in the path.   To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
+        /// Create a boarding token - merchant level Creates a boarding token used to authenticate the installation of a Payments App instance on a device. The boarding token is created for the &#x60;boardingRequestToken&#x60; of the Payments App for the merchant account identified in the path.   To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
@@ -860,7 +860,7 @@ namespace Adyen.PaymentsApp.Services
         }
         
         /// <summary>
-        /// Create a boarding token - store level Creates a boarding token used to authenticate the installation of a Payments App instance on an Android device. The boarding token is created for the &#x60;boardingRequestToken&#x60; of the Payments App for the store identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
+        /// Create a boarding token - store level Creates a boarding token used to authenticate the installation of a Payments App instance on a device. The boarding token is created for the &#x60;boardingRequestToken&#x60; of the Payments App for the store identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>

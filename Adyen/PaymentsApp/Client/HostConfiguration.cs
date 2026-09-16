@@ -60,6 +60,7 @@ namespace Adyen.PaymentsApp.Client
             _jsonOptions.Converters.Add(new InvalidFieldJsonConverter());
             _jsonOptions.Converters.Add(new PaymentsAppDtoJsonConverter());
             _jsonOptions.Converters.Add(new PaymentsAppResponseJsonConverter());
+            _jsonOptions.Converters.Add(new SubMerchantDataJsonConverter());
             JsonSerializerOptionsProvider jsonSerializerOptionsProvider = new(_jsonOptions);
             _services.AddSingleton(jsonSerializerOptionsProvider);
         }
