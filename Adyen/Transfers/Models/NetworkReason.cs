@@ -43,9 +43,9 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **iso8583ResponseCode**  
+        /// The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **usAchCorrectionReasonCode** *  **iso8583ResponseCode**  
         /// </summary>
-        /// <value>The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **iso8583ResponseCode**  </value>
+        /// <value>The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **usAchCorrectionReasonCode** *  **iso8583ResponseCode**  </value>
         [JsonConverter(typeof(NamespaceEnumJsonConverter))]
         public class NamespaceEnum : IEnum
         {
@@ -73,6 +73,11 @@ namespace Adyen.Transfers.Models
             /// NamespaceEnum.UsAchReturnReasonCode - usAchReturnReasonCode
             /// </summary>
             public static readonly NamespaceEnum UsAchReturnReasonCode = new("usAchReturnReasonCode");
+
+            /// <summary>
+            /// NamespaceEnum.UsAchCorrectionReasonCode - usAchCorrectionReasonCode
+            /// </summary>
+            public static readonly NamespaceEnum UsAchCorrectionReasonCode = new("usAchCorrectionReasonCode");
         
             private NamespaceEnum(string? value)
             {
@@ -130,6 +135,7 @@ namespace Adyen.Transfers.Models
                     "ukFpsRejectionCode" => NamespaceEnum.UkFpsRejectionCode,
                     "ukFpsReturnReasonCode" => NamespaceEnum.UkFpsReturnReasonCode,
                     "usAchReturnReasonCode" => NamespaceEnum.UsAchReturnReasonCode,
+                    "usAchCorrectionReasonCode" => NamespaceEnum.UsAchCorrectionReasonCode,
                     _ => null,
                 };
             }
@@ -155,6 +161,9 @@ namespace Adyen.Transfers.Models
                 
                 if (value == NamespaceEnum.UsAchReturnReasonCode)
                     return "usAchReturnReasonCode";
+                
+                if (value == NamespaceEnum.UsAchCorrectionReasonCode)
+                    return "usAchCorrectionReasonCode";
                 
                 return value.Value;
             }
@@ -191,9 +200,9 @@ namespace Adyen.Transfers.Models
         public Option<NamespaceEnum?> _NamespaceOption { get; private set; }
 
         /// <summary>
-        /// The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **iso8583ResponseCode**  
+        /// The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **usAchCorrectionReasonCode** *  **iso8583ResponseCode**  
         /// </summary>
-        /// <value>The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **iso8583ResponseCode**  </value>
+        /// <value>The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **usAchCorrectionReasonCode** *  **iso8583ResponseCode**  </value>
         [JsonPropertyName("namespace")]
         public NamespaceEnum? Namespace { get { return this._NamespaceOption; } set { this._NamespaceOption = new(value); } }
 
