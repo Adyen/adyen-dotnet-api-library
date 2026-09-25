@@ -44,6 +44,152 @@ namespace Adyen.TransactionWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
+        /// The card variant associated with the payment network used to route or process the transaction. For single-network cards, this matches the `brandVariant`. For US dual-network cards routed over an alternate network, this value reflects the specific tier or sub-type under that processing network.
+        /// </summary>
+        /// <value>The card variant associated with the payment network used to route or process the transaction. For single-network cards, this matches the &#x60;brandVariant&#x60;. For US dual-network cards routed over an alternate network, this value reflects the specific tier or sub-type under that processing network.</value>
+        [JsonConverter(typeof(NetworkVariantEnumJsonConverter))]
+        public class NetworkVariantEnum : IEnum
+        {
+            /// <summary>
+            /// Returns the value of the NetworkVariantEnum.
+            /// </summary>
+            public string? Value { get; set; }
+
+            /// <summary>
+            /// NetworkVariantEnum.MaestroUs - maestro_us
+            /// </summary>
+            public static readonly NetworkVariantEnum MaestroUs = new("maestro_us");
+
+            /// <summary>
+            /// NetworkVariantEnum.Mastercard - mastercard
+            /// </summary>
+            public static readonly NetworkVariantEnum Mastercard = new("mastercard");
+
+            /// <summary>
+            /// NetworkVariantEnum.Visa - visa
+            /// </summary>
+            public static readonly NetworkVariantEnum Visa = new("visa");
+        
+            private NetworkVariantEnum(string? value)
+            {
+                Value = value;
+            }
+
+            /// <summary>
+            /// Converts a string to a <see cref="NetworkVariantEnum"/> implicitly.
+            /// </summary>
+            /// <param name="value">The string value to convert. Defaults to null.</param>
+            /// <returns>A new <see cref="NetworkVariantEnum"/> instance initialized with the string value.</returns>
+            public static implicit operator NetworkVariantEnum?(string? value) => value == null ? null : new NetworkVariantEnum(value);
+    
+            /// <summary>
+            /// Converts a <see cref="NetworkVariantEnum"/> instance to a string implicitly.
+            /// </summary>
+            /// <param name="option">The <see cref="NetworkVariantEnum"/> instance. Default to null.</param>
+            /// <returns>String value of the <see cref="NetworkVariantEnum"/> instance.</returns>
+            public static implicit operator string?(NetworkVariantEnum? option) => option?.Value;
+        
+            /// <summary>
+            /// Compares two <see cref="NetworkVariantEnum"/> instances for equality.
+            /// </summary>
+            public static bool operator ==(NetworkVariantEnum? left, NetworkVariantEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Compares two <see cref="NetworkVariantEnum"/> instances for inequality.
+            /// </summary>
+            public static bool operator !=(NetworkVariantEnum? left, NetworkVariantEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns true if the given object is equal to this <see cref="NetworkVariantEnum"/> instance.
+            /// </summary>
+            public override bool Equals(object? obj) => obj is NetworkVariantEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns a hash code for this <see cref="NetworkVariantEnum"/> instance.
+            /// </summary>
+            public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+            /// <summary>
+            /// Returns the string value of the <see cref="NetworkVariantEnum"/> instance.
+            /// </summary>
+            public override string ToString() => Value ?? string.Empty;
+        
+            /// <summary>
+            /// Returns a <see cref="NetworkVariantEnum?"/>.
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns><see cref="NetworkVariantEnum"/> or null.</returns>
+            public static NetworkVariantEnum? FromStringOrDefault(string value)
+            {
+                return value switch {
+                    "maestro_us" => NetworkVariantEnum.MaestroUs,
+                    "mastercard" => NetworkVariantEnum.Mastercard,
+                    "visa" => NetworkVariantEnum.Visa,
+                    _ => null,
+                };
+            }
+    
+            /// <summary>
+            /// Converts the <see cref="NetworkVariantEnum"/> to the json value.
+            /// </summary>
+            /// <param name="value"><see cref="NetworkVariantEnum"/></param>
+            /// <returns>String value of the enum.</returns>
+            public static string? ToJsonValue(NetworkVariantEnum? value)
+            {
+                if (value == null)
+                    return null;
+            
+                if (value == NetworkVariantEnum.MaestroUs)
+                    return "maestro_us";
+                
+                if (value == NetworkVariantEnum.Mastercard)
+                    return "mastercard";
+                
+                if (value == NetworkVariantEnum.Visa)
+                    return "visa";
+                
+                return value.Value;
+            }
+            
+            /// <summary>
+            /// JsonConverter for writing NetworkVariantEnum.               
+            /// </summary>
+            public class NetworkVariantEnumJsonConverter : JsonConverter<NetworkVariantEnum>
+            {
+                /// <summary>
+                /// Deserializes a <see cref="NetworkVariantEnum"/> from JSON.
+                /// </summary>
+                public override NetworkVariantEnum? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions jsonOptions)
+                {
+                    string value = reader.GetString();
+                    return value == null ? null : NetworkVariantEnum.FromStringOrDefault(value) ?? new NetworkVariantEnum(value);
+                }
+
+                /// <summary>
+                /// Serializes a <see cref="NetworkVariantEnum"/> to JSON.
+                /// </summary>
+                public override void Write(Utf8JsonWriter writer, NetworkVariantEnum value, JsonSerializerOptions jsonOptions)
+                {
+                    writer.WriteStringValue(NetworkVariantEnum.ToJsonValue(value));
+                }
+            }
+        }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="NetworkVariant"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<NetworkVariantEnum?> _NetworkVariantOption { get; private set; }
+
+        /// <summary>
+        /// The card variant associated with the payment network used to route or process the transaction. For single-network cards, this matches the `brandVariant`. For US dual-network cards routed over an alternate network, this value reflects the specific tier or sub-type under that processing network.
+        /// </summary>
+        /// <value>The card variant associated with the payment network used to route or process the transaction. For single-network cards, this matches the &#x60;brandVariant&#x60;. For US dual-network cards routed over an alternate network, this value reflects the specific tier or sub-type under that processing network.</value>
+        [JsonPropertyName("networkVariant")]
+        public NetworkVariantEnum? NetworkVariant { get { return this._NetworkVariantOption; } set { this._NetworkVariantOption = new(value); } }
+
+        /// <summary>
         /// Indicates the method used for entering the PAN to initiate a transaction.  Possible values: **manual**, **chip**, **magstripe**, **contactless**, **cof**, **ecommerce**, **token**.
         /// </summary>
         /// <value>Indicates the method used for entering the PAN to initiate a transaction.  Possible values: **manual**, **chip**, **magstripe**, **contactless**, **cof**, **ecommerce**, **token**.</value>
@@ -635,6 +781,7 @@ namespace Adyen.TransactionWebhooks.Models
             StringBuilder sb = new StringBuilder();
             sb.Append("class IssuedCard {\n");
             sb.Append("  AuthorisationType: ").Append(AuthorisationType).Append("\n");
+            sb.Append("  NetworkVariant: ").Append(NetworkVariant).Append("\n");
             sb.Append("  PanEntryMode: ").Append(PanEntryMode).Append("\n");
             sb.Append("  ProcessingType: ").Append(ProcessingType).Append("\n");
             sb.Append("  RelayedAuthorisationData: ").Append(RelayedAuthorisationData).Append("\n");
@@ -671,6 +818,7 @@ namespace Adyen.TransactionWebhooks.Models
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string?> authorisationType = default;
+            Option<IssuedCard.NetworkVariantEnum?> networkVariant = default;
             Option<IssuedCard.PanEntryModeEnum?> panEntryMode = default;
             Option<IssuedCard.ProcessingTypeEnum?> processingType = default;
             Option<RelayedAuthorisationData?> relayedAuthorisationData = default;
@@ -697,6 +845,10 @@ namespace Adyen.TransactionWebhooks.Models
                     {
                         case "authorisationType":
                             authorisationType = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "networkVariant":
+                            string? networkVariantRawValue = utf8JsonReader.GetString();
+                            networkVariant = new Option<IssuedCard.NetworkVariantEnum?>(IssuedCard.NetworkVariantEnum.FromStringOrDefault(networkVariantRawValue) ?? (IssuedCard.NetworkVariantEnum)networkVariantRawValue);
                             break;
                         case "panEntryMode":
                             string? panEntryModeRawValue = utf8JsonReader.GetString();
@@ -735,6 +887,8 @@ namespace Adyen.TransactionWebhooks.Models
             var issuedCard = new IssuedCard();
             if (authorisationType.IsSet)
                 issuedCard.AuthorisationType = authorisationType.Value;
+            if (networkVariant.IsSet)
+                issuedCard.NetworkVariant = networkVariant.Value;
             if (panEntryMode.IsSet)
                 issuedCard.PanEntryMode = panEntryMode.Value;
             if (processingType.IsSet)
@@ -784,6 +938,12 @@ namespace Adyen.TransactionWebhooks.Models
                 if (issuedCard.AuthorisationType != null)
                     writer.WriteString("authorisationType", issuedCard.AuthorisationType);
 
+            if (issuedCard._NetworkVariantOption.IsSet && issuedCard.NetworkVariant != null) 
+            {
+                string? networkVariantRawValue = IssuedCard.NetworkVariantEnum.ToJsonValue(issuedCard._NetworkVariantOption.Value!.Value);
+                writer.WriteString("networkVariant", networkVariantRawValue);
+            }
+            
             if (issuedCard._PanEntryModeOption.IsSet && issuedCard.PanEntryMode != null) 
             {
                 string? panEntryModeRawValue = IssuedCard.PanEntryModeEnum.ToJsonValue(issuedCard._PanEntryModeOption.Value!.Value);
