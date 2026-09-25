@@ -369,9 +369,9 @@ namespace Adyen.ManagementWebhooks.Models
         public string? MerchantId { get; set; }
 
         /// <summary>
-        /// Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
+        /// Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).  For payment method variant **cartebancaire**, method-specific details are returned in the [&#x60;cartesBancaires&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/paymentMethodSettings#responses-200-cartesBancaires) object of the response.
         /// </summary>
-        /// <value>Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).</value>
+        /// <value>Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).  For payment method variant **cartebancaire**, method-specific details are returned in the [`cartesBancaires`](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/paymentMethodSettings#responses-200-cartesBancaires) object of the response.</value>
         [JsonPropertyName("type")]
         public string? Type { get; set; }
 
