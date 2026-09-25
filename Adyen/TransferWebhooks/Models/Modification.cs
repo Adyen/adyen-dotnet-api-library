@@ -385,6 +385,11 @@ namespace Adyen.TransferWebhooks.Models
             public static readonly StatusEnum Returned = new("returned");
 
             /// <summary>
+            /// StatusEnum.ReversalReceived - reversalReceived
+            /// </summary>
+            public static readonly StatusEnum ReversalReceived = new("reversalReceived");
+
+            /// <summary>
             /// StatusEnum.Reversed - reversed
             /// </summary>
             public static readonly StatusEnum Reversed = new("reversed");
@@ -522,6 +527,7 @@ namespace Adyen.TransferWebhooks.Models
                     "reserveAdjustment" => StatusEnum.ReserveAdjustment,
                     "reserveAdjustmentPending" => StatusEnum.ReserveAdjustmentPending,
                     "returned" => StatusEnum.Returned,
+                    "reversalReceived" => StatusEnum.ReversalReceived,
                     "reversed" => StatusEnum.Reversed,
                     "secondChargeback" => StatusEnum.SecondChargeback,
                     "secondChargebackPending" => StatusEnum.SecondChargebackPending,
@@ -737,6 +743,9 @@ namespace Adyen.TransferWebhooks.Models
                 
                 if (value == StatusEnum.Returned)
                     return "returned";
+                
+                if (value == StatusEnum.ReversalReceived)
+                    return "reversalReceived";
                 
                 if (value == StatusEnum.Reversed)
                     return "reversed";
