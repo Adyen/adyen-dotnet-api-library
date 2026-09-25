@@ -1,8 +1,8 @@
 {
   "service": "management",
   "project": "dotnet",
-  "generatedAt": "2026-07-01T13:12:18Z",
-  "openapiCommitSha": "28ffef4cd4f884082b1ed2e2c6b452a10481cab0",
-  "automationCommitSha": "5f1d5ab9643886ef722a2626e23afef8db5d52a6",
-  "libraryCommitSha": "11195aa91ab55cb9b2f3d5aa1dbbec22d971407d"
+  "generatedAt": "2026-09-25T11:05:28Z",
+  "openapiCommitSha": "e96f4b3de219e3d82330dfd5864e621ffec3f86f",
+  "automationCommitSha": "db93bc35548c7c9d6aff97d76a513634967fd304",
+  "libraryCommitSha": "7156ce28222512c60bcce13a3dcd622ada27179f"
 }
