@@ -1,0 +1,8 @@
+{
+  "service": "documentcollector",
+  "project": "dotnet",
+  "generatedAt": "2026-10-01T14:42:24Z",
+  "openapiCommitSha": "45520ee6246d7e3d8074c3c5c5e991e65c2c02d6",
+  "automationCommitSha": "5d96c9a6b53a7052671a48c3ab6eb109bec1550b",
+  "libraryCommitSha": "9d5ddec7994c390a7e613bcf54b3bfd8b00c3273"
+}
