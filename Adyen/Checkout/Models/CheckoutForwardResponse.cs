@@ -49,6 +49,19 @@ namespace Adyen.Checkout.Models
         public CheckoutForwardResponseFromUrl? Response { get; set; }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="AccountUpdate"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<CheckoutForwardAccountUpdateResult?> _AccountUpdateOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="AccountUpdate"/>.
+        /// </summary>
+        [JsonPropertyName("accountUpdate")]
+        public CheckoutForwardAccountUpdateResult? AccountUpdate { get { return this._AccountUpdateOption; } set { this._AccountUpdateOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="MerchantReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -61,6 +74,19 @@ namespace Adyen.Checkout.Models
         /// <value>Merchant defined payment reference.</value>
         [JsonPropertyName("merchantReference")]
         public string? MerchantReference { get { return this._MerchantReferenceOption; } set { this._MerchantReferenceOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="NetworkToken"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<CheckoutForwardNetworkTokenResult?> _NetworkTokenOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="NetworkToken"/>.
+        /// </summary>
+        [JsonPropertyName("networkToken")]
+        public CheckoutForwardNetworkTokenResult? NetworkToken { get { return this._NetworkTokenOption; } set { this._NetworkTokenOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="PspReference"/> will be populated.
@@ -99,7 +125,9 @@ namespace Adyen.Checkout.Models
             StringBuilder sb = new StringBuilder();
             sb.Append("class CheckoutForwardResponse {\n");
             sb.Append("  Response: ").Append(Response).Append("\n");
+            sb.Append("  AccountUpdate: ").Append(AccountUpdate).Append("\n");
             sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
+            sb.Append("  NetworkToken: ").Append(NetworkToken).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("}\n");
@@ -130,7 +158,9 @@ namespace Adyen.Checkout.Models
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<CheckoutForwardResponseFromUrl?> response = default;
+            Option<CheckoutForwardAccountUpdateResult?> accountUpdate = default;
             Option<string?> merchantReference = default;
+            Option<CheckoutForwardNetworkTokenResult?> networkToken = default;
             Option<string?> pspReference = default;
             Option<string?> storedPaymentMethodId = default;
 
@@ -152,8 +182,14 @@ namespace Adyen.Checkout.Models
                         case "response":
                             response = new Option<CheckoutForwardResponseFromUrl?>(JsonSerializer.Deserialize<CheckoutForwardResponseFromUrl>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
+                        case "accountUpdate":
+                            accountUpdate = new Option<CheckoutForwardAccountUpdateResult?>(JsonSerializer.Deserialize<CheckoutForwardAccountUpdateResult>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "merchantReference":
                             merchantReference = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "networkToken":
+                            networkToken = new Option<CheckoutForwardNetworkTokenResult?>(JsonSerializer.Deserialize<CheckoutForwardNetworkTokenResult>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "pspReference":
                             pspReference = new Option<string?>(utf8JsonReader.GetString()!);
@@ -171,8 +207,12 @@ namespace Adyen.Checkout.Models
             var checkoutForwardResponse = new CheckoutForwardResponse();
             if (response.IsSet)
                 checkoutForwardResponse.Response = response.Value!;
+            if (accountUpdate.IsSet)
+                checkoutForwardResponse.AccountUpdate = accountUpdate.Value;
             if (merchantReference.IsSet)
                 checkoutForwardResponse.MerchantReference = merchantReference.Value;
+            if (networkToken.IsSet)
+                checkoutForwardResponse.NetworkToken = networkToken.Value;
             if (pspReference.IsSet)
                 checkoutForwardResponse.PspReference = pspReference.Value;
             if (storedPaymentMethodId.IsSet)
@@ -208,10 +248,20 @@ namespace Adyen.Checkout.Models
             
             writer.WritePropertyName("response");
             JsonSerializer.Serialize(writer, checkoutForwardResponse.Response, jsonSerializerOptions);
+            if (checkoutForwardResponse._AccountUpdateOption.IsSet)
+            {
+                writer.WritePropertyName("accountUpdate");
+                JsonSerializer.Serialize(writer, checkoutForwardResponse.AccountUpdate, jsonSerializerOptions);
+            }
             if (checkoutForwardResponse._MerchantReferenceOption.IsSet)
                 if (checkoutForwardResponse.MerchantReference != null)
                     writer.WriteString("merchantReference", checkoutForwardResponse.MerchantReference);
 
+            if (checkoutForwardResponse._NetworkTokenOption.IsSet)
+            {
+                writer.WritePropertyName("networkToken");
+                JsonSerializer.Serialize(writer, checkoutForwardResponse.NetworkToken, jsonSerializerOptions);
+            }
             if (checkoutForwardResponse._PspReferenceOption.IsSet)
                 if (checkoutForwardResponse.PspReference != null)
                     writer.WriteString("pspReference", checkoutForwardResponse.PspReference);
