@@ -61,17 +61,24 @@ PM> Install-Package Adyen -Version x.x.x
 ```
 ## Using the library
 
-In order to submit http request to Adyen API you need to initialize the client. The following example makes a checkout payment request:
+In a .NET 8 console application, install the library and the hosting package:
+
+```sh
+dotnet add package Adyen
+dotnet add package Microsoft.Extensions.Hosting --version 8.0.1
+```
+
+The following example makes a Checkout payment request. Since v35, use object initializers for model properties:
 ```csharp
 using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Adyen.Core.Extensions;
+using Adyen.Core.Client;
+using Adyen.Core.Options;
 using Adyen.Checkout.Extensions;
-using AdyenEnvironment = Adyen.Core.Model.Environment;
 
-IHost host = Host.CreateDefaultBuilder()
+using IHost host = Host.CreateDefaultBuilder()
           .ConfigureCheckout(
               (context, services, config) =>
               {
@@ -87,27 +94,27 @@ IHost host = Host.CreateDefaultBuilder()
 
 var paymentsService = host.Services.GetRequiredService<IPaymentsService>();
 
-var request = new PaymentRequest(
-    amount: new Amount("EUR", 1999),
-    merchantAccount: "MY_MERCHANT_ACCOUNT",
-    reference: "reference",
-    returnUrl: "https://adyen.com/",
-    paymentMethod: new CheckoutPaymentMethod(
-        new CardDetails(
-            type: CardDetails.TypeEnum.Scheme,
-            encryptedCardNumber: "test_4111111111111111",
-            encryptedExpiryMonth: "test_03",
-            encryptedExpiryYear: "test_2030",
-            encryptedSecurityCode: "test_737",
-            holderName: "John Smith"
-            )
-        )
-    );
+var request = new PaymentRequest
+{
+    Amount = new Amount { Currency = "EUR", Value = 1999 },
+    MerchantAccount = "MY_MERCHANT_ACCOUNT",
+    Reference = "reference",
+    ReturnUrl = "https://adyen.com/",
+    PaymentMethod = new CheckoutPaymentMethod(new CardDetails
+    {
+        Type = CardDetails.TypeEnum.Scheme,
+        EncryptedCardNumber = "test_4111111111111111",
+        EncryptedExpiryMonth = "test_03",
+        EncryptedExpiryYear = "test_2030",
+        EncryptedSecurityCode = "test_737",
+        HolderName = "John Smith"
+    })
+};
 
 var response = await paymentsService.PaymentsAsync(request);
-if (response.TryDeserializeOkResponse(out var result);
+if (response.TryDeserializeOkResponse(out var result))
 {
-    Console.WriteLine(result); // result.ResultCode 
+    Console.WriteLine(result.ResultCode);
 }
 ```
 
@@ -218,18 +225,17 @@ var amount = JsonSerializer.Deserialize<Amount>("{\"currency\":\"EUR\",\"value\"
 var json = JsonSerializer.Serialize(amount);
 ~~~~
 ### Logging response bodies
-Here's an example how you can log API responses using `{{classname}}Events`. Consider logging responses **only on TEST** to prevent logging confidential data. 
+Use `{{classname}}ServiceEvents` to observe API responses. Log response bodies **only on TEST** to prevent logging confidential data.
 
-In case of `Payments` the snippet would be:
-~~~~ c#
-var events = new PaymentsEvents;
-services.AddSingleton(events);
+For `Payments`, `AddPaymentsService()` registers `PaymentsServiceEvents` automatically. After building the host, subscribe before calling `PaymentsAsync`. This example logs response metadata, not the body:
+~~~~ csharp
+using Microsoft.Extensions.Logging;
 
-// Create a new logger
-
+var events = host.Services.GetRequiredService<PaymentsServiceEvents>();
+var logger = host.Services.GetRequiredService<ILogger<PaymentsService>>();
 events.OnPayments += (sender, eventArgs) =>
 {
-    ApiResponse apiResponse = eventArgs.ApiResponse;
+    var apiResponse = eventArgs.ApiResponse;
     logger.LogInformation("{TotalSeconds,-9} | {Path} | {StatusCode} |", (apiResponse.DownloadedAt - apiResponse.RequestedAt).TotalSeconds, apiResponse.Path, apiResponse.StatusCode);
 };
 ~~~~
