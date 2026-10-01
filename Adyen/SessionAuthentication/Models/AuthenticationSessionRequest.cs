@@ -49,17 +49,24 @@ namespace Adyen.SessionAuthentication.Models
         public ProductType Product { get; set; }
 
         /// <summary>
-        /// The URL where the component will appear. In your live environment, you must protect the URL with an SSL certificate and ensure that it starts with &#x60;https://&#x60;.
-        /// </summary>
-        /// <value>The URL where the component will appear. In your live environment, you must protect the URL with an SSL certificate and ensure that it starts with `https://`.</value>
-        [JsonPropertyName("allowOrigin")]
-        public string? AllowOrigin { get; set; }
-
-        /// <summary>
         /// <see cref="Policy"/>.
         /// </summary>
         [JsonPropertyName("policy")]
         public Policy? Policy { get; set; }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="AllowOrigin"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _AllowOriginOption { get; private set; }
+
+        /// <summary>
+        /// The URL where the component will appear. In your live environment, you must protect the URL with an SSL certificate and ensure that it starts with &#x60;https://&#x60;.  Required for creating a session for Platform Experience and Onboarding components. Omitting this parameter results in an unusable session token.
+        /// </summary>
+        /// <value>The URL where the component will appear. In your live environment, you must protect the URL with an SSL certificate and ensure that it starts with `https://`.  Required for creating a session for Platform Experience and Onboarding components. Omitting this parameter results in an unusable session token.</value>
+        [JsonPropertyName("allowOrigin")]
+        public string? AllowOrigin { get { return this._AllowOriginOption; } set { this._AllowOriginOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -69,9 +76,9 @@ namespace Adyen.SessionAuthentication.Models
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class AuthenticationSessionRequest {\n");
-            sb.Append("  AllowOrigin: ").Append(AllowOrigin).Append("\n");
             sb.Append("  Policy: ").Append(Policy).Append("\n");
             sb.Append("  Product: ").Append(Product).Append("\n");
+            sb.Append("  AllowOrigin: ").Append(AllowOrigin).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -99,9 +106,9 @@ namespace Adyen.SessionAuthentication.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> allowOrigin = default;
             Option<Policy?> policy = default;
             Option<ProductType?> product = default;
+            Option<string?> allowOrigin = default;
 
             while (utf8JsonReader.Read())
             {
@@ -118,15 +125,15 @@ namespace Adyen.SessionAuthentication.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "allowOrigin":
-                            allowOrigin = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
                         case "policy":
                             policy = new Option<Policy?>(JsonSerializer.Deserialize<Policy>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "product":
                             string? productRawValue = utf8JsonReader.GetString();
                             product = new Option<ProductType?>(ProductType.FromStringOrDefault(productRawValue) ?? (ProductType)productRawValue);
+                            break;
+                        case "allowOrigin":
+                            allowOrigin = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         default:
                             break;
@@ -136,12 +143,12 @@ namespace Adyen.SessionAuthentication.Models
             
 
             var authenticationSessionRequest = new AuthenticationSessionRequest();
-            if (allowOrigin.IsSet)
-                authenticationSessionRequest.AllowOrigin = allowOrigin.Value!;
             if (policy.IsSet)
                 authenticationSessionRequest.Policy = policy.Value!;
             if (product.IsSet)
                 authenticationSessionRequest.Product = product.Value!;
+            if (allowOrigin.IsSet)
+                authenticationSessionRequest.AllowOrigin = allowOrigin.Value;
             return authenticationSessionRequest;
         }
 
@@ -171,13 +178,14 @@ namespace Adyen.SessionAuthentication.Models
         public void WriteProperties(Utf8JsonWriter writer, AuthenticationSessionRequest authenticationSessionRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (authenticationSessionRequest.AllowOrigin != null)
-                writer.WriteString("allowOrigin", authenticationSessionRequest.AllowOrigin);
-
             writer.WritePropertyName("policy");
             JsonSerializer.Serialize(writer, authenticationSessionRequest.Policy, jsonSerializerOptions);
             var productRawValue = ProductType.ToJsonValue(authenticationSessionRequest.Product);
             writer.WriteString("product", productRawValue);
+
+            if (authenticationSessionRequest._AllowOriginOption.IsSet)
+                if (authenticationSessionRequest.AllowOrigin != null)
+                    writer.WriteString("allowOrigin", authenticationSessionRequest.AllowOrigin);
         }
     }
 }
