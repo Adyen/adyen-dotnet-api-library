@@ -369,6 +369,19 @@ namespace Adyen.Checkout.Models
         public string? MerchantReference { get { return this._MerchantReferenceOption; } set { this._MerchantReferenceOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Opi"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<OpiResponse?> _OpiOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="Opi"/>.
+        /// </summary>
+        [JsonPropertyName("opi")]
+        public OpiResponse? Opi { get { return this._OpiOption; } set { this._OpiOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Order"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -503,6 +516,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  DonationToken: ").Append(DonationToken).Append("\n");
             sb.Append("  FraudResult: ").Append(FraudResult).Append("\n");
             sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
+            sb.Append("  Opi: ").Append(Opi).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
             sb.Append("  PaymentValidations: ").Append(PaymentValidations).Append("\n");
@@ -546,6 +560,7 @@ namespace Adyen.Checkout.Models
             Option<string?> donationToken = default;
             Option<FraudResult?> fraudResult = default;
             Option<string?> merchantReference = default;
+            Option<OpiResponse?> opi = default;
             Option<CheckoutOrderResponse?> order = default;
             Option<ResponsePaymentMethod?> paymentMethod = default;
             Option<PaymentValidationsResponse?> paymentValidations = default;
@@ -589,6 +604,9 @@ namespace Adyen.Checkout.Models
                             break;
                         case "merchantReference":
                             merchantReference = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "opi":
+                            opi = new Option<OpiResponse?>(JsonSerializer.Deserialize<OpiResponse>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "order":
                             order = new Option<CheckoutOrderResponse?>(JsonSerializer.Deserialize<CheckoutOrderResponse>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -641,6 +659,8 @@ namespace Adyen.Checkout.Models
                 paymentResponse.FraudResult = fraudResult.Value;
             if (merchantReference.IsSet)
                 paymentResponse.MerchantReference = merchantReference.Value;
+            if (opi.IsSet)
+                paymentResponse.Opi = opi.Value;
             if (order.IsSet)
                 paymentResponse.Order = order.Value;
             if (paymentMethod.IsSet)
@@ -718,6 +738,11 @@ namespace Adyen.Checkout.Models
                 if (paymentResponse.MerchantReference != null)
                     writer.WriteString("merchantReference", paymentResponse.MerchantReference);
 
+            if (paymentResponse._OpiOption.IsSet)
+            {
+                writer.WritePropertyName("opi");
+                JsonSerializer.Serialize(writer, paymentResponse.Opi, jsonSerializerOptions);
+            }
             if (paymentResponse._OrderOption.IsSet)
             {
                 writer.WritePropertyName("order");

@@ -267,6 +267,20 @@ namespace Adyen.Checkout.Models
         public string? ReturnTrackingUri { get { return this._ReturnTrackingUriOption; } set { this._ReturnTrackingUriOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="RiskCategory"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _RiskCategoryOption { get; private set; }
+
+        /// <summary>
+        /// An optional, free-text category for the item to be used in the risk evaluation. When provided, Protect uses this value to evaluate custom risk rules.
+        /// </summary>
+        /// <value>An optional, free-text category for the item to be used in the risk evaluation. When provided, Protect uses this value to evaluate custom risk rules.</value>
+        [JsonPropertyName("riskCategory")]
+        public string? RiskCategory { get { return this._RiskCategoryOption; } set { this._RiskCategoryOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ShippingCompany"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -416,6 +430,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  ReturnShippingCompany: ").Append(ReturnShippingCompany).Append("\n");
             sb.Append("  ReturnTrackingNumber: ").Append(ReturnTrackingNumber).Append("\n");
             sb.Append("  ReturnTrackingUri: ").Append(ReturnTrackingUri).Append("\n");
+            sb.Append("  RiskCategory: ").Append(RiskCategory).Append("\n");
             sb.Append("  ShippingCompany: ").Append(ShippingCompany).Append("\n");
             sb.Append("  ShippingMethod: ").Append(ShippingMethod).Append("\n");
             sb.Append("  Size: ").Append(Size).Append("\n");
@@ -468,6 +483,7 @@ namespace Adyen.Checkout.Models
             Option<string?> returnShippingCompany = default;
             Option<string?> returnTrackingNumber = default;
             Option<string?> returnTrackingUri = default;
+            Option<string?> riskCategory = default;
             Option<string?> shippingCompany = default;
             Option<string?> shippingMethod = default;
             Option<string?> size = default;
@@ -541,6 +557,9 @@ namespace Adyen.Checkout.Models
                         case "returnTrackingUri":
                             returnTrackingUri = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "riskCategory":
+                            riskCategory = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "shippingCompany":
                             shippingCompany = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -608,6 +627,8 @@ namespace Adyen.Checkout.Models
                 lineItem.ReturnTrackingNumber = returnTrackingNumber.Value;
             if (returnTrackingUri.IsSet)
                 lineItem.ReturnTrackingUri = returnTrackingUri.Value;
+            if (riskCategory.IsSet)
+                lineItem.RiskCategory = riskCategory.Value;
             if (shippingCompany.IsSet)
                 lineItem.ShippingCompany = shippingCompany.Value;
             if (shippingMethod.IsSet)
@@ -718,6 +739,10 @@ namespace Adyen.Checkout.Models
             if (lineItem._ReturnTrackingUriOption.IsSet)
                 if (lineItem.ReturnTrackingUri != null)
                     writer.WriteString("returnTrackingUri", lineItem.ReturnTrackingUri);
+
+            if (lineItem._RiskCategoryOption.IsSet)
+                if (lineItem.RiskCategory != null)
+                    writer.WriteString("riskCategory", lineItem.RiskCategory);
 
             if (lineItem._ShippingCompanyOption.IsSet)
                 if (lineItem.ShippingCompany != null)

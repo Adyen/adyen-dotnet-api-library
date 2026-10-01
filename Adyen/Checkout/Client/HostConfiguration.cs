@@ -113,6 +113,8 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new CheckoutBankTransferActionJsonConverter());
             _jsonOptions.Converters.Add(new CheckoutDelegatedAuthenticationActionJsonConverter());
             _jsonOptions.Converters.Add(new CheckoutErrorResponseEntityJsonConverter());
+            _jsonOptions.Converters.Add(new CheckoutForwardAccountUpdateResultJsonConverter());
+            _jsonOptions.Converters.Add(new CheckoutForwardNetworkTokenResultJsonConverter());
             _jsonOptions.Converters.Add(new CheckoutForwardRequestJsonConverter());
             _jsonOptions.Converters.Add(new CheckoutForwardRequestCardJsonConverter());
             _jsonOptions.Converters.Add(new CheckoutForwardRequestOptionsJsonConverter());
@@ -196,8 +198,11 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new MolPayDetailsJsonConverter());
             _jsonOptions.Converters.Add(new NameJsonConverter());
             _jsonOptions.Converters.Add(new OpenInvoiceDetailsJsonConverter());
+            _jsonOptions.Converters.Add(new OpiRequestJsonConverter());
+            _jsonOptions.Converters.Add(new OpiResponseJsonConverter());
             _jsonOptions.Converters.Add(new PassengerJsonConverter());
             _jsonOptions.Converters.Add(new PayByBankAISDirectDebitDetailsJsonConverter());
+            _jsonOptions.Converters.Add(new PayByBankCADirectDebitDetailsJsonConverter());
             _jsonOptions.Converters.Add(new PayByBankDetailsJsonConverter());
             _jsonOptions.Converters.Add(new PayPalDetailsJsonConverter());
             _jsonOptions.Converters.Add(new PayPayDetailsJsonConverter());

@@ -792,9 +792,9 @@ namespace Adyen.Checkout.Models
         public CheckoutPaymentMethod? PaymentMethod { get; set; }
 
         /// <summary>
-        /// The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. To provide multiple references for one transaction, separate the reference values with the hyphen (&#x60;-&#x60;) character.We strongly recommend that you use a unique value for each transaction. Maximum length: 80 characters.
+        /// The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. To provide multiple references for one transaction, separate the reference values with the hyphen (&#x60;-&#x60;) character. We strongly recommend that you use a unique value for each transaction. Maximum length: 80 characters.
         /// </summary>
-        /// <value>The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. To provide multiple references for one transaction, separate the reference values with the hyphen (`-`) character.We strongly recommend that you use a unique value for each transaction. Maximum length: 80 characters.</value>
+        /// <value>The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. To provide multiple references for one transaction, separate the reference values with the hyphen (`-`) character. We strongly recommend that you use a unique value for each transaction. Maximum length: 80 characters.</value>
         [JsonPropertyName("reference")]
         public string? Reference { get; set; }
 
@@ -1220,9 +1220,9 @@ namespace Adyen.Checkout.Models
         public Option<string?> _MerchantOrderReferenceOption { get; private set; }
 
         /// <summary>
-        /// You can use this reference to link multiple transactions to one another (for example, to track order authorization rate).For each billing cycle, this reference should be unique. After the first authorized payment attempt, do not reuse the reference. If you use this parameter, include it in all of the payment requests that you make.   We strongly recommend that you: * Always include this parameter, so that you can benefit from linking payment requests to one another, in case of authorization retries.  * Additionally include the following parameters in the &#x60;additionalData&#x60; object: [&#x60;retry.orderAttemptNumber&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-orderAttemptNumber), [&#x60;retry.chainAttemptNumber&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-chainAttemptNumber), and [&#x60;retry.skipRetry&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-skipRetry)
+        /// You can use this reference to link multiple transactions to one another (for example, to track order authorization rate). For each billing cycle, this reference should be unique. After the first authorized payment attempt, do not reuse the reference. If you use this parameter, include it in all of the payment requests that you make.   We strongly recommend that you: * Always include this parameter, so that you can benefit from linking payment requests to one another, in case of authorization retries.  * Additionally include the following parameters in the &#x60;additionalData&#x60; object: [&#x60;retry.orderAttemptNumber&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-orderAttemptNumber), [&#x60;retry.chainAttemptNumber&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-chainAttemptNumber), and [&#x60;retry.skipRetry&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-skipRetry)
         /// </summary>
-        /// <value>You can use this reference to link multiple transactions to one another (for example, to track order authorization rate).For each billing cycle, this reference should be unique. After the first authorized payment attempt, do not reuse the reference. If you use this parameter, include it in all of the payment requests that you make.   We strongly recommend that you: * Always include this parameter, so that you can benefit from linking payment requests to one another, in case of authorization retries.  * Additionally include the following parameters in the `additionalData` object: [`retry.orderAttemptNumber`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-orderAttemptNumber), [`retry.chainAttemptNumber`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-chainAttemptNumber), and [`retry.skipRetry`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-skipRetry)</value>
+        /// <value>You can use this reference to link multiple transactions to one another (for example, to track order authorization rate). For each billing cycle, this reference should be unique. After the first authorized payment attempt, do not reuse the reference. If you use this parameter, include it in all of the payment requests that you make.   We strongly recommend that you: * Always include this parameter, so that you can benefit from linking payment requests to one another, in case of authorization retries.  * Additionally include the following parameters in the `additionalData` object: [`retry.orderAttemptNumber`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-orderAttemptNumber), [`retry.chainAttemptNumber`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-chainAttemptNumber), and [`retry.skipRetry`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-skipRetry)</value>
         [JsonPropertyName("merchantOrderReference")]
         public string? MerchantOrderReference { get { return this._MerchantOrderReferenceOption; } set { this._MerchantOrderReferenceOption = new(value); } }
 
@@ -1265,6 +1265,19 @@ namespace Adyen.Checkout.Models
         /// </summary>
         [JsonPropertyName("mpiData")]
         public ThreeDSecureData? MpiData { get { return this._MpiDataOption; } set { this._MpiDataOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Opi"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<OpiRequest?> _OpiOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="Opi"/>.
+        /// </summary>
+        [JsonPropertyName("opi")]
+        public OpiRequest? Opi { get { return this._OpiOption; } set { this._OpiOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Order"/> will be populated.
@@ -1729,6 +1742,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  MerchantRiskIndicator: ").Append(MerchantRiskIndicator).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  MpiData: ").Append(MpiData).Append("\n");
+            sb.Append("  Opi: ").Append(Opi).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("  OrderReference: ").Append(OrderReference).Append("\n");
             sb.Append("  Origin: ").Append(Origin).Append("\n");
@@ -1845,6 +1859,7 @@ namespace Adyen.Checkout.Models
             Option<MerchantRiskIndicator?> merchantRiskIndicator = default;
             Option<Dictionary<string, string>?> metadata = default;
             Option<ThreeDSecureData?> mpiData = default;
+            Option<OpiRequest?> opi = default;
             Option<EncryptedOrderData?> order = default;
             Option<string?> orderReference = default;
             Option<string?> origin = default;
@@ -2021,6 +2036,9 @@ namespace Adyen.Checkout.Models
                             break;
                         case "mpiData":
                             mpiData = new Option<ThreeDSecureData?>(JsonSerializer.Deserialize<ThreeDSecureData>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "opi":
+                            opi = new Option<OpiRequest?>(JsonSerializer.Deserialize<OpiRequest>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "order":
                             order = new Option<EncryptedOrderData?>(JsonSerializer.Deserialize<EncryptedOrderData>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -2212,6 +2230,8 @@ namespace Adyen.Checkout.Models
                 paymentRequest.Metadata = metadata.Value;
             if (mpiData.IsSet)
                 paymentRequest.MpiData = mpiData.Value;
+            if (opi.IsSet)
+                paymentRequest.Opi = opi.Value;
             if (order.IsSet)
                 paymentRequest.Order = order.Value;
             if (orderReference.IsSet)
@@ -2492,6 +2512,11 @@ namespace Adyen.Checkout.Models
             {
                 writer.WritePropertyName("mpiData");
                 JsonSerializer.Serialize(writer, paymentRequest.MpiData, jsonSerializerOptions);
+            }
+            if (paymentRequest._OpiOption.IsSet)
+            {
+                writer.WritePropertyName("opi");
+                JsonSerializer.Serialize(writer, paymentRequest.Opi, jsonSerializerOptions);
             }
             if (paymentRequest._OrderOption.IsSet)
             {

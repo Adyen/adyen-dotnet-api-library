@@ -43,7 +43,7 @@ namespace Adyen.Checkout.Services
         /// Delete a token for stored payment details
         /// </summary>
         /// <remarks>
-        /// Deletes the token identified in the path. The token can no longer be used with payment requests.
+        /// Deletes the token identified in the path. The token can no longer be used with payment requests.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):  * API tokenise payment details
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="storedPaymentMethodId">The unique identifier of the token.</param>
@@ -72,7 +72,7 @@ namespace Adyen.Checkout.Services
         /// Get tokens for stored payment details
         /// </summary>
         /// <remarks>
-        /// Lists the tokens for stored payment details for the shopper identified in the path, if there are any available. The token ID can be used with payment requests for the shopper&#39;s payment. A summary of the stored details is included.  
+        /// Lists the tokens for stored payment details for the shopper identified in the path, if there are any available. The token ID can be used with payment requests for the shopper&#39;s payment. A summary of the stored details is included.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):  * API tokenise payment details
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address.</param>
@@ -86,7 +86,7 @@ namespace Adyen.Checkout.Services
         /// Create a token to store payment details
         /// </summary>
         /// <remarks>
-        /// Creates a token to store the shopper&#39;s payment details. This token can be used for the shopper&#39;s future payments.
+        /// Creates a token to store the shopper&#39;s payment details. This token can be used for the shopper&#39;s future payments.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):  * API tokenise payment details
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). - Pass this header parameter using <see cref="RequestOptions"/>.</param>
@@ -293,7 +293,7 @@ namespace Adyen.Checkout.Services
         }
         
         /// <summary>
-        /// Delete a token for stored payment details Deletes the token identified in the path. The token can no longer be used with payment requests.
+        /// Delete a token for stored payment details Deletes the token identified in the path. The token can no longer be used with payment requests.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):  * API tokenise payment details
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="storedPaymentMethodId">The unique identifier of the token.</param>
@@ -621,7 +621,7 @@ namespace Adyen.Checkout.Services
         }
         
         /// <summary>
-        /// Get tokens for stored payment details Lists the tokens for stored payment details for the shopper identified in the path, if there are any available. The token ID can be used with payment requests for the shopper&#39;s payment. A summary of the stored details is included.  
+        /// Get tokens for stored payment details Lists the tokens for stored payment details for the shopper identified in the path, if there are any available. The token ID can be used with payment requests for the shopper&#39;s payment. A summary of the stored details is included.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):  * API tokenise payment details
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address. ()</param>
@@ -803,7 +803,7 @@ namespace Adyen.Checkout.Services
         }
         
         /// <summary>
-        /// Create a token to store payment details Creates a token to store the shopper&#39;s payment details. This token can be used for the shopper&#39;s future payments.
+        /// Create a token to store payment details Creates a token to store the shopper&#39;s payment details. This token can be used for the shopper&#39;s future payments.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):  * API tokenise payment details
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). () Pass this header parameter in <see cref="RequestOptions"/>.</param>
