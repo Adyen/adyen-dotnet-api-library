@@ -61,7 +61,7 @@ namespace Adyen
         /// In > NET6.0, we recommend configuring your own <see cref="HttpClient"/> and pass it in the constructor.
         /// The values shown here are defaults, if no <see cref="HttpClient"/> is provided.
         /// </summary>
-        public int MaxConnectionsPerServer { get; set; } = 2;
+        public int MaxConnectionsPerServer { get; set; } = 100;
 
         /// <summary>
         /// The url of the Cloud Terminal Api endpoint.
