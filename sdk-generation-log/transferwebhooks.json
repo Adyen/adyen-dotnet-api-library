@@ -1,8 +1,8 @@
 {
   "service": "transferwebhooks",
   "project": "dotnet",
-  "generatedAt": "2026-09-01T13:20:31Z",
-  "openapiCommitSha": "4265e8ffe6cc4c35fe6804d5a395598621d3da53",
-  "automationCommitSha": "2f180b958babc6bbd6f0b6b73d7e4c6feefe256e",
-  "libraryCommitSha": "b48e91283309bd4f8b3c877cc621f250ccea5a2f"
+  "generatedAt": "2026-10-01T14:41:29Z",
+  "openapiCommitSha": "45520ee6246d7e3d8074c3c5c5e991e65c2c02d6",
+  "automationCommitSha": "5d96c9a6b53a7052671a48c3ab6eb109bec1550b",
+  "libraryCommitSha": "9d5ddec7994c390a7e613bcf54b3bfd8b00c3273"
 }

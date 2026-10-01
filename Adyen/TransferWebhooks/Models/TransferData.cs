@@ -551,6 +551,11 @@ namespace Adyen.TransferWebhooks.Models
             public static readonly StatusEnum Returned = new("returned");
 
             /// <summary>
+            /// StatusEnum.ReversalReceived - reversalReceived
+            /// </summary>
+            public static readonly StatusEnum ReversalReceived = new("reversalReceived");
+
+            /// <summary>
             /// StatusEnum.Reversed - reversed
             /// </summary>
             public static readonly StatusEnum Reversed = new("reversed");
@@ -688,6 +693,7 @@ namespace Adyen.TransferWebhooks.Models
                     "reserveAdjustment" => StatusEnum.ReserveAdjustment,
                     "reserveAdjustmentPending" => StatusEnum.ReserveAdjustmentPending,
                     "returned" => StatusEnum.Returned,
+                    "reversalReceived" => StatusEnum.ReversalReceived,
                     "reversed" => StatusEnum.Reversed,
                     "secondChargeback" => StatusEnum.SecondChargeback,
                     "secondChargebackPending" => StatusEnum.SecondChargebackPending,
@@ -903,6 +909,9 @@ namespace Adyen.TransferWebhooks.Models
                 
                 if (value == StatusEnum.Returned)
                     return "returned";
+                
+                if (value == StatusEnum.ReversalReceived)
+                    return "reversalReceived";
                 
                 if (value == StatusEnum.Reversed)
                     return "reversed";
@@ -2172,6 +2181,16 @@ namespace Adyen.TransferWebhooks.Models
             /// TypeEnum.BalanceMigration - balanceMigration
             /// </summary>
             public static readonly TypeEnum BalanceMigration = new("balanceMigration");
+
+            /// <summary>
+            /// TypeEnum.FxSell - fxSell
+            /// </summary>
+            public static readonly TypeEnum FxSell = new("fxSell");
+
+            /// <summary>
+            /// TypeEnum.FxBuy - fxBuy
+            /// </summary>
+            public static readonly TypeEnum FxBuy = new("fxBuy");
         
             private TypeEnum(string? value)
             {
@@ -2263,6 +2282,8 @@ namespace Adyen.TransferWebhooks.Models
                     "balanceAdjustment" => TypeEnum.BalanceAdjustment,
                     "balanceRollover" => TypeEnum.BalanceRollover,
                     "balanceMigration" => TypeEnum.BalanceMigration,
+                    "fxSell" => TypeEnum.FxSell,
+                    "fxBuy" => TypeEnum.FxBuy,
                     _ => null,
                 };
             }
@@ -2390,6 +2411,12 @@ namespace Adyen.TransferWebhooks.Models
                 
                 if (value == TypeEnum.BalanceMigration)
                     return "balanceMigration";
+                
+                if (value == TypeEnum.FxSell)
+                    return "fxSell";
+                
+                if (value == TypeEnum.FxBuy)
+                    return "fxBuy";
                 
                 return value.Value;
             }
