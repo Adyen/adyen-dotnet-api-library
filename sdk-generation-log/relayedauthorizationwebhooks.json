@@ -1,8 +1,8 @@
 {
   "service": "relayedauthorizationwebhooks",
   "project": "dotnet",
-  "generatedAt": "2026-07-01T13:12:15Z",
-  "openapiCommitSha": "28ffef4cd4f884082b1ed2e2c6b452a10481cab0",
-  "automationCommitSha": "5f1d5ab9643886ef722a2626e23afef8db5d52a6",
-  "libraryCommitSha": "11195aa91ab55cb9b2f3d5aa1dbbec22d971407d"
+  "generatedAt": "2026-08-27T13:58:48Z",
+  "openapiCommitSha": "4265e8ffe6cc4c35fe6804d5a395598621d3da53",
+  "automationCommitSha": "2f180b958babc6bbd6f0b6b73d7e4c6feefe256e",
+  "libraryCommitSha": "5d275f82cc98c3f06a7772d9d1152b3714687c61"
 }

@@ -226,7 +226,7 @@ namespace Adyen.Test.Checkout
             var paymentsService = liveHost.Services.GetRequiredService<IPaymentsService>();
 
             // Assert
-            Assert.AreEqual("https://prefix-checkout-live.adyenpayments.com/checkout/v71", paymentsService.HttpClient.BaseAddress.ToString());
+            Assert.AreEqual("https://prefix-checkout-live.adyenpayments.com/checkout/v72", paymentsService.HttpClient.BaseAddress.ToString());
         }
          
         [TestMethod]
@@ -249,7 +249,7 @@ namespace Adyen.Test.Checkout
             var paymentsService = liveHost.Services.GetRequiredService<IPaymentsService>();
 
             // Assert
-            Assert.AreEqual("https://checkout-test.adyen.com/v71", paymentsService.HttpClient.BaseAddress.ToString());
+            Assert.AreEqual("https://checkout-test.adyen.com/v72", paymentsService.HttpClient.BaseAddress.ToString());
         }
         
         [TestMethod]

@@ -205,6 +205,45 @@ namespace Adyen.Test.Transfers
         #region CategoryData Discriminator
 
         [TestMethod]
+        public void Given_CategoryData_When_SerializeWithConfiguredOptions_Returns_BankCategoryData()
+        {
+            var categoryData = new TransferCategoryData(new BankCategoryData
+            {
+                Priority = BankCategoryData.PriorityEnum.Wire
+            });
+
+            string json = JsonSerializer.Serialize(categoryData, _jsonSerializerOptionsProvider.Options);
+
+            AssertSerializedBankCategoryData(json);
+        }
+
+        [TestMethod]
+        public void Given_CategoryData_When_BareSerialize_Returns_BankCategoryData()
+        {
+            var categoryData = new TransferCategoryData(new BankCategoryData
+            {
+                Priority = BankCategoryData.PriorityEnum.Wire
+            });
+
+            string json = JsonSerializer.Serialize(categoryData);
+
+            AssertSerializedBankCategoryData(json);
+        }
+
+        [TestMethod]
+        public void Given_CategoryData_When_SerializeWithEmptyOptions_Returns_BankCategoryData()
+        {
+            var categoryData = new TransferCategoryData(new BankCategoryData
+            {
+                Priority = BankCategoryData.PriorityEnum.Wire
+            });
+
+            string json = JsonSerializer.Serialize(categoryData, new JsonSerializerOptions());
+
+            AssertSerializedBankCategoryData(json);
+        }
+
+        [TestMethod]
         public void Given_Deserialize_When_CategoryDataTypeBank_Returns_BankCategoryData()
         {
             string json = TestUtilities.GetTestFileContent("mocks/transfers/transfer-data-category-data-bank.json");
@@ -402,5 +441,14 @@ namespace Adyen.Test.Transfers
         }
         
         #endregion
+
+        private static void AssertSerializedBankCategoryData(string json)
+        {
+            using JsonDocument document = JsonDocument.Parse(json);
+            JsonElement root = document.RootElement;
+
+            Assert.AreEqual("bank", root.GetProperty("type").GetString());
+            Assert.AreEqual("wire", root.GetProperty("priority").GetString());
+        }
     }
 }

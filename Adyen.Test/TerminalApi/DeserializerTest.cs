@@ -2,6 +2,7 @@
 using Adyen.Model.TerminalApi;
 using Adyen.Model.TerminalApi.Message;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 
 namespace Adyen.Test
 {
@@ -42,6 +43,47 @@ namespace Adyen.Test
             Assert.IsNotNull(result.MessageHeader);
             Assert.IsNotNull(result.MessagePayload);
             Assert.IsInstanceOfType(result.MessagePayload, typeof(EventNotification));
+        }
+
+        [TestMethod]
+        public void DeserializeNotification_WithMalformedJson_ShouldThrowJsonReaderException()
+        {
+            var serializer = new SaleToPoiMessageSerializer();
+
+            Assert.ThrowsExactly<JsonReaderException>(() => serializer.DeserializeNotification("{ invalid json }"));
+        }
+
+        [TestMethod]
+        public void DeserializeNotification_WithUnsupportedPayload_ShouldThrow()
+        {
+            var serializer = new SaleToPoiMessageSerializer();
+            const string json = @"{
+                ""SaleToPOIRequest"": {
+                    ""MessageHeader"": {
+                        ""MessageCategory"": ""Payment"",
+                        ""MessageClass"": ""Service"",
+                        ""MessageType"": ""Request""
+                    },
+                    ""PaymentRequest"": {}
+                }
+            }";
+
+            var exception = Assert.ThrowsExactly<System.Exception>(() => serializer.DeserializeNotification(json));
+
+            Assert.AreEqual("Json input is not a terminal notification.", exception.Message);
+        }
+
+        [TestMethod]
+        public void DeserializeNotification_WithoutMessageHeader_ShouldThrowNullReferenceException()
+        {
+            var serializer = new SaleToPoiMessageSerializer();
+            const string json = @"{
+                ""SaleToPOIRequest"": {
+                    ""DisplayRequest"": {}
+                }
+            }";
+
+            Assert.ThrowsExactly<System.NullReferenceException>(() => serializer.DeserializeNotification(json));
         }
 
         // Regression test for https://github.com/Adyen/adyen-dotnet-api-library/issues/1771
