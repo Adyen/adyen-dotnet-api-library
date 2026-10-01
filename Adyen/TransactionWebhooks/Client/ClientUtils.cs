@@ -124,6 +124,8 @@ namespace Adyen.TransactionWebhooks.Client
                 return Models.BankCategoryData.TypeEnum.ToJsonValue(bankCategoryDataTypeEnum);
             if (obj is Models.InternalCategoryData.TypeEnum internalCategoryDataTypeEnum)
                 return Models.InternalCategoryData.TypeEnum.ToJsonValue(internalCategoryDataTypeEnum);
+            if (obj is Models.IssuedCard.NetworkVariantEnum issuedCardNetworkVariantEnum)
+                return Models.IssuedCard.NetworkVariantEnum.ToJsonValue(issuedCardNetworkVariantEnum);
             if (obj is Models.IssuedCard.PanEntryModeEnum issuedCardPanEntryModeEnum)
                 return Models.IssuedCard.PanEntryModeEnum.ToJsonValue(issuedCardPanEntryModeEnum);
             if (obj is Models.IssuedCard.ProcessingTypeEnum issuedCardProcessingTypeEnum)
