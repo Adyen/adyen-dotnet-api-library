@@ -7,6 +7,10 @@ using Newtonsoft.Json.Linq;
 
 namespace Adyen.ApiSerialization
 {
+    /// <summary>
+    /// Serializes Terminal API messages and deserializes responses and supported
+    /// terminal notifications.
+    /// </summary>
     public class SaleToPoiMessageSerializer
     {
         private readonly MessageHeaderSerializer _messageHeaderSerializer;
@@ -17,6 +21,11 @@ namespace Adyen.ApiSerialization
             _messageHeaderSerializer = new MessageHeaderSerializer();
             _messagePayloadSerializerFactory = new MessagePayloadSerializerFactory();
         }
+
+        /// <summary>
+        /// Deserializes a Terminal API response. Use <see cref="DeserializeNotification"/>
+        /// for notifications containing a DisplayRequest or EventNotification payload.
+        /// </summary>
         public SaleToPOIResponse Deserialize(string saleToPoiMessageDto)
         {
             var saleToPoiMessageJObject = JObject.Parse(saleToPoiMessageDto);
@@ -46,6 +55,10 @@ namespace Adyen.ApiSerialization
             return deserializedOutputMessage;
         }
 
+        /// <summary>
+        /// Deserializes a Terminal API notification containing a DisplayRequest or
+        /// EventNotification payload. Other message types are not supported.
+        /// </summary>
         public SaleToPOIRequest DeserializeNotification(string terminalNotificationJson)
         {
             // Parse JsonObject

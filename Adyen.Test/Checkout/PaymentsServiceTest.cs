@@ -69,7 +69,7 @@ namespace Adyen.Test.Checkout
             // Assert - HTTP verb and path
             Assert.IsNotNull(capturedRequest);
             Assert.AreEqual(HttpMethod.Post, capturedRequest.Method);
-            Assert.AreEqual("/v71/sessions", capturedRequest.RequestUri?.AbsolutePath);
+            Assert.AreEqual("/v72/sessions", capturedRequest.RequestUri?.AbsolutePath);
         }
 
         [TestMethod]
@@ -129,7 +129,7 @@ namespace Adyen.Test.Checkout
 
             // Assert - HTTP verb and path
             Assert.AreEqual(HttpMethod.Post, capturedRequest.Method);
-            Assert.AreEqual("/v71/sessions", capturedRequest.RequestUri?.AbsolutePath);
+            Assert.AreEqual("/v72/sessions", capturedRequest.RequestUri?.AbsolutePath);
         }
 
         [TestMethod]
@@ -177,7 +177,7 @@ namespace Adyen.Test.Checkout
             // Assert - HTTP verb and path
             Assert.IsNotNull(capturedRequest);
             Assert.AreEqual(HttpMethod.Get, capturedRequest.Method);
-            Assert.AreEqual("/v71/sessions/CS123", capturedRequest.RequestUri?.AbsolutePath);
+            Assert.AreEqual("/v72/sessions/CS123", capturedRequest.RequestUri?.AbsolutePath);
 
             // Assert - query string encoding
             string query = capturedRequest.RequestUri!.Query;
