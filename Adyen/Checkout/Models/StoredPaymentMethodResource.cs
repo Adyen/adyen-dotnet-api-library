@@ -307,6 +307,19 @@ namespace Adyen.Checkout.Models
         public string? NetworkTxReference { get { return this._NetworkTxReferenceOption; } set { this._NetworkTxReferenceOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Opi"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<OpiResponse?> _OpiOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="Opi"/>.
+        /// </summary>
+        [JsonPropertyName("opi")]
+        public OpiResponse? Opi { get { return this._OpiOption; } set { this._OpiOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="OwnerName"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -403,6 +416,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  Mandate: ").Append(Mandate).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  NetworkTxReference: ").Append(NetworkTxReference).Append("\n");
+            sb.Append("  Opi: ").Append(Opi).Append("\n");
             sb.Append("  OwnerName: ").Append(OwnerName).Append("\n");
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
@@ -459,6 +473,7 @@ namespace Adyen.Checkout.Models
             Option<TokenMandate?> mandate = default;
             Option<string?> name = default;
             Option<string?> networkTxReference = default;
+            Option<OpiResponse?> opi = default;
             Option<string?> ownerName = default;
             Option<string?> shopperEmail = default;
             Option<string?> shopperReference = default;
@@ -537,6 +552,9 @@ namespace Adyen.Checkout.Models
                         case "networkTxReference":
                             networkTxReference = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "opi":
+                            opi = new Option<OpiResponse?>(JsonSerializer.Deserialize<OpiResponse>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "ownerName":
                             ownerName = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -598,6 +616,8 @@ namespace Adyen.Checkout.Models
                 storedPaymentMethodResource.Name = name.Value;
             if (networkTxReference.IsSet)
                 storedPaymentMethodResource.NetworkTxReference = networkTxReference.Value;
+            if (opi.IsSet)
+                storedPaymentMethodResource.Opi = opi.Value;
             if (ownerName.IsSet)
                 storedPaymentMethodResource.OwnerName = ownerName.Value;
             if (shopperEmail.IsSet)
@@ -715,6 +735,11 @@ namespace Adyen.Checkout.Models
                 if (storedPaymentMethodResource.NetworkTxReference != null)
                     writer.WriteString("networkTxReference", storedPaymentMethodResource.NetworkTxReference);
 
+            if (storedPaymentMethodResource._OpiOption.IsSet)
+            {
+                writer.WritePropertyName("opi");
+                JsonSerializer.Serialize(writer, storedPaymentMethodResource.Opi, jsonSerializerOptions);
+            }
             if (storedPaymentMethodResource._OwnerNameOption.IsSet)
                 if (storedPaymentMethodResource.OwnerName != null)
                     writer.WriteString("ownerName", storedPaymentMethodResource.OwnerName);

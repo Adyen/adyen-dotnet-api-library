@@ -385,6 +385,16 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class.
         /// </summary>
+        /// <param name="payByBankCADirectDebitDetails"></param>
+        public CheckoutPaymentMethod(PayByBankCADirectDebitDetails payByBankCADirectDebitDetails)
+        {
+            PayByBankCADirectDebitDetails = payByBankCADirectDebitDetails;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class.
+        /// </summary>
         /// <param name="payByBankDetails"></param>
         public CheckoutPaymentMethod(PayByBankDetails payByBankDetails)
         {
@@ -1022,6 +1032,11 @@ namespace Adyen.Checkout.Models
             public static readonly TypeEnum PaybybankAISDD = new("paybybank_AIS_DD");
 
             /// <summary>
+            /// TypeEnum.PaybybankCa - paybybank_ca
+            /// </summary>
+            public static readonly TypeEnum PaybybankCa = new("paybybank_ca");
+
+            /// <summary>
             /// TypeEnum.Paybybank - paybybank
             /// </summary>
             public static readonly TypeEnum Paybybank = new("paybybank");
@@ -1235,6 +1250,11 @@ namespace Adyen.Checkout.Models
             /// TypeEnum.Paypo - paypo
             /// </summary>
             public static readonly TypeEnum Paypo = new("paypo");
+
+            /// <summary>
+            /// TypeEnum.Satispay - satispay
+            /// </summary>
+            public static readonly TypeEnum Satispay = new("satispay");
 
             /// <summary>
             /// TypeEnum.Scalapay - scalapay
@@ -1878,6 +1898,7 @@ namespace Adyen.Checkout.Models
                     "afterpay_directdebit" => TypeEnum.AfterpayDirectdebit,
                     "atome_pos" => TypeEnum.AtomePos,
                     "paybybank_AIS_DD" => TypeEnum.PaybybankAISDD,
+                    "paybybank_ca" => TypeEnum.PaybybankCa,
                     "paybybank" => TypeEnum.Paybybank,
                     "paypal" => TypeEnum.Paypal,
                     "paypay" => TypeEnum.Paypay,
@@ -1921,6 +1942,7 @@ namespace Adyen.Checkout.Models
                     "walley" => TypeEnum.Walley,
                     "walley_b2b" => TypeEnum.WalleyB2b,
                     "paypo" => TypeEnum.Paypo,
+                    "satispay" => TypeEnum.Satispay,
                     "scalapay" => TypeEnum.Scalapay,
                     "scalapay_3x" => TypeEnum.Scalapay3x,
                     "scalapay_4x" => TypeEnum.Scalapay4x,
@@ -2263,6 +2285,9 @@ namespace Adyen.Checkout.Models
                 if (value == TypeEnum.PaybybankAISDD)
                     return "paybybank_AIS_DD";
                 
+                if (value == TypeEnum.PaybybankCa)
+                    return "paybybank_ca";
+                
                 if (value == TypeEnum.Paybybank)
                     return "paybybank";
                 
@@ -2391,6 +2416,9 @@ namespace Adyen.Checkout.Models
                 
                 if (value == TypeEnum.Paypo)
                     return "paypo";
+                
+                if (value == TypeEnum.Satispay)
+                    return "satispay";
                 
                 if (value == TypeEnum.Scalapay)
                     return "scalapay";
@@ -2904,6 +2932,11 @@ namespace Adyen.Checkout.Models
         public PayByBankAISDirectDebitDetails? PayByBankAISDirectDebitDetails { get; set; }
 
         /// <summary>
+        /// <see cref="PayByBankCADirectDebitDetails"/>..
+        /// </summary>
+        public PayByBankCADirectDebitDetails? PayByBankCADirectDebitDetails { get; set; }
+
+        /// <summary>
         /// <see cref="PayByBankDetails"/>..
         /// </summary>
         public PayByBankDetails? PayByBankDetails { get; set; }
@@ -3106,6 +3139,8 @@ namespace Adyen.Checkout.Models
                 sb.Append(OpenInvoiceDetails.ToString().Replace("\n", "\n  "));
             if (this.PayByBankAISDirectDebitDetails != null)
                 sb.Append(PayByBankAISDirectDebitDetails.ToString().Replace("\n", "\n  "));
+            if (this.PayByBankCADirectDebitDetails != null)
+                sb.Append(PayByBankCADirectDebitDetails.ToString().Replace("\n", "\n  "));
             if (this.PayByBankDetails != null)
                 sb.Append(PayByBankDetails.ToString().Replace("\n", "\n  "));
             if (this.PayPalDetails != null)
@@ -3220,6 +3255,7 @@ namespace Adyen.Checkout.Models
             MolPayDetails? molPayDetails = null;
             OpenInvoiceDetails? openInvoiceDetails = null;
             PayByBankAISDirectDebitDetails? payByBankAISDirectDebitDetails = null;
+            PayByBankCADirectDebitDetails? payByBankCADirectDebitDetails = null;
             PayByBankDetails? payByBankDetails = null;
             PayPalDetails? payPalDetails = null;
             PayPayDetails? payPayDetails = null;
@@ -4172,6 +4208,11 @@ namespace Adyen.Checkout.Models
                             Utf8JsonReader utf8JsonReaderPayByBankAISDirectDebitDetails = utf8JsonReader;
                             payByBankAISDirectDebitDetails = JsonSerializer.Deserialize<PayByBankAISDirectDebitDetails>(ref utf8JsonReaderPayByBankAISDirectDebitDetails, jsonSerializerOptions);
                         }
+                        if (discriminator?.Equals("paybybank_ca") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderPayByBankCADirectDebitDetails = utf8JsonReader;
+                            payByBankCADirectDebitDetails = JsonSerializer.Deserialize<PayByBankCADirectDebitDetails>(ref utf8JsonReaderPayByBankCADirectDebitDetails, jsonSerializerOptions);
+                        }
                         if (discriminator?.Equals("paybybank_pix") ?? false)
                         {
                             Utf8JsonReader utf8JsonReaderPixPayByBankDetails = utf8JsonReader;
@@ -4301,6 +4342,11 @@ namespace Adyen.Checkout.Models
                         {
                             Utf8JsonReader utf8JsonReaderSamsungPayDetails = utf8JsonReader;
                             samsungPayDetails = JsonSerializer.Deserialize<SamsungPayDetails>(ref utf8JsonReaderSamsungPayDetails, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("satispay") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderPaymentDetails = utf8JsonReader;
+                            paymentDetails = JsonSerializer.Deserialize<PaymentDetails>(ref utf8JsonReaderPaymentDetails, jsonSerializerOptions);
                         }
                         if (discriminator?.Equals("scalapay") ?? false)
                         {
@@ -4602,6 +4648,9 @@ namespace Adyen.Checkout.Models
             if (payByBankAISDirectDebitDetails != null)
                 return new CheckoutPaymentMethod(payByBankAISDirectDebitDetails);
 
+            if (payByBankCADirectDebitDetails != null)
+                return new CheckoutPaymentMethod(payByBankCADirectDebitDetails);
+
             if (payByBankDetails != null)
                 return new CheckoutPaymentMethod(payByBankDetails);
 
@@ -4899,6 +4948,12 @@ namespace Adyen.Checkout.Models
             {
                 PayByBankAISDirectDebitDetailsJsonConverter payByBankAISDirectDebitDetailsJsonConverter = (PayByBankAISDirectDebitDetailsJsonConverter) jsonSerializerOptions.GetConverter(checkoutPaymentMethod.PayByBankAISDirectDebitDetails.GetType());
                 payByBankAISDirectDebitDetailsJsonConverter.WriteProperties(writer, checkoutPaymentMethod.PayByBankAISDirectDebitDetails, jsonSerializerOptions);
+            }
+
+            if (checkoutPaymentMethod.PayByBankCADirectDebitDetails != null)
+            {
+                PayByBankCADirectDebitDetailsJsonConverter payByBankCADirectDebitDetailsJsonConverter = (PayByBankCADirectDebitDetailsJsonConverter) jsonSerializerOptions.GetConverter(checkoutPaymentMethod.PayByBankCADirectDebitDetails.GetType());
+                payByBankCADirectDebitDetailsJsonConverter.WriteProperties(writer, checkoutPaymentMethod.PayByBankCADirectDebitDetails, jsonSerializerOptions);
             }
 
             if (checkoutPaymentMethod.PayByBankDetails != null)
