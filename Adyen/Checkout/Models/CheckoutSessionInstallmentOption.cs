@@ -244,9 +244,9 @@ namespace Adyen.Checkout.Models
         public Option<List<CheckoutSessionInstallmentOption.PlansEnum>?> _PlansOption { get; private set; }
 
         /// <summary>
-        /// Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving** * **bonus** * **with_interest** * **buynow_paylater** * **nointerest_bonus** * **interest_bonus** * **refund_prctg** * **nointeres_refund_prctg** * **interes_refund_prctg**
+        /// Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving** * **bonus**
         /// </summary>
-        /// <value>Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving** * **bonus** * **with_interest** * **buynow_paylater** * **nointerest_bonus** * **interest_bonus** * **refund_prctg** * **nointeres_refund_prctg** * **interes_refund_prctg**</value>
+        /// <value>Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving** * **bonus**</value>
         [JsonPropertyName("plans")]
         public List<CheckoutSessionInstallmentOption.PlansEnum>? Plans { get { return this._PlansOption; } set { this._PlansOption = new(value); } }
 
@@ -272,9 +272,9 @@ namespace Adyen.Checkout.Models
         public Option<List<int>?> _ValuesOption { get; private set; }
 
         /// <summary>
-        /// An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with &#x60;maxValue&#x60;.
+        /// An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**.
         /// </summary>
-        /// <value>An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with `maxValue`.</value>
+        /// <value>An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**.</value>
         [JsonPropertyName("values")]
         public List<int>? Values { get { return this._ValuesOption; } set { this._ValuesOption = new(value); } }
 

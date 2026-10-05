@@ -240,6 +240,11 @@ namespace Adyen.Checkout.Models
             public static readonly TypeEnum Paypo = new("paypo");
 
             /// <summary>
+            /// TypeEnum.Satispay - satispay
+            /// </summary>
+            public static readonly TypeEnum Satispay = new("satispay");
+
+            /// <summary>
             /// TypeEnum.Scalapay - scalapay
             /// </summary>
             public static readonly TypeEnum Scalapay = new("scalapay");
@@ -568,6 +573,7 @@ namespace Adyen.Checkout.Models
                     "walley" => TypeEnum.Walley,
                     "walley_b2b" => TypeEnum.WalleyB2b,
                     "paypo" => TypeEnum.Paypo,
+                    "satispay" => TypeEnum.Satispay,
                     "scalapay" => TypeEnum.Scalapay,
                     "scalapay_3x" => TypeEnum.Scalapay3x,
                     "scalapay_4x" => TypeEnum.Scalapay4x,
@@ -740,6 +746,9 @@ namespace Adyen.Checkout.Models
                 
                 if (value == TypeEnum.Paypo)
                     return "paypo";
+                
+                if (value == TypeEnum.Satispay)
+                    return "satispay";
                 
                 if (value == TypeEnum.Scalapay)
                     return "scalapay";

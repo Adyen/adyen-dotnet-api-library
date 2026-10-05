@@ -202,6 +202,19 @@ namespace Adyen.Checkout.Models
         public string? ShopperReference { get; set; }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Opi"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<OpiRequest?> _OpiOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="Opi"/>.
+        /// </summary>
+        [JsonPropertyName("opi")]
+        public OpiRequest? Opi { get { return this._OpiOption; } set { this._OpiOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ShopperEmail"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -241,6 +254,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
             sb.Append("  RecurringProcessingModel: ").Append(RecurringProcessingModel).Append("\n");
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
+            sb.Append("  Opi: ").Append(Opi).Append("\n");
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
             sb.Append("  ShopperIP: ").Append(ShopperIP).Append("\n");
             sb.Append("}\n");
@@ -274,6 +288,7 @@ namespace Adyen.Checkout.Models
             Option<PaymentMethodToStore?> paymentMethod = default;
             Option<StoredPaymentMethodRequest.RecurringProcessingModelEnum?> recurringProcessingModel = default;
             Option<string?> shopperReference = default;
+            Option<OpiRequest?> opi = default;
             Option<string?> shopperEmail = default;
             Option<string?> shopperIP = default;
 
@@ -305,6 +320,9 @@ namespace Adyen.Checkout.Models
                         case "shopperReference":
                             shopperReference = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "opi":
+                            opi = new Option<OpiRequest?>(JsonSerializer.Deserialize<OpiRequest>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "shopperEmail":
                             shopperEmail = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -327,6 +345,8 @@ namespace Adyen.Checkout.Models
                 storedPaymentMethodRequest.RecurringProcessingModel = recurringProcessingModel.Value!;
             if (shopperReference.IsSet)
                 storedPaymentMethodRequest.ShopperReference = shopperReference.Value!;
+            if (opi.IsSet)
+                storedPaymentMethodRequest.Opi = opi.Value;
             if (shopperEmail.IsSet)
                 storedPaymentMethodRequest.ShopperEmail = shopperEmail.Value;
             if (shopperIP.IsSet)
@@ -374,6 +394,11 @@ namespace Adyen.Checkout.Models
             if (storedPaymentMethodRequest.ShopperReference != null)
                 writer.WriteString("shopperReference", storedPaymentMethodRequest.ShopperReference);
 
+            if (storedPaymentMethodRequest._OpiOption.IsSet)
+            {
+                writer.WritePropertyName("opi");
+                JsonSerializer.Serialize(writer, storedPaymentMethodRequest.Opi, jsonSerializerOptions);
+            }
             if (storedPaymentMethodRequest._ShopperEmailOption.IsSet)
                 if (storedPaymentMethodRequest.ShopperEmail != null)
                     writer.WriteString("shopperEmail", storedPaymentMethodRequest.ShopperEmail);

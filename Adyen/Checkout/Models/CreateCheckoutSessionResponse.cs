@@ -1315,6 +1315,20 @@ namespace Adyen.Checkout.Models
         public ThreeDSecureData? MpiData { get { return this._MpiDataOption; } set { this._MpiDataOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Payable"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> _PayableOption { get; private set; }
+
+        /// <summary>
+        /// Indicates if the session is payable. If the payment amount is final, set this to **true** to indicate that the session is payable, so that the shopper can proceed to submit the payment. When you set this to **true**, you can no longer update the session.  If you set this to **false**, you must make another request to update the session and set this to **true** before the shopper can submit the payment.  If not specified, this defaults to **true**. 
+        /// </summary>
+        /// <value>Indicates if the session is payable. If the payment amount is final, set this to **true** to indicate that the session is payable, so that the shopper can proceed to submit the payment. When you set this to **true**, you can no longer update the session.  If you set this to **false**, you must make another request to update the session and set this to **true** before the shopper can submit the payment.  If not specified, this defaults to **true**. </value>
+        [JsonPropertyName("payable")]
+        public bool? Payable { get { return this._PayableOption; } set { this._PayableOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="PlatformChargebackLogic"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -1731,6 +1745,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  Mode: ").Append(Mode).Append("\n");
             sb.Append("  MpiData: ").Append(MpiData).Append("\n");
+            sb.Append("  Payable: ").Append(Payable).Append("\n");
             sb.Append("  PlatformChargebackLogic: ").Append(PlatformChargebackLogic).Append("\n");
             sb.Append("  RecurringExpiry: ").Append(RecurringExpiry).Append("\n");
             sb.Append("  RecurringFrequency: ").Append(RecurringFrequency).Append("\n");
@@ -1838,6 +1853,7 @@ namespace Adyen.Checkout.Models
             Option<Dictionary<string, string>?> metadata = default;
             Option<CreateCheckoutSessionResponse.ModeEnum?> mode = default;
             Option<ThreeDSecureData?> mpiData = default;
+            Option<bool?> payable = default;
             Option<PlatformChargebackLogic?> platformChargebackLogic = default;
             Option<string?> recurringExpiry = default;
             Option<string?> recurringFrequency = default;
@@ -1988,6 +2004,9 @@ namespace Adyen.Checkout.Models
                             break;
                         case "mpiData":
                             mpiData = new Option<ThreeDSecureData?>(JsonSerializer.Deserialize<ThreeDSecureData>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "payable":
+                            payable = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "platformChargebackLogic":
                             platformChargebackLogic = new Option<PlatformChargebackLogic?>(JsonSerializer.Deserialize<PlatformChargebackLogic>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -2162,6 +2181,8 @@ namespace Adyen.Checkout.Models
                 createCheckoutSessionResponse.Mode = mode.Value;
             if (mpiData.IsSet)
                 createCheckoutSessionResponse.MpiData = mpiData.Value;
+            if (payable.IsSet)
+                createCheckoutSessionResponse.Payable = payable.Value;
             if (platformChargebackLogic.IsSet)
                 createCheckoutSessionResponse.PlatformChargebackLogic = platformChargebackLogic.Value;
             if (recurringExpiry.IsSet)
@@ -2402,6 +2423,10 @@ namespace Adyen.Checkout.Models
                 writer.WritePropertyName("mpiData");
                 JsonSerializer.Serialize(writer, createCheckoutSessionResponse.MpiData, jsonSerializerOptions);
             }
+            if (createCheckoutSessionResponse._PayableOption.IsSet)
+                if (createCheckoutSessionResponse._PayableOption.Value != null)
+                    writer.WriteBoolean("payable", createCheckoutSessionResponse._PayableOption.Value!.Value);
+
             if (createCheckoutSessionResponse._PlatformChargebackLogicOption.IsSet)
             {
                 writer.WritePropertyName("platformChargebackLogic");

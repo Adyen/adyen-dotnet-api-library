@@ -216,6 +216,8 @@ namespace Adyen.Checkout.Client
                 return Models.CheckoutBankTransferAction.TypeEnum.ToJsonValue(checkoutBankTransferActionTypeEnum);
             if (obj is Models.CheckoutDelegatedAuthenticationAction.TypeEnum checkoutDelegatedAuthenticationActionTypeEnum)
                 return Models.CheckoutDelegatedAuthenticationAction.TypeEnum.ToJsonValue(checkoutDelegatedAuthenticationActionTypeEnum);
+            if (obj is Models.CheckoutForwardAccountUpdateResult.ResultEnum checkoutForwardAccountUpdateResultResultEnum)
+                return Models.CheckoutForwardAccountUpdateResult.ResultEnum.ToJsonValue(checkoutForwardAccountUpdateResultResultEnum);
             if (obj is Models.CheckoutForwardRequestCard.TypeEnum checkoutForwardRequestCardTypeEnum)
                 return Models.CheckoutForwardRequestCard.TypeEnum.ToJsonValue(checkoutForwardRequestCardTypeEnum);
             if (obj is Models.CheckoutNativeRedirectAction.TypeEnum checkoutNativeRedirectActionTypeEnum)
@@ -350,6 +352,8 @@ namespace Adyen.Checkout.Client
                 return Models.OpenInvoiceDetails.TypeEnum.ToJsonValue(openInvoiceDetailsTypeEnum);
             if (obj is Models.PayByBankAISDirectDebitDetails.TypeEnum payByBankAISDirectDebitDetailsTypeEnum)
                 return Models.PayByBankAISDirectDebitDetails.TypeEnum.ToJsonValue(payByBankAISDirectDebitDetailsTypeEnum);
+            if (obj is Models.PayByBankCADirectDebitDetails.TypeEnum payByBankCADirectDebitDetailsTypeEnum)
+                return Models.PayByBankCADirectDebitDetails.TypeEnum.ToJsonValue(payByBankCADirectDebitDetailsTypeEnum);
             if (obj is Models.PayByBankDetails.TypeEnum payByBankDetailsTypeEnum)
                 return Models.PayByBankDetails.TypeEnum.ToJsonValue(payByBankDetailsTypeEnum);
             if (obj is Models.PayPalDetails.SubtypeEnum payPalDetailsSubtypeEnum)

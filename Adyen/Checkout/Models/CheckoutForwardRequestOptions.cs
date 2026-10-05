@@ -50,9 +50,9 @@ namespace Adyen.Checkout.Models
         public Option<bool?> _AccountUpdateOption { get; private set; }
 
         /// <summary>
-        /// Whether to check for a card account update (true) or not (false)
+        /// Set to **true** to check if the account tied to the card has been updated.
         /// </summary>
-        /// <value>Whether to check for a card account update (true) or not (false)</value>
+        /// <value>Set to **true** to check if the account tied to the card has been updated.</value>
         [JsonPropertyName("accountUpdate")]
         public bool? AccountUpdate { get { return this._AccountUpdateOption; } set { this._AccountUpdateOption = new(value); } }
 
@@ -91,9 +91,9 @@ namespace Adyen.Checkout.Models
         public Option<List<string>?> _NetworkTxReferencePathsOption { get; private set; }
 
         /// <summary>
-        /// Set in tokenize:true case when forwarding PAN. Addresses to the possible location(s) of networkTxReference in the incoming 3rd party response
+        /// Only include when &#x60;tokenize&#x60; is set to **true**.&lt;br&gt;&lt;br&gt;A list of addresses to possible location(s) of the &#x60;networkTxReference&#x60; that will be returned in the third party response.
         /// </summary>
-        /// <value>Set in tokenize:true case when forwarding PAN. Addresses to the possible location(s) of networkTxReference in the incoming 3rd party response</value>
+        /// <value>Only include when `tokenize` is set to **true**.<br><br>A list of addresses to possible location(s) of the `networkTxReference` that will be returned in the third party response.</value>
         [JsonPropertyName("networkTxReferencePaths")]
         public List<string>? NetworkTxReferencePaths { get { return this._NetworkTxReferencePathsOption; } set { this._NetworkTxReferencePathsOption = new(value); } }
 
@@ -105,9 +105,9 @@ namespace Adyen.Checkout.Models
         public Option<bool?> _TokenizeOption { get; private set; }
 
         /// <summary>
-        /// Set to **true**, the payment details are [tokenized](https://docs.adyen.com/online-payments/tokenization).
+        /// Set to **true** to [tokenize](https://docs.adyen.com/online-payments/tokenization) the payment details.
         /// </summary>
-        /// <value>Set to **true**, the payment details are [tokenized](https://docs.adyen.com/online-payments/tokenization).</value>
+        /// <value>Set to **true** to [tokenize](https://docs.adyen.com/online-payments/tokenization) the payment details.</value>
         [JsonPropertyName("tokenize")]
         public bool? Tokenize { get { return this._TokenizeOption; } set { this._TokenizeOption = new(value); } }
 
@@ -119,9 +119,9 @@ namespace Adyen.Checkout.Models
         public Option<List<string>?> _TransactionLinkIdPathsOption { get; private set; }
 
         /// <summary>
-        /// Set in tokenize:true case when forwarding PAN. Addresses to the possible location(s) of transactionLinkId in the incoming 3rd party response
+        /// Only include when &#x60;tokenize&#x60; is set to **true**.&lt;br&gt;&lt;br&gt;A list of addresses to possible location(s) of the &#x60;transactionLinkId&#x60; that will be returned in the third party response.
         /// </summary>
-        /// <value>Set in tokenize:true case when forwarding PAN. Addresses to the possible location(s) of transactionLinkId in the incoming 3rd party response</value>
+        /// <value>Only include when `tokenize` is set to **true**.<br><br>A list of addresses to possible location(s) of the `transactionLinkId` that will be returned in the third party response.</value>
         [JsonPropertyName("transactionLinkIdPaths")]
         public List<string>? TransactionLinkIdPaths { get { return this._TransactionLinkIdPathsOption; } set { this._TransactionLinkIdPathsOption = new(value); } }
 
