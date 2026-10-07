@@ -457,6 +457,26 @@ namespace Adyen.Test.Checkout
         #region PaymentResponse actions
 
         [TestMethod]
+        public void Given_PaymentResponse_With_Opi_When_BareRoundTrip_Then_OpiFields_ArePreserved()
+        {
+            string inputJson = """{"resultCode":"Authorised","opi":{"issuerId":"ISSUER_ID","transToken":"TRANS_TOKEN"}}""";
+
+            var result = JsonSerializer.Deserialize<PaymentResponse>(inputJson);
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.Opi);
+            Assert.AreEqual("ISSUER_ID", result.Opi.IssuerId);
+            Assert.AreEqual("TRANS_TOKEN", result.Opi.TransToken);
+
+            string serialized = JsonSerializer.Serialize(result);
+
+            using var json = JsonDocument.Parse(serialized);
+            JsonElement opi = json.RootElement.GetProperty("opi");
+            Assert.AreEqual("ISSUER_ID", opi.GetProperty("issuerId").GetString());
+            Assert.AreEqual("TRANS_TOKEN", opi.GetProperty("transToken").GetString());
+        }
+
+        [TestMethod]
         public void Given_PaymentResponse_When_BareDeserialize_ThreeDS2Fingerprint_Then_Action_IsPopulated()
         {
             string json = @"{""action"":{""type"":""threeDS2"",""subtype"":""fingerprint"",""paymentData"":""test-payment-data"",""paymentMethodType"":""scheme"",""authorisationToken"":""test-authorisation-token"",""token"":""test-token""},""resultCode"":""IdentifyShopper""}";

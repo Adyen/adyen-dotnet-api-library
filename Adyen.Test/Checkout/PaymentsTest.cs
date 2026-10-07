@@ -1313,6 +1313,364 @@ namespace Adyen.Test.Checkout
 
         #endregion
 
+        #region Pay by Bank Canada and Satispay
+
+        [TestMethod]
+        public void Given_PaymentRequest_With_PayByBankCADirectDebitDetails_When_Serialized_Then_PaymentMethod_Has_PaybybankCa_Type()
+        {
+            // Arrange
+            var paymentRequest = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount { Currency = "CAD", Value = 1000 },
+                Reference = "paybybank_ca test",
+                PaymentMethod = new CheckoutPaymentMethod(new PayByBankCADirectDebitDetails
+                {
+                    Type = PayByBankCADirectDebitDetails.TypeEnum.PaybybankCa,
+                    StoredPaymentMethodId = "STORED_PAYMENT_METHOD_ID",
+                    CheckoutAttemptId = "CHECKOUT_ATTEMPT_ID"
+                }),
+                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
+            };
+
+            // Act
+            string serialized = JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptionsProvider.Options);
+            using var jsonDoc = JsonDocument.Parse(serialized);
+
+            // Assert
+            JsonElement paymentMethod = jsonDoc.RootElement.GetProperty("paymentMethod");
+            Assert.AreEqual("paybybank_ca", paymentMethod.GetProperty("type").GetString());
+            Assert.AreEqual("STORED_PAYMENT_METHOD_ID", paymentMethod.GetProperty("storedPaymentMethodId").GetString());
+            Assert.AreEqual("CHECKOUT_ATTEMPT_ID", paymentMethod.GetProperty("checkoutAttemptId").GetString());
+            Assert.IsFalse(paymentMethod.TryGetProperty("sdkData", out _));
+        }
+
+        [TestMethod]
+        public void Given_CheckoutPaymentMethod_With_PaybybankCa_Type_When_Deserialized_Then_PayByBankCADirectDebitDetails_Is_Set()
+        {
+            // Arrange
+            string json = @"{""type"":""paybybank_ca"",""storedPaymentMethodId"":""STORED_PAYMENT_METHOD_ID""}";
+
+            // Act
+            CheckoutPaymentMethod result = JsonSerializer.Deserialize<CheckoutPaymentMethod>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.PayByBankCADirectDebitDetails);
+            Assert.IsNull(result.PayByBankAISDirectDebitDetails);
+            Assert.IsNull(result.PixPayByBankDetails);
+            Assert.AreEqual(PayByBankCADirectDebitDetails.TypeEnum.PaybybankCa, result.PayByBankCADirectDebitDetails.Type);
+            Assert.AreEqual("STORED_PAYMENT_METHOD_ID", result.PayByBankCADirectDebitDetails.StoredPaymentMethodId);
+        }
+
+        [TestMethod]
+        public void Given_CheckoutPaymentMethod_With_PayByBankCADirectDebitDetails_When_RoundTripped_Then_Fields_Are_Preserved()
+        {
+            // Arrange
+            var original = new CheckoutPaymentMethod(new PayByBankCADirectDebitDetails
+            {
+                Type = PayByBankCADirectDebitDetails.TypeEnum.PaybybankCa,
+                SdkData = "SDK_DATA",
+                StoredPaymentMethodId = "STORED_PAYMENT_METHOD_ID"
+            });
+
+            // Act
+            string serialized = JsonSerializer.Serialize(original, _jsonSerializerOptionsProvider.Options);
+            CheckoutPaymentMethod result = JsonSerializer.Deserialize<CheckoutPaymentMethod>(serialized, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result.PayByBankCADirectDebitDetails);
+            Assert.AreEqual(PayByBankCADirectDebitDetails.TypeEnum.PaybybankCa, result.PayByBankCADirectDebitDetails.Type);
+            Assert.AreEqual("SDK_DATA", result.PayByBankCADirectDebitDetails.SdkData);
+            Assert.AreEqual("STORED_PAYMENT_METHOD_ID", result.PayByBankCADirectDebitDetails.StoredPaymentMethodId);
+        }
+
+        [TestMethod]
+        public void Given_PaymentRequest_With_Satispay_When_Serialized_Then_PaymentMethod_Has_Satispay_Type()
+        {
+            // Arrange
+            var paymentRequest = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                Reference = "satispay test",
+                PaymentMethod = new CheckoutPaymentMethod(new PaymentDetails
+                {
+                    Type = PaymentDetails.TypeEnum.Satispay
+                }),
+                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
+            };
+
+            // Act
+            string serialized = JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptionsProvider.Options);
+            using var jsonDoc = JsonDocument.Parse(serialized);
+
+            // Assert
+            Assert.AreEqual("satispay", jsonDoc.RootElement.GetProperty("paymentMethod").GetProperty("type").GetString());
+        }
+
+        [TestMethod]
+        public void Given_CheckoutPaymentMethod_With_Satispay_Type_When_Deserialized_Then_PaymentDetails_Is_Set()
+        {
+            // Arrange
+            string json = @"{""type"":""satispay""}";
+
+            // Act
+            CheckoutPaymentMethod result = JsonSerializer.Deserialize<CheckoutPaymentMethod>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.PaymentDetails);
+            Assert.AreEqual(PaymentDetails.TypeEnum.Satispay, result.PaymentDetails.Type);
+        }
+
+        #endregion
+
+        #region Opi
+
+        [TestMethod]
+        public void Given_PaymentRequest_With_Opi_When_Serialized_Then_Contains_Opi()
+        {
+            // Arrange
+            var paymentRequest = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                Reference = "opi test",
+                PaymentMethod = new CheckoutPaymentMethod(new CardDetails { Type = CardDetails.TypeEnum.Scheme }),
+                Opi = new OpiRequest { IncludeTransToken = true, IncludeIssuerId = false }
+            };
+
+            // Act
+            string serialized = JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptionsProvider.Options);
+            using var jsonDoc = JsonDocument.Parse(serialized);
+
+            // Assert
+            JsonElement opi = jsonDoc.RootElement.GetProperty("opi");
+            Assert.IsTrue(opi.GetProperty("includeTransToken").GetBoolean());
+            Assert.IsFalse(opi.GetProperty("includeIssuerId").GetBoolean());
+        }
+
+        [TestMethod]
+        public void Given_PaymentRequest_Without_Opi_When_Serialized_Then_Opi_Is_Not_Present()
+        {
+            // Arrange
+            var paymentRequest = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                Reference = "opi test",
+                PaymentMethod = new CheckoutPaymentMethod(new CardDetails { Type = CardDetails.TypeEnum.Scheme })
+            };
+
+            // Act
+            string serialized = JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptionsProvider.Options);
+            using var jsonDoc = JsonDocument.Parse(serialized);
+
+            // Assert
+            Assert.IsFalse(jsonDoc.RootElement.TryGetProperty("opi", out _));
+        }
+
+        [TestMethod]
+        public void Given_PaymentResponse_With_Opi_When_Deserialized_Then_Opi_Is_Populated()
+        {
+            // Arrange
+            string json = @"{""pspReference"":""8515232733321252"",""resultCode"":""Authorised"",""opi"":{""issuerId"":""ISSUER_ID"",""transToken"":""TRANS_TOKEN""}}";
+
+            // Act
+            PaymentResponse result = JsonSerializer.Deserialize<PaymentResponse>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.AreEqual(PaymentResponse.ResultCodeEnum.Authorised, result.ResultCode);
+            Assert.IsNotNull(result.Opi);
+            Assert.AreEqual("ISSUER_ID", result.Opi.IssuerId);
+            Assert.AreEqual("TRANS_TOKEN", result.Opi.TransToken);
+        }
+
+        [TestMethod]
+        public void Given_PaymentDetailsResponse_With_Opi_When_Deserialized_Then_Opi_Is_Populated()
+        {
+            // Arrange
+            string json = @"{""pspReference"":""8515232733321252"",""resultCode"":""Authorised"",""opi"":{""transToken"":""TRANS_TOKEN""}}";
+
+            // Act
+            PaymentDetailsResponse result = JsonSerializer.Deserialize<PaymentDetailsResponse>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result.Opi);
+            Assert.AreEqual("TRANS_TOKEN", result.Opi.TransToken);
+            Assert.IsNull(result.Opi.IssuerId);
+        }
+
+        [TestMethod]
+        public void Given_PaymentDetailsResponse_Without_Opi_When_Deserialized_Then_Opi_Is_Null()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/checkout/paymentsdetails-success.json");
+
+            // Act
+            PaymentDetailsResponse result = JsonSerializer.Deserialize<PaymentDetailsResponse>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsNull(result.Opi);
+        }
+
+        #endregion
+
+        #region Sessions payable
+
+        [TestMethod]
+        public void Given_CreateCheckoutSessionRequest_With_Payable_False_When_Serialized_Then_Payable_Is_False()
+        {
+            // Arrange
+            var request = new CreateCheckoutSessionRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1000L },
+                MerchantAccount = "TestMerchant",
+                Reference = "TestReference",
+                ReturnUrl = "http://test-url.com",
+                Payable = false
+            };
+
+            // Act
+            string serialized = JsonSerializer.Serialize(request, _jsonSerializerOptionsProvider.Options);
+            using var jsonDoc = JsonDocument.Parse(serialized);
+
+            // Assert
+            Assert.IsFalse(jsonDoc.RootElement.GetProperty("payable").GetBoolean());
+        }
+
+        [TestMethod]
+        public void Given_CreateCheckoutSessionRequest_Without_Payable_When_Serialized_Then_Payable_Is_Not_Present()
+        {
+            // Arrange
+            var request = new CreateCheckoutSessionRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1000L },
+                MerchantAccount = "TestMerchant",
+                Reference = "TestReference",
+                ReturnUrl = "http://test-url.com"
+            };
+
+            // Act
+            string serialized = JsonSerializer.Serialize(request, _jsonSerializerOptionsProvider.Options);
+            using var jsonDoc = JsonDocument.Parse(serialized);
+
+            // Assert
+            Assert.IsFalse(jsonDoc.RootElement.TryGetProperty("payable", out _));
+        }
+
+        [TestMethod]
+        public void Given_CreateCheckoutSessionResponse_With_Payable_When_Deserialized_Then_Payable_Is_Set()
+        {
+            // Arrange
+            string json = @"{""id"":""CS0068299CB8DA273A"",""amount"":{""currency"":""EUR"",""value"":1000},""reference"":""TestReference"",""returnUrl"":""http://test-url.com"",""expiresAt"":""2021-09-30T06:45:06Z"",""merchantAccount"":""TestMerchant"",""payable"":false}";
+
+            // Act
+            CreateCheckoutSessionResponse result = JsonSerializer.Deserialize<CreateCheckoutSessionResponse>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.AreEqual("CS0068299CB8DA273A", result.Id);
+            Assert.AreEqual(false, result.Payable);
+        }
+
+        [TestMethod]
+        public void Given_CreateCheckoutSessionResponse_Without_Payable_When_Deserialized_Then_Payable_Is_Null()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/checkout/sessions-success.json");
+
+            // Act
+            CreateCheckoutSessionResponse result = JsonSerializer.Deserialize<CreateCheckoutSessionResponse>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.AreEqual("CS0068299CB8DA273A", result.Id);
+            Assert.IsNull(result.Payable);
+        }
+
+        #endregion
+
+        #region Klarna Network and line item risk category
+
+        [TestMethod]
+        public void Given_PaymentRequest_With_KlarnaNetworkPaymentAccountId_When_Serialized_Then_Contains_KlarnaNetworkPaymentAccountId()
+        {
+            // Arrange
+            var paymentRequest = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                Reference = "klarna network test",
+                PaymentMethod = new CheckoutPaymentMethod(new KlarnaNetworkDetails
+                {
+                    Type = KlarnaNetworkDetails.TypeEnum.KlarnaNetwork,
+                    KlarnaNetworkSessionToken = "SESSION_TOKEN",
+                    KlarnaNetworkPaymentAccountId = "PAYMENT_ACCOUNT_ID"
+                }),
+                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
+            };
+
+            // Act
+            string serialized = JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptionsProvider.Options);
+            using var jsonDoc = JsonDocument.Parse(serialized);
+
+            // Assert
+            JsonElement paymentMethod = jsonDoc.RootElement.GetProperty("paymentMethod");
+            Assert.AreEqual("klarna_network", paymentMethod.GetProperty("type").GetString());
+            Assert.AreEqual("SESSION_TOKEN", paymentMethod.GetProperty("klarnaNetworkSessionToken").GetString());
+            Assert.AreEqual("PAYMENT_ACCOUNT_ID", paymentMethod.GetProperty("klarnaNetworkPaymentAccountId").GetString());
+        }
+
+        [TestMethod]
+        public void Given_CheckoutPaymentMethod_With_KlarnaNetworkPaymentAccountId_When_Deserialized_Then_KlarnaNetworkPaymentAccountId_Is_Set()
+        {
+            // Arrange
+            string json = @"{""type"":""klarna_network"",""klarnaNetworkSessionToken"":""SESSION_TOKEN"",""klarnaNetworkPaymentAccountId"":""PAYMENT_ACCOUNT_ID""}";
+
+            // Act
+            CheckoutPaymentMethod result = JsonSerializer.Deserialize<CheckoutPaymentMethod>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result.KlarnaNetworkDetails);
+            Assert.AreEqual("SESSION_TOKEN", result.KlarnaNetworkDetails.KlarnaNetworkSessionToken);
+            Assert.AreEqual("PAYMENT_ACCOUNT_ID", result.KlarnaNetworkDetails.KlarnaNetworkPaymentAccountId);
+        }
+
+        [TestMethod]
+        public void Given_LineItem_With_RiskCategory_When_Serialized_Then_Contains_RiskCategory()
+        {
+            // Arrange
+            var lineItems = new List<LineItem>
+            {
+                new LineItem { Quantity = 1, AmountIncludingTax = 5000, Description = "description1", RiskCategory = "electronics" },
+                new LineItem { Quantity = 1, AmountIncludingTax = 5000, Description = "description2" }
+            };
+
+            // Act
+            string serialized = JsonSerializer.Serialize(lineItems, _jsonSerializerOptionsProvider.Options);
+            using var jsonDoc = JsonDocument.Parse(serialized);
+
+            // Assert
+            Assert.AreEqual("electronics", jsonDoc.RootElement[0].GetProperty("riskCategory").GetString());
+            Assert.IsFalse(jsonDoc.RootElement[1].TryGetProperty("riskCategory", out _));
+        }
+
+        [TestMethod]
+        public void Given_LineItem_With_RiskCategory_When_Deserialized_Then_RiskCategory_Is_Set()
+        {
+            // Arrange
+            string json = @"{""quantity"":1,""amountIncludingTax"":5000,""description"":""description1"",""riskCategory"":""electronics""}";
+
+            // Act
+            LineItem result = JsonSerializer.Deserialize<LineItem>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.AreEqual("electronics", result.RiskCategory);
+        }
+
+        #endregion
+
         #region oneOf unknown type
 
         [TestMethod]

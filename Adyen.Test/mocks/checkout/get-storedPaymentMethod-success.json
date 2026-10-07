@@ -15,6 +15,10 @@
       "lastFour": "string",
       "name": "string",
       "networkTxReference": "string",
+      "opi": {
+        "issuerId": "ISSUER_ID",
+        "transToken": "TRANS_TOKEN"
+      },
       "ownerName": "string",
       "shopperEmail": "string",
       "shopperReference": "string",
