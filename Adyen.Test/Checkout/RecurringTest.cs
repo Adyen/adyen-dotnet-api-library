@@ -49,6 +49,9 @@ namespace Adyen.Test.Checkout
             Assert.AreEqual("string", result.StoredPaymentMethods[0].Brand);
             Assert.AreEqual("string", result.StoredPaymentMethods[0].HolderName);
             Assert.AreEqual("string", result.StoredPaymentMethods[0].LastFour);
+            Assert.IsNotNull(result.StoredPaymentMethods[0].Opi);
+            Assert.AreEqual("ISSUER_ID", result.StoredPaymentMethods[0].Opi.IssuerId);
+            Assert.AreEqual("TRANS_TOKEN", result.StoredPaymentMethods[0].Opi.TransToken);
         }
 
         [TestMethod]
@@ -86,6 +89,99 @@ namespace Adyen.Test.Checkout
             Assert.AreEqual("PAYMENT_METHOD_ID", result.StoredPaymentMethodId);
             Assert.IsNotNull(result.Response);
             Assert.AreEqual(200, result.Response.Status);
+            Assert.IsNotNull(result.AccountUpdate);
+            Assert.AreEqual(CheckoutForwardAccountUpdateResult.ResultEnum.CardExpiryChanged, result.AccountUpdate.Result);
+            Assert.IsNotNull(result.NetworkToken);
+            Assert.AreEqual(true, result.NetworkToken.Swapped);
+        }
+
+        [TestMethod]
+        public void Given_CheckoutForwardResponse_Without_AccountUpdate_And_NetworkToken_When_Deserialized_Then_Both_Are_Null()
+        {
+            // Arrange
+            string json = @"{""pspReference"":""8815658961765250"",""response"":{""body"":""{}"",""status"":200}}";
+
+            // Act
+            CheckoutForwardResponse result = JsonSerializer.Deserialize<CheckoutForwardResponse>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsNull(result.AccountUpdate);
+            Assert.IsNull(result.NetworkToken);
+        }
+
+        [TestMethod]
+        public void Given_CheckoutForwardResponse_With_NetworkToken_Fallback_When_Deserialized_Then_Swapped_Is_False()
+        {
+            // Arrange
+            string json = @"{""pspReference"":""8815658961765250"",""response"":{""body"":""{}"",""status"":200},""accountUpdate"":{""result"":""NoChange""},""networkToken"":{""swapped"":false}}";
+
+            // Act
+            CheckoutForwardResponse result = JsonSerializer.Deserialize<CheckoutForwardResponse>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.AreEqual(CheckoutForwardAccountUpdateResult.ResultEnum.NoChange, result.AccountUpdate.Result);
+            Assert.AreEqual(false, result.NetworkToken.Swapped);
+        }
+
+        [TestMethod]
+        public void Given_CheckoutForwardResponse_With_Unknown_AccountUpdate_Result_When_Deserialized_Then_Raw_Value_Is_Preserved()
+        {
+            // Arrange
+            string json = @"{""pspReference"":""8815658961765250"",""response"":{""body"":""{}"",""status"":200},""accountUpdate"":{""result"":""FutureResult""}}";
+
+            // Act
+            CheckoutForwardResponse result = JsonSerializer.Deserialize<CheckoutForwardResponse>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result.AccountUpdate.Result);
+            Assert.AreEqual("FutureResult", result.AccountUpdate.Result.Value);
+        }
+
+        [TestMethod]
+        public void Given_CheckoutForwardResponse_With_AccountUpdate_And_NetworkToken_When_Serialized_Then_Json_Contains_Both()
+        {
+            // Arrange
+            var response = new CheckoutForwardResponse
+            {
+                PspReference = "8815658961765250",
+                AccountUpdate = new CheckoutForwardAccountUpdateResult
+                {
+                    Result = CheckoutForwardAccountUpdateResult.ResultEnum.ContactCardAccountHolder
+                },
+                NetworkToken = new CheckoutForwardNetworkTokenResult { Swapped = true }
+            };
+
+            // Act
+            string serialized = JsonSerializer.Serialize(response, _jsonSerializerOptionsProvider.Options);
+            using var jsonDoc = JsonDocument.Parse(serialized);
+
+            // Assert
+            Assert.AreEqual("ContactCardAccountHolder", jsonDoc.RootElement.GetProperty("accountUpdate").GetProperty("result").GetString());
+            Assert.IsTrue(jsonDoc.RootElement.GetProperty("networkToken").GetProperty("swapped").GetBoolean());
+        }
+
+        [TestMethod]
+        public void Given_StoredPaymentMethodRequest_With_Opi_When_Serialized_Then_Contains_Opi()
+        {
+            // Arrange
+            var request = new StoredPaymentMethodRequest
+            {
+                MerchantAccount = "TestMerchant",
+                ShopperReference = "shopper-123",
+                PaymentMethod = new PaymentMethodToStore { Type = "scheme" },
+                RecurringProcessingModel = StoredPaymentMethodRequest.RecurringProcessingModelEnum.CardOnFile,
+                Opi = new OpiRequest { IncludeIssuerId = true, IncludeTransToken = true }
+            };
+
+            // Act
+            string serialized = JsonSerializer.Serialize(request, _jsonSerializerOptionsProvider.Options);
+            using var jsonDoc = JsonDocument.Parse(serialized);
+
+            // Assert
+            JsonElement opi = jsonDoc.RootElement.GetProperty("opi");
+            Assert.IsTrue(opi.GetProperty("includeIssuerId").GetBoolean());
+            Assert.IsTrue(opi.GetProperty("includeTransToken").GetBoolean());
         }
 
         [TestMethod]
@@ -141,6 +237,7 @@ namespace Adyen.Test.Checkout
             // Assert
             Assert.IsFalse(jsonDoc.RootElement.TryGetProperty("shopperEmail", out _));
             Assert.IsFalse(jsonDoc.RootElement.TryGetProperty("shopperIP", out _));
+            Assert.IsFalse(jsonDoc.RootElement.TryGetProperty("opi", out _));
         }
 
         [TestMethod]
