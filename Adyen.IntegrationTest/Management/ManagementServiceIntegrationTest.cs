@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace Adyen.IntegrationTest.Management
 {
     [TestClass]
-    public class ManagementServiceIntegrationTest
+    public class ManagementServiceIntegrationTest : BaseIntegrationTest
     {
         private readonly IUsersMerchantLevelService _usersMerchantLevelService;
         private readonly IHost _host;
@@ -24,19 +24,16 @@ namespace Adyen.IntegrationTest.Management
                 .ConfigureManagement(
                     (context, services, config) =>
                     {
-                        Assert.IsNotNull(context.Configuration["ADYEN_API_KEY"], "env var ADYEN_API_KEY is undefined");
-
                         config.ConfigureAdyenOptions(options =>
                         {
-                            options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
+                            options.AdyenApiKey = ApiKey;
                             options.Environment = AdyenEnvironment.Test;
                         });
                         services.AddAllManagementServices();
                     })
                 .Build();
             
-            _merchantAccount = Environment.GetEnvironmentVariable("ADYEN_MERCHANT_ACCOUNT");
-            Assert.IsNotNull(_merchantAccount, "env var ADYEN_MERCHANT_ACCOUNT is null");
+            _merchantAccount = MerchantAccount;
 
             
             _usersMerchantLevelService = _host.Services.GetRequiredService<IUsersMerchantLevelService>();

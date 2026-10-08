@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace Adyen.IntegrationTest.LegalEntityManagement
 {
     [TestClass]
-    public class LegalEntityManagementServiceIntegrationTest
+    public class LegalEntityManagementServiceIntegrationTest : BaseIntegrationTest
     {
         private readonly ILegalEntitiesService _legalEntitiesService;
         private readonly IHost _host;
@@ -23,11 +23,9 @@ namespace Adyen.IntegrationTest.LegalEntityManagement
                 .ConfigureLegalEntityManagement(
                     (context, services, config) =>
                     {
-                        Assert.IsNotNull(context.Configuration["LEM_API_KEY"], "env var LEM_API_KEY is undefined");
-
                         config.ConfigureAdyenOptions(options =>
                         {
-                            options.AdyenApiKey = context.Configuration["LEM_API_KEY"];
+                            options.AdyenApiKey = LemApiKey;
                             options.Environment = AdyenEnvironment.Test;
                         });
                         services.AddAllLegalEntityManagementServices();
@@ -42,8 +40,7 @@ namespace Adyen.IntegrationTest.LegalEntityManagement
         [TestMethod]
         public async Task Given_LegalEntityService_When_GetAllBusinessLines_Returns_OK()
         {
-            var legalEntityId = Environment.GetEnvironmentVariable("LEGAL_ENTITY_ID");
-            Assert.IsNotNull(legalEntityId, "env var LEGAL_ENTITY_ID is null");
+            var legalEntityId = LegalEntityId;
 
             IGetAllBusinessLinesUnderLegalEntityApiResponse response = 
                 await _legalEntitiesService.GetAllBusinessLinesUnderLegalEntityAsync(legalEntityId);
