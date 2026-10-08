@@ -1269,6 +1269,11 @@ namespace Adyen.TransferWebhooks.Models
             public static readonly StatusEnum Returned = new("returned");
 
             /// <summary>
+            /// StatusEnum.ReversalReceived - reversalReceived
+            /// </summary>
+            public static readonly StatusEnum ReversalReceived = new("reversalReceived");
+
+            /// <summary>
             /// StatusEnum.Reversed - reversed
             /// </summary>
             public static readonly StatusEnum Reversed = new("reversed");
@@ -1406,6 +1411,7 @@ namespace Adyen.TransferWebhooks.Models
                     "reserveAdjustment" => StatusEnum.ReserveAdjustment,
                     "reserveAdjustmentPending" => StatusEnum.ReserveAdjustmentPending,
                     "returned" => StatusEnum.Returned,
+                    "reversalReceived" => StatusEnum.ReversalReceived,
                     "reversed" => StatusEnum.Reversed,
                     "secondChargeback" => StatusEnum.SecondChargeback,
                     "secondChargebackPending" => StatusEnum.SecondChargebackPending,
@@ -1622,6 +1628,9 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == StatusEnum.Returned)
                     return "returned";
                 
+                if (value == StatusEnum.ReversalReceived)
+                    return "reversalReceived";
+                
                 if (value == StatusEnum.Reversed)
                     return "reversed";
                 
@@ -1676,9 +1685,9 @@ namespace Adyen.TransferWebhooks.Models
         public StatusEnum? Status { get { return this._StatusOption; } set { this._StatusOption = new(value); } }
 
         /// <summary>
-        /// The type of the transfer event. Possible values: **accounting**, **tracking**.
+        /// The type of the transfer event. Possible values: **accounting**, **tracing**, **tracking**.
         /// </summary>
-        /// <value>The type of the transfer event. Possible values: **accounting**, **tracking**.</value>
+        /// <value>The type of the transfer event. Possible values: **accounting**, **tracing**, **tracking**.</value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
         public class TypeEnum : IEnum
         {
@@ -1815,9 +1824,9 @@ namespace Adyen.TransferWebhooks.Models
         public Option<TypeEnum?> _TypeOption { get; private set; }
 
         /// <summary>
-        /// The type of the transfer event. Possible values: **accounting**, **tracking**.
+        /// The type of the transfer event. Possible values: **accounting**, **tracing**, **tracking**.
         /// </summary>
-        /// <value>The type of the transfer event. Possible values: **accounting**, **tracking**.</value>
+        /// <value>The type of the transfer event. Possible values: **accounting**, **tracing**, **tracking**.</value>
         [JsonPropertyName("type")]
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
