@@ -164,6 +164,8 @@ namespace Adyen.TransferWebhooks.Client
                 return Models.InternalReviewTrackingData.ReasonEnum.ToJsonValue(internalReviewTrackingDataReasonEnum);
             if (obj is Models.InternalReviewTrackingData.TypeEnum internalReviewTrackingDataTypeEnum)
                 return Models.InternalReviewTrackingData.TypeEnum.ToJsonValue(internalReviewTrackingDataTypeEnum);
+            if (obj is Models.IssuedCard.NetworkVariantEnum issuedCardNetworkVariantEnum)
+                return Models.IssuedCard.NetworkVariantEnum.ToJsonValue(issuedCardNetworkVariantEnum);
             if (obj is Models.IssuedCard.PanEntryModeEnum issuedCardPanEntryModeEnum)
                 return Models.IssuedCard.PanEntryModeEnum.ToJsonValue(issuedCardPanEntryModeEnum);
             if (obj is Models.IssuedCard.ProcessingTypeEnum issuedCardProcessingTypeEnum)
