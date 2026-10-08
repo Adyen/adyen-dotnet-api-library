@@ -24,8 +24,11 @@ DOTNET_ROLL_FORWARD=Major dotnet test Adyen.IntegrationTest/Adyen.IntegrationTes
 
 `dotnet build` restores dependencies and builds the solution. Homebrew
 currently installs .NET 10, so tests targeting .NET 8 need major-version
-runtime roll-forward. Integration tests require credentials and resource
-identifiers supplied through environment variables. Never commit credentials.
+runtime roll-forward. Integration tests require the shared JSON configuration
+described in `Adyen.IntegrationTest/README.md`. Never commit credentials or run
+external tests during routine validation. An unfiltered solution-level
+`dotnet test` also runs integration tests; scope offline runs to the unit-test
+project or `IntegrationTestConfigurationTests`.
 Tests can also be run with Rider's built-in test runner.
 
 ## Generated Source

@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 namespace Adyen.IntegrationTest.Checkout
 {
     [TestClass]
-    public class PaymentsServiceIntegrationTest
+    public class PaymentsServiceIntegrationTest : BaseIntegrationTest
     {
         private readonly IPaymentsService _paymentsApiService;
         private readonly IHost _host;
@@ -25,11 +25,9 @@ namespace Adyen.IntegrationTest.Checkout
                 .ConfigureCheckout(
                     (context, services, config) =>
                     {
-                        Assert.IsNotNull(context.Configuration["ADYEN_API_KEY"], "env var ADYEN_API_KEY is undefined");
-
                         config.ConfigureAdyenOptions(options =>
                         {
-                            options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
+                            options.AdyenApiKey = ApiKey;
                             options.Environment = AdyenEnvironment.Test;
                         });
                         
@@ -37,8 +35,7 @@ namespace Adyen.IntegrationTest.Checkout
                     })
                 .Build();
 
-            _merchantAccount = Environment.GetEnvironmentVariable("ADYEN_MERCHANT_ACCOUNT");
-            Assert.IsNotNull(_merchantAccount, "env var ADYEN_MERCHANT_ACCOUNT is null");
+            _merchantAccount = MerchantAccount;
 
             
             _paymentsApiService = _host.Services.GetRequiredService<IPaymentsService>();
@@ -199,7 +196,7 @@ namespace Adyen.IntegrationTest.Checkout
                     {
                         config.ConfigureAdyenOptions(options =>
                         {
-                            options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
+                            options.AdyenApiKey = ApiKey;
                             options.Environment = AdyenEnvironment.Test;
                         });
 
@@ -222,7 +219,7 @@ namespace Adyen.IntegrationTest.Checkout
                     {
                         config.ConfigureAdyenOptions(options =>
                         {
-                            options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
+                            options.AdyenApiKey = ApiKey;
                             options.Environment = AdyenEnvironment.Test;
                         });
 

@@ -20,6 +20,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Update="test-config.json" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Compile Remove="MarketpayAccountTest.cs" />
       <Compile Remove="MarketPayFundTest.cs" />
     </ItemGroup>

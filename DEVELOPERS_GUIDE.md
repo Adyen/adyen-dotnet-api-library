@@ -47,8 +47,9 @@ You can also run the tests from Rider using its built-in test runner.
 ## Run integration tests
 
 The integration tests make requests to the Adyen test environment. Before
-running them, set the required environment variables with credentials and
-resource identifiers for your Adyen test account.
+running them, copy `Adyen.IntegrationTest/test-config.example.json` to the ignored
+`Adyen.IntegrationTest/test-config.json` and complete every value. Alternatively,
+provide the raw JSON through `ADYEN_API_LIBRARIES_INTEGRATION_TEST_CONFIG`.
 
 Never commit API keys or other credentials to the repository.
 
@@ -57,3 +58,7 @@ From the repository root, run the integration tests:
 ```sh
 DOTNET_ROLL_FORWARD=Major dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj
 ```
+
+See [the integration-test README](Adyen.IntegrationTest/README.md) for configuration
+fields, offline validation, and the GitHub workflow. Do not use an
+unfiltered solution-level `dotnet test` for offline validation.

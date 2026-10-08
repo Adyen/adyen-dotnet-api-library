@@ -2,3 +2,4 @@ bin/
 obj/
 TestResults/
 *.user
+test-config.json
