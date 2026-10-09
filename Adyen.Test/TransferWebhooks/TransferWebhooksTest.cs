@@ -206,6 +206,68 @@ namespace Adyen.Test.TransferWebhooks
         }
 
         [TestMethod]
+        public void Given_Deserialize_When_Transfer_Updated_With_Reversal_And_IssuedCard_Returns_Correct_Values()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/transferwebhooks/balancePlatform.transfer.updated.reversal.json");
+
+            // Act
+            TransferNotificationRequest r = _transferWebhooksHandler.DeserializeTransferNotificationRequest(json);
+
+            // Assert
+            Assert.IsNotNull(r);
+            Assert.AreEqual(TransferNotificationRequest.TypeEnum.BalancePlatformTransferUpdated, r.Type);
+            Assert.AreEqual("test", r.Environment);
+
+            // Transfer-level reversalReceived status with issued card category data
+            Assert.AreEqual(TransferData.StatusEnum.ReversalReceived, r.Data.Status);
+            Assert.AreEqual(TransferData.CategoryEnum.IssuedCard, r.Data.Category);
+            Assert.AreEqual(TransferData.TypeEnum.BankTransfer, r.Data.Type);
+
+            // Network reason with the usAchCorrectionReasonCode namespace
+            Assert.IsNotNull(r.Data.NetworkReason);
+            Assert.AreEqual(NetworkReason.NamespaceEnum.UsAchCorrectionReasonCode, r.Data.NetworkReason.Namespace);
+            Assert.AreEqual("C01", r.Data.NetworkReason.Code);
+            Assert.AreEqual("Incorrect DFI account number", r.Data.NetworkReason.Description);
+
+            // Issued card category data including the networkVariant
+            Assert.IsNotNull(r.Data.CategoryData.IssuedCard);
+            Assert.AreEqual(IssuedCard.TypeEnum.IssuedCard, r.Data.CategoryData.IssuedCard.Type);
+            Assert.AreEqual(IssuedCard.NetworkVariantEnum.MaestroUs, r.Data.CategoryData.IssuedCard.NetworkVariant);
+
+            // Reversal event carrying the reversalReceived status and its modification
+            var reversalEvent = r.Data.Events.First(e => e.Status == TransferEvent.StatusEnum.ReversalReceived);
+            Assert.IsNotNull(reversalEvent.Modification);
+            Assert.AreEqual(Modification.StatusEnum.Reversed, reversalEvent.Modification.Status);
+            Assert.AreEqual("reversal", reversalEvent.Modification.Type);
+        }
+
+        [TestMethod]
+        public void Given_EnumWireValues_When_Deserialized_Then_KnownValuesMap_And_UnknownValuesReturnNull()
+        {
+            // Assert
+            // IssuedCard.NetworkVariantEnum wire-value mapping and forward compatibility
+            Assert.AreEqual("maestro_us", IssuedCard.NetworkVariantEnum.MaestroUs.Value);
+            Assert.AreEqual("maestro_us", IssuedCard.NetworkVariantEnum.ToJsonValue(IssuedCard.NetworkVariantEnum.MaestroUs));
+            Assert.AreEqual(IssuedCard.NetworkVariantEnum.Mastercard, IssuedCard.NetworkVariantEnum.FromStringOrDefault("mastercard"));
+            Assert.AreEqual(IssuedCard.NetworkVariantEnum.Visa, IssuedCard.NetworkVariantEnum.FromStringOrDefault("visa"));
+            Assert.IsNull(IssuedCard.NetworkVariantEnum.FromStringOrDefault("some_future_network"));
+
+            // NetworkReason.NamespaceEnum wire-value mapping
+            Assert.AreEqual(NetworkReason.NamespaceEnum.UsAchCorrectionReasonCode, NetworkReason.NamespaceEnum.FromStringOrDefault("usAchCorrectionReasonCode"));
+
+            // TransferData.StatusEnum and TypeEnum wire-value mapping
+            Assert.AreEqual(TransferData.StatusEnum.ReversalReceived, TransferData.StatusEnum.FromStringOrDefault("reversalReceived"));
+            Assert.AreEqual(TransferData.TypeEnum.FxSell, TransferData.TypeEnum.FromStringOrDefault("fxSell"));
+            Assert.AreEqual(TransferData.TypeEnum.FxBuy, TransferData.TypeEnum.FromStringOrDefault("fxBuy"));
+            Assert.AreEqual(TransferData.TypeEnum.BalanceMigration, TransferData.TypeEnum.FromStringOrDefault("balanceMigration"));
+
+            // TransferEvent.StatusEnum and Modification.StatusEnum wire-value mapping
+            Assert.AreEqual(TransferEvent.StatusEnum.ReversalReceived, TransferEvent.StatusEnum.FromStringOrDefault("reversalReceived"));
+            Assert.AreEqual(Modification.StatusEnum.ReversalReceived, Modification.StatusEnum.FromStringOrDefault("reversalReceived"));
+        }
+
+        [TestMethod]
         public void Given_Deserialize_When_Transfer_Webhook_With_UnknownCategoryEnum_Returns_Not_Null()
         {
             // Arrange
