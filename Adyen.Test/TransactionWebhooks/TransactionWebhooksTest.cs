@@ -57,7 +57,7 @@ namespace Adyen.Test.TransactionWebhooks
         }
 
         [TestMethod]
-        public void Given_IssuedCard_NetworkVariantEnum_When_Mapping_WireValues_Then_KnownValuesMap_And_UnknownValuesReturnNull()
+        public void Given_NetworkVariantEnum_When_Mapped_Then_Result_Is_Correct()
         {
             // Assert
             Assert.AreEqual("maestro_us", IssuedCard.NetworkVariantEnum.MaestroUs.Value);
