@@ -159,9 +159,13 @@ namespace Adyen.Management.Models
                     switch (jsonPropertyName)
                     {
                         case "itemsTotal":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'itemsTotal' on 'ListWebhooksResponse' cannot be null.");
                             itemsTotal = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "pagesTotal":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'pagesTotal' on 'ListWebhooksResponse' cannot be null.");
                             pagesTotal = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "_links":
