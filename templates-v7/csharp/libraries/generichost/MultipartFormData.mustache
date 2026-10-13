@@ -1,0 +1,25 @@
+{{#formParams}}
+{{#-first}}
+                    MultipartFormDataContent multipartContent = new MultipartFormDataContent();
+                    httpRequestMessage.Content = multipartContent;
+
+{{/-first}}
+{{^required}}
+                    if ({{paramName}}.IsSet && (object){{paramName}}.Value != null)
+                    {
+{{/required}}
+{{#isFile}}
+                    {{^required}}    {{/required}}if (string.IsNullOrWhiteSpace({{paramName}}Name))
+                    {{^required}}    {{/required}}    throw new ArgumentException("A filename is required when a file is supplied.", nameof({{paramName}}Name));
+                    {{^required}}    {{/required}}MediaTypeHeaderValue {{paramName}}MediaType = MediaTypeHeaderValue.Parse({{paramName}}ContentType ?? "application/octet-stream");
+                    {{^required}}    {{/required}}StreamContent {{paramName}}Content = new StreamContent({{paramName}}{{^required}}.Value{{/required}});
+                    {{^required}}    {{/required}}{{paramName}}Content.Headers.ContentType = {{paramName}}MediaType;
+                    {{^required}}    {{/required}}multipartContent.Add({{paramName}}Content, "{{baseName}}", {{paramName}}Name);
+{{/isFile}}
+{{^isFile}}
+                    {{^required}}    {{/required}}multipartContent.Add(new StringContent(ClientUtils.ParameterToString({{paramName}}{{^required}}.Value{{/required}}) ?? string.Empty), "{{baseName}}");
+{{/isFile}}
+{{^required}}
+                    }
+{{/required}}
+{{/formParams}}
