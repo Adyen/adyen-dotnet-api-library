@@ -96,6 +96,12 @@ IHost host = Host.CreateDefaultBuilder()
 {{/allParams}}
 {{#allParams}}
 | **{{paramName}}** | {{#isFile}}**{{dataType}}**{{/isFile}}{{#isPrimitiveType}}[{{dataType}}]{{/isPrimitiveType}}{{^isPrimitiveType}}{{^isFile}}**{{dataType}}**{{/isFile}}{{/isPrimitiveType}} | {{description}} |
+{{#isMultipart}}
+{{#isFile}}
+| **{{paramName}}Name** | **string** | Filename sent in the file part. |
+| **{{paramName}}ContentType** | **string** | MIME type of the file part. |
+{{/isFile}}
+{{/isMultipart}}
 {{/allParams}}
 
 #### Example usage
@@ -105,9 +111,9 @@ using {{packageName}}.{{modelPackage}};
 using {{packageName}}.{{apiName}}.Services;
 
 // Example `{{classname}}.{{operationId}}` usage:
-// Provide the following values: {{#allParams}}{{^isHeaderParam}}{{paramName}}{{^-last}}, {{/-last}}{{/isHeaderParam}}{{#isHeaderParam}}[HeaderParameter] {{paramName}}{{^-last}}, {{/-last}}{{/isHeaderParam}}{{/allParams}}
+// Provide the following values: {{#allParams}}{{^isHeaderParam}}{{paramName}}{{#isMultipart}}{{#isFile}}, {{paramName}}Name, {{paramName}}ContentType{{/isFile}}{{/isMultipart}}{{^-last}}, {{/-last}}{{/isHeaderParam}}{{#isHeaderParam}}[HeaderParameter] {{paramName}}{{^-last}}, {{/-last}}{{/isHeaderParam}}{{/allParams}}
 {{#returnType}}{{^isVoid}}{{interfacePrefix}}{{returnType}} response = {{/isVoid}}{{/returnType}}await {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{operationId}}Async(
-    {{#pathParams}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}, {{/pathParams}}{{#queryParams}}{{#required}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}, {{/required}}{{/queryParams}}{{#bodyParams}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}, {{/bodyParams}}{{#queryParams}}{{^required}}Option<{{{dataType}}}{{>NullConditionalParameter}}> {{paramName}}{{#notRequiredOrIsNullable}} = default{{/notRequiredOrIsNullable}}, {{/required}}{{/queryParams}}
+    {{#pathParams}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}, {{/pathParams}}{{#queryParams}}{{#required}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}, {{/required}}{{/queryParams}}{{#bodyParams}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}, {{/bodyParams}}{{#formParams}}{{#required}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}, {{#isMultipart}}{{#isFile}}string {{paramName}}Name, string {{paramName}}ContentType, {{/isFile}}{{/isMultipart}}{{/required}}{{/formParams}}{{#queryParams}}{{^required}}Option<{{{dataType}}}{{>NullConditionalParameter}}> {{paramName}}{{#notRequiredOrIsNullable}} = default{{/notRequiredOrIsNullable}}, {{/required}}{{/queryParams}}{{#formParams}}{{^required}}Option<{{{dataType}}}{{>NullConditionalParameter}}> {{paramName}} = default, {{#isMultipart}}{{#isFile}}string{{nrt?}} {{paramName}}Name = default, string{{nrt?}} {{paramName}}ContentType = default, {{/isFile}}{{/isMultipart}}{{/required}}{{/formParams}}
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

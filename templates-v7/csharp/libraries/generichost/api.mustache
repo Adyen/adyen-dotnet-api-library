@@ -62,6 +62,12 @@ namespace {{packageName}}.{{apiPackage}}
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         {{#allParams}}
         /// <param name="{{paramName}}">{{{description}}}{{#isHeaderParam}} - Pass this header parameter using <see cref="RequestOptions"/>.{{/isHeaderParam}}{{#isDeprecated}} (deprecated){{/isDeprecated}}</param>
+        {{#isMultipart}}
+        {{#isFile}}
+        /// <param name="{{paramName}}Name">The filename sent in the file part.</param>
+        /// <param name="{{paramName}}ContentType">The MIME type of the file part.</param>
+        {{/isFile}}
+        {{/isMultipart}}
         {{/allParams}}
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
@@ -233,6 +239,12 @@ namespace {{packageName}}.{{apiPackage}}
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         {{#allParams}}
         /// <param name="{{paramName}}">{{{description}}}{{#isBodyParam}}<see cref="{{baseName}}"/>{{/isBodyParam}}{{^required}} ({{#defaultValue}}default to {{.}}{{/defaultValue}}){{/required}}{{#isHeaderParam}} Pass this header parameter in <see cref="RequestOptions"/>.{{/isHeaderParam}}</param>
+        {{#isMultipart}}
+        {{#isFile}}
+        /// <param name="{{paramName}}Name">The filename sent in the file part.</param>
+        /// <param name="{{paramName}}ContentType">The MIME type of the file part.</param>
+        {{/isFile}}
+        {{/isMultipart}}
         {{/allParams}}
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
@@ -319,36 +331,31 @@ namespace {{packageName}}.{{apiPackage}}
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     {{#formParams}}
-                    {{#-first}}
-                    MultipartContent multipartContent = new MultipartContent();
-
-                    httpRequestMessage.Content = multipartContent;
-
-                    List<KeyValuePair<string{{nrt?}}, string{{nrt?}}>> formParameters = new List<KeyValuePair<string{{nrt?}}, string{{nrt?}}>>();
-
-                    multipartContent.Add(new FormUrlEncodedContent(formParameters));{{/-first}}{{^isFile}}{{#required}}
-
-                    formParameters.Add(new KeyValuePair<string{{nrt?}}, string{{nrt?}}>("{{baseName}}", ClientUtils.ParameterToString({{paramName}})));
-
-                    {{/required}}
-                    {{^required}}
-                    if ({{paramName}}.IsSet)
-                        formParameters.Add(new KeyValuePair<string{{nrt?}}, string{{nrt?}}>("{{baseName}}", ClientUtils.ParameterToString({{paramName}}.Value)));
-
-                    {{/required}}
-                    {{/isFile}}
-                    {{#isFile}}
                     {{#required}}
-                    multipartContent.Add(new StreamContent({{paramName}}));
-
+                    if ({{#isFile}}{{paramName}} is null{{/isFile}}{{^isFile}}(object){{paramName}} == null{{/isFile}})
+                        throw new ArgumentNullException(nameof({{paramName}}));
+                    {{/required}}
+                    {{/formParams}}
+                    {{#isMultipart}}
+{{>MultipartFormData}}
+                    {{/isMultipart}}
+                    {{^isMultipart}}
+                    {{#formParams}}
+                    {{#-first}}
+                    List<KeyValuePair<string{{nrt?}}, string{{nrt?}}>> formParameters = new List<KeyValuePair<string{{nrt?}}, string{{nrt?}}>>();
+                    {{/-first}}
+                    {{#required}}
+                    formParameters.Add(new KeyValuePair<string{{nrt?}}, string{{nrt?}}>("{{baseName}}", ClientUtils.ParameterToString({{paramName}})));
                     {{/required}}
                     {{^required}}
-                    if ({{paramName}}.IsSet)
-                        multipartContent.Add(new StreamContent({{paramName}}.Value));
-
+                    if ({{paramName}}.IsSet && (object){{paramName}}.Value != null)
+                        formParameters.Add(new KeyValuePair<string{{nrt?}}, string{{nrt?}}>("{{baseName}}", ClientUtils.ParameterToString({{paramName}}.Value)));
                     {{/required}}
-                    {{/isFile}}
+                    {{#-last}}
+                    httpRequestMessage.Content = new FormUrlEncodedContent(formParameters);
+                    {{/-last}}
                     {{/formParams}}
+                    {{/isMultipart}}
                     {{#bodyParam}}
                     httpRequestMessage.Content = ({{paramName}} as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
@@ -387,6 +394,7 @@ namespace {{packageName}}.{{apiPackage}}
                     oauthToken{{-index}}.UseInHeader(httpRequestMessage, "{{keyParamName}}");
                     {{/isOAuth}}
                     {{/authMethods}}
+                    {{^isMultipart}}
                     {{#consumes}}
                     {{#-first}}
 
@@ -397,6 +405,7 @@ namespace {{packageName}}.{{apiPackage}}
                     };
                     {{/-last}}
                     {{/consumes}}
+                    {{/isMultipart}}
                     {{#consumes}}
                     {{#-first}}
 
@@ -404,10 +413,12 @@ namespace {{packageName}}.{{apiPackage}}
                     httpRequestMessage.AddLibraryNameToHeader();
                     httpRequestMessage.AddLibraryVersionToHeader();
                     
+                    {{^isMultipart}}
                     string{{nrt?}} contentType = ClientUtils.SelectHeaderContentType(contentTypes);
 
                     if (contentType != null && httpRequestMessage.Content != null)
                         httpRequestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+                    {{/isMultipart}}
 
                     {{/-first}}
                     {{/consumes}}
