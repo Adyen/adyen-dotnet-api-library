@@ -31,6 +31,7 @@ namespace Adyen.Test.Core.Client
         [DataRow(HttpStatusCode.TooManyRequests, false)]
         [DataRow(HttpStatusCode.UnprocessableEntity, false)]
         [DataRow(HttpStatusCode.InternalServerError, false)]
+        [DataRow(HttpStatusCode.ServiceUnavailable, false)]
         public async Task Given_ApiResponse_When_SuccessStatusCode_Then_Result_ShouldMatchHttpResponseMessage(HttpStatusCode code, bool expected)
         {
             // Arrange
@@ -78,7 +79,7 @@ namespace Adyen.Test.Core.Client
 
         private class TestApiResponse<T> : ApiResponse,
             IOk<T>, ICreated<T>, IAccepted<T>,
-            IBadRequest<T>, IUnauthorized<T>, IForbidden<T>, ITooManyRequests<T>, INotFound<T>, IUnprocessableContent<T>, IInternalServerError<T>
+            IBadRequest<T>, IUnauthorized<T>, IForbidden<T>, ITooManyRequests<T>, INotFound<T>, IUnprocessableContent<T>, IInternalServerError<T>, IServiceUnavailable<T>
         {
             public TestApiResponse(HttpRequestMessage message, HttpResponseMessage response, string raw, string path, DateTime requested, JsonSerializerOptions opts)
                 : base(message, response, raw, path, requested, opts) { }
@@ -114,6 +115,9 @@ namespace Adyen.Test.Core.Client
 
             public T InternalServerError() => DeserializeRaw();
             public bool TryDeserializeInternalServerErrorResponse(out T? result) { result = string.IsNullOrEmpty(RawContent) ? default : DeserializeRaw(); return result != null; }
+
+            public T ServiceUnavailable() => DeserializeRaw();
+            public bool TryDeserializeServiceUnavailableResponse(out T? result) { result = string.IsNullOrEmpty(RawContent) ? default : DeserializeRaw(); return result != null; }
         }
         
         private record TestModel(string Foo);
@@ -168,6 +172,10 @@ namespace Adyen.Test.Core.Client
             Assert.AreEqual(model, response.InternalServerError());
             Assert.IsTrue(response.TryDeserializeInternalServerErrorResponse(out var internalResult));
             Assert.AreEqual(model, internalResult);
+
+            Assert.AreEqual(model, response.ServiceUnavailable());
+            Assert.IsTrue(response.TryDeserializeServiceUnavailableResponse(out var serviceUnavailableResult));
+            Assert.AreEqual(model, serviceUnavailableResult);
         }
     }
 }
