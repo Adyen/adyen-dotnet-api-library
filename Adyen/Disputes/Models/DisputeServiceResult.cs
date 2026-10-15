@@ -119,6 +119,8 @@ namespace Adyen.Disputes.Models
                     switch (jsonPropertyName)
                     {
                         case "success":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'success' on 'DisputeServiceResult' cannot be null.");
                             success = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "errorMessage":

@@ -544,6 +544,8 @@ namespace Adyen.LegalEntityManagement.Models
                     switch (jsonPropertyName)
                     {
                         case "adyenProcessedFunds":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'adyenProcessedFunds' on 'SourceOfFunds' cannot be null.");
                             adyenProcessedFunds = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "amount":
