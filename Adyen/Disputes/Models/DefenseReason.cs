@@ -131,6 +131,8 @@ namespace Adyen.Disputes.Models
                             defenseReasonCode = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "satisfied":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'satisfied' on 'DefenseReason' cannot be null.");
                             satisfied = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "defenseDocumentTypes":

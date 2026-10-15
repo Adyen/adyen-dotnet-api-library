@@ -115,6 +115,8 @@ namespace Adyen.Capital.Models
                             actionCode = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "resolved":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'resolved' on 'Action' cannot be null.");
                             resolved = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:

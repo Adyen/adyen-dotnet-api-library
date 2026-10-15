@@ -151,6 +151,8 @@ namespace Adyen.Management.Models
                     switch (jsonPropertyName)
                     {
                         case "inventory":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'inventory' on 'TerminalReassignmentTarget' cannot be null.");
                             inventory = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "companyId":

@@ -121,9 +121,13 @@ namespace Adyen.BalancePlatform.Models
                     switch (jsonPropertyName)
                     {
                         case "hasNext":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'hasNext' on 'BalanceSweepConfigurationsResponse' cannot be null.");
                             hasNext = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "hasPrevious":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'hasPrevious' on 'BalanceSweepConfigurationsResponse' cannot be null.");
                             hasPrevious = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "sweeps":

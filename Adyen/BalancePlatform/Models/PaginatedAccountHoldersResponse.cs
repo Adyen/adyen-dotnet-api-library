@@ -124,9 +124,13 @@ namespace Adyen.BalancePlatform.Models
                             accountHolders = new Option<List<AccountHolder>?>(JsonSerializer.Deserialize<List<AccountHolder>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "hasNext":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'hasNext' on 'PaginatedAccountHoldersResponse' cannot be null.");
                             hasNext = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "hasPrevious":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'hasPrevious' on 'PaginatedAccountHoldersResponse' cannot be null.");
                             hasPrevious = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:

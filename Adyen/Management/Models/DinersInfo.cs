@@ -276,6 +276,8 @@ namespace Adyen.Management.Models
                             midNumber = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "reuseMidNumber":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'reuseMidNumber' on 'DinersInfo' cannot be null.");
                             reuseMidNumber = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "serviceLevel":
