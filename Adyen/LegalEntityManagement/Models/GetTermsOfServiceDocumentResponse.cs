@@ -43,9 +43,9 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**  
+        /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenCapitalCashAdvance** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite** *  **directDebit**  
         /// </summary>
-        /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**  </value>
+        /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenCapitalCashAdvance** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite** *  **directDebit**  </value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
         public class TypeEnum : IEnum
         {
@@ -63,6 +63,11 @@ namespace Adyen.LegalEntityManagement.Models
             /// TypeEnum.AdyenCapital - adyenCapital
             /// </summary>
             public static readonly TypeEnum AdyenCapital = new("adyenCapital");
+
+            /// <summary>
+            /// TypeEnum.AdyenCapitalCashAdvance - adyenCapitalCashAdvance
+            /// </summary>
+            public static readonly TypeEnum AdyenCapitalCashAdvance = new("adyenCapitalCashAdvance");
 
             /// <summary>
             /// TypeEnum.AdyenCard - adyenCard
@@ -98,6 +103,11 @@ namespace Adyen.LegalEntityManagement.Models
             /// TypeEnum.AdyenPccr - adyenPccr
             /// </summary>
             public static readonly TypeEnum AdyenPccr = new("adyenPccr");
+
+            /// <summary>
+            /// TypeEnum.DirectDebit - directDebit
+            /// </summary>
+            public static readonly TypeEnum DirectDebit = new("directDebit");
 
             /// <summary>
             /// TypeEnum.KycOnInvite - kycOnInvite
@@ -158,6 +168,7 @@ namespace Adyen.LegalEntityManagement.Models
                 return value switch {
                     "adyenAccount" => TypeEnum.AdyenAccount,
                     "adyenCapital" => TypeEnum.AdyenCapital,
+                    "adyenCapitalCashAdvance" => TypeEnum.AdyenCapitalCashAdvance,
                     "adyenCard" => TypeEnum.AdyenCard,
                     "adyenChargeCard" => TypeEnum.AdyenChargeCard,
                     "adyenForPlatformsAdvanced" => TypeEnum.AdyenForPlatformsAdvanced,
@@ -165,6 +176,7 @@ namespace Adyen.LegalEntityManagement.Models
                     "adyenFranchisee" => TypeEnum.AdyenFranchisee,
                     "adyenIssuing" => TypeEnum.AdyenIssuing,
                     "adyenPccr" => TypeEnum.AdyenPccr,
+                    "directDebit" => TypeEnum.DirectDebit,
                     "kycOnInvite" => TypeEnum.KycOnInvite,
                     _ => null,
                 };
@@ -186,6 +198,9 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TypeEnum.AdyenCapital)
                     return "adyenCapital";
                 
+                if (value == TypeEnum.AdyenCapitalCashAdvance)
+                    return "adyenCapitalCashAdvance";
+                
                 if (value == TypeEnum.AdyenCard)
                     return "adyenCard";
                 
@@ -206,6 +221,9 @@ namespace Adyen.LegalEntityManagement.Models
                 
                 if (value == TypeEnum.AdyenPccr)
                     return "adyenPccr";
+                
+                if (value == TypeEnum.DirectDebit)
+                    return "directDebit";
                 
                 if (value == TypeEnum.KycOnInvite)
                     return "kycOnInvite";
@@ -245,9 +263,9 @@ namespace Adyen.LegalEntityManagement.Models
         public Option<TypeEnum?> _TypeOption { get; private set; }
 
         /// <summary>
-        /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**  
+        /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenCapitalCashAdvance** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite** *  **directDebit**  
         /// </summary>
-        /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**  </value>
+        /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenCapitalCashAdvance** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite** *  **directDebit**  </value>
         [JsonPropertyName("type")]
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 

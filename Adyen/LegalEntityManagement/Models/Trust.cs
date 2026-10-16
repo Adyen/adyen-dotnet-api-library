@@ -470,9 +470,9 @@ namespace Adyen.LegalEntityManagement.Models
         public string? CountryOfGoverningLaw { get; set; }
 
         /// <summary>
-        /// The legal name.
+        /// The legal name. Must be at least 3 characters.  Only the following special characters are allowed: **,**, **-**, **—**, **.**, **;**, **:**, **&amp;**, **?**, **@**, **(**, **)**, **\&quot;**, **&#39;**, **!**, **\\**, **+**, **_/_**. Accents and non-Latin scripts are allowed.  The field cannot contain emojis, only one repeated character (unless two characters long), only symbols, only numbers, only spaces, or **fictitious names** such as **John Doe** or **N/A**.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).
         /// </summary>
-        /// <value>The legal name.</value>
+        /// <value>The legal name. Must be at least 3 characters.  Only the following special characters are allowed: **,**, **-**, **—**, **.**, **;**, **:**, **&**, **?**, **@**, **(**, **)**, **\"**, **'**, **!**, **\\**, **+**, **_/_**. Accents and non-Latin scripts are allowed.  The field cannot contain emojis, only one repeated character (unless two characters long), only symbols, only numbers, only spaces, or **fictitious names** such as **John Doe** or **N/A**.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).</value>
         [JsonPropertyName("name")]
         public string? Name { get; set; }
 
@@ -566,6 +566,20 @@ namespace Adyen.LegalEntityManagement.Models
         public string? RegistrationNumber { get { return this._RegistrationNumberOption; } set { this._RegistrationNumberOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ResidentialAddressIndicator"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> _ResidentialAddressIndicatorOption { get; private set; }
+
+        /// <summary>
+        /// Indicates if the &#x60;registeredAddress&#x60; is a place of residence, instead of a business address.  Set to **true** if the address is a place of residence. The default value is **false**.
+        /// </summary>
+        /// <value>Indicates if the `registeredAddress` is a place of residence, instead of a business address.  Set to **true** if the address is a place of residence. The default value is **false**.</value>
+        [JsonPropertyName("residentialAddressIndicator")]
+        public bool? ResidentialAddressIndicator { get { return this._ResidentialAddressIndicatorOption; } set { this._ResidentialAddressIndicatorOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="TaxInformation"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -625,6 +639,7 @@ namespace Adyen.LegalEntityManagement.Models
             sb.Append("  DoingBusinessAsAbsent: ").Append(DoingBusinessAsAbsent).Append("\n");
             sb.Append("  PrincipalPlaceOfBusiness: ").Append(PrincipalPlaceOfBusiness).Append("\n");
             sb.Append("  RegistrationNumber: ").Append(RegistrationNumber).Append("\n");
+            sb.Append("  ResidentialAddressIndicator: ").Append(ResidentialAddressIndicator).Append("\n");
             sb.Append("  TaxInformation: ").Append(TaxInformation).Append("\n");
             sb.Append("  UndefinedBeneficiaryInfo: ").Append(UndefinedBeneficiaryInfo).Append("\n");
             sb.Append("  VatAbsenceReason: ").Append(VatAbsenceReason).Append("\n");
@@ -666,6 +681,7 @@ namespace Adyen.LegalEntityManagement.Models
             Option<bool?> doingBusinessAsAbsent = default;
             Option<Address?> principalPlaceOfBusiness = default;
             Option<string?> registrationNumber = default;
+            Option<bool?> residentialAddressIndicator = default;
             Option<List<TaxInformation>?> taxInformation = default;
             Option<List<UndefinedBeneficiary>?> undefinedBeneficiaryInfo = default;
             Option<Trust.VatAbsenceReasonEnum?> vatAbsenceReason = default;
@@ -717,6 +733,9 @@ namespace Adyen.LegalEntityManagement.Models
                         case "registrationNumber":
                             registrationNumber = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "residentialAddressIndicator":
+                            residentialAddressIndicator = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         case "taxInformation":
                             taxInformation = new Option<List<TaxInformation>?>(JsonSerializer.Deserialize<List<TaxInformation>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
@@ -758,6 +777,8 @@ namespace Adyen.LegalEntityManagement.Models
                 trust.PrincipalPlaceOfBusiness = principalPlaceOfBusiness.Value;
             if (registrationNumber.IsSet)
                 trust.RegistrationNumber = registrationNumber.Value;
+            if (residentialAddressIndicator.IsSet)
+                trust.ResidentialAddressIndicator = residentialAddressIndicator.Value;
             if (taxInformation.IsSet)
                 trust.TaxInformation = taxInformation.Value;
             if (undefinedBeneficiaryInfo.IsSet)
@@ -836,6 +857,13 @@ namespace Adyen.LegalEntityManagement.Models
             if (trust._RegistrationNumberOption.IsSet)
                 if (trust.RegistrationNumber != null)
                     writer.WriteString("registrationNumber", trust.RegistrationNumber);
+
+            if (trust._ResidentialAddressIndicatorOption.IsSet)
+                if (trust._ResidentialAddressIndicatorOption.Value != null)
+                    if (trust._ResidentialAddressIndicatorOption.Value != null)
+                    writer.WriteBoolean("residentialAddressIndicator", trust._ResidentialAddressIndicatorOption.Value!.Value);
+                else
+                    writer.WriteNull("residentialAddressIndicator");
 
             if (trust._TaxInformationOption.IsSet)
             {
