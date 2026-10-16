@@ -43,11 +43,18 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="SwishNumber"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _SwishNumberOption { get; private set; }
+
+        /// <summary>
         /// Swish number. Format: 10 digits without spaces. For example, **1231111111**.
         /// </summary>
         /// <value>Swish number. Format: 10 digits without spaces. For example, **1231111111**.</value>
         [JsonPropertyName("swishNumber")]
-        public string? SwishNumber { get; set; }
+        public string? SwishNumber { get { return this._SwishNumberOption; } set { this._SwishNumberOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -114,7 +121,7 @@ namespace Adyen.Management.Models
 
             var swishResponseInfo = new SwishResponseInfo();
             if (swishNumber.IsSet)
-                swishResponseInfo.SwishNumber = swishNumber.Value!;
+                swishResponseInfo.SwishNumber = swishNumber.Value;
             return swishResponseInfo;
         }
 
@@ -144,8 +151,9 @@ namespace Adyen.Management.Models
         public void WriteProperties(Utf8JsonWriter writer, SwishResponseInfo swishResponseInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (swishResponseInfo.SwishNumber != null)
-                writer.WriteString("swishNumber", swishResponseInfo.SwishNumber);
+            if (swishResponseInfo._SwishNumberOption.IsSet)
+                if (swishResponseInfo.SwishNumber != null)
+                    writer.WriteString("swishNumber", swishResponseInfo.SwishNumber);
         }
     }
 }

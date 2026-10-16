@@ -43,25 +43,46 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="DisplayName"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _DisplayNameOption { get; private set; }
+
+        /// <summary>
         /// Merchant display name
         /// </summary>
         /// <value>Merchant display name</value>
         [JsonPropertyName("displayName")]
-        public string? DisplayName { get; set; }
+        public string? DisplayName { get { return this._DisplayNameOption; } set { this._DisplayNameOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Logo"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _LogoOption { get; private set; }
 
         /// <summary>
         /// Merchant logo. Format: Base64-encoded string.
         /// </summary>
         /// <value>Merchant logo. Format: Base64-encoded string.</value>
         [JsonPropertyName("logo")]
-        public string? Logo { get; set; }
+        public string? Logo { get { return this._LogoOption; } set { this._LogoOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="SupportEmail"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _SupportEmailOption { get; private set; }
 
         /// <summary>
         /// The email address of merchant support.
         /// </summary>
         /// <value>The email address of merchant support.</value>
         [JsonPropertyName("supportEmail")]
-        public string? SupportEmail { get; set; }
+        public string? SupportEmail { get { return this._SupportEmailOption; } set { this._SupportEmailOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -138,11 +159,11 @@ namespace Adyen.Management.Models
 
             var payMeResponseInfo = new PayMeResponseInfo();
             if (displayName.IsSet)
-                payMeResponseInfo.DisplayName = displayName.Value!;
+                payMeResponseInfo.DisplayName = displayName.Value;
             if (logo.IsSet)
-                payMeResponseInfo.Logo = logo.Value!;
+                payMeResponseInfo.Logo = logo.Value;
             if (supportEmail.IsSet)
-                payMeResponseInfo.SupportEmail = supportEmail.Value!;
+                payMeResponseInfo.SupportEmail = supportEmail.Value;
             return payMeResponseInfo;
         }
 
@@ -172,14 +193,17 @@ namespace Adyen.Management.Models
         public void WriteProperties(Utf8JsonWriter writer, PayMeResponseInfo payMeResponseInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (payMeResponseInfo.DisplayName != null)
-                writer.WriteString("displayName", payMeResponseInfo.DisplayName);
+            if (payMeResponseInfo._DisplayNameOption.IsSet)
+                if (payMeResponseInfo.DisplayName != null)
+                    writer.WriteString("displayName", payMeResponseInfo.DisplayName);
 
-            if (payMeResponseInfo.Logo != null)
-                writer.WriteString("logo", payMeResponseInfo.Logo);
+            if (payMeResponseInfo._LogoOption.IsSet)
+                if (payMeResponseInfo.Logo != null)
+                    writer.WriteString("logo", payMeResponseInfo.Logo);
 
-            if (payMeResponseInfo.SupportEmail != null)
-                writer.WriteString("supportEmail", payMeResponseInfo.SupportEmail);
+            if (payMeResponseInfo._SupportEmailOption.IsSet)
+                if (payMeResponseInfo.SupportEmail != null)
+                    writer.WriteString("supportEmail", payMeResponseInfo.SupportEmail);
         }
     }
 }
