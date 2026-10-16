@@ -780,9 +780,9 @@ namespace Adyen.LegalEntityManagement.Models
         public VatAbsenceReasonEnum? VatAbsenceReason { get { return this._VatAbsenceReasonOption; } set { this._VatAbsenceReasonOption = new(value); } }
 
         /// <summary>
-        /// The organization&#39;s legal name.
+        /// The organization&#39;s legal name. Must be at least 3 characters.  Only the following special characters are allowed: **,**, **-**, **—**, **.**, **;**, **:**, **&amp;**, **?**, **@**, **(**, **)**, **\&quot;**, **&#39;**, **!**, **\\**, **+**, **_/_**. Accents and non-Latin scripts are allowed.  The field cannot contain emojis, only one repeated character (unless two characters long), only symbols, only numbers, only spaces, or **fictitious names** such as **John Doe** or **N/A**.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).
         /// </summary>
-        /// <value>The organization's legal name.</value>
+        /// <value>The organization's legal name. Must be at least 3 characters.  Only the following special characters are allowed: **,**, **-**, **—**, **.**, **;**, **:**, **&**, **?**, **@**, **(**, **)**, **\"**, **'**, **!**, **\\**, **+**, **_/_**. Accents and non-Latin scripts are allowed.  The field cannot contain emojis, only one repeated character (unless two characters long), only symbols, only numbers, only spaces, or **fictitious names** such as **John Doe** or **N/A**.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).</value>
         [JsonPropertyName("legalName")]
         public string? LegalName { get; set; }
 
@@ -1015,6 +1015,20 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? RegistrationNumberAbsent { get { return this._RegistrationNumberAbsentOption; } set { this._RegistrationNumberAbsentOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ResidentialAddressIndicator"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> _ResidentialAddressIndicatorOption { get; private set; }
+
+        /// <summary>
+        /// Indicates if the &#x60;registeredAddress&#x60; is a place of residence, instead of a business address.  Set to **true** if the address is a place of residence. The default value is **false**.
+        /// </summary>
+        /// <value>Indicates if the `registeredAddress` is a place of residence, instead of a business address.  Set to **true** if the address is a place of residence. The default value is **false**.</value>
+        [JsonPropertyName("residentialAddressIndicator")]
+        public bool? ResidentialAddressIndicator { get { return this._ResidentialAddressIndicatorOption; } set { this._ResidentialAddressIndicatorOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="StockData"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -1121,6 +1135,7 @@ namespace Adyen.LegalEntityManagement.Models
             sb.Append("  PrincipalPlaceOfBusiness: ").Append(PrincipalPlaceOfBusiness).Append("\n");
             sb.Append("  RegistrationNumber: ").Append(RegistrationNumber).Append("\n");
             sb.Append("  RegistrationNumberAbsent: ").Append(RegistrationNumberAbsent).Append("\n");
+            sb.Append("  ResidentialAddressIndicator: ").Append(ResidentialAddressIndicator).Append("\n");
             sb.Append("  StatusOfLegalProceeding: ").Append(StatusOfLegalProceeding).Append("\n");
             sb.Append("  StockData: ").Append(StockData).Append("\n");
             sb.Append("  Support: ").Append(Support).Append("\n");
@@ -1176,6 +1191,7 @@ namespace Adyen.LegalEntityManagement.Models
             Option<Address?> principalPlaceOfBusiness = default;
             Option<string?> registrationNumber = default;
             Option<bool?> registrationNumberAbsent = default;
+            Option<bool?> residentialAddressIndicator = default;
             Option<Organization.StatusOfLegalProceedingEnum?> statusOfLegalProceeding = default;
             Option<StockData?> stockData = default;
             Option<Support?> support = default;
@@ -1259,6 +1275,9 @@ namespace Adyen.LegalEntityManagement.Models
                         case "registrationNumberAbsent":
                             registrationNumberAbsent = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
+                        case "residentialAddressIndicator":
+                            residentialAddressIndicator = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         case "statusOfLegalProceeding":
                             string? statusOfLegalProceedingRawValue = utf8JsonReader.GetString();
                             statusOfLegalProceeding = new Option<Organization.StatusOfLegalProceedingEnum?>(Organization.StatusOfLegalProceedingEnum.FromStringOrDefault(statusOfLegalProceedingRawValue) ?? (Organization.StatusOfLegalProceedingEnum)statusOfLegalProceedingRawValue);
@@ -1335,6 +1354,8 @@ namespace Adyen.LegalEntityManagement.Models
                 organization.RegistrationNumber = registrationNumber.Value;
             if (registrationNumberAbsent.IsSet)
                 organization.RegistrationNumberAbsent = registrationNumberAbsent.Value;
+            if (residentialAddressIndicator.IsSet)
+                organization.ResidentialAddressIndicator = residentialAddressIndicator.Value;
             if (statusOfLegalProceeding.IsSet)
                 organization.StatusOfLegalProceeding = statusOfLegalProceeding.Value;
             if (stockData.IsSet)
@@ -1465,6 +1486,13 @@ namespace Adyen.LegalEntityManagement.Models
                     writer.WriteBoolean("registrationNumberAbsent", organization._RegistrationNumberAbsentOption.Value!.Value);
                 else
                     writer.WriteNull("registrationNumberAbsent");
+
+            if (organization._ResidentialAddressIndicatorOption.IsSet)
+                if (organization._ResidentialAddressIndicatorOption.Value != null)
+                    if (organization._ResidentialAddressIndicatorOption.Value != null)
+                    writer.WriteBoolean("residentialAddressIndicator", organization._ResidentialAddressIndicatorOption.Value!.Value);
+                else
+                    writer.WriteNull("residentialAddressIndicator");
 
             if (organization._StatusOfLegalProceedingOption.IsSet && organization.StatusOfLegalProceeding != null) 
             {

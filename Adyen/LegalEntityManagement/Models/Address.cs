@@ -57,9 +57,9 @@ namespace Adyen.LegalEntityManagement.Models
         public Option<string?> _CityOption { get; private set; }
 
         /// <summary>
-        /// The name of the city. Required if &#x60;stateOrProvince&#x60; is provided.  If you specify the city, you must also send &#x60;postalCode&#x60; and &#x60;street&#x60;.
+        /// The name of the city. Required if &#x60;stateOrProvince&#x60; is provided.  If you specify the city, you must also send &#x60;postalCode&#x60; and &#x60;street&#x60;.  The city name must be at least 3 characters. If the city name contains only repeated characters, the minimum length is two characters. For example, Aa is accepted, but Aaaa is not.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).
         /// </summary>
-        /// <value>The name of the city. Required if `stateOrProvince` is provided.  If you specify the city, you must also send `postalCode` and `street`.</value>
+        /// <value>The name of the city. Required if `stateOrProvince` is provided.  If you specify the city, you must also send `postalCode` and `street`.  The city name must be at least 3 characters. If the city name contains only repeated characters, the minimum length is two characters. For example, Aa is accepted, but Aaaa is not.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).</value>
         [JsonPropertyName("city")]
         public string? City { get { return this._CityOption; } set { this._CityOption = new(value); } }
 
@@ -99,9 +99,9 @@ namespace Adyen.LegalEntityManagement.Models
         public Option<string?> _StreetOption { get; private set; }
 
         /// <summary>
-        /// The name of the street, and the house or building number. Required if &#x60;stateOrProvince&#x60; and/or &#x60;city&#x60; is provided.
+        /// The name of the street, and the house or building number. Must be at least 3 characters. Required if &#x60;stateOrProvince&#x60; and/or &#x60;city&#x60; is provided. For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).
         /// </summary>
-        /// <value>The name of the street, and the house or building number. Required if `stateOrProvince` and/or `city` is provided.</value>
+        /// <value>The name of the street, and the house or building number. Must be at least 3 characters. Required if `stateOrProvince` and/or `city` is provided. For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).</value>
         [JsonPropertyName("street")]
         public string? Street { get { return this._StreetOption; } set { this._StreetOption = new(value); } }
 

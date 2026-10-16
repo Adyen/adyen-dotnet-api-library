@@ -124,6 +124,8 @@ namespace Adyen.LegalEntityManagement.Client
                 return Models.AcceptTermsOfServiceResponse.TypeEnum.ToJsonValue(acceptTermsOfServiceResponseTypeEnum);
             if (obj is Models.AdditionalBankIdentification.TypeEnum additionalBankIdentificationTypeEnum)
                 return Models.AdditionalBankIdentification.TypeEnum.ToJsonValue(additionalBankIdentificationTypeEnum);
+            if (obj is Models.BankAccountInfoAccountIdentification.TypeEnum bankAccountInfoAccountIdentificationTypeEnum)
+                return Models.BankAccountInfoAccountIdentification.TypeEnum.ToJsonValue(bankAccountInfoAccountIdentificationTypeEnum);
             if (obj is Models.BusinessLine.ServiceEnum businessLineServiceEnum)
                 return Models.BusinessLine.ServiceEnum.ToJsonValue(businessLineServiceEnum);
             if (obj is Models.BusinessLineInfo.ServiceEnum businessLineInfoServiceEnum)

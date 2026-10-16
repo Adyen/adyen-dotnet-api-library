@@ -64,6 +64,11 @@ namespace Adyen.LegalEntityManagement.Models
             public static readonly TermsOfServiceTypesEnum AdyenCapital = new("adyenCapital");
 
             /// <summary>
+            /// TermsOfServiceTypesEnum.AdyenCapitalCashAdvance - adyenCapitalCashAdvance
+            /// </summary>
+            public static readonly TermsOfServiceTypesEnum AdyenCapitalCashAdvance = new("adyenCapitalCashAdvance");
+
+            /// <summary>
             /// TermsOfServiceTypesEnum.AdyenCard - adyenCard
             /// </summary>
             public static readonly TermsOfServiceTypesEnum AdyenCard = new("adyenCard");
@@ -97,6 +102,11 @@ namespace Adyen.LegalEntityManagement.Models
             /// TermsOfServiceTypesEnum.AdyenPccr - adyenPccr
             /// </summary>
             public static readonly TermsOfServiceTypesEnum AdyenPccr = new("adyenPccr");
+
+            /// <summary>
+            /// TermsOfServiceTypesEnum.DirectDebit - directDebit
+            /// </summary>
+            public static readonly TermsOfServiceTypesEnum DirectDebit = new("directDebit");
 
             /// <summary>
             /// TermsOfServiceTypesEnum.KycOnInvite - kycOnInvite
@@ -157,6 +167,7 @@ namespace Adyen.LegalEntityManagement.Models
                 return value switch {
                     "adyenAccount" => TermsOfServiceTypesEnum.AdyenAccount,
                     "adyenCapital" => TermsOfServiceTypesEnum.AdyenCapital,
+                    "adyenCapitalCashAdvance" => TermsOfServiceTypesEnum.AdyenCapitalCashAdvance,
                     "adyenCard" => TermsOfServiceTypesEnum.AdyenCard,
                     "adyenChargeCard" => TermsOfServiceTypesEnum.AdyenChargeCard,
                     "adyenForPlatformsAdvanced" => TermsOfServiceTypesEnum.AdyenForPlatformsAdvanced,
@@ -164,6 +175,7 @@ namespace Adyen.LegalEntityManagement.Models
                     "adyenFranchisee" => TermsOfServiceTypesEnum.AdyenFranchisee,
                     "adyenIssuing" => TermsOfServiceTypesEnum.AdyenIssuing,
                     "adyenPccr" => TermsOfServiceTypesEnum.AdyenPccr,
+                    "directDebit" => TermsOfServiceTypesEnum.DirectDebit,
                     "kycOnInvite" => TermsOfServiceTypesEnum.KycOnInvite,
                     _ => null,
                 };
@@ -185,6 +197,9 @@ namespace Adyen.LegalEntityManagement.Models
                 if (value == TermsOfServiceTypesEnum.AdyenCapital)
                     return "adyenCapital";
                 
+                if (value == TermsOfServiceTypesEnum.AdyenCapitalCashAdvance)
+                    return "adyenCapitalCashAdvance";
+                
                 if (value == TermsOfServiceTypesEnum.AdyenCard)
                     return "adyenCard";
                 
@@ -205,6 +220,9 @@ namespace Adyen.LegalEntityManagement.Models
                 
                 if (value == TermsOfServiceTypesEnum.AdyenPccr)
                     return "adyenPccr";
+                
+                if (value == TermsOfServiceTypesEnum.DirectDebit)
+                    return "directDebit";
                 
                 if (value == TermsOfServiceTypesEnum.KycOnInvite)
                     return "kycOnInvite";
