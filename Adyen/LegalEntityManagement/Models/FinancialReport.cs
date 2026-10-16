@@ -78,9 +78,9 @@ namespace Adyen.LegalEntityManagement.Models
         public Option<string?> _CurrencyOfFinancialDataOption { get; private set; }
 
         /// <summary>
-        /// The currency used for the annual turnover, balance sheet total, and net assets.
+        /// The currency used for the financial data.
         /// </summary>
-        /// <value>The currency used for the annual turnover, balance sheet total, and net assets.</value>
+        /// <value>The currency used for the financial data.</value>
         [JsonPropertyName("currencyOfFinancialData")]
         public string? CurrencyOfFinancialData { get { return this._CurrencyOfFinancialDataOption; } set { this._CurrencyOfFinancialDataOption = new(value); } }
 

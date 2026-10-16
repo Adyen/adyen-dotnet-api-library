@@ -180,16 +180,9 @@ namespace Adyen.LegalEntityManagement.Models
         public VatAbsenceReasonEnum? VatAbsenceReason { get { return this._VatAbsenceReasonOption; } set { this._VatAbsenceReasonOption = new(value); } }
 
         /// <summary>
-        /// The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country.
+        /// The legal name. Must be at least 3 characters.  Only the following special characters are allowed: **,**, **-**, **—**, **.**, **;**, **:**, **&amp;**, **?**, **@**, **(**, **)**, **\&quot;**, **&#39;**, **!**, **\\**, **+**, **_/_**. Accents and non-Latin scripts are allowed.  The field cannot contain emojis, only one repeated character (unless two characters long), only symbols, only numbers, only spaces, or **fictitious names** such as **John Doe** or **N/A**.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).
         /// </summary>
-        /// <value>The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country.</value>
-        [JsonPropertyName("countryOfGoverningLaw")]
-        public string? CountryOfGoverningLaw { get; set; }
-
-        /// <summary>
-        /// The legal name.
-        /// </summary>
-        /// <value>The legal name.</value>
+        /// <value>The legal name. Must be at least 3 characters.  Only the following special characters are allowed: **,**, **-**, **—**, **.**, **;**, **:**, **&**, **?**, **@**, **(**, **)**, **\"**, **'**, **!**, **\\**, **+**, **_/_**. Accents and non-Latin scripts are allowed.  The field cannot contain emojis, only one repeated character (unless two characters long), only symbols, only numbers, only spaces, or **fictitious names** such as **John Doe** or **N/A**.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).</value>
         [JsonPropertyName("name")]
         public string? Name { get; set; }
 
@@ -198,6 +191,20 @@ namespace Adyen.LegalEntityManagement.Models
         /// </summary>
         [JsonPropertyName("registeredAddress")]
         public Address? RegisteredAddress { get; set; }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="CountryOfGoverningLaw"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _CountryOfGoverningLawOption { get; private set; }
+
+        /// <summary>
+        /// The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country.
+        /// </summary>
+        /// <value>The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country.</value>
+        [JsonPropertyName("countryOfGoverningLaw")]
+        public string? CountryOfGoverningLaw { get { return this._CountryOfGoverningLawOption; } set { this._CountryOfGoverningLawOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="DateOfIncorporation"/> will be populated.
@@ -283,6 +290,20 @@ namespace Adyen.LegalEntityManagement.Models
         public string? RegistrationNumber { get { return this._RegistrationNumberOption; } set { this._RegistrationNumberOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ResidentialAddressIndicator"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> _ResidentialAddressIndicatorOption { get; private set; }
+
+        /// <summary>
+        /// Indicates if the &#x60;registeredAddress&#x60; is a place of residence, instead of a business address.  Set to **true** if the address is a place of residence. The default value is **false**.
+        /// </summary>
+        /// <value>Indicates if the `registeredAddress` is a place of residence, instead of a business address.  Set to **true** if the address is a place of residence. The default value is **false**.</value>
+        [JsonPropertyName("residentialAddressIndicator")]
+        public bool? ResidentialAddressIndicator { get { return this._ResidentialAddressIndicatorOption; } set { this._ResidentialAddressIndicatorOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="TaxAbsent"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -332,15 +353,16 @@ namespace Adyen.LegalEntityManagement.Models
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class SoleProprietorship {\n");
-            sb.Append("  CountryOfGoverningLaw: ").Append(CountryOfGoverningLaw).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  RegisteredAddress: ").Append(RegisteredAddress).Append("\n");
+            sb.Append("  CountryOfGoverningLaw: ").Append(CountryOfGoverningLaw).Append("\n");
             sb.Append("  DateOfIncorporation: ").Append(DateOfIncorporation).Append("\n");
             sb.Append("  DoingBusinessAs: ").Append(DoingBusinessAs).Append("\n");
             sb.Append("  DoingBusinessAsAbsent: ").Append(DoingBusinessAsAbsent).Append("\n");
             sb.Append("  FinancialReports: ").Append(FinancialReports).Append("\n");
             sb.Append("  PrincipalPlaceOfBusiness: ").Append(PrincipalPlaceOfBusiness).Append("\n");
             sb.Append("  RegistrationNumber: ").Append(RegistrationNumber).Append("\n");
+            sb.Append("  ResidentialAddressIndicator: ").Append(ResidentialAddressIndicator).Append("\n");
             sb.Append("  TaxAbsent: ").Append(TaxAbsent).Append("\n");
             sb.Append("  TaxInformation: ").Append(TaxInformation).Append("\n");
             sb.Append("  VatAbsenceReason: ").Append(VatAbsenceReason).Append("\n");
@@ -372,15 +394,16 @@ namespace Adyen.LegalEntityManagement.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> countryOfGoverningLaw = default;
             Option<string?> name = default;
             Option<Address?> registeredAddress = default;
+            Option<string?> countryOfGoverningLaw = default;
             Option<string?> dateOfIncorporation = default;
             Option<string?> doingBusinessAs = default;
             Option<bool?> doingBusinessAsAbsent = default;
             Option<List<FinancialReport>?> financialReports = default;
             Option<Address?> principalPlaceOfBusiness = default;
             Option<string?> registrationNumber = default;
+            Option<bool?> residentialAddressIndicator = default;
             Option<bool?> taxAbsent = default;
             Option<List<TaxInformation>?> taxInformation = default;
             Option<SoleProprietorship.VatAbsenceReasonEnum?> vatAbsenceReason = default;
@@ -401,14 +424,14 @@ namespace Adyen.LegalEntityManagement.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "countryOfGoverningLaw":
-                            countryOfGoverningLaw = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
                         case "name":
                             name = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "registeredAddress":
                             registeredAddress = new Option<Address?>(JsonSerializer.Deserialize<Address>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "countryOfGoverningLaw":
+                            countryOfGoverningLaw = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "dateOfIncorporation":
                             dateOfIncorporation = new Option<string?>(utf8JsonReader.GetString()!);
@@ -427,6 +450,9 @@ namespace Adyen.LegalEntityManagement.Models
                             break;
                         case "registrationNumber":
                             registrationNumber = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "residentialAddressIndicator":
+                            residentialAddressIndicator = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "taxAbsent":
                             taxAbsent = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
@@ -449,12 +475,12 @@ namespace Adyen.LegalEntityManagement.Models
             
 
             var soleProprietorship = new SoleProprietorship();
-            if (countryOfGoverningLaw.IsSet)
-                soleProprietorship.CountryOfGoverningLaw = countryOfGoverningLaw.Value!;
             if (name.IsSet)
                 soleProprietorship.Name = name.Value!;
             if (registeredAddress.IsSet)
                 soleProprietorship.RegisteredAddress = registeredAddress.Value!;
+            if (countryOfGoverningLaw.IsSet)
+                soleProprietorship.CountryOfGoverningLaw = countryOfGoverningLaw.Value;
             if (dateOfIncorporation.IsSet)
                 soleProprietorship.DateOfIncorporation = dateOfIncorporation.Value;
             if (doingBusinessAs.IsSet)
@@ -467,6 +493,8 @@ namespace Adyen.LegalEntityManagement.Models
                 soleProprietorship.PrincipalPlaceOfBusiness = principalPlaceOfBusiness.Value;
             if (registrationNumber.IsSet)
                 soleProprietorship.RegistrationNumber = registrationNumber.Value;
+            if (residentialAddressIndicator.IsSet)
+                soleProprietorship.ResidentialAddressIndicator = residentialAddressIndicator.Value;
             if (taxAbsent.IsSet)
                 soleProprietorship.TaxAbsent = taxAbsent.Value;
             if (taxInformation.IsSet)
@@ -504,14 +532,15 @@ namespace Adyen.LegalEntityManagement.Models
         public void WriteProperties(Utf8JsonWriter writer, SoleProprietorship soleProprietorship, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (soleProprietorship.CountryOfGoverningLaw != null)
-                writer.WriteString("countryOfGoverningLaw", soleProprietorship.CountryOfGoverningLaw);
-
             if (soleProprietorship.Name != null)
                 writer.WriteString("name", soleProprietorship.Name);
 
             writer.WritePropertyName("registeredAddress");
             JsonSerializer.Serialize(writer, soleProprietorship.RegisteredAddress, jsonSerializerOptions);
+            if (soleProprietorship._CountryOfGoverningLawOption.IsSet)
+                if (soleProprietorship.CountryOfGoverningLaw != null)
+                    writer.WriteString("countryOfGoverningLaw", soleProprietorship.CountryOfGoverningLaw);
+
             if (soleProprietorship._DateOfIncorporationOption.IsSet)
                 if (soleProprietorship.DateOfIncorporation != null)
                     writer.WriteString("dateOfIncorporation", soleProprietorship.DateOfIncorporation);
@@ -540,6 +569,13 @@ namespace Adyen.LegalEntityManagement.Models
             if (soleProprietorship._RegistrationNumberOption.IsSet)
                 if (soleProprietorship.RegistrationNumber != null)
                     writer.WriteString("registrationNumber", soleProprietorship.RegistrationNumber);
+
+            if (soleProprietorship._ResidentialAddressIndicatorOption.IsSet)
+                if (soleProprietorship._ResidentialAddressIndicatorOption.Value != null)
+                    if (soleProprietorship._ResidentialAddressIndicatorOption.Value != null)
+                    writer.WriteBoolean("residentialAddressIndicator", soleProprietorship._ResidentialAddressIndicatorOption.Value!.Value);
+                else
+                    writer.WriteNull("residentialAddressIndicator");
 
             if (soleProprietorship._TaxAbsentOption.IsSet)
                 if (soleProprietorship._TaxAbsentOption.Value != null)
