@@ -389,6 +389,8 @@ namespace Adyen.BalancePlatform.Models
                             payoutScheduleDescription = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "userSettlementDelay":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'userSettlementDelay' on 'BalancePlatformConfiguration' cannot be null.");
                             userSettlementDelay = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "userSettlementTime":
