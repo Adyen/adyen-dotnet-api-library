@@ -58,6 +58,7 @@ namespace Adyen.Webhooks.Models
         public const string EventCodeRefundWithData = "REFUND_WITH_DATA";
         public const string EventCodeReportAvailable = "REPORT_AVAILABLE";
         public const string EventCodeRequestForInformation = "REQUEST_FOR_INFORMATION";
+        public const string EventCodeReversal = "REVERSAL";
         public const string EventCodeSecondChargeback = "SECOND_CHARGEBACK";
         public const string EventCodeVoidPendingRefund = "VOID_PENDING_REFUND";
 

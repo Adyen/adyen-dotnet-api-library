@@ -1,11 +1,8 @@
-using System;
-using System.Linq;
 using System.Text.Json;
 using Adyen.Webhooks.Extensions;
 using Adyen.Webhooks.Handlers;
 using Adyen.ApiSerialization;
 using Adyen.Model.TerminalApi;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Linq;
@@ -126,6 +123,31 @@ namespace Adyen.Test.Webhooks
             Assert.AreEqual(1500, notificationItem.Amount.Value);
             Assert.IsFalse(notificationItem.Success);
             Assert.AreEqual("Insufficient balance on payment", notificationItem.Reason);
+        }
+
+        [TestMethod]
+        public void TestReversalSuccess()
+        {
+            var mockPath = GetMockFilePath("mocks/notification/reversal-true.json");
+            var jsonRequest = MockFileToString(mockPath);
+            var handleNotificationRequest = _webhooksHandler.DeserializeNotificationRequest(jsonRequest);
+            var notificationRequestItemContainer = handleNotificationRequest.NotificationItemContainers.FirstOrDefault();
+            if (notificationRequestItemContainer == null)
+                Assert.Fail("NotificationRequestItemContainer is null");
+            var notificationItem = notificationRequestItemContainer.NotificationItem;
+            Assert.AreEqual(Adyen.Webhooks.Models.NotificationRequestConstants.EventCodeReversal, notificationItem.EventCode);
+            Assert.IsTrue(notificationItem.Success);
+            Assert.AreEqual("PSP_REFERENCE", notificationItem.PspReference);
+            Assert.AreEqual("ORIGINAL_PSP", notificationItem.OriginalReference);
+            Assert.IsNotNull(notificationItem.Amount);
+            Assert.AreEqual("EUR", notificationItem.Amount.Currency);
+            Assert.AreEqual(1500, notificationItem.Amount.Value);
+            Assert.IsNotNull(notificationItem.AdditionalData);
+            Assert.AreEqual("refund", notificationItem.AdditionalData["modification.action"]);
+            Assert.AreEqual("authorised", notificationItem.AdditionalData["modification.status"]);
+            Assert.AreEqual("2024-05-21T14:32:00Z", notificationItem.AdditionalData["cancellableUntil"]);
+            Assert.AreEqual("REFUND_PSP_REFERENCE", notificationItem.AdditionalData["refundPspReference"]);
+            Assert.IsNotNull(notificationItem.EventDate);
         }
 
         [TestMethod]
