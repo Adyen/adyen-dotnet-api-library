@@ -346,5 +346,59 @@ namespace Adyen.Test.Checkout
             Assert.AreEqual(PaymentDetails.TypeEnum.Satispay, PaymentDetails.TypeEnum.FromStringOrDefault("satispay"));
             Assert.AreEqual("satispay", PaymentDetails.TypeEnum.ToJsonValue(PaymentDetails.TypeEnum.Satispay));
         }
+
+        // ── Enum values added for the checkout tax endpoints (not covered elsewhere) ──
+
+        [TestMethod]
+        public void Given_RemittancePurpose_When_DeserializeAllKnownValues_Then_EachMatchesStaticInstance()
+        {
+            var opts = _jsonSerializerOptionsProvider.Options;
+            Assert.AreEqual(RemittancePurpose.TOURPROGRAMME, JsonSerializer.Deserialize<RemittancePurpose>("\"TOUR_PROGRAMME\"", opts));
+            Assert.AreEqual(RemittancePurpose.TRAVELNONTOUR, JsonSerializer.Deserialize<RemittancePurpose>("\"TRAVEL_NON_TOUR\"", opts));
+            Assert.AreEqual(RemittancePurpose.EDUCATION,     JsonSerializer.Deserialize<RemittancePurpose>("\"EDUCATION\"", opts));
+            Assert.AreEqual(RemittancePurpose.DIGITAL,       JsonSerializer.Deserialize<RemittancePurpose>("\"DIGITAL\"", opts));
+            Assert.AreEqual("TOUR_PROGRAMME", RemittancePurpose.ToJsonValue(RemittancePurpose.TOURPROGRAMME));
+            Assert.AreEqual("TRAVEL_NON_TOUR", RemittancePurpose.ToJsonValue(RemittancePurpose.TRAVELNONTOUR));
+            Assert.AreEqual("EDUCATION", RemittancePurpose.ToJsonValue(RemittancePurpose.EDUCATION));
+            Assert.AreEqual("DIGITAL", RemittancePurpose.ToJsonValue(RemittancePurpose.DIGITAL));
+        }
+
+        [TestMethod]
+        public void Given_SublimitStatus_When_ExceededConverted_Then_WireValueMatches()
+        {
+            Assert.AreEqual(SublimitStatus.EXCEEDED, JsonSerializer.Deserialize<SublimitStatus>("\"EXCEEDED\"", _jsonSerializerOptionsProvider.Options));
+            Assert.AreEqual("EXCEEDED", SublimitStatus.ToJsonValue(SublimitStatus.EXCEEDED));
+        }
+
+        [TestMethod]
+        public void Given_NewTaxEnums_When_DeserializeUnknownValue_Then_PreservesRawString()
+        {
+            var opts = _jsonSerializerOptionsProvider.Options;
+            CalculationType? calculationType = JsonSerializer.Deserialize<CalculationType>("\"FUTURE_CALCULATION\"", opts);
+            Assert.IsNotNull(calculationType);
+            Assert.AreEqual("FUTURE_CALCULATION", calculationType!.Value);
+            Assert.IsNull(CalculationType.FromStringOrDefault("FUTURE_CALCULATION"));
+        }
+
+        // ── KlarnaNetworkDetails: new optional inner SubtypeEnum ─────────────────
+
+        [TestMethod]
+        public void Given_KlarnaNetworkDetails_When_Subtype_RoundTrip_Then_Redirect_And_Sdk_Survive()
+        {
+            var opts = _jsonSerializerOptionsProvider.Options;
+            foreach (string wireValue in new[] { "redirect", "sdk" })
+            {
+                string json = $"{{\"type\":\"klarna_network\",\"subtype\":\"{wireValue}\"}}";
+                KlarnaNetworkDetails? details = JsonSerializer.Deserialize<KlarnaNetworkDetails>(json, opts);
+                Assert.AreEqual(wireValue, details?.Subtype?.Value, $"Unexpected subtype for '{wireValue}'");
+
+                string reserialized = JsonSerializer.Serialize(details, opts);
+                StringAssert.Contains(reserialized, $"\"subtype\":\"{wireValue}\"");
+            }
+
+            // Omitted subtype must stay absent; the redirect default is API-side behavior.
+            string omittedJson = JsonSerializer.Serialize(new KlarnaNetworkDetails { Type = KlarnaNetworkDetails.TypeEnum.KlarnaNetwork }, opts);
+            Assert.IsFalse(omittedJson.Contains("subtype"));
+        }
     }
 }

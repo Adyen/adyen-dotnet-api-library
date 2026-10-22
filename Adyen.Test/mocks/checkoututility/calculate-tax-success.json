@@ -1,0 +1,36 @@
+{
+  "taxCalculation": {
+    "merchantAccount": "TestMerchantAccount",
+    "taxCalculationContext": {
+      "calculationType": "LRS_TCS",
+      "lrs": {
+        "remittancePurpose": "EDUCATION",
+        "sublimitStatus": "NOT_EXCEEDED"
+      },
+      "taxCountryCode": "IN"
+    },
+    "taxableAmount": {
+      "currency": "INR",
+      "value": 100000
+    },
+    "taxCalculations": [
+      {
+        "type": "LRS_TCS",
+        "taxAmount": {
+          "currency": "INR",
+          "value": 0
+        }
+      }
+    ],
+    "totalTaxAmount": {
+      "currency": "INR",
+      "value": 0
+    },
+    "totalAmount": {
+      "currency": "INR",
+      "value": 100000
+    }
+  },
+  "taxCalculationReference": "TAXCALC1234567890",
+  "taxCalculationToken": "Ab02b4c0!BQHAgM5Mw4Lj4+g82o1fictv2C4pHCX3kK2f4=-oKHnsFfIGT6=-a0f9c8e7d6b5"
+}

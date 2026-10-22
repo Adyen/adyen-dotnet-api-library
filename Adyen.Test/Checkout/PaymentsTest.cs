@@ -1386,6 +1386,46 @@ namespace Adyen.Test.Checkout
         }
 
         [TestMethod]
+        public void Given_CheckoutPaymentMethod_With_AfterpaytouchUS_Type_When_Deserialized_Then_AfterpayDetails_Is_Set()
+        {
+            // Arrange
+            string json = @"{""type"":""afterpaytouch_US"",""checkoutAttemptId"":""attempt-123""}";
+
+            // Act
+            CheckoutPaymentMethod result = JsonSerializer.Deserialize<CheckoutPaymentMethod>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.AfterpayDetails, "afterpaytouch_US must map to AfterpayDetails.");
+            Assert.IsNull(result.StoredPaymentMethodDetails);
+            Assert.AreEqual(AfterpayDetails.TypeEnum.AfterpaytouchUS, result.AfterpayDetails.Type);
+            Assert.AreEqual("attempt-123", result.AfterpayDetails.CheckoutAttemptId);
+
+            string reserialized = JsonSerializer.Serialize(result, _jsonSerializerOptionsProvider.Options);
+            StringAssert.Contains(reserialized, "\"type\":\"afterpaytouch_US\"");
+        }
+
+        [TestMethod]
+        public void Given_CheckoutPaymentMethod_With_Revolutpay_Type_When_Deserialized_Then_StoredPaymentMethodDetails_Is_Set()
+        {
+            // Arrange
+            string json = @"{""type"":""revolutpay"",""checkoutAttemptId"":""attempt-456""}";
+
+            // Act
+            CheckoutPaymentMethod result = JsonSerializer.Deserialize<CheckoutPaymentMethod>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.StoredPaymentMethodDetails, "revolutpay must map to StoredPaymentMethodDetails.");
+            Assert.IsNull(result.AfterpayDetails);
+            Assert.AreEqual(StoredPaymentMethodDetails.TypeEnum.Revolutpay, result.StoredPaymentMethodDetails.Type);
+            Assert.AreEqual("attempt-456", result.StoredPaymentMethodDetails.CheckoutAttemptId);
+
+            string reserialized = JsonSerializer.Serialize(result, _jsonSerializerOptionsProvider.Options);
+            StringAssert.Contains(reserialized, "\"type\":\"revolutpay\"");
+        }
+
+        [TestMethod]
         public void Given_PaymentRequest_With_Satispay_When_Serialized_Then_PaymentMethod_Has_Satispay_Type()
         {
             // Arrange
