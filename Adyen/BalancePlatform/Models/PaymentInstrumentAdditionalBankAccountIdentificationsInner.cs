@@ -274,7 +274,7 @@ namespace Adyen.BalancePlatform.Models
             
             if (paymentInstrumentAdditionalBankAccountIdentificationsInner.IbanAccountIdentification != null)
             {
-                IbanAccountIdentificationJsonConverter ibanAccountIdentificationJsonConverter = (IbanAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(paymentInstrumentAdditionalBankAccountIdentificationsInner.IbanAccountIdentification.GetType()));
+                IbanAccountIdentificationJsonConverter ibanAccountIdentificationJsonConverter = (IbanAccountIdentificationJsonConverter) jsonSerializerOptions.GetConverter(paymentInstrumentAdditionalBankAccountIdentificationsInner.IbanAccountIdentification.GetType());
                 ibanAccountIdentificationJsonConverter.WriteProperties(writer, paymentInstrumentAdditionalBankAccountIdentificationsInner.IbanAccountIdentification, jsonSerializerOptions);
             }
 

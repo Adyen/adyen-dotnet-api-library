@@ -27,7 +27,7 @@ namespace Adyen.BalancePlatform.Extensions
 
         /// <summary>
         /// Add all BalancePlatform services using the extension methods in <see cref="ServiceCollectionExtensions"/> and configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
-        /// See: <see cref="AccountHoldersService"/>, <see cref="AuthorizedCardUsersService"/>, <see cref="BalanceAccountsService"/>, <see cref="BalancesService"/>, <see cref="BankAccountValidationService"/>, <see cref="CardOrdersService"/>, <see cref="CustomPayoutSchedulesSweepsService"/>, <see cref="DirectDebitMandatesService"/>, <see cref="GrantAccountsService"/>, <see cref="GrantOffersService"/>, <see cref="ManageCardPINService"/>, <see cref="ManageSCADevicesService"/>, <see cref="ManagedPayoutSchedulesService"/>, <see cref="NetworkTokensService"/>, <see cref="PaymentInstrumentGroupsService"/>, <see cref="PaymentInstrumentsService"/>, <see cref="PlatformService"/>, <see cref="SCAAssociationManagementService"/>, <see cref="SCADeviceManagementService"/>, <see cref="TransactionRulesService"/>, <see cref="TransferLimitsBalanceAccountLevelService"/>, <see cref="TransferLimitsBalancePlatformLevelService"/>, <see cref="TransferRoutesService"/>, 
+        /// See: <see cref="AccountHoldersService"/>, <see cref="AuthorizedCardUsersService"/>, <see cref="BalanceAccountsService"/>, <see cref="BalancesService"/>, <see cref="BankAccountValidationService"/>, <see cref="CardOrdersService"/>, <see cref="CustomPayoutSchedulesSweepsService"/>, <see cref="DirectDebitMandatesService"/>, <see cref="GrantAccountsService"/>, <see cref="GrantOffersService"/>, <see cref="ManageCardPINService"/>, <see cref="ManageSCADevicesService"/>, <see cref="ManagedPayoutSchedulesService"/>, <see cref="NetworkTokensService"/>, <see cref="PaymentInstrumentGroupsService"/>, <see cref="PaymentInstrumentsService"/>, <see cref="PlatformService"/>, <see cref="RecurringTopUpsService"/>, <see cref="SCAAssociationManagementService"/>, <see cref="SCADeviceManagementService"/>, <see cref="TransactionRulesService"/>, <see cref="TransferLimitsBalanceAccountLevelService"/>, <see cref="TransferLimitsBalancePlatformLevelService"/>, <see cref="TransferRoutesService"/>, 
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/>.</param>
         /// <param name="serviceLifetime"><see cref="ServiceLifetime"/>.</param>
@@ -53,6 +53,7 @@ namespace Adyen.BalancePlatform.Extensions
             services.AddPaymentInstrumentGroupsService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddPaymentInstrumentsService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddPlatformService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddRecurringTopUpsService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddSCAAssociationManagementService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddSCADeviceManagementService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
             services.AddTransactionRulesService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
@@ -414,6 +415,27 @@ namespace Adyen.BalancePlatform.Extensions
             services.Add(new ServiceDescriptor(typeof(IPlatformService), typeof(PlatformService), serviceLifetime));
 
             IHttpClientBuilder builder = services.AddHttpClient<IPlatformService, PlatformService>(typeof(IPlatformService).FullName!, httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="RecurringTopUpsService"/> as the implementation of <see cref="IRecurringTopUpsService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddRecurringTopUpsService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<RecurringTopUpsServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IRecurringTopUpsService), typeof(RecurringTopUpsService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IRecurringTopUpsService, RecurringTopUpsService>(typeof(IRecurringTopUpsService).FullName!, httpClient =>
             {
                 httpClientOptions?.Invoke(httpClient);
             });

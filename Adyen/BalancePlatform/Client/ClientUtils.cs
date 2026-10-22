@@ -218,6 +218,8 @@ namespace Adyen.BalancePlatform.Client
                 return Models.Condition.ConditionTypeEnum.ToJsonValue(conditionConditionTypeEnum);
             if (obj is Models.CounterpartyTypesRestriction.ValueEnum counterpartyTypesRestrictionValueEnum)
                 return CounterpartyTypesRestriction.ValueEnum.ToJsonValue(counterpartyTypesRestrictionValueEnum);
+            if (obj is Models.CreateRecurringTopUp.StatusEnum createRecurringTopUpStatusEnum)
+                return Models.CreateRecurringTopUp.StatusEnum.ToJsonValue(createRecurringTopUpStatusEnum);
             if (obj is Models.CreateSweepConfigurationV2.CategoryEnum createSweepConfigurationV2CategoryEnum)
                 return Models.CreateSweepConfigurationV2.CategoryEnum.ToJsonValue(createSweepConfigurationV2CategoryEnum);
             if (obj is Models.CreateSweepConfigurationV2.PrioritiesEnum createSweepConfigurationV2PrioritiesEnum)
@@ -300,6 +302,10 @@ namespace Adyen.BalancePlatform.Client
                 return Models.PinChangeResponse.StatusEnum.ToJsonValue(pinChangeResponseStatusEnum);
             if (obj is Models.ProcessingTypesRestriction.ValueEnum processingTypesRestrictionValueEnum)
                 return ProcessingTypesRestriction.ValueEnum.ToJsonValue(processingTypesRestrictionValueEnum);
+            if (obj is Models.RecurringTopUp.StatusEnum recurringTopUpStatusEnum)
+                return Models.RecurringTopUp.StatusEnum.ToJsonValue(recurringTopUpStatusEnum);
+            if (obj is Models.RecurringTopUpUpdate.StatusEnum recurringTopUpUpdateStatusEnum)
+                return Models.RecurringTopUpUpdate.StatusEnum.ToJsonValue(recurringTopUpUpdateStatusEnum);
             if (obj is Models.SELocalAccountIdentification.TypeEnum sELocalAccountIdentificationTypeEnum)
                 return Models.SELocalAccountIdentification.TypeEnum.ToJsonValue(sELocalAccountIdentificationTypeEnum);
             if (obj is Models.SGLocalAccountIdentification.TypeEnum sGLocalAccountIdentificationTypeEnum)
@@ -312,6 +318,8 @@ namespace Adyen.BalancePlatform.Client
                 return ScaExemption.ToJsonValue(scaExemption);
             if (obj is Models.ScaStatus scaStatus)
                 return ScaStatus.ToJsonValue(scaStatus);
+            if (obj is Models.ScheduleType scheduleType)
+                return ScheduleType.ToJsonValue(scheduleType);
             if (obj is Models.Scope scope)
                 return Scope.ToJsonValue(scope);
             if (obj is Models.SettingType settingType)

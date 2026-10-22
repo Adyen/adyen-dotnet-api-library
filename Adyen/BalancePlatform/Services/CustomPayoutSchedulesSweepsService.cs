@@ -97,6 +97,23 @@ namespace Adyen.BalancePlatform.Services
         Task<IGetSweepApiResponse> GetSweepAsync(string balanceAccountId, string sweepId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// View executions of a custom payout schedule
+        /// </summary>
+        /// <remarks>
+        /// Returns a paginated list of executions of a custom payout schedule on a balance account. You can use query parameters to filter the executions that are returned in the list.
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
+        /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
+        /// <param name="sweepId">The unique identifier of the sweep configuration.</param>
+        /// <param name="results">Contains a comma-separated list of sweep execution results. If included, the response returns only sweep executions with the specified results.  Possible results: - **succeeded**: The sweep payout was completed successfully. - **failed**: The sweep payout was not completed due to an error. - **skipped**: The sweep payout was not triggered as expected.</param>
+        /// <param name="limit">The number of items returned per page. By default, the response returns 10 items per page.</param>
+        /// <param name="cursor">The cursor from the `next` or `previous` pagination link in the previous response.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> of <see cref="IGetSweepExecutionsApiResponse"/>.</returns>
+        Task<IGetSweepExecutionsApiResponse> GetSweepExecutionsAsync(string balanceAccountId, string sweepId, Option<string> results = default, Option<int> limit = default, Option<string> cursor = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Update a sweep
         /// </summary>
         /// <remarks>
@@ -282,6 +299,42 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
+    /// The <see cref="IGetSweepExecutionsApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.PayoutSweepExecutions"/>.
+    /// </summary>
+    public interface IGetSweepExecutionsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.PayoutSweepExecutions?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok.
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized.
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound.
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+
+        /// <summary>
+        /// Returns true if the response is 422 UnprocessableContent.
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnprocessableContent { get; }
+
+        /// <summary>
+        /// Returns true if the response is 500 InternalServerError.
+        /// </summary>
+        /// <returns></returns>
+        bool IsInternalServerError { get; }
+    }
+
+    /// <summary>
     /// The <see cref="IUpdateSweepApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/>.
     /// </summary>
     public interface IUpdateSweepApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.SweepConfigurationV2?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
@@ -411,6 +464,26 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnGetSweepExecutions;
+
+        /// <summary>
+        /// The event raised after an error querying the server.
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetSweepExecutions;
+
+        internal void ExecuteOnGetSweepExecutions(CustomPayoutSchedulesSweepsService.GetSweepExecutionsApiResponse apiResponse)
+        {
+            OnGetSweepExecutions?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorGetSweepExecutions(Exception exception)
+        {
+            OnErrorGetSweepExecutions?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response.
+        /// </summary>
         public event EventHandler<ApiResponseEventArgs>? OnUpdateSweep;
 
         /// <summary>
@@ -434,6 +507,11 @@ namespace Adyen.BalancePlatform.Services
     /// </summary>
     public sealed partial class CustomPayoutSchedulesSweepsService : ICustomPayoutSchedulesSweepsService
     {
+
+        /// <summary>
+        /// The version of the OpenAPI document.
+        /// </summary>
+        public static string ApiVersion => "2";
 
         /// <summary>
         /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
@@ -1913,6 +1991,348 @@ namespace Adyen.BalancePlatform.Services
             /// <param name="result"></param>
             /// <returns></returns>
             public bool TryDeserializeInternalServerErrorResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.RestServiceError? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = InternalServerError();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)500);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationError(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+        
+        /// <summary>
+        /// View executions of a custom payout schedule Returns a paginated list of executions of a custom payout schedule on a balance account. You can use query parameters to filter the executions that are returned in the list.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
+        /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
+        /// <param name="sweepId">The unique identifier of the sweep configuration.</param>
+        /// <param name="results">Contains a comma-separated list of sweep execution results. If included, the response returns only sweep executions with the specified results.  Possible results: - **succeeded**: The sweep payout was completed successfully. - **failed**: The sweep payout was not completed due to an error. - **skipped**: The sweep payout was not triggered as expected. ()</param>
+        /// <param name="limit">The number of items returned per page. By default, the response returns 10 items per page. (default to 10)</param>
+        /// <param name="cursor">The cursor from the `next` or `previous` pagination link in the previous response. ()</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> of <see cref="IGetSweepExecutionsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.PayoutSweepExecutions"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetSweepExecutionsApiResponse> GetSweepExecutionsAsync(string balanceAccountId, string sweepId, Option<string> results = default, Option<int> limit = default, Option<string> cursor = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilder = new UriBuilder();
+
+            try
+            {
+                using (HttpRequestMessage httpRequestMessage = new HttpRequestMessage())
+                {
+                    uriBuilder.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilder.Port = HttpClient.BaseAddress.Port;
+                    uriBuilder.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilder.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}/executions"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}/executions");
+                    uriBuilder.Path = uriBuilder.Path.Replace("%7BbalanceAccountId%7D", Uri.EscapeDataString(balanceAccountId.ToString()));
+                    uriBuilder.Path = uriBuilder.Path.Replace("%7BsweepId%7D", Uri.EscapeDataString(sweepId.ToString()));
+
+                    System.Collections.Specialized.NameValueCollection parseQueryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (results.IsSet)
+                        parseQueryString["results"] = ClientUtils.ParameterToString(results.Value);
+
+                    if (limit.IsSet)
+                        parseQueryString["limit"] = ClientUtils.ParameterToString(limit.Value);
+
+                    if (cursor.IsSet)
+                        parseQueryString["cursor"] = ClientUtils.ParameterToString(cursor.Value);
+
+                    uriBuilder.Query = ClientUtils.BuildQueryString(parseQueryString);
+
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
+                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
+                    
+                    httpRequestMessage.RequestUri = uriBuilder.Uri;
+
+                    string[] accepts = new string[] {
+                        "application/json"
+                    };
+
+                    string? accept = ClientUtils.SelectHeaderAccept(accepts);
+
+                    if (accept != null)
+                        httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
+                    httpRequestMessage.Method = HttpMethod.Get;
+#endif
+
+                    DateTime requestedAt = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<GetSweepExecutionsApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<GetSweepExecutionsApiResponse>();
+                        GetSweepExecutionsApiResponse apiResponse;
+
+                        switch ((int)httpResponseMessage.StatusCode) {
+                            default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
+                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}/executions", requestedAt, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+                        
+                        Events?.ExecuteOnGetSweepExecutions(apiResponse);
+                        return apiResponse;
+                    }
+                }
+            }
+            catch(Exception exception)
+            {
+                Events?.ExecuteOnErrorGetSweepExecutions(exception);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetSweepExecutionsApiResponse"/>.
+        /// </summary>
+        public partial class GetSweepExecutionsApiResponse : Adyen.Core.Client.ApiResponse, IGetSweepExecutionsApiResponse
+        {
+            /// <summary>
+            /// The logger for <see cref="GetSweepExecutionsApiResponse"/>.
+            /// </summary>
+            public ILogger<GetSweepExecutionsApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetSweepExecutionsApiResponse"/>.
+            /// </summary>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
+            public GetSweepExecutionsApiResponse(ILogger<GetSweepExecutionsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetSweepExecutionsApiResponse"/>.
+            /// </summary>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
+            public GetSweepExecutionsApiResponse(ILogger<GetSweepExecutionsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.BalancePlatform.Models.PayoutSweepExecutions? Ok()
+            {
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.PayoutSweepExecutions>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.PayoutSweepExecutions? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 401 Unauthorized.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? Unauthorized()
+            {
+                return IsUnauthorized
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeUnauthorizedResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Unauthorized();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)401);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNotFound => 404 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 404 NotFound.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? NotFound()
+            {
+                return IsNotFound
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeNotFoundResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = NotFound();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)404);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 422 UnprocessableContent.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnprocessableContent => 422 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 422 UnprocessableContent.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? UnprocessableContent()
+            {
+                return IsUnprocessableContent
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 422 UnprocessableContent and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeUnprocessableContentResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = UnprocessableContent();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)422);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 500 InternalServerError.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsInternalServerError => 500 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 500 InternalServerError.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? InternalServerError()
+            {
+                return IsInternalServerError
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 500 InternalServerError and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeInternalServerErrorResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? result)
             {
                 result = null;
 
