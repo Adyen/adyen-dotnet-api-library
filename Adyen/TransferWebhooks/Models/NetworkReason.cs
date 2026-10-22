@@ -43,9 +43,9 @@ namespace Adyen.TransferWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **usAchCorrectionReasonCode** *  **iso8583ResponseCode**  
+        /// The category of codes that `code` belongs to. The `namespace` identifies the payment network and the type of reason  Possible values: *  **ukFpsRejectionCode** : Reason code for a rejected Faster Payments transfer. *  **ukFpsReturnReasonCode** : Reason code for a returned Faster Payments transfer. *  **usAchReturnReasonCode** : Reason code for a returned ACH transfer. *  **usAchCorrectionReasonCode** : Reason code for an ACH Notification of Change. *  **iso8583ResponseCode** : ISO 8583 response code for a card transfer.  
         /// </summary>
-        /// <value>The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **usAchCorrectionReasonCode** *  **iso8583ResponseCode**  </value>
+        /// <value>The category of codes that &#x60;code&#x60; belongs to. The &#x60;namespace&#x60; identifies the payment network and the type of reason  Possible values: *  **ukFpsRejectionCode** : Reason code for a rejected Faster Payments transfer. *  **ukFpsReturnReasonCode** : Reason code for a returned Faster Payments transfer. *  **usAchReturnReasonCode** : Reason code for a returned ACH transfer. *  **usAchCorrectionReasonCode** : Reason code for an ACH Notification of Change. *  **iso8583ResponseCode** : ISO 8583 response code for a card transfer.  </value>
         [JsonConverter(typeof(NamespaceEnumJsonConverter))]
         public class NamespaceEnum : IEnum
         {
@@ -70,14 +70,14 @@ namespace Adyen.TransferWebhooks.Models
             public static readonly NamespaceEnum UkFpsReturnReasonCode = new("ukFpsReturnReasonCode");
 
             /// <summary>
-            /// NamespaceEnum.UsAchReturnReasonCode - usAchReturnReasonCode
-            /// </summary>
-            public static readonly NamespaceEnum UsAchReturnReasonCode = new("usAchReturnReasonCode");
-
-            /// <summary>
             /// NamespaceEnum.UsAchCorrectionReasonCode - usAchCorrectionReasonCode
             /// </summary>
             public static readonly NamespaceEnum UsAchCorrectionReasonCode = new("usAchCorrectionReasonCode");
+
+            /// <summary>
+            /// NamespaceEnum.UsAchReturnReasonCode - usAchReturnReasonCode
+            /// </summary>
+            public static readonly NamespaceEnum UsAchReturnReasonCode = new("usAchReturnReasonCode");
         
             private NamespaceEnum(string? value)
             {
@@ -134,8 +134,8 @@ namespace Adyen.TransferWebhooks.Models
                     "iso8583ResponseCode" => NamespaceEnum.Iso8583ResponseCode,
                     "ukFpsRejectionCode" => NamespaceEnum.UkFpsRejectionCode,
                     "ukFpsReturnReasonCode" => NamespaceEnum.UkFpsReturnReasonCode,
-                    "usAchReturnReasonCode" => NamespaceEnum.UsAchReturnReasonCode,
                     "usAchCorrectionReasonCode" => NamespaceEnum.UsAchCorrectionReasonCode,
+                    "usAchReturnReasonCode" => NamespaceEnum.UsAchReturnReasonCode,
                     _ => null,
                 };
             }
@@ -159,11 +159,11 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == NamespaceEnum.UkFpsReturnReasonCode)
                     return "ukFpsReturnReasonCode";
                 
-                if (value == NamespaceEnum.UsAchReturnReasonCode)
-                    return "usAchReturnReasonCode";
-                
                 if (value == NamespaceEnum.UsAchCorrectionReasonCode)
                     return "usAchCorrectionReasonCode";
+                
+                if (value == NamespaceEnum.UsAchReturnReasonCode)
+                    return "usAchReturnReasonCode";
                 
                 return value.Value;
             }
@@ -200,9 +200,9 @@ namespace Adyen.TransferWebhooks.Models
         public Option<NamespaceEnum?> _NamespaceOption { get; private set; }
 
         /// <summary>
-        /// The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **usAchCorrectionReasonCode** *  **iso8583ResponseCode**  
+        /// The category of codes that `code` belongs to. The `namespace` identifies the payment network and the type of reason  Possible values: *  **ukFpsRejectionCode** : Reason code for a rejected Faster Payments transfer. *  **ukFpsReturnReasonCode** : Reason code for a returned Faster Payments transfer. *  **usAchReturnReasonCode** : Reason code for a returned ACH transfer. *  **usAchCorrectionReasonCode** : Reason code for an ACH Notification of Change. *  **iso8583ResponseCode** : ISO 8583 response code for a card transfer.  
         /// </summary>
-        /// <value>The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **usAchCorrectionReasonCode** *  **iso8583ResponseCode**  </value>
+        /// <value>The category of codes that &#x60;code&#x60; belongs to. The &#x60;namespace&#x60; identifies the payment network and the type of reason  Possible values: *  **ukFpsRejectionCode** : Reason code for a rejected Faster Payments transfer. *  **ukFpsReturnReasonCode** : Reason code for a returned Faster Payments transfer. *  **usAchReturnReasonCode** : Reason code for a returned ACH transfer. *  **usAchCorrectionReasonCode** : Reason code for an ACH Notification of Change. *  **iso8583ResponseCode** : ISO 8583 response code for a card transfer.  </value>
         [JsonPropertyName("namespace")]
         public NamespaceEnum? Namespace { get { return this._NamespaceOption; } set { this._NamespaceOption = new(value); } }
 
@@ -214,9 +214,9 @@ namespace Adyen.TransferWebhooks.Models
         public Option<string?> _CodeOption { get; private set; }
 
         /// <summary>
-        /// The reason code provided by the network.
+        /// The network-specific reason code. Use &#x60;namespace&#x60; to identify the code set.
         /// </summary>
-        /// <value>The reason code provided by the network.</value>
+        /// <value>The network-specific reason code. Use `namespace` to identify the code set.</value>
         [JsonPropertyName("code")]
         public string? Code { get { return this._CodeOption; } set { this._CodeOption = new(value); } }
 
@@ -228,9 +228,9 @@ namespace Adyen.TransferWebhooks.Models
         public Option<string?> _DescriptionOption { get; private set; }
 
         /// <summary>
-        /// The description of the reason code.
+        /// A human-readable description of the reason code.
         /// </summary>
-        /// <value>The description of the reason code.</value>
+        /// <value>A human-readable description of the reason code.</value>
         [JsonPropertyName("description")]
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
