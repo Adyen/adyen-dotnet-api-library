@@ -70,6 +70,16 @@ namespace Adyen.DisputeWebhooks.Models
             public static readonly TypeEnum Duplicate = new("duplicate");
 
             /// <summary>
+            /// TypeEnum.NotAsDescribed - notAsDescribed
+            /// </summary>
+            public static readonly TypeEnum NotAsDescribed = new("notAsDescribed");
+
+            /// <summary>
+            /// TypeEnum.Cancelled - cancelled
+            /// </summary>
+            public static readonly TypeEnum Cancelled = new("cancelled");
+
+            /// <summary>
             /// TypeEnum.Other - other
             /// </summary>
             public static readonly TypeEnum Other = new("other");
@@ -129,6 +139,8 @@ namespace Adyen.DisputeWebhooks.Models
                     "fraud" => TypeEnum.Fraud,
                     "notDelivered" => TypeEnum.NotDelivered,
                     "duplicate" => TypeEnum.Duplicate,
+                    "notAsDescribed" => TypeEnum.NotAsDescribed,
+                    "cancelled" => TypeEnum.Cancelled,
                     "other" => TypeEnum.Other,
                     _ => null,
                 };
@@ -152,6 +164,12 @@ namespace Adyen.DisputeWebhooks.Models
                 
                 if (value == TypeEnum.Duplicate)
                     return "duplicate";
+                
+                if (value == TypeEnum.NotAsDescribed)
+                    return "notAsDescribed";
+                
+                if (value == TypeEnum.Cancelled)
+                    return "cancelled";
                 
                 if (value == TypeEnum.Other)
                     return "other";
