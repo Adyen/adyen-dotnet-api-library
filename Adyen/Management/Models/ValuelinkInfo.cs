@@ -180,18 +180,18 @@ namespace Adyen.Management.Models
         public string? AuthorisationMid { get; set; }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="SubmitterId"/> will be populated.
+        /// This is used to track if an optional field is set. If set, <see cref="AlternateMerchantNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _SubmitterIdOption { get; private set; }
+        public Option<string?> _AlternateMerchantNumberOption { get; private set; }
 
         /// <summary>
-        /// Submitter ID
+        /// Alternate Merchant Number
         /// </summary>
-        /// <value>Submitter ID</value>
-        [JsonPropertyName("submitterId")]
-        public string? SubmitterId { get { return this._SubmitterIdOption; } set { this._SubmitterIdOption = new(value); } }
+        /// <value>Alternate Merchant Number</value>
+        [JsonPropertyName("alternateMerchantNumber")]
+        public string? AlternateMerchantNumber { get { return this._AlternateMerchantNumberOption; } set { this._AlternateMerchantNumberOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="TerminalId"/> will be populated.
@@ -217,7 +217,7 @@ namespace Adyen.Management.Models
             sb.Append("class ValuelinkInfo {\n");
             sb.Append("  AuthorisationMid: ").Append(AuthorisationMid).Append("\n");
             sb.Append("  PinSupport: ").Append(PinSupport).Append("\n");
-            sb.Append("  SubmitterId: ").Append(SubmitterId).Append("\n");
+            sb.Append("  AlternateMerchantNumber: ").Append(AlternateMerchantNumber).Append("\n");
             sb.Append("  TerminalId: ").Append(TerminalId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -248,7 +248,7 @@ namespace Adyen.Management.Models
 
             Option<string?> authorisationMid = default;
             Option<ValuelinkInfo.PinSupportEnum?> pinSupport = default;
-            Option<string?> submitterId = default;
+            Option<string?> alternateMerchantNumber = default;
             Option<string?> terminalId = default;
 
             while (utf8JsonReader.Read())
@@ -273,8 +273,8 @@ namespace Adyen.Management.Models
                             string? pinSupportRawValue = utf8JsonReader.GetString();
                             pinSupport = new Option<ValuelinkInfo.PinSupportEnum?>(ValuelinkInfo.PinSupportEnum.FromStringOrDefault(pinSupportRawValue) ?? (ValuelinkInfo.PinSupportEnum)pinSupportRawValue);
                             break;
-                        case "submitterId":
-                            submitterId = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "alternateMerchantNumber":
+                            alternateMerchantNumber = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "terminalId":
                             terminalId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -291,8 +291,8 @@ namespace Adyen.Management.Models
                 valuelinkInfo.AuthorisationMid = authorisationMid.Value!;
             if (pinSupport.IsSet)
                 valuelinkInfo.PinSupport = pinSupport.Value!;
-            if (submitterId.IsSet)
-                valuelinkInfo.SubmitterId = submitterId.Value;
+            if (alternateMerchantNumber.IsSet)
+                valuelinkInfo.AlternateMerchantNumber = alternateMerchantNumber.Value;
             if (terminalId.IsSet)
                 valuelinkInfo.TerminalId = terminalId.Value;
             return valuelinkInfo;
@@ -333,9 +333,9 @@ namespace Adyen.Management.Models
                 writer.WriteString("pinSupport", pinSupportRawValue);
             }
             
-            if (valuelinkInfo._SubmitterIdOption.IsSet)
-                if (valuelinkInfo.SubmitterId != null)
-                    writer.WriteString("submitterId", valuelinkInfo.SubmitterId);
+            if (valuelinkInfo._AlternateMerchantNumberOption.IsSet)
+                if (valuelinkInfo.AlternateMerchantNumber != null)
+                    writer.WriteString("alternateMerchantNumber", valuelinkInfo.AlternateMerchantNumber);
 
             if (valuelinkInfo._TerminalIdOption.IsSet)
                 if (valuelinkInfo.TerminalId != null)
