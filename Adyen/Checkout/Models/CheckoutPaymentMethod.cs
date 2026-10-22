@@ -682,6 +682,11 @@ namespace Adyen.Checkout.Models
             public static readonly TypeEnum Afterpaytouch = new("afterpaytouch");
 
             /// <summary>
+            /// TypeEnum.AfterpaytouchUS - afterpaytouch_US
+            /// </summary>
+            public static readonly TypeEnum AfterpaytouchUS = new("afterpaytouch_US");
+
+            /// <summary>
             /// TypeEnum.AfterpayB2b - afterpay_b2b
             /// </summary>
             public static readonly TypeEnum AfterpayB2b = new("afterpay_b2b");
@@ -1647,6 +1652,11 @@ namespace Adyen.Checkout.Models
             public static readonly TypeEnum MomoWalletApp = new("momo_wallet_app");
 
             /// <summary>
+            /// TypeEnum.Revolutpay - revolutpay
+            /// </summary>
+            public static readonly TypeEnum Revolutpay = new("revolutpay");
+
+            /// <summary>
             /// TypeEnum.PaymayaWallet - paymaya_wallet
             /// </summary>
             public static readonly TypeEnum PaymayaWallet = new("paymaya_wallet");
@@ -1828,6 +1838,7 @@ namespace Adyen.Checkout.Models
                     "affirm" => TypeEnum.Affirm,
                     "afterpay_default" => TypeEnum.AfterpayDefault,
                     "afterpaytouch" => TypeEnum.Afterpaytouch,
+                    "afterpaytouch_US" => TypeEnum.AfterpaytouchUS,
                     "afterpay_b2b" => TypeEnum.AfterpayB2b,
                     "clearpay" => TypeEnum.Clearpay,
                     "alma" => TypeEnum.Alma,
@@ -2021,6 +2032,7 @@ namespace Adyen.Checkout.Models
                     "bcmc_mobile_app" => TypeEnum.BcmcMobileApp,
                     "momo_wallet" => TypeEnum.MomoWallet,
                     "momo_wallet_app" => TypeEnum.MomoWalletApp,
+                    "revolutpay" => TypeEnum.Revolutpay,
                     "paymaya_wallet" => TypeEnum.PaymayaWallet,
                     "grabpay_SG" => TypeEnum.GrabpaySG,
                     "grabpay_MY" => TypeEnum.GrabpayMY,
@@ -2074,6 +2086,9 @@ namespace Adyen.Checkout.Models
                 
                 if (value == TypeEnum.Afterpaytouch)
                     return "afterpaytouch";
+                
+                if (value == TypeEnum.AfterpaytouchUS)
+                    return "afterpaytouch_US";
                 
                 if (value == TypeEnum.AfterpayB2b)
                     return "afterpay_b2b";
@@ -2653,6 +2668,9 @@ namespace Adyen.Checkout.Models
                 
                 if (value == TypeEnum.MomoWalletApp)
                     return "momo_wallet_app";
+                
+                if (value == TypeEnum.Revolutpay)
+                    return "revolutpay";
                 
                 if (value == TypeEnum.PaymayaWallet)
                     return "paymaya_wallet";
@@ -3334,6 +3352,11 @@ namespace Adyen.Checkout.Models
                             openInvoiceDetails = JsonSerializer.Deserialize<OpenInvoiceDetails>(ref utf8JsonReaderOpenInvoiceDetails, jsonSerializerOptions);
                         }
                         if (discriminator?.Equals("afterpaytouch") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderAfterpayDetails = utf8JsonReader;
+                            afterpayDetails = JsonSerializer.Deserialize<AfterpayDetails>(ref utf8JsonReaderAfterpayDetails, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("afterpaytouch_US") ?? false)
                         {
                             Utf8JsonReader utf8JsonReaderAfterpayDetails = utf8JsonReader;
                             afterpayDetails = JsonSerializer.Deserialize<AfterpayDetails>(ref utf8JsonReaderAfterpayDetails, jsonSerializerOptions);
@@ -4322,6 +4345,11 @@ namespace Adyen.Checkout.Models
                         {
                             Utf8JsonReader utf8JsonReaderRatepayDetails = utf8JsonReader;
                             ratepayDetails = JsonSerializer.Deserialize<RatepayDetails>(ref utf8JsonReaderRatepayDetails, jsonSerializerOptions);
+                        }
+                        if (discriminator?.Equals("revolutpay") ?? false)
+                        {
+                            Utf8JsonReader utf8JsonReaderStoredPaymentMethodDetails = utf8JsonReader;
+                            storedPaymentMethodDetails = JsonSerializer.Deserialize<StoredPaymentMethodDetails>(ref utf8JsonReaderStoredPaymentMethodDetails, jsonSerializerOptions);
                         }
                         if (discriminator?.Equals("riverty") ?? false)
                         {

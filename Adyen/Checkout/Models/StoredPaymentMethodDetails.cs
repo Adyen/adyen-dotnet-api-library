@@ -140,6 +140,11 @@ namespace Adyen.Checkout.Models
             public static readonly TypeEnum MomoWalletApp = new("momo_wallet_app");
 
             /// <summary>
+            /// TypeEnum.Revolutpay - revolutpay
+            /// </summary>
+            public static readonly TypeEnum Revolutpay = new("revolutpay");
+
+            /// <summary>
             /// TypeEnum.PaymayaWallet - paymaya_wallet
             /// </summary>
             public static readonly TypeEnum PaymayaWallet = new("paymaya_wallet");
@@ -278,6 +283,7 @@ namespace Adyen.Checkout.Models
                     "bcmc_mobile_app" => TypeEnum.BcmcMobileApp,
                     "momo_wallet" => TypeEnum.MomoWallet,
                     "momo_wallet_app" => TypeEnum.MomoWalletApp,
+                    "revolutpay" => TypeEnum.Revolutpay,
                     "paymaya_wallet" => TypeEnum.PaymayaWallet,
                     "grabpay_SG" => TypeEnum.GrabpaySG,
                     "grabpay_MY" => TypeEnum.GrabpayMY,
@@ -356,6 +362,9 @@ namespace Adyen.Checkout.Models
                 
                 if (value == TypeEnum.MomoWalletApp)
                     return "momo_wallet_app";
+                
+                if (value == TypeEnum.Revolutpay)
+                    return "revolutpay";
                 
                 if (value == TypeEnum.PaymayaWallet)
                     return "paymaya_wallet";
