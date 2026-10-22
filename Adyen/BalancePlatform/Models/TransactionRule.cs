@@ -43,9 +43,9 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met. 
+        /// The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met.  * **bypass**: bypass or skip a rule for the specified `entityKey`. Transactions processed to that entity are no longer evaluated by the bypassed rule.  You must provide the `id` of the rule to bypass in `overridesRule` and leave the `ruleRestrictions` object empty. 
         /// </summary>
-        /// <value>The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met. </value>
+        /// <value>The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met.  * **bypass**: bypass or skip a rule for the specified &#x60;entityKey&#x60;. Transactions processed to that entity are no longer evaluated by the bypassed rule.  You must provide the &#x60;id&#x60; of the rule to bypass in &#x60;overridesRule&#x60; and leave the &#x60;ruleRestrictions&#x60; object empty. </value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
         public class TypeEnum : IEnum
         {
@@ -63,6 +63,11 @@ namespace Adyen.BalancePlatform.Models
             /// TypeEnum.BlockList - blockList
             /// </summary>
             public static readonly TypeEnum BlockList = new("blockList");
+
+            /// <summary>
+            /// TypeEnum.Bypass - bypass
+            /// </summary>
+            public static readonly TypeEnum Bypass = new("bypass");
 
             /// <summary>
             /// TypeEnum.MaxUsage - maxUsage
@@ -128,6 +133,7 @@ namespace Adyen.BalancePlatform.Models
                 return value switch {
                     "allowList" => TypeEnum.AllowList,
                     "blockList" => TypeEnum.BlockList,
+                    "bypass" => TypeEnum.Bypass,
                     "maxUsage" => TypeEnum.MaxUsage,
                     "velocity" => TypeEnum.Velocity,
                     _ => null,
@@ -149,6 +155,9 @@ namespace Adyen.BalancePlatform.Models
                 
                 if (value == TypeEnum.BlockList)
                     return "blockList";
+                
+                if (value == TypeEnum.Bypass)
+                    return "bypass";
                 
                 if (value == TypeEnum.MaxUsage)
                     return "maxUsage";
@@ -184,9 +193,9 @@ namespace Adyen.BalancePlatform.Models
         }
 
         /// <summary>
-        /// The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met. 
+        /// The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met.  * **bypass**: bypass or skip a rule for the specified `entityKey`. Transactions processed to that entity are no longer evaluated by the bypassed rule.  You must provide the `id` of the rule to bypass in `overridesRule` and leave the `ruleRestrictions` object empty. 
         /// </summary>
-        /// <value>The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met. </value>
+        /// <value>The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met.  * **bypass**: bypass or skip a rule for the specified &#x60;entityKey&#x60;. Transactions processed to that entity are no longer evaluated by the bypassed rule.  You must provide the &#x60;id&#x60; of the rule to bypass in &#x60;overridesRule&#x60; and leave the &#x60;ruleRestrictions&#x60; object empty. </value>
         [JsonPropertyName("type")]
         public TypeEnum Type { get; set; }
 
@@ -876,6 +885,20 @@ namespace Adyen.BalancePlatform.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="OverridesRule"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _OverridesRuleOption { get; private set; }
+
+        /// <summary>
+        /// The &#x60;id&#x60; of the transaction rule you want to override or skip for the specified &#x60;entityKey&#x60;.
+        /// </summary>
+        /// <value>The `id` of the transaction rule you want to override or skip for the specified `entityKey`.</value>
+        [JsonPropertyName("overridesRule")]
+        public string? OverridesRule { get { return this._OverridesRuleOption; } set { this._OverridesRuleOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Score"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -921,6 +944,7 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  EndDate: ").Append(EndDate).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  OutcomeType: ").Append(OutcomeType).Append("\n");
+            sb.Append("  OverridesRule: ").Append(OverridesRule).Append("\n");
             sb.Append("  Purpose: ").Append(Purpose).Append("\n");
             sb.Append("  RequestType: ").Append(RequestType).Append("\n");
             sb.Append("  Score: ").Append(Score).Append("\n");
@@ -963,6 +987,7 @@ namespace Adyen.BalancePlatform.Models
             Option<string?> endDate = default;
             Option<string?> id = default;
             Option<TransactionRule.OutcomeTypeEnum?> outcomeType = default;
+            Option<string?> overridesRule = default;
             Option<TransactionRule.PurposeEnum?> purpose = default;
             Option<TransactionRule.RequestTypeEnum?> requestType = default;
             Option<int?> score = default;
@@ -1016,6 +1041,9 @@ namespace Adyen.BalancePlatform.Models
                             string? outcomeTypeRawValue = utf8JsonReader.GetString();
                             outcomeType = new Option<TransactionRule.OutcomeTypeEnum?>(TransactionRule.OutcomeTypeEnum.FromStringOrDefault(outcomeTypeRawValue) ?? (TransactionRule.OutcomeTypeEnum)outcomeTypeRawValue);
                             break;
+                        case "overridesRule":
+                            overridesRule = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "purpose":
                             string? purposeRawValue = utf8JsonReader.GetString();
                             purpose = new Option<TransactionRule.PurposeEnum?>(TransactionRule.PurposeEnum.FromStringOrDefault(purposeRawValue) ?? (TransactionRule.PurposeEnum)purposeRawValue);
@@ -1062,6 +1090,8 @@ namespace Adyen.BalancePlatform.Models
                 transactionRule.Id = id.Value;
             if (outcomeType.IsSet)
                 transactionRule.OutcomeType = outcomeType.Value;
+            if (overridesRule.IsSet)
+                transactionRule.OverridesRule = overridesRule.Value;
             if (purpose.IsSet)
                 transactionRule.Purpose = purpose.Value;
             if (requestType.IsSet)
@@ -1137,6 +1167,10 @@ namespace Adyen.BalancePlatform.Models
                 writer.WriteString("outcomeType", outcomeTypeRawValue);
             }
             
+            if (transactionRule._OverridesRuleOption.IsSet)
+                if (transactionRule.OverridesRule != null)
+                    writer.WriteString("overridesRule", transactionRule.OverridesRule);
+
             if (transactionRule._PurposeOption.IsSet && transactionRule.Purpose != null) 
             {
                 string? purposeRawValue = TransactionRule.PurposeEnum.ToJsonValue(transactionRule._PurposeOption.Value!.Value);
