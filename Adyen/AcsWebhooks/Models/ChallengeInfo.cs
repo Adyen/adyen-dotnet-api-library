@@ -43,9 +43,9 @@ namespace Adyen.AcsWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The flow used in the challenge. Possible values:  * **PWD_OTP_PHONE_FL**: one-time password (OTP) flow via SMS * **PWD_OTP_EMAIL_FL**: one-time password (OTP) flow via email * **OOB_TRIGGER_FL**: out-of-band (OOB) flow
+        /// The flow used in the challenge. Possible values:  * **PWD_OTP_PHONE_FL**: one-time password (OTP) flow via SMS * **PWD_OTP_EMAIL_FL**: one-time password (OTP) flow via email * **OOB_TRIGGER_FL**: out-of-band (OOB) flow * **OTP_PHONE_FL**: one-time password (OTP) flow via SMS with no passcode * **PASSKEY_TRIGGER_FL**: passkey flow
         /// </summary>
-        /// <value>The flow used in the challenge. Possible values:  * **PWD_OTP_PHONE_FL**: one-time password (OTP) flow via SMS * **PWD_OTP_EMAIL_FL**: one-time password (OTP) flow via email * **OOB_TRIGGER_FL**: out-of-band (OOB) flow</value>
+        /// <value>The flow used in the challenge. Possible values:  * **PWD_OTP_PHONE_FL**: one-time password (OTP) flow via SMS * **PWD_OTP_EMAIL_FL**: one-time password (OTP) flow via email * **OOB_TRIGGER_FL**: out-of-band (OOB) flow * **OTP_PHONE_FL**: one-time password (OTP) flow via SMS with no passcode * **PASSKEY_TRIGGER_FL**: passkey flow</value>
         [JsonConverter(typeof(FlowEnumJsonConverter))]
         public class FlowEnum : IEnum
         {
@@ -68,6 +68,16 @@ namespace Adyen.AcsWebhooks.Models
             /// FlowEnum.OOBTRIGGERFL - OOB_TRIGGER_FL
             /// </summary>
             public static readonly FlowEnum OOBTRIGGERFL = new("OOB_TRIGGER_FL");
+
+            /// <summary>
+            /// FlowEnum.OTPPHONEFL - OTP_PHONE_FL
+            /// </summary>
+            public static readonly FlowEnum OTPPHONEFL = new("OTP_PHONE_FL");
+
+            /// <summary>
+            /// FlowEnum.PASSKEYTRIGGERFL - PASSKEY_TRIGGER_FL
+            /// </summary>
+            public static readonly FlowEnum PASSKEYTRIGGERFL = new("PASSKEY_TRIGGER_FL");
         
             private FlowEnum(string? value)
             {
@@ -124,6 +134,8 @@ namespace Adyen.AcsWebhooks.Models
                     "PWD_OTP_PHONE_FL" => FlowEnum.PWDOTPPHONEFL,
                     "PWD_OTP_EMAIL_FL" => FlowEnum.PWDOTPEMAILFL,
                     "OOB_TRIGGER_FL" => FlowEnum.OOBTRIGGERFL,
+                    "OTP_PHONE_FL" => FlowEnum.OTPPHONEFL,
+                    "PASSKEY_TRIGGER_FL" => FlowEnum.PASSKEYTRIGGERFL,
                     _ => null,
                 };
             }
@@ -146,6 +158,12 @@ namespace Adyen.AcsWebhooks.Models
                 
                 if (value == FlowEnum.OOBTRIGGERFL)
                     return "OOB_TRIGGER_FL";
+                
+                if (value == FlowEnum.OTPPHONEFL)
+                    return "OTP_PHONE_FL";
+                
+                if (value == FlowEnum.PASSKEYTRIGGERFL)
+                    return "PASSKEY_TRIGGER_FL";
                 
                 return value.Value;
             }
@@ -175,9 +193,9 @@ namespace Adyen.AcsWebhooks.Models
         }
 
         /// <summary>
-        /// The flow used in the challenge. Possible values:  * **PWD_OTP_PHONE_FL**: one-time password (OTP) flow via SMS * **PWD_OTP_EMAIL_FL**: one-time password (OTP) flow via email * **OOB_TRIGGER_FL**: out-of-band (OOB) flow
+        /// The flow used in the challenge. Possible values:  * **PWD_OTP_PHONE_FL**: one-time password (OTP) flow via SMS * **PWD_OTP_EMAIL_FL**: one-time password (OTP) flow via email * **OOB_TRIGGER_FL**: out-of-band (OOB) flow * **OTP_PHONE_FL**: one-time password (OTP) flow via SMS with no passcode * **PASSKEY_TRIGGER_FL**: passkey flow
         /// </summary>
-        /// <value>The flow used in the challenge. Possible values:  * **PWD_OTP_PHONE_FL**: one-time password (OTP) flow via SMS * **PWD_OTP_EMAIL_FL**: one-time password (OTP) flow via email * **OOB_TRIGGER_FL**: out-of-band (OOB) flow</value>
+        /// <value>The flow used in the challenge. Possible values:  * **PWD_OTP_PHONE_FL**: one-time password (OTP) flow via SMS * **PWD_OTP_EMAIL_FL**: one-time password (OTP) flow via email * **OOB_TRIGGER_FL**: out-of-band (OOB) flow * **OTP_PHONE_FL**: one-time password (OTP) flow via SMS with no passcode * **PASSKEY_TRIGGER_FL**: passkey flow</value>
         [JsonPropertyName("flow")]
         public FlowEnum Flow { get; set; }
 
