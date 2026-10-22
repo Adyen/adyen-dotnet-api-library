@@ -40,6 +40,19 @@ namespace Adyen.Checkout.Services
         UtilityServiceEvents? Events { get; }
 
         /// <summary>
+        /// Calculate the tax for a transaction.
+        /// </summary>
+        /// <remarks>
+        /// Calculates the applicable tax, for example the India Liberalised Remittance Scheme Tax Collected at Source, based on the taxable amount and the tax calculation context. The response returns the canonical calculation and an opaque token that you submit in /payments. Use taxCalculation.totalAmount as the amount in /payments.
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
+        /// <param name="calculateTaxRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> of <see cref="ICalculateTaxApiResponse"/>.</returns>
+        Task<ICalculateTaxApiResponse> CalculateTaxAsync(CalculateTaxRequest calculateTaxRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Get an Apple Pay session
         /// </summary>
         /// <remarks>
@@ -96,6 +109,61 @@ namespace Adyen.Checkout.Services
         /// <returns><see cref="Task"/> of <see cref="IValidateShopperIdApiResponse"/>.</returns>
         Task<IValidateShopperIdApiResponse> ValidateShopperIdAsync(ValidateShopperIdRequest validateShopperIdRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
+        /// <summary>
+        /// Verify the shopper&#39;s tax identification.
+        /// </summary>
+        /// <remarks>
+        /// In some countries, collecting and verifying tax information is required for regulatory compliance. Submit the shopper&#39;s tax identification for verification; when the verification succeeds, the response returns an opaque token that you submit in /payments.
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
+        /// <param name="verifyShopperTaxIdentificationRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> of <see cref="IVerifyShopperTaxIdentificationApiResponse"/>.</returns>
+        Task<IVerifyShopperTaxIdentificationApiResponse> VerifyShopperTaxIdentificationAsync(VerifyShopperTaxIdentificationRequest verifyShopperTaxIdentificationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+
+    }
+
+    /// <summary>
+    /// The <see cref="ICalculateTaxApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.CalculateTaxResponse"/>.
+    /// </summary>
+    public interface ICalculateTaxApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.CalculateTaxResponse?>, IBadRequest<Adyen.Checkout.Models.CheckoutErrorResponseEntity?>, IUnauthorized<Adyen.Checkout.Models.CheckoutErrorResponseEntity?>, IForbidden<Adyen.Checkout.Models.CheckoutErrorResponseEntity?>, IUnprocessableContent<Adyen.Checkout.Models.CheckoutErrorResponseEntity?>, IInternalServerError<Adyen.Checkout.Models.CheckoutErrorResponseEntity?>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok.
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest.
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized.
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 403 Forbidden.
+        /// </summary>
+        /// <returns></returns>
+        bool IsForbidden { get; }
+
+        /// <summary>
+        /// Returns true if the response is 422 UnprocessableContent.
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnprocessableContent { get; }
+
+        /// <summary>
+        /// Returns true if the response is 500 InternalServerError.
+        /// </summary>
+        /// <returns></returns>
+        bool IsInternalServerError { get; }
     }
 
     /// <summary>
@@ -237,10 +305,72 @@ namespace Adyen.Checkout.Services
     }
 
     /// <summary>
+    /// The <see cref="IVerifyShopperTaxIdentificationApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.VerifyShopperTaxIdentificationResponse"/>.
+    /// </summary>
+    public interface IVerifyShopperTaxIdentificationApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.VerifyShopperTaxIdentificationResponse?>, IBadRequest<Adyen.Checkout.Models.CheckoutErrorResponseEntity?>, IUnauthorized<Adyen.Checkout.Models.CheckoutErrorResponseEntity?>, IForbidden<Adyen.Checkout.Models.CheckoutErrorResponseEntity?>, IUnprocessableContent<Adyen.Checkout.Models.CheckoutErrorResponseEntity?>, IInternalServerError<Adyen.Checkout.Models.CheckoutErrorResponseEntity?>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok.
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest.
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized.
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 403 Forbidden.
+        /// </summary>
+        /// <returns></returns>
+        bool IsForbidden { get; }
+
+        /// <summary>
+        /// Returns true if the response is 422 UnprocessableContent.
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnprocessableContent { get; }
+
+        /// <summary>
+        /// Returns true if the response is 500 InternalServerError.
+        /// </summary>
+        /// <returns></returns>
+        bool IsInternalServerError { get; }
+    }
+
+    /// <summary>
     /// Represents a collection of functions to interact with the API endpoints.
     /// </summary>
     public class UtilityServiceEvents
     {
+        /// <summary>
+        /// The event raised after the server response.
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnCalculateTax;
+
+        /// <summary>
+        /// The event raised after an error querying the server.
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorCalculateTax;
+
+        internal void ExecuteOnCalculateTax(UtilityService.CalculateTaxApiResponse apiResponse)
+        {
+            OnCalculateTax?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorCalculateTax(Exception exception)
+        {
+            OnErrorCalculateTax?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
@@ -320,6 +450,26 @@ namespace Adyen.Checkout.Services
         {
             OnErrorValidateShopperId?.Invoke(this, new ExceptionEventArgs(exception));
         }
+
+        /// <summary>
+        /// The event raised after the server response.
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnVerifyShopperTaxIdentification;
+
+        /// <summary>
+        /// The event raised after an error querying the server.
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorVerifyShopperTaxIdentification;
+
+        internal void ExecuteOnVerifyShopperTaxIdentification(UtilityService.VerifyShopperTaxIdentificationApiResponse apiResponse)
+        {
+            OnVerifyShopperTaxIdentification?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorVerifyShopperTaxIdentification(Exception exception)
+        {
+            OnErrorVerifyShopperTaxIdentification?.Invoke(this, new ExceptionEventArgs(exception));
+        }
     }
 
     /// <summary>
@@ -380,6 +530,382 @@ namespace Adyen.Checkout.Services
             HttpClient = httpClient;
             Events = utilityServiceEvents;
             ApiKeyProvider = apiKeyProvider;
+        }
+        
+        /// <summary>
+        /// Calculate the tax for a transaction. Calculates the applicable tax, for example the India Liberalised Remittance Scheme Tax Collected at Source, based on the taxable amount and the tax calculation context. The response returns the canonical calculation and an opaque token that you submit in /payments. Use taxCalculation.totalAmount as the amount in /payments.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
+        /// <param name="calculateTaxRequest"><see cref="CalculateTaxRequest"/></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> of <see cref="ICalculateTaxApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.CalculateTaxResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICalculateTaxApiResponse> CalculateTaxAsync(CalculateTaxRequest calculateTaxRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilder = new UriBuilder();
+
+            try
+            {
+                using (HttpRequestMessage httpRequestMessage = new HttpRequestMessage())
+                {
+                    uriBuilder.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilder.Port = HttpClient.BaseAddress.Port;
+                    uriBuilder.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilder.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/calculateTax"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/calculateTax");
+
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+                    httpRequestMessage.Content = (calculateTaxRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(calculateTaxRequest, _jsonSerializerOptions));
+                    // Add authorization token to the HttpRequestMessage header
+                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
+
+                    httpRequestMessage.RequestUri = uriBuilder.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    httpRequestMessage.AddUserAgentToHeaders();
+                    httpRequestMessage.AddLibraryNameToHeader();
+                    httpRequestMessage.AddLibraryVersionToHeader();
+                    
+                    string? contentType = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentType != null && httpRequestMessage.Content != null)
+                        httpRequestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+
+                    string[] accepts = new string[] {
+                        "application/json"
+                    };
+
+                    string? accept = ClientUtils.SelectHeaderAccept(accepts);
+
+                    if (accept != null)
+                        httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
+                    httpRequestMessage.Method = HttpMethod.Post;
+#endif
+
+                    DateTime requestedAt = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<CalculateTaxApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<CalculateTaxApiResponse>();
+                        CalculateTaxApiResponse apiResponse;
+
+                        switch ((int)httpResponseMessage.StatusCode) {
+                            default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
+                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/calculateTax", requestedAt, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+                        
+                        Events?.ExecuteOnCalculateTax(apiResponse);
+                        return apiResponse;
+                    }
+                }
+            }
+            catch(Exception exception)
+            {
+                Events?.ExecuteOnErrorCalculateTax(exception);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="CalculateTaxApiResponse"/>.
+        /// </summary>
+        public partial class CalculateTaxApiResponse : Adyen.Core.Client.ApiResponse, ICalculateTaxApiResponse
+        {
+            /// <summary>
+            /// The logger for <see cref="CalculateTaxApiResponse"/>.
+            /// </summary>
+            public ILogger<CalculateTaxApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="CalculateTaxApiResponse"/>.
+            /// </summary>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
+            public CalculateTaxApiResponse(ILogger<CalculateTaxApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="CalculateTaxApiResponse"/>.
+            /// </summary>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
+            public CalculateTaxApiResponse(ILogger<CalculateTaxApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.CalculateTaxResponse? Ok()
+            {
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.CalculateTaxResponse>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.Checkout.Models.CalculateTaxResponse? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.CheckoutErrorResponseEntity? BadRequest()
+            {
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.CheckoutErrorResponseEntity>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeBadRequestResponse([NotNullWhen(true)]out Adyen.Checkout.Models.CheckoutErrorResponseEntity? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 401 Unauthorized.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.CheckoutErrorResponseEntity? Unauthorized()
+            {
+                return IsUnauthorized
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.CheckoutErrorResponseEntity>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeUnauthorizedResponse([NotNullWhen(true)]out Adyen.Checkout.Models.CheckoutErrorResponseEntity? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Unauthorized();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)401);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 403 Forbidden.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsForbidden => 403 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 403 Forbidden.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.CheckoutErrorResponseEntity? Forbidden()
+            {
+                return IsForbidden
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.CheckoutErrorResponseEntity>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 403 Forbidden and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeForbiddenResponse([NotNullWhen(true)]out Adyen.Checkout.Models.CheckoutErrorResponseEntity? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Forbidden();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)403);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 422 UnprocessableContent.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnprocessableContent => 422 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 422 UnprocessableContent.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.CheckoutErrorResponseEntity? UnprocessableContent()
+            {
+                return IsUnprocessableContent
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.CheckoutErrorResponseEntity>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 422 UnprocessableContent and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeUnprocessableContentResponse([NotNullWhen(true)]out Adyen.Checkout.Models.CheckoutErrorResponseEntity? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = UnprocessableContent();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)422);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 500 InternalServerError.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsInternalServerError => 500 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 500 InternalServerError.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.CheckoutErrorResponseEntity? InternalServerError()
+            {
+                return IsInternalServerError
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.CheckoutErrorResponseEntity>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 500 InternalServerError and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeInternalServerErrorResponse([NotNullWhen(true)]out Adyen.Checkout.Models.CheckoutErrorResponseEntity? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = InternalServerError();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)500);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationError(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
         
         /// <summary>
@@ -1486,6 +2012,382 @@ namespace Adyen.Checkout.Services
             /// <param name="result"></param>
             /// <returns></returns>
             public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.Checkout.Models.ValidateShopperIdResponse? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.CheckoutErrorResponseEntity? BadRequest()
+            {
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.CheckoutErrorResponseEntity>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeBadRequestResponse([NotNullWhen(true)]out Adyen.Checkout.Models.CheckoutErrorResponseEntity? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 401 Unauthorized.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.CheckoutErrorResponseEntity? Unauthorized()
+            {
+                return IsUnauthorized
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.CheckoutErrorResponseEntity>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeUnauthorizedResponse([NotNullWhen(true)]out Adyen.Checkout.Models.CheckoutErrorResponseEntity? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Unauthorized();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)401);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 403 Forbidden.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsForbidden => 403 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 403 Forbidden.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.CheckoutErrorResponseEntity? Forbidden()
+            {
+                return IsForbidden
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.CheckoutErrorResponseEntity>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 403 Forbidden and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeForbiddenResponse([NotNullWhen(true)]out Adyen.Checkout.Models.CheckoutErrorResponseEntity? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Forbidden();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)403);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 422 UnprocessableContent.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnprocessableContent => 422 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 422 UnprocessableContent.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.CheckoutErrorResponseEntity? UnprocessableContent()
+            {
+                return IsUnprocessableContent
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.CheckoutErrorResponseEntity>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 422 UnprocessableContent and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeUnprocessableContentResponse([NotNullWhen(true)]out Adyen.Checkout.Models.CheckoutErrorResponseEntity? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = UnprocessableContent();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)422);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 500 InternalServerError.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsInternalServerError => 500 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 500 InternalServerError.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.CheckoutErrorResponseEntity? InternalServerError()
+            {
+                return IsInternalServerError
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.CheckoutErrorResponseEntity>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 500 InternalServerError and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeInternalServerErrorResponse([NotNullWhen(true)]out Adyen.Checkout.Models.CheckoutErrorResponseEntity? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = InternalServerError();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)500);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationError(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+        
+        /// <summary>
+        /// Verify the shopper&#39;s tax identification. In some countries, collecting and verifying tax information is required for regulatory compliance. Submit the shopper&#39;s tax identification for verification; when the verification succeeds, the response returns an opaque token that you submit in /payments.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
+        /// <param name="verifyShopperTaxIdentificationRequest"><see cref="VerifyShopperTaxIdentificationRequest"/></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> of <see cref="IVerifyShopperTaxIdentificationApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.VerifyShopperTaxIdentificationResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IVerifyShopperTaxIdentificationApiResponse> VerifyShopperTaxIdentificationAsync(VerifyShopperTaxIdentificationRequest verifyShopperTaxIdentificationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilder = new UriBuilder();
+
+            try
+            {
+                using (HttpRequestMessage httpRequestMessage = new HttpRequestMessage())
+                {
+                    uriBuilder.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilder.Port = HttpClient.BaseAddress.Port;
+                    uriBuilder.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilder.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/verifyShopperTaxIdentification"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/verifyShopperTaxIdentification");
+
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+                    httpRequestMessage.Content = (verifyShopperTaxIdentificationRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(verifyShopperTaxIdentificationRequest, _jsonSerializerOptions));
+                    // Add authorization token to the HttpRequestMessage header
+                    ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
+
+                    httpRequestMessage.RequestUri = uriBuilder.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    httpRequestMessage.AddUserAgentToHeaders();
+                    httpRequestMessage.AddLibraryNameToHeader();
+                    httpRequestMessage.AddLibraryVersionToHeader();
+                    
+                    string? contentType = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentType != null && httpRequestMessage.Content != null)
+                        httpRequestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+
+                    string[] accepts = new string[] {
+                        "application/json"
+                    };
+
+                    string? accept = ClientUtils.SelectHeaderAccept(accepts);
+
+                    if (accept != null)
+                        httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
+                    httpRequestMessage.Method = HttpMethod.Post;
+#endif
+
+                    DateTime requestedAt = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<VerifyShopperTaxIdentificationApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<VerifyShopperTaxIdentificationApiResponse>();
+                        VerifyShopperTaxIdentificationApiResponse apiResponse;
+
+                        switch ((int)httpResponseMessage.StatusCode) {
+                            default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
+                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/verifyShopperTaxIdentification", requestedAt, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+                        
+                        Events?.ExecuteOnVerifyShopperTaxIdentification(apiResponse);
+                        return apiResponse;
+                    }
+                }
+            }
+            catch(Exception exception)
+            {
+                Events?.ExecuteOnErrorVerifyShopperTaxIdentification(exception);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="VerifyShopperTaxIdentificationApiResponse"/>.
+        /// </summary>
+        public partial class VerifyShopperTaxIdentificationApiResponse : Adyen.Core.Client.ApiResponse, IVerifyShopperTaxIdentificationApiResponse
+        {
+            /// <summary>
+            /// The logger for <see cref="VerifyShopperTaxIdentificationApiResponse"/>.
+            /// </summary>
+            public ILogger<VerifyShopperTaxIdentificationApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="VerifyShopperTaxIdentificationApiResponse"/>.
+            /// </summary>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
+            public VerifyShopperTaxIdentificationApiResponse(ILogger<VerifyShopperTaxIdentificationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="VerifyShopperTaxIdentificationApiResponse"/>.
+            /// </summary>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
+            public VerifyShopperTaxIdentificationApiResponse(ILogger<VerifyShopperTaxIdentificationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Checkout.Models.VerifyShopperTaxIdentificationResponse? Ok()
+            {
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Checkout.Models.VerifyShopperTaxIdentificationResponse>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.Checkout.Models.VerifyShopperTaxIdentificationResponse? result)
             {
                 result = null;
 

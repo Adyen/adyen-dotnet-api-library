@@ -98,6 +98,9 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new BillingAddressJsonConverter());
             _jsonOptions.Converters.Add(new BlikDetailsJsonConverter());
             _jsonOptions.Converters.Add(new BrowserInfoJsonConverter());
+            _jsonOptions.Converters.Add(new CalculateTaxRequestJsonConverter());
+            _jsonOptions.Converters.Add(new CalculateTaxResponseJsonConverter());
+            _jsonOptions.Converters.Add(new CalculationType.CalculationTypeJsonConverter());
             _jsonOptions.Converters.Add(new CancelOrderRequestJsonConverter());
             _jsonOptions.Converters.Add(new CancelOrderResponseJsonConverter());
             _jsonOptions.Converters.Add(new CarRentalJsonConverter());
@@ -189,6 +192,7 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new LineItemJsonConverter());
             _jsonOptions.Converters.Add(new ListStoredPaymentMethodsResponseJsonConverter());
             _jsonOptions.Converters.Add(new LodgingJsonConverter());
+            _jsonOptions.Converters.Add(new LrsContextJsonConverter());
             _jsonOptions.Converters.Add(new MandateJsonConverter());
             _jsonOptions.Converters.Add(new MasterpassDetailsJsonConverter());
             _jsonOptions.Converters.Add(new MbwayDetailsJsonConverter());
@@ -257,6 +261,7 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new RakutenPayDetailsJsonConverter());
             _jsonOptions.Converters.Add(new RatepayDetailsJsonConverter());
             _jsonOptions.Converters.Add(new RecurringJsonConverter());
+            _jsonOptions.Converters.Add(new RemittancePurpose.RemittancePurposeJsonConverter());
             _jsonOptions.Converters.Add(new RentalSurchargesJsonConverter());
             _jsonOptions.Converters.Add(new ResponseAdditionalData3DSecureJsonConverter());
             _jsonOptions.Converters.Add(new ResponseAdditionalDataBillingAddressJsonConverter());
@@ -285,6 +290,7 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new ShopperIdPaymentMethodJsonConverter());
             _jsonOptions.Converters.Add(new ShopperInteractionDeviceJsonConverter());
             _jsonOptions.Converters.Add(new ShopperNameJsonConverter());
+            _jsonOptions.Converters.Add(new ShopperTaxIdentificationJsonConverter());
             _jsonOptions.Converters.Add(new ShopperTaxInfoJsonConverter());
             _jsonOptions.Converters.Add(new SplitJsonConverter());
             _jsonOptions.Converters.Add(new SplitAmountJsonConverter());
@@ -297,8 +303,15 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new SubInputDetailJsonConverter());
             _jsonOptions.Converters.Add(new SubMerchantJsonConverter());
             _jsonOptions.Converters.Add(new SubMerchantInfoJsonConverter());
+            _jsonOptions.Converters.Add(new SublimitStatus.SublimitStatusJsonConverter());
             _jsonOptions.Converters.Add(new SurchargeJsonConverter());
+            _jsonOptions.Converters.Add(new TaxAmountJsonConverter());
+            _jsonOptions.Converters.Add(new TaxCalculationJsonConverter());
+            _jsonOptions.Converters.Add(new TaxCalculationComponentJsonConverter());
+            _jsonOptions.Converters.Add(new TaxCalculationContextJsonConverter());
+            _jsonOptions.Converters.Add(new TaxIdentificationType.TaxIdentificationTypeJsonConverter());
             _jsonOptions.Converters.Add(new TaxTotalJsonConverter());
+            _jsonOptions.Converters.Add(new TaxableAmountJsonConverter());
             _jsonOptions.Converters.Add(new TemporaryServicesJsonConverter());
             _jsonOptions.Converters.Add(new ThirdPartyTokenRedundancyInfoJsonConverter());
             _jsonOptions.Converters.Add(new ThreeDS2RequestDataJsonConverter());
@@ -322,6 +335,9 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new UtilityResponseJsonConverter());
             _jsonOptions.Converters.Add(new ValidateShopperIdRequestJsonConverter());
             _jsonOptions.Converters.Add(new ValidateShopperIdResponseJsonConverter());
+            _jsonOptions.Converters.Add(new VerifiedShopperTaxIdentificationJsonConverter());
+            _jsonOptions.Converters.Add(new VerifyShopperTaxIdentificationRequestJsonConverter());
+            _jsonOptions.Converters.Add(new VerifyShopperTaxIdentificationResponseJsonConverter());
             _jsonOptions.Converters.Add(new VippsDetailsJsonConverter());
             _jsonOptions.Converters.Add(new VisaCheckoutDetailsJsonConverter());
             _jsonOptions.Converters.Add(new WeChatPayDetailsJsonConverter());

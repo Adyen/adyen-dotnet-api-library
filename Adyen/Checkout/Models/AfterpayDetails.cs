@@ -65,6 +65,11 @@ namespace Adyen.Checkout.Models
             public static readonly TypeEnum Afterpaytouch = new("afterpaytouch");
 
             /// <summary>
+            /// TypeEnum.AfterpaytouchUS - afterpaytouch_US
+            /// </summary>
+            public static readonly TypeEnum AfterpaytouchUS = new("afterpaytouch_US");
+
+            /// <summary>
             /// TypeEnum.AfterpayB2b - afterpay_b2b
             /// </summary>
             public static readonly TypeEnum AfterpayB2b = new("afterpay_b2b");
@@ -128,6 +133,7 @@ namespace Adyen.Checkout.Models
                 return value switch {
                     "afterpay_default" => TypeEnum.AfterpayDefault,
                     "afterpaytouch" => TypeEnum.Afterpaytouch,
+                    "afterpaytouch_US" => TypeEnum.AfterpaytouchUS,
                     "afterpay_b2b" => TypeEnum.AfterpayB2b,
                     "clearpay" => TypeEnum.Clearpay,
                     _ => null,
@@ -149,6 +155,9 @@ namespace Adyen.Checkout.Models
                 
                 if (value == TypeEnum.Afterpaytouch)
                     return "afterpaytouch";
+                
+                if (value == TypeEnum.AfterpaytouchUS)
+                    return "afterpaytouch_US";
                 
                 if (value == TypeEnum.AfterpayB2b)
                     return "afterpay_b2b";

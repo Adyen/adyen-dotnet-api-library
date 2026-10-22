@@ -43,6 +43,143 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
+        /// The type of flow to initiate. Defaults to redirect when omitted.
+        /// </summary>
+        /// <value>The type of flow to initiate. Defaults to redirect when omitted.</value>
+        [JsonConverter(typeof(SubtypeEnumJsonConverter))]
+        public class SubtypeEnum : IEnum
+        {
+            /// <summary>
+            /// Returns the value of the SubtypeEnum.
+            /// </summary>
+            public string? Value { get; set; }
+
+            /// <summary>
+            /// SubtypeEnum.Redirect - redirect
+            /// </summary>
+            public static readonly SubtypeEnum Redirect = new("redirect");
+
+            /// <summary>
+            /// SubtypeEnum.Sdk - sdk
+            /// </summary>
+            public static readonly SubtypeEnum Sdk = new("sdk");
+        
+            private SubtypeEnum(string? value)
+            {
+                Value = value;
+            }
+
+            /// <summary>
+            /// Converts a string to a <see cref="SubtypeEnum"/> implicitly.
+            /// </summary>
+            /// <param name="value">The string value to convert. Defaults to null.</param>
+            /// <returns>A new <see cref="SubtypeEnum"/> instance initialized with the string value.</returns>
+            public static implicit operator SubtypeEnum?(string? value) => value == null ? null : new SubtypeEnum(value);
+    
+            /// <summary>
+            /// Converts a <see cref="SubtypeEnum"/> instance to a string implicitly.
+            /// </summary>
+            /// <param name="option">The <see cref="SubtypeEnum"/> instance. Default to null.</param>
+            /// <returns>String value of the <see cref="SubtypeEnum"/> instance.</returns>
+            public static implicit operator string?(SubtypeEnum? option) => option?.Value;
+        
+            /// <summary>
+            /// Compares two <see cref="SubtypeEnum"/> instances for equality.
+            /// </summary>
+            public static bool operator ==(SubtypeEnum? left, SubtypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Compares two <see cref="SubtypeEnum"/> instances for inequality.
+            /// </summary>
+            public static bool operator !=(SubtypeEnum? left, SubtypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns true if the given object is equal to this <see cref="SubtypeEnum"/> instance.
+            /// </summary>
+            public override bool Equals(object? obj) => obj is SubtypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns a hash code for this <see cref="SubtypeEnum"/> instance.
+            /// </summary>
+            public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+            /// <summary>
+            /// Returns the string value of the <see cref="SubtypeEnum"/> instance.
+            /// </summary>
+            public override string ToString() => Value ?? string.Empty;
+        
+            /// <summary>
+            /// Returns a <see cref="SubtypeEnum?"/>.
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns><see cref="SubtypeEnum"/> or null.</returns>
+            public static SubtypeEnum? FromStringOrDefault(string value)
+            {
+                return value switch {
+                    "redirect" => SubtypeEnum.Redirect,
+                    "sdk" => SubtypeEnum.Sdk,
+                    _ => null,
+                };
+            }
+    
+            /// <summary>
+            /// Converts the <see cref="SubtypeEnum"/> to the json value.
+            /// </summary>
+            /// <param name="value"><see cref="SubtypeEnum"/></param>
+            /// <returns>String value of the enum.</returns>
+            public static string? ToJsonValue(SubtypeEnum? value)
+            {
+                if (value == null)
+                    return null;
+            
+                if (value == SubtypeEnum.Redirect)
+                    return "redirect";
+                
+                if (value == SubtypeEnum.Sdk)
+                    return "sdk";
+                
+                return value.Value;
+            }
+            
+            /// <summary>
+            /// JsonConverter for writing SubtypeEnum.               
+            /// </summary>
+            public class SubtypeEnumJsonConverter : JsonConverter<SubtypeEnum>
+            {
+                /// <summary>
+                /// Deserializes a <see cref="SubtypeEnum"/> from JSON.
+                /// </summary>
+                public override SubtypeEnum? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions jsonOptions)
+                {
+                    string value = reader.GetString();
+                    return value == null ? null : SubtypeEnum.FromStringOrDefault(value) ?? new SubtypeEnum(value);
+                }
+
+                /// <summary>
+                /// Serializes a <see cref="SubtypeEnum"/> to JSON.
+                /// </summary>
+                public override void Write(Utf8JsonWriter writer, SubtypeEnum value, JsonSerializerOptions jsonOptions)
+                {
+                    writer.WriteStringValue(SubtypeEnum.ToJsonValue(value));
+                }
+            }
+        }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Subtype"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<SubtypeEnum?> _SubtypeOption { get; private set; }
+
+        /// <summary>
+        /// The type of flow to initiate. Defaults to redirect when omitted.
+        /// </summary>
+        /// <value>The type of flow to initiate. Defaults to redirect when omitted.</value>
+        [JsonPropertyName("subtype")]
+        public SubtypeEnum? Subtype { get { return this._SubtypeOption; } set { this._SubtypeOption = new(value); } }
+
+        /// <summary>
         /// **klarna_network**
         /// </summary>
         /// <value>**klarna_network**</value>
@@ -278,6 +415,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  SdkData: ").Append(SdkData).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
+            sb.Append("  Subtype: ").Append(Subtype).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -313,6 +451,7 @@ namespace Adyen.Checkout.Models
             Option<string?> recurringDetailReference = default;
             Option<string?> sdkData = default;
             Option<string?> storedPaymentMethodId = default;
+            Option<KlarnaNetworkDetails.SubtypeEnum?> subtype = default;
             Option<KlarnaNetworkDetails.TypeEnum?> type = default;
 
             while (utf8JsonReader.Read())
@@ -351,6 +490,10 @@ namespace Adyen.Checkout.Models
                         case "storedPaymentMethodId":
                             storedPaymentMethodId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "subtype":
+                            string? subtypeRawValue = utf8JsonReader.GetString();
+                            subtype = new Option<KlarnaNetworkDetails.SubtypeEnum?>(KlarnaNetworkDetails.SubtypeEnum.FromStringOrDefault(subtypeRawValue) ?? (KlarnaNetworkDetails.SubtypeEnum)subtypeRawValue);
+                            break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             type = new Option<KlarnaNetworkDetails.TypeEnum?>(KlarnaNetworkDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (KlarnaNetworkDetails.TypeEnum)typeRawValue);
@@ -377,6 +520,8 @@ namespace Adyen.Checkout.Models
                 klarnaNetworkDetails.SdkData = sdkData.Value;
             if (storedPaymentMethodId.IsSet)
                 klarnaNetworkDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
+            if (subtype.IsSet)
+                klarnaNetworkDetails.Subtype = subtype.Value;
             if (type.IsSet)
                 klarnaNetworkDetails.Type = type.Value!;
             return klarnaNetworkDetails;
@@ -436,6 +581,12 @@ namespace Adyen.Checkout.Models
                 if (klarnaNetworkDetails.StoredPaymentMethodId != null)
                     writer.WriteString("storedPaymentMethodId", klarnaNetworkDetails.StoredPaymentMethodId);
 
+            if (klarnaNetworkDetails._SubtypeOption.IsSet && klarnaNetworkDetails.Subtype != null) 
+            {
+                string? subtypeRawValue = KlarnaNetworkDetails.SubtypeEnum.ToJsonValue(klarnaNetworkDetails._SubtypeOption.Value!.Value);
+                writer.WriteString("subtype", subtypeRawValue);
+            }
+            
             if (klarnaNetworkDetails.Type != null) 
             {
                 string? typeRawValue = KlarnaNetworkDetails.TypeEnum.ToJsonValue(klarnaNetworkDetails.Type);
