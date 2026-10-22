@@ -43,18 +43,32 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ContactPersonName"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _ContactPersonNameOption { get; private set; }
+
+        /// <summary>
         /// The name of the contact person from merchant support.
         /// </summary>
         /// <value>The name of the contact person from merchant support.</value>
         [JsonPropertyName("contactPersonName")]
-        public string? ContactPersonName { get; set; }
+        public string? ContactPersonName { get { return this._ContactPersonNameOption; } set { this._ContactPersonNameOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Email"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _EmailOption { get; private set; }
 
         /// <summary>
         /// The email address of merchant support.
         /// </summary>
         /// <value>The email address of merchant support.</value>
         [JsonPropertyName("email")]
-        public string? Email { get; set; }
+        public string? Email { get { return this._EmailOption; } set { this._EmailOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -126,9 +140,9 @@ namespace Adyen.Management.Models
 
             var weChatPayResponseInfo = new WeChatPayResponseInfo();
             if (contactPersonName.IsSet)
-                weChatPayResponseInfo.ContactPersonName = contactPersonName.Value!;
+                weChatPayResponseInfo.ContactPersonName = contactPersonName.Value;
             if (email.IsSet)
-                weChatPayResponseInfo.Email = email.Value!;
+                weChatPayResponseInfo.Email = email.Value;
             return weChatPayResponseInfo;
         }
 
@@ -158,11 +172,13 @@ namespace Adyen.Management.Models
         public void WriteProperties(Utf8JsonWriter writer, WeChatPayResponseInfo weChatPayResponseInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (weChatPayResponseInfo.ContactPersonName != null)
-                writer.WriteString("contactPersonName", weChatPayResponseInfo.ContactPersonName);
+            if (weChatPayResponseInfo._ContactPersonNameOption.IsSet)
+                if (weChatPayResponseInfo.ContactPersonName != null)
+                    writer.WriteString("contactPersonName", weChatPayResponseInfo.ContactPersonName);
 
-            if (weChatPayResponseInfo.Email != null)
-                writer.WriteString("email", weChatPayResponseInfo.Email);
+            if (weChatPayResponseInfo._EmailOption.IsSet)
+                if (weChatPayResponseInfo.Email != null)
+                    writer.WriteString("email", weChatPayResponseInfo.Email);
         }
     }
 }

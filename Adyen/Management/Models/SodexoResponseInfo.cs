@@ -43,11 +43,18 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantContactPhone"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _MerchantContactPhoneOption { get; private set; }
+
+        /// <summary>
         /// Sodexo merchantContactPhone
         /// </summary>
         /// <value>Sodexo merchantContactPhone</value>
         [JsonPropertyName("merchantContactPhone")]
-        public string? MerchantContactPhone { get; set; }
+        public string? MerchantContactPhone { get { return this._MerchantContactPhoneOption; } set { this._MerchantContactPhoneOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -114,7 +121,7 @@ namespace Adyen.Management.Models
 
             var sodexoResponseInfo = new SodexoResponseInfo();
             if (merchantContactPhone.IsSet)
-                sodexoResponseInfo.MerchantContactPhone = merchantContactPhone.Value!;
+                sodexoResponseInfo.MerchantContactPhone = merchantContactPhone.Value;
             return sodexoResponseInfo;
         }
 
@@ -144,8 +151,9 @@ namespace Adyen.Management.Models
         public void WriteProperties(Utf8JsonWriter writer, SodexoResponseInfo sodexoResponseInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (sodexoResponseInfo.MerchantContactPhone != null)
-                writer.WriteString("merchantContactPhone", sodexoResponseInfo.MerchantContactPhone);
+            if (sodexoResponseInfo._MerchantContactPhoneOption.IsSet)
+                if (sodexoResponseInfo.MerchantContactPhone != null)
+                    writer.WriteString("merchantContactPhone", sodexoResponseInfo.MerchantContactPhone);
         }
     }
 }

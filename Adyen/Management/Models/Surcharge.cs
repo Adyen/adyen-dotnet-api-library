@@ -71,6 +71,22 @@ namespace Adyen.Management.Models
         public List<ModelConfiguration>? Configurations { get { return this._ConfigurationsOption; } set { this._ConfigurationsOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="DisclosureOnPresentCard"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> _DisclosureOnPresentCardOption { get; private set; }
+
+        /// <summary>
+        /// Show the maximum surcharge rate to the shopper on the present card screen before they tap.
+        /// </summary>
+        /// <value>Show the maximum surcharge rate to the shopper on the present card screen before they tap.</value>
+        [JsonPropertyName("disclosureOnPresentCard")]
+        /* Deprecated since Management API v1 */
+        [Obsolete("Deprecated since Management API v1.")]
+        public bool? DisclosureOnPresentCard { get { return this._DisclosureOnPresentCardOption; } set { this._DisclosureOnPresentCardOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ExcludeGratuityFromSurcharge"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -94,6 +110,7 @@ namespace Adyen.Management.Models
             sb.Append("class Surcharge {\n");
             sb.Append("  AskConfirmation: ").Append(AskConfirmation).Append("\n");
             sb.Append("  Configurations: ").Append(Configurations).Append("\n");
+            sb.Append("  DisclosureOnPresentCard: ").Append(DisclosureOnPresentCard).Append("\n");
             sb.Append("  ExcludeGratuityFromSurcharge: ").Append(ExcludeGratuityFromSurcharge).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -124,6 +141,7 @@ namespace Adyen.Management.Models
 
             Option<bool?> askConfirmation = default;
             Option<List<ModelConfiguration>?> configurations = default;
+            Option<bool?> disclosureOnPresentCard = default;
             Option<bool?> excludeGratuityFromSurcharge = default;
 
             while (utf8JsonReader.Read())
@@ -147,6 +165,9 @@ namespace Adyen.Management.Models
                         case "configurations":
                             configurations = new Option<List<ModelConfiguration>?>(JsonSerializer.Deserialize<List<ModelConfiguration>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
+                        case "disclosureOnPresentCard":
+                            disclosureOnPresentCard = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         case "excludeGratuityFromSurcharge":
                             excludeGratuityFromSurcharge = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
@@ -162,6 +183,8 @@ namespace Adyen.Management.Models
                 surcharge.AskConfirmation = askConfirmation.Value;
             if (configurations.IsSet)
                 surcharge.Configurations = configurations.Value;
+            if (disclosureOnPresentCard.IsSet)
+                surcharge.DisclosureOnPresentCard = disclosureOnPresentCard.Value;
             if (excludeGratuityFromSurcharge.IsSet)
                 surcharge.ExcludeGratuityFromSurcharge = excludeGratuityFromSurcharge.Value;
             return surcharge;
@@ -202,6 +225,10 @@ namespace Adyen.Management.Models
                 writer.WritePropertyName("configurations");
                 JsonSerializer.Serialize(writer, surcharge.Configurations, jsonSerializerOptions);
             }
+            if (surcharge._DisclosureOnPresentCardOption.IsSet)
+                if (surcharge._DisclosureOnPresentCardOption.Value != null)
+                    writer.WriteBoolean("disclosureOnPresentCard", surcharge._DisclosureOnPresentCardOption.Value!.Value);
+
             if (surcharge._ExcludeGratuityFromSurchargeOption.IsSet)
                 if (surcharge._ExcludeGratuityFromSurchargeOption.Value != null)
                     writer.WriteBoolean("excludeGratuityFromSurcharge", surcharge._ExcludeGratuityFromSurchargeOption.Value!.Value);
