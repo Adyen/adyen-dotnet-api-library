@@ -1,0 +1,10 @@
+{
+  "result": "VALID",
+  "taxVerificationReference": "TAXVER1234567890",
+  "verifiedShopperTaxIdentification": {
+    "taxIdentificationType": "PAN",
+    "maskedName": "J*** D**",
+    "taxCountryCode": "IN"
+  },
+  "verifiedShopperTaxIdentificationToken": "Ab02b4c0!BQHAgM5Mw4Lj4+g82o1fictv2C4pHCX3kK2f4=-oKHnsFfIGT6=-b1a2c3d4e5f6"
+}

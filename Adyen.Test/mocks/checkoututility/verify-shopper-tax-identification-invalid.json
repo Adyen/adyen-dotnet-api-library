@@ -1,0 +1,6 @@
+{
+  "result": "INVALID",
+  "reason": "The tax identification number could not be verified.",
+  "reasonCode": "TAX_IDENTIFICATION_INVALID",
+  "taxVerificationReference": "TAXVER0987654321"
+}

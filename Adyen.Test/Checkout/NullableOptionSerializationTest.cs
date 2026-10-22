@@ -229,5 +229,73 @@ namespace Adyen.Test.Checkout
             CollectionAssert.AreEqual(expected, result.Cavv,
                 "Bare deserialization must use UTF-8 encoding (ByteArrayConverter semantics), not Base64.");
         }
+
+        [TestMethod]
+        public void Given_EnhancedSchemeData_When_Serialized_And_Deserialized_Then_Wire_Names_Match()
+        {
+            // Arrange
+            var request = new CreateCheckoutSessionRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                MerchantAccount = "TestMerchant",
+                Reference = "test-ref",
+                ReturnUrl = "https://example.com",
+                EnhancedSchemeData = new EnhancedSchemeData
+                {
+                    LevelTwoThree = new LevelTwoThree
+                    {
+                        CustomerReferenceNumber = "customer-123",
+                        TotalTaxAmount = 500L,
+                    }
+                },
+            };
+
+            // Act + Assert - request serializes with the expected nested wire names
+            string json = JsonSerializer.Serialize(request, _jsonSerializerOptionsProvider.Options);
+            StringAssert.Contains(json, "\"enhancedSchemeData\"");
+            StringAssert.Contains(json, "\"levelTwoThree\"");
+            StringAssert.Contains(json, "\"customerReferenceNumber\":\"customer-123\"");
+            StringAssert.Contains(json, "\"totalTaxAmount\":500");
+
+            // Act + Assert - response deserializes the same nested structure
+            const string responseJson = "{\"id\":\"CS0068299CB8DA273A\",\"enhancedSchemeData\":{\"levelTwoThree\":{\"customerReferenceNumber\":\"customer-123\",\"totalTaxAmount\":500}}}";
+            var response = JsonSerializer.Deserialize<CreateCheckoutSessionResponse>(responseJson, _jsonSerializerOptionsProvider.Options);
+            Assert.IsNotNull(response?.EnhancedSchemeData?.LevelTwoThree);
+            Assert.AreEqual("customer-123", response.EnhancedSchemeData.LevelTwoThree.CustomerReferenceNumber);
+            Assert.AreEqual(500L, response.EnhancedSchemeData.LevelTwoThree.TotalTaxAmount);
+
+            // Assert - unset enhancedSchemeData is omitted from the JSON output
+            var unsetRequest = new CreateCheckoutSessionRequest
+            {
+                Amount = new Amount { Currency = "EUR", Value = 1000 },
+                MerchantAccount = "TestMerchant",
+                Reference = "test-ref",
+                ReturnUrl = "https://example.com",
+            };
+            string unsetJson = JsonSerializer.Serialize(unsetRequest, _jsonSerializerOptionsProvider.Options);
+            Assert.IsFalse(unsetJson.Contains("enhancedSchemeData"), "Unset enhancedSchemeData should be omitted from JSON output.");
+        }
+
+        [TestMethod]
+        public void Given_TokenMandate_When_PreviousMandateId_And_PurposeCode_Set_Then_RoundTrip_Preserves_Values()
+        {
+            // Arrange
+            var original = new TokenMandate
+            {
+                PreviousMandateId = "MANDATE-123",
+                PurposeCode = "PAYMENT",
+            };
+
+            // Act
+            string json = JsonSerializer.Serialize(original, _jsonSerializerOptionsProvider.Options);
+            var deserialized = JsonSerializer.Deserialize<TokenMandate>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            StringAssert.Contains(json, "\"previousMandateId\":\"MANDATE-123\"");
+            StringAssert.Contains(json, "\"purposeCode\":\"PAYMENT\"");
+            Assert.IsNotNull(deserialized);
+            Assert.AreEqual("MANDATE-123", deserialized.PreviousMandateId);
+            Assert.AreEqual("PAYMENT", deserialized.PurposeCode);
+        }
     }
 }

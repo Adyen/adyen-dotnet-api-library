@@ -766,6 +766,34 @@ namespace Adyen.Checkout.Models
         public string? MinAmount { get { return this._MinAmountOption; } set { this._MinAmountOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="PreviousMandateId"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _PreviousMandateIdOption { get; private set; }
+
+        /// <summary>
+        /// The previous value of the &#x60;mandateId&#x60;, if the scheme has replaced it.  For UPI mandates, the &#x60;mandateId&#x60; is the Unique Mandate Number (UMN), which the scheme replaces when the mandate moves to another payment provider. In that case, this field holds the UMN the mandate was registered with before the move.
+        /// </summary>
+        /// <value>The previous value of the `mandateId`, if the scheme has replaced it.  For UPI mandates, the `mandateId` is the Unique Mandate Number (UMN), which the scheme replaces when the mandate moves to another payment provider. In that case, this field holds the UMN the mandate was registered with before the move.</value>
+        [JsonPropertyName("previousMandateId")]
+        public string? PreviousMandateId { get { return this._PreviousMandateIdOption; } set { this._PreviousMandateIdOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="PurposeCode"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _PurposeCodeOption { get; private set; }
+
+        /// <summary>
+        /// The purpose code the mandate is registered with at the scheme.  Possible values for UPI mandates:   * **14**: The mandate can only be debited by the payment provider that registered it.   * **AZ**: The mandate can be debited by any payment provider.  
+        /// </summary>
+        /// <value>The purpose code the mandate is registered with at the scheme.  Possible values for UPI mandates:   * **14**: The mandate can only be debited by the payment provider that registered it.   * **AZ**: The mandate can be debited by any payment provider.  </value>
+        [JsonPropertyName("purposeCode")]
+        public string? PurposeCode { get { return this._PurposeCodeOption; } set { this._PurposeCodeOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="RecurringAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -844,6 +872,8 @@ namespace Adyen.Checkout.Models
             sb.Append("  Count: ").Append(Count).Append("\n");
             sb.Append("  MaskedAccountId: ").Append(MaskedAccountId).Append("\n");
             sb.Append("  MinAmount: ").Append(MinAmount).Append("\n");
+            sb.Append("  PreviousMandateId: ").Append(PreviousMandateId).Append("\n");
+            sb.Append("  PurposeCode: ").Append(PurposeCode).Append("\n");
             sb.Append("  RecurringAmount: ").Append(RecurringAmount).Append("\n");
             sb.Append("  RecurringStatement: ").Append(RecurringStatement).Append("\n");
             sb.Append("  Remarks: ").Append(Remarks).Append("\n");
@@ -891,6 +921,8 @@ namespace Adyen.Checkout.Models
             Option<string?> count = default;
             Option<string?> maskedAccountId = default;
             Option<string?> minAmount = default;
+            Option<string?> previousMandateId = default;
+            Option<string?> purposeCode = default;
             Option<string?> recurringAmount = default;
             Option<string?> recurringStatement = default;
             Option<string?> remarks = default;
@@ -960,6 +992,12 @@ namespace Adyen.Checkout.Models
                         case "minAmount":
                             minAmount = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "previousMandateId":
+                            previousMandateId = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "purposeCode":
+                            purposeCode = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "recurringAmount":
                             recurringAmount = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -1014,6 +1052,10 @@ namespace Adyen.Checkout.Models
                 tokenMandate.MaskedAccountId = maskedAccountId.Value;
             if (minAmount.IsSet)
                 tokenMandate.MinAmount = minAmount.Value;
+            if (previousMandateId.IsSet)
+                tokenMandate.PreviousMandateId = previousMandateId.Value;
+            if (purposeCode.IsSet)
+                tokenMandate.PurposeCode = purposeCode.Value;
             if (recurringAmount.IsSet)
                 tokenMandate.RecurringAmount = recurringAmount.Value;
             if (recurringStatement.IsSet)
@@ -1111,6 +1153,14 @@ namespace Adyen.Checkout.Models
             if (tokenMandate._MinAmountOption.IsSet)
                 if (tokenMandate.MinAmount != null)
                     writer.WriteString("minAmount", tokenMandate.MinAmount);
+
+            if (tokenMandate._PreviousMandateIdOption.IsSet)
+                if (tokenMandate.PreviousMandateId != null)
+                    writer.WriteString("previousMandateId", tokenMandate.PreviousMandateId);
+
+            if (tokenMandate._PurposeCodeOption.IsSet)
+                if (tokenMandate.PurposeCode != null)
+                    writer.WriteString("purposeCode", tokenMandate.PurposeCode);
 
             if (tokenMandate._RecurringAmountOption.IsSet)
                 if (tokenMandate.RecurringAmount != null)

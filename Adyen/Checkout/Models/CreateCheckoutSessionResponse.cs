@@ -1193,6 +1193,19 @@ namespace Adyen.Checkout.Models
         public bool? EnableRecurring { get { return this._EnableRecurringOption; } set { this._EnableRecurringOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeData"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<EnhancedSchemeData?> _EnhancedSchemeDataOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="EnhancedSchemeData"/>.
+        /// </summary>
+        [JsonPropertyName("enhancedSchemeData")]
+        public EnhancedSchemeData? EnhancedSchemeData { get { return this._EnhancedSchemeDataOption; } set { this._EnhancedSchemeDataOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="FundOrigin"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -1735,6 +1748,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  EnableOneClick: ").Append(EnableOneClick).Append("\n");
             sb.Append("  EnablePayOut: ").Append(EnablePayOut).Append("\n");
             sb.Append("  EnableRecurring: ").Append(EnableRecurring).Append("\n");
+            sb.Append("  EnhancedSchemeData: ").Append(EnhancedSchemeData).Append("\n");
             sb.Append("  FundOrigin: ").Append(FundOrigin).Append("\n");
             sb.Append("  FundRecipient: ").Append(FundRecipient).Append("\n");
             sb.Append("  InstallmentOptions: ").Append(InstallmentOptions).Append("\n");
@@ -1843,6 +1857,7 @@ namespace Adyen.Checkout.Models
             Option<bool?> enableOneClick = default;
             Option<bool?> enablePayOut = default;
             Option<bool?> enableRecurring = default;
+            Option<EnhancedSchemeData?> enhancedSchemeData = default;
             Option<FundOrigin?> fundOrigin = default;
             Option<FundRecipient?> fundRecipient = default;
             Option<Dictionary<string, CheckoutSessionInstallmentOption>?> installmentOptions = default;
@@ -1973,6 +1988,9 @@ namespace Adyen.Checkout.Models
                             break;
                         case "enableRecurring":
                             enableRecurring = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "enhancedSchemeData":
+                            enhancedSchemeData = new Option<EnhancedSchemeData?>(JsonSerializer.Deserialize<EnhancedSchemeData>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "fundOrigin":
                             fundOrigin = new Option<FundOrigin?>(JsonSerializer.Deserialize<FundOrigin>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -2161,6 +2179,8 @@ namespace Adyen.Checkout.Models
                 createCheckoutSessionResponse.EnablePayOut = enablePayOut.Value;
             if (enableRecurring.IsSet)
                 createCheckoutSessionResponse.EnableRecurring = enableRecurring.Value;
+            if (enhancedSchemeData.IsSet)
+                createCheckoutSessionResponse.EnhancedSchemeData = enhancedSchemeData.Value;
             if (fundOrigin.IsSet)
                 createCheckoutSessionResponse.FundOrigin = fundOrigin.Value;
             if (fundRecipient.IsSet)
@@ -2374,6 +2394,11 @@ namespace Adyen.Checkout.Models
                 if (createCheckoutSessionResponse._EnableRecurringOption.Value != null)
                     writer.WriteBoolean("enableRecurring", createCheckoutSessionResponse._EnableRecurringOption.Value!.Value);
 
+            if (createCheckoutSessionResponse._EnhancedSchemeDataOption.IsSet)
+            {
+                writer.WritePropertyName("enhancedSchemeData");
+                JsonSerializer.Serialize(writer, createCheckoutSessionResponse.EnhancedSchemeData, jsonSerializerOptions);
+            }
             if (createCheckoutSessionResponse._FundOriginOption.IsSet)
             {
                 writer.WritePropertyName("fundOrigin");

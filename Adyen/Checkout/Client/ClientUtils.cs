@@ -192,6 +192,8 @@ namespace Adyen.Checkout.Client
                 return Models.BillDeskDetails.TypeEnum.ToJsonValue(billDeskDetailsTypeEnum);
             if (obj is Models.BlikDetails.TypeEnum blikDetailsTypeEnum)
                 return Models.BlikDetails.TypeEnum.ToJsonValue(blikDetailsTypeEnum);
+            if (obj is Models.CalculationType calculationType)
+                return CalculationType.ToJsonValue(calculationType);
             if (obj is Models.CancelOrderResponse.ResultCodeEnum cancelOrderResponseResultCodeEnum)
                 return Models.CancelOrderResponse.ResultCodeEnum.ToJsonValue(cancelOrderResponseResultCodeEnum);
             if (obj is Models.CarRental.RateTypeEnum carRentalRateTypeEnum)
@@ -324,6 +326,8 @@ namespace Adyen.Checkout.Client
                 return Models.Installments.PlanEnum.ToJsonValue(installmentsPlanEnum);
             if (obj is Models.KlarnaDetails.TypeEnum klarnaDetailsTypeEnum)
                 return Models.KlarnaDetails.TypeEnum.ToJsonValue(klarnaDetailsTypeEnum);
+            if (obj is Models.KlarnaNetworkDetails.SubtypeEnum klarnaNetworkDetailsSubtypeEnum)
+                return Models.KlarnaNetworkDetails.SubtypeEnum.ToJsonValue(klarnaNetworkDetailsSubtypeEnum);
             if (obj is Models.KlarnaNetworkDetails.TypeEnum klarnaNetworkDetailsTypeEnum)
                 return Models.KlarnaNetworkDetails.TypeEnum.ToJsonValue(klarnaNetworkDetailsTypeEnum);
             if (obj is Models.Lodging.LodgingChargeTypeEnum lodgingLodgingChargeTypeEnum)
@@ -456,6 +460,8 @@ namespace Adyen.Checkout.Client
                 return Models.Recurring.ContractEnum.ToJsonValue(recurringContractEnum);
             if (obj is Models.Recurring.TokenServiceEnum recurringTokenServiceEnum)
                 return Models.Recurring.TokenServiceEnum.ToJsonValue(recurringTokenServiceEnum);
+            if (obj is Models.RemittancePurpose remittancePurpose)
+                return RemittancePurpose.ToJsonValue(remittancePurpose);
             if (obj is Models.ResponseAdditionalDataCommon.FraudResultTypeEnum responseAdditionalDataCommonFraudResultTypeEnum)
                 return Models.ResponseAdditionalDataCommon.FraudResultTypeEnum.ToJsonValue(responseAdditionalDataCommonFraudResultTypeEnum);
             if (obj is Models.ResponseAdditionalDataCommon.FraudRiskLevelEnum responseAdditionalDataCommonFraudRiskLevelEnum)
@@ -486,6 +492,10 @@ namespace Adyen.Checkout.Client
                 return Models.StoredPaymentMethodDetails.TypeEnum.ToJsonValue(storedPaymentMethodDetailsTypeEnum);
             if (obj is Models.StoredPaymentMethodRequest.RecurringProcessingModelEnum storedPaymentMethodRequestRecurringProcessingModelEnum)
                 return Models.StoredPaymentMethodRequest.RecurringProcessingModelEnum.ToJsonValue(storedPaymentMethodRequestRecurringProcessingModelEnum);
+            if (obj is Models.SublimitStatus sublimitStatus)
+                return SublimitStatus.ToJsonValue(sublimitStatus);
+            if (obj is Models.TaxIdentificationType taxIdentificationType)
+                return TaxIdentificationType.ToJsonValue(taxIdentificationType);
             if (obj is Models.ThreeDS2RequestData.AcctTypeEnum threeDS2RequestDataAcctTypeEnum)
                 return Models.ThreeDS2RequestData.AcctTypeEnum.ToJsonValue(threeDS2RequestDataAcctTypeEnum);
             if (obj is Models.ThreeDS2RequestData.AddrMatchEnum threeDS2RequestDataAddrMatchEnum)
