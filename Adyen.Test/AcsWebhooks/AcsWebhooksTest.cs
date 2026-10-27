@@ -135,6 +135,28 @@ namespace Adyen.Test.AcsWebhooks
         }
         
         [TestMethod]
+        public void Given_ChallengeFlow_When_FromStringOrDefault_Then_ReturnsExpectedInstance()
+        {
+            Assert.IsNull(ChallengeInfo.FlowEnum.FromStringOrDefault("some_future_flow"));
+
+            Assert.AreSame(ChallengeInfo.FlowEnum.PWDOTPPHONEFL,
+                ChallengeInfo.FlowEnum.FromStringOrDefault("PWD_OTP_PHONE_FL"));
+            Assert.AreSame(ChallengeInfo.FlowEnum.PWDOTPEMAILFL,
+                ChallengeInfo.FlowEnum.FromStringOrDefault("PWD_OTP_EMAIL_FL"));
+            Assert.AreSame(ChallengeInfo.FlowEnum.OOBTRIGGERFL,
+                ChallengeInfo.FlowEnum.FromStringOrDefault("OOB_TRIGGER_FL"));
+            Assert.AreSame(ChallengeInfo.FlowEnum.OTPPHONEFL,
+                ChallengeInfo.FlowEnum.FromStringOrDefault("OTP_PHONE_FL"));
+            Assert.AreSame(ChallengeInfo.FlowEnum.PASSKEYTRIGGERFL,
+                ChallengeInfo.FlowEnum.FromStringOrDefault("PASSKEY_TRIGGER_FL"));
+
+            Assert.AreEqual("OTP_PHONE_FL", ChallengeInfo.FlowEnum.OTPPHONEFL.Value);
+            Assert.AreEqual("PASSKEY_TRIGGER_FL", ChallengeInfo.FlowEnum.PASSKEYTRIGGERFL.Value);
+            Assert.AreEqual("OTP_PHONE_FL", ChallengeInfo.FlowEnum.ToJsonValue(ChallengeInfo.FlowEnum.OTPPHONEFL));
+            Assert.AreEqual("PASSKEY_TRIGGER_FL", ChallengeInfo.FlowEnum.ToJsonValue(ChallengeInfo.FlowEnum.PASSKEYTRIGGERFL));
+        }
+
+        [TestMethod]
         public void Given_Webhook_When_HmacSignatureIsInvalid_Then_ReturnsFalse()
         {
             // Arrange
