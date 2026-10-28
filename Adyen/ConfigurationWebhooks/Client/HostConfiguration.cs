@@ -122,6 +122,9 @@ namespace Adyen.ConfigurationWebhooks.Client
             _jsonOptions.Converters.Add(new SweepConfigurationNotificationRequestJsonConverter());
             _jsonOptions.Converters.Add(new SweepConfigurationV2JsonConverter());
             _jsonOptions.Converters.Add(new SweepCounterpartyJsonConverter());
+            _jsonOptions.Converters.Add(new SweepExecutionNotificationDataJsonConverter());
+            _jsonOptions.Converters.Add(new SweepExecutionNotificationRequestJsonConverter());
+            _jsonOptions.Converters.Add(new SweepResultDetailsJsonConverter());
             _jsonOptions.Converters.Add(new SweepScheduleJsonConverter());
             _jsonOptions.Converters.Add(new TokenAuthenticationJsonConverter());
             _jsonOptions.Converters.Add(new TopUpConfigurationEventRequestJsonConverter());
