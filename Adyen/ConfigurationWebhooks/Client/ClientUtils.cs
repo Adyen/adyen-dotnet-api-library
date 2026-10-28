@@ -200,6 +200,10 @@ namespace Adyen.ConfigurationWebhooks.Client
                 return Models.SweepConfigurationV2.StatusEnum.ToJsonValue(sweepConfigurationV2StatusEnum);
             if (obj is Models.SweepConfigurationV2.TypeEnum sweepConfigurationV2TypeEnum)
                 return Models.SweepConfigurationV2.TypeEnum.ToJsonValue(sweepConfigurationV2TypeEnum);
+            if (obj is Models.SweepExecutionNotificationData.ResultEnum sweepExecutionNotificationDataResultEnum)
+                return Models.SweepExecutionNotificationData.ResultEnum.ToJsonValue(sweepExecutionNotificationDataResultEnum);
+            if (obj is Models.SweepExecutionNotificationRequest.TypeEnum sweepExecutionNotificationRequestTypeEnum)
+                return Models.SweepExecutionNotificationRequest.TypeEnum.ToJsonValue(sweepExecutionNotificationRequestTypeEnum);
             if (obj is Models.SweepSchedule.TypeEnum sweepScheduleTypeEnum)
                 return Models.SweepSchedule.TypeEnum.ToJsonValue(sweepScheduleTypeEnum);
             if (obj is Models.TopUpConfigurationEventRequest.TypeEnum topUpConfigurationEventRequestTypeEnum)

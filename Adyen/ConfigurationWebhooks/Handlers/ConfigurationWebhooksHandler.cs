@@ -112,6 +112,13 @@ namespace Adyen.ConfigurationWebhooks.Handlers
         SweepConfigurationNotificationRequest? DeserializeSweepConfigurationNotificationRequest(string json);
             
         /// <summary>
+        /// Uses <see cref="Adyen.ConfigurationWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="SweepExecutionNotificationRequest"/>.
+        /// </summary>
+        /// <param name="json">The full webhook payload.</param>
+        /// <exception cref="JsonException"></exception>
+        SweepExecutionNotificationRequest? DeserializeSweepExecutionNotificationRequest(string json);
+            
+        /// <summary>
         /// Uses <see cref="Adyen.ConfigurationWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="TopUpConfigurationEventRequest"/>.
         /// </summary>
         /// <param name="json">The full webhook payload.</param>
@@ -229,6 +236,12 @@ namespace Adyen.ConfigurationWebhooks.Handlers
         public SweepConfigurationNotificationRequest? DeserializeSweepConfigurationNotificationRequest(string json)
         {
             return JsonSerializer.Deserialize<SweepConfigurationNotificationRequest>(json, JsonSerializerOptionsProvider.Options);
+        }
+
+        /// <inheritdoc/>
+        public SweepExecutionNotificationRequest? DeserializeSweepExecutionNotificationRequest(string json)
+        {
+            return JsonSerializer.Deserialize<SweepExecutionNotificationRequest>(json, JsonSerializerOptionsProvider.Options);
         }
 
         /// <inheritdoc/>
