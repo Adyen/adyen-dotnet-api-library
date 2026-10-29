@@ -41,7 +41,11 @@ jobs:
       - name: Build (debug) in .NET 8.0
         run: dotnet build --no-restore -m:1 --framework net8.0
         env:
-          UseSharedCompilation: false     # We are dealing with two sources of parallelism (see matrix) - Adyen.GeneratedMSBuildEditorConfig.editorconfig gets a .lock-file, this prevents another parallel process from accessing the build during the .lock. 
+          UseSharedCompilation: false     # We are dealing with two sources of parallelism (see matrix) - Adyen.GeneratedMSBuildEditorConfig.editorconfig gets a .lock-file, this prevents another parallel process from accessing the build during the .lock.
+    
+      - name: Raise inotify limits
+        if: runner.os == 'Linux'
+        run: sudo sysctl -w fs.inotify.max_user_instances=1024 fs.inotify.max_user_watches=1048576
 
       - name: Run unit tests in .NET 8.0
         run: dotnet test --no-build --framework net8.0 Adyen.Test/Adyen.Test.csproj
