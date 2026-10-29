@@ -43,6 +43,48 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="BranchName"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _BranchNameOption { get; private set; }
+
+        /// <summary>
+        /// The name of the company branch. Required for TrueMoney.
+        /// </summary>
+        /// <value>The name of the company branch. Required for TrueMoney.</value>
+        [JsonPropertyName("branchName")]
+        public string? BranchName { get { return this._BranchNameOption; } set { this._BranchNameOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantMobileAppName"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _MerchantMobileAppNameOption { get; private set; }
+
+        /// <summary>
+        /// The name of your mobile app. Required for TrueMoney.
+        /// </summary>
+        /// <value>The name of your mobile app. Required for TrueMoney.</value>
+        [JsonPropertyName("merchantMobileAppName")]
+        public string? MerchantMobileAppName { get { return this._MerchantMobileAppNameOption; } set { this._MerchantMobileAppNameOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ProductServiceDescription"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _ProductServiceDescriptionOption { get; private set; }
+
+        /// <summary>
+        /// The description of the product or service. Required for TrueMoney.
+        /// </summary>
+        /// <value>The description of the product or service. Required for TrueMoney.</value>
+        [JsonPropertyName("productServiceDescription")]
+        public string? ProductServiceDescription { get { return this._ProductServiceDescriptionOption; } set { this._ProductServiceDescriptionOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="SettlementCurrencyCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -64,6 +106,9 @@ namespace Adyen.Management.Models
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class AlipayPlusInfo {\n");
+            sb.Append("  BranchName: ").Append(BranchName).Append("\n");
+            sb.Append("  MerchantMobileAppName: ").Append(MerchantMobileAppName).Append("\n");
+            sb.Append("  ProductServiceDescription: ").Append(ProductServiceDescription).Append("\n");
             sb.Append("  SettlementCurrencyCode: ").Append(SettlementCurrencyCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -92,6 +137,9 @@ namespace Adyen.Management.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<string?> branchName = default;
+            Option<string?> merchantMobileAppName = default;
+            Option<string?> productServiceDescription = default;
             Option<string?> settlementCurrencyCode = default;
 
             while (utf8JsonReader.Read())
@@ -109,6 +157,15 @@ namespace Adyen.Management.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "branchName":
+                            branchName = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "merchantMobileAppName":
+                            merchantMobileAppName = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "productServiceDescription":
+                            productServiceDescription = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "settlementCurrencyCode":
                             settlementCurrencyCode = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -120,6 +177,12 @@ namespace Adyen.Management.Models
             
 
             var alipayPlusInfo = new AlipayPlusInfo();
+            if (branchName.IsSet)
+                alipayPlusInfo.BranchName = branchName.Value;
+            if (merchantMobileAppName.IsSet)
+                alipayPlusInfo.MerchantMobileAppName = merchantMobileAppName.Value;
+            if (productServiceDescription.IsSet)
+                alipayPlusInfo.ProductServiceDescription = productServiceDescription.Value;
             if (settlementCurrencyCode.IsSet)
                 alipayPlusInfo.SettlementCurrencyCode = settlementCurrencyCode.Value;
             return alipayPlusInfo;
@@ -151,6 +214,18 @@ namespace Adyen.Management.Models
         public void WriteProperties(Utf8JsonWriter writer, AlipayPlusInfo alipayPlusInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
+            if (alipayPlusInfo._BranchNameOption.IsSet)
+                if (alipayPlusInfo.BranchName != null)
+                    writer.WriteString("branchName", alipayPlusInfo.BranchName);
+
+            if (alipayPlusInfo._MerchantMobileAppNameOption.IsSet)
+                if (alipayPlusInfo.MerchantMobileAppName != null)
+                    writer.WriteString("merchantMobileAppName", alipayPlusInfo.MerchantMobileAppName);
+
+            if (alipayPlusInfo._ProductServiceDescriptionOption.IsSet)
+                if (alipayPlusInfo.ProductServiceDescription != null)
+                    writer.WriteString("productServiceDescription", alipayPlusInfo.ProductServiceDescription);
+
             if (alipayPlusInfo._SettlementCurrencyCodeOption.IsSet)
                 if (alipayPlusInfo.SettlementCurrencyCode != null)
                     writer.WriteString("settlementCurrencyCode", alipayPlusInfo.SettlementCurrencyCode);

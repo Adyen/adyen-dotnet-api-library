@@ -278,6 +278,20 @@ namespace Adyen.Management.Models
         public Refunds? Refunds { get { return this._RefundsOption; } set { this._RefundsOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ShowCalculatedPercentageTippingAmount"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> _ShowCalculatedPercentageTippingAmountOption { get; private set; }
+
+        /// <summary>
+        /// Show the tipping amount calculated from the percentage next to each tipping percentage option on the terminal screen, for example &#x60;10 % | 10 EUR&#x60; for a 100 EUR payment.
+        /// </summary>
+        /// <value>Show the tipping amount calculated from the percentage next to each tipping percentage option on the terminal screen, for example `10 % | 10 EUR` for a 100 EUR payment.</value>
+        [JsonPropertyName("showCalculatedPercentageTippingAmount")]
+        public bool? ShowCalculatedPercentageTippingAmount { get { return this._ShowCalculatedPercentageTippingAmountOption; } set { this._ShowCalculatedPercentageTippingAmountOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Signature"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -407,6 +421,7 @@ namespace Adyen.Management.Models
             sb.Append("  ReceiptOptions: ").Append(ReceiptOptions).Append("\n");
             sb.Append("  ReceiptPrinting: ").Append(ReceiptPrinting).Append("\n");
             sb.Append("  Refunds: ").Append(Refunds).Append("\n");
+            sb.Append("  ShowCalculatedPercentageTippingAmount: ").Append(ShowCalculatedPercentageTippingAmount).Append("\n");
             sb.Append("  Signature: ").Append(Signature).Append("\n");
             sb.Append("  Standalone: ").Append(Standalone).Append("\n");
             sb.Append("  StoreAndForward: ").Append(StoreAndForward).Append("\n");
@@ -460,6 +475,7 @@ namespace Adyen.Management.Models
             Option<ReceiptOptions?> receiptOptions = default;
             Option<ReceiptPrinting?> receiptPrinting = default;
             Option<Refunds?> refunds = default;
+            Option<bool?> showCalculatedPercentageTippingAmount = default;
             Option<Signature?> signature = default;
             Option<Standalone?> standalone = default;
             Option<StoreAndForward?> storeAndForward = default;
@@ -538,6 +554,9 @@ namespace Adyen.Management.Models
                         case "refunds":
                             refunds = new Option<Refunds?>(JsonSerializer.Deserialize<Refunds>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
+                        case "showCalculatedPercentageTippingAmount":
+                            showCalculatedPercentageTippingAmount = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         case "signature":
                             signature = new Option<Signature?>(JsonSerializer.Deserialize<Signature>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
@@ -606,6 +625,8 @@ namespace Adyen.Management.Models
                 terminalSettings.ReceiptPrinting = receiptPrinting.Value;
             if (refunds.IsSet)
                 terminalSettings.Refunds = refunds.Value;
+            if (showCalculatedPercentageTippingAmount.IsSet)
+                terminalSettings.ShowCalculatedPercentageTippingAmount = showCalculatedPercentageTippingAmount.Value;
             if (signature.IsSet)
                 terminalSettings.Signature = signature.Value;
             if (standalone.IsSet)
@@ -744,6 +765,13 @@ namespace Adyen.Management.Models
                 writer.WritePropertyName("refunds");
                 JsonSerializer.Serialize(writer, terminalSettings.Refunds, jsonSerializerOptions);
             }
+            if (terminalSettings._ShowCalculatedPercentageTippingAmountOption.IsSet)
+                if (terminalSettings._ShowCalculatedPercentageTippingAmountOption.Value != null)
+                    if (terminalSettings._ShowCalculatedPercentageTippingAmountOption.Value != null)
+                    writer.WriteBoolean("showCalculatedPercentageTippingAmount", terminalSettings._ShowCalculatedPercentageTippingAmountOption.Value!.Value);
+                else
+                    writer.WriteNull("showCalculatedPercentageTippingAmount");
+
             if (terminalSettings._SignatureOption.IsSet)
             {
                 writer.WritePropertyName("signature");

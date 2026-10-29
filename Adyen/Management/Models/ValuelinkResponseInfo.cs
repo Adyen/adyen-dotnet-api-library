@@ -166,32 +166,46 @@ namespace Adyen.Management.Models
         }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="PinSupport"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<PinSupportEnum?> _PinSupportOption { get; private set; }
+
+        /// <summary>
         /// PIN Support. For ecommerce, PIN is required.
         /// </summary>
         /// <value>PIN Support. For ecommerce, PIN is required.</value>
         [JsonPropertyName("pinSupport")]
-        public PinSupportEnum PinSupport { get; set; }
+        public PinSupportEnum? PinSupport { get { return this._PinSupportOption; } set { this._PinSupportOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="AlternateMerchantNumber"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _AlternateMerchantNumberOption { get; private set; }
+
+        /// <summary>
+        /// Alternate Merchant Number
+        /// </summary>
+        /// <value>Alternate Merchant Number</value>
+        [JsonPropertyName("alternateMerchantNumber")]
+        public string? AlternateMerchantNumber { get { return this._AlternateMerchantNumberOption; } set { this._AlternateMerchantNumberOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="AuthorisationMid"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _AuthorisationMidOption { get; private set; }
 
         /// <summary>
         /// Authorisation Mid
         /// </summary>
         /// <value>Authorisation Mid</value>
         [JsonPropertyName("authorisationMid")]
-        public string? AuthorisationMid { get; set; }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="SubmitterId"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _SubmitterIdOption { get; private set; }
-
-        /// <summary>
-        /// Submitter ID
-        /// </summary>
-        /// <value>Submitter ID</value>
-        [JsonPropertyName("submitterId")]
-        public string? SubmitterId { get { return this._SubmitterIdOption; } set { this._SubmitterIdOption = new(value); } }
+        public string? AuthorisationMid { get { return this._AuthorisationMidOption; } set { this._AuthorisationMidOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="TerminalId"/> will be populated.
@@ -215,9 +229,9 @@ namespace Adyen.Management.Models
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class ValuelinkResponseInfo {\n");
+            sb.Append("  AlternateMerchantNumber: ").Append(AlternateMerchantNumber).Append("\n");
             sb.Append("  AuthorisationMid: ").Append(AuthorisationMid).Append("\n");
             sb.Append("  PinSupport: ").Append(PinSupport).Append("\n");
-            sb.Append("  SubmitterId: ").Append(SubmitterId).Append("\n");
             sb.Append("  TerminalId: ").Append(TerminalId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -246,9 +260,9 @@ namespace Adyen.Management.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<string?> alternateMerchantNumber = default;
             Option<string?> authorisationMid = default;
             Option<ValuelinkResponseInfo.PinSupportEnum?> pinSupport = default;
-            Option<string?> submitterId = default;
             Option<string?> terminalId = default;
 
             while (utf8JsonReader.Read())
@@ -266,15 +280,15 @@ namespace Adyen.Management.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "alternateMerchantNumber":
+                            alternateMerchantNumber = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "authorisationMid":
                             authorisationMid = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "pinSupport":
                             string? pinSupportRawValue = utf8JsonReader.GetString();
                             pinSupport = new Option<ValuelinkResponseInfo.PinSupportEnum?>(ValuelinkResponseInfo.PinSupportEnum.FromStringOrDefault(pinSupportRawValue) ?? (ValuelinkResponseInfo.PinSupportEnum)pinSupportRawValue);
-                            break;
-                        case "submitterId":
-                            submitterId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "terminalId":
                             terminalId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -287,12 +301,12 @@ namespace Adyen.Management.Models
             
 
             var valuelinkResponseInfo = new ValuelinkResponseInfo();
+            if (alternateMerchantNumber.IsSet)
+                valuelinkResponseInfo.AlternateMerchantNumber = alternateMerchantNumber.Value;
             if (authorisationMid.IsSet)
-                valuelinkResponseInfo.AuthorisationMid = authorisationMid.Value!;
+                valuelinkResponseInfo.AuthorisationMid = authorisationMid.Value;
             if (pinSupport.IsSet)
-                valuelinkResponseInfo.PinSupport = pinSupport.Value!;
-            if (submitterId.IsSet)
-                valuelinkResponseInfo.SubmitterId = submitterId.Value;
+                valuelinkResponseInfo.PinSupport = pinSupport.Value;
             if (terminalId.IsSet)
                 valuelinkResponseInfo.TerminalId = terminalId.Value;
             return valuelinkResponseInfo;
@@ -324,19 +338,20 @@ namespace Adyen.Management.Models
         public void WriteProperties(Utf8JsonWriter writer, ValuelinkResponseInfo valuelinkResponseInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (valuelinkResponseInfo.AuthorisationMid != null)
-                writer.WriteString("authorisationMid", valuelinkResponseInfo.AuthorisationMid);
+            if (valuelinkResponseInfo._AlternateMerchantNumberOption.IsSet)
+                if (valuelinkResponseInfo.AlternateMerchantNumber != null)
+                    writer.WriteString("alternateMerchantNumber", valuelinkResponseInfo.AlternateMerchantNumber);
 
-            if (valuelinkResponseInfo.PinSupport != null) 
+            if (valuelinkResponseInfo._AuthorisationMidOption.IsSet)
+                if (valuelinkResponseInfo.AuthorisationMid != null)
+                    writer.WriteString("authorisationMid", valuelinkResponseInfo.AuthorisationMid);
+
+            if (valuelinkResponseInfo._PinSupportOption.IsSet && valuelinkResponseInfo.PinSupport != null) 
             {
-                string? pinSupportRawValue = ValuelinkResponseInfo.PinSupportEnum.ToJsonValue(valuelinkResponseInfo.PinSupport);
+                string? pinSupportRawValue = ValuelinkResponseInfo.PinSupportEnum.ToJsonValue(valuelinkResponseInfo._PinSupportOption.Value!.Value);
                 writer.WriteString("pinSupport", pinSupportRawValue);
             }
             
-            if (valuelinkResponseInfo._SubmitterIdOption.IsSet)
-                if (valuelinkResponseInfo.SubmitterId != null)
-                    writer.WriteString("submitterId", valuelinkResponseInfo.SubmitterId);
-
             if (valuelinkResponseInfo._TerminalIdOption.IsSet)
                 if (valuelinkResponseInfo.TerminalId != null)
                     writer.WriteString("terminalId", valuelinkResponseInfo.TerminalId);
