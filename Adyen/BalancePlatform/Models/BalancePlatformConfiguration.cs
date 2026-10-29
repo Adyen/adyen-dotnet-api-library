@@ -71,10 +71,11 @@ namespace Adyen.BalancePlatform.Models
         public int UserSettlementDelay { get; set; }
 
         /// <summary>
-        /// <see cref="UserSettlementTime"/>.
+        /// The time when the payout funds are settled in your user&#39;s transfer instrument. For example, 11:30:00.
         /// </summary>
+        /// <value>The time when the payout funds are settled in your user's transfer instrument. For example, 11:30:00.</value>
         [JsonPropertyName("userSettlementTime")]
-        public LocalTime? UserSettlementTime { get; set; }
+        public string? UserSettlementTime { get; set; }
 
         /// <summary>
         /// The timezone of the &#x60;userSettlementTime&#x60;.
@@ -347,7 +348,7 @@ namespace Adyen.BalancePlatform.Models
             Option<DateTimeOffset?> createdAt = default;
             Option<string?> payoutScheduleDescription = default;
             Option<int?> userSettlementDelay = default;
-            Option<LocalTime?> userSettlementTime = default;
+            Option<string?> userSettlementTime = default;
             Option<string?> userSettlementTimeZone = default;
             Option<bool?> automaticApplication = default;
             Option<string?> countryCode = default;
@@ -389,10 +390,12 @@ namespace Adyen.BalancePlatform.Models
                             payoutScheduleDescription = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "userSettlementDelay":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'userSettlementDelay' on 'BalancePlatformConfiguration' cannot be null.");
                             userSettlementDelay = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "userSettlementTime":
-                            userSettlementTime = new Option<LocalTime?>(JsonSerializer.Deserialize<LocalTime>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            userSettlementTime = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "userSettlementTimeZone":
                             userSettlementTimeZone = new Option<string?>(utf8JsonReader.GetString()!);
@@ -526,8 +529,9 @@ namespace Adyen.BalancePlatform.Models
 
             writer.WriteNumber("userSettlementDelay", balancePlatformConfiguration.UserSettlementDelay);
 
-            writer.WritePropertyName("userSettlementTime");
-            JsonSerializer.Serialize(writer, balancePlatformConfiguration.UserSettlementTime, jsonSerializerOptions);
+            if (balancePlatformConfiguration.UserSettlementTime != null)
+                writer.WriteString("userSettlementTime", balancePlatformConfiguration.UserSettlementTime);
+
             if (balancePlatformConfiguration.UserSettlementTimeZone != null)
                 writer.WriteString("userSettlementTimeZone", balancePlatformConfiguration.UserSettlementTimeZone);
 
