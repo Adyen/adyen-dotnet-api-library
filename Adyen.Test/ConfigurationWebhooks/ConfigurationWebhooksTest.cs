@@ -282,5 +282,86 @@ namespace Adyen.Test.ConfigurationWebhooks
             Assert.AreEqual("GB29NWBK60161331926819", additionalId.IbanAccountIdentification.Iban);
             Assert.AreEqual("NWBKGB2L", additionalId.IbanAccountIdentification.Bic);
         }
+
+        [TestMethod]
+        public void Given_Deserialize_When_Event_Is_SweepExecution_Failed()
+        {
+            // Arrange
+            string json =
+                TestUtilities.GetTestFileContent(
+                    "mocks/configurationwebhooks/balancePlatform.balanceAccountSweepExecution.failed.json");
+
+            // Act
+            var r = _configurationWebhooksHandler.DeserializeSweepExecutionNotificationRequest(json);
+
+            // Assert
+            Assert.IsNotNull(r);
+            Assert.AreEqual("test", r.Environment);
+            Assert.AreSame(
+                SweepExecutionNotificationRequest.TypeEnum.BalancePlatformBalanceAccountSweepExecutionFailed,
+                r.Type);
+            Assert.AreEqual(DateTimeOffset.Parse("2026-10-28T10:15:31+01:00"), r.Timestamp);
+
+            Assert.IsNotNull(r.Data);
+            Assert.AreEqual("SE00000000000000000001", r.Data.Id);
+            Assert.AreEqual("BA00000000000000000001", r.Data.BalanceAccountId);
+            Assert.AreEqual("SWP00000000000000000001", r.Data.BalanceAccountSweepId);
+            Assert.AreEqual("YOUR_BALANCE_PLATFORM", r.Data.BalancePlatform);
+            Assert.AreSame(SweepExecutionNotificationData.ResultEnum.Failed, r.Data.Result);
+            Assert.AreEqual(DateTimeOffset.Parse("2026-10-28T10:15:30+01:00"), r.Data.TriggeredAt);
+
+            Assert.IsNotNull(r.Data.ResultDetails);
+            Assert.AreEqual("Insufficient funds", r.Data.ResultDetails.Reason);
+            Assert.AreEqual("INSUFFICIENT_FUNDS", r.Data.ResultDetails.ReasonCode);
+            Assert.IsTrue(r.Data.ResultDetails.SweepConfigurationDisabled);
+            Assert.AreEqual("TR00000000000000000001", r.Data.ResultDetails.TransferId);
+        }
+
+        [TestMethod]
+        public void Given_Deserialize_When_Event_Is_SweepExecution_With_Unknown_Enums()
+        {
+            // Arrange
+            const string unknownType = "balancePlatform.balanceAccountSweepExecution.unknown";
+            const string unknownResult = "unknown-future-result";
+            string json =
+                $"{{\"data\":{{\"balancePlatform\":\"YOUR_BALANCE_PLATFORM\",\"result\":\"{unknownResult}\"}},\"environment\":\"test\",\"type\":\"{unknownType}\"}}";
+
+            // Act
+            var r = _configurationWebhooksHandler.DeserializeSweepExecutionNotificationRequest(json);
+
+            // Assert - known enum mappings resolve to singletons, unknown values return null in FromStringOrDefault
+            Assert.AreSame(
+                SweepExecutionNotificationRequest.TypeEnum.BalancePlatformBalanceAccountSweepExecutionSucceeded,
+                SweepExecutionNotificationRequest.TypeEnum.FromStringOrDefault("balancePlatform.balanceAccountSweepExecution.succeeded"));
+            Assert.AreSame(
+                SweepExecutionNotificationRequest.TypeEnum.BalancePlatformBalanceAccountSweepExecutionSkipped,
+                SweepExecutionNotificationRequest.TypeEnum.FromStringOrDefault("balancePlatform.balanceAccountSweepExecution.skipped"));
+            Assert.AreSame(
+                SweepExecutionNotificationRequest.TypeEnum.BalancePlatformBalanceAccountSweepExecutionFailed,
+                SweepExecutionNotificationRequest.TypeEnum.FromStringOrDefault("balancePlatform.balanceAccountSweepExecution.failed"));
+            Assert.IsNull(SweepExecutionNotificationRequest.TypeEnum.FromStringOrDefault(unknownType));
+
+            Assert.AreSame(
+                SweepExecutionNotificationData.ResultEnum.Succeeded,
+                SweepExecutionNotificationData.ResultEnum.FromStringOrDefault("succeeded"));
+            Assert.AreSame(
+                SweepExecutionNotificationData.ResultEnum.Skipped,
+                SweepExecutionNotificationData.ResultEnum.FromStringOrDefault("skipped"));
+            Assert.AreSame(
+                SweepExecutionNotificationData.ResultEnum.Failed,
+                SweepExecutionNotificationData.ResultEnum.FromStringOrDefault("failed"));
+            Assert.IsNull(SweepExecutionNotificationData.ResultEnum.FromStringOrDefault(unknownResult));
+
+            // Assert - converter preserves unknown raw values per IEX-3037 IEnum pattern
+            Assert.IsNotNull(r);
+            Assert.AreEqual("test", r.Environment);
+            Assert.IsNotNull(r.Type);
+            Assert.AreEqual(unknownType, r.Type.Value);
+
+            Assert.IsNotNull(r.Data);
+            Assert.AreEqual("YOUR_BALANCE_PLATFORM", r.Data.BalancePlatform);
+            Assert.IsNotNull(r.Data.Result);
+            Assert.AreEqual(unknownResult, r.Data.Result.Value);
+        }
     }
 }
