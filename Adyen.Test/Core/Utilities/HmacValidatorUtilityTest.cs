@@ -53,5 +53,22 @@ namespace Adyen.Test.Core.Utilities
             // Assert
             Assert.AreEqual(expectedHmacSignature, generatedHmacSignature);
         }
+
+        [TestMethod]
+        public void TestEmptyHmacKeyIsRejected()
+        {
+            // Arrange
+            string notification = "{\"data\":{\"balancePlatform\":\"Integration_tools_test\"},\"environment\":\"test\",\"type\":\"balancePlatform.balanceAccountSweep.updated\"}";
+            // A signature anyone can compute without knowing the key
+            string forgedSignature;
+            using (var hmac = new System.Security.Cryptography.HMACSHA256(new byte[0]))
+            {
+                forgedSignature = System.Convert.ToBase64String(hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(notification)));
+            }
+
+            // Act and assert
+            Assert.ThrowsExactly<System.ArgumentException>(() => HmacValidatorUtility.GenerateBase64Sha256HmacSignature(notification, ""));
+            Assert.ThrowsExactly<System.ArgumentException>(() => HmacValidatorUtility.IsHmacSignatureValid(forgedSignature, "", notification));
+        }
     }
 }
