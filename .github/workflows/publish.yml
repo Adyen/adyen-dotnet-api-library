@@ -39,6 +39,10 @@ jobs:
       - name: Build Release
         run: dotnet build Adyen --configuration Release --no-restore
 
+      - name: Raise inotify limits
+        if: runner.os == 'Linux'
+        run: sudo sysctl -w fs.inotify.max_user_instances=1024 fs.inotify.max_user_watches=1048576
+
       # Run unit tests on .NET 8.0
       - name: Run unit tests on .NET 8.0
         run: dotnet test --configuration Release --framework net8.0 --no-restore Adyen.Test/Adyen.Test.csproj
