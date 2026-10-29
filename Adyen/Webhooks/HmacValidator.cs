@@ -70,6 +70,12 @@ namespace Adyen.Util
         /// <returns>Byte array converted from the hexadecimal string.</returns>
         private byte[] PackH(string hex)
         {
+            // An empty key would produce a signature anyone can compute.
+            if (string.IsNullOrEmpty(hex))
+            {
+                throw new ArgumentException("HMAC key must not be empty.", nameof(hex));
+            }
+
             if ((hex.Length % 2) == 1)
             {
                 hex += '0';
