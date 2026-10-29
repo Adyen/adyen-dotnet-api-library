@@ -208,6 +208,8 @@ namespace Adyen.BalancePlatform.Models
                             errorCode = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "status":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'status' on 'RestServiceError' cannot be null.");
                             status = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "title":

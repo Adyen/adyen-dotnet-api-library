@@ -589,61 +589,61 @@ namespace Adyen.BalancePlatform.Models
             
             if (transferRouteRequirementsInner.AdditionalBankIdentificationRequirement != null)
             {
-                AdditionalBankIdentificationRequirementJsonConverter additionalBankIdentificationRequirementJsonConverter = (AdditionalBankIdentificationRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.AdditionalBankIdentificationRequirement.GetType()));
+                AdditionalBankIdentificationRequirementJsonConverter additionalBankIdentificationRequirementJsonConverter = (AdditionalBankIdentificationRequirementJsonConverter) jsonSerializerOptions.GetConverter(transferRouteRequirementsInner.AdditionalBankIdentificationRequirement.GetType());
                 additionalBankIdentificationRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.AdditionalBankIdentificationRequirement, jsonSerializerOptions);
             }
 
             if (transferRouteRequirementsInner.AddressRequirement != null)
             {
-                AddressRequirementJsonConverter addressRequirementJsonConverter = (AddressRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.AddressRequirement.GetType()));
+                AddressRequirementJsonConverter addressRequirementJsonConverter = (AddressRequirementJsonConverter) jsonSerializerOptions.GetConverter(transferRouteRequirementsInner.AddressRequirement.GetType());
                 addressRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.AddressRequirement, jsonSerializerOptions);
             }
 
             if (transferRouteRequirementsInner.AmountMinMaxRequirement != null)
             {
-                AmountMinMaxRequirementJsonConverter amountMinMaxRequirementJsonConverter = (AmountMinMaxRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.AmountMinMaxRequirement.GetType()));
+                AmountMinMaxRequirementJsonConverter amountMinMaxRequirementJsonConverter = (AmountMinMaxRequirementJsonConverter) jsonSerializerOptions.GetConverter(transferRouteRequirementsInner.AmountMinMaxRequirement.GetType());
                 amountMinMaxRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.AmountMinMaxRequirement, jsonSerializerOptions);
             }
 
             if (transferRouteRequirementsInner.AmountNonZeroDecimalsRequirement != null)
             {
-                AmountNonZeroDecimalsRequirementJsonConverter amountNonZeroDecimalsRequirementJsonConverter = (AmountNonZeroDecimalsRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.AmountNonZeroDecimalsRequirement.GetType()));
+                AmountNonZeroDecimalsRequirementJsonConverter amountNonZeroDecimalsRequirementJsonConverter = (AmountNonZeroDecimalsRequirementJsonConverter) jsonSerializerOptions.GetConverter(transferRouteRequirementsInner.AmountNonZeroDecimalsRequirement.GetType());
                 amountNonZeroDecimalsRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.AmountNonZeroDecimalsRequirement, jsonSerializerOptions);
             }
 
             if (transferRouteRequirementsInner.BankAccountIdentificationTypeRequirement != null)
             {
-                BankAccountIdentificationTypeRequirementJsonConverter bankAccountIdentificationTypeRequirementJsonConverter = (BankAccountIdentificationTypeRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.BankAccountIdentificationTypeRequirement.GetType()));
+                BankAccountIdentificationTypeRequirementJsonConverter bankAccountIdentificationTypeRequirementJsonConverter = (BankAccountIdentificationTypeRequirementJsonConverter) jsonSerializerOptions.GetConverter(transferRouteRequirementsInner.BankAccountIdentificationTypeRequirement.GetType());
                 bankAccountIdentificationTypeRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.BankAccountIdentificationTypeRequirement, jsonSerializerOptions);
             }
 
             if (transferRouteRequirementsInner.IbanAccountIdentificationRequirement != null)
             {
-                IbanAccountIdentificationRequirementJsonConverter ibanAccountIdentificationRequirementJsonConverter = (IbanAccountIdentificationRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.IbanAccountIdentificationRequirement.GetType()));
+                IbanAccountIdentificationRequirementJsonConverter ibanAccountIdentificationRequirementJsonConverter = (IbanAccountIdentificationRequirementJsonConverter) jsonSerializerOptions.GetConverter(transferRouteRequirementsInner.IbanAccountIdentificationRequirement.GetType());
                 ibanAccountIdentificationRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.IbanAccountIdentificationRequirement, jsonSerializerOptions);
             }
 
             if (transferRouteRequirementsInner.PaymentInstrumentRequirement != null)
             {
-                PaymentInstrumentRequirementJsonConverter paymentInstrumentRequirementJsonConverter = (PaymentInstrumentRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.PaymentInstrumentRequirement.GetType()));
+                PaymentInstrumentRequirementJsonConverter paymentInstrumentRequirementJsonConverter = (PaymentInstrumentRequirementJsonConverter) jsonSerializerOptions.GetConverter(transferRouteRequirementsInner.PaymentInstrumentRequirement.GetType());
                 paymentInstrumentRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.PaymentInstrumentRequirement, jsonSerializerOptions);
             }
 
             if (transferRouteRequirementsInner.USInstantPayoutAddressRequirement != null)
             {
-                USInstantPayoutAddressRequirementJsonConverter uSInstantPayoutAddressRequirementJsonConverter = (USInstantPayoutAddressRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.USInstantPayoutAddressRequirement.GetType()));
+                USInstantPayoutAddressRequirementJsonConverter uSInstantPayoutAddressRequirementJsonConverter = (USInstantPayoutAddressRequirementJsonConverter) jsonSerializerOptions.GetConverter(transferRouteRequirementsInner.USInstantPayoutAddressRequirement.GetType());
                 uSInstantPayoutAddressRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.USInstantPayoutAddressRequirement, jsonSerializerOptions);
             }
 
             if (transferRouteRequirementsInner.USInternationalAchAddressRequirement != null)
             {
-                USInternationalAchAddressRequirementJsonConverter uSInternationalAchAddressRequirementJsonConverter = (USInternationalAchAddressRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.USInternationalAchAddressRequirement.GetType()));
+                USInternationalAchAddressRequirementJsonConverter uSInternationalAchAddressRequirementJsonConverter = (USInternationalAchAddressRequirementJsonConverter) jsonSerializerOptions.GetConverter(transferRouteRequirementsInner.USInternationalAchAddressRequirement.GetType());
                 uSInternationalAchAddressRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.USInternationalAchAddressRequirement, jsonSerializerOptions);
             }
 
             if (transferRouteRequirementsInner.USInternationalAchPriorityRequirement != null)
             {
-                USInternationalAchPriorityRequirementJsonConverter uSInternationalAchPriorityRequirementJsonConverter = (USInternationalAchPriorityRequirementJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(transferRouteRequirementsInner.USInternationalAchPriorityRequirement.GetType()));
+                USInternationalAchPriorityRequirementJsonConverter uSInternationalAchPriorityRequirementJsonConverter = (USInternationalAchPriorityRequirementJsonConverter) jsonSerializerOptions.GetConverter(transferRouteRequirementsInner.USInternationalAchPriorityRequirement.GetType());
                 uSInternationalAchPriorityRequirementJsonConverter.WriteProperties(writer, transferRouteRequirementsInner.USInternationalAchPriorityRequirement, jsonSerializerOptions);
             }
 
