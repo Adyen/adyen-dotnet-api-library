@@ -43,9 +43,9 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.
+        /// The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **interest**: A transfer that settles accrued [interest](https://docs.adyen.com/business-accounts/earn-returns) on a business account.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.
         /// </summary>
-        /// <value>The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.</value>
+        /// <value>The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **interest**: A transfer that settles accrued [interest](https://docs.adyen.com/business-accounts/earn-returns) on a business account.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.</value>
         [JsonConverter(typeof(CategoryEnumJsonConverter))]
         public class CategoryEnum : IEnum
         {
@@ -63,6 +63,11 @@ namespace Adyen.Transfers.Models
             /// CategoryEnum.Card - card
             /// </summary>
             public static readonly CategoryEnum Card = new("card");
+
+            /// <summary>
+            /// CategoryEnum.Interest - interest
+            /// </summary>
+            public static readonly CategoryEnum Interest = new("interest");
 
             /// <summary>
             /// CategoryEnum.Internal - internal
@@ -138,6 +143,7 @@ namespace Adyen.Transfers.Models
                 return value switch {
                     "bank" => CategoryEnum.Bank,
                     "card" => CategoryEnum.Card,
+                    "interest" => CategoryEnum.Interest,
                     "internal" => CategoryEnum.Internal,
                     "issuedCard" => CategoryEnum.IssuedCard,
                     "platformPayment" => CategoryEnum.PlatformPayment,
@@ -161,6 +167,9 @@ namespace Adyen.Transfers.Models
                 
                 if (value == CategoryEnum.Card)
                     return "card";
+                
+                if (value == CategoryEnum.Interest)
+                    return "interest";
                 
                 if (value == CategoryEnum.Internal)
                     return "internal";
@@ -202,9 +211,9 @@ namespace Adyen.Transfers.Models
         }
 
         /// <summary>
-        /// The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.
+        /// The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **interest**: A transfer that settles accrued [interest](https://docs.adyen.com/business-accounts/earn-returns) on a business account.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.
         /// </summary>
-        /// <value>The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.</value>
+        /// <value>The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **interest**: A transfer that settles accrued [interest](https://docs.adyen.com/business-accounts/earn-returns) on a business account.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.</value>
         [JsonPropertyName("category")]
         public CategoryEnum Category { get; set; }
 
@@ -2183,6 +2192,11 @@ namespace Adyen.Transfers.Models
             public static readonly TypeEnum BalanceMigration = new("balanceMigration");
 
             /// <summary>
+            /// TypeEnum.InterestPayout - interestPayout
+            /// </summary>
+            public static readonly TypeEnum InterestPayout = new("interestPayout");
+
+            /// <summary>
             /// TypeEnum.FxSell - fxSell
             /// </summary>
             public static readonly TypeEnum FxSell = new("fxSell");
@@ -2282,6 +2296,7 @@ namespace Adyen.Transfers.Models
                     "balanceAdjustment" => TypeEnum.BalanceAdjustment,
                     "balanceRollover" => TypeEnum.BalanceRollover,
                     "balanceMigration" => TypeEnum.BalanceMigration,
+                    "interestPayout" => TypeEnum.InterestPayout,
                     "fxSell" => TypeEnum.FxSell,
                     "fxBuy" => TypeEnum.FxBuy,
                     _ => null,
@@ -2411,6 +2426,9 @@ namespace Adyen.Transfers.Models
                 
                 if (value == TypeEnum.BalanceMigration)
                     return "balanceMigration";
+                
+                if (value == TypeEnum.InterestPayout)
+                    return "interestPayout";
                 
                 if (value == TypeEnum.FxSell)
                     return "fxSell";
