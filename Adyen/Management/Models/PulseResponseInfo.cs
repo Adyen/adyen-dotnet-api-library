@@ -175,11 +175,18 @@ namespace Adyen.Management.Models
         }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ProcessingType"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<ProcessingTypeEnum?> _ProcessingTypeOption { get; private set; }
+
+        /// <summary>
         /// The type of transactions processed over this payment method.  Allowed values: - **pos** for in-person payments.  - **billpay** for subscription payments, both the initial payment and the later recurring payments. These transactions have `recurringProcessingModel` **Subscription**.  - **ecom** for all other card not present transactions. This includes non-recurring transactions and transactions with `recurringProcessingModel` **CardOnFile** or **UnscheduledCardOnFile**. 
         /// </summary>
         /// <value>The type of transactions processed over this payment method.  Allowed values: - **pos** for in-person payments.  - **billpay** for subscription payments, both the initial payment and the later recurring payments. These transactions have &#x60;recurringProcessingModel&#x60; **Subscription**.  - **ecom** for all other card not present transactions. This includes non-recurring transactions and transactions with &#x60;recurringProcessingModel&#x60; **CardOnFile** or **UnscheduledCardOnFile**. </value>
         [JsonPropertyName("processingType")]
-        public ProcessingTypeEnum ProcessingType { get; set; }
+        public ProcessingTypeEnum? ProcessingType { get { return this._ProcessingTypeOption; } set { this._ProcessingTypeOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="TransactionDescription"/> will be populated.
@@ -265,7 +272,7 @@ namespace Adyen.Management.Models
 
             var pulseResponseInfo = new PulseResponseInfo();
             if (processingType.IsSet)
-                pulseResponseInfo.ProcessingType = processingType.Value!;
+                pulseResponseInfo.ProcessingType = processingType.Value;
             if (transactionDescription.IsSet)
                 pulseResponseInfo.TransactionDescription = transactionDescription.Value;
             return pulseResponseInfo;
@@ -297,9 +304,9 @@ namespace Adyen.Management.Models
         public void WriteProperties(Utf8JsonWriter writer, PulseResponseInfo pulseResponseInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (pulseResponseInfo.ProcessingType != null) 
+            if (pulseResponseInfo._ProcessingTypeOption.IsSet && pulseResponseInfo.ProcessingType != null) 
             {
-                string? processingTypeRawValue = PulseResponseInfo.ProcessingTypeEnum.ToJsonValue(pulseResponseInfo.ProcessingType);
+                string? processingTypeRawValue = PulseResponseInfo.ProcessingTypeEnum.ToJsonValue(pulseResponseInfo._ProcessingTypeOption.Value!.Value);
                 writer.WriteString("processingType", processingTypeRawValue);
             }
             
