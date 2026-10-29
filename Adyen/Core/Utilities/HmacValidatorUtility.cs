@@ -44,6 +44,12 @@ namespace Adyen.Core.Utilities
         /// <returns>An array of bytes that repesents the hexadecimalString.</returns>
         private static byte[] ConvertHexadecimalToBytes(string hexadecimalString)
         {
+            // An empty key would produce a signature anyone can compute.
+            if (string.IsNullOrEmpty(hexadecimalString))
+            {
+                throw new ArgumentException("HMAC key must not be empty.", nameof(hexadecimalString));
+            }
+
             if ((hexadecimalString.Length % 2) == 1)
             {
                 hexadecimalString += '0';
