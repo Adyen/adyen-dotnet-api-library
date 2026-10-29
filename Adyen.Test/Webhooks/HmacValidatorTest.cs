@@ -38,6 +38,32 @@ namespace Adyen.Test.Webhooks
         }
         
         [TestMethod]
+        public void TestEmptyHmacKeyIsRejected()
+        {
+            var notificationRequestItem = new NotificationRequestItem
+            {
+                PspReference = "pspReference",
+                OriginalReference = "originalReference",
+                MerchantAccountCode = "merchantAccount",
+                MerchantReference = "reference",
+                Amount = new Amount("EUR", 1000),
+                EventCode = "EVENT",
+                Success = true
+            };
+            var hmacValidator = new HmacValidator();
+            // A signature anyone can compute without knowing the key
+            string forgedSign;
+            using (var hmac = new System.Security.Cryptography.HMACSHA256(new byte[0]))
+            {
+                forgedSign = System.Convert.ToBase64String(hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(hmacValidator.GetDataToSign(notificationRequestItem))));
+            }
+            notificationRequestItem.AdditionalData = new Dictionary<string, string> { { "hmacSignature", forgedSign } };
+
+            Assert.ThrowsExactly<System.ArgumentException>(() => hmacValidator.CalculateHmac("data", ""));
+            Assert.ThrowsExactly<System.ArgumentException>(() => hmacValidator.IsValidHmac(notificationRequestItem, ""));
+        }
+
+        [TestMethod]
         public void TestNotificationRequestItemHmac()
         {
             string hmacKey = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
