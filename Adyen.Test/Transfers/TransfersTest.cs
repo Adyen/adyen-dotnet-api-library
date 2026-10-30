@@ -140,6 +140,30 @@ namespace Adyen.Test.Transfers
             Assert.AreEqual("1W1UG35U8A9J5ZLG", response.TransferId);
         }
         
+        [TestMethod]
+        public void Given_TransferInterestEnums_When_FromStringOrDefault_Then_ReturnsExpectedInstance()
+        {
+            Assert.IsNull(Transfer.CategoryEnum.FromStringOrDefault("some_future_category"));
+            Assert.IsNull(Transfer.TypeEnum.FromStringOrDefault("some_future_type"));
+            Assert.IsNull(TransferData.CategoryEnum.FromStringOrDefault("some_future_category"));
+            Assert.IsNull(TransferData.TypeEnum.FromStringOrDefault("some_future_type"));
+
+            Assert.AreSame(Transfer.CategoryEnum.Interest, Transfer.CategoryEnum.FromStringOrDefault("interest"));
+            Assert.AreSame(Transfer.TypeEnum.InterestPayout, Transfer.TypeEnum.FromStringOrDefault("interestPayout"));
+            Assert.AreSame(TransferData.CategoryEnum.Interest, TransferData.CategoryEnum.FromStringOrDefault("interest"));
+            Assert.AreSame(TransferData.TypeEnum.InterestPayout, TransferData.TypeEnum.FromStringOrDefault("interestPayout"));
+
+            Assert.AreEqual("interest", Transfer.CategoryEnum.Interest.Value);
+            Assert.AreEqual("interestPayout", Transfer.TypeEnum.InterestPayout.Value);
+            Assert.AreEqual("interest", TransferData.CategoryEnum.Interest.Value);
+            Assert.AreEqual("interestPayout", TransferData.TypeEnum.InterestPayout.Value);
+
+            Assert.AreEqual("interest", Transfer.CategoryEnum.ToJsonValue(Transfer.CategoryEnum.Interest));
+            Assert.AreEqual("interestPayout", Transfer.TypeEnum.ToJsonValue(Transfer.TypeEnum.InterestPayout));
+            Assert.AreEqual("interest", TransferData.CategoryEnum.ToJsonValue(TransferData.CategoryEnum.Interest));
+            Assert.AreEqual("interestPayout", TransferData.TypeEnum.ToJsonValue(TransferData.TypeEnum.InterestPayout));
+        }
+
         #region Tracking Discriminator
         
         [TestMethod]
