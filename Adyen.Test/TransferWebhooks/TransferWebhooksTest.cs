@@ -227,5 +227,20 @@ namespace Adyen.Test.TransferWebhooks
             Assert.AreEqual("AH00000000000000000000001", r.Data.AccountHolder.Id);
             Assert.AreEqual("BA00000000000000000000001", r.Data.BalanceAccount.Id);
         }
+
+        [TestMethod]
+        public void Given_TransferDataInterestEnums_When_FromStringOrDefault_Then_ReturnsExpectedInstance()
+        {
+            Assert.IsNull(TransferData.CategoryEnum.FromStringOrDefault("some_future_category"));
+            Assert.IsNull(TransferData.TypeEnum.FromStringOrDefault("some_future_type"));
+
+            Assert.AreSame(TransferData.CategoryEnum.Interest, TransferData.CategoryEnum.FromStringOrDefault("interest"));
+            Assert.AreSame(TransferData.TypeEnum.InterestPayout, TransferData.TypeEnum.FromStringOrDefault("interestPayout"));
+
+            Assert.AreEqual("interest", TransferData.CategoryEnum.Interest.Value);
+            Assert.AreEqual("interestPayout", TransferData.TypeEnum.InterestPayout.Value);
+            Assert.AreEqual("interest", TransferData.CategoryEnum.ToJsonValue(TransferData.CategoryEnum.Interest));
+            Assert.AreEqual("interestPayout", TransferData.TypeEnum.ToJsonValue(TransferData.TypeEnum.InterestPayout));
+        }
     }
 }
