@@ -190,6 +190,12 @@
                         {{/isMap}}
                         {{/isString}}
                         {{#isBoolean}}
+                        {{#required}}
+                        {{^isNullable}}
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property '{{baseName}}' on '{{classname}}' cannot be null.");
+                        {{/isNullable}}
+                        {{/required}}
                             {{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}} = {{>OptionProperty}}utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                         {{/isBoolean}}
                         {{#isNumeric}}
@@ -247,6 +253,12 @@
                         {{/isMap}}
                         {{/isEnum}}
                         {{#isUuid}}
+                        {{#required}}
+                        {{^isNullable}}
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property '{{baseName}}' on '{{classname}}' cannot be null.");
+                        {{/isNullable}}
+                        {{/required}}
                             {{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}} = {{>OptionProperty}}utf8JsonReader.TokenType == JsonTokenType.Null ? (Guid?)null : utf8JsonReader.GetGuid());
                         {{/isUuid}}
                         {{^isUuid}}

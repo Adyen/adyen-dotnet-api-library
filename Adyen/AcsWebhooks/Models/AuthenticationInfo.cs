@@ -1589,6 +1589,8 @@ namespace Adyen.AcsWebhooks.Models
                             dsTransID = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "inPSD2Scope":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'inPSD2Scope' on 'AuthenticationInfo' cannot be null.");
                             inPSD2Scope = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "messageCategory":

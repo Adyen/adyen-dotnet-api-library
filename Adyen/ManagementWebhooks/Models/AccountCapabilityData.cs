@@ -213,6 +213,8 @@ namespace Adyen.ManagementWebhooks.Models
                     switch (jsonPropertyName)
                     {
                         case "requested":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'requested' on 'AccountCapabilityData' cannot be null.");
                             requested = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "requestedLevel":
