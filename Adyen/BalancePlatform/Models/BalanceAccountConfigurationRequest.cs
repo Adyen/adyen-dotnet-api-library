@@ -184,11 +184,18 @@ namespace Adyen.BalancePlatform.Models
         }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Frequency"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<FrequencyEnum?> _FrequencyOption { get; private set; }
+
+        /// <summary>
         /// The frequency of payouts initiated by this payout schedule.  Possible values: * daily * weekdays * weekly * monthly  Default value: The `defaultFrequency` from the balance platform schedule that you are applying.
         /// </summary>
         /// <value>The frequency of payouts initiated by this payout schedule.  Possible values: * daily * weekdays * weekly * monthly  Default value: The &#x60;defaultFrequency&#x60; from the balance platform schedule that you are applying.</value>
         [JsonPropertyName("frequency")]
-        public FrequencyEnum Frequency { get; set; }
+        public FrequencyEnum? Frequency { get { return this._FrequencyOption; } set { this._FrequencyOption = new(value); } }
 
         /// <summary>
         /// The unique identifier of the payout schedule that is applied to the balance account.
@@ -355,11 +362,11 @@ namespace Adyen.BalancePlatform.Models
             StringBuilder sb = new StringBuilder();
             sb.Append("class BalanceAccountConfigurationRequest {\n");
             sb.Append("  BalancePlatformPayoutScheduleId: ").Append(BalancePlatformPayoutScheduleId).Append("\n");
-            sb.Append("  Frequency: ").Append(Frequency).Append("\n");
             sb.Append("  TransferInstrumentId: ").Append(TransferInstrumentId).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Enabled: ").Append(Enabled).Append("\n");
+            sb.Append("  Frequency: ").Append(Frequency).Append("\n");
             sb.Append("  FrequencyValue: ").Append(FrequencyValue).Append("\n");
             sb.Append("  MaxPayoutAmount: ").Append(MaxPayoutAmount).Append("\n");
             sb.Append("  MinPayoutAmount: ").Append(MinPayoutAmount).Append("\n");
@@ -395,11 +402,11 @@ namespace Adyen.BalancePlatform.Models
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string?> balancePlatformPayoutScheduleId = default;
-            Option<BalanceAccountConfigurationRequest.FrequencyEnum?> frequency = default;
             Option<string?> transferInstrumentId = default;
             Option<string?> currency = default;
             Option<string?> description = default;
             Option<bool?> enabled = default;
+            Option<BalanceAccountConfigurationRequest.FrequencyEnum?> frequency = default;
             Option<int?> frequencyValue = default;
             Option<long?> maxPayoutAmount = default;
             Option<long?> minPayoutAmount = default;
@@ -426,10 +433,6 @@ namespace Adyen.BalancePlatform.Models
                         case "balancePlatformPayoutScheduleId":
                             balancePlatformPayoutScheduleId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
-                        case "frequency":
-                            string? frequencyRawValue = utf8JsonReader.GetString();
-                            frequency = new Option<BalanceAccountConfigurationRequest.FrequencyEnum?>(BalanceAccountConfigurationRequest.FrequencyEnum.FromStringOrDefault(frequencyRawValue) ?? (BalanceAccountConfigurationRequest.FrequencyEnum)frequencyRawValue);
-                            break;
                         case "transferInstrumentId":
                             transferInstrumentId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -441,6 +444,10 @@ namespace Adyen.BalancePlatform.Models
                             break;
                         case "enabled":
                             enabled = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "frequency":
+                            string? frequencyRawValue = utf8JsonReader.GetString();
+                            frequency = new Option<BalanceAccountConfigurationRequest.FrequencyEnum?>(BalanceAccountConfigurationRequest.FrequencyEnum.FromStringOrDefault(frequencyRawValue) ?? (BalanceAccountConfigurationRequest.FrequencyEnum)frequencyRawValue);
                             break;
                         case "frequencyValue":
                             frequencyValue = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -473,8 +480,6 @@ namespace Adyen.BalancePlatform.Models
             var balanceAccountConfigurationRequest = new BalanceAccountConfigurationRequest();
             if (balancePlatformPayoutScheduleId.IsSet)
                 balanceAccountConfigurationRequest.BalancePlatformPayoutScheduleId = balancePlatformPayoutScheduleId.Value!;
-            if (frequency.IsSet)
-                balanceAccountConfigurationRequest.Frequency = frequency.Value!;
             if (transferInstrumentId.IsSet)
                 balanceAccountConfigurationRequest.TransferInstrumentId = transferInstrumentId.Value!;
             if (currency.IsSet)
@@ -483,6 +488,8 @@ namespace Adyen.BalancePlatform.Models
                 balanceAccountConfigurationRequest.Description = description.Value;
             if (enabled.IsSet)
                 balanceAccountConfigurationRequest.Enabled = enabled.Value;
+            if (frequency.IsSet)
+                balanceAccountConfigurationRequest.Frequency = frequency.Value;
             if (frequencyValue.IsSet)
                 balanceAccountConfigurationRequest.FrequencyValue = frequencyValue.Value;
             if (maxPayoutAmount.IsSet)
@@ -529,12 +536,6 @@ namespace Adyen.BalancePlatform.Models
             if (balanceAccountConfigurationRequest.BalancePlatformPayoutScheduleId != null)
                 writer.WriteString("balancePlatformPayoutScheduleId", balanceAccountConfigurationRequest.BalancePlatformPayoutScheduleId);
 
-            if (balanceAccountConfigurationRequest.Frequency != null) 
-            {
-                string? frequencyRawValue = BalanceAccountConfigurationRequest.FrequencyEnum.ToJsonValue(balanceAccountConfigurationRequest.Frequency);
-                writer.WriteString("frequency", frequencyRawValue);
-            }
-            
             if (balanceAccountConfigurationRequest.TransferInstrumentId != null)
                 writer.WriteString("transferInstrumentId", balanceAccountConfigurationRequest.TransferInstrumentId);
 
@@ -550,6 +551,12 @@ namespace Adyen.BalancePlatform.Models
                 if (balanceAccountConfigurationRequest._EnabledOption.Value != null)
                     writer.WriteBoolean("enabled", balanceAccountConfigurationRequest._EnabledOption.Value!.Value);
 
+            if (balanceAccountConfigurationRequest._FrequencyOption.IsSet && balanceAccountConfigurationRequest.Frequency != null) 
+            {
+                string? frequencyRawValue = BalanceAccountConfigurationRequest.FrequencyEnum.ToJsonValue(balanceAccountConfigurationRequest._FrequencyOption.Value!.Value);
+                writer.WriteString("frequency", frequencyRawValue);
+            }
+            
             if (balanceAccountConfigurationRequest._FrequencyValueOption.IsSet)
                 if (balanceAccountConfigurationRequest._FrequencyValueOption.Value != null)
                     writer.WriteNumber("frequencyValue", balanceAccountConfigurationRequest._FrequencyValueOption.Value!.Value);

@@ -799,97 +799,97 @@ namespace Adyen.BalancePlatform.Models
             
             if (bankAccountAccountIdentification.AULocalAccountIdentification != null)
             {
-                AULocalAccountIdentificationJsonConverter aULocalAccountIdentificationJsonConverter = (AULocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.AULocalAccountIdentification.GetType()));
+                AULocalAccountIdentificationJsonConverter aULocalAccountIdentificationJsonConverter = (AULocalAccountIdentificationJsonConverter) jsonSerializerOptions.GetConverter(bankAccountAccountIdentification.AULocalAccountIdentification.GetType());
                 aULocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.AULocalAccountIdentification, jsonSerializerOptions);
             }
 
             if (bankAccountAccountIdentification.BRLocalAccountIdentification != null)
             {
-                BRLocalAccountIdentificationJsonConverter bRLocalAccountIdentificationJsonConverter = (BRLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.BRLocalAccountIdentification.GetType()));
+                BRLocalAccountIdentificationJsonConverter bRLocalAccountIdentificationJsonConverter = (BRLocalAccountIdentificationJsonConverter) jsonSerializerOptions.GetConverter(bankAccountAccountIdentification.BRLocalAccountIdentification.GetType());
                 bRLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.BRLocalAccountIdentification, jsonSerializerOptions);
             }
 
             if (bankAccountAccountIdentification.CALocalAccountIdentification != null)
             {
-                CALocalAccountIdentificationJsonConverter cALocalAccountIdentificationJsonConverter = (CALocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.CALocalAccountIdentification.GetType()));
+                CALocalAccountIdentificationJsonConverter cALocalAccountIdentificationJsonConverter = (CALocalAccountIdentificationJsonConverter) jsonSerializerOptions.GetConverter(bankAccountAccountIdentification.CALocalAccountIdentification.GetType());
                 cALocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.CALocalAccountIdentification, jsonSerializerOptions);
             }
 
             if (bankAccountAccountIdentification.CZLocalAccountIdentification != null)
             {
-                CZLocalAccountIdentificationJsonConverter cZLocalAccountIdentificationJsonConverter = (CZLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.CZLocalAccountIdentification.GetType()));
+                CZLocalAccountIdentificationJsonConverter cZLocalAccountIdentificationJsonConverter = (CZLocalAccountIdentificationJsonConverter) jsonSerializerOptions.GetConverter(bankAccountAccountIdentification.CZLocalAccountIdentification.GetType());
                 cZLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.CZLocalAccountIdentification, jsonSerializerOptions);
             }
 
             if (bankAccountAccountIdentification.DKLocalAccountIdentification != null)
             {
-                DKLocalAccountIdentificationJsonConverter dKLocalAccountIdentificationJsonConverter = (DKLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.DKLocalAccountIdentification.GetType()));
+                DKLocalAccountIdentificationJsonConverter dKLocalAccountIdentificationJsonConverter = (DKLocalAccountIdentificationJsonConverter) jsonSerializerOptions.GetConverter(bankAccountAccountIdentification.DKLocalAccountIdentification.GetType());
                 dKLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.DKLocalAccountIdentification, jsonSerializerOptions);
             }
 
             if (bankAccountAccountIdentification.HKLocalAccountIdentification != null)
             {
-                HKLocalAccountIdentificationJsonConverter hKLocalAccountIdentificationJsonConverter = (HKLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.HKLocalAccountIdentification.GetType()));
+                HKLocalAccountIdentificationJsonConverter hKLocalAccountIdentificationJsonConverter = (HKLocalAccountIdentificationJsonConverter) jsonSerializerOptions.GetConverter(bankAccountAccountIdentification.HKLocalAccountIdentification.GetType());
                 hKLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.HKLocalAccountIdentification, jsonSerializerOptions);
             }
 
             if (bankAccountAccountIdentification.HULocalAccountIdentification != null)
             {
-                HULocalAccountIdentificationJsonConverter hULocalAccountIdentificationJsonConverter = (HULocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.HULocalAccountIdentification.GetType()));
+                HULocalAccountIdentificationJsonConverter hULocalAccountIdentificationJsonConverter = (HULocalAccountIdentificationJsonConverter) jsonSerializerOptions.GetConverter(bankAccountAccountIdentification.HULocalAccountIdentification.GetType());
                 hULocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.HULocalAccountIdentification, jsonSerializerOptions);
             }
 
             if (bankAccountAccountIdentification.IbanAccountIdentification != null)
             {
-                IbanAccountIdentificationJsonConverter ibanAccountIdentificationJsonConverter = (IbanAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.IbanAccountIdentification.GetType()));
+                IbanAccountIdentificationJsonConverter ibanAccountIdentificationJsonConverter = (IbanAccountIdentificationJsonConverter) jsonSerializerOptions.GetConverter(bankAccountAccountIdentification.IbanAccountIdentification.GetType());
                 ibanAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.IbanAccountIdentification, jsonSerializerOptions);
             }
 
             if (bankAccountAccountIdentification.NOLocalAccountIdentification != null)
             {
-                NOLocalAccountIdentificationJsonConverter nOLocalAccountIdentificationJsonConverter = (NOLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.NOLocalAccountIdentification.GetType()));
+                NOLocalAccountIdentificationJsonConverter nOLocalAccountIdentificationJsonConverter = (NOLocalAccountIdentificationJsonConverter) jsonSerializerOptions.GetConverter(bankAccountAccountIdentification.NOLocalAccountIdentification.GetType());
                 nOLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.NOLocalAccountIdentification, jsonSerializerOptions);
             }
 
             if (bankAccountAccountIdentification.NZLocalAccountIdentification != null)
             {
-                NZLocalAccountIdentificationJsonConverter nZLocalAccountIdentificationJsonConverter = (NZLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.NZLocalAccountIdentification.GetType()));
+                NZLocalAccountIdentificationJsonConverter nZLocalAccountIdentificationJsonConverter = (NZLocalAccountIdentificationJsonConverter) jsonSerializerOptions.GetConverter(bankAccountAccountIdentification.NZLocalAccountIdentification.GetType());
                 nZLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.NZLocalAccountIdentification, jsonSerializerOptions);
             }
 
             if (bankAccountAccountIdentification.NumberAndBicAccountIdentification != null)
             {
-                NumberAndBicAccountIdentificationJsonConverter numberAndBicAccountIdentificationJsonConverter = (NumberAndBicAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.NumberAndBicAccountIdentification.GetType()));
+                NumberAndBicAccountIdentificationJsonConverter numberAndBicAccountIdentificationJsonConverter = (NumberAndBicAccountIdentificationJsonConverter) jsonSerializerOptions.GetConverter(bankAccountAccountIdentification.NumberAndBicAccountIdentification.GetType());
                 numberAndBicAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.NumberAndBicAccountIdentification, jsonSerializerOptions);
             }
 
             if (bankAccountAccountIdentification.PLLocalAccountIdentification != null)
             {
-                PLLocalAccountIdentificationJsonConverter pLLocalAccountIdentificationJsonConverter = (PLLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.PLLocalAccountIdentification.GetType()));
+                PLLocalAccountIdentificationJsonConverter pLLocalAccountIdentificationJsonConverter = (PLLocalAccountIdentificationJsonConverter) jsonSerializerOptions.GetConverter(bankAccountAccountIdentification.PLLocalAccountIdentification.GetType());
                 pLLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.PLLocalAccountIdentification, jsonSerializerOptions);
             }
 
             if (bankAccountAccountIdentification.SELocalAccountIdentification != null)
             {
-                SELocalAccountIdentificationJsonConverter sELocalAccountIdentificationJsonConverter = (SELocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.SELocalAccountIdentification.GetType()));
+                SELocalAccountIdentificationJsonConverter sELocalAccountIdentificationJsonConverter = (SELocalAccountIdentificationJsonConverter) jsonSerializerOptions.GetConverter(bankAccountAccountIdentification.SELocalAccountIdentification.GetType());
                 sELocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.SELocalAccountIdentification, jsonSerializerOptions);
             }
 
             if (bankAccountAccountIdentification.SGLocalAccountIdentification != null)
             {
-                SGLocalAccountIdentificationJsonConverter sGLocalAccountIdentificationJsonConverter = (SGLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.SGLocalAccountIdentification.GetType()));
+                SGLocalAccountIdentificationJsonConverter sGLocalAccountIdentificationJsonConverter = (SGLocalAccountIdentificationJsonConverter) jsonSerializerOptions.GetConverter(bankAccountAccountIdentification.SGLocalAccountIdentification.GetType());
                 sGLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.SGLocalAccountIdentification, jsonSerializerOptions);
             }
 
             if (bankAccountAccountIdentification.UKLocalAccountIdentification != null)
             {
-                UKLocalAccountIdentificationJsonConverter uKLocalAccountIdentificationJsonConverter = (UKLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.UKLocalAccountIdentification.GetType()));
+                UKLocalAccountIdentificationJsonConverter uKLocalAccountIdentificationJsonConverter = (UKLocalAccountIdentificationJsonConverter) jsonSerializerOptions.GetConverter(bankAccountAccountIdentification.UKLocalAccountIdentification.GetType());
                 uKLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.UKLocalAccountIdentification, jsonSerializerOptions);
             }
 
             if (bankAccountAccountIdentification.USLocalAccountIdentification != null)
             {
-                USLocalAccountIdentificationJsonConverter uSLocalAccountIdentificationJsonConverter = (USLocalAccountIdentificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(bankAccountAccountIdentification.USLocalAccountIdentification.GetType()));
+                USLocalAccountIdentificationJsonConverter uSLocalAccountIdentificationJsonConverter = (USLocalAccountIdentificationJsonConverter) jsonSerializerOptions.GetConverter(bankAccountAccountIdentification.USLocalAccountIdentification.GetType());
                 uSLocalAccountIdentificationJsonConverter.WriteProperties(writer, bankAccountAccountIdentification.USLocalAccountIdentification, jsonSerializerOptions);
             }
 

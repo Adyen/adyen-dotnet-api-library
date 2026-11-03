@@ -1,8 +1,8 @@
 {
   "service": "balanceplatform",
   "project": "dotnet",
-  "generatedAt": "2026-07-01T13:12:09Z",
-  "openapiCommitSha": "28ffef4cd4f884082b1ed2e2c6b452a10481cab0",
-  "automationCommitSha": "5f1d5ab9643886ef722a2626e23afef8db5d52a6",
-  "libraryCommitSha": "11195aa91ab55cb9b2f3d5aa1dbbec22d971407d"
+  "generatedAt": "2026-11-03T07:29:33Z",
+  "openapiCommitSha": "2dd3de9948f4fbb842690b4dc90cf624edcaae5a",
+  "automationCommitSha": "ae7e57613c3a29391a4adb4ff02e9ddda4611b16",
+  "libraryCommitSha": "895cd2736ffcec6299156a6792e1c102de8c1819"
 }

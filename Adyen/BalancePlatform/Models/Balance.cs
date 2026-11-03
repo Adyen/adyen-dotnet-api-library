@@ -162,15 +162,21 @@ namespace Adyen.BalancePlatform.Models
                     switch (jsonPropertyName)
                     {
                         case "available":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'available' on 'Balance' cannot be null.");
                             available = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "balance":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'balance' on 'Balance' cannot be null.");
                             varBalance = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "currency":
                             currency = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "reserved":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'reserved' on 'Balance' cannot be null.");
                             reserved = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "pending":
