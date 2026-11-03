@@ -136,12 +136,12 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
         /// <param name="id">The unique identifier of the payout schedule on the balance account.</param>
         /// <param name="offset">The page number to be returned.  Default: **1**</param>
-        /// <param name="results">Contains a list of payout statuses. If included, the response returns only executed payouts that currently have one of the specified statuses.  Possible statuses: - **succeeded**: The payout was sent successfully. - **failed**: The payout was not sent due to an error. - **skipped**: The payout was not triggered as expected.</param>
+        /// <param name="results">Contains a comma-separated list of payout statuses. If included, the response returns only executed payouts that currently have one of the specified statuses.  Possible statuses: - **succeeded**: The payout was sent successfully. - **failed**: The payout was not sent due to an error. - **skipped**: The payout was not triggered as expected.  Examples: `results=succeeded`, `results=failed,skipped`</param>
         /// <param name="limit">The number of items returned per page.  Default: **10**</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetPayoutScheduleExecutionsApiResponse"/>.</returns>
-        Task<IGetPayoutScheduleExecutionsApiResponse> GetPayoutScheduleExecutionsAsync(string balanceAccountId, string id, int offset, Option<List<ExecutionResult>> results = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetPayoutScheduleExecutionsApiResponse> GetPayoutScheduleExecutionsAsync(string balanceAccountId, string id, int offset, Option<string> results = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a managed payout schedule on a balance account
@@ -163,7 +163,7 @@ namespace Adyen.BalancePlatform.Services
     /// <summary>
     /// The <see cref="IApplyManagedScheduleApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.BalanceAccountConfiguration"/>.
     /// </summary>
-    public interface IApplyManagedScheduleApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.BalanceAccountConfiguration?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
+    public interface IApplyManagedScheduleApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.BalanceAccountConfiguration?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -176,12 +176,6 @@ namespace Adyen.BalancePlatform.Services
         /// </summary>
         /// <returns></returns>
         bool IsUnauthorized { get; }
-
-        /// <summary>
-        /// Returns true if the response is 403 Forbidden.
-        /// </summary>
-        /// <returns></returns>
-        bool IsForbidden { get; }
 
         /// <summary>
         /// Returns true if the response is 404 NotFound.
@@ -205,7 +199,7 @@ namespace Adyen.BalancePlatform.Services
     /// <summary>
     /// The <see cref="IDeleteBalanceAccountManagedScheduleApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
-    public interface IDeleteBalanceAccountManagedScheduleApiResponse : Adyen.Core.Client.IApiResponse, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
+    public interface IDeleteBalanceAccountManagedScheduleApiResponse : Adyen.Core.Client.IApiResponse, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
         /// <summary>
         /// Returns true if the response is 204 NoContent.
@@ -218,12 +212,6 @@ namespace Adyen.BalancePlatform.Services
         /// </summary>
         /// <returns></returns>
         bool IsUnauthorized { get; }
-
-        /// <summary>
-        /// Returns true if the response is 403 Forbidden.
-        /// </summary>
-        /// <returns></returns>
-        bool IsForbidden { get; }
 
         /// <summary>
         /// Returns true if the response is 404 NotFound.
@@ -247,7 +235,7 @@ namespace Adyen.BalancePlatform.Services
     /// <summary>
     /// The <see cref="IGetBalanceAccountManagedScheduleByIdApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.BalanceAccountConfiguration"/>.
     /// </summary>
-    public interface IGetBalanceAccountManagedScheduleByIdApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.BalanceAccountConfiguration?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
+    public interface IGetBalanceAccountManagedScheduleByIdApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.BalanceAccountConfiguration?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -260,12 +248,6 @@ namespace Adyen.BalancePlatform.Services
         /// </summary>
         /// <returns></returns>
         bool IsUnauthorized { get; }
-
-        /// <summary>
-        /// Returns true if the response is 403 Forbidden.
-        /// </summary>
-        /// <returns></returns>
-        bool IsForbidden { get; }
 
         /// <summary>
         /// Returns true if the response is 404 NotFound.
@@ -289,7 +271,7 @@ namespace Adyen.BalancePlatform.Services
     /// <summary>
     /// The <see cref="IGetBalanceAccountManagedSchedulesApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.BalanceAccountConfigurations"/>.
     /// </summary>
-    public interface IGetBalanceAccountManagedSchedulesApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.BalanceAccountConfigurations?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
+    public interface IGetBalanceAccountManagedSchedulesApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.BalanceAccountConfigurations?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -302,12 +284,6 @@ namespace Adyen.BalancePlatform.Services
         /// </summary>
         /// <returns></returns>
         bool IsUnauthorized { get; }
-
-        /// <summary>
-        /// Returns true if the response is 403 Forbidden.
-        /// </summary>
-        /// <returns></returns>
-        bool IsForbidden { get; }
 
         /// <summary>
         /// Returns true if the response is 404 NotFound.
@@ -331,7 +307,7 @@ namespace Adyen.BalancePlatform.Services
     /// <summary>
     /// The <see cref="IGetBalancePlatformManagedScheduleByIdApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.BalancePlatformConfiguration"/>.
     /// </summary>
-    public interface IGetBalancePlatformManagedScheduleByIdApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.BalancePlatformConfiguration?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
+    public interface IGetBalancePlatformManagedScheduleByIdApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.BalancePlatformConfiguration?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -344,12 +320,6 @@ namespace Adyen.BalancePlatform.Services
         /// </summary>
         /// <returns></returns>
         bool IsUnauthorized { get; }
-
-        /// <summary>
-        /// Returns true if the response is 403 Forbidden.
-        /// </summary>
-        /// <returns></returns>
-        bool IsForbidden { get; }
 
         /// <summary>
         /// Returns true if the response is 404 NotFound.
@@ -373,7 +343,7 @@ namespace Adyen.BalancePlatform.Services
     /// <summary>
     /// The <see cref="IGetBalancePlatformManagedSchedulesApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.BalancePlatformConfigurations"/>.
     /// </summary>
-    public interface IGetBalancePlatformManagedSchedulesApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.BalancePlatformConfigurations?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
+    public interface IGetBalancePlatformManagedSchedulesApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.BalancePlatformConfigurations?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -386,12 +356,6 @@ namespace Adyen.BalancePlatform.Services
         /// </summary>
         /// <returns></returns>
         bool IsUnauthorized { get; }
-
-        /// <summary>
-        /// Returns true if the response is 403 Forbidden.
-        /// </summary>
-        /// <returns></returns>
-        bool IsForbidden { get; }
 
         /// <summary>
         /// Returns true if the response is 404 NotFound.
@@ -415,7 +379,7 @@ namespace Adyen.BalancePlatform.Services
     /// <summary>
     /// The <see cref="IGetPayoutScheduleExecutionsApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.PayoutScheduleExecutions"/>.
     /// </summary>
-    public interface IGetPayoutScheduleExecutionsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.PayoutScheduleExecutions?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
+    public interface IGetPayoutScheduleExecutionsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.PayoutScheduleExecutions?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -428,12 +392,6 @@ namespace Adyen.BalancePlatform.Services
         /// </summary>
         /// <returns></returns>
         bool IsUnauthorized { get; }
-
-        /// <summary>
-        /// Returns true if the response is 403 Forbidden.
-        /// </summary>
-        /// <returns></returns>
-        bool IsForbidden { get; }
 
         /// <summary>
         /// Returns true if the response is 404 NotFound.
@@ -457,7 +415,7 @@ namespace Adyen.BalancePlatform.Services
     /// <summary>
     /// The <see cref="IUpdateBalanceAccountManagedScheduleApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.BalanceAccountConfiguration"/>.
     /// </summary>
-    public interface IUpdateBalanceAccountManagedScheduleApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.BalanceAccountConfiguration?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
+    public interface IUpdateBalanceAccountManagedScheduleApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.BalanceAccountConfiguration?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -470,12 +428,6 @@ namespace Adyen.BalancePlatform.Services
         /// </summary>
         /// <returns></returns>
         bool IsUnauthorized { get; }
-
-        /// <summary>
-        /// Returns true if the response is 403 Forbidden.
-        /// </summary>
-        /// <returns></returns>
-        bool IsForbidden { get; }
 
         /// <summary>
         /// Returns true if the response is 404 NotFound.
@@ -669,6 +621,11 @@ namespace Adyen.BalancePlatform.Services
     {
 
         /// <summary>
+        /// The version of the OpenAPI document.
+        /// </summary>
+        public static string ApiVersion => "2";
+
+        /// <summary>
         /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
         /// This value will be used to construct the URL in <see cref="System.Net.Http.HttpClient.BaseAddress"/> based on the Environment value set in <see cref="AdyenOptions.Environment"/>.
         /// </summary>
@@ -747,9 +704,10 @@ namespace Adyen.BalancePlatform.Services
                     httpRequestMessage.Content = (balanceAccountConfigurationRequest as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(balanceAccountConfigurationRequest, _jsonSerializerOptions));
+
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
-
+                    
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {
@@ -933,44 +891,6 @@ namespace Adyen.BalancePlatform.Services
             }
 
             /// <summary>
-            /// Returns true if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsForbidden => 403 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? Forbidden()
-            {
-                return IsForbidden
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeForbiddenResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Forbidden();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)403);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
             /// Returns true if the response is 404 NotFound.
             /// </summary>
             /// <returns></returns>
@@ -1123,9 +1043,10 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
-
+                    
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -1258,44 +1179,6 @@ namespace Adyen.BalancePlatform.Services
                 catch (Exception exception)
                 {
                     OnDeserializationError(exception, (HttpStatusCode)401);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsForbidden => 403 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? Forbidden()
-            {
-                return IsForbidden
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeForbiddenResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Forbidden();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)403);
                 }
 
                 return result != null;
@@ -1454,9 +1337,10 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
-
+                    
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -1621,44 +1505,6 @@ namespace Adyen.BalancePlatform.Services
                 catch (Exception exception)
                 {
                     OnDeserializationError(exception, (HttpStatusCode)401);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsForbidden => 403 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? Forbidden()
-            {
-                return IsForbidden
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeForbiddenResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Forbidden();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)403);
                 }
 
                 return result != null;
@@ -1831,9 +1677,10 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
-
+                    
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -1998,44 +1845,6 @@ namespace Adyen.BalancePlatform.Services
                 catch (Exception exception)
                 {
                     OnDeserializationError(exception, (HttpStatusCode)401);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsForbidden => 403 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? Forbidden()
-            {
-                return IsForbidden
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeForbiddenResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Forbidden();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)403);
                 }
 
                 return result != null;
@@ -2361,44 +2170,6 @@ namespace Adyen.BalancePlatform.Services
                 catch (Exception exception)
                 {
                     OnDeserializationError(exception, (HttpStatusCode)401);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsForbidden => 403 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? Forbidden()
-            {
-                return IsForbidden
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeForbiddenResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Forbidden();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)403);
                 }
 
                 return result != null;
@@ -2740,44 +2511,6 @@ namespace Adyen.BalancePlatform.Services
             }
 
             /// <summary>
-            /// Returns true if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsForbidden => 403 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? Forbidden()
-            {
-                return IsForbidden
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeForbiddenResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Forbidden();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)403);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
             /// Returns true if the response is 404 NotFound.
             /// </summary>
             /// <returns></returns>
@@ -2909,12 +2642,12 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
         /// <param name="id">The unique identifier of the payout schedule on the balance account.</param>
         /// <param name="offset">The page number to be returned.  Default: **1**</param>
-        /// <param name="results">Contains a list of payout statuses. If included, the response returns only executed payouts that currently have one of the specified statuses.  Possible statuses: - **succeeded**: The payout was sent successfully. - **failed**: The payout was not sent due to an error. - **skipped**: The payout was not triggered as expected. ()</param>
+        /// <param name="results">Contains a comma-separated list of payout statuses. If included, the response returns only executed payouts that currently have one of the specified statuses.  Possible statuses: - **succeeded**: The payout was sent successfully. - **failed**: The payout was not sent due to an error. - **skipped**: The payout was not triggered as expected.  Examples: `results=succeeded`, `results=failed,skipped` ()</param>
         /// <param name="limit">The number of items returned per page.  Default: **10** ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetPayoutScheduleExecutionsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.PayoutScheduleExecutions"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetPayoutScheduleExecutionsApiResponse> GetPayoutScheduleExecutionsAsync(string balanceAccountId, string id, int offset, Option<List<ExecutionResult>> results = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetPayoutScheduleExecutionsApiResponse> GetPayoutScheduleExecutionsAsync(string balanceAccountId, string id, int offset, Option<string> results = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2945,9 +2678,10 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
-
+                    
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -3118,44 +2852,6 @@ namespace Adyen.BalancePlatform.Services
             }
 
             /// <summary>
-            /// Returns true if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsForbidden => 403 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? Forbidden()
-            {
-                return IsForbidden
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeForbiddenResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Forbidden();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)403);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
             /// Returns true if the response is 404 NotFound.
             /// </summary>
             /// <returns></returns>
@@ -3312,9 +3008,10 @@ namespace Adyen.BalancePlatform.Services
                     httpRequestMessage.Content = (balanceAccountConfigurationUpdate as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(balanceAccountConfigurationUpdate, _jsonSerializerOptions));
+
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
-
+                    
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {
@@ -3492,44 +3189,6 @@ namespace Adyen.BalancePlatform.Services
                 catch (Exception exception)
                 {
                     OnDeserializationError(exception, (HttpStatusCode)401);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public bool IsForbidden => 403 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 403 Forbidden.
-            /// </summary>
-            /// <returns></returns>
-            public Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? Forbidden()
-            {
-                return IsForbidden
-                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 403 Forbidden and the deserialized response is not null.
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryDeserializeForbiddenResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.DefaultErrorResponseEntity? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Forbidden();
-                } 
-                catch (Exception exception)
-                {
-                    OnDeserializationError(exception, (HttpStatusCode)403);
                 }
 
                 return result != null;

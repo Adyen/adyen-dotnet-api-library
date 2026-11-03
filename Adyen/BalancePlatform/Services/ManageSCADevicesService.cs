@@ -510,6 +510,11 @@ namespace Adyen.BalancePlatform.Services
     {
 
         /// <summary>
+        /// The version of the OpenAPI document.
+        /// </summary>
+        public static string ApiVersion => "2";
+
+        /// <summary>
         /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
         /// This value will be used to construct the URL in <see cref="System.Net.Http.HttpClient.BaseAddress"/> based on the Environment value set in <see cref="AdyenOptions.Environment"/>.
         /// </summary>
