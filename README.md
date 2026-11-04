@@ -1,6 +1,6 @@
 ![NET api](https://user-images.githubusercontent.com/16090523/211498272-75a50b61-b1cc-482e-9278-c10a267efe27.png)
 # Adyen .NET API Library
-[![nuget](https://img.shields.io/nuget/v/adyen.svg)](https://www.nuget.org/packages/adyen/) [![nuget](https://img.shields.io/nuget/dt/adyen.svg)](https://www.nuget.org/packages/adyen/) ![.NET Core 8.0](https://github.com/Adyen/adyen-dotnet-api-library/actions/workflows/build-net8.0.yml/badge.svg)
+[![nuget](https://img.shields.io/nuget/v/adyen.svg)](https://www.nuget.org/packages/adyen/) [![nuget](https://img.shields.io/nuget/dt/adyen.svg)](https://www.nuget.org/packages/adyen/) ![.NET 8.0 and .NET 10.0](https://github.com/Adyen/adyen-dotnet-api-library/actions/workflows/build-net8.0.yml/badge.svg)
 
 This is the officially supported .NET library for the Adyen's APIs. Are you looking for examples? You can find our [.NET Integration examples on GitHub here](https://github.com/adyen-examples/adyen-dotnet-online-payments/).
 
@@ -52,6 +52,10 @@ For more information, refer to our [documentation](https://docs.adyen.com/) or t
 - [Adyen Test Account](https://docs.adyen.com/get-started-with-adyen)
 - [Adyen API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). For testing, your API credential needs to have the [API PCI Payments role](https://docs.adyen.com/development-resources/api-credentials#roles).
 - Adyen .NET API Library supports .NET Standard 2.0 and .NET 8.0  
+
+> We recommend .NET 10 LTS for new applications. Microsoft support for .NET 8 ends on
+> [November 10, 2026](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core).
+> The library retains its `net8.0` target for compatibility, including use from .NET 10 applications.
 
 ## Installation
 Simply download and restore nuget packages https://www.nuget.org/packages/Adyen/

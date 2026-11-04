@@ -10,15 +10,17 @@ From the repository root:
 ```sh
 cp Adyen.IntegrationTest/test-config.example.json Adyen.IntegrationTest/test-config.json
 
-DOTNET_ROLL_FORWARD=Major dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj \
+dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj --framework net10.0 \
   --logger trx --results-directory TestResults/integration
 ```
 
 Complete every JSON value before running the tests. The local configuration is ignored by Git
 and copied to the test output directory during the build.
 
-`DOTNET_ROLL_FORWARD=Major` lets the .NET 8 tests run when only the .NET 10 runtime is installed,
-as with Homebrew. It is unnecessary when the .NET 8 runtime is installed.
+The test project targets .NET 8 and .NET 10 and requires the .NET 10 SDK to build.
+The examples select .NET 10. Use `--framework net8.0` with the .NET 8 runtime installed
+to test on .NET 8. Omit `--framework` to run both targets, which executes the external
+tests twice. The .NET 10 tests consume the library's existing .NET 8 build.
 
 ## Test projects
 
@@ -31,7 +33,7 @@ Builds do not execute tests. Keep routine unit-test execution scoped to its proj
 
 ```sh
 dotnet build
-DOTNET_ROLL_FORWARD=Major dotnet test Adyen.Test/Adyen.Test.csproj
+dotnet test Adyen.Test/Adyen.Test.csproj --framework net10.0
 ```
 
 An unfiltered `dotnet test` at the solution root also runs integration tests. Do not use it for
@@ -45,21 +47,21 @@ quick-start command above.
 Run one class:
 
 ```sh
-DOTNET_ROLL_FORWARD=Major dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj \
+dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj --framework net10.0 \
   --filter 'FullyQualifiedName~LegalEntityManagementServiceIntegrationTest'
 ```
 
 Run one method:
 
 ```sh
-DOTNET_ROLL_FORWARD=Major dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj \
+dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj --framework net10.0 \
   --filter 'FullyQualifiedName=Adyen.IntegrationTest.LegalEntityManagement.LegalEntityManagementServiceIntegrationTest.Given_LegalEntityService_When_CreateLegalEntity_Returns_OK'
 ```
 
 Run multiple classes:
 
 ```sh
-DOTNET_ROLL_FORWARD=Major dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj \
+dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj --framework net10.0 \
   --filter 'FullyQualifiedName~PaymentsServiceIntegrationTest|FullyQualifiedName~ManagementServiceIntegrationTest'
 ```
 
@@ -108,8 +110,10 @@ Derived tests use protected accessors such as `MerchantAccount`, `ApiKey`, `LemA
 
 [`.github/workflows/integration-tests.yml`](../.github/workflows/integration-tests.yml) runs on
 pushes to `main` and manual dispatch. Like the Java workflow, it does not run on pull requests.
-It serializes runs without cancelling an active run and uses .NET 8 on Ubuntu. It executes the
-integration-test project directly, without categories or test-name filters.
+It serializes runs without cancelling an active run and tests both .NET 8 and .NET 10 on Ubuntu.
+The runtime jobs run sequentially against the same configured test resources; a failure on
+one runtime does not skip the other. Each job executes the integration-test project directly,
+selecting its framework without categories or test-name filters.
 
 The job uses the `integration-tests` GitHub environment. Ensure that environment exists and its
 protection rules allow the intended runs. Grant this repository access to the organizational
@@ -121,7 +125,8 @@ env:
 ```
 
 The workflow never writes the secret to disk. Missing configuration fails the job. On failure,
-TRX reports are uploaded as `integration-test-results` and retained for seven days.
+TRX reports are uploaded as `integration-test-results-net8.0` or
+`integration-test-results-net10.0` and retained for seven days.
 
 ## Current coverage
 
@@ -147,7 +152,7 @@ dotnet build Adyen.IntegrationTest/Adyen.IntegrationTest.csproj
 Run the offline configuration tests without credentials:
 
 ```sh
-DOTNET_ROLL_FORWARD=Major dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj \
+dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj --framework net10.0 \
   --filter 'FullyQualifiedName~IntegrationTestConfigurationTests'
 ```
 
@@ -198,4 +203,5 @@ More specific agent instructions are in [`AGENTS.md`](AGENTS.md).
 - **HTTP 403 / error code `010`:** check API permissions and access to the merchant or resource.
 - **Wrong credential:** use `LemApiKey` for Legal Entity Management and `BclApiKey` for Balance
   Platform, not the PSP `ApiKey`.
-- **Missing .NET 8 runtime locally:** install it or use `DOTNET_ROLL_FORWARD=Major`.
+- **Missing .NET 8 runtime locally:** install it to validate .NET 8, or select
+  `--framework net10.0` to validate .NET 10 instead.
