@@ -1998,6 +1998,19 @@ namespace Adyen.Management.Models
         public AdditionalCommission? AdditionalCommission { get { return this._AdditionalCommissionOption; } set { this._AdditionalCommissionOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Dcc"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<SplitDcc?> _DccOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="Dcc"/>.
+        /// </summary>
+        [JsonPropertyName("dcc")]
+        public SplitDcc? Dcc { get { return this._DccOption; } set { this._DccOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="SplitLogicId"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -2028,6 +2041,7 @@ namespace Adyen.Management.Models
             sb.Append("  AdyenMarkup: ").Append(AdyenMarkup).Append("\n");
             sb.Append("  Chargeback: ").Append(Chargeback).Append("\n");
             sb.Append("  ChargebackCostAllocation: ").Append(ChargebackCostAllocation).Append("\n");
+            sb.Append("  Dcc: ").Append(Dcc).Append("\n");
             sb.Append("  Interchange: ").Append(Interchange).Append("\n");
             sb.Append("  PaymentFee: ").Append(PaymentFee).Append("\n");
             sb.Append("  Refund: ").Append(Refund).Append("\n");
@@ -2072,6 +2086,7 @@ namespace Adyen.Management.Models
             Option<SplitConfigurationLogic.AdyenMarkupEnum?> adyenMarkup = default;
             Option<SplitConfigurationLogic.ChargebackEnum?> chargeback = default;
             Option<SplitConfigurationLogic.ChargebackCostAllocationEnum?> chargebackCostAllocation = default;
+            Option<SplitDcc?> dcc = default;
             Option<SplitConfigurationLogic.InterchangeEnum?> interchange = default;
             Option<SplitConfigurationLogic.PaymentFeeEnum?> paymentFee = default;
             Option<SplitConfigurationLogic.RefundEnum?> refund = default;
@@ -2126,6 +2141,9 @@ namespace Adyen.Management.Models
                         case "chargebackCostAllocation":
                             string? chargebackCostAllocationRawValue = utf8JsonReader.GetString();
                             chargebackCostAllocation = new Option<SplitConfigurationLogic.ChargebackCostAllocationEnum?>(SplitConfigurationLogic.ChargebackCostAllocationEnum.FromStringOrDefault(chargebackCostAllocationRawValue) ?? (SplitConfigurationLogic.ChargebackCostAllocationEnum)chargebackCostAllocationRawValue);
+                            break;
+                        case "dcc":
+                            dcc = new Option<SplitDcc?>(JsonSerializer.Deserialize<SplitDcc>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "interchange":
                             string? interchangeRawValue = utf8JsonReader.GetString();
@@ -2186,6 +2204,8 @@ namespace Adyen.Management.Models
                 splitConfigurationLogic.Chargeback = chargeback.Value;
             if (chargebackCostAllocation.IsSet)
                 splitConfigurationLogic.ChargebackCostAllocation = chargebackCostAllocation.Value;
+            if (dcc.IsSet)
+                splitConfigurationLogic.Dcc = dcc.Value;
             if (interchange.IsSet)
                 splitConfigurationLogic.Interchange = interchange.Value;
             if (paymentFee.IsSet)
@@ -2276,6 +2296,11 @@ namespace Adyen.Management.Models
                 writer.WriteString("chargebackCostAllocation", chargebackCostAllocationRawValue);
             }
             
+            if (splitConfigurationLogic._DccOption.IsSet)
+            {
+                writer.WritePropertyName("dcc");
+                JsonSerializer.Serialize(writer, splitConfigurationLogic.Dcc, jsonSerializerOptions);
+            }
             if (splitConfigurationLogic._InterchangeOption.IsSet && splitConfigurationLogic.Interchange != null) 
             {
                 string? interchangeRawValue = SplitConfigurationLogic.InterchangeEnum.ToJsonValue(splitConfigurationLogic._InterchangeOption.Value!.Value);

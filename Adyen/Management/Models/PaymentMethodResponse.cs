@@ -179,6 +179,11 @@ namespace Adyen.Management.Models
             public static readonly TypesWithErrorsEnum Amex = new("amex");
 
             /// <summary>
+            /// TypesWithErrorsEnum.Ancv - ancv
+            /// </summary>
+            public static readonly TypesWithErrorsEnum Ancv = new("ancv");
+
+            /// <summary>
             /// TypesWithErrorsEnum.Applepay - applepay
             /// </summary>
             public static readonly TypesWithErrorsEnum Applepay = new("applepay");
@@ -247,6 +252,11 @@ namespace Adyen.Management.Models
             /// TypesWithErrorsEnum.Cartebancaire - cartebancaire
             /// </summary>
             public static readonly TypesWithErrorsEnum Cartebancaire = new("cartebancaire");
+
+            /// <summary>
+            /// TypesWithErrorsEnum.Cashapp - cashapp
+            /// </summary>
+            public static readonly TypesWithErrorsEnum Cashapp = new("cashapp");
 
             /// <summary>
             /// TypesWithErrorsEnum.Clearpay - clearpay
@@ -337,6 +347,11 @@ namespace Adyen.Management.Models
             /// TypesWithErrorsEnum.EbankingFI - ebanking_FI
             /// </summary>
             public static readonly TypesWithErrorsEnum EbankingFI = new("ebanking_FI");
+
+            /// <summary>
+            /// TypesWithErrorsEnum.Ebt - ebt
+            /// </summary>
+            public static readonly TypesWithErrorsEnum Ebt = new("ebt");
 
             /// <summary>
             /// TypesWithErrorsEnum.EftDirectdebitCA - eft_directdebit_CA
@@ -787,6 +802,11 @@ namespace Adyen.Management.Models
             /// TypesWithErrorsEnum.WechatpayPos - wechatpay_pos
             /// </summary>
             public static readonly TypesWithErrorsEnum WechatpayPos = new("wechatpay_pos");
+
+            /// <summary>
+            /// TypesWithErrorsEnum.Wero - wero
+            /// </summary>
+            public static readonly TypesWithErrorsEnum Wero = new("wero");
         
             private TypesWithErrorsEnum(string? value)
             {
@@ -865,6 +885,7 @@ namespace Adyen.Management.Models
                     "alipay_plus_truemoney" => TypesWithErrorsEnum.AlipayPlusTruemoney,
                     "alipay_wap" => TypesWithErrorsEnum.AlipayWap,
                     "amex" => TypesWithErrorsEnum.Amex,
+                    "ancv" => TypesWithErrorsEnum.Ancv,
                     "applepay" => TypesWithErrorsEnum.Applepay,
                     "avancard" => TypesWithErrorsEnum.Avancard,
                     "avancard_credit" => TypesWithErrorsEnum.AvancardCredit,
@@ -879,6 +900,7 @@ namespace Adyen.Management.Models
                     "br_schemes" => TypesWithErrorsEnum.BrSchemes,
                     "carnet" => TypesWithErrorsEnum.Carnet,
                     "cartebancaire" => TypesWithErrorsEnum.Cartebancaire,
+                    "cashapp" => TypesWithErrorsEnum.Cashapp,
                     "clearpay" => TypesWithErrorsEnum.Clearpay,
                     "clicktopay" => TypesWithErrorsEnum.Clicktopay,
                     "cooper" => TypesWithErrorsEnum.Cooper,
@@ -897,6 +919,7 @@ namespace Adyen.Management.Models
                     "directdebit_GB" => TypesWithErrorsEnum.DirectdebitGB,
                     "discover" => TypesWithErrorsEnum.Discover,
                     "ebanking_FI" => TypesWithErrorsEnum.EbankingFI,
+                    "ebt" => TypesWithErrorsEnum.Ebt,
                     "eft_directdebit_CA" => TypesWithErrorsEnum.EftDirectdebitCA,
                     "eftpos_australia" => TypesWithErrorsEnum.EftposAustralia,
                     "elo" => TypesWithErrorsEnum.Elo,
@@ -987,6 +1010,7 @@ namespace Adyen.Management.Models
                     "vpay" => TypesWithErrorsEnum.Vpay,
                     "wechatpay" => TypesWithErrorsEnum.Wechatpay,
                     "wechatpay_pos" => TypesWithErrorsEnum.WechatpayPos,
+                    "wero" => TypesWithErrorsEnum.Wero,
                     _ => null,
                 };
             }
@@ -1076,6 +1100,9 @@ namespace Adyen.Management.Models
                 if (value == TypesWithErrorsEnum.Amex)
                     return "amex";
                 
+                if (value == TypesWithErrorsEnum.Ancv)
+                    return "ancv";
+                
                 if (value == TypesWithErrorsEnum.Applepay)
                     return "applepay";
                 
@@ -1117,6 +1144,9 @@ namespace Adyen.Management.Models
                 
                 if (value == TypesWithErrorsEnum.Cartebancaire)
                     return "cartebancaire";
+                
+                if (value == TypesWithErrorsEnum.Cashapp)
+                    return "cashapp";
                 
                 if (value == TypesWithErrorsEnum.Clearpay)
                     return "clearpay";
@@ -1171,6 +1201,9 @@ namespace Adyen.Management.Models
                 
                 if (value == TypesWithErrorsEnum.EbankingFI)
                     return "ebanking_FI";
+                
+                if (value == TypesWithErrorsEnum.Ebt)
+                    return "ebt";
                 
                 if (value == TypesWithErrorsEnum.EftDirectdebitCA)
                     return "eft_directdebit_CA";
@@ -1442,6 +1475,9 @@ namespace Adyen.Management.Models
                 if (value == TypesWithErrorsEnum.WechatpayPos)
                     return "wechatpay_pos";
                 
+                if (value == TypesWithErrorsEnum.Wero)
+                    return "wero";
+                
                 return value.Value;
             }
             
@@ -1586,9 +1622,13 @@ namespace Adyen.Management.Models
                     switch (jsonPropertyName)
                     {
                         case "itemsTotal":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'itemsTotal' on 'PaymentMethodResponse' cannot be null.");
                             itemsTotal = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "pagesTotal":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'pagesTotal' on 'PaymentMethodResponse' cannot be null.");
                             pagesTotal = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "_links":

@@ -43,18 +43,32 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantName"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _MerchantNameOption { get; private set; }
+
+        /// <summary>
         /// Merchant name displayed to the shopper in the Agreements
         /// </summary>
         /// <value>Merchant name displayed to the shopper in the Agreements</value>
         [JsonPropertyName("merchantName")]
-        public string? MerchantName { get; set; }
+        public string? MerchantName { get { return this._MerchantNameOption; } set { this._MerchantNameOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="PayToPurpose"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _PayToPurposeOption { get; private set; }
 
         /// <summary>
         /// Represents the purpose of the Agreements created, it relates to the business type **Allowed values**: mortgage, utility, loan, gambling, retail, salary, personal, government, pension, tax, other
         /// </summary>
         /// <value>Represents the purpose of the Agreements created, it relates to the business type **Allowed values**: mortgage, utility, loan, gambling, retail, salary, personal, government, pension, tax, other</value>
         [JsonPropertyName("payToPurpose")]
-        public string? PayToPurpose { get; set; }
+        public string? PayToPurpose { get { return this._PayToPurposeOption; } set { this._PayToPurposeOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -126,9 +140,9 @@ namespace Adyen.Management.Models
 
             var payToResponseInfo = new PayToResponseInfo();
             if (merchantName.IsSet)
-                payToResponseInfo.MerchantName = merchantName.Value!;
+                payToResponseInfo.MerchantName = merchantName.Value;
             if (payToPurpose.IsSet)
-                payToResponseInfo.PayToPurpose = payToPurpose.Value!;
+                payToResponseInfo.PayToPurpose = payToPurpose.Value;
             return payToResponseInfo;
         }
 
@@ -158,11 +172,13 @@ namespace Adyen.Management.Models
         public void WriteProperties(Utf8JsonWriter writer, PayToResponseInfo payToResponseInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (payToResponseInfo.MerchantName != null)
-                writer.WriteString("merchantName", payToResponseInfo.MerchantName);
+            if (payToResponseInfo._MerchantNameOption.IsSet)
+                if (payToResponseInfo.MerchantName != null)
+                    writer.WriteString("merchantName", payToResponseInfo.MerchantName);
 
-            if (payToResponseInfo.PayToPurpose != null)
-                writer.WriteString("payToPurpose", payToResponseInfo.PayToPurpose);
+            if (payToResponseInfo._PayToPurposeOption.IsSet)
+                if (payToResponseInfo.PayToPurpose != null)
+                    writer.WriteString("payToPurpose", payToResponseInfo.PayToPurpose);
         }
     }
 }

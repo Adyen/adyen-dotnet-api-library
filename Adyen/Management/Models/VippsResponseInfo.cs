@@ -43,11 +43,18 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Logo"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _LogoOption { get; private set; }
+
+        /// <summary>
         /// Vipps logo. Format: Base64-encoded string.
         /// </summary>
         /// <value>Vipps logo. Format: Base64-encoded string.</value>
         [JsonPropertyName("logo")]
-        public string? Logo { get; set; }
+        public string? Logo { get { return this._LogoOption; } set { this._LogoOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="SubscriptionCancelUrl"/> will be populated.
@@ -133,7 +140,7 @@ namespace Adyen.Management.Models
 
             var vippsResponseInfo = new VippsResponseInfo();
             if (logo.IsSet)
-                vippsResponseInfo.Logo = logo.Value!;
+                vippsResponseInfo.Logo = logo.Value;
             if (subscriptionCancelUrl.IsSet)
                 vippsResponseInfo.SubscriptionCancelUrl = subscriptionCancelUrl.Value;
             return vippsResponseInfo;
@@ -165,8 +172,9 @@ namespace Adyen.Management.Models
         public void WriteProperties(Utf8JsonWriter writer, VippsResponseInfo vippsResponseInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (vippsResponseInfo.Logo != null)
-                writer.WriteString("logo", vippsResponseInfo.Logo);
+            if (vippsResponseInfo._LogoOption.IsSet)
+                if (vippsResponseInfo.Logo != null)
+                    writer.WriteString("logo", vippsResponseInfo.Logo);
 
             if (vippsResponseInfo._SubscriptionCancelUrlOption.IsSet)
                 if (vippsResponseInfo.SubscriptionCancelUrl != null)

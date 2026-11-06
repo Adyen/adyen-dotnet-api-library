@@ -126,6 +126,8 @@ namespace Adyen.Management.Client
                 return Models.AmexInfo.ServiceLevelEnum.ToJsonValue(amexInfoServiceLevelEnum);
             if (obj is Models.AndroidApp.StatusEnum androidAppStatusEnum)
                 return Models.AndroidApp.StatusEnum.ToJsonValue(androidAppStatusEnum);
+            if (obj is Models.CampaignStatusTransition campaignStatusTransition)
+                return CampaignStatusTransition.ToJsonValue(campaignStatusTransition);
             if (obj is Models.Connectivity.SimcardStatusEnum connectivitySimcardStatusEnum)
                 return Models.Connectivity.SimcardStatusEnum.ToJsonValue(connectivitySimcardStatusEnum);
             if (obj is Models.CreateCompanyWebhookRequest.CommunicationFormatEnum createCompanyWebhookRequestCommunicationFormatEnum)
@@ -144,6 +146,14 @@ namespace Adyen.Management.Client
                 return Models.CreateMerchantWebhookRequest.NetworkTypeEnum.ToJsonValue(createMerchantWebhookRequestNetworkTypeEnum);
             if (obj is Models.DinersInfo.ServiceLevelEnum dinersInfoServiceLevelEnum)
                 return Models.DinersInfo.ServiceLevelEnum.ToJsonValue(dinersInfoServiceLevelEnum);
+            if (obj is Models.DisplayTextField displayTextField)
+                return DisplayTextField.ToJsonValue(displayTextField);
+            if (obj is Models.DonationCampaignStatus donationCampaignStatus)
+                return DonationCampaignStatus.ToJsonValue(donationCampaignStatus);
+            if (obj is Models.DonationFlow donationFlow)
+                return DonationFlow.ToJsonValue(donationFlow);
+            if (obj is Models.DonationType donationType)
+                return DonationType.ToJsonValue(donationType);
             if (obj is Models.ForceRebootDetails.TypeEnum forceRebootDetailsTypeEnum)
                 return Models.ForceRebootDetails.TypeEnum.ToJsonValue(forceRebootDetailsTypeEnum);
             if (obj is Models.GivexInfo.PaymentFlowEnum givexInfoPaymentFlowEnum)
@@ -186,6 +196,8 @@ namespace Adyen.Management.Client
                 return Models.PulseResponseInfo.ProcessingTypeEnum.ToJsonValue(pulseResponseInfoProcessingTypeEnum);
             if (obj is Models.ReleaseUpdateDetails.TypeEnum releaseUpdateDetailsTypeEnum)
                 return Models.ReleaseUpdateDetails.TypeEnum.ToJsonValue(releaseUpdateDetailsTypeEnum);
+            if (obj is Models.ScheduleTerminalActionsRequestActionDetails.TypeEnum scheduleTerminalActionsRequestActionDetailsTypeEnum)
+                return Models.ScheduleTerminalActionsRequestActionDetails.TypeEnum.ToJsonValue(scheduleTerminalActionsRequestActionDetailsTypeEnum);
             if (obj is Models.SplitConfigurationLogic.AcquiringFeesEnum splitConfigurationLogicAcquiringFeesEnum)
                 return Models.SplitConfigurationLogic.AcquiringFeesEnum.ToJsonValue(splitConfigurationLogicAcquiringFeesEnum);
             if (obj is Models.SplitConfigurationLogic.AdyenCommissionEnum splitConfigurationLogicAdyenCommissionEnum)
@@ -220,6 +232,8 @@ namespace Adyen.Management.Client
                 return Models.SplitConfigurationRule.ShopperInteractionEnum.ToJsonValue(splitConfigurationRuleShopperInteractionEnum);
             if (obj is Models.SplitConfigurationRule.CardRegionEnum splitConfigurationRuleCardRegionEnum)
                 return Models.SplitConfigurationRule.CardRegionEnum.ToJsonValue(splitConfigurationRuleCardRegionEnum);
+            if (obj is Models.SplitConfigurationRule.CardUsageTypeEnum splitConfigurationRuleCardUsageTypeEnum)
+                return Models.SplitConfigurationRule.CardUsageTypeEnum.ToJsonValue(splitConfigurationRuleCardUsageTypeEnum);
             if (obj is Models.StarInfo.ProcessingTypeEnum starInfoProcessingTypeEnum)
                 return Models.StarInfo.ProcessingTypeEnum.ToJsonValue(starInfoProcessingTypeEnum);
             if (obj is Models.StarResponseInfo.ProcessingTypeEnum starResponseInfoProcessingTypeEnum)
@@ -230,6 +244,10 @@ namespace Adyen.Management.Client
                 return Models.TerminalAssignment.StatusEnum.ToJsonValue(terminalAssignmentStatusEnum);
             if (obj is Models.TerminalConnectivityCellular.StatusEnum terminalConnectivityCellularStatusEnum)
                 return Models.TerminalConnectivityCellular.StatusEnum.ToJsonValue(terminalConnectivityCellularStatusEnum);
+            if (obj is Models.ThemeMode themeMode)
+                return ThemeMode.ToJsonValue(themeMode);
+            if (obj is Models.ThemeUpdateRequest.ModeEnum themeUpdateRequestModeEnum)
+                return Models.ThemeUpdateRequest.ModeEnum.ToJsonValue(themeUpdateRequestModeEnum);
             if (obj is Models.TransactionDescriptionInfo.TypeEnum transactionDescriptionInfoTypeEnum)
                 return Models.TransactionDescriptionInfo.TypeEnum.ToJsonValue(transactionDescriptionInfoTypeEnum);
             if (obj is Models.TransactionDescriptionResponseInfo.TypeEnum transactionDescriptionResponseInfoTypeEnum)
@@ -280,6 +298,8 @@ namespace Adyen.Management.Client
                 return Models.UpdateSplitConfigurationLogicRequest.SurchargeEnum.ToJsonValue(updateSplitConfigurationLogicRequestSurchargeEnum);
             if (obj is Models.UpdateSplitConfigurationLogicRequest.TipEnum updateSplitConfigurationLogicRequestTipEnum)
                 return Models.UpdateSplitConfigurationLogicRequest.TipEnum.ToJsonValue(updateSplitConfigurationLogicRequestTipEnum);
+            if (obj is Models.UpdateSplitConfigurationRuleRequest.CardUsageTypeEnum updateSplitConfigurationRuleRequestCardUsageTypeEnum)
+                return Models.UpdateSplitConfigurationRuleRequest.CardUsageTypeEnum.ToJsonValue(updateSplitConfigurationRuleRequestCardUsageTypeEnum);
             if (obj is Models.UpdateStoreRequest.StatusEnum updateStoreRequestStatusEnum)
                 return Models.UpdateStoreRequest.StatusEnum.ToJsonValue(updateStoreRequestStatusEnum);
             if (obj is Models.ValuelinkInfo.PinSupportEnum valuelinkInfoPinSupportEnum)
