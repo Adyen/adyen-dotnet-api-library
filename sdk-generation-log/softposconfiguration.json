@@ -1,0 +1,8 @@
+{
+  "service": "softposconfiguration",
+  "project": "dotnet",
+  "generatedAt": "2026-11-06T10:34:14Z",
+  "openapiCommitSha": "e7986c7dad1253fed107c4e7b90716497165b86d",
+  "automationCommitSha": "ae7e57613c3a29391a4adb4ff02e9ddda4611b16",
+  "libraryCommitSha": "3f282791fd2502a420b2006c70eed7bf1271fac1"
+}
