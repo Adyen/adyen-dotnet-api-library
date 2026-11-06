@@ -43,11 +43,18 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Logo"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _LogoOption { get; private set; }
+
+        /// <summary>
         /// Twint logo. Format: Base64-encoded string.
         /// </summary>
         /// <value>Twint logo. Format: Base64-encoded string.</value>
         [JsonPropertyName("logo")]
-        public string? Logo { get; set; }
+        public string? Logo { get { return this._LogoOption; } set { this._LogoOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -114,7 +121,7 @@ namespace Adyen.Management.Models
 
             var twintResponseInfo = new TwintResponseInfo();
             if (logo.IsSet)
-                twintResponseInfo.Logo = logo.Value!;
+                twintResponseInfo.Logo = logo.Value;
             return twintResponseInfo;
         }
 
@@ -144,8 +151,9 @@ namespace Adyen.Management.Models
         public void WriteProperties(Utf8JsonWriter writer, TwintResponseInfo twintResponseInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (twintResponseInfo.Logo != null)
-                writer.WriteString("logo", twintResponseInfo.Logo);
+            if (twintResponseInfo._LogoOption.IsSet)
+                if (twintResponseInfo.Logo != null)
+                    writer.WriteString("logo", twintResponseInfo.Logo);
         }
     }
 }

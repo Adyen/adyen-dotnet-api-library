@@ -43,6 +43,152 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
+        /// The card usage type condition that determines whether the split logic applies to commercial cards, consumer cards, or all cards.  * **ANY** (default): The split logic applies to all cards, regardless of its usage type. * **commercial**: The split logic applies to commercial cards only. * **consumer**: The split logic applies to consumer cards only.
+        /// </summary>
+        /// <value>The card usage type condition that determines whether the split logic applies to commercial cards, consumer cards, or all cards.  * **ANY** (default): The split logic applies to all cards, regardless of its usage type. * **commercial**: The split logic applies to commercial cards only. * **consumer**: The split logic applies to consumer cards only.</value>
+        [JsonConverter(typeof(CardUsageTypeEnumJsonConverter))]
+        public class CardUsageTypeEnum : IEnum
+        {
+            /// <summary>
+            /// Returns the value of the CardUsageTypeEnum.
+            /// </summary>
+            public string? Value { get; set; }
+
+            /// <summary>
+            /// CardUsageTypeEnum.Commercial - commercial
+            /// </summary>
+            public static readonly CardUsageTypeEnum Commercial = new("commercial");
+
+            /// <summary>
+            /// CardUsageTypeEnum.Consumer - consumer
+            /// </summary>
+            public static readonly CardUsageTypeEnum Consumer = new("consumer");
+
+            /// <summary>
+            /// CardUsageTypeEnum.ANY - ANY
+            /// </summary>
+            public static readonly CardUsageTypeEnum ANY = new("ANY");
+        
+            private CardUsageTypeEnum(string? value)
+            {
+                Value = value;
+            }
+
+            /// <summary>
+            /// Converts a string to a <see cref="CardUsageTypeEnum"/> implicitly.
+            /// </summary>
+            /// <param name="value">The string value to convert. Defaults to null.</param>
+            /// <returns>A new <see cref="CardUsageTypeEnum"/> instance initialized with the string value.</returns>
+            public static implicit operator CardUsageTypeEnum?(string? value) => value == null ? null : new CardUsageTypeEnum(value);
+    
+            /// <summary>
+            /// Converts a <see cref="CardUsageTypeEnum"/> instance to a string implicitly.
+            /// </summary>
+            /// <param name="option">The <see cref="CardUsageTypeEnum"/> instance. Default to null.</param>
+            /// <returns>String value of the <see cref="CardUsageTypeEnum"/> instance.</returns>
+            public static implicit operator string?(CardUsageTypeEnum? option) => option?.Value;
+        
+            /// <summary>
+            /// Compares two <see cref="CardUsageTypeEnum"/> instances for equality.
+            /// </summary>
+            public static bool operator ==(CardUsageTypeEnum? left, CardUsageTypeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Compares two <see cref="CardUsageTypeEnum"/> instances for inequality.
+            /// </summary>
+            public static bool operator !=(CardUsageTypeEnum? left, CardUsageTypeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns true if the given object is equal to this <see cref="CardUsageTypeEnum"/> instance.
+            /// </summary>
+            public override bool Equals(object? obj) => obj is CardUsageTypeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns a hash code for this <see cref="CardUsageTypeEnum"/> instance.
+            /// </summary>
+            public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+            /// <summary>
+            /// Returns the string value of the <see cref="CardUsageTypeEnum"/> instance.
+            /// </summary>
+            public override string ToString() => Value ?? string.Empty;
+        
+            /// <summary>
+            /// Returns a <see cref="CardUsageTypeEnum?"/>.
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns><see cref="CardUsageTypeEnum"/> or null.</returns>
+            public static CardUsageTypeEnum? FromStringOrDefault(string value)
+            {
+                return value switch {
+                    "commercial" => CardUsageTypeEnum.Commercial,
+                    "consumer" => CardUsageTypeEnum.Consumer,
+                    "ANY" => CardUsageTypeEnum.ANY,
+                    _ => null,
+                };
+            }
+    
+            /// <summary>
+            /// Converts the <see cref="CardUsageTypeEnum"/> to the json value.
+            /// </summary>
+            /// <param name="value"><see cref="CardUsageTypeEnum"/></param>
+            /// <returns>String value of the enum.</returns>
+            public static string? ToJsonValue(CardUsageTypeEnum? value)
+            {
+                if (value == null)
+                    return null;
+            
+                if (value == CardUsageTypeEnum.Commercial)
+                    return "commercial";
+                
+                if (value == CardUsageTypeEnum.Consumer)
+                    return "consumer";
+                
+                if (value == CardUsageTypeEnum.ANY)
+                    return "ANY";
+                
+                return value.Value;
+            }
+            
+            /// <summary>
+            /// JsonConverter for writing CardUsageTypeEnum.               
+            /// </summary>
+            public class CardUsageTypeEnumJsonConverter : JsonConverter<CardUsageTypeEnum>
+            {
+                /// <summary>
+                /// Deserializes a <see cref="CardUsageTypeEnum"/> from JSON.
+                /// </summary>
+                public override CardUsageTypeEnum? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions jsonOptions)
+                {
+                    string value = reader.GetString();
+                    return value == null ? null : CardUsageTypeEnum.FromStringOrDefault(value) ?? new CardUsageTypeEnum(value);
+                }
+
+                /// <summary>
+                /// Serializes a <see cref="CardUsageTypeEnum"/> to JSON.
+                /// </summary>
+                public override void Write(Utf8JsonWriter writer, CardUsageTypeEnum value, JsonSerializerOptions jsonOptions)
+                {
+                    writer.WriteStringValue(CardUsageTypeEnum.ToJsonValue(value));
+                }
+            }
+        }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="CardUsageType"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<CardUsageTypeEnum?> _CardUsageTypeOption { get; private set; }
+
+        /// <summary>
+        /// The card usage type condition that determines whether the split logic applies to commercial cards, consumer cards, or all cards.  * **ANY** (default): The split logic applies to all cards, regardless of its usage type. * **commercial**: The split logic applies to commercial cards only. * **consumer**: The split logic applies to consumer cards only.
+        /// </summary>
+        /// <value>The card usage type condition that determines whether the split logic applies to commercial cards, consumer cards, or all cards.  * **ANY** (default): The split logic applies to all cards, regardless of its usage type. * **commercial**: The split logic applies to commercial cards only. * **consumer**: The split logic applies to consumer cards only.</value>
+        [JsonPropertyName("cardUsageType")]
+        public CardUsageTypeEnum? CardUsageType { get { return this._CardUsageTypeOption; } set { this._CardUsageTypeOption = new(value); } }
+
+        /// <summary>
         /// The currency condition that defines whether the split logic applies. Its value must be a three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217).
         /// </summary>
         /// <value>The currency condition that defines whether the split logic applies. Its value must be a three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217).</value>
@@ -82,6 +228,7 @@ namespace Adyen.Management.Models
             sb.Append("  FundingSource: ").Append(FundingSource).Append("\n");
             sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
             sb.Append("  ShopperInteraction: ").Append(ShopperInteraction).Append("\n");
+            sb.Append("  CardUsageType: ").Append(CardUsageType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -113,6 +260,7 @@ namespace Adyen.Management.Models
             Option<string?> fundingSource = default;
             Option<string?> paymentMethod = default;
             Option<string?> shopperInteraction = default;
+            Option<UpdateSplitConfigurationRuleRequest.CardUsageTypeEnum?> cardUsageType = default;
 
             while (utf8JsonReader.Read())
             {
@@ -141,6 +289,10 @@ namespace Adyen.Management.Models
                         case "shopperInteraction":
                             shopperInteraction = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "cardUsageType":
+                            string? cardUsageTypeRawValue = utf8JsonReader.GetString();
+                            cardUsageType = new Option<UpdateSplitConfigurationRuleRequest.CardUsageTypeEnum?>(UpdateSplitConfigurationRuleRequest.CardUsageTypeEnum.FromStringOrDefault(cardUsageTypeRawValue) ?? (UpdateSplitConfigurationRuleRequest.CardUsageTypeEnum)cardUsageTypeRawValue);
+                            break;
                         default:
                             break;
                     }
@@ -157,6 +309,8 @@ namespace Adyen.Management.Models
                 updateSplitConfigurationRuleRequest.PaymentMethod = paymentMethod.Value!;
             if (shopperInteraction.IsSet)
                 updateSplitConfigurationRuleRequest.ShopperInteraction = shopperInteraction.Value!;
+            if (cardUsageType.IsSet)
+                updateSplitConfigurationRuleRequest.CardUsageType = cardUsageType.Value;
             return updateSplitConfigurationRuleRequest;
         }
 
@@ -197,6 +351,12 @@ namespace Adyen.Management.Models
 
             if (updateSplitConfigurationRuleRequest.ShopperInteraction != null)
                 writer.WriteString("shopperInteraction", updateSplitConfigurationRuleRequest.ShopperInteraction);
+
+            if (updateSplitConfigurationRuleRequest._CardUsageTypeOption.IsSet && updateSplitConfigurationRuleRequest.CardUsageType != null) 
+            {
+                string? cardUsageTypeRawValue = UpdateSplitConfigurationRuleRequest.CardUsageTypeEnum.ToJsonValue(updateSplitConfigurationRuleRequest._CardUsageTypeOption.Value!.Value);
+                writer.WriteString("cardUsageType", cardUsageTypeRawValue);
+            }
         }
     }
 }
