@@ -67,7 +67,7 @@ dotnet build Adyen.IntegrationTest/Adyen.IntegrationTest.csproj
 The configuration tests are offline and safe to execute:
 
 ```sh
-DOTNET_ROLL_FORWARD=Major dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj \
+dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj --framework net10.0 \
   --filter 'FullyQualifiedName~IntegrationTestConfigurationTests'
 ```
 

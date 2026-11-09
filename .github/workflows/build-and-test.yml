@@ -1,0 +1,55 @@
+name: .NET Build and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+      - sdk-automation/models
+      - promote/main
+  merge_group:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-unit-test:
+    name: Build and Test (${{ matrix.framework }}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
+        framework: [ net8.0, net10.0 ]
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Setup .NET 8.0 and .NET 10.0
+        uses: actions/setup-dotnet@c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7 # v5
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      - name: Clean
+        run: dotnet clean
+
+      - name: Restore dependencies
+        run: dotnet restore -m:1          # -m:1 disables parallelism and ensures only one build touches /obj.
+
+      - name: Build unit tests (debug) in ${{ matrix.framework }}
+        run: dotnet build Adyen.Test/Adyen.Test.csproj --no-restore -m:1 --framework ${{ matrix.framework }}
+        env:
+          UseSharedCompilation: false
+
+      - name: Raise inotify limits
+        if: runner.os == 'Linux'
+        run: sudo sysctl -w fs.inotify.max_user_instances=1024 fs.inotify.max_user_watches=1048576
+
+      - name: Run unit tests in ${{ matrix.framework }}
+        run: dotnet test --no-build --framework ${{ matrix.framework }} Adyen.Test/Adyen.Test.csproj
