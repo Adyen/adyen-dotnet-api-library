@@ -43,9 +43,9 @@ namespace Adyen.ManagementWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed. 
+        /// The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed.  A webhook with `status` **success** is the last webhook for that payment method.
         /// </summary>
-        /// <value>The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed. </value>
+        /// <value>The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed.  A webhook with &#x60;status&#x60; **success** is the last webhook for that payment method.</value>
         [JsonConverter(typeof(StatusEnumJsonConverter))]
         public class StatusEnum : IEnum
         {
@@ -193,16 +193,16 @@ namespace Adyen.ManagementWebhooks.Models
         }
 
         /// <summary>
-        /// The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed. 
+        /// The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed.  A webhook with `status` **success** is the last webhook for that payment method.
         /// </summary>
-        /// <value>The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed. </value>
+        /// <value>The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed.  A webhook with &#x60;status&#x60; **success** is the last webhook for that payment method.</value>
         [JsonPropertyName("status")]
         public StatusEnum Status { get; set; }
 
         /// <summary>
-        /// Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**
+        /// Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**  Only returned in webhooks that include the screening results for your merchant account.
         /// </summary>
-        /// <value>Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**</value>
+        /// <value>Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**  Only returned in webhooks that include the screening results for your merchant account.</value>
         [JsonConverter(typeof(VerificationStatusEnumJsonConverter))]
         public class VerificationStatusEnum : IEnum
         {
@@ -348,9 +348,9 @@ namespace Adyen.ManagementWebhooks.Models
         public Option<VerificationStatusEnum?> _VerificationStatusOption { get; private set; }
 
         /// <summary>
-        /// Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**
+        /// Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**  Only returned in webhooks that include the screening results for your merchant account.
         /// </summary>
-        /// <value>Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**</value>
+        /// <value>Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**  Only returned in webhooks that include the screening results for your merchant account.</value>
         [JsonPropertyName("verificationStatus")]
         public VerificationStatusEnum? VerificationStatus { get { return this._VerificationStatusOption; } set { this._VerificationStatusOption = new(value); } }
 
@@ -383,9 +383,9 @@ namespace Adyen.ManagementWebhooks.Models
         public Option<bool?> _AllowedOption { get; private set; }
 
         /// <summary>
-        /// Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account.
+        /// Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account.  Only returned in webhooks that include the screening results for your merchant account.
         /// </summary>
-        /// <value>Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account.</value>
+        /// <value>Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account.  Only returned in webhooks that include the screening results for your merchant account.</value>
         [JsonPropertyName("allowed")]
         public bool? Allowed { get { return this._AllowedOption; } set { this._AllowedOption = new(value); } }
 
@@ -397,9 +397,9 @@ namespace Adyen.ManagementWebhooks.Models
         public Option<bool?> _EnabledOption { get; private set; }
 
         /// <summary>
-        /// Indicates whether the payment method is enabled (**true**) or disabled (**false**).
+        /// Indicates whether the payment method is enabled (**true**) or disabled (**false**).  Only reliable in webhooks that include the screening results for your merchant account.
         /// </summary>
-        /// <value>Indicates whether the payment method is enabled (**true**) or disabled (**false**).</value>
+        /// <value>Indicates whether the payment method is enabled (**true**) or disabled (**false**).  Only reliable in webhooks that include the screening results for your merchant account.</value>
         [JsonPropertyName("enabled")]
         public bool? Enabled { get { return this._EnabledOption; } set { this._EnabledOption = new(value); } }
 

@@ -1,8 +1,8 @@
 {
   "service": "managementwebhooks",
   "project": "dotnet",
-  "generatedAt": "2026-10-08T14:22:11Z",
-  "openapiCommitSha": "45520ee6246d7e3d8074c3c5c5e991e65c2c02d6",
-  "automationCommitSha": "82147244fd717b50362f88a20e4436e693d0aed6",
-  "libraryCommitSha": "93b0c28ae10b725c01f03b1f0b3e846e3024db24"
+  "generatedAt": "2026-11-09T15:34:31Z",
+  "openapiCommitSha": "d449f090b9a4842b63b562cd057fe12dfbf4bcad",
+  "automationCommitSha": "ae7e57613c3a29391a4adb4ff02e9ddda4611b16",
+  "libraryCommitSha": "46f5443c7270840a5bfb02b85d1969b7e3247309"
 }
