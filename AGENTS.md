@@ -18,13 +18,14 @@ Run commands from the repository root:
 
 ```sh
 dotnet build
-DOTNET_ROLL_FORWARD=Major dotnet test Adyen.Test/Adyen.Test.csproj
-DOTNET_ROLL_FORWARD=Major dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj
+dotnet test Adyen.Test/Adyen.Test.csproj --framework net10.0
+dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj --framework net10.0
 ```
 
-`dotnet build` restores dependencies and builds the solution. Homebrew
-currently installs .NET 10, so tests targeting .NET 8 need major-version
-runtime roll-forward. Integration tests require the shared JSON configuration
+`dotnet build` restores dependencies and builds the solution. The multi-target
+test projects require the .NET 10 SDK. To test on .NET 8, use
+`--framework net8.0` with the .NET 8 runtime installed.
+Integration tests require the shared JSON configuration
 described in `Adyen.IntegrationTest/README.md`. Never commit credentials or run
 external tests during routine validation. An unfiltered solution-level
 `dotnet test` also runs integration tests; scope offline runs to the unit-test
