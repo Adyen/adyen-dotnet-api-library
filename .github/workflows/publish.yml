@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
-      # .NET 10 SDK restores the multi-target test projects; .NET 8 runs release tests.
+      # Install both runtimes; .NET 10 SDK restores the multi-target test projects.
       - name: Setup .NET
         uses: actions/setup-dotnet@c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7 # v5
         with:
@@ -45,9 +45,11 @@ jobs:
         if: runner.os == 'Linux'
         run: sudo sysctl -w fs.inotify.max_user_instances=1024 fs.inotify.max_user_watches=1048576
 
-      # Run unit tests on .NET 8.0
       - name: Run unit tests on .NET 8.0
         run: dotnet test --configuration Release --framework net8.0 --no-restore Adyen.Test/Adyen.Test.csproj
+
+      - name: Run unit tests on .NET 10.0
+        run: dotnet test --configuration Release --framework net10.0 --no-restore Adyen.Test/Adyen.Test.csproj
 
       # Pack Release
       - name: Pack
