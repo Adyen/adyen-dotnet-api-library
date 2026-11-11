@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   integration-tests:
-    name: Run Integration Tests on ${{ matrix.framework }}
+    name: Run Integration Tests on .NET ${{ matrix.dotnet }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     environment: integration-tests
@@ -24,12 +24,12 @@ jobs:
       fail-fast: false
       max-parallel: 1
       matrix:
-        framework: [net8.0, net10.0]
+        dotnet: [ '8.0', '10.0' ]
 
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
-      - name: Set up .NET 8.0 and .NET 10.0
+      - name: Set up .NET ${{ matrix.dotnet }}
         uses: actions/setup-dotnet@c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7 # v5
         with:
           dotnet-version: |
@@ -41,7 +41,7 @@ jobs:
           ADYEN_API_LIBRARIES_INTEGRATION_TEST_CONFIG: ${{ secrets.ADYEN_API_LIBRARIES_INTEGRATION_TEST_CONFIG }}
         run: >
           dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj
-          --framework ${{ matrix.framework }}
+          --framework net${{ matrix.dotnet }}
           --configuration Release
           --logger trx
           --results-directory TestResults/integration
@@ -50,7 +50,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: integration-test-results-${{ matrix.framework }}
+          name: integration-test-results-net${{ matrix.dotnet }}
           path: TestResults/integration/
           if-no-files-found: ignore
           retention-days: 7

@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
-      - name: Setup .NET 8.0 and .NET 10.0
+      - name: Setup .NET ${{ matrix.dotnet }}
         uses: actions/setup-dotnet@c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7 # v5
         with:
           dotnet-version: |
@@ -53,3 +53,8 @@ jobs:
 
       - name: Run unit tests in .NET ${{ matrix.dotnet }}
         run: dotnet test --no-build --framework net${{ matrix.dotnet }} Adyen.Test/Adyen.Test.csproj
+
+      - name: Build integration tests (debug) in .NET ${{ matrix.dotnet }}
+        run: dotnet build Adyen.IntegrationTest/Adyen.IntegrationTest.csproj --no-restore -m:1 --framework net${{ matrix.dotnet }}
+        env:
+          UseSharedCompilation: false
