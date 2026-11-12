@@ -1,0 +1,6 @@
+{
+  "type": "https://docs.adyen.com/errors/bad-request",
+  "title": "Bad request",
+  "status": 400,
+  "errorCode": "00_400"
+}

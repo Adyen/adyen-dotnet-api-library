@@ -1,0 +1,15 @@
+{
+  "type": "https://docs.adyen.com/errors/unprocessable-entity",
+  "title": "Unprocessable entity",
+  "status": 422,
+  "errorCode": "00_422",
+  "detail": "Session token or request fields are semantically invalid.",
+  "requestId": "REQUEST_ID",
+  "invalidFields": [
+    {
+      "name": "setupToken",
+      "value": "SETUP_TOKEN",
+      "message": "The setup token is invalid or expired."
+    }
+  ]
+}
