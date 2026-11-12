@@ -1,0 +1,6 @@
+{
+  "type": "https://docs.adyen.com/errors/internal",
+  "title": "Internal error",
+  "status": 500,
+  "errorCode": "00_500"
+}
