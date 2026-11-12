@@ -65,7 +65,7 @@ namespace Adyen.Test.SoftPOSConfiguration
         public void Given_TestEnvironment_When_ServiceIsResolved_Then_BaseAddressIsSoftPosConfigTestUrl()
         {
             // Arrange
-            IHost host = CreateHost(AdyenEnvironment.Test);
+            using IHost host = CreateHost(AdyenEnvironment.Test);
 
             // Act
             var service = host.Services.GetRequiredService<ISessionAuthenticationService>();
@@ -78,7 +78,7 @@ namespace Adyen.Test.SoftPOSConfiguration
         public void Given_LiveEnvironment_When_ServiceIsResolved_Then_BaseAddressIsSoftPosConfigLiveUrl()
         {
             // Arrange
-            IHost host = CreateHost(AdyenEnvironment.Live);
+            using IHost host = CreateHost(AdyenEnvironment.Live);
 
             // Act
             var service = host.Services.GetRequiredService<ISessionAuthenticationService>();
@@ -91,7 +91,7 @@ namespace Adyen.Test.SoftPOSConfiguration
         public void Given_LiveEnvironmentWithPrefix_When_ServiceIsResolved_Then_PrefixIsIgnored()
         {
             // Arrange
-            IHost host = Host.CreateDefaultBuilder()
+            using IHost host = Host.CreateDefaultBuilder()
                 .ConfigureSoftPOSConfiguration((context, services, config) =>
                 {
                     config.ConfigureAdyenOptions(options =>
@@ -114,7 +114,7 @@ namespace Adyen.Test.SoftPOSConfiguration
         public void Given_CustomBaseAddress_When_ServiceIsResolved_Then_CustomBaseAddressIsKept()
         {
             // Arrange
-            IHost host = Host.CreateDefaultBuilder()
+            using IHost host = Host.CreateDefaultBuilder()
                 .ConfigureSoftPOSConfiguration((context, services, config) =>
                 {
                     config.ConfigureAdyenOptions(options => { options.Environment = AdyenEnvironment.Live; });
@@ -148,7 +148,7 @@ namespace Adyen.Test.SoftPOSConfiguration
                 capturedRequest = request;
                 capturedBody = body;
             });
-            IHost host = CreateHost(AdyenEnvironment.Test, mockHandler);
+            using IHost host = CreateHost(AdyenEnvironment.Test, mockHandler);
             var service = host.Services.GetRequiredService<ISessionAuthenticationService>();
 
             // Act
@@ -184,7 +184,7 @@ namespace Adyen.Test.SoftPOSConfiguration
             string json = TestUtilities.GetTestFileContent("mocks/softposconfiguration/issue-certificates.json");
             string capturedBody = null;
             var mockHandler = CreateMockHandler(HttpStatusCode.Created, json, (request, body) => capturedBody = body);
-            IHost host = CreateHost(AdyenEnvironment.Test, mockHandler);
+            using IHost host = CreateHost(AdyenEnvironment.Test, mockHandler);
             var service = host.Services.GetRequiredService<ISessionAuthenticationService>();
 
             CertificateLoadingRequest request = CreateRequest();
@@ -231,7 +231,7 @@ namespace Adyen.Test.SoftPOSConfiguration
             string json = TestUtilities.GetTestFileContent("mocks/softposconfiguration/issue-certificates.json");
             string capturedBody = null;
             var mockHandler = CreateMockHandler(HttpStatusCode.Created, json, (request, body) => capturedBody = body);
-            IHost host = CreateHost(AdyenEnvironment.Test, mockHandler);
+            using IHost host = CreateHost(AdyenEnvironment.Test, mockHandler);
             var service = host.Services.GetRequiredService<ISessionAuthenticationService>();
 
             CertificateLoadingRequest request = CreateRequest();
@@ -261,7 +261,7 @@ namespace Adyen.Test.SoftPOSConfiguration
             string json = TestUtilities.GetTestFileContent("mocks/softposconfiguration/issue-certificates.json");
             HttpRequestMessage capturedRequest = null;
             var mockHandler = CreateMockHandler(HttpStatusCode.Created, json, (request, body) => capturedRequest = request);
-            IHost host = CreateHost(AdyenEnvironment.Test, mockHandler, apiKey: "test-api-key");
+            using IHost host = CreateHost(AdyenEnvironment.Test, mockHandler, apiKey: "test-api-key");
             var service = host.Services.GetRequiredService<ISessionAuthenticationService>();
 
             // Act
@@ -279,7 +279,7 @@ namespace Adyen.Test.SoftPOSConfiguration
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/softposconfiguration/error-response-422.json");
             var mockHandler = CreateMockHandler((HttpStatusCode)422, json, (request, body) => { });
-            IHost host = CreateHost(AdyenEnvironment.Test, mockHandler);
+            using IHost host = CreateHost(AdyenEnvironment.Test, mockHandler);
             var service = host.Services.GetRequiredService<ISessionAuthenticationService>();
 
             // Act
@@ -311,7 +311,7 @@ namespace Adyen.Test.SoftPOSConfiguration
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/softposconfiguration/" + mockFile);
             var mockHandler = CreateMockHandler((HttpStatusCode)statusCode, json, (request, body) => { });
-            IHost host = CreateHost(AdyenEnvironment.Test, mockHandler);
+            using IHost host = CreateHost(AdyenEnvironment.Test, mockHandler);
             var service = host.Services.GetRequiredService<ISessionAuthenticationService>();
 
             // Act
@@ -353,7 +353,7 @@ namespace Adyen.Test.SoftPOSConfiguration
         public void Given_IssueCertificatesJson_When_Deserialized_Then_AllFieldsArePopulated()
         {
             // Arrange
-            IHost host = CreateHost(AdyenEnvironment.Test);
+            using IHost host = CreateHost(AdyenEnvironment.Test);
             var jsonSerializerOptionsProvider = host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
             string json = TestUtilities.GetTestFileContent("mocks/softposconfiguration/issue-certificates.json");
 
