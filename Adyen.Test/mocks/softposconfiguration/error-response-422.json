@@ -4,6 +4,7 @@
   "status": 422,
   "errorCode": "00_422",
   "detail": "Session token or request fields are semantically invalid.",
+  "instance": "/softposconfig/v3/auth/certificate",
   "requestId": "REQUEST_ID",
   "invalidFields": [
     {
