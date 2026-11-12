@@ -178,7 +178,7 @@ namespace Adyen.Test.SoftPOSConfiguration
         }
 
         [TestMethod]
-        public async Task Given_RequestWithSubMerchantData_When_IssueCertificatesAsync_Then_SubMerchantDataIsSerialized()
+        public async Task Given_RequestWithAllSubMerchantDataFields_When_IssueCertificatesAsync_Then_AllFieldsAreSerialized()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/softposconfiguration/issue-certificates.json");
@@ -195,7 +195,13 @@ namespace Adyen.Test.SoftPOSConfiguration
                 Mcc = "5411",
                 Name = "Sub Merchant Ltd",
                 City = "Amsterdam",
-                Country = "NL"
+                Country = "NL",
+                Email = "info@submerchant.example",
+                PhoneNumber = "+31201234567",
+                PostalCode = "1011DJ",
+                State = "NH",
+                Street = "Simon Carmiggeltstraat 6",
+                TaxId = "NL123456789B01"
             };
 
             // Act
@@ -210,7 +216,42 @@ namespace Adyen.Test.SoftPOSConfiguration
             Assert.AreEqual("Sub Merchant Ltd", subMerchantData.GetProperty("name").GetString());
             Assert.AreEqual("Amsterdam", subMerchantData.GetProperty("city").GetString());
             Assert.AreEqual("NL", subMerchantData.GetProperty("country").GetString());
-            Assert.IsFalse(subMerchantData.TryGetProperty("email", out _));
+            Assert.AreEqual("info@submerchant.example", subMerchantData.GetProperty("email").GetString());
+            Assert.AreEqual("+31201234567", subMerchantData.GetProperty("phoneNumber").GetString());
+            Assert.AreEqual("1011DJ", subMerchantData.GetProperty("postalCode").GetString());
+            Assert.AreEqual("NH", subMerchantData.GetProperty("state").GetString());
+            Assert.AreEqual("Simon Carmiggeltstraat 6", subMerchantData.GetProperty("street").GetString());
+            Assert.AreEqual("NL123456789B01", subMerchantData.GetProperty("taxId").GetString());
+        }
+
+        [TestMethod]
+        public async Task Given_SubMerchantDataWithOnlyRequiredFields_When_IssueCertificatesAsync_Then_OptionalFieldsAreOmitted()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/softposconfiguration/issue-certificates.json");
+            string capturedBody = null;
+            var mockHandler = CreateMockHandler(HttpStatusCode.Created, json, (request, body) => capturedBody = body);
+            IHost host = CreateHost(AdyenEnvironment.Test, mockHandler);
+            var service = host.Services.GetRequiredService<ISessionAuthenticationService>();
+
+            CertificateLoadingRequest request = CreateRequest();
+            request.SubMerchantData = new SubMerchantData
+            {
+                DisplayName = "Sub Merchant",
+                Id = "SUB_MERCHANT_ID",
+                Mcc = "5411",
+                Name = "Sub Merchant Ltd"
+            };
+
+            // Act
+            await service.IssueCertificatesAsync(request);
+
+            // Assert
+            using JsonDocument body = JsonDocument.Parse(capturedBody!);
+            JsonElement subMerchantData = body.RootElement.GetProperty("subMerchantData");
+            CollectionAssert.AreEquivalent(
+                new[] { "displayName", "id", "mcc", "name" },
+                subMerchantData.EnumerateObject().Select(property => property.Name).ToArray());
         }
 
         [TestMethod]
@@ -252,6 +293,8 @@ namespace Adyen.Test.SoftPOSConfiguration
             Assert.AreEqual("Unprocessable entity", error.Title);
             Assert.AreEqual("00_422", error.ErrorCode);
             Assert.AreEqual("https://docs.adyen.com/errors/unprocessable-entity", error.Type);
+            Assert.AreEqual("Session token or request fields are semantically invalid.", error.Detail);
+            Assert.AreEqual("/softposconfig/v3/auth/certificate", error.Instance);
             Assert.AreEqual("REQUEST_ID", error.RequestId);
             Assert.AreEqual(1, error.InvalidFields!.Count);
             Assert.AreEqual("setupToken", error.InvalidFields[0].Name);
