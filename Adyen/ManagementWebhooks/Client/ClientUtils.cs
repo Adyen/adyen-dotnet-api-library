@@ -251,6 +251,14 @@ namespace Adyen.ManagementWebhooks.Client
             while (index < input.Length)
             {
                 int length = Math.Min(input.Length - index, maxLength);
+                // Keep a UTF-16 surrogate pair together when the size limit splits between its code units.
+                if (index + length < input.Length &&
+                    char.IsHighSurrogate(input[index + length - 1]) &&
+                    char.IsLowSurrogate(input[index + length]))
+                {
+                    length--;
+                }
+
                 string subString = input.Substring(index, length);
 
                 sb.Append(Uri.EscapeDataString(subString));
