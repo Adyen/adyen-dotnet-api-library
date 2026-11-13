@@ -43,20 +43,6 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// PayPal Merchant ID. Character length and limitations: 13 single-byte alphanumeric characters.
-        /// </summary>
-        /// <value>PayPal Merchant ID. Character length and limitations: 13 single-byte alphanumeric characters.</value>
-        [JsonPropertyName("payerId")]
-        public string? PayerId { get; set; }
-
-        /// <summary>
-        /// Your business email address.
-        /// </summary>
-        /// <value>Your business email address.</value>
-        [JsonPropertyName("subject")]
-        public string? Subject { get; set; }
-
-        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="DirectCapture"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -71,6 +57,34 @@ namespace Adyen.Management.Models
         public bool? DirectCapture { get { return this._DirectCaptureOption; } set { this._DirectCaptureOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="PayerId"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _PayerIdOption { get; private set; }
+
+        /// <summary>
+        /// PayPal Merchant ID. Character length and limitations: 13 single-byte alphanumeric characters.
+        /// </summary>
+        /// <value>PayPal Merchant ID. Character length and limitations: 13 single-byte alphanumeric characters.</value>
+        [JsonPropertyName("payerId")]
+        public string? PayerId { get { return this._PayerIdOption; } set { this._PayerIdOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Subject"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _SubjectOption { get; private set; }
+
+        /// <summary>
+        /// Your business email address.
+        /// </summary>
+        /// <value>Your business email address.</value>
+        [JsonPropertyName("subject")]
+        public string? Subject { get { return this._SubjectOption; } set { this._SubjectOption = new(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -78,9 +92,9 @@ namespace Adyen.Management.Models
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class PayPalResponseInfo {\n");
+            sb.Append("  DirectCapture: ").Append(DirectCapture).Append("\n");
             sb.Append("  PayerId: ").Append(PayerId).Append("\n");
             sb.Append("  Subject: ").Append(Subject).Append("\n");
-            sb.Append("  DirectCapture: ").Append(DirectCapture).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -108,9 +122,9 @@ namespace Adyen.Management.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<bool?> directCapture = default;
             Option<string?> payerId = default;
             Option<string?> subject = default;
-            Option<bool?> directCapture = default;
 
             while (utf8JsonReader.Read())
             {
@@ -127,14 +141,14 @@ namespace Adyen.Management.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "directCapture":
+                            directCapture = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         case "payerId":
                             payerId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "subject":
                             subject = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
-                        case "directCapture":
-                            directCapture = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;
@@ -144,12 +158,12 @@ namespace Adyen.Management.Models
             
 
             var payPalResponseInfo = new PayPalResponseInfo();
-            if (payerId.IsSet)
-                payPalResponseInfo.PayerId = payerId.Value!;
-            if (subject.IsSet)
-                payPalResponseInfo.Subject = subject.Value!;
             if (directCapture.IsSet)
                 payPalResponseInfo.DirectCapture = directCapture.Value;
+            if (payerId.IsSet)
+                payPalResponseInfo.PayerId = payerId.Value;
+            if (subject.IsSet)
+                payPalResponseInfo.Subject = subject.Value;
             return payPalResponseInfo;
         }
 
@@ -179,15 +193,17 @@ namespace Adyen.Management.Models
         public void WriteProperties(Utf8JsonWriter writer, PayPalResponseInfo payPalResponseInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (payPalResponseInfo.PayerId != null)
-                writer.WriteString("payerId", payPalResponseInfo.PayerId);
-
-            if (payPalResponseInfo.Subject != null)
-                writer.WriteString("subject", payPalResponseInfo.Subject);
-
             if (payPalResponseInfo._DirectCaptureOption.IsSet)
                 if (payPalResponseInfo._DirectCaptureOption.Value != null)
                     writer.WriteBoolean("directCapture", payPalResponseInfo._DirectCaptureOption.Value!.Value);
+
+            if (payPalResponseInfo._PayerIdOption.IsSet)
+                if (payPalResponseInfo.PayerId != null)
+                    writer.WriteString("payerId", payPalResponseInfo.PayerId);
+
+            if (payPalResponseInfo._SubjectOption.IsSet)
+                if (payPalResponseInfo.Subject != null)
+                    writer.WriteString("subject", payPalResponseInfo.Subject);
         }
     }
 }

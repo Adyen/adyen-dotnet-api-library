@@ -278,6 +278,20 @@ namespace Adyen.Management.Models
         public Refunds? Refunds { get { return this._RefundsOption; } set { this._RefundsOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ShowCalculatedPercentageTippingAmount"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> _ShowCalculatedPercentageTippingAmountOption { get; private set; }
+
+        /// <summary>
+        /// Show the tipping amount calculated from the percentage next to each tipping percentage option on the terminal screen, for example &#x60;10 % | 10 EUR&#x60; for a 100 EUR payment.
+        /// </summary>
+        /// <value>Show the tipping amount calculated from the percentage next to each tipping percentage option on the terminal screen, for example `10 % | 10 EUR` for a 100 EUR payment.</value>
+        [JsonPropertyName("showCalculatedPercentageTippingAmount")]
+        public bool? ShowCalculatedPercentageTippingAmount { get { return this._ShowCalculatedPercentageTippingAmountOption; } set { this._ShowCalculatedPercentageTippingAmountOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Signature"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -289,6 +303,20 @@ namespace Adyen.Management.Models
         /// </summary>
         [JsonPropertyName("signature")]
         public Signature? Signature { get { return this._SignatureOption; } set { this._SignatureOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="SkipTipConfirmationOnTerminal"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> _SkipTipConfirmationOnTerminalOption { get; private set; }
+
+        /// <summary>
+        /// Skip the tip confirmation step of the Adyen payment app on the terminal. Set to **true** only if your own app that handles tipping is installed on the same terminal. If your app is not installed on the terminal, set to **false**.
+        /// </summary>
+        /// <value>Skip the tip confirmation step of the Adyen payment app on the terminal. Set to **true** only if your own app that handles tipping is installed on the same terminal. If your app is not installed on the terminal, set to **false**.</value>
+        [JsonPropertyName("skipTipConfirmationOnTerminal")]
+        public bool? SkipTipConfirmationOnTerminal { get { return this._SkipTipConfirmationOnTerminalOption; } set { this._SkipTipConfirmationOnTerminalOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Standalone"/> will be populated.
@@ -407,7 +435,9 @@ namespace Adyen.Management.Models
             sb.Append("  ReceiptOptions: ").Append(ReceiptOptions).Append("\n");
             sb.Append("  ReceiptPrinting: ").Append(ReceiptPrinting).Append("\n");
             sb.Append("  Refunds: ").Append(Refunds).Append("\n");
+            sb.Append("  ShowCalculatedPercentageTippingAmount: ").Append(ShowCalculatedPercentageTippingAmount).Append("\n");
             sb.Append("  Signature: ").Append(Signature).Append("\n");
+            sb.Append("  SkipTipConfirmationOnTerminal: ").Append(SkipTipConfirmationOnTerminal).Append("\n");
             sb.Append("  Standalone: ").Append(Standalone).Append("\n");
             sb.Append("  StoreAndForward: ").Append(StoreAndForward).Append("\n");
             sb.Append("  Surcharge: ").Append(Surcharge).Append("\n");
@@ -460,7 +490,9 @@ namespace Adyen.Management.Models
             Option<ReceiptOptions?> receiptOptions = default;
             Option<ReceiptPrinting?> receiptPrinting = default;
             Option<Refunds?> refunds = default;
+            Option<bool?> showCalculatedPercentageTippingAmount = default;
             Option<Signature?> signature = default;
+            Option<bool?> skipTipConfirmationOnTerminal = default;
             Option<Standalone?> standalone = default;
             Option<StoreAndForward?> storeAndForward = default;
             Option<Surcharge?> surcharge = default;
@@ -538,8 +570,14 @@ namespace Adyen.Management.Models
                         case "refunds":
                             refunds = new Option<Refunds?>(JsonSerializer.Deserialize<Refunds>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
+                        case "showCalculatedPercentageTippingAmount":
+                            showCalculatedPercentageTippingAmount = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         case "signature":
                             signature = new Option<Signature?>(JsonSerializer.Deserialize<Signature>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "skipTipConfirmationOnTerminal":
+                            skipTipConfirmationOnTerminal = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "standalone":
                             standalone = new Option<Standalone?>(JsonSerializer.Deserialize<Standalone>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -606,8 +644,12 @@ namespace Adyen.Management.Models
                 terminalSettings.ReceiptPrinting = receiptPrinting.Value;
             if (refunds.IsSet)
                 terminalSettings.Refunds = refunds.Value;
+            if (showCalculatedPercentageTippingAmount.IsSet)
+                terminalSettings.ShowCalculatedPercentageTippingAmount = showCalculatedPercentageTippingAmount.Value;
             if (signature.IsSet)
                 terminalSettings.Signature = signature.Value;
+            if (skipTipConfirmationOnTerminal.IsSet)
+                terminalSettings.SkipTipConfirmationOnTerminal = skipTipConfirmationOnTerminal.Value;
             if (standalone.IsSet)
                 terminalSettings.Standalone = standalone.Value;
             if (storeAndForward.IsSet)
@@ -744,11 +786,25 @@ namespace Adyen.Management.Models
                 writer.WritePropertyName("refunds");
                 JsonSerializer.Serialize(writer, terminalSettings.Refunds, jsonSerializerOptions);
             }
+            if (terminalSettings._ShowCalculatedPercentageTippingAmountOption.IsSet)
+                if (terminalSettings._ShowCalculatedPercentageTippingAmountOption.Value != null)
+                    if (terminalSettings._ShowCalculatedPercentageTippingAmountOption.Value != null)
+                    writer.WriteBoolean("showCalculatedPercentageTippingAmount", terminalSettings._ShowCalculatedPercentageTippingAmountOption.Value!.Value);
+                else
+                    writer.WriteNull("showCalculatedPercentageTippingAmount");
+
             if (terminalSettings._SignatureOption.IsSet)
             {
                 writer.WritePropertyName("signature");
                 JsonSerializer.Serialize(writer, terminalSettings.Signature, jsonSerializerOptions);
             }
+            if (terminalSettings._SkipTipConfirmationOnTerminalOption.IsSet)
+                if (terminalSettings._SkipTipConfirmationOnTerminalOption.Value != null)
+                    if (terminalSettings._SkipTipConfirmationOnTerminalOption.Value != null)
+                    writer.WriteBoolean("skipTipConfirmationOnTerminal", terminalSettings._SkipTipConfirmationOnTerminalOption.Value!.Value);
+                else
+                    writer.WriteNull("skipTipConfirmationOnTerminal");
+
             if (terminalSettings._StandaloneOption.IsSet)
             {
                 writer.WritePropertyName("standalone");
