@@ -50,6 +50,34 @@ namespace Adyen.Management.Models
         public List<LocalShopperStatement>? LocalShopperStatement { get; set; }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="LocalStoreName"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<LocalStoreName>?> _LocalStoreNameOption { get; private set; }
+
+        /// <summary>
+        /// An array of localized store names. Used for payment method onboarding in Japan.  Possible scripts: **ja-Hani**, **ja-Kana**.
+        /// </summary>
+        /// <value>An array of localized store names. Used for payment method onboarding in Japan.  Possible scripts: **ja-Hani**, **ja-Kana**.</value>
+        [JsonPropertyName("localStoreName")]
+        public List<LocalStoreName>? LocalStoreName { get { return this._LocalStoreNameOption; } set { this._LocalStoreNameOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="LocalizedAddress"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<LocalizedInformationLocalizedAddressInner>?> _LocalizedAddressOption { get; private set; }
+
+        /// <summary>
+        /// An array of localized addresses. Used for payment method onboarding in Japan.  The &#x60;script&#x60; of each address selects which fields it carries, so each locale sends the fields its addresses have.  For Japanese stores, both **ja-Hani** and **ja-Kana** addresses are required.
+        /// </summary>
+        /// <value>An array of localized addresses. Used for payment method onboarding in Japan.  The `script` of each address selects which fields it carries, so each locale sends the fields its addresses have.  For Japanese stores, both **ja-Hani** and **ja-Kana** addresses are required.</value>
+        [JsonPropertyName("localizedAddress")]
+        public List<LocalizedInformationLocalizedAddressInner>? LocalizedAddress { get { return this._LocalizedAddressOption; } set { this._LocalizedAddressOption = new(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -58,6 +86,8 @@ namespace Adyen.Management.Models
             StringBuilder sb = new StringBuilder();
             sb.Append("class LocalizedInformation {\n");
             sb.Append("  LocalShopperStatement: ").Append(LocalShopperStatement).Append("\n");
+            sb.Append("  LocalStoreName: ").Append(LocalStoreName).Append("\n");
+            sb.Append("  LocalizedAddress: ").Append(LocalizedAddress).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -86,6 +116,8 @@ namespace Adyen.Management.Models
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<List<LocalShopperStatement>?> localShopperStatement = default;
+            Option<List<LocalStoreName>?> localStoreName = default;
+            Option<List<LocalizedInformationLocalizedAddressInner>?> localizedAddress = default;
 
             while (utf8JsonReader.Read())
             {
@@ -105,6 +137,12 @@ namespace Adyen.Management.Models
                         case "localShopperStatement":
                             localShopperStatement = new Option<List<LocalShopperStatement>?>(JsonSerializer.Deserialize<List<LocalShopperStatement>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
+                        case "localStoreName":
+                            localStoreName = new Option<List<LocalStoreName>?>(JsonSerializer.Deserialize<List<LocalStoreName>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "localizedAddress":
+                            localizedAddress = new Option<List<LocalizedInformationLocalizedAddressInner>?>(JsonSerializer.Deserialize<List<LocalizedInformationLocalizedAddressInner>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         default:
                             break;
                     }
@@ -115,6 +153,10 @@ namespace Adyen.Management.Models
             var localizedInformation = new LocalizedInformation();
             if (localShopperStatement.IsSet)
                 localizedInformation.LocalShopperStatement = localShopperStatement.Value!;
+            if (localStoreName.IsSet)
+                localizedInformation.LocalStoreName = localStoreName.Value;
+            if (localizedAddress.IsSet)
+                localizedInformation.LocalizedAddress = localizedAddress.Value;
             return localizedInformation;
         }
 
@@ -146,6 +188,16 @@ namespace Adyen.Management.Models
             
             writer.WritePropertyName("localShopperStatement");
             JsonSerializer.Serialize(writer, localizedInformation.LocalShopperStatement, jsonSerializerOptions);
+            if (localizedInformation._LocalStoreNameOption.IsSet)
+            {
+                writer.WritePropertyName("localStoreName");
+                JsonSerializer.Serialize(writer, localizedInformation.LocalStoreName, jsonSerializerOptions);
+            }
+            if (localizedInformation._LocalizedAddressOption.IsSet)
+            {
+                writer.WritePropertyName("localizedAddress");
+                JsonSerializer.Serialize(writer, localizedInformation.LocalizedAddress, jsonSerializerOptions);
+            }
         }
     }
 }

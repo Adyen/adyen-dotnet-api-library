@@ -43,18 +43,32 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="AuthorisationMid"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _AuthorisationMidOption { get; private set; }
+
+        /// <summary>
         /// The merchant ID (MID) that the acquirer recognizes you by.
         /// </summary>
         /// <value>The merchant ID (MID) that the acquirer recognizes you by.</value>
         [JsonPropertyName("authorisationMid")]
-        public string? AuthorisationMid { get; set; }
+        public string? AuthorisationMid { get { return this._AuthorisationMidOption; } set { this._AuthorisationMidOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="CurrencyCode"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _CurrencyCodeOption { get; private set; }
 
         /// <summary>
         /// The three-character ISO currency code, example **USD**
         /// </summary>
         /// <value>The three-character ISO currency code, example **USD**</value>
         [JsonPropertyName("currencyCode")]
-        public string? CurrencyCode { get; set; }
+        public string? CurrencyCode { get { return this._CurrencyCodeOption; } set { this._CurrencyCodeOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -126,9 +140,9 @@ namespace Adyen.Management.Models
 
             var svsResponseInfo = new SvsResponseInfo();
             if (authorisationMid.IsSet)
-                svsResponseInfo.AuthorisationMid = authorisationMid.Value!;
+                svsResponseInfo.AuthorisationMid = authorisationMid.Value;
             if (currencyCode.IsSet)
-                svsResponseInfo.CurrencyCode = currencyCode.Value!;
+                svsResponseInfo.CurrencyCode = currencyCode.Value;
             return svsResponseInfo;
         }
 
@@ -158,11 +172,13 @@ namespace Adyen.Management.Models
         public void WriteProperties(Utf8JsonWriter writer, SvsResponseInfo svsResponseInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (svsResponseInfo.AuthorisationMid != null)
-                writer.WriteString("authorisationMid", svsResponseInfo.AuthorisationMid);
+            if (svsResponseInfo._AuthorisationMidOption.IsSet)
+                if (svsResponseInfo.AuthorisationMid != null)
+                    writer.WriteString("authorisationMid", svsResponseInfo.AuthorisationMid);
 
-            if (svsResponseInfo.CurrencyCode != null)
-                writer.WriteString("currencyCode", svsResponseInfo.CurrencyCode);
+            if (svsResponseInfo._CurrencyCodeOption.IsSet)
+                if (svsResponseInfo.CurrencyCode != null)
+                    writer.WriteString("currencyCode", svsResponseInfo.CurrencyCode);
         }
     }
 }
