@@ -9,6 +9,7 @@ using Adyen.SoftPOSConfiguration.Models;
 using Adyen.SoftPOSConfiguration.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Region = Adyen.Core.Options.AdyenRegion;
 
 namespace Adyen.Test.SoftPOSConfiguration
 {
@@ -17,7 +18,7 @@ namespace Adyen.Test.SoftPOSConfiguration
     {
         private const string IssueCertificatesPath = "/softposconfig/v3/auth/certificate";
 
-        private static IHost CreateHost(AdyenEnvironment environment, MockDelegatingHandler mockHandler = null, string apiKey = null)
+        private static IHost CreateHost(AdyenEnvironment environment, MockDelegatingHandler mockHandler = null, string apiKey = null, Region? region = null)
         {
             return Host.CreateDefaultBuilder()
                 .ConfigureSoftPOSConfiguration((context, services, config) =>
@@ -26,6 +27,8 @@ namespace Adyen.Test.SoftPOSConfiguration
                     {
                         options.Environment = environment;
                         options.AdyenApiKey = apiKey;
+                        if (region.HasValue)
+                            options.Region = region.Value;
                     });
                     services.AddAllSoftPOSConfigurationServices(httpClientBuilderOptions: builder =>
                     {
@@ -60,6 +63,67 @@ namespace Adyen.Test.SoftPOSConfiguration
         }
 
         #region URL verification
+
+        [TestMethod]
+        [DataRow(Region.EU, "softposconfig-live.adyen.com")]
+        [DataRow(Region.AU, "softposconfig-live-au.adyen.com")]
+        [DataRow(Region.US, "softposconfig-live-us.adyen.com")]
+        [DataRow(Region.APSE, "softposconfig-live-apse.adyen.com")]
+        [DataRow(Region.NEA, "softposconfig-live-nea.adyen.com")]
+        public async Task Given_LiveRegion_When_IssueCertificatesAsync_Then_RequestUsesRegionalHost(Region region, string expectedHost)
+        {
+            HttpRequestMessage capturedRequest = null;
+            var handler = CreateMockHandler(HttpStatusCode.Created, "{\"sdkData\":\"SDK_DATA\"}", (request, _) => capturedRequest = request);
+            using IHost host = CreateHost(AdyenEnvironment.Live, handler, "test-api-key", region);
+            var service = host.Services.GetRequiredService<ISessionAuthenticationService>();
+
+            var response = await service.IssueCertificatesAsync(CreateRequest());
+
+            Assert.IsTrue(response.IsCreated);
+            Assert.AreEqual(expectedHost, capturedRequest!.RequestUri!.Host);
+            Assert.AreEqual(IssueCertificatesPath, capturedRequest.RequestUri.AbsolutePath);
+            Assert.AreEqual(HttpMethod.Post, capturedRequest.Method);
+        }
+
+        [TestMethod]
+        [DataRow(Region.EU)]
+        [DataRow(Region.AU)]
+        [DataRow(Region.US)]
+        [DataRow(Region.APSE)]
+        [DataRow(Region.NEA)]
+        public void Given_TestRegion_When_ServiceIsResolved_Then_UsesSharedTestEndpoint(Region region)
+        {
+            using IHost host = CreateHost(AdyenEnvironment.Test, region: region);
+            var service = host.Services.GetRequiredService<ISessionAuthenticationService>();
+
+            Assert.AreEqual("https://softposconfig-test.adyen.com/softposconfig/v3", service.HttpClient.BaseAddress!.AbsoluteUri);
+        }
+
+        [TestMethod]
+        [DataRow((Region)(-1))]
+        [DataRow((Region)999)]
+        public void Given_UnsupportedLiveRegion_When_ServiceIsResolved_Then_Throws(Region region)
+        {
+            using IHost host = CreateHost(AdyenEnvironment.Live, region: region);
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => host.Services.GetRequiredService<ISessionAuthenticationService>());
+        }
+
+        [TestMethod]
+        public async Task Given_NoRegion_When_IssueCertificatesAsync_Then_RequestUsesEuEndpoint()
+        {
+            HttpRequestMessage capturedRequest = null;
+            var handler = CreateMockHandler(HttpStatusCode.Created, "{\"sdkData\":\"SDK_DATA\"}", (request, _) => capturedRequest = request);
+            using IHost host = CreateHost(AdyenEnvironment.Live, handler, "test-api-key");
+            var service = host.Services.GetRequiredService<ISessionAuthenticationService>();
+
+            var response = await service.IssueCertificatesAsync(CreateRequest());
+
+            Assert.IsTrue(response.IsCreated);
+            Assert.AreEqual("softposconfig-live.adyen.com", capturedRequest!.RequestUri!.Host);
+            Assert.AreEqual(IssueCertificatesPath, capturedRequest.RequestUri.AbsolutePath);
+            Assert.AreEqual(HttpMethod.Post, capturedRequest.Method);
+        }
 
         [TestMethod]
         public void Given_TestEnvironment_When_ServiceIsResolved_Then_BaseAddressIsSoftPosConfigTestUrl()
@@ -117,7 +181,11 @@ namespace Adyen.Test.SoftPOSConfiguration
             using IHost host = Host.CreateDefaultBuilder()
                 .ConfigureSoftPOSConfiguration((context, services, config) =>
                 {
-                    config.ConfigureAdyenOptions(options => { options.Environment = AdyenEnvironment.Live; });
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.Environment = AdyenEnvironment.Live;
+                        options.Region = Region.NEA;
+                    });
                     services.AddAllSoftPOSConfigurationServices(httpClientOptions: httpClient =>
                     {
                         httpClient.BaseAddress = new Uri("https://softposconfig-live-au.adyen.com/softposconfig/v3");

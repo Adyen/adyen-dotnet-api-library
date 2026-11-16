@@ -24,6 +24,7 @@ The library supports all APIs under the following services:
 | [~~Payouts API~~](https://docs.adyen.com/api-explorer/Payout/68/overview)                                  | ~~A set of API endpoints that allow you to store payout details, confirm, or decline a payout.~~ Check [Payouts and Payments](https://docs.adyen.com/payouts/payout-service) guide.                                                                                                                                                     | [Payout](Adyen/Payout)                                         | **v68**           |
 | [Recurring API](https://docs.adyen.com/api-explorer/Recurring/68/overview)                                 | The Recurring APIs allow you to manage and remove your tokens or saved payment details. Tokens should be created with validation during a payment request.                                                                                                                                                                              | [Recurring](Adyen/Recurring)                                   | **v68**           |
 | [Session Authentication API](https://docs.adyen.com/api-explorer/sessionauthentication/1/overview)         | Create and manage the JSON Web Tokens (JWT) required for integrating [Onboarding](https://docs.adyen.com/platforms/onboard-users/components) and [Platform Experience](https://docs.adyen.com/platforms/build-user-dashboards) components.                                                                                              | [SessionAuthentication](Adyen/SessionAuthentication)           | **v1**            |
+| [SoftPOS configuration API](https://docs.adyen.com/api-explorer/softpos-configuration-api/3/overview)     | Issue certificates for mutual authentication between the Adyen Mobile SDK and the Adyen payments platform.                                                                                                                                                                                                                               | [SoftPOSConfiguration](Adyen/SoftPOSConfiguration)             | **v3**            |
 | [Stored Value API](https://docs.adyen.com/payment-methods/gift-cards/stored-value-api)                     | Manage both online and point-of-sale gift cards and other stored-value cards.                                                                                                                                                                                                                                                           | [StoredValue](Adyen/StoredValue)                               | **v46**           |
 | [Terminal API (Cloud communications)](https://docs.adyen.com/point-of-sale/choose-your-architecture/cloud) | Our point-of-sale integration.                                                                                                                                                                                                                                                                                                          | [Cloud-based Terminal API](Adyen/TerminalApi/Services)         | **v1**            |      |
 | [Terminal API (Local communications)](https://docs.adyen.com/point-of-sale/choose-your-architecture/local) | Our point-of-sale integration.                                                                                                                                                                                                                                                                                                          | [Local-based Terminal API](Adyen/TerminalApi/Services) | **v1**            |      |
@@ -139,6 +140,23 @@ Use the `RequestOptions` object to pass additional headers like the IdempotencyK
 ```csharp
 var response = await paymentsService.PaymentsAsync(request, new RequestOptions().AddIdempotencyKey(Guid.NewGuid().ToString()));
 ```
+
+### Regional SoftPOS endpoints
+
+Set the region in the SoftPOS `ConfigureAdyenOptions` callback for live requests:
+
+```csharp
+config.ConfigureAdyenOptions(options =>
+{
+    options.Environment = AdyenEnvironment.Live;
+    options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
+    options.Region = Adyen.Core.Options.AdyenRegion.NEA;
+});
+```
+
+Supported regions are EU (the default), AU, US, APSE, and NEA. Unsupported live regions throw `ArgumentOutOfRangeException`.
+TEST uses one endpoint for every region. A custom `HttpClient.BaseAddress` still takes precedence.
+Region settings do not alter non-regional API endpoints or the legacy Terminal API configuration.
 
 ### Working with amounts
 Adyen APIs work with minor units (e.g., 1000 for 10.00 EUR). The library provides an `AmountUtil` class to help you convert decimal amounts to minor units and vice versa, according to [Adyen's specific currency rules](https://docs.adyen.com/development-resources/currency-codes). 
