@@ -11,6 +11,12 @@ namespace Adyen.Core.Options
         public AdyenEnvironment Environment { get; set; } = AdyenEnvironment.Test;
 
         /// <summary>
+        /// The region for APIs with regional live endpoints. Defaults to EU.
+        /// Test endpoints are shared across regions.
+        /// </summary>
+        public AdyenRegion Region { get; set; } = AdyenRegion.EU;
+
+        /// <summary>
         /// Used in the LIVE environment only.
         /// This prefix is appended to HttpClient.BaseAddress when <see cref="Environment"/> is set to `AdyenEnvironment.Live`
         /// See: https://docs.adyen.com/development-resources/live-endpoints/
