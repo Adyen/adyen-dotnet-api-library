@@ -96,6 +96,11 @@ namespace Adyen.Core.Client
                     "https://authe-live.adyen.com/authe/api/");
             }
 
+            return ConstructRegionalLiveUrl(url, region);
+        }
+
+        private static string ConstructRegionalLiveUrl(string url, AdyenRegion region)
+        {
             if (Uri.TryCreate(url, UriKind.Absolute, out var uri) && uri.Scheme == Uri.UriSchemeHttps)
             {
                 foreach (var apiHostName in RegionalApiHostNames)
