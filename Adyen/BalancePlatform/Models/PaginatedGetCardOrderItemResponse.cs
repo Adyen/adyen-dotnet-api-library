@@ -124,9 +124,13 @@ namespace Adyen.BalancePlatform.Models
                             data = new Option<List<CardOrderItem>?>(JsonSerializer.Deserialize<List<CardOrderItem>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "hasNext":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'hasNext' on 'PaginatedGetCardOrderItemResponse' cannot be null.");
                             hasNext = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "hasPrevious":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'hasPrevious' on 'PaginatedGetCardOrderItemResponse' cannot be null.");
                             hasPrevious = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:

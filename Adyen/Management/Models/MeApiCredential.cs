@@ -227,6 +227,8 @@ namespace Adyen.Management.Models
                     switch (jsonPropertyName)
                     {
                         case "active":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'active' on 'MeApiCredential' cannot be null.");
                             active = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "allowedIpAddresses":
