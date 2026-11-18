@@ -1216,6 +1216,20 @@ namespace Adyen.Payment.Models
         public string? Store { get { return this._StoreOption; } set { this._StoreOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="StoreClickToPayProfile"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> _StoreClickToPayProfileOption { get; private set; }
+
+        /// <summary>
+        /// When enrolling a new user, this field determines whether to store the shopper&#39;s card in their Click to Pay profile. When this is set to **True**, the request must include &#x60;shopperEmail&#x60;, &#x60;shopperName&#x60;, and &#x60;telephoneNumber&#x60;.
+        /// </summary>
+        /// <value>When enrolling a new user, this field determines whether to store the shopper's card in their Click to Pay profile. When this is set to **True**, the request must include `shopperEmail`, `shopperName`, and `telephoneNumber`.</value>
+        [JsonPropertyName("storeClickToPayProfile")]
+        public bool? StoreClickToPayProfile { get { return this._StoreClickToPayProfileOption; } set { this._StoreClickToPayProfileOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="TelephoneNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -1250,9 +1264,9 @@ namespace Adyen.Payment.Models
         public Option<bool?> _ThreeDSAuthenticationOnlyOption { get; private set; }
 
         /// <summary>
-        /// Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.Default: **false**.
+        /// Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.  Default: **false**.
         /// </summary>
-        /// <value>Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.Default: **false**.</value>
+        /// <value>Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.  Default: **false**.</value>
         [JsonPropertyName("threeDSAuthenticationOnly")]
         public bool? ThreeDSAuthenticationOnly { get { return this._ThreeDSAuthenticationOnlyOption; } set { this._ThreeDSAuthenticationOnlyOption = new(value); } }
 
@@ -1341,6 +1355,7 @@ namespace Adyen.Payment.Models
             sb.Append("  SocialSecurityNumber: ").Append(SocialSecurityNumber).Append("\n");
             sb.Append("  Splits: ").Append(Splits).Append("\n");
             sb.Append("  Store: ").Append(Store).Append("\n");
+            sb.Append("  StoreClickToPayProfile: ").Append(StoreClickToPayProfile).Append("\n");
             sb.Append("  TelephoneNumber: ").Append(TelephoneNumber).Append("\n");
             sb.Append("  ThreeDS2RequestData: ").Append(ThreeDS2RequestData).Append("\n");
             sb.Append("  ThreeDSAuthenticationOnly: ").Append(ThreeDSAuthenticationOnly).Append("\n");
@@ -1432,6 +1447,7 @@ namespace Adyen.Payment.Models
             Option<string?> socialSecurityNumber = default;
             Option<List<Split>?> splits = default;
             Option<string?> store = default;
+            Option<bool?> storeClickToPayProfile = default;
             Option<string?> telephoneNumber = default;
             Option<ThreeDS2RequestData?> threeDS2RequestData = default;
             Option<bool?> threeDSAuthenticationOnly = default;
@@ -1604,6 +1620,9 @@ namespace Adyen.Payment.Models
                         case "store":
                             store = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "storeClickToPayProfile":
+                            storeClickToPayProfile = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         case "telephoneNumber":
                             telephoneNumber = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -1725,6 +1744,8 @@ namespace Adyen.Payment.Models
                 paymentRequest.Splits = splits.Value;
             if (store.IsSet)
                 paymentRequest.Store = store.Value;
+            if (storeClickToPayProfile.IsSet)
+                paymentRequest.StoreClickToPayProfile = storeClickToPayProfile.Value;
             if (telephoneNumber.IsSet)
                 paymentRequest.TelephoneNumber = telephoneNumber.Value;
             if (threeDS2RequestData.IsSet)
@@ -1986,6 +2007,10 @@ namespace Adyen.Payment.Models
             if (paymentRequest._StoreOption.IsSet)
                 if (paymentRequest.Store != null)
                     writer.WriteString("store", paymentRequest.Store);
+
+            if (paymentRequest._StoreClickToPayProfileOption.IsSet)
+                if (paymentRequest._StoreClickToPayProfileOption.Value != null)
+                    writer.WriteBoolean("storeClickToPayProfile", paymentRequest._StoreClickToPayProfileOption.Value!.Value);
 
             if (paymentRequest._TelephoneNumberOption.IsSet)
                 if (paymentRequest.TelephoneNumber != null)
