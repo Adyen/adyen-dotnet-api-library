@@ -1314,9 +1314,9 @@ namespace Adyen.Checkout.Models
         public Option<string?> _OriginOption { get; private set; }
 
         /// <summary>
-        /// &gt; Required for browser-based (&#x60;channel&#x60; **Web**) 3D Secure 2 transactions.Set this to the origin URL of the page where you are rendering the Drop-in/Component. Do not include subdirectories and a trailing slash.
+        /// &gt; Required for browser-based (&#x60;channel&#x60; **Web**) 3D Secure 2 transactions.  Set this to the origin URL of the page where you are rendering the Drop-in/Component. Do not include subdirectories and a trailing slash.  &gt; If &#x60;origin&#x60; is missing or incorrect, 3D Secure 2 cannot be initiated and the transaction can be authorized without liability shift. Set this value on your server. If you receive it from the client, validate it first. For more information, see [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/).
         /// </summary>
-        /// <value>> Required for browser-based (`channel` **Web**) 3D Secure 2 transactions.Set this to the origin URL of the page where you are rendering the Drop-in/Component. Do not include subdirectories and a trailing slash.</value>
+        /// <value>> Required for browser-based (`channel` **Web**) 3D Secure 2 transactions.  Set this to the origin URL of the page where you are rendering the Drop-in/Component. Do not include subdirectories and a trailing slash.  > If `origin` is missing or incorrect, 3D Secure 2 cannot be initiated and the transaction can be authorized without liability shift. Set this value on your server. If you receive it from the client, validate it first. For more information, see [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/).</value>
         [JsonPropertyName("origin")]
         public string? Origin { get { return this._OriginOption; } set { this._OriginOption = new(value); } }
 
@@ -1527,6 +1527,19 @@ namespace Adyen.Checkout.Models
         public string? ShopperStatement { get { return this._ShopperStatementOption; } set { this._ShopperStatementOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperTaxIdentification"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<TokenizedShopperTaxIdentification?> _ShopperTaxIdentificationOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="ShopperTaxIdentification"/>.
+        /// </summary>
+        [JsonPropertyName("shopperTaxIdentification")]
+        public TokenizedShopperTaxIdentification? ShopperTaxIdentification { get { return this._ShopperTaxIdentificationOption; } set { this._ShopperTaxIdentificationOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ShopperTaxInfo"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -1623,6 +1636,19 @@ namespace Adyen.Checkout.Models
         public Surcharge? Surcharge { get { return this._SurchargeOption; } set { this._SurchargeOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="TaxCalculation"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<TokenizedTaxCalculation?> _TaxCalculationOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="TaxCalculation"/>.
+        /// </summary>
+        [JsonPropertyName("taxCalculation")]
+        public TokenizedTaxCalculation? TaxCalculation { get { return this._TaxCalculationOption; } set { this._TaxCalculationOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="TelephoneNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -1670,9 +1696,9 @@ namespace Adyen.Checkout.Models
         public Option<bool?> _ThreeDSAuthenticationOnlyOption { get; private set; }
 
         /// <summary>
-        /// Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorisation.Default: **false**.
+        /// Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.  Default: **false**.
         /// </summary>
-        /// <value>Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorisation.Default: **false**.</value>
+        /// <value>Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.  Default: **false**.</value>
         [JsonPropertyName("threeDSAuthenticationOnly")]
         /* Deprecated since Adyen Checkout API v69: Use `authenticationData.authenticationOnly` instead. */
         [Obsolete("Deprecated since Adyen Checkout API v69.")]
@@ -1763,6 +1789,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  ShopperName: ").Append(ShopperName).Append("\n");
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
             sb.Append("  ShopperStatement: ").Append(ShopperStatement).Append("\n");
+            sb.Append("  ShopperTaxIdentification: ").Append(ShopperTaxIdentification).Append("\n");
             sb.Append("  ShopperTaxInfo: ").Append(ShopperTaxInfo).Append("\n");
             sb.Append("  SocialSecurityNumber: ").Append(SocialSecurityNumber).Append("\n");
             sb.Append("  Splits: ").Append(Splits).Append("\n");
@@ -1770,6 +1797,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  StorePaymentMethod: ").Append(StorePaymentMethod).Append("\n");
             sb.Append("  SubMerchants: ").Append(SubMerchants).Append("\n");
             sb.Append("  Surcharge: ").Append(Surcharge).Append("\n");
+            sb.Append("  TaxCalculation: ").Append(TaxCalculation).Append("\n");
             sb.Append("  TelephoneNumber: ").Append(TelephoneNumber).Append("\n");
             sb.Append("  ThirdPartyTokenRedundancyInfo: ").Append(ThirdPartyTokenRedundancyInfo).Append("\n");
             sb.Append("  ThreeDS2RequestData: ").Append(ThreeDS2RequestData).Append("\n");
@@ -1880,6 +1908,7 @@ namespace Adyen.Checkout.Models
             Option<ShopperName?> shopperName = default;
             Option<string?> shopperReference = default;
             Option<string?> shopperStatement = default;
+            Option<TokenizedShopperTaxIdentification?> shopperTaxIdentification = default;
             Option<ShopperTaxInfo?> shopperTaxInfo = default;
             Option<string?> socialSecurityNumber = default;
             Option<List<Split>?> splits = default;
@@ -1887,6 +1916,7 @@ namespace Adyen.Checkout.Models
             Option<bool?> storePaymentMethod = default;
             Option<List<SubMerchantInfo>?> subMerchants = default;
             Option<Surcharge?> surcharge = default;
+            Option<TokenizedTaxCalculation?> taxCalculation = default;
             Option<string?> telephoneNumber = default;
             Option<ThirdPartyTokenRedundancyInfo?> thirdPartyTokenRedundancyInfo = default;
             Option<ThreeDS2RequestFields?> threeDS2RequestData = default;
@@ -2102,6 +2132,9 @@ namespace Adyen.Checkout.Models
                         case "shopperStatement":
                             shopperStatement = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "shopperTaxIdentification":
+                            shopperTaxIdentification = new Option<TokenizedShopperTaxIdentification?>(JsonSerializer.Deserialize<TokenizedShopperTaxIdentification>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "shopperTaxInfo":
                             shopperTaxInfo = new Option<ShopperTaxInfo?>(JsonSerializer.Deserialize<ShopperTaxInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
@@ -2122,6 +2155,9 @@ namespace Adyen.Checkout.Models
                             break;
                         case "surcharge":
                             surcharge = new Option<Surcharge?>(JsonSerializer.Deserialize<Surcharge>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "taxCalculation":
+                            taxCalculation = new Option<TokenizedTaxCalculation?>(JsonSerializer.Deserialize<TokenizedTaxCalculation>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "telephoneNumber":
                             telephoneNumber = new Option<string?>(utf8JsonReader.GetString()!);
@@ -2272,6 +2308,8 @@ namespace Adyen.Checkout.Models
                 paymentRequest.ShopperReference = shopperReference.Value;
             if (shopperStatement.IsSet)
                 paymentRequest.ShopperStatement = shopperStatement.Value;
+            if (shopperTaxIdentification.IsSet)
+                paymentRequest.ShopperTaxIdentification = shopperTaxIdentification.Value;
             if (shopperTaxInfo.IsSet)
                 paymentRequest.ShopperTaxInfo = shopperTaxInfo.Value;
             if (socialSecurityNumber.IsSet)
@@ -2286,6 +2324,8 @@ namespace Adyen.Checkout.Models
                 paymentRequest.SubMerchants = subMerchants.Value;
             if (surcharge.IsSet)
                 paymentRequest.Surcharge = surcharge.Value;
+            if (taxCalculation.IsSet)
+                paymentRequest.TaxCalculation = taxCalculation.Value;
             if (telephoneNumber.IsSet)
                 paymentRequest.TelephoneNumber = telephoneNumber.Value;
             if (thirdPartyTokenRedundancyInfo.IsSet)
@@ -2607,6 +2647,11 @@ namespace Adyen.Checkout.Models
                 if (paymentRequest.ShopperStatement != null)
                     writer.WriteString("shopperStatement", paymentRequest.ShopperStatement);
 
+            if (paymentRequest._ShopperTaxIdentificationOption.IsSet)
+            {
+                writer.WritePropertyName("shopperTaxIdentification");
+                JsonSerializer.Serialize(writer, paymentRequest.ShopperTaxIdentification, jsonSerializerOptions);
+            }
             if (paymentRequest._ShopperTaxInfoOption.IsSet)
             {
                 writer.WritePropertyName("shopperTaxInfo");
@@ -2638,6 +2683,11 @@ namespace Adyen.Checkout.Models
             {
                 writer.WritePropertyName("surcharge");
                 JsonSerializer.Serialize(writer, paymentRequest.Surcharge, jsonSerializerOptions);
+            }
+            if (paymentRequest._TaxCalculationOption.IsSet)
+            {
+                writer.WritePropertyName("taxCalculation");
+                JsonSerializer.Serialize(writer, paymentRequest.TaxCalculation, jsonSerializerOptions);
             }
             if (paymentRequest._TelephoneNumberOption.IsSet)
                 if (paymentRequest.TelephoneNumber != null)

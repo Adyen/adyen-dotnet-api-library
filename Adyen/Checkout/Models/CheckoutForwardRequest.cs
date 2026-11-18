@@ -63,13 +63,6 @@ namespace Adyen.Checkout.Models
         public CheckoutOutgoingForwardRequest? Request { get; set; }
 
         /// <summary>
-        /// Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.
-        /// </summary>
-        /// <value>Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.</value>
-        [JsonPropertyName("shopperReference")]
-        public string? ShopperReference { get; set; }
-
-        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -123,6 +116,20 @@ namespace Adyen.Checkout.Models
         public CheckoutForwardRequestCard? PaymentMethod { get { return this._PaymentMethodOption; } set { this._PaymentMethodOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperReference"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _ShopperReferenceOption { get; private set; }
+
+        /// <summary>
+        /// Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. This parameter is required unless the request is for PAN forwarding and &#x60;options.tokenize&#x60; is false (the default). &gt; Your reference must not include personally identifiable information (PII) such as name or email address.
+        /// </summary>
+        /// <value>Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. This parameter is required unless the request is for PAN forwarding and `options.tokenize` is false (the default). > Your reference must not include personally identifiable information (PII) such as name or email address.</value>
+        [JsonPropertyName("shopperReference")]
+        public string? ShopperReference { get { return this._ShopperReferenceOption; } set { this._ShopperReferenceOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="StoredPaymentMethodId"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -147,11 +154,11 @@ namespace Adyen.Checkout.Models
             sb.Append("  BaseUrl: ").Append(BaseUrl).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  Request: ").Append(Request).Append("\n");
-            sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
             sb.Append("  Options: ").Append(Options).Append("\n");
             sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
+            sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -183,11 +190,11 @@ namespace Adyen.Checkout.Models
             Option<string?> baseUrl = default;
             Option<string?> merchantAccount = default;
             Option<CheckoutOutgoingForwardRequest?> request = default;
-            Option<string?> shopperReference = default;
             Option<Amount?> amount = default;
             Option<string?> merchantReference = default;
             Option<CheckoutForwardRequestOptions?> options = default;
             Option<CheckoutForwardRequestCard?> paymentMethod = default;
+            Option<string?> shopperReference = default;
             Option<string?> storedPaymentMethodId = default;
 
             while (utf8JsonReader.Read())
@@ -214,9 +221,6 @@ namespace Adyen.Checkout.Models
                         case "request":
                             request = new Option<CheckoutOutgoingForwardRequest?>(JsonSerializer.Deserialize<CheckoutOutgoingForwardRequest>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
-                        case "shopperReference":
-                            shopperReference = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
                         case "amount":
                             amount = new Option<Amount?>(JsonSerializer.Deserialize<Amount>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
@@ -228,6 +232,9 @@ namespace Adyen.Checkout.Models
                             break;
                         case "paymentMethod":
                             paymentMethod = new Option<CheckoutForwardRequestCard?>(JsonSerializer.Deserialize<CheckoutForwardRequestCard>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "shopperReference":
+                            shopperReference = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "storedPaymentMethodId":
                             storedPaymentMethodId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -246,8 +253,6 @@ namespace Adyen.Checkout.Models
                 checkoutForwardRequest.MerchantAccount = merchantAccount.Value!;
             if (request.IsSet)
                 checkoutForwardRequest.Request = request.Value!;
-            if (shopperReference.IsSet)
-                checkoutForwardRequest.ShopperReference = shopperReference.Value!;
             if (amount.IsSet)
                 checkoutForwardRequest.Amount = amount.Value;
             if (merchantReference.IsSet)
@@ -256,6 +261,8 @@ namespace Adyen.Checkout.Models
                 checkoutForwardRequest.Options = options.Value;
             if (paymentMethod.IsSet)
                 checkoutForwardRequest.PaymentMethod = paymentMethod.Value;
+            if (shopperReference.IsSet)
+                checkoutForwardRequest.ShopperReference = shopperReference.Value;
             if (storedPaymentMethodId.IsSet)
                 checkoutForwardRequest.StoredPaymentMethodId = storedPaymentMethodId.Value;
             return checkoutForwardRequest;
@@ -295,9 +302,6 @@ namespace Adyen.Checkout.Models
 
             writer.WritePropertyName("request");
             JsonSerializer.Serialize(writer, checkoutForwardRequest.Request, jsonSerializerOptions);
-            if (checkoutForwardRequest.ShopperReference != null)
-                writer.WriteString("shopperReference", checkoutForwardRequest.ShopperReference);
-
             if (checkoutForwardRequest._AmountOption.IsSet)
             {
                 writer.WritePropertyName("amount");
@@ -317,6 +321,10 @@ namespace Adyen.Checkout.Models
                 writer.WritePropertyName("paymentMethod");
                 JsonSerializer.Serialize(writer, checkoutForwardRequest.PaymentMethod, jsonSerializerOptions);
             }
+            if (checkoutForwardRequest._ShopperReferenceOption.IsSet)
+                if (checkoutForwardRequest.ShopperReference != null)
+                    writer.WriteString("shopperReference", checkoutForwardRequest.ShopperReference);
+
             if (checkoutForwardRequest._StoredPaymentMethodIdOption.IsSet)
                 if (checkoutForwardRequest.StoredPaymentMethodId != null)
                     writer.WriteString("storedPaymentMethodId", checkoutForwardRequest.StoredPaymentMethodId);

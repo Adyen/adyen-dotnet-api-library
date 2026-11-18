@@ -362,6 +362,20 @@ namespace Adyen.Checkout.Models
         public string? Number { get { return this._NumberOption; } set { this._NumberOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="StoreClickToPayProfile"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> _StoreClickToPayProfileOption { get; private set; }
+
+        /// <summary>
+        /// When enrolling a new user, this field determines whether to store the shopper&#39;s card in their Click to Pay profile. When this is set to **True**, the request must include &#x60;shopperEmail&#x60;, &#x60;shopperName&#x60;, and &#x60;telephoneNumber&#x60;.
+        /// </summary>
+        /// <value>When enrolling a new user, this field determines whether to store the shopper's card in their Click to Pay profile. When this is set to **True**, the request must include `shopperEmail`, `shopperName`, and `telephoneNumber`.</value>
+        [JsonPropertyName("storeClickToPayProfile")]
+        public bool? StoreClickToPayProfile { get { return this._StoreClickToPayProfileOption; } set { this._StoreClickToPayProfileOption = new(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -376,6 +390,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  ExpiryYear: ").Append(ExpiryYear).Append("\n");
             sb.Append("  HolderName: ").Append(HolderName).Append("\n");
             sb.Append("  Number: ").Append(Number).Append("\n");
+            sb.Append("  StoreClickToPayProfile: ").Append(StoreClickToPayProfile).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -411,6 +426,7 @@ namespace Adyen.Checkout.Models
             Option<string?> expiryYear = default;
             Option<string?> holderName = default;
             Option<string?> number = default;
+            Option<bool?> storeClickToPayProfile = default;
             Option<ExternalTokenDetails.TypeEnum?> type = default;
 
             while (utf8JsonReader.Read())
@@ -450,6 +466,9 @@ namespace Adyen.Checkout.Models
                         case "number":
                             number = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "storeClickToPayProfile":
+                            storeClickToPayProfile = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             type = new Option<ExternalTokenDetails.TypeEnum?>(ExternalTokenDetails.TypeEnum.FromStringOrDefault(typeRawValue) ?? (ExternalTokenDetails.TypeEnum)typeRawValue);
@@ -476,6 +495,8 @@ namespace Adyen.Checkout.Models
                 externalTokenDetails.HolderName = holderName.Value;
             if (number.IsSet)
                 externalTokenDetails.Number = number.Value;
+            if (storeClickToPayProfile.IsSet)
+                externalTokenDetails.StoreClickToPayProfile = storeClickToPayProfile.Value;
             if (type.IsSet)
                 externalTokenDetails.Type = type.Value!;
             return externalTokenDetails;
@@ -535,6 +556,10 @@ namespace Adyen.Checkout.Models
             if (externalTokenDetails._NumberOption.IsSet)
                 if (externalTokenDetails.Number != null)
                     writer.WriteString("number", externalTokenDetails.Number);
+
+            if (externalTokenDetails._StoreClickToPayProfileOption.IsSet)
+                if (externalTokenDetails._StoreClickToPayProfileOption.Value != null)
+                    writer.WriteBoolean("storeClickToPayProfile", externalTokenDetails._StoreClickToPayProfileOption.Value!.Value);
 
             if (externalTokenDetails.Type != null) 
             {
