@@ -43,18 +43,32 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="CurrencyCode"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _CurrencyCodeOption { get; private set; }
+
+        /// <summary>
         /// Sofort currency code. For example, **EUR**.
         /// </summary>
         /// <value>Sofort currency code. For example, **EUR**.</value>
         [JsonPropertyName("currencyCode")]
-        public string? CurrencyCode { get; set; }
+        public string? CurrencyCode { get { return this._CurrencyCodeOption; } set { this._CurrencyCodeOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Logo"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _LogoOption { get; private set; }
 
         /// <summary>
         /// Sofort logo. Format: Base64-encoded string.
         /// </summary>
         /// <value>Sofort logo. Format: Base64-encoded string.</value>
         [JsonPropertyName("logo")]
-        public string? Logo { get; set; }
+        public string? Logo { get { return this._LogoOption; } set { this._LogoOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -126,9 +140,9 @@ namespace Adyen.Management.Models
 
             var sofortResponseInfo = new SofortResponseInfo();
             if (currencyCode.IsSet)
-                sofortResponseInfo.CurrencyCode = currencyCode.Value!;
+                sofortResponseInfo.CurrencyCode = currencyCode.Value;
             if (logo.IsSet)
-                sofortResponseInfo.Logo = logo.Value!;
+                sofortResponseInfo.Logo = logo.Value;
             return sofortResponseInfo;
         }
 
@@ -158,11 +172,13 @@ namespace Adyen.Management.Models
         public void WriteProperties(Utf8JsonWriter writer, SofortResponseInfo sofortResponseInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (sofortResponseInfo.CurrencyCode != null)
-                writer.WriteString("currencyCode", sofortResponseInfo.CurrencyCode);
+            if (sofortResponseInfo._CurrencyCodeOption.IsSet)
+                if (sofortResponseInfo.CurrencyCode != null)
+                    writer.WriteString("currencyCode", sofortResponseInfo.CurrencyCode);
 
-            if (sofortResponseInfo.Logo != null)
-                writer.WriteString("logo", sofortResponseInfo.Logo);
+            if (sofortResponseInfo._LogoOption.IsSet)
+                if (sofortResponseInfo.Logo != null)
+                    writer.WriteString("logo", sofortResponseInfo.Logo);
         }
     }
 }

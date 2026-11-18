@@ -85,6 +85,20 @@ namespace Adyen.Management.Models
         public bool? EnableStandalone { get { return this._EnableStandaloneOption; } set { this._EnableStandaloneOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantReference"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _MerchantReferenceOption { get; private set; }
+
+        /// <summary>
+        /// The merchant reference to be sent with every transaction when the terminal is in standalone mode. Used for reconciliation.  This property also accepts one or more variables as input, together with plain text. When this property reaches the terminal, the terminal replaces the variables with the values that apply to it. For the list of allowed variables, see [Configure the merchant reference](https://docs.adyen.com/point-of-sale/standalone/standalone-build/set-up-standalone#configure-merchant-reference). 
+        /// </summary>
+        /// <value>The merchant reference to be sent with every transaction when the terminal is in standalone mode. Used for reconciliation.  This property also accepts one or more variables as input, together with plain text. When this property reaches the terminal, the terminal replaces the variables with the values that apply to it. For the list of allowed variables, see [Configure the merchant reference](https://docs.adyen.com/point-of-sale/standalone/standalone-build/set-up-standalone#configure-merchant-reference). </value>
+        [JsonPropertyName("merchantReference")]
+        public string? MerchantReference { get { return this._MerchantReferenceOption; } set { this._MerchantReferenceOption = new(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -95,6 +109,7 @@ namespace Adyen.Management.Models
             sb.Append("  CurrencyCode: ").Append(CurrencyCode).Append("\n");
             sb.Append("  EnableGratuities: ").Append(EnableGratuities).Append("\n");
             sb.Append("  EnableStandalone: ").Append(EnableStandalone).Append("\n");
+            sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -125,6 +140,7 @@ namespace Adyen.Management.Models
             Option<string?> currencyCode = default;
             Option<bool?> enableGratuities = default;
             Option<bool?> enableStandalone = default;
+            Option<string?> merchantReference = default;
 
             while (utf8JsonReader.Read())
             {
@@ -150,6 +166,9 @@ namespace Adyen.Management.Models
                         case "enableStandalone":
                             enableStandalone = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
+                        case "merchantReference":
+                            merchantReference = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         default:
                             break;
                     }
@@ -164,6 +183,8 @@ namespace Adyen.Management.Models
                 standalone.EnableGratuities = enableGratuities.Value;
             if (enableStandalone.IsSet)
                 standalone.EnableStandalone = enableStandalone.Value;
+            if (merchantReference.IsSet)
+                standalone.MerchantReference = merchantReference.Value;
             return standalone;
         }
 
@@ -204,6 +225,10 @@ namespace Adyen.Management.Models
             if (standalone._EnableStandaloneOption.IsSet)
                 if (standalone._EnableStandaloneOption.Value != null)
                     writer.WriteBoolean("enableStandalone", standalone._EnableStandaloneOption.Value!.Value);
+
+            if (standalone._MerchantReferenceOption.IsSet)
+                if (standalone.MerchantReference != null)
+                    writer.WriteString("merchantReference", standalone.MerchantReference);
         }
     }
 }
