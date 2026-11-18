@@ -305,9 +305,9 @@ namespace Adyen.Management.Models
         public Option<string?> _PhoneNumberOption { get; private set; }
 
         /// <summary>
-        /// The phone number of the store, including &#39;+&#39; and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. 
+        /// The phone number of the store, including &#39;+&#39; and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format.
         /// </summary>
-        /// <value>The phone number of the store, including '+' and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. </value>
+        /// <value>The phone number of the store, including '+' and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format.</value>
         [JsonPropertyName("phoneNumber")]
         public string? PhoneNumber { get { return this._PhoneNumberOption; } set { this._PhoneNumberOption = new(value); } }
 

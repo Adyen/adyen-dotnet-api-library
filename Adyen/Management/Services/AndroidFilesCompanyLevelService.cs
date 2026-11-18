@@ -114,10 +114,10 @@ namespace Adyen.Management.Services
         Task<IUploadAndroidAppApiResponse> UploadAndroidAppAsync(string companyId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Upload Android Certificate
+        /// Upload Android certificate
         /// </summary>
         /// <remarks>
-        /// Uploads an Android Certificate file to Adyen.  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
+        /// Uploads an Android certificate file to Adyen.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#manage-api-permissions): * Management API—Android files read and write  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
@@ -511,6 +511,11 @@ namespace Adyen.Management.Services
     /// </summary>
     public sealed partial class AndroidFilesCompanyLevelService : IAndroidFilesCompanyLevelService
     {
+
+        /// <summary>
+        /// The version of the OpenAPI document.
+        /// </summary>
+        public static string ApiVersion => "3";
 
         /// <summary>
         /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
@@ -2412,7 +2417,7 @@ namespace Adyen.Management.Services
         }
         
         /// <summary>
-        /// Upload Android Certificate Uploads an Android Certificate file to Adyen.  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
+        /// Upload Android certificate Uploads an Android certificate file to Adyen.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#manage-api-permissions): * Management API—Android files read and write  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
