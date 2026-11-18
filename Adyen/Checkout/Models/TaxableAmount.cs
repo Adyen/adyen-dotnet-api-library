@@ -43,16 +43,16 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+        /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.
         /// </summary>
-        /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).</value>
+        /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.</value>
         [JsonPropertyName("currency")]
         public string? Currency { get; set; }
 
         /// <summary>
-        /// The amount in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+        /// The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units)
         /// </summary>
-        /// <value>The amount in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
+        /// <value>The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units)</value>
         [JsonPropertyName("value")]
         public long Value { get; set; }
 

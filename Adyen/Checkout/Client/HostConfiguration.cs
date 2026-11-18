@@ -324,6 +324,8 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new ThreeDSecureDataJsonConverter());
             _jsonOptions.Converters.Add(new TicketJsonConverter());
             _jsonOptions.Converters.Add(new TokenMandateJsonConverter());
+            _jsonOptions.Converters.Add(new TokenizedShopperTaxIdentificationJsonConverter());
+            _jsonOptions.Converters.Add(new TokenizedTaxCalculationJsonConverter());
             _jsonOptions.Converters.Add(new TravelAgencyJsonConverter());
             _jsonOptions.Converters.Add(new TwintDetailsJsonConverter());
             _jsonOptions.Converters.Add(new UPIPaymentMethodJsonConverter());
