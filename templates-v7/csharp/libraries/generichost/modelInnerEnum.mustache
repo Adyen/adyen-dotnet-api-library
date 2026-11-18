@@ -79,7 +79,7 @@
             /// </summary>
             /// <param name="value"></param>
             /// <returns><see cref="{{datatypeWithEnum}}"/> or null.</returns>
-            public static {{datatypeWithEnum}}? FromStringOrDefault(string value)
+            public static {{datatypeWithEnum}}? FromStringOrDefault(string? value)
             {
                 return value switch {
                     {{#allowableValues}}{{#enumVars}}{{#isString}}"{{{value}}}"{{/isString}} => {{datatypeWithEnum}}.{{name}},
@@ -117,7 +117,7 @@
                 /// </summary>
                 public override {{datatypeWithEnum}}? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions jsonOptions)
                 {
-                    string value = reader.GetString();
+                    string? value = reader.GetString();
                     return value == null ? null : {{datatypeWithEnum}}.FromStringOrDefault(value) ?? new {{datatypeWithEnum}}(value);
                 }
 
