@@ -79,6 +79,62 @@ namespace Adyen.Test.Transfers
         }
         
         [TestMethod]
+        public void Given_Deserialize_When_Transfer_Reversal_With_IssuedCard_Returns_Correct_Values()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/transfers/get-transfer-reversal.json");
+
+            // Act
+            var response = JsonSerializer.Deserialize<TransferData>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(response);
+            Assert.AreEqual(TransferData.StatusEnum.ReversalReceived, response.Status);
+            Assert.AreEqual(TransferData.CategoryEnum.IssuedCard, response.Category);
+
+            // Network reason with the usAchCorrectionReasonCode namespace
+            Assert.IsNotNull(response.NetworkReason);
+            Assert.AreEqual(NetworkReason.NamespaceEnum.UsAchCorrectionReasonCode, response.NetworkReason.Namespace);
+            Assert.AreEqual("C01", response.NetworkReason.Code);
+
+            // Issued card category data including the networkVariant
+            Assert.IsNotNull(response.CategoryData);
+            Assert.IsNotNull(response.CategoryData.IssuedCard);
+            Assert.AreEqual(IssuedCard.NetworkVariantEnum.MaestroUs, response.CategoryData.IssuedCard.NetworkVariant);
+
+            // Reversal event carrying the reversalReceived status and its modification
+            Assert.IsNotNull(response.Events);
+            var reversalEvent = response.Events.First(e => e.Status == TransferEvent.StatusEnum.ReversalReceived);
+            Assert.IsNotNull(reversalEvent.Modification);
+            Assert.AreEqual(Modification.StatusEnum.ReversalReceived, reversalEvent.Modification.Status);
+        }
+
+        [TestMethod]
+        public void Given_Enums_When_Mapped_Then_Result_Is_Correct()
+        {
+            // Assert
+            // IssuedCard.NetworkVariantEnum wire-value mapping and forward compatibility
+            Assert.IsNull(IssuedCard.NetworkVariantEnum.FromStringOrDefault("some_future_network"));
+            Assert.AreEqual("maestro_us", IssuedCard.NetworkVariantEnum.MaestroUs.Value);
+            Assert.AreEqual("maestro_us", IssuedCard.NetworkVariantEnum.ToJsonValue(IssuedCard.NetworkVariantEnum.MaestroUs));
+            Assert.AreEqual(IssuedCard.NetworkVariantEnum.Visa, IssuedCard.NetworkVariantEnum.FromStringOrDefault("visa"));
+
+            // NetworkReason.NamespaceEnum wire-value mapping
+            Assert.AreEqual(NetworkReason.NamespaceEnum.UsAchCorrectionReasonCode, NetworkReason.NamespaceEnum.FromStringOrDefault("usAchCorrectionReasonCode"));
+
+            // TransferData and Transfer status/type wire-value mapping
+            Assert.AreEqual(TransferData.StatusEnum.ReversalReceived, TransferData.StatusEnum.FromStringOrDefault("reversalReceived"));
+            Assert.AreEqual(TransferData.TypeEnum.BalanceMigration, TransferData.TypeEnum.FromStringOrDefault("balanceMigration"));
+            Assert.AreEqual(TransferData.TypeEnum.FxSell, TransferData.TypeEnum.FromStringOrDefault("fxSell"));
+            Assert.AreEqual(TransferData.TypeEnum.FxBuy, TransferData.TypeEnum.FromStringOrDefault("fxBuy"));
+            Assert.AreEqual(Transfer.StatusEnum.ReversalReceived, Transfer.StatusEnum.FromStringOrDefault("reversalReceived"));
+
+            // TransferEvent and Modification status wire-value mapping
+            Assert.AreEqual(TransferEvent.StatusEnum.ReversalReceived, TransferEvent.StatusEnum.FromStringOrDefault("reversalReceived"));
+            Assert.AreEqual(Modification.StatusEnum.ReversalReceived, Modification.StatusEnum.FromStringOrDefault("reversalReceived"));
+        }
+
+        [TestMethod]
         public async Task Given_Deserialize_When_FindTransfersResponse_Returns_Not_Null()
         {
             // Arrange
