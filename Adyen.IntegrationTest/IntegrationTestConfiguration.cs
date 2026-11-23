@@ -17,6 +17,7 @@ namespace Adyen.IntegrationTest
         public string DocumentId { get; }
         public string AccountHolderId { get; }
         public string BalanceAccountId { get; }
+        public string PspReference { get; }
 
         private IntegrationTestConfiguration(JsonElement root)
         {
@@ -33,6 +34,7 @@ namespace Adyen.IntegrationTest
             DocumentId = RequiredString(root, "documentId", invalidFields);
             AccountHolderId = RequiredString(root, "accountHolderId", invalidFields);
             BalanceAccountId = RequiredString(root, "balanceAccountId", invalidFields);
+            PspReference = RequiredString(root, "pspReference", invalidFields);
 
             if (invalidFields.Count > 0)
                 throw new InvalidOperationException(
