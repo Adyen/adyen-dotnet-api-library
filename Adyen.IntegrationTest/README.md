@@ -85,9 +85,9 @@ ignored.
 | Field | Used by |
 |---|---|
 | `company` | Company account, reserved for future tests |
-| `merchantAccount` | Checkout and Management |
+| `merchantAccount` | Checkout, Management, and Document Collector |
 | `balancePlatform` | Balance Platform, reserved for future tests |
-| `apiKey` | Checkout and Management |
+| `apiKey` | Checkout, Management, and Document Collector |
 | `lemApiKey` | Legal Entity Management |
 | `bclApiKey` | Balance Platform |
 | `givingCampaignId` | Giving campaigns, reserved for future tests |
@@ -96,10 +96,15 @@ ignored.
 | `documentId` | Legal Entity Management, reserved for future tests |
 | `accountHolderId` | Balance Platform |
 | `balanceAccountId` | Balance Platform, reserved for future tests |
+| `pspReference` | Document Collector, existing TEST payment belonging to `merchantAccount` |
 
 The configured resources must exist in the TEST environment and be accessible to the matching
 API credentials. The PSP credential also needs permission to list merchant users for Management
 coverage. Use a dedicated test account holder: one test updates its description.
+Document Collector also requires invoice-upload permissions on the PSP credential and a payment
+eligible for cross-border invoice collection. Its test uploads the synthetic PDF fixture as
+`{pspReference}.pdf`; it does not create a payment. Add the same non-blank `pspReference` field
+to the shared CI configuration before enabling this test there.
 
 Never put credentials in command-line arguments, tracked files, or logs.
 `BaseIntegrationTest` loads and validates the configuration once, before constructing API clients.
@@ -136,10 +141,13 @@ TRX reports are uploaded as `integration-test-results-net8.0` or
 | `LegalEntityManagementServiceIntegrationTest` | Retrieves business lines and creates an individual legal entity |
 | `AccountHoldersServiceIntegrationTest` | Creates, retrieves, and updates account holders; lists balance accounts and transaction rules; retrieves a tax-form summary |
 | `ManagementServiceIntegrationTest` | Lists merchant users |
+| `DocumentsServiceIntegrationTest` | Uploads a cross-border invoice PDF for the configured TEST payment |
 | `IntegrationTestConfigurationTests` | Validates configuration parsing and source precedence without external calls |
 
-External execution creates payments, legal entities, and account holders, and updates the
-configured account holder. Only run it when those TEST-environment operations are intentional.
+External execution creates payments, legal entities, and account holders, uploads invoices, and
+updates the configured account holder. The Document Collector API exposes no delete operation
+for cleaning up uploaded invoices. Only run these tests when those TEST-environment operations
+are intentional.
 
 ## Validation without external calls
 

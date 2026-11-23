@@ -19,7 +19,8 @@ namespace Adyen.IntegrationTest
             ["businessLineId"] = "business",
             ["documentId"] = "document",
             ["accountHolderId"] = "holder",
-            ["balanceAccountId"] = "balance"
+            ["balanceAccountId"] = "balance",
+            ["pspReference"] = "test-psp-reference"
         };
 
         [TestMethod]
@@ -40,6 +41,7 @@ namespace Adyen.IntegrationTest
             Assert.AreEqual("document", configuration.DocumentId);
             Assert.AreEqual("holder", configuration.AccountHolderId);
             Assert.AreEqual("balance", configuration.BalanceAccountId);
+            Assert.AreEqual("test-psp-reference", configuration.PspReference);
         }
 
         [TestMethod]
@@ -53,7 +55,7 @@ namespace Adyen.IntegrationTest
                 new[]
                 {
                     "company", "merchant", "platform", "psp-key", "lem-key", "bcl-key",
-                    "campaign", "entity", "business", "document", "holder", "balance"
+                    "campaign", "entity", "business", "document", "holder", "balance", "test-psp-reference"
                 },
                 test.Values,
                 "The base class must expose every typed configuration field.");
@@ -68,7 +70,8 @@ namespace Adyen.IntegrationTest
             public string[] Values => new[]
             {
                 Company, MerchantAccount, BalancePlatformId, ApiKey, LemApiKey, BclApiKey,
-                GivingCampaignId, LegalEntityId, BusinessLineId, DocumentId, AccountHolderId, BalanceAccountId
+                GivingCampaignId, LegalEntityId, BusinessLineId, DocumentId, AccountHolderId, BalanceAccountId,
+                PspReference
             };
         }
 
@@ -120,6 +123,7 @@ namespace Adyen.IntegrationTest
         [DataRow("documentId")]
         [DataRow("accountHolderId")]
         [DataRow("balanceAccountId")]
+        [DataRow("pspReference")]
         public void Given_MissingField_When_Loaded_Then_ReportsFieldNameOnly(string field)
         {
             JsonObject json = ValidConfiguration();
@@ -154,6 +158,27 @@ namespace Adyen.IntegrationTest
 
         [TestMethod]
         [DataRow("null")]
+        [DataRow("\"\"")]
+        [DataRow("\"  \"")]
+        [DataRow("123")]
+        [DataRow("true")]
+        [DataRow("[]")]
+        [DataRow("{}")]
+        public void Given_InvalidPspReference_When_Loaded_Then_ReportsFieldNameOnly(string value)
+        {
+            JsonObject json = ValidConfiguration();
+            json["pspReference"] = JsonNode.Parse(value);
+
+            InvalidOperationException exception = Assert.ThrowsExactly<InvalidOperationException>(() =>
+                IntegrationTestConfiguration.FromJson(json.ToJsonString()));
+
+            StringAssert.Contains(exception.Message, "pspReference");
+            Assert.IsFalse(exception.ToString().Contains("psp-key"),
+                "Configuration failures must not expose credential values.");
+        }
+
+        [TestMethod]
+        [DataRow("null")]
         [DataRow("[]")]
         [DataRow("\"sensitive-value\"")]
         [DataRow("123")]
@@ -173,11 +198,13 @@ namespace Adyen.IntegrationTest
         {
             JsonObject json = ValidConfiguration();
             json["merchantAccount"] = " merchant \t";
+            json["pspReference"] = " test-psp-reference \t";
             json["futureField"] = new JsonObject();
 
             IntegrationTestConfiguration configuration = IntegrationTestConfiguration.FromJson(json.ToJsonString());
 
             Assert.AreEqual("merchant", configuration.MerchantAccount);
+            Assert.AreEqual("test-psp-reference", configuration.PspReference);
         }
 
         [TestMethod]

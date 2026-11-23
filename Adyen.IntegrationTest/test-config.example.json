@@ -10,5 +10,6 @@
   "businessLineId": "YOUR_BUSINESS_LINE_ID",
   "documentId": "YOUR_DOCUMENT_ID",
   "accountHolderId": "YOUR_ACCOUNT_HOLDER_ID",
-  "balanceAccountId": "YOUR_BALANCE_ACCOUNT_ID"
+  "balanceAccountId": "YOUR_BALANCE_ACCOUNT_ID",
+  "pspReference": "YOUR_TEST_PAYMENT_PSP_REFERENCE"
 }

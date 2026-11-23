@@ -27,5 +27,6 @@ namespace Adyen.IntegrationTest
         protected string DocumentId => _configuration.DocumentId;
         protected string AccountHolderId => _configuration.AccountHolderId;
         protected string BalanceAccountId => _configuration.BalanceAccountId;
+        protected string PspReference => _configuration.PspReference;
     }
 }
