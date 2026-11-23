@@ -121,6 +121,8 @@ namespace Adyen.Disputes.Models
                     switch (jsonPropertyName)
                     {
                         case "available":
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                                throw new JsonException("Property 'available' on 'DefenseDocumentType' cannot be null.");
                             available = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "defenseDocumentTypeCode":
