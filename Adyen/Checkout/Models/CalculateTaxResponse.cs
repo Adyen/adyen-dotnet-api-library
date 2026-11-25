@@ -63,9 +63,9 @@ namespace Adyen.Checkout.Models
         public Option<string?> _TaxCalculationReferenceOption { get; private set; }
 
         /// <summary>
-        /// The unique reference for this calculation attempt.
+        /// The unique reference for the tax calculation.
         /// </summary>
-        /// <value>The unique reference for this calculation attempt.</value>
+        /// <value>The unique reference for the tax calculation.</value>
         [JsonPropertyName("taxCalculationReference")]
         public string? TaxCalculationReference { get { return this._TaxCalculationReferenceOption; } set { this._TaxCalculationReferenceOption = new(value); } }
 
@@ -77,9 +77,9 @@ namespace Adyen.Checkout.Models
         public Option<string?> _TaxCalculationTokenOption { get; private set; }
 
         /// <summary>
-        /// The opaque, encrypted, and signed token that represents the complete canonical calculation. Required in /payments.
+        /// The encrypted and signed token representing the tax calculation. Submit this value as &#x60;taxCalculation.taxCalculationToken&#x60; in &#x60;/payments&#x60;.
         /// </summary>
-        /// <value>The opaque, encrypted, and signed token that represents the complete canonical calculation. Required in /payments.</value>
+        /// <value>The encrypted and signed token representing the tax calculation. Submit this value as `taxCalculation.taxCalculationToken` in `/payments`.</value>
         [JsonPropertyName("taxCalculationToken")]
         public string? TaxCalculationToken { get { return this._TaxCalculationTokenOption; } set { this._TaxCalculationTokenOption = new(value); } }
 

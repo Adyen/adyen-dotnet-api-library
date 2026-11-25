@@ -1680,9 +1680,9 @@ namespace Adyen.Checkout.Models
         public Option<bool?> _ThreeDSAuthenticationOnlyOption { get; private set; }
 
         /// <summary>
-        /// Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.Default: **false**.
+        /// Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.  Default: **false**.
         /// </summary>
-        /// <value>Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.Default: **false**.</value>
+        /// <value>Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.  Default: **false**.</value>
         [JsonPropertyName("threeDSAuthenticationOnly")]
         /* Deprecated since Adyen Checkout API v69: Use `authenticationData.authenticationOnly` instead. */
         [Obsolete("Deprecated since Adyen Checkout API v69.")]

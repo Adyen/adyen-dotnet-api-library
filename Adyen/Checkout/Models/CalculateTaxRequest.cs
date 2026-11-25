@@ -43,9 +43,9 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The merchant account identifier requesting the tax calculation.
+        /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
-        /// <value>The merchant account identifier requesting the tax calculation.</value>
+        /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
         public string? MerchantAccount { get; set; }
 

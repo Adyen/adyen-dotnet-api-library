@@ -38,9 +38,9 @@ namespace Adyen.Checkout.Models
         public string? Value { get; set; }
 
         /// <summary>
-        /// CalculationType.LRSTCS - LRS_TCS
+        /// CalculationType.LrsTcs - lrsTcs
         /// </summary>
-        public static readonly CalculationType LRSTCS = new("LRS_TCS");
+        public static readonly CalculationType LrsTcs = new("lrsTcs");
 
         private CalculationType(string? value)
         {
@@ -88,7 +88,7 @@ namespace Adyen.Checkout.Models
         public static CalculationType? FromStringOrDefault(string? value)
         {
             return value switch {
-                "LRS_TCS" => CalculationType.LRSTCS,
+                "lrsTcs" => CalculationType.LrsTcs,
                 _ => null,
             };
         }
@@ -102,8 +102,8 @@ namespace Adyen.Checkout.Models
             if (value == null)
                 return null;
 
-            if (value == CalculationType.LRSTCS)
-                return "LRS_TCS";
+            if (value == CalculationType.LrsTcs)
+                return "lrsTcs";
 
             return value.Value;
         }

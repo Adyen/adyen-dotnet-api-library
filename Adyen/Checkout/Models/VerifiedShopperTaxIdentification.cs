@@ -63,9 +63,9 @@ namespace Adyen.Checkout.Models
         public Option<string?> _MaskedNameOption { get; private set; }
 
         /// <summary>
-        /// The masked name of the tax identification holder.
+        /// The masked name of the tax identification holder. The full name is not returned.
         /// </summary>
-        /// <value>The masked name of the tax identification holder.</value>
+        /// <value>The masked name of the tax identification holder. The full name is not returned.</value>
         [JsonPropertyName("maskedName")]
         public string? MaskedName { get { return this._MaskedNameOption; } set { this._MaskedNameOption = new(value); } }
 
@@ -77,9 +77,9 @@ namespace Adyen.Checkout.Models
         public Option<string?> _TaxCountryCodeOption { get; private set; }
 
         /// <summary>
-        /// The country governing the shopper&#39;s tax processing.
+        /// The two-letter country code governing the shopper&#39;s tax processing, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. Supported value: **IN**.
         /// </summary>
-        /// <value>The country governing the shopper's tax processing.</value>
+        /// <value>The two-letter country code governing the shopper's tax processing, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. Supported value: **IN**.</value>
         [JsonPropertyName("taxCountryCode")]
         public string? TaxCountryCode { get { return this._TaxCountryCodeOption; } set { this._TaxCountryCodeOption = new(value); } }
 

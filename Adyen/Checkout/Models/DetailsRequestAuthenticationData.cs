@@ -50,9 +50,9 @@ namespace Adyen.Checkout.Models
         public Option<bool?> _AuthenticationOnlyOption { get; private set; }
 
         /// <summary>
-        /// Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.Default: **false**.
+        /// Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.  Default: **false**.
         /// </summary>
-        /// <value>Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.Default: **false**.</value>
+        /// <value>Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.  Default: **false**.</value>
         [JsonPropertyName("authenticationOnly")]
         public bool? AuthenticationOnly { get { return this._AuthenticationOnlyOption; } set { this._AuthenticationOnlyOption = new(value); } }
 

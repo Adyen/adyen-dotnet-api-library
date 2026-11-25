@@ -38,14 +38,14 @@ namespace Adyen.Checkout.Models
         public string? Value { get; set; }
 
         /// <summary>
-        /// SublimitStatus.EXCEEDED - EXCEEDED
+        /// SublimitStatus.Exceeded - exceeded
         /// </summary>
-        public static readonly SublimitStatus EXCEEDED = new("EXCEEDED");
+        public static readonly SublimitStatus Exceeded = new("exceeded");
 
         /// <summary>
-        /// SublimitStatus.NOTEXCEEDED - NOT_EXCEEDED
+        /// SublimitStatus.NotExceeded - notExceeded
         /// </summary>
-        public static readonly SublimitStatus NOTEXCEEDED = new("NOT_EXCEEDED");
+        public static readonly SublimitStatus NotExceeded = new("notExceeded");
 
         private SublimitStatus(string? value)
         {
@@ -93,8 +93,8 @@ namespace Adyen.Checkout.Models
         public static SublimitStatus? FromStringOrDefault(string? value)
         {
             return value switch {
-                "EXCEEDED" => SublimitStatus.EXCEEDED,
-                "NOT_EXCEEDED" => SublimitStatus.NOTEXCEEDED,
+                "exceeded" => SublimitStatus.Exceeded,
+                "notExceeded" => SublimitStatus.NotExceeded,
                 _ => null,
             };
         }
@@ -108,11 +108,11 @@ namespace Adyen.Checkout.Models
             if (value == null)
                 return null;
 
-            if (value == SublimitStatus.EXCEEDED)
-                return "EXCEEDED";
+            if (value == SublimitStatus.Exceeded)
+                return "exceeded";
 
-            if (value == SublimitStatus.NOTEXCEEDED)
-                return "NOT_EXCEEDED";
+            if (value == SublimitStatus.NotExceeded)
+                return "notExceeded";
 
             return value.Value;
         }

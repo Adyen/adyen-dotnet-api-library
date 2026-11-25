@@ -702,6 +702,20 @@ namespace Adyen.Checkout.Models
         public string? SrcTokenReference { get { return this._SrcTokenReferenceOption; } set { this._SrcTokenReferenceOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="StoreClickToPayProfile"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> _StoreClickToPayProfileOption { get; private set; }
+
+        /// <summary>
+        /// When enrolling a new user, this field determines whether to store the shopper&#39;s card in their Click to Pay profile. When this is set to **True**, the request must include &#x60;shopperEmail&#x60;, &#x60;shopperName&#x60;, and &#x60;telephoneNumber&#x60;.
+        /// </summary>
+        /// <value>When enrolling a new user, this field determines whether to store the shopper's card in their Click to Pay profile. When this is set to **True**, the request must include `shopperEmail`, `shopperName`, and `telephoneNumber`.</value>
+        [JsonPropertyName("storeClickToPayProfile")]
+        public bool? StoreClickToPayProfile { get { return this._StoreClickToPayProfileOption; } set { this._StoreClickToPayProfileOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="StoredPaymentMethodId"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -762,6 +776,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  SrcDigitalCardId: ").Append(SrcDigitalCardId).Append("\n");
             sb.Append("  SrcScheme: ").Append(SrcScheme).Append("\n");
             sb.Append("  SrcTokenReference: ").Append(SrcTokenReference).Append("\n");
+            sb.Append("  StoreClickToPayProfile: ").Append(StoreClickToPayProfile).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  ThreeDS2SdkVersion: ").Append(ThreeDS2SdkVersion).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -817,6 +832,7 @@ namespace Adyen.Checkout.Models
             Option<string?> srcDigitalCardId = default;
             Option<string?> srcScheme = default;
             Option<string?> srcTokenReference = default;
+            Option<bool?> storeClickToPayProfile = default;
             Option<string?> storedPaymentMethodId = default;
             Option<string?> threeDS2SdkVersion = default;
             Option<CardDetails.TypeEnum?> type = default;
@@ -912,6 +928,9 @@ namespace Adyen.Checkout.Models
                         case "srcTokenReference":
                             srcTokenReference = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "storeClickToPayProfile":
+                            storeClickToPayProfile = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         case "storedPaymentMethodId":
                             storedPaymentMethodId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -980,6 +999,8 @@ namespace Adyen.Checkout.Models
                 cardDetails.SrcScheme = srcScheme.Value;
             if (srcTokenReference.IsSet)
                 cardDetails.SrcTokenReference = srcTokenReference.Value;
+            if (storeClickToPayProfile.IsSet)
+                cardDetails.StoreClickToPayProfile = storeClickToPayProfile.Value;
             if (storedPaymentMethodId.IsSet)
                 cardDetails.StoredPaymentMethodId = storedPaymentMethodId.Value;
             if (threeDS2SdkVersion.IsSet)
@@ -1116,6 +1137,10 @@ namespace Adyen.Checkout.Models
             if (cardDetails._SrcTokenReferenceOption.IsSet)
                 if (cardDetails.SrcTokenReference != null)
                     writer.WriteString("srcTokenReference", cardDetails.SrcTokenReference);
+
+            if (cardDetails._StoreClickToPayProfileOption.IsSet)
+                if (cardDetails._StoreClickToPayProfileOption.Value != null)
+                    writer.WriteBoolean("storeClickToPayProfile", cardDetails._StoreClickToPayProfileOption.Value!.Value);
 
             if (cardDetails._StoredPaymentMethodIdOption.IsSet)
                 if (cardDetails.StoredPaymentMethodId != null)

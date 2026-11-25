@@ -61,7 +61,6 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new AdditionalDataAirlineJsonConverter());
             _jsonOptions.Converters.Add(new AdditionalDataCarRentalJsonConverter());
             _jsonOptions.Converters.Add(new AdditionalDataCommonJsonConverter());
-            _jsonOptions.Converters.Add(new AdditionalDataLevel23JsonConverter());
             _jsonOptions.Converters.Add(new AdditionalDataLodgingJsonConverter());
             _jsonOptions.Converters.Add(new AdditionalDataOpenInvoiceJsonConverter());
             _jsonOptions.Converters.Add(new AdditionalDataOpiJsonConverter());
@@ -70,7 +69,6 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new AdditionalDataRiskJsonConverter());
             _jsonOptions.Converters.Add(new AdditionalDataRiskStandaloneJsonConverter());
             _jsonOptions.Converters.Add(new AdditionalDataSubMerchantJsonConverter());
-            _jsonOptions.Converters.Add(new AdditionalDataTemporaryServicesJsonConverter());
             _jsonOptions.Converters.Add(new AdditionalDataWalletsJsonConverter());
             _jsonOptions.Converters.Add(new AddressJsonConverter());
             _jsonOptions.Converters.Add(new AffirmDetailsJsonConverter());
@@ -324,6 +322,8 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new ThreeDSecureDataJsonConverter());
             _jsonOptions.Converters.Add(new TicketJsonConverter());
             _jsonOptions.Converters.Add(new TokenMandateJsonConverter());
+            _jsonOptions.Converters.Add(new TokenizedShopperTaxIdentificationJsonConverter());
+            _jsonOptions.Converters.Add(new TokenizedTaxCalculationJsonConverter());
             _jsonOptions.Converters.Add(new TravelAgencyJsonConverter());
             _jsonOptions.Converters.Add(new TwintDetailsJsonConverter());
             _jsonOptions.Converters.Add(new UPIPaymentMethodJsonConverter());

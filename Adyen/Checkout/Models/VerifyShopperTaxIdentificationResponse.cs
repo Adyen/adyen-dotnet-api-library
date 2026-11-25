@@ -63,9 +63,9 @@ namespace Adyen.Checkout.Models
         public Option<string?> _ReasonOption { get; private set; }
 
         /// <summary>
-        /// The human-readable reason for the unsuccessful result.
+        /// The human-readable reason for an **INVALID** or **UNKNOWN** verification result.
         /// </summary>
-        /// <value>The human-readable reason for the unsuccessful result.</value>
+        /// <value>The human-readable reason for an **INVALID** or **UNKNOWN** verification result.</value>
         [JsonPropertyName("reason")]
         public string? Reason { get { return this._ReasonOption; } set { this._ReasonOption = new(value); } }
 
@@ -77,9 +77,9 @@ namespace Adyen.Checkout.Models
         public Option<string?> _ReasonCodeOption { get; private set; }
 
         /// <summary>
-        /// The reason code for the unsuccessful result, when available.
+        /// The code for an unsuccessful verification, if available.
         /// </summary>
-        /// <value>The reason code for the unsuccessful result, when available.</value>
+        /// <value>The code for an unsuccessful verification, if available.</value>
         [JsonPropertyName("reasonCode")]
         public string? ReasonCode { get { return this._ReasonCodeOption; } set { this._ReasonCodeOption = new(value); } }
 
@@ -91,9 +91,9 @@ namespace Adyen.Checkout.Models
         public Option<string?> _TaxVerificationReferenceOption { get; private set; }
 
         /// <summary>
-        /// The unique reference for the verification attempt.
+        /// The unique reference for the verification. Returned only when &#x60;result&#x60; is **VALID**.
         /// </summary>
-        /// <value>The unique reference for the verification attempt.</value>
+        /// <value>The unique reference for the verification. Returned only when `result` is **VALID**.</value>
         [JsonPropertyName("taxVerificationReference")]
         public string? TaxVerificationReference { get { return this._TaxVerificationReferenceOption; } set { this._TaxVerificationReferenceOption = new(value); } }
 
@@ -118,9 +118,9 @@ namespace Adyen.Checkout.Models
         public Option<string?> _VerifiedShopperTaxIdentificationTokenOption { get; private set; }
 
         /// <summary>
-        /// The opaque, encrypted, and signed token representing the successful verification. Required in /payments.
+        /// The encrypted and signed token representing a successful verification. Returned only when &#x60;result&#x60; is **VALID**. Submit this value as &#x60;shopperTaxIdentification.verifiedShopperTaxIdentificationToken&#x60; in &#x60;/payments&#x60; with the same &#x60;shopperReference&#x60; used for verification.
         /// </summary>
-        /// <value>The opaque, encrypted, and signed token representing the successful verification. Required in /payments.</value>
+        /// <value>The encrypted and signed token representing a successful verification. Returned only when `result` is **VALID**. Submit this value as `shopperTaxIdentification.verifiedShopperTaxIdentificationToken` in `/payments` with the same `shopperReference` used for verification.</value>
         [JsonPropertyName("verifiedShopperTaxIdentificationToken")]
         public string? VerifiedShopperTaxIdentificationToken { get { return this._VerifiedShopperTaxIdentificationTokenOption; } set { this._VerifiedShopperTaxIdentificationTokenOption = new(value); } }
 

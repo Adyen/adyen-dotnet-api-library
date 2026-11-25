@@ -43,16 +43,16 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The merchant account identifier requesting the tax verification.
+        /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
-        /// <value>The merchant account identifier requesting the tax verification.</value>
+        /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
         public string? MerchantAccount { get; set; }
 
         /// <summary>
-        /// Your reference to uniquely identify this shopper, for example user ID or account ID. Used to bind the verification to the shopper context.  &gt; Your reference must not include personally identifiable information (PII), for example name or email address.
+        /// Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. Use the same &#x60;shopperReference&#x60; in &#x60;/payments&#x60;.  &gt; Your reference must not include personally identifiable information (PII), for example name or email address.
         /// </summary>
-        /// <value>Your reference to uniquely identify this shopper, for example user ID or account ID. Used to bind the verification to the shopper context.  > Your reference must not include personally identifiable information (PII), for example name or email address.</value>
+        /// <value>Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. Use the same `shopperReference` in `/payments`.  > Your reference must not include personally identifiable information (PII), for example name or email address.</value>
         [JsonPropertyName("shopperReference")]
         public string? ShopperReference { get; set; }
 
