@@ -43,6 +43,143 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
+        /// Indicates the processing flow for the payment method. Possible values: - **auth**: If you have not [configured automatic capture](https://docs.adyen.com/online-payments/capture#types-of-capture) for the transaction, you must manually capture the funds.  - **sale**: You do not need to separately capture the funds, because capture happens automatically as part of the transaction, together with authorization. 
+        /// </summary>
+        /// <value>Indicates the processing flow for the payment method. Possible values: - **auth**: If you have not [configured automatic capture](https://docs.adyen.com/online-payments/capture#types-of-capture) for the transaction, you must manually capture the funds.  - **sale**: You do not need to separately capture the funds, because capture happens automatically as part of the transaction, together with authorization. </value>
+        [JsonConverter(typeof(NetworkProcessingModeEnumJsonConverter))]
+        public class NetworkProcessingModeEnum : IEnum
+        {
+            /// <summary>
+            /// Returns the value of the NetworkProcessingModeEnum.
+            /// </summary>
+            public string? Value { get; set; }
+
+            /// <summary>
+            /// NetworkProcessingModeEnum.Auth - auth
+            /// </summary>
+            public static readonly NetworkProcessingModeEnum Auth = new("auth");
+
+            /// <summary>
+            /// NetworkProcessingModeEnum.Sale - sale
+            /// </summary>
+            public static readonly NetworkProcessingModeEnum Sale = new("sale");
+        
+            private NetworkProcessingModeEnum(string? value)
+            {
+                Value = value;
+            }
+
+            /// <summary>
+            /// Converts a string to a <see cref="NetworkProcessingModeEnum"/> implicitly.
+            /// </summary>
+            /// <param name="value">The string value to convert. Defaults to null.</param>
+            /// <returns>A new <see cref="NetworkProcessingModeEnum"/> instance initialized with the string value.</returns>
+            public static implicit operator NetworkProcessingModeEnum?(string? value) => value == null ? null : new NetworkProcessingModeEnum(value);
+    
+            /// <summary>
+            /// Converts a <see cref="NetworkProcessingModeEnum"/> instance to a string implicitly.
+            /// </summary>
+            /// <param name="option">The <see cref="NetworkProcessingModeEnum"/> instance. Default to null.</param>
+            /// <returns>String value of the <see cref="NetworkProcessingModeEnum"/> instance.</returns>
+            public static implicit operator string?(NetworkProcessingModeEnum? option) => option?.Value;
+        
+            /// <summary>
+            /// Compares two <see cref="NetworkProcessingModeEnum"/> instances for equality.
+            /// </summary>
+            public static bool operator ==(NetworkProcessingModeEnum? left, NetworkProcessingModeEnum? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Compares two <see cref="NetworkProcessingModeEnum"/> instances for inequality.
+            /// </summary>
+            public static bool operator !=(NetworkProcessingModeEnum? left, NetworkProcessingModeEnum? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns true if the given object is equal to this <see cref="NetworkProcessingModeEnum"/> instance.
+            /// </summary>
+            public override bool Equals(object? obj) => obj is NetworkProcessingModeEnum other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+
+            /// <summary>
+            /// Returns a hash code for this <see cref="NetworkProcessingModeEnum"/> instance.
+            /// </summary>
+            public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
+            /// <summary>
+            /// Returns the string value of the <see cref="NetworkProcessingModeEnum"/> instance.
+            /// </summary>
+            public override string ToString() => Value ?? string.Empty;
+        
+            /// <summary>
+            /// Returns a <see cref="NetworkProcessingModeEnum?"/>.
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns><see cref="NetworkProcessingModeEnum"/> or null.</returns>
+            public static NetworkProcessingModeEnum? FromStringOrDefault(string value)
+            {
+                return value switch {
+                    "auth" => NetworkProcessingModeEnum.Auth,
+                    "sale" => NetworkProcessingModeEnum.Sale,
+                    _ => null,
+                };
+            }
+    
+            /// <summary>
+            /// Converts the <see cref="NetworkProcessingModeEnum"/> to the json value.
+            /// </summary>
+            /// <param name="value"><see cref="NetworkProcessingModeEnum"/></param>
+            /// <returns>String value of the enum.</returns>
+            public static string? ToJsonValue(NetworkProcessingModeEnum? value)
+            {
+                if (value == null)
+                    return null;
+            
+                if (value == NetworkProcessingModeEnum.Auth)
+                    return "auth";
+                
+                if (value == NetworkProcessingModeEnum.Sale)
+                    return "sale";
+                
+                return value.Value;
+            }
+            
+            /// <summary>
+            /// JsonConverter for writing NetworkProcessingModeEnum.               
+            /// </summary>
+            public class NetworkProcessingModeEnumJsonConverter : JsonConverter<NetworkProcessingModeEnum>
+            {
+                /// <summary>
+                /// Deserializes a <see cref="NetworkProcessingModeEnum"/> from JSON.
+                /// </summary>
+                public override NetworkProcessingModeEnum? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions jsonOptions)
+                {
+                    string value = reader.GetString();
+                    return value == null ? null : NetworkProcessingModeEnum.FromStringOrDefault(value) ?? new NetworkProcessingModeEnum(value);
+                }
+
+                /// <summary>
+                /// Serializes a <see cref="NetworkProcessingModeEnum"/> to JSON.
+                /// </summary>
+                public override void Write(Utf8JsonWriter writer, NetworkProcessingModeEnum value, JsonSerializerOptions jsonOptions)
+                {
+                    writer.WriteStringValue(NetworkProcessingModeEnum.ToJsonValue(value));
+                }
+            }
+        }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="NetworkProcessingMode"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<NetworkProcessingModeEnum?> _NetworkProcessingModeOption { get; private set; }
+
+        /// <summary>
+        /// Indicates the processing flow for the payment method. Possible values: - **auth**: If you have not [configured automatic capture](https://docs.adyen.com/online-payments/capture#types-of-capture) for the transaction, you must manually capture the funds.  - **sale**: You do not need to separately capture the funds, because capture happens automatically as part of the transaction, together with authorization. 
+        /// </summary>
+        /// <value>Indicates the processing flow for the payment method. Possible values: - **auth**: If you have not [configured automatic capture](https://docs.adyen.com/online-payments/capture#types-of-capture) for the transaction, you must manually capture the funds.  - **sale**: You do not need to separately capture the funds, because capture happens automatically as part of the transaction, together with authorization. </value>
+        [JsonPropertyName("networkProcessingMode")]
+        public NetworkProcessingModeEnum? NetworkProcessingMode { get { return this._NetworkProcessingModeOption; } set { this._NetworkProcessingModeOption = new(value); } }
+
+        /// <summary>
         /// The type of transactions processed over this payment method.  Allowed values: - **pos** for in-person payments.  - **billpay** for subscription payments, both the initial payment and the later recurring payments. These transactions have `recurringProcessingModel` **Subscription**.  - **ecom** for all other card not present transactions. This includes non-recurring transactions and transactions with `recurringProcessingModel` **CardOnFile** or **UnscheduledCardOnFile**. 
         /// </summary>
         /// <value>The type of transactions processed over this payment method.  Allowed values: - **pos** for in-person payments.  - **billpay** for subscription payments, both the initial payment and the later recurring payments. These transactions have &#x60;recurringProcessingModel&#x60; **Subscription**.  - **ecom** for all other card not present transactions. This includes non-recurring transactions and transactions with &#x60;recurringProcessingModel&#x60; **CardOnFile** or **UnscheduledCardOnFile**. </value>
@@ -175,11 +312,18 @@ namespace Adyen.Management.Models
         }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ProcessingType"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<ProcessingTypeEnum?> _ProcessingTypeOption { get; private set; }
+
+        /// <summary>
         /// The type of transactions processed over this payment method.  Allowed values: - **pos** for in-person payments.  - **billpay** for subscription payments, both the initial payment and the later recurring payments. These transactions have `recurringProcessingModel` **Subscription**.  - **ecom** for all other card not present transactions. This includes non-recurring transactions and transactions with `recurringProcessingModel` **CardOnFile** or **UnscheduledCardOnFile**. 
         /// </summary>
         /// <value>The type of transactions processed over this payment method.  Allowed values: - **pos** for in-person payments.  - **billpay** for subscription payments, both the initial payment and the later recurring payments. These transactions have &#x60;recurringProcessingModel&#x60; **Subscription**.  - **ecom** for all other card not present transactions. This includes non-recurring transactions and transactions with &#x60;recurringProcessingModel&#x60; **CardOnFile** or **UnscheduledCardOnFile**. </value>
         [JsonPropertyName("processingType")]
-        public ProcessingTypeEnum ProcessingType { get; set; }
+        public ProcessingTypeEnum? ProcessingType { get { return this._ProcessingTypeOption; } set { this._ProcessingTypeOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="TransactionDescription"/> will be populated.
@@ -202,6 +346,7 @@ namespace Adyen.Management.Models
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class NyceResponseInfo {\n");
+            sb.Append("  NetworkProcessingMode: ").Append(NetworkProcessingMode).Append("\n");
             sb.Append("  ProcessingType: ").Append(ProcessingType).Append("\n");
             sb.Append("  TransactionDescription: ").Append(TransactionDescription).Append("\n");
             sb.Append("}\n");
@@ -231,6 +376,7 @@ namespace Adyen.Management.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<NyceResponseInfo.NetworkProcessingModeEnum?> networkProcessingMode = default;
             Option<NyceResponseInfo.ProcessingTypeEnum?> processingType = default;
             Option<TransactionDescriptionResponseInfo?> transactionDescription = default;
 
@@ -249,6 +395,10 @@ namespace Adyen.Management.Models
 
                     switch (jsonPropertyName)
                     {
+                        case "networkProcessingMode":
+                            string? networkProcessingModeRawValue = utf8JsonReader.GetString();
+                            networkProcessingMode = new Option<NyceResponseInfo.NetworkProcessingModeEnum?>(NyceResponseInfo.NetworkProcessingModeEnum.FromStringOrDefault(networkProcessingModeRawValue) ?? (NyceResponseInfo.NetworkProcessingModeEnum)networkProcessingModeRawValue);
+                            break;
                         case "processingType":
                             string? processingTypeRawValue = utf8JsonReader.GetString();
                             processingType = new Option<NyceResponseInfo.ProcessingTypeEnum?>(NyceResponseInfo.ProcessingTypeEnum.FromStringOrDefault(processingTypeRawValue) ?? (NyceResponseInfo.ProcessingTypeEnum)processingTypeRawValue);
@@ -264,8 +414,10 @@ namespace Adyen.Management.Models
             
 
             var nyceResponseInfo = new NyceResponseInfo();
+            if (networkProcessingMode.IsSet)
+                nyceResponseInfo.NetworkProcessingMode = networkProcessingMode.Value;
             if (processingType.IsSet)
-                nyceResponseInfo.ProcessingType = processingType.Value!;
+                nyceResponseInfo.ProcessingType = processingType.Value;
             if (transactionDescription.IsSet)
                 nyceResponseInfo.TransactionDescription = transactionDescription.Value;
             return nyceResponseInfo;
@@ -297,9 +449,15 @@ namespace Adyen.Management.Models
         public void WriteProperties(Utf8JsonWriter writer, NyceResponseInfo nyceResponseInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (nyceResponseInfo.ProcessingType != null) 
+            if (nyceResponseInfo._NetworkProcessingModeOption.IsSet && nyceResponseInfo.NetworkProcessingMode != null) 
             {
-                string? processingTypeRawValue = NyceResponseInfo.ProcessingTypeEnum.ToJsonValue(nyceResponseInfo.ProcessingType);
+                string? networkProcessingModeRawValue = NyceResponseInfo.NetworkProcessingModeEnum.ToJsonValue(nyceResponseInfo._NetworkProcessingModeOption.Value!.Value);
+                writer.WriteString("networkProcessingMode", networkProcessingModeRawValue);
+            }
+            
+            if (nyceResponseInfo._ProcessingTypeOption.IsSet && nyceResponseInfo.ProcessingType != null) 
+            {
+                string? processingTypeRawValue = NyceResponseInfo.ProcessingTypeEnum.ToJsonValue(nyceResponseInfo._ProcessingTypeOption.Value!.Value);
                 writer.WriteString("processingType", processingTypeRawValue);
             }
             

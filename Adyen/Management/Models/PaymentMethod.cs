@@ -284,6 +284,19 @@ namespace Adyen.Management.Models
         public AmexResponseInfo? Amex { get { return this._AmexOption; } set { this._AmexOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Ancv"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<AncvResponseInfo?> _AncvOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="Ancv"/>.
+        /// </summary>
+        [JsonPropertyName("ancv")]
+        public AncvResponseInfo? Ancv { get { return this._AncvOption; } set { this._AncvOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ApplePay"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -297,6 +310,20 @@ namespace Adyen.Management.Models
         public ApplePayResponseInfo? ApplePay { get { return this._ApplePayOption; } set { this._ApplePayOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="AssociatedPaymentMethods"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<AssociatedPaymentMethod>?> _AssociatedPaymentMethodsOption { get; private set; }
+
+        /// <summary>
+        /// Payment methods that were also updated as part of an associated transition.
+        /// </summary>
+        /// <value>Payment methods that were also updated as part of an associated transition.</value>
+        [JsonPropertyName("associatedPaymentMethods")]
+        public List<AssociatedPaymentMethod>? AssociatedPaymentMethods { get { return this._AssociatedPaymentMethodsOption; } set { this._AssociatedPaymentMethodsOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Bcmc"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -308,6 +335,19 @@ namespace Adyen.Management.Models
         /// </summary>
         [JsonPropertyName("bcmc")]
         public BcmcResponseInfo? Bcmc { get { return this._BcmcOption; } set { this._BcmcOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Boncard"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<BoncardResponseInfo?> _BoncardOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="Boncard"/>.
+        /// </summary>
+        [JsonPropertyName("boncard")]
+        public BoncardResponseInfo? Boncard { get { return this._BoncardOption; } set { this._BoncardOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="BusinessLineId"/> will be populated.
@@ -442,6 +482,19 @@ namespace Adyen.Management.Models
         /// </summary>
         [JsonPropertyName("discover")]
         public DiscoverResponseInfo? Discover { get { return this._DiscoverOption; } set { this._DiscoverOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Ebt"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<EbtResponseInfo?> _EbtOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="Ebt"/>.
+        /// </summary>
+        [JsonPropertyName("ebt")]
+        public EbtResponseInfo? Ebt { get { return this._EbtOption; } set { this._EbtOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="EftDirectdebitCA"/> will be populated.
@@ -627,6 +680,34 @@ namespace Adyen.Management.Models
         public MealVoucherFRResponseInfo? MealVoucherFR { get { return this._MealVoucherFROption; } set { this._MealVoucherFROption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantCategoryCode"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _MerchantCategoryCodeOption { get; private set; }
+
+        /// <summary>
+        /// The Merchant Category Code (MCC) associated with the payment method.
+        /// </summary>
+        /// <value>The Merchant Category Code (MCC) associated with the payment method.</value>
+        [JsonPropertyName("merchantCategoryCode")]
+        public string? MerchantCategoryCode { get { return this._MerchantCategoryCodeOption; } set { this._MerchantCategoryCodeOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Mid"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _MidOption { get; private set; }
+
+        /// <summary>
+        /// The Merchant Identifier (MID) associated with the payment method.
+        /// </summary>
+        /// <value>The Merchant Identifier (MID) associated with the payment method.</value>
+        [JsonPropertyName("mid")]
+        public string? Mid { get { return this._MidOption; } set { this._MidOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Nyce"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -651,6 +732,19 @@ namespace Adyen.Management.Models
         /// </summary>
         [JsonPropertyName("paybybank_plaid")]
         public PayByBankPlaidResponseInfo? PaybybankPlaid { get { return this._PaybybankPlaidOption; } set { this._PaybybankPlaidOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="PaybybankPlaidCa"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<PayByBankPlaidResponseInfo?> _PaybybankPlaidCaOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="PaybybankPlaidCa"/>.
+        /// </summary>
+        [JsonPropertyName("paybybank_plaid_ca")]
+        public PayByBankPlaidResponseInfo? PaybybankPlaidCa { get { return this._PaybybankPlaidCaOption; } set { this._PaybybankPlaidCaOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Payme"/> will be populated.
@@ -690,6 +784,19 @@ namespace Adyen.Management.Models
         /// </summary>
         [JsonPropertyName("payto")]
         public PayToResponseInfo? Payto { get { return this._PaytoOption; } set { this._PaytoOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Pix"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<PixResponseInfo?> _PixOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="Pix"/>.
+        /// </summary>
+        [JsonPropertyName("pix")]
+        public PixResponseInfo? Pix { get { return this._PixOption; } set { this._PixOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Pulse"/> will be populated.
@@ -858,9 +965,9 @@ namespace Adyen.Management.Models
         public Option<string?> _TypeOption { get; private set; }
 
         /// <summary>
-        /// Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
+        /// Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).  For payment method variant **cartebancaire**, method-specific details are returned in the [&#x60;cartesBancaires&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/paymentMethodSettings#responses-200-cartesBancaires) object.
         /// </summary>
-        /// <value>Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).</value>
+        /// <value>Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).  For payment method variant **cartebancaire**, method-specific details are returned in the [`cartesBancaires`](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/paymentMethodSettings#responses-200-cartesBancaires) object.</value>
         [JsonPropertyName("type")]
         public string? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
@@ -944,8 +1051,11 @@ namespace Adyen.Management.Models
             sb.Append("  AlipayPlus: ").Append(AlipayPlus).Append("\n");
             sb.Append("  Allowed: ").Append(Allowed).Append("\n");
             sb.Append("  Amex: ").Append(Amex).Append("\n");
+            sb.Append("  Ancv: ").Append(Ancv).Append("\n");
             sb.Append("  ApplePay: ").Append(ApplePay).Append("\n");
+            sb.Append("  AssociatedPaymentMethods: ").Append(AssociatedPaymentMethods).Append("\n");
             sb.Append("  Bcmc: ").Append(Bcmc).Append("\n");
+            sb.Append("  Boncard: ").Append(Boncard).Append("\n");
             sb.Append("  BusinessLineId: ").Append(BusinessLineId).Append("\n");
             sb.Append("  Carnet: ").Append(Carnet).Append("\n");
             sb.Append("  CartesBancaires: ").Append(CartesBancaires).Append("\n");
@@ -956,6 +1066,7 @@ namespace Adyen.Management.Models
             sb.Append("  CustomRoutingFlags: ").Append(CustomRoutingFlags).Append("\n");
             sb.Append("  Diners: ").Append(Diners).Append("\n");
             sb.Append("  Discover: ").Append(Discover).Append("\n");
+            sb.Append("  Ebt: ").Append(Ebt).Append("\n");
             sb.Append("  EftDirectdebitCA: ").Append(EftDirectdebitCA).Append("\n");
             sb.Append("  EftposAustralia: ").Append(EftposAustralia).Append("\n");
             sb.Append("  Enabled: ").Append(Enabled).Append("\n");
@@ -970,11 +1081,15 @@ namespace Adyen.Management.Models
             sb.Append("  MaestroUsa: ").Append(MaestroUsa).Append("\n");
             sb.Append("  Mc: ").Append(Mc).Append("\n");
             sb.Append("  MealVoucherFR: ").Append(MealVoucherFR).Append("\n");
+            sb.Append("  MerchantCategoryCode: ").Append(MerchantCategoryCode).Append("\n");
+            sb.Append("  Mid: ").Append(Mid).Append("\n");
             sb.Append("  Nyce: ").Append(Nyce).Append("\n");
             sb.Append("  PaybybankPlaid: ").Append(PaybybankPlaid).Append("\n");
+            sb.Append("  PaybybankPlaidCa: ").Append(PaybybankPlaidCa).Append("\n");
             sb.Append("  Payme: ").Append(Payme).Append("\n");
             sb.Append("  Paypal: ").Append(Paypal).Append("\n");
             sb.Append("  Payto: ").Append(Payto).Append("\n");
+            sb.Append("  Pix: ").Append(Pix).Append("\n");
             sb.Append("  Pulse: ").Append(Pulse).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  Sepadirectdebit: ").Append(Sepadirectdebit).Append("\n");
@@ -1028,8 +1143,11 @@ namespace Adyen.Management.Models
             Option<AlipayPlusResponseInfo?> alipayPlus = default;
             Option<bool?> allowed = default;
             Option<AmexResponseInfo?> amex = default;
+            Option<AncvResponseInfo?> ancv = default;
             Option<ApplePayResponseInfo?> applePay = default;
+            Option<List<AssociatedPaymentMethod>?> associatedPaymentMethods = default;
             Option<BcmcResponseInfo?> bcmc = default;
+            Option<BoncardResponseInfo?> boncard = default;
             Option<string?> businessLineId = default;
             Option<CarnetResponseInfo?> carnet = default;
             Option<CartesBancairesResponseInfo?> cartesBancaires = default;
@@ -1040,6 +1158,7 @@ namespace Adyen.Management.Models
             Option<List<string>?> customRoutingFlags = default;
             Option<DinersResponseInfo?> diners = default;
             Option<DiscoverResponseInfo?> discover = default;
+            Option<EbtResponseInfo?> ebt = default;
             Option<EFTDirectDebitCAResponseInfo?> eftDirectdebitCA = default;
             Option<EftPosAustraliaResponseInfo?> eftposAustralia = default;
             Option<bool?> enabled = default;
@@ -1054,11 +1173,15 @@ namespace Adyen.Management.Models
             Option<MaestroUSAResponseInfo?> maestroUsa = default;
             Option<MCResponseInfo?> mc = default;
             Option<MealVoucherFRResponseInfo?> mealVoucherFR = default;
+            Option<string?> merchantCategoryCode = default;
+            Option<string?> mid = default;
             Option<NyceResponseInfo?> nyce = default;
             Option<PayByBankPlaidResponseInfo?> paybybankPlaid = default;
+            Option<PayByBankPlaidResponseInfo?> paybybankPlaidCa = default;
             Option<PayMeResponseInfo?> payme = default;
             Option<PayPalResponseInfo?> paypal = default;
             Option<PayToResponseInfo?> payto = default;
+            Option<PixResponseInfo?> pix = default;
             Option<PulseResponseInfo?> pulse = default;
             Option<string?> reference = default;
             Option<SepaDirectDebitResponseInfo?> sepadirectdebit = default;
@@ -1115,11 +1238,20 @@ namespace Adyen.Management.Models
                         case "amex":
                             amex = new Option<AmexResponseInfo?>(JsonSerializer.Deserialize<AmexResponseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
+                        case "ancv":
+                            ancv = new Option<AncvResponseInfo?>(JsonSerializer.Deserialize<AncvResponseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "applePay":
                             applePay = new Option<ApplePayResponseInfo?>(JsonSerializer.Deserialize<ApplePayResponseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
+                        case "associatedPaymentMethods":
+                            associatedPaymentMethods = new Option<List<AssociatedPaymentMethod>?>(JsonSerializer.Deserialize<List<AssociatedPaymentMethod>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "bcmc":
                             bcmc = new Option<BcmcResponseInfo?>(JsonSerializer.Deserialize<BcmcResponseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "boncard":
+                            boncard = new Option<BoncardResponseInfo?>(JsonSerializer.Deserialize<BoncardResponseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "businessLineId":
                             businessLineId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -1150,6 +1282,9 @@ namespace Adyen.Management.Models
                             break;
                         case "discover":
                             discover = new Option<DiscoverResponseInfo?>(JsonSerializer.Deserialize<DiscoverResponseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "ebt":
+                            ebt = new Option<EbtResponseInfo?>(JsonSerializer.Deserialize<EbtResponseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "eft_directdebit_CA":
                             eftDirectdebitCA = new Option<EFTDirectDebitCAResponseInfo?>(JsonSerializer.Deserialize<EFTDirectDebitCAResponseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -1193,11 +1328,20 @@ namespace Adyen.Management.Models
                         case "mealVoucher_FR":
                             mealVoucherFR = new Option<MealVoucherFRResponseInfo?>(JsonSerializer.Deserialize<MealVoucherFRResponseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
+                        case "merchantCategoryCode":
+                            merchantCategoryCode = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "mid":
+                            mid = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "nyce":
                             nyce = new Option<NyceResponseInfo?>(JsonSerializer.Deserialize<NyceResponseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "paybybank_plaid":
                             paybybankPlaid = new Option<PayByBankPlaidResponseInfo?>(JsonSerializer.Deserialize<PayByBankPlaidResponseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "paybybank_plaid_ca":
+                            paybybankPlaidCa = new Option<PayByBankPlaidResponseInfo?>(JsonSerializer.Deserialize<PayByBankPlaidResponseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "payme":
                             payme = new Option<PayMeResponseInfo?>(JsonSerializer.Deserialize<PayMeResponseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -1207,6 +1351,9 @@ namespace Adyen.Management.Models
                             break;
                         case "payto":
                             payto = new Option<PayToResponseInfo?>(JsonSerializer.Deserialize<PayToResponseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "pix":
+                            pix = new Option<PixResponseInfo?>(JsonSerializer.Deserialize<PixResponseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "pulse":
                             pulse = new Option<PulseResponseInfo?>(JsonSerializer.Deserialize<PulseResponseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -1288,10 +1435,16 @@ namespace Adyen.Management.Models
                 paymentMethod.Allowed = allowed.Value;
             if (amex.IsSet)
                 paymentMethod.Amex = amex.Value;
+            if (ancv.IsSet)
+                paymentMethod.Ancv = ancv.Value;
             if (applePay.IsSet)
                 paymentMethod.ApplePay = applePay.Value;
+            if (associatedPaymentMethods.IsSet)
+                paymentMethod.AssociatedPaymentMethods = associatedPaymentMethods.Value;
             if (bcmc.IsSet)
                 paymentMethod.Bcmc = bcmc.Value;
+            if (boncard.IsSet)
+                paymentMethod.Boncard = boncard.Value;
             if (businessLineId.IsSet)
                 paymentMethod.BusinessLineId = businessLineId.Value;
             if (carnet.IsSet)
@@ -1312,6 +1465,8 @@ namespace Adyen.Management.Models
                 paymentMethod.Diners = diners.Value;
             if (discover.IsSet)
                 paymentMethod.Discover = discover.Value;
+            if (ebt.IsSet)
+                paymentMethod.Ebt = ebt.Value;
             if (eftDirectdebitCA.IsSet)
                 paymentMethod.EftDirectdebitCA = eftDirectdebitCA.Value;
             if (eftposAustralia.IsSet)
@@ -1340,16 +1495,24 @@ namespace Adyen.Management.Models
                 paymentMethod.Mc = mc.Value;
             if (mealVoucherFR.IsSet)
                 paymentMethod.MealVoucherFR = mealVoucherFR.Value;
+            if (merchantCategoryCode.IsSet)
+                paymentMethod.MerchantCategoryCode = merchantCategoryCode.Value;
+            if (mid.IsSet)
+                paymentMethod.Mid = mid.Value;
             if (nyce.IsSet)
                 paymentMethod.Nyce = nyce.Value;
             if (paybybankPlaid.IsSet)
                 paymentMethod.PaybybankPlaid = paybybankPlaid.Value;
+            if (paybybankPlaidCa.IsSet)
+                paymentMethod.PaybybankPlaidCa = paybybankPlaidCa.Value;
             if (payme.IsSet)
                 paymentMethod.Payme = payme.Value;
             if (paypal.IsSet)
                 paymentMethod.Paypal = paypal.Value;
             if (payto.IsSet)
                 paymentMethod.Payto = payto.Value;
+            if (pix.IsSet)
+                paymentMethod.Pix = pix.Value;
             if (pulse.IsSet)
                 paymentMethod.Pulse = pulse.Value;
             if (reference.IsSet)
@@ -1449,15 +1612,30 @@ namespace Adyen.Management.Models
                 writer.WritePropertyName("amex");
                 JsonSerializer.Serialize(writer, paymentMethod.Amex, jsonSerializerOptions);
             }
+            if (paymentMethod._AncvOption.IsSet)
+            {
+                writer.WritePropertyName("ancv");
+                JsonSerializer.Serialize(writer, paymentMethod.Ancv, jsonSerializerOptions);
+            }
             if (paymentMethod._ApplePayOption.IsSet)
             {
                 writer.WritePropertyName("applePay");
                 JsonSerializer.Serialize(writer, paymentMethod.ApplePay, jsonSerializerOptions);
             }
+            if (paymentMethod._AssociatedPaymentMethodsOption.IsSet)
+            {
+                writer.WritePropertyName("associatedPaymentMethods");
+                JsonSerializer.Serialize(writer, paymentMethod.AssociatedPaymentMethods, jsonSerializerOptions);
+            }
             if (paymentMethod._BcmcOption.IsSet)
             {
                 writer.WritePropertyName("bcmc");
                 JsonSerializer.Serialize(writer, paymentMethod.Bcmc, jsonSerializerOptions);
+            }
+            if (paymentMethod._BoncardOption.IsSet)
+            {
+                writer.WritePropertyName("boncard");
+                JsonSerializer.Serialize(writer, paymentMethod.Boncard, jsonSerializerOptions);
             }
             if (paymentMethod._BusinessLineIdOption.IsSet)
                 if (paymentMethod.BusinessLineId != null)
@@ -1507,6 +1685,11 @@ namespace Adyen.Management.Models
             {
                 writer.WritePropertyName("discover");
                 JsonSerializer.Serialize(writer, paymentMethod.Discover, jsonSerializerOptions);
+            }
+            if (paymentMethod._EbtOption.IsSet)
+            {
+                writer.WritePropertyName("ebt");
+                JsonSerializer.Serialize(writer, paymentMethod.Ebt, jsonSerializerOptions);
             }
             if (paymentMethod._EftDirectdebitCAOption.IsSet)
             {
@@ -1577,6 +1760,14 @@ namespace Adyen.Management.Models
                 writer.WritePropertyName("mealVoucher_FR");
                 JsonSerializer.Serialize(writer, paymentMethod.MealVoucherFR, jsonSerializerOptions);
             }
+            if (paymentMethod._MerchantCategoryCodeOption.IsSet)
+                if (paymentMethod.MerchantCategoryCode != null)
+                    writer.WriteString("merchantCategoryCode", paymentMethod.MerchantCategoryCode);
+
+            if (paymentMethod._MidOption.IsSet)
+                if (paymentMethod.Mid != null)
+                    writer.WriteString("mid", paymentMethod.Mid);
+
             if (paymentMethod._NyceOption.IsSet)
             {
                 writer.WritePropertyName("nyce");
@@ -1586,6 +1777,11 @@ namespace Adyen.Management.Models
             {
                 writer.WritePropertyName("paybybank_plaid");
                 JsonSerializer.Serialize(writer, paymentMethod.PaybybankPlaid, jsonSerializerOptions);
+            }
+            if (paymentMethod._PaybybankPlaidCaOption.IsSet)
+            {
+                writer.WritePropertyName("paybybank_plaid_ca");
+                JsonSerializer.Serialize(writer, paymentMethod.PaybybankPlaidCa, jsonSerializerOptions);
             }
             if (paymentMethod._PaymeOption.IsSet)
             {
@@ -1601,6 +1797,11 @@ namespace Adyen.Management.Models
             {
                 writer.WritePropertyName("payto");
                 JsonSerializer.Serialize(writer, paymentMethod.Payto, jsonSerializerOptions);
+            }
+            if (paymentMethod._PixOption.IsSet)
+            {
+                writer.WritePropertyName("pix");
+                JsonSerializer.Serialize(writer, paymentMethod.Pix, jsonSerializerOptions);
             }
             if (paymentMethod._PulseOption.IsSet)
             {
