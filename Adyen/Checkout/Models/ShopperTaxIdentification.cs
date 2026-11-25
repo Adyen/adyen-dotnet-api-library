@@ -49,9 +49,9 @@ namespace Adyen.Checkout.Models
         public TaxIdentificationType TaxIdentificationType { get; set; }
 
         /// <summary>
-        /// The country governing the shopper&#39;s tax processing. Initially only IN is supported.
+        /// The two-letter country code governing the shopper&#39;s tax processing, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. Supported value: **IN**.
         /// </summary>
-        /// <value>The country governing the shopper's tax processing. Initially only IN is supported.</value>
+        /// <value>The two-letter country code governing the shopper's tax processing, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. Supported value: **IN**.</value>
         [JsonPropertyName("taxCountryCode")]
         public string? TaxCountryCode { get; set; }
 

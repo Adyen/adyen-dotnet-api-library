@@ -92,6 +92,34 @@ namespace Adyen.Checkout.Models
         public string? EncryptedCardNumber { get { return this._EncryptedCardNumberOption; } set { this._EncryptedCardNumberOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperReference"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _ShopperReferenceOption { get; private set; }
+
+        /// <summary>
+        /// Your reference to uniquely identify the shopper that owns the &#x60;storedPaymentMethodId&#x60;. Required when &#x60;storedPaymentMethodId&#x60; is provided.
+        /// </summary>
+        /// <value>Your reference to uniquely identify the shopper that owns the `storedPaymentMethodId`. Required when `storedPaymentMethodId` is provided.</value>
+        [JsonPropertyName("shopperReference")]
+        public string? ShopperReference { get { return this._ShopperReferenceOption; } set { this._ShopperReferenceOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="StoredPaymentMethodId"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _StoredPaymentMethodIdOption { get; private set; }
+
+        /// <summary>
+        /// The unique identifier of the stored payment method to look up, as returned by [&#x60;/storedPaymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/get/storedPaymentMethods). Use this to get the details of a stored card that is not present at charge time.  When provided, &#x60;shopperReference&#x60; is required and you must not include &#x60;cardNumber&#x60; or &#x60;encryptedCardNumber&#x60;.
+        /// </summary>
+        /// <value>The unique identifier of the stored payment method to look up, as returned by [`/storedPaymentMethods`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/get/storedPaymentMethods). Use this to get the details of a stored card that is not present at charge time.  When provided, `shopperReference` is required and you must not include `cardNumber` or `encryptedCardNumber`.</value>
+        [JsonPropertyName("storedPaymentMethodId")]
+        public string? StoredPaymentMethodId { get { return this._StoredPaymentMethodIdOption; } set { this._StoredPaymentMethodIdOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="SupportedBrands"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -117,6 +145,8 @@ namespace Adyen.Checkout.Models
             sb.Append("  CardNumber: ").Append(CardNumber).Append("\n");
             sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
             sb.Append("  EncryptedCardNumber: ").Append(EncryptedCardNumber).Append("\n");
+            sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
+            sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  SupportedBrands: ").Append(SupportedBrands).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -149,6 +179,8 @@ namespace Adyen.Checkout.Models
             Option<string?> cardNumber = default;
             Option<string?> countryCode = default;
             Option<string?> encryptedCardNumber = default;
+            Option<string?> shopperReference = default;
+            Option<string?> storedPaymentMethodId = default;
             Option<List<string>?> supportedBrands = default;
 
             while (utf8JsonReader.Read())
@@ -178,6 +210,12 @@ namespace Adyen.Checkout.Models
                         case "encryptedCardNumber":
                             encryptedCardNumber = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "shopperReference":
+                            shopperReference = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "storedPaymentMethodId":
+                            storedPaymentMethodId = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "supportedBrands":
                             supportedBrands = new Option<List<string>?>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
@@ -197,6 +235,10 @@ namespace Adyen.Checkout.Models
                 cardDetailsRequest.CountryCode = countryCode.Value;
             if (encryptedCardNumber.IsSet)
                 cardDetailsRequest.EncryptedCardNumber = encryptedCardNumber.Value;
+            if (shopperReference.IsSet)
+                cardDetailsRequest.ShopperReference = shopperReference.Value;
+            if (storedPaymentMethodId.IsSet)
+                cardDetailsRequest.StoredPaymentMethodId = storedPaymentMethodId.Value;
             if (supportedBrands.IsSet)
                 cardDetailsRequest.SupportedBrands = supportedBrands.Value;
             return cardDetailsRequest;
@@ -242,6 +284,14 @@ namespace Adyen.Checkout.Models
             if (cardDetailsRequest._EncryptedCardNumberOption.IsSet)
                 if (cardDetailsRequest.EncryptedCardNumber != null)
                     writer.WriteString("encryptedCardNumber", cardDetailsRequest.EncryptedCardNumber);
+
+            if (cardDetailsRequest._ShopperReferenceOption.IsSet)
+                if (cardDetailsRequest.ShopperReference != null)
+                    writer.WriteString("shopperReference", cardDetailsRequest.ShopperReference);
+
+            if (cardDetailsRequest._StoredPaymentMethodIdOption.IsSet)
+                if (cardDetailsRequest.StoredPaymentMethodId != null)
+                    writer.WriteString("storedPaymentMethodId", cardDetailsRequest.StoredPaymentMethodId);
 
             if (cardDetailsRequest._SupportedBrandsOption.IsSet)
             {

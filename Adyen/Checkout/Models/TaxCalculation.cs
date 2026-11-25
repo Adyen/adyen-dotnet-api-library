@@ -50,9 +50,9 @@ namespace Adyen.Checkout.Models
         public Option<string?> _MerchantAccountOption { get; private set; }
 
         /// <summary>
-        /// The merchant account for which the calculation was made.
+        /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
-        /// <value>The merchant account for which the calculation was made.</value>
+        /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [JsonPropertyName("merchantAccount")]
         public string? MerchantAccount { get { return this._MerchantAccountOption; } set { this._MerchantAccountOption = new(value); } }
 

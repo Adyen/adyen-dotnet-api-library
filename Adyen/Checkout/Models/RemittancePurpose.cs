@@ -38,24 +38,24 @@ namespace Adyen.Checkout.Models
         public string? Value { get; set; }
 
         /// <summary>
-        /// RemittancePurpose.TOURPROGRAMME - TOUR_PROGRAMME
+        /// RemittancePurpose.TourProgramme - tourProgramme
         /// </summary>
-        public static readonly RemittancePurpose TOURPROGRAMME = new("TOUR_PROGRAMME");
+        public static readonly RemittancePurpose TourProgramme = new("tourProgramme");
 
         /// <summary>
-        /// RemittancePurpose.TRAVELNONTOUR - TRAVEL_NON_TOUR
+        /// RemittancePurpose.TravelNonTour - travelNonTour
         /// </summary>
-        public static readonly RemittancePurpose TRAVELNONTOUR = new("TRAVEL_NON_TOUR");
+        public static readonly RemittancePurpose TravelNonTour = new("travelNonTour");
 
         /// <summary>
-        /// RemittancePurpose.EDUCATION - EDUCATION
+        /// RemittancePurpose.Education - education
         /// </summary>
-        public static readonly RemittancePurpose EDUCATION = new("EDUCATION");
+        public static readonly RemittancePurpose Education = new("education");
 
         /// <summary>
-        /// RemittancePurpose.DIGITAL - DIGITAL
+        /// RemittancePurpose.Digital - digital
         /// </summary>
-        public static readonly RemittancePurpose DIGITAL = new("DIGITAL");
+        public static readonly RemittancePurpose Digital = new("digital");
 
         private RemittancePurpose(string? value)
         {
@@ -103,10 +103,10 @@ namespace Adyen.Checkout.Models
         public static RemittancePurpose? FromStringOrDefault(string? value)
         {
             return value switch {
-                "TOUR_PROGRAMME" => RemittancePurpose.TOURPROGRAMME,
-                "TRAVEL_NON_TOUR" => RemittancePurpose.TRAVELNONTOUR,
-                "EDUCATION" => RemittancePurpose.EDUCATION,
-                "DIGITAL" => RemittancePurpose.DIGITAL,
+                "tourProgramme" => RemittancePurpose.TourProgramme,
+                "travelNonTour" => RemittancePurpose.TravelNonTour,
+                "education" => RemittancePurpose.Education,
+                "digital" => RemittancePurpose.Digital,
                 _ => null,
             };
         }
@@ -120,17 +120,17 @@ namespace Adyen.Checkout.Models
             if (value == null)
                 return null;
 
-            if (value == RemittancePurpose.TOURPROGRAMME)
-                return "TOUR_PROGRAMME";
+            if (value == RemittancePurpose.TourProgramme)
+                return "tourProgramme";
 
-            if (value == RemittancePurpose.TRAVELNONTOUR)
-                return "TRAVEL_NON_TOUR";
+            if (value == RemittancePurpose.TravelNonTour)
+                return "travelNonTour";
 
-            if (value == RemittancePurpose.EDUCATION)
-                return "EDUCATION";
+            if (value == RemittancePurpose.Education)
+                return "education";
 
-            if (value == RemittancePurpose.DIGITAL)
-                return "DIGITAL";
+            if (value == RemittancePurpose.Digital)
+                return "digital";
 
             return value.Value;
         }
