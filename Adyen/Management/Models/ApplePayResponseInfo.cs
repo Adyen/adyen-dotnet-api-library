@@ -43,11 +43,18 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Domains"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<string>?> _DomainsOption { get; private set; }
+
+        /// <summary>
         /// The list of merchant domains.  For more information, see [Apple Pay documentation](https://docs.adyen.com/payment-methods/apple-pay/web-drop-in?tab&#x3D;adyen-certificate-live_1#going-live).
         /// </summary>
         /// <value>The list of merchant domains.  For more information, see [Apple Pay documentation](https://docs.adyen.com/payment-methods/apple-pay/web-drop-in?tab=adyen-certificate-live_1#going-live).</value>
         [JsonPropertyName("domains")]
-        public List<string>? Domains { get; set; }
+        public List<string>? Domains { get { return this._DomainsOption; } set { this._DomainsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -114,7 +121,7 @@ namespace Adyen.Management.Models
 
             var applePayResponseInfo = new ApplePayResponseInfo();
             if (domains.IsSet)
-                applePayResponseInfo.Domains = domains.Value!;
+                applePayResponseInfo.Domains = domains.Value;
             return applePayResponseInfo;
         }
 
@@ -144,8 +151,11 @@ namespace Adyen.Management.Models
         public void WriteProperties(Utf8JsonWriter writer, ApplePayResponseInfo applePayResponseInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            writer.WritePropertyName("domains");
-            JsonSerializer.Serialize(writer, applePayResponseInfo.Domains, jsonSerializerOptions);
+            if (applePayResponseInfo._DomainsOption.IsSet)
+            {
+                writer.WritePropertyName("domains");
+                JsonSerializer.Serialize(writer, applePayResponseInfo.Domains, jsonSerializerOptions);
+            }
         }
     }
 }

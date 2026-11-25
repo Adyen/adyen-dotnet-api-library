@@ -103,7 +103,7 @@ namespace Adyen.Management.Services
     /// <summary>
     /// The <see cref="IUpdateUserApiResponse"/>, wraps <see cref="Adyen.Management.Models.User"/>.
     /// </summary>
-    public interface IUpdateUserApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.User?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
+    public interface IUpdateUserApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.User?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IConflict<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -134,6 +134,12 @@ namespace Adyen.Management.Services
         /// </summary>
         /// <returns></returns>
         bool IsForbidden { get; }
+
+        /// <summary>
+        /// Returns true if the response is 409 Conflict.
+        /// </summary>
+        /// <returns></returns>
+        bool IsConflict { get; }
 
         /// <summary>
         /// Returns true if the response is 422 UnprocessableContent.
@@ -858,6 +864,44 @@ namespace Adyen.Management.Services
                 catch (Exception exception)
                 {
                     OnDeserializationError(exception, (HttpStatusCode)403);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 409 Conflict.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsConflict => 409 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 409 Conflict.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.Management.Models.RestServiceError? Conflict()
+            {
+                return IsConflict
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.Management.Models.RestServiceError>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 409 Conflict and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeConflictResponse([NotNullWhen(true)]out Adyen.Management.Models.RestServiceError? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Conflict();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)409);
                 }
 
                 return result != null;

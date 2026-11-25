@@ -43,9 +43,9 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
+        /// Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).  For payment method variant **cartebancaire**, method-specific details are returned in the [`cartesBancaires`](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/paymentMethodSettings#responses-200-cartesBancaires) object of the response.
         /// </summary>
-        /// <value>Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).</value>
+        /// <value>Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).  For payment method variant **cartebancaire**, method-specific details are returned in the [&#x60;cartesBancaires&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/paymentMethodSettings#responses-200-cartesBancaires) object of the response.</value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
         public class TypeEnum : IEnum
         {
@@ -180,6 +180,11 @@ namespace Adyen.Management.Models
             public static readonly TypeEnum Amex = new("amex");
 
             /// <summary>
+            /// TypeEnum.Ancv - ancv
+            /// </summary>
+            public static readonly TypeEnum Ancv = new("ancv");
+
+            /// <summary>
             /// TypeEnum.Applepay - applepay
             /// </summary>
             public static readonly TypeEnum Applepay = new("applepay");
@@ -235,6 +240,11 @@ namespace Adyen.Management.Models
             public static readonly TypeEnum BlikPos = new("blik_pos");
 
             /// <summary>
+            /// TypeEnum.Boncard - boncard
+            /// </summary>
+            public static readonly TypeEnum Boncard = new("boncard");
+
+            /// <summary>
             /// TypeEnum.BrSchemes - br_schemes
             /// </summary>
             public static readonly TypeEnum BrSchemes = new("br_schemes");
@@ -248,6 +258,11 @@ namespace Adyen.Management.Models
             /// TypeEnum.Cartebancaire - cartebancaire
             /// </summary>
             public static readonly TypeEnum Cartebancaire = new("cartebancaire");
+
+            /// <summary>
+            /// TypeEnum.Cashapp - cashapp
+            /// </summary>
+            public static readonly TypeEnum Cashapp = new("cashapp");
 
             /// <summary>
             /// TypeEnum.Clearpay - clearpay
@@ -338,6 +353,11 @@ namespace Adyen.Management.Models
             /// TypeEnum.EbankingFI - ebanking_FI
             /// </summary>
             public static readonly TypeEnum EbankingFI = new("ebanking_FI");
+
+            /// <summary>
+            /// TypeEnum.Ebt - ebt
+            /// </summary>
+            public static readonly TypeEnum Ebt = new("ebt");
 
             /// <summary>
             /// TypeEnum.EftDirectdebitCA - eft_directdebit_CA
@@ -565,6 +585,11 @@ namespace Adyen.Management.Models
             public static readonly TypeEnum PaybybankPlaid = new("paybybank_plaid");
 
             /// <summary>
+            /// TypeEnum.PaybybankPlaidCa - paybybank_plaid_ca
+            /// </summary>
+            public static readonly TypeEnum PaybybankPlaidCa = new("paybybank_plaid_ca");
+
+            /// <summary>
             /// TypeEnum.Payme - payme
             /// </summary>
             public static readonly TypeEnum Payme = new("payme");
@@ -608,6 +633,11 @@ namespace Adyen.Management.Models
             /// TypeEnum.PersonalCardDebit - personal_card_debit
             /// </summary>
             public static readonly TypeEnum PersonalCardDebit = new("personal_card_debit");
+
+            /// <summary>
+            /// TypeEnum.Pix - pix
+            /// </summary>
+            public static readonly TypeEnum Pix = new("pix");
 
             /// <summary>
             /// TypeEnum.Pulse - pulse
@@ -788,6 +818,11 @@ namespace Adyen.Management.Models
             /// TypeEnum.WechatpayPos - wechatpay_pos
             /// </summary>
             public static readonly TypeEnum WechatpayPos = new("wechatpay_pos");
+
+            /// <summary>
+            /// TypeEnum.Wero - wero
+            /// </summary>
+            public static readonly TypeEnum Wero = new("wero");
         
             private TypeEnum(string? value)
             {
@@ -866,6 +901,7 @@ namespace Adyen.Management.Models
                     "alipay_plus_truemoney" => TypeEnum.AlipayPlusTruemoney,
                     "alipay_wap" => TypeEnum.AlipayWap,
                     "amex" => TypeEnum.Amex,
+                    "ancv" => TypeEnum.Ancv,
                     "applepay" => TypeEnum.Applepay,
                     "avancard" => TypeEnum.Avancard,
                     "avancard_credit" => TypeEnum.AvancardCredit,
@@ -877,9 +913,11 @@ namespace Adyen.Management.Models
                     "bcmc" => TypeEnum.Bcmc,
                     "blik" => TypeEnum.Blik,
                     "blik_pos" => TypeEnum.BlikPos,
+                    "boncard" => TypeEnum.Boncard,
                     "br_schemes" => TypeEnum.BrSchemes,
                     "carnet" => TypeEnum.Carnet,
                     "cartebancaire" => TypeEnum.Cartebancaire,
+                    "cashapp" => TypeEnum.Cashapp,
                     "clearpay" => TypeEnum.Clearpay,
                     "clicktopay" => TypeEnum.Clicktopay,
                     "cooper" => TypeEnum.Cooper,
@@ -898,6 +936,7 @@ namespace Adyen.Management.Models
                     "directdebit_GB" => TypeEnum.DirectdebitGB,
                     "discover" => TypeEnum.Discover,
                     "ebanking_FI" => TypeEnum.EbankingFI,
+                    "ebt" => TypeEnum.Ebt,
                     "eft_directdebit_CA" => TypeEnum.EftDirectdebitCA,
                     "eftpos_australia" => TypeEnum.EftposAustralia,
                     "elo" => TypeEnum.Elo,
@@ -943,6 +982,7 @@ namespace Adyen.Management.Models
                     "onlineBanking_PL" => TypeEnum.OnlineBankingPL,
                     "paybybank" => TypeEnum.Paybybank,
                     "paybybank_plaid" => TypeEnum.PaybybankPlaid,
+                    "paybybank_plaid_ca" => TypeEnum.PaybybankPlaidCa,
                     "payme" => TypeEnum.Payme,
                     "payme_pos" => TypeEnum.PaymePos,
                     "paynow" => TypeEnum.Paynow,
@@ -952,6 +992,7 @@ namespace Adyen.Management.Models
                     "personal_card" => TypeEnum.PersonalCard,
                     "personal_card_credit" => TypeEnum.PersonalCardCredit,
                     "personal_card_debit" => TypeEnum.PersonalCardDebit,
+                    "pix" => TypeEnum.Pix,
                     "pulse" => TypeEnum.Pulse,
                     "romcard" => TypeEnum.Romcard,
                     "romcard_credit" => TypeEnum.RomcardCredit,
@@ -988,6 +1029,7 @@ namespace Adyen.Management.Models
                     "vpay" => TypeEnum.Vpay,
                     "wechatpay" => TypeEnum.Wechatpay,
                     "wechatpay_pos" => TypeEnum.WechatpayPos,
+                    "wero" => TypeEnum.Wero,
                     _ => null,
                 };
             }
@@ -1077,6 +1119,9 @@ namespace Adyen.Management.Models
                 if (value == TypeEnum.Amex)
                     return "amex";
                 
+                if (value == TypeEnum.Ancv)
+                    return "ancv";
+                
                 if (value == TypeEnum.Applepay)
                     return "applepay";
                 
@@ -1110,6 +1155,9 @@ namespace Adyen.Management.Models
                 if (value == TypeEnum.BlikPos)
                     return "blik_pos";
                 
+                if (value == TypeEnum.Boncard)
+                    return "boncard";
+                
                 if (value == TypeEnum.BrSchemes)
                     return "br_schemes";
                 
@@ -1118,6 +1166,9 @@ namespace Adyen.Management.Models
                 
                 if (value == TypeEnum.Cartebancaire)
                     return "cartebancaire";
+                
+                if (value == TypeEnum.Cashapp)
+                    return "cashapp";
                 
                 if (value == TypeEnum.Clearpay)
                     return "clearpay";
@@ -1172,6 +1223,9 @@ namespace Adyen.Management.Models
                 
                 if (value == TypeEnum.EbankingFI)
                     return "ebanking_FI";
+                
+                if (value == TypeEnum.Ebt)
+                    return "ebt";
                 
                 if (value == TypeEnum.EftDirectdebitCA)
                     return "eft_directdebit_CA";
@@ -1308,6 +1362,9 @@ namespace Adyen.Management.Models
                 if (value == TypeEnum.PaybybankPlaid)
                     return "paybybank_plaid";
                 
+                if (value == TypeEnum.PaybybankPlaidCa)
+                    return "paybybank_plaid_ca";
+                
                 if (value == TypeEnum.Payme)
                     return "payme";
                 
@@ -1334,6 +1391,9 @@ namespace Adyen.Management.Models
                 
                 if (value == TypeEnum.PersonalCardDebit)
                     return "personal_card_debit";
+                
+                if (value == TypeEnum.Pix)
+                    return "pix";
                 
                 if (value == TypeEnum.Pulse)
                     return "pulse";
@@ -1443,6 +1503,9 @@ namespace Adyen.Management.Models
                 if (value == TypeEnum.WechatpayPos)
                     return "wechatpay_pos";
                 
+                if (value == TypeEnum.Wero)
+                    return "wero";
+                
                 return value.Value;
             }
             
@@ -1471,9 +1534,9 @@ namespace Adyen.Management.Models
         }
 
         /// <summary>
-        /// Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
+        /// Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).  For payment method variant **cartebancaire**, method-specific details are returned in the [`cartesBancaires`](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/paymentMethodSettings#responses-200-cartesBancaires) object of the response.
         /// </summary>
-        /// <value>Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).</value>
+        /// <value>Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).  For payment method variant **cartebancaire**, method-specific details are returned in the [&#x60;cartesBancaires&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/paymentMethodSettings#responses-200-cartesBancaires) object of the response.</value>
         [JsonPropertyName("type")]
         public TypeEnum Type { get; set; }
 
@@ -1698,6 +1761,19 @@ namespace Adyen.Management.Models
         public AmexInfo? Amex { get { return this._AmexOption; } set { this._AmexOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Ancv"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<AncvInfo?> _AncvOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="Ancv"/>.
+        /// </summary>
+        [JsonPropertyName("ancv")]
+        public AncvInfo? Ancv { get { return this._AncvOption; } set { this._AncvOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="ApplePay"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -1724,6 +1800,19 @@ namespace Adyen.Management.Models
         public BcmcInfo? Bcmc { get { return this._BcmcOption; } set { this._BcmcOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Boncard"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<BoncardInfo?> _BoncardOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="Boncard"/>.
+        /// </summary>
+        [JsonPropertyName("boncard")]
+        public BoncardInfo? Boncard { get { return this._BoncardOption; } set { this._BoncardOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="BusinessLineId"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -1742,13 +1831,13 @@ namespace Adyen.Management.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<GenericPmWithTdiInfo?> _CarnetOption { get; private set; }
+        public Option<CarnetInfo?> _CarnetOption { get; private set; }
 
         /// <summary>
         /// <see cref="Carnet"/>.
         /// </summary>
         [JsonPropertyName("carnet")]
-        public GenericPmWithTdiInfo? Carnet { get { return this._CarnetOption; } set { this._CarnetOption = new(value); } }
+        public CarnetInfo? Carnet { get { return this._CarnetOption; } set { this._CarnetOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="CartesBancaires"/> will be populated.
@@ -1856,6 +1945,19 @@ namespace Adyen.Management.Models
         /// </summary>
         [JsonPropertyName("discover")]
         public GenericPmWithTdiInfo? Discover { get { return this._DiscoverOption; } set { this._DiscoverOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Ebt"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<EbtInfo?> _EbtOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="Ebt"/>.
+        /// </summary>
+        [JsonPropertyName("ebt")]
+        public EbtInfo? Ebt { get { return this._EbtOption; } set { this._EbtOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="EftDirectdebitCA"/> will be populated.
@@ -2053,6 +2155,19 @@ namespace Adyen.Management.Models
         public PayByBankPlaidInfo? PaybybankPlaid { get { return this._PaybybankPlaidOption; } set { this._PaybybankPlaidOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="PaybybankPlaidCa"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<PayByBankPlaidInfo?> _PaybybankPlaidCaOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="PaybybankPlaidCa"/>.
+        /// </summary>
+        [JsonPropertyName("paybybank_plaid_ca")]
+        public PayByBankPlaidInfo? PaybybankPlaidCa { get { return this._PaybybankPlaidCaOption; } set { this._PaybybankPlaidCaOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Payme"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -2090,6 +2205,19 @@ namespace Adyen.Management.Models
         /// </summary>
         [JsonPropertyName("payto")]
         public PayToInfo? Payto { get { return this._PaytoOption; } set { this._PaytoOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Pix"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<PixInfo?> _PixOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="Pix"/>.
+        /// </summary>
+        [JsonPropertyName("pix")]
+        public PixInfo? Pix { get { return this._PixOption; } set { this._PixOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Pulse"/> will be populated.
@@ -2315,8 +2443,10 @@ namespace Adyen.Management.Models
             sb.Append("  AfterpayTouch: ").Append(AfterpayTouch).Append("\n");
             sb.Append("  AlipayPlus: ").Append(AlipayPlus).Append("\n");
             sb.Append("  Amex: ").Append(Amex).Append("\n");
+            sb.Append("  Ancv: ").Append(Ancv).Append("\n");
             sb.Append("  ApplePay: ").Append(ApplePay).Append("\n");
             sb.Append("  Bcmc: ").Append(Bcmc).Append("\n");
+            sb.Append("  Boncard: ").Append(Boncard).Append("\n");
             sb.Append("  BusinessLineId: ").Append(BusinessLineId).Append("\n");
             sb.Append("  Carnet: ").Append(Carnet).Append("\n");
             sb.Append("  CartesBancaires: ").Append(CartesBancaires).Append("\n");
@@ -2327,6 +2457,7 @@ namespace Adyen.Management.Models
             sb.Append("  CustomRoutingFlags: ").Append(CustomRoutingFlags).Append("\n");
             sb.Append("  Diners: ").Append(Diners).Append("\n");
             sb.Append("  Discover: ").Append(Discover).Append("\n");
+            sb.Append("  Ebt: ").Append(Ebt).Append("\n");
             sb.Append("  EftDirectdebitCA: ").Append(EftDirectdebitCA).Append("\n");
             sb.Append("  EftposAustralia: ").Append(EftposAustralia).Append("\n");
             sb.Append("  Girocard: ").Append(Girocard).Append("\n");
@@ -2342,9 +2473,11 @@ namespace Adyen.Management.Models
             sb.Append("  MealVoucherFR: ").Append(MealVoucherFR).Append("\n");
             sb.Append("  Nyce: ").Append(Nyce).Append("\n");
             sb.Append("  PaybybankPlaid: ").Append(PaybybankPlaid).Append("\n");
+            sb.Append("  PaybybankPlaidCa: ").Append(PaybybankPlaidCa).Append("\n");
             sb.Append("  Payme: ").Append(Payme).Append("\n");
             sb.Append("  Paypal: ").Append(Paypal).Append("\n");
             sb.Append("  Payto: ").Append(Payto).Append("\n");
+            sb.Append("  Pix: ").Append(Pix).Append("\n");
             sb.Append("  Pulse: ").Append(Pulse).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  Sepadirectdebit: ").Append(Sepadirectdebit).Append("\n");
@@ -2395,10 +2528,12 @@ namespace Adyen.Management.Models
             Option<AfterpayTouchInfo?> afterpayTouch = default;
             Option<AlipayPlusInfo?> alipayPlus = default;
             Option<AmexInfo?> amex = default;
+            Option<AncvInfo?> ancv = default;
             Option<ApplePayInfo?> applePay = default;
             Option<BcmcInfo?> bcmc = default;
+            Option<BoncardInfo?> boncard = default;
             Option<string?> businessLineId = default;
-            Option<GenericPmWithTdiInfo?> carnet = default;
+            Option<CarnetInfo?> carnet = default;
             Option<CartesBancairesInfo?> cartesBancaires = default;
             Option<ClearpayInfo?> clearpay = default;
             Option<List<string>?> countries = default;
@@ -2407,6 +2542,7 @@ namespace Adyen.Management.Models
             Option<List<string>?> customRoutingFlags = default;
             Option<DinersInfo?> diners = default;
             Option<GenericPmWithTdiInfo?> discover = default;
+            Option<EbtInfo?> ebt = default;
             Option<GenericPmWithTdiInfo?> eftDirectdebitCA = default;
             Option<GenericPmWithTdiInfo?> eftposAustralia = default;
             Option<GenericPmWithTdiInfo?> girocard = default;
@@ -2422,9 +2558,11 @@ namespace Adyen.Management.Models
             Option<MealVoucherFRInfo?> mealVoucherFR = default;
             Option<NyceInfo?> nyce = default;
             Option<PayByBankPlaidInfo?> paybybankPlaid = default;
+            Option<PayByBankPlaidInfo?> paybybankPlaidCa = default;
             Option<PayMeInfo?> payme = default;
             Option<PayPalInfo?> paypal = default;
             Option<PayToInfo?> payto = default;
+            Option<PixInfo?> pix = default;
             Option<PulseInfo?> pulse = default;
             Option<string?> reference = default;
             Option<SepaDirectDebitInfo?> sepadirectdebit = default;
@@ -2477,17 +2615,23 @@ namespace Adyen.Management.Models
                         case "amex":
                             amex = new Option<AmexInfo?>(JsonSerializer.Deserialize<AmexInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
+                        case "ancv":
+                            ancv = new Option<AncvInfo?>(JsonSerializer.Deserialize<AncvInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "applePay":
                             applePay = new Option<ApplePayInfo?>(JsonSerializer.Deserialize<ApplePayInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "bcmc":
                             bcmc = new Option<BcmcInfo?>(JsonSerializer.Deserialize<BcmcInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
+                        case "boncard":
+                            boncard = new Option<BoncardInfo?>(JsonSerializer.Deserialize<BoncardInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "businessLineId":
                             businessLineId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "carnet":
-                            carnet = new Option<GenericPmWithTdiInfo?>(JsonSerializer.Deserialize<GenericPmWithTdiInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            carnet = new Option<CarnetInfo?>(JsonSerializer.Deserialize<CarnetInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "cartesBancaires":
                             cartesBancaires = new Option<CartesBancairesInfo?>(JsonSerializer.Deserialize<CartesBancairesInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -2512,6 +2656,9 @@ namespace Adyen.Management.Models
                             break;
                         case "discover":
                             discover = new Option<GenericPmWithTdiInfo?>(JsonSerializer.Deserialize<GenericPmWithTdiInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "ebt":
+                            ebt = new Option<EbtInfo?>(JsonSerializer.Deserialize<EbtInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "eft_directdebit_CA":
                             eftDirectdebitCA = new Option<GenericPmWithTdiInfo?>(JsonSerializer.Deserialize<GenericPmWithTdiInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -2558,6 +2705,9 @@ namespace Adyen.Management.Models
                         case "paybybank_plaid":
                             paybybankPlaid = new Option<PayByBankPlaidInfo?>(JsonSerializer.Deserialize<PayByBankPlaidInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
+                        case "paybybank_plaid_ca":
+                            paybybankPlaidCa = new Option<PayByBankPlaidInfo?>(JsonSerializer.Deserialize<PayByBankPlaidInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "payme":
                             payme = new Option<PayMeInfo?>(JsonSerializer.Deserialize<PayMeInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
@@ -2566,6 +2716,9 @@ namespace Adyen.Management.Models
                             break;
                         case "payto":
                             payto = new Option<PayToInfo?>(JsonSerializer.Deserialize<PayToInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "pix":
+                            pix = new Option<PixInfo?>(JsonSerializer.Deserialize<PixInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "pulse":
                             pulse = new Option<PulseInfo?>(JsonSerializer.Deserialize<PulseInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -2639,10 +2792,14 @@ namespace Adyen.Management.Models
                 paymentMethodSetupInfo.AlipayPlus = alipayPlus.Value;
             if (amex.IsSet)
                 paymentMethodSetupInfo.Amex = amex.Value;
+            if (ancv.IsSet)
+                paymentMethodSetupInfo.Ancv = ancv.Value;
             if (applePay.IsSet)
                 paymentMethodSetupInfo.ApplePay = applePay.Value;
             if (bcmc.IsSet)
                 paymentMethodSetupInfo.Bcmc = bcmc.Value;
+            if (boncard.IsSet)
+                paymentMethodSetupInfo.Boncard = boncard.Value;
             if (businessLineId.IsSet)
                 paymentMethodSetupInfo.BusinessLineId = businessLineId.Value;
             if (carnet.IsSet)
@@ -2663,6 +2820,8 @@ namespace Adyen.Management.Models
                 paymentMethodSetupInfo.Diners = diners.Value;
             if (discover.IsSet)
                 paymentMethodSetupInfo.Discover = discover.Value;
+            if (ebt.IsSet)
+                paymentMethodSetupInfo.Ebt = ebt.Value;
             if (eftDirectdebitCA.IsSet)
                 paymentMethodSetupInfo.EftDirectdebitCA = eftDirectdebitCA.Value;
             if (eftposAustralia.IsSet)
@@ -2693,12 +2852,16 @@ namespace Adyen.Management.Models
                 paymentMethodSetupInfo.Nyce = nyce.Value;
             if (paybybankPlaid.IsSet)
                 paymentMethodSetupInfo.PaybybankPlaid = paybybankPlaid.Value;
+            if (paybybankPlaidCa.IsSet)
+                paymentMethodSetupInfo.PaybybankPlaidCa = paybybankPlaidCa.Value;
             if (payme.IsSet)
                 paymentMethodSetupInfo.Payme = payme.Value;
             if (paypal.IsSet)
                 paymentMethodSetupInfo.Paypal = paypal.Value;
             if (payto.IsSet)
                 paymentMethodSetupInfo.Payto = payto.Value;
+            if (pix.IsSet)
+                paymentMethodSetupInfo.Pix = pix.Value;
             if (pulse.IsSet)
                 paymentMethodSetupInfo.Pulse = pulse.Value;
             if (reference.IsSet)
@@ -2793,6 +2956,11 @@ namespace Adyen.Management.Models
                 writer.WritePropertyName("amex");
                 JsonSerializer.Serialize(writer, paymentMethodSetupInfo.Amex, jsonSerializerOptions);
             }
+            if (paymentMethodSetupInfo._AncvOption.IsSet)
+            {
+                writer.WritePropertyName("ancv");
+                JsonSerializer.Serialize(writer, paymentMethodSetupInfo.Ancv, jsonSerializerOptions);
+            }
             if (paymentMethodSetupInfo._ApplePayOption.IsSet)
             {
                 writer.WritePropertyName("applePay");
@@ -2802,6 +2970,11 @@ namespace Adyen.Management.Models
             {
                 writer.WritePropertyName("bcmc");
                 JsonSerializer.Serialize(writer, paymentMethodSetupInfo.Bcmc, jsonSerializerOptions);
+            }
+            if (paymentMethodSetupInfo._BoncardOption.IsSet)
+            {
+                writer.WritePropertyName("boncard");
+                JsonSerializer.Serialize(writer, paymentMethodSetupInfo.Boncard, jsonSerializerOptions);
             }
             if (paymentMethodSetupInfo._BusinessLineIdOption.IsSet)
                 if (paymentMethodSetupInfo.BusinessLineId != null)
@@ -2851,6 +3024,11 @@ namespace Adyen.Management.Models
             {
                 writer.WritePropertyName("discover");
                 JsonSerializer.Serialize(writer, paymentMethodSetupInfo.Discover, jsonSerializerOptions);
+            }
+            if (paymentMethodSetupInfo._EbtOption.IsSet)
+            {
+                writer.WritePropertyName("ebt");
+                JsonSerializer.Serialize(writer, paymentMethodSetupInfo.Ebt, jsonSerializerOptions);
             }
             if (paymentMethodSetupInfo._EftDirectdebitCAOption.IsSet)
             {
@@ -2927,6 +3105,11 @@ namespace Adyen.Management.Models
                 writer.WritePropertyName("paybybank_plaid");
                 JsonSerializer.Serialize(writer, paymentMethodSetupInfo.PaybybankPlaid, jsonSerializerOptions);
             }
+            if (paymentMethodSetupInfo._PaybybankPlaidCaOption.IsSet)
+            {
+                writer.WritePropertyName("paybybank_plaid_ca");
+                JsonSerializer.Serialize(writer, paymentMethodSetupInfo.PaybybankPlaidCa, jsonSerializerOptions);
+            }
             if (paymentMethodSetupInfo._PaymeOption.IsSet)
             {
                 writer.WritePropertyName("payme");
@@ -2941,6 +3124,11 @@ namespace Adyen.Management.Models
             {
                 writer.WritePropertyName("payto");
                 JsonSerializer.Serialize(writer, paymentMethodSetupInfo.Payto, jsonSerializerOptions);
+            }
+            if (paymentMethodSetupInfo._PixOption.IsSet)
+            {
+                writer.WritePropertyName("pix");
+                JsonSerializer.Serialize(writer, paymentMethodSetupInfo.Pix, jsonSerializerOptions);
             }
             if (paymentMethodSetupInfo._PulseOption.IsSet)
             {

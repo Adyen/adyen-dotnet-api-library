@@ -50,9 +50,9 @@ namespace Adyen.Management.Models
         public string? Script { get; set; }
 
         /// <summary>
-        /// The text of the local shopper statement in the specified character set.
+        /// The localized shopper statement in the specified character set.  * For &#x60;ja-Hani&#x60; the allowed characters are: Full-width kanji including letters, numbers, and symbols.  * For &#x60;ja-Kana&#x60; the allowed characters are:     * &#x60;Half-width katakana&#x60;     * Letters: &#x60;a-z&#x60;, &#x60;A-Z&#x60;     * Numbers: &#x60;0-9&#x60;     * Symbols: &#x60;!&#x60;, &#x60;\&quot;&#x60;, &#x60;#&#x60;, &#x60;$&#x60;, &#x60;%&#x60;, &#x60;&amp;&#x60;, &#x60;&#39;&#x60;, &#x60;(&#x60;, &#x60;)&#x60;, &#x60;*&#x60;, &#x60;+&#x60;, &#x60;,&#x60;, &#x60;-&#x60;, &#x60;.&#x60;, &#x60;/&#x60;, &#x60;:&#x60;, &#x60;;&#x60;, &#x60;&lt;&#x60;, &#x60;&#x3D;&#x60;, &#x60;&gt;&#x60;, &#x60;?&#x60;, &#x60;@&#x60;, &#x60;[&#x60;, &#x60;\\&#x60;, &#x60;]&#x60;, &#x60;^&#x60;, &#x60;_&#x60;, &#x60;&#x60; &#x60; &#x60;&#x60;, &#x60;{&#x60;, &#x60;|&#x60;, &#x60;}&#x60;, &#x60;~&#x60;, &#x60;｡&#x60;, &#x60;｢&#x60;, &#x60;｣&#x60;, &#x60;､&#x60;, &#x60;･&#x60;, &#x60;ｰ&#x60; 
         /// </summary>
-        /// <value>The text of the local shopper statement in the specified character set.</value>
+        /// <value>The localized shopper statement in the specified character set.  * For `ja-Hani` the allowed characters are: Full-width kanji including letters, numbers, and symbols.  * For `ja-Kana` the allowed characters are:     * `Half-width katakana`     * Letters: `a-z`, `A-Z`     * Numbers: `0-9`     * Symbols: `!`, `\"`, `#`, `$`, `%`, `&`, `'`, `(`, `)`, `*`, `+`, `,`, `-`, `.`, `/`, `:`, `;`, `<`, `=`, `>`, `?`, `@`, `[`, `\\`, `]`, `^`, `_`, `` ` ``, `{`, `|`, `}`, `~`, `｡`, `｢`, `｣`, `､`, `･`, `ｰ` </value>
         [JsonPropertyName("value")]
         public string? Value { get; set; }
 

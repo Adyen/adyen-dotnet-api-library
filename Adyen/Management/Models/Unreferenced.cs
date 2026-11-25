@@ -50,9 +50,9 @@ namespace Adyen.Management.Models
         public Option<bool?> _EnableUnreferencedRefundsOption { get; private set; }
 
         /// <summary>
-        /// Indicates whether unreferenced refunds are enabled on the terminal.
+        /// Indicates whether unreferenced refunds are enabled on the terminal.  &gt; You&#39;re fully liable for losses resulting from fraudulent or duplicate unreferenced refunds. We recommend that you [set an unreferenced refund limit and a refund delay](https://docs.adyen.com/point-of-sale/basic-tapi-integration/refund-payment/unreferenced/#risk-with-unreferenced-refunds) to reduce this risk.
         /// </summary>
-        /// <value>Indicates whether unreferenced refunds are enabled on the terminal.</value>
+        /// <value>Indicates whether unreferenced refunds are enabled on the terminal.  > You're fully liable for losses resulting from fraudulent or duplicate unreferenced refunds. We recommend that you [set an unreferenced refund limit and a refund delay](https://docs.adyen.com/point-of-sale/basic-tapi-integration/refund-payment/unreferenced/#risk-with-unreferenced-refunds) to reduce this risk.</value>
         [JsonPropertyName("enableUnreferencedRefunds")]
         public bool? EnableUnreferencedRefunds { get { return this._EnableUnreferencedRefundsOption; } set { this._EnableUnreferencedRefundsOption = new(value); } }
 
